@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Disabling all sale exception when in demo mode
+         to not interfer with other tests -->
+    <record id="exception_product_brand_mixed" model="exception.rule">
+        <field name="active" eval="False" />
+    </record>
+
+</odoo>

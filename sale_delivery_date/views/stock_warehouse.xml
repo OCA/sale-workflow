@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_warehouse_inherit" model="ir.ui.view">
+        <field name="name">stock.warehouse.inherit</field>
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="apply_cutoff" />
+                <field
+                    name="cutoff_time"
+                    attrs="{'invisible': [('apply_cutoff', '!=', True)]}"
+                    widget="float_time"
+                />
+                <field
+                    name="tz"
+                    attrs="{'invisible': [('apply_cutoff', '!=', True)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

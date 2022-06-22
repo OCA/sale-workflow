@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <!-- to pass after the sale_commitment_date_mandatory -->
+        <field name="priority" eval="110" />
+        <field name="arch" type="xml">
+            <group name="sale_shipping" position="after">
+                <field name="commitment_date_end" />
+            </group>
+            <field name="payment_term_id" position="before">
+                <field name="seasonal_config_id" />
+            </field>
+            <xpath
+                expr="//field[@name='order_line']//tree//field[@name='product_id']"
+                position="before"
+            >
+                <field name="season_allowed_product_ids" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//tree//field[@name='product_id']"
+                position="attributes"
+            >
+                <attribute
+                    name="domain"
+                >[('id', 'in', season_allowed_product_ids)]</attribute>
+                <attribute name="options">{"no_create": True}</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//tree//field[@name='product_template_id']"
+                position="attributes"
+            >
+                <attribute
+                    name="domain"
+                >[('product_variant_ids.id', 'in', season_allowed_product_ids)]</attribute>
+                <attribute name="options">{"no_create": True}</attribute>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page
+                    name="season_allowed_products"
+                    string="Seasonal allowed Products"
+                    groups="base.group_no_one"
+                >
+                    <field name="season_allowed_product_ids" nolabel="1" />
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

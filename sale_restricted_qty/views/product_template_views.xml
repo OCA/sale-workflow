@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_product_template_form" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <group name="description" position="before">
+                <group
+                    name="sale_restricted_qty"
+                    string="Sale restricted qty"
+                    colspan="4"
+                >
+                    <group name="sale_min_qty_gr" string="Sale Min qty">
+                        <field name="sale_min_qty" />
+                        <label for="manual_sale_min_qty" class="oe_edit_only" />
+                        <field
+                            name="manual_sale_min_qty"
+                            class="oe_edit_only"
+                            nolabel="1"
+                        />
+                        <field name="force_sale_min_qty" />
+                        <label for="manual_force_sale_min_qty" class="oe_edit_only" />
+                        <field
+                            name="manual_force_sale_min_qty"
+                            class="oe_edit_only"
+                            nolabel="1"
+                        />
+                    </group>
+                    <group name="sale_max_qty_gr" string="Sale Max qty">
+                        <field name="sale_max_qty" />
+                        <label for="manual_sale_max_qty" class="oe_edit_only" />
+                        <field
+                            name="manual_sale_max_qty"
+                            class="oe_edit_only"
+                            nolabel="1"
+                        />
+                        <field name="force_sale_max_qty" />
+                        <label for="manual_force_sale_max_qty" class="oe_edit_only" />
+                        <field
+                            name="manual_force_sale_max_qty"
+                            class="oe_edit_only"
+                            nolabel="1"
+                        />
+                    </group>
+                    <group name="sale_multiple_qty_gr" string="Sale Miltiple qty">
+                        <field name="sale_multiple_qty" />
+                        <label for="manual_sale_multiple_qty" class="oe_edit_only" />
+                        <field
+                            name="manual_sale_multiple_qty"
+                            class="oe_edit_only"
+                            nolabel="1"
+                        />
+                    </group>
+                </group>
+            </group>
+        </field>
+    </record>
+
+</odoo>

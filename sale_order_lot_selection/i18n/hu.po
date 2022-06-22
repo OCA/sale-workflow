@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_lot_selection
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-29 03:03+0000\n"
+"PO-Revision-Date: 2016-09-29 03:03+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Hungarian (https://www.transifex.com/oca/teams/23907/hu/)\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_order_lot_selection
+#: code:addons/sale_order_lot_selection/models/sale_order.py:0
+#, python-format
+msgid "Can't reserve products for lot %s"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: code:addons/sale_order_lot_selection/models/sale_order.py:0
+#, python-format
+msgid "Can't retrieve lot on stock"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__lot_id
+msgid "Lot"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_sale_order
+#, fuzzy
+msgid "Sales Order"
+msgstr "Vevői megrendelés"
+
+#. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_stock_move
+msgid "Stock Move"
+msgstr ""

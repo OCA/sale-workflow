@@ -1,0 +1,76 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_lot_generator
+#
+# Translators:
+# leemannd <denis.leemann@camptocamp.com>, 2017
+# OCA Transbot <transbot@odoo-community.org>, 2017
+# Quentin THEURET <odoo@kerpeo.com>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-28 01:48+0000\n"
+"PO-Revision-Date: 2018-02-28 01:48+0000\n"
+"Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2018\n"
+"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: sale_order_lot_generator
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_product__auto_generate_prodlot
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_template__auto_generate_prodlot
+#, fuzzy
+msgid "Auto Generate Lot"
+msgstr "Génération automatique des Lots"
+
+#. module: sale_order_lot_generator
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_template__display_name
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_lot_generator
+#: model:ir.model.fields,help:sale_order_lot_generator.field_product_product__auto_generate_prodlot
+#: model:ir.model.fields,help:sale_order_lot_generator.field_product_template__auto_generate_prodlot
+msgid ""
+"Forces to specifiy a Serial Number for all lines containing this product "
+"since the confirmation of the Sale Order"
+msgstr ""
+
+#. module: sale_order_lot_generator
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_template__id
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_lot_generator
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_template____last_update
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_order_lot_generator
+#: model:ir.model,name:sale_order_lot_generator.model_product_template
+msgid "Product Template"
+msgstr "Modèle de produit"
+
+#. module: sale_order_lot_generator
+#: model:ir.model,name:sale_order_lot_generator.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_lot_generator
+#: model:ir.model,name:sale_order_lot_generator.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Sales Order Line"
+
+#, fuzzy
+#~ msgid "Sale Order"
+#~ msgstr "Bon de commande"

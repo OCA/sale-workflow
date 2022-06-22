@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template
+        id="report_saleorder_document"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath expr="//p[@t-field='doc.validity_date']/.." position="after">
+            <div t-if="doc.display_expected_date_ok" class="col-auto mw-100 mb-2">
+                <strong>Expected delivery date:</strong>
+                <p
+                    t-if="doc.commitment_date"
+                    class="m-0"
+                    t-field="doc.commitment_date"
+                    t-options="{'date_only': 'True'}"
+                />
+                <p
+                    t-else=""
+                    class="m-0"
+                    t-field="doc.expected_date"
+                    t-options="{'date_only': 'True'}"
+                />
+            </div>
+        </xpath>
+    </template>
+</odoo>

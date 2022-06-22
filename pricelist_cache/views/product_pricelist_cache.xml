@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+  <record id="product_pricelist_cache_view_tree" model="ir.ui.view">
+    <field name="name">product.pricelist.cache.tree</field>
+    <field name="model">product.pricelist.cache</field>
+    <field name="arch" type="xml">
+      <tree string="Price List" create="false" edit="false">
+          <field name="product_id" />
+          <field name="price" />
+      </tree>
+    </field>
+  </record>
+
+  <record id="product_pricelist_cache_action" model="ir.actions.act_window">
+    <field name="name">Pricelist Cache</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">product.pricelist.cache</field>
+    <field name="view_mode">tree</field>
+    <field name="view_id" ref="product_pricelist_cache_view_tree" />
+  </record>
+
+</odoo>

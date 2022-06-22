@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <!-- Product -->
+    <record id="product_product_two_steps" model="product.product">
+        <field name="name">Product Test Sale Chained Move</field>
+        <field name="categ_id" ref="product.product_category_5" />
+        <field name="standard_price">2870.0</field>
+        <field name="list_price">2950.0</field>
+        <field name="type">product</field>
+        <field name="weight">0.01</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field name="default_code">SALE_CHAINED</field>
+    </record>
+    <!-- Product Stock Rules - Define for demos without having to change steps -->
+    <record id="route_product_sale_chained" model="stock.location.route">
+        <field name="name">Route for Chained Sale Moves with Pack</field>
+    </record>
+    <record id="sale_chained_stock_out_rule" model="stock.rule">
+        <field name="name">Stock -> Pack</field>
+        <field
+            name="location_id"
+            eval="obj().env.ref('stock.warehouse0').wh_pack_stock_loc_id"
+            model="stock.location"
+        />
+        <field name="location_src_id" ref="stock.stock_location_stock" />
+        <field name="route_id" ref="route_product_sale_chained" />
+        <field name="action">pull</field>
+        <field name="picking_type_id" ref="stock.picking_type_internal" />
+    </record>
+    <record id="sale_chained_quality_out_rule" model="stock.rule">
+        <field name="name">Pack -> Out</field>
+        <field name="location_id" ref="stock.stock_location_output" />
+        <field
+            name="location_src_id"
+            eval="obj().env.ref('stock.warehouse0').wh_pack_stock_loc_id"
+            model="stock.location"
+        />
+        <field name="route_id" ref="route_product_sale_chained" />
+        <field name="procure_method">make_to_order</field>
+        <field name="action">pull</field>
+        <field name="picking_type_id" ref="stock.picking_type_internal" />
+    </record>
+    <record id="sale_chained_out_customers_rule" model="stock.rule">
+        <field name="name">Out -> Customers</field>
+        <field name="location_id" ref="stock.stock_location_customers" />
+        <field name="location_src_id" ref="stock.stock_location_output" />
+        <field name="route_id" ref="route_product_sale_chained" />
+        <field name="procure_method">make_to_order</field>
+        <field name="action">pull</field>
+        <field name="picking_type_id" ref="stock.picking_type_out" />
+    </record>
+    <record id="sale_order_stock" model="sale.order">
+        <field name="partner_id" ref="base.res_partner_2" />
+        <field name="partner_invoice_id" ref="base.res_partner_2" />
+        <field name="partner_shipping_id" ref="base.res_partner_2" />
+        <field name="user_id" ref="base.user_demo" />
+        <field name="pricelist_id" ref="product.list0" />
+        <field name="team_id" ref="sales_team.team_sales_department" />
+        <field name="campaign_id" ref="utm.utm_campaign_email_campaign_products" />
+        <field name="medium_id" ref="utm.utm_medium_email" />
+        <field name="source_id" ref="sale.utm_source_sale_order_0" />
+        <field
+            name="date_order"
+            eval="(DateTime.today() - relativedelta(months=1)).strftime('%Y-%m-%d %H:%M')"
+        />
+    </record>
+    <record id="sale_order_line_1" model="sale.order.line">
+        <field name="order_id" ref="sale_order_stock" />
+        <field
+            name="name"
+            model="sale.order.line"
+            eval="obj().env.ref('product.product_product_25').get_product_multiline_description_sale()"
+        />
+        <field name="product_id" ref="product_product_two_steps" />
+        <field name="product_uom_qty">3</field>
+        <field name="product_uom" ref="uom.product_uom_unit" />
+        <field name="route_id" ref="route_product_sale_chained" />
+        <field name="price_unit">2950.00</field>
+    </record>
+    <function model="sale.order" name="action_confirm">
+        <value
+            model="sale.order"
+            eval="ref('sale_order_line_chained_move.sale_order_stock')"
+        />
+    </function>
+</odoo>

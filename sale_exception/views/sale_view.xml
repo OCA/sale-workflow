@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="action_sale_test_tree" model="ir.actions.act_window">
+        <field name="name">Sale Exception Rules</field>
+        <field name="res_model">exception.rule</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="base_exception.view_exception_rule_tree" />
+        <field
+            name="domain"
+        >[('model', 'in', ['sale.order', 'sale.order.line'])]</field>
+        <field
+            name="context"
+        >{'active_test': False, 'default_model' : 'sale.order'}</field>
+    </record>
+    <menuitem
+        action="action_sale_test_tree"
+        id="menu_sale_test"
+        sequence="90"
+        parent="sale.menu_sales_config"
+        groups="base_exception.group_exception_rule_manager"
+    />
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale_exception.view_order_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <sheet position="before">
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                    style="margin-bottom:0px;"
+                    attrs="{'invisible': [('exceptions_summary','=',False)]}"
+                >
+                    <p>
+                        <strong
+                        >There are exceptions blocking the confirmation of this Sale Order:</strong>
+                    </p>
+                    <field name="exceptions_summary" />
+                    <button
+                        name="action_ignore_exceptions"
+                        type="object"
+                        class="btn-danger"
+                        string="Ignore Exceptions"
+                        help="Click here to be able to confirm this Sale Orders regardless of the exceptions."
+                        groups="base_exception.group_exception_rule_manager"
+                    />
+                </div>
+            </sheet>
+            <xpath expr="//field[@name='date_order']/.." position="inside">
+                <field name="ignore_exception" states="sale" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form/group[1]" position="before">
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                    style="margin-bottom:0px;"
+                    attrs="{'invisible': [('exceptions_summary', '=', False)]}"
+                >
+                    <p>
+                        <strong
+                        >There are exceptions on this line blocking the confirmation of this quotation:</strong>
+                    </p>
+                    <field name="exceptions_summary" />
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree" position="inside">
+                <field name="exception_ids" invisible="1" />
+                <field name="ignore_exception" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                <attribute
+                    name="decoration-danger"
+                >not ignore_exception and exception_ids</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="name">sale_exception.view_order_tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="main_exception_id" />
+            </field>
+        </field>
+    </record>
+    <record id="view_quotation_tree" model="ir.ui.view">
+        <field name="name">sale_exception.view_order_tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="main_exception_id" />
+            </field>
+        </field>
+    </record>
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field name="name">sale_exception.view_sales_order_filter</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <filter name="my_sale_orders_filter" position="after">
+                <separator orientation="vertical" />
+                <filter
+                    icon="terp-emblem-important"
+                    name="tofix"
+                    string="Blocked in draft"
+                    domain="[('main_exception_id','!=',False)]"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>

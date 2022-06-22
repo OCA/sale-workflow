@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template id="report_delivery_document" inherit_id="stock.report_delivery_document">
+        <xpath expr="//div[@name='div_sched_date']" position="after">
+            <div class="col-auto mw-100 mb-2">
+                <strong>Expected delivery date:</strong>
+                <p
+                    class="m-0"
+                    t-field="o.expected_delivery_date"
+                    t-options="{'date_only': 'True'}"
+                />
+            </div>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,56 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_product_set_packaging_qty
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_product_set_packaging_qty
+#: model:ir.model.fields,field_description:sale_product_set_packaging_qty.field_product_set_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_product_set_packaging_qty
+#: model:ir.model.fields,field_description:sale_product_set_packaging_qty.field_product_set_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_product_set_packaging_qty
+#: model:ir.model.fields,field_description:sale_product_set_packaging_qty.field_product_set_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_product_set_packaging_qty
+#: code:addons/sale_product_set_packaging_qty/models/product_set.py:0
+#, python-format
+msgid "Please select a packaging with a quantity bigger than 0"
+msgstr ""
+
+#. module: sale_product_set_packaging_qty
+#: model:ir.model.fields,field_description:sale_product_set_packaging_qty.field_product_set_line__product_packaging_id
+msgid "Product Packaging"
+msgstr ""
+
+#. module: sale_product_set_packaging_qty
+#: model:ir.model.fields,field_description:sale_product_set_packaging_qty.field_product_set_line__product_packaging_qty
+msgid "Product Packaging Qty"
+msgstr ""
+
+#. module: sale_product_set_packaging_qty
+#: model:ir.model,name:sale_product_set_packaging_qty.model_product_set_line
+msgid "Product set line"
+msgstr ""
+
+#. module: sale_product_set_packaging_qty
+#: code:addons/sale_product_set_packaging_qty/models/product_set.py:0
+#, python-format
+msgid "You must define a package before setting a quantity of said package."
+msgstr ""

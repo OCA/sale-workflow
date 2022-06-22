@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+  <record
+        id="res_config_settings_view_form_pricelist_cache_rest_inherit"
+        model="ir.ui.view"
+    >
+    <field
+            name="name"
+        >res.config.settings.view.form.pricelist.cache.rest.inherit</field>
+    <field name="model">res.config.settings</field>
+    <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+    <field name="arch" type="xml">
+        <xpath expr="//div[@id='multi_company']" position="before">
+            <h2>Pricelist Cache API keys</h2>
+            <div
+                    class="row mt16 o_settings_container"
+                    id="pricelist_cache_api_settings"
+                >
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_left_pane" modifiers="{}" />
+                    <div class="o_setting_right_pane" modifiers="{}">
+                        <b modifiers="{}">Authorized Pricelist Cache API keys</b>
+                        <div
+                                class="text-muted"
+                                modifiers="{}"
+                            >Defines the list of api keys authorized to retrieve prices from the api</div>
+                        <div class="mt16" modifiers="{}">
+                            <field name="pricelist_cache_auhorize_apikey_ids" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </field>
+  </record>
+
+</odoo>

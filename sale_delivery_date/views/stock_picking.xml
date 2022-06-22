@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_picking_cutoff_search" model="ir.ui.view">
+        <field name="name">stock.picking.cutoff.search</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search" />
+        <field name="arch" type="xml">
+            <filter name="activities_exception" position="after">
+                <separator />
+                <filter
+                    string="Before today's cut-off"
+                    name="before_today_cutoff"
+                    domain="[('cutoff_time_diff', '=', -1)]"
+                />
+                <filter
+                    string="Inside today's cut-off"
+                    name="inside_today_cutoff"
+                    domain="[('cutoff_time_diff', '=', 0)]"
+                />
+                <filter
+                    string="After today's cut-off"
+                    name="after_today_cutoff"
+                    domain="[('cutoff_time_diff', '=', 1)]"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>

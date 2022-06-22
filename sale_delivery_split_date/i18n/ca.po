@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_delivery_split_date
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2021-03-10 10:45+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"Language-Team: none\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: sale_delivery_split_date
+#: model:ir.model,name:sale_delivery_split_date.model_sale_order
+msgid "Sale Order"
+msgstr "Comanda de venda"
+
+#. module: sale_delivery_split_date
+#: model:ir.model,name:sale_delivery_split_date.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línia de comandes de vendes"
+
+#. module: sale_delivery_split_date
+#: model_terms:ir.ui.view,arch_db:sale_delivery_split_date.view_picking_internal_search
+msgid "Scheduled Date"
+msgstr "Data prevista"
+
+#. module: sale_delivery_split_date
+#: model:ir.model.fields,field_description:sale_delivery_split_date.field_stock_picking__min_dt
+msgid "Scheduled Date (for filter purpose only)"
+msgstr "Data programada (només per al filtre)"
+
+#. module: sale_delivery_split_date
+#: model:ir.model,name:sale_delivery_split_date.model_stock_picking
+msgid "Transfer"
+msgstr "Transferència"

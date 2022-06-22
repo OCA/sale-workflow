@@ -1,0 +1,40 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_packaging_qty
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2020-07-27 10:19+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: sale_order_line_packaging_qty
+#: model:ir.model.fields,field_description:sale_order_line_packaging_qty.field_sale_order_line__product_packaging_qty
+msgid "Package quantity"
+msgstr "Cantidad de paquetes"
+
+#. module: sale_order_line_packaging_qty
+#: code:addons/sale_order_line_packaging_qty/models/sale_order_line.py:0
+#, python-format
+msgid "Please select a packaging with a quantity bigger than 0"
+msgstr "Seleccione un embalaje con una cantidad mayor que 0"
+
+#. module: sale_order_line_packaging_qty
+#: model:ir.model,name:sale_order_line_packaging_qty.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea Pedido de Venta"
+
+#. module: sale_order_line_packaging_qty
+#: code:addons/sale_order_line_packaging_qty/models/sale_order_line.py:0
+#, python-format
+msgid "You must define a package before setting a quantity of said package."
+msgstr ""
+"Debe definir un paquete antes de establecer una cantidad de dicho paquete."

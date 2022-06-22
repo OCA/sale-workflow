@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="product_product_tree_view" model="ir.ui.view">
+        <field name="name">product.product.tree.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view" />
+        <field name="arch" type="xml">
+            <field name="price" position="after">
+                <field name="sell_only_by_packaging" invisible="1" />
+                <field
+                    name="min_sellable_qty"
+                    attrs="{'invisible':['|', ('type', '!=', 'product'), ('sell_only_by_packaging', '=', False)]}"
+                    optional="show"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

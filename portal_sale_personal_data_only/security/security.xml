@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="portal_sale_order_user_rule" model="ir.rule">
+        <field name="name">Portal Only Personal Quotations/Sales</field>
+        <field name="model_id" ref="sale.model_sale_order" />
+        <field
+            name="domain_force"
+        >[('message_partner_ids','child_of', [user.partner_id.id])]</field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]" />
+    </record>
+    <record id="portal_sale_order_line_rule" model="ir.rule">
+        <field name="name">Portal Only Personal Sales Orders Line</field>
+        <field name="model_id" ref="sale.model_sale_order_line" />
+        <field
+            name="domain_force"
+        >[('order_id.message_partner_ids','child_of', [user.partner_id.id])]</field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]" />
+    </record>
+    <record id="portal_account_invoice_user_rule" model="ir.rule">
+        <field name="name">Portal Only Personal Account Invoices</field>
+        <field name="model_id" ref="account.model_account_move" />
+        <field name="domain_force">
+            ['|', ('message_partner_ids','child_of', [user.partner_id.id]), ('invoice_line_ids.sale_line_ids.order_id.message_partner_ids', 'child_of', [user.partner_id.id])]
+        </field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]" />
+    </record>
+    <record id="portal_account_invoice_line_rule" model="ir.rule">
+        <field name="name">Portal Only Personal Invoice Lines</field>
+        <field name="model_id" ref="account.model_account_move_line" />
+        <field name="domain_force">
+            ['|', ('move_id.message_partner_ids','child_of',[user.partner_id.id]), ('sale_line_ids.order_id.message_partner_ids', 'child_of', [user.partner_id.id])]
+        </field>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]" />
+    </record>
+</odoo>

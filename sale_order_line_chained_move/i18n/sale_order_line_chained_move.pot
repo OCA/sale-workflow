@@ -1,0 +1,92 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_chained_move
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_line_chained_move
+#: model:ir.model.fields,field_description:sale_order_line_chained_move.field_sale_order_line__chained_move_ids
+msgid "Chained Move"
+msgstr ""
+
+#. module: sale_order_line_chained_move
+#: model:ir.model.fields,field_description:sale_order_line_chained_move.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:sale_order_line_chained_move.field_stock_move__display_name
+#: model:ir.model.fields,field_description:sale_order_line_chained_move.field_stock_rule__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_line_chained_move
+#: model:ir.model.fields,field_description:sale_order_line_chained_move.field_sale_order_line__id
+#: model:ir.model.fields,field_description:sale_order_line_chained_move.field_stock_move__id
+#: model:ir.model.fields,field_description:sale_order_line_chained_move.field_stock_rule__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_line_chained_move
+#: model:ir.model.fields,field_description:sale_order_line_chained_move.field_sale_order_line____last_update
+#: model:ir.model.fields,field_description:sale_order_line_chained_move.field_stock_move____last_update
+#: model:ir.model.fields,field_description:sale_order_line_chained_move.field_stock_rule____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_order_line_chained_move
+#: model:stock.rule,name:sale_order_line_chained_move.sale_chained_out_customers_rule
+msgid "Out -> Customers"
+msgstr ""
+
+#. module: sale_order_line_chained_move
+#: model:stock.rule,name:sale_order_line_chained_move.sale_chained_quality_out_rule
+msgid "Pack -> Out"
+msgstr ""
+
+#. module: sale_order_line_chained_move
+#: model:product.product,name:sale_order_line_chained_move.product_product_two_steps
+#: model:product.template,name:sale_order_line_chained_move.product_product_two_steps_product_template
+msgid "Product Test Sale Chained Move"
+msgstr ""
+
+#. module: sale_order_line_chained_move
+#: model:ir.model.fields,field_description:sale_order_line_chained_move.field_stock_move__related_sale_line_id
+msgid "Related Sale Line"
+msgstr ""
+
+#. module: sale_order_line_chained_move
+#: model:stock.location.route,name:sale_order_line_chained_move.route_product_sale_chained
+msgid "Route for Chained Sale Moves with Pack"
+msgstr ""
+
+#. module: sale_order_line_chained_move
+#: model:ir.model,name:sale_order_line_chained_move.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_line_chained_move
+#: model:stock.rule,name:sale_order_line_chained_move.sale_chained_stock_out_rule
+msgid "Stock -> Pack"
+msgstr ""
+
+#. module: sale_order_line_chained_move
+#: model:ir.model,name:sale_order_line_chained_move.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: sale_order_line_chained_move
+#: model:ir.model,name:sale_order_line_chained_move.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
+
+#. module: sale_order_line_chained_move
+#: model:product.product,uom_name:sale_order_line_chained_move.product_product_two_steps
+#: model:product.template,uom_name:sale_order_line_chained_move.product_product_two_steps_product_template
+msgid "Units"
+msgstr ""

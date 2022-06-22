@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_triple_discount_form_view" model="ir.ui.view">
+        <field name="name">sale.order.triple.discount.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field
+            name="groups_id"
+            eval="[(4, ref('product.group_discount_per_so_line'))]"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']//tree//field[@name='discount']"
+                position="after"
+            >
+                <field name="discount2" optional="show" />
+                <field name="discount3" optional="show" />
+                <field name="discounting_type" optional="hide" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//form//div[@name='discount']"
+                position="after"
+            >
+                <label for="discount2" />
+                <div name="discount2">
+                    <field name="discount2" class="oe_inline" /> %
+                </div>
+                <label for="discount3" />
+                <div name="discoun3">
+                    <field name="discount3" class="oe_inline" /> %
+                </div>
+                <label for="discounting_type" />
+                <div name="discounting_type">
+                    <field name="discounting_type" class="oe_inline" /> %
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

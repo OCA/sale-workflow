@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2015 Opener B.V. (<https://opener.am>)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_partner_property_form" model="ir.ui.view">
+        <field name="name">Add default sales incoterm to partner form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="stock.view_partner_stock_form" />
+        <field name="arch" type="xml">
+            <field name="property_payment_term_id" position="after">
+                <field
+                    name="sale_incoterm_id"
+                    string="Default Sales Incoterm"
+                    widget="selection"
+                    groups="sale_stock.group_display_incoterm"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

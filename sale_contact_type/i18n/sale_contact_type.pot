@@ -1,0 +1,65 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_contact_type
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_contact_type
+#: model:ir.model.fields,field_description:sale_contact_type.field_res_partner__type
+#: model:ir.model.fields,field_description:sale_contact_type.field_res_users__type
+msgid "Address Type"
+msgstr ""
+
+#. module: sale_contact_type
+#: model:ir.model,name:sale_contact_type.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sale_contact_type
+#: model:ir.model.fields,field_description:sale_contact_type.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_contact_type
+#: model:ir.model.fields,field_description:sale_contact_type.field_res_partner__has_ordering_contact_child
+#: model:ir.model.fields,field_description:sale_contact_type.field_res_users__has_ordering_contact_child
+msgid "Has Ordering Contact Child"
+msgstr ""
+
+#. module: sale_contact_type
+#: model:ir.model.fields,field_description:sale_contact_type.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_contact_type
+#: model:ir.model.fields,help:sale_contact_type.field_res_partner__type
+#: model:ir.model.fields,help:sale_contact_type.field_res_users__type
+msgid ""
+"Invoice & Delivery addresses are used in sales orders. Private addresses are"
+" only visible by authorized users."
+msgstr ""
+
+#. module: sale_contact_type
+#: model:ir.model.fields,field_description:sale_contact_type.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_contact_type
+#: model:ir.model.fields.selection,name:sale_contact_type.selection__res_partner__type__ordering
+msgid "Ordering contact"
+msgstr ""
+
+#. module: sale_contact_type
+#: model:ir.model.fields,help:sale_contact_type.field_res_partner__has_ordering_contact_child
+#: model:ir.model.fields,help:sale_contact_type.field_res_users__has_ordering_contact_child
+msgid "Technical field for use in views"
+msgstr ""

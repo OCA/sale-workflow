@@ -1,0 +1,26 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_form_sale_link
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_form_sale_link
+#: model:ir.actions.act_window,name:product_form_sale_link.action_product_product_sale_list
+#: model:ir.actions.act_window,name:product_form_sale_link.action_product_template_sale_list
+msgid "Sale Order Lines"
+msgstr ""
+
+#. module: product_form_sale_link
+#: model_terms:ir.ui.view,arch_db:product_form_sale_link.product_product_form_view
+#: model_terms:ir.ui.view,arch_db:product_form_sale_link.product_template_form_view
+msgid "Sales"
+msgstr ""
