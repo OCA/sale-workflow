@@ -1,0 +1,108 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_discount_validation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_line_discount_validation
+#: model_terms:ir.ui.view,arch_db:sale_order_line_discount_validation.sale_order_view_form_inherit_sale_order_line_discount_validation
+msgid "Approve"
+msgstr ""
+
+#. module: sale_order_line_discount_validation
+#: model:ir.model.fields.selection,name:sale_order_line_discount_validation.selection__sale_order__state__approved
+msgid "Approved"
+msgstr ""
+
+#. module: sale_order_line_discount_validation
+#: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_sale_order__approver_user_id
+msgid "Approved By"
+msgstr ""
+
+#. module: sale_order_line_discount_validation
+#: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_sale_order__approve_date
+msgid "Approved On"
+msgstr ""
+
+#. module: sale_order_line_discount_validation
+#: model:ir.model,name:sale_order_line_discount_validation.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_order_line_discount_validation
+#: model:ir.model,name:sale_order_line_discount_validation.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_line_discount_validation
+#: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_res_company__sale_discount_limit
+#: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_res_config_settings__sale_discount_limit
+#: model_terms:ir.ui.view,arch_db:sale_order_line_discount_validation.res_config_settings_view_form_inherit_sale_order_line_discount_validation
+msgid "Discount Limit"
+msgstr ""
+
+#. module: sale_order_line_discount_validation
+#: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_report_sale_report_saleorder__display_name
+#: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_res_company__display_name
+#: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_line_discount_validation
+#: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_report_sale_report_saleorder__id
+#: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_res_company__id
+#: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_line_discount_validation
+#: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_report_sale_report_saleorder____last_update
+#: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_res_company____last_update
+#: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_order_line_discount_validation
+#: model_terms:ir.ui.view,arch_db:sale_order_line_discount_validation.sale_order_view_form_inherit_sale_order_line_discount_validation
+msgid "Refuse"
+msgstr ""
+
+#. module: sale_order_line_discount_validation
+#: model:ir.model,name:sale_order_line_discount_validation.model_report_sale_report_saleorder
+msgid "Sale Order Report"
+msgstr ""
+
+#. module: sale_order_line_discount_validation
+#: model:ir.model,name:sale_order_line_discount_validation.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_line_discount_validation
+#: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_sale_order__state
+msgid "Status"
+msgstr ""
+
+#. module: sale_order_line_discount_validation
+#: model:ir.model.fields.selection,name:sale_order_line_discount_validation.selection__sale_order__state__waiting_approval
+msgid "Waiting Approval"
+msgstr ""
+
+#. module: sale_order_line_discount_validation
+#: code:addons/sale_order_line_discount_validation/report/sale_report.py:0
+#, python-format
+msgid ""
+"Your quotation has been sent for approval. You will be notified when it is "
+"approved or refused."
+msgstr ""
