@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_general_discount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2019-09-01 11:23+0000\n"
+"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"Language-Team: none\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: sale_order_general_discount
+#: model:ir.model,name:sale_order_general_discount.model_res_partner
+msgid "Contact"
+msgstr "联系人"
+
+#. module: sale_order_general_discount
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_res_partner__sale_discount
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_res_users__sale_discount
+#, fuzzy
+msgid "Discount"
+msgstr "折扣(%)"
+
+#. module: sale_order_general_discount
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order__general_discount
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order_line__discount
+msgid "Discount (%)"
+msgstr "折扣(%)"
+
+#. module: sale_order_general_discount
+#: model:ir.model,name:sale_order_general_discount.model_sale_order
+#, fuzzy
+msgid "Sales Order"
+msgstr "销售订单"
+
+#. module: sale_order_general_discount
+#: model:ir.model,name:sale_order_general_discount.model_sale_order_line
+#, fuzzy
+msgid "Sales Order Line"
+msgstr "销售订单"

@@ -1,0 +1,20 @@
+<odoo>
+    <record model="ir.ui.view" id="view_order_form_terms_template">
+        <field name="name">sale_order_note_templatesale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group[@name='note_group']/group/field[@name='note']"
+                position="before"
+            >
+                <field
+                    name="terms_template_id"
+                    placeholder="Terms and conditions template"
+                    nolabel="1"
+                    colspan="4"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

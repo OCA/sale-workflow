@@ -1,0 +1,79 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_invoicing_finished_task
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2019-09-01 11:23+0000\n"
+"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
+"zh_CN/)\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
+#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_template__invoicing_finished_task
+#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_project_task__invoicing_finished_task
+msgid "Invoice the order lines only when the task is set to invoiceable"
+msgstr "仅在任务设置为可发票时才对订单行发票"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task__invoiceable
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task_type__invoiceable
+msgid "Invoiceable"
+msgstr "可开票"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_template__invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task__invoicing_finished_task
+msgid "Invoicing control by task"
+msgstr "按任务进行发票控制"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model,name:sale_order_invoicing_finished_task.model_product_template
+msgid "Product Template"
+msgstr "产品模板"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order
+msgid "Sale Order"
+msgstr "销售订单"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "销售订单行"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model,name:sale_order_invoicing_finished_task.model_project_task
+msgid "Task"
+msgstr "任务"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model,name:sale_order_invoicing_finished_task.model_project_task_type
+msgid "Task Stage"
+msgstr "任务阶段"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_sale_order_line__task_ids
+msgid "Tasks"
+msgstr "任务"
+
+#. module: sale_order_invoicing_finished_task
+#: code:addons/sale_order_invoicing_finished_task/models/project.py:65
+#, python-format
+msgid ""
+"You cannot create/modify a task related with a invoiced, done or cancel sale "
+"order line "
+msgstr "不能创建/修改已开票、已完成或取消销售订单行相关的任务 "

@@ -1,0 +1,64 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_line_description
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-09 12:27+0000\n"
+"PO-Revision-Date: 2021-11-15 18:36+0000\n"
+"Last-Translator: Yves Le Doeuff <yld@alliasys.fr>\n"
+"Language-Team: French (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/fr/)\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: sale_order_line_description
+#: model:ir.model.fields,field_description:sale_order_line_description.field_res_config_settings__group_use_product_description_per_so_line
+msgid "Allow using only the product sale description on the sales order lines"
+msgstr ""
+"Autorise l'utilisation de la seule description de vente du produit sur les "
+"lignes de commande client"
+
+#. module: sale_order_line_description
+#: model_terms:ir.ui.view,arch_db:sale_order_line_description.view_sales_config
+msgid "Allows you to use only product sale description on the sales order line"
+msgstr ""
+"Permet d'utiliser uniquement la description de vente du produit sur la ligne "
+"de commande"
+
+#. module: sale_order_line_description
+#: model:ir.model.fields,help:sale_order_line_description.field_res_config_settings__group_use_product_description_per_so_line
+msgid ""
+"Allows you to use only product sale description on the sales order line."
+msgstr ""
+"Permet d'utiliser uniquement la description de vente du produit sur la ligne "
+"de commande."
+
+#. module: sale_order_line_description
+#: model:ir.model,name:sale_order_line_description.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_line_description
+#: model_terms:ir.ui.view,arch_db:sale_order_line_description.view_sales_config
+msgid "Product sale description"
+msgstr "Description de vente"
+
+#. module: sale_order_line_description
+#: model:ir.model,name:sale_order_line_description.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de bon de commande"
+
+#. module: sale_order_line_description
+#: model:res.groups,name:sale_order_line_description.group_use_product_description_per_so_line
+msgid "Use only product sale description on order lines"
+msgstr ""
+"Utilisez uniquement la description de vente du produit sur les lignes de "
+"commande"

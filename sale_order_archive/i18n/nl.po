@@ -1,0 +1,54 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_archive
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2021-01-26 00:06+0000\n"
+"Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
+"Language-Team: none\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: sale_order_archive
+#: model:ir.model.fields,field_description:sale_order_archive.field_sale_order__active
+msgid "Active"
+msgstr "Actief"
+
+#. module: sale_order_archive
+#: model_terms:ir.ui.view,arch_db:sale_order_archive.sale_order_archive_form_view
+#: model_terms:ir.ui.view,arch_db:sale_order_archive.sale_order_archive_search_view
+msgid "Archived"
+msgstr "Gearchiveerd"
+
+#. module: sale_order_archive
+#: model:ir.model.fields,field_description:sale_order_archive.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Weergavenaam"
+
+#. module: sale_order_archive
+#: model:ir.model.fields,field_description:sale_order_archive.field_sale_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_archive
+#: model:ir.model.fields,field_description:sale_order_archive.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr "Laatst bijgewerkt op"
+
+#. module: sale_order_archive
+#: code:addons/sale_order_archive/models/sale_order.py:0
+#, fuzzy, python-format
+msgid "Only 'Locked' or 'Canceled' orders can be archived"
+msgstr "Alleen 'gesloten' of 'geannuleerde' order kunnen worden gearchiveerd"
+
+#. module: sale_order_archive
+#: model:ir.model,name:sale_order_archive.model_sale_order
+msgid "Sales Order"
+msgstr "Verkooporder"

@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_mrp_bom
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_mrp_bom
+#: model:res.groups,name:sale_mrp_bom.sale_mrp_bom_group
+msgid "Allows to define a BOM on sale order lines"
+msgstr ""
+
+#. module: sale_mrp_bom
+#: model:ir.model.fields,field_description:sale_mrp_bom.field_sale_order_line__bom_id
+msgid "BoM"
+msgstr ""
+
+#. module: sale_mrp_bom
+#: model:ir.model.fields,field_description:sale_mrp_bom.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:sale_mrp_bom.field_stock_move__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_mrp_bom
+#: model:ir.model.fields,field_description:sale_mrp_bom.field_sale_order_line__id
+#: model:ir.model.fields,field_description:sale_mrp_bom.field_stock_move__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_mrp_bom
+#: model:ir.model.fields,field_description:sale_mrp_bom.field_sale_order_line____last_update
+#: model:ir.model.fields,field_description:sale_mrp_bom.field_stock_move____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_mrp_bom
+#: code:addons/sale_mrp_bom/models/sale_order_line.py:0
+#, python-format
+msgid "Please select BoM that has matched product with the line `{}`"
+msgstr ""
+
+#. module: sale_mrp_bom
+#: model:ir.model,name:sale_mrp_bom.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_mrp_bom
+#: model:ir.model,name:sale_mrp_bom.model_stock_move
+msgid "Stock Move"
+msgstr ""

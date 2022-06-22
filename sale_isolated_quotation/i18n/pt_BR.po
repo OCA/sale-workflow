@@ -1,0 +1,84 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_isolated_quotation
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2017-11-23 01:51+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/"
+"teams/23907/pt_BR/)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: sale_isolated_quotation
+#: model_terms:ir.ui.view,arch_db:sale_isolated_quotation.view_order_form
+msgid "Cancel"
+msgstr ""
+
+#. module: sale_isolated_quotation
+#: model_terms:ir.ui.view,arch_db:sale_isolated_quotation.view_order_form
+msgid "Convert to Order"
+msgstr ""
+
+#. module: sale_isolated_quotation
+#: model:ir.model.fields,help:sale_isolated_quotation.field_sale_order__order_id
+msgid "For Quotation, this field references to its Sales Order"
+msgstr ""
+
+#. module: sale_isolated_quotation
+#: model:ir.model.fields,help:sale_isolated_quotation.field_sale_order__quote_id
+msgid "For Sales Order, this field references to its Quotation"
+msgstr ""
+
+#. module: sale_isolated_quotation
+#: code:addons/sale_isolated_quotation/models/sale.py:0
+#, python-format
+msgid "Only quotation can convert to order"
+msgstr ""
+
+#. module: sale_isolated_quotation
+#: model:ir.model.fields,help:sale_isolated_quotation.field_sale_order__quotation_state
+msgid "Only relative quotation states"
+msgstr ""
+
+#. module: sale_isolated_quotation
+#: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order__order_id
+#, fuzzy
+msgid "Order"
+msgstr "Pedido de Venda"
+
+#. module: sale_isolated_quotation
+#: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order__order_sequence
+msgid "Order Sequence"
+msgstr ""
+
+#. module: sale_isolated_quotation
+#: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order__quote_id
+msgid "Quotation"
+msgstr ""
+
+#. module: sale_isolated_quotation
+#: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order__quotation_state
+msgid "Quotation Status"
+msgstr ""
+
+#. module: sale_isolated_quotation
+#: code:addons/sale_isolated_quotation/models/sale.py:0
+#: model:ir.model,name:sale_isolated_quotation.model_sale_order
+#, python-format
+msgid "Sales Order"
+msgstr "Pedido de Venda"
+
+#, fuzzy
+#~| msgid "Sales Order"
+#~ msgid "Sale Order"
+#~ msgstr "Pedido de Venda"
