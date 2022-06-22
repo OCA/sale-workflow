@@ -1,0 +1,76 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_stock_picking_note
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-12 10:34+0200\n"
+"PO-Revision-Date: 2021-09-17 11:34+0000\n"
+"Last-Translator: Víctor Martínez <victor.martinez@tecnativa.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: sale_stock_picking_note
+#: model_terms:ir.ui.view,arch_db:sale_stock_picking_note.report_delivery_document_customer_note
+msgid ""
+"<strong>Customer Comments:</strong>\n"
+"                <br/>"
+msgstr ""
+"<strong>Comentarios de cliente:</strong>\n"
+"                <br/>"
+
+#. module: sale_stock_picking_note
+#: model_terms:ir.ui.view,arch_db:sale_stock_picking_note.view_picking_form
+msgid "Comments"
+msgstr "Comentarios"
+
+#. module: sale_stock_picking_note
+#: model_terms:ir.ui.view,arch_db:sale_stock_picking_note.view_picking_form
+msgid "Comments that will be printed in the delivery slip"
+msgstr "Comentarios que se imprimirán en el albarán de entrega"
+
+#. module: sale_stock_picking_note
+#: model:ir.model.fields,field_description:sale_stock_picking_note.field_stock_picking__customer_note
+msgid "Customer Comments"
+msgstr "Comentarios de cliente"
+
+#. module: sale_stock_picking_note
+#: model:ir.model.fields,field_description:sale_stock_picking_note.field_sale_order__picking_customer_note
+msgid "Picking Customer Comments"
+msgstr "Comentarios de albarán"
+
+#. module: sale_stock_picking_note
+#: model:ir.model.fields,field_description:sale_stock_picking_note.field_sale_order__picking_note
+msgid "Picking Internal Note"
+msgstr "Notas internas de albarán"
+
+#. module: sale_stock_picking_note
+#: model:ir.model,name:sale_stock_picking_note.model_sale_order
+msgid "Sales Order"
+msgstr "Pedidos de venta"
+
+#. module: sale_stock_picking_note
+#: model:ir.model,name:sale_stock_picking_note.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de existencias"
+
+#. module: sale_stock_picking_note
+#: model:ir.model,name:sale_stock_picking_note.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#~ msgid "Picking Note"
+#~ msgstr "Nota albarán"
+
+#~ msgid "Notes"
+#~ msgstr "Notas"
+
+#~ msgid "Quotation"
+#~ msgstr "Presupuesto"

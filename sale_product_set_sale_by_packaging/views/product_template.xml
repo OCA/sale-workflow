@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 Camptocamp License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.form.view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="sale_by_packaging.product_template_form_view" />
+        <field name="arch" type="xml">
+            <label for="sell_only_by_packaging" position="after">
+                <field name="sell_only_by_packaging_prod_set_tocheck" invisible="1" />
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    attrs="{'invisible': [('sell_only_by_packaging_prod_set_tocheck', '=', False)]}"
+                >
+                    There are product set lines associated to this product
+                    which do not have a packaging associated.
+                    It would be better to check them all.
+                    If you don't take any action,
+                    a cron will assign such lines to the first available packaging.
+                    <button
+                        class="oe_link"
+                        type="object"
+                        name="action_view_product_set_lines_to_check"
+                    >View all lines</button>
+                </div>
+            </label>
+        </field>
+    </record>
+</odoo>

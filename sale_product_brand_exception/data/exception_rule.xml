@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record id="exception_product_brand_mixed" model="exception.rule">
+        <field name="name">Product brands mixed</field>
+        <field
+            name="description"
+        >Products by different brands cannot be mixed in one order</field>
+        <field name="sequence">50</field>
+        <field name="model">sale.order</field>
+        <field name="exception_type">by_py_code</field>
+        <field name="code">failed = object._exception_product_brand_mixed()</field>
+        <field name="active" eval="True" />
+    </record>
+</odoo>

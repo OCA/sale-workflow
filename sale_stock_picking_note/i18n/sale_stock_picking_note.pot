@@ -1,0 +1,82 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_stock_picking_note
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_stock_picking_note
+#: model_terms:ir.ui.view,arch_db:sale_stock_picking_note.report_delivery_document_customer_note
+msgid ""
+"<strong>Customer Comments:</strong>\n"
+"                <br/>"
+msgstr ""
+
+#. module: sale_stock_picking_note
+#: model_terms:ir.ui.view,arch_db:sale_stock_picking_note.view_picking_form
+msgid "Comments"
+msgstr ""
+
+#. module: sale_stock_picking_note
+#: model_terms:ir.ui.view,arch_db:sale_stock_picking_note.view_picking_form
+msgid "Comments that will be printed in the delivery slip"
+msgstr ""
+
+#. module: sale_stock_picking_note
+#: model:ir.model.fields,field_description:sale_stock_picking_note.field_stock_picking__customer_note
+msgid "Customer Comments"
+msgstr ""
+
+#. module: sale_stock_picking_note
+#: model:ir.model.fields,field_description:sale_stock_picking_note.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_stock_picking_note.field_stock_move__display_name
+#: model:ir.model.fields,field_description:sale_stock_picking_note.field_stock_picking__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_stock_picking_note
+#: model:ir.model.fields,field_description:sale_stock_picking_note.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_stock_picking_note.field_stock_move__id
+#: model:ir.model.fields,field_description:sale_stock_picking_note.field_stock_picking__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_stock_picking_note
+#: model:ir.model.fields,field_description:sale_stock_picking_note.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_stock_picking_note.field_stock_move____last_update
+#: model:ir.model.fields,field_description:sale_stock_picking_note.field_stock_picking____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_stock_picking_note
+#: model:ir.model.fields,field_description:sale_stock_picking_note.field_sale_order__picking_customer_note
+msgid "Picking Customer Comments"
+msgstr ""
+
+#. module: sale_stock_picking_note
+#: model:ir.model.fields,field_description:sale_stock_picking_note.field_sale_order__picking_note
+msgid "Picking Internal Note"
+msgstr ""
+
+#. module: sale_stock_picking_note
+#: model:ir.model,name:sale_stock_picking_note.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_stock_picking_note
+#: model:ir.model,name:sale_stock_picking_note.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: sale_stock_picking_note
+#: model:ir.model,name:sale_stock_picking_note.model_stock_picking
+msgid "Transfer"
+msgstr ""

@@ -1,0 +1,82 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_triple_discount
+#
+# Translators:
+# Peter Hageman <hageman.p@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-23 01:52+0000\n"
+"PO-Revision-Date: 2018-06-22 17:01+0000\n"
+"Last-Translator: Thomas Pot <t.pot@open2bizz.nl>\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/"
+"teams/23907/nl_NL/)\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
+
+#. module: sale_triple_discount
+#: selection:sale.order.line,discounting_type:0
+msgid "Additive"
+msgstr ""
+
+#. module: sale_triple_discount
+#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount2
+msgid "Disc. 2 (%)"
+msgstr "Korting 2 (%)"
+
+#. module: sale_triple_discount
+#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount3
+msgid "Disc. 3 (%)"
+msgstr "Korting 3 (%)"
+
+#. module: sale_triple_discount
+#: sql_constraint:sale.order.line:0
+msgid "Discount 2 must be lower than 100%."
+msgstr "Korting 2 moet lager zijn dan 100%."
+
+#. module: sale_triple_discount
+#: sql_constraint:sale.order.line:0
+msgid "Discount 3 must be lower than 100%."
+msgstr "Korting 3 moet lager zijn dan 100%."
+
+#. module: sale_triple_discount
+#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discounting_type
+msgid "Discounting type"
+msgstr ""
+
+#. module: sale_triple_discount
+#: selection:sale.order.line,discounting_type:0
+msgid "Multiplicative"
+msgstr ""
+
+#. module: sale_triple_discount
+#: model:ir.model,name:sale_triple_discount.model_sale_order
+#, fuzzy
+msgid "Sale Order"
+msgstr "Verkooporderregel"
+
+#. module: sale_triple_discount
+#: code:addons/sale_triple_discount/models/sale_order_line.py:22
+#, python-format
+msgid "Sale order line %s has unknown discounting type %s"
+msgstr ""
+
+#. module: sale_triple_discount
+#: model:ir.model,name:sale_triple_discount.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Verkooporderregel"
+
+#. module: sale_triple_discount
+#: model:ir.model.fields,help:sale_triple_discount.field_sale_order_line__discounting_type
+msgid ""
+"Specifies whether discounts should be additive or multiplicative.\n"
+"Additive discounts are summed first and then applied.\n"
+"Multiplicative discounts are applied sequentially.\n"
+"Multiplicative discounts are default"
+msgstr ""

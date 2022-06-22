@@ -1,0 +1,97 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_partner_approval
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_partner_approval
+#: model:ir.model.fields,field_description:sale_partner_approval.field_res_partner_stage__approved_sale
+msgid "Approved for Sales"
+msgstr ""
+
+#. module: sale_partner_approval
+#: model:ir.model.fields,field_description:sale_partner_approval.field_res_partner__sale_ok
+#: model:ir.model.fields,field_description:sale_partner_approval.field_res_users__sale_ok
+msgid "Can Sell To"
+msgstr ""
+
+#. module: sale_partner_approval
+#: model:ir.model.fields,field_description:sale_partner_approval.field_res_partner__candidate_sale
+#: model:ir.model.fields,field_description:sale_partner_approval.field_res_users__candidate_sale
+msgid "Candidate to Sell To"
+msgstr ""
+
+#. module: sale_partner_approval
+#: model:ir.model,name:sale_partner_approval.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sale_partner_approval
+#: model:ir.model,name:sale_partner_approval.model_res_partner_stage
+msgid "Contact Stage"
+msgstr ""
+
+#. module: sale_partner_approval
+#: model:ir.model.fields,field_description:sale_partner_approval.field_sale_order__partner_id
+msgid "Customer"
+msgstr ""
+
+#. module: sale_partner_approval
+#: model:exception.rule,name:sale_partner_approval.excep_partner_approved
+msgid "Customer is Approved"
+msgstr ""
+
+#. module: sale_partner_approval
+#: model:exception.rule,description:sale_partner_approval.excep_partner_approved
+msgid "Customer must be a customer approved for Sales"
+msgstr ""
+
+#. module: sale_partner_approval
+#: model:ir.model.fields,field_description:sale_partner_approval.field_res_partner__display_name
+#: model:ir.model.fields,field_description:sale_partner_approval.field_res_partner_stage__display_name
+#: model:ir.model.fields,field_description:sale_partner_approval.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_partner_approval
+#: model:ir.model.fields,field_description:sale_partner_approval.field_res_partner__id
+#: model:ir.model.fields,field_description:sale_partner_approval.field_res_partner_stage__id
+#: model:ir.model.fields,field_description:sale_partner_approval.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_partner_approval
+#: model:ir.model.fields,field_description:sale_partner_approval.field_sale_order__partner_invoice_id
+msgid "Invoice Address"
+msgstr ""
+
+#. module: sale_partner_approval
+#: model:exception.rule,description:sale_partner_approval.excep_partner_invoice_approved
+msgid "Invoice Address must be a contact approved for Sales"
+msgstr ""
+
+#. module: sale_partner_approval
+#: model:exception.rule,name:sale_partner_approval.excep_partner_invoice_approved
+msgid "Invoicing Address is Approved"
+msgstr ""
+
+#. module: sale_partner_approval
+#: model:ir.model.fields,field_description:sale_partner_approval.field_res_partner____last_update
+#: model:ir.model.fields,field_description:sale_partner_approval.field_res_partner_stage____last_update
+#: model:ir.model.fields,field_description:sale_partner_approval.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_partner_approval
+#: model:ir.model,name:sale_partner_approval.model_sale_order
+msgid "Sales Order"
+msgstr ""

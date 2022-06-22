@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_shipping_info_helper
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2019-10-16 18:32+0000\n"
+"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
+"zh_CN/)\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__item_amount_tax
+msgid "Item Amount Tax"
+msgstr "明细税额"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__item_amount_total
+msgid "Item Amount Total"
+msgstr "明细金额合计"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__item_amount_untaxed
+msgid "Item Amount Untaxed"
+msgstr "明细未含税金额"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model,name:sale_shipping_info_helper.model_sale_order
+#, fuzzy
+msgid "Sales Order"
+msgstr "销售订单"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__shipping_amount_tax
+msgid "Shipping Amount Tax"
+msgstr "运费税"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__shipping_amount_total
+msgid "Shipping Amount Total"
+msgstr "运费合计"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__shipping_amount_untaxed
+msgid "Shipping Amount Untaxed"
+msgstr "运费未含税"

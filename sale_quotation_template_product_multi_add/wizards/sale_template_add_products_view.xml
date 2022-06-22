@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_add_products_to_qt" model="ir.ui.view">
+        <field name="name">sale.template.add.products.form</field>
+        <field name="model">sale.template.add.products</field>
+        <field name="arch" type="xml">
+            <form string="Products">
+                <div class="text-muted">
+                    Click "Add a line" to select products to add.
+                </div>
+                <field name="product_ids" />
+                <footer>
+                    <button
+                        name="create_items"
+                        string="Set Description and Quantities"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="view_add_products_to_qt2" model="ir.ui.view">
+        <field name="name">sale.template.add.products.form2</field>
+        <field name="model">sale.template.add.products</field>
+        <field name="arch" type="xml">
+            <form string="Products">
+                <field name="item_ids">
+                    <tree create="0" editable="bottom">
+                        <field name="product_id" readonly="1" />
+                        <field name="name" />
+                        <field name="quantity" />
+                    </tree>
+                </field>
+                <footer>
+                    <button
+                        name="select_products"
+                        string="Select"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_import_product_to_sale" model="ir.actions.act_window">
+        <field name="name">Add Products</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.template.add.products</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_add_products_to_qt" />
+        <field name="target">new</field>
+    </record>
+</odoo>
