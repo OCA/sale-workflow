@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="sale_blanket_order_form">
+        <field name="name">sale.blanket.order.margin.view.form</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form" />
+        <field name="arch" type="xml">
+
+            <xpath
+                expr="//field[@name='line_ids']/tree//field[@name='price_unit']"
+                position="after"
+            >
+                <field name="purchase_price" optional="hide" />
+                <field name="margin" optional="hide" />
+                <field
+                    name="margin_percent"
+                    attrs="{'invisible': [('price_subtotal', '=', 0)]}"
+                    optional="hide"
+                    widget="percentage"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
