@@ -17,10 +17,7 @@ class TestSale(common.TransactionCase):
         """
 
         so = self.env["sale.order"].create(
-            {
-                "partner_id": self.env.ref("base.res_partner_2").id,
-                "picking_policy": "direct",
-            }
+            {"partner_id": self.env.ref("base.res_partner_2").id}
         )
 
         wiz_obj = self.env["sale.import.products"]

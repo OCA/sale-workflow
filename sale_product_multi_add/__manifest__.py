@@ -9,7 +9,7 @@
     "category": "Sale Management",
     "version": "15.0.1.0.0",
     "license": "AGPL-3",
-    "depends": ["sale_stock"],
+    "depends": ["sale"],
     "data": [
         "security/ir.model.access.csv",
         "wizards/sale_import_products_view.xml",
