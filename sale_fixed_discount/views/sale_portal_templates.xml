@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <!--Priority greater than 100-->v
     <template
         id="sale_order_portal_content_fixed_discount"
         inherit_id="sale.sale_order_portal_content"
+        priority="110"
     >
         <xpath
             expr="//section[@id='details']//t[@t-set='display_discount']"
@@ -28,6 +30,7 @@
             expr="//section[@id='details']/table/tbody//t[@t-foreach='sale_order.order_line']/tr//t[@t-if='not line.display_type']//td[3]/div"
             position="replace"
         >
+             <!-- Priarity grater than 100 is necessary because there is need of replace ny inherited view-->
             <div
                 t-if="line.discount &gt;= 0 or line.fixed_discount &gt;= 0"
                 t-field="line.price_unit"
