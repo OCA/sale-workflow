@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="product_set_add_form_view" model="ir.ui.view">
+        <field
+            name="name"
+        >product.set.add.form.view (in sale_product_set_layout)</field>
+        <field name="model">product.set.add</field>
+        <field name="inherit_id" ref="sale_product_set.product_set_add_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='product_set_line_ids']//field[@name='product_id']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'required': [('display_type', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='product_set_line_ids']/tree" position="inside">
+                <control>
+                    <create name="add_line_control" string="Add a line" />
+                    <create
+                        name="add_section_control"
+                        string="Add a section"
+                        context="{'default_display_type': 'line_section'}"
+                    />
+                    <create
+                        name="add_note_control"
+                        string="Add a note"
+                        context="{'default_display_type': 'line_note'}"
+                    />
+                </control>
+                <field name="display_type" />
+                <field name="name" widget="section_and_note_text" />
+            </xpath>
+            <xpath expr="//field[@name='product_set_line_ids']" position="attributes">
+                <attribute name="widget">section_and_note_one2many</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
