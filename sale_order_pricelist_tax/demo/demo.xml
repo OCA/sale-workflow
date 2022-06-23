@@ -100,5 +100,4 @@
         <field name="tax_src_id" ref="account_tax_sale_2" />
         <field name="tax_dest_id" ref="account_tax_sale_inc_papeete_2" />
     </record>
-
 </odoo>
