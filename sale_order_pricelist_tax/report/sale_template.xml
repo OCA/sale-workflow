@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template
+        id="report_saleorder_document"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath expr="//td[@name='td_subtotal']" position="replace">
+            <td name="td_subtotal" class="text-right o_price_total">
+                <span
+                    t-if="doc.price_tax_state != 'include'"
+                    t-esc="line.price_subtotal"
+                    groups=""
+                />
+                <span
+                    t-if="doc.price_tax_state == 'include'"
+                    t-esc="line.price_total"
+                    groups=""
+                />
+            </td>
+        </xpath>
+    </template>
+</odoo>

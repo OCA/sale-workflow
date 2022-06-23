@@ -11,7 +11,9 @@ _logger = logging.getLogger(__name__)
 
 
 class SaleOrder(models.Model):
-    _inherit = "sale.order"
+    _name = "sale.order"
+    _description = "Sale Order"
+    _inherit = ["sale.order", "price.include.tax.mixin"]
 
     def update_prices(self):
         for record in self:
@@ -19,6 +21,21 @@ class SaleOrder(models.Model):
             super(
                 SaleOrder, record.with_context(pricelist=record.pricelist_id.id)
             ).update_prices()
+
+    @api.depends("order_line", "order_line.tax_id", "order_line.tax_id.price_include")
+    def _compute_price_tax_state(self):
+        return super()._compute_price_tax_state()
+
+    def action_confirm(self):
+        for rec in self:
+            if rec.price_tax_state == "exception":
+                raise UserError(
+                    _(
+                        "Sale Order lines must have the same kind of taxes "
+                        "(price include or exclude)."
+                    )
+                )
+        return super().action_confirm()
 
 
 class SaleOrderLine(models.Model):

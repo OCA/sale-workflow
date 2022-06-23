@@ -12,6 +12,10 @@
     "data": [
         "views/pricelist_view.xml",
         "views/account_tax_view.xml",
+        "views/sale_order_view.xml",
+        "views/account_move_view.xml",
+        "report/invoice_template.xml",
+        "report/sale_template.xml",
     ],
     "demo": [
         "demo/demo.xml",

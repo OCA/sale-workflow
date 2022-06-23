@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <sheet position="before">
+                <div
+                    class="alert alert-danger alert-dismissable"
+                    role="alert"
+                    style="margin-bottom:0px;"
+                    attrs="{'invisible':[('price_tax_state','!=', 'exception')]}"
+                >Sale Order lines must have the same type of tax:
+                     <br /> - Either price include tax
+                    <br /> - Either price exclude tax
+                </div>
+            </sheet>
+            <xpath expr="//field[@name='date_order']" position="after">
+                <field name="price_tax_state" invisible="1" />
+            </xpath>
+            <xpath expr="//tree/field[@name='price_subtotal']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'column_invisible': [('parent.price_tax_state', '=', 'include')]}</attribute>
+                <attribute name="groups" />
+            </xpath>
+            <xpath expr="//tree/field[@name='price_total']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'column_invisible': [('parent.price_tax_state', '!=', 'include')]}</attribute>
+                <attribute name="groups" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
