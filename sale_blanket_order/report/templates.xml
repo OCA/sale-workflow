@@ -77,27 +77,32 @@
                         </t>
                     </tbody>
                 </table>
+                <div class="clearfix">
                 <div class="row">
-                    <div class="col-xs-4 pull-right">
-                        <table class="table table-condensed">
+                <div
+                            t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ml-auto"
+                        >
+
+
+                        <table class="table table-sm">
                             <tr class="border-black">
                                 <td>
                                     <strong>Subtotal</strong>
                                 </td>
                                 <td class="text-right">
                                     <span
-                                        t-field="doc.amount_untaxed"
-                                        t-options='{"widget": "monetary", "display_currency": doc.currency_id}'
-                                    />
+                                            t-field="doc.amount_untaxed"
+                                            t-options='{"widget": "monetary", "display_currency": doc.currency_id}'
+                                        />
                                 </td>
                             </tr>
                             <tr>
                                 <td>Taxes</td>
                                 <td class="text-right">
                                     <span
-                                        t-field="doc.amount_tax"
-                                        t-options='{"widget": "monetary", "display_currency": doc.currency_id}'
-                                    />
+                                            t-field="doc.amount_tax"
+                                            t-options='{"widget": "monetary", "display_currency": doc.currency_id}'
+                                        />
                                 </td>
                             </tr>
                             <tr class="border-black">
@@ -106,14 +111,17 @@
                                 </td>
                                 <td class="text-right">
                                     <span
-                                        t-field="doc.amount_total"
-                                        t-options='{"widget": "monetary", "display_currency": doc.currency_id}'
-                                    />
+                                            t-field="doc.amount_total"
+                                            t-options='{"widget": "monetary", "display_currency": doc.currency_id}'
+                                        />
                                 </td>
                             </tr>
                         </table>
-                    </div>
+
                 </div>
+                </div>
+                </div>
+
                 <p t-field="doc.note" />
                 <div class="oe_structure" />
             </div>
