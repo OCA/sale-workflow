@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-26 09:59+0000\n"
-"PO-Revision-Date: 2022-04-08 17:05+0000\n"
+"PO-Revision-Date: 2022-06-24 10:05+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -38,9 +38,8 @@ msgstr ""
 
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order
-#, fuzzy
 msgid "Sales Order"
-msgstr "Ordini vendita"
+msgstr "Ordine di vendita"
 
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
