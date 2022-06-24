@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2022-04-29 16:05+0000\n"
+"PO-Revision-Date: 2022-06-24 10:05+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -231,7 +231,7 @@ msgstr ""
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_order_line
