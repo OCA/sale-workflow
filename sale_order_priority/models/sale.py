@@ -9,9 +9,7 @@ from odoo.addons.stock.models import stock_move
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    priority = fields.Selection(
-        stock_move.PROCUREMENT_PRIORITIES, string="Priority", default="0"
-    )
+    priority = fields.Selection(stock_move.PROCUREMENT_PRIORITIES, default="0")
 
 
 class SaleOrder(models.Model):
@@ -19,7 +17,6 @@ class SaleOrder(models.Model):
 
     priority = fields.Selection(
         stock_move.PROCUREMENT_PRIORITIES,
-        string="Priority",
         compute="_compute_priority",
         inverse="_inverse_priority",
         store=True,
