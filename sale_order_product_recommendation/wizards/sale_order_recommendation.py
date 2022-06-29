@@ -4,6 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import datetime, timedelta
+
 from odoo import api, fields, models
 from odoo.tests import Form
 
@@ -38,10 +39,11 @@ class SaleOrderRecommendation(models.TransientModel):
     )
     last_compute = fields.Char()
     # Get default value from config settings
-    sale_recommendation_price_origin = fields.Selection([
-        ('pricelist', 'Pricelist'),
-        ('last_sale_price', 'Last sale price')
-    ], string="Product price origin", default="pricelist")
+    sale_recommendation_price_origin = fields.Selection(
+        [("pricelist", "Pricelist"), ("last_sale_price", "Last sale price")],
+        string="Product price origin",
+        default="pricelist",
+    )
 
     @api.model
     def _default_order_id(self):
@@ -51,11 +53,16 @@ class SaleOrderRecommendation(models.TransientModel):
         """Domain to find recent SO lines."""
         start = datetime.now() - timedelta(days=self.months * 30)
         start = fields.Datetime.to_string(start)
-        other_sales = self.env["sale.order"].search([
-            ("partner_id", "child_of",
-             self.order_id.partner_id.commercial_partner_id.id),
-            ("date_order", ">=", start),
-        ])
+        other_sales = self.env["sale.order"].search(
+            [
+                (
+                    "partner_id",
+                    "child_of",
+                    self.order_id.partner_id.commercial_partner_id.id,
+                ),
+                ("date_order", ">=", start),
+            ]
+        )
         return [
             ("order_id", "in", (other_sales - self.order_id).ids),
             ("product_id.active", "=", True),
@@ -81,8 +88,7 @@ class SaleOrderRecommendation(models.TransientModel):
     @api.onchange("order_id", "months", "line_amount")
     def _generate_recommendations(self):
         """Generate lines according to context sale order."""
-        last_compute = '{}-{}-{}'.format(
-            self.id, self.months, self.line_amount)
+        last_compute = "{}-{}-{}".format(self.id, self.months, self.line_amount)
         # Avoid execute onchange as times as fields in api.onchange
         # ORM must control this?
         if self.last_compute == last_compute:
@@ -103,14 +109,17 @@ class SaleOrderRecommendation(models.TransientModel):
             ),
             reverse=True,
         )
-        found_dict = {l["product_id"][0]: l for l in found_lines}
+        found_dict = {line["product_id"][0]: line for line in found_lines}
         recommendation_lines = self.env["sale.order.recommendation.line"]
         existing_product_ids = set()
         # Always recommend all products already present in the linked SO
         for line in self.order_id.order_line:
-            found_line = found_dict.get(line.product_id.id, {
-                "product_id": (line.product_id.id, False),
-            })
+            found_line = found_dict.get(
+                line.product_id.id,
+                {
+                    "product_id": (line.product_id.id, False),
+                },
+            )
             new_line = recommendation_lines.new(
                 self._prepare_recommendation_line_vals(found_line, line)
             )
@@ -131,21 +140,19 @@ class SaleOrderRecommendation(models.TransientModel):
             if i >= self.line_amount:
                 break
         self.line_ids = recommendation_lines.sorted(
-            key=lambda x: x.times_delivered,
-            reverse=True
+            key=lambda x: x.times_delivered, reverse=True
         )
 
     def action_accept(self):
         """Propagate recommendations to sale order."""
-        sequence = max(self.order_id.mapped('order_line.sequence') or [0])
+        sequence = max(self.order_id.mapped("order_line.sequence") or [0])
         order_form = Form(self.order_id.sudo())
         to_remove = []
         for wiz_line in self.line_ids.filtered(
             lambda x: x.sale_line_id or x.units_included
         ):
             if wiz_line.sale_line_id:
-                index = self.order_id.order_line.ids.index(
-                    wiz_line.sale_line_id.id)
+                index = self.order_id.order_line.ids.index(wiz_line.sale_line_id.id)
                 if wiz_line.units_included:
                     with order_form.order_line.edit(index) as line_form:
                         wiz_line._prepare_update_so_line(line_form)
@@ -203,17 +210,30 @@ class SaleOrderRecommendationLine(models.TransientModel):
     sale_line_id = fields.Many2one(
         comodel_name="sale.order.line",
     )
-    sale_uom_id = fields.Many2one(related="sale_line_id.product_uom")
+    sale_uom_id = fields.Many2one(
+        compute="_compute_sale_uom_id", comodel_name="uom.uom", store=True
+    )
 
-    @api.depends("partner_id", "product_id", "pricelist_id", "units_included",
-                 "wizard_id.sale_recommendation_price_origin")
+    @api.depends("sale_line_id.product_uom", "product_id.uom_id")
+    def _compute_sale_uom_id(self):
+        for record in self:
+            record.sale_uom_id = (
+                record.sale_line_id.product_uom or record.product_id.uom_id or False
+            )
+
+    @api.depends(
+        "partner_id",
+        "product_id",
+        "pricelist_id",
+        "units_included",
+        "wizard_id.sale_recommendation_price_origin",
+    )
     def _compute_price_unit(self):
         """
         Get product price unit from product list price or from last sale price
         """
         price_origin = (
-            fields.first(self).wizard_id.sale_recommendation_price_origin or
-            "pricelist"
+            fields.first(self).wizard_id.sale_recommendation_price_origin or "pricelist"
         )
         for one in self:
             if price_origin == "pricelist":
@@ -234,8 +254,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
         line_form.product_id = self.product_id
         line_form.sequence = sequence
         line_form.product_uom_qty = self.units_included
-        if (self.wizard_id.sale_recommendation_price_origin ==
-                "last_sale_price"):
+        if self.wizard_id.sale_recommendation_price_origin == "last_sale_price":
             line_form.price_unit = self.price_unit
 
     def _get_last_sale_price_product(self):
@@ -244,15 +263,29 @@ class SaleOrderRecommendationLine(models.TransientModel):
         Use sudo to read sale order from other users like as other commercials.
         """
         self.ensure_one()
-        so = self.env["sale.order"].sudo().search([
-            ("company_id", "=", self.env.user.company_id.id),
-            ("partner_id", "=", self.partner_id.id),
-            ("confirmation_date", "!=", False),
-            ("state", "not in", ('draft', 'sent', 'cancel')),
-            ("order_line.product_id", "=", self.product_id.id)
-        ], limit=1, order="confirmation_date DESC, id DESC")
-        so_line = self.env["sale.order.line"].sudo().search([
-            ("order_id", "=", so.id),
-            ("product_id", "=", self.product_id.id)
-        ], limit=1, order="id DESC").with_context(prefetch_fields=False)
+        so = (
+            self.env["sale.order"]
+            .sudo()
+            .search(
+                [
+                    ("company_id", "=", self.env.user.company_id.id),
+                    ("partner_id", "=", self.partner_id.id),
+                    ("confirmation_date", "!=", False),
+                    ("state", "not in", ("draft", "sent", "cancel")),
+                    ("order_line.product_id", "=", self.product_id.id),
+                ],
+                limit=1,
+                order="confirmation_date DESC, id DESC",
+            )
+        )
+        so_line = (
+            self.env["sale.order.line"]
+            .sudo()
+            .search(
+                [("order_id", "=", so.id), ("product_id", "=", self.product_id.id)],
+                limit=1,
+                order="id DESC",
+            )
+            .with_context(prefetch_fields=False)
+        )
         return so_line.price_unit or 0.0
