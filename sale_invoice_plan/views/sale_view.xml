@@ -84,7 +84,7 @@
                     />
                     <field
                         name="invoice_plan_ids"
-                        context="{'tree_view_ref': 'view_sale_invoice_plan_tree'}"
+                        context="{'tree_view_ref': 'sale_invoice_plan.view_sale_invoice_plan_tree'}"
                         attrs="{'invisible': [('invoice_plan_ids', '=', [])], 'readonly': [('invoice_count', '>', 0)]}"
                     />
                 </page>
