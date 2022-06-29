@@ -3,7 +3,6 @@
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import datetime, timedelta
 
 from odoo import api, fields, models
 from odoo.tests import Form
@@ -51,8 +50,6 @@ class SaleOrderRecommendation(models.TransientModel):
 
     def _recomendable_sale_order_lines_domain(self):
         """Domain to find recent SO lines."""
-        start = datetime.now() - timedelta(days=self.months * 30)
-        start = fields.Datetime.to_string(start)
         other_sales = self.env["sale.order"].search(
             [
                 (
@@ -60,7 +57,6 @@ class SaleOrderRecommendation(models.TransientModel):
                     "child_of",
                     self.order_id.partner_id.commercial_partner_id.id,
                 ),
-                ("date_order", ">=", start),
             ]
         )
         return [
@@ -109,7 +105,7 @@ class SaleOrderRecommendation(models.TransientModel):
             ),
             reverse=True,
         )
-        found_dict = {line["product_id"][0]: line for line in found_lines}
+        found_dict = {product["product_id"][0]: product for product in found_lines}
         recommendation_lines = self.env["sale.order.recommendation.line"]
         existing_product_ids = set()
         # Always recommend all products already present in the linked SO
@@ -217,9 +213,8 @@ class SaleOrderRecommendationLine(models.TransientModel):
     @api.depends("sale_line_id.product_uom", "product_id.uom_id")
     def _compute_sale_uom_id(self):
         for record in self:
-            record.sale_uom_id = (
-                record.sale_line_id.product_uom or record.product_id.uom_id or False
-            )
+            if record.sale_line_id:
+                record.sale_uom_id = record.sale_uom_id or record.product_id.uom_id
 
     @api.depends(
         "partner_id",
@@ -270,12 +265,11 @@ class SaleOrderRecommendationLine(models.TransientModel):
                 [
                     ("company_id", "=", self.env.user.company_id.id),
                     ("partner_id", "=", self.partner_id.id),
-                    ("confirmation_date", "!=", False),
                     ("state", "not in", ("draft", "sent", "cancel")),
                     ("order_line.product_id", "=", self.product_id.id),
                 ],
                 limit=1,
-                order="confirmation_date DESC, id DESC",
+                order="date_order DESC, id DESC",
             )
         )
         so_line = (

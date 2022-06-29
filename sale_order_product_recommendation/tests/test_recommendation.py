@@ -87,12 +87,12 @@ class RecommendationCaseTests(RecommendationCase):
             .with_context(active_ids=[self.new_so.id])
             .create(
                 {
-                    "advance_payment_method": "all",
+                    "advance_payment_method": "delivered",
                 }
             )
         )
         adv_wiz.with_context(open_invoices=True).create_invoices()
-        self.new_so.invoice_ids.action_invoice_open()
+        self.new_so.invoice_ids.action_post()
         # Open the wizard and add more product qty
         wizard = self.wizard()
         wiz_line = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
@@ -105,13 +105,13 @@ class RecommendationCaseTests(RecommendationCase):
             .with_context(active_ids=[self.new_so.id])
             .create(
                 {
-                    "advance_payment_method": "all",
+                    "advance_payment_method": "delivered",
                 }
             )
         )
         adv_wiz.with_context(open_invoices=True).create_invoices()
         self.assertEqual(2, len(self.new_so.invoice_ids))
-        self.assertEqual(2, self.new_so.invoice_ids[:1].invoice_line_ids.quantity)
+        self.assertEqual(2, self.new_so.invoice_ids[-1].invoice_line_ids.quantity)
 
     def test_recommendations_price_origin(self):
         # Display product price from pricelist
@@ -134,7 +134,7 @@ class RecommendationCaseTests(RecommendationCase):
         self.assertEqual(wiz_line_prod3.price_unit, 74.50)
 
         # Change confirmation date in order2
-        self.order2.confirmation_date = "2020-11-19"
+        self.order2.date_order = "2020-11-19"
         wizard.sale_recommendation_price_origin = "pricelist"
         wizard.sale_recommendation_price_origin = "last_sale_price"
         wiz_line_prod2 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_2)

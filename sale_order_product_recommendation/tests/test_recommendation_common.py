@@ -44,7 +44,7 @@ class RecommendationCase(SavepointCase):
             {
                 "partner_id": cls.partner.id,
                 "state": "done",
-                "confirmation_date": "2020-11-15",
+                "date_order": "2020-11-15",
                 "order_line": [
                     (
                         0,
@@ -89,7 +89,7 @@ class RecommendationCase(SavepointCase):
             {
                 "partner_id": cls.partner.id,
                 "state": "done",
-                "confirmation_date": "2020-11-10",
+                "date_order": "2020-11-10",
                 "order_line": [
                     (
                         0,
