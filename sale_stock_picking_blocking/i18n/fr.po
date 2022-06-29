@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-31 04:21+0000\n"
-"PO-Revision-Date: 2017-05-31 04:21+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2022-06-29 14:05+0000\n"
+"Last-Translator: Iván Todorovich <ivan.todorovich@druidoo.io>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_stock_picking_blocking
 #: model:res.groups,comment:sale_stock_picking_blocking.group_sale_delivery_block
@@ -52,18 +53,18 @@ msgstr "Créée le"
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_res_partner__default_delivery_block
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_res_users__default_delivery_block
 msgid "Default Delivery Block Reason"
-msgstr ""
+msgstr "Motif de livraison bloquée par défaut"
 
 #. module: sale_stock_picking_blocking
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order__delivery_block_id
 #: model:ir.ui.menu,name:sale_stock_picking_blocking.menu_sale_stock_picking_blocking_reason
 msgid "Delivery Block Reason"
-msgstr ""
+msgstr "Motif de livraison bloquée"
 
 #. module: sale_stock_picking_blocking
 #: model_terms:ir.ui.view,arch_db:sale_stock_picking_blocking.view_sales_order_filter
 msgid "Delivery Blocked Sales"
-msgstr ""
+msgstr "Livraisons bloquées"
 
 #. module: sale_stock_picking_blocking
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__description
@@ -103,12 +104,12 @@ msgstr "Nom"
 #. module: sale_stock_picking_blocking
 #: model_terms:ir.ui.view,arch_db:sale_stock_picking_blocking.view_order_form
 msgid "Release Delivery Block"
-msgstr ""
+msgstr "Débloquer la livraison"
 
 #. module: sale_stock_picking_blocking
 #: model:res.groups,name:sale_stock_picking_blocking.group_sale_delivery_block
 msgid "Release Delivery Block in Sales Orders"
-msgstr ""
+msgstr "Débloquer la livraison dans les bons de commande"
 
 #. module: sale_stock_picking_blocking
 #: model:ir.actions.act_window,name:sale_stock_picking_blocking.action_sale_stock_picking_blocking_reason
