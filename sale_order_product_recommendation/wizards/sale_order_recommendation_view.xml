@@ -26,6 +26,11 @@
                                 <field name="times_delivered" />
                                 <field name="units_delivered" />
                                 <field name="units_included" widget="numeric_step" />
+                                <field
+                                    name="sale_uom_id"
+                                    optional="show"
+                                    groups="uom.group_uom"
+                                />
                             </tree>
                             <kanban
                                 class="o_kanban_mobile"
@@ -71,6 +76,7 @@
                                                             name="units_included"
                                                         /><span> </span><field
                                                             name="sale_uom_id"
+                                                            groups="uom.group_uom"
                                                         /></strong></div>
                                             </div>
                                         </div>
@@ -110,7 +116,6 @@
     <record id="sale_order_recommendation_action" model="ir.actions.act_window">
         <field name="name">Recommended Products for this Customer</field>
         <field name="res_model">sale.order.recommendation</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
