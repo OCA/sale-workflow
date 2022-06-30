@@ -18,7 +18,7 @@ class SaleOrder(models.Model):
     )
 
     @api.onchange("team_id")
-    def _onchange_team_id(self):
+    def _onchange_team_id_sale_manual_delivery(self):
         self.manual_delivery = self.team_id.manual_delivery
 
     def action_manual_delivery_wizard(self):
