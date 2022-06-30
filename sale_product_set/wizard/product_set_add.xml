@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_set_add_form_view" model="ir.ui.view">
+        <field name="name">product.set.add.form.view</field>
+        <field name="model">product.set.add</field>
+        <field name="arch" type="xml">
+            <form string="Add set in sale order line">
+                <group name="main" colspan="4">
+                    <field
+                        name="order_id"
+                        invisible="context.get('default_order_id')"
+                        domain="[('state', 'in', ('draft','sent'))]"
+                    />
+                    <field name="partner_id" invisible="1" />
+                    <field
+                        name="product_set_id"
+                        domain="['|',('partner_id', '=', False),('partner_id', '=', partner_id)]"
+                    />
+                    <field name="quantity" />
+                    <field name="skip_existing_products" />
+                </group>
+                <group name="lines" colspan="4">
+                    <field
+                        name="product_set_line_ids"
+                        nolabel="1"
+                        colspan="4"
+                        domain="[('product_set_id', '=', product_set_id)]"
+                    >
+                        <tree>
+                            <field
+                                name="product_id"
+                                options="{'no_open': True, 'no_create': True}"
+                            />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button
+                        name="add_set"
+                        string="Add set"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button special="cancel" string="Cancel" class="oe_link" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record
+        id="act_open_wizard_product_set_add_from_order"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Add set in sale order</field>
+        <field name="res_model">product.set.add</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="product_set_add_form_view" />
+        <field name="domain">[]</field>
+        <field name="context">{'default_order_id': active_id}</field>
+        <field name="target">new</field>
+    </record>
+    <record id="act_open_wizard_product_set_add_from_set" model="ir.actions.act_window">
+        <field name="name">Add set to sale order</field>
+        <field name="res_model">product.set.add</field>
+        <field name="binding_model_id" ref="sale_product_set.model_product_set" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="product_set_add_form_view" />
+        <field name="domain">[]</field>
+        <field name="context">{'default_product_set_id': active_id}</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
