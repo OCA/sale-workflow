@@ -15,7 +15,6 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             {"name": "Willie Burke", "parent_id": cls.res_partner_1.id}
         )
         cls.res_partner_2 = cls.env["res.partner"].create({"name": "Partner 12"})
-
         # Products
         cls.product_1 = cls.env["product.product"].create(
             {"name": "Desk Combination", "type": "product"}
@@ -26,7 +25,6 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
         cls.product_3 = cls.env["product.product"].create(
             {"name": "Repair Services", "type": "service"}
         )
-
         # Location
         cls.stock_warehouse = cls.env["stock.warehouse"].search(
             [("company_id", "=", cls.env.company.id)], limit=1
