@@ -36,15 +36,19 @@ class SaleOrderLine(models.Model):
         Computes the already planned quantities for the given sale order lines,
         based on the existing stock.moves
         """
+        no_procurement_records = self.browse([])
         for line in self:
             if line.qty_delivered_method == "stock_move":
                 line.qty_procured = line._get_qty_procurement(
                     previous_product_uom_qty=False
                 )
+            else:
+                no_procurement_records |= line
+        no_procurement_records.update({"qty_procured": 0.0})
 
     @api.depends("product_uom_qty", "qty_procured")
     def _compute_qty_to_procure(self):
-        """ Computes the remaining quantity to plan on sale order lines """
+        """Computes the remaining quantity to plan on sale order lines"""
         for line in self:
             line.qty_to_procure = line.product_uom_qty - line.qty_procured
 

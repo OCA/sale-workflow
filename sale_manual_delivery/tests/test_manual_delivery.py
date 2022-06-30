@@ -13,6 +13,7 @@ class TestSaleStock(TestSale):
         super().setUp()
         self.partner = self.env.ref("base.res_partner_1")
         self.product = self.env.ref("product.product_delivery_01")
+        self.product_service = self.env.ref("product.product_product_1")
         self.product2 = self.env.ref("product.product_delivery_02")
         self.product3 = self.env.ref("product.product_order_01")
         self.carrier1 = self.env.ref("delivery.delivery_carrier")
@@ -20,6 +21,9 @@ class TestSaleStock(TestSale):
         self.stock_location = self.env.ref("stock.stock_location_stock")
         self.env["stock.quant"]._update_available_quantity(
             self.product, self.stock_location, 100
+        )
+        self.precision = self.env["decimal.precision"].precision_get(
+            "Product Unit of Measure"
         )
 
     def _manual_delivery_wizard(self, records, vals=None):
@@ -51,7 +55,18 @@ class TestSaleStock(TestSale):
                             "product_uom": self.product.uom_id.id,
                             "price_unit": self.product.list_price,
                         },
-                    )
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": self.product_service.name,
+                            "product_id": self.product_service.id,
+                            "product_uom_qty": 5.0,
+                            "product_uom": self.product_service.uom_id.id,
+                            "price_unit": self.product_service.list_price,
+                        },
+                    ),
                 ],
                 "pricelist_id": self.env.ref("product.list0").id,
                 "manual_delivery": True,
@@ -84,6 +99,10 @@ class TestSaleStock(TestSale):
         self.assertEqual(
             len(order.picking_ids), 1.0, "Picking number should remain 1.0"
         )
+        sale_line_1 = order.order_line[0]
+        sale_line_2 = order.order_line[1]
+        self.assertNotAlmostEqual(sale_line_1.qty_procured, 0, self.precision)
+        self.assertAlmostEqual(sale_line_2.qty_procured, 0, self.precision)
 
     def test_01_sale_standard_delivery(self):
         """
