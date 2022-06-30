@@ -28,49 +28,49 @@
             <form>
             <header>
                 <button
-                    name="button_generate_sale_orders"
-                    attrs="{'invisible': [('state', '!=', 'draft')]}"
-                    string="Generate Sales"
-                    type="object"
-                    class="oe_highlight"
-                />
+                        name="button_generate_sale_orders"
+                        attrs="{'invisible': [('state', '!=', 'draft')]}"
+                        string="Generate Sales"
+                        type="object"
+                        class="oe_highlight"
+                    />
                 <button
-                    name="action_confirm"
-                    string="Confirm All Generated Sales"
-                    attrs="{'invisible': [('state', '!=', 'generating')]}"
-                    type="object"
-                    class="oe_highlight"
-                />
-                <field name="state" widget="statusbar"/>
+                        name="action_confirm"
+                        string="Confirm All Generated Sales"
+                        attrs="{'invisible': [('state', '!=', 'generating')]}"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                <field name="state" widget="statusbar" />
             </header>
             <sheet>
                 <h1>
-                    <label string="Generator" name="generator_label" for="name"/>
+                    <label string="Generator" name="generator_label" for="name" />
                     <field name="name" class="oe_inline" />
                 </h1>
                 <div class="oe_button_box" name="button_box">
                     <button
-                        class="oe_stat_button"
-                        name="%(act_sale_generator_2_sale_order)d"
-                        type="action"
-                        icon="fa-strikethrough"
-                        string="Sales"
-                    />
+                            class="oe_stat_button"
+                            name="%(act_sale_generator_2_sale_order)d"
+                            type="action"
+                            icon="fa-strikethrough"
+                            string="Sales"
+                        />
                 </div>
                 <group name="header" colspan="2">
                     <field name="date_order" />
                     <field
-                        name="tmpl_sale_id"
-                        context="{'default_is_template': True, 'default_active': False, 'tmpl_mode': True,
+                            name="tmpl_sale_id"
+                            context="{'default_is_template': True, 'default_active': False, 'tmpl_mode': True,
                            'default_partner_id': %(dummy_so_generator_partner)d}"
-                        domain="[('is_template', '=', True), ('active', '=', False)]"
-                    />
+                            domain="[('is_template', '=', True), ('active', '=', False)]"
+                        />
                     <field name="warehouse_id" />
                 </group>
                 <separator string="Customers" />
                 <span
-                    attrs="{'invisible': [('state', '!=', 'draft')]}"
-                >In order to add customers, you have two
+                        attrs="{'invisible': [('state', '!=', 'draft')]}"
+                    >In order to add customers, you have two
                     possibilities:
                     <ul>
                         <li>add an existing customer by searching in your
@@ -80,18 +80,18 @@
                         <li>create multiple customers simultaneously by launching the
                             following wizard:
                             <button
-                                name="add_generated_partner"
-                                string="Create Customer"
-                                type="object"
-                                context="{'from_generator_id': active_id}"
-                            />
+                                    name="add_generated_partner"
+                                    string="Create Customer"
+                                    type="object"
+                                    context="{'from_generator_id': active_id}"
+                                />
                         </li>
                     </ul>
                 </span>
                 <field
-                    name="partner_ids"
-                    attrs="{'readonly': [('state', '=', 'done')]}"
-                />
+                        name="partner_ids"
+                        attrs="{'readonly': [('state', '=', 'done')]}"
+                    />
                 <separator string="Generated Sale Orders" />
                 <field name="sale_ids" attrs="{'readonly': 1}" />
             </sheet>
