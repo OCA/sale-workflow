@@ -6,5 +6,6 @@
   * Alexandre Díaz
   * João Marques
   * Ernesto Tejeda
+  * César A. Sánchez
 
 * nikulchaudhary2112@gmail.com
