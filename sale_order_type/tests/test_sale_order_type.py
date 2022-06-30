@@ -46,6 +46,7 @@ class TestSaleOrderType(common.TransactionCase):
             [("type", "=", "sale")], limit=1
         )
         self.default_sale_type_id = self.env["sale.order.type"].search([], limit=1)
+        self.default_sale_type_id.sequence_id = False
         self.warehouse = self.env["stock.warehouse"].create(
             {"name": "Warehouse Test", "code": "WT"}
         )
@@ -78,6 +79,15 @@ class TestSaleOrderType(common.TransactionCase):
                 "payment_term_id": self.immediate_payment.id,
                 "pricelist_id": self.sale_pricelist.id,
                 "incoterm_id": self.free_carrier.id,
+            }
+        )
+        self.sale_type_sequence_default = self.sale_type_quot.copy(
+            {
+                "name": "Test Sequence default",
+                "sequence_id": self.env["sale.order"]
+                .with_context(force_company=self.env.company.id)
+                ._default_sequence_id()
+                .id,
             }
         )
         self.partner.sale_type = self.sale_type
@@ -242,3 +252,14 @@ class TestSaleOrderType(common.TransactionCase):
         wizard.create_invoices()
         self.assertEqual(order.type_id.journal_id, order.invoice_ids[0].journal_id)
         self.assertEqual(order.type_id, order.invoice_ids[0].sale_type_id)
+
+    def test_sequence_default(self):
+        """When the previous type had no sequence the order gets the default one. The
+        sequence change shouldn't be triggered, otherwise we'd get a different number
+        from the same sequence"""
+        self.partner.sale_type = self.default_sale_type_id
+        order = self.create_sale_order()
+        order.onchange_partner_id()
+        name = order.name
+        order.type_id = self.sale_type_sequence_default
+        self.assertEqual(name, order.name, "The sequence shouldn't change!")
