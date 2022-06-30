@@ -26,8 +26,9 @@ class SaleOrder(models.Model):
     def _reset_sequence(self):
         for rec in self:
             current_sequence = 1
-            for line in rec.order_line:
-                line.sequence = current_sequence
+            for line in sorted(rec.order_line, key=lambda x: (x.sequence, x.id)):
+                if line.sequence != current_sequence:
+                    line.sequence = current_sequence
                 current_sequence += 1
 
     def write(self, line_values):
