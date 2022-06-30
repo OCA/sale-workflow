@@ -12,7 +12,7 @@ class SaleOrder(models.Model):
         "state", "order_line.invoice_status", "order_line.task_ids.invoiceable"
     )
     def _get_invoiced(self):
-        super()._get_invoiced()
+        result = super()._get_invoiced()
         for order in self.filtered(lambda o: o.invoice_status != "no"):
             if not all(
                 t.invoiceable
@@ -20,6 +20,7 @@ class SaleOrder(models.Model):
                 if t.invoicing_finished_task
             ):
                 order.update({"invoice_status": "no"})
+        return result
 
 
 class SaleOrderLine(models.Model):
@@ -50,7 +51,7 @@ class SaleOrderLine(models.Model):
         )
         if lines:
             lines.update({"qty_to_invoice": 0.0})
-        super(SaleOrderLine, self - lines)._get_to_invoice_qty()
+        return super(SaleOrderLine, self - lines)._get_to_invoice_qty()
 
     def _timesheet_compute_delivered_quantity_domain(self):
         vals = super()._timesheet_compute_delivered_quantity_domain()
