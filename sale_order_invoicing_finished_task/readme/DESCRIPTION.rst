@@ -1,6 +1,7 @@
-The requirement of this module is to give the possibility in the task to
-indicate if a task is available to invoice or not. This means by default even
-the task is not finished you could set it as invoiceable.
+This module brings the possibility to indicate if a task is available to be
+invoiced or not, within the task itself. Moreover, even if the task is not
+finished yet, it can be set as invoiceable.
 
-As an option you can relate to a Project Stage ( ``project.task.type`` ) this
-control. For example if you want to assign Invoiceable to stage ``Done`` always.
+As an option, you can relate this control to a Project Stage
+( ``project.task.type`` ). For example, if you want to assign 'Invoiceable' to
+``Done`` stage always.

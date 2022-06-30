@@ -10,15 +10,13 @@ from odoo.exceptions import ValidationError
 class ProjectTaskType(models.Model):
     _inherit = "project.task.type"
 
-    invoiceable = fields.Boolean(string="Invoiceable")
+    invoiceable = fields.Boolean()
 
 
 class ProjectTask(models.Model):
     _inherit = "project.task"
 
-    invoiceable = fields.Boolean(
-        string="Invoiceable",
-    )
+    invoiceable = fields.Boolean()
     invoicing_finished_task = fields.Boolean(
         related="sale_line_id.product_id.invoicing_finished_task",
     )

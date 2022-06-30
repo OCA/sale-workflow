@@ -8,7 +8,7 @@
     "name": "Sale Order Invoicing Finished Task",
     "summary": "Control invoice order lines if their related task has been "
     "set to invoiceable",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Tecnativa, Camptocamp, Odoo Community Association (OCA)",

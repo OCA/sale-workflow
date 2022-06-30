@@ -141,7 +141,7 @@ class TestInvoicefinishedTask(common.SavepointCase):
             self.env["project.task"].create(
                 {
                     "name": "Other Task",
-                    "user_id": self.manager.id,
+                    "user_ids": [(4, self.manager.id)],
                     "project_id": self.project.id,
                     "sale_line_id": self.sale_order.order_line.id,
                 }
@@ -175,7 +175,8 @@ class TestInvoicefinishedTask(common.SavepointCase):
         task = self.env["project.task"].create(
             {
                 "name": "Other Task",
-                "user_id": self.manager.id,
+                "manager_id": self.manager.id,
+                "user_ids": [(4, self.manager.id)],
                 "project_id": self.project.id,
                 "sale_line_id": self.sale_order.order_line.id,
             }
