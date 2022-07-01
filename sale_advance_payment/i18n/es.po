@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-06-29 19:56+0000\n"
+"PO-Revision-Date: 2022-07-01 09:05+0000\n"
 "Last-Translator: JHernandezConinpe <jhernandez@coninpe.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -131,7 +131,7 @@ msgstr "Actualizado el"
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Make advance payment"
-msgstr "Hacer pago anticipado"
+msgstr "Confirmar anticipo"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__sale_order__advance_payment_status__not_paid
@@ -177,7 +177,7 @@ msgstr "Pagado parcialmente"
 #: model:ir.model.fields,field_description:sale_advance_payment.field_sale_order__account_payment_ids
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_order_form
 msgid "Pay sale advanced"
-msgstr "Pago de la venta anticipada"
+msgstr "Pago anticipado"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
