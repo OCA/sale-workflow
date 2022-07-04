@@ -27,6 +27,7 @@ setuptools.setup(
         'odoo-addon-sale_product_multi_add>=15.0dev,<15.1dev',
         'odoo-addon-sale_product_set>=15.0dev,<15.1dev',
         'odoo-addon-sale_product_set_layout>=15.0dev,<15.1dev',
+        'odoo-addon-sale_quotation_number>=15.0dev,<15.1dev',
         'odoo-addon-sale_rental>=15.0dev,<15.1dev',
         'odoo-addon-sale_sourced_by_line>=15.0dev,<15.1dev',
         'odoo-addon-sale_start_end_dates>=15.0dev,<15.1dev',
