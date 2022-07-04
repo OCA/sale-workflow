@@ -9,14 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2017-11-23 01:51+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2022-07-04 14:05+0000\n"
+"Last-Translator: Grégory Moka Tourisme <gregory@mokatourisme.fr>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_rental
 #: model:ir.model.fields,help:sale_rental.field_sale_rental__in_state
@@ -64,13 +65,14 @@ msgstr "Annuler"
 #. module: sale_rental
 #: selection:sale.rental,state:0
 msgid "Cancelled"
-msgstr ""
+msgstr "Annulé"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:172
 #, python-format
 msgid "Cannot sell the rental {} because it has not been delivered"
 msgstr ""
+"Impossible de vendre la location {} parce qu'elle n'a pas été réceptionnée"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__company_id
@@ -80,7 +82,7 @@ msgstr "Société"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product__copy_image
 msgid "Copy Product Image"
-msgstr ""
+msgstr "Copier l'image du produit"
 
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.create_rental_product_form
@@ -115,7 +117,7 @@ msgstr "Créé le"
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__partner_id
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_search
 msgid "Customer"
-msgstr ""
+msgstr "Client"
 
 #. module: sale_rental
 #: model:product.product,uom_name:sale_rental.rent_consu_delivery_01
@@ -125,7 +127,7 @@ msgstr ""
 #: model:product.template,uom_name:sale_rental.rent_product_product_20_product_template
 #: model:product.template,uom_name:sale_rental.rent_product_product_25_product_template
 msgid "Day(s)"
-msgstr ""
+msgstr "Jour(s)"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product__default_code
@@ -466,7 +468,7 @@ msgstr "Locations"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__rented_product_id
 msgid "Rented Product"
-msgstr ""
+msgstr "Article loué"
 
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_form
