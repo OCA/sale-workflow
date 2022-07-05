@@ -49,7 +49,10 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <label for="auto_commit" class="col-lg-4 o_light_label" />
+                                <label
+                                    for="auto_commit"
+                                    class="col-lg-4 o_light_label"
+                                />
                                 <span>
                                     <field name="auto_commit" />
                                 </span>
@@ -57,7 +60,10 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <label for="search_limit" class="col-lg-4 o_light_label" />
+                                <label
+                                    for="search_limit"
+                                    class="col-lg-4 o_light_label"
+                                />
                                 <span>
                                     <field name="search_limit" />
                                 </span>

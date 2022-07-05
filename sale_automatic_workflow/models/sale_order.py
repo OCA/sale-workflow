@@ -23,11 +23,12 @@ class SaleOrder(models.Model):
     @api.model
     def default_get(self, fields):
         res = super(SaleOrder, self).default_get(fields)
-        default_workflow = self.env["sale.workflow.process"].search(
-            [("default", "=", True)], limit=1
-        )
-        if default_workflow:
-            res["workflow_process_id"] = default_workflow.id
+        if "workflow_process_id" in fields:
+            default_workflow = self.env["sale.workflow.process"].search(
+                [("default", "=", True)], limit=1
+            )
+            if default_workflow:
+                res["workflow_process_id"] = default_workflow.id
         return res
 
     @api.depends("delivery_status")
@@ -83,10 +84,3 @@ class SaleOrder(models.Model):
                 res |= super(SaleOrder, self - sales_keep_order_date).write(vals)
                 return res
         return super().write(vals)
-
-    @api.onchange("partner_id")
-    def onchange_partner_id(self):
-        res = super(SaleOrder, self).onchange_partner_id()
-        if not self.workflow_process_id and self.partner_id.workflow_process_id:
-            self.workflow_process_id = self.partner_id.workflow_process_id.id
-        return res

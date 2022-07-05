@@ -25,7 +25,7 @@ def savepoint(cr, autocommit=False):
         cr.rollback()
     else:
         if autocommit:
-            cr.commit()
+            cr.commit()  # pylint: disable=E8102
 
 
 class AutomaticWorkflowJob(models.Model):
@@ -62,12 +62,12 @@ class AutomaticWorkflowJob(models.Model):
         )
 
     @api.model
-    def _validate_sale_orders(self, order_filter, auto_commit=False, limit=None):
+    def _validate_sale_orders(self, order_filter):
         sale_obj = self.env["sale.order"]
-        sales = sale_obj.search(order_filter, limit=limit)
+        sales = sale_obj.search(order_filter)
         _logger.debug("Sale Orders to validate: %s", sales.ids)
         for sale in sales:
-            with savepoint(self.env.cr, auto_commit):
+            with savepoint(self.env.cr):
                 self._do_validate_sale_order(
                     sale.with_company(sale.company_id), order_filter
                 )
@@ -87,12 +87,12 @@ class AutomaticWorkflowJob(models.Model):
         return "{} {} create invoice successfully".format(sale.display_name, sale)
 
     @api.model
-    def _create_invoices(self, create_filter, auto_commit=False, limit=None):
+    def _create_invoices(self, create_filter):
         sale_obj = self.env["sale.order"]
-        sales = sale_obj.search(create_filter, limit=limit)
+        sales = sale_obj.search(create_filter)
         _logger.debug("Sale Orders to create Invoice: %s", sales.ids)
         for sale in sales:
-            with savepoint(self.env.cr, auto_commit):
+            with savepoint(self.env.cr):
                 self._do_create_invoice(
                     sale.with_company(sale.company_id), create_filter
                 )
@@ -109,14 +109,12 @@ class AutomaticWorkflowJob(models.Model):
         )
 
     @api.model
-    def _validate_invoices(
-        self, validate_invoice_filter, auto_commit=False, limit=None
-    ):
+    def _validate_invoices(self, validate_invoice_filter):
         move_obj = self.env["account.move"]
-        invoices = move_obj.search(validate_invoice_filter, limit=limit)
+        invoices = move_obj.search(validate_invoice_filter)
         _logger.debug("Invoices to validate: %s", invoices.ids)
         for invoice in invoices:
-            with savepoint(self.env.cr, auto_commit):
+            with savepoint(self.env.cr):
                 self._do_validate_invoice(
                     invoice.with_company(invoice.company_id), validate_invoice_filter
                 )
@@ -133,12 +131,12 @@ class AutomaticWorkflowJob(models.Model):
         )
 
     @api.model
-    def _validate_pickings(self, picking_filter, auto_commit=False, limit=None):
+    def _validate_pickings(self, picking_filter):
         picking_obj = self.env["stock.picking"]
-        pickings = picking_obj.search(picking_filter, limit=limit)
+        pickings = picking_obj.search(picking_filter)
         _logger.debug("Pickings to validate: %s", pickings.ids)
         for picking in pickings:
-            with savepoint(self.env.cr, auto_commit):
+            with savepoint(self.env.cr):
                 self._do_validate_picking(picking, picking_filter)
 
     def _do_sale_done(self, sale, domain_filter):
@@ -151,12 +149,12 @@ class AutomaticWorkflowJob(models.Model):
         return "{} {} set done successfully".format(sale.display_name, sale)
 
     @api.model
-    def _sale_done(self, sale_done_filter, auto_commit=False, limit=None):
+    def _sale_done(self, sale_done_filter):
         sale_obj = self.env["sale.order"]
-        sales = sale_obj.search(sale_done_filter, limit=limit)
+        sales = sale_obj.search(sale_done_filter)
         _logger.debug("Sale Orders to done: %s", sales.ids)
         for sale in sales:
-            with savepoint(self.env.cr, auto_commit):
+            with savepoint(self.env.cr):
                 self._do_sale_done(sale.with_company(sale.company_id), sale_done_filter)
 
     def _prepare_dict_account_payment(self, invoice):
@@ -174,12 +172,12 @@ class AutomaticWorkflowJob(models.Model):
         }
 
     @api.model
-    def _register_payments(self, payment_filter, auto_commit=False, limit=None):
+    def _register_payments(self, payment_filter):
         invoice_obj = self.env["account.move"]
-        invoices = invoice_obj.search(payment_filter, limit=limit)
+        invoices = invoice_obj.search(payment_filter)
         _logger.debug("Invoices to Register Payment: %s", invoices.ids)
         for invoice in invoices:
-            with savepoint(self.env.cr, auto_commit):
+            with savepoint(self.env.cr):
                 self._register_payment_invoice(invoice)
         return
 
@@ -207,42 +205,30 @@ class AutomaticWorkflowJob(models.Model):
             self.with_context(
                 send_order_confirmation_mail=sale_workflow.send_order_confirmation_mail
             )._validate_sale_orders(
-                safe_eval(sale_workflow.order_filter_id.domain) + workflow_domain,
-                auto_commit=sale_workflow.auto_commit,
-                limit=sale_workflow.search_limit or None,
+                safe_eval(sale_workflow.order_filter_id.domain) + workflow_domain
             )
         if sale_workflow.validate_picking:
             self._validate_pickings(
-                safe_eval(sale_workflow.picking_filter_id.domain) + workflow_domain,
-                auto_commit=sale_workflow.auto_commit,
-                limit=sale_workflow.search_limit or None,
+                safe_eval(sale_workflow.picking_filter_id.domain) + workflow_domain
             )
         if sale_workflow.create_invoice:
             self._create_invoices(
                 safe_eval(sale_workflow.create_invoice_filter_id.domain)
-                + workflow_domain,
-                auto_commit=sale_workflow.auto_commit,
-                limit=sale_workflow.search_limit or None,
+                + workflow_domain
             )
         if sale_workflow.validate_invoice:
             self._validate_invoices(
                 safe_eval(sale_workflow.validate_invoice_filter_id.domain)
-                + workflow_domain,
-                auto_commit=sale_workflow.auto_commit,
-                limit=sale_workflow.search_limit or None,
+                + workflow_domain
             )
         if sale_workflow.sale_done:
             self._sale_done(
-                safe_eval(sale_workflow.sale_done_filter_id.domain) + workflow_domain,
-                auto_commit=sale_workflow.auto_commit,
-                limit=sale_workflow.search_limit or None,
+                safe_eval(sale_workflow.sale_done_filter_id.domain) + workflow_domain
             )
 
         if sale_workflow.register_payment:
             self._register_payments(
-                safe_eval(sale_workflow.payment_filter_id.domain) + workflow_domain,
-                auto_commit=sale_workflow.auto_commit,
-                limit=sale_workflow.search_limit or None,
+                safe_eval(sale_workflow.payment_filter_id.domain) + workflow_domain
             )
 
     @api.model
