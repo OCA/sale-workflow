@@ -10,29 +10,30 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-20 22:37+0000\n"
-"PO-Revision-Date: 2018-01-27 03:53+0000\n"
-"Last-Translator: guillaume bauer <guillaume.bauer@syentys.com>, 2017\n"
+"PO-Revision-Date: 2022-07-05 17:05+0000\n"
+"Last-Translator: ClementChaumienneC2C <clement.chaumienne@camptocamp.com>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__active
 msgid "Active"
-msgstr ""
+msgstr "Actif"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_account_id
 msgid "Analytic account"
-msgstr ""
+msgstr "Compte Analytique"
 
 #. module: sale_order_type
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
 msgid "Archived"
-msgstr ""
+msgstr "Archivé"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__journal_id
@@ -43,7 +44,7 @@ msgstr "Journal de facturation"
 #. module: sale_order_type
 #: model_terms:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
 msgid "Click to set a new type for sale order."
-msgstr ""
+msgstr "Cliquer pour renseigner un nouveau type de commande de vente."
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__company_id
@@ -53,7 +54,7 @@ msgstr "Société"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__create_uid
@@ -79,7 +80,7 @@ msgstr "Afficher le nom"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__sequence_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Entry Sequence"
-msgstr ""
+msgstr "Séquence"
 
 #. module: sale_order_type
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
@@ -100,12 +101,12 @@ msgstr "Incoterm"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_account_invoice_report
 msgid "Invoices Statistics"
-msgstr ""
+msgstr "Statistiques de Facturation"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Entrées Journal"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type____last_update
@@ -131,7 +132,7 @@ msgstr "Nom"
 #: code:addons/sale_order_type/models/sale.py:0
 #, python-format
 msgid "New"
-msgstr ""
+msgstr "Nouveau"
 
 #. module: sale_order_type
 #: model:sale.order.type,name:sale_order_type.normal_sale_type
@@ -157,12 +158,12 @@ msgstr "Tarif"
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__quotation_validity_days
 msgid "Quotation Validity (Days)"
-msgstr ""
+msgstr "Validité Devis (Jours)"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__route_id
 msgid "Route"
-msgstr ""
+msgstr "Route"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_report__sale_type_id
@@ -183,24 +184,22 @@ msgstr "Type de vente"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_advance_payment_inv
 msgid "Sales Advance Payment Invoice"
-msgstr ""
+msgstr "Facture Vente Paiement en Avance"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_report
 msgid "Sales Analysis Report"
-msgstr ""
+msgstr "Rapport Annalyse Vente"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
-#, fuzzy
 msgid "Sales Order"
-msgstr "Bon de commande"
+msgstr "Bons de commande Vente"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order_line
-#, fuzzy
 msgid "Sales Order Line"
-msgstr "Bon de commande"
+msgstr "Ligne Commande de Vente"
 
 #. module: sale_order_type
 #: model:ir.actions.act_window,name:sale_order_type.sot_sale_order_type_action
