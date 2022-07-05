@@ -25,11 +25,12 @@ class SaleOrder(models.Model):
     @api.model
     def default_get(self, fields):
         res = super(SaleOrder, self).default_get(fields)
-        default_workflow = self.env["sale.workflow.process"].search(
-            [("default", "=", True)], limit=1
-        )
-        if default_workflow:
-            res["workflow_process_id"] = default_workflow.id
+        if "workflow_process_id" in fields:
+            default_workflow = self.env["sale.workflow.process"].search(
+                [("default", "=", True)], limit=1
+            )
+            if default_workflow:
+                res["workflow_process_id"] = default_workflow.id
         return res
 
     # TODO: v15 -> make this module dependent on sale_delivery_state and
