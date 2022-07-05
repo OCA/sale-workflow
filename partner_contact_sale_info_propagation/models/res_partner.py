@@ -67,7 +67,10 @@ class ResPartner(models.Model):
         self, view_id=None, view_type="form", toolbar=False, submenu=False
     ):
         res = super().fields_view_get(
-            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu,
+            view_id=view_id,
+            view_type=view_type,
+            toolbar=toolbar,
+            submenu=submenu,
         )
         if view_type == "form":
             partner_xml = etree.XML(res["arch"])
@@ -75,7 +78,9 @@ class ResPartner(models.Model):
             if partner_fields:
                 partner_field = partner_fields[0]
                 context = partner_field.attrib.get("context", "{}").replace(
-                    "{", "{'default_user_id': user_id, 'default_team_id': team_id,", 1,
+                    "{",
+                    "{'default_user_id': user_id, 'default_team_id': team_id,",
+                    1,
                 )
                 partner_field.attrib["context"] = context
                 res["arch"] = etree.tostring(partner_xml)
