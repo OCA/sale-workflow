@@ -43,7 +43,7 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         workflow = self.create_full_automatic()
         # date_order on sale.order is date + time
         # invoice_date on account.move is date only
-        last_week_time = fields.Datetime.now() - timedelta(days=7)
+        last_week_time = fields.Datetime.from_string("2022-01-01") - timedelta(days=7)
         override = {"date_order": last_week_time}
         sale = self.create_sale_order(workflow, override=override)
         sale._onchange_workflow_process_id()
