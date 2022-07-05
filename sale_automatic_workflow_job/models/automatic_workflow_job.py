@@ -21,6 +21,27 @@ class AutomaticWorkflowJob(models.Model):
             domain_filter
         )
 
+    def _do_validate_sale_order(self, sale, domain_filter):
+        """filter ensure no duplication"""
+        if not self.env["sale.order"].search_count(
+            [("id", "=", sale.id)] + domain_filter
+        ):
+            return "{} {} job bypassed".format(sale.display_name, sale)
+        super()._do_validate_sale_order(sale, domain_filter)
+        return "{} {} confirmed successfully".format(sale.display_name, sale)
+
+    def _do_send_order_confirmation_mail(self, sale):
+        """Filtering to make sure the order is confirmed with
+        _do_validate_sale_order() function"""
+        if not self.env["sale.order"].search_count(
+            [("id", "=", sale.id), ("state", "=", "sale")]
+        ):
+            return "{} {} job bypassed".format(sale.display_name, sale)
+        super()._do_send_order_confirmation_mail(sale)
+        return "{} {} send order confirmation mail successfully".format(
+            sale.display_name, sale
+        )
+
     def _do_create_invoice_job_options(self, sale, domain_filter):
         description = _("Create invoices for sales order {}").format(sale.display_name)
         return {
@@ -31,6 +52,15 @@ class AutomaticWorkflowJob(models.Model):
     def _create_invoices(self, domain_filter):
         with_context = self.with_context(auto_delay_do_create_invoice=True)
         return super(AutomaticWorkflowJob, with_context)._create_invoices(domain_filter)
+
+    def _do_create_invoice(self, sale, domain_filter):
+        """filter ensure no duplication"""
+        if not self.env["sale.order"].search_count(
+            [("id", "=", sale.id)] + domain_filter
+        ):
+            return "{} {} job bypassed".format(sale.display_name, sale)
+        super()._do_create_invoice(sale, domain_filter)
+        return "{} {} create invoice successfully".format(sale.display_name, sale)
 
     def _do_validate_invoice_job_options(self, invoice, domain_filter):
         description = _("Validate invoice {}").format(invoice.display_name)
@@ -43,6 +73,17 @@ class AutomaticWorkflowJob(models.Model):
         with_context = self.with_context(auto_delay_do_validation=True)
         return super(AutomaticWorkflowJob, with_context)._validate_invoices(
             domain_filter
+        )
+
+    def _do_validate_invoice(self, invoice, domain_filter):
+        """filter ensure no duplication"""
+        if not self.env["account.move"].search_count(
+            [("id", "=", invoice.id)] + domain_filter
+        ):
+            return "{} {} job bypassed".format(invoice.display_name, invoice)
+        super()._do_validate_invoice(invoice, domain_filter)
+        return "{} {} validate invoice successfully".format(
+            invoice.display_name, invoice
         )
 
     def _do_validate_picking_job_options(self, picking, domain_filter):
@@ -58,6 +99,17 @@ class AutomaticWorkflowJob(models.Model):
             domain_filter
         )
 
+    def _do_validate_picking(self, picking, domain_filter):
+        """filter ensure no duplication"""
+        if not self.env["stock.picking"].search_count(
+            [("id", "=", picking.id)] + domain_filter
+        ):
+            return "{} {} job bypassed".format(picking.display_name, picking)
+        super()._do_validate_picking(picking, domain_filter)
+        return "{} {} validate picking successfully".format(
+            picking.display_name, picking
+        )
+
     def _do_sale_done_job_options(self, sale, domain_filter):
         description = _("Mark sales order {} as done").format(sale.display_name)
         return {
@@ -68,6 +120,15 @@ class AutomaticWorkflowJob(models.Model):
     def _sale_done(self, domain_filter):
         with_context = self.with_context(auto_delay_do_sale_done=True)
         return super(AutomaticWorkflowJob, with_context)._sale_done(domain_filter)
+
+    def _do_sale_done(self, sale, domain_filter):
+        """filter ensure no duplication"""
+        if not self.env["sale.order"].search_count(
+            [("id", "=", sale.id)] + domain_filter
+        ):
+            return "{} {} job bypassed".format(sale.display_name, sale)
+        super()._do_sale_done(sale, domain_filter)
+        return "{} {} set done successfully".format(sale.display_name, sale)
 
     def _register_hook(self):
         mapping = {
