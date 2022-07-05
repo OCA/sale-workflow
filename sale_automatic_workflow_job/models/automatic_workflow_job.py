@@ -23,6 +23,8 @@ class AutomaticWorkflowJob(models.Model):
 
     def _do_validate_sale_order(self, sale, domain_filter):
         """filter ensure no duplication"""
+        if not sale.exists():
+            return "Sale order does not exist"
         if not self.env["sale.order"].search_count(
             [("id", "=", sale.id)] + domain_filter
         ):
@@ -33,6 +35,8 @@ class AutomaticWorkflowJob(models.Model):
     def _do_send_order_confirmation_mail(self, sale):
         """Filtering to make sure the order is confirmed with
         _do_validate_sale_order() function"""
+        if not sale.exists():
+            return "Sale order does not exist"
         if not self.env["sale.order"].search_count(
             [("id", "=", sale.id), ("state", "=", "sale")]
         ):
@@ -55,6 +59,8 @@ class AutomaticWorkflowJob(models.Model):
 
     def _do_create_invoice(self, sale, domain_filter):
         """filter ensure no duplication"""
+        if not sale.exists():
+            return "Sale order does not exist"
         if not self.env["sale.order"].search_count(
             [("id", "=", sale.id)] + domain_filter
         ):
@@ -77,6 +83,8 @@ class AutomaticWorkflowJob(models.Model):
 
     def _do_validate_invoice(self, invoice, domain_filter):
         """filter ensure no duplication"""
+        if not invoice.exists():
+            return "Invoice does not exist"
         if not self.env["account.move"].search_count(
             [("id", "=", invoice.id)] + domain_filter
         ):
@@ -101,6 +109,8 @@ class AutomaticWorkflowJob(models.Model):
 
     def _do_validate_picking(self, picking, domain_filter):
         """filter ensure no duplication"""
+        if not picking.exists():
+            return "Picking does not exist"
         if not self.env["stock.picking"].search_count(
             [("id", "=", picking.id)] + domain_filter
         ):
@@ -123,6 +133,8 @@ class AutomaticWorkflowJob(models.Model):
 
     def _do_sale_done(self, sale, domain_filter):
         """filter ensure no duplication"""
+        if not sale.exists():
+            return "Sale order does not exist"
         if not self.env["sale.order"].search_count(
             [("id", "=", sale.id)] + domain_filter
         ):
