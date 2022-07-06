@@ -89,7 +89,7 @@ class SaleReturnRequestCase(StockReturnRequestCase):
 
     def test_01_return_sale_stock_from_customer(self):
         """Return stock from customer and the corresponding
-           sales will be ready for refund"""
+        sales will be ready for refund"""
         self.return_request_customer.write(
             {
                 "partner_id": self.partner_customer_2.id,
