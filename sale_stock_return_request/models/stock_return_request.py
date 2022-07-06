@@ -7,7 +7,10 @@ class StockReturnRequest(models.Model):
     _inherit = "stock.return.request"
 
     sale_order_ids = fields.Many2many(
-        comodel_name="sale.order", string="Involved Sales", readonly=True, copy=False,
+        comodel_name="sale.order",
+        string="Involved Sales",
+        readonly=True,
+        copy=False,
     )
 
     def _prepare_move_default_values(self, line, qty, move):
