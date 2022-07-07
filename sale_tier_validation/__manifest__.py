@@ -12,5 +12,5 @@
     "application": False,
     "installable": True,
     "depends": ["sale", "base_tier_validation"],
-    "data": ["views/sale_order_view.xml"],
+    "data": ["data/mail_data.xml", "views/sale_order_view.xml"],
 }
