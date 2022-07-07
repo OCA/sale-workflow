@@ -11,3 +11,12 @@ class SaleOrder(models.Model):
     _state_to = ["sale", "approved"]
 
     _tier_validation_manual_config = False
+
+    def _get_requested_notification_subtype(self):
+        return "sale_tier_validation.sale_order_tier_validation_requested"
+
+    def _get_accepted_notification_subtype(self):
+        return "sale_tier_validation.sale_order_tier_validation_accepted"
+
+    def _get_rejected_notification_subtype(self):
+        return "sale_tier_validation.sale_order_tier_validation_rejected"
