@@ -15,6 +15,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 
 #. module: sale_blanket_order
+#: model:ir.actions.report,print_report_name:sale_blanket_order.report_blanket_order
+msgid "'Blanket Order - %s' % object.name"
+msgstr ""
+
+#. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
 msgid "<span>Blanket Order # </span>"
 msgstr ""
@@ -71,6 +76,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_state
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_state
 msgid "Activity State"
+msgstr ""
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_type_icon
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_type_icon
+msgid "Activity Type Icon"
 msgstr ""
 
 #. module: sale_blanket_order
@@ -267,8 +278,8 @@ msgid "Disable adding more lines to SOs"
 msgstr ""
 
 #. module: sale_blanket_order
-#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_config_settings_form_view
 #: model:res.groups,name:sale_blanket_order.blanket_orders_disable_adding_lines
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_config_settings_form_view
 msgid "Disable adding more lines to SOs from Blanket Orders"
 msgstr ""
 
@@ -314,15 +325,21 @@ msgid "Followers"
 msgstr ""
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_channel_ids
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_channel_ids
-msgid "Followers (Channels)"
-msgstr ""
-
-#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_partner_ids
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_partner_ids
 msgid "Followers (Partners)"
+msgstr ""
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__activity_type_icon
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__has_message
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__has_message
+msgid "Has Message"
 msgstr ""
 
 #. module: sale_blanket_order
@@ -438,8 +455,20 @@ msgid "Must have some lines"
 msgstr ""
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__my_activity_date_deadline
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__name
 msgid "Name"
+msgstr ""
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_calendar_event_id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
 msgstr ""
 
 #. module: sale_blanket_order
@@ -658,11 +687,6 @@ msgstr ""
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__line_count
 msgid "Sale Blanket Order Line count"
-msgstr ""
-
-#. module: sale_blanket_order
-#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_tree
-msgid "Sale Blanket Order Lines"
 msgstr ""
 
 #. module: sale_blanket_order
