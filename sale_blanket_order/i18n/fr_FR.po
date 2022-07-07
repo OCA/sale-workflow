@@ -474,6 +474,12 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_calendar_event_id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr ""
+
+#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_date_deadline
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_date_deadline
 msgid "Next Activity Deadline"
@@ -884,7 +890,8 @@ msgstr "Montant Hors Taxes"
 #: model_terms:ir.actions.act_window,help:sale_blanket_order.act_open_blanket_order_view
 msgid ""
 "Use this menu to search within your blanket orders. For each blanket order,\n"
-"                you can track the related discussion with the customer, control\n"
+"                you can track the related discussion with the customer, "
+"control\n"
 "                the products delivered and control the vendor bills."
 msgstr ""
 "Utilisez ce menu pour chercher à l'intérieur des soumissions. Pour chaque "
@@ -951,11 +958,11 @@ msgstr ""
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid ""
-"You can not delete an open blanket or with active sale orders! Try to cancel"
-" it before."
+"You can not delete an open blanket or with active sale orders! Try to cancel "
+"it before."
 msgstr ""
-"Vous ne pouvez pas effacer une soumission with opened or active sale orders "
-"! Essayez de les annuler avant."
+"Vous ne pouvez pas effacer une soumission with opened or active sale "
+"orders ! Essayez de les annuler avant."
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
