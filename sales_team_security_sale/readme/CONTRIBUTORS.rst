@@ -2,6 +2,7 @@
 
   * Pedro M. Baeza
   * César A. Sánchez
+  * Luis D. Lafaurie
 
 * `Guadaltech <https://www.guadaltech.es>`__:
 
