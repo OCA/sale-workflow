@@ -84,7 +84,7 @@ class SaleReturnRequestCase(StockReturnRequestCase):
                         "qty_done": 4.0,
                     }
                 )
-            picking.action_done()
+            picking.button_validate()
         quant_lot_1.reserved_quantity = quant_lot_2.reserved_quantity = 0.0
 
     def test_01_return_sale_stock_from_customer(self):
@@ -151,14 +151,15 @@ class SaleReturnRequestCase(StockReturnRequestCase):
         )
         # Test the view action
         res = self.return_request_customer.action_view_sales()
-        self.assertDictContainsSubset(
-            {
-                "type": "ir.actions.act_window",
-                "res_model": "sale.order",
-                "domain": "[('id', 'in', %s)]" % (sorted(sale_orders.ids)),
-            },
-            res,
-        )
+        expected_res = {
+            "type": "ir.actions.act_window",
+            "res_model": "sale.order",
+            "domain": "[('id', 'in', %s)]" % (sorted(sale_orders.ids)),
+        }
+        # The intention is to check if a dictionary is a subset of other.
+        # As assertDictContainsSubset() is no longer supported,
+        # this is an alternative way of checking.
+        self.assertEqual(res, {**res, **expected_res})
 
     def test_02_return_sale_stock_from_customer_single_sale(self):
         """Return stock from customer with a single result"""
@@ -184,12 +185,10 @@ class SaleReturnRequestCase(StockReturnRequestCase):
         self.assertEqual(len(sale_order), 1)
         # Test the view action
         res = self.return_request_customer.action_view_sales()
-        self.assertDictContainsSubset(
-            {
-                "type": "ir.actions.act_window",
-                "res_model": "sale.order",
-                "views": [(self.env.ref("sale.view_order_form").id, "form")],
-                "res_id": sale_order.id,
-            },
-            res,
-        )
+        expedcted_res = {
+            "type": "ir.actions.act_window",
+            "res_model": "sale.order",
+            "views": [(self.env.ref("sale.view_order_form").id, "form")],
+            "res_id": sale_order.id,
+        }
+        self.assertEqual(res, {**res, **expedcted_res})
