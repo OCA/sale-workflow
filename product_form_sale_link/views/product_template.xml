@@ -17,8 +17,9 @@
                     name="%(product_form_sale_link.action_product_template_sale_list)d"
                     type="action"
                     icon="fa-list"
+                    attrs="{'invisible': [('sale_ok', '=', False)]}"
                 >
-                    <field string="Sales" name="sales_count" widget="statinfo" />
+                    <field string="Sales" name="sale_lines_count" widget="statinfo" />
                 </button>
             </button>
         </field>
