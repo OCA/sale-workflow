@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-25 14:07+0000\n"
-"PO-Revision-Date: 2020-07-27 10:19+0000\n"
+"POT-Creation-Date: 2022-07-07 11:28+0000\n"
+"PO-Revision-Date: 2022-07-07 13:31+0200\n"
 "Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Poedit 2.3\n"
 "SO-Revision-Date: 2019-05-08 12:03+0000\n"
 
 #. module: sale_tier_validation
@@ -76,6 +76,24 @@ msgstr "Pedidos"
 #: model:ir.model,name:sale_tier_validation.model_tier_definition
 msgid "Tier Definition"
 msgstr "Definición de nivel"
+
+#. module: sale_tier_validation
+#: model:mail.message.subtype,name:sale_tier_validation.crm_team_tier_validation_accepted
+#: model:mail.message.subtype,name:sale_tier_validation.sale_order_tier_validation_accepted
+msgid "Tier Validation Accepted Notification"
+msgstr "Validación de nivel aceptada"
+
+#. module: sale_tier_validation
+#: model:mail.message.subtype,name:sale_tier_validation.crm_team_tier_validation_rejected
+#: model:mail.message.subtype,name:sale_tier_validation.sale_order_tier_validation_rejected
+msgid "Tier Validation Rejected Notification"
+msgstr "Validación de nivel rechazada"
+
+#. module: sale_tier_validation
+#: model:mail.message.subtype,name:sale_tier_validation.crm_team_tier_validation_requested
+#: model:mail.message.subtype,name:sale_tier_validation.sale_order_tier_validation_requested
+msgid "Tier Validation Requested"
+msgstr "Validación de nivel solicitada"
 
 #. module: sale_tier_validation
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.sale_order_form_tier
