@@ -26,25 +26,17 @@ class ProductProduct(models.Model):
         pricelist_id = self.env.context.get("pricelist")
         if document_type == "sale" and pricelist_id:
             pricelist = self.env["product.pricelist"].browse(pricelist_id)
-            if product_taxes is None and document_type == "sale":
-                taxes = self.taxes_id.filtered(lambda x: x.company_id == company)
-            else:
-                taxes = product_taxes
-            taxes._ensure_price_include()
-            if fiscal_position:
-                if not pricelist.price_include_taxes:
-                    # if pricelist is tax exclude there is nothing to remove
-                    # so we remove the fiscal position so the super method will
-                    # not modify the price unit
+            if product_taxes is None:
+                product_taxes = self.taxes_id.filtered(
+                    lambda x: x.company_id == company
+                ).get_equivalent_tax(price_include=pricelist.price_include_taxes)
+            if fiscal_position and pricelist.price_include_taxes:
+                new_taxes = fiscal_position.map_tax(product_taxes)
+                if all(new_taxes.mapped("price_include")):
+                    # if new taxes are tax included with a pricelist in tax included
+                    # we do not want do change the price unit so like before we
+                    # do not pass the fiscal position
                     fiscal_position = None
-                else:
-                    new_taxes = fiscal_position.map_tax(taxes)
-                    if all(new_taxes.mapped("price_include")):
-                        # if new taxes are tax included with a pricelist in tax included
-                        # we do not want do change the price unit so like before we
-                        # do not pass the fiscal position
-                        fiscal_position = None
-
         return super()._get_tax_included_unit_price(
             company,
             currency,

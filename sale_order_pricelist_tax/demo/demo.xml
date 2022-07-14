@@ -42,11 +42,12 @@
 
     <record id="ht_pricelist" model="product.pricelist">
         <field name="name">Prix HT</field>
-        <field name="price_include_taxes">0</field>
+        <field name="price_include_taxes" eval="False" />
     </record>
 
     <record id="ttc_pricelist" model="product.pricelist">
         <field name="name">Prix TTC</field>
+        <field name="price_include_taxes" eval="True" />
     </record>
 
     <record id="ht_item" model="product.pricelist.item">
