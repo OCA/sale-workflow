@@ -3,3 +3,4 @@
   * Ernesto Tejeda
   * Pedro M. Baeza
   * César A. Sánchez
+  * Luis D. Lafaurie
