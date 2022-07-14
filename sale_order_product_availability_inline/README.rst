@@ -7,20 +7,20 @@ Sale Order Product Availability Inline
    !! changes will be overwritten.                   !!
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-.. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
+.. |badge1| image:: https://img.shields.io/badge/maturity-Mature-brightgreen.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Beta
+    :alt: Mature
 .. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/13.0/sale_order_product_availability_inline
+    :target: https://github.com/OCA/sale-workflow/tree/15.0/sale_order_product_availability_inline
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-13-0/sale-workflow-13-0-sale_order_product_availability_inline
+    :target: https://translation.odoo-community.org/projects/sale-workflow-15-0/sale-workflow-15-0-sale_order_product_availability_inline
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/167/13.0
+    :target: https://runbot.odoo-community.org/runbot/167/15.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
@@ -39,11 +39,12 @@ Usage
 
 To use this module, you need to:
 
-#. Go to *Sales > Order > Orders* and add a new sales order or create a new one
-#. Add a new order line and click on the product field to see the
-   available products to select.
-#. You will see the stock availability (Free To Use Quantity) of each
-   product as part of its name.
+#. Go to *Sales > Orders > Orders* and choose an existing sales order or
+   create a new one.
+#. Click on 'Add a product' under 'Order Lines' tab, then click on 'Product'
+   field to deploy products list.
+#. You will see stock availability (Free To Use Quantity) of each product as
+   part of their name.
 
 Bug Tracker
 ===========
@@ -51,7 +52,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_product_availability_inline%0Aversion:%2013.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_product_availability_inline%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -70,6 +71,8 @@ Contributors
 
   * Ernesto Tejeda
   * Pedro M. Baeza
+  * César A. Sánchez
+  * Luis D. Lafaurie
 
 Maintainers
 ~~~~~~~~~~~
@@ -92,6 +95,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-ernestotejeda| 
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/13.0/sale_order_product_availability_inline>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/15.0/sale_order_product_availability_inline>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
