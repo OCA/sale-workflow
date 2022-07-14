@@ -12,40 +12,37 @@ _logger = logging.getLogger(__name__)
 class AccountTax(models.Model):
     _inherit = "account.tax"
 
-    def _ensure_price_include(self):
-        taxes_exclude = self.filtered(lambda s: not s.price_include)
-        if taxes_exclude:
-            raise UserError(
-                _(
-                    "Tax product '%s' is price exclude. "
-                    "You must switch to include ones." % taxes_exclude[0].name
-                )
-            )
-
-    def get_equivalent_tax_exc(self):
+    def get_equivalent_tax(self, price_include):
         taxes = self.browse(False)
         for record in self:
-            taxes |= self.browse(self._get_equivalent_tax_exc_id(record.id))
+            if record.price_include == price_include:
+                taxes |= record
+            else:
+                taxes |= self.browse(self._get_equivalent_tax(record.id, price_include))
         return taxes
 
-    @tools.ormcache("tax_inc_id")
-    def _get_equivalent_tax_exc_id(self, tax_inc_id):
-        tax_inc = self.browse(tax_inc_id)
-        tax_inc._ensure_price_include()
-        tax = self.search(
+    @tools.ormcache("tax_id", "price_include")
+    def _get_equivalent_tax(self, tax_id, price_include):
+        tax = self.browse(tax_id)
+        mapped_tax = self.search(
             [
-                ("price_include", "=", False),
-                ("company_id", "=", tax_inc.company_id.id),
-                ("type_tax_use", "=", tax_inc.type_tax_use),
-                ("amount", "=", tax_inc.amount),
+                ("price_include", "=", price_include),
+                ("company_id", "=", tax.company_id.id),
+                ("type_tax_use", "=", tax.type_tax_use),
+                ("amount", "=", tax.amount),
             ]
         )
-        if not tax:
-            raise UserError(
-                _("Equivalent price exclude tax for '%s' is missing" % tax_inc.name)
-            )
+        if not mapped_tax:
+            if price_include:
+                raise UserError(
+                    _("Equivalent tax include for '%s' is missing" % tax.name)
+                )
+            else:
+                raise UserError(
+                    _("Equivalent tax exclude for '%s' is missing" % tax.name)
+                )
         else:
-            return tax.id
+            return mapped_tax.id
 
     def write(self, vals):
         self.clear_caches()
