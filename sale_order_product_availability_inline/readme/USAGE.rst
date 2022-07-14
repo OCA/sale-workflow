@@ -1,7 +1,8 @@
 To use this module, you need to:
 
-#. Go to *Sales > Order > Orders* and add a new sales order or create a new one
-#. Add a new order line and click on the product field to see the
-   available products to select.
-#. You will see the stock availability (Free To Use Quantity) of each
-   product as part of its name.
+#. Go to *Sales > Orders > Orders* and choose an existing sales order or
+   create a new one.
+#. Click on 'Add a product' under 'Order Lines' tab, then click on 'Product'
+   field to deploy products list.
+#. You will see stock availability (Free To Use Quantity) of each product as
+   part of their name.
