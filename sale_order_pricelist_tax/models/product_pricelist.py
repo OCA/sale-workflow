@@ -13,7 +13,7 @@ class ProductPricelist(models.Model):
 
     price_include_taxes = fields.Boolean(
         string="Price include taxes",
-        default=True,
+        default=False,
         help="If checked, prices of the list are taken account tax include.\n"
         "We can only update this setting if there is no price item.",
     )

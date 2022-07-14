@@ -25,8 +25,9 @@ class SaleOrderLine(models.Model):
 
     def _compute_tax_id(self):
         for line in self:
-            if not line.order_id.pricelist_id.price_include_taxes:
-                line = line.with_context(use_equivalent_tax_exc=True)
+            line = line.with_context(
+                price_include_taxes=line.order_id.pricelist_id.price_include_taxes
+            )
             super(SaleOrderLine, line)._compute_tax_id()
             pricelist = line.order_id.pricelist_id
             if not pricelist.price_include_taxes and any(
