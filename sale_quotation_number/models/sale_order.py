@@ -41,7 +41,7 @@ class SaleOrder(models.Model):
             sequence = self.env["ir.sequence"].search(
                 [("code", "=", "sale.quotation")], limit=1
             )
-            if sequence and self.name[:len(sequence.prefix)] != sequence.prefix:
+            if sequence and self.name[: len(sequence.prefix)] != sequence.prefix:
                 continue
             if order.state not in ("draft", "sent") or order.company_id.keep_name_so:
                 continue
