@@ -15,4 +15,4 @@ class SaleOrder(models.Model):
         )
         if general_discount:
             for record in self:
-                record.order_line.write({general_discount: record.general_discount})
+                record.order_line.update({general_discount: record.general_discount})
