@@ -39,7 +39,6 @@ class SaleOrderLinePriceHistory(models.TransientModel):
         readonly=True,
     )
     include_quotations = fields.Boolean(
-        string="Include quotations",
         help="Include quotations lines in the sale history",
     )
     include_commercial_partner = fields.Boolean(
