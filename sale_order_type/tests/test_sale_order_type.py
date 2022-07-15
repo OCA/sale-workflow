@@ -1,6 +1,7 @@
 # Copyright 2015 Oihane Crucelaegui - AvanzOSC
 # Copyright 2017 Pierre Faniel - Niboo SPRL (<https://www.niboo.be/>)
 # Copyright 2020 Tecnativa - Pedro M. Baeza
+# Copyright 2022 Tecnativa - César A. Sánchez
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from freezegun import freeze_time
 
@@ -13,11 +14,10 @@ class TestSaleOrderType(common.TransactionCase):
     def setUp(self):
         super(TestSaleOrderType, self).setUp()
         self.sale_type_model = self.env["sale.order.type"]
-        self.sale_order_model = self.env["sale.order"]
         self.invoice_model = self.env["account.move"].with_context(
             default_type="out_invoice"
         )
-        self.partner = self.env.ref("base.res_partner_1")
+        self.partner = self.env["res.partner"].create({"name": "Wood Corner"})
         self.partner_child_1 = self.env["res.partner"].create(
             {"name": "Test child", "parent_id": self.partner.id, "sale_type": False}
         )
@@ -51,6 +51,14 @@ class TestSaleOrderType(common.TransactionCase):
         self.immediate_payment = self.env.ref("account.account_payment_term_immediate")
         self.sale_pricelist = self.env.ref("product.list0")
         self.free_carrier = self.env.ref("account.incoterm_FCA")
+        self.analytic_account = self.env["account.analytic.account"].create(
+            {
+                "name": "Test AA",
+                "code": "TESTSALE_REINVOICE",
+                "company_id": self.partner_child_1.company_id.id,
+                "partner_id": self.partner_child_1.id,
+            }
+        )
         self.sale_type = self.sale_type_model.create(
             {
                 "name": "Test Sale Order Type",
@@ -62,6 +70,7 @@ class TestSaleOrderType(common.TransactionCase):
                 "pricelist_id": self.sale_pricelist.id,
                 "incoterm_id": self.free_carrier.id,
                 "quotation_validity_days": 10,
+                "analytic_account_id": self.analytic_account.id,
             }
         )
         self.sale_type_quot = self.sale_type_model.create(
@@ -86,6 +95,12 @@ class TestSaleOrderType(common.TransactionCase):
             }
         )
         self.partner.sale_type = self.sale_type
+        self.stock_location_components = self.env["stock.location"].create(
+            {
+                "name": "Shelf 1",
+                "location_id": self.env.ref("stock.warehouse0").lot_stock_id.id,
+            }
+        )
         self.sale_route = self.env["stock.location.route"].create(
             {
                 "name": "SO -> Customer",
@@ -99,9 +114,7 @@ class TestSaleOrderType(common.TransactionCase):
                             "name": "SO -> Customer",
                             "action": "pull",
                             "picking_type_id": self.ref("stock.picking_type_in"),
-                            "location_src_id": self.ref(
-                                "stock.stock_location_components"
-                            ),
+                            "location_src_id": self.stock_location_components.id,
                             "location_id": self.ref("stock.stock_location_customers"),
                         },
                     )
@@ -294,3 +307,15 @@ class TestSaleOrderType(common.TransactionCase):
         # Write again, and see that name remains the same
         new_order.write({"type_id": sale_type_no_sequence.id})
         self.assertEqual(new_order.name, "TSO003")
+
+    def test_sale_copy_function(self):
+        """
+        Test when duplicating the sale order the account analytic account is set.
+        """
+        order = self.create_sale_order()
+        order.onchange_partner_id()
+        order.onchange_type_id()
+        new_order = order.copy()
+        self.assertEqual(
+            new_order.analytic_account_id.id, order.type_id.analytic_account_id.id
+        )

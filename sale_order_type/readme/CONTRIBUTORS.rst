@@ -23,6 +23,7 @@
   * Pedro M. Baeza
   * David Vidal
   * Carlos Dauden
+  * César A. Sánchez
 
 * `Pesol <https://www.pesol.es>`_
 

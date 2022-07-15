@@ -160,6 +160,13 @@ class SaleOrder(models.Model):
             )
         return sequence
 
+    def copy(self, default=None):
+        res = super().copy(default)
+        sale_type = res.type_id or self.type_id
+        if sale_type.analytic_account_id:
+            res["analytic_account_id"] = sale_type.analytic_account_id.id
+        return res
+
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
