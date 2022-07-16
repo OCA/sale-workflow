@@ -76,6 +76,24 @@ msgid "Tier Definition"
 msgstr "Aşama Tanımı"
 
 #. module: sale_tier_validation
+#: model:mail.message.subtype,name:sale_tier_validation.crm_team_tier_validation_accepted
+#: model:mail.message.subtype,name:sale_tier_validation.sale_order_tier_validation_accepted
+msgid "Tier Validation Accepted Notification"
+msgstr ""
+
+#. module: sale_tier_validation
+#: model:mail.message.subtype,name:sale_tier_validation.crm_team_tier_validation_rejected
+#: model:mail.message.subtype,name:sale_tier_validation.sale_order_tier_validation_rejected
+msgid "Tier Validation Rejected Notification"
+msgstr ""
+
+#. module: sale_tier_validation
+#: model:mail.message.subtype,name:sale_tier_validation.crm_team_tier_validation_requested
+#: model:mail.message.subtype,name:sale_tier_validation.sale_order_tier_validation_requested
+msgid "Tier Validation Requested"
+msgstr ""
+
+#. module: sale_tier_validation
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.sale_order_form_tier
 msgid "Validate"
 msgstr "Doğrulan"
