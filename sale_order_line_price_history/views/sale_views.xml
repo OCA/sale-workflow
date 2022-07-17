@@ -9,7 +9,17 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']/tree">
                 <field name="order_partner_id" invisible="1" />
-                <widget name="sale_line_price_history_widget" width="20px" />
+                <widget
+                    name="sale_line_price_history_widget"
+                    width="20px"
+                    attrs="{'invisible': [('id', '!=', False)]}"
+                />
+                <button
+                    name="%(sale_order_line_price_history_action)d"
+                    type="action"
+                    icon="fa-clock-o"
+                    attrs="{'invisible': [('id', '=', False)]}"
+                />
             </xpath>
         </field>
     </record>
