@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import logging
+import threading
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -46,6 +47,13 @@ class AccountTax(models.Model):
             )
 
     def get_equivalent_tax(self, price_include):
+        # To avoid breaking the installation of demo data of module
+        # and test of other module
+        # we do not map the taxe if not ask explicitelly
+        if getattr(
+            threading.currentThread(), "testing", False
+        ) and not self._context.get("test_pricelist_tax"):
+            return self
         taxes = self.browse(False)
         for record in self:
             if record.price_include == price_include:

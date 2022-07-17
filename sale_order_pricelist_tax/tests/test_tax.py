@@ -10,6 +10,7 @@ class TaxCase:
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context={"test_pricelist_tax": True})
         cls.ht_plist = cls.env.ref("sale_order_pricelist_tax.ht_pricelist")
         cls.ttc_plist = cls.env.ref("sale_order_pricelist_tax.ttc_pricelist")
         cls.fp_exp = cls.env.ref("sale_order_pricelist_tax.fiscal_position_exp")
