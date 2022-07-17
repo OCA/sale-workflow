@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import logging
+import threading
 
 from odoo import _, api, models
 from odoo.exceptions import UserError
@@ -29,6 +30,10 @@ class SaleOrderLine(models.Model):
                 price_include_taxes=line.order_id.pricelist_id.price_include_taxes
             )
             super(SaleOrderLine, line)._compute_tax_id()
+            if getattr(
+                threading.currentThread(), "testing", False
+            ) and not self._context.get("test_pricelist_tax"):
+                continue
             pricelist = line.order_id.pricelist_id
             if not pricelist.price_include_taxes and any(
                 line.tax_id.mapped("price_include")
