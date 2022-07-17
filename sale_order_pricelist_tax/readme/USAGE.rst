@@ -1,6 +1,6 @@
-- set your product in include tax
-- set exclude tax with pricelist of your choice
-- encode a sale with these settings
+- for all excluded taxes select the matching included taxe
+- set exclude or included tax on the pricelist
+- encode a sale with the configured pricelist
 
 Warning:
 It's possible to have pricelist that depend on other pricelist.

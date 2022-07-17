@@ -99,8 +99,7 @@ class TaxCase:
 
 class TaxCaseBaseTaxInc(TaxCase, SavepointCase):
     def test_missing_tax(self):
-        self.tax_inc.get_equivalent_tax(price_include=False)
-        self.tax_exc.write({"amount": 30})
+        self.tax_exc.equivalent_tax_inc_id = False
         with self.assertRaises(UserError) as m:
             self._create_sale_order(self.ht_plist)
         self.assertEqual(
@@ -116,8 +115,7 @@ class TaxCaseBaseTaxExc(TaxCase, SavepointCase):
         cls.product.taxes_id = cls.tax_exc
 
     def test_missing_tax(self):
-        self.tax_exc.get_equivalent_tax(price_include=False)
-        self.tax_inc.write({"amount": 30})
+        self.tax_exc.equivalent_tax_inc_id = False
         with self.assertRaises(UserError) as m:
             self._create_sale_order(self.ttc_plist)
         self.assertEqual(
