@@ -223,11 +223,11 @@ class BlanketOrder(models.Model):
 
     def _compute_uom_qty(self):
         for bo in self:
-            bo.original_uom_qty = sum(bo.mapped("order_id.original_uom_qty"))
-            bo.ordered_uom_qty = sum(bo.mapped("order_id.ordered_uom_qty"))
-            bo.invoiced_uom_qty = sum(bo.mapped("order_id.invoiced_uom_qty"))
-            bo.delivered_uom_qty = sum(bo.mapped("order_id.delivered_uom_qty"))
-            bo.remaining_uom_qty = sum(bo.mapped("order_id.remaining_uom_qty"))
+            bo.original_uom_qty = sum(bo.line_ids.mapped("original_uom_qty"))
+            bo.ordered_uom_qty = sum(bo.line_ids.mapped("ordered_uom_qty"))
+            bo.invoiced_uom_qty = sum(bo.line_ids.mapped("invoiced_uom_qty"))
+            bo.delivered_uom_qty = sum(bo.line_ids.mapped("delivered_uom_qty"))
+            bo.remaining_uom_qty = sum(bo.line_ids.mapped("remaining_uom_qty"))
 
     @api.onchange("partner_id")
     def onchange_partner_id(self):
