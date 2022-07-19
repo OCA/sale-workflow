@@ -17,7 +17,6 @@ class SaleOrder(models.Model):
             ("partially", "Partially processed"),
             ("done", "Done"),
         ],
-        string="Delivery state",
         # Compute method have a different name then the field because
         # the method _compute_delivery_state already exist to compute
         # the field delivery_set
@@ -26,7 +25,6 @@ class SaleOrder(models.Model):
     )
 
     force_delivery_state = fields.Boolean(
-        string="Force delivery state",
         help=(
             "Allow to enforce done state of delivery, for instance if some"
             " quantities were cancelled"
