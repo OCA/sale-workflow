@@ -14,20 +14,20 @@ Sale Order Product Assortment
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/14.0/sale_order_product_assortment
+    :target: https://github.com/OCA/sale-workflow/tree/15.0/sale_order_product_assortment
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-14-0/sale-workflow-14-0-sale_order_product_assortment
+    :target: https://translation.odoo-community.org/projects/sale-workflow-15-0/sale-workflow-15-0-sale_order_product_assortment
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/167/14.0
+    :target: https://runbot.odoo-community.org/runbot/167/15.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module allows to use the product assortments related to a partner on sale orders.
-Whith this implementation, we just allow to select the products defined on whitelist and
-we don't allow to select the products defined on blacklist on sale orders.
+Whith this implementation, we just allow to select the products defined on allowed list
+and we don't allow to select the products defined on restricted list on sale orders.
 
 **Table of contents**
 
@@ -37,8 +37,8 @@ we don't allow to select the products defined on blacklist on sale orders.
 Configuration
 =============
 
-Follow the steps of product_assortment module to define a whitelist or a blacklists or
-both  to some partner.
+Follow the steps of product_assortment module to define a list of allowed products or
+restricted products or both to some partner.
 
 You can use a system parameter to specify the partner field on sale orders
 "sale_order_product_assortment.partner_field"
@@ -46,7 +46,7 @@ You can use a system parameter to specify the partner field on sale orders
 Usage
 =====
 
-#. Go to Sales > Quotations.
+#. Go to Sales > Orders > Quotations.
 #. Create a new order.
 #. Select one of the partners defined on product_assortment.
 #. Add products defined on the product assortment.
@@ -62,7 +62,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_product_assortment%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_product_assortment%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -107,6 +107,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-CarlosRoca13| 
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/14.0/sale_order_product_assortment>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/15.0/sale_order_product_assortment>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
