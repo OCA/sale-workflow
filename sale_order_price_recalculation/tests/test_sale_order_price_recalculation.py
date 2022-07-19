@@ -3,7 +3,7 @@
 # Copyright 2017 David Vidal <david.vidal@tecnativa.com>
 # Copyright 2018 Duc Dao Dong <duc.dd@komit-consulting.com>
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
-from odoo.tests import common
+from odoo.tests import Form, common
 
 
 class TestSaleOrderPriceRecalculation(common.TransactionCase):
@@ -78,7 +78,8 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
         self.sale_order_line.name = "My product description"
         self.assertEqual(self.sale_order_line.price_unit, self.product.lst_price)
         # Change price
-        self.product.lst_price = 500
+        with Form(self.product) as product:
+            product.lst_price = 500
         # Launch recalculation
         self.sale_order.recalculate_prices()
         # Check if the price has been updated
