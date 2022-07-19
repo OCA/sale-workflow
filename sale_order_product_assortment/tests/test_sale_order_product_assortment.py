@@ -27,7 +27,7 @@ class TestProductAssortment(TransactionCase):
             }
         )
         sale_order_1 = self.sale_order_obj.create({"partner_id": self.partner_1.id})
-        self.assertEquals(
+        self.assertEqual(
             sale_order_1.allowed_product_ids,
             assortment_with_whitelist.whitelist_product_ids,
         )
