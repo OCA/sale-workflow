@@ -1,10 +1,10 @@
 from odoo.exceptions import ValidationError
 from odoo.tests import tagged
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
 @tagged("post_install", "-at_install")
-class TestSaleOrderPartnerRestrict(SavepointCase):
+class TestSaleOrderPartnerRestrict(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
