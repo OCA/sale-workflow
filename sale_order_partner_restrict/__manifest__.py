@@ -2,7 +2,7 @@
 {
     "name": "Sale Order Partner Restrict",
     "summary": "Apply restrictions when selecting from the list of customers on SO.",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
