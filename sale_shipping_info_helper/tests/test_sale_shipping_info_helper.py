@@ -57,10 +57,8 @@ class TestDeliveryCost(common.TransactionCase):
         # set delivery cost in Sales order
         delivery_wizard = Form(
             self.env["choose.delivery.carrier"].with_context(
-                {
-                    "default_order_id": self.sale.id,
-                    "default_carrier_id": self.normal_delivery.id,
-                }
+                default_order_id=self.sale.id,
+                default_carrier_id=self.normal_delivery.id,
             )
         )
         choose_delivery_carrier = delivery_wizard.save()
