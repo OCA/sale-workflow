@@ -5,7 +5,7 @@
 
 {
     "name": "Sale shipping info helper",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Sales",
     "license": "AGPL-3",
     "development_status": "Production/Stable",
