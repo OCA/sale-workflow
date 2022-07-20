@@ -25,14 +25,14 @@ addon | version | maintainers | summary
 [pricelist_cache](pricelist_cache/) | 14.0.1.0.1 |  | Provide a new model to cache price lists and update it, to make it easier to retrieve them.
 [pricelist_cache_rest](pricelist_cache_rest/) | 14.0.1.0.0 |  | Provides an endpoint to get product prices for a given customer
 [product_form_sale_link](product_form_sale_link/) | 14.0.1.0.2 |  | Adds a button on product forms to access Sale Lines
-[product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 14.0.1.0.1 |  | Loads in every sale order line the customer code defined in the product
+[product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 14.0.1.0.2 |  | Loads in every sale order line the customer code defined in the product
 [sale_advance_payment](sale_advance_payment/) | 14.0.1.1.1 |  | Allow to add advance payments on sales and then use them on invoices
 [sale_amount_payment_link](sale_amount_payment_link/) | 14.0.1.0.1 |  | Reduce Amount to be paid while Payment Link is generated on Sale Order, depending on done Transactions.
 [sale_automatic_workflow](sale_automatic_workflow/) | 14.0.1.3.1 |  | Sale Automatic Workflow
 [sale_automatic_workflow_delivery_state](sale_automatic_workflow_delivery_state/) | 14.0.1.0.0 |  | Glue module for sale_automatic_workflow and sale_delivery_state
 [sale_automatic_workflow_job](sale_automatic_workflow_job/) | 14.0.1.0.0 |  | Execute sale automatic workflows in queue jobs
 [sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 14.0.1.0.1 |  | Sale Automatic Workflow - Payment Mode
-[sale_blanket_order](sale_blanket_order/) | 14.0.1.0.2 |  | Blanket Orders
+[sale_blanket_order](sale_blanket_order/) | 14.0.1.0.3 |  | Blanket Orders
 [sale_by_packaging](sale_by_packaging/) | 14.0.2.0.0 |  | Manage sale of packaging
 [sale_cancel_confirm](sale_cancel_confirm/) | 14.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Sales Cancel Confirm
 [sale_commercial_partner](sale_commercial_partner/) | 14.0.1.0.1 |  | Add stored related field 'Commercial Entity' on sale orders
@@ -103,7 +103,7 @@ addon | version | maintainers | summary
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 14.0.1.0.0 |  | Add shipping amounts on sale order
 [sale_start_end_dates](sale_start_end_dates/) | 14.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Adds start date and end date on sale order lines
 [sale_stock_delivery_address](sale_stock_delivery_address/) | 14.0.1.0.2 |  | Sale Stock Delivery Address
-[sale_stock_picking_blocking](sale_stock_picking_blocking/) | 14.0.1.1.0 |  | Allow you to block the creation of deliveries from a sale order.
+[sale_stock_picking_blocking](sale_stock_picking_blocking/) | 14.0.1.1.1 |  | Allow you to block the creation of deliveries from a sale order.
 [sale_stock_picking_note](sale_stock_picking_note/) | 14.0.1.0.0 |  | Add picking note in sale and purchase order
 [sale_tier_validation](sale_tier_validation/) | 14.0.1.0.0 |  | Extends the functionality of Sale Orders to support a tier validation process.
 [sale_transaction_form_link](sale_transaction_form_link/) | 14.0.1.0.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Allows to display a link to payment transactions on Sale Order form view.
