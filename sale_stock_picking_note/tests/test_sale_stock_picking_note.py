@@ -4,7 +4,7 @@
 from odoo.tests import common
 
 
-class TestSaleStockPickingNote(common.SavepointCase):
+class TestSaleStockPickingNote(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
