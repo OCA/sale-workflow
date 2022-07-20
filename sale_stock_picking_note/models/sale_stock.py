@@ -8,7 +8,7 @@ from odoo import fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    picking_note = fields.Text(string="Picking Internal Note")
+    picking_note = fields.Html(string="Picking Internal Note")
     picking_customer_note = fields.Text(string="Picking Customer Comments")
 
 
