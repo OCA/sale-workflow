@@ -4,7 +4,7 @@
 {
     "name": "Sale Stock Picking Blocking",
     "summary": "Allow you to block the creation of deliveries " "from a sale order.",
-    "version": "14.0.1.1.0",
+    "version": "14.0.1.1.1",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
