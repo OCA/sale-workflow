@@ -3,7 +3,7 @@
 from odoo.tests import common
 
 
-class TestWishlist(common.SavepointCase):
+class TestWishlist(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
