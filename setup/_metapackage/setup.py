@@ -63,6 +63,7 @@ setuptools.setup(
         'odoo14-addon-sale_order_lot_selection',
         'odoo14-addon-sale_order_mass_action',
         'odoo14-addon-sale_order_note_template',
+        'odoo14-addon-sale_order_price_recalculation',
         'odoo14-addon-sale_order_priority',
         'odoo14-addon-sale_order_product_assortment',
         'odoo14-addon-sale_order_qty_change_no_recompute',
