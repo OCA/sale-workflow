@@ -7,5 +7,6 @@
   * João Marques
   * Ernesto Tejeda
   * César A. Sánchez
+  * Luis D. Lafaurie
 
 * nikulchaudhary2112@gmail.com
