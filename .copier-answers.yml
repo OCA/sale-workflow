@@ -10,6 +10,7 @@ org_name: Odoo Community Association (OCA)
 org_slug: OCA
 rebel_module_groups:
 - sale_order_line_sequence
+- sale_global_discount
 repo_description: This project aim to deal with modules related to manage sale and
     their related workflow.
 repo_name: Odoo Sales, Workflow and Organization

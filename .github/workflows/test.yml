@@ -43,11 +43,18 @@ jobs:
             include: "sale_order_line_sequence"
             name: test with OCB
           - container: ghcr.io/oca/oca-ci/py3.6-odoo14.0:latest
-            exclude: "sale_order_line_sequence"
+            include: "sale_global_discount"
             makepot: "true"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.6-ocb14.0:latest
-            exclude: "sale_order_line_sequence"
+            include: "sale_global_discount"
+            name: test with OCB
+          - container: ghcr.io/oca/oca-ci/py3.6-odoo14.0:latest
+            exclude: "sale_order_line_sequence,sale_global_discount"
+            makepot: "true"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py3.6-ocb14.0:latest
+            exclude: "sale_order_line_sequence,sale_global_discount"
             name: test with OCB
     services:
       postgres:
