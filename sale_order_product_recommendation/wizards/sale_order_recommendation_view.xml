@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Jairo Llopis <jairo.llopis@tecnativa.com>
+     Copyright 2020 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="sale_order_recommendation_view_form" model="ir.ui.view">
+        <field name="name">Recommended Products for this Customer</field>
+        <field name="model">sale.order.recommendation</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="order_id" invisible="1" />
+                        <field name="months" widget="numeric_step" />
+                        <field name="line_amount" widget="numeric_step" />
+                        <field name="sale_recommendation_price_origin" />
+                    </group>
+                    <group>
+                        <field name="line_ids" nolabel="1" mode="tree,kanban">
+                            <tree create="0" delete="0" editable="top">
+                                <field name="currency_id" invisible="1" />
+                                <field name="sale_line_id" invisible="1" />
+                                <field name="product_id" readonly="1" force_save="1" />
+                                <field name="price_unit" />
+                                <field name="times_delivered" />
+                                <field name="units_delivered" />
+                                <field name="units_included" widget="numeric_step" />
+                                <field
+                                    name="sale_uom_id"
+                                    optional="show"
+                                    groups="uom.group_uom"
+                                />
+                            </tree>
+                            <kanban
+                                class="o_kanban_mobile"
+                                quick_create="0"
+                                create="0"
+                                delete="0"
+                            >
+                                <field name="id" />
+                                <field name="product_id" />
+                                <field name="sale_line_id" />
+                                <field name="price_unit" />
+                                <field name="sale_uom_id" />
+                                <field name="times_delivered" />
+                                <field name="units_delivered" />
+                                <field name="units_included" />
+                                <field name="currency_id" />
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div class="oe_kanban_global_click">
+                                            <div class="o_kanban_image">
+                                                <img
+                                                    t-att-src="kanban_image('product.product', 'image_small', record.product_id.raw_value)"
+                                                    alt="Product"
+                                                />
+                                            </div>
+                                            <div class="oe_kanban_details">
+                                                <div><field name="product_id" /></div>
+                                                <div>Price: <field
+                                                        name="price_unit"
+                                                        widget="monetary"
+                                                        options="{'currency_field': 'currency_id', 'field_digits': True}"
+                                                        class="mt-0 mb-0"
+                                                    /></div>
+                                                <div>Delivered: <field
+                                                        name="times_delivered"
+                                                    /> times - <field
+                                                        name="units_delivered"
+                                                    /> <field
+                                                        name="sale_uom_id"
+                                                    /></div>
+                                                <div><strong><span
+                                                        >To be included: </span><field
+                                                            name="units_included"
+                                                        /><span> </span><field
+                                                            name="sale_uom_id"
+                                                            groups="uom.group_uom"
+                                                        /></strong></div>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                            <form>
+                                <group>
+                                    <field
+                                        name="product_id"
+                                        readonly="1"
+                                        force_save="1"
+                                    />
+                                    <field name="price_unit" />
+                                    <field
+                                        name="units_included"
+                                        widget="numeric_step"
+                                    />
+                                </group>
+                            </form>
+                        </field>
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        name="action_accept"
+                        type="object"
+                        string="Accept"
+                        class="oe_highlight"
+                    />
+                    <button special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_order_recommendation_action" model="ir.actions.act_window">
+        <field name="name">Recommended Products for this Customer</field>
+        <field name="res_model">sale.order.recommendation</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
