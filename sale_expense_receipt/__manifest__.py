@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Expense Receipt",
-    "version": "12.0.1.0.0",
+    "version": "15.0.1.0.0",
     "license": "AGPL-3",
     "author": """Open Source Integrators,
         Serpent Consulting Services,
@@ -13,10 +13,8 @@
         invoice.""",
     "category": "Sales",
     "maintainers": ["Khalid-SerpentCS"],
-    "website": "https://github.com/OCA/hr",
-    "depends": [
-        "sale_expense"
-    ],
+    "website": "https://github.com/OCA/sale-workflow",
+    "depends": ["sale_expense"],
     "auto_install": False,
     "application": False,
     "installable": True,
