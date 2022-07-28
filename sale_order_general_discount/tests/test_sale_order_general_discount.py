@@ -12,6 +12,13 @@ class TestSaleOrderLineInput(SavepointCase):
         cls.partner = cls.env["res.partner"].create(
             {"name": "Test", "sale_discount": 10.0}
         )
+        cls.contact = cls.env["res.partner"].create(
+            {
+                "name": "Contact Test",
+                "parent_id": cls.partner.id,
+                "type": "contact",
+            }
+        )
         cls.product = cls.env["product.product"].create(
             {"name": "test_product", "type": "service"}
         )
@@ -34,10 +41,34 @@ class TestSaleOrderLineInput(SavepointCase):
                 "pricelist_id": cls.env.ref("product.list0").id,
             }
         )
+        cls.contact_order = cls.env["sale.order"].create(
+            {
+                "partner_id": cls.contact.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": cls.product.name,
+                            "product_id": cls.product.id,
+                            "product_uom_qty": 1,
+                            "product_uom": cls.product.uom_id.id,
+                            "price_unit": 1000.00,
+                        },
+                    )
+                ],
+                "pricelist_id": cls.env.ref("product.list0").id,
+            }
+        )
         cls.View = cls.env["ir.ui.view"]
 
     def test_default_partner_discount(self):
         self.assertEqual(self.order.general_discount, self.partner.sale_discount)
+
+    def test_contact_partner_discount(self):
+        self.assertEqual(
+            self.contact_order.general_discount, self.partner.sale_discount
+        )
 
     def test_sale_order_values(self):
         self.order.general_discount = 10
