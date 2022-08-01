@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright 2022 Simone Rubino - TAKOBI
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+
 <odoo>
     <record id="view_order_form" model="ir.ui.view">
         <field name="name">sale.order.form</field>
@@ -63,10 +68,10 @@
         <field name="inherit_id" ref="sale.view_order_tree" />
         <field name="arch" type="xml">
             <field name="invoice_status" position="before">
-                <field name="advance_payment_status" optional="hide" />
+                <field name="advance_payment_status" />
             </field>
             <field name="amount_total" position="after">
-                <field name="amount_residual" widget="monetary" optional="hide" />
+                <field name="amount_residual" widget="monetary" />
             </field>
         </field>
     </record>
@@ -75,11 +80,11 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_quotation_tree" />
         <field name="arch" type="xml">
-            <field name="invoice_status" position="before">
-                <field name="advance_payment_status" optional="hide" />
+            <field name="state" position="before">
+                <field name="advance_payment_status" />
             </field>
             <field name="amount_total" position="after">
-                <field name="amount_residual" widget="monetary" optional="hide" />
+                <field name="amount_residual" widget="monetary" />
             </field>
         </field>
     </record>

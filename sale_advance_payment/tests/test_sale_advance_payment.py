@@ -1,9 +1,10 @@
 # Copyright (C) 2021 ForgeFlow S.L.
-# License AGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
+# Copyright 2022 Simone Rubino - TAKOBI
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 import json
 
-from odoo.tests import common
+from odoo.tests import common, Form
 
 
 class TestSaleAdvancePayment(common.SavepointCase):
@@ -34,39 +35,27 @@ class TestSaleAdvancePayment(common.SavepointCase):
         )
 
         # Sale Order
-        cls.sale_order_1 = cls.env["sale.order"].create(
-            {"name": "/", "partner_id": cls.res_partner_1.id}
-        )
-        cls.order_line_1 = cls.env["sale.order.line"].create(
-            {
-                "order_id": cls.sale_order_1.id,
-                "product_id": cls.product_1.id,
-                "product_uom": cls.product_1.uom_id.id,
-                "product_uom_qty": 10.0,
-                "price_unit": 100.0,
-                "tax_id": cls.tax,
-            }
-        )
-        cls.order_line_2 = cls.env["sale.order.line"].create(
-            {
-                "order_id": cls.sale_order_1.id,
-                "product_id": cls.product_2.id,
-                "product_uom": cls.product_2.uom_id.id,
-                "product_uom_qty": 25.0,
-                "price_unit": 40.0,
-                "tax_id": cls.tax,
-            }
-        )
-        cls.order_line_3 = cls.env["sale.order.line"].create(
-            {
-                "order_id": cls.sale_order_1.id,
-                "product_id": cls.product_3.id,
-                "product_uom": cls.product_3.uom_id.id,
-                "product_uom_qty": 20.0,
-                "price_unit": 50.0,
-                "tax_id": cls.tax,
-            }
-        )
+        order_form = Form(cls.env["sale.order"])
+        order_form.partner_id = cls.res_partner_1
+        with order_form.order_line.new() as line:
+            line.product_id = cls.product_1
+            line.product_uom_qty = 10.0
+            line.price_unit = 100.0
+            line.tax_id.clear()
+            line.tax_id.add(cls.tax)
+        with order_form.order_line.new() as line:
+            line.product_id = cls.product_2
+            line.product_uom_qty = 25.0
+            line.price_unit = 40.0
+            line.tax_id.clear()
+            line.tax_id.add(cls.tax)
+        with order_form.order_line.new() as line:
+            line.product_id = cls.product_3
+            line.product_uom_qty = 20.0
+            line.price_unit = 50.0
+            line.tax_id.clear()
+            line.tax_id.add(cls.tax)
+        cls.sale_order_1 = order_form.save()
 
         cls.currency_euro = cls.env["res.currency"].search([("name", "=", "EUR")])
         cls.currency_usd = cls.env["res.currency"].search([("name", "=", "USD")])
@@ -197,13 +186,15 @@ class TestSaleAdvancePayment(common.SavepointCase):
         self.sale_order_1.action_confirm()
 
         # Create Invoice
-        invoice = self.sale_order_1._create_invoices()
-        invoice.action_post()
+        invoice_id = self.sale_order_1.action_invoice_create()
+        self.assertEqual(len(invoice_id), 1)
+        invoice = self.env['account.invoice'].browse(invoice_id)
+        invoice.action_invoice_open()
 
         # Compare payments
         rate = self.currency_rate.rate
         payment_list = [100 * rate, 200, 250 * rate, 400]
-        payments = json.loads(invoice.invoice_outstanding_credits_debits_widget)
+        payments = json.loads(invoice.outstanding_credits_debits_widget)
         result = [d["amount"] for d in payments["content"]]
         self.assertEqual(set(payment_list), set(result))
 
