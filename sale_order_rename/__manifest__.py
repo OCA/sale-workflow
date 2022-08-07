@@ -1,4 +1,5 @@
 # Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
+# Copyright 2020-2022 CorporateHub (https://corporatehub.eu)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 {
@@ -7,7 +8,7 @@
     'category': 'Sales',
     'website': 'https://github.com/OCA/sale-workflow',
     'author':
-        'Brainbean Apps, '
+        'CorporateHub, '
         'Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'installable': True,
