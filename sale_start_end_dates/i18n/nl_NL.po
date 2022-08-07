@@ -83,7 +83,7 @@ msgid ""
 "On sale order line with product '%s', the number of days is negative (%d) ; "
 "this is not allowed. The number of days has been forced to 1."
 msgstr ""
-"Voor de kooporderregel met product '%s', is het aantal dagen negatief "
+"Voor de kooporderregel met product '%s', is het aantal dagen negatief (%d) "
 "opgegeven; dit is niet toegestaan."
 
 #. module: sale_start_end_dates

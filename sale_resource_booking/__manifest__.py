@@ -7,7 +7,7 @@
     "version": "12.0.1.0.0",
     "development_status": "Beta",
     "category": "Appointments",
-    "website": "https://github.com/OCA/sale",
+    "website": "https://github.com/OCA/sale-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "maintainers": ["Yajo"],
     "license": "AGPL-3",

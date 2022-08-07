@@ -5,6 +5,7 @@
     'version': '12.0.1.0.1',
     'category': 'Accounting & Finance',
     'author': 'Xtendoo, Odoo Community Association (OCA)',
+    'website': 'https://github.com/OCA/sale-workflow',
     'license': 'AGPL-3',
     'summary': 'Sale Order Weight',
     'installable': True,

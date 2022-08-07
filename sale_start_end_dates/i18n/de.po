@@ -77,7 +77,7 @@ msgid ""
 "On sale order line with product '%s', the number of days is negative (%d) ; "
 "this is not allowed. The number of days has been forced to 1."
 msgstr ""
-"In Auftragsposition des Produkts '%s' ist die Anzahl Tage negativ; dies ist "
+"In Auftragsposition des Produkts '%s' ist die Anzahl Tage negativ (%d) ; dies ist "
 "nicht zulässig."
 
 #. module: sale_start_end_dates

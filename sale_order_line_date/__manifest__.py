@@ -14,7 +14,7 @@
               "AvanzOSC,"
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
               "Odoo Community Association (OCA)",
-    "website": "https://odoo-community.org/",
+    "website": "https://github.com/OCA/sale-workflow",
     "category": "Sale",
     "license": "AGPL-3",
     "depends": [
