@@ -221,7 +221,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         try:  # UserError if no installment
             plan = f.save()
         except ValidationError as e:
-            _logger.info(_("No installment raises following error : %s"), e.name)
+            _logger.info(_("No installment raises following error : %s"), e.args[0])
         # Create Invoice Plan 3 installment
         num_installment = 3
         f.num_installment = num_installment
