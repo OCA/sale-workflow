@@ -48,12 +48,14 @@ Credits
 Authors
 ~~~~~~~
 
-* Brainbean Apps
+* CorporateHub
 
 Contributors
 ~~~~~~~~~~~~
 
-* Alexey Pelykh <alexey.pelykh@brainbeanapps.com>
+* `CorporateHub <https://corporatehub.eu/>`__
+
+  * Alexey Pelykh <alexey.pelykh@corphub.eu>
 
 Maintainers
 ~~~~~~~~~~~
