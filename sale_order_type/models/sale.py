@@ -33,6 +33,19 @@ class SaleOrder(models.Model):
             [("company_id", "in", [company_id, False])], limit=1
         )
 
+    @api.model
+    def _default_sequence_id(self):
+        """We get the sequence in same way the core next_by_code method does so we can
+        get the proper default sequence"""
+        force_company = self.env.context.get("force_company")
+        if not force_company:
+            force_company = self.company_id.id or self.env.company.id
+        return self.env["ir.sequence"].search(
+            [("code", "=", "sale.order"), ("company_id", "in", [force_company, False])],
+            order="company_id",
+            limit=1,
+        )
+
     @api.depends("partner_id", "company_id")
     def _compute_sale_type_id(self):
         for record in self:
@@ -101,13 +114,22 @@ class SaleOrder(models.Model):
     def write(self, vals):
         """A sale type could have a different order sequence, so we could
         need to change it accordingly"""
+        default_sequence = self._default_sequence_id()
         if vals.get("type_id"):
             sale_type = self.env["sale.order.type"].browse(vals["type_id"])
             if sale_type.sequence_id:
                 for record in self:
+                    # An order with a type without sequence would get the default one.
+                    # We want to avoid changing the order reference when the new
+                    # sequence has the same default sequence.
+                    ignore_default_sequence = (
+                        not record.type_id.sequence_id
+                        and sale_type.sequence_id == default_sequence
+                    )
                     if (
                         record.state in {"draft", "sent"}
                         and record.type_id.sequence_id != sale_type.sequence_id
+                        and not ignore_default_sequence
                     ):
                         new_vals = vals.copy()
                         new_vals["name"] = sale_type.sequence_id.next_by_id()
