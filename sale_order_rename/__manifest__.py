@@ -4,7 +4,7 @@
 
 {
     'name': 'Sale Order Rename',
-    'version': '12.0.1.0.1',
+    'version': '12.0.1.0.2',
     'category': 'Sales',
     'website': 'https://github.com/OCA/sale-workflow',
     'author':
