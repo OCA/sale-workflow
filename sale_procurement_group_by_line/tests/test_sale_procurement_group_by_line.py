@@ -64,7 +64,7 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         )
         return self.sale
 
-    def test_procurement_group_by_line(self):
+    def test_01_procurement_group_by_line(self):
         self.sale.action_confirm()
         self.assertEqual(
             self.line2.procurement_group_id,
@@ -83,7 +83,7 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         wiz.process()
         self.assertTrue(self.picking_ids, "Procurement Group should have picking")
 
-    def test_action_launch_procurement_rule_1(self):
+    def test_02_action_launch_procurement_rule_1(self):
         group_id = self.proc_group_model.create(
             {"move_type": "one", "sale_id": self.sale.id, "name": self.sale.name}
         )
@@ -96,7 +96,7 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         self.assertEqual(len(self.line2.move_ids), 1)
         self.assertEqual(self.line2.move_ids.name, self.line2.name)
 
-    def test_action_launch_procurement_rule_2(self):
+    def test_03_action_launch_procurement_rule_2(self):
         group_id = self.proc_group_model.create(
             {"move_type": "one", "sale_id": self.sale.id, "name": self.sale.name}
         )
@@ -105,7 +105,7 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         self.sale.action_confirm()
         self.assertEqual(self.line2.procurement_group_id, group_id)
 
-    def test_action_launch_procurement_rule_3(self):
+    def test_04_action_launch_procurement_rule_3(self):
         group_id = self.proc_group_model.create(
             {"move_type": "one", "sale_id": self.sale.id, "name": self.sale.name}
         )
@@ -115,4 +115,14 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         self.assertNotEqual(self.line1.procurement_group_id, group_id)
         self.assertEqual(
             self.line1.procurement_group_id, self.line2.procurement_group_id
+        )
+
+    def test_05_merged_stock_moves_from_same_procurement(self):
+        """
+        Reduce the qty in the sale order and check no extra picking is created
+        """
+        self.sale.action_confirm()
+        self.sale.order_line[1].product_uom_qty = 0.0
+        self.assertEqual(
+            len(self.sale.picking_ids), 1, "Negative stock move should me merged"
         )
