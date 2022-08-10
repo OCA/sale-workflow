@@ -115,9 +115,9 @@ class SaleOrderLine(models.Model):
                 errors.append(error.args[0])
         if errors:
             raise UserError("\n".join(errors))
-        return super()._action_launch_stock_rule(
-            previous_product_uom_qty=previous_product_uom_qty
-        )
+        return super(
+            SaleOrderLine, self.with_context(sale_group_by_line=True)
+        )._action_launch_stock_rule(previous_product_uom_qty=previous_product_uom_qty)
 
     procurement_group_id = fields.Many2one(
         "procurement.group", "Procurement group", copy=False
