@@ -33,6 +33,11 @@ msgid "Advance Payment Status"
 msgstr "Statut du Paiement d'Avance"
 
 #. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__amount_total
+msgid "Amount Total"
+msgstr ""
+
+#. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__amount_advance
 msgid "Amount advanced"
 msgstr "Montant avancé"
@@ -54,11 +59,6 @@ msgstr ""
 #, python-format
 msgid "Amount of advance must be positive."
 msgstr "Le montant de l'avance doit être positif."
-
-#. module: sale_advance_payment
-#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__amount_total
-msgid "Amount total"
-msgstr "Montant total"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
@@ -92,16 +92,12 @@ msgid "Date"
 msgstr ""
 
 #. module: sale_advance_payment
-#: model:ir.model.fields,field_description:sale_advance_payment.field_account_payment__display_name
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__display_name
-#: model:ir.model.fields,field_description:sale_advance_payment.field_sale_order__display_name
 msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: sale_advance_payment
-#: model:ir.model.fields,field_description:sale_advance_payment.field_account_payment__id
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__id
-#: model:ir.model.fields,field_description:sale_advance_payment.field_sale_order__id
 msgid "ID"
 msgstr ""
 
@@ -121,9 +117,12 @@ msgid "Journal Currency"
 msgstr "Devise du Journal"
 
 #. module: sale_advance_payment
-#: model:ir.model.fields,field_description:sale_advance_payment.field_account_payment____last_update
+#: model:ir.model,name:sale_advance_payment.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard____last_update
-#: model:ir.model.fields,field_description:sale_advance_payment.field_sale_order____last_update
 msgid "Last Modified on"
 msgstr "Dernière modification le"
 
@@ -240,3 +239,6 @@ msgid ""
 "The amount to advance must always be positive. Please use the payment type "
 "to indicate if this is an inbound or an outbound payment."
 msgstr ""
+
+#~ msgid "Amount total"
+#~ msgstr "Montant total"
