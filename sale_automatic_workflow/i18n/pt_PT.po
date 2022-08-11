@@ -51,6 +51,11 @@ msgid "Automatic Workflow Order Filter"
 msgstr ""
 
 #. module: sale_automatic_workflow
+#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_payment_filter
+msgid "Automatic Workflow Payment Filter"
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_picking_filter
 msgid "Automatic Workflow Picking Filter"
 msgstr ""
@@ -126,6 +131,11 @@ msgid "Display Name"
 msgstr "Nome a Apresentar"
 
 #. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__payment_filter_domain
+msgid "Domain"
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__invoice_date_is_order_date
 msgid "Force Invoice Date"
 msgstr ""
@@ -156,7 +166,7 @@ msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_account_move
-msgid "Journal Entries"
+msgid "Journal Entry"
 msgstr ""
 
 #. module: sale_automatic_workflow
@@ -208,6 +218,16 @@ msgid "Picking Filter Domain"
 msgstr ""
 
 #. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__register_payment
+msgid "Register Payment"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__payment_filter_id
+msgid "Register Payment Invoice Filter"
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__sale_done
 msgid "Sale Done"
 msgstr ""
@@ -224,7 +244,9 @@ msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_workflow_process
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_bank_statement_line__workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move__workflow_process_id
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_payment__workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_picking__workflow_process_id
 msgid "Sale Workflow Process"
 msgstr ""
@@ -249,6 +271,11 @@ msgstr ""
 msgid ""
 "Scheduler that will play automatically the validation of invoices, "
 "pickings..."
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__send_order_confirmation_mail
+msgid "Send Order Confirmation Mail"
 msgstr ""
 
 #. module: sale_automatic_workflow
@@ -299,6 +326,13 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__warning
 msgid "Warning Message"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__send_order_confirmation_mail
+msgid ""
+"When checked, after order confirmation, a confirmation email will be sent "
+"(if not already sent)."
 msgstr ""
 
 #. module: sale_automatic_workflow
