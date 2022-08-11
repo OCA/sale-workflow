@@ -15,6 +15,21 @@
                     />
                     <field name="amount" />
                     <field name="ref" />
+                    <field name="partner_id" invisible="1" />
+                    <field
+                        name="invoice_ids"
+                        context="{'tree_view_ref': 'sale_payment_sheet.view_invoice_tree'}"
+                        domain="[('state', '=', 'posted'), ('invoice_payment_state', '!=', 'paid'), ('partner_id', '=', partner_id)]"
+                    >
+                        <tree>
+                            <field name="state" invisible="1" />
+                            <field name="name" />
+                            <field name="invoice_date" />
+                            <field name="amount_total" />
+                            <field name="amount_residual" />
+                            <field name="invoice_date_due" />
+                        </tree>
+                    </field>
                 </group>
                 <footer>
                     <button

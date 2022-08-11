@@ -23,21 +23,37 @@ class SaleInvoicePaymentWiz(models.TransientModel):
         comodel_name="account.journal", string="Journal", required=True,
     )
     amount = fields.Monetary(
-        currency_field="currency_id", string="Amount", required=True,
+        currency_field="currency_id",
+        string="Amount",
+        required=True,
+        compute="_compute_amount",
+        readonly=False,
+        store=True,
     )
     ref = fields.Char(string="Reference")
+    invoice_ids = fields.Many2many(comodel_name="account.move",)
+    partner_id = fields.Many2one(comodel_name="res.partner")
+
+    @api.depends("invoice_ids")
+    def _compute_amount(self):
+        for wiz in self:
+            amount = 0.0
+            for invoice in wiz.invoice_ids:
+                if invoice.type == "out_refund":
+                    amount -= invoice.amount_residual
+                else:
+                    amount += invoice.amount_residual
+            wiz.amount = amount
 
     @api.model
     def default_get(self, fields_list):
         res = super(SaleInvoicePaymentWiz, self).default_get(fields_list)
-        invoices = self.env["account.move"].browse(self.env.context.get("active_ids"))
         res["journal_id"] = self.env.user.commercial_journal_ids[:1].id
-        res["amount"] = 0.0
-        for invoice in invoices:
-            if invoice.type == "out_refund":
-                res["amount"] -= invoice.amount_residual
-            else:
-                res["amount"] += invoice.amount_residual
+        if self.env.context.get("active_model", False) != "account.move":
+            return res
+        invoices = self.env["account.move"].browse(self.env.context.get("active_ids"))
+        res["invoice_ids"] = [(6, 0, invoices.ids)]
+        res["partner_id"] = invoices[:1].partner_id.id
         return res
 
     @api.depends("journal_id")
@@ -47,13 +63,12 @@ class SaleInvoicePaymentWiz(models.TransientModel):
 
     def create_sale_invoice_payment_sheet(self):
         invoices = (
-            self.env["account.move"]
-            .browse(self.env.context.get("active_ids"))
-            .filtered(
-                lambda inv: inv.state == "posted"
-                and inv.invoice_payment_state != "paid"
-            )
+            self.invoice_ids
+            or self.env["account.move"].browse(self.env.context.get("active_ids"))
+        ).filtered(
+            lambda inv: inv.state == "posted" and inv.invoice_payment_state != "paid"
         )
+
         if not invoices:
             return
         # Search an open payment sheet or create one if not exists
@@ -108,15 +123,14 @@ class SaleInvoicePaymentWiz(models.TransientModel):
                 sheet_line.amount = amount_pay
             else:
                 sheet.line_ids = [
-                    (
-                        0,
-                        0,
-                        {
-                            "amount": amount_pay,
-                            "partner_id": invoice.partner_id.id,
-                            "invoice_id": invoice.id,
-                            "ref": self.ref,
-                        },
-                    )
+                    (0, 0, self._prepare_sheet_line_values(invoice, amount_pay),)
                 ]
         self.amount -= amount_pay
+
+    def _prepare_sheet_line_values(self, invoice, amount_pay):
+        return {
+            "amount": amount_pay,
+            "partner_id": invoice.partner_id.id,
+            "invoice_id": invoice.id,
+            "ref": self.ref,
+        }
