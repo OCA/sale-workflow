@@ -36,13 +36,11 @@
                 position="after"
             >
                 <button
-                    attrs="{'invisible':['|', ('approved_mrp_component_ok','=',True),
-                    '|',('product_id','=',False),('mrp_order_state','in',('done','cancel'))]}"
+                    attrs="{'invisible':['|', ('approved_mrp_component_ok','=',True), ('product_id','=',False)]}"
                     class="fa fa-exclamation-triangle"
                     title="A product on this Manufacturing Order has been marked as not allowed."
                 />
                 <field invisible="1" name="approved_mrp_component_ok" />
-                <field name="mrp_order_state" invisible="1" />
             </xpath>
             <div name="button_box" position="after">
                 <div

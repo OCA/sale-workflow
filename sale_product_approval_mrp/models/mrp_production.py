@@ -90,6 +90,3 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     approved_mrp_component_ok = fields.Boolean(related="product_id.mrp_component_ok")
-    mrp_order_state = fields.Selection(
-        related="raw_material_production_id.state", string="MRP Order State"
-    )
