@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo-addon-partner_sale_pivot>=15.0dev,<15.1dev',
         'odoo-addon-sale_advance_payment>=15.0dev,<15.1dev',
         'odoo-addon-sale_automatic_workflow>=15.0dev,<15.1dev',
+        'odoo-addon-sale_automatic_workflow_job>=15.0dev,<15.1dev',
         'odoo-addon-sale_blanket_order>=15.0dev,<15.1dev',
         'odoo-addon-sale_commercial_partner>=15.0dev,<15.1dev',
         'odoo-addon-sale_delivery_state>=15.0dev,<15.1dev',
