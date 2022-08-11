@@ -201,6 +201,7 @@ msgid "If checked, some messages have a delivery error."
 msgstr ""
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__invoice_ids
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__invoice_id
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
 msgid "Invoice"
@@ -312,6 +313,7 @@ msgid "Partial payment"
 msgstr ""
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__partner_id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__partner_id
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
 msgid "Partner"
