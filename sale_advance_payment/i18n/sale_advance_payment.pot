@@ -113,6 +113,11 @@ msgid "Journal Currency"
 msgstr ""
 
 #. module: sale_advance_payment
+#: model:ir.model,name:sale_advance_payment.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard____last_update
 msgid "Last Modified on"
 msgstr ""
