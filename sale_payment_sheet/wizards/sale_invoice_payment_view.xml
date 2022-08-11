@@ -15,6 +15,21 @@
                     />
                     <field name="amount" />
                     <field name="ref" />
+                    <field name="partner_id" invisible="1" />
+                    <field
+                        name="invoice_ids"
+                        domain="[('state', '=', 'posted'), ('payment_state', '!=', 'paid'), ('partner_id', '=', partner_id)]"
+                        context="{'tree_view_ref': 'sale_payment_sheet.view_invoice_tree'}"
+                    >
+                        <tree>
+                            <field name="state" invisible="1" />
+                            <field name="name" />
+                            <field name="invoice_date" />
+                            <field name="amount_total" />
+                            <field name="amount_residual" />
+                            <field name="invoice_date_due" />
+                        </tree>
+                    </field>
                 </group>
                 <footer>
                     <button
@@ -28,12 +43,12 @@
             </form>
         </field>
     </record>
-    <act_window
-        id="action_sale_invoice_payment_wiz"
-        name="Sale invoice payment"
-        binding_model="account.move"
-        res_model="sale.invoice.payment.wiz"
-        view_mode="form"
-        target="new"
-    />
+    <record id="action_sale_invoice_payment_wiz" model="ir.actions.act_window">
+        <field name="name">Sale invoice payment</field>
+        <field name="res_model">sale.invoice.payment.wiz</field>
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
 </odoo>
