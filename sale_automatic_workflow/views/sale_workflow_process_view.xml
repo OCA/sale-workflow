@@ -45,6 +45,7 @@
                             />
                         </div>
                     </div>
+                    <field name="send_order_confirmation_mail" colspan="4" />
                     <field name="validate_picking" />
                     <label
                         for="picking_filter_id"
@@ -126,6 +127,32 @@
                             />
                         </div>
                     </div>
+                    <field name="register_payment" />
+                    <label
+                        for="payment_filter_id"
+                        attrs="{'required':[('register_payment','=',True)], 'invisible':[('register_payment','!=',True)]}"
+                    />
+                    <div
+                        attrs="{'required':[('register_payment','=',True)], 'invisible':[('register_payment','!=',True)]}"
+                    >
+                        <field
+                            name="payment_filter_domain"
+                            widget="domain"
+                            attrs="{'invisible': [('payment_filter_id', '=', False)]}"
+                            options="{'model': 'account.move'}"
+                        />
+                        <div class="oe_edit_only oe_inline">
+                            Set selection based on a search filter:
+                            <field
+                                name="payment_filter_id"
+                                domain="[('model_id', '=', 'account.move')]"
+                                class="oe_inline"
+                                context="{'default_model_id': 'account.move', 'default_active': False, 'active_test': False}"
+                                can_create="true"
+                                can_write="true"
+                            />
+                        </div>
+                    </div>
                     <field name="sale_done" />
                     <label
                         for="sale_done_filter_id"
@@ -178,6 +205,7 @@
                 <field name="validate_order" />
                 <field name="validate_picking" />
                 <field name="validate_invoice" />
+                <field name="register_payment" />
                 <field name="invoice_date_is_order_date" />
             </tree>
         </field>
