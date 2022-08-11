@@ -51,6 +51,11 @@ msgid "Automatic Workflow Order Filter"
 msgstr "Filtro de flujo automático de pedido"
 
 #. module: sale_automatic_workflow
+#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_payment_filter
+msgid "Automatic Workflow Payment Filter"
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_picking_filter
 msgid "Automatic Workflow Picking Filter"
 msgstr "Filtro de flujo automático de albaranes"
@@ -128,6 +133,11 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__payment_filter_domain
+msgid "Domain"
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__invoice_date_is_order_date
 msgid "Force Invoice Date"
 msgstr "Forzar fecha de factura"
@@ -163,8 +173,8 @@ msgstr "Facturar servicios en la entrega"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_account_move
-msgid "Journal Entries"
-msgstr "Entradas de diario"
+msgid "Journal Entry"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job____last_update
@@ -215,6 +225,16 @@ msgid "Picking Filter Domain"
 msgstr "Dominio del filtro de albarán"
 
 #. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__register_payment
+msgid "Register Payment"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__payment_filter_id
+msgid "Register Payment Invoice Filter"
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__sale_done
 msgid "Sale Done"
 msgstr "Finalización de pedido"
@@ -231,7 +251,9 @@ msgstr "Dominio del filtro para finalización de pedidos"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_workflow_process
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_bank_statement_line__workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move__workflow_process_id
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_payment__workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_picking__workflow_process_id
 msgid "Sale Workflow Process"
 msgstr "Proceso del flujo de venta"
@@ -259,6 +281,11 @@ msgid ""
 msgstr ""
 "Programador que reproducirá automáticamente la validación de facturas, "
 "pickings..."
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__send_order_confirmation_mail
+msgid "Send Order Confirmation Mail"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__property_journal_id
@@ -311,6 +338,13 @@ msgid "Warning Message"
 msgstr "Mensaje de advertencia"
 
 #. module: sale_automatic_workflow
+#: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__send_order_confirmation_mail
+msgid ""
+"When checked, after order confirmation, a confirmation email will be sent "
+"(if not already sent)."
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__invoice_date_is_order_date
 msgid "When checked, the invoice date will be the same than the order's date"
 msgstr ""
@@ -327,6 +361,9 @@ msgstr "Opciones del flujo"
 #, python-format
 msgid "Workflow Warning"
 msgstr "Aviso del flujo"
+
+#~ msgid "Journal Entries"
+#~ msgstr "Entradas de diario"
 
 #~ msgid "Invoice"
 #~ msgstr "Factura"
