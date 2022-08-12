@@ -1,4 +1,5 @@
 # Copyright 2013 Guewen Baconnier, Camptocamp SA
+# Copyright 2022 Aritz Olea, Landoo SL
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import fields, models
 
@@ -13,6 +14,12 @@ class SaleOrder(models.Model):
         ondelete="restrict",
         tracking=True,
     )
+
+    def _show_cancel_wizard(self):
+        for order in self:
+            if not order._context.get("disable_cancel_warning"):
+                return True
+        return False
 
 
 class SaleOrderCancelReason(models.Model):
