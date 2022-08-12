@@ -3,34 +3,18 @@
     <record id="view_sale_order_cancel" model="ir.ui.view">
         <field name="name">Reason for the cancellation</field>
         <field name="model">sale.order.cancel</field>
-        <field name="arch" type="xml">
-            <form string="Reason for the cancellation" version="7.0">
-                <p class="oe_grey">
-                Choose the reason for the cancellation of the
-                sale order.
-            </p>
-                <group>
-                    <field name="reason_id" widget="selection" />
-                </group>
-                <footer>
-                <button
-                        name="confirm_cancel"
-                        string="Confirm"
-                        type="object"
-                        class="oe_highlight"
-                    />
-                or
-                <button string="Cancel" class="oe_link" special="cancel" />
-            </footer>
-            </form>
-        </field>
-    </record>
-    <record id="action_sale_order_cancel" model="ir.actions.act_window">
-        <field name="name">Reason for the cancellation</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">sale.order.cancel</field>
-        <field name="view_mode">form</field>
-        <field name="view_id" ref="view_sale_order_cancel" />
-        <field name="target">new</field>
+        <field name="inherit_id" ref="sale.sale_order_cancel_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//footer" position="before">
+                    <br />
+                    <p>
+                        Choose the reason for the cancellation of the
+                        sale order.
+                    </p>
+                    <group>
+                        <field name="reason_id" widget="selection" />
+                    </group>
+                </xpath>
+            </field>
     </record>
 </odoo>
