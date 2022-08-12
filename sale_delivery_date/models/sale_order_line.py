@@ -185,10 +185,13 @@ class SaleOrderLine(models.Model):
             )
             next_working_day = self._next_working_day(next_preferred_date, calendar)
             count += 1
-        if date_done != next_preferred_date:
-            # TODO : Add logs ?
-            return next_preferred_date
-        return next_preferred_date
+        # Now that next_working_day.date() equals next_preferred_date.date(),
+        # goods can't leave the warehouse outside of working hours
+        preferred_date = max(next_preferred_date, next_working_day)
+        # If scheduled date and deadline are the same day, we promise the latest date
+        if date_planned.date() == preferred_date.date():
+            preferred_date = max(date_planned, preferred_date)
+        return preferred_date
 
     @api.model
     def _next_working_day(self, date_, calendar=None):

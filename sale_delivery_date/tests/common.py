@@ -22,7 +22,6 @@ class Common(SavepointCase):
         cls.setUpClassCommon()
         cls.setUpClassCalendar()
         cls.setUpClassWarehouse()
-        cls.setUpClassOrder()
 
     @classmethod
     def setUpClassCompany(cls):
@@ -57,15 +56,13 @@ class Common(SavepointCase):
         )
         cls.customers = cls.customer_partner_cutoff | cls.customer_warehouse_cutoff
 
-    @classmethod
-    def setUpClassOrder(cls):
-        products = cls._get_default_products()
-        cls.order_partner_cutoff = cls._create_sale_order(
-            cls.customer_partner_cutoff, products
-        )
-        cls.order_warehouse_cutoff = cls._create_sale_order(
-            cls.customer_warehouse_cutoff, products
-        )
+    def _create_order_partner_cutoff(self):
+        products = self._get_default_products()
+        return self._create_sale_order(self.customer_partner_cutoff, products)
+
+    def _create_order_warehouse_cutoff(self):
+        products = self._get_default_products()
+        return self._create_sale_order(self.customer_warehouse_cutoff, products)
 
     @classmethod
     def setUpClassCalendar(cls):

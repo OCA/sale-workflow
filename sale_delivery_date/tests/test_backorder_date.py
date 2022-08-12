@@ -18,6 +18,7 @@ BEFORE_CUTOFF_UTC = "06:00:00"
 CUTOFF_UTC = "07:00:00"
 AFTER_CUTOFF_UTC = "08:00:00"
 TIME_WINDOW_START_UTC = "06:00:00"
+WAREHOUSE_START_UTC = "07:00:00"
 MONDAY_BEFORE_CUTOFF_UTC = f"{MONDAY} {BEFORE_CUTOFF_UTC}"
 
 
@@ -42,28 +43,33 @@ class TestBackorderDate(Common):
         # Set customer's time window to friday, so delivery is postponed by 1
         # week, which makes it easier to test
         cls._set_partner_time_window_to_friday(cls.customer_partner_cutoff)
-        cls.order = cls.order_partner_cutoff
-        cls.order.action_confirm()
-        cls.picking = cls.order.picking_ids
-        # Here, we want to ensure that the picking date is correctly postponed
-        cls.picking.move_type = "one"
 
     @classmethod
     def _get_default_products(cls):
+        # Change the qty from 1 to 10
         return [(cls.product, 10)]
 
-    @classmethod
-    def _create_backorder(cls):
-        # Set the half as done, then confirm the picking
-        cls.picking.move_lines.quantity_done = 5.0
-        cls.picking._action_done()
-        return cls.order.picking_ids - cls.picking
+    def _create_and_confirm_order(self):
+        order = self._create_order_partner_cutoff()
+        order.action_confirm()
+        # Here, we want to ensure that the picking date is correctly postponed
+        order.picking_ids.move_type = "one"
+        return order
 
-    @classmethod
-    def _increase_so_line_qty(cls, qty):
-        with Form(cls.order) as so:
+    def _create_backorder(self):
+        order = self._create_and_confirm_order()
+        picking = order.picking_ids
+        # Set the half as done, then confirm the picking
+        picking.move_lines.quantity_done = 5.0
+        picking._action_done()
+        return order.picking_ids - picking
+
+    def _increase_so_line_qty(self, qty):
+        order = self._create_and_confirm_order()
+        with Form(order) as so:
             with so.order_line.edit(0) as line:
                 line.product_uom_qty += qty
+        return order
 
     def test_backorder_before_scheduled_date(self):
         # If we want the backorder to be delivered this week, then it has to be
@@ -73,7 +79,7 @@ class TestBackorderDate(Common):
             backorder = self._create_backorder()
         self.assertEqual(str(backorder.scheduled_date), f"{THURSDAY} {CUTOFF_UTC}")
         self.assertEqual(
-            str(backorder.date_deadline), f"{FRIDAY} {TIME_WINDOW_START_UTC}"
+            str(backorder.date_deadline), f"{FRIDAY} {WAREHOUSE_START_UTC}"
         )
 
     def test_backorder_after_scheduled_date(self):
@@ -84,32 +90,39 @@ class TestBackorderDate(Common):
             backorder = self._create_backorder()
         self.assertEqual(str(backorder.scheduled_date), f"{NEXT_THURSDAY} {CUTOFF_UTC}")
         self.assertEqual(
-            str(backorder.date_deadline), f"{NEXT_FRIDAY} {TIME_WINDOW_START_UTC}"
+            str(backorder.date_deadline), f"{NEXT_FRIDAY} {WAREHOUSE_START_UTC}"
         )
 
     def test_increased_qty_before_scheduled_date(self):
         # If we increase a qty of a confirmed SO before the related picking's
         # scheduled_date, nothing should be updated
         with freeze_time(f"{THURSDAY} {BEFORE_CUTOFF_UTC}"):
-            self._increase_so_line_qty(5)
+            order = self._increase_so_line_qty(5)
         # Just ensure that the qty is updated on the stock move
-        self.assertEqual(sum(self.picking.move_lines.mapped("product_uom_qty")), 15)
-        self.assertEqual(str(self.picking.scheduled_date), f"{THURSDAY} {CUTOFF_UTC}")
         self.assertEqual(
-            str(self.picking.date_deadline), f"{FRIDAY} {TIME_WINDOW_START_UTC}"
+            sum(order.picking_ids.move_lines.mapped("product_uom_qty")), 15
+        )
+        self.assertEqual(
+            str(order.picking_ids.scheduled_date), f"{THURSDAY} {CUTOFF_UTC}"
+        )
+        self.assertEqual(
+            str(order.picking_ids.date_deadline), f"{FRIDAY} {WAREHOUSE_START_UTC}"
         )
 
     def test_increased_qty_after_scheduled_date(self):
         # If we increase a qty of a confirmed SO after the related picking's
         # scheduled_date, then the dates should be updated accordingly
         with freeze_time(f"{THURSDAY} {AFTER_CUTOFF_UTC}"):
-            self._increase_so_line_qty(5)
+            order = self._increase_so_line_qty(5)
         # Just ensure that the qty is updated on the stock move
-        self.assertEqual(sum(self.picking.move_lines.mapped("product_uom_qty")), 15)
+        self.assertEqual(
+            sum(order.picking_ids.move_lines.mapped("product_uom_qty")), 15
+        )
         # Dates should have been postponed to next week
         self.assertEqual(
-            str(self.picking.scheduled_date), f"{NEXT_THURSDAY} {CUTOFF_UTC}"
+            str(order.picking_ids.scheduled_date), f"{NEXT_THURSDAY} {CUTOFF_UTC}"
         )
         self.assertEqual(
-            str(self.picking.date_deadline), f"{NEXT_FRIDAY} {TIME_WINDOW_START_UTC}"
+            str(order.picking_ids.date_deadline),
+            f"{NEXT_FRIDAY} {WAREHOUSE_START_UTC}",
         )

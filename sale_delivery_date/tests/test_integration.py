@@ -31,7 +31,7 @@ class TestSaleDeliveryDate(Common):
     @freeze_time(THURSDAY_AFTER_CUTOFF)
     def test_order_on_thursday_after_cutoff_to_deliver_on_workdays(self):
         """Order confirmed after cut-off time on Thursday to deliver on workdays."""
-        order = self.order_warehouse_cutoff
+        order = self._create_order_warehouse_cutoff()
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(str(picking.scheduled_date.date()), FRIDAY)
@@ -40,7 +40,7 @@ class TestSaleDeliveryDate(Common):
     @freeze_time(THURSDAY_BEFORE_CUTOFF)
     def test_order_on_thursday_before_cutoff_to_deliver_on_workdays(self):
         """Order confirmed before cut-off time on Thursday to deliver on workdays."""
-        order = self.order_warehouse_cutoff
+        order = self._create_order_warehouse_cutoff()
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(str(picking.scheduled_date.date()), THURSDAY)
@@ -58,7 +58,7 @@ class TestSaleDeliveryDate(Common):
         #   - no partner's delivery time window
         # Expected result:
         #   - date_planned = "2021-08-23"
-        order = self.order_warehouse_cutoff
+        order = self._create_order_warehouse_cutoff()
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(str(order.expected_date.date()), NEXT_TUESDAY)
@@ -67,7 +67,7 @@ class TestSaleDeliveryDate(Common):
     @freeze_time(FRIDAY_BEFORE_CUTOFF)
     def test_order_on_friday_before_cutoff_to_deliver_on_workdays(self):
         """Order confirmed before cut-off time on Friday to deliver on workdays."""
-        order = self.order_warehouse_cutoff
+        order = self._create_order_warehouse_cutoff()
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(str(picking.scheduled_date.date()), FRIDAY)
@@ -78,7 +78,7 @@ class TestSaleDeliveryDate(Common):
         """Order confirmed after cut-off time on Friday to deliver on friday."""
         self._set_partner_time_window_to_friday(self.customer_warehouse_cutoff)
         self.customer_warehouse_cutoff.delivery_time_window_ids[0].time_window_start = 9
-        order = self.order_warehouse_cutoff
+        order = self._create_order_warehouse_cutoff()
         order.action_confirm()
         picking = order.picking_ids
         # Delivery date: Friday 06:00 UTC, so 08:00 with customer's TZ
@@ -93,7 +93,7 @@ class TestSaleDeliveryDate(Common):
         """Order confirmed before cut-off time on Friday to deliver on friday."""
         self._set_partner_time_window_to_friday(self.customer_warehouse_cutoff)
         self.customer_warehouse_cutoff.delivery_time_window_ids[0].time_window_start = 9
-        order = self.order_warehouse_cutoff
+        order = self._create_order_warehouse_cutoff()
         order.action_confirm()
         picking = order.picking_ids
         # Delivery date: Friday 06:00 UTC, so 08:00 with customer's TZ
@@ -109,7 +109,7 @@ class TestSaleDeliveryDate(Common):
 
         But here the delivery date is enforced by the commitment_date.
         """
-        order = self.order_warehouse_cutoff
+        order = self._create_order_warehouse_cutoff()
         order.commitment_date = f"{NEXT_FRIDAY} 08:00:00"
         order.action_confirm()
         picking = order.picking_ids

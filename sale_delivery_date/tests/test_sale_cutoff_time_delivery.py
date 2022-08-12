@@ -52,7 +52,7 @@ class TestSaleCutoffTimeDelivery(Common):
     @freeze_time(MONDAY_BEFORE_PARTNER_CUTOFF)
     def test_before_partner_cutoff(self):
         self._disable_tz()
-        order = self.order_partner_cutoff
+        order = self._create_order_partner_cutoff()
         self.assertEqual(str(order.expected_date.date()), TUESDAY)
         order.action_confirm()
         picking = order.picking_ids
@@ -61,7 +61,7 @@ class TestSaleCutoffTimeDelivery(Common):
     @freeze_time(MONDAY_BEFORE_WH_CUTOFF)
     def test_before_warehouse_cutoff(self):
         self._disable_tz()
-        order = self.order_warehouse_cutoff
+        order = self._create_order_warehouse_cutoff()
         self.assertEqual(str(order.expected_date.date()), TUESDAY)
         order.action_confirm()
         picking = order.picking_ids
@@ -73,7 +73,7 @@ class TestSaleCutoffTimeDelivery(Common):
         delivery is postponed by 1 day.
         """
         self._disable_tz()
-        order = self.order_partner_cutoff
+        order = self._create_order_partner_cutoff()
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(str(order.expected_date.date()), WEDNESDAY)
@@ -85,7 +85,7 @@ class TestSaleCutoffTimeDelivery(Common):
         delivery is postponed by 1 day
         """
         self._disable_tz()
-        order = self.order_warehouse_cutoff
+        order = self._create_order_warehouse_cutoff()
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(str(order.expected_date.date()), WEDNESDAY)
@@ -93,7 +93,7 @@ class TestSaleCutoffTimeDelivery(Common):
 
     @freeze_time(MONDAY_BEFORE_CUTOFF_TZ)
     def test_before_partner_cutoff_tz(self):
-        order = self.order_partner_cutoff
+        order = self._create_order_partner_cutoff()
         self.assertEqual(str(order.expected_date.date()), TUESDAY)
         order.action_confirm()
         picking = order.picking_ids
@@ -101,7 +101,7 @@ class TestSaleCutoffTimeDelivery(Common):
 
     @freeze_time(MONDAY_BEFORE_CUTOFF_TZ)
     def test_before_warehouse_cutoff_tz(self):
-        order = self.order_warehouse_cutoff
+        order = self._create_order_warehouse_cutoff()
         self.assertEqual(str(order.expected_date.date()), TUESDAY)
         order.action_confirm()
         picking = order.picking_ids
@@ -112,7 +112,7 @@ class TestSaleCutoffTimeDelivery(Common):
         """If order is confirmed after partner cutoff,
         delivery is postponed by 1 day.
         """
-        order = self.order_partner_cutoff
+        order = self._create_order_partner_cutoff()
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(str(order.expected_date.date()), WEDNESDAY)
@@ -123,7 +123,7 @@ class TestSaleCutoffTimeDelivery(Common):
         """If order is confirmed after partner cutoff,
         delivery is postponed by 1 day
         """
-        order = self.order_warehouse_cutoff
+        order = self._create_order_warehouse_cutoff()
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(str(order.expected_date.date()), WEDNESDAY)
@@ -132,7 +132,7 @@ class TestSaleCutoffTimeDelivery(Common):
     @freeze_time(MONDAY_BEFORE_CUTOFF_TZ)
     def test_commitment_date_partner_cutoff(self):
         # FIXME: computation of date_planned based on commitment_date not implemented
-        order = self.order_partner_cutoff
+        order = self._create_order_partner_cutoff()
         order.commitment_date = fields.Datetime.to_datetime(f"{THURSDAY} 16:00:00")
         order.action_confirm()
         picking = order.picking_ids

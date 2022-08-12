@@ -146,17 +146,21 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         #   - partner's delivery time window: Monday & Friday 08:00-18:00
         # Expected result:
         #   With partner's cutoff set to 09:00:
-        #   - date_planned = "2020-03-28 09:00"
+        #   - date_planned = "2020-03-30 09:00" (customer wants to be delivered
+        #     on Monday starting at 8AM, but employees will start working on it
+        #     at 9AM - partner's cutoff)
         #   - date_deadline = "2020-03-30 08:00" (next time window is Monday 08:00)
         #   With warehouse's cutoff set to 10:00:
-        #   - date_planned = "2020-03-28 10:00"
+        #   - date_planned = "2020-03-30 10:00" (customer wants to be delivered
+        #     on Monday starting at 8AM, but employees will start working on it
+        #     at 10AM - WH's cutoff)
         #   - date_deadline = "2020-03-30 08:00" (next time window is Monday 08:00)
         # With partner's cutoff
         order = self._create_order(partner=self.customer_partner)
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-28 09:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 09:00:00")
         )
         self.assertEqual(
             picking.date_deadline, fields.Datetime.to_datetime("2020-03-30 08:00:00")
@@ -166,7 +170,7 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-28 10:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 10:00:00")
         )
         self.assertEqual(
             picking.date_deadline, fields.Datetime.to_datetime("2020-03-30 08:00:00")
@@ -181,11 +185,11 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         #   - partner's delivery time window: Monday & Friday 08:00-18:00
         # Expected result:
         #   With partner's cutoff set to 09:00:
-        #   - date_planned = "2020-03-28 09:00" (partner's cutoff)
+        #   - date_planned = "2020-03-30 09:00" (partner's cutoff)
         #   - date_deadline = "2020-03-30 08:00" (same day but can't promise 08:00)
         #   With warehouse's cutoff set to 10:00:
-        #   - date_planned = "2020-03-27 10:00" (customer_lead and WH's cutoff)
-        #   - date_deadline = "2020-03-27 10:00" (same day but can't promise 08:00)
+        #   - date_planned = "2020-03-30 10:00" (customer_lead and WH's cutoff)
+        #   - date_deadline = "2020-03-30 10:00" (same day but can't promise 08:00)
         self.product.sale_delay = 0
         self.env.company.security_lead = 0
         # With partner's cutoff
@@ -193,7 +197,7 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-28 09:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 09:00:00")
         )
         self.assertEqual(
             picking.date_deadline, fields.Datetime.to_datetime("2020-03-30 08:00:00")
@@ -203,7 +207,7 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-28 10:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 10:00:00")
         )
         self.assertEqual(
             picking.date_deadline, fields.Datetime.to_datetime("2020-03-30 08:00:00")
@@ -255,10 +259,10 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         #   - partner's delivery time window: Monday & Friday 08:00-18:00
         # Expected result:
         #   With partner's cutoff set to 09:00:
-        #   - date_planned = "2020-03-28 09:00" (customer_lead and partner's cutoff)
+        #   - date_planned = "2020-03-30 09:00" (customer_lead and partner's cutoff)
         #   - date_deadline = "2020-03-30 08:00" (next time window is Monday 08:00)
         #   With warehouse's cutoff set to 10:00:
-        #   - date_planned = "2020-03-28 10:00" (customer_lead and WH's cutoff)
+        #   - date_planned = "2020-03-30 10:00" (customer_lead and WH's cutoff)
         #   - date_deadline = "2020-03-30 08:00" (next time window is Monday 08:00)
         self.product.sale_delay = 4
         self.env.company.security_lead = 0
@@ -267,7 +271,7 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-28 09:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 09:00:00")
         )
         self.assertEqual(
             picking.date_deadline, fields.Datetime.to_datetime("2020-03-30 08:00:00")
@@ -277,7 +281,7 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-28 10:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 10:00:00")
         )
         self.assertEqual(
             picking.date_deadline, fields.Datetime.to_datetime("2020-03-30 08:00:00")
@@ -292,7 +296,7 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         #   - partner's delivery time window: Monday & Friday 08:00-18:00
         # Expected result:
         #   With partner's cutoff set to 09:00:
-        #   - date_planned = "2020-03-28 09:00" (customer_lead and partner's cutoff)
+        #   - date_planned = "2020-03-30 09:00" (customer_lead and partner's cutoff)
         #   - date_deadline = "2020-03-30 08:00" (next time window is Monday 08:00)
         #   With warehouse's cutoff set to 10:00:
         #   - date_planned = "2020-03-28 10:00" (customer_lead and partner's cutoff)
@@ -304,7 +308,7 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-28 09:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 09:00:00")
         )
         self.assertEqual(
             picking.date_deadline, fields.Datetime.to_datetime("2020-03-30 08:00:00")
@@ -314,7 +318,7 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-28 10:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 10:00:00")
         )
         self.assertEqual(
             picking.date_deadline, fields.Datetime.to_datetime("2020-03-30 08:00:00")
@@ -329,10 +333,10 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         #   - partner's delivery time window: Monday & Friday 08:00-18:00
         # Expected result:
         #   With partner's cutoff set to 09:00:
-        #   - date_planned = "2020-03-29 09:00" (customer_lead and partner's cutoff)
+        #   - date_planned = "2020-03-30 09:00" (customer_lead and partner's cutoff)
         #   - date_deadline = "2020-03-30 08:00" (next time window is Monday 08:00)
         #   With warehouse's cutoff set to 10:00:
-        #   - date_planned = "2020-03-29 10:00" (customer_lead and partner's cutoff)
+        #   - date_planned = "2020-03-30 10:00" (customer_lead and partner's cutoff)
         #   - date_deadline = "2020-03-30 08:00" (next time window is Monday 08:00)
         self.product.sale_delay = 4
         self.env.company.security_lead = 0
@@ -343,7 +347,7 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         self.assertEqual(
             # With respect to partner's cutoff
             picking.scheduled_date,
-            fields.Datetime.to_datetime("2020-03-29 09:00:00"),
+            fields.Datetime.to_datetime("2020-03-30 09:00:00"),
         )
         self.assertEqual(
             # With respect to partner's delivery time window
@@ -357,7 +361,7 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         self.assertEqual(
             # With respect to warehouse's cutoff
             picking.scheduled_date,
-            fields.Datetime.to_datetime("2020-03-29 10:00:00"),
+            fields.Datetime.to_datetime("2020-03-30 10:00:00"),
         )
         self.assertEqual(
             # With respect to partner's delivery time window
@@ -383,12 +387,8 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         #   - partner's cutoff set to 09:00
         #   - partner's delivery time window: Monday & Friday 14:00-15:00
         # Expected result:
-        #   With partner's cutoff:
-        #   - date_planned = "2020-03-29 09:00" (customer_lead and partner's cutoff)
-        #   - date_deadline = "2020-03-30 08:00" (next time window is Monday 08:00)
-        #   With warehouse's cutoff:
-        #   - date_planned = "2020-03-29 10:00" (customer_lead and partner's cutoff)
-        #   - date_deadline = "2020-03-30 08:00" (next time window is Monday 08:00)
+        #   - date_planned = "2020-03-30 09:00" (customer_lead and partner's cutoff)
+        #   - date_deadline = "2020-03-30 14:00" (next time window is Monday 14:00)
         partner = self.env["res.partner"].create(
             {
                 "name": "Partner cutoff",
@@ -428,7 +428,7 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-29 09:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 09:00:00")
         )
         self.assertEqual(
             picking.date_deadline, fields.Datetime.to_datetime("2020-03-30 14:00:00")
