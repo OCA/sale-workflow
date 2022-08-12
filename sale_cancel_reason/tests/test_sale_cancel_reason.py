@@ -15,8 +15,10 @@ class TestSaleCancelReason(TransactionCase):
             "active_model": "sale.order",
             "active_ids": [self.sale_order.id],
         }
-        wizard = SaleOrderCancel.create({"reason_id": self.reason.id})
-        wizard.with_context(context).confirm_cancel()
+        wizard = SaleOrderCancel.create(
+            {"reason_id": self.reason.id, "order_id": self.sale_order.id}
+        )
+        wizard.with_context(context).action_cancel()
         self.assertEqual(
             self.sale_order.state, "cancel", "the sale order should be canceled"
         )
@@ -35,5 +37,6 @@ class TestSaleCancelReason(TransactionCase):
                 "order_line": [
                     (0, 0, {"product_id": self.product.id, "product_uom_qty": 8})
                 ],
+                "cancel_confirm": True,
             }
         )
