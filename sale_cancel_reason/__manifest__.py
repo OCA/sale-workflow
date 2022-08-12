@@ -1,10 +1,11 @@
 # Copyright 2013 Guewen Baconnier, Camptocamp SA
 # Copyright 2019 Victor M.M. Torres, Tecnativa SL
+# Copyright 2022 Aritz Olea, Landoo SL
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Sale Cancel Reason",
-    "version": "13.0.1.0.0",
+    "version": "14.0.1.0.0",
     "author": "Camptocamp," "Odoo Community Association (OCA)",
     "category": "Sale",
     "license": "AGPL-3",
