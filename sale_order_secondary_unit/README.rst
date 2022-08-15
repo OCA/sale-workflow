@@ -24,6 +24,7 @@ Sale Order Secondary Unit
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     :target: https://github.com/OCA/sale-workflow/tree/18.0/sale_order_secondary_unit
 ||||||| parent of b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
     :target: https://github.com/OCA/sale-workflow/tree/11.0/sale_order_secondary_unit
@@ -40,8 +41,14 @@ Sale Order Secondary Unit
 =======
     :target: https://github.com/OCA/sale-workflow/tree/14.0/sale_order_secondary_unit
 >>>>>>> 2ddeab7d2 ([MIG] sale_order_secondary_unit: Migration to 14.0)
+||||||| parent of 4dd71ce9b ([FIX] sale_order_secondary_unit: Fix variant grid matrix usage)
+    :target: https://github.com/OCA/sale-workflow/tree/14.0/sale_order_secondary_unit
+=======
+    :target: https://github.com/OCA/sale-workflow/tree/15.0/sale_order_secondary_unit
+>>>>>>> 4dd71ce9b ([FIX] sale_order_secondary_unit: Fix variant grid matrix usage)
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -61,6 +68,11 @@ Sale Order Secondary Unit
 =======
     :target: https://translation.odoo-community.org/projects/sale-workflow-14-0/sale-workflow-14-0-sale_order_secondary_unit
 >>>>>>> 2ddeab7d2 ([MIG] sale_order_secondary_unit: Migration to 14.0)
+||||||| parent of 4dd71ce9b ([FIX] sale_order_secondary_unit: Fix variant grid matrix usage)
+    :target: https://translation.odoo-community.org/projects/sale-workflow-14-0/sale-workflow-14-0-sale_order_secondary_unit
+=======
+    :target: https://translation.odoo-community.org/projects/sale-workflow-15-0/sale-workflow-15-0-sale_order_secondary_unit
+>>>>>>> 4dd71ce9b ([FIX] sale_order_secondary_unit: Fix variant grid matrix usage)
     :alt: Translate me on Weblate
 <<<<<<< HEAD
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
@@ -72,7 +84,7 @@ Sale Order Secondary Unit
     :alt: Try me on Runbot
 =======
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/167/14.0
+    :target: https://runbot.odoo-community.org/runbot/167/15.0
     :alt: Try me on Runbot
 >>>>>>> b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
 
@@ -117,6 +129,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 ||||||| parent of b0bae09dd ([MIG] sale_order_secondary_unit: Migration to 12.0)
 If you spotted it first, help us smashing it by providing a detailed and welcomed
 <<<<<<< HEAD
+<<<<<<< HEAD
 `feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_secondary_unit%0Aversion:%2011.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 =======
 If you spotted it first, help us smashing it by providing a detailed and welcomed
@@ -133,6 +146,11 @@ If you spotted it first, help us smashing it by providing a detailed and welcome
 =======
 `feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_secondary_unit%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 >>>>>>> 2ddeab7d2 ([MIG] sale_order_secondary_unit: Migration to 14.0)
+||||||| parent of 4dd71ce9b ([FIX] sale_order_secondary_unit: Fix variant grid matrix usage)
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_secondary_unit%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+=======
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_secondary_unit%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+>>>>>>> 4dd71ce9b ([FIX] sale_order_secondary_unit: Fix variant grid matrix usage)
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -170,7 +188,12 @@ Contributors
 ||||||| parent of 2ddeab7d2 ([MIG] sale_order_secondary_unit: Migration to 14.0)
 =======
 * Alexei Rivera <arivera@archeti.com>
+<<<<<<< HEAD
 >>>>>>> 2ddeab7d2 ([MIG] sale_order_secondary_unit: Migration to 14.0)
+||||||| parent of 4dd71ce9b ([FIX] sale_order_secondary_unit: Fix variant grid matrix usage)
+=======
+* Kevin Roche <kevin.roche@akretion.com>
+>>>>>>> 4dd71ce9b ([FIX] sale_order_secondary_unit: Fix variant grid matrix usage)
 
 Maintainers
 -----------
@@ -185,6 +208,7 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -204,5 +228,10 @@ This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workf
 =======
 This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/14.0/sale_order_secondary_unit>`_ project on GitHub.
 >>>>>>> 2ddeab7d2 ([MIG] sale_order_secondary_unit: Migration to 14.0)
+||||||| parent of 4dd71ce9b ([FIX] sale_order_secondary_unit: Fix variant grid matrix usage)
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/14.0/sale_order_secondary_unit>`_ project on GitHub.
+=======
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/15.0/sale_order_secondary_unit>`_ project on GitHub.
+>>>>>>> 4dd71ce9b ([FIX] sale_order_secondary_unit: Fix variant grid matrix usage)
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,9 +14,37 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_secondary_unit
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_qty
+msgid "2nd Qty"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_unit_price
+msgid "2nd unit price"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_id
+msgid "2nd uom"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.report_saleorder_document
+msgid "<span>Second. Qty</span>"
+msgstr ""
+
+#. module: sale_order_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_product__sale_secondary_uom_id
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_template__sale_secondary_uom_id
 msgid "Default secondary unit for sales"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+#: model:ir.model.fields,help:sale_order_secondary_unit.field_product_product__sale_secondary_uom_id
+#: model:ir.model.fields,help:sale_order_secondary_unit.field_product_template__sale_secondary_uom_id
+msgid ""
+"In order to set a value, please first add at least one record in 'Secondary "
+"Unit of Measure'"
 msgstr ""
 
 #. module: sale_order_secondary_unit
@@ -25,21 +53,11 @@ msgid "Product Template"
 msgstr ""
 
 #. module: sale_order_secondary_unit
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__product_uom_qty
+msgid "Quantity"
+msgstr ""
+
+#. module: sale_order_secondary_unit
 #: model:ir.model,name:sale_order_secondary_unit.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
-
-#. module: sale_order_secondary_unit
-#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.report_saleorder_document
-msgid "Second. Qty"
-msgstr ""
-
-#. module: sale_order_secondary_unit
-#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_qty
-msgid "Secondary Qty"
-msgstr ""
-
-#. module: sale_order_secondary_unit
-#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_id
-msgid "Secondary uom"
 msgstr ""
