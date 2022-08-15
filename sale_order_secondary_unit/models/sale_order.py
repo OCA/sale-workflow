@@ -46,11 +46,22 @@ class SaleOrderLine(models.Model):
         that is the one that sets by default 1 on the other quantity with that
         purpose.
         """
+        # Determine if we compute the sale line with one unit of secondary uom as default.
+        # Based on method of sale order line _update_taxes
+        default_secondary_qty = 0.0
+        if (
+            not self.product_uom or (self.product_id.uom_id.id != self.product_uom.id)
+        ) and not self.product_uom_qty:
+            default_secondary_qty = 1.0
         res = super().product_id_change()
-        self.secondary_uom_id = self.product_id.sale_secondary_uom_id
-        if self.secondary_uom_id:
-            self.secondary_uom_qty = 1.0
-            self.onchange_product_uom_for_secondary()
+        if self.product_id.sale_secondary_uom_id:
+            line_uom_qty = self.product_uom_qty
+            self.secondary_uom_id = self.product_id.sale_secondary_uom_id
+            if default_secondary_qty:
+                self.secondary_uom_qty = default_secondary_qty
+                self.onchange_product_uom_for_secondary()
+            else:
+                self.product_uom_qty = line_uom_qty
         return res
 
     @api.depends("secondary_uom_qty", "product_uom_qty", "price_unit")
