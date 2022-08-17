@@ -22,6 +22,7 @@ setuptools.setup(
         'odoo14-addon-sale_blanket_order',
         'odoo14-addon-sale_by_packaging',
         'odoo14-addon-sale_cancel_confirm',
+        'odoo14-addon-sale_cancel_reason',
         'odoo14-addon-sale_commercial_partner',
         'odoo14-addon-sale_commitment_date_mandatory',
         'odoo14-addon-sale_company_currency',
