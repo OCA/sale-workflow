@@ -35,7 +35,7 @@ addon | version | maintainers | summary
 [sale_blanket_order](sale_blanket_order/) | 14.0.1.0.3 |  | Blanket Orders
 [sale_by_packaging](sale_by_packaging/) | 14.0.2.0.0 |  | Manage sale of packaging
 [sale_cancel_confirm](sale_cancel_confirm/) | 14.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Sales Cancel Confirm
-[sale_cancel_reason](sale_cancel_reason/) | 14.0.1.0.0 |  | Sale Cancel Reason
+[sale_cancel_reason](sale_cancel_reason/) | 14.0.1.0.1 |  | Sale Cancel Reason
 [sale_commercial_partner](sale_commercial_partner/) | 14.0.1.0.1 |  | Add stored related field 'Commercial Entity' on sale orders
 [sale_commitment_date_mandatory](sale_commitment_date_mandatory/) | 14.0.1.1.0 |  | Set commitment data mandatory and don't allowto add lines unless this field is filled
 [sale_company_currency](sale_company_currency/) | 14.0.1.0.1 |  | Company Currency in Sale Orders
