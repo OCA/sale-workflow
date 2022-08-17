@@ -20,24 +20,6 @@ msgstr ""
 "X-Generator: Weblate 3.7.1\n"
 
 #. module: sale_procurement_group_by_line
-#: model:ir.model.fields,field_description:sale_procurement_group_by_line.field_sale_order__display_name
-#: model:ir.model.fields,field_description:sale_procurement_group_by_line.field_sale_order_line__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: sale_procurement_group_by_line
-#: model:ir.model.fields,field_description:sale_procurement_group_by_line.field_sale_order__id
-#: model:ir.model.fields,field_description:sale_procurement_group_by_line.field_sale_order_line__id
-msgid "ID"
-msgstr ""
-
-#. module: sale_procurement_group_by_line
-#: model:ir.model.fields,field_description:sale_procurement_group_by_line.field_sale_order____last_update
-#: model:ir.model.fields,field_description:sale_procurement_group_by_line.field_sale_order_line____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: sale_procurement_group_by_line
 #: model:ir.model.fields,field_description:sale_procurement_group_by_line.field_sale_order_line__procurement_group_id
 msgid "Procurement group"
 msgstr ""
@@ -52,6 +34,11 @@ msgstr "Verkaufsauftrag"
 #: model:ir.model,name:sale_procurement_group_by_line.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Auftragsposition"
+
+#. module: sale_procurement_group_by_line
+#: model:ir.model,name:sale_procurement_group_by_line.model_stock_move
+msgid "Stock Move"
+msgstr ""
 
 #~ msgid "Quotation"
 #~ msgstr "Angebot"
