@@ -23,7 +23,7 @@ Sale Cancel Reason
     :target: https://runbot.odoo-community.org/runbot/167/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 When a sale order is canceled, a reason must be given,
 it is chosen from a configured list.
@@ -69,6 +69,7 @@ Contributors
 * Victor M.M Torres <victor.martin@tecnativa.com>
 * Bhavesh Odedra <bodedra@opensourceintegrators.com>
 * Alan Ramos <alan.ramos@jarsa.com.mx>
+* Aritz Olea <ao@landoo.es>, Landoo SL
 
 Maintainers
 ~~~~~~~~~~~
