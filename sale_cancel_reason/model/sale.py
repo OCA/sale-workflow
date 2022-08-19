@@ -13,6 +13,7 @@ class SaleOrder(models.Model):
         readonly=True,
         ondelete="restrict",
         tracking=True,
+        copy=False,
     )
 
     def _show_cancel_wizard(self):
