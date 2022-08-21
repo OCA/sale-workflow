@@ -158,7 +158,7 @@ class SalePaymentSheet(models.Model):
                         "date": line.date,
                         "amount": amount_line,
                         "partner_id": line.partner_id.id,
-                        "payment_ref": line.ref,
+                        "payment_ref": line.ref or line.invoice_id.name,
                         "sequence": line.sequence,
                         "statement_id": statement.id,
                         "payment_sheet_line_ids": line,
