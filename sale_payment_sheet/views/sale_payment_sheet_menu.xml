@@ -48,10 +48,10 @@
         <field name="view_id" ref="sale_payment_sheet.view_invoice_tree" />
         <field name="domain">[
             ('state', '=', 'posted'),
-            ('type', 'in', ['out_invoice', 'out_refund'])]</field>
+            ('move_type', 'in', ['out_invoice', 'out_refund'])]</field>
         <field name="context">{
-                'default_type':'out_invoice',
-                'type':'out_invoice',
+                'default_move_type':'out_invoice',
+                'move_type':'out_invoice',
                 'journal_type': 'sale',
                 'search_default_in_payment': True,
                 'search_default_unpaid': True,
