@@ -83,7 +83,7 @@ addon | version | maintainers | summary
 [sale_order_qty_change_no_recompute](sale_order_qty_change_no_recompute/) | 14.0.1.0.2 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Prevent recompute if only quantity has changed in sale order line
 [sale_order_report_without_price](sale_order_report_without_price/) | 14.0.1.0.0 |  | Allow you to generate quotation and order reports without price.
 [sale_order_revision](sale_order_revision/) | 14.0.1.1.0 |  | Keep track of revised quotations
-[sale_order_type](sale_order_type/) | 14.0.3.0.0 |  | Sale Order Type
+[sale_order_type](sale_order_type/) | 14.0.3.0.1 |  | Sale Order Type
 [sale_order_warn_message](sale_order_warn_message/) | 14.0.1.1.0 |  | Add a popup warning on sale to ensure warning is populated
 [sale_partner_approval](sale_partner_approval/) | 14.0.2.0.0 | [![dreispt](https://github.com/dreispt.png?size=30px)](https://github.com/dreispt) | Control Partners that can be used in Sales Orders
 [sale_partner_incoterm](sale_partner_incoterm/) | 14.0.1.1.0 |  | Set the customer preferred incoterm on each sales order
