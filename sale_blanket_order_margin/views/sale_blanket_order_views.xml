@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- TODO: Check, this seems related to the report -->
+    <!-- <record model="ir.ui.view" id="sale_blanket_order_margin_form">
+        <field name="name">sale.blanket.order.margin.view.form</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tax_totals_json']" position="after">
+                <label for="margin" groups="base.group_user"/>
+                <div class="text-nowrap" groups="base.group_user">
+                    <field name="margin" class="oe_inline"/>
+                    <field name="amount_untaxed" invisible="1"/>
+                    <span class="oe_inline" attrs="{'invisible': [('amount_untaxed', '=', 0)]}">
+                        (<field name="margin_percent" nolabel="1" class="oe_inline" widget="percentage"/>)
+                    </span>
+                </div>
+            </xpath>
+        </field>
+    </record> -->
+
+    <record model="ir.ui.view" id="sale_blanket_order_form">
+        <field name="name">sale.blanket.order.margin.view.form</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form" />
+        <field name="arch" type="xml">
+
+            <xpath
+                expr="//field[@name='line_ids']/tree//field[@name='price_unit']"
+                position="after"
+            >
+                <field name="purchase_price" optional="hide" />
+                <field name="margin" optional="hide" />
+                <field
+                    name="margin_percent"
+                    attrs="{'invisible': [('price_subtotal', '=', 0)]}"
+                    optional="hide"
+                    widget="percentage"
+                />
+            </xpath>
+
+            <field name="amount_total" position="after">
+                <label for="margin" groups="base.group_user"/>
+                <div class="text-nowrap" groups="base.group_user">
+                    <field name="margin" class="oe_inline"/>
+                    <field name="amount_untaxed" invisible="1"/>
+                    <span class="oe_inline" attrs="{'invisible': [('amount_untaxed', '=', 0)]}">
+                        (<field name="margin_percent" nolabel="1" class="oe_inline" widget="percentage"/>)
+                    </span>
+                </div>
+            </field>
+        </field>
+    </record>
+
+</odoo>
