@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-07-05 17:05+0000\n"
+"PO-Revision-Date: 2022-08-25 15:07+0000\n"
 "Last-Translator: ClementChaumienneC2C <clement.chaumienne@camptocamp.com>\n"
 "Language-Team: none\n"
 "Language: fr_FR\n"
@@ -477,7 +477,7 @@ msgstr "Nom"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_calendar_event_id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_calendar_event_id
 msgid "Next Activity Calendar Event"
-msgstr ""
+msgstr "Prochaine Activité Calendrier"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_date_deadline
