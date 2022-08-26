@@ -1,7 +1,7 @@
 # Copyright (c) 2021 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import _, api, models
-from odoo.exceptions import Warning
+from odoo.exceptions import UserError
 
 
 class SaleOrderReport(models.AbstractModel):
@@ -16,7 +16,7 @@ class SaleOrderReport(models.AbstractModel):
                 lambda r: r.discount >= rec.env.company.sale_discount_limit
             ) and rec.state not in ("approved", "done"):
                 rec._request_approval()
-                raise Warning(
+                raise UserError(
                     _(
                         "Your quotation has been sent for approval. You will be "
                         "notified when it is approved or refused."
