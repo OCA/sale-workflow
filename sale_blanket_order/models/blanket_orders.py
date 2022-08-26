@@ -214,7 +214,11 @@ class BlanketOrder(models.Model):
             elif order.validity_date <= today:
                 order.state = "expired"
             elif float_is_zero(
-                sum(order.line_ids.mapped("remaining_uom_qty")),
+                sum(
+                    order.line_ids.filtered(lambda l: not l.display_type).mapped(
+                        "remaining_uom_qty"
+                    )
+                ),
                 precision_digits=precision,
             ):
                 order.state = "done"
@@ -438,11 +442,10 @@ class BlanketOrderLine(models.Model):
     product_id = fields.Many2one(
         "product.product",
         string="Product",
-        required=True,
         domain=[("sale_ok", "=", True)],
     )
-    product_uom = fields.Many2one("uom.uom", string="Unit of Measure", required=True)
-    price_unit = fields.Float(string="Price", required=True, digits="Product Price")
+    product_uom = fields.Many2one("uom.uom", string="Unit of Measure")
+    price_unit = fields.Float(string="Price", digits="Product Price")
     taxes_id = fields.Many2many(
         "account.tax",
         string="Taxes",
@@ -451,7 +454,6 @@ class BlanketOrderLine(models.Model):
     date_schedule = fields.Date(string="Scheduled Date")
     original_uom_qty = fields.Float(
         string="Original quantity",
-        required=True,
         default=1,
         digits="Product Unit of Measure",
     )
@@ -499,6 +501,11 @@ class BlanketOrderLine(models.Model):
         comodel_name="account.analytic.tag",
         string="Analytic Tags",
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
+    )
+    display_type = fields.Selection(
+        [("line_section", "Section"), ("line_note", "Note")],
+        default=False,
+        help="Technical field for UX purpose.",
     )
 
     def name_get(self):
@@ -676,9 +683,61 @@ class BlanketOrderLine(models.Model):
     def _validate(self):
         try:
             for line in self:
-                assert line.price_unit > 0.0, _("Price must be greater than zero")
-                assert line.original_uom_qty > 0.0, _(
-                    "Quantity must be greater than zero"
-                )
+                assert (
+                    not line.display_type and line.price_unit > 0.0
+                ) or line.display_type, _("Price must be greater than zero")
+                assert (
+                    not line.display_type and line.original_uom_qty > 0.0
+                ) or line.display_type, _("Quantity must be greater than zero")
         except AssertionError as e:
             raise UserError(e) from e
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for values in vals_list:
+            if values.get(
+                "display_type", self.default_get(["display_type"])["display_type"]
+            ):
+                values.update(product_id=False, price_unit=0, product_uom=False)
+
+        return super().create(vals_list)
+
+    _sql_constraints = [
+        (
+            "accountable_required_fields",
+            """
+            CHECK(
+                display_type IS NOT NULL OR (
+                    product_id IS NOT NULL AND product_uom IS NOT NULL
+                    )
+            )
+            """,
+            "Missing required fields on accountable sale order line.",
+        ),
+        (
+            "non_accountable_null_fields",
+            """
+            CHECK(
+                display_type IS NULL OR (
+                    product_id IS NULL AND price_unit = 0 AND product_uom IS NULL
+                    )
+            )
+            """,
+            "Forbidden values on non-accountable sale order line",
+        ),
+    ]
+
+    def write(self, values):
+        if "display_type" in values and self.filtered(
+            lambda line: line.display_type != values.get("display_type")
+        ):
+            raise UserError(
+                _(
+                    """
+                    You cannot change the type of a sale order line.
+                    Instead you should delete the current line and create a new line
+                    of the proper type.
+                    """
+                )
+            )
+        return super(BlanketOrderLine, self).write(values)
