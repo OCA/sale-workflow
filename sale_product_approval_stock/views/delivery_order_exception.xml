@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <template id="exception_on_delivery_order">
+            <div>Exception(s) occurred on the Delivery Order(s):
+
+                <a
+                    data-oe-model="stock.picking"
+                    href="#"
+                    t-att-data-oe-id="delivery_order_ref.id"
+                >
+                    <t t-esc="delivery_order_ref.name" /></a>.
+                Manual actions may be needed.
+
+                <div class="mt16">
+                    <p>Exception(s):</p>
+                    <ul t-as="product" t-foreach="product_ref">
+                        <li>
+                            <a
+                                data-oe-model="stock.picking"
+                                href="#"
+                                t-att-data-oe-id="delivery_order_ref.id"
+                            >
+                                <t t-esc="delivery_order_ref.name" /></a>:
+
+                            <t t-esc="product.name" />
+                            and that it has been marked as not deliverable.</li>
+                    </ul>
+                </div>
+            </div>
+        </template>
+    </data>
+</odoo>
