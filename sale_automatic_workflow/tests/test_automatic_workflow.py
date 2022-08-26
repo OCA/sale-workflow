@@ -15,10 +15,18 @@ from .common import TestAutomaticWorkflowMixin, TestCommon
 @freeze_time("2022-01-01 12:00:00")
 @tagged("post_install", "-at_install")
 class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, test_queue_job_no_delay=True))
+    def setUp(self):
+        super().setUp()
+        self.env = self.env(
+            context=dict(
+                self.env.context,
+                tracking_disable=True,
+                # Compatibility with sale_automatic_workflow_job: even if
+                # the module is installed, ensure we don't delay a job.
+                # Thus, we test the usual flow.
+                _job_force_sync=True,
+            )
+        )
 
     def test_full_automatic(self):
         workflow = self.create_full_automatic()
