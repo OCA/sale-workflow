@@ -44,20 +44,21 @@
             </form>
         </field>
     </record>
-    <act_window
-        id='action_wizard_manual_delivery'
-        name='Create Manual Delivery'
-        binding_model='sale.order'
-        res_model='manual.delivery'
-        view_mode='form'
-        target='new'
-    />
-    <act_window
-        id='action_wizard_manual_delivery_line'
-        name='Create Manual Delivery'
-        binding_model='sale.order.line'
-        res_model='manual.delivery'
-        view_mode='form'
-        target='new'
-    />
+
+    <record id="action_wizard_manual_delivery" model="ir.actions.act_window">
+        <field name="name">Create Manual Delivery</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">manual.delivery</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="sale.model_sale_order" />
+    </record>
+    <record id="action_wizard_manual_delivery_line" model="ir.actions.act_window">
+        <field name="name">Create Manual Delivery</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">manual.delivery</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="sale.model_sale_order_line" />
+    </record>
 </odoo>

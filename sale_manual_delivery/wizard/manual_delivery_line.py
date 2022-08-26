@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
-from odoo.exceptions import UserError
+from odoo.exceptions import ValidationError
 from odoo.tools import float_compare
 
 
@@ -48,7 +48,7 @@ class ManualDeliveryLine(models.TransientModel):
             > 0.00
             for line in self
         ):
-            raise UserError(
+            raise ValidationError(
                 _(
                     "You can not deliver more than the remaining quantity. "
                     "If you need to do so, please edit the sale order first."
