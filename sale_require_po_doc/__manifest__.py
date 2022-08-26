@@ -1,9 +1,9 @@
-# Copyright (C) 2021 Open Source Integrators
+# Copyright (C) 2022 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
     "name": "Sale Orders Require PO or Sales Documentation",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "license": "AGPL-3",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
@@ -14,3 +14,4 @@
     "application": False,
     "installable": True,
 }
+
