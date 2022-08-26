@@ -81,7 +81,15 @@ class TestSaleBlanketOrders(common.TransactionCase):
                             "original_uom_qty": 20.0,
                             "price_unit": 0.0,  # will be updated later
                         },
-                    )
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "My section",
+                            "display_type": "line_section",
+                        },
+                    ),
                 ],
             }
         )
@@ -120,12 +128,22 @@ class TestSaleBlanketOrders(common.TransactionCase):
                         0,
                         0,
                         {
+                            "product_id": False,
+                            "product_uom": False,
+                            "name": "My section",
+                            "display_type": "line_section",
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
                             "original_uom_qty": 20.0,
                             "price_unit": 30.0,
                         },
-                    )
+                    ),
                 ],
             }
         )

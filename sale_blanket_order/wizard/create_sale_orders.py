@@ -78,7 +78,9 @@ class BlanketOrderWizard(models.TransientModel):
                     "partner_id": bol.partner_id,
                 },
             )
-            for bol in bo_lines.filtered(lambda l: l.remaining_uom_qty != 0.0)
+            for bol in bo_lines.filtered(
+                lambda l: not l.display_type and l.remaining_uom_qty != 0.0
+            )
         ]
         return lines
 
