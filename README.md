@@ -65,7 +65,7 @@ addon | version | maintainers | summary
 [sale_order_line_date](sale_order_line_date/) | 14.0.1.1.0 |  | Adds a commitment date to each sale order line.
 [sale_order_line_delivery_state](sale_order_line_delivery_state/) | 14.0.1.0.0 |  | Show the delivery state on the sale order line
 [sale_order_line_description](sale_order_line_description/) | 14.0.1.0.0 |  | Sale order line description
-[sale_order_line_discount_validation](sale_order_line_discount_validation/) | 14.0.2.0.0 | [![max3903](https://github.com/max3903.png?size=30px)](https://github.com/max3903) | Review discounts before sales order are printed, sent or confirmed
+[sale_order_line_discount_validation](sale_order_line_discount_validation/) | 14.0.2.0.1 | [![max3903](https://github.com/max3903.png?size=30px)](https://github.com/max3903) | Review discounts before sales order are printed, sent or confirmed
 [sale_order_line_initial_quantity](sale_order_line_initial_quantity/) | 14.0.1.0.1 |  | Allows to display the initial quantity when the quantity has been modified on the command line.
 [sale_order_line_input](sale_order_line_input/) | 14.0.1.0.0 |  | Search, create or modify directly sale order lines
 [sale_order_line_menu](sale_order_line_menu/) | 14.0.1.0.0 |  | Adds a Sale Order Lines Menu
