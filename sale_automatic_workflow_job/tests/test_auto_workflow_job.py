@@ -11,9 +11,7 @@ from odoo.addons.sale_automatic_workflow.tests.common import (
 )
 
 
-@tagged(
-    "post_install/sale_automatic_workflow", "-at_install/sale_automatic_workflow"
-)  # [-][tag][/module][:class][.method]
+@tagged("post_install", "-at_install", "sale_automatic_workflow")
 class TestAutoWorkflowJob(TestCommon, TestAutomaticWorkflowMixin):
     def create_sale_order(self, workflow, override=None):
         order = super().create_sale_order(workflow, override)
