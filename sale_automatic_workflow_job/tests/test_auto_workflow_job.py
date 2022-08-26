@@ -82,8 +82,8 @@ class TestAutoWorkflowJob(TestCommon, TestAutomaticWorkflowMixin):
             args = (
                 invoice,
                 [
-                    ('state', '=', 'draft'),
-                    ('name', '=', '/'),
+                    ("state", "=", "draft"),
+                    ("name", "=", "/"),
                     ("workflow_process_id", "=", self.sale.workflow_process_id.id),
                 ],
             )
