@@ -3,7 +3,7 @@
 {
     "name": "Sale Order line discount Validation",
     "summary": "Review discounts before sales order are printed, sent or confirmed",
-    "version": "14.0.2.0.0",
+    "version": "14.0.2.0.1",
     "license": "AGPL-3",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
