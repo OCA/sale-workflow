@@ -15,6 +15,11 @@ from .common import TestAutomaticWorkflowMixin, TestCommon
 @freeze_time("2022-01-01 12:00:00")
 @tagged("post_install", "-at_install")
 class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, test_queue_job_no_delay=True))
+
     def test_full_automatic(self):
         workflow = self.create_full_automatic()
         sale = self.create_sale_order(workflow)
