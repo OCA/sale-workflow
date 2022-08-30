@@ -25,10 +25,9 @@ Sales Stock Invoice Plan
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-By standard feature, user can gradually create partial invoices, one by one.
-This module add ability to create invoices based on the predefined invoice plan,
-either all at once, or one by one.
+This module is an extension of `sale_invoice_plan` and is installed automatically if `stock` is installed.
 The plan support both advance invoice and installment invoices.
+You can then check your pickings on created invoices based on the predefined invoice plan.
 
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
@@ -43,23 +42,19 @@ The plan support both advance invoice and installment invoices.
 Installation
 ============
 
-Just install this module, and the sales order will have new option "Use Invoice Plan"
+This module is an extension of `sale_invoice_plan` and is installed automatically if `stock` is installed.
 
 Usage
 =====
 
-- Create new sales quotation as per normal process
-- Select option "Use Invoice Plan", a new Invoice Plan tab will appear
-- Click on "=> Create Invoice Plan" link to open invoice planning wizard
-- Do plan for number of installment and/or advance, start date and interval
-- Double check that each advance/installment has correct plan percentage
-- After confirm sales order, now we have new option to "Create Invoice by Plan"
-- User can create only next invoice, or create all the rest invoices at the same time
+This module is an extension of `sale_invoice_plan` and have the same usage.
 
 Changelog
 =========
 
-12.0.1.0.0 (2019-03-08)
+This module was originally the part of `sale_invoice_plan`.
+
+15.0.1.0.0 (2022-05-15)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * Start of the history
@@ -89,11 +84,6 @@ Contributors
 * `Trobz <https://trobz.com>`_:
 
     * Son Ho <sonhd@trobz.com>
-
-Other credits
-~~~~~~~~~~~~~
-
-The migration of this module from 13.0 to 14.0 was financially supported by Camptocamp
 
 Maintainers
 ~~~~~~~~~~~
