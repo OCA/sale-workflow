@@ -28,3 +28,9 @@ class SaleCouponProgram(models.Model):
     def _inverse_currency_id(self):
         for rec in self:
             rec.currency_custom_id = rec.currency_id
+
+    @api.model
+    def create(self, vals):
+        if "currency_id" in vals and "currency_custom_id" not in vals:
+            vals["currency_custom_id"] = vals["currency_id"]
+        return super().create(vals)
