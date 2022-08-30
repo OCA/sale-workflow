@@ -45,7 +45,7 @@ addon | version | maintainers | summary
 [sale_contact_type](sale_contact_type/) | 13.0.1.0.0 |  | Define ordering contact type
 [sale_coupon_most_expensive](sale_coupon_most_expensive/) | 13.0.1.0.1 |  | Extra Discount Apply option - On Most Expensive Product
 [sale_coupon_most_expensive_delivery](sale_coupon_most_expensive_delivery/) | 13.0.1.0.1 |  | Bridge for Most Expensive program and shipping costs
-[sale_coupon_multi_currency](sale_coupon_multi_currency/) | 13.0.1.0.2 |  | Allow to use custom currency on coupon/promotion program
+[sale_coupon_multi_currency](sale_coupon_multi_currency/) | 13.0.1.0.3 |  | Allow to use custom currency on coupon/promotion program
 [sale_coupon_multi_use](sale_coupon_multi_use/) | 13.0.1.0.2 |  | Allow to use same coupon multiple times
 [sale_coupon_multi_use_currency](sale_coupon_multi_use_currency/) | 13.0.1.0.1 |  | Prevents in changing currency if multi coupon is in use
 [sale_coupon_product_management](sale_coupon_product_management/) | 13.0.1.0.0 |  | Improves related product management via sale coupons
