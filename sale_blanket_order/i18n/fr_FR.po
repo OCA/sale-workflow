@@ -149,7 +149,6 @@ msgstr "Annuler"
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/sale_order.py:25
-#: code:addons/sale_blanket_order/models/sale_orders.py:27
 #, python-format
 msgid ""
 "Cannot confirm order %s as one of the lines refers to a blanket order that "
@@ -769,7 +768,6 @@ msgstr "Termes et conditions"
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/sale_order_line.py:112
-#: code:addons/sale_blanket_order/models/sale_orders.py:148
 #, python-format
 msgid ""
 "The currency of the blanket order must match with that of the sale order."
@@ -778,7 +776,6 @@ msgstr ""
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/sale_order.py:37
-#: code:addons/sale_blanket_order/models/sale_orders.py:38
 #, python-format
 msgid "The customer must be equal to the blanket order lines customer"
 msgstr ""
@@ -786,7 +783,6 @@ msgstr ""
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/sale_order_line.py:102
-#: code:addons/sale_blanket_order/models/sale_orders.py:138
 #, python-format
 msgid "The product in the blanket order and in the sales order must match"
 msgstr ""
