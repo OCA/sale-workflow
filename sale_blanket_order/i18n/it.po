@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_blanket_order
+# 	* sale_blanket_order
 #
 msgid ""
 msgstr ""
@@ -135,7 +135,8 @@ msgstr "Riga wizard Ordine Aperto"
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:132
 #, python-format
-msgid "Can not create Sale Order from Blanket Order lines with different currencies"
+msgid ""
+"Can not create Sale Order from Blanket Order lines with different currencies"
 msgstr ""
 "Non si possono creare Ordini di Vendita da righe di Ordine Aperto con valute "
 "diverse"
@@ -147,16 +148,20 @@ msgid "Cancel"
 msgstr "Annulla"
 
 #. module: sale_blanket_order
+#: code:addons/sale_blanket_order/models/sale_order.py:25
 #: code:addons/sale_blanket_order/models/sale_orders.py:27
 #, python-format
-msgid "Cannot confirm order %s as one of the lines refers to a blanket order that has no remaining quantity."
+msgid ""
+"Cannot confirm order %s as one of the lines refers to a blanket order that "
+"has no remaining quantity."
 msgstr ""
 "Non è possibile confermare l'ordine %s in quanto una delle righe si "
 "riferisce ad un ordine aperto che non ha quantità rimanenti."
 
 #. module: sale_blanket_order
 #: model_terms:ir.actions.act_window,help:sale_blanket_order.act_open_blanket_order_view
-msgid "Click to create a blanket order that can be converted into a sale order."
+msgid ""
+"Click to create a blanket order that can be converted into a sale order."
 msgstr ""
 "Clicca per creare un ordine aperto che può essere convertito in un ordine di "
 "vendita."
@@ -726,7 +731,8 @@ msgstr "Stato"
 #. module: sale_blanket_order
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__activity_state
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__activity_state
-msgid "Status based on activities\n"
+msgid ""
+"Status based on activities\n"
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
@@ -760,20 +766,24 @@ msgid "Terms and Conditions"
 msgstr "Termini e Condizioni"
 
 #. module: sale_blanket_order
+#: code:addons/sale_blanket_order/models/sale_order_line.py:112
 #: code:addons/sale_blanket_order/models/sale_orders.py:148
 #, python-format
-msgid "The currency of the blanket order must match with that of the sale order."
+msgid ""
+"The currency of the blanket order must match with that of the sale order."
 msgstr ""
 "La valuta dell'ordine aperto deve corrispondere con quella dell'ordine di "
 "vendita."
 
 #. module: sale_blanket_order
+#: code:addons/sale_blanket_order/models/sale_order.py:37
 #: code:addons/sale_blanket_order/models/sale_orders.py:38
 #, python-format
 msgid "The customer must be equal to the blanket order lines customer"
 msgstr "Il cliente deve essere lo stesso delle linee dell'ordine aperto"
 
 #. module: sale_blanket_order
+#: code:addons/sale_blanket_order/models/sale_order_line.py:102
 #: code:addons/sale_blanket_order/models/sale_orders.py:138
 #, python-format
 msgid "The product in the blanket order and in the sales order must match"
@@ -833,12 +843,14 @@ msgstr "Imponibile"
 
 #. module: sale_blanket_order
 #: model_terms:ir.actions.act_window,help:sale_blanket_order.act_open_blanket_order_view
-msgid "Use this menu to search within your blanket orders. For each blanket order,\n"
-"                you can track the related discussion with the customer, control\n"
+msgid ""
+"Use this menu to search within your blanket orders. For each blanket order,\n"
+"                you can track the related discussion with the customer, "
+"control\n"
 "                the products delivered and control the vendor bills."
 msgstr ""
-"Usa questo menu per ricercare nel tuo ordine aperto. Per ogni ordine aperto,"
-"\n"
+"Usa questo menu per ricercare nel tuo ordine aperto. Per ogni ordine "
+"aperto,\n"
 "                puoi tracciare le relative conversazioni con il cliente, "
 "controllare\n"
 "                i prodotti spediti e controllare le fatture del venditore."
@@ -890,7 +902,9 @@ msgstr "Wizard"
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/blanket_orders.py:251
 #, python-format
-msgid "You can not delete a blanket order with opened purchase orders! Try to cancel them before."
+msgid ""
+"You can not delete a blanket order with opened purchase orders! Try to "
+"cancel them before."
 msgstr ""
 "Non puoi annullare un ordine aperto con ordini di acquisto aperti! Prova a "
 "cancellarli prima."

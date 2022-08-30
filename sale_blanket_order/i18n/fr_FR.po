@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_blanket_order
+# 	* sale_blanket_order
 #
 msgid ""
 msgstr ""
@@ -135,7 +135,8 @@ msgstr "Ligne d'assistant de contrat-cadre"
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:132
 #, python-format
-msgid "Can not create Sale Order from Blanket Order lines with different currencies"
+msgid ""
+"Can not create Sale Order from Blanket Order lines with different currencies"
 msgstr ""
 "Impossible de créer une commande depuis les lignes d'un contrat-cadre dans "
 "des devises différentes"
@@ -147,17 +148,22 @@ msgid "Cancel"
 msgstr "Annuler"
 
 #. module: sale_blanket_order
+#: code:addons/sale_blanket_order/models/sale_order.py:25
 #: code:addons/sale_blanket_order/models/sale_orders.py:27
 #, python-format
-msgid "Cannot confirm order %s as one of the lines refers to a blanket order that has no remaining quantity."
+msgid ""
+"Cannot confirm order %s as one of the lines refers to a blanket order that "
+"has no remaining quantity."
 msgstr ""
 "Impossible de confirmer la commande %s car l'une des lignes fait référence à "
 "un contrat-cadre qui n'a plus de quantité restante."
 
 #. module: sale_blanket_order
 #: model_terms:ir.actions.act_window,help:sale_blanket_order.act_open_blanket_order_view
-msgid "Click to create a blanket order that can be converted into a sale order."
-msgstr "Cliquez pour créer un contrat-cadre qui peut être converti en commande."
+msgid ""
+"Click to create a blanket order that can be converted into a sale order."
+msgstr ""
+"Cliquez pour créer un contrat-cadre qui peut être converti en commande."
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__company_id
@@ -727,7 +733,8 @@ msgstr "État"
 #. module: sale_blanket_order
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__activity_state
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__activity_state
-msgid "Status based on activities\n"
+msgid ""
+"Status based on activities\n"
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
@@ -761,13 +768,16 @@ msgid "Terms and Conditions"
 msgstr "Termes et conditions"
 
 #. module: sale_blanket_order
+#: code:addons/sale_blanket_order/models/sale_order_line.py:112
 #: code:addons/sale_blanket_order/models/sale_orders.py:148
 #, python-format
-msgid "The currency of the blanket order must match with that of the sale order."
+msgid ""
+"The currency of the blanket order must match with that of the sale order."
 msgstr ""
 "La devise du contrat-cadre doit correspondre à celle de la commande client."
 
 #. module: sale_blanket_order
+#: code:addons/sale_blanket_order/models/sale_order.py:37
 #: code:addons/sale_blanket_order/models/sale_orders.py:38
 #, python-format
 msgid "The customer must be equal to the blanket order lines customer"
@@ -775,6 +785,7 @@ msgstr ""
 "Le client doit être le même que celui présent sur les lignes du contrat-cadre"
 
 #. module: sale_blanket_order
+#: code:addons/sale_blanket_order/models/sale_order_line.py:102
 #: code:addons/sale_blanket_order/models/sale_orders.py:138
 #, python-format
 msgid "The product in the blanket order and in the sales order must match"
@@ -834,8 +845,10 @@ msgstr "Montant hors taxe"
 
 #. module: sale_blanket_order
 #: model_terms:ir.actions.act_window,help:sale_blanket_order.act_open_blanket_order_view
-msgid "Use this menu to search within your blanket orders. For each blanket order,\n"
-"                you can track the related discussion with the customer, control\n"
+msgid ""
+"Use this menu to search within your blanket orders. For each blanket order,\n"
+"                you can track the related discussion with the customer, "
+"control\n"
 "                the products delivered and control the vendor bills."
 msgstr ""
 "Utiliser ce menu pour rechercher à travers vos contrats-cadres. Pour chaque "
@@ -891,7 +904,9 @@ msgstr "Assistant"
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/blanket_orders.py:251
 #, python-format
-msgid "You can not delete a blanket order with opened purchase orders! Try to cancel them before."
+msgid ""
+"You can not delete a blanket order with opened purchase orders! Try to "
+"cancel them before."
 msgstr ""
 "Vous ne pouvez pas supprimer un contrat-cadre avec des bons de commande "
 "ouverts ! Essayez de les annuler avant."
