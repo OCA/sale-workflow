@@ -5,7 +5,7 @@
 
 {
     "name": "Sale Cancel Reason",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.1.0",
     "author": "Camptocamp," "Odoo Community Association (OCA)",
     "category": "Sale",
     "license": "AGPL-3",
