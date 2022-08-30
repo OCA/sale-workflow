@@ -1,12 +1,12 @@
 # Copyright 2021 ForgeFlow S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import mock
+from unittest import mock
 
-from odoo.tests import SavepointCase
+from odoo.tests import TransactionCase
 
 
-class TestSaleLineDeliveryState(SavepointCase):
+class TestSaleLineDeliveryState(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
