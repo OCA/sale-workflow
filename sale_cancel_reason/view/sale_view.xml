@@ -30,7 +30,7 @@
         <field name="name">Sale Order Cancel Reason</field>
         <field name="model">sale.order.cancel.reason</field>
         <field name="arch" type="xml">
-            <tree string="Sale Order Cancel Reasons">
+            <tree>
                 <field name="name" />
             </tree>
         </field>
