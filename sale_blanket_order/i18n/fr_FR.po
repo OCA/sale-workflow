@@ -17,6 +17,18 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_blanket_order
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid ""
+"\n"
+"                    You cannot change the type of a sale order line.\n"
+"                    Instead you should delete the current line and create a "
+"new line\n"
+"                    of the proper type.\n"
+"                    "
+msgstr ""
+
+#. module: sale_blanket_order
 #: model:ir.actions.report,print_report_name:sale_blanket_order.report_blanket_order
 msgid "'Blanket Order - %s' % object.name"
 msgstr "'Soumission - %s' % object.name"
@@ -25,6 +37,11 @@ msgstr "'Soumission - %s' % object.name"
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
 msgid "<span>Blanket Order # </span>"
 msgstr "<span>Soumission # </span>"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
+msgid "<strong class=\"mr16\">Subtotal</strong>"
+msgstr ""
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
@@ -85,6 +102,21 @@ msgstr "Statut Activité"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_type_icon
 msgid "Activity Type Icon"
 msgstr "Type d'icône activité"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+msgid "Add a note"
+msgstr ""
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+msgid "Add a product"
+msgstr ""
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+msgid "Add a section"
+msgstr ""
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
@@ -300,6 +332,11 @@ msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__display_type
+msgid "Display Type"
+msgstr ""
+
+#. module: sale_blanket_order
 #: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__done
 msgid "Done"
 msgstr "Fait"
@@ -343,6 +380,11 @@ msgstr "Abonnés (Client)"
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
 msgstr "Police icône"
+
+#. module: sale_blanket_order
+#: model:ir.model.constraint,message:sale_blanket_order.constraint_sale_blanket_order_line_non_accountable_null_fields
+msgid "Forbidden values on non-accountable sale order line"
+msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__has_message
@@ -457,6 +499,11 @@ msgid "Messages"
 msgstr "Messages"
 
 #. module: sale_blanket_order
+#: model:ir.model.constraint,message:sale_blanket_order.constraint_sale_blanket_order_line_accountable_required_fields
+msgid "Missing required fields on accountable sale order line."
+msgstr ""
+
+#. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Must have some lines"
@@ -499,6 +546,7 @@ msgstr "Type activité suivante"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__note
+#: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order_line__display_type__line_note
 msgid "Note"
 msgstr "Note"
 
@@ -761,6 +809,11 @@ msgid "Search Sale Blanket Order Line"
 msgstr "Recherche Ligne de Soumission"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order_line__display_type__line_section
+msgid "Section"
+msgstr ""
+
+#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__sequence
 msgid "Sequence"
 msgstr "Séquence"
@@ -806,6 +859,11 @@ msgstr "Taxe"
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
 msgid "Taxes"
 msgstr "Taxes"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__display_type
+msgid "Technical field for UX purpose."
+msgstr ""
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
