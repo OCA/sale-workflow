@@ -237,6 +237,7 @@ class SaleInvoicePlan(models.Model):
             else:
                 plan_qty = order_line.product_uom_qty * (percent/100)
                 prec = order_line.product_uom.rounding
+                plan_qty = round(plan_qty, precision_rounding=prec)
                 if float_compare(plan_qty, line.quantity, prec) == 1:
                     raise ValidationError(
                         _('Plan quantity: %s, exceed invoiceable quantity: %s'
