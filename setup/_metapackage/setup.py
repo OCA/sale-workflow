@@ -27,6 +27,7 @@ setuptools.setup(
         'odoo-addon-sale_order_line_menu>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_line_price_history>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_partner_restrict>=15.0dev,<15.1dev',
+        'odoo-addon-sale_order_price_recalculation>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_product_assortment>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_product_availability_inline>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_product_recommendation>=15.0dev,<15.1dev',
