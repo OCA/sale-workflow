@@ -54,6 +54,7 @@ addon | version | maintainers | summary
 [sale_product_set_layout](sale_product_set_layout/) | 15.0.1.0.1 |  | This module allows to add sections with product sets
 [sale_quotation_number](sale_quotation_number/) | 15.0.1.0.1 |  | Different sequence for sale quotations
 [sale_rental](sale_rental/) | 15.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Manage Rental of Products
+[sale_shipping_info_helper](sale_shipping_info_helper/) | 15.0.1.0.0 |  | Add shipping amounts on sale order
 [sale_sourced_by_line](sale_sourced_by_line/) | 15.0.1.0.1 |  | Multiple warehouse source locations for Sale order
 [sale_start_end_dates](sale_start_end_dates/) | 15.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Adds start date and end date on sale order lines
 [sale_stock_cancel_restriction](sale_stock_cancel_restriction/) | 15.0.1.0.0 |  | Sale Stock Cancel Restriction
