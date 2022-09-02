@@ -58,5 +58,7 @@ msgstr ""
 #. module: sale_order_partner_restrict
 #: code:addons/sale_order_partner_restrict/models/sale.py:0
 #, python-format
-msgid "The Customer %s is not available for this company (%s)."
+msgid ""
+"The Customer %(partner_name)s is not available for this company "
+"(%(company_name)s)."
 msgstr ""
