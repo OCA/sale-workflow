@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_invoice_payment_wiz" model="ir.ui.view">
+        <field name="name">Sale invoice payment wizard</field>
+        <field name="model">sale.invoice.payment.wiz</field>
+        <field name="arch" type="xml">
+            <form string="Sale invoice payment wizard">
+                <group>
+                    <field name="user_id" invisible="1" />
+                    <field name="commercial_journal_ids" invisible="1" />
+                    <field
+                        name="journal_id"
+                        widget="selection"
+                        domain="[('id', 'in', commercial_journal_ids)]"
+                    />
+                    <field name="amount" />
+                    <field name="ref" />
+                    <field name="partner_id" invisible="1" />
+                    <field
+                        name="invoice_ids"
+                        domain="[('state', '=', 'posted'), ('payment_state', '!=', 'paid'), ('partner_id', '=', partner_id)]"
+                        context="{'tree_view_ref': 'sale_payment_sheet.view_invoice_tree'}"
+                    >
+                        <tree>
+                            <field name="state" invisible="1" />
+                            <field name="name" />
+                            <field name="invoice_date" />
+                            <field name="amount_total" />
+                            <field name="amount_residual" />
+                            <field name="invoice_date_due" />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button
+                        name="create_sale_invoice_payment_sheet"
+                        string="Payment"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_sale_invoice_payment_wiz" model="ir.actions.act_window">
+        <field name="name">Sale invoice payment</field>
+        <field name="res_model">sale.invoice.payment.wiz</field>
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
