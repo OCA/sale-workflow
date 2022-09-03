@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_invoice_plan
+# 	* sale_invoice_plan
 #
 msgid ""
 msgstr ""
@@ -186,7 +186,8 @@ msgstr "Faturas"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
-msgid "Invoices will be created in draft for this installment\n"
+msgid ""
+"Invoices will be created in draft for this installment\n"
 "                        so that you can review them before validation."
 msgstr ""
 "As faturas serão criadas em rascunho para esta parcela\n"
@@ -256,8 +257,10 @@ msgstr "Data do plano"
 
 #. module: sale_invoice_plan
 #: code:addons/sale_invoice_plan/models/sale.py:242
+#: code:addons/sale_invoice_plan/models/sale.py:243
 #, python-format
-msgid "Plan quantity: %s, exceed invoiceable quantity: %s\n"
+msgid ""
+"Plan quantity: %s, exceed invoiceable quantity: %s\n"
 "Product should be delivered before invoice"
 msgstr ""
 "Planeje a quantidade: %s, exceder a quantidade faturável: %s\n"
