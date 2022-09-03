@@ -258,7 +258,6 @@ msgid "Plan Date"
 msgstr "Plan datum"
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/models/sale.py:242
 #: code:addons/sale_invoice_plan/models/sale.py:243
 #, python-format
 msgid ""
