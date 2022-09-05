@@ -41,6 +41,12 @@ msgid "Amount Invoiced"
 msgstr "Próxima factura"
 
 #. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__analytic_account_id
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Analytic Account"
+msgstr ""
+
+#. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
 msgid "Are you sure to remove this invoice plan?"
 msgstr "¿Estás seguro de eliminar este plan de facturas?"
@@ -310,7 +316,8 @@ msgid ""
 "%(invoiceable_qty)s\n"
 "Product should be delivered before invoice"
 msgstr ""
-"Cantidad planificada: %(plan_qty)s, excede la cantidad facturable: %(invoiceable_qty)s\n"
+"Cantidad planificada: %(plan_qty)s, excede la cantidad facturable: "
+"%(invoiceable_qty)s\n"
 "El producto debe entregarse antes de la factura."
 
 #. module: sale_invoice_plan
@@ -362,6 +369,11 @@ msgstr "Buscar líneas de plan de factura de ventas"
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 msgid "Status"
 msgstr "Estado"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__analytic_account_id
+msgid "The analytic account related to a sales order."
+msgstr ""
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__amount
