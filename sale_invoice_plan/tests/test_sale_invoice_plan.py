@@ -1,9 +1,8 @@
 # Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 import logging
-from collections import OrderedDict
 
-from odoo import _
+from odoo import _, fields
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Form, tagged
 
@@ -89,31 +88,6 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
                 "pricelist_id": cls.env.ref("product.list0").id,
             }
         )
-        # Create an SO for product delivery
-        cls.so_product = sale_obj.with_user(
-            cls.company_data["default_user_salesman"]
-        ).create(
-            {
-                "partner_id": cls.partner_customer_usd.id,
-                "partner_invoice_id": cls.partner_customer_usd.id,
-                "partner_shipping_id": cls.partner_customer_usd.id,
-                "use_invoice_plan": True,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": cls.product_deliver.name,
-                            "product_id": cls.product_deliver.id,
-                            "product_uom_qty": 10,
-                            "product_uom": cls.product_deliver.uom_id.id,
-                            "price_unit": cls.product_deliver.list_price,
-                        },
-                    )
-                ],
-                "pricelist_id": cls.env.ref("product.list0").id,
-            }
-        )
 
     @classmethod
     def setUpClassicProducts(cls):
@@ -135,7 +109,6 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         )
         # Products
         uom_unit = cls.env.ref("uom.product_uom_unit")
-        uom_hour = cls.env.ref("uom.product_uom_hour")
         cls.product_order = cls.env["product.product"].create(
             {
                 "name": "Zed+ Antivirus",
@@ -152,63 +125,6 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
                 "categ_id": cls.product_category.id,
             }
         )
-        cls.service_deliver = cls.env["product.product"].create(
-            {
-                "name": "Cost-plus Contract",
-                "standard_price": 200.0,
-                "list_price": 180.0,
-                "type": "service",
-                "uom_id": uom_unit.id,
-                "uom_po_id": uom_unit.id,
-                "invoice_policy": "delivery",
-                "expense_policy": "no",
-                "default_code": "SERV_DEL",
-                "service_type": "manual",
-                "taxes_id": False,
-                "categ_id": cls.product_category.id,
-            }
-        )
-        cls.service_order = cls.env["product.product"].create(
-            {
-                "name": "Prepaid Consulting",
-                "standard_price": 40.0,
-                "list_price": 90.0,
-                "type": "service",
-                "uom_id": uom_hour.id,
-                "uom_po_id": uom_hour.id,
-                "invoice_policy": "order",
-                "expense_policy": "no",
-                "default_code": "PRE-PAID",
-                "service_type": "manual",
-                "taxes_id": False,
-                "categ_id": cls.product_category.id,
-            }
-        )
-        cls.product_deliver = cls.env["product.product"].create(
-            {
-                "name": "Switch, 24 ports",
-                "standard_price": 55.0,
-                "list_price": 70.0,
-                "type": "consu",
-                "uom_id": uom_unit.id,
-                "uom_po_id": uom_unit.id,
-                "invoice_policy": "delivery",
-                "expense_policy": "no",
-                "default_code": "PROD_DEL",
-                "service_type": "manual",
-                "taxes_id": False,
-                "categ_id": cls.product_category.id,
-            }
-        )
-
-        cls.product_map = OrderedDict(
-            [
-                ("prod_order", cls.product_order),
-                ("serv_del", cls.service_deliver),
-                ("serv_order", cls.service_order),
-                ("prod_del", cls.product_deliver),
-            ]
-        )
 
     def test_00_invoice_plan(self):
         # To create next invoice from SO
@@ -223,7 +139,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         except ValidationError as e:
             _logger.info(_("No installment raises following error : %s"), e.args[0])
         # Create Invoice Plan 3 installment
-        num_installment = 3
+        num_installment = 5
         f.num_installment = num_installment
         # Test 3 types of interval
         for interval_type in ["month", "year", "day"]:
@@ -240,11 +156,19 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
                 num_installment,
                 "Wrong number of installment created",
             )
+        # Change plan, so that the 1st installment is 1000 and 5th is 3000
+        self.assertEqual(len(self.so_service.invoice_plan_ids), 5)
+        self.so_service.invoice_plan_ids[0].amount = 280.0
+        self.so_service.invoice_plan_ids[4].amount = 840.0
         # Confirm the SO
         self.so_service.action_confirm()
         # Create one invoice
         make_wizard = self.env["sale.make.planned.invoice"].create({})
         make_wizard.with_context(**ctx).create_invoices_by_plan()
+        self.assertEqual(
+            self.so_service.amount_total,
+            sum(self.so_service.invoice_ids.mapped("amount_total")),
+        )
         invoices = self.so_service.invoice_ids
         self.assertEqual(len(invoices), 1, "Only 1 invoice should be created")
 
@@ -336,3 +260,56 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         # Remove it
         self.so_service.remove_invoice_plan()
         self.assertFalse(self.so_service.invoice_plan_ids)
+
+    def test_invoice_plan_so_edit(self):
+        """Case when some installment already invoiced,
+        but then, the SO line added. Test to ensure that
+        the invoiced amount of the done installment is fixed"""
+        ctx = {
+            "active_id": self.so_service.id,
+            "active_ids": [self.so_service.id],
+            "all_remain_invoices": False,
+        }
+        first_order_line = fields.first(self.so_service.order_line)
+        first_order_line.product_uom_qty = 10
+        f = Form(self.env["sale.create.invoice.plan"])
+        # Create Invoice Plan 5 installment
+        num_installment = 5
+        f.num_installment = num_installment
+        plan = f.save()
+        plan.with_context(**ctx).sale_create_invoice_plan()
+        # Change plan, so that the 1st installment is 280 and 5th is 840
+        self.assertEqual(len(self.so_service.invoice_plan_ids), 5)
+        first_install = self.so_service.invoice_plan_ids[0]
+        first_install.amount = 280.0
+        self.so_service.invoice_plan_ids[4].amount = 840.0
+        self.so_service.action_confirm()
+        self.assertEqual(self.so_service.state, "sale")
+        sale_create = self.env["sale.make.planned.invoice"].create({})
+        # Create only the 1st invoice, amount should be 280, and percent is 10
+        sale_create.with_context(**ctx).create_invoices_by_plan()
+        self.assertEqual(first_install.amount, 280.0)
+        self.assertEqual(first_install.percent, 10)
+        # Add new SO line with amount = 280, check that only percent is changed
+        self.so_service.write(
+            {
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "SO-Product-NEW",
+                            "product_id": self.product_order.id,
+                            "product_uom_qty": 1,
+                            "product_uom": self.product_order.uom_id.id,
+                            "price_unit": 280.0,
+                        },
+                    )
+                ],
+            }
+        )
+        # Overall amount changed to 3080, install amount not changed, only percent changed.
+        self.assertEqual(self.so_service.amount_total, 3080.0)
+        self.so_service.invoice_plan_ids._compute_amount()
+        self.assertEqual(first_install.amount, 280.0)
+        self.assertEqual(first_install.percent, 9.090909)

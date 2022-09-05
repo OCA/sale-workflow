@@ -1,0 +1,6 @@
+<odoo noupdate="1">
+    <record id="decimal_price" model="decimal.precision" forcecreate="True">
+        <field name="name">Sales Invoice Plan Percent</field>
+        <field name="digits">6</field>
+    </record>
+</odoo>
