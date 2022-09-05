@@ -11,11 +11,14 @@ from ..utils import roundTime
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    commitment_date_end = fields.Datetime()
+    commitment_date_end = fields.Datetime(
+        states={"done": [("readonly", True)], "cancel": [("readonly", True)]},
+    )
     seasonal_config_id = fields.Many2one(
         string="Product seasonal configuration",
         comodel_name="seasonal.config",
         default=lambda self: self._default_seasonal_config_id(),
+        states={"done": [("readonly", True)], "cancel": [("readonly", True)]},
     )
     season_allowed_product_ids = fields.Many2many(
         string="Season allowed products",
