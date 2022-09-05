@@ -41,6 +41,12 @@ msgid "Amount Invoiced"
 msgstr "Facture suivante"
 
 #. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__analytic_account_id
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Analytic Account"
+msgstr ""
+
+#. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
 msgid "Are you sure to remove this invoice plan?"
 msgstr "Êtes-vous certain de vouloir supprimer ce plan de facturation?"
@@ -313,7 +319,8 @@ msgid ""
 "%(invoiceable_qty)s\n"
 "Product should be delivered before invoice"
 msgstr ""
-"La quantité planifiée: %(plan_qty)s, excède la quantité facturable: %(invoiceable_qty)s\n"
+"La quantité planifiée: %(plan_qty)s, excède la quantité facturable: "
+"%(invoiceable_qty)s\n"
 "L'article devrait être livré avant d'être facturé"
 
 #. module: sale_invoice_plan
@@ -369,6 +376,11 @@ msgstr "Créer le Plan de facturation"
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__state
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 msgid "Status"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__analytic_account_id
+msgid "The analytic account related to a sales order."
 msgstr ""
 
 #. module: sale_invoice_plan
