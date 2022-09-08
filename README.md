@@ -98,7 +98,7 @@ addon | version | maintainers | summary
 [sale_partner_delivery_window](sale_partner_delivery_window/) | 13.0.1.3.0 |  | Schedule delivery orders according to delivery window preferences
 [sale_partner_incoterm](sale_partner_incoterm/) | 13.0.1.0.1 |  | Set the customer preferred incoterm on each sales order
 [sale_partner_selectable_option](sale_partner_selectable_option/) | 13.0.2.4.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Sale Partner Selectable Option
-[sale_payment_sheet](sale_payment_sheet/) | 13.0.1.1.0 | [![sergio-teruel](https://github.com/sergio-teruel.png?size=30px)](https://github.com/sergio-teruel) | Allow to create invoice payments to commercial users without accounting permissions
+[sale_payment_sheet](sale_payment_sheet/) | 13.0.1.2.0 | [![sergio-teruel](https://github.com/sergio-teruel.png?size=30px)](https://github.com/sergio-teruel) | Allow to create invoice payments to commercial users without accounting permissions
 [sale_procurement_amendment](sale_procurement_amendment/) | 13.0.1.0.2 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Allow to reflect confirmed sale lines quantity amendments to procurements
 [sale_procurement_group_by_line](sale_procurement_group_by_line/) | 13.0.1.0.5 |  | Base module for multiple procurement group by Sale order
 [sale_product_category_menu](sale_product_category_menu/) | 13.0.1.0.1 |  | Shows 'Product Categories' menu item in Sales
