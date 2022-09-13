@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="pdp_view_form" model="ir.ui.view">
+        <field name="name">planned.down.payment.view.form</field>
+        <field name="model">planned.down.payment</field>
+        <field name="arch" type="xml">
+            <form string="Planned Down Payment">
+                <header>
+                    <button
+                        name="action_confirm"
+                        string="Confirm"
+                        states="draft"
+                        type="object"
+                        class="btn btn-primary"
+                    />
+                    <button
+                        name="action_invoice"
+                        string="Invoice"
+                        states="confirmed"
+                        type="object"
+                        class="btn btn-primary"
+                    />
+                    <button
+                        name="action_show_invoice"
+                        string="Display Invoice"
+                        type="object"
+                        class="btn btn-primary"
+                        attrs="{'invisible': ['|', ('invoice_id', '=', False),
+                                              ('state', '!=', 'invoiced')]}"
+                    />
+                    <button
+                        name="action_cancel"
+                        string="Cancel"
+                        type="object"
+                        states="confirmed,invoiced"
+                    />
+                    <button
+                        name="action_reset_to_draft"
+                        string="Reset to Draft"
+                        states="canceled"
+                        type="object"
+                        class="btn btn-secondary"
+                    />
+                    <button
+                        name="action_add_all_lines"
+                        string="Add All Lines"
+                        type="object"
+                        class="btn btn-secondary"
+                    />
+                    <button
+                        name="action_remove_all_lines"
+                        string="Remove All Lines"
+                        type="object"
+                        class="btn btn-secondary"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,invoiced,confirmed"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_title oe_inline">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="order_id" />
+                            <field name="date_invoice" />
+                            <field
+                                name="invoice_id"
+                                attrs="{'invisible': [('invoice_id', '=', False)]}"
+                            />
+                        </group>
+                        <group>
+                            <field name="payment_type" />
+                            <field name="value" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="dp_lines" string="DP Lines">
+                            <field name="line_ids" widget="many2many" />
+                            <group name="note_group" col="6" class="mt-2 mt-md-0">
+                                <group colspan="4">
+                                    <field
+                                        name="note"
+                                        nolabel="1"
+                                        placeholder="Notes..."
+                                    />
+                                </group>
+                                <group
+                                    class="oe_subtotal_footer oe_right"
+                                    colspan="2"
+                                    name="pdp_total"
+                                >
+                                    <div
+                                        class="oe_subtotal_footer_separator oe_inline o_td_label"
+                                    >
+                                        <label for="total" />
+                                    </div>
+                                    <field
+                                        name="total"
+                                        nolabel="1"
+                                        class="oe_subtotal_footer_separator"
+                                        widget="monetary"
+                                        options="{'currency_field': 'currency_id'}"
+                                    />
+                                </group>
+                                <div class="oe_clear" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pdp_view_tree" model="ir.actions.act_window">
+        <field name="name">PDPs</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">planned.down.payment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_pdp_line_view_tree" model="ir.actions.act_window">
+        <field name="name">PDP Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">pdp.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        parent="sale.sale_order_menu"
+        id="menu_pdp_view_tree"
+        action="action_pdp_view_tree"
+    />
+
+    <menuitem
+        parent="sale.sale_order_menu"
+        id="menu_pdp_line_view_tree"
+        action="action_pdp_line_view_tree"
+    />
+
+    <record id="pdp_view_tree" model="ir.ui.view">
+        <field name="name">planned.down.payment.view.tree</field>
+        <field name="model">planned.down.payment</field>
+        <field name="arch" type="xml">
+            <tree string="Planned Down Payments">
+                <field name="name" />
+                <field name="value" class="oe_inline" />
+                <field name="payment_type" />
+                <field name="state" />
+                <field name="order_id" />
+                <field name="date_invoice" />
+                <button
+                    name="action_confirm"
+                    string="Confirm"
+                    states="draft"
+                    type="object"
+                    class="btn btn-primary"
+                />
+                <button
+                    name="action_invoice"
+                    string="Invoice"
+                    states="confirmed"
+                    type="object"
+                    class="btn btn-primary"
+                />
+            </tree>
+        </field>
+    </record>
+
+    <record id="pdp_line_view_tree" model="ir.ui.view">
+        <field name="name">pdp.line.view.tree</field>
+        <field name="model">pdp.line</field>
+        <field name="arch" type="xml">
+            <tree
+                string="DP Lines"
+                multi_edit="1"
+                create="1"
+                edit="1"
+                editable="top"
+                delete="1"
+            >
+                <field name="order_id" invisible="1" />
+                <field name="pdp_id" invisible="1" />
+                <field name="order_line_id" />
+                <field name="qty" class="oe_inline" />
+                <field name="price_unit" />
+                <field name="tax_id" widget="many2many_tags" />
+                <field name="price_subtotal" />
+                <field name="amount" />
+                <field name="subtotal" />
+                <field name="amount_tax" />
+                <field name="order_line_dp_amount_invoiced" />
+                <field name="total" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="pdp_line_view_form" model="ir.ui.view">
+        <field name="name">pdp.line.view.form</field>
+        <field name="model">pdp.line</field>
+        <field name="arch" type="xml">
+            <form string="Planned Down Payment Line">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="order_id" />
+                            <field name="pdp_id" />
+                            <field name="order_line_id" />
+                            <field name="qty" class="oe_inline" />
+                            <field name="price_unit" />
+                            <field name="tax_id" widget="many2many_tags" />
+                        </group>
+                        <group>
+                            <field name="price_subtotal" />
+                            <field name="amount" />
+                            <field name="subtotal" />
+                            <field name="amount_tax" />
+                            <field name="order_line_dp_amount_invoiced" />
+                            <field name="total" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_pdp_line_search" model="ir.ui.view">
+        <field name="name">pdp.line.search</field>
+        <field name="model">pdp.line</field>
+        <field name="arch" type="xml">
+            <search string="DP Lines">
+                <field name="order_line_id" />
+                <field name="price_unit" />
+                <field name="price_subtotal" />
+                <field name="qty" />
+                <field name="amount" />
+                <field name="subtotal" />
+                <field name="amount_tax" />
+                <field name="total" />
+            </search>
+        </field>
+    </record>
+</odoo>

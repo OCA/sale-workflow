@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="view_sales_order_pdp" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form//header//button[@name='action_draft']" position="after">
+                <button
+                    name="action_create_pdp"
+                    type="object"
+                    string="Create Down Payment Plan"
+                    states="sale"
+                />
+            </xpath>
+            <notebook position="inside">
+                <page name="planned_down_payments" string="Planned Down Payments">
+                    <field name="pdp_ids">
+                        <tree create="0">
+                            <field name="date_invoice" />
+                            <field name="name" />
+                            <field name="value" invisible="1" />
+                            <field name="payment_type" invisible="1" />
+                            <field name="state" />
+                            <field name="order_id" invisible="1" />
+                            <field name="total" string="DP Total" />
+                            <button
+                                name="action_confirm"
+                                string="Confirm"
+                                states="draft"
+                                type="object"
+                                class="btn btn-primary"
+                            />
+                            <button
+                                name="action_invoice"
+                                string="Invoice"
+                                states="confirmed"
+                                type="object"
+                                class="btn btn-primary"
+                            />
+                            <button
+                                name="action_delete"
+                                string="Delete"
+                                type="object"
+                                icon="fa-trash"
+                            />
+                        </tree>
+                    </field>
+                    <group
+                        class="oe_subtotal_footer oe_right"
+                        colspan="2"
+                        name="pdps_total"
+                    >
+                        <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                            <label for="pdp_total" />
+                        </div>
+                        <field
+                            name="pdp_total"
+                            nolabel="1"
+                            class="oe_subtotal_footer_separator"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                        />
+                    </group>
+                    <div class="oe_clear" />
+                </page>
+            </notebook>
+            <xpath
+                expr="//field[@name='order_line']//tree//field[@name='price_subtotal']"
+                position="before"
+            >
+                <field name="dp_amount_invoiced" />
+                <field name="dp_amount_remaining" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//form//field[@name='price_unit']"
+                position="after"
+            >
+                <field name="pdp_line_id" string="PDP Line" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

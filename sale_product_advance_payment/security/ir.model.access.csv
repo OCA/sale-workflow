@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+pdp1,pdp1,model_planned_down_payment,base.group_user,1,1,1,1
+pdpl2,pdpl2,model_pdp_line,base.group_user,1,1,1,1
