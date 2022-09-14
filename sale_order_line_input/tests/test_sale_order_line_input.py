@@ -1,10 +1,10 @@
 # Copyright 2018 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests import Form, SavepointCase
+from odoo.tests import Form, TransactionCase
 
 
-class TestSaleOrderLineInput(SavepointCase):
+class TestSaleOrderLineInput(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

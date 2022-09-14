@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-05 17:43+0200\n"
-"PO-Revision-Date: 2018-06-05 17:44+0200\n"
+"POT-Creation-Date: 2022-09-16 13:52+0000\n"
+"PO-Revision-Date: 2022-09-16 15:52+0200\n"
 "Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
@@ -17,12 +17,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Delivered"
 msgstr "Entregado"
+
+#. module: sale_order_line_input
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
+msgid "Disc.%"
+msgstr "Desc.%"
+
+#. module: sale_order_line_input
+#: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__force_company_id
+msgid "Forced company"
+msgstr ""
+
+#. module: sale_order_line_input
+#: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__pricelist_id
+msgid "If you change the pricelist, only newly added lines will be affected."
+msgstr ""
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
@@ -51,12 +66,6 @@ msgstr "Sin factura asociada"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
-#, fuzzy
-msgid "Open Sale Order"
-msgstr "Línea de pedido de venta"
-
-#. module: sale_order_line_input
-#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Order"
 msgstr "Pedido"
 
@@ -81,9 +90,9 @@ msgid "Pricelist"
 msgstr "Tarifa"
 
 #. module: sale_order_line_input
-#: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__pricelist_id
-msgid "Pricelist for current sales order."
-msgstr "Tarifa para el pedido de venta actual."
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
+msgid "Product"
+msgstr "Producto"
 
 #. module: sale_order_line_input
 #: model:ir.model,name:sale_order_line_input.model_sale_order_line
@@ -97,14 +106,19 @@ msgid "Sales Orders Lines"
 msgstr "Líneas de pedidos"
 
 #. module: sale_order_line_input
+#: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__force_company_id
+msgid ""
+"Technical field to force company or get it from env user if order don't "
+"exist."
+msgstr ""
+
+#. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "To Invoice"
 msgstr "A facturar"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "UoM"
 msgstr "UdM"
-
-#~ msgid "Total"
-#~ msgstr "Total"
