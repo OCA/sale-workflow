@@ -35,7 +35,6 @@
                 />
                 <button
                     name="action_sale_order_form"
-                    string="Open Order"
                     type="object"
                     icon="fa-external-link"
                     class="oe_stat_button"
