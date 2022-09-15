@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="sale_release_delivery_form_view" model="ir.ui.view">
+            <field name="name">sale.release.delivery.form</field>
+            <field name="model">sale.release.delivery.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Release Delivery">
+                    <sheet>
+                        <p>
+                            Are you sure you want to release the delivery?
+                        </p>
+                        <group>
+                            <field name="sale_id" invisible="1" />
+                            <group>
+                                <field name="log_reason" />
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button
+                        name="action_release_delivery"
+                        string="Release Delivery"
+                        type="object"
+                        class="btn-primary"
+                    />
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+</odoo>

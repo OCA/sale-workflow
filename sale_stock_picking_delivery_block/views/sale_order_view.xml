@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2022 Camptocamp (https://www.camptocamp.com)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_order_form_inherit_sale_stock" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock" />
+        <field name="arch" type="xml">
+            <field name="payment_term_id" position="after">
+                <field
+                    name="block_delivery"
+                    attrs="{'readonly': [('state', 'in', ('done', 'sale', 'cancel'))]}"
+                />
+            </field>
+            <button name="action_confirm" position="after">
+                <button
+                    name="action_release_delivery"
+                    string="Release delivery"
+                    type="object"
+                    class="oe_highlight"
+                    attrs="{'invisible': ['|', ('block_delivery', '=', False),
+                    ('state', 'not in', ('done', 'sale'))]}"
+                />
+            </button>
+        </field>
+    </record>
+</odoo>
