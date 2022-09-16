@@ -1,5 +1,6 @@
 To use this module, you need to:
 
+#. See usage section of the `base_global_discount` module.
 #. Create a new sale order and choose a partner.
 #. If the partner has customer global discounts set, those will be applied to
    the order by default.
