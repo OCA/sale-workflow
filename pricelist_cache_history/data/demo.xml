@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="list_with_dates" model="product.pricelist">
+        <field name="name">Pricelist with dates</field>
+    </record>
+
+    <record id="item1" model="product.pricelist.item">
+        <field name="pricelist_id" ref="list_with_dates" />
+        <field name="applied_on">3_global</field>
+        <field name="compute_price">formula</field>
+        <field name="base">pricelist</field>
+        <field name="base_pricelist_id" ref="pricelist_cache.list0" />
+    </record>
+
+    <record id="item2" model="product.pricelist.item">
+        <field name="base">list_price</field>
+        <field name="applied_on">0_product_variant</field>
+        <field name="pricelist_id" ref="list_with_dates" />
+        <field name="product_id" ref="product.product_product_6" />
+        <field name="fixed_price">120.0</field>
+        <field name="date_end">2021-01-01</field>
+    </record>
+
+    <record id="item_25" model="product.pricelist.item">
+        <field name="base">list_price</field>
+        <field name="applied_on">0_product_variant</field>
+        <field name="pricelist_id" ref="list_with_dates" />
+        <field name="product_id" ref="product.product_product_6" />
+        <field name="fixed_price">60.0</field>
+        <field name="date_start">2020-12-25</field>
+        <field name="date_end">2021-02-20</field>
+    </record>
+
+    <record id="item3" model="product.pricelist.item">
+        <field name="base">list_price</field>
+        <field name="applied_on">0_product_variant</field>
+        <field name="pricelist_id" ref="list_with_dates" />
+        <field name="product_id" ref="product.product_product_6" />
+        <field name="fixed_price">80.0</field>
+        <field name="date_start">2021-02-15</field>
+        <field name="date_end">2021-02-28</field>
+    </record>
+
+    <record id="item4" model="product.pricelist.item">
+        <field name="base">list_price</field>
+        <field name="applied_on">0_product_variant</field>
+        <field name="pricelist_id" ref="list_with_dates" />
+        <field name="product_id" ref="product.product_product_6" />
+        <field name="fixed_price">140.0</field>
+        <field name="date_start">2021-04-01</field>
+    </record>
+
+    <!--This one is a trap. Ends the same day as item2, and references the same product.-->
+    <!--<record id="item5" model="product.pricelist.item">-->
+        <!--<field name="base">list_price</field>-->
+        <!--<field name="applied_on">0_product_variant</field>-->
+        <!--<field name="pricelist_id" ref="list_with_dates" />-->
+        <!--<field name="product_id" ref="product.product_product_6" />-->
+        <!--<field name="fixed_price">100.0</field>-->
+        <!--<field name="date_end">2021-01-01</field>-->
+    <!--</record>-->
+
+<!--add overlappingg items-->
+
+</odoo>

@@ -1,7 +1,7 @@
 # Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from datetime import date
+from collections import defaultdict
 
 from odoo import api, models
 
@@ -13,25 +13,68 @@ class Pricelist(models.Model):
     def create(self, vals_list):
         res = super().create(vals_list)
         for record in res:
+            # TODO: why ????
             if record._is_factor_pricelist() or record._is_global_pricelist():
                 product_ids_to_cache = None
             else:
                 product_ids_to_cache = record.item_ids.mapped("product_id").ids
             cache_model = self.env["product.pricelist.cache"].with_delay()
-            cache_model.update_product_pricelist_cache(
+            cache_model.create_product_pricelist_cache(
                 product_ids=product_ids_to_cache, pricelist_ids=record.ids
             )
         return res
 
-    def _get_product_prices(self, product_ids):
+    def _filter_items_to_cache(self, product_ids, at_datetime):
         self.ensure_one()
+        # Prices to be updated are those not fetched from parent pricelist.
+        # Prices are fetched from the parent if there's no item for this product
+        # on current pricelist which is valid _now_.
+        return self.item_ids.filtered(
+            lambda i: (
+                i.product_id.id in product_ids
+                and (not i.date_start or i.date_start <= at_datetime)
+                and (not i.date_end or i.date_end >= at_datetime)
+            )
+        )
+
+    def _get_product_ids_to_cache(self, product_ids, at_datetime):
+        self.ensure_one()
+        if self._get_parent_pricelists():
+            # If this is a factor pricelist, then everything
+            # have to be updated
+            if self._is_factor_pricelist():
+                return product_ids
+            # Otherwise, prices might be fetched from parent pricelist
+            # if there's no item for the products on the current pricelist
+            items = self._filter_items_to_cache(product_ids, at_datetime)
+            return items.mapped("product_id").ids
+        # No parent (for instance public pricelist), then update everything
+        return product_ids
+
+    def _get_values_from_price(self, price):
+        return (price[0], None, None)
+
+    def _get_select_query(self):
+        pass
+
+    def _get_product_prices(self, product_ids, at_date):
+        # If order for this to be compatible with pricelist_cache_history,
+        # we need to be able to build a dictionnary like so:
+        # {prod_id, set of (price, date_start, date_end)}.
+        # To do so, either we need:
+        # - a mapping of {product_id: product.pricelist.item}
+        #   so we can retrieve dates from the items
+        # - Or a mapping of {product_id: (price, from_date, to_date)} as argument
+        self.ensure_one()
+        product_prices = defaultdict(set)
         # Search instead of browse, since products could have been unlinked
         # between the time where records have been created / modified
         # and the time this method is executed.
         products = self.env["product.product"].search([("id", "in", product_ids)])
         products_qty_partner = [(p, 1, False) for p in products]
-        results = self._compute_price_rule(products_qty_partner, date.today())
-        product_prices = {prod: price[0] for prod, price in results.items()}
+        results = self._compute_price_rule(products_qty_partner, at_date)
+        for product_id, price in results.items():
+            product_prices[product_id].add(self._get_values_from_price(price))
         return product_prices
 
     def _get_root_pricelist_ids(self):

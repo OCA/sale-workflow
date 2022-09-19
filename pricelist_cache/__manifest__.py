@@ -19,7 +19,7 @@
     "website": "https://github.com/OCA/sale-workflow",
     "data": [
         "security/ir.model.access.csv",
-        "data/base_automation.xml",
+        # "data/base_automation.xml",
         "data/ir_cron.xml",
         "data/ir_filters_data.xml",
         "data/queue_job.xml",

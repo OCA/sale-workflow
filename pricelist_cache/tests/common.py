@@ -63,6 +63,10 @@ def check_duplicates(func):
 
 
 class TestPricelistCacheCommon(SavepointCase):
+    def assert_cache(self, caches, expected_prices):
+        for cache, price in zip(caches, expected_prices):
+            self.assertEqual(cache.price, price)
+
     @classmethod
     def setUpClassBaseCache(cls):
         cls.cache_model.cron_reset_pricelist_cache()
