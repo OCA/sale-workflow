@@ -116,8 +116,8 @@ class SaleOrder(models.Model):
         invoice_plan_id = self._context.get("invoice_plan_id")
         if invoice_plan_id:
             plan = self.env["sale.invoice.plan"].browse(invoice_plan_id)
-            moves.ensure_one()  # Expect 1 invoice for 1 invoice plan
-            plan._compute_new_invoice_quantity(moves[0])
-            moves.invoice_date = plan.plan_date
+            for move in moves:
+                plan._compute_new_invoice_quantity(move)
+                move.invoice_date = plan.plan_date
             plan.invoice_move_ids += moves
         return moves
