@@ -17,8 +17,6 @@ class ProductTemplate(models.Model):
     def _compute_sale_lines_count(self):
         for product in self:
             product.sale_lines_count = sum(
-                [
-                    p.sale_lines_count
-                    for p in product.with_context(active_test=False).product_variant_ids
-                ]
+                p.sale_lines_count
+                for p in product.with_context(active_test=False).product_variant_ids
             )
