@@ -114,9 +114,9 @@ class SaleOder(models.Model):
         if invoice_plan_id:
             plan = self.env['sale.invoice.plan'].browse(invoice_plan_id)
             invoices = self.env['account.invoice'].browse(inv_ids)
-            invoices.ensure_one()  # Expect 1 invoice for 1 invoice plan
-            plan._compute_new_invoice_quantity(invoices[0])
-            invoices[0].date_invoice = plan.plan_date
+            for invoice in invoices:
+                plan._compute_new_invoice_quantity(invoice)
+                invoice.date_invoice = plan.plan_date
             plan.invoice_ids += invoices
         return inv_ids
 
