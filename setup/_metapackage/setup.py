@@ -53,6 +53,7 @@ setuptools.setup(
         'odoo-addon-sale_stock_picking_blocking>=15.0dev,<15.1dev',
         'odoo-addon-sale_stock_picking_note>=15.0dev,<15.1dev',
         'odoo-addon-sale_tier_validation>=15.0dev,<15.1dev',
+        'odoo-addon-sale_wishlist>=15.0dev,<15.1dev',
         'odoo-addon-sales_team_security>=15.0dev,<15.1dev',
         'odoo-addon-sales_team_security_crm>=15.0dev,<15.1dev',
         'odoo-addon-sales_team_security_sale>=15.0dev,<15.1dev',
