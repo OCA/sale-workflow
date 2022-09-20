@@ -49,7 +49,7 @@ addon | version | maintainers | summary
 [sale_force_invoiced](sale_force_invoiced/) | 14.0.1.1.1 |  | Allows to force the invoice status of the sales order to Invoiced
 [sale_global_discount](sale_global_discount/) | 14.0.1.1.0 |  | Sale Global Discount
 [sale_invoice_blocking](sale_invoice_blocking/) | 14.0.1.0.0 |  | Allow you to block the creation of invoices from a sale order.
-[sale_invoice_plan](sale_invoice_plan/) | 14.0.1.0.3 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to sales order, ability to manage future invoice plan
+[sale_invoice_plan](sale_invoice_plan/) | 14.0.1.0.4 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to sales order, ability to manage future invoice plan
 [sale_isolated_quotation](sale_isolated_quotation/) | 14.0.2.1.0 | [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Sale Isolated Quotation
 [sale_last_price_info](sale_last_price_info/) | 14.0.1.0.1 |  | Product Last Price Info - Sale
 [sale_mail_autosubscribe](sale_mail_autosubscribe/) | 14.0.1.0.0 | [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | Automatically subscribe partners to their company's sale orders
