@@ -238,6 +238,8 @@ class SaleInvoicePlan(models.Model):
             else:
                 plan_qty = order_line.product_uom_qty * (percent / 100)
                 prec = order_line.product_uom.rounding
+                if plan_qty:
+                    plan_qty = float_round(plan_qty, precision_rounding=prec)
                 if float_compare(plan_qty, line.quantity, prec) == 1:
                     raise ValidationError(
                         _(
