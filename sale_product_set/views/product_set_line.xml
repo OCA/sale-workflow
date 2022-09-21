@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_product_set_line_tree" model="ir.ui.view">
+        <field name="name">product.set.line.tree</field>
+        <field name="model">product.set.line</field>
+        <field name="type">tree</field>
+        <field name="priority" eval="8" />
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="product_set_id" />
+                <field name="product_id" />
+                <field name="quantity" />
+                <field name="discount" groups="product.group_discount_per_so_line" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_product_set_line_search" model="ir.ui.view">
+        <field name="name">product.set.line.search</field>
+        <field name="model">product.set.line</field>
+        <field name="type">search</field>
+        <field name="priority" eval="8" />
+        <field name="arch" type="xml">
+            <search string="Product set line">
+                <field name="product_set_id" />
+                <field name="product_id" />
+                <filter
+                    name="group_by_product_set_id"
+                    string="Product set"
+                    domain="[]"
+                    context="{'group_by':'product_set_id'}"
+                />
+                <filter
+                    name="group_by_product_id"
+                    string="Product"
+                    domain="[]"
+                    context="{'group_by':'product_id'}"
+                />
+            </search>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="act_open_product_set_line_view">
+        <field name="name">Product set line</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.set.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_product_set_line_search" />
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+    <menuitem
+        id="menu_product_set_line_config"
+        parent="sale.product_menu_catalog"
+        groups="sales_team.group_sale_manager"
+        sequence="20"
+        action="act_open_product_set_line_view"
+    />
+</odoo>

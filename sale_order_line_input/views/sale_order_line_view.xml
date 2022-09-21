@@ -1,0 +1,230 @@
+<?xml version="1.0" ?>
+<!-- Copyright 2018 Tecnativa - Carlos Dauden
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_sales_order_line_input_tree" model="ir.ui.view">
+        <field name="name">sale.order.line.input.tree.</field>
+        <field name="model">sale.order.line</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <tree
+                decoration-info="invoice_status=='to invoice'"
+                decoration-warning="state=='draft'"
+                decoration-muted="state=='cancel'"
+                decoration-success="state=='done'"
+                editable="top"
+                create="true"
+            >
+                <!-- We do not display the type because we don't want the user to be bothered with that information if he has no section or note. -->
+                <field name="display_type" invisible="1" />
+                <field
+                    name="force_company_id"
+                    optional="hide"
+                    attrs="{'readonly': [('order_id', '!=', False)]}"
+                    options="{'no_create': True}"
+                />
+                <field
+                    name="order_id"
+                    string="Order"
+                    required="0"
+                    placeholder="New"
+                    domain="[('state', 'not in', ('done', 'cancel')), ('company_id', '=', company_id)]"
+                    attrs="{'readonly': [('order_id', '!=', False)]}"
+                    force_save="1"
+                    options='{"no_open": True, "no_create": True}'
+                />
+                <button
+                    name="action_sale_order_form"
+                    type="object"
+                    icon="fa-external-link"
+                    class="oe_stat_button"
+                />
+                <field
+                    name="order_partner_id"
+                    context="{'res_partner_search_mode': 'customer', 'default_is_company': True, 'default_customer_rank': 1}"
+                    options='{"always_reload": True}'
+                    required="1"
+                    attrs="{'readonly': [('order_partner_id', '!=', False), ('order_id', '!=', False)]}"
+                />
+                <field name="write_date" widget="date" optional="hide" />
+                <field
+                    name="product_id"
+                    attrs="{'readonly': [('product_updatable', '=', False)]}"
+                    force_save="1"
+                    context="{'partner_id':order_partner_id, 'quantity':product_uom_qty, 'pricelist':pricelist_id, 'uom':product_uom, 'company_id': company_id}"
+                />
+                <field
+                    name="product_template_id"
+                    string="Product"
+                    invisible="1"
+                    attrs="{'readonly': [('product_updatable', '=', False)]}"
+                    context="{
+                        'partner_id': parent.partner_id,
+                        'quantity': product_uom_qty,
+                        'pricelist': parent.pricelist_id,
+                        'uom':product_uom,
+                        'company_id': company_id,
+                        'default_list_price': price_unit,
+                        'default_description_sale': name
+                    }"
+                />
+                <field name="product_uom_category_id" invisible="1" />
+                <field
+                    name="name"
+                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    optional="show"
+                />
+                <field
+                    name="product_uom_qty"
+                    sum="Ordered"
+                    string="Ordered Qty"
+                    decoration-info="(not display_type and invoice_status == 'to invoice')"
+                    decoration-bf="(not display_type and invoice_status == 'to invoice')"
+                    context="{'partner_id':order_partner_id, 'quantity':product_uom_qty, 'pricelist':pricelist_id, 'uom':product_uom, 'company_id': company_id}"
+                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    optional="show"
+                />
+                <field
+                    name="qty_delivered"
+                    sum="Delivered"
+                    decoration-info="(not display_type and invoice_status == 'to invoice')"
+                    decoration-bf="(not display_type and invoice_status == 'to invoice')"
+                    attrs="{'readonly': [('qty_delivered_method', '!=', 'manual')]}"
+                    optional="show"
+                />
+                <field name="qty_delivered_manual" invisible="1" />
+                <field
+                    name="qty_invoiced"
+                    sum="Invoiced"
+                    optional="show"
+                    decoration-info="(not display_type and invoice_status == 'to invoice')"
+                    decoration-bf="(not display_type and invoice_status == 'to invoice')"
+                />
+                <field name="qty_to_invoice" sum="To Invoice" optional="show" />
+                <field
+                    name="product_uom"
+                    string="UoM"
+                    attrs="{'readonly': [('state', 'in', ('sale','done', 'cancel'))]}"
+                    context="{'company_id': company_id}"
+                    groups="uom.group_uom"
+                    options='{"no_open": True}'
+                    optional="show"
+                />
+                <field
+                    name="analytic_tag_ids"
+                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    domain="['|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
+                    groups="analytic.group_analytic_accounting"
+                    widget="many2many_tags"
+                    options="{'color_field': 'color'}"
+                    optional="hide"
+                />
+                <field
+                    name="price_unit"
+                    attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"
+                    optional="show"
+                />
+                <field
+                    name="tax_id"
+                    widget="many2many_tags"
+                    options="{'no_create': True}"
+                    domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"
+                    invisible="context.get('tax_hide', False)"
+                    attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"
+                    optional="show"
+                />
+                <field
+                    name="discount"
+                    string="Disc.%"
+                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    groups="product.group_discount_per_so_line"
+                    optional="show"
+                />
+                <field
+                    name="price_subtotal"
+                    widget="monetary"
+                    groups="account.group_show_line_subtotals_tax_excluded"
+                    optional="show"
+                />
+                <field
+                    name="price_total"
+                    widget="monetary"
+                    groups="account.group_show_line_subtotals_tax_included"
+                    optional="show"
+                />
+                <field
+                    name="customer_lead"
+                    optional="show"
+                    attrs="{'readonly': [('state', 'not in', ['draft', 'sent', 'sale'])]}"
+                />
+                <field name="product_updatable" invisible="1" />
+                <field name="qty_delivered_method" invisible="1" />
+                <field name="state" invisible="1" />
+                <field name="invoice_status" invisible="1" />
+                <field name="currency_id" invisible="1" />
+                <field name="price_tax" invisible="1" />
+                <field name="pricelist_id" invisible="1" />
+                <field name="company_id" invisible="1" />
+                <field name="product_uom_readonly" invisible="1" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_sales_order_line_filter" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='salesman_id']" position="after">
+                <field name="name" />
+                <field name="product_uom" groups="uom.group_uom" />
+                <field
+                    name="analytic_tag_ids"
+                    groups="analytic.group_analytic_accounting"
+                />
+                <separator />
+                <filter
+                    name="not_invoice_related"
+                    string="Not Invoice Related"
+                    domain="[('invoice_lines', '=', False)]"
+                />
+                <filter
+                    name="invoice_related"
+                    string="Invoice Related"
+                    domain="[('invoice_lines', '!=', False)]"
+                    context="{'tax_hide': True}"
+                />
+            </xpath>
+            <xpath expr="//filter[@name='product']/.." position="inside">
+                <filter
+                    name="order_state"
+                    string="Order State"
+                    context="{'group_by': 'state'}"
+                />
+                <filter
+                    name="invoice_status"
+                    string="Invoice Status"
+                    context="{'group_by': 'invoice_status'}"
+                />
+                <filter
+                    name="uom_filter"
+                    string="UoM"
+                    context="{'group_by': 'product_uom'}"
+                    groups="uom.group_uom"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="action_sales_order_line_input" model="ir.actions.act_window">
+        <field name="name">Sales Orders Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_mode">tree,form,pivot,graph</field>
+        <field name="view_id" ref="view_sales_order_line_input_tree" />
+    </record>
+    <menuitem
+        id="menu_sales_order_line_input"
+        action="action_sales_order_line_input"
+        parent="sale.sale_order_menu"
+        groups="sales_team.group_sale_salesman"
+        sequence="30"
+    />
+</odoo>
