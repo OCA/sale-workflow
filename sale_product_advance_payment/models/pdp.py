@@ -163,7 +163,7 @@ class PlannedDownPayment(models.Model):
                     'name': '%s - Down Payment' % dp_line.order_line_id.product_id.name,
                     'quantity': 1,
                     'product_id': product_id.id,
-                    'price_unit': dp_line.total,
+                    'price_unit': dp_line.amount * dp_line.order_line_id.qty_delivered,
                     'analytic_account_id': self.order_id.analytic_account_id.id,
                     'sale_line_ids': [(6, 0, so_line.ids)],
                 }
@@ -203,7 +203,7 @@ class PlannedDownPayment(models.Model):
                     time.strftime('%d-%m-%Y')
                 ),
             'pdp_line_id': dp_line.id,
-            'price_unit': dp_line.total,
+            'price_unit': dp_line.amount * dp_line.order_line_id.qty_delivered,
             'product_uom_qty': 0.0,
             'order_id': order.id,
             'discount': 0.0,
