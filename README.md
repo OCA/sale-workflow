@@ -28,9 +28,9 @@ addon | version | maintainers | summary
 [product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 14.0.1.1.0 |  | Loads in every sale order line the customer code defined in the product
 [sale_advance_payment](sale_advance_payment/) | 14.0.1.1.1 |  | Allow to add advance payments on sales and then use them on invoices
 [sale_amount_payment_link](sale_amount_payment_link/) | 14.0.1.0.1 |  | Reduce Amount to be paid while Payment Link is generated on Sale Order, depending on done Transactions.
-[sale_automatic_workflow](sale_automatic_workflow/) | 14.0.1.3.1 |  | Sale Automatic Workflow
+[sale_automatic_workflow](sale_automatic_workflow/) | 14.0.1.3.2 |  | Sale Automatic Workflow
 [sale_automatic_workflow_delivery_state](sale_automatic_workflow_delivery_state/) | 14.0.1.0.0 |  | Glue module for sale_automatic_workflow and sale_delivery_state
-[sale_automatic_workflow_job](sale_automatic_workflow_job/) | 14.0.1.0.0 |  | Execute sale automatic workflows in queue jobs
+[sale_automatic_workflow_job](sale_automatic_workflow_job/) | 14.0.1.0.1 |  | Execute sale automatic workflows in queue jobs
 [sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 14.0.1.0.1 |  | Sale Automatic Workflow - Payment Mode
 [sale_blanket_order](sale_blanket_order/) | 14.0.1.0.3 |  | Blanket Orders
 [sale_by_packaging](sale_by_packaging/) | 14.0.2.0.0 |  | Manage sale of packaging
