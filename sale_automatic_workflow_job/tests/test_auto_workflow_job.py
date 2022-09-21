@@ -2,9 +2,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests import tagged
+from odoo.tools.safe_eval import safe_eval
 
 from odoo.addons.queue_job.job import identity_exact
-from odoo.addons.queue_job.tests.common import mock_with_delay
+from odoo.addons.queue_job.tests.common import mock_with_delay, trap_jobs
 from odoo.addons.sale_automatic_workflow.tests.common import (
     TestAutomaticWorkflowMixin,
     TestCommon,
@@ -136,3 +137,22 @@ class TestAutoWorkflowJob(TestCommon, TestAutomaticWorkflowMixin):
                 ],
             )
             self.assert_job_delayed(delayable_cls, delayable, "_do_sale_done", args)
+
+    def test_deleted_sale_order(self):
+        workflow = self.create_full_automatic()
+        workflow_domain = [("workflow_process_id", "=", workflow.id)]
+        self.sale = self.create_sale_order(workflow)
+        with trap_jobs() as trap:
+            self.run_job()
+            trap.assert_jobs_count(1)
+            trap.assert_enqueued_job(
+                self.env["automatic.workflow.job"]._do_validate_sale_order,
+                args=(
+                    self.sale,
+                    safe_eval(workflow.order_filter_id.domain) + workflow_domain,
+                ),
+            )
+            job = trap.enqueued_jobs[0]
+            self.assertEqual(job.state, "pending")
+            self.sale.unlink()
+            trap.perform_enqueued_jobs()

@@ -36,27 +36,14 @@ class AutomaticWorkflowJob(models.Model):
     )
 
     def _do_validate_sale_order(self, sale, domain_filter):
-        """Validate a sales order, filter ensure no duplication"""
-        if not self.env["sale.order"].search_count(
-            [("id", "=", sale.id)] + domain_filter
-        ):
-            return "{} {} job bypassed".format(sale.display_name, sale)
+        """Validate a sales order"""
         sale.action_confirm()
-        return "{} {} confirmed successfully".format(sale.display_name, sale)
 
     def _do_send_order_confirmation_mail(self, sale):
-        """Send order confirmation mail, while filtering to make sure the order is
-        confirmed with _do_validate_sale_order() function"""
-        if not self.env["sale.order"].search_count(
-            [("id", "=", sale.id), ("state", "=", "sale")]
-        ):
-            return "{} {} job bypassed".format(sale.display_name, sale)
+        """Send order confirmation mail"""
         if sale.user_id:
             sale = sale.with_user(sale.user_id)
         sale._send_order_confirmation_mail()
-        return "{} {} send order confirmation mail successfully".format(
-            sale.display_name, sale
-        )
 
     @api.model
     def _validate_sale_orders(self, order_filter):
@@ -72,16 +59,11 @@ class AutomaticWorkflowJob(models.Model):
                     self._do_send_order_confirmation_mail(sale)
 
     def _do_create_invoice(self, sale, domain_filter):
-        """Create an invoice for a sales order, filter ensure no duplication"""
-        if not self.env["sale.order"].search_count(
-            [("id", "=", sale.id)] + domain_filter
-        ):
-            return "{} {} job bypassed".format(sale.display_name, sale)
+        """Create an invoice for a sales order"""
         payment = self.env["sale.advance.payment.inv"].create({})
         payment.with_context(
             active_ids=sale.ids, active_model="sale.order"
         ).create_invoices()
-        return "{} {} create invoice successfully".format(sale.display_name, sale)
 
     @api.model
     def _create_invoices(self, create_filter):
@@ -95,15 +77,8 @@ class AutomaticWorkflowJob(models.Model):
                 )
 
     def _do_validate_invoice(self, invoice, domain_filter):
-        """Validate an invoice, filter ensure no duplication"""
-        if not self.env["account.move"].search_count(
-            [("id", "=", invoice.id)] + domain_filter
-        ):
-            return "{} {} job bypassed".format(invoice.display_name, invoice)
+        """Validate an invoice"""
         invoice.with_company(invoice.company_id).action_post()
-        return "{} {} validate invoice successfully".format(
-            invoice.display_name, invoice
-        )
 
     @api.model
     def _validate_invoices(self, validate_invoice_filter):
@@ -117,15 +92,8 @@ class AutomaticWorkflowJob(models.Model):
                 )
 
     def _do_validate_picking(self, picking, domain_filter):
-        """Validate a stock.picking, filter ensure no duplication"""
-        if not self.env["stock.picking"].search_count(
-            [("id", "=", picking.id)] + domain_filter
-        ):
-            return "{} {} job bypassed".format(picking.display_name, picking)
+        """Validate a stock.picking"""
         picking.validate_picking()
-        return "{} {} validate picking successfully".format(
-            picking.display_name, picking
-        )
 
     @api.model
     def _validate_pickings(self, picking_filter):
@@ -137,13 +105,8 @@ class AutomaticWorkflowJob(models.Model):
                 self._do_validate_picking(picking, picking_filter)
 
     def _do_sale_done(self, sale, domain_filter):
-        """Set a sales order to done, filter ensure no duplication"""
-        if not self.env["sale.order"].search_count(
-            [("id", "=", sale.id)] + domain_filter
-        ):
-            return "{} {} job bypassed".format(sale.display_name, sale)
+        """Set a sales order to done"""
         sale.action_done()
-        return "{} {} set done successfully".format(sale.display_name, sale)
 
     @api.model
     def _sale_done(self, sale_done_filter):
