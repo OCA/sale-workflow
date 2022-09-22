@@ -171,7 +171,7 @@ class PlannedDownPayment(models.Model):
                     "name": "%s - Down Payment" % dp_line.order_line_id.product_id.name,
                     "quantity": 1,
                     "product_id": product_id.id,
-                    "price_unit": dp_line.amount * dp_line.order_line_id.qty_delivered,
+                    "price_unit": dp_line.total,
                     "analytic_account_id": self.order_id.analytic_account_id.id,
                     "sale_line_ids": [(6, 0, so_line.ids)],
                 }
