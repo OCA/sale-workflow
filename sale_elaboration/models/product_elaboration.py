@@ -34,15 +34,10 @@ class Elaboration(models.Model):
         """Give preference to codes on name search, appending
         the rest of the results after.
         """
-        if not args:
-            args = []
+        args = args or []
         recs = self.search([("code", operator, name)] + args, limit=limit)
         res = recs.name_get()
-        if limit:
-            limit_rest = limit - len(recs)
-        else:  # pragma: no cover
-            # limit can be 0 or None representing infinite
-            limit_rest = limit
+        limit_rest = limit - len(recs) if limit else limit
         if limit_rest or not limit:
             args += [("id", "not in", recs.ids)]
             res += super().name_search(
