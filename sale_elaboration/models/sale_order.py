@@ -65,13 +65,17 @@ class SaleOrderLine(models.Model):
         for line in self:
             line.elaboration_note = line.elaboration_id.name
 
-    def _prepare_invoice_line(self):
-        vals = super()._prepare_invoice_line()
+    def _prepare_invoice_line(self, **optional_values):
+        vals = super()._prepare_invoice_line(**optional_values)
         if self.is_elaboration:
             vals["name"] = "{} - {}".format(self.order_id.name, self.name)
         return vals
 
     @api.depends("product_id")
     def _compute_is_elaboration(self):
+        """We use computed instead of a related field because related fields are not
+        initialized with their value on one2many which related field is the
+        inverse_name, so with this we get immediately the value on NewIds.
+        """
         for line in self:
             line.is_elaboration = line.product_id.is_elaboration

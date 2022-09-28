@@ -8,6 +8,13 @@
         <field name="arch" type="xml">
             <form string="Elaborations">
                 <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <field name="active" invisible="1" />
                     <group>
                         <field name="code" />
                         <field name="name" />
@@ -31,7 +38,6 @@
                     name="product_id"
                     context="{'default_is_elaboration': True, 'default_type': 'service'}"
                 />
-                <field name="active" invisible="1" />
             </tree>
         </field>
     </record>
