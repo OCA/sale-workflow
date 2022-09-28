@@ -6,8 +6,8 @@ from odoo import models
 class StockPicking(models.Model):
     _inherit = "stock.picking"
 
-    def action_done(self):
-        res = super(StockPicking, self).action_done()
+    def _action_done(self):
+        res = super()._action_done()
         for pick in self.filtered(lambda x: x.picking_type_code == "outgoing"):
             elaboration_lines = pick.move_lines.filtered(
                 lambda x: x.sale_line_id.elaboration_id
