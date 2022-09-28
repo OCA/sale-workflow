@@ -1,6 +1,6 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests import SavepointCase, tagged
+from odoo.tests import Form, SavepointCase, tagged
 
 
 @tagged("post_install", "-at_install")
@@ -10,7 +10,7 @@ class TestSaleElaboration(SavepointCase):
         super().setUpClass()
         cls.Elaboration = cls.env["product.elaboration"]
         cls.product = cls.env["product.product"].create(
-            {"name": "test", "tracking": "none"}
+            {"name": "test", "tracking": "none", "list_price": 1000}
         )
         cls.product_elaboration_A = cls.env["product.product"].create(
             {
@@ -63,28 +63,18 @@ class TestSaleElaboration(SavepointCase):
                 "product_id": cls.product_elaboration_B.id,
             }
         )
-        so = cls.env["sale.order"].new(
-            {
-                "partner_id": cls.partner.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": cls.product.name,
-                            "product_id": cls.product.id,
-                            "product_uom_qty": 10.0,
-                            "product_uom": cls.product.uom_id.id,
-                            "price_unit": 1000.00,
-                            "elaboration_id": cls.elaboration_a.id,
-                            "elaboration_note": "elaboration A",
-                        },
-                    )
-                ],
-            }
-        )
-        so.onchange_partner_id()
-        cls.order = cls.env["sale.order"].create(so._convert_to_write(so._cache))
+        cls.order = cls._create_sale_order(cls, [(cls.product, 10, cls.elaboration_a)])
+
+    def _create_sale_order(self, products_info):
+        order_form = Form(self.env["sale.order"])
+        order_form.partner_id = self.partner
+        for product, qty, elaboration in products_info:
+            with order_form.order_line.new() as line_form:
+                line_form.product_id = product
+                line_form.product_uom_qty = qty
+                if elaboration:
+                    line_form.elaboration_id = elaboration
+        return order_form.save()
 
     def test_search_elaboration(self):
         elaboration = self.Elaboration.name_search("Elaboration")
@@ -99,7 +89,7 @@ class TestSaleElaboration(SavepointCase):
     def test_sale_elaboration(self):
         self.order.action_confirm()
         self.order.picking_ids.move_lines.quantity_done = 10.0
-        self.order.picking_ids.action_done()
+        self.order.picking_ids._action_done()
         elaboration_lines = self.order.order_line.filtered("is_elaboration")
         self.assertEqual(len(elaboration_lines), 1)
         self.assertEqual(elaboration_lines.price_unit, 50.0)
@@ -116,43 +106,21 @@ class TestSaleElaboration(SavepointCase):
         )
         self.order.action_confirm()
         self.order.picking_ids.move_lines.quantity_done = 10.0
-        self.order.picking_ids.action_done()
+        self.order.picking_ids._action_done()
         elaboration_lines = self.order.order_line.filtered("is_elaboration")
         self.assertEqual(len(elaboration_lines), 1)
         self.assertEqual(elaboration_lines.product_uom_qty, 11.0)
 
     def test_invoice_elaboration(self):
-        so = self.env["sale.order"].new(
-            {
-                "partner_id": self.partner.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.product_elaboration_A.name,
-                            "product_id": self.product_elaboration_A.id,
-                            "product_uom_qty": 1.0,
-                            "price_unit": 50.0,
-                            "is_elaboration": True,
-                        },
-                    ),
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.product_elaboration_B.name,
-                            "product_id": self.product_elaboration_B.id,
-                            "product_uom_qty": 1.0,
-                            "price_unit": 50.0,
-                            "is_elaboration": False,
-                        },
-                    ),
-                ],
-            }
+        self.order = self._create_sale_order(
+            [
+                (self.product_elaboration_A, 1, False),
+                (self.product_elaboration_B, 1, False),
+            ]
         )
-        so.onchange_partner_id()
-        self.order = self.env["sale.order"].create(so._convert_to_write(so._cache))
+        self.order.order_line.filtered(
+            lambda l: l.product_id == self.product_elaboration_B
+        ).is_elaboration = False
         self.order.action_confirm()
         invoice = self.order._create_invoices()
         so_line_elaboration = self.order.order_line.filtered("is_elaboration")
