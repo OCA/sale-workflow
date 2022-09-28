@@ -8,7 +8,6 @@ class ProductCustomerInfo(models.Model):
 
     elaboration_id = fields.Many2one(comodel_name="product.elaboration")
     elaboration_note = fields.Char(
-        string="Elaboration Note",
         store=True,
         compute="_compute_elaboration_note",
         readonly=False,
