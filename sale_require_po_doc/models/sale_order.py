@@ -24,8 +24,7 @@ class SaleOrder(models.Model):
         string='Sale Documentation Notes',
     )
 
-    @api.multi
-    def action_confirm(self):
+    def _check_require_po_doc(self):
         for order in self:
             if order.customer_need_po and not order.client_order_ref:
                 raise ValidationError(
@@ -35,4 +34,8 @@ class SaleOrder(models.Model):
                 raise ValidationError(
                     _("You can not confirm sale order without \
                         Sale Documentation."))
+
+    @api.multi
+    def action_confirm(self):
+        self._check_require_po_doc()
         return super(SaleOrder, self).action_confirm()
