@@ -41,6 +41,7 @@ addon | version | maintainers | summary
 [sale_order_invoicing_finished_task](sale_order_invoicing_finished_task/) | 15.0.1.0.0 |  | Control invoice order lines if their related task has been set to invoiceable
 [sale_order_line_date](sale_order_line_date/) | 15.0.1.1.0 |  | Adds a commitment date to each sale order line.
 [sale_order_line_delivery_state](sale_order_line_delivery_state/) | 15.0.1.0.1 |  | Show the delivery state on the sale order line
+[sale_order_line_description](sale_order_line_description/) | 15.0.1.0.0 |  | Sale order line description
 [sale_order_line_input](sale_order_line_input/) | 15.0.1.0.0 |  | Search, create or modify directly sale order lines
 [sale_order_line_menu](sale_order_line_menu/) | 15.0.1.0.1 |  | Adds a Sale Order Lines Menu
 [sale_order_line_price_history](sale_order_line_price_history/) | 15.0.1.0.0 |  | Sale order line price history
