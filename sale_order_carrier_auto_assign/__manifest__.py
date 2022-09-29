@@ -3,7 +3,7 @@
 {
     "name": "Sale Order Carrier Auto Assign",
     "summary": "Auto assign delivery carrier on sale order confirmation",
-    "version": "15.0.1.0.0",
+    "version": "15.0.1.0.1",
     "development_status": "Alpha",
     "category": "Operations/Inventory/Delivery",
     "website": "https://github.com/OCA/sale-workflow",
