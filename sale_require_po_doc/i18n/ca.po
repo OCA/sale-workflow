@@ -87,7 +87,6 @@ msgstr "Les vendes requereixen documentació"
 
 #. module: sale_require_po_doc
 #: code:addons/sale_require_po_doc/models/sale_order.py:31
-#: code:addons/sale_require_po_doc/models/sale_order.py:32
 #, python-format
 msgid ""
 "You can not confirm sale order without                         Customer "
@@ -96,7 +95,6 @@ msgstr "No podeu confirmar la comanda de venda sense la referència del client."
 
 #. module: sale_require_po_doc
 #: code:addons/sale_require_po_doc/models/sale_order.py:35
-#: code:addons/sale_require_po_doc/models/sale_order.py:36
 #, python-format
 msgid ""
 "You can not confirm sale order without                         Sale "
