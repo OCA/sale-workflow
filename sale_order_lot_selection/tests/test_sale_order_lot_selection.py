@@ -1,5 +1,6 @@
 # © 2015 Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 import odoo.tests.common as test_common
 
 
@@ -29,11 +30,9 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.sale = self.env.ref("sale_order_lot_selection.sale1")
 
     def _stock_quantity(self, product, lot, location):
-        return product.with_context(
-            {"lot_id": lot.id, "location": location.id}
-        ).qty_available
+        return product.with_context(lot_id=lot.id, location=location.id).qty_available
 
-    def test_stock_available_wrong_lot(self):
+    def test_00_stock_available_wrong_lot(self):
         # We should not be able to reserve if some stock is available but with another
         # lot
         self._inventory_products(self.prd_cable, self.lot_cable, 1)
@@ -58,29 +57,17 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.assertEqual(len(unavailable_move), 1)
 
     def _inventory_products(self, product, lot, qty):
-        inventory = self.env["stock.inventory"].create(
+        quant = self.env["stock.quant"].create(
             {
-                "name": "%s inventory" % product.name,
-                "product_ids": product.ids,
-                "state": "confirm",
-                "line_ids": [
-                    (
-                        0,
-                        0,
-                        {
-                            "product_id": product.id,
-                            "product_uom_id": product.uom_id.id,
-                            "product_qty": qty,
-                            "location_id": self.stock_location.id,
-                            "prod_lot_id": lot.id,
-                        },
-                    ),
-                ],
+                "product_id": product.id,
+                "location_id": self.stock_location.id,
+                "lot_id": lot.id,
+                "inventory_quantity": qty,
             }
         )
-        inventory.action_validate()
+        quant.action_apply_inventory()
 
-    def test_several_lines_with_same_lot(self):
+    def test_01_several_lines_with_same_lot(self):
         """You may want split your order in several lines
         even if lot/product are the same
         use cases: price is different or any shipping information
@@ -88,7 +75,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self._inventory_products(self.prd_cable, self.lot_cable, 10)
         self.sale.action_confirm()
 
-    def test_sale_order_lot_selection(self):
+    def test_02_sale_order_lot_selection(self):
         # INIT stock of products to 0
         picking_out = self.env["stock.picking"].create(
             {
@@ -297,10 +284,6 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         picking_move_line_ids[0].location_id = self.stock_location
         picking.button_validate()
 
-        onchange_res = self.sol3._onchange_product_id_set_lot_domain()
-        self.assertEqual(
-            onchange_res["domain"]["lot_id"], [("product_id", "=", self.prd_cable.id)]
-        )
         # put back the lot because it is removed by onchange
         self.sol3.lot_id = lot10.id
         # I'll try to confirm it to check lot reservation:
@@ -313,11 +296,6 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         # products are not available for reservation (lot unavailable)
         self.assertEqual(self.order3.picking_ids[0].state, "confirmed")
 
-        # also test on_change for order2
-        onchange_res = self.sol2a._onchange_product_id_set_lot_domain()
-        self.assertEqual(
-            onchange_res["domain"]["lot_id"], [("product_id", "=", self.product_46.id)]
-        )
         # onchange remove lot_id, we put it back
         self.sol2a.lot_id = lot11.id
         self.order2.action_confirm()
