@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_require_po_doc
+# 	* sale_require_po_doc
 #
 msgid ""
 msgstr ""
@@ -20,7 +20,8 @@ msgstr ""
 #: model:ir.model.fields,help:sale_require_po_doc.field_res_partner__customer_need_po
 #: model:ir.model.fields,help:sale_require_po_doc.field_res_users__customer_need_po
 #: model:ir.model.fields,help:sale_require_po_doc.field_sale_order__customer_need_po
-msgid "A PO number will be required on the Sales Order field for Customer Reference"
+msgid ""
+"A PO number will be required on the Sales Order field for Customer Reference"
 msgstr ""
 "Es requerirà un número de comanda al camp \"Referència del client\" de les "
 "comandes de vendes"
@@ -41,7 +42,11 @@ msgstr "El client requereix PO"
 #: model:ir.model.fields,help:sale_require_po_doc.field_res_partner__sale_doc
 #: model:ir.model.fields,help:sale_require_po_doc.field_res_users__sale_doc
 #: model:ir.model.fields,help:sale_require_po_doc.field_sale_order__sale_doc
-msgid "Details of the sales documentation required for this customer. Sales documentation notes field will be required on Sales Orders This is complementary to requiring a PO number, and can be used with or without that setting."
+msgid ""
+"Details of the sales documentation required for this customer. Sales "
+"documentation notes field will be required on Sales Orders This is "
+"complementary to requiring a PO number, and can be used with or without that "
+"setting."
 msgstr ""
 "Detalls de la documentació de vendes necessària per a aquest client. El camp "
 "de les notes de documentació de vendes serà obligatori a les comandes de "
@@ -81,13 +86,19 @@ msgid "Sales Require Documentation"
 msgstr "Les vendes requereixen documentació"
 
 #. module: sale_require_po_doc
+#: code:addons/sale_require_po_doc/models/sale_order.py:31
 #: code:addons/sale_require_po_doc/models/sale_order.py:32
 #, python-format
-msgid "You can not confirm sale order without                         Customer reference."
+msgid ""
+"You can not confirm sale order without                         Customer "
+"reference."
 msgstr "No podeu confirmar la comanda de venda sense la referència del client."
 
 #. module: sale_require_po_doc
+#: code:addons/sale_require_po_doc/models/sale_order.py:35
 #: code:addons/sale_require_po_doc/models/sale_order.py:36
 #, python-format
-msgid "You can not confirm sale order without                         Sale Documentation."
+msgid ""
+"You can not confirm sale order without                         Sale "
+"Documentation."
 msgstr "No podeu confirmar la comanda de venda sense la documentació de venda."
