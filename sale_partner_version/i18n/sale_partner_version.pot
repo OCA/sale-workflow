@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_partner_version
-#: model:ir.model,name:sale_partner_version.model_sale_order
-msgid "Sales Order"
+#: model:ir.model,name:sale_partner_version.model_res_partner
+msgid "Partner"
 msgstr ""
 
