@@ -4,7 +4,7 @@
 
 {"name": "Sale Owner Stock Sourcing",
  "summary": "Manage stock ownership on sale order lines",
- "version": "10.0.1.0.0",
+ "version": "10.0.1.0.1",
  "author": "Camptocamp,Odoo Community Association (OCA)",
  "license": "AGPL-3",
  "category": "Purchase Management",
