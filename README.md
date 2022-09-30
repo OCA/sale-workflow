@@ -54,7 +54,7 @@ addon | version | maintainers | summary
 [sale_manual_delivery](sale_manual_delivery/) | 12.0.2.0.1 |  | Create manually your deliveries
 [sale_merge_draft_invoice](sale_merge_draft_invoice/) | 12.0.1.0.1 |  | Sale Merge Draft Invoice
 [sale_milestone_profile_invoicing](sale_milestone_profile_invoicing/) | 12.0.1.0.1 |  | Inform on delivered and invoiced work by sale order line.
-[sale_mrp_bom](sale_mrp_bom/) | 12.0.1.0.0 |  | Allows define a BOM in the sales lines.
+[sale_mrp_bom](sale_mrp_bom/) | 12.0.1.0.1 |  | Allows define a BOM in the sales lines.
 [sale_mrp_link](sale_mrp_link/) | 12.0.1.0.1 |  | Show manufacturing orders generated from sales order
 [sale_order_action_invoice_create_hook](sale_order_action_invoice_create_hook/) | 12.0.1.0.3 |  | Add more flexibility in the grouping parameters for the creation of invoices
 [sale_order_archive](sale_order_archive/) | 12.0.1.0.0 |  | Archive Sale Orders
