@@ -21,7 +21,7 @@
     'name': "Sale Quotation Sourcing with Stock Route Transit",
     'summary': "Link module for sale_quotation_sourcing + stock_route_transit",
     'author': "Camptocamp,Odoo Community Association (OCA)",
-    'website': "http://www.camptocamp.com",
+    'website': "https://github.com/OCA/sale-workflow",
 
     'category': 'Sales',
     'version': '8.0.0.1.0',

@@ -13,7 +13,7 @@
               'Agile Business Group, '
               'Tecnativa, '
               'Odoo Community Association (OCA)',
-    'website': 'https://odoo-community.org',
+    'website': 'https://github.com/OCA/sale-workflow',
     'license': 'AGPL-3',
     'summary': 'Manage triple discount on sale order lines',
     'depends': [

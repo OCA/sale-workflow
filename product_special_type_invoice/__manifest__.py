@@ -30,7 +30,7 @@
 According to the products special types (discount, advance, delivery),
 compute totals on invoices.
 """,
-    "website": "http://camptocamp.com",
+    "website": "https://github.com/OCA/sale-workflow",
     "depends": ['product_special_type',
                 'account', ],
     "init_xml": [],

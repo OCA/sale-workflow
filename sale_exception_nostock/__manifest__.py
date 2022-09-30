@@ -56,7 +56,7 @@ The second test is a workaround to compensate the lack of
 stock reservation process in OpenERP. This can be a performance killer
 and should not be be used if you have hundreds of simultaneous open SO.
 """,
- 'website': 'http://www.camptocamp.com',
+ 'website': 'https://github.com/OCA/sale-workflow',
  'data': ["data/data.xml"],
  'demo': [],
  'test': ['test/no_stock_test.yml'],

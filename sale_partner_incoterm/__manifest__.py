@@ -9,7 +9,7 @@
     'license': 'AGPL-3',
     'summary': "Set the customer preferred incoterm on each sales order",
     'author': "Opener B.V.,Odoo Community Association (OCA)",
-    'website': 'https://github.com/oca/sale-workflow',
+    'website': 'https://github.com/OCA/sale-workflow',
     'depends': ['sale_stock'],
     'data': [
         'views/res_partner.xml',

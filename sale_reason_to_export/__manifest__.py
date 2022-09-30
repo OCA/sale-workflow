@@ -25,7 +25,7 @@
     'version': '8.0.0.1.0',
     'author': 'Jean-Philippe Jobin',
     'maintainer': 'Savoir-faire Linux',
-    'website': ' http://www.savoirfairelinux.com',
+    'website': 'https://github.com/OCA/sale-workflow',
     'license': 'AGPL-3',
     'category': 'Sales',
     'summary': 'Reason to export in Sales Order',

@@ -11,7 +11,7 @@
               "Serpent CS, "
               "Odoo Community Association (OCA)",
     "category": "Sales",
-    "website": "https://www.eficent.com/",
+    "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
     'data': ['views/sale_view.xml',
              'views/report_saleorder.xml'],

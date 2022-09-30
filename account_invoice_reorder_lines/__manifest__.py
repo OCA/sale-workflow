@@ -28,7 +28,7 @@ Provide a new field on the invoice line form, allowing to manage the lines
 order.
     ''',
     'author': "Tiny,Odoo Community Association (OCA)",
-    'website': 'http://www.openerp.com',
+    'website': 'https://github.com/OCA/sale-workflow',
     'depends': ['account', 'base'],
     'data': ['invoice_view.xml'],
     'demo': [],

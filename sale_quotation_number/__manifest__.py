@@ -9,7 +9,7 @@
     'summary': "Different sequence for sale quotations",
     'version': '10.0.1.1.0',
     'category': 'Sales Management',
-    'website': 'https://odoo-community.org/',
+    'website': 'https://github.com/OCA/sale-workflow',
     'author': 'Elico Corp, '
               'Agile Business Group, '
               'Qubiq, '

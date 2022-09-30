@@ -23,7 +23,7 @@
     "name": "Mail quotation",
     "version": "0.1",
     "author": "Savoir-faire Linux,Odoo Community Association (OCA)",
-    "website": "http://www.savoirfairelinux.com",
+    "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
     "category": "Mail",
     "description": """

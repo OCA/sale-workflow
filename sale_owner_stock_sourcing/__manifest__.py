@@ -9,7 +9,7 @@
  "license": "AGPL-3",
  "category": "Purchase Management",
  'complexity': "normal",
- "website": "http://www.camptocamp.com",
+ "website": "https://github.com/OCA/sale-workflow",
  "depends": [
      'sale_stock',
      'stock_ownership_availability_rules',

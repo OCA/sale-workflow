@@ -6,7 +6,7 @@
     'version': '10.0.1.0.0',
     'author': 'Ecosoft,Odoo Community Association (OCA)',
     'category': 'Sales',
-    'website': 'http://ecosoft.co.th',
+    'website': 'https://github.com/OCA/sale-workflow',
     'depends': ['sale'],
     'license': 'AGPL-3',
     'images': [],

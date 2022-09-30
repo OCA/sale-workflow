@@ -7,7 +7,7 @@
  'category': 'Sale',
  'license': 'AGPL-3',
  'complexity': 'normal',
- 'website': "http://www.camptocamp.com",
+ 'website': "https://github.com/OCA/sale-workflow",
  'depends': ['sale',
              ],
  'data': ['wizard/cancel_reason_view.xml',

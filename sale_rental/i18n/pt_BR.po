@@ -412,7 +412,7 @@ msgstr "Tipo de locação"
 #: code:addons/sale_rental/wizard/create_rental_product.py:21
 #, fuzzy, python-format
 msgid "Rental of a %s"
-msgstr "Locações"
+msgstr "Locações %s"
 
 #. module: sale_rental
 #: model:product.product,name:sale_rental.rent_product_product_25

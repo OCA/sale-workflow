@@ -6,7 +6,7 @@
 {
     'name': "Sale Generator",
     'author': "Akretion, Odoo Community Association (OCA)",
-    'website': "http://www.Akretion.com",
+    'website': "https://github.com/OCA/sale-workflow",
     'category': 'sale',
     'version': '10.0.1.0.2',
     'license': 'AGPL-3',

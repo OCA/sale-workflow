@@ -8,7 +8,7 @@
     'category': 'Sale',
     'author': 'Tecnativa,'
               'Odoo Community Association (OCA)',
-    'website': 'https://www.github.com/OCA/sale-workflow',
+    'website': 'https://github.com/OCA/sale-workflow',
     "license": "AGPL-3",
     'depends': [
         'portal_sale',

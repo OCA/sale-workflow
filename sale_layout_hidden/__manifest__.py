@@ -9,7 +9,7 @@
  'category': 'category',
  'depends': ['sale',
              ],
- 'website': 'https://www.camptocamp.com',
+ 'website': 'https://github.com/OCA/sale-workflow',
  'data': [
      'views/sale_layout_category_views.xml',
  ],

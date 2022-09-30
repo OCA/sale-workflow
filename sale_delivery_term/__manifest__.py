@@ -32,7 +32,7 @@ the 'detailed' order lines which in turn will generate several pickings
 according to delivery term (thanks to 'sale_multi_picking' module).
 """,
     'author': "Agile Business Group,Odoo Community Association (OCA)",
-    'website': 'http://www.agilebg.com',
+    'website': 'https://github.com/OCA/sale-workflow',
     'license': 'AGPL-3',
     "depends": ['sale_multi_picking'],
     "data": [

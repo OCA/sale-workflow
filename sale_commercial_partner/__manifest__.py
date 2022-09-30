@@ -9,7 +9,7 @@
     'license': 'AGPL-3',
     'summary': "Add stored related field 'Commercial Entity' on sale orders",
     'author': 'Akretion,Odoo Community Association (OCA)',
-    'website': 'http://www.akretion.com',
+    'website': 'https://github.com/OCA/sale-workflow',
     'depends': ['sale'],
     'data': [
         'views/sale.xml',

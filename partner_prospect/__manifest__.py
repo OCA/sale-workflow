@@ -22,7 +22,7 @@
     "author": "AvanzOSC, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
               "Odoo Community Association (OCA)",
-    "website": "http://www.avanzosc.es",
+    "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales Management",
     "contributors": [
         "Esther Martín <esthermartin@avanzosc.es>",

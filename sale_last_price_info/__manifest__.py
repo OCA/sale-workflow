@@ -25,7 +25,7 @@
               "AvanzOSC, "
               "Serv. Tecnol. Avanzados - Pedro M. Baeza, "
               "Odoo Community Association (OCA)",
-    "website": "http://www.odoomrp.com",
+    "website": "https://github.com/OCA/sale-workflow",
     "contributors": [
         "Alfredo de la Fuente <alfredodelafuente@avanzosc.es>",
         "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",

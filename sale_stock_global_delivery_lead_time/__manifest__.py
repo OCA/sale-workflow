@@ -28,7 +28,7 @@
     time in addition to the individual lead times on each sale.order.line.
     ''',
     'author': "Camptocamp,Odoo Community Association (OCA)",
-    'website': 'http://www.camptocamp.com',
+    'website': 'https://github.com/OCA/sale-workflow',
     'depends': ['sale_stock'],
     'data': ['sale_stock_view.xml'],
     'demo': [],
