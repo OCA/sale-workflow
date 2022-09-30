@@ -34,7 +34,7 @@ addon | version | maintainers | summary
 [sale_exception](sale_exception/) | 15.0.1.0.0 |  | Custom exceptions on sale order
 [sale_force_invoiced](sale_force_invoiced/) | 15.0.1.0.0 |  | Allows to force the invoice status of the sales order to Invoiced
 [sale_invoice_blocking](sale_invoice_blocking/) | 15.0.1.0.0 |  | Allow you to block the creation of invoices from a sale order.
-[sale_invoice_no_mail](sale_invoice_no_mail/) | 15.0.1.0.0 |  | Sale Invoice No Mail
+[sale_invoice_no_mail](sale_invoice_no_mail/) | 15.0.1.0.1 |  | Sale Invoice No Mail
 [sale_invoice_plan](sale_invoice_plan/) | 15.0.1.3.2 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to sales order, ability to manage future invoice plan
 [sale_invoice_policy](sale_invoice_policy/) | 15.0.1.0.0 |  | Sales Management: let the user choose the invoice policy on the order
 [sale_order_carrier_auto_assign](sale_order_carrier_auto_assign/) | 15.0.1.0.1 |  | Auto assign delivery carrier on sale order confirmation
