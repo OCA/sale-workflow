@@ -6,7 +6,7 @@
 {
     "name": "Sale Order Line Sequence",
     "summary": "Propagates SO line sequence to invoices and stock picking.",
-    "version": "10.0.1.0.0",
+    "version": "10.0.1.0.1",
     "author": "Eficent, "
               "Serpent CS, "
               "Odoo Community Association (OCA)",
