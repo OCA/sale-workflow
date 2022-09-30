@@ -4,7 +4,7 @@
 
 {
     'name': 'Default sales incoterm per partner',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': 'Sales Management',
     'license': 'AGPL-3',
     'summary': "Set the customer preferred incoterm on each sales order",
