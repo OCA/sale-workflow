@@ -10,7 +10,7 @@
  'depends': ['sale_automatic_workflow',
              'account_payment_sale',  # oca/bank-payment
              ],
- 'website': 'http://www.camptocamp.com',
+ 'website': 'https://github.com/OCA/sale-workflow',
  'data': ['data/automatic_workflow_data.xml',
           'views/account_payment_mode_views.xml',
           'views/sale_workflow_process_view.xml',
