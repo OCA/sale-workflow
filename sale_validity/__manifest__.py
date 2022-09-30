@@ -5,7 +5,7 @@
 
 {
     'name': 'Default Quotation Validity',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'category': 'Sales',
     'license': 'AGPL-3',
     'summary': 'Set a default validity delay on quotations',
