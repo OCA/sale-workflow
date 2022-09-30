@@ -74,7 +74,7 @@ msgstr "Naziv za prikaz"
 
 #. module: sale_cancel_reason
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_id
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_6111
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_6137
 msgid "ID"
 msgstr "ID"
 
@@ -113,7 +113,7 @@ msgid "Reason"
 msgstr "Razlog"
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_6103
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason_id_6129
 msgid "Reason for cancellation"
 msgstr "Razlog otkazivanja"
 
