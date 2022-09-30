@@ -6,7 +6,7 @@
     'name': 'Product Price Category',
     'summary': 'Add Price Category field on product and allow to apply '
                'a pricelist on this field.',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'author': 'Camptocamp SA,Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'category': 'Product',
