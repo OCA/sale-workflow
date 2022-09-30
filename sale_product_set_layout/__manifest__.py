@@ -4,7 +4,7 @@
     'name': 'Sale product set layout',
     'category': 'Sale',
     'author': 'Anybox, Odoo Community Association (OCA)',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.0.1',
     'license': 'AGPL-3',
     'sequence': 150,
     'website': 'https://github.com/OCA/sale-workflow',
