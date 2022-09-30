@@ -64,7 +64,7 @@ addon | version | maintainers | summary
 [sale_invoice_policy](sale_invoice_policy/) | 13.0.1.0.1 |  | Sales Management: let the user choose the invoice policy on the order
 [sale_isolated_quotation](sale_isolated_quotation/) | 13.0.1.1.0 |  | Sale Isolated Quotation
 [sale_last_price_info](sale_last_price_info/) | 13.0.1.0.0 |  | Product Last Price Info - Sale
-[sale_manual_delivery](sale_manual_delivery/) | 13.0.1.0.3 |  | Create manually your deliveries
+[sale_manual_delivery](sale_manual_delivery/) | 13.0.1.1.0 |  | Create manually your deliveries
 [sale_order_archive](sale_order_archive/) | 13.0.1.0.0 |  | Archive Sale Orders
 [sale_order_carrier_auto_assign](sale_order_carrier_auto_assign/) | 13.0.1.1.0 |  | Auto assign delivery carrier on sale order confirmation
 [sale_order_disable_user_autosubscribe](sale_order_disable_user_autosubscribe/) | 13.0.1.0.0 |  | Remove the salesperson from autosubscribed sale followers
