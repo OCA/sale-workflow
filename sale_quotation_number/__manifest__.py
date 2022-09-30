@@ -7,7 +7,7 @@
 {
     'name': 'Sale Quotation Numeration',
     'summary': "Different sequence for sale quotations",
-    'version': '11.0.1.1.0',
+    'version': '11.0.1.1.1',
     'category': 'Sales Management',
     'website': 'https://github.com/OCA/sale-workflow',
     'author': 'Elico Corp, '
