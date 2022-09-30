@@ -4,7 +4,7 @@
 
 {
     'name': 'Sale Commercial Partner',
-    'version': '10.0.1.0.1',
+    'version': '10.0.1.0.2',
     'category': 'Sales Management',
     'license': 'AGPL-3',
     'summary': "Add stored related field 'Commercial Entity' on sale orders",
