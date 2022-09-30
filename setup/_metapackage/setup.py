@@ -34,6 +34,7 @@ setuptools.setup(
         'odoo14-addon-sale_delivery_split_date',
         'odoo14-addon-sale_delivery_state',
         'odoo14-addon-sale_discount_display_amount',
+        'odoo14-addon-sale_elaboration',
         'odoo14-addon-sale_exception',
         'odoo14-addon-sale_force_invoiced',
         'odoo14-addon-sale_global_discount',
