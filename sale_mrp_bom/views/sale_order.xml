@@ -9,7 +9,7 @@
             <xpath expr="//field[@name='order_line']//tree//field[@name='name']" position="after">
                 <field name="bom_id" groups="sale_mrp_bom.sale_mrp_bom_group"/>
             </xpath>
-            <xpath expr="//field[@name='order_line']//form//field[@name='customer_lead']" position="after">
+            <xpath expr="//field[@name='order_line']//form//label[@for='customer_lead']" position="before">
                 <field name="bom_id" groups="sale_mrp_bom.sale_mrp_bom_group"/>
             </xpath>
         </field>
