@@ -24,7 +24,7 @@
     "category": "Sales Management",
     "author": "Agile Business Group, Odoo Community Association (OCA)",
     "installable": True,
-    "website": "https://github.com/OCA/sale-workflow/tree/"
+    "website": "https://github.com/OCA/sale-workflow"
                "10.0/sale_order_line_description",
     "license": "AGPL-3",
     "depends": [

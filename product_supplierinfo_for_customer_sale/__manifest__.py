@@ -8,7 +8,7 @@
     "summary": "Loads in every sale order line the customer code defined "
                "in the product",
     "author": "Agile Business Group,Odoo Community Association (OCA)",
-    "website": "http://www.agilebg.com",
+    "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales Management",
     "license": "AGPL-3",
     "depends": [

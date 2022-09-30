@@ -1,0 +1,35 @@
+# Do NOT update manually; changes here will be overwritten by Copier
+_commit: v1.10.0
+_src_path: https://github.com/OCA/oca-addons-repo-template.git
+ci: GitHub
+dependency_installation_mode: PIP
+generate_requirements_txt: true
+github_check_license: true
+github_enable_codecov: true
+github_enable_makepot: true
+github_enable_stale_action: true
+github_enforce_dev_status_compatibility: true
+include_wkhtmltopdf: false
+odoo_version: 10.0
+org_name: Odoo Community Association (OCA)
+org_slug: OCA
+rebel_module_groups:
+- sale_procurement_group_by_requested_date_sale_sourced_by_line
+- sale_procurement_group_by_requested_date
+- sale_delivery_split_date
+- sale_stock_picking_blocking_proc_group_by_line
+- sale_sourced_by_line
+- sale_procurement_group_by_line
+- sale_order_action_invoice_create_hook
+- sale_invoice_group_method
+- sale_merge_draft_invoice
+- sale_promotion_rule
+- sale_promotion_rule_delivery
+- sale_promotion_rule_assortment
+repo_description: null
+repo_name: Odoo Sales, Workflow and Organization
+repo_slug: sale-workflow
+repo_website: https://github.com/OCA/sale-workflow
+travis_apt_packages: []
+travis_apt_sources: []
+

@@ -23,7 +23,7 @@
     'summary': "manual sourcing of sale quotations",
 
     'author': "Camptocamp,Odoo Community Association (OCA)",
-    'website': "http://www.camptocamp.com",
+    'website': "https://github.com/OCA/sale-workflow",
 
     'category': 'Sales',
     'version': '8.0.0.3.1',

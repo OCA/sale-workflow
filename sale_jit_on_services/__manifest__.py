@@ -47,7 +47,7 @@ Contributors
 """,
     'author': "Camptocamp,Odoo Community Association (OCA)",
     'depends': ['procurement'],
-    'website': 'http://www.camptocamp.com',
+    'website': 'https://github.com/OCA/sale-workflow',
     'data': [
         'procurement_workflow.xml'
     ],

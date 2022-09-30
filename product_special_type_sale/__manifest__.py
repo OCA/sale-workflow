@@ -30,7 +30,7 @@
 According to the products special types (discount, advance, delivery), compute
 totals on sales.
 """,
-    "website": "http://camptocamp.com",
+    "website": "https://github.com/OCA/sale-workflow",
     "depends": ['sale',
                 'product_special_type', ],
     "init_xml": [],

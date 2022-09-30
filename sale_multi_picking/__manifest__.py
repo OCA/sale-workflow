@@ -29,7 +29,7 @@ You just have to indicate which order lines have to be grouped in the same
 picking. When confirming the order, for each group a picking is generated.
 """,
     'author': "Agile Business Group,Odoo Community Association (OCA)",
-    'website': 'http://www.agilebg.com',
+    'website': 'https://github.com/OCA/sale-workflow',
     'license': 'AGPL-3',
     "depends": ['sale_stock'],
     "data": [

@@ -22,7 +22,7 @@
 {"name": "Sale Dropshipping",
  "version": "1.1.1",
  "author": "Akretion,Odoo Community Association (OCA)",
- "website": "http://www.openerp.com",
+ "website": "https://github.com/OCA/sale-workflow",
  "category": "Generic Modules/Purchase",
  "depends": ["purchase",
              "sale_stock"],

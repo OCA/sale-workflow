@@ -11,6 +11,7 @@
  "description": """Adds predefine header and footer text on sale order and
      invoice.
 Texts are passed in the invoice when sale order is transformed into invoice""",
+ "website": "https://github.com/OCA/sale-workflow",
  "author": "Camptocamp,Odoo Community Association (OCA)",
  "init_xml": [],
  "update_xml": ["account_invoice_view.xml",

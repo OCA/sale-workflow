@@ -39,7 +39,7 @@ These fields can be used on reports to display the amounts for
 discounts / advances / fees separately.
 
 """,
-    "website": "http://camptocamp.com",
+    "website": "https://github.com/OCA/sale-workflow",
     "depends": ['base',
                 'product', ],
     "init_xml": [],

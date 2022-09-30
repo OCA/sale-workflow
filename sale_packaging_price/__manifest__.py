@@ -21,7 +21,7 @@
               'Incaser Informatica S.L., '
               'Tecnativa, '
               'Odoo Community Association (OCA)',
-    'website': 'http://www.tecnativa.com',
+    'website': 'https://github.com/OCA/sale-workflow',
     'license': 'LGPL-3',
     'installable': False,
 }

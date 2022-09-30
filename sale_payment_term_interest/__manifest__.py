@@ -25,7 +25,7 @@
  'license': 'AGPL-3',
  'category': 'Accounting & Finance',
  'depends': ['sale'],
- 'website': 'http://www.camptocamp.com',
+ 'website': 'https://github.com/OCA/sale-workflow',
  'data': ['data/product_data.xml',
           'view/sale_order_view.xml',
           'view/account_payment_term_view.xml',

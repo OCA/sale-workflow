@@ -12,7 +12,7 @@
               "Akretion,"
               "Odoo Community Association (OCA), "
               "Serpent Consulting Services Pvt. Ltd.",
-    "website": "http://www.agilebg.com",
+    "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
     "depends": [
         "sale",

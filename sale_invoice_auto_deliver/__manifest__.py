@@ -7,7 +7,7 @@
     "version": "10.0.1.0.0",
     'author': "ACSONE SA/NV,Odoo Community Association (OCA)",
     "category": "Sales Management",
-    "website": "http://www.acsone.eu",
+    "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale",
                 "sale_stock",
                 "stock"],

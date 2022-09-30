@@ -22,6 +22,7 @@
  'summary': 'Option on partner to set prepayment policy',
  'version': '8.0.1.0.0',
  'author': "Camptocamp,Odoo Community Association (OCA)",
+ 'website': 'https://github.com/OCA/sale-workflow',
  'category': 'Sales',
  'license': 'AGPL-3',
  'complexity': 'easy',

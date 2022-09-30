@@ -25,7 +25,7 @@
     'author': 'FactorLibre,Odoo Community Association (OCA)',
     'category': 'Sale',
     'license': 'AGPL-3',
-    'website': 'http://factorlibre.com',
+    'website': 'https://github.com/OCA/sale-workflow',
     'depends': [
         'sale'
     ],

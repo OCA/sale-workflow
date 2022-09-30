@@ -11,7 +11,7 @@
     'license': 'AGPL-3',
     'summary': 'Manage Rental of Products',
     'author': 'Akretion, Sodexis, Odoo Community Association (OCA)',
-    'website': 'http://www.akretion.com',
+    'website': 'https://github.com/OCA/sale-workflow',
     'depends': ['sale_start_end_dates', 'sale_stock', 'sales_team'],
     'data': [
         'data/rental_data.xml',

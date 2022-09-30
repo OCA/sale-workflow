@@ -6,7 +6,7 @@
     'name': 'sale_order_lot_generator',
     'version': '10.0.0.0.1',
     'author': 'Akretion',
-    'website': 'http://www.akretion.com',
+    'website': 'https://github.com/OCA/sale-workflow',
     'license': 'AGPL-3',
     'category': 'Sale',
     'depends': [

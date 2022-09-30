@@ -28,7 +28,7 @@
  'license': 'AGPL-3',
  'complexity': 'expert',
  'images': [],
- 'website': "http://www.camptocamp.com",
+ 'website': "https://github.com/OCA/sale-workflow",
  'depends': ['sale_sourced_by_line',
              'sale_transport_multi_address',
              ],

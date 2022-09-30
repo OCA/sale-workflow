@@ -8,7 +8,7 @@
     'version': '10.0.1.0.0',
     'category': 'Sales Management',
     'author': "Odoo Community Association (OCA), Agile Business Group",
-    'website': 'http://www.agilebg.com',
+    'website': 'https://github.com/OCA/sale-workflow',
     'license': 'AGPL-3',
     'depends': ['sale_stock', 'procurement'],
     'data': ['view/sale_view.xml'],
