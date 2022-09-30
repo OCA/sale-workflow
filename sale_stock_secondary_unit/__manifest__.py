@@ -3,7 +3,7 @@
 {
     'name': 'Sale Stock Secondary Unit',
     'summary': 'Get product quantities in a secondary unit',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.0.1',
     'development_status': 'Beta',
     'category': 'stock',
     'website': 'https://github.com/OCA/sale-workflow',
