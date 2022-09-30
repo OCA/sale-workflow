@@ -41,6 +41,7 @@ setuptools.setup(
         'odoo13-addon-sale_force_invoiced',
         'odoo13-addon-sale_force_whole_invoiceability',
         'odoo13-addon-sale_global_discount',
+        'odoo13-addon-sale_invoice_no_mail',
         'odoo13-addon-sale_invoice_plan',
         'odoo13-addon-sale_invoice_policy',
         'odoo13-addon-sale_isolated_quotation',
