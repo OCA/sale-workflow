@@ -21,70 +21,70 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[portal_sale_personal_data_only](portal_sale_personal_data_only/) | 10.0.1.0.0 |  | Portal Sale Personal Data Only
-[product_margin_classification](product_margin_classification/) | 10.0.2.0.0 |  | Product Margin Classification
-[product_price_category](product_price_category/) | 10.0.1.0.0 |  | Add Price Category field on product and allow to apply a pricelist on this field.
-[product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 10.0.1.0.0 |  | Loads in every sale order line the customer code defined in the product
-[sale_automatic_workflow](sale_automatic_workflow/) | 10.0.1.0.1 |  | Sale Automatic Workflow
-[sale_automatic_workflow_exception](sale_automatic_workflow_exception/) | 10.0.1.0.0 |  | Sale Automatic Workflow Exception
-[sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 10.0.1.0.2 |  | Sale Automatic Workflow - Payment Mode
+[portal_sale_personal_data_only](portal_sale_personal_data_only/) | 10.0.1.0.1 |  | Portal Sale Personal Data Only
+[product_margin_classification](product_margin_classification/) | 10.0.2.0.1 |  | Product Margin Classification
+[product_price_category](product_price_category/) | 10.0.1.0.1 |  | Add Price Category field on product and allow to apply a pricelist on this field.
+[product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 10.0.1.0.1 |  | Loads in every sale order line the customer code defined in the product
+[sale_automatic_workflow](sale_automatic_workflow/) | 10.0.1.0.2 |  | Sale Automatic Workflow
+[sale_automatic_workflow_exception](sale_automatic_workflow_exception/) | 10.0.1.0.1 |  | Sale Automatic Workflow Exception
+[sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 10.0.1.0.3 |  | Sale Automatic Workflow - Payment Mode
 [sale_automatic_workflow_payment_ref](sale_automatic_workflow_payment_ref/) | 10.0.1.0.1 |  | Propagates your payment reference from your sale order to your payment
-[sale_automatic_workflow_validate_purchase_mto](sale_automatic_workflow_validate_purchase_mto/) | 10.0.1.0.1 |  | When a sale order generates directly a purchase order, validates it automatically
+[sale_automatic_workflow_validate_purchase_mto](sale_automatic_workflow_validate_purchase_mto/) | 10.0.1.0.2 |  | When a sale order generates directly a purchase order, validates it automatically
 [sale_blanket_order](sale_blanket_order/) | 10.0.1.0.0 |  | Blanket Orders
-[sale_cancel_reason](sale_cancel_reason/) | 10.0.1.0.1 |  | Sale Cancel Reason
-[sale_commercial_partner](sale_commercial_partner/) | 10.0.1.0.1 |  | Add stored related field 'Commercial Entity' on sale orders
-[sale_company_currency](sale_company_currency/) | 10.0.1.0.0 |  | Company currency in sale orders
+[sale_cancel_reason](sale_cancel_reason/) | 10.0.1.0.2 |  | Sale Cancel Reason
+[sale_commercial_partner](sale_commercial_partner/) | 10.0.1.0.2 |  | Add stored related field 'Commercial Entity' on sale orders
+[sale_company_currency](sale_company_currency/) | 10.0.1.0.1 |  | Company currency in sale orders
 [sale_delivery_split_date](sale_delivery_split_date/) | 10.0.1.0.0 |  | Sale Deliveries split by date
-[sale_discount_display_amount](sale_discount_display_amount/) | 10.0.1.0.0 |  | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
+[sale_discount_display_amount](sale_discount_display_amount/) | 10.0.1.0.1 |  | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
 [sale_exception](sale_exception/) | 10.0.2.0.2 |  | Custom exceptions on sale order
 [sale_fixed_discount](sale_fixed_discount/) | 10.0.1.0.1 |  | Allows to apply fixed amount discounts in sales orders.
 [sale_force_invoiced](sale_force_invoiced/) | 10.0.1.0.0 |  | Allows to force the invoice status of the sales order to Invoiced
-[sale_invoice_auto_deliver](sale_invoice_auto_deliver/) | 10.0.1.0.0 |  | Sale Invoice Automatic Deliver
+[sale_invoice_auto_deliver](sale_invoice_auto_deliver/) | 10.0.1.0.1 |  | Sale Invoice Automatic Deliver
 [sale_invoice_group_method](sale_invoice_group_method/) | 10.0.1.0.0 |  | Sale Invoice Group Method
 [sale_invoice_policy](sale_invoice_policy/) | 10.0.1.0.0 |  | Sale invoice Policy
-[sale_isolated_quotation](sale_isolated_quotation/) | 10.0.1.0.0 |  | Sales - Isolated Quotation
-[sale_layout_hidden](sale_layout_hidden/) | 10.0.1.0.1 |  | Sale Layout Hidden Sections
+[sale_isolated_quotation](sale_isolated_quotation/) | 10.0.1.0.1 |  | Sales - Isolated Quotation
+[sale_layout_hidden](sale_layout_hidden/) | 10.0.1.0.2 |  | Sale Layout Hidden Sections
 [sale_merge_draft_invoice](sale_merge_draft_invoice/) | 10.0.1.0.0 |  | Sale Merge Draft Invoice
 [sale_mrp_link](sale_mrp_link/) | 10.0.1.0.0 |  | Show manufacturing orders generated from sales order
 [sale_order_action_invoice_create_hook](sale_order_action_invoice_create_hook/) | 10.0.1.0.0 |  | Sale Order Action Invoice Create Hook
 [sale_order_invoicing_finished_task](sale_order_invoicing_finished_task/) | 10.0.1.0.3 |  | Control invoice order lines if his task has been finished
 [sale_order_line_confirmation_date](sale_order_line_confirmation_date/) | 10.0.1.0.1 |  | Adds the confrmation date on order lines
-[sale_order_line_date](sale_order_line_date/) | 10.0.1.0.0 |  | Sale Order Line Date
-[sale_order_line_description](sale_order_line_description/) | 10.0.1.0.0 |  | Sale order line description
-[sale_order_line_sequence](sale_order_line_sequence/) | 10.0.1.0.0 |  | Propagates SO line sequence to invoices and stock picking.
-[sale_order_lot_generator](sale_order_lot_generator/) | 10.0.0.0.1 |  | sale_order_lot_generator
+[sale_order_line_date](sale_order_line_date/) | 10.0.1.0.1 |  | Sale Order Line Date
+[sale_order_line_description](sale_order_line_description/) | 10.0.1.0.1 |  | Sale order line description
+[sale_order_line_sequence](sale_order_line_sequence/) | 10.0.1.0.1 |  | Propagates SO line sequence to invoices and stock picking.
+[sale_order_lot_generator](sale_order_lot_generator/) | 10.0.0.0.2 |  | sale_order_lot_generator
 [sale_order_lot_mrp](sale_order_lot_mrp/) | 10.0.1.0.0 |  | sale_order_lot_mrp
-[sale_order_lot_selection](sale_order_lot_selection/) | 10.0.1.0.0 |  | Sale Order Lot Selection
-[sale_order_margin_percent](sale_order_margin_percent/) | 10.0.1.0.0 |  | Show Percent in sale order
-[sale_order_price_recalculation](sale_order_price_recalculation/) | 10.0.1.0.1 |  | Price recalculation in sales orders
-[sale_order_priority](sale_order_priority/) | 10.0.1.0.0 |  | Define priority on sale orders
+[sale_order_lot_selection](sale_order_lot_selection/) | 10.0.1.0.1 |  | Sale Order Lot Selection
+[sale_order_margin_percent](sale_order_margin_percent/) | 10.0.1.0.1 |  | Show Percent in sale order
+[sale_order_price_recalculation](sale_order_price_recalculation/) | 10.0.1.0.2 |  | Price recalculation in sales orders
+[sale_order_priority](sale_order_priority/) | 10.0.1.0.1 |  | Define priority on sale orders
 [sale_order_restrict_cancel_existing_invoice](sale_order_restrict_cancel_existing_invoice/) | 10.0.1.0.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Allows to restrict sale order cancelling if an invoice exists
-[sale_order_revision](sale_order_revision/) | 10.0.1.0.1 |  | Sale order revisions
+[sale_order_revision](sale_order_revision/) | 10.0.1.0.2 |  | Sale order revisions
 [sale_order_type](sale_order_type/) | 10.0.1.1.0 |  | Sale Order Type
-[sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 10.0.1.0.0 |  | Manage stock ownership on sale order lines
-[sale_partner_incoterm](sale_partner_incoterm/) | 10.0.1.0.0 |  | Set the customer preferred incoterm on each sales order
-[sale_partner_version](sale_partner_version/) | 10.0.1.0.0 |  | Sale Partner Version
+[sale_owner_stock_sourcing](sale_owner_stock_sourcing/) | 10.0.1.0.1 |  | Manage stock ownership on sale order lines
+[sale_partner_incoterm](sale_partner_incoterm/) | 10.0.1.0.1 |  | Set the customer preferred incoterm on each sales order
+[sale_partner_version](sale_partner_version/) | 10.0.1.0.1 |  | Sale Partner Version
 [sale_procurement_amendment](sale_procurement_amendment/) | 10.0.1.0.1 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Allow to reflect confirmed sale lines quantity amendments to procurements
 [sale_procurement_group_by_line](sale_procurement_group_by_line/) | 10.0.1.1.2 |  | Base module for multiple procurement group by Sale order
 [sale_procurement_group_by_requested_date](sale_procurement_group_by_requested_date/) | 10.0.1.0.0 |  | Groups pickings based on requested date of order line
 [sale_procurement_group_by_requested_date_sale_sourced_by_line](sale_procurement_group_by_requested_date_sale_sourced_by_line/) | 10.0.1.0.0 |  | Integrates sale_source_by_line and sale procurement group
-[sale_product_multi_add](sale_product_multi_add/) | 10.0.1.0.0 |  | Sale Product Multi Add
+[sale_product_multi_add](sale_product_multi_add/) | 10.0.1.0.1 |  | Sale Product Multi Add
 [sale_product_set](sale_product_set/) | 10.0.1.0.2 |  | Sale product set
-[sale_product_set_layout](sale_product_set_layout/) | 10.0.1.0.0 |  | Sale product set layout
+[sale_product_set_layout](sale_product_set_layout/) | 10.0.1.0.1 |  | Sale product set layout
 [sale_promotion_rule](sale_promotion_rule/) | 10.0.2.1.1 |  | Module to manage promotion rule on sale order
 [sale_promotion_rule_assortment](sale_promotion_rule_assortment/) | 10.0.1.0.0 |  | This addon allows to reduce the appliance of a promotion rule to a set of products
 [sale_promotion_rule_delivery](sale_promotion_rule_delivery/) | 10.0.1.0.0 |  | Manage promotion rule with delivery
-[sale_quotation_number](sale_quotation_number/) | 10.0.1.1.0 |  | Different sequence for sale quotations
-[sale_rental](sale_rental/) | 10.0.1.0.0 |  | Manage Rental of Products
-[sale_revert_done](sale_revert_done/) | 10.0.1.0.0 |  | This module extends the functionality of sales to allow you to set a sales order done back to state 'Sale Order'.
+[sale_quotation_number](sale_quotation_number/) | 10.0.1.1.1 |  | Different sequence for sale quotations
+[sale_rental](sale_rental/) | 10.0.1.0.1 |  | Manage Rental of Products
+[sale_revert_done](sale_revert_done/) | 10.0.1.0.1 |  | This module extends the functionality of sales to allow you to set a sales order done back to state 'Sale Order'.
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 10.0.1.0.0 |  | Add shipping amounts on sale order
 [sale_sourced_by_line](sale_sourced_by_line/) | 10.0.1.0.0 |  | Multiple warehouse source locations for Sale order
-[sale_start_end_dates](sale_start_end_dates/) | 10.0.1.0.0 |  | Adds start date and end date on sale order lines
+[sale_start_end_dates](sale_start_end_dates/) | 10.0.1.0.1 |  | Adds start date and end date on sale order lines
 [sale_stock_picking_blocking](sale_stock_picking_blocking/) | 10.0.1.0.1 |  | Allow you to block the creation of deliveries from a sale order.
 [sale_stock_picking_blocking_proc_group_by_line](sale_stock_picking_blocking_proc_group_by_line/) | 10.0.1.0.0 |  | Module that allows module sale_delivery_block to work with sale_procurement_group_by_line
 [sale_stock_picking_note](sale_stock_picking_note/) | 10.0.1.1.0 |  | Add picking note in sale and purchase order
-[sale_triple_discount](sale_triple_discount/) | 10.0.1.1.2 |  | Manage triple discount on sale order lines
-[sale_validity](sale_validity/) | 10.0.1.0.0 |  | Set a default validity delay on quotations
+[sale_triple_discount](sale_triple_discount/) | 10.0.1.1.3 |  | Manage triple discount on sale order lines
+[sale_validity](sale_validity/) | 10.0.1.0.1 |  | Set a default validity delay on quotations
 
 
 Unported addons
