@@ -20,7 +20,7 @@
 #
 {
     "name": "Sale order line description",
-    "version": "10.0.1.0.0",
+    "version": "10.0.1.0.1",
     "category": "Sales Management",
     "author": "Agile Business Group, Odoo Community Association (OCA)",
     "installable": True,
