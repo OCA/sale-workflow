@@ -11,6 +11,16 @@ class ManualDelivery(models.TransientModel):
     _description = "Manual Delivery"
     _order = "create_date desc"
 
+    def _prepare_lines_default_values(self, sale_line):
+        return {
+            "order_line_id": sale_line.id,
+            "name": sale_line.name,
+            "product_id": sale_line.product_id.id,
+            "qty_ordered": sale_line.product_uom_qty,
+            "qty_procured": sale_line.qty_procured,
+            "quantity": sale_line.qty_to_procure,
+        }
+
     @api.model
     def default_get(self, fields):
         res = super().default_get(fields)
@@ -32,18 +42,7 @@ class ManualDelivery(models.TransientModel):
             res["commercial_partner_id"] = partner.commercial_partner_id.id
             # Convert to manual.delivery.lines
             res["line_ids"] = [
-                (
-                    0,
-                    0,
-                    {
-                        "order_line_id": line.id,
-                        "name": line.name,
-                        "product_id": line.product_id.id,
-                        "qty_ordered": line.product_uom_qty,
-                        "qty_procured": line.qty_procured,
-                        "quantity": line.qty_to_procure,
-                    },
-                )
+                (0, 0, self._prepare_lines_default_values(line),)
                 for line in sale_lines
                 if line.qty_to_procure and line.product_id.type != "service"
             ]
@@ -80,7 +79,7 @@ class ManualDelivery(models.TransientModel):
     date_planned = fields.Datetime(string="Date Planned")
 
     def confirm(self):
-        """ Creates the manual procurements """
+        """Creates the manual procurements"""
         self.ensure_one()
         sale_order_lines = self.line_ids.mapped("order_line_id")
         sale_order_lines.with_context(
