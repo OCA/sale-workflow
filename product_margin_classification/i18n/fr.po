@@ -313,7 +313,7 @@ msgid ""
 "for the product %s"
 msgstr ""
 "Fonctionnalité non implémentée\n"
-"Les taxes à la vente %s ne sont pas correctment configuré pour calculer les "
+"Les taxes à la vente ne sont pas correctment configuré pour calculer les "
 "prix avec des coéfficients pour l'article %s"
 
 #. module: product_margin_classification

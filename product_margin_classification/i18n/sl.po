@@ -314,7 +314,7 @@ msgid ""
 "for the product %s"
 msgstr ""
 "Neimplementirana funkcija\n"
-"Davek %s ni pravilno nastavljen za obdelavo cen s koeficienti za proizvod %s"
+"Davek ni pravilno nastavljen za obdelavo cen s koeficienti za proizvod %s"
 
 #. module: product_margin_classification
 #: model:ir.ui.view,arch_db:product_margin_classification.view_product_margin_classification_form
