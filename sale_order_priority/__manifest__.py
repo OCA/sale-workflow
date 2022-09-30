@@ -4,7 +4,7 @@
 {
     "name": "Sale order priority",
     "summary": "Define priority on sale orders",
-    "version": "10.0.1.0.0",
+    "version": "10.0.1.0.1",
     "category": "Sale Workflow",
     "website": "https://github.com/OCA/sale-workflow"
                "sale_order_priority",
