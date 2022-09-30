@@ -34,6 +34,27 @@ msgid "Config Settings"
 msgstr ""
 
 #. module: sale_order_partner_restrict
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_res_company__display_name
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_res_company__id
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_partner_restrict
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_res_company____last_update
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:sale_order_partner_restrict.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_order_partner_restrict
 #: model:ir.model.fields.selection,name:sale_order_partner_restrict.selection__res_company__sale_order_partner_restrict__only_parents
 msgid "Only parent accounts (no contacts)"
 msgstr ""
