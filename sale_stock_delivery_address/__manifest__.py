@@ -5,7 +5,7 @@
     "name": "Sale Stock Sourcing Address",
     "version": "11.0.1.1.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/sale-workflow/",
+    "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales Management",
     "license": "LGPL-3",
     "depends": [
