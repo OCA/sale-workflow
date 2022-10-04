@@ -6,186 +6,189 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-10-04 14:36+0000\n"
+"Last-Translator: pere-aquarian <pere@aquarian.tech>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_invoice_plan__invoice_type__advance
 msgid "Advance"
-msgstr ""
+msgstr "Avançament"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__advance
 msgid "Advance on 1st Invoice"
-msgstr ""
+msgstr "Avançament a la 1ª factura"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
 msgid "Are you sure to remove this invoice plan?"
-msgstr ""
+msgstr "Esteu segur/a que voleu aquest pla de factures?"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,help:sale_invoice_plan.field_sale_order__ip_invoice_plan
 msgid "At least one invoice plan line pending to create invoice"
 msgstr ""
+"Almenys hi ha una línia del pla de factures pendent per crear la factura"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_create_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
 msgid "Create All Remaining Invoices"
-msgstr ""
+msgstr "Crear les factures que resten"
 
 #. module: sale_invoice_plan
 #: model:ir.actions.act_window,name:sale_invoice_plan.action_sale_create_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_create_invoice_plan
 msgid "Create Invoice Plan"
-msgstr ""
+msgstr "Crear un pla de facturació"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
 msgid "Create Invoice by Plan"
-msgstr ""
+msgstr "Crear factura del pla"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
 msgid "Create Next Inovice"
-msgstr ""
+msgstr "Crear la propera factura"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__create_uid
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__create_uid
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__create_date
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__create_date
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creat el"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__partner_id
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 msgid "Customer"
-msgstr ""
+msgstr "Client/a"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_create_invoice_plan__interval_type__day
 msgid "Day"
-msgstr ""
+msgstr "Dia"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__display_name
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__display_name
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom mostrat"
 
 #. module: sale_invoice_plan
 #: model:ir.model,name:sale_invoice_plan.model_sale_create_invoice_plan
 msgid "Fillig invoice planning criteria"
-msgstr ""
+msgstr "Omplir els criteris del pla de facturació"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 msgid "Group By"
-msgstr ""
+msgstr "Agrupa per"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__id
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__id
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__invoiced
 msgid "If this line already invoiced"
-msgstr ""
+msgstr "Si aquesta línia està facturada"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__to_invoice
 msgid "If this line is ready to create new invoice"
-msgstr ""
+msgstr "Si aquesta línia està llesta per a ser facturada"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_ids
 msgid "Inovice Plan"
-msgstr ""
+msgstr "Pla de facturació"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__installment
 #: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_invoice_plan__invoice_type__installment
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 msgid "Installment"
-msgstr ""
+msgstr "Pagament"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__installment_date
 msgid "Installment Date"
-msgstr ""
+msgstr "Data de pagament"
 
 #. module: sale_invoice_plan
 #: model:ir.model.constraint,message:sale_invoice_plan.constraint_sale_invoice_plan_unique_instalment
 msgid "Installment must be unique on invoice plan"
-msgstr ""
+msgstr "El pagament ha de ser únic a un pla de facturació"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__interval
 msgid "Interval"
-msgstr ""
+msgstr "Interval"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__interval_type
 msgid "Interval Type"
-msgstr ""
+msgstr "Tipus d'interval"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoiced
 msgid "Invoice Created"
-msgstr ""
+msgstr "Factura creada"
 
 #. module: sale_invoice_plan
 #: model:ir.actions.act_window,name:sale_invoice_plan.action_view_sale_make_planned_invoice
 msgid "Invoice Order"
-msgstr ""
+msgstr "Ordre de facturació"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
 msgid "Invoice Plan"
-msgstr ""
+msgstr "Pla de facturació"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__ip_invoice_plan
 msgid "Invoice Plan In Process"
-msgstr ""
+msgstr "Pla de facturació en curs"
 
 #. module: sale_invoice_plan
 #: model:ir.model,name:sale_invoice_plan.model_sale_invoice_plan
 msgid "Invoice Planning Detail"
-msgstr ""
+msgstr "Detall del pla de facturació"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
 msgid "Invoice Sales Order"
-msgstr ""
+msgstr "Facturar comandes de venda"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoice_move_ids
 msgid "Invoices"
-msgstr ""
+msgstr "Factures"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
@@ -193,68 +196,71 @@ msgid ""
 "Invoices will be created in draft for this installment\n"
 "                        so that you can review them before validation."
 msgstr ""
+"Les factures es crearan en esborrany per a aquest termini\n"
+"                         perquè pugueu revisar-les abans de la seva "
+"validació."
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__last
 msgid "Last Installment"
-msgstr ""
+msgstr "Darrer pagament"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan____last_update
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan____last_update
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificació el"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__write_uid
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__write_uid
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última modificació per"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__write_date
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__write_date
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última modificació el"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__last
 msgid "Last installment will create invoice use remaining amount"
-msgstr ""
+msgstr "El darrer efecte crearà una factura amb l'import restant"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_create_invoice_plan__interval_type__month
 msgid "Month"
-msgstr ""
+msgstr "Mes"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__to_invoice
 msgid "Next Invoice"
-msgstr ""
+msgstr "Propera factura"
 
 #. module: sale_invoice_plan
 #: code:addons/sale_invoice_plan/wizard/sale_create_invoice_plan.py:0
 #, python-format
 msgid "Number Installment must greater than 1"
-msgstr ""
+msgstr "El número de pagament ha de ser major que 1"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__num_installment
 msgid "Number of Installment"
-msgstr ""
+msgstr "Número de pagament"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__percent
 msgid "Percent"
-msgstr ""
+msgstr "Percentatge"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__plan_date
 msgid "Plan Date"
-msgstr ""
+msgstr "Data del pla"
 
 #. module: sale_invoice_plan
 #: code:addons/sale_invoice_plan/models/sale.py:0
@@ -263,109 +269,115 @@ msgid ""
 "Plan quantity: %s, exceed invoiceable quantity: %s\n"
 "Product should be delivered before invoice"
 msgstr ""
+"Quantitat del pla: %s, supera la quantitat facturable: %s\n"
+"El producte s'ha de lliurar abans de facturar-lo"
 
 #. module: sale_invoice_plan
 #: code:addons/sale_invoice_plan/models/sale.py:0
 #, python-format
 msgid "Please fill percentage for all invoice plan lines"
-msgstr ""
+msgstr "Sisplau, ompliu el percentatge a totes les línies del pla de facturació"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 msgid "Quotations"
-msgstr ""
+msgstr "Pressupostos"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_form
 msgid "Related Invoices"
-msgstr ""
+msgstr "Factures relacionades"
 
 #. module: sale_invoice_plan
 #: model:ir.model,name:sale_invoice_plan.model_sale_advance_payment_inv
 msgid "Sales Advance Payment Invoice"
-msgstr ""
+msgstr "Factura d'avançament de vendes"
 
 #. module: sale_invoice_plan
 #: model:ir.actions.act_window,name:sale_invoice_plan.action_sale_invoice_plan
 #: model:ir.ui.menu,name:sale_invoice_plan.menu_sale_invoice_plan
 msgid "Sales Invoice Plan"
-msgstr ""
+msgstr "Pla de facturació de vendes"
 
 #. module: sale_invoice_plan
 #: model:ir.model,name:sale_invoice_plan.model_sale_order
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__sale_id
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 msgid "Sales Order"
-msgstr ""
+msgstr "Comanda de venda"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 msgid "Sales Orders"
-msgstr ""
+msgstr "Comandes de venda"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 msgid "Search Sales Invoice Plan Lines"
-msgstr ""
+msgstr "Cercar línies del pla de facturació de vendes"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__state
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 msgid "Status"
-msgstr ""
+msgstr "Estat"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__percent
 msgid "This percent will be used to calculate new quantity"
-msgstr ""
+msgstr "Aquest percentatge s'utilitzarà per calcular una nova quantitat"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.actions.act_window,help:sale_invoice_plan.action_sale_invoice_plan
 msgid "This view show all available invoice plan line for reporting purposes"
 msgstr ""
+"Aquesta vista mostra totes les línies de pla de factures disponibles per als "
+"informes"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_create_invoice_plan
 msgid "This wizard help you quickly create invoice plan."
-msgstr ""
+msgstr "Aquest assistent us ajuda a crear ràpidament un pla de factures."
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoice_type
 msgid "Type"
-msgstr ""
+msgstr "Tipus"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__use_invoice_plan
 msgid "Use Invoice Plan"
-msgstr ""
+msgstr "Fer servir un pla de facturació"
 
 #. module: sale_invoice_plan
 #: code:addons/sale_invoice_plan/models/sale.py:0
 #, python-format
 msgid "Use Invoice Plan selected, but no plan created"
 msgstr ""
+"Fer servir el pla de facturació seleccionat, però no crear un pla de "
+"facturació"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.actions.act_window,help:sale_invoice_plan.action_sale_invoice_plan
 msgid "View sales invoice plan lines"
-msgstr ""
+msgstr "Veure línies de pla de facturació de vendes"
 
 #. module: sale_invoice_plan
 #: model:ir.model,name:sale_invoice_plan.model_sale_make_planned_invoice
 msgid "Wizard when create invoice by plan"
-msgstr ""
+msgstr "Assistent quan es crea una factura pel pla"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_create_invoice_plan__interval_type__year
 msgid "Year"
-msgstr ""
+msgstr "Any"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
 msgid "⇒ Create Invoice Plan"
-msgstr ""
+msgstr "⇒ Crear un pla de facturació"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
 msgid "⇒ Remove Invoice Plan"
-msgstr ""
+msgstr "⇒ Eliminar pla de facturació"
