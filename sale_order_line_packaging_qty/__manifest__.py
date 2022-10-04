@@ -3,7 +3,7 @@
 {
     "name": "Sale Order Line Packaging Quantity",
     "summary": "Define quantities according to product packaging on sale order lines",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.0.2",
     "development_status": "Alpha",
     "category": "Warehouse Management",
     "website": "https://github.com/OCA/sale-workflow",
