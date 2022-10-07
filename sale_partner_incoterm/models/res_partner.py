@@ -12,3 +12,7 @@ class Partner(models.Model):
         comodel_name="account.incoterms",
         help="The default incoterm for new sales orders for this customer.",
     )
+    sale_incoterm_address_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Default Sale Incoterm Address",
+    )
