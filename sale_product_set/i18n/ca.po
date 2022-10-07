@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-08 00:49+0000\n"
 "PO-Revision-Date: 2022-10-07 09:36+0000\n"
-"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
+"Last-Translator: Eugeni Chafer <eugeni@chafer.cat>\n"
 "Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgstr "Afegir conjunt a la línea d'ordre de venda"
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 msgid "Cancel"
-msgstr "Cancel · lar"
+msgstr "Cancel·lar"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set__company_id
