@@ -10,6 +10,6 @@
     "author": "Opener B.V.,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale_stock"],
-    "data": ["views/res_partner.xml"],
+    "data": ["views/res_partner.xml", "views/sale_order.xml"],
     "installable": True,
 }

@@ -14,6 +14,10 @@
                     widget="selection"
                     groups="sale_stock.group_display_incoterm"
                 />
+                <field
+                    name="sale_incoterm_address_id"
+                    groups="sale_stock.group_display_incoterm"
+                />
             </field>
         </field>
     </record>
