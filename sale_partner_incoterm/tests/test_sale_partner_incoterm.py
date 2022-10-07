@@ -12,7 +12,11 @@ class TestSalePartnerIncoterm(TransactionCase):
         """
         customer = self.env.ref("base.res_partner_3")
         incoterm = self.env["account.incoterms"].search([], limit=1)
-        customer.write({"sale_incoterm_id": incoterm.id})
+        address = self.env["res.partner"].search([], limit=1)
+        customer.write(
+            {"sale_incoterm_id": incoterm.id, "sale_incoterm_address_id": address.id}
+        )
         sale_order = self.env["sale.order"].create({"partner_id": customer.id})
         sale_order.onchange_partner_id()
         self.assertEqual(sale_order.incoterm, incoterm)
+        self.assertEqual(sale_order.incoterm_address_id, address)
