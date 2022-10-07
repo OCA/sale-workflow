@@ -1,5 +1,3 @@
-import time
-
 from odoo import _, api, fields, models
 
 
@@ -137,43 +135,19 @@ class PlannedDownPayment(models.Model):
             )
         return product_id
 
-    def create_dp_order_lines(self, product_id, dp_line):
-        sale_line_obj = self.env["sale.order.line"]
-        taxes = product_id.taxes_id.filtered(
-            lambda r: not self.order_id.company_id
-            or r.company_id == self.order_id.company_id
-        )
-        tax_ids = self.order_id.fiscal_position_id.map_tax(
-            taxes, product_id, self.order_id.partner_shipping_id
-        ).ids
-        analytic_tag_ids = []
-        for line in self.order_id.order_line:
-            analytic_tag_ids = [
-                (4, analytic_tag.id, None) for analytic_tag in line.analytic_tag_ids
-            ]
-
-        so_line_values = self._prepare_so_line(
-            self.order_id,
-            product_id,
-            analytic_tag_ids,
-            tax_ids,
-            dp_line,
-        )
-        so_line = sale_line_obj.create(so_line_values)
-        return so_line
-
     def create_invoice(self, product_id):
         line_vals = []
         if len(self.line_ids) > 0:
             for dp_line in self.line_ids:
-                so_line = self.create_dp_order_lines(product_id, dp_line)
                 vals = {
-                    "name": "%s - Down Payment" % dp_line.order_line_id.product_id.name,
+                    "name": "%s - Down Payment"
+                    % dp_line.order_line_id.product_id.display_name,
                     "quantity": 1,
                     "product_id": product_id.id,
                     "price_unit": dp_line.total,
+                    "pdp_line_id": dp_line.id,
                     "analytic_account_id": self.order_id.analytic_account_id.id,
-                    "sale_line_ids": [(6, 0, so_line.ids)],
+                    # "sale_line_ids": [(6, 0, so_line.ids)],
                 }
                 line_vals.append((0, 0, vals))
         invoice_id = self.env["account.move"].create(
@@ -204,27 +178,6 @@ class PlannedDownPayment(models.Model):
             }
         )
         return invoice_id
-
-    def _prepare_so_line(self, order, product_id, analytic_tag_ids, tax_ids, dp_line):
-        so_values = {
-            "name": "%s - Down Payment %s"
-            % (
-                dp_line.order_line_id.product_id.display_name,
-                time.strftime("%d-%m-%Y"),
-            ),
-            "pdp_line_id": dp_line.id,
-            "price_unit": dp_line.amount * dp_line.order_line_id.qty_delivered,
-            "product_uom_qty": 0.0,
-            "order_id": order.id,
-            "discount": 0.0,
-            "product_uom": product_id.uom_id.id,
-            "product_id": product_id.id,
-            "analytic_tag_ids": analytic_tag_ids,
-            "tax_id": [(6, 0, tax_ids)],
-            "is_downpayment": True,
-            "sequence": order.order_line and order.order_line[-1].sequence + 1 or 10,
-        }
-        return so_values
 
     def action_show_invoice(self):
         return {
@@ -262,6 +215,8 @@ class PDPLine(models.Model):
     pdp_id = fields.Many2one("planned.down.payment")
     pdp_state = fields.Selection(related="pdp_id.state")
     qty = fields.Float("Quantity")
+    qty_invoice = fields.Float("Quantity Invoiced")
+    qty_reduced = fields.Float("Quantity Reduced")
     amount = fields.Float(
         "DP per Unit", compute="_compute_all", store=True, readonly=True
     )

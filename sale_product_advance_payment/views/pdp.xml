@@ -187,7 +187,8 @@
                 <field name="order_id" invisible="1" />
                 <field name="pdp_id" invisible="1" />
                 <field name="order_line_id" />
-                <field name="qty" class="oe_inline" />
+                <field name="qty" />
+                <field name="qty_reduced" />
                 <field name="price_unit" />
                 <field name="tax_id" widget="many2many_tags" />
                 <field name="price_subtotal" />

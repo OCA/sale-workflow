@@ -11,3 +11,9 @@ class AccountMove(models.Model):
             if r.pdp_id and r.pdp_id.state == "invoiced":
                 r.pdp_id.state = "confirmed"
         super(AccountMove, self).unlink()
+
+
+class AccountMoveLine(models.Model):
+    _inherit = "account.move.line"
+
+    pdp_line_id = fields.Many2one("pdp.line")
