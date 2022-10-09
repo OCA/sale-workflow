@@ -72,5 +72,17 @@
                 eval='{"func_name": "_related_action_sale_automatic_workflow"}'
             />
         </record>
+        <record id="job_function_register_payment_invoice" model="queue.job.function">
+            <field
+                name="model_id"
+                ref="sale_automatic_workflow_job.model_automatic_workflow_job"
+            />
+            <field name="method">_register_payment_invoice</field>
+            <field name="channel_id" ref="channel_sale_automatic_workflow" />
+            <field
+                name="related_action"
+                eval='{"func_name": "_related_action_sale_automatic_workflow"}'
+            />
+        </record>
     </data>
 </odoo>

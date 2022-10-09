@@ -142,6 +142,24 @@ class AutomaticWorkflowJob(models.Model):
         super()._do_sale_done(sale, domain_filter)
         return "{} {} set done successfully".format(sale.display_name, sale)
 
+    def _register_payments(self, payment_filter):
+        with_context = self.with_context(auto_delay_register_payment_invoice=True)
+        return super(AutomaticWorkflowJob, with_context)._register_payments(payment_filter)
+
+    def _register_payment_invoice_job_options(self, invoice):
+        description = _("Register payment for {}").format(invoice.display_name)
+        return {
+            "description": description,
+            "identity_key": identity_exact,
+        }
+
+    def _register_payment_invoice(self, invoice):
+        if not invoice.exists():
+            return "Invoice does not exist"
+
+        super()._register_payment_invoice(invoice)
+        return "{} {} register payment successfully".format(invoice.display_name, invoice)
+
     def _register_hook(self):
         mapping = {
             "_do_validate_sale_order": "auto_delay_do_validation",
@@ -149,6 +167,7 @@ class AutomaticWorkflowJob(models.Model):
             "_do_validate_invoice": "auto_delay_do_validation",
             "_do_validate_picking": "auto_delay_do_validation",
             "_do_sale_done": "auto_delay_do_sale_done",
+            "_register_payment_invoice": "auto_delay_register_payment_invoice",
         }
         for method_name, context_key in mapping.items():
             self._patch_method(
