@@ -1,29 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="view_order_form_inherit_sale_stock_sourcing_address">
         <field name="name">sale.order.requested.date.form</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock"/>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/tree/field[@name='route_id']" position="after">
-                <field name="sourcing_address_id" groups="sale_stock_sourcing_address.group_display_sourcing_address"/>
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='route_id']"
+                position="after"
+            >
+                <field
+                    name="sourcing_address_id"
+                    groups="sale_stock_sourcing_address.group_display_sourcing_address"
+                />
             </xpath>
-            <xpath expr="//field[@name='order_line']/form//field[@name='route_id']" position="after">
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='route_id']"
+                position="after"
+            >
                 <field name="sourcing_address_id" />
             </xpath>
         </field>
     </record>
-
-    <record id="view_order_line_tree_inherit_sale_stock_sourcing_address" model="ir.ui.view">
+    <record
+        id="view_order_line_tree_inherit_sale_stock_sourcing_address"
+        model="ir.ui.view"
+    >
         <field name="name">sale.order.line.ext.tree</field>
         <field name="model">sale.order.line</field>
-        <field name="inherit_id" ref="sale_stock.view_order_line_tree_inherit_sale_stock" />
+        <field
+            name="inherit_id"
+            ref="sale_stock.view_order_line_tree_inherit_sale_stock"
+        />
         <field name="arch" type="xml">
             <field name="route_id" position="after">
-                <field name="sourcing_address_id"/>
+                <field name="sourcing_address_id" />
             </field>
         </field>
     </record>
-
 </odoo>

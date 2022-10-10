@@ -3,15 +3,12 @@
 
 {
     "name": "Sale Stock Sourcing Address",
-    "version": "12.0.1.0.0",
-    "author": "Eficent,"
-              "Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/sale-workflow/",
+    "version": "13.0.1.0.0",
+    "author": "ForgeFlow S.L.," "Odoo Community Association (OCA)",
+    "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales Management",
     "license": "LGPL-3",
-    "depends": [
-        "sale_stock",
-    ],
+    "depends": ["sale_stock"],
     "data": [
         "security/security.xml",
         "views/sale_order_view.xml",
