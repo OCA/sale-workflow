@@ -142,9 +142,9 @@ class PlannedDownPayment(models.Model):
                 vals = {
                     "name": "%s - Down Payment"
                     % dp_line.order_line_id.product_id.display_name,
-                    "quantity": 1,
+                    "quantity": dp_line.qty,
                     "product_id": product_id.id,
-                    "price_unit": dp_line.total,
+                    "price_unit": dp_line.amount,
                     "pdp_line_id": dp_line.id,
                     "analytic_account_id": self.order_id.analytic_account_id.id,
                     # "sale_line_ids": [(6, 0, so_line.ids)],
@@ -216,7 +216,7 @@ class PDPLine(models.Model):
     pdp_state = fields.Selection(related="pdp_id.state")
     qty = fields.Float("Quantity")
     qty_invoice = fields.Float("Quantity Invoiced")
-    qty_reduced = fields.Float("Quantity Reduced")
+    qty_deducted = fields.Float("Quantity Deducted")
     amount = fields.Float(
         "DP per Unit", compute="_compute_all", store=True, readonly=True
     )

@@ -7,13 +7,13 @@
         <field name="arch" type="xml">
             <field name="deposit_taxes_id" position="after">
                 <label
-                    for="pdp_per_line"
+                    for="deduct_pdps"
                     string=""
                     attrs="{'invisible': [('has_down_payments', '=', False)]}"
                 />
                 <div attrs="{'invisible': [('has_down_payments', '=', False)]}">
-                    <field name="pdp_per_line" class="oe_inline" nolabel="1" />
-                    <label for="pdp_per_line" />
+                    <field name="deduct_pdps" class="oe_inline" nolabel="1" />
+                    <label for="deduct_pdps" />
                 </div>
             </field>
         </field>

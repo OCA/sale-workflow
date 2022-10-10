@@ -71,6 +71,9 @@
             >
                 <field name="dp_amount_invoiced" />
                 <field name="dp_amount_remaining" />
+                <field name="pdp_qty" />
+                <field name="pdp_amount" />
+                <field name="pdp_qty_deducted" />
             </xpath>
             <xpath
                 expr="//field[@name='order_line']//form//field[@name='price_unit']"

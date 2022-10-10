@@ -28,6 +28,12 @@ class SaleOrder(models.Model):
     def _get_invoiced(self):
         super(SaleOrder, self)._get_invoiced()
         self.pdp_ids._compute_invoice_id()
+        for order in self:
+            if order.pdp_ids:
+                for pdp_id in order.pdp_ids:
+                    if pdp_id.invoice_id:
+                        order.invoice_ids = [(4, pdp_id.invoice_id.id, 0)]
+                        order.invoice_count += 1
 
     def _compute_pdp_total(self):
         for rec in self:
@@ -41,6 +47,10 @@ class SaleOrder(models.Model):
         :param final: if True, refunds will be generated if necessary
         :returns: list of created invoices
         """
+        # Mod start
+        if not self.env.context.get("deduct_pdps"):
+            return super(SaleOrder, self)._create_invoices(grouped, final, date)
+        # Mod end
         if not self.env["account.move"].check_access_rights("create", False):
             try:
                 self.check_access_rights("write")
@@ -95,7 +105,7 @@ class SaleOrder(models.Model):
                 # TODO reduced should be computed based on linked moves
                 if (
                     len(pdpl) == 1
-                    and line.qty_to_invoice <= pdpl.qty - pdpl.qty_reduced
+                    and line.qty_to_invoice <= pdpl.qty - pdpl.qty_deducted
                 ):
                     vals = (
                         0,
@@ -115,7 +125,7 @@ class SaleOrder(models.Model):
                         },
                     )
                     invoice_line_vals.append(vals)
-                    pdpl.qty_reduced += line.qty_to_invoice
+                    pdpl.qty_deducted += line.qty_to_invoice
                     # Mod end
             invoice_vals["invoice_line_ids"] += invoice_line_vals
             invoice_vals_list.append(invoice_vals)
@@ -228,12 +238,23 @@ class SaleOrderLine(models.Model):
 
     dp_amount_invoiced = fields.Float("DP Invoiced", compute="_compute_pdp_values")
     dp_amount_remaining = fields.Float("DP Remaining", compute="_compute_pdp_values")
-    pdp_line_id = fields.Many2one("pdp.line", string="PDP Line")
+    pdp_line_id = fields.Many2one("pdp.line", string="PDP Line", copy=False)
+    pdp_qty = fields.Float("DP Qty", compute="_compute_pdp_values")
+    pdp_amount = fields.Float("DP Unit", compute="_compute_pdp_values")
+    pdp_qty_deducted = fields.Float("DP Deducted", compute="_compute_pdp_values")
 
     def _compute_pdp_values(self):
         for rec in self:
-            pdp_lines = self.env["pdp.line"].search(
-                [("order_line_id", "=", rec.id), ("pdp_state", "=", "invoiced")]
+            pdp_lines = self.env["pdp.line"].search([("order_line_id", "=", rec.id)])
+            rec.dp_amount_invoiced = sum(
+                pdp_lines.filtered(lambda x: x.pdp_state == "invoiced").mapped("total")
             )
-            rec.dp_amount_invoiced = sum(pdp_lines.mapped("total"))
             rec.dp_amount_remaining = rec.price_subtotal - rec.dp_amount_invoiced
+            if len(pdp_lines) == 1:
+                rec.pdp_qty = pdp_lines.qty
+                rec.pdp_amount = pdp_lines.amount
+                rec.pdp_qty_deducted = pdp_lines.qty_deducted
+            else:
+                rec.pdp_qty = 0
+                rec.pdp_amount = 0
+                rec.pdp_qty_deducted = 0
