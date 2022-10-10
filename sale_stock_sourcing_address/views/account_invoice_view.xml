@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="invoice_form_inherit_sale_stock_sourcing_address" model="ir.ui.view">
+        <field name="name">account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='invoice_line_ids']/tree/field[@name='currency_id']"
+                position="after"
+            >
+                <field
+                    name="sourcing_address_id"
+                    groups="sale_stock_sourcing_address.group_display_sourcing_address"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
