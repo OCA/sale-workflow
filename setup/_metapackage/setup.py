@@ -101,6 +101,7 @@ setuptools.setup(
         'odoo13-addon-sale_stock_picking_validation_blocking',
         'odoo13-addon-sale_stock_return_request',
         'odoo13-addon-sale_stock_secondary_unit',
+        'odoo13-addon-sale_stock_sourcing_address',
         'odoo13-addon-sale_tier_validation',
         'odoo13-addon-sale_validity',
         'odoo13-addon-sale_wishlist',
