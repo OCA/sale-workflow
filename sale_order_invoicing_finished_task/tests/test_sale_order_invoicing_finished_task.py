@@ -5,7 +5,7 @@ from odoo.exceptions import ValidationError
 from odoo.tests import common
 
 
-class TestInvoicefinishedTask(common.SavepointCase):
+class TestInvoicefinishedTask(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
