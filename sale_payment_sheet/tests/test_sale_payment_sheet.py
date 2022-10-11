@@ -5,11 +5,11 @@
 from freezegun import freeze_time
 
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests import Form, SavepointCase
+from odoo.tests import Form, TransactionCase
 
 
 @freeze_time("2021-01-01 09:30:00")
-class TestSaleInvoicePayment(SavepointCase):
+class TestSaleInvoicePayment(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
