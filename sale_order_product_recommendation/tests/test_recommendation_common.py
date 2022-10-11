@@ -1,9 +1,9 @@
 # Copyright 2017 Tecnativa - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class RecommendationCase(SavepointCase):
+class RecommendationCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
