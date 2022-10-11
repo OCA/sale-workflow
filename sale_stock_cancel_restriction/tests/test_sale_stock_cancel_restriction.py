@@ -2,10 +2,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
-from odoo.tests import Form, SavepointCase
+from odoo.tests import Form, TransactionCase
 
 
-class TestSaleStockCancelRestriction(SavepointCase):
+class TestSaleStockCancelRestriction(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
