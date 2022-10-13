@@ -1,13 +1,14 @@
-# Copyright 2018 Camptocamp SA
+# Copyright 2018-2022 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import _, exceptions, fields, models
 
-from ..models.partner import POINT_OPERATIONS
+from ..models.point_history import POINT_OPERATIONS
 
 
 class ManageCreditPoint(models.TransientModel):
     _name = "wiz.manage.credit.point"
+    _description = "Wizard to Manage Credit Points"
 
     credit_point = fields.Integer(
         string="Points",
@@ -27,7 +28,6 @@ class ManageCreditPoint(models.TransientModel):
         required=True,
     )
 
-    @api.multi
     def action_update_credit(self):
         self.ensure_one()
         if not self.comment:

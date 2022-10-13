@@ -1,4 +1,4 @@
-# Copyright 2018 Camptocamp SA
+# Copyright 2018-2022 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
@@ -29,7 +29,7 @@ class TestHistory(TransactionCase):
     def _run_wiz(self):
         for vals in self.wiz_vals:
             vals.update({"partner_ids": [(6, 0, self.partner.ids)]})
-            wiz = self.wiz_model.new(vals)
+            wiz = self.wiz_model.create(vals)
             wiz.action_update_credit()
 
     def test_history_creation(self):

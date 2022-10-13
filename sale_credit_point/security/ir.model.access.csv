@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_credit_point_history,access_credit_point_history,model_credit_point_history,,1,1,1,1
 credit_points_access_res_users,credit_points_access_res_users,base.model_res_users,sale_credit_point.group_manage_credit_point,1,1,0,0
+sale_credit_point.access_wiz_manage_credit_point,access_wiz_manage_credit_point,sale_credit_point.model_wiz_manage_credit_point,base.group_user,1,1,1,1
