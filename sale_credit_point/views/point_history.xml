@@ -46,7 +46,6 @@
         <field
             name="context"
         >{'search_default_year': 1,'search_default_partner': 1 , 'group_by_no_leaf':1}</field>
-        <field name="view_type">form</field>
         <field name="view_mode">tree</field>
     </record>
 
