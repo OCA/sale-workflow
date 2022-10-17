@@ -5,9 +5,10 @@ from odoo.addons.sale.tests.test_sale_common import TestSale
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT as DF
+from odoo.exceptions import UserError
 
 
-class TestSaleStock(TestSale):
+class TestSaleManualDelivery(TestSale):
     def _update_product_qty(self, product, quantity):
         """Update Product quantity."""
         product_qty = self.env["stock.change.product.qty"].create(
@@ -16,12 +17,31 @@ class TestSaleStock(TestSale):
         product_qty.change_product_qty()
         return product_qty
 
+    def _create_product_category(self):
+        """Create a Product Category."""
+        product_ctg = self.env["product.category"].create({
+            'name': 'test_product_ctg',
+            'type': 'normal',
+        })
+        return product_ctg
+
+    def _create_product(self):
+        """Create a Stockable Product."""
+        self.product_ctg = self._create_product_category()
+        product = self.env["product.product"].create({
+            'name': 'Test Product',
+            'categ_id': self.product_ctg.id,
+            'type': 'product',
+            'uom_id': self.env.ref('product.product_uom_unit').id,
+        })
+        return product
+
     def test_00_sale_manual_delivery(self):
         """
         Test SO's manual delivery
         """
         self.partner = self.env.ref("base.res_partner_1")
-        self.product = self.env.ref("product.product_delivery_01")
+        self.product = self._create_product()
         so_vals = {
             "partner_id": self.partner.id,
             "partner_invoice_id": self.partner.id,
@@ -63,7 +83,6 @@ class TestSaleStock(TestSale):
             )
             .create({})
         )
-        wizard.onchange_line_ids()
         wiz_act = self.env.ref(
             "sale_manual_delivery.action_wizard_manual_delivery"
         ).read()[0]
@@ -76,7 +95,6 @@ class TestSaleStock(TestSale):
             'Sale Manual Delivery: picking \
             should be created after "manual delivery" wizard call',
         )
-
         # create a manual delivery, nothing left to ship
         wizard = (
             self.env["manual.delivery"]
@@ -88,7 +106,6 @@ class TestSaleStock(TestSale):
             )
             .create({})
         )
-        wizard.onchange_line_ids()
         wiz_act = self.env.ref(
             "sale_manual_delivery.action_wizard_manual_delivery"
         ).read()[0]
@@ -113,7 +130,7 @@ class TestSaleStock(TestSale):
         pick = self.so.picking_ids
         pick.force_assign()
         pick.pack_operation_product_ids.write({"qty_done": 5})
-        pick.do_new_transfer()
+        pick.action_done()
 
         # Check quantity delivered
         del_qty = sum(sol.qty_delivered for sol in self.so.order_line)
@@ -130,7 +147,7 @@ class TestSaleStock(TestSale):
         Test SO's standard delivery
         """
         self.partner = self.env.ref("base.res_partner_1")
-        self.product = self.env.ref("product.product_delivery_01")
+        self.product = self._create_product()
         so_vals = {
             "partner_id": self.partner.id,
             "partner_invoice_id": self.partner.id,
@@ -142,7 +159,7 @@ class TestSaleStock(TestSale):
                     {
                         "name": self.product.name,
                         "product_id": self.product.id,
-                        "product_uom_qty": 5.0,
+                        "product_uom_qty": 10.0,
                         "product_uom": self.product.uom_id.id,
                         "price_unit": self.product.list_price,
                     },
@@ -161,12 +178,14 @@ class TestSaleStock(TestSale):
             picking should be created for "standard delivery" orders',
         )
 
-        # deliver completely
+        # deliver partially
         pick = self.so.picking_ids
         pick.force_assign()
         pick.pack_operation_product_ids.write({"qty_done": 5})
-        pick.do_new_transfer()
-
+        backorder_wiz_id = pick.do_new_transfer()['res_id']
+        backorder_wiz = self.env['stock.backorder.confirmation'].browse(
+            [backorder_wiz_id])
+        backorder_wiz.process()
         # Check quantity delivered
         del_qty = sum(sol.qty_delivered for sol in self.so.order_line)
         self.assertEqual(
@@ -182,7 +201,7 @@ class TestSaleStock(TestSale):
         Test SO's various manual delivery
         """
         self.partner = self.env.ref("base.res_partner_1")
-        self.product = self.env.ref("product.product_delivery_01")
+        self.product = self._create_product()
         so_vals = {
             "partner_id": self.partner.id,
             "partner_invoice_id": self.partner.id,
@@ -240,11 +259,14 @@ class TestSaleStock(TestSale):
             should be created after "manual delivery" wizard call',
         )
 
-        # deliver completely
+        # deliver partially
         pick = self.so.picking_ids
         pick.force_assign()
         pick.pack_operation_product_ids.write({"qty_done": 2})
-        pick.do_new_transfer()
+        backorder_wiz_id = pick.do_new_transfer()['res_id']
+        backorder_wiz = self.env['stock.backorder.confirmation'].browse(
+            [backorder_wiz_id])
+        backorder_wiz.process()
 
         # Check quantity delivered
         del_qty = sum(sol.qty_delivered for sol in self.so.order_line)
@@ -275,7 +297,8 @@ class TestSaleStock(TestSale):
         wiz = self.env[wiz_act["res_model"]].browse(wiz_act["res_id"])
         for line in wiz.line_ids:
             line.to_ship_qty = 3.0
-        wiz.record_picking()
+        with self.assertRaises(UserError):
+            wiz.record_picking()
         self.assertEqual(
             len(self.so.picking_ids),
             2.0,
@@ -307,8 +330,8 @@ class TestSaleStock(TestSale):
         Test SO's various manual delivery
         """
         self.partner = self.env.ref("base.res_partner_1")
-        self.product = self.env.ref("product.product_delivery_01")
-        self.product2 = self.env.ref("product.product_delivery_02")
+        self.product = self._create_product()
+        self.product2 = self._create_product()
         self.product3 = self.env.ref("product.product_order_01")
         so_vals = {
             "partner_id": self.partner.id,
@@ -394,7 +417,6 @@ class TestSaleStock(TestSale):
             )
             .create({})
         )
-        wizard.onchange_line_ids()
         wiz_act = self.env.ref(
             "sale_manual_delivery.action_wizard_manual_delivery"
         ).read()[0]
@@ -488,7 +510,6 @@ class TestSaleStock(TestSale):
                 {"carrier_id": self.so.carrier_id.id, "date_planned": date_now}
             )
         )
-        wizard.onchange_line_ids()
         for line in wizard.line_ids:
             line.to_ship_qty = 2.0
         wizard.record_picking()
@@ -524,7 +545,6 @@ class TestSaleStock(TestSale):
                 }
             )
         )
-        wizard.onchange_line_ids()
         for line in wizard.line_ids:
             line.to_ship_qty = 3.0
         wizard.record_picking()
@@ -559,7 +579,6 @@ class TestSaleStock(TestSale):
                 }
             )
         )
-        wizard.onchange_line_ids()
         for line in wizard.line_ids:
             line.to_ship_qty = 5.0
         wizard.record_picking()
@@ -625,7 +644,6 @@ class TestSaleStock(TestSale):
             )
             .create({})
         )
-        wizard.onchange_line_ids()
         wiz_act = self.env.ref(
             "sale_manual_delivery.action_wizard_manual_delivery"
         ).read()[0]
