@@ -5,7 +5,7 @@
 
 {
     "name": "Sale Automatic Workflow",
-    "version": "14.0.1.3.2",
+    "version": "14.0.1.3.3",
     "category": "Sales Management",
     "license": "AGPL-3",
     "author": "Akretion, "
