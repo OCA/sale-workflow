@@ -11,7 +11,7 @@ class StockPicking(models.Model):
     _inherit = "stock.picking"
 
     workflow_process_id = fields.Many2one(
-        comodel_name="sale.workflow.process", string="Sale Workflow Process"
+        comodel_name="sale.workflow.process", string="Sale Workflow Process", copy=False
     )
 
     def validate_picking(self):
