@@ -150,11 +150,6 @@ msgid "External Reference"
 msgstr "Referencia Externa"
 
 #. module: sale_payment_sheet
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__failed_message_ids
-msgid "Failed Messages"
-msgstr "Mensajes Fallidos"
-
-#. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_follower_ids
 msgid "Followers"
 msgstr "Seguidores"
@@ -206,10 +201,12 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_error
+#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__invoice_ids
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__invoice_id
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
 msgid "Invoice"
@@ -271,19 +268,9 @@ msgid "Main Attachment"
 msgstr "Adjuntos principales"
 
 #. module: sale_payment_sheet
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_content
-msgid "Message Content"
-msgstr "Contenido del mensaje"
-
-#. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_has_error
 msgid "Message Delivery error"
 msgstr "Error de Envío de Mensaje"
-
-#. module: sale_payment_sheet
-#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_content
-msgid "Message content, to be used only in searches"
-msgstr "Contenido del mensaje, para usarse en búsquedas"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_ids
@@ -331,6 +318,7 @@ msgid "Partial payment"
 msgstr "Parcial"
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__partner_id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__partner_id
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
 msgid "Partner"
@@ -374,6 +362,11 @@ msgstr "Reestablecer a Nuevo"
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__user_id
 msgid "Responsible"
 msgstr "Responsable"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
 
 #. module: sale_payment_sheet
 #: model:ir.model,name:sale_payment_sheet.model_sale_payment_sheet
@@ -468,11 +461,10 @@ msgstr "El importe de una transacción en efectivo no puede ser 0."
 msgid ""
 "This invoice already has been included in other payment sheet or the amount "
 "payed is greather than residual invoice amount.\n"
-" Invoice: %s Amount payed: %s"
+" Invoice: %s\n"
+" Amount payed: %s\n"
+" Payment sheets: %s"
 msgstr ""
-"Esta factura ya se ha incluido en otra hoja de pagos o el importe pagado es "
-"mayor al importe pendiente de la factura.\n"
-" Factura: %s Importe pagado: %s"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__amount_total
@@ -566,3 +558,21 @@ msgstr "Resumen de pagos de facturas"
 #: model:ir.actions.report,name:sale_payment_sheet.action_report_sale_payment_sheet
 msgid "sale payment sheet summary"
 msgstr "Resumen de pagos de facturas"
+
+#~ msgid "Failed Messages"
+#~ msgstr "Mensajes Fallidos"
+
+#~ msgid "Message Content"
+#~ msgstr "Contenido del mensaje"
+
+#~ msgid "Message content, to be used only in searches"
+#~ msgstr "Contenido del mensaje, para usarse en búsquedas"
+
+#~ msgid ""
+#~ "This invoice already has been included in other payment sheet or the "
+#~ "amount payed is greather than residual invoice amount.\n"
+#~ " Invoice: %s Amount payed: %s"
+#~ msgstr ""
+#~ "Esta factura ya se ha incluido en otra hoja de pagos o el importe pagado "
+#~ "es mayor al importe pendiente de la factura.\n"
+#~ " Factura: %s Importe pagado: %s"

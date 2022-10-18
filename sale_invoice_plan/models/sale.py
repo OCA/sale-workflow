@@ -114,9 +114,9 @@ class SaleOrder(models.Model):
         invoice_plan_id = self._context.get("invoice_plan_id")
         if invoice_plan_id:
             plan = self.env["sale.invoice.plan"].browse(invoice_plan_id)
-            moves.ensure_one()  # Expect 1 invoice for 1 invoice plan
-            plan._compute_new_invoice_quantity(moves[0])
-            moves.invoice_date = plan.plan_date
+            for move in moves:
+                plan._compute_new_invoice_quantity(move)
+                move.invoice_date = plan.plan_date
             plan.invoice_move_ids += moves
         return moves
 
@@ -238,6 +238,8 @@ class SaleInvoicePlan(models.Model):
             else:
                 plan_qty = order_line.product_uom_qty * (percent / 100)
                 prec = order_line.product_uom.rounding
+                if plan_qty:
+                    plan_qty = float_round(plan_qty, precision_rounding=prec)
                 if float_compare(plan_qty, line.quantity, prec) == 1:
                     raise ValidationError(
                         _(

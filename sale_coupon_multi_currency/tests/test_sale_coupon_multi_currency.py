@@ -28,3 +28,11 @@ class TestSaleCouponMultiCurrency(TestSaleCouponMultiCurrencyCommon):
         )
         self.assertFalse(self.program_coupon_percentage.currency_custom_id)
         self.assertEqual(self.company_main.currency_id, self.currency_company)
+
+    def test_02_program_multi_currency(self):
+        """Set custom currency on create."""
+        program = self.env["sale.coupon.program"].create(
+            {"name": "Test", "currency_id": self.currency_other.id}
+        )
+        self.assertEqual(program.currency_id, self.currency_other)
+        self.assertEqual(program.currency_custom_id, self.currency_other)

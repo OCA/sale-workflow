@@ -15,6 +15,7 @@
             >
                 <field name="date" />
                 <field name="name" />
+                <field name="partner_shipping_id" optional="show" />
                 <field name="partner_id" optional="show" />
                 <field name="ref" optional="hide" />
                 <field name="invoice_user_id" optional="hide" string="Sales Person" />

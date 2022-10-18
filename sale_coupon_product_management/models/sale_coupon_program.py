@@ -107,8 +107,6 @@ class SaleCouponProgram(models.Model):
             "name": name,
             "categ_id": category.id,
             "type": "service",
-            "taxes_id": False,
-            "supplier_taxes_id": False,
             "sale_ok": category.program_product_sale_ok,
             "purchase_ok": False,
             "invoice_policy": "order",
