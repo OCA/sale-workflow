@@ -1,24 +1,23 @@
 # Copyright 2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import SavepointCase
 from odoo import exceptions
+from odoo.tests.common import SavepointCase
 
 
 class TestWizard(SavepointCase):
-
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.partner = cls.env['res.partner'].with_context(
-            tracking_disable=True
-        ).create({'name': 'John Wizard'})
-        cls.wiz_model = cls.env['wiz.manage.credit.point']
+        cls.partner = (
+            cls.env["res.partner"]
+            .with_context(tracking_disable=True)
+            .create({"name": "John Wizard"})
+        )
+        cls.wiz_model = cls.env["wiz.manage.credit.point"]
 
     def _get_wiz(self, **kw):
-        vals = {
-            'partner_ids': [(6, 0, self.partner.ids)]
-        }
+        vals = {"partner_ids": [(6, 0, self.partner.ids)]}
         vals.update(**kw)
         return self.wiz_model.new(vals)
 
@@ -31,15 +30,15 @@ class TestWizard(SavepointCase):
 
     def test_no_comment(self):
         wiz = self._get_wiz(
-            operation='replace',
+            operation="replace",
         )
         with self.assertRaises(exceptions.UserError):
             wiz.action_update_credit()
 
     def test_credit_replace(self):
-        msg = 'I have money dude!'
+        msg = "I have money dude!"
         wiz = self._get_wiz(
-            operation='replace',
+            operation="replace",
             credit_point=100,
             comment=msg,
         )
@@ -49,9 +48,9 @@ class TestWizard(SavepointCase):
 
     def test_credit_increase(self):
         self.partner.credit_point = 10
-        msg = 'I have more money dude!'
+        msg = "I have more money dude!"
         wiz = self._get_wiz(
-            operation='increase',
+            operation="increase",
             credit_point=10,
             comment=msg,
         )
@@ -61,9 +60,9 @@ class TestWizard(SavepointCase):
 
     def test_credit_decrease(self):
         self.partner.credit_point = 10
-        msg = 'I have less money dude!'
+        msg = "I have less money dude!"
         wiz = self._get_wiz(
-            operation='decrease',
+            operation="decrease",
             credit_point=10,
             comment=msg,
         )
