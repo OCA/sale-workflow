@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
   <record id="res_currency_pt" model="res.currency">
     <field name="name">PT</field>

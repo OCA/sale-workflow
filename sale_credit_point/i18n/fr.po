@@ -88,8 +88,8 @@ msgstr "Historique des crédits"
 #: code:addons/odoo/external-src/odoo-sale-addons/sale_credit_point/models/partner.py:69
 #: code:addons/sale_credit_point/models/partner.py:69
 #, python-format
-msgid "Credit updated to %s. Reason: %s"
-msgstr "Crédit mis à jour de %s. Raison: %s"
+msgid "Credit updated to {points}. Reason: {comment}"
+msgstr "Crédit mis à jour de {points}. Raison: {comment}"
 
 #. module: sale_credit_point
 #: selection:credit.point.history,operation:0
@@ -203,8 +203,8 @@ msgstr "SO %s"
 #: code:addons/odoo/external-src/odoo-sale-addons/sale_credit_point/models/sale_order.py:20
 #: code:addons/sale_credit_point/models/sale_order.py:20
 #, python-format
-msgid "Sale Order amount total (%s) is higher than your available credit (%s)."
-msgstr "Le montant de la commande (%s) est supérieur à votre credit (%s)."
+msgid "Sale Order amount total ({amount}) is higher than your available credit ({points})."
+msgstr "Le montant de la commande ({amount}) est supérieur à votre credit ({points})."
 
 #. module: sale_credit_point
 #: code:addons/odoo/external-src/odoo-sale-addons/sale_credit_point/models/sale_order.py:43
@@ -216,10 +216,6 @@ msgid "Sale Order canceled"
 msgstr "Commande annulée"
 
 #. module: sale_credit_point
-#: model:ir.ui.view,arch_db:sale_credit_point.view_credit_point_history_search
-msgid "Search Invoice"
-msgstr "Chercher une facture"
-
 #: model:ir.ui.view,arch_db:sale_credit_point.view_credit_point_history_search
 msgid "Search Invoice"
 msgstr "Chercher une facture"

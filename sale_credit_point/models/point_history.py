@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models
+
 from .partner import POINT_OPERATIONS
 
 
@@ -15,13 +16,11 @@ class PointHistory(models.Model):
         required=True,
     )
     operation = fields.Selection(
-        string="Operation",
         selection=POINT_OPERATIONS,
         required=True,
     )
     amount = fields.Monetary(
-        string='Amount',
-        currency_field='credit_point_currency_id',
+        currency_field="credit_point_currency_id",
         readonly=True,
         default=0,
         required=True,
@@ -31,6 +30,4 @@ class PointHistory(models.Model):
         readonly=True,
     )
     create_date = fields.Datetime()
-    comment = fields.Char(
-        string="Comment"
-    )
+    comment = fields.Char()
