@@ -59,7 +59,6 @@ class ResPartner(models.Model):
 
     def _remove_key_followers(self, partner):
         for record in self.mapped("commercial_partner_id"):
-            record.message_unsubscribe(partner_ids=partner.ids)
             # Look for delivery and invoice addresses
             childrens = record.child_ids.filtered(
                 lambda x: x.type in {"invoice", "delivery"}
@@ -70,12 +69,18 @@ class ResPartner(models.Model):
         """Sync followers in commercial partner + delivery/invoice contacts."""
         for record in self.mapped("commercial_partner_id"):
             followers = (record.child_ids + record).mapped("user_id.partner_id")
-            record.message_subscribe(partner_ids=followers.ids)
             # Look for delivery and invoice addresses
             childrens = record.child_ids.filtered(
                 lambda x: x.type in {"invoice", "delivery"}
             )
             (childrens + record).message_subscribe(partner_ids=followers.ids)
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        """Sync followers on contact creation."""
+        records = super().create(vals_list)
+        records._add_followers_from_salesmans()
+        return records
 
     def write(self, vals):
         """If the salesman is changed, first remove the old salesman as follower
