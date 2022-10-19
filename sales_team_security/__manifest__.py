@@ -4,7 +4,7 @@
 {
     "name": "Sales documents permissions by channels (teams)",
     "summary": "New group for seeing only sales channel's documents",
-    "version": "13.0.3.0.0",
+    "version": "13.0.3.0.1",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
