@@ -26,7 +26,7 @@
                     <field name="discount2" class="oe_inline" /> %
                 </div>
                 <label for="discount3" />
-                <div name="discoun3">
+                <div name="discount3">
                     <field name="discount3" class="oe_inline" /> %
                 </div>
                 <label for="discounting_type" />
