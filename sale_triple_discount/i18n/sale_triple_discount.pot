@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -40,35 +40,17 @@ msgstr ""
 
 #. module: sale_triple_discount
 #: model:ir.model.constraint,message:sale_triple_discount.constraint_sale_order_line_discount2_limit
-msgid "Discount 2 must be lower than 100%."
+msgid "Discount 2 must be lower or equal than 100%."
 msgstr ""
 
 #. module: sale_triple_discount
 #: model:ir.model.constraint,message:sale_triple_discount.constraint_sale_order_line_discount3_limit
-msgid "Discount 3 must be lower than 100%."
+msgid "Discount 3 must be lower or equal than 100%."
 msgstr ""
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discounting_type
-msgid "Discounting type"
-msgstr ""
-
-#. module: sale_triple_discount
-#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order__display_name
-#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__display_name
-msgid "Display Name"
-msgstr ""
-
-#. module: sale_triple_discount
-#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order__id
-#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__id
-msgid "ID"
-msgstr ""
-
-#. module: sale_triple_discount
-#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order____last_update
-#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line____last_update
-msgid "Last Modified on"
+msgid "Discounting Type"
 msgstr ""
 
 #. module: sale_triple_discount
@@ -79,7 +61,7 @@ msgstr ""
 #. module: sale_triple_discount
 #: code:addons/sale_triple_discount/models/sale_order_line.py:0
 #, python-format
-msgid "Sale order line %s has unknown discounting type %s"
+msgid "Sale order line %(name)s has unknown discounting type %(dic_type)s"
 msgstr ""
 
 #. module: sale_triple_discount
