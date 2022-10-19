@@ -1,0 +1,91 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_quick
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2022-10-19 11:44+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: sale_quick
+#: model_terms:ir.ui.view,arch_db:sale_quick.view_sale_form
+msgid "Add"
+msgstr "Aggiungi"
+
+#. module: sale_quick
+#: model:ir.model.fields,field_description:sale_quick.field_product_product__display_name
+#: model:ir.model.fields,field_description:sale_quick.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_quick
+#: model:ir.model.fields,field_description:sale_quick.field_product_product__id
+#: model:ir.model.fields,field_description:sale_quick.field_sale_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_quick
+#: model:ir.model.fields,field_description:sale_quick.field_product_product____last_update
+#: model:ir.model.fields,field_description:sale_quick.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: sale_quick
+#: code:addons/sale_quick/models/sale_order.py:0
+#, python-format
+msgid ""
+"Must have only 1 line per product for mass addition, but there are %s lines "
+"for the product %s"
+msgstr ""
+"Deve essere presente solo una riga ordine per aggiungere massivamente i "
+"prodotti, ma ci sono %s righe per il prodotto %s"
+
+#. module: sale_quick
+#: model_terms:ir.ui.view,arch_db:sale_quick.product_tree_view4sale
+msgid "Open"
+msgstr "Apri"
+
+#. module: sale_quick
+#: model:ir.model,name:sale_quick.model_product_product
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: sale_quick
+#: code:addons/sale_quick/models/sale_order.py:0
+#, python-format
+msgid "Product Variants"
+msgstr "Varianti prodotto"
+
+#. module: sale_quick
+#: model_terms:ir.ui.view,arch_db:sale_quick.product_tree_view4sale
+msgid "Products for sale"
+msgstr "Prodotti in vendita"
+
+#. module: sale_quick
+#: model:ir.model,name:sale_quick.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: sale_quick
+#: model:ir.model.fields,field_description:sale_quick.field_product_product__so_line_ids
+msgid "So Line"
+msgstr "Riga SO"
+
+#. module: sale_quick
+#: model:ir.model.fields,help:sale_quick.field_product_product__so_line_ids
+msgid "Technical: used to compute quantities to sale."
+msgstr "Tecnico: utilizzato per calcolare le quantità da vendere."
+
+#. module: sale_quick
+#: model_terms:ir.ui.view,arch_db:sale_quick.product_tree_view4sale
+msgid "UoM"
+msgstr "UdM"
