@@ -25,7 +25,7 @@ class SaleOrderLine(models.Model):
 
     def _additive_discount(self):
         self.ensure_one()
-        discount = sum([getattr(self, x) or 0.0 for x in self._discount_fields()])
+        discount = sum(getattr(self, x) or 0.0 for x in self._discount_fields())
         if discount <= 0:
             return 0
         elif discount >= 100:
