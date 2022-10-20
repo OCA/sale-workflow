@@ -14,23 +14,24 @@ Sale Order Invoicing Finished Task
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/14.0/sale_order_invoicing_finished_task
+    :target: https://github.com/OCA/sale-workflow/tree/15.0/sale_order_invoicing_finished_task
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-14-0/sale-workflow-14-0-sale_order_invoicing_finished_task
+    :target: https://translation.odoo-community.org/projects/sale-workflow-15-0/sale-workflow-15-0-sale_order_invoicing_finished_task
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/167/14.0
+    :target: https://runbot.odoo-community.org/runbot/167/15.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-The requirement of this module is to give the possibility in the task to
-indicate if a task is available to invoice or not. This means by default even
-the task is not finished you could set it as invoiceable.
+This module brings the possibility to indicate if a task is available to be
+invoiced or not, within the task itself. Moreover, even if the task is not
+finished yet, it can be set as invoiceable.
 
-As an option you can relate to a Project Stage ( ``project.task.type`` ) this
-control. For example if you want to assign Invoiceable to stage ``Done`` always.
+As an option, you can relate this control to a Project Stage
+( ``project.task.type`` ). For example, if you want to assign 'Invoiceable' to
+``Done`` stage always.
 
 **Table of contents**
 
@@ -42,33 +43,32 @@ Usage
 
 To use this module, you need to:
 
-1. Go to **Sales -> Product** and create a **service** product
+1. Go to **Sales > Products > Products** and create a **service** product.
 
-2. In the product go to **Sales tab > Invoicing section** and:
+2. Within the product, choose your preferences under **General Information**
+   tab, as follows:
 
-   * Select a *Service Invoicing Policy*
-   * *Service Tracking* must be "Create a task in an existing project". You will need to select in which project the task will be created.
-   * Set *Invoicing control by task* checkbox and save
+   * From **Create on Order** select *Task* or *Project & Task*.
+   * Tick off **Invoicing control by task** checkbox, and save.
 
-   .. image:: https://raw.githubusercontent.com/OCA/sale-workflow/14.0/sale_order_invoicing_finished_task/static/description/product_view_invoicefinishedtask.png
+   .. image:: https://raw.githubusercontent.com/OCA/sale-workflow/15.0/sale_order_invoicing_finished_task/static/description/product_view_invoicefinishedtask2.png
 
+3. Go to **Sales > Orders > Orders** and create a new one. Add a customer and
+   the product you have created.
 
-3. Go to **Sales -> Sale orders** and create a new one. Add a customer and the
-   product you have created
-4. Confirm the sales order, it will create you a task in the selected project.
-5. Go to the task and you will find a smartbutton called Not invoiceable, when
-   you press the button you will indicate that the task can be invoiced
+4. Confirm the sales order. It will create a new task on your selected project.
 
-   .. image:: https://raw.githubusercontent.com/OCA/sale-workflow/14.0/sale_order_invoicing_finished_task/static/description/task_view_invoicefinishedtask.png
+5. Go to the task and you will find a smartbutton named *Not invoiceable*. When
+   you click on it, you will indicate that the task can be invoiced.
 
-   If the product is configured with an invoicing policy "Timesheets on tasks", then the
-   the time spent on the task is used to compute the delivered quantity.
+   .. image:: https://raw.githubusercontent.com/OCA/sale-workflow/15.0/sale_order_invoicing_finished_task/static/description/task_view_invoicefinishedtask2.png
 
-6. Optional: if you want to use project stages to control this Go To
-   Project -> Configuration -> Stages -> You have to set true the field
-   Invoiceable in the stages that you consider are invoiceable. Event to use
-   stages for this functionality you can also set it manually in the task
-   whenever you want.
+   If the product is configured with an invoicing policy "Timesheets on tasks",
+   time spent on the task is used to compute the delivered quantity.
+
+6. Optional: if you want to use project stages to control this, go to
+   **Project > Configuration > Task Stages**, and in the stages that you
+   consider are invoiceable, you have to set the *Invoiceable* field to true.
 
 Bug Tracker
 ===========
@@ -76,7 +76,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_invoicing_finished_task%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_invoicing_finished_task%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -100,6 +100,8 @@ Contributors
   * Alexandre Díaz
   * João Marques
   * Ernesto Tejeda
+  * César A. Sánchez
+  * Luis D. Lafaurie
 
 * nikulchaudhary2112@gmail.com
 
@@ -116,6 +118,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/14.0/sale_order_invoicing_finished_task>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/15.0/sale_order_invoicing_finished_task>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
