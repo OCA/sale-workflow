@@ -5,7 +5,7 @@
         inherit_id="sale.report_saleorder_document"
     >
         <xpath
-            expr="//table[hasclass('table','table-sm','o_main_table')]//th[2]"
+            expr="//table[hasclass('table','table-sm','o_main_table')]//th[@name='th_quantity']"
             position="before"
         >
             <th name="th_secondary_uom_id" class="text-right" groups="uom.group_uom">
