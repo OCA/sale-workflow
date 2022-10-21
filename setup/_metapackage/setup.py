@@ -24,6 +24,7 @@ setuptools.setup(
         'odoo-addon-sale_invoice_no_mail>=15.0dev,<15.1dev',
         'odoo-addon-sale_invoice_plan>=15.0dev,<15.1dev',
         'odoo-addon-sale_invoice_policy>=15.0dev,<15.1dev',
+        'odoo-addon-sale_order_archive>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_carrier_auto_assign>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_invoice_amount>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_invoicing_finished_task>=15.0dev,<15.1dev',
