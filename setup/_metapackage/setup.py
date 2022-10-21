@@ -76,6 +76,7 @@ setuptools.setup(
         'odoo14-addon-sale_order_qty_change_no_recompute',
         'odoo14-addon-sale_order_report_without_price',
         'odoo14-addon-sale_order_revision',
+        'odoo14-addon-sale_order_secondary_unit',
         'odoo14-addon-sale_order_type',
         'odoo14-addon-sale_order_warn_message',
         'odoo14-addon-sale_partner_approval',
