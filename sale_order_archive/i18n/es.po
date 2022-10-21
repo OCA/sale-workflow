@@ -22,6 +22,7 @@ msgid "Active"
 msgstr "Activo"
 
 #. module: sale_order_archive
+#: model_terms:ir.ui.view,arch_db:sale_order_archive.sale_order_archive_form_view
 #: model_terms:ir.ui.view,arch_db:sale_order_archive.sale_order_archive_search_view
 msgid "Archived"
 msgstr "Archivado"
