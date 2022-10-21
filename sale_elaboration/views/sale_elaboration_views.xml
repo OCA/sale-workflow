@@ -38,6 +38,7 @@
                     name="product_id"
                     context="{'default_is_elaboration': True, 'default_type': 'service'}"
                 />
+                <field name="active" widget="boolean_toggle" />
             </tree>
         </field>
     </record>
@@ -48,10 +49,23 @@
             <search string="Elaborations Search">
                 <field name="name" string="Elaboration" />
                 <field name="product_id" />
+                <separator />
+                <filter
+                    name="archived"
+                    string="Archived"
+                    domain="[('active', '=', False)]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Product"
+                        name="product_id"
+                        context="{'group_by': 'product_id'}"
+                    />
+                </group>
             </search>
         </field>
     </record>
-    <record id="sale_elaboration_action_form" model="ir.actions.act_window">
+    <record id="sale_elaboration_action" model="ir.actions.act_window">
         <field name="name">Sale Elaboration</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">product.elaboration</field>
@@ -60,7 +74,7 @@
     </record>
     <menuitem
         id="menu_sale_elaboration"
-        action="sale_elaboration_action_form"
+        action="sale_elaboration_action"
         parent="sale.prod_config_main"
         sequence="60"
     />
