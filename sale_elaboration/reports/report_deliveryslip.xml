@@ -7,28 +7,49 @@
         inherit_id="stock.report_delivery_document"
         priority="20"
     >
+        <!--
+        Force to print lines from sml instead of aggregate data to display
+        elaboration notes.
+        Odoo has a bad design to do aggregate lines, see here
+        https://github.com/odoo/odoo/blob/15.0/addons/stock/models/stock_move_line.py#L738
+        -->
         <xpath
-            expr="//table[@t-if=&quot;o.state!='done'&quot;]/thead/tr"
-            position="inside"
+            expr="//t[@t-value=&quot;o.move_line_ids.mapped(&apos;lot_id&apos;)&quot;]"
+            position="attributes"
         >
-            <th>
+            <attribute
+                name="t-value"
+                add="or (o.move_lines.mapped('sale_line_id.elaboration_id'))"
+                separator=" "
+            />
+            <attribute
+                name="groups"
+                add="sale_elaboration.group_elaboration_note_on_delivery_slip"
+                separator=", "
+            />
+        </xpath>
+        <xpath expr="//th[@name='th_sm_quantity']" position="after">
+            <th name="th_sm_elaboration">
                 <strong>Elab.</strong>
             </th>
         </xpath>
-        <xpath expr="//span[@t-field='move.product_id']/../.." position="inside">
+        <xpath expr="//span[@t-field='move.quantity_done']/.." position="after">
             <td>
                 <span t-field="move.sale_line_id.elaboration_id.code" />
             </td>
         </xpath>
-        <xpath
-            expr="//table[@t-if=&quot;o.move_line_ids and o.state==&apos;done&apos;&quot;]/thead/tr"
-            position="inside"
-        >
-            <th>
+        <xpath expr="//th[@name='th_sml_quantity']" position="after">
+            <th name="th_sml_elaboration">
                 <strong>Elaboration</strong>
             </th>
         </xpath>
-        <xpath expr="//tr[@t-as='move_line']" position="inside">
+    </template>
+
+    <template
+        id="stock_report_delivery_has_serial_move_line"
+        inherit_id="stock.stock_report_delivery_has_serial_move_line"
+    >
+        <xpath expr="//td[@name='move_line_lot_qty_done']" position="after">
             <td>
                 <span t-field="move_line.move_id.sale_line_id.elaboration_id.code" />
             </td>
