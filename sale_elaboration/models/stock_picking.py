@@ -17,3 +17,14 @@ class StockPicking(models.Model):
                     line.sale_line_id.elaboration_id.product_id, line.quantity_done
                 )
         return res
+
+
+class StockMoveLine(models.Model):
+    _inherit = "stock.move.line"
+
+    def _get_aggregated_product_quantities(self, **kwargs):
+        res = super(StockMoveLine, self)._get_aggregated_product_quantities(**kwargs)
+
+        super(StockMoveLine, self)._get_aggregated_product_quantities(**kwargs)
+
+        return res
