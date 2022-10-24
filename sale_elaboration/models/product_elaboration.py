@@ -18,7 +18,6 @@ class Elaboration(models.Model):
         required=True,
     )
     active = fields.Boolean(
-        string="Active",
         default=True,
         help="If unchecked, it will allow you to hide the product "
         "elaborations without removing it.",
