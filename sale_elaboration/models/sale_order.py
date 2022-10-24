@@ -47,13 +47,11 @@ class SaleOrderLine(models.Model):
         comodel_name="product.elaboration", string="Elaboration", ondelete="restrict"
     )
     elaboration_note = fields.Char(
-        string="Elaboration Note",
         store=True,
         compute="_compute_elaboration_note",
         readonly=False,
     )
     is_elaboration = fields.Boolean(
-        string="Is Elaboration",
         store=True,
         compute="_compute_is_elaboration",
         readonly=False,
