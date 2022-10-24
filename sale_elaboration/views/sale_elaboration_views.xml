@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018 Tecnativa - Sergio Teruel
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="elaboration_view_form" model="ir.ui.view">
+        <field name="name">Elaborations</field>
+        <field name="model">product.elaboration</field>
+        <field name="arch" type="xml">
+            <form string="Elaborations">
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <field name="active" invisible="1" />
+                    <group>
+                        <field name="code" />
+                        <field name="name" />
+                        <field
+                            name="product_id"
+                            context="{'default_is_elaboration': True, 'default_type': 'service'}"
+                        />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="elaboration_view_tree" model="ir.ui.view">
+        <field name="name">Elaborations</field>
+        <field name="model">product.elaboration</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="code" />
+                <field name="name" />
+                <field
+                    name="product_id"
+                    context="{'default_is_elaboration': True, 'default_type': 'service'}"
+                />
+                <field name="active" widget="boolean_toggle" />
+            </tree>
+        </field>
+    </record>
+    <record id="elaboration_view_search" model="ir.ui.view">
+        <field name="name">Elaborations</field>
+        <field name="model">product.elaboration</field>
+        <field name="arch" type="xml">
+            <search string="Elaborations Search">
+                <field name="name" string="Elaboration" />
+                <field name="product_id" />
+                <separator />
+                <filter
+                    name="archived"
+                    string="Archived"
+                    domain="[('active', '=', False)]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Product"
+                        name="product_id"
+                        context="{'group_by': 'product_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="sale_elaboration_action" model="ir.actions.act_window">
+        <field name="name">Sale Elaboration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.elaboration</field>
+        <field name="view_mode">tree</field>
+        <field name="search_view_id" ref="elaboration_view_search" />
+    </record>
+    <menuitem
+        id="menu_sale_elaboration"
+        action="sale_elaboration_action"
+        parent="sale.prod_config_main"
+        sequence="60"
+    />
+</odoo>
