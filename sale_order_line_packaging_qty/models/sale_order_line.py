@@ -38,9 +38,15 @@ class SaleOrderLine(models.Model):
                 )
             else:
                 product_qty = sol.product_uom_qty
+            # Provide default values in case of missing product.
+            # Odoo does not prevent you to modify product packaging
+            # that are already linked to a sale order.
+            # If by chance the product is removed (yes, you can do it)
+            # this computation will be broken w/out this default.
+            precision = sol.product_packaging_id.product_uom_id.rounding or 0.01
             qty_mod = float_round(
                 product_qty % sol.product_packaging_id.qty,
-                precision_rounding=sol.product_packaging_id.product_uom_id.rounding,
+                precision_rounding=precision,
             )
             # After the rounding, the value could be equals to
             # sol.product_packaging_id.qty.
@@ -48,7 +54,7 @@ class SaleOrderLine(models.Model):
             qty_mod = qty_mod % sol.product_packaging_id.qty
             if not float_is_zero(
                 qty_mod,
-                precision_digits=sol.product_packaging_id.product_uom_id.rounding,
+                precision_digits=precision,
             ):
                 # If qty does not fit in package reset package qty
                 sol.product_packaging_qty = 0
