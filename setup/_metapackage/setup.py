@@ -18,6 +18,7 @@ setuptools.setup(
         'odoo-addon-sale_commercial_partner>=15.0dev,<15.1dev',
         'odoo-addon-sale_delivery_state>=15.0dev,<15.1dev',
         'odoo-addon-sale_discount_display_amount>=15.0dev,<15.1dev',
+        'odoo-addon-sale_elaboration>=15.0dev,<15.1dev',
         'odoo-addon-sale_exception>=15.0dev,<15.1dev',
         'odoo-addon-sale_force_invoiced>=15.0dev,<15.1dev',
         'odoo-addon-sale_invoice_blocking>=15.0dev,<15.1dev',
