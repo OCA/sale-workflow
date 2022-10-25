@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_sale_planner_calendar_wizard">
+        <field name="name">sale.planner.calendar.wizard</field>
+        <field name="model">sale.planner.calendar.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                    <field name="user_id" />
+                    <field name="event_type_id" widget="selection" />
+                    <field name="week_list" />
+                    </group>
+                    <field name="calendar_event_ids">
+                        <tree
+                            editable="top"
+                            default_order="hour"
+                            create="false"
+                            delete="false"
+                        >
+                            <field name="name" optional="show" />
+                            <field name="allday" invisible="1" />
+                            <field name="hour" widget="float_time" readonly="0" />
+                            <field name="target_partner_id" readonly="1" />
+                            <field
+                                name="categ_ids"
+                                widget="many2many_tags"
+                                optional="hide"
+                                readonly="1"
+                            />
+                            <field name="start" optional="hide" readonly="1" />
+                            <field name="stop" optional="hide" readonly="1" />
+                            <field name="until" optional="hide" readonly="1" />
+                            <field
+                                name="duration"
+                                optional="hide"
+                                widget="float_time"
+                            />
+
+                        </tree>
+                    </field>
+                    <footer>
+                        <button
+                            name="apply"
+                            string="OK"
+                            class="btn-primary"
+                            type="object"
+                        />
+                        <button string="Cancel" class="btn-default" special="cancel" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
