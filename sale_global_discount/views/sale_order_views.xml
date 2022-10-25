@@ -19,7 +19,7 @@
                     groups="!base_global_discount.group_global_discount"
                 />
             </field>
-            <field name="amount_untaxed" position="before">
+            <field name="tax_totals_json" position="before">
                 <field name="amount_untaxed_before_global_discounts" />
                 <field name="amount_global_discount" />
             </field>
