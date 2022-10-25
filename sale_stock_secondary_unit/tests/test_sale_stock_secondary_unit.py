@@ -1,10 +1,10 @@
 # Copyright 2019 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests import SavepointCase, tagged
+from odoo.tests import TransactionCase, tagged
 
 
 @tagged("post_install", "-at_install")
-class TestSaleStockOrderSecondaryUnit(SavepointCase):
+class TestSaleStockOrderSecondaryUnit(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -18,6 +18,11 @@ class TestSaleStockOrderSecondaryUnit(SavepointCase):
                 "type": "product",
                 "uom_id": cls.product_uom_kg.id,
                 "uom_po_id": cls.product_uom_kg.id,
+            }
+        )
+        # Set secondary uom on product template
+        cls.product.product_tmpl_id.write(
+            {
                 "secondary_uom_ids": [
                     (
                         0,
@@ -70,7 +75,7 @@ class TestSaleStockOrderSecondaryUnit(SavepointCase):
         self.order.order_line.write(
             {"secondary_uom_id": self.secondary_unit.id, "secondary_uom_qty": 5}
         )
-        self.order.order_line.onchange_secondary_uom()
+        self.order.order_line._onchange_helper_product_uom_for_secondary()
         self.order.action_confirm()
         picking = self.order.picking_ids
         self.assertEqual(picking.move_line_ids.secondary_uom_qty, 5.0)
