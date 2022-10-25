@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="partner_all_documents_follower_rule" model="ir.rule">
+        <field name="name">Partner all documents follower</field>
+        <field ref="base.model_res_partner" name="model_id" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field
+            name="groups"
+            eval="[(4, ref('sales_team.group_sale_salesman_all_leads'))]"
+        />
+    </record>
+
+    <record id="partner_follower_rule" model="ir.rule">
+        <field name="name">Partner Follower</field>
+        <field ref="base.model_res_partner" name="model_id" />
+        <field
+            name="domain_force"
+        >[('message_partner_ids', 'in', user.partner_id.ids)]</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
+    </record>
+
+    <record id="sale_order_follower_rule" model="ir.rule">
+        <field name="name">Sales Follower Orders</field>
+        <field ref="sale.model_sale_order" name="model_id" />
+        <field
+            name="domain_force"
+        >[('message_partner_ids', 'in', user.partner_id.ids)]</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
+    </record>
+    <record id="sale_order_line_follower_rule" model="ir.rule">
+        <field name="name">Sales Follower Order Lines</field>
+        <field ref="sale.model_sale_order_line" name="model_id" />
+        <field
+            name="domain_force"
+        >['|', ('order_id.message_partner_ids', 'in', user.partner_id.ids), ('order_id.partner_id.message_partner_ids', 'in', user.partner_id.ids)]</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
+    </record>
+
+    <record id="account_move_follower_rule" model="ir.rule">
+        <field name="name">Sales Follower Invoices</field>
+        <field ref="account.model_account_move" name="model_id" />
+        <field
+            name="domain_force"
+        >[('message_partner_ids', 'in', user.partner_id.ids)]</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
+    </record>
+    <record id="account_move_line_follower_rule" model="ir.rule">
+        <field name="name">Sales Follower Invoice Lines</field>
+        <field ref="account.model_account_move_line" name="model_id" />
+        <field
+            name="domain_force"
+        >[('move_id.message_partner_ids', 'in', user.partner_id.ids)]</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
+    </record>
+
+</odoo>
