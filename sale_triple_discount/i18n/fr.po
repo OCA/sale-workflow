@@ -9,68 +9,66 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:52+0000\n"
-"PO-Revision-Date: 2022-09-15 23:07+0000\n"
-"Last-Translator: Claude R Perrin <claude@perrin.it>\n"
+"PO-Revision-Date: 2022-10-25 16:43+0000\n"
+"Last-Translator: Sylvain ALBASSER <sylvain.albasser@syentys.fr>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: sale_triple_discount
 #: selection:sale.order.line,discounting_type:0
 msgid "Additive"
-msgstr ""
+msgstr "Additive"
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount2
 msgid "Disc. 2 (%)"
-msgstr ""
+msgstr "Rem. 2 (%)"
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount3
 msgid "Disc. 3 (%)"
-msgstr ""
+msgstr "Rem. 3 (%)"
 
 #. module: sale_triple_discount
 #: sql_constraint:sale.order.line:0
 msgid "Discount 2 must be lower than 100%."
-msgstr ""
+msgstr "La remise 2 doit être inférieure à 100%."
 
 #. module: sale_triple_discount
 #: sql_constraint:sale.order.line:0
 msgid "Discount 3 must be lower than 100%."
-msgstr ""
+msgstr "La remise 3 doit être inférieure à 100%."
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discounting_type
 msgid "Discounting type"
-msgstr ""
+msgstr "Type de remise"
 
 #. module: sale_triple_discount
 #: selection:sale.order.line,discounting_type:0
 msgid "Multiplicative"
-msgstr ""
+msgstr "Multiplicative"
 
 #. module: sale_triple_discount
 #: model:ir.model,name:sale_triple_discount.model_sale_order
-#, fuzzy
 msgid "Sale Order"
-msgstr "Sales Order Line"
+msgstr "Bon de commande"
 
 #. module: sale_triple_discount
 #: code:addons/sale_triple_discount/models/sale_order_line.py:22
 #, python-format
 msgid "Sale order line %s has unknown discounting type %s"
-msgstr ""
+msgstr "La ligne de commande %s a une type de remise inconnu %s"
 
 #. module: sale_triple_discount
 #: model:ir.model,name:sale_triple_discount.model_sale_order_line
-#, fuzzy
 msgid "Sales Order Line"
-msgstr "Sales Order Line"
+msgstr "Ligne de bon de commande"
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,help:sale_triple_discount.field_sale_order_line__discounting_type
@@ -80,3 +78,7 @@ msgid ""
 "Multiplicative discounts are applied sequentially.\n"
 "Multiplicative discounts are default"
 msgstr ""
+"Indique si les remises doivent être additives ou multiplicatives. \n"
+"Les remises additives sont d'abord additionnées, puis appliquées. \n"
+"Les remises multiplicatives sont appliquées séquentiellement. \n"
+"Les remises multiplicatives sont par défaut"
