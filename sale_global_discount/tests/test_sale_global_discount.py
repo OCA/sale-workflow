@@ -4,7 +4,7 @@ from odoo import exceptions
 from odoo.tests import Form, common
 
 
-class TestSaleGlobalDiscount(common.SavepointCase):
+class TestSaleGlobalDiscount(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -205,20 +205,7 @@ class TestSaleGlobalDiscount(common.SavepointCase):
         self.assertEqual(len(discount_lines), 2)
         self.assertAlmostEqual(sum(discount_lines.mapped("debit")), 162.49)
 
-    def test_04_report_taxes(self):
-        """Taxes by group shown in reports"""
-        self.sale.partner_id = self.partner_2
-        self.sale.onchange_partner_id()
-        self.sale._amount_by_group()
-        # Taxes
-        taxes_groups = self.sale.amount_by_group
-        self.assertAlmostEqual(taxes_groups[0][1], 4.38)
-        self.assertAlmostEqual(taxes_groups[1][1], 13.13)
-        # Bases
-        self.assertAlmostEqual(taxes_groups[0][2], 87.5)
-        self.assertAlmostEqual(taxes_groups[1][2], 87.5)
-
-    def test_05_incompatible_taxes(self):
+    def test_04_incompatible_taxes(self):
         # Line 1 with tax 1 and tax 2
         # Line 2 with only tax 2
         self.sale.order_line[1].tax_id = [(6, 0, self.tax_1.ids)]
@@ -226,7 +213,7 @@ class TestSaleGlobalDiscount(common.SavepointCase):
             self.sale.global_discount_ids = self.global_discount_1
             self.sale._amount_all()
 
-    def test_06_no_taxes(self):
+    def test_05_no_taxes(self):
         self.sale.order_line[1].tax_id = False
         with self.assertRaises(exceptions.UserError):
             self.sale.global_discount_ids = self.global_discount_1
