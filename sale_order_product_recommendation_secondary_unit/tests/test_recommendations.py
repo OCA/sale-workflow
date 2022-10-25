@@ -19,6 +19,7 @@ class RecommendationCaseTests(test_recommendation_common.RecommendationCase):
                         0,
                         {
                             "name": "Pack",
+                            "product_tmpl_id": cls.prod_1.product_tmpl_id.id,
                             "uom_id": cls.product_uom_unit.id,
                             "factor": 10,
                         },
@@ -38,6 +39,7 @@ class RecommendationCaseTests(test_recommendation_common.RecommendationCase):
                         0,
                         {
                             "name": "Pack",
+                            "product_tmpl_id": cls.prod_2.product_tmpl_id.id,
                             "uom_id": cls.product_uom_unit.id,
                             "factor": 24,
                         },
