@@ -4,7 +4,7 @@
         id="report_saleorder_document"
         inherit_id="sale.report_saleorder_document"
     >
-        <xpath expr="//div[@name='total']/div/table/tr[1]" position="before">
+        <xpath expr="//div[@name='total']/div/table/t[1]" position="before">
             <t t-if="doc.global_discount_ids">
                 <tr>
                     <td>

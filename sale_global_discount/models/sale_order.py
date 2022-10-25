@@ -1,10 +1,9 @@
 # Copyright 2020 Tecnativa - David Vidal
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from functools import partial
+import json
 
 from odoo import _, api, exceptions, fields, models
-from odoo.tools.misc import formatLang
 
 
 class SaleOrder(models.Model):
@@ -145,35 +144,36 @@ class SaleOrder(models.Model):
             )
         return invoice_vals
 
-    def _amount_by_group(self):
-        """We can apply discounts directly by tax groups."""
-        super()._amount_by_group()
-        discounts = self.global_discount_ids.mapped("discount")
-        if not discounts:
-            return
-        for order in self:
-            round_curr = order.currency_id.round
-            fmt = partial(
-                formatLang,
-                self.with_context(lang=order.partner_id.lang).env,
-                currency_obj=order.currency_id,
+    def _compute_tax_totals_json(self):
+        """OVERRIDEN: add global discount in the tax calculation."""
+        res = super()._compute_tax_totals_json()
+
+        def compute_taxes(order_line):
+            price = order_line.price_unit * (1 - (order_line.discount or 0.0) / 100.0)
+            discounts = order_line.order_id.global_discount_ids.mapped("discount")
+            price = self.get_discounted_global(price, discounts.copy())
+            order = order_line.order_id
+            return order_line.tax_id._origin.compute_all(
+                price,
+                order.currency_id,
+                order_line.product_uom_qty,
+                product=order_line.product_id,
+                partner=order.partner_shipping_id,
             )
-            res = []
-            for tax in order.amount_by_group:
-                tax_amount = round_curr(
-                    self.get_discounted_global(tax[1], discounts.copy())
+
+        account_move = self.env["account.move"]
+        for order in self.filtered("global_discount_ids"):
+            tax_lines_data = (
+                account_move._prepare_tax_lines_data_for_totals_from_object(
+                    order.order_line, compute_taxes
                 )
-                tax_base = round_curr(
-                    self.get_discounted_global(tax[2], discounts.copy())
-                )
-                res.append(
-                    (
-                        tax[0],
-                        tax_amount,
-                        tax_base,
-                        fmt(tax_amount),
-                        fmt(tax_base),
-                        len(order.amount_by_group),
-                    )
-                )
-            order.amount_by_group = res
+            )
+            tax_totals = account_move._get_tax_totals(
+                order.partner_id,
+                tax_lines_data,
+                order.amount_total,
+                order.amount_untaxed,
+                order.currency_id,
+            )
+            order.tax_totals_json = json.dumps(tax_totals)
+        return res

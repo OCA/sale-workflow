@@ -1,10 +1,12 @@
 # Copyright 2020 Tecnativa - David Vidal
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+import json
+
 from odoo import exceptions
 from odoo.tests import Form, common
 
 
-class TestSaleGlobalDiscount(common.SavepointCase):
+class TestSaleGlobalDiscount(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -119,10 +121,21 @@ class TestSaleGlobalDiscount(common.SavepointCase):
             order_line.price_unit = 33.33
         cls.sale = sale_form.save()
 
+    def get_taxes_widget_total_tax(self, order):
+        return sum(
+            tax_vals["tax_group_amount"]
+            for tax_vals in json.loads(order.tax_totals_json)["groups_by_subtotal"][
+                "Untaxed Amount"
+            ]
+        )
+
     def test_01_global_sale_succesive_discounts(self):
         """Add global discounts to the sale order"""
         self.assertAlmostEqual(self.sale.amount_total, 299.99)
         self.assertAlmostEqual(self.sale.amount_tax, 50)
+        self.assertAlmostEqual(
+            self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
+        )
         self.assertAlmostEqual(self.sale.amount_untaxed, 249.99)
         # Apply a single 20% global discount
         self.sale.global_discount_ids = self.global_discount_1
@@ -134,6 +147,9 @@ class TestSaleGlobalDiscount(common.SavepointCase):
         self.assertAlmostEqual(self.sale.amount_total, 239.99)
         self.assertAlmostEqual(self.sale.amount_total_before_global_discounts, 299.99)
         self.assertAlmostEqual(self.sale.amount_tax, 40)
+        self.assertAlmostEqual(
+            self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
+        )
         # Apply an additional 30% global discount
         self.sale.global_discount_ids += self.global_discount_2
         self.assertAlmostEqual(self.sale.amount_global_discount, 110)
@@ -142,6 +158,9 @@ class TestSaleGlobalDiscount(common.SavepointCase):
         self.assertAlmostEqual(self.sale.amount_total, 167.99)
         self.assertAlmostEqual(self.sale.amount_total_before_global_discounts, 299.99)
         self.assertAlmostEqual(self.sale.amount_tax, 28)
+        self.assertAlmostEqual(
+            self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
+        )
         # The account move should look like this
         #   credit    debit  name
         # ========  =======  ===============================================
@@ -165,6 +184,9 @@ class TestSaleGlobalDiscount(common.SavepointCase):
         self.assertAlmostEqual(self.sale.amount_total, 105.01)
         self.assertAlmostEqual(self.sale.amount_total_before_global_discounts, 299.99)
         self.assertAlmostEqual(self.sale.amount_tax, 17.51)
+        self.assertAlmostEqual(
+            self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
+        )
 
     def test_03_global_sale_discounts_to_invoice(self):
         """All the discounts go to the invoice"""
@@ -205,20 +227,7 @@ class TestSaleGlobalDiscount(common.SavepointCase):
         self.assertEqual(len(discount_lines), 2)
         self.assertAlmostEqual(sum(discount_lines.mapped("debit")), 162.49)
 
-    def test_04_report_taxes(self):
-        """Taxes by group shown in reports"""
-        self.sale.partner_id = self.partner_2
-        self.sale.onchange_partner_id()
-        self.sale._amount_by_group()
-        # Taxes
-        taxes_groups = self.sale.amount_by_group
-        self.assertAlmostEqual(taxes_groups[0][1], 4.38)
-        self.assertAlmostEqual(taxes_groups[1][1], 13.13)
-        # Bases
-        self.assertAlmostEqual(taxes_groups[0][2], 87.5)
-        self.assertAlmostEqual(taxes_groups[1][2], 87.5)
-
-    def test_05_incompatible_taxes(self):
+    def test_04_incompatible_taxes(self):
         # Line 1 with tax 1 and tax 2
         # Line 2 with only tax 2
         self.sale.order_line[1].tax_id = [(6, 0, self.tax_1.ids)]
@@ -226,7 +235,7 @@ class TestSaleGlobalDiscount(common.SavepointCase):
             self.sale.global_discount_ids = self.global_discount_1
             self.sale._amount_all()
 
-    def test_06_no_taxes(self):
+    def test_05_no_taxes(self):
         self.sale.order_line[1].tax_id = False
         with self.assertRaises(exceptions.UserError):
             self.sale.global_discount_ids = self.global_discount_1
