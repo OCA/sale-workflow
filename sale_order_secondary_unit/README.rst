@@ -16,8 +16,16 @@ Sale Order Secondary Unit
 
 .. |badge1| image:: https://img.shields.io/badge/maturity-Production%2FStable-green.png
     :target: https://odoo-community.org/page/development-status
+<<<<<<< HEAD
     :alt: Production/Stable
 .. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+||||||| parent of e9e84b1a6 ([MIG] sale_stock_secondary_unit: Migration to v15.0)
+    :alt: Beta
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+=======
+    :alt: Production/Stable
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+>>>>>>> e9e84b1a6 ([MIG] sale_stock_secondary_unit: Migration to v15.0)
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
