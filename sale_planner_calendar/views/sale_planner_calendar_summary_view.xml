@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_sale_planner_calendar_summary_search" model="ir.ui.view">
+        <field name="name">sale.planner.calendar.summary</field>
+        <field name="model">sale.planner.calendar.summary</field>
+        <field name="arch" type="xml">
+            <search string="Search sale planner calendar summary">
+                <field name="state" />
+                <filter
+                    string="My summaries"
+                    name="my_event_planner_summary"
+                    domain="[('user_id','=', uid)]"
+                />
+                <separator />
+                <filter
+                    string="Today"
+                    name="start_today"
+                    domain="[('date','&gt;=', time.strftime('%%Y-%%m-%%d 00:00:00')),('date','&lt;',(datetime.date.today() + datetime.timedelta(days=1)).strftime('%%Y-%%m-%%d 00:00:00'))]"
+                />
+                <filter
+                    string="Tomorrow"
+                    name="start_tomorrow"
+                    domain="[('date','&gt;', time.strftime('%%Y-%%m-%%d 23:59:59')),('date','&lt;',(datetime.date.today() + datetime.timedelta(days=2)).strftime('%%Y-%%m-%%d 00:00:00'))]"
+                />
+                <separator />
+            </search>
+        </field>
+    </record>
+
+    <record id="view_sale_planner_calendar_summary_tree" model="ir.ui.view">
+        <field name="name">sale.planner.calendar.summary.tree</field>
+        <field name="model">sale.planner.calendar.summary</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date" optional="show" />
+                <field name="user_id" optional="show" />
+                <field
+                    name="sale_order_subtotal"
+                    widget="monetary"
+                    options="{'currency_field': 'currency_id'}"
+                    optional="show"
+                />
+                <field name="state" optional="show" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sale_planner_calendar_summary_form" model="ir.ui.view">
+        <field name="name">sale.planner.calendar.summary.form</field>
+        <field name="model">sale.planner.calendar.summary</field>
+        <field name="arch" type="xml">
+            <form string="Sale planner calendar summary">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            string="Process"
+                            class="oe_stat_button"
+                            name="action_process"
+                            type="object"
+                            attrs="{'invisible':[('state', 'not in', ['pending'])]}"
+                            icon="fa-pencil-square-o"
+                        />
+                        <button
+                            class="oe_stat_button"
+                            name="action_event_planner"
+                            type="object"
+                            icon="fa-home"
+                            string="Events"
+                        />
+                        <button
+                            class="oe_stat_button"
+                            name="action_open_sale_order"
+                            type="object"
+                            icon="fa-dollar"
+                        >
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_value">
+                                    <field
+                                        name="sale_order_subtotal"
+                                        widget="monetary"
+                                        options="{'currency_field': 'currency_id'}"
+                                    />
+                                </span>
+                                <span class="o_stat_text">Subtotal</span>
+                            </div>
+                        </button>
+                        <button
+                            class="oe_stat_button"
+                            name="action_open_payment_sheet"
+                            type="object"
+                            icon="fa-money"
+                            string="Payment Sheet"
+                        />
+                        <button
+                            class="oe_stat_button"
+                            name="action_open_issue"
+                            type="object"
+                            icon="fa-exclamation-triangle"
+                            string="Issues"
+                        />
+                    </div>
+                    <group>
+                        <group>
+                            <field
+                                name="sale_planner_calendar_event_ids"
+                                invisible="1"
+                            />
+                            <field
+                                name="date"
+                                attrs="{'readonly': [('sale_planner_calendar_event_ids', '!=', [])]}"
+                            />
+                            <field
+                                name="user_id"
+                                attrs="{'readonly': [('sale_planner_calendar_event_ids', '!=', [])]}"
+                            />
+                            <field name="currency_id" invisible="1" />
+                        </group>
+                        <group>
+                            <field name="state" invisible="1" />
+                            <field
+                                name="event_type_id"
+                                widget="selection"
+                                attrs="{'readonly': [('sale_planner_calendar_event_ids', '!=', [])]}"
+                            />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                    </group>
+                    <group string="Totals" col="1">
+                        <div class="row">
+                            <div class="col" />
+                            <div class="col h5">Total</div>
+                            <div class="col h5">Done</div>
+                            <div class="col h5">Effective</div>
+                            <div class="col h5">Off planning</div>
+                        </div>
+                        <div class="row">
+                            <div class="col h5">Events</div>
+                            <div class="col"><field name="event_total_count" /></div>
+                            <div class="col"><field name="event_done_count" /></div>
+                            <div class="col"><field
+                                    name="event_effective_count"
+                                /></div>
+                            <div class="col"><field
+                                    name="event_off_planning_count"
+                                /></div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col" />
+                            <div class="col h5">Documents</div>
+                            <div class="col h5">Amount</div>
+                            <div class="col" />
+                            <div class="col" />
+                        </div>
+                        <div class="row">
+                            <div class="col h5">Orders</div>
+                            <div class="col"><field name="sale_order_count" /></div>
+                            <div class="col"><field name="sale_order_subtotal" /></div>
+                            <div class="col" />
+                            <div class="col" />
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col" />
+                            <div class="col h5">Documents</div>
+                            <div class="col h5">Amount</div>
+                            <div class="col" />
+                            <div class="col" />
+                        </div>
+                        <div class="row">
+                            <div class="col h5">Payments</div>
+                            <div class="col"><field name="payment_count" /></div>
+                            <div class="col"><field name="payment_amount" /></div>
+                            <div class="col" />
+                            <div class="col" />
+                        </div>
+                    </group>
+                    <group string="Comment">
+                        <field name="comment" nolabel="1" />
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_sale_planner_calendar_summary_kanban" model="ir.ui.view">
+        <field name="name">sale.planner.calendar.event.kanban</field>
+        <field name="model">sale.planner.calendar.summary</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" default_order="date">
+                <field name="state" />
+                <field name="user_id" />
+                <field name="date" />
+                <field name="sale_ids" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div
+                            t-attf-class="oe_kanban_card oe_kanban_card_full_width oe_kanban_global_click"
+                        >
+                            <div class="row mb4">
+                                <div class="col-6">
+                                    <strong><span><t
+                                                t-esc="record.date.value"
+                                            /></span></strong>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <field
+                                        name="state"
+                                        widget="label_selection"
+                                        options="{'classes': {'pending': 'info', 'cancel': 'danger', 'done': 'success'}}"
+                                    />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <span>Total orders: <field
+                                            name="sale_order_subtotal"
+                                        /></span>
+                                </div>
+                                <div class="col-6">
+                                    <div class="float-right">
+                                        <button
+                                            class="btn btn-primary"
+                                            string="New order"
+                                            name="action_open_sale_order"
+                                            type="object"
+                                        >
+                                            <i class="fa fa-dollar" />
+                                            <span>Order</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_sale_planner_calendar_summary" model="ir.actions.act_window">
+        <field name="name">Sale planner calendar summary</field>
+        <field name="res_model">sale.planner.calendar.summary</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field
+            name="context"
+        >{'search_default_start_today': 1, 'search_default_my_event_planner_summary': 1}</field>
+    </record>
+    <record id="action_sale_planner_calendar_summary_today" model="ir.actions.server">
+        <field name="name">Event planner summary today</field>
+        <field name="type">ir.actions.server</field>
+        <field name="state">code</field>
+        <field
+            name="model_id"
+            ref="sale_planner_calendar.model_sale_planner_calendar_summary"
+        />
+        <field name="code">
+            action = model.action_get_today_summary()
+        </field>
+    </record>
+</odoo>

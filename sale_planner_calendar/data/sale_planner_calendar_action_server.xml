@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!--
+    If wizard record is NewId the changes in calendar_event_ids are not saved.
+    To fix this, we create the wizard first and open later.
+     -->
+    <record id="sale_planner_calendar_wizard_action" model="ir.actions.server">
+        <field name="name">Sale planner calendar wizard</field>
+        <field
+            name="model_id"
+            ref="sale_planner_calendar.model_sale_planner_calendar_wizard"
+        />
+        <field name="state">code</field>
+        <field name="code">
+wiz = model.create({})
+action = wiz.get_formview_action()
+action['context']['form_view_initial_mode'] = 'edit'
+action['context']['control_panel_hidden'] = True
+        </field>
+    </record>
+
+    <record id="action_set_planner_calendar_event" model="ir.actions.server">
+        <field name="name">Set planner calendar event</field>
+        <field name="model_id" ref="sale.model_sale_order" />
+        <field name="binding_model_id" ref="sale.model_sale_order" />
+        <field name="state">code</field>
+        <field name="code">
+            records.action_set_planner_calendar_event()
+        </field>
+    </record>
+
+</odoo>
