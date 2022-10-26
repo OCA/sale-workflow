@@ -1,10 +1,14 @@
 # Copyright 2021 Tecnativa - Víctor Martínez
+# Copyright 2022 Moduon
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
-from odoo.tests import Form, common
+from odoo.tests.common import Form, tagged
+
+from odoo.addons.account.tests.common import TestAccountReconciliationCommon
 
 
-class TestPartnerAccess(common.SavepointCase):
+@tagged("post_install", "-at_install")
+class TestPartnerAccess(TestAccountReconciliationCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -72,22 +76,3 @@ class TestPartnerAccess(common.SavepointCase):
         self.order_a.message_subscribe(partner_ids=self.partner_b.ids)
         orders_b = self.env["sale.order"].with_user(self.user_b).search([])
         self.assertTrue(self.order_a in orders_b)
-
-    def test_access_invoice(self):
-        invoices_a = self.env["account.move"].with_user(self.user_a).search([])
-        self.assertTrue(self.order_a.invoice_ids in invoices_a)
-        self.assertTrue(self.order_b.invoice_ids not in invoices_a)
-        self.assertTrue(self.order_c.invoice_ids not in invoices_a)
-        invoices_b = self.env["account.move"].with_user(self.user_b).search([])
-        self.assertTrue(self.order_a.invoice_ids not in invoices_b)
-        self.assertTrue(self.order_b.invoice_ids in invoices_b)
-        self.assertTrue(self.order_c.invoice_ids not in invoices_b)
-        invoices_c = self.env["account.move"].with_user(self.user_c).search([])
-        self.assertTrue(self.order_a.invoice_ids not in invoices_c)
-        self.assertTrue(self.order_b.invoice_ids not in invoices_c)
-        self.assertTrue(self.order_c.invoice_ids in invoices_c)
-
-    def test_access_invoice_followers(self):
-        self.order_a.invoice_ids.message_subscribe(partner_ids=self.partner_b.ids)
-        invoices_b = self.env["account.move"].with_user(self.user_b).search([])
-        self.assertTrue(self.order_a.invoice_ids in invoices_b)
