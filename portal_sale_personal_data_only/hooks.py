@@ -8,8 +8,6 @@ def post_init_hook(cr, registry, vals=None):
     env = api.Environment(cr, SUPERUSER_ID, {})
     env.ref("sale.sale_order_rule_portal").active = False
     env.ref("sale.sale_order_line_rule_portal").active = False
-    env.ref("account.account_invoice_rule_portal").active = False
-    env.ref("account.account_invoice_line_rule_portal").active = False
 
 
 def uninstall_hook(cr, registry, vals=None):
@@ -17,5 +15,3 @@ def uninstall_hook(cr, registry, vals=None):
     env = api.Environment(cr, SUPERUSER_ID, {})
     env.ref("sale.sale_order_rule_portal").active = True
     env.ref("sale.sale_order_line_rule_portal").active = True
-    env.ref("account.account_invoice_rule_portal").active = True
-    env.ref("account.account_invoice_line_rule_portal").active = True
