@@ -11,10 +11,19 @@ class SaleOrder(models.Model):
     _inherit = ["sale.order", "product.mass.addition"]
 
     def _get_context_add_products(self):
-        return {
+        res = {
             "search_default_filter_to_sale": 1,
             "quick_access_rights_sale": 1,
         }
+        # Lazy dependency with sale_stock
+        if "warehouse_id" in self._fields:
+            res.update(
+                {
+                    "warehouse": self.warehouse_id.id,
+                    "to_date": self.commitment_date,
+                }
+            )
+        return res
 
     def _get_domain_add_products(self):
         return []
