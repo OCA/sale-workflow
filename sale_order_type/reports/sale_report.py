@@ -13,7 +13,12 @@ class SaleReport(models.Model):
 
     # flake8: noqa
     # pylint:disable=dangerous-default-value
-    def _query(self, with_clause="", fields={}, groupby="", from_clause=""):
-        fields["type_id"] = ", s.type_id as type_id"
-        groupby += ", s.type_id"
-        return super(SaleReport, self)._query(with_clause, fields, groupby, from_clause)
+    def _select_additional_fields(self):
+        res = super()._select_additional_fields()
+        res["type_id"] = "s.type_id"
+        return res
+
+    def _group_by_sale(self):
+        res = super()._group_by_sale()
+        res += """, s.type_id"""
+        return res
