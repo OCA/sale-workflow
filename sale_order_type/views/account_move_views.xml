@@ -10,6 +10,9 @@
                     attrs="{'invisible': [('move_type', 'not in', ['out_invoice', 'out_refund'])]}"
                 />
             </label>
+            <xpath expr="//notebook//tree//field[@name='sequence']" position="before">
+                <field name="account_id" invisible="1" />
+            </xpath>
         </field>
     </record>
 </odoo>
