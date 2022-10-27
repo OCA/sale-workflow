@@ -8,29 +8,13 @@ class SaleOrderTypology(models.Model):
     _description = "Type of sale order"
     _check_company_auto = True
 
-    @api.model
-    def _get_domain_sequence_id(self):
-        seq_type = self.env.ref("sale.seq_sale_order")
-        return [("code", "=", seq_type.code)]
-
-    @api.model
-    def _get_selection_picking_policy(self):
-        return self.env["sale.order"].fields_get(allfields=["picking_policy"])[
-            "picking_policy"
-        ]["selection"]
-
-    @api.model
-    def default_picking_policy(self):
-        default_dict = self.env["sale.order"].default_get(["picking_policy"])
-        return default_dict.get("picking_policy")
-
     name = fields.Char(required=True, translate=True)
     description = fields.Text(translate=True)
     sequence_id = fields.Many2one(
         comodel_name="ir.sequence",
         string="Entry Sequence",
         copy=False,
-        domain=_get_domain_sequence_id,
+        domain=lambda self: self._get_domain_sequence_id(),
     )
     journal_id = fields.Many2one(
         comodel_name="account.journal",
@@ -43,9 +27,11 @@ class SaleOrderTypology(models.Model):
         comodel_name="stock.warehouse", string="Warehouse", check_company=True
     )
     picking_policy = fields.Selection(
-        selection="_get_selection_picking_policy",
+        selection=lambda self: self._get_selection_picking_policy(),
         string="Shipping Policy",
-        default=default_picking_policy,
+        default=lambda self: self.env["sale.order"]
+        .default_get(["picking_policy"])
+        .get("picking_policy"),
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
@@ -60,7 +46,7 @@ class SaleOrderTypology(models.Model):
     )
     incoterm_id = fields.Many2one(comodel_name="account.incoterms", string="Incoterm")
     route_id = fields.Many2one(
-        "stock.location.route",
+        "stock.route",
         string="Route",
         domain=[("sale_selectable", "=", True)],
         ondelete="restrict",
@@ -73,3 +59,14 @@ class SaleOrderTypology(models.Model):
     )
     active = fields.Boolean(default=True)
     quotation_validity_days = fields.Integer(string="Quotation Validity (Days)")
+
+    @api.model
+    def _get_domain_sequence_id(self):
+        seq_type = self.env.ref("sale.seq_sale_order")
+        return [("code", "=", seq_type.code)]
+
+    @api.model
+    def _get_selection_picking_policy(self):
+        return self.env["sale.order"].fields_get(allfields=["picking_policy"])[
+            "picking_policy"
+        ]["selection"]
