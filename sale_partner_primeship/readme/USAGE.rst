@@ -5,7 +5,7 @@ go to the product form Sales tab and tick the Activates primeship checkbox:
 
 You can then set a primeship duration.
 
-You can see current primeship availability for a customer: 
+You can see current primeship availability for a customer:
 
 .. figure:: ../static/description/partner-with-primeship.png
 
