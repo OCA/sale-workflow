@@ -1,4 +1,4 @@
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -52,16 +52,14 @@ class SalePrimeship(models.Model):
     def _check_end_date(self):
         for record in self:
             if record.end_date < record.start_date:
-                raise ValidationError("The end date cannot be before start date")
+                raise ValidationError(_("The end date cannot be before start date"))
 
             if any(
-                (
-                    primeship.overlaps(record.start_date, record.end_date)
-                    for primeship in record.partner_id.primeship_ids
-                    if primeship.id != record.id
-                )
+                primeship.overlaps(record.start_date, record.end_date)
+                for primeship in record.partner_id.primeship_ids
+                if primeship.id != record.id
             ):
-                raise ValidationError("Primeships cannot overlaps")
+                raise ValidationError(_("Primeships cannot overlaps"))
 
     def overlaps(self, start, end):
         self.ensure_one()

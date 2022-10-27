@@ -1,5 +1,6 @@
-from odoo import api, fields, models
 from dateutil.relativedelta import relativedelta
+
+from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -53,7 +54,7 @@ class SaleOrderLine(models.Model):
         string="Primeships",
         comodel_name="sale.primeship",
         compute="_compute_primeship_id",
-        inverse="_compute_inverse_primeship_id",
+        inverse="_inverse_primeship_id",
     )
 
     # One2one impl
@@ -67,7 +68,7 @@ class SaleOrderLine(models.Model):
             if record.primeship_ids:
                 record.primeship_id = record.primeship_ids[0]
 
-    def _compute_inverse_primeship_id(self):
+    def _inverse_primeship_id(self):
         for record in self:
             if record.primeship_ids:
                 primeship = record.env["sale.primeship"].browse(
