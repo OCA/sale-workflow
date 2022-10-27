@@ -36,16 +36,20 @@ class SaleOrder(models.Model):
     def _default_sequence_id(self):
         """We get the sequence in same way the core next_by_code method does so we can
         get the proper default sequence"""
-        force_company = self.env.context.get("force_company")
-        if not force_company:
-            force_company = self.company_id.id or self.env.company.id
+        force_company = self.company_id.id or self.env.company.id
         return self.env["ir.sequence"].search(
-            [("code", "=", "sale.order"), ("company_id", "in", [force_company, False])],
+            [
+                ("code", "=", "sale.order"),
+                "|",
+                ("company_id", "=", force_company),
+                ("company_id", "=", False),
+            ],
             order="company_id",
             limit=1,
         )
 
     @api.depends("partner_id", "company_id")
+    @api.depends_context("partner_id", "company_id", "company")
     def _compute_sale_type_id(self):
         for record in self:
             if not record.partner_id:
@@ -98,15 +102,16 @@ class SaleOrder(models.Model):
             line_vals.update({"route_id": order_type.route_id.id})
             order.order_line.update(line_vals)
 
-    @api.model
-    def create(self, vals):
-        if vals.get("name", _("New")) == _("New") and vals.get("type_id"):
-            sale_type = self.env["sale.order.type"].browse(vals["type_id"])
-            if sale_type.sequence_id:
-                vals["name"] = sale_type.sequence_id.next_by_id(
-                    sequence_date=vals.get("date_order")
-                )
-        return super(SaleOrder, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("name", _("New")) == _("New") and vals.get("type_id"):
+                sale_type = self.env["sale.order.type"].browse(vals["type_id"])
+                if sale_type.sequence_id:
+                    vals["name"] = sale_type.sequence_id.next_by_id(
+                        sequence_date=vals.get("date_order")
+                    )
+        return super().create(vals_list)
 
     def write(self, vals):
         """A sale type could have a different order sequence, so we could
@@ -144,15 +149,4 @@ class SaleOrder(models.Model):
             res["journal_id"] = self.type_id.journal_id.id
         if self.type_id:
             res["sale_type_id"] = self.type_id.id
-        return res
-
-
-class SaleOrderLine(models.Model):
-    _inherit = "sale.order.line"
-
-    @api.onchange("product_id")
-    def product_id_change(self):
-        res = super(SaleOrderLine, self).product_id_change()
-        if self.order_id.type_id.route_id:
-            self.update({"route_id": self.order_id.type_id.route_id})
         return res

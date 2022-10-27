@@ -18,9 +18,8 @@ class TestSaleOrderType(common.TransactionCase):
             default_move_type="out_invoice"
         )
         self.account_model = self.env["account.account"]
-        self.user_type_id = self.env.ref("account.data_account_type_revenue")
         self.account = self.account_model.create(
-            {"code": "410000", "name": "Income", "user_type_id": self.user_type_id.id}
+            {"code": "410000", "name": "Income", "account_type": "income"}
         )
         self.partner = self.env.ref("base.res_partner_1")
         self.partner_child_1 = self.env["res.partner"].create(
@@ -85,13 +84,13 @@ class TestSaleOrderType(common.TransactionCase):
             {
                 "name": "Test Sequence default",
                 "sequence_id": self.env["sale.order"]
-                .with_context(force_company=self.env.company.id)
+                .with_company(self.env.company.id)
                 ._default_sequence_id()
                 .id,
             }
         )
         self.partner.sale_type = self.sale_type
-        self.sale_route = self.env["stock.location.route"].create(
+        self.sale_route = self.env["stock.route"].create(
             {
                 "name": "SO -> Customer",
                 "product_selectable": True,
@@ -107,7 +106,9 @@ class TestSaleOrderType(common.TransactionCase):
                             "location_src_id": self.ref(
                                 "stock.stock_location_components"
                             ),
-                            "location_id": self.ref("stock.stock_location_customers"),
+                            "location_dest_id": self.ref(
+                                "stock.stock_location_customers"
+                            ),
                         },
                     )
                 ],
@@ -168,10 +169,17 @@ class TestSaleOrderType(common.TransactionCase):
         order = self.create_sale_order(partner=self.partner_child_1)
         self.assertEqual(order.type_id, self.sale_type)
 
+    def test_sale_order_without_partner(self):
+        sale_order = self.sale_order_model.with_company(1).new()
+        self.assertEqual(sale_order.company_id.id, 1)
+        sale_type = self.env["sale.order.type"].search(
+            [("company_id", "in", [sale_order.company_id.id, False])], limit=1
+        )
+        self.assertEqual(sale_order.type_id, sale_type)
+
     def test_invoice_onchange_type(self):
         sale_type = self.sale_type
         invoice = self.create_invoice()
-        invoice.onchange_sale_type_id()
         self.assertEqual(invoice.invoice_payment_term_id, sale_type.payment_term_id)
         self.assertEqual(invoice.journal_id, sale_type.journal_id)
 
@@ -202,7 +210,6 @@ class TestSaleOrderType(common.TransactionCase):
 
     def test_sale_order_in_draft_state_update_name(self):
         order = self.create_sale_order()
-        order.onchange_partner_id()
         order.onchange_type_id()
         self.assertEqual(order.type_id, self.sale_type)
         self.assertEqual(order.state, "draft")
@@ -215,7 +222,6 @@ class TestSaleOrderType(common.TransactionCase):
 
     def test_sale_order_in_sent_state_update_name(self):
         order = self.create_sale_order()
-        order.onchange_partner_id()
         order.onchange_type_id()
         self.assertEqual(order.type_id, self.sale_type)
         self.assertEqual(order.state, "draft")
@@ -223,7 +229,6 @@ class TestSaleOrderType(common.TransactionCase):
         # send quotation
         order.action_quotation_sent()
         self.assertTrue(order.state == "sent", "Sale: state after sending is wrong")
-        # change order type on sale order
         order.type_id = self.sale_type_quot
         order.onchange_type_id()
         self.assertEqual(order.type_id, self.sale_type_quot)
@@ -259,7 +264,10 @@ class TestSaleOrderType(common.TransactionCase):
         from the same sequence"""
         self.partner.sale_type = self.default_sale_type_id
         order = self.create_sale_order()
-        order.onchange_partner_id()
         name = order.name
         order.type_id = self.sale_type_sequence_default
         self.assertEqual(name, order.name, "The sequence shouldn't change!")
+
+    def test_res_partner_copy_data(self):
+        new_partner = self.partner.copy()
+        self.assertEqual(self.partner.sale_type, new_partner.sale_type)
