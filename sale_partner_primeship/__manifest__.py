@@ -12,6 +12,7 @@
         "views/sale_primeship_views.xml",
         "views/res_partner_views.xml",
         "security/ir.model.access.csv",
+        "security/sale_partner_primeship.xml",
     ],
     "license": "LGPL-3",
 }
