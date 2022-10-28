@@ -130,8 +130,9 @@ class SalePlannerCalendarSummary(models.Model):
         """
         Search or Create an event planner linked to sale order
         """
-        action = self.env.ref("sale.action_quotations_with_onboarding")
-        action = action.read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "sale.action_quotations_with_onboarding"
+        )
         action["context"] = {
             "default_user_id": self.user_id.id,
         }
@@ -155,9 +156,10 @@ class SalePlannerCalendarSummary(models.Model):
             ("date", "=", fields.Date.today()),
         ]
         summary = self.search(domain)
-        action = self.env.ref(
+        action = self.env["ir.actions.act_window"]._for_xml_id(
             "sale_planner_calendar.action_sale_planner_calendar_summary"
-        ).read()[0]
+        )
+
         if len(summary) > 1:
             action["domain"] = [("id", "in", summary.ids)]
         else:
@@ -272,10 +274,9 @@ class SalePlannerCalendarSummary(models.Model):
     def action_event_planner(self):
         if not self.sale_planner_calendar_event_ids:
             self.action_process()
-        action = self.env.ref(
+        action = self.env["ir.actions.act_window"]._for_xml_id(
             "sale_planner_calendar.action_sale_planner_calendar_event"
         )
-        action = action.read()[0]
         action["domain"] = [("id", "in", self.sale_planner_calendar_event_ids.ids)]
         action["context"] = {
             "default_off_planning": True,
@@ -312,8 +313,9 @@ class SalePlannerCalendarSummary(models.Model):
         payment_sheets = self.sale_planner_calendar_event_ids.mapped(
             "payment_sheet_line_ids.sheet_id"
         )
-        action = self.env.ref("sale_payment_sheet.action_sale_payment_sheet")
-        action = action.read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "sale_payment_sheet.action_sale_payment_sheet"
+        )
         if len(payment_sheets) > 1:
             action["domain"] = [("id", "in", payment_sheets.ids)]
         else:
@@ -331,9 +333,9 @@ class SalePlannerCalendarSummary(models.Model):
         Open issues related to any event
         """
         issues = self.sale_planner_calendar_event_ids.filtered("calendar_issue_type_id")
-        action = self.env.ref(
+        action = self.env["ir.actions.act_window"]._for_xml_id(
             "sale_planner_calendar.action_sale_planner_calendar_issue_tree"
         )
-        action = action.read()[0]
+
         action["domain"] = [("id", "in", issues.ids)]
         return action
