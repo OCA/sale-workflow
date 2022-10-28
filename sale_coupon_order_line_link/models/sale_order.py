@@ -121,6 +121,12 @@ class SaleOrder(models.Model):
                 {"reward_generated_line_ids": [(4, rl.id) for rl in reward_lines]}
             )
 
+    def _create_new_no_code_promo_reward_lines(self):
+        """Ensure that the links remain"""
+        super()._create_new_no_code_promo_reward_lines()
+        for order in self:
+            order._link_reward_generated_lines(order.order_line.coupon_program_id)
+
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
