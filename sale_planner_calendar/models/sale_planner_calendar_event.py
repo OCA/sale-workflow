@@ -131,8 +131,9 @@ class SalePlannerCalendarEvent(models.Model):
         """
         Search or Create an event planner  linked to sale order
         """
-        action = self.env.ref("sale.action_quotations_with_onboarding")
-        action = action.read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "sale.action_quotations_with_onboarding"
+        )
         action["context"] = {
             "default_sale_planner_calendar_event_id": self.id,
             "default_partner_id": self.partner_id.id,
@@ -146,8 +147,10 @@ class SalePlannerCalendarEvent(models.Model):
         return action
 
     def action_open_invoices(self):
-        action = self.env.ref("sale_payment_sheet.action_invoice_sale_payment_sheet")
-        action = action.read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "sale_payment_sheet.action_invoice_sale_payment_sheet"
+        )
+
         ctx = safe_eval(action["context"])
         ctx.update(
             {
@@ -170,8 +173,9 @@ class SalePlannerCalendarEvent(models.Model):
             ("payment_state", "!=", "paid"),
         ]
         unpaid_invoices = self.env["account.move"].search(domain)
-        action = self.env.ref("sale_payment_sheet.action_sale_invoice_payment_wiz")
-        action = action.read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "sale_payment_sheet.action_sale_invoice_payment_wiz"
+        )
         ctx = safe_eval(action["context"])
         ctx.update(
             {
@@ -211,10 +215,9 @@ class SalePlannerCalendarEvent(models.Model):
         )
 
     def action_open_issue(self):
-        action = self.env.ref(
+        action = self.env["ir.actions.act_window"]._for_xml_id(
             "sale_planner_calendar.action_sale_planner_calendar_issue"
         )
-        action = action.read()[0]
         action["res_id"] = self.id
         return action
 
