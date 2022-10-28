@@ -14,7 +14,9 @@ class ResPartner(models.Model):
 
     def action_calendar_planner(self):
         categ = self.env.ref("sale_planner_calendar.event_type_commercial_visit")
-        action = self.env.ref("calendar.action_calendar_event").read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "calendar.action_calendar_event"
+        )
         sale_planner_forward_months = self.env.company.sale_planner_forward_months
         # TODO: Get default values from res.config.settings
         action["context"] = {
@@ -76,12 +78,13 @@ class ResPartner(models.Model):
                 )
             )
             if calendar_events:
-                action = self.env.ref(
+                action = self.env["ir.actions.act_window"]._for_xml_id(
                     "sale_planner_calendar.action_sale_planner_calendar_reassign_wiz"
                 )
+                action["target"] = "new"
                 msg = _(
                     "This partner has sale planned events\n"
                     "You must change salesperson from the planner wizard"
                 )
-                raise RedirectWarning(msg, action.id, _("Go to the planner wizard"))
+                raise RedirectWarning(msg, action, _("Go to the planner wizard"))
         return super(ResPartner, self).write(vals)
