@@ -38,7 +38,12 @@
         action="action_sale_planner_calendar_event"
         sequence="30"
     />
-
+    <menuitem
+        id="menu_sale_planner_calendar_customers"
+        parent="menu_sale_planner_calendar_summary_general"
+        action="account.res_partner_action_customer"
+        sequence="40"
+    />
     <menuitem
         id="menu_calendar_event_root"
         parent="menu_sale_planner_calendar_root"
