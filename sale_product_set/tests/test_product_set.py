@@ -6,7 +6,7 @@ from odoo.tests import common
 
 
 class TestProductSet(common.SavepointCase):
-    """Test Product set"""
+    """ Test Product set"""
 
     @classmethod
     def setUpClass(cls):

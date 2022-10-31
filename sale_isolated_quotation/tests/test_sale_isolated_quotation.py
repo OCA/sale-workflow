@@ -27,7 +27,7 @@ class TestSaleIsolatedQuotation(TransactionCase):
             self.sale_order.action_convert_to_order()
 
     def test_uninstall_hook(self):
-        """ "Test uninstall_hook"""
+        """"Test uninstall_hook"""
         actions = [
             "sale.action_quotations_with_onboarding",
             "sale.action_orders",

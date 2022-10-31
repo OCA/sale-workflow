@@ -7,7 +7,7 @@ class ProductProduct(models.Model):
     _inherit = "product.product"
 
     def _compute_last_sale(self):
-        """Get last sale price, last sale date and last customer"""
+        """ Get last sale price, last sale date and last customer """
         so_line_obj = self.env["sale.order.line"]
         for product in self:
             line = so_line_obj.search(
