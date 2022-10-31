@@ -168,7 +168,7 @@ class AutomaticWorkflowJob(models.Model):
 
     @api.model
     def run(self):
-        """ Must be called from ir.cron """
+        """Must be called from ir.cron"""
         sale_workflow_process = self.env["sale.workflow.process"]
         for sale_workflow in sale_workflow_process.search([]):
             self.run_with_workflow(sale_workflow)
