@@ -1,0 +1,2 @@
+odoo-addon-product_allowed_list @ git+https://github.com/OCA/product-attribute@refs/pull/1063/head#subdirectory=setup/product_allowed_list
+odoo-addon-product_allowed_list_date @ git+https://github.com/OCA/product-attribute@refs/pull/1063/head#subdirectory=setup/product_allowed_list_date
