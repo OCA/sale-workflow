@@ -13,9 +13,10 @@ include_wkhtmltopdf: false
 odoo_version: 15.0
 org_name: Odoo Community Association (OCA)
 org_slug: OCA
-rebel_module_groups: []
+rebel_module_groups:
+- portal_sale_personal_data_only
 repo_description: 'TODO: add repo description.'
-repo_name: sale-workflow
+repo_name: Sale Workflow
 repo_slug: sale-workflow
 repo_website: https://github.com/OCA/sale-workflow
 travis_apt_packages: []
