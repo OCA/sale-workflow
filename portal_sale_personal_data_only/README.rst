@@ -23,9 +23,9 @@ Portal Sale Personal Data Only
     :target: https://runbot.odoo-community.org/runbot/167/15.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
-By default, portal users are allowed to see all the orders and invoices in
+By default, portal users are allowed to see all the sale orders in
 which a member of their organization are followers. That could cause a leaking
 of  documents between members and departments and of the organization that
 should stay private.
@@ -44,7 +44,7 @@ Usage
 #. Create some portal users belonging to the same company.
 #. Place some orders for several of these users.
 #. Log in with each portal user credential.
-#. Only the orders and invoices belonging to the logged in user's partner or
+#. Only the sale orders belonging to the logged in user's partner or
    his descendants should be accessible.
 #. Invoices associated to a partner's sale order will be visible as well.
 
@@ -54,7 +54,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20portal_sale_personal_data_only%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20portal_sale_personal_data_only%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -77,6 +77,7 @@ Contributors
   * Víctor Martínez
 
 * Moaad Bourhim <moaad.bourhim@gmail.com>
+* Jairo Llopis (`Moduon <https://www.moduon.team/>`__)
 
 Maintainers
 ~~~~~~~~~~~
