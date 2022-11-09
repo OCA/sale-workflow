@@ -84,6 +84,7 @@ Contributors
 * `Trobz <https://trobz.com>`_:
 
     * Son Ho <sonhd@trobz.com>
+* Jairo Llopis (https://www.moduon.team/)
 
 Maintainers
 ~~~~~~~~~~~
