@@ -7,7 +7,7 @@
 
 <!-- /!\ do not modify above this line -->
 
-# sale-workflow
+# Sale Workflow
 
 TODO: add repo description.
 
