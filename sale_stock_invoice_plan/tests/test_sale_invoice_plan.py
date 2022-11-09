@@ -4,8 +4,9 @@ from collections import OrderedDict
 
 from odoo.exceptions import ValidationError
 from odoo.tests import Form
+from odoo.tests.common import tagged
 
-from odoo.addons.sale.tests import common, tagged
+from odoo.addons.sale.tests import common
 
 
 @tagged("post_install", "-at_install")

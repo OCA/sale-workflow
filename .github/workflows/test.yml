@@ -36,9 +36,18 @@ jobs:
       matrix:
         include:
           - container: ghcr.io/oca/oca-ci/py3.8-odoo15.0:latest
+            include: "portal_sale_personal_data_only"
             makepot: "true"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.8-ocb15.0:latest
+            include: "portal_sale_personal_data_only"
+            name: test with OCB
+          - container: ghcr.io/oca/oca-ci/py3.8-odoo15.0:latest
+            exclude: "portal_sale_personal_data_only"
+            makepot: "true"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py3.8-ocb15.0:latest
+            exclude: "portal_sale_personal_data_only"
             name: test with OCB
     services:
       postgres:
@@ -49,6 +58,9 @@ jobs:
           POSTGRES_DB: odoo
         ports:
           - 5432:5432
+    env:
+      INCLUDE: "${{ matrix.include }}"
+      EXCLUDE: "${{ matrix.exclude }}"
     steps:
       - uses: actions/checkout@v2
         with:
