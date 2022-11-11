@@ -4,7 +4,6 @@
         <field name="name">res.partner.form.sales_by_product</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="sale.res_partner_view_buttons" />
-        <field name="groups_id" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
         <field name="arch" type="xml">
             <button name="action_view_sale_order" position="before">
                 <button
