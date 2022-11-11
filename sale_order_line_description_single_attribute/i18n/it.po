@@ -6,38 +6,40 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2022-11-11 10:45+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: sale_order_line_description_single_attribute
 #: model:ir.model.fields,field_description:sale_order_line_description_single_attribute.field_product_product__display_name
 #: model:ir.model.fields,field_description:sale_order_line_description_single_attribute.field_product_template_attribute_value__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: sale_order_line_description_single_attribute
 #: model:ir.model.fields,field_description:sale_order_line_description_single_attribute.field_product_product__id
 #: model:ir.model.fields,field_description:sale_order_line_description_single_attribute.field_product_template_attribute_value__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_order_line_description_single_attribute
 #: model:ir.model.fields,field_description:sale_order_line_description_single_attribute.field_product_product____last_update
 #: model:ir.model.fields,field_description:sale_order_line_description_single_attribute.field_product_template_attribute_value____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_order_line_description_single_attribute
 #: model:ir.model,name:sale_order_line_description_single_attribute.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: sale_order_line_description_single_attribute
 #: model:ir.model,name:sale_order_line_description_single_attribute.model_product_template_attribute_value
 msgid "Product Template Attribute Value"
-msgstr ""
+msgstr "Valore attributo modello prodotto"
