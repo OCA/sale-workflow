@@ -35,10 +35,6 @@ This module adds a signature field to sale report.
 Installation
 ============
 
-This module depends on :
-
-* web_widget_digitized_signature
-
 This module is part of the OCA/web suite.
 
 Usage
