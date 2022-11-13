@@ -24,7 +24,6 @@ msgstr "<strong>Aceptación del cliente:</strong>"
 #. module: sale_order_digitized_signature
 #: model_terms:ir.ui.view,arch_db:sale_order_digitized_signature.view_order_form_signature
 #, fuzzy
-#| msgid "Customer acceptance"
 msgid "Customer Signature"
 msgstr "Aceptación del cliente"
 
@@ -34,8 +33,26 @@ msgid "Customer acceptance"
 msgstr "Aceptación del cliente"
 
 #. module: sale_order_digitized_signature
+#: model:ir.model.fields,field_description:sale_order_digitized_signature.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_digitized_signature
+#: model:ir.model.fields,field_description:sale_order_digitized_signature.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_digitized_signature
+#: model:ir.model.fields,field_description:sale_order_digitized_signature.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_order_digitized_signature
 #: model:ir.model,name:sale_order_digitized_signature.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
 #, fuzzy
-#| msgid "Sales Order"
-msgid "Sale Order"
-msgstr "Pedido"
+#~| msgid "Sales Order"
+#~ msgid "Sale Order"
+#~ msgstr "Pedido"
