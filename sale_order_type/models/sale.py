@@ -36,9 +36,7 @@ class SaleOrder(models.Model):
     def _default_sequence_id(self):
         """We get the sequence in same way the core next_by_code method does so we can
         get the proper default sequence"""
-        force_company = self.env.context.get("force_company")
-        if not force_company:
-            force_company = self.company_id.id or self.env.company.id
+        force_company = self.company_id.id or self.env.company.id
         return self.env["ir.sequence"].search(
             [("code", "=", "sale.order"), ("company_id", "in", [force_company, False])],
             order="company_id",
