@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2022 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+  <record id="view_picking_form" model="ir.ui.view">
+    <field name="name">stock.picking.form.inherit</field>
+    <field name="model">stock.picking</field>
+    <field name="inherit_id" ref="stock.view_picking_form" />
+    <field name="arch" type="xml">
+      <field name="use_create_lots" position="after">
+        <field name="has_customer_ref" invisible="1" />
+      </field>
+      <xpath
+                expr="//field[@name='move_ids_without_package']/tree/field[@name='product_id']"
+                position="after"
+            >
+        <field
+                    name="customer_ref"
+                    attrs="{'column_invisible': [('parent.has_customer_ref', '=', False)]}"
+                />
+      </xpath>
+      <xpath
+                expr="//field[@name='move_ids_without_package']/form//field[@name='product_id']"
+                position="after"
+            >
+        <field
+                    name="customer_ref"
+                    attrs="{'invisible': [('customer_ref', '=', False)]}"
+                />
+      </xpath>
+    </field>
+  </record>
+
+</odoo>
