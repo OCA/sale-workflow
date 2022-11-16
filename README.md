@@ -35,6 +35,7 @@ addon | version | maintainers | summary
 [sale_elaboration](sale_elaboration/) | 15.0.1.0.0 |  | Set an elaboration for any sale line
 [sale_exception](sale_exception/) | 15.0.1.0.0 |  | Custom exceptions on sale order
 [sale_force_invoiced](sale_force_invoiced/) | 15.0.1.0.0 |  | Allows to force the invoice status of the sales order to Invoiced
+[sale_force_whole_invoiceability](sale_force_whole_invoiceability/) | 15.0.1.0.0 |  | Sale Force Whole Invoiceability
 [sale_invoice_blocking](sale_invoice_blocking/) | 15.0.1.0.0 |  | Allow you to block the creation of invoices from a sale order.
 [sale_invoice_no_mail](sale_invoice_no_mail/) | 15.0.1.0.1 |  | Sale Invoice No Mail
 [sale_invoice_plan](sale_invoice_plan/) | 15.0.1.3.2 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to sales order, ability to manage future invoice plan
