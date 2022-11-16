@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_invoice_policy
+# 	* sale_invoice_policy
 #
 msgid ""
 msgstr ""
@@ -17,81 +17,63 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: sale_invoice_policy
-#: model:ir.model,name:sale_invoice_policy.model_res_config_settings
-msgid "Config Settings"
-msgstr "Parâmetros de Configuração"
-
-#. module: sale_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_product_product__default_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_product_template__default_invoice_policy
 msgid "Default Invoicing Policy"
 msgstr "Política de Faturação Predefinida"
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_default_invoice_policy
-msgid "Default Sale Invoice Policy"
-msgstr "Política de Faturação de Vendas Predefinida"
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_template__display_name
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr ""
 
 #. module: sale_invoice_policy
-#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
-msgid "Default Sale Order Invoice Policy"
-msgstr "Política Predefinida de Faturação de Encomendas de Vendas"
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_template__id
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order_line__id
+msgid "ID"
+msgstr ""
 
 #. module: sale_invoice_policy
-#: selection:product.template,default_invoice_policy:0
-#: selection:product.template,invoice_policy:0
-#: selection:sale.order,invoice_policy:0
-msgid "Delivered quantities"
-msgstr "Quantidades entregues"
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__product_template__default_invoice_policy__delivery
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__delivery
+msgid "Invoice what is delivered"
+msgstr ""
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order__invoice_policy
-msgid "Invoice Policy"
-msgstr "Política de Faturação"
-
-#. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order__invoice_policy_required
-msgid "Invoice Policy Required"
-msgstr "Política de Faturação Requerida"
-
-#. module: sale_invoice_policy
-#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
-msgid "Invoice Policy required in Sale Orders"
-msgstr "Política de Faturação requerida em Encomendas de Venda"
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__product_template__default_invoice_policy__order
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__order
+msgid "Invoice what is ordered"
+msgstr ""
 
 #. module: sale_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_product_product__invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_product_template__invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order__invoice_policy
 msgid "Invoicing Policy"
 msgstr "Política de Faturação"
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_product_product__default_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_product_template__default_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_sale_order__invoice_policy
-msgid "Ordered Quantity: Invoice based on the quantity the customer ordered.\n"
-"Delivered Quantity: Invoiced based on the quantity the vendor delivered (time or deliveries)."
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_template____last_update
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order_line____last_update
+msgid "Last Modified on"
 msgstr ""
-"Quantidade Encomendada: Faturar com base na quantidade que o cliente "
-"encomendou.\n"
-"Quantidade Entregue: Faturar tendo em conta a quantidade que o cliente "
-"recebeu (tempo ou materiais)."
 
 #. module: sale_invoice_policy
+#: model:ir.model.fields,help:sale_invoice_policy.field_product_product__default_invoice_policy
 #: model:ir.model.fields,help:sale_invoice_policy.field_product_product__invoice_policy
+#: model:ir.model.fields,help:sale_invoice_policy.field_product_template__default_invoice_policy
 #: model:ir.model.fields,help:sale_invoice_policy.field_product_template__invoice_policy
-msgid "Ordered Quantity: Invoice quantities ordered by the customer.\n"
+#: model:ir.model.fields,help:sale_invoice_policy.field_sale_order__invoice_policy
+msgid ""
+"Ordered Quantity: Invoice quantities ordered by the customer.\n"
 "Delivered Quantity: Invoice quantities delivered to the customer."
 msgstr ""
 "Quantidade Encomendada: Faturar quantidades encomendadas pelo cliente.\n"
 "Quantidade Entregue: Faturar quantidades entregues ao cliente."
-
-#. module: sale_invoice_policy
-#: selection:product.template,default_invoice_policy:0
-#: selection:product.template,invoice_policy:0
-#: selection:sale.order,invoice_policy:0
-msgid "Ordered quantities"
-msgstr "Quantidades encomendadas"
 
 #. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_product_template
@@ -99,23 +81,56 @@ msgid "Product Template"
 msgstr "Modelo de Produto"
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
-msgid "Sale Invoice Policy Required"
-msgstr "Política de Faturação de Vendas Requerida"
-
-#. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_sale_order
-msgid "Sale Order"
-msgstr "Encomenda de Venda"
+msgid "Sales Order"
+msgstr ""
 
 #. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Linha de Encomenda de Venda"
 
-#. module: sale_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
-msgid "This makes Invoice Policy required on Sale Orders"
-msgstr ""
-"Isto faz com que a Política de Faturação seja requerida em Encomendas de "
-"Venda"
+#~ msgid "Config Settings"
+#~ msgstr "Parâmetros de Configuração"
+
+#~ msgid "Default Sale Invoice Policy"
+#~ msgstr "Política de Faturação de Vendas Predefinida"
+
+#~ msgid "Default Sale Order Invoice Policy"
+#~ msgstr "Política Predefinida de Faturação de Encomendas de Vendas"
+
+#~ msgid "Delivered quantities"
+#~ msgstr "Quantidades entregues"
+
+#~ msgid "Invoice Policy"
+#~ msgstr "Política de Faturação"
+
+#~ msgid "Invoice Policy Required"
+#~ msgstr "Política de Faturação Requerida"
+
+#~ msgid "Invoice Policy required in Sale Orders"
+#~ msgstr "Política de Faturação requerida em Encomendas de Venda"
+
+#~ msgid ""
+#~ "Ordered Quantity: Invoice based on the quantity the customer ordered.\n"
+#~ "Delivered Quantity: Invoiced based on the quantity the vendor delivered "
+#~ "(time or deliveries)."
+#~ msgstr ""
+#~ "Quantidade Encomendada: Faturar com base na quantidade que o cliente "
+#~ "encomendou.\n"
+#~ "Quantidade Entregue: Faturar tendo em conta a quantidade que o cliente "
+#~ "recebeu (tempo ou materiais)."
+
+#~ msgid "Ordered quantities"
+#~ msgstr "Quantidades encomendadas"
+
+#~ msgid "Sale Invoice Policy Required"
+#~ msgstr "Política de Faturação de Vendas Requerida"
+
+#~ msgid "Sale Order"
+#~ msgstr "Encomenda de Venda"
+
+#~ msgid "This makes Invoice Policy required on Sale Orders"
+#~ msgstr ""
+#~ "Isto faz com que a Política de Faturação seja requerida em Encomendas de "
+#~ "Venda"
