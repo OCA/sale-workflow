@@ -3,7 +3,7 @@
 
 from lxml import etree
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import Form, TransactionCase
 
 
 class TestPartnerContactSaleInfoPropagation(TransactionCase):
@@ -51,19 +51,17 @@ class TestPartnerContactSaleInfoPropagation(TransactionCase):
         self.check_same_user_id_team_id(self.parent_company, partner_child)
 
     def test_onchange_parent_id_with_values_false(self):
-        partner_child = self.partner_model.create({"name": "Parent child"})
-        partner_child.write({"parent_id": self.parent_company.id})
-        onchange_result = partner_child.onchange_parent_id()
-        self.assertEqual(
-            onchange_result["value"]["user_id"], self.parent_company.user_id
-        )
-        self.assertEqual(
-            onchange_result["value"]["team_id"], self.parent_company.team_id
-        )
+        form_partner = Form(self.env["res.partner"])
+        with form_partner as form:
+            form.name = self.parent_company.name
+            form.parent_id = self.parent_company
+        form_partner.save()
+        self.assertEqual(form_partner.user_id, self.parent_company.user_id)
+        self.assertEqual(form_partner.team_id, self.parent_company.team_id)
 
     def test_fields_view_get(self):
-        partner_xml = etree.XML(self.partner_model.fields_view_get()["arch"])
+        partner_xml = etree.XML(self.partner_model.get_view()["arch"])
         partner_field = partner_xml.xpath("//field[@name='child_ids']")[0]
         context = partner_field.attrib.get("context", "{}")
-        sub_ctx = "{'default_user_id': user_id, 'default_team_id': team_id,"
+        sub_ctx = "'default_user_id': user_id, 'default_team_id': team_id,"
         self.assertIn(sub_ctx, context)
