@@ -42,6 +42,7 @@ setuptools.setup(
         'odoo14-addon-sale_invoice_blocking',
         'odoo14-addon-sale_invoice_no_mail',
         'odoo14-addon-sale_invoice_plan',
+        'odoo14-addon-sale_invoice_policy',
         'odoo14-addon-sale_isolated_quotation',
         'odoo14-addon-sale_last_price_info',
         'odoo14-addon-sale_mail_autosubscribe',
