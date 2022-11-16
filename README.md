@@ -17,7 +17,11 @@ TODO: add repo description.
 
 [//]: # (addons)
 
-This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
+Available addons
+----------------
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[partner_contact_sale_info_propagation](partner_contact_sale_info_propagation/) | 16.0.1.0.0 |  | Propagate Salesperson and Sales Channel from Company to Contacts
 
 [//]: # (end addons)
 
