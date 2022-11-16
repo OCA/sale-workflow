@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="sale_order_view_form_inherit_sale_invoice_policy" model="ir.ui.view">
+        <field name="name">sale.order.form (sale_invoice_policy)</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="priority">50</field>
+        <field name="arch" type="xml">
+            <field name="payment_term_id" position="after">
+                <field name="invoice_policy" />
+            </field>
+        </field>
+    </record>
+</odoo>
