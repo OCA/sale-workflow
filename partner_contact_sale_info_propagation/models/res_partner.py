@@ -63,10 +63,8 @@ class ResPartner(models.Model):
         return res
 
     @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
-        res = super().fields_view_get(
+    def get_view(self, view_id=None, view_type="form", toolbar=False, submenu=False):
+        res = super().get_view(
             view_id=view_id,
             view_type=view_type,
             toolbar=toolbar,
