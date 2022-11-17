@@ -301,7 +301,8 @@ class BlanketOrder(models.Model):
             sequence_obj = self.env["ir.sequence"]
             if order.company_id:
                 sequence_obj = sequence_obj.with_company(order.company_id.id)
-            name = sequence_obj.next_by_code("sale.blanket.order")
+            if order.name == "Draft":
+                name = sequence_obj.next_by_code("sale.blanket.order")
             order.write({"confirmed": True, "name": name})
         return True
 
