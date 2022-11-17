@@ -3,7 +3,7 @@
 {
     "name": "Sale Order Priority",
     "summary": "Define priority on sale orders",
-    "version": "15.0.1.0.0",
+    "version": "15.0.1.0.1",
     "category": "Sale Workflow",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Agile Business Group, Odoo Community Association (OCA)",
