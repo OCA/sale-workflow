@@ -53,11 +53,12 @@ class SaleOrder(models.Model):
         if check_exceptions:
             self.sale_check_exception()
 
-    @api.model
-    def create(self, vals):
-        record = super().create(vals)
-        record._check_sale_check_exception(vals)
-        return record
+    @api.model_create_multi
+    def create(self, vals_list):
+        records = super().create(vals_list)
+        for record, vals in zip(records, vals_list):
+            record._check_sale_check_exception(vals)
+        return records
 
     def write(self, vals):
         result = super().write(vals)
