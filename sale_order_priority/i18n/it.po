@@ -18,23 +18,19 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_order_priority
-#: selection:sale.order,priority:0 selection:sale.order.line,priority:0
+#: model:ir.model.fields.selection,name:sale_order_priority.selection__sale_order__priority__0
+#: model:ir.model.fields.selection,name:sale_order_priority.selection__sale_order_line__priority__0
 msgid "Normal"
 msgstr "Normale"
 
 #. module: sale_order_priority
-#: selection:sale.order,priority:0 selection:sale.order.line,priority:0
-msgid "Not urgent"
-msgstr "Non urgente"
-
-#. module: sale_order_priority
-#: model:ir.model.fields,field_description:sale_order_priority.field_sale_order_line_priority
-#: model:ir.model.fields,field_description:sale_order_priority.field_sale_order_priority
+#: model:ir.model.fields,field_description:sale_order_priority.field_sale_order__priority
+#: model:ir.model.fields,field_description:sale_order_priority.field_sale_order_line__priority
 msgid "Priority"
 msgstr "Priorità"
 
 #. module: sale_order_priority
-#: model:ir.model.fields,help:sale_order_priority.field_sale_order_priority
+#: model:ir.model.fields,help:sale_order_priority.field_sale_order__priority
 msgid ""
 "Priority for this sale order. Setting manually a value here would set it as "
 "priority for all the order lines"
@@ -53,11 +49,18 @@ msgid "Sales Order Line"
 msgstr "Riga ordine di vendita"
 
 #. module: sale_order_priority
-#: selection:sale.order,priority:0 selection:sale.order.line,priority:0
+#: model:ir.model,name:sale_order_priority.model_stock_picking
+msgid "Transfer"
+msgstr ""
+
+#. module: sale_order_priority
+#: model:ir.model.fields.selection,name:sale_order_priority.selection__sale_order__priority__1
+#: model:ir.model.fields.selection,name:sale_order_priority.selection__sale_order_line__priority__1
 msgid "Urgent"
 msgstr "Urgente"
 
-#. module: sale_order_priority
-#: selection:sale.order,priority:0 selection:sale.order.line,priority:0
-msgid "Very Urgent"
-msgstr "Molto urgente"
+#~ msgid "Not urgent"
+#~ msgstr "Non urgente"
+
+#~ msgid "Very Urgent"
+#~ msgstr "Molto urgente"
