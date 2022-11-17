@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-partner_contact_sale_info_propagation>=16.0dev,<16.1dev',
+        'odoo-addon-partner_sale_pivot>=16.0dev,<16.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
