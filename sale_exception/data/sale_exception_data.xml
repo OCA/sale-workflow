@@ -26,8 +26,9 @@
         <field name="description">Not Enough Virtual Stock</field>
         <field name="sequence">50</field>
         <field name="model">sale.order.line</field>
-        <field name="code">failed=self.product_id and self.product_id.type == 'product'
-            and self.virtual_available_at_date &lt; self.product_uom_qty</field>
+        <field
+            name="code"
+        >failed=self.product_id and self.product_id.type == 'product' and self.virtual_available_at_date &lt; self.product_uom_qty</field>
         <field name="active" eval="False" />
     </record>
     <record id="exception_partner_sale_warning" model="exception.rule">
@@ -43,7 +44,7 @@
         <field name="description">The product has a warning in his form</field>
         <field name="sequence">40</field>
         <field name="model">sale.order.line</field>
-        <field name="code">failed=self.product_id.sale_line_warn == "warning"</field>
+        <field name="code">failed=self.sale_line_warn == "warning"</field>
         <field name="active" eval="False" />
     </record>
 </odoo>
