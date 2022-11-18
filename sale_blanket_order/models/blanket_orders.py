@@ -303,6 +303,8 @@ class BlanketOrder(models.Model):
                 sequence_obj = sequence_obj.with_company(order.company_id.id)
             if order.name == "Draft":
                 name = sequence_obj.next_by_code("sale.blanket.order")
+            else:
+                name = order.name
             order.write({"confirmed": True, "name": name})
         return True
 
