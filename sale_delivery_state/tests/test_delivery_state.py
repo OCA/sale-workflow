@@ -3,7 +3,7 @@
 # Copyright 2018 Camptocamp
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import mock
+from unittest import mock
 
 from odoo.tests import TransactionCase
 
@@ -91,3 +91,13 @@ class TestDeliveryState(TransactionCase):
                     continue
                 line.qty_delivered = line.product_uom_qty
             self.assertEqual(self.order.delivery_state, "done")
+
+    def test_action_force_delivery_state(self):
+        self.assertFalse(self.order.force_delivery_state)
+        self.order.action_force_delivery_state()
+        self.assertTrue(self.order.force_delivery_state)
+
+    def test_action_unforce_delivery_state(self):
+        self.order.force_delivery_state = True
+        self.order.action_unforce_delivery_state()
+        self.assertFalse(self.order.force_delivery_state)
