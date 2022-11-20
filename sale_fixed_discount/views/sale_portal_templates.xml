@@ -3,6 +3,7 @@
     <template
         id="sale_order_portal_content_fixed_discount"
         inherit_id="sale.sale_order_portal_content"
+        priority="100"
     >
         <xpath
             expr="//section[@id='details']//t[@t-set='display_discount']"
