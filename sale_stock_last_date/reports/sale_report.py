@@ -7,7 +7,9 @@ from odoo import fields, models
 class SaleReport(models.Model):
     _inherit = "sale.report"
 
-    last_delivery_date = fields.Datetime(string="Last delivery date",)
+    last_delivery_date = fields.Datetime(
+        string="Last delivery date",
+    )
 
     def _query(self, with_clause="", fields=None, groupby="", from_clause=""):
         fields = fields or {}
