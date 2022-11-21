@@ -20,7 +20,4 @@ class SaleOrderLine(models.Model):
                     and not m.scrapped
                 )
             )
-            last_stock_move = stock_moves.sorted("date", reverse=True)
-            line.last_delivery_date = (
-                last_stock_move and last_stock_move[0].date or False
-            )
+            line.last_delivery_date = stock_moves.sorted("date", reverse=True)[:1].date
