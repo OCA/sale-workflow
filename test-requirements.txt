@@ -1,1 +1,2 @@
 odoo_test_helper
+odoo14-addon-purchase_discount @ git+https://github.com/cetmix/oca-purchase-workflow.git@14.0#subdirectory=setup/purchase_discount
