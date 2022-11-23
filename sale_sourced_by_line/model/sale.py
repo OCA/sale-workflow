@@ -4,20 +4,11 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
-
-    @api.model
-    def _prepare_procurement_group_by_line(self, line):
-        vals = super(SaleOrder, self)._prepare_procurement_group_by_line(line)
-        # for compatibility with sale_quotation_sourcing
-        if line._get_procurement_group_key()[0] == 10:
-            if line.warehouse_id:
-                vals["name"] += "/" + line.warehouse_id.name
-        return vals
 
     warehouse_id = fields.Many2one(
         "stock.warehouse",
@@ -43,6 +34,14 @@ class SaleOrderLine(models.Model):
         "Otherwise, it will get the warehouse of "
         "the sale order",
     )
+
+    def _prepare_procurement_group_vals(self):
+        vals = super(SaleOrderLine, self)._prepare_procurement_group_vals()
+        # for compatibility with sale_quotation_sourcing
+        if self._get_procurement_group_key()[0] == 10:
+            if self.warehouse_id:
+                vals["name"] += "/" + self.warehouse_id.name
+        return vals
 
     def _prepare_procurement_values(self, group_id=False):
         """Prepare specific key for moves or other components
