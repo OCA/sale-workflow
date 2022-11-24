@@ -7,8 +7,8 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='amount_tax']" position="after">
-                <field name="general_discount" />
+            <xpath expr="//field[@name='tax_totals_json']" position="before">
+                <field name="general_discount" class="oe_subtotal_footer" />
             </xpath>
         </field>
     </record>
