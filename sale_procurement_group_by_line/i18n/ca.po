@@ -25,11 +25,6 @@ msgid "Procurement group"
 msgstr "Grup de contractació"
 
 #. module: sale_procurement_group_by_line
-#: model:ir.model,name:sale_procurement_group_by_line.model_sale_order
-msgid "Sales Order"
-msgstr "Comandes de venda"
-
-#. module: sale_procurement_group_by_line
 #: model:ir.model,name:sale_procurement_group_by_line.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línia de comanda de vendes"
@@ -38,6 +33,9 @@ msgstr "Línia de comanda de vendes"
 #: model:ir.model,name:sale_procurement_group_by_line.model_stock_move
 msgid "Stock Move"
 msgstr ""
+
+#~ msgid "Sales Order"
+#~ msgstr "Comandes de venda"
 
 #~ msgid "Display Name"
 #~ msgstr "Nom de visualització"

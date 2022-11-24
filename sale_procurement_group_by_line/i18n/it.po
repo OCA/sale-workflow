@@ -24,12 +24,6 @@ msgid "Procurement group"
 msgstr ""
 
 #. module: sale_procurement_group_by_line
-#: model:ir.model,name:sale_procurement_group_by_line.model_sale_order
-#, fuzzy
-msgid "Sales Order"
-msgstr "Ordini vendita"
-
-#. module: sale_procurement_group_by_line
 #: model:ir.model,name:sale_procurement_group_by_line.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Linea d'ordine di vendita"
@@ -38,3 +32,7 @@ msgstr "Linea d'ordine di vendita"
 #: model:ir.model,name:sale_procurement_group_by_line.model_stock_move
 msgid "Stock Move"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Sales Order"
+#~ msgstr "Ordini vendita"
