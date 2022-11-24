@@ -39,7 +39,7 @@ class TestSaleOrderLotGenerator(test_common.SingleTransactionCase):
         lot_number = "%s-%03d" % (self.order1.name, 1)
         self.assertEqual(self.sol1.lot_id.name, lot_number)
         # add second line after order redraft
-        self.order1.action_cancel()
+        self.order1._action_cancel()
         self.order1.action_draft()
         self.sol2 = self.env["sale.order.line"].create(
             {
