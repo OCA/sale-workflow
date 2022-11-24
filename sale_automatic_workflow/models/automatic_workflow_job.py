@@ -77,10 +77,10 @@ class AutomaticWorkflowJob(models.Model):
             [("id", "=", sale.id)] + domain_filter
         ):
             return "{} {} job bypassed".format(sale.display_name, sale)
-        payment = self.env["sale.advance.payment.inv"].create({})
-        payment.with_context(
-            active_ids=sale.ids, active_model="sale.order"
-        ).create_invoices()
+        payment = self.env["sale.advance.payment.inv"].create(
+            {"sale_order_ids": sale.ids}
+        )
+        payment.with_context(active_model="sale.order").create_invoices()
         return "{} {} create invoice successfully".format(sale.display_name, sale)
 
     @api.model
@@ -185,7 +185,7 @@ class AutomaticWorkflowJob(models.Model):
         payment.action_post()
 
         domain = [
-            ("account_internal_type", "in", ("receivable", "payable")),
+            ("account_type", "in", ("asset_receivable", "liability_payable")),
             ("reconciled", "=", False),
         ]
         payment_lines = payment.line_ids.filtered_domain(domain)
