@@ -2,8 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from datetime import timedelta
-
-import mock
+from unittest import mock
 
 from odoo import fields
 from odoo.tests import tagged
@@ -75,7 +74,7 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         self.assertFalse(workflow.invoice_service_delivery)
         self.assertEqual(line.qty_delivered_method, "stock_move")
         self.assertEqual(line.qty_delivered, 0.0)
-        self.assertTrue(sale.delivery_state == "no")
+        self.assertFalse(sale.delivery_status)
         self.assertFalse(sale.all_qty_delivered)
         # `_create_invoices` is already tested in `sale` module.
         # Make sure this addon works properly in regards to it.
@@ -92,8 +91,10 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
             mocked.assert_called()
         self.assertEqual(line.qty_delivered, 1.0)
         sale.action_confirm()
-        sale.action_force_delivery_state()
-        self.assertTrue(sale.delivery_state == "done")
+        self.assertTrue(sale.delivery_status, "pending")
+        self.assertFalse(sale.all_qty_delivered)
+        sale.delivery_status = "full"
+        sale._compute_all_qty_delivered()
         self.assertTrue(sale.all_qty_delivered)
 
     def test_invoice_from_picking_with_service_product(self):

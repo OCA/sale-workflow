@@ -20,10 +20,10 @@ class SaleOrder(models.Model):
         store=True,
     )
 
-    @api.depends("delivery_state")
+    @api.depends("delivery_status")
     def _compute_all_qty_delivered(self):
         for order in self:
-            order.all_qty_delivered = order.delivery_state == "done"
+            order.all_qty_delivered = order.delivery_status == "full"
 
     def _prepare_invoice(self):
         invoice_vals = super()._prepare_invoice()
@@ -72,4 +72,4 @@ class SaleOrder(models.Model):
                 res = super(SaleOrder, sales_keep_order_date).write(new_vals)
                 res |= super(SaleOrder, self - sales_keep_order_date).write(vals)
                 return res
-        return super(SaleOrder, self).write(vals)
+        return super().write(vals)
