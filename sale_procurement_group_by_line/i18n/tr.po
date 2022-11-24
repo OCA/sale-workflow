@@ -24,12 +24,6 @@ msgid "Procurement group"
 msgstr ""
 
 #. module: sale_procurement_group_by_line
-#: model:ir.model,name:sale_procurement_group_by_line.model_sale_order
-#, fuzzy
-msgid "Sales Order"
-msgstr "Sipariş Emri"
-
-#. module: sale_procurement_group_by_line
 #: model:ir.model,name:sale_procurement_group_by_line.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Satış Siparişi Hattı"
@@ -38,3 +32,7 @@ msgstr "Satış Siparişi Hattı"
 #: model:ir.model,name:sale_procurement_group_by_line.model_stock_move
 msgid "Stock Move"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Sales Order"
+#~ msgstr "Sipariş Emri"
