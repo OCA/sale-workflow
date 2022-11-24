@@ -25,7 +25,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.customer_location = self.env.ref("stock.stock_location_customers")
         self.stock_location = self.env.ref("stock.stock_location_stock")
         self.product_model = self.env["product.product"]
-        self.production_lot_model = self.env["stock.production.lot"]
+        self.lot_model = self.env["stock.lot"]
         self.lot_cable = self.env.ref("sale_order_lot_selection.lot_cable")
         self.sale = self.env.ref("sale_order_lot_selection.sale1")
 
@@ -36,7 +36,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         # We should not be able to reserve if some stock is available but with another
         # lot
         self._inventory_products(self.prd_cable, self.lot_cable, 1)
-        other_lot = self.env["stock.production.lot"].create(
+        other_lot = self.env["stock.lot"].create(
             {
                 "name": "test2",
                 "product_id": self.prd_cable.id,
@@ -47,10 +47,10 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.sale.action_confirm()
         self.sale.picking_ids.action_assign()
         # one of 2 moves should be reserved
-        available_move = self.sale.picking_ids.move_lines.filtered(
+        available_move = self.sale.picking_ids.move_ids.filtered(
             lambda m: m.state == "assigned"
         )
-        unavailable_move = self.sale.picking_ids.move_lines.filtered(
+        unavailable_move = self.sale.picking_ids.move_ids.filtered(
             lambda m: m.state == "confirmed"
         )
         self.assertEqual(len(available_move), 1)
@@ -155,17 +155,17 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
                 "location_dest_id": self.stock_location.id,
             }
         )
-        for move in picking_in.move_lines:
+        for move in picking_in.move_ids:
             self.assertEqual(move.state, "draft", "Wrong state of move line.")
         picking_in.action_confirm()
-        for move in picking_in.move_lines:
+        for move in picking_in.move_ids:
             self.assertEqual(move.state, "assigned", "Wrong state of move line.")
         lot10 = False
         lot11 = False
         lot12 = False
         for ops in picking_in.move_ids_without_package:
             if ops.product_id == self.prd_cable:
-                lot10 = self.production_lot_model.create(
+                lot10 = self.lot_model.create(
                     {
                         "name": "0000010",
                         "product_id": self.prd_cable.id,
@@ -177,7 +177,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
                     {"lot_id": lot10.id, "qty_done": ops.product_qty}
                 )
             if ops.product_id == self.product_46:
-                lot11 = self.production_lot_model.create(
+                lot11 = self.lot_model.create(
                     {
                         "name": "0000011",
                         "product_id": self.product_46.id,
@@ -189,7 +189,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
                     {"lot_id": lot11.id, "qty_done": ops.product_qty}
                 )
             if ops.product_id == self.product_12:
-                lot12 = self.production_lot_model.create(
+                lot12 = self.lot_model.create(
                     {
                         "name": "0000012",
                         "product_id": self.product_12.id,
