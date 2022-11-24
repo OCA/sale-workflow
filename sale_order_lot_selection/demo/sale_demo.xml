@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
-    <record id="lot_cable" model="stock.production.lot">
+    <record id="lot_cable" model="stock.lot">
         <field name="product_id" ref="stock.product_cable_management_box" />
         <field name="name">cbl mng</field>
         <field name="company_id" ref="base.main_company" />
