@@ -29,3 +29,4 @@ class SaleOrderLine(models.Model):
             super()._compute_discount()
         for line in self:
             line.discount = line.order_id.general_discount
+        return
