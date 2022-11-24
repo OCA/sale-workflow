@@ -19,7 +19,7 @@ class SaleOrder(models.Model):
             index_lot = max(index_lot, last_index)
         return index_lot
 
-    def generate_prodlot(self):
+    def generate_lot(self):
         for rec in self:
             index_lot = rec._get_max_lot_index() + 1
             for line in rec.order_line:
@@ -28,12 +28,12 @@ class SaleOrder(models.Model):
                     and not line.lot_id
                     and line.product_id.tracking != "none"
                 ):
-                    lot_id = line.create_prodlot(index_lot)
+                    lot_id = line.create_lot(index_lot)
                     index_lot += 1
                     line.lot_id = lot_id
 
     def action_confirm(self):
-        self.generate_prodlot()
+        self.generate_lot()
         return super().action_confirm()
 
     def action_cancel(self):
