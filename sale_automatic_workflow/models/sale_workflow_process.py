@@ -27,7 +27,7 @@ class SaleWorkflowProcess(models.Model):
             return record
         return self.env["ir.filters"].browse()
 
-    name = fields.Char()
+    name = fields.Char(required=True)
     picking_policy = fields.Selection(
         selection=[
             ("direct", "Deliver each product when available"),

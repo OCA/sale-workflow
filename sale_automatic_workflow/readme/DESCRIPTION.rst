@@ -5,9 +5,7 @@ A workflow can:
 
 - Apply default values:
 
-  * Packing Policy (partial, complete)
-  * Shipping Policy (prepaid, manual, postpaid, picking)
-  * Invoice On (ordered quantities, shipped quantities)
+  * Shipping Policy (Deliver each product when available or Deliver all products at once)
   * Set the invoice's date to the sale order's date
   * Set a sales team
 
