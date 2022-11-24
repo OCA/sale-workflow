@@ -4,7 +4,14 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    lot_id = fields.Many2one("stock.production.lot", "Lot", copy=False)
+    lot_id = fields.Many2one(
+        "stock.lot",
+        "Lot",
+        copy=False,
+        compute="_compute_lot_id",
+        store=True,
+        readonly=False,
+    )
 
     def _prepare_procurement_values(self, group_id=False):
         vals = super()._prepare_procurement_values(group_id=group_id)
@@ -12,12 +19,8 @@ class SaleOrderLine(models.Model):
             vals["restrict_lot_id"] = self.lot_id.id
         return vals
 
-    @api.onchange("product_id")
-    def product_id_change(self):
-        res = super().product_id_change()
-        self.lot_id = False
-        if isinstance(res, dict):
-            res.update(
-                {"domain": {"lot_id": [("product_id", "=", self.product_id.id)]}}
-            )
-        return res
+    @api.depends("product_id")
+    def _compute_lot_id(self):
+        for sol in self:
+            if sol.product_id != sol.lot_id.product_id:
+                sol.lot_id = False
