@@ -18,7 +18,7 @@ class StockPicking(models.Model):
         """Set quantities automatically and validate the pickings."""
         for picking in self:
             picking.action_assign()
-            for move in picking.move_lines.filtered(
+            for move in picking.move_ids.filtered(
                 lambda m: m.state not in ["done", "cancel"]
             ):
                 rounding = move.product_id.uom_id.rounding
@@ -31,6 +31,6 @@ class StockPicking(models.Model):
                     == -1
                 ):
                     for move_line in move.move_line_ids:
-                        move_line.qty_done = move_line.product_uom_qty
+                        move_line.qty_done = move_line.reserved_uom_qty
             picking.with_context(skip_immediate=True, skip_sms=True).button_validate()
         return True
