@@ -4,7 +4,7 @@
 {
     'name': 'Portal Sale Personal Data Only',
     'summary': 'Allow portal users to see their own documents',
-    'version': '10.0.1.0.1',
+    'version': '10.0.1.0.2',
     'category': 'Sale',
     'author': 'Tecnativa,'
               'Odoo Community Association (OCA)',
