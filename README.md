@@ -21,7 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[portal_sale_personal_data_only](portal_sale_personal_data_only/) | 10.0.1.0.1 |  | Portal Sale Personal Data Only
+[portal_sale_personal_data_only](portal_sale_personal_data_only/) | 10.0.1.0.1 |  | Allow portal users to see their own documents
 [product_margin_classification](product_margin_classification/) | 10.0.2.0.1 |  | Product Margin Classification
 [product_price_category](product_price_category/) | 10.0.1.0.1 |  | Add Price Category field on product and allow to apply a pricelist on this field.
 [product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 10.0.1.0.1 |  | Loads in every sale order line the customer code defined in the product
@@ -41,9 +41,10 @@ addon | version | maintainers | summary
 [sale_force_invoiced](sale_force_invoiced/) | 10.0.1.0.0 |  | Allows to force the invoice status of the sales order to Invoiced
 [sale_invoice_auto_deliver](sale_invoice_auto_deliver/) | 10.0.1.0.1 |  | Sale Invoice Automatic Deliver
 [sale_invoice_group_method](sale_invoice_group_method/) | 10.0.1.0.0 |  | Sale Invoice Group Method
-[sale_invoice_policy](sale_invoice_policy/) | 10.0.1.0.0 |  | Sale invoice Policy
+[sale_invoice_policy](sale_invoice_policy/) | 10.0.1.0.0 |  | Sales Management: let the user choose the invoice policy on the order
 [sale_isolated_quotation](sale_isolated_quotation/) | 10.0.1.0.1 |  | Sales - Isolated Quotation
 [sale_layout_hidden](sale_layout_hidden/) | 10.0.1.0.2 |  | Sale Layout Hidden Sections
+[sale_manual_delivery](sale_manual_delivery/) | 10.0.2.0.0 |  | Create manually your deliveries
 [sale_merge_draft_invoice](sale_merge_draft_invoice/) | 10.0.1.0.0 |  | Sale Merge Draft Invoice
 [sale_mrp_link](sale_mrp_link/) | 10.0.1.0.0 |  | Show manufacturing orders generated from sales order
 [sale_order_action_invoice_create_hook](sale_order_action_invoice_create_hook/) | 10.0.1.0.0 |  | Sale Order Action Invoice Create Hook
@@ -82,6 +83,7 @@ addon | version | maintainers | summary
 [sale_start_end_dates](sale_start_end_dates/) | 10.0.1.0.1 |  | Adds start date and end date on sale order lines
 [sale_stock_picking_blocking](sale_stock_picking_blocking/) | 10.0.1.0.1 |  | Allow you to block the creation of deliveries from a sale order.
 [sale_stock_picking_blocking_proc_group_by_line](sale_stock_picking_blocking_proc_group_by_line/) | 10.0.1.0.0 |  | Module that allows module sale_delivery_block to work with sale_procurement_group_by_line
+[sale_stock_picking_blocking_sale_manual_delivery](sale_stock_picking_blocking_sale_manual_delivery/) | 10.0.1.0.0 |  | Glue module
 [sale_stock_picking_note](sale_stock_picking_note/) | 10.0.1.1.0 |  | Add picking note in sale and purchase order
 [sale_triple_discount](sale_triple_discount/) | 10.0.1.1.3 |  | Manage triple discount on sale order lines
 [sale_validity](sale_validity/) | 10.0.1.0.1 |  | Set a default validity delay on quotations
