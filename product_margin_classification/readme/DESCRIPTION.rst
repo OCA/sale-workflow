@@ -13,9 +13,9 @@ change sale price.
 .. image:: ../static/description/product_template_form.png
 
 On the Margin classification Form, user can change computation fields.
-(Margin, Rounding method, ...) 
+(Margin, Rounding method, ...)
 Three buttons are available to apply theoretical prices:
-* to all products, 
+* to all products,
 * only for products that are too expensive
 * only for products that are too cheap
 

@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': "Sale invoice Policy",
-    'description': """
+    'summary': """
         Sales Management: let the user choose the invoice policy on the
         order""",
     'author': 'ACSONE SA/NV, Odoo Community Association (OCA)',
