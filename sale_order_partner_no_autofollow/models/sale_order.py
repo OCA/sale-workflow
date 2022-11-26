@@ -31,7 +31,7 @@ class SaleOrder(models.Model):
         ).action_confirm()
 
     def _partner_disable_autofollow(self):
-        """Returns the state of the "Customer disable autofollow" option
+        """Returns the state of the 'Customer disable autofollow' option
 
         Returns:
             bool: Option status
