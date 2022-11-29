@@ -233,7 +233,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
         for one in self:
             if price_origin == "pricelist":
                 one.price_unit = one.product_id.with_context(
-                    partner=one.partner_id.id,
+                    partner=one.partner_id,
                     pricelist=one.pricelist_id.id,
                     quantity=one.units_included,
                 ).price
