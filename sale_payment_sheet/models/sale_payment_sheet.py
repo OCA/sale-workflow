@@ -60,7 +60,6 @@ class SalePaymentSheet(models.Model):
         string="Company",
         store=True,
         readonly=True,
-        default=lambda self: self.env.company,
     )
     line_ids = fields.One2many(
         "sale.payment.sheet.line",
