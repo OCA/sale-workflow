@@ -154,3 +154,8 @@ class TestSaleOrderLineDates(TransactionCase):
         self._assert_equal_dates(
             self.sale_line3.commitment_date, self.sale_line3.move_ids.date_deadline
         )
+        # Test line date change after confirmation
+        self.sale_line1.write({"commitment_date": self.dt2})
+        self._assert_equal_dates(
+            self.sale_line1.commitment_date, self.sale_line1.move_ids.date_deadline
+        )
