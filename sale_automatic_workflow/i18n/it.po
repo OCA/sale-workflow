@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2021-01-13 11:44+0000\n"
-"Last-Translator: Angeli Cecilia <cecilia@ooops404.com>\n"
+"PO-Revision-Date: 2022-11-29 12:45+0000\n"
+"Last-Translator: Mario Riva <mario.riva@agilebg.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order__all_qty_delivered
@@ -165,7 +165,7 @@ msgstr "Fattura"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__invoice_service_delivery
 msgid "Invoice Service on delivery"
-msgstr ""
+msgstr "Fattura servizio su consegna"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job____last_update
@@ -193,47 +193,47 @@ msgstr "Nome"
 #. module: sale_automatic_workflow
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
 msgid "Order Configuration"
-msgstr ""
+msgstr "Configurazione ordine"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__order_filter_id
 msgid "Order Filter"
-msgstr ""
+msgstr "Filtro ordine"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__order_filter_domain
 msgid "Order Filter Domain"
-msgstr ""
+msgstr "Dominio filtro ordine"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_filter_id
 msgid "Picking Filter"
-msgstr ""
+msgstr "Filtro tasferimento"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_filter_domain
 msgid "Picking Filter Domain"
-msgstr ""
+msgstr "Dominio filtro trasferimento"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__sale_done
 msgid "Sale Done"
-msgstr ""
+msgstr "Vendita fatta"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__sale_done_filter_id
 msgid "Sale Done Filter"
-msgstr ""
+msgstr "Filtro vendita fatta"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__sale_done_filter_domain
 msgid "Sale Done Filter Domain"
-msgstr ""
+msgstr "Dominio Filtro  Vendita fatta"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_order
 msgid "Sale Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_workflow_process
