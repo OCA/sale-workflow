@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
 "PO-Revision-Date: 2022-11-29 12:45+0000\n"
-"Last-Translator: Mario Riva <mario.riva@agilebg.com>\n"
+"Last-Translator: Angeli Cecilia <cecilia@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "Flusso di Lavoro Automatico"
 #. module: sale_automatic_workflow
 #: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_create_invoice_filter
 msgid "Automatic Workflow Create Invoice Filter"
-msgstr ""
+msgstr "Flusso di Lavoro Automatico Crea Filtro Fatture"
 
 #. module: sale_automatic_workflow
 #: model:ir.actions.server,name:sale_automatic_workflow.ir_cron_automatic_workflow_job_ir_actions_server
