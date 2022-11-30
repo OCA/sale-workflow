@@ -11,7 +11,7 @@
     "license": "AGPL-3",
     "development_status": "Production/Stable",
     "maintainers": ["ivantodorovich"],
-    "depends": ["sale", "sales_team_security"],
+    "depends": ["sale", "sales_team_security", "purchase_discount"],
     "data": ["security/security.xml"],
     "auto_install": True,
 }
