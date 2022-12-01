@@ -6,9 +6,10 @@ from freezegun import freeze_time
 
 import odoo.tests.common as common
 from odoo import fields
-from odoo.tests import Form
+from odoo.tests import Form, tagged
 
 
+@tagged("post_install", "-at_install")
 class TestSaleOrderType(common.TransactionCase):
     def setUp(self):
         super(TestSaleOrderType, self).setUp()
@@ -85,7 +86,7 @@ class TestSaleOrderType(common.TransactionCase):
             {
                 "name": "Test Sequence default",
                 "sequence_id": self.env["sale.order"]
-                .with_context(force_company=self.env.company.id)
+                .with_company(self.env.company.id)
                 ._default_sequence_id()
                 .id,
             }
@@ -128,7 +129,8 @@ class TestSaleOrderType(common.TransactionCase):
         )
 
     def create_sale_order(self, partner=False):
-        sale_form = Form(self.env["sale.order"])
+        # Set a custom context to "disable" the behavior of sale_isolated_quotation
+        sale_form = Form(self.env["sale.order"].with_context(order_sequence="test"))
         sale_form.partner_id = partner or self.partner
         with sale_form.order_line.new() as order_line:
             order_line.product_id = self.product
