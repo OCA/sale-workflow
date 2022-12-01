@@ -5,11 +5,12 @@
 from freezegun import freeze_time
 
 from odoo import fields
-from odoo.tests import Form
+from odoo.tests import Form, tagged
 
 from odoo.addons.base.tests.common import BaseCommon
 
 
+@tagged("post_install", "-at_install")
 class TestSaleOrderType(BaseCommon):
     @classmethod
     def setUpClass(cls):
@@ -133,7 +134,8 @@ class TestSaleOrderType(BaseCommon):
         )
 
     def create_sale_order(self, partner=False):
-        sale_form = Form(self.env["sale.order"])
+        # Set a custom context to "disable" the behavior of sale_isolated_quotation
+        sale_form = Form(self.env["sale.order"].with_context(order_sequence="test"))
         sale_form.partner_id = partner or self.partner
         with sale_form.order_line.new() as order_line:
             order_line.product_id = self.product
