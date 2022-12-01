@@ -92,9 +92,9 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         self.sale.action_confirm()
         self.assertEqual(self.sale.state, "sale")
         self.assertEqual(len(self.line1.move_ids), 1)
-        self.assertEqual(self.line1.move_ids.name, self.line1.name)
+        self.assertEqual(self.line1.move_ids.name, self.line1.display_name)
         self.assertEqual(len(self.line2.move_ids), 1)
-        self.assertEqual(self.line2.move_ids.name, self.line2.name)
+        self.assertEqual(self.line2.move_ids.name, self.line2.display_name)
 
     def test_03_action_launch_procurement_rule_2(self):
         group_id = self.proc_group_model.create(
@@ -126,3 +126,14 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         self.assertEqual(
             len(self.sale.picking_ids), 1, "Negative stock move should me merged"
         )
+
+    def test_06_update_sale_order_line_respect_procurement_group(self):
+        """
+        When launching the stock rule again, use maintain same procurement group in lines
+        """
+        self.sale.action_confirm()
+        proc_group = self.sale.order_line[1].procurement_group_id
+        self.assertEqual(len(self.line1.move_ids), 1)
+        self.sale.order_line[1].product_uom_qty += 1
+        self.assertEqual(self.sale.order_line[1].procurement_group_id, proc_group)
+        self.assertEqual(len(self.line1.move_ids), 1)
