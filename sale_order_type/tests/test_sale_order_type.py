@@ -85,7 +85,7 @@ class TestSaleOrderType(common.TransactionCase):
             {
                 "name": "Test Sequence default",
                 "sequence_id": self.env["sale.order"]
-                .with_context(force_company=self.env.company.id)
+                .with_company(self.env.company.id)
                 ._default_sequence_id()
                 .id,
             }
