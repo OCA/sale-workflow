@@ -5,8 +5,6 @@ from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools import float_compare
 
-from odoo.addons import decimal_precision as dp
-
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
@@ -15,7 +13,7 @@ class SaleOrderLine(models.Model):
         string="Min Qty",
         compute="_compute_sale_restricted_qty",
         store=True,
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
     force_sale_min_qty = fields.Boolean(
         compute="_compute_sale_restricted_qty", readonly=True, store=True
@@ -28,7 +26,7 @@ class SaleOrderLine(models.Model):
         string="Max Qty",
         compute="_compute_sale_restricted_qty",
         store=True,
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
     force_sale_max_qty = fields.Boolean(
         compute="_compute_sale_restricted_qty", readonly=True, store=True
@@ -40,7 +38,7 @@ class SaleOrderLine(models.Model):
         string="Multiple Qty",
         compute="_compute_sale_restricted_qty",
         store=True,
-        digits=dp.get_precision("Product Unit of Measure"),
+        digits="Product Unit of Measure",
     )
     is_qty_not_multiple_qty = fields.Boolean(
         string="Not Multiple Qty", compute="_compute_is_qty_not_multiple_qty"
