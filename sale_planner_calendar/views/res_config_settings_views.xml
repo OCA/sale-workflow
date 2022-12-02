@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <div data-key="sale_management" position="inside">
+                <h2>Sale Planner Calendar</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="susbscriptions_backward_days" />
+                            <div class="text-muted">
+                                Backward days to search documents to update subscriptions
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field
+                                        name="susbscriptions_backward_days"
+                                        class="o_light_label"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="sale_planner_forward_months" />
+                            <div class="text-muted">
+                                Forward months to create calendar events
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field
+                                        name="sale_planner_forward_months"
+                                        class="o_light_label"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="sale_planner_mail_to_attendees" />
+                            <div class="text-muted">
+                                Send invitations to attendees when a planner event is created
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field
+                                        name="sale_planner_mail_to_attendees"
+                                        class="o_light_label"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="sale_planner_order_cut_hour" />
+                            <div class="text-muted">
+                                Time of the next day until which orders of the current day are assigned
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field
+                                        name="sale_planner_order_cut_hour"
+                                        class="o_light_label"
+                                        widget="float_time"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="sale_planner_calendar_max_duration" />
+                            <div class="text-muted">
+                                Show a warning message when duration is more than this time.
+                                Set 00:00 to disable warning.
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field
+                                        name="sale_planner_calendar_max_duration"
+                                        class="o_light_label"
+                                        widget="float_time"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+</odoo>
