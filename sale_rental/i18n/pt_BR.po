@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2020-10-02 02:16+0000\n"
-"Last-Translator: Marcel Savegnago <marcel.savegnago@gmail.com>\n"
+"PO-Revision-Date: 2022-12-07 00:20+0000\n"
+"Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: sale_rental
 #: model:ir.model.fields,help:sale_rental.field_sale_rental__in_state
@@ -55,7 +55,7 @@ msgstr "Pode Vender a partir de Aluguel"
 #: code:addons/sale_rental/models/stock.py:46
 #, python-format
 msgid "Can't find any generic 'Rent' route."
-msgstr ""
+msgstr "Não é possível encontrar nenhuma rota genérica para \"Aluguel\"."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:57
@@ -188,7 +188,7 @@ msgstr "ID"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__in_state
 msgid "In Move State"
-msgstr ""
+msgstr "Estágio de Movimento de Entrada"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__in_move_id
@@ -199,7 +199,7 @@ msgstr "Movimento de Entrada"
 #: model:ir.model.fields,help:sale_rental.field_sale_order_line__rental_qty
 #: model:ir.model.fields,help:sale_rental.field_sale_rental__rental_qty
 msgid "Indicate the number of items that will be rented."
-msgstr ""
+msgstr "Indica o número de itens que serão alugados."
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_inventory
@@ -249,6 +249,8 @@ msgid ""
 "On the 'new rental' sale order line with product '%s', we should have a "
 "rental service product !"
 msgstr ""
+"Na linha do Pedido de Venda de 'novo aluguel' com o produto '%s', nós "
+"devemos ter um produto de serviço de aluguel!"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:102
@@ -258,6 +260,9 @@ msgid ""
 "product with a quantity (%s) that is different from the rented quantity "
 "(%s). This is not supported."
 msgstr ""
+"Na linha do pedido de venda com o produto %s você está tentando vender um "
+"produto locado com a quantidade (%s) que é diferente da quantidade locada "
+"(%s)."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:91
@@ -266,6 +271,8 @@ msgid ""
 "On the sale order line with product '%s' the Product Quantity (%s) should be "
 "the number of days (%s) multiplied by the Rental Quantity (%s)."
 msgstr ""
+"Na linha do pedido de venda com o produto %s a Quantidade de Produto (%s) "
+"deve ser o número de dias (%s) multiplicado pela Quantidade Locada (%s)."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:74
@@ -286,12 +293,12 @@ msgstr "Encomendado"
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_search
 #: selection:sale.rental,state:0
 msgid "Out"
-msgstr "Fora"
+msgstr "Saída"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__out_state
 msgid "Out Move State"
-msgstr ""
+msgstr "Estágio de Movimento de Saída"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__out_move_id
@@ -301,7 +308,7 @@ msgstr "Movimento de Saída"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_stock_warehouse__rental_view_location_id
 msgid "Parent Rental"
-msgstr "Aluguel de Pai"
+msgstr "Aluguel Pai"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_product_product
@@ -322,7 +329,7 @@ msgstr "Produto para Alugar"
 #: code:addons/sale_rental/wizard/create_rental_product.py:26
 #, python-format
 msgid "RENT-%s"
-msgstr "RENT-%s"
+msgstr "LOCAR-%s"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__in_picking_id
@@ -372,19 +379,19 @@ msgstr "Extensões de Aluguel"
 #: model:ir.model.fields,field_description:sale_rental.field_stock_warehouse__rental_in_location_id
 #, python-format
 msgid "Rental In"
-msgstr ""
+msgstr "Entrada de Aluguel"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:152
 #: model:ir.model.fields,field_description:sale_rental.field_stock_warehouse__rental_out_location_id
 #, python-format
 msgid "Rental Out"
-msgstr ""
+msgstr "Saída de Aluguel"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product__sale_price_per_day
 msgid "Rental Price per Day"
-msgstr "Preço de aluguel por dia"
+msgstr "Preço por Dia do Aluguel"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_order_line__rental_qty
