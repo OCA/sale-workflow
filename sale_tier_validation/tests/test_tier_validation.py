@@ -4,7 +4,7 @@ from odoo.exceptions import ValidationError
 from odoo.tests import common, tagged
 
 
-@tagged("-at_install", "post_install")
+@tagged("post_install")
 class TestSaleTierValidation(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
