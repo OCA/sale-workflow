@@ -16,9 +16,18 @@
         <field name="model">product.packaging</field>
         <field name="inherit_id" ref="product.product_packaging_form_view" />
         <field name="arch" type="xml">
+            <xpath expr="//sheet//h1" position="before">
+                <widget
+                    name="web_ribbon"
+                    title="Archived"
+                    bg_color="bg-danger"
+                    attrs="{'invisible': [('active', '=', True)]}"
+                />
+            </xpath>
             <field name="barcode" position="before">
                 <field name="can_be_sold" />
                 <field name="force_sale_qty" />
+                <field name="active" invisible="1" />
             </field>
         </field>
     </record>

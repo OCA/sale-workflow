@@ -9,6 +9,7 @@ class ProductPackaging(models.Model):
     can_be_sold = fields.Boolean(
         string="Can be sold", compute="_compute_can_be_sold", readonly=False, store=True
     )
+    active = fields.Boolean(default=True)
 
     force_sale_qty = fields.Boolean(
         string="Force sale quantity",
@@ -24,3 +25,8 @@ class ProductPackaging(models.Model):
     def _compute_can_be_sold(self):
         for record in self:
             record.can_be_sold = record.packaging_type_id.can_be_sold
+
+    def write(self, vals):
+        if "active" in vals and vals["active"] is False:
+            vals["can_be_sold"] = False
+        return super().write(vals)
