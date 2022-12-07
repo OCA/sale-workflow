@@ -1,6 +1,6 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
-from odoo import _, api, models
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools import float_compare
 
@@ -8,6 +8,8 @@ from odoo.tools import float_compare
 class SaleOrderLine(models.Model):
 
     _inherit = "sale.order.line"
+
+    product_packaging = fields.Many2one(ondelete="restrict")
 
     def _can_be_sold_error_condition(self):
         self.ensure_one()
