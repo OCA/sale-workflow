@@ -184,3 +184,53 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
                 lambda x: x.subtype_id == self.env.ref("mail.mt_comment")
             )
         )
+
+    def test_create_payment_with_invoice_currency_id(self):
+        workflow = self.create_full_automatic()
+        pricelist_id = self.env["product.pricelist"].create(
+            {
+                "name": "default_pricelist",
+                "currency_id": 1,
+            }
+        )
+        product_service = self.env["product.product"].create(
+            {
+                "name": "Remodeling Service",
+                "categ_id": self.env.ref("product.product_category_3").id,
+                "standard_price": 40.0,
+                "list_price": 90.0,
+                "type": "service",
+                "uom_id": self.env.ref("uom.product_uom_hour").id,
+                "uom_po_id": self.env.ref("uom.product_uom_hour").id,
+                "description": "Example of product to invoice on order",
+                "default_code": "PRE-PAID",
+                "invoice_policy": "order",
+            }
+        )
+        product_uom_hour = self.env.ref("uom.product_uom_hour")
+        override = {
+            "pricelist_id": pricelist_id.id,
+            "order_line": [
+                (
+                    0,
+                    0,
+                    {
+                        "name": "Prepaid Consulting",
+                        "product_id": product_service.id,
+                        "product_uom_qty": 1,
+                        "product_uom": product_uom_hour.id,
+                    },
+                )
+            ],
+        }
+        sale = self.create_sale_order(workflow, override=override)
+        self.run_job()
+        self.assertTrue(sale.invoice_ids)
+        invoice = sale.invoice_ids
+        invoice.payment_mode_id = False
+        self.assertEqual(invoice.state, "posted")
+        payment_id = self.env["automatic.workflow.job"]._register_payment_invoice(
+            invoice
+        )
+        self.assertTrue(payment_id)
+        self.assertEqual(invoice.currency_id.id, payment_id.currency_id.id)

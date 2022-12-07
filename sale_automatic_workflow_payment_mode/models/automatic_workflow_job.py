@@ -21,7 +21,7 @@ class AutomaticWorkflowJob(models.Model):
         return vals
 
     def _register_payment_invoice(self, invoice):
-        if not invoice.payment_mode_id.fixed_journal_id:
+        if invoice.payment_mode_id and not invoice.payment_mode_id.fixed_journal_id:
             _logger.debug(
                 "Unable to Register Payment for invoice %s: "
                 "Payment mode %s must have fixed journal",
