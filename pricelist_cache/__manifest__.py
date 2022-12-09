@@ -12,7 +12,6 @@
     "license": "AGPL-3",
     "depends": [
         "partner_pricelist_search",
-        "base_automation",
         "product",
         "sale",
         "queue_job",
@@ -20,7 +19,6 @@
     "website": "https://github.com/OCA/sale-workflow",
     "data": [
         "security/ir.model.access.csv",
-        "data/base_automation.xml",
         "data/ir_cron.xml",
         "data/ir_filters_data.xml",
         "data/queue_job.xml",

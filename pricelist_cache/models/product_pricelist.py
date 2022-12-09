@@ -1,7 +1,7 @@
 # Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from datetime import date
+from collections import defaultdict
 
 from odoo import api, fields, models
 
@@ -51,25 +51,83 @@ class Pricelist(models.Model):
     def create(self, vals_list):
         res = super().create(vals_list)
         for record in res:
+            # TODO: If the pricelist has no parent, or modifies all prices from the
+            # parent, then all prices have to be computed.
             if record._is_factor_pricelist() or record._is_global_pricelist():
-                product_ids_to_cache = None
+                product_ids_to_cache = self.env["product.product"].search([]).ids
             else:
                 product_ids_to_cache = record.item_ids.mapped("product_id").ids
             cache_model = self.env["product.pricelist.cache"].with_delay()
-            cache_model.update_product_pricelist_cache(
+            cache_model.create_product_pricelist_cache(
                 product_ids=product_ids_to_cache, pricelist_ids=record.ids
             )
         return res
 
-    def _get_product_prices(self, product_ids):
+    def _filter_items_to_cache(self, product_ids, at_datetime):
         self.ensure_one()
+        # Prices to be cached are those explicitely referenced by this pricelist:
+        # self.item_ids.filtered(
+        #     lambda i: i.product_id.id in product_ids
+        # ).mapped("product_id")
+        # TODO: see ROADMAP.rst
+        # In the future, we might want to cache prices based on
+        # product_templates and product_categories.
+        # If so, We will have to update this filter by smth like this.
+        # self.item_ids.filtered(
+        #     lambda i: (
+        #         i.product_id.id in product_ids
+        #         or i.product_template_id in products.product_tmpl_id.ids
+        #         or i.product_category_id in products.product_category_ids
+        # ).mapped("product_id")
+        return self.item_ids.filtered(
+            lambda i: (
+                i.product_id.id in product_ids
+                and (not i.date_start or i.date_start <= at_datetime)
+                and (not i.date_end or i.date_end >= at_datetime)
+            )
+        )
+
+    def _get_product_ids_to_cache(self, product_ids, at_datetime):
+        """Returns the list of product ids that have to be cached at a given date.
+
+        Products that needs to be cached are those having an active pricelist item
+        (with date_start <= at_datetime <= date_end)
+        referencing them, directly or not:
+        E.G:
+            - a pricelist item with product_id in product_ids
+            - a pricelist item referencing all products
+        """
+        self.ensure_one()
+        # TODO use fields instead of methods see `is_factor_pricelist()` and
+        # `_get_parent_pricelists()` comments.
+        if self._get_parent_pricelists():
+            # If this is a factor pricelist, then everything have to be updated
+            if self._is_factor_pricelist():
+                return product_ids
+            # Otherwise, prices might be fetched from parent pricelist
+            # if there's no item for the products on the current pricelist
+            items = self._filter_items_to_cache(product_ids, at_datetime)
+            return items.mapped("product_id").ids
+        # No parent (for instance public pricelist), then update everything
+        return product_ids
+
+    def _get_product_prices(self, product_ids, at_date):
+        # TODO needs refactor (add hooks)
+        # If order for this to be compatible with pricelist_cache_history,
+        # we need to be able to build a dictionnary like so:
+        # {prod_id, set of (price, date_start, date_end)}.
+        # The reason for that is that we might have multiple prices to cache
+        # for a pair of (product, pricelist) at different dates.
+        self.ensure_one()
+        product_prices = defaultdict(set)
         # Search instead of browse, since products could have been unlinked
         # between the time where records have been created / modified
         # and the time this method is executed.
         products = self.env["product.product"].search([("id", "in", product_ids)])
         products_qty_partner = [(p, 1, False) for p in products]
-        results = self._compute_price_rule(products_qty_partner, date.today())
-        product_prices = {prod: price[0] for prod, price in results.items()}
+        results = self._compute_price_rule(products_qty_partner, at_date)
+        for product_id, price in results.items():
+            product_prices[product_id] = price[0]
         return product_prices
 
     def _get_root_pricelist_ids(self):
@@ -77,6 +135,9 @@ class Pricelist(models.Model):
 
         A root pricelist have no item referencing another pricelist.
         """
+        # TODO To be removed when https://github.com/OCA/sale-workflow/pull/2372
+        # gets merged, as it introduces a new stored field pricelist_parent_ids
+        # return self.search([("pricelist_parent_ids", "=", False)])
         no_parent_query = """
             SELECT id
             FROM product_pricelist pp
@@ -99,6 +160,8 @@ class Pricelist(models.Model):
         A factor pricelist have an item referencing a pricelist,
         altering the price via price_discount or price_surcharge
         """
+        # TODO See _is_global_pricelist comment. If `is_factor_pricelist` becomes
+        # as stored computed field, we can do a simple search instead, and drop this.
         factor_pricelist_query = """
             SELECT id
             FROM product_pricelist
@@ -131,6 +194,8 @@ class Pricelist(models.Model):
         The parent pricelist is defined on a pricelist_item when it's applied
         globally, and based on another pricelist
         """
+        # TODO : Drop this once this is merged
+        #        https://github.com/OCA/sale-workflow/pull/2372
         self.ensure_one()
         query = """
             SELECT base_pricelist_id
@@ -168,15 +233,36 @@ class Pricelist(models.Model):
         It also alters the "parent's price" by applying a discount or a surcharge
         on it.
         """
+        # TODO : Once this is merged https://github.com/OCA/sale-workflow/pull/2372
+        #        use `parent_pricelist_ids` stored field.
+        #        This might even be a stored field as well.
         self.ensure_one()
         return bool(not self._get_parent_pricelists())
 
     def _recursive_get_items(self, product):
         """Recursively searches on parent pricelists for items applied on product."""
-        item_ids = self.item_ids.filtered(lambda i: i.product_id == product).ids
-        for parent_pricelist in self._get_parent_pricelists():
-            parent_items = parent_pricelist._recursive_get_items(product)
-            item_ids.extend(parent_items.ids)
+        # TODO : Once this is merged https://github.com/OCA/sale-workflow/pull/2372
+        #        use `parent_pricelist_ids` instead.
+        self.ensure_one()
+        query = """
+            WITH RECURSIVE parent_pricelist AS (
+                SELECT id
+                FROM product_pricelist
+                WHERE id = %(pricelist_id)s
+                UNION SELECT item.base_pricelist_id AS id
+                      FROM product_pricelist_item item
+                      INNER JOIN parent_pricelist parent
+                              ON item.pricelist_id = parent.id
+            )
+            SELECT pi.id
+            FROM product_pricelist_item pi
+            JOIN parent_pricelist pp ON pi.pricelist_id = pp.id
+            WHERE pi.product_id = %(product_id)s
+            AND active = TRUE;
+        """
+        self.flush()
+        self.env.cr.execute(query, {"pricelist_id": self.id, "product_id": product.id})
+        item_ids = [row[0] for row in self.env.cr.fetchall()]
         return self.env["product.pricelist.item"].browse(item_ids)
 
     def button_open_pricelist_cache_tree(self):

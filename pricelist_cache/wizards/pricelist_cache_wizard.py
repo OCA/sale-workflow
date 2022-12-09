@@ -27,10 +27,9 @@ class PricelistCacheWizard(models.TransientModel):
     def _onchange_product_pricelist(self):
         pricelist = self.pricelist_id
         product = self.product_id
-        partner = self.partner_id
         if not pricelist:
             self.display_cache_line_ids = False
-            return
+            return None
         if product:
             products = product
         else:
@@ -45,6 +44,9 @@ class PricelistCacheWizard(models.TransientModel):
         # is called. I wonder is this is because of the use of flush()
         # in the code.
         # There's maybe a better way to keep those fields values.
+        pricelist = self.pricelist_id
+        partner = self.partner_id
+        product = self.product_id
         data = {
             "display_cache_line_ids": [(6, 0, cache_selfs.ids)],
             "pricelist_id": pricelist.id,
