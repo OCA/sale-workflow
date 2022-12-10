@@ -16,6 +16,7 @@ setuptools.setup(
         'odoo13-addon-product_supplierinfo_for_customer_elaboration',
         'odoo13-addon-product_supplierinfo_for_customer_sale',
         'odoo13-addon-sale_advance_payment',
+        'odoo13-addon-sale_attached_product',
         'odoo13-addon-sale_automatic_workflow',
         'odoo13-addon-sale_automatic_workflow_delivery_state',
         'odoo13-addon-sale_automatic_workflow_job',
