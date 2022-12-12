@@ -19,14 +19,18 @@ msgstr ""
 
 #. module: sale_commercial_partner
 #: model:ir.model.fields,field_description:sale_commercial_partner.field_sale_order__commercial_partner_id
+#: model_terms:ir.ui.view,arch_db:sale_commercial_partner.sale_report_search
 #: model_terms:ir.ui.view,arch_db:sale_commercial_partner.view_sales_order_filter
-msgid "Commercial Entity"
-msgstr "Entité commerciale"
+msgid "Customer Entity"
+msgstr ""
 
 #. module: sale_commercial_partner
 #: model:ir.model,name:sale_commercial_partner.model_sale_order
 msgid "Sales Order"
 msgstr "Commandes"
+
+#~ msgid "Commercial Entity"
+#~ msgstr "Entité commerciale"
 
 #~ msgid "Quotation"
 #~ msgstr "Quotation"
