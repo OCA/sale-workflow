@@ -43,19 +43,19 @@ class PaymentPortal(PaymentPortal):
         )
 
         default_payment_method_id = tx_sudo.acquirer_id._get_default_payment_method_id()
-        payment_method_id = (
+        payment_method = (
             request.env["account.payment.method"]
             .sudo()
             .browse(default_payment_method_id)
         )
         so_vals = {"payment_tx_id": tx_sudo.id}
         # Set Payment Method from Acquirer
-        if payment_method_id:
-            so_vals.update({"payment_method_id": payment_method_id.id})
-            if payment_method_id.hold_picking_until_payment:
-                so_vals.update({"hold_picking_until_payment": True})
-        sale_order_id = request.env["sale.order"].browse(order_id)
-        sale_order_id.sudo().write(so_vals)
+        if payment_method:
+            so_vals.update({"payment_method_id": payment_method.id})
+
+        sale_order = request.env["sale.order"].browse(order_id)
+        sale_order.sudo().write(so_vals)
+        sale_order.sudo().auto_set_invoice_block()
 
         # Store the new transaction into the transaction list and
         # if there's an old one, we remove
