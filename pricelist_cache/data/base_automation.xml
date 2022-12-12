@@ -7,33 +7,7 @@
         <field name="model_id" ref="product.model_product_pricelist_item" />
         <field name="state">code</field>
         <field name="active" eval="True" />
-        <field name="code">record.update_product_pricelist_cache()</field>
+        <field name="code">record.create_product_pricelist_cache()</field>
         <field name="trigger">on_create</field>
-        <field
-            name="trigger_field_ids"
-            eval="[(6, 0, [
-            ref('product.field_product_pricelist_item__active'),
-            ref('product.field_product_pricelist_item__applied_on'),
-            ref('product.field_product_pricelist_item__base'),
-            ref('product.field_product_pricelist_item__base_pricelist_id'),
-            ref('product.field_product_pricelist_item__categ_id'),
-            ref('product.field_product_pricelist_item__company_id'),
-            ref('product.field_product_pricelist_item__compute_price'),
-            ref('product.field_product_pricelist_item__currency_id'),
-            ref('product.field_product_pricelist_item__date_end'),
-            ref('product.field_product_pricelist_item__date_start'),
-            ref('product.field_product_pricelist_item__fixed_price'),
-            ref('product.field_product_pricelist_item__min_quantity'),
-            ref('product.field_product_pricelist_item__percent_price'),
-            ref('product.field_product_pricelist_item__price_discount'),
-            ref('product.field_product_pricelist_item__price_max_margin'),
-            ref('product.field_product_pricelist_item__price_min_margin'),
-            ref('product.field_product_pricelist_item__price_round'),
-            ref('product.field_product_pricelist_item__price_surcharge'),
-            ref('product.field_product_pricelist_item__pricelist_id'),
-            ref('product.field_product_pricelist_item__product_id'),
-            ref('product.field_product_pricelist_item__product_tmpl_id'),
-        ])]"
-        />
     </record>
 </odoo>

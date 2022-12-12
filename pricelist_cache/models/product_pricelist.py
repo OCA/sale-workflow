@@ -15,12 +15,18 @@ class Pricelist(models.Model):
         for record in res:
             if record._is_factor_pricelist() or record._is_global_pricelist():
                 product_ids_to_cache = None
-            else:
-                product_ids_to_cache = record.item_ids.mapped("product_id").ids
-            cache_model = self.env["product.pricelist.cache"].with_delay()
-            cache_model.update_product_pricelist_cache(
-                product_ids=product_ids_to_cache, pricelist_ids=record.ids
-            )
+                # At item creation, a few prices might already have been cached
+                already_cached_product_ids = set(record.item_ids.product_id.ids)
+                if already_cached_product_ids:
+                    product_ids_to_cache = (
+                        self.env["product.product"]
+                        .search([("id", "not in", already_cached_product_ids.ids)])
+                        .ids
+                    )
+                cache_model = self.env["product.pricelist.cache"].with_delay()
+                cache_model.create_product_pricelist_cache(
+                    product_ids=product_ids_to_cache, pricelist_ids=record.ids
+                )
         return res
 
     def _get_product_prices(self, product_ids):
@@ -31,6 +37,8 @@ class Pricelist(models.Model):
         products = self.env["product.product"].search([("id", "in", product_ids)])
         products_qty_partner = [(p, 1, False) for p in products]
         results = self._compute_price_rule(products_qty_partner, date.today())
+        # TODO we might have to change format here, since we will soon need
+        # to cache prices with dates
         product_prices = {prod: price[0] for prod, price in results.items()}
         return product_prices
 
@@ -138,6 +146,36 @@ class Pricelist(models.Model):
             parent_items = parent_pricelist._recursive_get_items(product)
             item_ids.extend(parent_items.ids)
         return self.env["product.pricelist.item"].browse(item_ids)
+
+    def _get_product_ids_to_cache(self, product_ids):
+        """Returns a list of product_ids that are already cached
+        for the given pricelist.
+
+        Args:
+            - product_ids: The list of products to check
+        """
+        product_ids_to_cache = []
+        # We need to be sure to not waste resources while updating the cache.
+        # To do that, we ensure that prices are not coming from a parent
+        # pricelist.
+        if self._get_parent_pricelists():
+            # If this is a factor pricelist, then everything
+            # have to be updated
+            if self._is_factor_pricelist():
+                product_ids_to_cache = product_ids
+            # Otherwise, prices are fetched from parent pricelist
+            # and only products referenced by items have to be updated
+            else:
+                # TODO might not be good enough, since pricelist items
+                # could reference product templates, and categories
+                product_item_ids = self.item_ids.filtered(
+                    lambda i: i.product_id.id in product_ids
+                )
+                product_ids_to_cache = product_item_ids.mapped("product_id").ids
+        else:
+            # No parent (for instance public pricelist), then update everything
+            product_ids_to_cache = product_ids
+        return product_ids_to_cache
 
     def button_open_pricelist_cache_tree(self):
         cache_model = self.env["product.pricelist.cache"]
