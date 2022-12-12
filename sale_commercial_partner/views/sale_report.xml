@@ -1,0 +1,20 @@
+<!--
+  Copyright 2022 Akretion France (http://www.akretion.com/)
+  @author: Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="sale_report_search" model="ir.ui.view">
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale.view_order_product_search" />
+        <field name="arch" type="xml">
+            <filter name="Customer" position="before">
+                <filter
+                    name="commercial_partner_groupby"
+                    string="Customer Entity"
+                    context="{'group_by': 'commercial_partner_id'}"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>

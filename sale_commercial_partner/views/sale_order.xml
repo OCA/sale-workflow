@@ -17,7 +17,7 @@
             <filter name="customer" position="before">
                 <filter
                     name="commercial_partner_groupby"
-                    string="Commercial Entity"
+                    string="Customer Entity"
                     context="{'group_by': 'commercial_partner_id'}"
                 />
             </filter>
