@@ -79,8 +79,8 @@ msgid ""
 "On sale order line with product '%s', the number of days is negative (%d) ; "
 "this is not allowed. The number of days has been forced to 1."
 msgstr ""
-"L'ordine di vendita per il prodotto '%s' ha un numero di giorni negativo : "
-"questo no e' permesso."
+"L'ordine di vendita per il prodotto '%s' ha un numero di giorni negativo (%d) : "
+"questo non e' permesso. Il numero dei giorni deve essere forzato a 1."
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
