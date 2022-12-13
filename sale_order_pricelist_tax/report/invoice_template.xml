@@ -5,12 +5,12 @@
                 <span
                 t-if="o.price_tax_state != 'include'"
                 class="text-nowrap"
-                t-esc="line.price_subtotal"
+                t-field="line.price_subtotal"
             />
                 <span
                 t-if="o.price_tax_state == 'include'"
                 class="text-nowrap"
-                t-esc="line.price_total"
+                t-field="line.price_total"
             />
         </xpath>
     </template>
