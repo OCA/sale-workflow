@@ -84,7 +84,7 @@ msgid ""
 "this is not allowed. The number of days has been forced to 1."
 msgstr ""
 "Voor de kooporderregel met product '%s', is het aantal dagen negatief "
-"opgegeven; dit is niet toegestaan."
+"opgegeven (%d) ; dit is niet toegestaan. Het aantal dagen is geforceerd naar 1."
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order

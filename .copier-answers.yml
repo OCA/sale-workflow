@@ -1,0 +1,28 @@
+# Do NOT update manually; changes here will be overwritten by Copier
+_commit: v1.13.1
+_src_path: https://github.com/OCA/oca-addons-repo-template.git
+ci: GitHub
+dependency_installation_mode: PIP
+generate_requirements_txt: true
+github_check_license: true
+github_ci_extra_env: {}
+github_enable_codecov: true
+github_enable_makepot: true
+github_enable_stale_action: true
+github_enforce_dev_status_compatibility: true
+include_wkhtmltopdf: false
+odoo_version: 12.0
+org_name: Odoo Community Association (OCA)
+org_slug: OCA
+rebel_module_groups:
+- sale_invoice_policy,sale_delivery_split_date
+- sale_invoice_policy,sale_procurement_group_by_commitment_date
+- sale_invoice_policy
+repo_description: This project aim to deal with modules related to manage sale and
+    their related workflow.
+repo_name: Sale addons
+repo_slug: sale-workflow
+repo_website: https://github.com/OCA/sale-workflow
+travis_apt_packages: []
+travis_apt_sources: []
+
