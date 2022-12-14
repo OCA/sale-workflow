@@ -19,34 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/models/sale_order.py:0
-#, python-format
-msgid "Can't reserve products for lot %s"
-msgstr ""
-
-#. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/models/sale_order.py:0
-#, python-format
-msgid "Can't retrieve lot on stock"
-msgstr ""
-
-#. module: sale_order_lot_selection
 #: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__lot_id
 msgid "Lot"
 msgstr ""
-
-#. module: sale_order_lot_selection
-#: model:ir.model,name:sale_order_lot_selection.model_sale_order
-#, fuzzy
-msgid "Sales Order"
-msgstr "Verkooporder"
 
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
 msgid "Sales Order Line"
 msgstr ""
 
-#. module: sale_order_lot_selection
-#: model:ir.model,name:sale_order_lot_selection.model_stock_move
-msgid "Stock Move"
-msgstr ""
+#, fuzzy
+#~ msgid "Sales Order"
+#~ msgstr "Verkooporder"

@@ -20,37 +20,26 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/models/sale_order.py:0
-#, python-format
-msgid "Can't reserve products for lot %s"
-msgstr ""
-"Es können keine Produkt mit der Charge / Seriennummer %s reserviert werden."
-
-#. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/models/sale_order.py:0
-#, python-format
-msgid "Can't retrieve lot on stock"
-msgstr ""
-
-#. module: sale_order_lot_selection
 #: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__lot_id
 msgid "Lot"
 msgstr "Charge / Seriennummer"
-
-#. module: sale_order_lot_selection
-#: model:ir.model,name:sale_order_lot_selection.model_sale_order
-msgid "Sales Order"
-msgstr "Verkaufsauftrag"
 
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Auftragsposition"
 
-#. module: sale_order_lot_selection
-#: model:ir.model,name:sale_order_lot_selection.model_stock_move
-msgid "Stock Move"
-msgstr "Lagerbuchung"
+#, python-format
+#~ msgid "Can't reserve products for lot %s"
+#~ msgstr ""
+#~ "Es können keine Produkt mit der Charge / Seriennummer %s reserviert "
+#~ "werden."
+
+#~ msgid "Sales Order"
+#~ msgstr "Verkaufsauftrag"
+
+#~ msgid "Stock Move"
+#~ msgstr "Lagerbuchung"
 
 #~ msgid "Procurement Group"
 #~ msgstr "Beschaffungsgruppe"
