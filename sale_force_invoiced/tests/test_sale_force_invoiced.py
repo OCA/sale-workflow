@@ -37,20 +37,6 @@ class TestSaleForceInvoiced(TransactionCase):
         )
         return product
 
-    def _create_invoice_from_sale(self, sale):
-        payment = self.env["sale.advance.payment.inv"].create(
-            {"advance_payment_method": "delivered"}
-        )
-        sale_context = {
-            "active_id": sale.id,
-            "active_ids": sale.ids,
-            "active_model": "sale.order",
-            "open_invoices": True,
-        }
-        res = payment.with_context(**sale_context).create_invoices()
-        invoice_id = res["res_id"]
-        return invoice_id
-
     def test_sales_order(self):
         so = self.sale_order_model.create({"partner_id": self.customer.id})
         sol1 = self.sale_order_line_model.create(
@@ -70,7 +56,7 @@ class TestSaleForceInvoiced(TransactionCase):
             so.invoice_status, "to invoice", "The invoice status should be To Invoice"
         )
 
-        self._create_invoice_from_sale(so)
+        so._create_invoices()
         self.assertEqual(
             so.invoice_status, "invoiced", "The invoice status should be Invoiced"
         )
