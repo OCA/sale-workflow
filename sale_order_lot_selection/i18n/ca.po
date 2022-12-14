@@ -21,33 +21,25 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/models/sale_order.py:0
-#, python-format
-msgid "Can't reserve products for lot %s"
-msgstr "No es poden reservar productes per al lot %s"
-
-#. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/models/sale_order.py:0
-#, python-format
-msgid "Can't retrieve lot on stock"
-msgstr "No es pot recuperar el lot en estoc"
-
-#. module: sale_order_lot_selection
 #: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__lot_id
 msgid "Lot"
 msgstr "Lot"
-
-#. module: sale_order_lot_selection
-#: model:ir.model,name:sale_order_lot_selection.model_sale_order
-msgid "Sales Order"
-msgstr "Comandes de Venda"
 
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línia de comanda de vendes"
 
-#. module: sale_order_lot_selection
-#: model:ir.model,name:sale_order_lot_selection.model_stock_move
-msgid "Stock Move"
-msgstr "Moure l'estoc"
+#, python-format
+#~ msgid "Can't reserve products for lot %s"
+#~ msgstr "No es poden reservar productes per al lot %s"
+
+#, python-format
+#~ msgid "Can't retrieve lot on stock"
+#~ msgstr "No es pot recuperar el lot en estoc"
+
+#~ msgid "Sales Order"
+#~ msgstr "Comandes de Venda"
+
+#~ msgid "Stock Move"
+#~ msgstr "Moure l'estoc"

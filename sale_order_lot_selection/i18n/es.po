@@ -20,36 +20,28 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/models/sale_order.py:0
-#, python-format
-msgid "Can't reserve products for lot %s"
-msgstr "No puede reservar productos para el lote %s"
-
-#. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/models/sale_order.py:0
-#, python-format
-msgid "Can't retrieve lot on stock"
-msgstr "No se puede obtener el lote en las existencias"
-
-#. module: sale_order_lot_selection
 #: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__lot_id
 msgid "Lot"
 msgstr "Lote"
-
-#. module: sale_order_lot_selection
-#: model:ir.model,name:sale_order_lot_selection.model_sale_order
-msgid "Sales Order"
-msgstr "Órdenes de venta"
 
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
 
-#. module: sale_order_lot_selection
-#: model:ir.model,name:sale_order_lot_selection.model_stock_move
-msgid "Stock Move"
-msgstr "Movimiento de existencia"
+#, python-format
+#~ msgid "Can't reserve products for lot %s"
+#~ msgstr "No puede reservar productos para el lote %s"
+
+#, python-format
+#~ msgid "Can't retrieve lot on stock"
+#~ msgstr "No se puede obtener el lote en las existencias"
+
+#~ msgid "Sales Order"
+#~ msgstr "Órdenes de venta"
+
+#~ msgid "Stock Move"
+#~ msgstr "Movimiento de existencia"
 
 #~ msgid "Procurement Group"
 #~ msgstr "Grupo de Abastecimiento"
