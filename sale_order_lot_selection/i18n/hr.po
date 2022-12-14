@@ -21,34 +21,26 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/models/sale_order.py:0
-#, python-format
-msgid "Can't reserve products for lot %s"
-msgstr "Nije moguće rezervirati proizvode za lot %s"
-
-#. module: sale_order_lot_selection
-#: code:addons/sale_order_lot_selection/models/sale_order.py:0
-#, python-format
-msgid "Can't retrieve lot on stock"
-msgstr "Nije moguće dohvatiti lot na skladištu"
-
-#. module: sale_order_lot_selection
 #: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__lot_id
 msgid "Lot"
 msgstr "Lot"
-
-#. module: sale_order_lot_selection
-#: model:ir.model,name:sale_order_lot_selection.model_sale_order
-#, fuzzy
-msgid "Sales Order"
-msgstr "Prodajni nalog"
 
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Stavka ponude"
 
-#. module: sale_order_lot_selection
-#: model:ir.model,name:sale_order_lot_selection.model_stock_move
-msgid "Stock Move"
-msgstr "Skladišni prenos"
+#, python-format
+#~ msgid "Can't reserve products for lot %s"
+#~ msgstr "Nije moguće rezervirati proizvode za lot %s"
+
+#, python-format
+#~ msgid "Can't retrieve lot on stock"
+#~ msgstr "Nije moguće dohvatiti lot na skladištu"
+
+#, fuzzy
+#~ msgid "Sales Order"
+#~ msgstr "Prodajni nalog"
+
+#~ msgid "Stock Move"
+#~ msgstr "Skladišni prenos"
