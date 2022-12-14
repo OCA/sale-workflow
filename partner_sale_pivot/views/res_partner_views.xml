@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form.sales_by_product</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="sale.res_partner_view_buttons" />
+        <field name="arch" type="xml">
+            <button name="action_view_sale_order" position="before">
+                <button
+                    class="oe_stat_button"
+                    type="action"
+                    name="%(sale_report_action)d"
+                    groups="sales_team.group_sale_salesman"
+                    icon="fa-table"
+                    string="Sales Analysis"
+                >
+                </button>
+            </button>
+        </field>
+    </record>
+</odoo>
