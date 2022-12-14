@@ -63,6 +63,6 @@ class TestBaseSubstate(TransactionCase):
 
         # Test that substate_id is set to false if
         # there is not substate corresponding to state
-        so_test1.action_cancel()
+        so_test1._action_cancel()
         self.assertTrue(so_test1.state == "cancel")
         self.assertTrue(not so_test1.substate_id)
