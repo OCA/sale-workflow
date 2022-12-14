@@ -6,7 +6,12 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <group name="sale_info" position="inside">
-                <field name="force_invoiced" groups="sales_team.group_sale_manager" />
+                <field
+                    name="force_invoiced"
+                    groups="sales_team.group_sale_manager"
+                    widget="boolean_toggle"
+                    attrs="{'invisible': [('state', 'not in', ('sale', 'done'))]}"
+                />
             </group>
         </field>
     </record>
