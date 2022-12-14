@@ -13,14 +13,14 @@ class SaleOrder(models.Model):
         "quantities pending to invoice.",
         readonly=True,
         states={"done": [("readonly", False)], "sale": [("readonly", False)]},
+        tracking=20,
         copy=False,
     )
 
     @api.depends("force_invoiced")
-    def _get_invoice_status(self):
-        res = super(SaleOrder, self)._get_invoice_status()
-        for order in self.filtered(
+    def _compute_invoice_status(self):
+        res = super()._compute_invoice_status()
+        self.filtered(
             lambda so: so.force_invoiced and so.state in ("sale", "done")
-        ):
-            order.invoice_status = "invoiced"
+        ).update({"invoice_status": "invoiced"})
         return res
