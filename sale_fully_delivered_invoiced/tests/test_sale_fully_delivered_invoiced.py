@@ -90,6 +90,6 @@ class TestSaleFullyDeliveredInvoiced(common.TransactionCase):
             move.quantity_done = move.product_qty
         picking.button_validate()
         self.so._create_invoices()
-        self.so.invoice_ids.post()
+        self.so.invoice_ids._post()
         self.assertTrue(self.so.is_fully_delivered)
         self.assertEqual(self.so.invoice_status_validated, "invoiced")
