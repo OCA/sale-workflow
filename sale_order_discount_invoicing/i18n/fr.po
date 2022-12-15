@@ -1,0 +1,70 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_discount_invoicing
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-14 11:33+0000\n"
+"PO-Revision-Date: 2022-11-14 11:33+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model.fields,field_description:sale_order_discount_invoicing.field_product_category__property_account_discount_categ_id
+#: model:ir.model.fields,field_description:sale_order_discount_invoicing.field_product_product__property_account_discount_id
+#: model:ir.model.fields,field_description:sale_order_discount_invoicing.field_product_template__property_account_discount_id
+msgid "Discount Account"
+msgstr "Compte de Promotions"
+
+#. module: sale_order_discount_invoicing
+#: code:addons/sale_order_discount_invoicing/models/account_move.py:0
+#, python-format
+msgid "Discount on %s"
+msgstr "Promotion sur %s"
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model.fields,field_description:sale_order_discount_invoicing.field_account_move_line__is_split_discount_line
+msgid "Is Split Discount Line"
+msgstr "Est une ligne double de remise"
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model.fields,field_description:sale_order_discount_invoicing.field_account_move_line__is_split_line
+msgid "Is Split Line"
+msgstr "Est une ligne double"
+
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model.fields,help:sale_order_discount_invoicing.field_product_product__property_account_discount_id
+#: model:ir.model.fields,help:sale_order_discount_invoicing.field_product_template__property_account_discount_id
+msgid ""
+"Keep this field empty to use the default value from the product category."
+msgstr ""
+"Laissez ce champ vide pour utiliser la valeur par défaut définie sur la "
+"catégorie de produit."
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model.fields,field_description:sale_order_discount_invoicing.field_sale_order_line__origin_price_unit
+msgid "Origin Price Unit"
+msgstr "Prix un. d'origine"
+
+
+#. module: sale_order_discount_invoicing
+#: code:addons/sale_order_discount_invoicing/models/account_move_line.py:0
+#, python-format
+msgid ""
+"The line you have deleted/modified is linked to another one in the Sale Order.\n"
+"Please delete/modify both lines."
+msgstr ""
+"Les lignes que vous avez créées/supprimées/modifiées sont liées à d'autres dans le bon de commande.\n"
+"Merci de créer/supprimer/modifier les deux lignes."
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model.fields,help:sale_order_discount_invoicing.field_product_category__property_account_discount_categ_id
+msgid "This account will be used when validating a customer invoice."
+msgstr "Ce compte sera utilisé lors de la création d'une facture client."
