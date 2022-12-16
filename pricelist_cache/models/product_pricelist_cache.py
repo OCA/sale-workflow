@@ -3,7 +3,7 @@
 
 from psycopg2 import sql
 
-from odoo import fields, models, tools
+from odoo import _, exceptions, fields, models, tools
 
 
 class PricelistCache(models.Model):
@@ -94,15 +94,17 @@ class PricelistCache(models.Model):
             product_ids_to_cache = pricelist._get_product_ids_to_cache(product_ids)
             product_prices = pricelist._get_product_prices(product_ids_to_cache)
             self._create_cache_records(pricelist.id, product_prices)
+            # Once this is done, set pricelist cache as computed on pricelist
+            pricelist.is_pricelist_cache_computed = True
 
-    def create_full_cache(self):
+    def create_full_cache(self, pricelists):
         """Creates cache for all prices applied to all pricelists."""
-        pricelist_ids = self.env["product.pricelist"].search([]).ids
+        pricelist_ids = pricelists.ids
         # Spawn a job every 3 pricelists (reduce the number of jobs created)
         for chunk_ids in tools.misc.split_every(3, pricelist_ids):
             self.with_delay().create_product_pricelist_cache(pricelist_ids=chunk_ids)
 
-    def _reset_table(self):
+    def flush_cache(self, pricelists):
         # flush table
         flush_query = "TRUNCATE TABLE product_pricelist_cache CASCADE;"
         self.env.cr.execute(flush_query)
@@ -111,15 +113,19 @@ class PricelistCache(models.Model):
             ALTER SEQUENCE product_pricelist_cache_id_seq RESTART WITH 1;
         """
         self.env.cr.execute(sequence_query)
+        pricelists.write({"is_pricelist_cache_computed": False})
 
     def cron_reset_pricelist_cache(self):
         """Recreates the whole price list cache."""
-        self._reset_table()
+        pricelists = self.env["product.pricelist"].search([])
+        self.flush_cache(pricelists)
         # Re-create everything
-        self.create_full_cache()
+        self.create_full_cache(pricelists)
 
     def get_cached_prices_for_pricelist(self, pricelist, products):
         """Retrieves product prices for a given pricelist."""
+        if not pricelist.is_pricelist_cache_available:
+            raise exceptions.UserError(_("Pricelist caching in progress. Retry later"))
         # Retrieve cache for the current pricelist first
         cached_prices = self.search(
             [
@@ -129,7 +135,7 @@ class PricelistCache(models.Model):
         )
         # Then, retrieves prices from parent pricelists
         remaining_products = products - cached_prices.mapped("product_id")
-        parent_pricelists = pricelist._get_parent_pricelists()
+        parent_pricelists = pricelist.parent_pricelist_ids
         # There shouldn't be multiple parents for a pricelist, but it's possible…
         for parent_pricelist in parent_pricelists:
             cached_prices |= self.get_cached_prices_for_pricelist(

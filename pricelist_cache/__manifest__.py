@@ -6,7 +6,7 @@
         Provide a new model to cache price lists and update it,
         to make it easier to retrieve them.
     """,
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.1.0",
     "category": "Hidden",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
@@ -15,6 +15,7 @@
         "product",
         "sale",
         "queue_job",
+        "partner_pricelist_search",
     ],
     "website": "https://github.com/OCA/sale-workflow",
     "data": [
@@ -32,5 +33,6 @@
         "data/demo.xml",
     ],
     "installable": True,
-    "post_init_hook": "set_default_partner_product_filter",
+    "post_init_hook": "post_init_hook",
+    "pre_init_hook": "pre_init_hook",
 }

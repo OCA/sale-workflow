@@ -21,4 +21,15 @@
       </field>
     </record>
 
+    <record id="product_pricelist_view_tree" model="ir.ui.view">
+      <field name="name">product.pricelist.tree.inherit</field>
+      <field name="model">product.pricelist</field>
+      <field name="inherit_id" ref="product.product_pricelist_view_tree" />
+      <field name="arch" type="xml">
+          <field name="name" position="after">
+              <field name="is_pricelist_cache_available" />
+          </field>
+      </field>
+    </record>
+
 </odoo>

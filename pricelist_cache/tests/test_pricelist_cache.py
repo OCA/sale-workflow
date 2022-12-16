@@ -174,18 +174,18 @@ class TestPricelistCache(TestPricelistCacheCommon):
         expected_factor_pricelist_ids = self.list5.ids
         factor_pricelist_ids = pricelist_model._get_factor_pricelist_ids()
         self.assertEqual(factor_pricelist_ids, expected_factor_pricelist_ids)
-        # test _get_parent_pricelists
-        list_5_parent = self.list5._get_parent_pricelists()
+        # test parent_pricelist_ids
+        list_5_parent = self.list5.parent_pricelist_ids
         self.assertEqual(list_5_parent, self.list3)
-        list_4_parent = self.list4._get_parent_pricelists()
+        list_4_parent = self.list4.parent_pricelist_ids
         self.assertEqual(list_4_parent, self.list0)
-        list_3_parent = self.list3._get_parent_pricelists()
+        list_3_parent = self.list3.parent_pricelist_ids
         self.assertEqual(list_3_parent, self.list2)
-        list_2_parent = self.list2._get_parent_pricelists()
+        list_2_parent = self.list2.parent_pricelist_ids
         self.assertEqual(list_2_parent, self.list1)
-        list_1_parent = self.list1._get_parent_pricelists()
+        list_1_parent = self.list1.parent_pricelist_ids
         self.assertEqual(list_1_parent, self.list0)
-        list_0_parent = self.list0._get_parent_pricelists()
+        list_0_parent = self.list0.parent_pricelist_ids
         self.assertFalse(list_0_parent)
         # test _is_factor_pricelist
         factor_pricelist = pricelist_model.browse(factor_pricelist_ids)

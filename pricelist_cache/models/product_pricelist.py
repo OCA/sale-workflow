@@ -3,11 +3,56 @@
 
 from datetime import date
 
-from odoo import api, models
+from odoo import api, fields, models
 
 
 class Pricelist(models.Model):
     _inherit = "product.pricelist"
+
+    parent_pricelist_ids = fields.Many2many(
+        "product.pricelist",
+        relation="product_pricelist_potato",
+        column1="child_id",
+        column2="parent_id",
+        compute="_compute_parent_pricelist_ids",
+        store=True,
+        index=True,
+    )
+    is_pricelist_cache_computed = fields.Boolean()
+    is_pricelist_cache_available = fields.Boolean(
+        "Cache Available",
+        compute="_compute_is_pricelist_cache_available",
+        store=True,
+    )
+
+    @api.depends(
+        "item_ids", "item_ids.applied_on", "item_ids.base", "item_ids.base_pricelist_id"
+    )
+    def _compute_parent_pricelist_ids(self):
+        for record in self:
+            parent_items = record.item_ids.filtered(
+                lambda i: (
+                    i.applied_on == "3_global"
+                    and i.base == "pricelist"
+                    and i.base_pricelist_id
+                )
+            )
+            record.parent_pricelist_ids = parent_items.mapped("base_pricelist_id")
+
+    @api.depends(
+        "is_pricelist_cache_computed",
+        "parent_pricelist_ids",
+        "parent_pricelist_ids.is_pricelist_cache_computed",
+        "parent_pricelist_ids.is_pricelist_cache_available",
+    )
+    def _compute_is_pricelist_cache_available(self):
+        for record in self:
+            record.is_pricelist_cache_available = (
+                record.is_pricelist_cache_computed
+                and all(
+                    record.parent_pricelist_ids.mapped("is_pricelist_cache_available")
+                )
+            )
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -137,12 +182,12 @@ class Pricelist(models.Model):
         on it.
         """
         self.ensure_one()
-        return bool(not self._get_parent_pricelists())
+        return not self.parent_pricelist_ids
 
     def _recursive_get_items(self, product):
         """Recursively searches on parent pricelists for items applied on product."""
         item_ids = self.item_ids.filtered(lambda i: i.product_id == product).ids
-        for parent_pricelist in self._get_parent_pricelists():
+        for parent_pricelist in self.parent_pricelist_ids:
             parent_items = parent_pricelist._recursive_get_items(product)
             item_ids.extend(parent_items.ids)
         return self.env["product.pricelist.item"].browse(item_ids)
@@ -158,7 +203,7 @@ class Pricelist(models.Model):
         # We need to be sure to not waste resources while updating the cache.
         # To do that, we ensure that prices are not coming from a parent
         # pricelist.
-        if self._get_parent_pricelists():
+        if self.parent_pricelist_ids:
             # If this is a factor pricelist, then everything
             # have to be updated
             if self._is_factor_pricelist():
