@@ -11,14 +11,33 @@
             <form>
                 <sheet>
                     <group>
-                        <field name="order_id" invisible="1" />
-                        <field name="months" widget="numeric_step" />
-                        <field name="line_amount" widget="numeric_step" />
-                        <field name="sale_recommendation_price_origin" />
+                        <group>
+                            <field name="order_id" invisible="1" />
+                            <field name="months" widget="numeric_step" />
+                            <field name="line_amount" widget="numeric_step" />
+                            <field name="origin_recommendation" invisible="1" />
+                            <field name="sale_recommendation_price_origin" />
+                        </group>
+                        <group>
+                            <field
+                                name="product_category_id"
+                                options="{'no_create': True}"
+                            />
+                            <field
+                                name="product_attribute_value_id"
+                                options="{'no_create': True}"
+                            />
+                            <field name="sale_recommendation_available_product" />
+                        </group>
                     </group>
                     <group>
                         <field name="line_ids" nolabel="1" mode="tree,kanban">
-                            <tree create="0" delete="0" editable="top">
+                            <tree
+                                create="0"
+                                delete="0"
+                                editable="top"
+                                decoration-success="sale_line_id"
+                            >
                                 <field name="currency_id" invisible="1" />
                                 <field name="sale_line_id" invisible="1" />
                                 <field name="product_id" readonly="1" force_save="1" />

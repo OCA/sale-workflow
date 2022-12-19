@@ -6,19 +6,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-28 21:14+0000\n"
-"PO-Revision-Date: 2022-06-28 21:14+0000\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2022-12-19 10:29+0000\n"
+"PO-Revision-Date: 2022-12-19 11:32+0100\n"
+"Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
 msgid "<span class=\"o_form_label\">Product recommendation price origin</span>"
-msgstr "<span class=\"o_form_label\">Recomendación de producto, precio origen</span>"
+msgstr ""
+"<span class=\"o_form_label\">Recomendación de producto, precio origen</span>"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
@@ -31,14 +34,19 @@ msgid "Accept"
 msgstr "Aceptar"
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__product_attribute_value_id
+msgid "Attribute value"
+msgstr "Valor del Atributo"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__sale_recommendation_available_product
+msgid "Available products"
+msgstr "Productos disponibles"
+
+#. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Cancel"
 msgstr "Cancelar"
-
-#. module: sale_order_product_recommendation
-#: model:ir.model,name:sale_order_product_recommendation.model_res_config_settings
-msgid "Config Settings"
-msgstr "Opciones de configuración"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation__months
@@ -79,6 +87,21 @@ msgid "Display Name"
 msgstr "Nombre a mostrar"
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_config_settings__default_sale_recommendation_available_product
+msgid "Display available products"
+msgstr "Mostrar productos disponibles"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation__product_category_id
+msgid "Filter by product internal category and their descendants"
+msgstr "Filtrar por categoría interna de producto"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation__product_attribute_value_id
+msgid "Filter products by attribute value"
+msgstr "Filtrar de productos por valor del atributo"
+
+#. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__id
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__id
 msgid "ID"
@@ -87,7 +110,9 @@ msgstr "ID (Identificador)"
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation_line__pricelist_id
 msgid "If you change the pricelist, only newly added lines will be affected."
-msgstr "Si cambia la lista de precios, solo se verán afectadas las líneas recién agregadas."
+msgstr ""
+"Si cambia la lista de precios, solo se verán afectadas las líneas recién "
+"agregadas."
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__last_compute
@@ -129,6 +154,11 @@ msgid "Number of recommendations"
 msgstr "Número de recomendaciones"
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__origin_recommendation
+msgid "Origin Recommendation"
+msgstr "Origen de las recomendaciones"
+
+#. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__price_unit
 msgid "Price Unit"
 msgstr "Precio unitario"
@@ -151,11 +181,21 @@ msgid "Pricelist"
 msgstr "Tarifa"
 
 #. module: sale_order_product_recommendation
+#: model:ir.model,name:sale_order_product_recommendation.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
+
+#. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_line__product_id
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_id
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Product"
 msgstr "Producto"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__product_category_id
+msgid "Product Category"
+msgstr "Categoría de producto"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__sale_recommendation_price_origin
@@ -203,6 +243,11 @@ msgid "Sale Uom"
 msgstr "Unidad de medida de venta"
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__origin_recommendation__sale_order
+msgid "Sale orders"
+msgstr "Pedidos de venta"
+
+#. module: sale_order_product_recommendation
 #: model:ir.model,name:sale_order_product_recommendation.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
@@ -211,7 +256,9 @@ msgstr "Línea de pedido de venta"
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
 msgid ""
 "Select the origin for display product price in sale orders recommendation"
-msgstr "Seleccione el origen para mostrar el precio del producto en la recomendación de órdenes de venta"
+msgstr ""
+"Seleccione el origen para mostrar el precio del producto en la recomendación "
+"de órdenes de venta"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation__line_amount

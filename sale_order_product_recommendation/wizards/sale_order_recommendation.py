@@ -37,11 +37,25 @@ class SaleOrderRecommendation(models.TransientModel):
         help="The less, the faster they will be found.",
     )
     last_compute = fields.Char()
+    product_category_id = fields.Many2one(
+        comodel_name="product.category",
+        string="Product Category",
+        help="Filter by product internal category and their descendants",
+    )
+    product_attribute_value_id = fields.Many2one(
+        comodel_name="product.attribute.value",
+        string="Attribute value",
+        help="Filter products by attribute value",
+    )
     # Get default value from config settings
     sale_recommendation_price_origin = fields.Selection(
         [("pricelist", "Pricelist"), ("last_sale_price", "Last sale price")],
         string="Product price origin",
         default="pricelist",
+    )
+    sale_recommendation_available_product = fields.Boolean(string="Available products")
+    origin_recommendation = fields.Selection(
+        [("sale_order", "Sale orders")], default="sale_order"
     )
 
     @api.model
@@ -59,12 +73,25 @@ class SaleOrderRecommendation(models.TransientModel):
                 ),
             ]
         )
-        return [
+        domain = [
             ("order_id", "in", (other_sales - self.order_id).ids),
             ("product_id.active", "=", True),
             ("product_id.sale_ok", "=", True),
             ("qty_delivered", "!=", 0.0),
         ]
+        if self.product_category_id:
+            domain.append(
+                ("product_id.categ_id", "child_of", self.product_category_id.ids)
+            )
+        if self.product_attribute_value_id:
+            domain.append(
+                (
+                    "product_id.attribute_line_ids.value_ids",
+                    "=",
+                    self.product_attribute_value_id.ids,
+                )
+            )
+        return domain
 
     def _prepare_recommendation_line_vals(self, group_line, so_line=False):
         """Return the vals dictionary for creating a new recommendation line.
@@ -81,16 +108,16 @@ class SaleOrderRecommendation(models.TransientModel):
             vals["sale_line_id"] = so_line.id
         return vals
 
-    @api.onchange("order_id", "months", "line_amount")
-    def _generate_recommendations(self):
-        """Generate lines according to context sale order."""
-        last_compute = "{}-{}-{}".format(self.id, self.months, self.line_amount)
-        # Avoid execute onchange as times as fields in api.onchange
-        # ORM must control this?
-        if self.last_compute == last_compute:
-            return
-        self.last_compute = last_compute
-        # Search delivered products in previous months
+    def _get_origin_recommendation(self):
+        """To be extend with other modules"""
+        return getattr(
+            self,
+            "_get_origin_recommendation_{}".format(
+                self.origin_recommendation or "sale_order"
+            ),
+        )()
+
+    def _get_origin_recommendation_sale_order(self):
         found_lines = self.env["sale.order.line"].read_group(
             self._recomendable_sale_order_lines_domain(),
             ["product_id", "qty_delivered"],
@@ -105,6 +132,34 @@ class SaleOrderRecommendation(models.TransientModel):
             ),
             reverse=True,
         )
+        return found_lines
+
+    @api.onchange(
+        "order_id",
+        "months",
+        "line_amount",
+        "sale_recommendation_available_product",
+        "product_category_id",
+        "product_attribute_value_id",
+        "origin_recommendation",
+    )
+    def _generate_recommendations(self):
+        """Generate lines according to context sale order."""
+        last_compute = "{}-{}-{}-{}-{}-{}".format(
+            self.id,
+            self.months,
+            self.line_amount,
+            self.origin_recommendation,
+            self.product_category_id.id,
+            self.product_attribute_value_id.id,
+        )
+        # Avoid execute onchange as times as fields in api.onchange
+        # ORM must control this?
+        if self.last_compute == last_compute:
+            return
+        self.last_compute = last_compute
+        # Search delivered products in previous months
+        found_lines = self._get_origin_recommendation()
         found_dict = {product["product_id"][0]: product for product in found_lines}
         recommendation_lines = self.env["sale.order.recommendation.line"]
         existing_product_ids = set()
@@ -135,7 +190,31 @@ class SaleOrderRecommendation(models.TransientModel):
             i += 1
             if i >= self.line_amount:
                 break
-        self.line_ids = recommendation_lines.sorted(
+        self._set_recommendation_lines(recommendation_lines)
+
+    def _set_recommendation_lines(self, recommendation_lines):
+        """Filter recommendations before assign to line_ids field including lines from
+        actual sale order.
+        """
+        filtered_lines = recommendation_lines
+        if self.sale_recommendation_available_product:
+            filtered_lines = filtered_lines.filtered(
+                lambda ln: ln.product_id.free_qty > 0
+            )
+        if self.product_category_id:
+            # Do not work properly with filtered_domain
+            categories = self.env["product.category"].search(
+                [("id", "child_of", self.product_category_id.ids)]
+            )
+            filtered_lines = filtered_lines.filtered(
+                lambda ln: ln.product_id.categ_id in categories
+            )
+        if self.product_attribute_value_id:
+            filtered_lines = filtered_lines.filtered(
+                lambda ln: self.product_attribute_value_id
+                in ln.product_id.attribute_line_ids.value_ids
+            )
+        self.line_ids = filtered_lines.sorted(
             key=lambda x: x.times_delivered, reverse=True
         )
 
