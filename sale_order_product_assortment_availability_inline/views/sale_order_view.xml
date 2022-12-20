@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_order_product_assortment.view_order_form" />
+        <field name="arch" type="xml">
+            <!-- Form -->
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='product_allowed_id']"
+                position="attributes"
+            >
+                <attribute
+                    name="context"
+                    operation="python_dict"
+                    key="so_product_stock_inline"
+                >True</attribute>
+                <attribute
+                    name="context"
+                    operation="python_dict"
+                    key="warehouse"
+                >parent.warehouse_id</attribute>
+            </xpath>
+            <!-- Tree -->
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='product_allowed_id']"
+                position="attributes"
+            >
+                <attribute
+                    name="context"
+                    operation="python_dict"
+                    key="so_product_stock_inline"
+                >True</attribute>
+                <attribute
+                    name="context"
+                    operation="python_dict"
+                    key="warehouse"
+                >parent.warehouse_id</attribute>
+
+            </xpath>
+        </field>
+    </record>
+</odoo>
