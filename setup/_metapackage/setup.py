@@ -69,6 +69,7 @@ setuptools.setup(
         'odoo13-addon-sale_order_pricelist_tracking',
         'odoo13-addon-sale_order_priority',
         'odoo13-addon-sale_order_product_assortment',
+        'odoo13-addon-sale_order_product_assortment_availability_inline',
         'odoo13-addon-sale_order_product_availability_inline',
         'odoo13-addon-sale_order_product_recommendation',
         'odoo13-addon-sale_order_product_recommendation_secondary_unit',
