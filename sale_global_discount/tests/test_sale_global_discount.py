@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import exceptions
 from odoo.tests import Form, common
+import json
 
 
 class TestSaleGlobalDiscount(common.TransactionCase):
@@ -119,10 +120,21 @@ class TestSaleGlobalDiscount(common.TransactionCase):
             order_line.price_unit = 33.33
         cls.sale = sale_form.save()
 
+    def get_taxes_widget_total_tax(self, order):
+        return sum(
+            tax_vals["tax_group_amount"]
+            for tax_vals in json.loads(order.tax_totals_json)["groups_by_subtotal"][
+                "Untaxed Amount"
+            ]
+        )
+
     def test_01_global_sale_succesive_discounts(self):
         """Add global discounts to the sale order"""
         self.assertAlmostEqual(self.sale.amount_total, 299.99)
         self.assertAlmostEqual(self.sale.amount_tax, 50)
+        self.assertAlmostEqual(
+            self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
+        )
         self.assertAlmostEqual(self.sale.amount_untaxed, 249.99)
         # Apply a single 20% global discount
         self.sale.global_discount_ids = self.global_discount_1
@@ -134,6 +146,9 @@ class TestSaleGlobalDiscount(common.TransactionCase):
         self.assertAlmostEqual(self.sale.amount_total, 239.99)
         self.assertAlmostEqual(self.sale.amount_total_before_global_discounts, 299.99)
         self.assertAlmostEqual(self.sale.amount_tax, 40)
+        self.assertAlmostEqual(
+            self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
+        )
         # Apply an additional 30% global discount
         self.sale.global_discount_ids += self.global_discount_2
         self.assertAlmostEqual(self.sale.amount_global_discount, 110)
@@ -142,6 +157,9 @@ class TestSaleGlobalDiscount(common.TransactionCase):
         self.assertAlmostEqual(self.sale.amount_total, 167.99)
         self.assertAlmostEqual(self.sale.amount_total_before_global_discounts, 299.99)
         self.assertAlmostEqual(self.sale.amount_tax, 28)
+        self.assertAlmostEqual(
+            self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
+        )
         # The account move should look like this
         #   credit    debit  name
         # ========  =======  ===============================================
@@ -165,6 +183,9 @@ class TestSaleGlobalDiscount(common.TransactionCase):
         self.assertAlmostEqual(self.sale.amount_total, 105.01)
         self.assertAlmostEqual(self.sale.amount_total_before_global_discounts, 299.99)
         self.assertAlmostEqual(self.sale.amount_tax, 17.51)
+        self.assertAlmostEqual(
+            self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
+        )
 
     def test_03_global_sale_discounts_to_invoice(self):
         """All the discounts go to the invoice"""
