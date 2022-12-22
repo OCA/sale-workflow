@@ -22,4 +22,5 @@
         "views/sale_elaboration_report_views.xml",
         "reports/report_deliveryslip.xml",
     ],
+    "pre_init_hook": "pre_init_hook",
 }
