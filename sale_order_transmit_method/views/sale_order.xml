@@ -1,25 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2020 ACSONE SA/NV
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-
 <odoo>
 
     <record model="ir.ui.view" id="sale_order_form_view">
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//group[@name='sale_pay']" position="inside">
-                <field name="transmit_method_id"/>
+                <field name="transmit_method_id" />
             </xpath>
         </field>
     </record>
 
     <record model="ir.ui.view" id="sale_order_search_view">
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='team_id']" position="after">
-                <field name="transmit_method_id"/>
+                <field name="transmit_method_id" />
             </xpath>
         </field>
     </record>

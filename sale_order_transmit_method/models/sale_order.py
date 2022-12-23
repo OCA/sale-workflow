@@ -26,7 +26,7 @@ class SaleOrder(models.Model):
         res = super()._finalize_invoices(invoices, references)
         for invoice in invoices.values():
             transmit_methods = invoice.invoice_line_ids.mapped(
-                'sale_line_ids.order_id.transmit_method_id'
+                "sale_line_ids.order_id.transmit_method_id"
             )
             if len(transmit_methods) == 1:
                 invoice.transmit_method_id = transmit_methods
