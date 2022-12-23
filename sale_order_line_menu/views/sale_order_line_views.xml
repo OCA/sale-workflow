@@ -22,7 +22,7 @@
         name="Order Lines"
         action="action_orders_lines"
         parent="sale.sale_order_menu"
-        sequence="2"
+        sequence="21"
     />
 
 
