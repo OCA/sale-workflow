@@ -22,6 +22,7 @@
     'data': [
         'views/sale_order_view.xml',
         'views/sale_order_report.xml',
+        'views/sale_group_invoice_discount.xml',
     ],
     'installable': True,
 }

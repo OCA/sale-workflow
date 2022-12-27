@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="invoice_triple_discount_form_view">
+        <field name="name">Account Invoice</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account_invoice_triple_discount.invoice_triple_discount_form_view"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='discount2']" position="attributes">
+                    <attribute name="groups">sale.group_discount_per_so_line</attribute>
+                </xpath>
+                <xpath expr="//field[@name='discount3']" position="attributes">
+                    <attribute name="groups">sale.group_discount_per_so_line</attribute>
+                </xpath>
+            </data>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="invoice_line_triple_discount_form_view">
+        <field name="name">account.invoice.line.triple.discount.group.form</field>
+        <field name="model">account.invoice.line</field>
+        <field name="inherit_id" ref="account_invoice_triple_discount.invoice_line_triple_discount_form_view"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='discount2']" position="attributes">
+                    <attribute name="groups">sale.group_discount_per_so_line</attribute>
+                </xpath>
+                <xpath expr="//field[@name='discount3']" position="attributes">
+                    <attribute name="groups">sale.group_discount_per_so_line</attribute>
+                </xpath>
+            </data>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="account_invoice_supplier_triple_discount_form_view">
+        <field name="name">account.invoice.supplier.triple.discount.group.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account_invoice_triple_discount.invoice_supplier_triple_discount_form_view"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='discount2']" position="attributes">
+                    <attribute name="groups">sale.group_discount_per_so_line</attribute>
+                </xpath>
+                <xpath expr="//field[@name='discount3']" position="attributes">
+                    <attribute name="groups">sale.group_discount_per_so_line</attribute>
+                </xpath>
+            </data>
+        </field>
+    </record>
+</odoo>
