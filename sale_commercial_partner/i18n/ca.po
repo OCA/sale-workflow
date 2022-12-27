@@ -18,26 +18,24 @@ msgstr ""
 
 #. module: sale_commercial_partner
 #: model:ir.model.fields,field_description:sale_commercial_partner.field_sale_order__commercial_partner_id
+#: model_terms:ir.ui.view,arch_db:sale_commercial_partner.sale_report_search
 #: model_terms:ir.ui.view,arch_db:sale_commercial_partner.view_sales_order_filter
-msgid "Commercial Entity"
-msgstr "Entitat Comercial"
-
-#. module: sale_commercial_partner
-#: model:ir.model.fields,field_description:sale_commercial_partner.field_sale_order__display_name
-msgid "Display Name"
-msgstr "Nom Visible"
-
-#. module: sale_commercial_partner
-#: model:ir.model.fields,field_description:sale_commercial_partner.field_sale_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_commercial_partner
-#: model:ir.model.fields,field_description:sale_commercial_partner.field_sale_order____last_update
-msgid "Last Modified on"
-msgstr "Darrera modificació el"
+msgid "Customer Entity"
+msgstr ""
 
 #. module: sale_commercial_partner
 #: model:ir.model,name:sale_commercial_partner.model_sale_order
 msgid "Sales Order"
 msgstr "Comanda de venda"
+
+#~ msgid "Commercial Entity"
+#~ msgstr "Entitat Comercial"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom Visible"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Darrera modificació el"
