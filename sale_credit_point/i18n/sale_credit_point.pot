@@ -4,198 +4,193 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0+e\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-31 13:56+0000\n"
-"PO-Revision-Date: 2018-05-31 15:59+0200\n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 1.8.7.1\n"
 
 #. module: sale_credit_point
 #: code:addons/sale_credit_point/wizards/manage_credit_point.py:0
 #, python-format
 msgid "A comment is needed to the update credit"
-msgstr "Un commentaire est nécessaire pour mettre à jour un crédit."
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_credit_point_history__amount
 msgid "Amount"
-msgstr "Montant"
+msgstr ""
 
 #. module: sale_credit_point
 #: model_terms:ir.ui.view,arch_db:sale_credit_point.wiz_manage_credit_point
 msgid "Cancel"
-msgstr "Annuler"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_credit_point_history__comment
 #: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point__comment
 msgid "Comment"
-msgstr "Commentaires"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model,name:sale_credit_point.model_res_partner
 msgid "Contact"
-msgstr "Contact"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_credit_point_history__create_date
 msgid "Create Date"
-msgstr "Date de création"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_credit_point_history__create_uid
 #: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point__create_uid
 msgid "Created by"
-msgstr "Créé par"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point__create_date
 msgid "Created on"
-msgstr "Créé le"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_res_partner__credit_history_ids
 #: model:ir.model.fields,field_description:sale_credit_point.field_res_users__credit_history_ids
 msgid "Credit History"
-msgstr "Credit History"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_credit_point_history__credit_point_currency_id
 #: model:ir.model.fields,field_description:sale_credit_point.field_res_partner__credit_point_currency_id
 #: model:ir.model.fields,field_description:sale_credit_point.field_res_users__credit_point_currency_id
 msgid "Credit Point Currency"
-msgstr "Devise pour le crédit de point"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.actions.act_window,name:sale_credit_point.credit_point_history_action
 msgid "Credit Points History"
-msgstr "Credit Points History"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.ui.menu,name:sale_credit_point.menu_credit_point_history
 msgid "Credit point history"
-msgstr "Historique des crédits"
+msgstr ""
 
 #. module: sale_credit_point
 #: code:addons/sale_credit_point/models/partner.py:0
 #, python-format
 msgid "Credit updated to {points}. Reason: {comment}"
-msgstr "Crédit mis à jour de {points}. Raison: {comment}"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model,name:sale_credit_point.model_credit_point_history
-#, fuzzy
 msgid "CreditPointHistory"
-msgstr "Credit Points History"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields.selection,name:sale_credit_point.selection__credit_point_history__operation__decrease
 #: model:ir.model.fields.selection,name:sale_credit_point.selection__wiz_manage_credit_point__operation__decrease
 msgid "Decrease"
-msgstr "Diminuer"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_credit_point_history__display_name
 #: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point__display_name
 msgid "Display Name"
-msgstr "Nom à afficher"
+msgstr ""
 
 #. module: sale_credit_point
 #: model_terms:ir.ui.view,arch_db:sale_credit_point.view_credit_point_history_search
 msgid "Group By"
-msgstr "Regrouper par"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_credit_point_history__id
 #: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields.selection,name:sale_credit_point.selection__credit_point_history__operation__increase
 #: model:ir.model.fields.selection,name:sale_credit_point.selection__wiz_manage_credit_point__operation__increase
 msgid "Increase"
-msgstr "Augmenter"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_credit_point_history____last_update
 #: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point____last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_credit_point_history__write_uid
 #: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point__write_uid
 msgid "Last Updated by"
-msgstr "Dernière mise à jour par"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_credit_point_history__write_date
 #: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point__write_date
 msgid "Last Updated on"
-msgstr "Dernière mise à jour le"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:res.groups,name:sale_credit_point.group_manage_credit_point
 msgid "Manage credit point"
-msgstr "Mise à jour credit"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_credit_point_history__operation
 msgid "Operation"
-msgstr "Operation"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_credit_point_history__partner_id
 #: model_terms:ir.ui.view,arch_db:sale_credit_point.view_credit_point_history_search
 msgid "Partner"
-msgstr "Partenaire"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point__partner_ids
 msgid "Partners"
-msgstr "Partenaires"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point__credit_point
 #: model_terms:ir.ui.view,arch_db:sale_credit_point.view_partner_form_points
 msgid "Points"
-msgstr "Points"
+msgstr ""
 
 #. module: sale_credit_point
 #: model_terms:ir.ui.view,arch_db:sale_credit_point.view_partner_search_points
 msgid "Points > 0"
-msgstr "Points > 0"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_res_partner__credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_res_users__credit_point
 msgid "Points Attribution"
-msgstr "Points Attribution"
+msgstr ""
 
 #. module: sale_credit_point
 #: model_terms:ir.ui.view,arch_db:sale_credit_point.wiz_manage_credit_point
 msgid "Reason for the modification"
-msgstr "Raison de la modification"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields.selection,name:sale_credit_point.selection__credit_point_history__operation__replace
 #: model:ir.model.fields.selection,name:sale_credit_point.selection__wiz_manage_credit_point__operation__replace
 msgid "Replace"
-msgstr "Remplacer"
+msgstr ""
 
 #. module: sale_credit_point
 #: code:addons/sale_credit_point/models/sale_order.py:0
 #, python-format
 msgid "SO %s"
-msgstr "SO %s"
+msgstr ""
 
 #. module: sale_credit_point
 #: code:addons/sale_credit_point/models/sale_order.py:0
@@ -204,74 +199,61 @@ msgid ""
 "Sale Order amount total ({amount}) is higher than your available credit "
 "({points})."
 msgstr ""
-"Le montant de la commande ({amount}) est supérieur à votre credit ({points})."
 
 #. module: sale_credit_point
 #: code:addons/sale_credit_point/models/sale_order.py:0
 #, python-format
 msgid "Sale Order canceled"
-msgstr "Commande annulée"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model,name:sale_credit_point.model_sale_order
-#, fuzzy
 msgid "Sales Order"
-msgstr "Commande annulée"
+msgstr ""
 
 #. module: sale_credit_point
 #: model_terms:ir.ui.view,arch_db:sale_credit_point.view_credit_point_history_search
 msgid "Search Invoice"
-msgstr "Chercher une facture"
+msgstr ""
 
 #. module: sale_credit_point
 #: model_terms:ir.ui.view,arch_db:sale_credit_point.wiz_manage_credit_point
 msgid "Selected partner(s) will be updated."
-msgstr "Les partenaires sélectionnés"
+msgstr ""
 
 #. module: sale_credit_point
 #: model_terms:ir.ui.view,arch_db:sale_credit_point.view_credit_point_history_search
 msgid "This Year"
-msgstr "Cette année"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point__operation
 msgid "Type of operation"
-msgstr "Type d'opération"
+msgstr ""
 
 #. module: sale_credit_point
 #: model_terms:ir.ui.view,arch_db:sale_credit_point.wiz_manage_credit_point
 msgid "Update Credit"
-msgstr "Mise à jour du crédit"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.actions.act_window,name:sale_credit_point.action_add_credit_point
 msgid "Update Credit Point"
-msgstr "Mise à jour credit"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model,name:sale_credit_point.model_wiz_manage_credit_point
-#, fuzzy
 msgid "Wizard to Manage Credit Points"
-msgstr "Mise à jour credit"
+msgstr ""
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_res_partner__yearly_point_increase
 #: model:ir.model.fields,field_description:sale_credit_point.field_res_users__yearly_point_increase
 msgid "Yearly points increase"
-msgstr "Yearly points increase"
+msgstr ""
 
 #. module: sale_credit_point
 #: code:addons/sale_credit_point/models/partner.py:0
 #, python-format
 msgid "You can't set a credit point lower than 0"
 msgstr ""
-"Il n'est pas possible d'affecter une attribution logistique plus petite que 0"
-
-#~ msgid "Quotation"
-#~ msgstr "Devis"
-
-#~ msgid "credit.point.history"
-#~ msgstr "credit.point.history"
-
-#~ msgid "wiz.manage.credit.point"
-#~ msgstr "Mise à jour credit"
