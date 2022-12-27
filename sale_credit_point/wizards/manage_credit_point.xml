@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+  <record id="wiz_manage_credit_point" model="ir.ui.view">
+    <field name="name">Credit Point Update</field>
+    <field name="model">wiz.manage.credit.point</field>
+    <field name="arch" type="xml">
+      <form string="Update Credit">
+        <sheet>
+          <h3>
+            Selected partner(s) will be updated.
+          </h3>
+          <field name="partner_ids">
+            <tree>
+              <field name="name" />
+              <field name="credit_point" />
+            </tree>
+          </field>
+          <group name="operation" col="4">
+            <field name="operation" colspan="2" />
+            <field name="credit_point" colspan="2" />
+          </group>
+          <field name="comment" placeholder="Reason for the modification" />
+        </sheet>
+        <footer>
+          <button
+                        string="Update Credit"
+                        name="action_update_credit"
+                        type="object"
+                        class="btn-primary"
+                    />
+          <button string="Cancel" class="btn-default" special="cancel" />
+        </footer>
+        </form>
+    </field>
+  </record>
+
+  <record id="action_add_credit_point" model="ir.actions.act_window">
+      <field name="name">Update Credit Point</field>
+      <field name="binding_model_id" ref="base.model_res_partner" />
+      <field name="binding_view_types">form</field>
+      <field name="res_model">wiz.manage.credit.point</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="wiz_manage_credit_point" />
+      <field name="target">new</field>
+      <field name="context">{'default_partner_ids': active_ids}</field>
+  </record>
+
+</odoo>
