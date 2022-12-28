@@ -20,14 +20,12 @@ msgstr ""
 
 #. module: sale_stock_delivery_address
 #: model:ir.model.fields,field_description:sale_stock_delivery_address.field_procurement_group__display_name
-#: model:ir.model.fields,field_description:sale_stock_delivery_address.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_stock_delivery_address.field_sale_order_line__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: sale_stock_delivery_address
 #: model:ir.model.fields,field_description:sale_stock_delivery_address.field_procurement_group__id
-#: model:ir.model.fields,field_description:sale_stock_delivery_address.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_stock_delivery_address.field_sale_order_line__id
 msgid "ID"
 msgstr ""
@@ -41,7 +39,6 @@ msgstr ""
 
 #. module: sale_stock_delivery_address
 #: model:ir.model.fields,field_description:sale_stock_delivery_address.field_procurement_group____last_update
-#: model:ir.model.fields,field_description:sale_stock_delivery_address.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_stock_delivery_address.field_sale_order_line____last_update
 msgid "Last Modified on"
 msgstr ""
@@ -49,11 +46,6 @@ msgstr ""
 #. module: sale_stock_delivery_address
 #: model:ir.model,name:sale_stock_delivery_address.model_procurement_group
 msgid "Procurement Group"
-msgstr ""
-
-#. module: sale_stock_delivery_address
-#: model:ir.model,name:sale_stock_delivery_address.model_sale_order
-msgid "Sales Order"
 msgstr ""
 
 #. module: sale_stock_delivery_address
