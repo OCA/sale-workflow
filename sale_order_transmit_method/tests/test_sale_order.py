@@ -27,8 +27,8 @@ class TestSaleOrder(SavepointCase):
         self.assertEqual(self.sale.transmit_method_id, self.transmit_method_mail)
         self.sale.transmit_method_id = self.transmit_method_post
         self.sale.action_confirm()
-        self.sale.action_invoice_create()
-        invoices = self.sale.order_line.mapped("invoice_lines.invoice_id")
+        self.sale._create_invoices()
+        invoices = self.sale.order_line.mapped("invoice_lines.move_id")
         self.assertEqual(invoices[0].transmit_method_id, self.transmit_method_post)
 
     def test_transmit_method_when_invoicing_2(self):
@@ -41,5 +41,5 @@ class TestSaleOrder(SavepointCase):
             {"advance_payment_method": "fixed", "amount": 10}
         )
         payment_wizard.with_context(active_ids=self.sale.ids).create_invoices()
-        invoices = self.sale.order_line.mapped("invoice_lines.invoice_id")
+        invoices = self.sale.order_line.mapped("invoice_lines.move_id")
         self.assertEqual(invoices[0].transmit_method_id, self.transmit_method_post)

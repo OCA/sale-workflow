@@ -7,7 +7,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='sale_pay']" position="inside">
+            <xpath expr="//group[@name='sale_info']" position="inside">
                 <field name="transmit_method_id" />
             </xpath>
         </field>
