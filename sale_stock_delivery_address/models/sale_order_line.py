@@ -14,6 +14,15 @@ class SaleOrderLine(models.Model):
         "one specified in the Sales Order header.",
     )
 
+    def _prepare_procurement_group_vals(self):
+        vals = super(SaleOrderLine, self)._prepare_procurement_group_vals()
+        if self._get_procurement_group_key()[0] == 16 and self.dest_address_id:
+            name_extension = (
+                self.dest_address_id.name or self.dest_address_id.contact_address
+            )
+            vals["name"] = "/".join([vals["name"], name_extension])
+        return vals
+
     def _get_procurement_group_key(self):
         """Return a key with priority to be used to regroup lines in multiple
         procurement groups. The higher the priority number is the more
