@@ -3,23 +3,9 @@
 # Copyright 2019 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+import itertools
 
-
-class ExceptionRule(models.Model):
-    _inherit = "exception.rule"
-
-    model = fields.Selection(
-        selection_add=[
-            ("sale.order", "Sale order"),
-            ("sale.order.line", "Sale order line"),
-        ],
-        ondelete={
-            "sale.order": "cascade",
-            "sale.order.line": "cascade",
-        },
-    )
-    sale_ids = fields.Many2many("sale.order", string="Sales")
+from odoo import api, models
 
 
 class SaleOrder(models.Model):
@@ -46,18 +32,23 @@ class SaleOrder(models.Model):
     def _fields_trigger_check_exception(self):
         return ["ignore_exception", "order_line", "state"]
 
-    def _check_sale_check_exception(self, vals):
+    def _check_sale_check_exception(self, vals_list):
+        if isinstance(vals_list, dict):
+            vals_list = [vals_list]
+        fields_to_check = set(
+            itertools.chain.from_iterable([vals.keys() for vals in vals_list])
+        )
         check_exceptions = any(
-            field in vals for field in self._fields_trigger_check_exception()
+            field in fields_to_check for field in self._fields_trigger_check_exception()
         )
         if check_exceptions:
             self.sale_check_exception()
 
-    @api.model
-    def create(self, vals):
-        record = super().create(vals)
-        record._check_sale_check_exception(vals)
-        return record
+    @api.model_create_multi
+    def create(self, vals_list):
+        records = super().create(vals_list)
+        records._check_sale_check_exception(vals_list)
+        return records
 
     def write(self, vals):
         result = super().write(vals)
