@@ -3,7 +3,6 @@
 # Copyright 2022 Manuel Regidor - Sygel Technology
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import json
 
 from odoo.tests import common
 
@@ -11,7 +10,7 @@ from odoo.tests import common
 class TestSaleOrder(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestSaleOrder, cls).setUpClass()
+        super().setUpClass()
         cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
         cls.product1 = cls.env["product.product"].create(
             {"name": "Test Product 1", "type": "service", "invoice_policy": "order"}
@@ -82,10 +81,10 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line1.price_subtotal, 450.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 450.0)
         self.assertAlmostEqual(self.order.amount_tax, 67.5)
-        # sale tax total json (multiplicative)
-        json_vals = json.loads(self.order.tax_totals_json)
+        # sale tax total (multiplicative)
+        tax_totals = self.order.tax_totals
         self.assertAlmostEqual(
-            json_vals["groups_by_subtotal"]["Untaxed Amount"][0]["tax_group_amount"],
+            tax_totals["groups_by_subtotal"]["Untaxed Amount"][0]["tax_group_amount"],
             67.5,
         )
         # set discount_type to additive
@@ -96,10 +95,10 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line1.price_subtotal, 420.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 420.0)
         self.assertAlmostEqual(self.order.amount_tax, 63.0)
-        # sale tax total json (additive)
-        json_vals = json.loads(self.order.tax_totals_json)
+        # sale tax total (additive)
+        tax_totals = self.order.tax_totals
         self.assertAlmostEqual(
-            json_vals["groups_by_subtotal"]["Untaxed Amount"][0]["tax_group_amount"],
+            tax_totals["groups_by_subtotal"]["Untaxed Amount"][0]["tax_group_amount"],
             63.0,
         )
         # set discount over 100%
