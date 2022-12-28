@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_delivery_split_date
+# 	* sale_delivery_split_date
 #
 msgid ""
 msgstr ""
@@ -17,9 +17,19 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_delivery_split_date
-#: model:ir.model,name:sale_delivery_split_date.model_sale_order
-msgid "Sale Order"
-msgstr "Ordem de venda"
+#: model:ir.model.fields,field_description:sale_delivery_split_date.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_delivery_split_date
+#: model:ir.model.fields,field_description:sale_delivery_split_date.field_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_delivery_split_date
+#: model:ir.model.fields,field_description:sale_delivery_split_date.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: sale_delivery_split_date
 #: model:ir.model,name:sale_delivery_split_date.model_sale_order_line
@@ -31,12 +41,11 @@ msgstr "Linha de encomendas de venda"
 msgid "Scheduled Date"
 msgstr "Data programada"
 
-#. module: sale_delivery_split_date
-#: model:ir.model.fields,field_description:sale_delivery_split_date.field_stock_picking__min_dt
-msgid "Scheduled Date (for filter purpose only)"
-msgstr "Data programada (apenas para fins de filtragem)"
+#~ msgid "Sale Order"
+#~ msgstr "Ordem de venda"
 
-#. module: sale_delivery_split_date
-#: model:ir.model,name:sale_delivery_split_date.model_stock_picking
-msgid "Transfer"
-msgstr "Transferir"
+#~ msgid "Scheduled Date (for filter purpose only)"
+#~ msgstr "Data programada (apenas para fins de filtragem)"
+
+#~ msgid "Transfer"
+#~ msgstr "Transferir"
