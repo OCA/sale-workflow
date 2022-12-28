@@ -22,21 +22,14 @@ class SaleOrder(models.Model):
             so.general_discount = so.partner_id.sale_discount
 
     @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
+    def get_view(self, view_id=None, view_type="form", **options):
         """The purpose of this is to write a context on "order_line" field
         respecting other contexts on this field.
         There is a PR (https://github.com/odoo/odoo/pull/26607) to odoo for
         avoiding this. If merged, remove this method and add the attribute
         in the field.
         """
-        res = super(SaleOrder, self).fields_view_get(
-            view_id=view_id,
-            view_type=view_type,
-            toolbar=toolbar,
-            submenu=submenu,
-        )
+        res = super().get_view(view_id=view_id, view_type=view_type, **options)
         if view_type == "form":
             order_xml = etree.XML(res["arch"])
             order_line_fields = order_xml.xpath("//field[@name='order_line']")
