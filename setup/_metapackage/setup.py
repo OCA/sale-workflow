@@ -85,6 +85,7 @@ setuptools.setup(
         'odoo13-addon-sale_partner_selectable_option',
         'odoo13-addon-sale_payment_sheet',
         'odoo13-addon-sale_procurement_amendment',
+        'odoo13-addon-sale_procurement_group_by_commitment_date',
         'odoo13-addon-sale_procurement_group_by_line',
         'odoo13-addon-sale_product_category_menu',
         'odoo13-addon-sale_product_multi_add',
