@@ -24,7 +24,7 @@ addon | version | maintainers | summary
 [portal_sale_personal_data_only](portal_sale_personal_data_only/) | 14.0.1.0.0 |  | Portal Sale Personal Data Only
 [pricelist_cache](pricelist_cache/) | 14.0.1.0.1 |  | Provide a new model to cache price lists and update it, to make it easier to retrieve them.
 [pricelist_cache_rest](pricelist_cache_rest/) | 14.0.1.0.0 |  | Provides an endpoint to get product prices for a given customer
-[product_form_sale_link](product_form_sale_link/) | 14.0.1.0.2 |  | Adds a button on product forms to access Sale Lines
+[product_form_sale_link](product_form_sale_link/) | 14.0.1.1.0 |  | Adds a button on product forms to access Sale Lines
 [product_supplierinfo_for_customer_elaboration](product_supplierinfo_for_customer_elaboration/) | 14.0.1.0.0 |  | Allows to define default elaborations and elaboration notes on product customerinfos
 [product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 14.0.1.1.0 |  | Loads in every sale order line the customer code defined in the product
 [sale_advance_payment](sale_advance_payment/) | 14.0.1.1.1 |  | Allow to add advance payments on sales and then use them on invoices
