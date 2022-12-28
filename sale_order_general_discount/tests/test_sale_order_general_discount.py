@@ -82,7 +82,7 @@ class TestSaleOrderLineInput(TransactionCase):
 
     def test_default_line_discount_value(self):
 
-        res = self.order.fields_view_get(
+        res = self.order.get_view(
             view_id=self.env.ref(
                 "sale_order_general_discount." "sale_order_general_discount_form_view"
             ).id,
@@ -104,7 +104,7 @@ class TestSaleOrderLineInput(TransactionCase):
             """,
             }
         )
-        res = self.order.fields_view_get(view_id=view.id, view_type="form")
+        res = self.order.get_view(view_id=view.id, view_type="form")
         ctx = self._get_ctx_from_view(res)
         self.assertTrue("default_discount" in ctx)
 
