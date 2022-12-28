@@ -38,7 +38,7 @@ class TestSaleOrder(SavepointCase):
         self.sale.transmit_method_id = self.transmit_method_post
         self.sale.action_confirm()
         payment_wizard = self.env["sale.advance.payment.inv"].create(
-            {"advance_payment_method": "fixed", "amount": 10}
+            {"advance_payment_method": "fixed", "fixed_amount": 10}
         )
         payment_wizard.with_context(active_ids=self.sale.ids).create_invoices()
         invoices = self.sale.order_line.mapped("invoice_lines.move_id")
