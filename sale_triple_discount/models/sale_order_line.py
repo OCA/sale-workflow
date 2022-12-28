@@ -94,20 +94,16 @@ class SaleOrderLine(models.Model):
         Save the values of the discounts in a dictionary,
         to be restored in postprocess.
         Resetting discount2 and discount3 to 0.0 avoids issues if
-        this method is called multiple times.
-        Updating the cache provides consistency through recomputations."""
+        this method is called multiple times."""
 
         prev_values = dict()
-        self.invalidate_cache(
-            fnames=["discount", "discount2", "discount3"], ids=self.ids
-        )
         for line in self:
             prev_values[line] = dict(
                 discount=line.discount,
                 discount2=line.discount2,
                 discount3=line.discount3,
             )
-            line._cache.update(
+            line.update(
                 {
                     "discount": line._get_final_discount(),
                     "discount2": 0.0,
@@ -118,13 +114,20 @@ class SaleOrderLine(models.Model):
 
     @api.model
     def triple_discount_postprocess(self, prev_values):
-        """Restore the discounts of the lines in the dictionary prev_values.
-
-        Updating the cache provides consistency through recomputations."""
-
-        self.invalidate_cache(
-            fnames=["discount", "discount2", "discount3"],
-            ids=[line.id for line in list(prev_values.keys())],
-        )
+        """Restore the discounts of the lines in the dictionary prev_values."""
         for line, prev_vals_dict in list(prev_values.items()):
-            line._cache.update(prev_vals_dict)
+            line.update(prev_vals_dict)
+
+    def _convert_to_tax_base_line_dict(self):
+        self.ensure_one()
+        return self.env["account.tax"]._convert_to_tax_base_line_dict(
+            self,
+            partner=self.order_id.partner_id,
+            currency=self.order_id.currency_id,
+            product=self.product_id,
+            taxes=self.tax_id,
+            price_unit=self.price_unit,
+            quantity=self.product_uom_qty,
+            discount=self._get_final_discount(),
+            price_subtotal=self.price_subtotal,
+        )
