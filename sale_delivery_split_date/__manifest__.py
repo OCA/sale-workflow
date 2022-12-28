@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Delivery Split Date",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "summary": "Sale Deliveries split by date",
     "category": "Sales Management",
     "license": "AGPL-3",
