@@ -1,0 +1,29 @@
+<odoo>
+    <record model="ir.ui.view" id="view_sale_order_line_pivot">
+        <field name="name">sale.order.line.pivot</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <pivot string="Order Lines" sample="1">
+                <field name="product_id" type="row" />
+                <field name="product_uom_qty" type="col" />
+                <field name="price_subtotal" type="measure" />
+            </pivot>
+        </field>
+    </record>
+    <record id="action_orders_lines" model="ir.actions.act_window">
+        <field name="name">Order Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_mode">tree,pivot</field>
+    </record>
+
+    <menuitem
+        id="sale_order_line_menu"
+        name="Order Lines"
+        action="action_orders_lines"
+        parent="sale.sale_order_menu"
+        sequence="21"
+    />
+
+
+</odoo>
