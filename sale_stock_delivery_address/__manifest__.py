@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Stock Delivery Address",
-    "version": "14.0.1.0.2",
+    "version": "14.0.1.0.3",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales Management",
