@@ -6,7 +6,7 @@
 {
     "name": "Sale Procurement Group by Line",
     "summary": "Base module for multiple procurement group by Sale order",
-    "version": "14.0.1.0.1",
+    "version": "14.0.1.0.2",
     "author": "Camptocamp,"
     "ForgeFlow,"
     "Serpent Consulting Services Pvt. Ltd.,"
