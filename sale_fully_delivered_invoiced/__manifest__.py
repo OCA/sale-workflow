@@ -13,4 +13,5 @@
     "depends": ["sale_stock"],
     "data": ["views/sale_views.xml"],
     "installable": True,
+    "pre_init_hook": "pre_init_hook",
 }
