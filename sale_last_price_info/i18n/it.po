@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-19 07:32+0000\n"
-"PO-Revision-Date: 2018-01-19 07:32+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2022-12-29 17:46+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: sale_last_price_info
 #: model:ir.model.fields,field_description:sale_last_price_info.field_product_product_last_customer_id
@@ -34,7 +35,7 @@ msgstr "Last Sale Price"
 #. module: sale_last_price_info
 #: model:ir.model,name:sale_last_price_info.model_product_product
 msgid "Product"
-msgstr "Product"
+msgstr "Prodotto"
 
 #. module: sale_last_price_info
 #: model:ir.ui.view,arch_db:sale_last_price_info.product_last_sale_info_form_view
