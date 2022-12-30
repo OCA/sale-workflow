@@ -78,7 +78,6 @@ class TestAutomaticWorkflowPaymentMode(TestCommon, TestAutomaticWorkflowMixin):
         sale = self.create_sale_order(workflow)
         sale.payment_mode_id = self.pay_mode
         sale._onchange_workflow_process_id()
-        sale.onchange_payment_mode_set_workflow()
 
         self.assertEqual(sale.state, "draft")
         self.assertEqual(sale.workflow_process_id, workflow)
