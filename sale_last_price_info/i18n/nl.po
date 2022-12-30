@@ -26,27 +26,9 @@ msgstr ""
 "Bevestigingsdatum van de bevestigde orders."
 
 #. module: sale_last_price_info
-#: model:ir.model.fields,field_description:sale_last_price_info.field_product_product__display_name
-#: model:ir.model.fields,field_description:sale_last_price_info.field_sale_order_line__display_name
-msgid "Display Name"
-msgstr "Weergavenaam"
-
-#. module: sale_last_price_info
-#: model:ir.model.fields,field_description:sale_last_price_info.field_product_product__id
-#: model:ir.model.fields,field_description:sale_last_price_info.field_sale_order_line__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_last_price_info
 #: model:ir.model.fields,field_description:sale_last_price_info.field_product_product__last_customer_id
 msgid "Last Customer"
 msgstr "Laatste klant"
-
-#. module: sale_last_price_info
-#: model:ir.model.fields,field_description:sale_last_price_info.field_product_product____last_update
-#: model:ir.model.fields,field_description:sale_last_price_info.field_sale_order_line____last_update
-msgid "Last Modified on"
-msgstr "Laatst bijgewerkt op"
 
 #. module: sale_last_price_info
 #: model:ir.model.fields,field_description:sale_last_price_info.field_product_product__last_sale_date
@@ -77,3 +59,12 @@ msgstr "Verkoop"
 #: model:ir.model,name:sale_last_price_info.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Verkooporder regel"
+
+#~ msgid "Display Name"
+#~ msgstr "Weergavenaam"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Laatst bijgewerkt op"
