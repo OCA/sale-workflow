@@ -3,7 +3,7 @@
 {
     "name": "Sale Coupon Product Management",
     "summary": "Improves related product management via sale coupons",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.0.1",
     "category": "Sale",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Camptocamp, Odoo Community Association (OCA)",
