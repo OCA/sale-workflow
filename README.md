@@ -29,6 +29,7 @@ addon | version | maintainers | summary
 [sale_advance_payment](sale_advance_payment/) | 15.0.1.0.1 |  | Allow to add advance payments on sales and then use them on invoices
 [sale_automatic_workflow](sale_automatic_workflow/) | 15.0.1.0.1 |  | Sale Automatic Workflow
 [sale_automatic_workflow_job](sale_automatic_workflow_job/) | 15.0.1.0.0 |  | Execute sale automatic workflows in queue jobs
+[sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 15.0.1.0.0 |  | Sale Automatic Workflow - Payment Mode
 [sale_blanket_order](sale_blanket_order/) | 15.0.1.2.0 |  | Blanket Orders
 [sale_commercial_partner](sale_commercial_partner/) | 15.0.1.0.1 |  | Add stored related field 'Commercial Entity' on sale orders
 [sale_credit_point](sale_credit_point/) | 15.0.1.0.0 |  | Sale Credit Points
