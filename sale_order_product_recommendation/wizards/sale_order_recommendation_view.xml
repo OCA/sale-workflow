@@ -15,7 +15,7 @@
                             <field name="order_id" invisible="1" />
                             <field name="months" widget="numeric_step" />
                             <field name="line_amount" widget="numeric_step" />
-                            <field name="origin_recommendation" invisible="1" />
+                            <field name="origin_recommendation" />
                             <field name="sale_recommendation_price_origin" />
                         </group>
                         <group>
@@ -40,6 +40,12 @@
                             >
                                 <field name="currency_id" invisible="1" />
                                 <field name="sale_line_id" invisible="1" />
+                                <field
+                                    name="priority"
+                                    widget="priority"
+                                    optional="hide"
+                                    nolabel="1"
+                                />
                                 <field name="product_id" readonly="1" force_save="1" />
                                 <field name="price_unit" />
                                 <field name="times_delivered" />

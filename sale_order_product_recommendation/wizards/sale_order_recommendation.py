@@ -1,11 +1,12 @@
 # Copyright 2017 Jairo Llopis <jairo.llopis@tecnativa.com>
-# Copyright 2018 Carlos Dauden <carlos.dauden@tecnativa.com>
+# Copyright 2018-2022 Tecnativa - Carlos Dauden
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
 from odoo import api, fields, models
 from odoo.tests import Form
+from odoo.tools.safe_eval import safe_eval
 
 
 class SaleOrderRecommendation(models.TransientModel):
@@ -55,12 +56,62 @@ class SaleOrderRecommendation(models.TransientModel):
     )
     sale_recommendation_available_product = fields.Boolean(string="Available products")
     origin_recommendation = fields.Selection(
-        [("sale_order", "Sale orders")], default="sale_order"
+        [("sale_order", "Sale orders"), ("products", "Products")], default="sale_order"
     )
 
     @api.model
     def _default_order_id(self):
         return self.env.context.get("active_id", False)
+
+    def _get_allowed_products(self):
+        domain = safe_eval(
+            self.order_id.fields_view_get()
+            .get("fields", {})
+            .get("order_line", {})
+            .get("views", {})
+            .get("tree", {})
+            .get("fields", {})
+            .get("product_id", {})
+            .get("domain", []),
+            {"company_id": self.order_id.company_id.id},
+        )
+        # doc = etree.XML(self.order_id.fields_view_get()
+        #     .get("fields", {})
+        #     .get("order_line", {})
+        #     .get("views", {})
+        #     .get("tree", {})
+        #     .get("arch")
+        # )
+        # product_field = self.env.context.get("product_domain_field", "product_id")
+        # if doc:
+        #     doc = doc.xpath("//field[@name='{}']".format(product_field))
+        # if doc:
+        #     print(doc[0].attrib["domain"])
+        #     domain = safe_eval(
+        #         doc[0].attrib["domain"],
+        #         {"parent": parent_func}
+        #     )
+        if self.product_category_id:
+            domain.append(("categ_id", "child_of", self.product_category_id.ids))
+        if self.product_attribute_value_id:
+            domain.append(
+                (
+                    "attribute_line_ids.value_ids",
+                    "=",
+                    self.product_attribute_value_id.id,
+                )
+            )
+        if self.sale_recommendation_available_product:
+            available_qty_field = (
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param(
+                    "sale_order_product_recommendation.available_qty_field",
+                    default="free_qty",
+                )
+            )
+            domain.append((available_qty_field, ">", 0.0))
+        return self.env["product.product"].search(domain)
 
     def _recomendable_sale_order_lines_domain(self):
         """Domain to find recent SO lines."""
@@ -75,22 +126,9 @@ class SaleOrderRecommendation(models.TransientModel):
         )
         domain = [
             ("order_id", "in", (other_sales - self.order_id).ids),
-            ("product_id.active", "=", True),
-            ("product_id.sale_ok", "=", True),
+            ("product_id", "in", self._get_allowed_products().ids),
             ("qty_delivered", "!=", 0.0),
         ]
-        if self.product_category_id:
-            domain.append(
-                ("product_id.categ_id", "child_of", self.product_category_id.ids)
-            )
-        if self.product_attribute_value_id:
-            domain.append(
-                (
-                    "product_id.attribute_line_ids.value_ids",
-                    "=",
-                    self.product_attribute_value_id.ids,
-                )
-            )
         return domain
 
     def _prepare_recommendation_line_vals(self, group_line, so_line=False):
@@ -116,6 +154,15 @@ class SaleOrderRecommendation(models.TransientModel):
                 self.origin_recommendation or "sale_order"
             ),
         )()
+
+    def _get_origin_recommendation_products(self):
+        products = self._get_allowed_products()
+        return [
+            {
+                "product_id": (p.id, p.name),
+            }
+            for p in products
+        ]
 
     def _get_origin_recommendation_sale_order(self):
         found_lines = self.env["sale.order.line"].read_group(
@@ -193,30 +240,8 @@ class SaleOrderRecommendation(models.TransientModel):
         self._set_recommendation_lines(recommendation_lines)
 
     def _set_recommendation_lines(self, recommendation_lines):
-        """Filter recommendations before assign to line_ids field including lines from
-        actual sale order.
-        """
-        filtered_lines = recommendation_lines
-        if self.sale_recommendation_available_product:
-            filtered_lines = filtered_lines.filtered(
-                lambda ln: ln.product_id.free_qty > 0
-            )
-        if self.product_category_id:
-            # Do not work properly with filtered_domain
-            categories = self.env["product.category"].search(
-                [("id", "child_of", self.product_category_id.ids)]
-            )
-            filtered_lines = filtered_lines.filtered(
-                lambda ln: ln.product_id.categ_id in categories
-            )
-        if self.product_attribute_value_id:
-            filtered_lines = filtered_lines.filtered(
-                lambda ln: self.product_attribute_value_id
-                in ln.product_id.attribute_line_ids.value_ids
-            )
-        self.line_ids = filtered_lines.sorted(
-            key=lambda x: x.times_delivered, reverse=True
-        )
+        """Allow sort or filter lines before assign"""
+        self.line_ids = recommendation_lines
 
     def action_accept(self):
         """Propagate recommendations to sale order."""
@@ -261,6 +286,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
         "product.product",
         string="Product",
     )
+    priority = fields.Selection(related="product_id.priority")
     price_unit = fields.Monetary(
         compute="_compute_price_unit",
     )
