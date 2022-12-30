@@ -23,8 +23,7 @@ msgid ""
 "Creation date of draft/sent orders,\n"
 "Confirmation date of confirmed orders."
 msgstr ""
-"Fecha de creación del borrador/envío de las órdenes,\\n"
-"\n"
+"Fecha de creación del borrador/envío de las órdenes,\\n\n"
 "Fecha de confirmación de los pedidos confirmados."
 
 #. module: sale_last_price_info
