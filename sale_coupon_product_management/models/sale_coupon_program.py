@@ -68,7 +68,7 @@ class SaleCouponProgram(models.Model):
                 )
 
     def _check_no_product_duplicate(self):
-        for rec in self:
+        for rec in self.filtered("discount_line_product_id"):
             other_program_found = self.search_count(
                 [
                     ("discount_line_product_id", "=", rec.discount_line_product_id.id),
