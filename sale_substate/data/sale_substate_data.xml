@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="base_substate_type_sale" model="base.substate.type">
+        <field name="name">Sale order Substate</field>
+        <field name="model">sale.order</field>
+        <field name="target_state_field">state</field>
+    </record>
+    <!-- Sale related substate to Sale state (draft, sale) -->
+    <record id="target_state_value_draft" model="target.state.value">
+        <field name="name">Quotation</field>
+        <field name="base_substate_type_id" ref="base_substate_type_sale" />
+        <field name="target_state_value">draft</field>
+        </record>
+    <record id="target_state_value_sale" model="target.state.value">
+        <field name="name">Sale</field>
+        <field name="base_substate_type_id" ref="base_substate_type_sale" />
+        <field name="target_state_value">sale</field>
+    </record>
+ </odoo>
