@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-22 23:35+0000\n"
-"PO-Revision-Date: 2016-11-22 23:35+0000\n"
-"Last-Translator: Paolo Valier <paolo.valier@hotmail.it>, 2016\n"
+"PO-Revision-Date: 2023-01-02 11:59+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: product_margin_classification
 #: code:addons/product_margin_classification/models/product_margin_classification.py:92
@@ -77,7 +78,7 @@ msgstr "Created by"
 #. module: product_margin_classification
 #: field:product.margin.classification,create_date:0
 msgid "Created on"
-msgstr "reato il"
+msgstr "Creato il"
 
 #. module: product_margin_classification
 #: view:product.template:product_margin_classification.view_product_template_form
