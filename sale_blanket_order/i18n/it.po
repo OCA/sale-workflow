@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-02 12:05+0000\n"
+"PO-Revision-Date: 2023-01-03 12:48+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -55,7 +55,7 @@ msgstr "<strong>Vostro Riferimento:</strong>"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_needaction
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_needaction
 msgid "Action Needed"
-msgstr "Azione Richiesta"
+msgstr "Azione richiesta"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_ids
@@ -67,7 +67,7 @@ msgstr "Attività"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_state
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_state
 msgid "Activity State"
-msgstr "Stato dell'Attività"
+msgstr "Stato attività"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
@@ -84,7 +84,7 @@ msgstr "Un Ordine non può essere vuoto"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_attachment_count
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_attachment_count
 msgid "Attachment Count"
-msgstr "Conteggio Allegati"
+msgstr "Numero allegati"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__blanket_line_id
@@ -329,13 +329,13 @@ msgstr "ID"
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_unread
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_unread
 msgid "If checked new messages require your attention."
-msgstr "Se contrassegnato un nuovo messaggio richiede la tua attenzione."
+msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_needaction
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_needaction
 msgid "If checked, new messages require your attention."
-msgstr "Se contrassegnato, un nuovo messaggio richiede la tua attenzione."
+msgstr "Se selezionata, nuovi messaggi richiedono attenzione."
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_has_error
