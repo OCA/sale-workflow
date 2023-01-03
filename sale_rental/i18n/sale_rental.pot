@@ -328,7 +328,7 @@ msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock_warehouse.py:0
-#: model:stock.location.route,name:sale_rental.route_warehouse0_rental
+#: model:stock.route,name:sale_rental.route_warehouse0_rental
 #, python-format
 msgid "Rent"
 msgstr ""
@@ -509,7 +509,7 @@ msgstr ""
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock_warehouse.py:0
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__sell_order_line_ids
-#: model:stock.location.route,name:sale_rental.route_warehouse0_sell_rented_product
+#: model:stock.route,name:sale_rental.route_warehouse0_sell_rented_product
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_form
 #, python-format
 msgid "Sell Rented Product"

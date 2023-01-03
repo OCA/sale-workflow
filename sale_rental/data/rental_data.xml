@@ -5,16 +5,16 @@
   Copyright 2016-2021 Sodexis
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 -->
-<odoo noupdate="1">
+<odoo>
 
-<record id="route_warehouse0_rental" model="stock.location.route">
+<record id="route_warehouse0_rental" model="stock.route">
     <field name="name">Rent</field>
     <field name="sequence">100</field>
     <field name="warehouse_selectable" eval="True" />
     <field name="product_selectable" eval="False" />
 </record>
 
-<record id="route_warehouse0_sell_rented_product" model="stock.location.route">
+<record id="route_warehouse0_sell_rented_product" model="stock.route">
     <field name="name">Sell Rented Product</field>
     <field name="sequence">100</field>
 </record>

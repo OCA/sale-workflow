@@ -43,7 +43,7 @@
     <field name="categ_id" ref="product.product_category_5" />
     <field name="sale_ok" eval="True" />
     <field name="purchase_ok" eval="False" />
-    <field name="list_price">6</field>
+    <field name="list_price">60</field>
     <field name="type">service</field>
     <field name="uom_id" ref="uom.product_uom_day" />
     <field name="uom_po_id" ref="uom.product_uom_day" />
