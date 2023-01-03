@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-10-05 18:45+0000\n"
-"Last-Translator: Samuele Mariani <samuele@ooops404.com>\n"
+"PO-Revision-Date: 2023-01-03 12:48+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: sale_restricted_qty
 #: code:addons/sale_restricted_qty/models/sale.py:89
@@ -409,4 +409,4 @@ msgstr "Usa Impostazioni Genitore"
 #: selection:product.template,manual_force_sale_max_qty:0
 #: selection:product.template,manual_force_sale_min_qty:0
 msgid "Yes"
-msgstr "Si"
+msgstr "Sì"
