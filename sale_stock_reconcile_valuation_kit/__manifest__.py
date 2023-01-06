@@ -7,9 +7,10 @@
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales Management",
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "development_status": "Beta",
     "depends": [
+        "mrp",
         "sale_stock",
         "account_move_line_sale_info",  # OCA/account-financial-tools
     ],
