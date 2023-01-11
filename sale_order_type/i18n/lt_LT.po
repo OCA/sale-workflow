@@ -129,6 +129,7 @@ msgid "Name"
 msgstr ""
 
 #. module: sale_order_type
+#. odoo-python
 #: code:addons/sale_order_type/models/sale.py:0
 #, python-format
 msgid "New"
@@ -194,11 +195,6 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
 msgid "Sales Order"
-msgstr ""
-
-#. module: sale_order_type
-#: model:ir.model,name:sale_order_type.model_sale_order_line
-msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_order_type
