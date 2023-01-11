@@ -241,7 +241,9 @@ class SaleOrderRecommendation(models.TransientModel):
 
     def _set_recommendation_lines(self, recommendation_lines):
         """Allow sort or filter lines before assign"""
-        self.line_ids = recommendation_lines
+        self.line_ids = recommendation_lines.sorted(
+            key=lambda x: x.times_delivered, reverse=True
+        )
 
     def action_accept(self):
         """Propagate recommendations to sale order."""
