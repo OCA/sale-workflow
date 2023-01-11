@@ -23,7 +23,7 @@ Product Supplierinfo for Customer Sale
     :target: https://runbot.odoo-community.org/runbot/167/15.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Based on product_supplierinfo_for_customer, this module loads in every sale order the
 customer code defined in the product and allows use the product codes and product name
@@ -111,6 +111,7 @@ Contributors
 * Sergio Teruel <sergio.teruel@tecnativa.com>
 * Lois Rilo <lois.rilo@forgeflow.com>
 * Juany Davila <juany.davila@forgeflow.com>
+* Carlos Reyes <carlos@studio73.es>
 
 Maintainers
 ~~~~~~~~~~~
