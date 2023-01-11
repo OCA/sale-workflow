@@ -127,6 +127,7 @@ msgid "Name"
 msgstr "Adı"
 
 #. module: sale_order_type
+#. odoo-python
 #: code:addons/sale_order_type/models/sale.py:0
 #, python-format
 msgid "New"
@@ -196,12 +197,6 @@ msgid "Sales Order"
 msgstr "Sipariş Emri"
 
 #. module: sale_order_type
-#: model:ir.model,name:sale_order_type.model_sale_order_line
-#, fuzzy
-msgid "Sales Order Line"
-msgstr "Sipariş Emri"
-
-#. module: sale_order_type
 #: model:ir.actions.act_window,name:sale_order_type.sot_sale_order_type_action
 #: model:ir.ui.menu,name:sale_order_type.sot_sale_order_type_menu
 msgid "Sales Order Types"
@@ -231,6 +226,10 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Sales Order Line"
+#~ msgstr "Sipariş Emri"
 
 #~ msgid "Invoice"
 #~ msgstr "Fatura"
