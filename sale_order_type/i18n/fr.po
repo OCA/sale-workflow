@@ -129,6 +129,7 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: sale_order_type
+#. odoo-python
 #: code:addons/sale_order_type/models/sale.py:0
 #, python-format
 msgid "New"
@@ -197,11 +198,6 @@ msgid "Sales Order"
 msgstr "Bons de commande Vente"
 
 #. module: sale_order_type
-#: model:ir.model,name:sale_order_type.model_sale_order_line
-msgid "Sales Order Line"
-msgstr "Ligne Commande de Vente"
-
-#. module: sale_order_type
 #: model:ir.actions.act_window,name:sale_order_type.sot_sale_order_type_action
 #: model:ir.ui.menu,name:sale_order_type.sot_sale_order_type_menu
 msgid "Sales Order Types"
@@ -231,6 +227,9 @@ msgstr "Type de bon de commande"
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr "Entrepôt"
+
+#~ msgid "Sales Order Line"
+#~ msgstr "Ligne Commande de Vente"
 
 #~ msgid "The company is automatically set from your user preferences."
 #~ msgstr ""
