@@ -67,6 +67,8 @@ class TestSaleStartEndDates(TransactionCase):
             self.so.order_line.start_end_dates_product_id_change()
             self.so.order_line.start_date_change()
             self.so.order_line.end_date_change()
+        self.product_id.must_have_dates = False
+        self.so.order_line.start_end_dates_product_id_change()
 
     def test_start_end_dates_product_id(self):
         self.product_id.must_have_dates = False
@@ -112,3 +114,13 @@ class TestSaleStartEndDates(TransactionCase):
         self.assertEqual(
             self.so.order_line[0].start_date, self.so.order_line[0].end_date
         )
+        self.so.order_line[0].number_of_days = -1
+        self.assertEqual(self.so.order_line[0].number_of_days, 1)
+
+    def test_prepare_invoice_line(self):
+        invoice_line_vals = self.so.order_line._prepare_invoice_line()
+        self.assertEqual(invoice_line_vals["product_id"], self.product_id.id)
+        self.assertEqual(
+            invoice_line_vals["start_date"], self.so.order_line[0].start_date
+        )
+        self.assertEqual(invoice_line_vals["end_date"], self.so.order_line[0].end_date)
