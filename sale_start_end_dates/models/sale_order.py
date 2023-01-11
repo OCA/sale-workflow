@@ -160,12 +160,8 @@ class SaleOrderLine(models.Model):
         if self.product_id.must_have_dates:
             if self.order_id.default_start_date:
                 self.start_date = self.order_id.default_start_date
-            else:
-                self.start_date = False
             if self.order_id.default_end_date:
                 self.end_date = self.order_id.default_end_date
-            else:
-                self.end_date = False
         else:
             self.start_date = False
             self.end_date = False
