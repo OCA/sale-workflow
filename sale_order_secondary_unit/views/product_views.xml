@@ -9,11 +9,7 @@
         <field name="groups_id" eval="[(4, ref('uom.group_uom'))]" />
         <field name="arch" type="xml">
             <field name="uom_id" position="after">
-                <field
-                    name="sale_secondary_uom_id"
-                    domain="[('product_tmpl_id', '=', id)]"
-                    options="{'no_create': True}"
-                />
+                <field name="sale_secondary_uom_id" options="{'no_create': True}" />
             </field>
         </field>
     </record>
