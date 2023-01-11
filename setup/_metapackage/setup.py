@@ -13,6 +13,7 @@ setuptools.setup(
         'odoo-addon-sale_commercial_partner>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_line_menu>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_lot_selection>=16.0dev,<16.1dev',
+        'odoo-addon-sale_order_type>=16.0dev,<16.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
