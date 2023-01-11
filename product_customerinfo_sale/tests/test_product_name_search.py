@@ -24,7 +24,7 @@ class TestProductNameSearch(TransactionCase):
         self.customerinfo_dict = {
             "product_code": "code_test",
             "product_name": "Name_test",
-            "name": self.customer.id,
+            "partner_id": self.customer.id,
             "product_tmpl_id": self.product.product_tmpl_id.id,
         }
 
