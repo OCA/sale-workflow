@@ -12,20 +12,25 @@
                 expr="//field[@name='order_line']/form//field[@name='price_subtotal']"
                 position="after"
             >
-                <field
-                    name="secondary_uom_qty"
-                    class="oe_inline oe_no_button"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
-                    optional="show"
-                />
-                <field
-                    name="secondary_uom_id"
-                    class="oe_inline"
-                    domain="[('product_tmpl_id.product_variant_ids', 'in', [product_id])]"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
-                    optional="show"
-                />
-                <field name="secondary_uom_unit_price" readonly="1" optional="show" />
+                <label for="secondary_uom_qty" />
+                <div class="o_row" name="secondary_uom_qty">
+                    <field
+                        name="secondary_uom_qty"
+                        class="oe_inline oe_no_button"
+                        widget="numeric_step"
+                        options="{'auto_select': True}"
+                        attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    />
+                    <field
+                        name="secondary_uom_id"
+                        class="oe_inline oe_no_button"
+                        domain="['|', ('product_id', '=', product_id),
+                                    '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
+                                             ('product_id', '=', False)]"
+                        options="{'no_create': True, 'no_open': True}"
+                        attrs="{'readonly': [('product_uom_readonly', '=', True)]}"
+                    />
+                </div>
             </xpath>
             <xpath
                 expr="//field[@name='order_line']/tree//field[@name='product_uom_qty']"
@@ -37,10 +42,28 @@
                 />
                 <field
                     name="secondary_uom_id"
-                    domain="[('product_tmpl_id.product_variant_ids', 'in', [product_id])]"
+                    domain="['|', ('product_id', '=', product_id),
+                                '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
+                                         ('product_id', '=', False)]"
                     options="{'no_create': True}"
-                    attrs="{'readonly': [('parent.state', 'in', ('done', 'cancel'))]}"
+                    attrs="{'readonly': [('product_uom_readonly', '=', True)]}"
                 />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/kanban//field[@name='company_id']"
+                position="after"
+            >
+                <field name="secondary_uom_id" invisible="1" />
+                <field name="secondary_uom_qty" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/kanban//t[@t-esc='record.product_uom_qty.value']"
+                position="before"
+            >
+                <t t-if="record.secondary_uom_id.value">
+                    <t t-esc="record.secondary_uom_qty.value" />
+                    <t t-esc="record.secondary_uom_id.value" /> ->
+                </t>
             </xpath>
         </field>
     </record>
