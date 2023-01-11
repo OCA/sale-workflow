@@ -26,8 +26,8 @@ class SaleOrderLine(models.Model):
             line.product_customer_code = code
 
     @api.onchange("product_id")
-    def product_id_change(self):
-        result = super(SaleOrderLine, self).product_id_change()
+    def _onchange_product_id_warning(self):
+        result = super(SaleOrderLine, self)._onchange_product_id_warning()
         for line in self.filtered(
             lambda sol: sol.product_id.product_tmpl_id.customer_ids
             and sol.order_id.pricelist_id.item_ids

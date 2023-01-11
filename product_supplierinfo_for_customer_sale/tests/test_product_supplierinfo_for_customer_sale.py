@@ -49,7 +49,7 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
         self, supplierinfo_type, partner, product, empty_variant=False
     ):
         vals = {
-            "name": partner.id,
+            "partner_id": partner.id,
             "product_id": product.id,
             "product_name": "product4",
             "product_code": "00001",
@@ -85,7 +85,7 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
         line = self.env["sale.order.line"].create(
             {"product_id": self.product.id, "order_id": so.id}
         )
-        line.product_id_change()
+        line._onchange_product_id_warning()
         self.assertEqual(
             line.product_customer_code,
             self.customerinfo.product_code,
@@ -104,7 +104,7 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
         line = self.env["sale.order.line"].create(
             {"product_id": self.product_variant_1.id, "order_id": so.id}
         )
-        line.product_id_change()
+        line._onchange_product_id_warning()
         self.assertEqual(
             line.product_customer_code,
             self.customerinfo.product_code,
@@ -121,7 +121,7 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
         line = self.env["sale.order.line"].create(
             {"product_id": self.product_variant_2.id, "order_id": so.id}
         )
-        line.product_id_change()
+        line._onchange_product_id_warning()
         self.assertEqual(
             line.product_customer_code,
             customerinfo.product_code,
@@ -140,7 +140,7 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
                 "order_id": so2.id,
             }
         )
-        line2.product_id_change()
+        line2._onchange_product_id_warning()
         self.assertEqual(
             line2.product_customer_code,
             customerinfo.product_code,
@@ -157,7 +157,7 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
         line = self.env["sale.order.line"].create(
             {"product_id": self.product_variant_2.id, "order_id": so.id}
         )
-        line.product_id_change()
+        line._onchange_product_id_warning()
         self.assertEqual(
             line.product_customer_code,
             customerinfo.product_code,
