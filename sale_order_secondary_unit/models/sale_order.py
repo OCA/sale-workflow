@@ -11,18 +11,9 @@ class SaleOrderLine(models.Model):
         "uom_field": "product_uom",
     }
 
-    secondary_uom_qty = fields.Float(string="2nd Qty", digits="Product Unit of Measure")
-    secondary_uom_id = fields.Many2one(
-        comodel_name="product.secondary.unit",
-        string="2nd uom",
-        ondelete="restrict",
-    )
-
     secondary_uom_unit_price = fields.Float(
         string="2nd unit price",
-        digits="Product Unit of Measure",
-        store=False,
-        readonly=True,
+        digits="Product Price",
         compute="_compute_secondary_uom_unit_price",
     )
 
@@ -46,19 +37,12 @@ class SaleOrderLine(models.Model):
         that is the one that sets by default 1 on the other quantity with that
         purpose.
         """
-        # Determine if we compute the sale line with one unit of secondary uom as default.
-        # Based on method of sale order line _update_taxes
-        default_secondary_qty = 0.0
-        if (
-            not self.product_uom or (self.product_id.uom_id.id != self.product_uom.id)
-        ) and not self.product_uom_qty:
-            default_secondary_qty = 1.0
         res = super().product_id_change()
+        line_uom_qty = self.product_uom_qty
+        self.secondary_uom_id = self.product_id.sale_secondary_uom_id
         if self.product_id.sale_secondary_uom_id:
-            line_uom_qty = self.product_uom_qty
-            self.secondary_uom_id = self.product_id.sale_secondary_uom_id
-            if default_secondary_qty:
-                self.secondary_uom_qty = default_secondary_qty
+            if line_uom_qty == 1.0:
+                self.secondary_uom_qty = 1.0
                 self.onchange_product_uom_for_secondary()
             else:
                 self.product_uom_qty = line_uom_qty
