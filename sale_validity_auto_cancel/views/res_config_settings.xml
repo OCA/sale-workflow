@@ -21,7 +21,7 @@
                         </div>
                         <div class="text-muted mt4 mb4">
                             <field name="sale_validity_auto_cancel_days" />
-                            <label for="" string="Days" style="margin-left: 5px;" />
+                            <span style="margin-left: 5px;">Days</span>
                         </div>
                     </div>
                 </div>
