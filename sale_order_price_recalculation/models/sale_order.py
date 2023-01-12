@@ -30,8 +30,7 @@ class SaleOrder(models.Model):
             line.write({field: line2[field] for field in fields})
 
     def recalculate_prices(self):
-        self._recompute_form_line_vals([
-            "price_unit", "discount", "pricelist_item_id"])
+        self._recompute_form_line_vals(["price_unit", "discount", "pricelist_item_id"])
         return True
 
     def recalculate_names(self):
