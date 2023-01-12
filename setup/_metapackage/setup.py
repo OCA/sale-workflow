@@ -108,6 +108,7 @@ setuptools.setup(
         'odoo14-addon-sale_stock_delivery_address',
         'odoo14-addon-sale_stock_picking_blocking',
         'odoo14-addon-sale_stock_picking_note',
+        'odoo14-addon-sale_stock_reconcile_valuation_kit',
         'odoo14-addon-sale_tier_validation',
         'odoo14-addon-sale_transaction_form_link',
         'odoo14-addon-sale_triple_discount',
