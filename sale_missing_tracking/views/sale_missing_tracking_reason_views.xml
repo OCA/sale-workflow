@@ -4,10 +4,9 @@
         <field name="name">sale.missing.tracking.reason.tree</field>
         <field name="model">sale.missing.tracking.reason</field>
         <field name="arch" type="xml">
-            <tree string="Sale missing cart tracking reason" editable="top">
+            <tree editable="top">
                 <field name="name" />
                 <field name="note" />
-                <!--                <field name="recovered" />-->
             </tree>
         </field>
     </record>
@@ -17,12 +16,6 @@
         <field name="arch" type="xml">
             <search string="Search Sale missing cart tracking reason">
                 <field name="name" string="Name" />
-                <!--                <separator />-->
-                <!--                <filter-->
-                <!--                    string="Recovered"-->
-                <!--                    name="recovered"-->
-                <!--                    domain="[('recovered', '=', True)]"-->
-                <!--                />-->
             </search>
         </field>
     </record>
@@ -36,10 +29,10 @@
     </record>
     <menuitem
         id="sale_missing_tracking_reason_menu"
-        parent="sale_missing_cart_tracking_menu_root"
+        parent="sale_missing_tracking_menu_root"
         action="action_sale_missing_tracking_reason"
-        name="Missing cart tracking reason"
+        name="Missing sales tracking reason"
         sequence="30"
-        groups="sale_missing_cart_tracking.group_sale_missing_tracking_manager"
+        groups="sale_missing_tracking.group_sale_missing_tracking_manager"
     />
 </odoo>

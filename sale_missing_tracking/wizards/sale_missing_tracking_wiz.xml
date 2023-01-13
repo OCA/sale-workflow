@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <record id="sale_missing_cart_tracking_wiz" model="ir.ui.view">
+    <record id="sale_missing_tracking_wiz" model="ir.ui.view">
         <field name="name">Sale missing cart tracking wizard</field>
         <field name="model">sale.missing.tracking.wiz</field>
         <field name="arch" type="xml">
@@ -52,15 +52,14 @@
             </form>
         </field>
     </record>
-    <act_window
-        id="action_sale_missing_cart_tracking_wiz"
-        name="Sale missing cart tracking"
-        res_model="sale.missing.tracking.wiz"
-        view_mode="form"
-    />
+    <record id="action_sale_missing_tracking_wiz" model="ir.actions.act_window">
+        <field name="name">Sale missing cart tracking</field>
+        <field name="res_model">sale.missing.tracking.wiz</field>
+        <field name="view_mode">form</field>
+    </record>
     <menuitem
         id="pending_missing_tracking_reason_menu"
-        parent="sale_missing_cart_tracking_menu_root"
+        parent="sale_missing_tracking_menu_root"
         action="pending_missing_tracking_reason_action"
         name="Pending missing cart tracking reason"
         sequence="40"

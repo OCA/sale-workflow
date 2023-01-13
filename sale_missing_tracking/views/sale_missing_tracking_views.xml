@@ -6,7 +6,6 @@
         <field name="arch" type="xml">
             <tree
                 decoration-danger="reason_id==False"
-                string="Sale missing cart tracking"
                 multi_edit="1"
                 create="false"
                 delete="false"
@@ -28,12 +27,6 @@
                     groups="base.group_multi_company"
                     optional="hide"
                 />
-                <!--                <button-->
-                <!--                    name="action_update_reason"-->
-                <!--                    string="Update reason"-->
-                <!--                    type="object"-->
-                <!--                    icon="fa-copy fa-2x"-->
-                <!--                />-->
                 <button
                     name="action_create_exception"
                     string="Create exception"
@@ -179,7 +172,6 @@
                                 <div>
                                     <field name="reason_note" />
                                 </div>
-                                <!--                                <div t-if="record.tracking_exception_ids">-->
                                 <div>
                                     <button
                                         name="action_create_exception"
@@ -203,7 +195,6 @@
             <pivot string="Missing tracking pivot">
                 <field name="date_order" interval="month" type="col" />
                 <field name="product_id" type="row" />
-                <!--                 <field name="consumption" type="measure" />-->
             </pivot>
         </field>
     </record>
@@ -217,9 +208,9 @@
     </record>
     <menuitem
         id="sale_missing_tracking_menu"
-        parent="sale_missing_cart_tracking_menu_root"
+        parent="sale_missing_tracking_menu_root"
         action="action_sale_missing_tracking"
-        name="Missing Cart Tracking"
+        name="Missing Sales Tracking"
         sequence="10"
     />
 </odoo>

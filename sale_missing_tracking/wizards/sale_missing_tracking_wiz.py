@@ -12,9 +12,6 @@ class SaleMissingTrackingWiz(models.TransientModel):
 
     missing_tracking_ids = fields.Many2many(
         comodel_name="sale.missing.tracking",
-        # compute="_compute_missing_tracking_ids",
-        # readonly=False,
-        # store=True
     )
     reason_id = fields.Many2one(comodel_name="sale.missing.tracking.reason")
     reason_note = fields.Text(
@@ -36,7 +33,7 @@ class SaleMissingTrackingWiz(models.TransientModel):
     def name_get(self):
         result = []
         for record in self:
-            result.append((record.id, _("Sale missing cart tracking")))
+            result.append((record.id, _("Sale missing tracking")))
         return result
 
     def action_mass_update(self):
@@ -93,7 +90,7 @@ class SaleMissingTrackingWiz(models.TransientModel):
             sale_orders = self.with_context(
                 bypass_missing_cart_tracking=True
             ).missing_tracking_ids.mapped("order_id")
-        action = self.env.ref("sale.action_orders").read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id("sale.action_orders")
         if len(sale_orders) == 1:
             view = self.env.ref("sale.view_order_form", False)
             action["views"] = [(view and view.id or False, "form")]

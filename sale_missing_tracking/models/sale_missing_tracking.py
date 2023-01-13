@@ -6,7 +6,7 @@ from collections import defaultdict
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class SaleMissingTrackingReason(models.Model):
@@ -15,7 +15,6 @@ class SaleMissingTrackingReason(models.Model):
 
     name = fields.Char(required=True)
     note = fields.Text()
-    # recovered = fields.Boolean()
 
 
 class SaleMissingTracking(models.Model):
@@ -78,24 +77,8 @@ class SaleMissingTracking(models.Model):
         relation="missing_tracking_exception_missing_tracking_rel",
         column1="tracking_id",
         column2="exception_id",
-        string="Missing cart tracking exceptions",
+        string="Missing sales tracking exceptions",
     )
-
-    # def _compute_state(self):
-    #     Exception = self.env["sale.missing.tracking.exception"]
-    #     domain = [
-    #         ("partner_id", "in", self.mapped("partner_id").ids),
-    #         ("product_id", "=", self.mapped("product_id").ids),
-    #         ("state", "in", ["approved", "request"]),
-    #     ]
-    #     exceptions = Exception.read_group(
-    #         domain=domain,
-    #         fields=["partner_id", "product_id", "state"],
-    #         groupby=["partner_id", "product_id", "state"],
-    #         lazy=False,
-    #     )
-    #     for rec in self:
-    #         exceptions
 
     def action_open_sale_order(self):
         """
@@ -110,15 +93,9 @@ class SaleMissingTracking(models.Model):
             rec.reason_note = rec.reason_id.note
 
     def name_get(self):
-        result = []
-        for rec in self:
-            result.append(
-                (
-                    rec.id,
-                    _("%s - %s") % (rec.partner_id.name, rec.product_id.display_name),
-                )
-            )
-        return result
+        return [
+            (x.id, f"{x.partner_id.name} - {x.product_id.display_name}") for x in self
+        ]
 
     @api.model
     def missing_tracking_notification(self):
@@ -162,11 +139,9 @@ class SaleMissingTracking(models.Model):
     @api.model
     def send_notification(self, team_id):
         template = self.env.ref(
-            "sale_missing_cart_tracking.missing_tracking_notification_template"
+            "sale_missing_tracking.missing_tracking_notification_template"
         )
-        mt = self.env.ref(
-            "sale_missing_cart_tracking.mt_sale_missing_cart_tracking_notification"
-        )
+        mt = self.env.ref("sale_missing_tracking.mt_sale_missing_tracking_notification")
         team = self.env["crm.team"].browse(team_id)
         recipients = team.message_follower_ids.filtered(
             lambda f: mt in f.subtype_ids
@@ -174,16 +149,13 @@ class SaleMissingTracking(models.Model):
         composer = (
             self.env["mail.compose.message"]
             .with_context(
-                {
-                    "lang": self.env.user.lang,
-                    "default_composition_mode": "mass_mail",
-                    "default_notify": True,
-                    "default_model": self._name,
-                    "default_template_id": template.id,
-                    "active_ids": self.ids,
-                    "default_partner_ids": recipients.ids,
-                    # "doc_ids": moves.ids,
-                }
+                lang=self.env.user.lang,
+                default_composition_mode="mass_mail",
+                default_notify=True,
+                default_model=self._name,
+                default_template_id=template.id,
+                active_ids=self.ids,
+                default_partner_ids=recipients.ids,
             )
             .create({})
         )
@@ -211,7 +183,7 @@ class SaleMissingTracking(models.Model):
             exception_dic.values()
         )
         if self.env.user.has_group(
-            "sale_missing_cart_tracking.group_sale_missing_tracking_manager"
+            "sale_missing_tracking.group_sale_missing_tracking_manager"
         ):
             exceptions.action_approve()
         else:
@@ -223,6 +195,3 @@ class SaleMissingTracking(models.Model):
                 and e.product_id == rec.product_id
             )
         return exceptions
-
-    # def action_update_reason(self):
-    #     self.reason_id = self.env.context.get('reason_id')

@@ -4,7 +4,7 @@
         <field name="name">sale.missing.tracking.exception.tree</field>
         <field name="model">sale.missing.tracking.exception</field>
         <field name="arch" type="xml">
-            <tree string="Sale missing cart tracking exception">
+            <tree>
                 <field name="request_date" />
                 <field name="date" />
                 <field name="user_id" />
@@ -137,9 +137,9 @@
     </record>
     <menuitem
         id="sale_missing_tracking_exception_menu"
-        parent="sale_missing_cart_tracking_menu_root"
+        parent="sale_missing_tracking_menu_root"
         action="action_sale_missing_tracking_exception"
-        name="Missing cart tracking exception"
+        name="Missing sales tracking exception"
         sequence="20"
     />
 </odoo>

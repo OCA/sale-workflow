@@ -1,3 +1,3 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from . import sale_missing_cart_tracking_wiz
+from . import sale_missing_tracking_wiz

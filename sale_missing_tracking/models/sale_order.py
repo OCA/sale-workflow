@@ -103,7 +103,7 @@ class SaleOrder(models.Model):
         missing_product_set -= sold_product_set
         ICP = self.env["ir.config_parameter"].sudo()
         relativedelta_params = ICP.get_param(
-            "sale_missing_cart_tracking.already_notified_relativedelta_params",
+            "sale_missing_tracking.already_notified_relativedelta_params",
         )
         if missing_product_set and relativedelta_params:
             relativedelta_params = literal_eval(relativedelta_params)
@@ -176,9 +176,9 @@ class SaleOrder(models.Model):
         wiz = self.env["sale.missing.tracking.wiz"].create(
             {"missing_tracking_ids": [(6, 0, missing_trackings.ids)]}
         )
-        action = self.env.ref(
-            "sale_missing_cart_tracking.action_sale_missing_cart_tracking_wiz"
-        ).read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "sale_missing_tracking.action_sale_missing_tracking_wiz"
+        )
         action["view_mode"] = "form"
         action["res_id"] = wiz.id
         action["flags"] = {

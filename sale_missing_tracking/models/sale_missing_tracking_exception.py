@@ -39,7 +39,7 @@ class SaleMissingTrackingException(models.Model):
         relation="missing_tracking_exception_missing_tracking_rel",
         column1="exception_id",
         column2="tracking_id",
-        string="Missing cart tracking",
+        string="Missing sales tracking",
     )
     reason_id = fields.Many2one(comodel_name="sale.missing.tracking.reason", index=True)
     reason_note = fields.Text(
@@ -76,15 +76,9 @@ class SaleMissingTrackingException(models.Model):
             rec.reason_note = rec.reason_id.note
 
     def name_get(self):
-        result = []
-        for rec in self:
-            result.append(
-                (
-                    rec.id,
-                    _("%s - %s") % (rec.partner_id.name, rec.product_id.display_name),
-                )
-            )
-        return result
+        return [
+            (x.id, f"{x.partner_id.name} - {x.product_id.display_name}") for x in self
+        ]
 
     def action_request(self):
         """To extend in other modules"""
