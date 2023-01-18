@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-26 09:59+0000\n"
-"PO-Revision-Date: 2022-06-24 10:05+0000\n"
+"PO-Revision-Date: 2023-01-18 11:48+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: sale_order_lot_selection
 #: code:addons/sale_order_lot_selection/models/sale_order.py:0
@@ -49,4 +49,4 @@ msgstr "Riga ordine di vendita"
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_stock_move
 msgid "Stock Move"
-msgstr "Movimenti magazzino"
+msgstr "Movimento di magazzino"
