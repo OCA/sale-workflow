@@ -58,6 +58,9 @@ class SaleOrderRecommendation(models.TransientModel):
     origin_recommendation = fields.Selection(
         [("sale_order", "Sale orders"), ("products", "Products")], default="sale_order"
     )
+    show_advanced_filter = fields.Boolean(string="Show advanced filter")
+    # To search products in lines
+    product_name_search = fields.Char(string="Search product")
 
     @api.model
     def _default_order_id(self):
@@ -111,6 +114,12 @@ class SaleOrderRecommendation(models.TransientModel):
                 )
             )
             domain.append((available_qty_field, ">", 0.0))
+        if self.product_name_search:
+            product_ids = self.env["product.product"]._name_search(
+                self.product_name_search
+            )
+            if product_ids:
+                domain.append(("id", "in", product_ids))
         return self.env["product.product"].search(domain)
 
     def _recomendable_sale_order_lines_domain(self):
@@ -144,6 +153,7 @@ class SaleOrderRecommendation(models.TransientModel):
         if so_line:
             vals["units_included"] = so_line.product_uom_qty
             vals["sale_line_id"] = so_line.id
+            vals["position"] = 0
         return vals
 
     def _get_origin_recommendation(self):
@@ -181,36 +191,8 @@ class SaleOrderRecommendation(models.TransientModel):
         )
         return found_lines
 
-    @api.onchange(
-        "order_id",
-        "months",
-        "line_amount",
-        "sale_recommendation_available_product",
-        "product_category_id",
-        "product_attribute_value_id",
-        "origin_recommendation",
-    )
-    def _generate_recommendations(self):
-        """Generate lines according to context sale order."""
-        last_compute = "{}-{}-{}-{}-{}-{}".format(
-            self.id,
-            self.months,
-            self.line_amount,
-            self.origin_recommendation,
-            self.product_category_id.id,
-            self.product_attribute_value_id.id,
-        )
-        # Avoid execute onchange as times as fields in api.onchange
-        # ORM must control this?
-        if self.last_compute == last_compute:
-            return
-        self.last_compute = last_compute
-        # Search delivered products in previous months
-        found_lines = self._get_origin_recommendation()
-        found_dict = {product["product_id"][0]: product for product in found_lines}
+    def _fill_existing_sale_order_line(self, found_dict, existing_product_ids):
         recommendation_lines = self.env["sale.order.recommendation.line"]
-        existing_product_ids = set()
-        # Always recommend all products already present in the linked SO
         for line in self.order_id.order_line:
             found_line = found_dict.get(
                 line.product_id.id,
@@ -223,6 +205,42 @@ class SaleOrderRecommendation(models.TransientModel):
             )
             recommendation_lines += new_line
             existing_product_ids.add(line.product_id.id)
+        return recommendation_lines
+
+    @api.onchange(
+        "order_id",
+        "months",
+        "line_amount",
+        "sale_recommendation_available_product",
+        "product_category_id",
+        "product_attribute_value_id",
+        "origin_recommendation",
+        "product_name_search",
+    )
+    def _generate_recommendations(self):
+        """Generate lines according to context sale order."""
+        last_compute = "{}-{}-{}-{}-{}-{}-{}".format(
+            self.id,
+            self.months,
+            self.line_amount,
+            self.origin_recommendation,
+            self.product_category_id.id,
+            self.product_attribute_value_id.id,
+            self.product_name_search,
+        )
+        # Avoid execute onchange as times as fields in api.onchange
+        # ORM must control this?
+        if self.last_compute == last_compute:
+            return
+        self.last_compute = last_compute
+        # Search delivered products in previous months
+        found_lines = self._get_origin_recommendation()
+        found_dict = {product["product_id"][0]: product for product in found_lines}
+        existing_product_ids = set()
+        # Always recommend all products already present in the linked SO
+        recommendation_lines = self._fill_existing_sale_order_line(
+            found_dict, existing_product_ids
+        )
         # Add recent SO recommendations too
         i = 0
         for line in found_lines:
@@ -270,11 +288,14 @@ class SaleOrderRecommendation(models.TransientModel):
             order_form.order_line.remove(index)
         order_form.save()
 
+    def action_dummy_accept(self):
+        return True
+
 
 class SaleOrderRecommendationLine(models.TransientModel):
     _name = "sale.order.recommendation.line"
     _description = "Recommended product for current sale order"
-    _order = "id"
+    _order = "position, id"
 
     currency_id = fields.Many2one(
         related="product_id.currency_id",
@@ -316,6 +337,8 @@ class SaleOrderRecommendationLine(models.TransientModel):
     sale_uom_id = fields.Many2one(
         compute="_compute_sale_uom_id", comodel_name="uom.uom", store=True
     )
+    order_id = fields.Many2one(comodel_name="sale.order", compute="_compute_order_id")
+    position = fields.Integer(default=1)
 
     @api.depends("sale_line_id.product_uom", "product_id.uom_id")
     def _compute_sale_uom_id(self):
@@ -347,14 +370,20 @@ class SaleOrderRecommendationLine(models.TransientModel):
             else:
                 one.price_unit = one._get_last_sale_price_product()
 
+    @api.depends("wizard_id.order_id")
+    def _compute_order_id(self):
+        for line in self:
+            line.order_id = line.wizard_id.order_id
+
     def _prepare_update_so_line(self, line_form):
         """So we can extend SO update"""
         line_form.product_uom_qty = self.units_included
 
-    def _prepare_new_so_line(self, line_form, sequence):
+    def _prepare_new_so_line(self, line_form, sequence=None):
         """So we can extend SO create"""
         line_form.product_id = self.product_id
-        line_form.sequence = sequence
+        if sequence is not None:
+            line_form.sequence = sequence
         line_form.product_uom_qty = self.units_included
         if self.wizard_id.sale_recommendation_price_origin == "last_sale_price":
             line_form.price_unit = self.price_unit
@@ -390,3 +419,18 @@ class SaleOrderRecommendationLine(models.TransientModel):
             .with_context(prefetch_fields=False)
         )
         return so_line.price_unit or 0.0
+
+    def new_sale_line(self):
+        # order_form = Form(self.wizard_id.order_id.sudo())
+        # with order_form.order_line.new() as line_form:
+        #     self._prepare_new_so_line(line_form, None)
+        # return order_form.save()
+        line = self.wizard_id.order_id.order_line.new(
+            {"product_id": self.product_id.id}
+        )
+        line.product_id_change()
+        line.mapped("name")
+        so_line = self.wizard_id.order_id.order_line.create(
+            line._convert_to_write(line._cache)
+        )
+        return so_line

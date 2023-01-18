@@ -9,10 +9,10 @@
         <field name="arch" type="xml">
             <xpath expr="//form//header//button[@name='action_draft']" position="after">
                 <button
-                    name="%(sale_order_recommendation_action)d"
+                    name="action_sale_order_product_recommendation_wiz"
                     states="draft,sent,sale"
                     string="Recommended Products"
-                    type="action"
+                    type="object"
                 />
             </xpath>
         </field>

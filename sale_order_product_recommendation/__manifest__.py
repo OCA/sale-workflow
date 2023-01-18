@@ -20,4 +20,14 @@
         "views/res_config_settings_views.xml",
         "views/sale_order_view.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "sale_order_product_recommendation/static/src/js/"
+            "sale_order_product_recommendation_widget.js",
+        ],
+        "web.assets_qweb": [
+            "sale_order_product_recommendation/static/src/xml/"
+            "sale_order_product_recommendation_widget.xml",
+        ],
+    },
 }

@@ -10,7 +10,24 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <group>
+                    <group name="filter">
+                        <group>
+                            <field
+                                name="sale_recommendation_available_product"
+                                widget="boolean_toggle"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="show_advanced_filter"
+                                widget="boolean_toggle"
+                            />
+                        </group>
+                    </group>
+                    <group
+                        name="advanced_filter"
+                        attrs="{'invisible': [('show_advanced_filter', '=', False)]}"
+                    >
                         <group>
                             <field name="order_id" invisible="1" />
                             <field name="months" widget="numeric_step" />
@@ -27,7 +44,11 @@
                                 name="product_attribute_value_id"
                                 options="{'no_create': True}"
                             />
-                            <field name="sale_recommendation_available_product" />
+                        </group>
+                    </group>
+                    <group name="search_product">
+                        <group>
+                            <field name="product_name_search" />
                         </group>
                     </group>
                     <group>
@@ -38,8 +59,13 @@
                                 editable="top"
                                 decoration-success="sale_line_id"
                             >
+                                <widget
+                                    name="sale_order_product_recommendation_add_sale_line_widget"
+                                    width="20px"
+                                />
                                 <field name="currency_id" invisible="1" />
                                 <field name="sale_line_id" invisible="1" />
+                                <field name="order_id" invisible="1" />
                                 <field
                                     name="priority"
                                     widget="priority"
@@ -103,6 +129,12 @@
                                                             name="sale_uom_id"
                                                             groups="uom.group_uom"
                                                         /></strong></div>
+                                                <button
+                                                    name="new_sale_line"
+                                                    type="object"
+                                                    string="Select"
+                                                    readonly="0"
+                                                />
                                             </div>
                                         </div>
                                     </t>
@@ -131,6 +163,12 @@
                         type="object"
                         string="Accept"
                         class="oe_highlight"
+                    />
+                    <button
+                        name="action_dummy_accept"
+                        type="object"
+                        string="Accept dummy"
+                        invisible="1"
                     />
                     <button special="cancel" string="Cancel" />
                 </footer>
