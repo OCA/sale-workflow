@@ -1,11 +1,9 @@
 # Copyright 2020 Tecnativa - David Vidal
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from functools import partial
 import json
 
 from odoo import _, api, exceptions, fields, models
-from odoo.tools.misc import formatLang
 
 
 class SaleOrder(models.Model):
