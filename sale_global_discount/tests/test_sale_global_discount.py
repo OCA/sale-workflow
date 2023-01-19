@@ -1,8 +1,9 @@
 # Copyright 2020 Tecnativa - David Vidal
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+import json
+
 from odoo import exceptions
 from odoo.tests import Form, common
-import json
 
 
 class TestSaleGlobalDiscount(common.TransactionCase):
