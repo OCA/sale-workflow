@@ -1,24 +1,26 @@
 # Copyright 2020 Tecnativa - David Vidal
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-import json
 
 from odoo import exceptions
-from odoo.tests import Form, common
+from odoo.tests import Form, tagged
+
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
-class TestSaleGlobalDiscount(common.TransactionCase):
+@tagged("post_install", "-at_install")
+class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
     @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.main_company = cls.env.ref("base.main_company")
-        cls.account_type = cls.env["account.account.type"].create(
-            {"name": "Test", "type": "other", "internal_group": "asset"}
+    def setUpClass(cls, chart_template_ref=None):
+        super().setUpClass(chart_template_ref=chart_template_ref)
+        cls.env.ref("base_global_discount.group_global_discount").write(
+            {"users": [(4, cls.env.user.id)]}
         )
+        cls.main_company = cls.env.ref("base.main_company")
         cls.account = cls.env["account.account"].create(
             {
                 "name": "Test account Global Discount",
                 "code": "TEST99999",
-                "user_type_id": cls.account_type.id,
+                "account_type": "asset_current",
                 "reconcile": True,
             }
         )
@@ -50,13 +52,7 @@ class TestSaleGlobalDiscount(common.TransactionCase):
                 "account_id": cls.account.id,
             }
         )
-        cls.pricelist = cls.env["product.pricelist"].create(
-            {
-                "name": "Test",
-                "currency_id": cls.main_company.currency_id.id,
-                "company_id": cls.main_company.id,
-            }
-        )
+        cls.pricelist = cls.env.ref("product.list0")
         cls.partner_1 = cls.env["res.partner"].create(
             {"name": "Mr. Odoo", "property_product_pricelist": cls.pricelist.id}
         )
@@ -78,24 +74,10 @@ class TestSaleGlobalDiscount(common.TransactionCase):
         cls.tax_group_15pc = cls.env["account.tax.group"].create(
             {"name": "Test Tax Group 15%", "sequence": 2}
         )
-        cls.tax_1 = cls.env["account.tax"].create(
-            {
-                "name": "Test TAX 15%",
-                "amount_type": "percent",
-                "type_tax_use": "sale",
-                "tax_group_id": cls.tax_group_15pc.id,
-                "amount": 15.0,
-            }
-        )
-        cls.tax_2 = cls.env["account.tax"].create(
-            {
-                "name": "TAX 5%",
-                "amount_type": "percent",
-                "tax_group_id": cls.tax_group_5pc.id,
-                "type_tax_use": "sale",
-                "amount": 5.0,
-            }
-        )
+        cls.tax_1 = cls.tax_sale_a
+        cls.tax_1.amount = 15.0
+        cls.tax_2 = cls.tax_sale_b
+        cls.tax_2.amount = 5.0
         cls.sale_journal0 = cls.env["account.journal"].create(
             {
                 "name": "Sale Journal",
@@ -124,9 +106,7 @@ class TestSaleGlobalDiscount(common.TransactionCase):
     def get_taxes_widget_total_tax(self, order):
         return sum(
             tax_vals["tax_group_amount"]
-            for tax_vals in json.loads(order.tax_totals_json)["groups_by_subtotal"][
-                "Untaxed Amount"
-            ]
+            for tax_vals in order.tax_totals["groups_by_subtotal"]["Untaxed Amount"]
         )
 
     def test_01_global_sale_succesive_discounts(self):
@@ -177,7 +157,7 @@ class TestSaleGlobalDiscount(common.TransactionCase):
         """Change the partner and his global discounts go to the invoice"""
         # (30% then 50%)
         self.sale.partner_id = self.partner_2
-        self.sale.onchange_partner_id()
+        self.sale.onchange_partner_id_set_gbl_disc()
         self.assertAlmostEqual(self.sale.amount_global_discount, 162.49)
         self.assertAlmostEqual(self.sale.amount_untaxed, 87.5)
         self.assertAlmostEqual(self.sale.amount_untaxed_before_global_discounts, 249.99)
@@ -191,7 +171,7 @@ class TestSaleGlobalDiscount(common.TransactionCase):
     def test_03_global_sale_discounts_to_invoice(self):
         """All the discounts go to the invoice"""
         self.sale.partner_id = self.partner_2
-        self.sale.onchange_partner_id()
+        self.sale.onchange_partner_id_set_gbl_disc()
         self.sale.order_line.mapped("product_id").write({"invoice_policy": "order"})
         self.sale.action_confirm()
         move = self.sale._create_invoices()
@@ -220,10 +200,10 @@ class TestSaleGlobalDiscount(common.TransactionCase):
         self.assertAlmostEqual(line_tax_1.credit, 13.13)
         self.assertAlmostEqual(line_tax_2.credit, 4.38)
         term_line = move.line_ids.filtered(
-            lambda x: x.account_id.user_type_id.type == "receivable"
+            lambda x: x.account_id.account_type == "asset_receivable"
         )
         self.assertAlmostEqual(term_line.debit, 105.01)
-        discount_lines = move.line_ids.filtered("global_discount_item")
+        discount_lines = move.line_ids.filtered("invoice_global_discount_id")
         self.assertEqual(len(discount_lines), 2)
         self.assertAlmostEqual(sum(discount_lines.mapped("debit")), 162.49)
 
@@ -233,10 +213,18 @@ class TestSaleGlobalDiscount(common.TransactionCase):
         self.sale.order_line[1].tax_id = [(6, 0, self.tax_1.ids)]
         with self.assertRaises(exceptions.UserError):
             self.sale.global_discount_ids = self.global_discount_1
-            self.sale._amount_all()
+            self.sale._compute_amounts()
 
     def test_05_no_taxes(self):
         self.sale.order_line[1].tax_id = False
         with self.assertRaises(exceptions.UserError):
             self.sale.global_discount_ids = self.global_discount_1
-            self.sale._amount_all()
+            self.sale._compute_amounts()
+
+    def test_06_discounted_line(self):
+        self.sale.global_discount_ids = self.global_discount_1
+        line = self.sale.order_line[0]
+        line.discount = 10
+        self.assertAlmostEqual(line.price_subtotal, 135)
+        self.assertAlmostEqual(self.sale.amount_untaxed_before_global_discounts, 234.99)
+        self.assertAlmostEqual(self.sale.amount_untaxed, 187.99)
