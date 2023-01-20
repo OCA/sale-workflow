@@ -10,7 +10,7 @@
                     <td>
                         <strong>Subtl. before disc.</strong>
                     </td>
-                    <td class="text-right">
+                    <td class="text-end">
                         <span
                             t-field="doc.amount_untaxed_before_global_discounts"
                             t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'
@@ -25,7 +25,7 @@
                             t-esc="'→'.join(['{:.2f}%'.format(x.discount) for x in doc.global_discount_ids])"
                         />
                     </td>
-                    <td class="text-right">
+                    <td class="text-end">
                         <span
                             t-field="doc.amount_global_discount"
                             t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'

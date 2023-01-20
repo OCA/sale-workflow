@@ -19,10 +19,12 @@
                     groups="!base_global_discount.group_global_discount"
                 />
             </field>
-            <field name="tax_totals_json" position="before">
-                <field name="amount_untaxed_before_global_discounts" />
-                <field name="amount_global_discount" />
-            </field>
+            <xpath expr="//group[@name='sale_total']" position="before">
+                <group colspan="2" class="oe_subtotal_footer oe_right">
+                    <field name="amount_untaxed_before_global_discounts" />
+                    <field name="amount_global_discount" />
+                </group>
+            </xpath>
         </field>
     </record>
 </odoo>

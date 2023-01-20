@@ -1,7 +1,6 @@
 # Copyright 2020 Tecnativa - David Vidal
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-import json
 
 from odoo import _, api, exceptions, fields, models
 
@@ -27,7 +26,7 @@ class SaleOrder(models.Model):
     )
     amount_global_discount = fields.Monetary(
         string="Total Global Discounts",
-        compute="_amount_all",  # pylint: disable=C8108
+        compute="_compute_amounts",  # pylint: disable=C8108
         currency_field="currency_id",
         compute_sudo=True,  # Odoo core fields are storable so compute_sudo is True
         readonly=True,
@@ -35,7 +34,7 @@ class SaleOrder(models.Model):
     )
     amount_untaxed_before_global_discounts = fields.Monetary(
         string="Amount Untaxed Before Discounts",
-        compute="_amount_all",  # pylint: disable=C8108
+        compute="_compute_amounts",  # pylint: disable=C8108
         currency_field="currency_id",
         compute_sudo=True,  # Odoo core fields are storable so compute_sudo is True
         readonly=True,
@@ -43,7 +42,7 @@ class SaleOrder(models.Model):
     )
     amount_total_before_global_discounts = fields.Monetary(
         string="Amount Total Before Discounts",
-        compute="_amount_all",  # pylint: disable=C8108
+        compute="_compute_amounts",  # pylint: disable=C8108
         currency_field="currency_id",
         compute_sudo=True,  # Odoo core fields are storable so compute_sudo is True
         readonly=True,
@@ -83,9 +82,14 @@ class SaleOrder(models.Model):
             else:
                 taxes_keys[line.tax_id] = True
 
-    @api.depends("order_line.price_total", "global_discount_ids")
-    def _amount_all(self):
-        res = super()._amount_all()
+    @api.depends(
+        "order_line.price_subtotal",
+        "order_line.price_tax",
+        "order_line.price_total",
+        "global_discount_ids",
+    )
+    def _compute_amounts(self):
+        res = super()._compute_amounts()
         for order in self:
             order._check_global_discounts_sanity()
             amount_untaxed_before_global_discounts = order.amount_untaxed
@@ -126,15 +130,18 @@ class SaleOrder(models.Model):
             )
         return res
 
+    def _compute_tax_totals(self):
+        return super(
+            SaleOrder, self.with_context(from_tax_calculation=True)
+        )._compute_tax_totals()
+
     @api.onchange("partner_id")
-    def onchange_partner_id(self):
-        res = super().onchange_partner_id()
+    def onchange_partner_id_set_gbl_disc(self):
         self.global_discount_ids = self.partner_id.customer_global_discount_ids.filtered(
             lambda d: d.company_id == self.company_id
         ) or self.partner_id.commercial_partner_id.customer_global_discount_ids.filtered(
             lambda d: d.company_id == self.company_id
         )
-        return res
 
     def _prepare_invoice(self):
         invoice_vals = super()._prepare_invoice()
@@ -143,36 +150,3 @@ class SaleOrder(models.Model):
                 {"global_discount_ids": [(6, 0, self.global_discount_ids.ids)]}
             )
         return invoice_vals
-
-    def _compute_tax_totals_json(self):
-        """OVERRIDEN: add global discount in the tax calculation."""
-        super()._compute_tax_totals_json()
-
-        def compute_taxes(order_line):
-            price = order_line.price_unit * (1 - (order_line.discount or 0.0) / 100.0)
-            discounts = order_line.order_id.global_discount_ids.mapped("discount")
-            price = self.get_discounted_global(price, discounts.copy())
-            order = order_line.order_id
-            return order_line.tax_id._origin.compute_all(
-                price,
-                order.currency_id,
-                order_line.product_uom_qty,
-                product=order_line.product_id,
-                partner=order.partner_shipping_id,
-            )
-
-        account_move = self.env["account.move"]
-        for order in self.filtered("global_discount_ids"):
-            tax_lines_data = (
-                account_move._prepare_tax_lines_data_for_totals_from_object(
-                    order.order_line, compute_taxes
-                )
-            )
-            tax_totals = account_move._get_tax_totals(
-                order.partner_id,
-                tax_lines_data,
-                order.amount_total,
-                order.amount_untaxed,
-                order.currency_id,
-            )
-            order.tax_totals_json = json.dumps(tax_totals)
