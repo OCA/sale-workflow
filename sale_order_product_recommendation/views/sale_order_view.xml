@@ -15,6 +15,17 @@
                     type="object"
                 />
             </xpath>
+            <xpath
+                expr="//control/create[@name='add_product_control']"
+                position="before"
+            >
+                <create
+                    name="add_product_recommendation_control"
+                    string="Add a recommended product"
+                    class="o_field_x2many_recommendation"
+                    context="{'open_product_recommendation': True}"
+                />
+            </xpath>
         </field>
     </record>
 </odoo>
