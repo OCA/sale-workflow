@@ -20,8 +20,14 @@ class SaleOrder(models.Model):
                 found_dict, existing_product_ids
             )
         )
+        next_sequence = (
+            self.order_line and max(self.mapped("order_line.sequence")) + 1 or 10
+        )
         action = recommendation_wiz.get_formview_action()
-        action["context"] = {"default_order_id": self.id}
+        action["context"] = {
+            "default_order_id": self.id,
+            "default_sequence": next_sequence,
+        }
         action["target"] = "new"
         return action
 

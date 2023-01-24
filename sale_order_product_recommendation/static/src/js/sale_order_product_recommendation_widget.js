@@ -34,6 +34,8 @@ odoo.define(
                 var ctx = Object.assign(session.user_context, {
                     default_product_id: this.data.product_id.res_id,
                     default_order_id: this.data.order_id.data.id,
+                    default_sequence:
+                        this.getParent().getParent().record.context.default_sequence,
                     bypass_action_accept: true,
                 });
                 this._rpc({
