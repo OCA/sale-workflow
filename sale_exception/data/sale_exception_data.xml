@@ -44,7 +44,7 @@
         <field name="description">The product has a warning in his form</field>
         <field name="sequence">40</field>
         <field name="model">sale.order.line</field>
-        <field name="code">failed=self.sale_line_warn == "warning"</field>
+        <field name="code">failed=self.product_id.sale_line_warn == "warning"</field>
         <field name="active" eval="False" />
     </record>
 </odoo>
