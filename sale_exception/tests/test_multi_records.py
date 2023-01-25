@@ -1,7 +1,8 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-import mock
+from unittest import mock
 
+from odoo import Command
 from odoo.tests import TransactionCase
 
 
@@ -26,9 +27,7 @@ class TestSaleExceptionMultiRecord(TransactionCase):
                 "partner_invoice_id": partner.id,
                 "partner_shipping_id": partner.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": p.name,
                             "product_id": p.id,
@@ -57,9 +56,7 @@ class TestSaleExceptionMultiRecord(TransactionCase):
                 "partner_invoice_id": partner.id,
                 "partner_shipping_id": partner.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": p.name,
                             "product_id": p.id,

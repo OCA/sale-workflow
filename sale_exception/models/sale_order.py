@@ -3,23 +3,7 @@
 # Copyright 2019 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
-
-
-class ExceptionRule(models.Model):
-    _inherit = "exception.rule"
-
-    model = fields.Selection(
-        selection_add=[
-            ("sale.order", "Sale order"),
-            ("sale.order.line", "Sale order line"),
-        ],
-        ondelete={
-            "sale.order": "cascade",
-            "sale.order.line": "cascade",
-        },
-    )
-    sale_ids = fields.Many2many("sale.order", string="Sales")
+from odoo import api, models
 
 
 class SaleOrder(models.Model):
@@ -52,13 +36,6 @@ class SaleOrder(models.Model):
         )
         if check_exceptions:
             self.sale_check_exception()
-
-    @api.model_create_multi
-    def create(self, vals_list):
-        records = super().create(vals_list)
-        for record, vals in zip(records, vals_list):
-            record._check_sale_check_exception(vals)
-        return records
 
     def write(self, vals):
         result = super().write(vals)

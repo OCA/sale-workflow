@@ -4,6 +4,7 @@
 # Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
+from odoo import Command
 from odoo.exceptions import ValidationError
 from odoo.tests import Form, TransactionCase
 
@@ -29,9 +30,7 @@ class TestSaleException(TransactionCase):
                 "partner_invoice_id": partner.id,
                 "partner_shipping_id": partner.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": p.name,
                             "product_id": p.id,
@@ -59,9 +58,7 @@ class TestSaleException(TransactionCase):
                 "partner_invoice_id": partner.id,
                 "partner_shipping_id": partner.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": p.name,
                             "product_id": p.id,
@@ -91,9 +88,7 @@ class TestSaleException(TransactionCase):
             {
                 "ignore_exception": False,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": p.name,
                             "product_id": p.id,
@@ -113,9 +108,7 @@ class TestSaleException(TransactionCase):
             {
                 "ignore_exception": True,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": p.name,
                             "product_id": p.id,
