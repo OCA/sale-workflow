@@ -161,7 +161,7 @@ class TestSaleException(TransactionCase):
             partner=self.env.ref("base.res_partner_1"), product=product
         )
         sale_order.action_confirm()
-        self.sale_line_warn = "warning"
+        product.sale_line_warn = "warning"
         sale_order2 = sale_order.copy()
         sale_order2.detect_exceptions()
         self.assertTrue(sale_order2.exception_ids.filtered(lambda x: x == exception))
