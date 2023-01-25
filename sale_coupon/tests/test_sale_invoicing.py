@@ -50,3 +50,12 @@ class TestSaleInvoicing(TestSaleCouponCommon):
         self.assertEqual(order.order_line, invoiceable_lines)
         account_move = order._create_invoices()
         self.assertEqual(len(account_move.invoice_line_ids), 2)
+
+    def test_recordset_actions(self):
+        """Actions methods in Sale Order
+        must support being called on a recordset."""
+        orders = self.empty_order.copy() \
+            | self.empty_order.copy()
+        orders.action_confirm()
+        orders.action_draft()
+        orders.action_cancel()

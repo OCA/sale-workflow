@@ -47,22 +47,22 @@ class SaleOrder(models.Model):
         return order
 
     def action_confirm(self):
-        self.generated_coupon_ids.write({'state': 'new'})
-        self.applied_coupon_ids.write({'state': 'used'})
+        self.mapped('generated_coupon_ids').write({'state': 'new'})
+        self.mapped('applied_coupon_ids').write({'state': 'used'})
         self._send_reward_coupon_mail()
         return super(SaleOrder, self).action_confirm()
 
     def action_cancel(self):
         res = super(SaleOrder, self).action_cancel()
-        self.generated_coupon_ids.write({'state': 'expired'})
-        self.applied_coupon_ids.write({'state': 'new'})
-        self.applied_coupon_ids.write({"sales_order_id": False})
+        self.mapped('generated_coupon_ids').write({'state': 'expired'})
+        self.mapped('applied_coupon_ids').write({'state': 'new'})
+        self.mapped('applied_coupon_ids').write({"sales_order_id": False})
         self.recompute_coupon_lines()
         return res
 
     def action_draft(self):
         res = super(SaleOrder, self).action_draft()
-        self.generated_coupon_ids.write({'state': 'reserved'})
+        self.mapped('generated_coupon_ids').write({'state': 'reserved'})
         return res
 
     def _get_reward_lines(self):
