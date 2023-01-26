@@ -76,3 +76,9 @@ class TestSaleOrderRevision(test_base_revision.TestBaseRevision):
         sale_order_3 = sale_order_2.copy()
         # Check the 'Order Reference' of the copied Sale Order
         self.assertEqual(sale_order_3.name, sale_order_3.unrevisioned_name)
+
+    def test_action_cancel_create_revision(self):
+        sale = self._create_tester()
+        sale.action_cancel_create_revision()
+        self.assertEqual(sale.state, "cancel", "Original SO was cancelled")
+        self.assertTrue(sale.current_revision_id, "A new SO version was created")
