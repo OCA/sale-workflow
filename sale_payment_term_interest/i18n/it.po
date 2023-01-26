@@ -13,15 +13,16 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-10 15:38+0000\n"
-"PO-Revision-Date: 2016-07-21 19:03+0000\n"
-"Last-Translator: Paolo Valier\n"
+"PO-Revision-Date: 2023-01-26 11:47+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: sale_payment_term_interest
 #: view:sale.order:sale_payment_term_interest.view_order_form
@@ -54,7 +55,7 @@ msgstr ""
 #. module: sale_payment_term_interest
 #: model:ir.model,name:sale_payment_term_interest.model_account_payment_term
 msgid "Payment Term"
-msgstr "Termine di Pagamento"
+msgstr "Termine di pagamento"
 
 #. module: sale_payment_term_interest
 #: model:ir.model,name:sale_payment_term_interest.model_account_payment_term_line
