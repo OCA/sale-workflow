@@ -23,6 +23,12 @@
                     string="New Revision of Quotation"
                     type="object"
                 />
+                <button
+                    name="action_cancel_create_revision"
+                    states="sale"
+                    string="New Revision"
+                    type="object"
+                />
             </xpath>
             <xpath expr="//button[@name='action_view_invoice']" position="after">
                 <button

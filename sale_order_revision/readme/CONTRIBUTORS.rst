@@ -8,3 +8,4 @@
 * Jeroen Evens <jeroen.evens@dynapps.be>
 * Kitti U. <kittiu@ecosoft.co.th>
 * Denis Leemann <denis.leemann@camptocamp.com>
+* Daniel Reis <dreis@opensourceintegrators.com>
