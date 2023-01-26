@@ -12,13 +12,17 @@ class SaleOrder(models.Model):
         string="Transmission Method",
         tracking=True,
         ondelete="restrict",
+        store=True,
+        readonly=False,
+        compute="_compute_transmit_method",
     )
 
-    @api.onchange("partner_id", "company_id")
-    def onchange_partner_transmit_method(self):
-        self.transmit_method_id = (
-            self.partner_id.customer_invoice_transmit_method_id.id or False
-        )
+    @api.depends("partner_id")
+    def _compute_transmit_method(self):
+        for order in self:
+            order.transmit_method_id = (
+                order.partner_id.customer_invoice_transmit_method_id.id or False
+            )
 
     def _create_invoices(self, grouped=False, final=False, date=None):
         moves = super()._create_invoices(grouped, final, date)
