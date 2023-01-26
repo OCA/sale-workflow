@@ -108,6 +108,7 @@ setuptools.setup(
         'odoo13-addon-sale_stock_sourcing_address',
         'odoo13-addon-sale_tier_validation',
         'odoo13-addon-sale_validity',
+        'odoo13-addon-sale_validity_auto_cancel',
         'odoo13-addon-sale_wishlist',
         'odoo13-addon-sales_team_security',
     ],
