@@ -20,3 +20,9 @@ class TestSaleOrderRevision(test_base_revision.TestBaseRevision):
         with sale_form.order_line.new() as line_form:
             line_form.product_id = self.product
         return sale_form.save()
+
+    def test_action_cancel_create_revision(self):
+        sale = self._create_tester()
+        sale.action_cancel_create_revision()
+        self.assertEqual(sale.state, "cancel", "Original SO was cancelled")
+        self.assertTrue(sale.current_revision_id, "A new SO version was created")

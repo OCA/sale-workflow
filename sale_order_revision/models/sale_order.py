@@ -42,3 +42,11 @@ class SaleOrder(models.Model):
             "default_current_revision_id": self.id,
         }
         return result
+
+    def action_cancel_create_revision(self):
+        for sale in self:
+            sale.action_cancel()
+            action = sale.create_revision()
+        if len(self) == 1:
+            return action
+        return {}
