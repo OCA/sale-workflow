@@ -16,14 +16,12 @@ class TestSaleOrder(SavepointCase):
         cls.transmit_method_post = cls.env.ref("account_invoice_transmit_method.post")
         cls.customer.customer_invoice_transmit_method_id = cls.transmit_method_mail
 
-    def test_onchange_partner_transmit_method(self):
-        self.assertFalse(self.sale.transmit_method_id)
-        self.sale.onchange_partner_transmit_method()
+    def test_compute_transmit_method(self):
+        self.sale.partner_id = self.customer
         self.assertEqual(self.sale.transmit_method_id, self.transmit_method_mail)
 
     def test_transmit_method_when_invoicing_1(self):
-        self.assertFalse(self.sale.transmit_method_id)
-        self.sale.onchange_partner_transmit_method()
+        self.sale.partner_id = self.customer
         self.assertEqual(self.sale.transmit_method_id, self.transmit_method_mail)
         self.sale.transmit_method_id = self.transmit_method_post
         self.sale.action_confirm()
@@ -32,8 +30,7 @@ class TestSaleOrder(SavepointCase):
         self.assertEqual(invoices[0].transmit_method_id, self.transmit_method_post)
 
     def test_transmit_method_when_invoicing_2(self):
-        self.assertFalse(self.sale.transmit_method_id)
-        self.sale.onchange_partner_transmit_method()
+        self.sale.partner_id = self.customer
         self.assertEqual(self.sale.transmit_method_id, self.transmit_method_mail)
         self.sale.transmit_method_id = self.transmit_method_post
         self.sale.action_confirm()
