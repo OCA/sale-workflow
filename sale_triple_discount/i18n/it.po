@@ -65,14 +65,10 @@ msgid "Multiplicative"
 msgstr "Moltiplicativo"
 
 #. module: sale_triple_discount
+#. odoo-python
 #: code:addons/sale_triple_discount/models/sale_order_line.py:0
 #, python-format
 msgid "Sale order line %(name)s has unknown discounting type %(dic_type)s"
-msgstr ""
-
-#. module: sale_triple_discount
-#: model:ir.model,name:sale_triple_discount.model_sale_order
-msgid "Sales Order"
 msgstr ""
 
 #. module: sale_triple_discount
