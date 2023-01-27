@@ -74,8 +74,14 @@
                                 />
                                 <field name="product_id" readonly="1" force_save="1" />
                                 <field name="price_unit" />
-                                <field name="times_delivered" />
-                                <field name="units_delivered" />
+                                <field
+                                    name="times_delivered"
+                                    attrs="{'column_invisible': [('parent.origin_recommendation', '!=', 'sale_order')]}"
+                                />
+                                <field
+                                    name="units_delivered"
+                                    attrs="{'column_invisible': [('parent.origin_recommendation', '!=', 'sale_order')]}"
+                                />
                                 <field name="units_included" widget="numeric_step" />
                                 <field
                                     name="sale_uom_id"
