@@ -29,8 +29,7 @@ odoo.define(
                 }
             },
 
-            _onClickButton: function () {
-                this.$el.find(".add_sale_line").prop("special_click", true);
+            _setOrderLineContext: function () {
                 var ctx = Object.assign(session.user_context, {
                     default_product_id: this.data.product_id.res_id,
                     default_order_id: this.data.order_id.data.id,
@@ -38,6 +37,12 @@ odoo.define(
                         this.getParent().getParent().record.context.default_sequence,
                     bypass_action_accept: true,
                 });
+                return ctx;
+            },
+
+            _onClickButton: function () {
+                this.$el.find(".add_sale_line").prop("special_click", true);
+                var ctx = this._setOrderLineContext();
                 this._rpc({
                     method: "new_sale_line",
                     model: "sale.order.recommendation.line",
