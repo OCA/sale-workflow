@@ -40,6 +40,14 @@ class SaleOrder(models.Model):
                 ("parent_id", "=", False),
                 ("type", "=", "contact"),
             ]
+        elif self.sale_order_partner_restrict == "only_contacts":
+            partner_restrict_domain = [
+                ("company_id", "=", False),
+                ("parent_id", "!=", False),
+                ("type", "=", "contact"),
+            ]
+        elif self.sale_order_partner_restrict == "only_delivery_addresses":
+            partner_restrict_domain = [("type", "=", "delivery")]
         return partner_restrict_domain
 
     @api.onchange("sale_order_partner_restrict")

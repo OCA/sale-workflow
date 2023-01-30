@@ -11,6 +11,11 @@ class ResCompany(models.Model):
             ("all", "All partners"),
             ("only_parents", "Only parent accounts (no contacts)"),
             ("parents_and_contacts", "Parent accounts and contacts"),
+            ("only_contacts", "Only contacts (no parent accounts)"),
+            (
+                "only_delivery_addresses",
+                "Only delivery addresses can be selected for SO customer",
+            ),
         ],
         "Partner Restriction on Sale Orders",
         default="all",
