@@ -194,6 +194,8 @@ class SaleOrderRecommendation(models.TransientModel):
     def _fill_existing_sale_order_line(self, found_dict, existing_product_ids):
         recommendation_lines = self.env["sale.order.recommendation.line"]
         for line in self.order_id.order_line:
+            if line.display_type:
+                continue
             found_line = found_dict.get(
                 line.product_id.id,
                 {
