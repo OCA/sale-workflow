@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-12-07 00:20+0000\n"
+"PO-Revision-Date: 2023-01-30 13:47+0000\n"
 "Last-Translator: Douglas Custódio <douglascstd@yahoo.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
@@ -30,15 +30,15 @@ msgid ""
 "* Available: When products are reserved, it is set to 'Available'.\n"
 "* Done: When the shipment is processed, the state is 'Done'."
 msgstr ""
-"* Novo: Quando o movimento de ações é criado e ainda não confirmado.\n"
+"* Novo: Quando o movimento de estoque é criado e ainda não confirmado.\n"
 "* Aguardando Outro Movimento: Este estado pode ser visto quando um movimento "
-"está esperando por outro, por exemplo, em um fluxo acorrentado.\n"
-"* Disponibilidade de espera: Este estado é alcançado quando a resolução de "
+"está esperando por outro, por exemplo, em um fluxo atrelado.\n"
+"* Disponibilidade de espera: Esta situação é alcançado quando a resolução de "
 "compras não é direta. Pode precisar do programador para executar, um "
-"componente a ser fabricado ...\n"
+"componente para ser fabricado ...\n"
 "* Disponível: Quando os produtos são reservados, ele está definido como "
 "\"Disponível\".\n"
-"* Feito: Quando o carregamento é processado, o estado é 'Feito'."
+"* Feito: Quando o transporte é processado, o estado é 'Feito'."
 
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_search
@@ -150,7 +150,7 @@ msgstr "Entrega"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__out_picking_id
 msgid "Delivery Order"
-msgstr "Ordem de Entrada"
+msgstr "Pedido de Entrega"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_create_rental_product__display_name
@@ -188,12 +188,12 @@ msgstr "ID"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__in_state
 msgid "In Move State"
-msgstr "Estágio de Movimento de Entrada"
+msgstr "Estágio do Lançamento de Entrada"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__in_move_id
 msgid "Incoming Move"
-msgstr "Movimento de Entrada"
+msgstr "Lançamento de Entrada"
 
 #. module: sale_rental
 #: model:ir.model.fields,help:sale_rental.field_sale_order_line__rental_qty
@@ -230,6 +230,8 @@ msgstr "Última atualização em"
 msgid ""
 "Missing 'Rental to Extend' on the sale order line with rental service %s"
 msgstr ""
+"Falta 'Extensão de Aluguel' na linha do pedido de venda com o serviço de "
+"aluguel %s"
 
 #. module: sale_rental
 #: selection:sale.order.line,rental_type:0
@@ -298,12 +300,12 @@ msgstr "Saída"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__out_state
 msgid "Out Move State"
-msgstr "Estágio de Movimento de Saída"
+msgstr "Estágio do Lançamento de Saída"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__out_move_id
 msgid "Outgoing Move"
-msgstr "Movimento de Saída"
+msgstr "Lançamento de Saída"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_stock_warehouse__rental_view_location_id
@@ -346,7 +348,7 @@ msgstr "Produto Alugado Relacionado"
 #: model:stock.location.route,name:sale_rental.route_warehouse0_rental
 #, python-format
 msgid "Rent"
-msgstr "Aluguel"
+msgstr "Alugar"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:122
@@ -510,12 +512,12 @@ msgstr "Pesquisar Locações"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__sell_picking_id
 msgid "Sell Delivery Order"
-msgstr ""
+msgstr "Pedido de Entrega de Venda"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__sell_state
 msgid "Sell Move State"
-msgstr ""
+msgstr "Situação do Lançamento de Venda"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock.py:52
@@ -540,12 +542,12 @@ msgstr "Venda em andamento"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__sell_move_id
 msgid "Selling Move"
-msgstr "Vender Movimento"
+msgstr "Lançamento de Venda"
 
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_form
 msgid "Selling Order Line"
-msgstr ""
+msgstr "Linha de Pedido de Venda"
 
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_search
@@ -563,7 +565,7 @@ msgstr "Data de Início"
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__state
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_search
 msgid "State"
-msgstr "Estado"
+msgstr "Situação"
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_rule
@@ -590,6 +592,9 @@ msgid ""
 "The Rental Service of the Rental Extension you just selected is '%s' and "
 "it's not the same as the Product currently selected in this Sale Order Line."
 msgstr ""
+"O Serviço de Aluguel da Extensão de Aluguem que você acabou de selecionar é "
+"'%s' e não é o mesmo do Produto atualmente selecionado nesta Linha do Pedido "
+"de Venda."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/product.py:28
