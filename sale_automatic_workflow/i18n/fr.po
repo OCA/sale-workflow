@@ -34,42 +34,10 @@ msgid "Automatic Workflow"
 msgstr "Flux automatique"
 
 #. module: sale_automatic_workflow
-#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_create_invoice_filter
-msgid "Automatic Workflow Create Invoice Filter"
-msgstr "Flux de travail automatique Créant un filtre sur les factures "
-
-#. module: sale_automatic_workflow
 #: model:ir.actions.server,name:sale_automatic_workflow.ir_cron_automatic_workflow_job_ir_actions_server
 #: model:ir.cron,cron_name:sale_automatic_workflow.ir_cron_automatic_workflow_job
-#: model:ir.cron,name:sale_automatic_workflow.ir_cron_automatic_workflow_job
 msgid "Automatic Workflow Job"
 msgstr "Job du workflow automatique"
-
-#. module: sale_automatic_workflow
-#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_order_filter
-msgid "Automatic Workflow Order Filter"
-msgstr "Flux de travail automatique Créant un filtre sur les commandes"
-
-#. module: sale_automatic_workflow
-#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_payment_filter
-msgid "Automatic Workflow Payment Filter"
-msgstr ""
-
-#. module: sale_automatic_workflow
-#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_picking_filter
-msgid "Automatic Workflow Picking Filter"
-msgstr ""
-"Flux de travail automatique Créant un filtre de préparation de commande"
-
-#. module: sale_automatic_workflow
-#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_sale_done_filter
-msgid "Automatic Workflow Sale Done Filter"
-msgstr "Flux de travail automatique Créant un filtre sur les ventes réalisées"
-
-#. module: sale_automatic_workflow
-#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_validate_invoice_filter
-msgid "Automatic Workflow Validate Invoice Filter"
-msgstr "Flux de travail automatique Créant un filtre sur les factures validées"
 
 #. module: sale_automatic_workflow
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_order_view_form
@@ -165,6 +133,11 @@ msgid ""
 msgstr ""
 "Si cette case est cochée, lorsque la première facture est créée, les lignes "
 "articles du bon de commande seront incluses et marquées comme livrées"
+
+#. module: sale_automatic_workflow
+#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
+msgid "Invoice Options"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__invoice_service_delivery
@@ -355,10 +328,29 @@ msgid "Workflow Options"
 msgstr "Options du flux automatique"
 
 #. module: sale_automatic_workflow
+#. odoo-python
 #: code:addons/sale_automatic_workflow/models/sale_order.py:0
 #, python-format
 msgid "Workflow Warning"
 msgstr "Message d'avertissement"
+
+#~ msgid "Automatic Workflow Create Invoice Filter"
+#~ msgstr "Flux de travail automatique Créant un filtre sur les factures "
+
+#~ msgid "Automatic Workflow Order Filter"
+#~ msgstr "Flux de travail automatique Créant un filtre sur les commandes"
+
+#~ msgid "Automatic Workflow Picking Filter"
+#~ msgstr ""
+#~ "Flux de travail automatique Créant un filtre de préparation de commande"
+
+#~ msgid "Automatic Workflow Sale Done Filter"
+#~ msgstr ""
+#~ "Flux de travail automatique Créant un filtre sur les ventes réalisées"
+
+#~ msgid "Automatic Workflow Validate Invoice Filter"
+#~ msgstr ""
+#~ "Flux de travail automatique Créant un filtre sur les factures validées"
 
 #~ msgid "Invoice"
 #~ msgstr "Facture"
