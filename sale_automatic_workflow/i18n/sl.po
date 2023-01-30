@@ -34,40 +34,9 @@ msgid "Automatic Workflow"
 msgstr "Samodejni delotok"
 
 #. module: sale_automatic_workflow
-#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_create_invoice_filter
-msgid "Automatic Workflow Create Invoice Filter"
-msgstr ""
-
-#. module: sale_automatic_workflow
 #: model:ir.actions.server,name:sale_automatic_workflow.ir_cron_automatic_workflow_job_ir_actions_server
 #: model:ir.cron,cron_name:sale_automatic_workflow.ir_cron_automatic_workflow_job
-#: model:ir.cron,name:sale_automatic_workflow.ir_cron_automatic_workflow_job
 msgid "Automatic Workflow Job"
-msgstr ""
-
-#. module: sale_automatic_workflow
-#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_order_filter
-msgid "Automatic Workflow Order Filter"
-msgstr ""
-
-#. module: sale_automatic_workflow
-#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_payment_filter
-msgid "Automatic Workflow Payment Filter"
-msgstr ""
-
-#. module: sale_automatic_workflow
-#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_picking_filter
-msgid "Automatic Workflow Picking Filter"
-msgstr ""
-
-#. module: sale_automatic_workflow
-#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_sale_done_filter
-msgid "Automatic Workflow Sale Done Filter"
-msgstr ""
-
-#. module: sale_automatic_workflow
-#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_validate_invoice_filter
-msgid "Automatic Workflow Validate Invoice Filter"
 msgstr ""
 
 #. module: sale_automatic_workflow
@@ -159,6 +128,11 @@ msgstr ""
 msgid ""
 "If this box is checked, when the first invoice is created The service sale "
 "order lines will be included and will be marked as delivered"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
+msgid "Invoice Options"
 msgstr ""
 
 #. module: sale_automatic_workflow
@@ -349,6 +323,7 @@ msgid "Workflow Options"
 msgstr "Opcije delotoka"
 
 #. module: sale_automatic_workflow
+#. odoo-python
 #: code:addons/sale_automatic_workflow/models/sale_order.py:0
 #, python-format
 msgid "Workflow Warning"
