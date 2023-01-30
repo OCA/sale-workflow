@@ -34,41 +34,10 @@ msgid "Automatic Workflow"
 msgstr "Flujo automático"
 
 #. module: sale_automatic_workflow
-#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_create_invoice_filter
-msgid "Automatic Workflow Create Invoice Filter"
-msgstr "Filtro de flujo automático de creación de factura"
-
-#. module: sale_automatic_workflow
 #: model:ir.actions.server,name:sale_automatic_workflow.ir_cron_automatic_workflow_job_ir_actions_server
 #: model:ir.cron,cron_name:sale_automatic_workflow.ir_cron_automatic_workflow_job
-#: model:ir.cron,name:sale_automatic_workflow.ir_cron_automatic_workflow_job
 msgid "Automatic Workflow Job"
 msgstr "Trabajo de flujo de trabajo automático"
-
-#. module: sale_automatic_workflow
-#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_order_filter
-msgid "Automatic Workflow Order Filter"
-msgstr "Filtro de flujo automático de pedido"
-
-#. module: sale_automatic_workflow
-#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_payment_filter
-msgid "Automatic Workflow Payment Filter"
-msgstr ""
-
-#. module: sale_automatic_workflow
-#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_picking_filter
-msgid "Automatic Workflow Picking Filter"
-msgstr "Filtro de flujo automático de albaranes"
-
-#. module: sale_automatic_workflow
-#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_sale_done_filter
-msgid "Automatic Workflow Sale Done Filter"
-msgstr "Filtro de flujo automático de pedidos realizados"
-
-#. module: sale_automatic_workflow
-#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_validate_invoice_filter
-msgid "Automatic Workflow Validate Invoice Filter"
-msgstr "Filtro de flujo automático de validación de facturas"
 
 #. module: sale_automatic_workflow
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_order_view_form
@@ -165,6 +134,11 @@ msgstr ""
 "Si está casilla está marcada, cuando se crea la primera factura, las líneas "
 "de pedido de venta que son servicios se incluyen y son marcadas como "
 "entregadas"
+
+#. module: sale_automatic_workflow
+#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
+msgid "Invoice Options"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__invoice_service_delivery
@@ -357,10 +331,26 @@ msgid "Workflow Options"
 msgstr "Opciones del flujo"
 
 #. module: sale_automatic_workflow
+#. odoo-python
 #: code:addons/sale_automatic_workflow/models/sale_order.py:0
 #, python-format
 msgid "Workflow Warning"
 msgstr "Aviso del flujo"
+
+#~ msgid "Automatic Workflow Create Invoice Filter"
+#~ msgstr "Filtro de flujo automático de creación de factura"
+
+#~ msgid "Automatic Workflow Order Filter"
+#~ msgstr "Filtro de flujo automático de pedido"
+
+#~ msgid "Automatic Workflow Picking Filter"
+#~ msgstr "Filtro de flujo automático de albaranes"
+
+#~ msgid "Automatic Workflow Sale Done Filter"
+#~ msgstr "Filtro de flujo automático de pedidos realizados"
+
+#~ msgid "Automatic Workflow Validate Invoice Filter"
+#~ msgstr "Filtro de flujo automático de validación de facturas"
 
 #~ msgid "Journal Entries"
 #~ msgstr "Entradas de diario"
