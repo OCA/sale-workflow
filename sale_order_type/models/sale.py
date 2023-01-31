@@ -108,7 +108,7 @@ class SaleOrder(models.Model):
     @api.model
     def create(self, vals):
         if vals.get("name", "/") == "/" and vals.get("type_id"):
-            next_sequence = self._get_next_sequence(vals["type_id"])
+            next_sequence = self._get_next_sequence(vals)
             if next_sequence:
                 vals["name"] = next_sequence
         return super(SaleOrder, self).create(vals)
@@ -151,11 +151,13 @@ class SaleOrder(models.Model):
             res["sale_type_id"] = self.type_id.id
         return res
 
-    def _get_next_sequence(self, type_id):
-        sale_type = self.env["sale.order.type"].browse(type_id)
+    def _get_next_sequence(self, vals):
+        sale_type = self.env["sale.order.type"].browse(vals.get("type_id"))
         sequence = False
         if sale_type.sequence_id:
-            sequence = sale_type.sequence_id.next_by_id()
+            sequence = sale_type.sequence_id.next_by_id(
+                sequence_date=vals.get("date_order")
+            )
         return sequence
 
 

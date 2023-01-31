@@ -17,8 +17,6 @@
     "Tecnativa,"
     "Agile Business Group,"
     "Niboo,"
-    "Therp BV,"
-    "Sunflower IT,"
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",

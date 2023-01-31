@@ -194,7 +194,7 @@ class TestSaleOrderType(common.TransactionCase):
         order.onchange_type_id()
         self.assertEqual(order.type_id.route_id, order.order_line[1].route_id)
 
-    def _test_sale_order_in_draft_state_update_name(self):
+    def test_sale_order_in_draft_state_update_name(self):
         order = self.create_sale_order()
         order.onchange_partner_id()
         order.onchange_type_id()
@@ -207,7 +207,7 @@ class TestSaleOrderType(common.TransactionCase):
         self.assertEqual(order.type_id, self.sale_type_quot)
         self.assertTrue(order.name.startswith("TQU"))
 
-    def _test_sale_order_in_sent_state_update_name(self):
+    def test_sale_order_in_sent_state_update_name(self):
         order = self.create_sale_order()
         order.onchange_partner_id()
         order.onchange_type_id()
