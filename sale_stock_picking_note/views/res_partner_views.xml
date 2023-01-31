@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - TAKOBI
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">Add Picking Note to Partner form view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales_purchases']/group" position="inside">
+                <group name="pickings" string="Pickings">
+                    <field name="default_picking_note"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
