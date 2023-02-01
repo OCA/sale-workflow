@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 03:53+0000\n"
-"PO-Revision-Date: 2023-01-03 12:50+0000\n"
+"PO-Revision-Date: 2023-02-01 16:48+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -147,7 +147,7 @@ msgstr "Motivi dell'Annullamento dell'Ordine di Vendita"
 #. module: sale_cancel_reason
 #: model:ir.model,name:sale_cancel_reason.model_sale_order
 msgid "Sales Order"
-msgstr "Ordini vendita"
+msgstr "Ordine di vendita"
 
 #. module: sale_cancel_reason
 #: model:sale.order.cancel.reason,name:sale_cancel_reason.cancel_reason_no_service_needed
