@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-10 15:38+0000\n"
-"PO-Revision-Date: 2023-01-26 11:47+0000\n"
+"PO-Revision-Date: 2023-02-01 16:47+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -75,12 +75,12 @@ msgstr ""
 #. module: sale_payment_term_interest
 #: model:ir.model,name:sale_payment_term_interest.model_sale_order
 msgid "Sales Order"
-msgstr "Ordini vendita"
+msgstr "Ordine di vendita"
 
 #. module: sale_payment_term_interest
 #: model:ir.model,name:sale_payment_term_interest.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Riga dell'Ordine di Vendita"
+msgstr "Riga ordine di vendita"
 
 #. module: sale_payment_term_interest
 #: help:account.payment.term.line,interest_rate:0
