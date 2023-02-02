@@ -38,8 +38,19 @@ msgid "After Date"
 msgstr ""
 
 #. module: sale_elaboration
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_form
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
+msgid "Archived"
+msgstr ""
+
+#. module: sale_elaboration
 #: model:ir.model.constraint,message:sale_elaboration.constraint_product_elaboration_code_uniq
 msgid "Code must be unique!"
+msgstr ""
+
+#. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_res_config_settings
+msgid "Config Settings"
 msgstr ""
 
 #. module: sale_elaboration
@@ -65,12 +76,16 @@ msgid "Date"
 msgstr ""
 
 #. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_res_config_settings__group_elaboration_note_on_delivery_slip
+msgid "Display Elaboration notes on Delivery Slips"
+msgstr ""
+
+#. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__display_name
 msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__elaboration_id
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
 msgid "Elaboration"
@@ -82,15 +97,24 @@ msgid "Elaboration Note"
 msgstr ""
 
 #. module: sale_elaboration
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.res_config_settings_view
+msgid "Elaboration notes will appear on the delivery slip"
+msgstr ""
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__elaboration_ids
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_form
-#: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_tree
-#: model_terms:ir.ui.view,arch_db:sale_elaboration.report_elaboration_view_tree
 msgid "Elaborations"
 msgstr ""
 
 #. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 msgid "Elaborations Search"
+msgstr ""
+
+#. module: sale_elaboration
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
+msgid "Group By"
 msgstr ""
 
 #. module: sale_elaboration
@@ -106,15 +130,16 @@ msgid ""
 msgstr ""
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__is_elaboration
-#: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
-msgid "Is Elaboration"
+#: model:res.groups,name:sale_elaboration.group_elaboration_note_on_delivery_slip
+msgid "Include elaboration notes on delivery slip"
 msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_product__is_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_template__is_elaboration
-msgid "Is elaboration"
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__is_elaboration
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
+msgid "Is Elaboration"
 msgstr ""
 
 #. module: sale_elaboration
@@ -144,8 +169,14 @@ msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__product_id
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 msgid "Product"
 msgstr "Produkt"
+
+#. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_product_template
@@ -159,7 +190,7 @@ msgid "Product elaborations"
 msgstr "Produktvorlage"
 
 #. module: sale_elaboration
-#: model:ir.actions.act_window,name:sale_elaboration.sale_elaboration_action_form
+#: model:ir.actions.act_window,name:sale_elaboration.sale_elaboration_action
 #: model:ir.ui.menu,name:sale_elaboration.menu_sale_elaboration
 msgid "Sale Elaboration"
 msgstr ""

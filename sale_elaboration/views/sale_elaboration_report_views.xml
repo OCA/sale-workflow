@@ -13,7 +13,7 @@
                 <field name="salesman_id" />
                 <field name="order_partner_id" />
                 <field name="product_id" />
-                <field name="elaboration_id" />
+                <field name="elaboration_ids" widget="many2many_tags" />
                 <field name="elaboration_note" />
                 <field name="product_uom_qty" />
                 <field name="product_uom" />
@@ -31,11 +31,11 @@
                     filter_domain="[('date_order','&gt;=', self)]"
                     string="After Date"
                 />
-                <field name="elaboration_id" />
+                <field name="elaboration_ids" />
                 <field name="elaboration_note" />
                 <filter
                     string="Is Elaboration"
-                    domain="['|', ('elaboration_id', '!=', False), ('elaboration_note', '!=', False)]"
+                    domain="['|', ('elaboration_ids', '!=', False), ('elaboration_note', '!=', False)]"
                     name="is_elaboration"
                 />
                 <separator />
@@ -43,7 +43,7 @@
             <group position="inside">
                 <filter
                     string="Elaboration"
-                    context="{'group_by':'elaboration_id'}"
+                    context="{'group_by':'elaboration_ids'}"
                     name="elaboration_grouped"
                 />
             </group>
