@@ -15,7 +15,7 @@ class SaleOrderLine(models.Model):
 
     @api.model
     def default_get(self, fields):
-        vals = super(SaleOrderLine, self).default_get(fields)
+        vals = super().default_get(fields)
         general_discount = (
             self.env["ir.config_parameter"]
             .sudo()
