@@ -43,8 +43,9 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    elaboration_id = fields.Many2one(
-        comodel_name="product.elaboration", string="Elaboration", ondelete="restrict"
+    elaboration_ids = fields.Many2many(
+        comodel_name="product.elaboration",
+        string="Elaborations",
     )
     elaboration_note = fields.Char(
         store=True,
@@ -58,10 +59,10 @@ class SaleOrderLine(models.Model):
     )
     date_order = fields.Datetime(related="order_id.date_order", string="Date")
 
-    @api.depends("elaboration_id")
+    @api.depends("elaboration_ids")
     def _compute_elaboration_note(self):
         for line in self:
-            line.elaboration_note = line.elaboration_id.name
+            line.elaboration_note = ", ".join(line.elaboration_ids.mapped("name"))
 
     def _prepare_invoice_line(self, **optional_values):
         vals = super()._prepare_invoice_line(**optional_values)

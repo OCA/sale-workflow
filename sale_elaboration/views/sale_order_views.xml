@@ -13,7 +13,8 @@
                 position="after"
             >
                 <field
-                    name="elaboration_id"
+                    name="elaboration_ids"
+                    widget="many2many_tags"
                     attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
                 />
                 <field
@@ -26,7 +27,8 @@
                 position="after"
             >
                 <field
-                    name="elaboration_id"
+                    name="elaboration_ids"
+                    widget="many2many_tags"
                     attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
                 />
                 <field
