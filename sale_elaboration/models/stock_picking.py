@@ -10,12 +10,11 @@ class StockPicking(models.Model):
         res = super()._action_done()
         for pick in self.filtered(lambda x: x.picking_type_code == "outgoing"):
             elaboration_lines = pick.move_lines.filtered(
-                lambda x: x.sale_line_id.elaboration_id
+                lambda x: x.sale_line_id.elaboration_ids
             )
             for line in elaboration_lines:
-                pick.sale_id._create_elaboration_line(
-                    line.sale_line_id.elaboration_id.product_id, line.quantity_done
-                )
+                for product in line.sale_line_id.elaboration_ids.product_id:
+                    pick.sale_id._create_elaboration_line(product, line.quantity_done)
         return res
 
 
