@@ -82,7 +82,6 @@ msgid "Display Name"
 msgstr ""
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__elaboration_id
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
 msgid "Elaboration"
@@ -99,6 +98,7 @@ msgid "Elaboration notes will appear on the delivery slip"
 msgstr ""
 
 #. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__elaboration_ids
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_form
 msgid "Elaborations"
 msgstr ""
