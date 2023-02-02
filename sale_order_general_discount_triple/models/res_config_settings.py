@@ -10,7 +10,6 @@ class ResConfigSettings(models.TransientModel):
             ("discount2", "Discount 2"),
             ("discount3", "Discount 3"),
         ],
-        "General Discount",
         required=True,
         default="discount",
         config_parameter="sale_order_general_discount_triple.general_discount",
