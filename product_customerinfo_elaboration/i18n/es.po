@@ -23,7 +23,7 @@ msgid "Customer Pricelist"
 msgstr "Tarifa de cliente"
 
 #. module: product_supplierinfo_for_customer_elaboration
-#: model:ir.model.fields,field_description:product_supplierinfo_for_customer_elaboration.field_product_customerinfo__elaboration_id
+#: model:ir.model.fields,field_description:product_supplierinfo_for_customer_elaboration.field_product_customerinfo__elaboration_ids
 msgid "Elaboration"
 msgstr "Elaboración"
 

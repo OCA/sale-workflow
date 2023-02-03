@@ -11,7 +11,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='product_tmpl_id']/.." position="after">
                 <group string="Elaborations">
-                    <field name="elaboration_id" />
+                    <field name="elaboration_ids" widget="many2many_tags" />
                     <field name="elaboration_note" />
                 </group>
             </xpath>
@@ -25,7 +25,7 @@
         />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='price']" position="after">
-                <field name="elaboration_id" optional="show" />
+                <field name="elaboration_ids" optional="show" widget="many2many_tags" />
                 <field name="elaboration_note" optional="show" />
             </xpath>
         </field>
