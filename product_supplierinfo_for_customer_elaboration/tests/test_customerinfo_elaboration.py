@@ -24,7 +24,7 @@ class TestCustomerinfoElaboration(TransactionCase):
             {
                 "name": cls.customer0.id,
                 "product_tmpl_id": cls.product.product_tmpl_id.id,
-                "elaboration_id": cls.elaboration.id,
+                "elaboration_ids": [(4, cls.elaboration.id)],
                 "elaboration_note": "Test elaboration note",
             }
         )
@@ -39,17 +39,30 @@ class TestCustomerinfoElaboration(TransactionCase):
     def test_sale_without_elaboration(self):
         so = self._create_sale(self.customer2)
         line = so.order_line
-        self.assertFalse(line.elaboration_id)
+        self.assertFalse(line.elaboration_ids)
         self.assertFalse(line.elaboration_note)
 
     def test_sale_direct_customerinfo_with_elaboration(self):
         so = self._create_sale(self.customer0)
         line = so.order_line
-        self.assertEqual(line.elaboration_id, self.elaboration)
+        self.assertEqual(line.elaboration_ids, self.elaboration)
         self.assertEqual(line.elaboration_note, "Test elaboration note")
 
     def test_sale_parent_customerinfo_with_elaboration(self):
         so = self._create_sale(self.customer1)
         line = so.order_line
-        self.assertEqual(line.elaboration_id, self.elaboration)
+        self.assertEqual(line.elaboration_ids, self.elaboration)
         self.assertEqual(line.elaboration_note, "Test elaboration note")
+
+    def test_multiple_elaboration_per_customer(self):
+        product_elab_2 = self.env["product.product"].create(
+            {"name": "Elaboration prod. test 2", "type": "service"}
+        )
+        elaboration_2 = self.env["product.elaboration"].create(
+            {"name": "Test elaboration 2", "product_id": product_elab_2.id}
+        )
+        self.customer_info.elaboration_ids += elaboration_2
+        so = self._create_sale(self.customer0)
+        line = so.order_line
+        self.assertEqual(line.elaboration_ids, self.elaboration | elaboration_2)
+        self.assertEqual(line.elaboration_note, "Test elaboration, Test elaboration 2")
