@@ -11,15 +11,15 @@ class SaleOrderLine(models.Model):
     def product_id_change(self):
         res = super().product_id_change()
         customerinfo = self.product_id.customer_ids.filtered(
-            lambda pc: pc.elaboration_id and pc.name == self.order_id.partner_id
+            lambda pc: pc.elaboration_ids and pc.name == self.order_id.partner_id
         )[:1]
         if not customerinfo:
             customerinfo = self.product_id.customer_ids.filtered(
-                lambda pc: pc.elaboration_id
+                lambda pc: pc.elaboration_ids
                 and pc.name == self.order_id.partner_id.commercial_partner_id
             )[:1]
         if customerinfo:
-            self.elaboration_id = customerinfo.elaboration_id
+            self.elaboration_ids = customerinfo.elaboration_ids
         if customerinfo.elaboration_note:
             self.elaboration_note = customerinfo.elaboration_note
         return res
