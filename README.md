@@ -24,7 +24,7 @@ addon | version | maintainers | summary
 [partner_contact_sale_info_propagation](partner_contact_sale_info_propagation/) | 15.0.1.0.0 |  | Propagate Salesperson and Sales Channel from Company to Contacts
 [partner_sale_pivot](partner_sale_pivot/) | 15.0.1.0.0 | [![ernestotejeda](https://github.com/ernestotejeda.png?size=30px)](https://github.com/ernestotejeda) | Sales analysis from customer form view
 [portal_sale_personal_data_only](portal_sale_personal_data_only/) | 15.0.1.0.0 |  | Portal Sale Personal Data Only
-[product_supplierinfo_for_customer_elaboration](product_supplierinfo_for_customer_elaboration/) | 15.0.1.0.0 |  | Allows to define default elaborations and elaboration notes on product customerinfos
+[product_supplierinfo_for_customer_elaboration](product_supplierinfo_for_customer_elaboration/) | 15.0.2.0.0 |  | Allows to define default elaborations and elaboration notes on product customerinfos
 [product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 15.0.1.0.0 |  | Loads in every sale order line the customer code defined in the product
 [sale_advance_payment](sale_advance_payment/) | 15.0.1.0.1 |  | Allow to add advance payments on sales and then use them on invoices
 [sale_automatic_workflow](sale_automatic_workflow/) | 15.0.1.0.1 |  | Sale Automatic Workflow
@@ -35,7 +35,7 @@ addon | version | maintainers | summary
 [sale_credit_point](sale_credit_point/) | 15.0.1.0.0 |  | Sale Credit Points
 [sale_delivery_state](sale_delivery_state/) | 15.0.1.0.0 |  | Show the delivery state on the sale order
 [sale_discount_display_amount](sale_discount_display_amount/) | 15.0.1.0.1 |  | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
-[sale_elaboration](sale_elaboration/) | 15.0.1.0.1 |  | Set an elaboration for any sale line
+[sale_elaboration](sale_elaboration/) | 15.0.2.0.0 |  | Set an elaboration for any sale line
 [sale_exception](sale_exception/) | 15.0.1.0.0 |  | Custom exceptions on sale order
 [sale_force_invoiced](sale_force_invoiced/) | 15.0.1.0.0 |  | Allows to force the invoice status of the sales order to Invoiced
 [sale_force_whole_invoiceability](sale_force_whole_invoiceability/) | 15.0.1.0.0 |  | Sale Force Whole Invoiceability
