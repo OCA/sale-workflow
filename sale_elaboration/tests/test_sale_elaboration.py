@@ -63,17 +63,19 @@ class TestSaleElaboration(TransactionCase):
                 "product_id": cls.product_elaboration_B.id,
             }
         )
-        cls.order = cls._create_sale_order(cls, [(cls.product, 10, cls.elaboration_a)])
+        cls.order = cls._create_sale_order(
+            cls, [(cls.product, 10, [cls.elaboration_a])]
+        )
 
     def _create_sale_order(self, products_info):
         order_form = Form(self.env["sale.order"])
         order_form.partner_id = self.partner
-        for product, qty, elaboration in products_info:
+        for product, qty, elaborations in products_info:
             with order_form.order_line.new() as line_form:
                 line_form.product_id = product
                 line_form.product_uom_qty = qty
-                if elaboration:
-                    line_form.elaboration_id = elaboration
+                for elaboration in elaborations:
+                    line_form.elaboration_ids.add(elaboration)
         return order_form.save()
 
     def test_search_elaboration(self):
@@ -83,7 +85,7 @@ class TestSaleElaboration(TransactionCase):
         self.assertEqual(len(elaboration), 1)
 
     def test_sale_elaboration_change(self):
-        self.order.order_line.elaboration_id = self.elaboration_b.id
+        self.order.order_line.elaboration_ids = self.elaboration_b
         self.assertEqual(self.order.order_line.elaboration_note, "Elaboration B")
 
     def test_sale_elaboration(self):
@@ -114,8 +116,8 @@ class TestSaleElaboration(TransactionCase):
     def test_invoice_elaboration(self):
         self.order = self._create_sale_order(
             [
-                (self.product_elaboration_A, 1, False),
-                (self.product_elaboration_B, 1, False),
+                (self.product_elaboration_A, 1, []),
+                (self.product_elaboration_B, 1, []),
             ]
         )
         self.order.order_line.filtered(
@@ -147,3 +149,22 @@ class TestSaleElaboration(TransactionCase):
         self.order.order_line.product_id = self.product
         self.order.order_line.product_id_change()
         self.assertFalse(self.order.order_line.is_elaboration)
+
+    def test_multi_elaboration_per_line(self):
+        product2 = self.env["product.product"].create({"name": "product 2"})
+        with Form(self.order) as order_form:
+            with order_form.order_line.new() as line_form:
+                line_form.product_id = product2
+                line_form.product_uom_qty = 1
+                line_form.elaboration_ids.add(self.elaboration_a)
+                line_form.elaboration_ids.add(self.elaboration_b)
+        self.order.action_confirm()
+        move_lines = self.order.picking_ids.move_lines
+        move_line_a = move_lines.filtered(lambda r: r.product_id == self.product)
+        move_line_a.quantity_done = 10.0
+        move_line_b = move_lines.filtered(lambda r: r.product_id == product2)
+        move_line_b.quantity_done = 1.0
+        self.order.picking_ids._action_done()
+        elaboration_lines = self.order.order_line.filtered("is_elaboration")
+        self.assertEqual(len(elaboration_lines), 2)
+        self.assertEqual(sum(elaboration_lines.mapped("product_uom_qty")), 12.0)
