@@ -2,3 +2,4 @@
 
   * Carlos Dauden
   * Sergio Teruel
+  * Pilar Vargas

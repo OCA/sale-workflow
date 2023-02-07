@@ -6,7 +6,7 @@
         <field name="model">sale.missing.tracking.exception</field>
         <field
             name="inherit_id"
-            ref="sale_missing_cart_tracking.view_sale_missing_tracking_exception_form"
+            ref="sale_missing_tracking.view_sale_missing_tracking_exception_form"
         />
         <field name="arch" type="xml">
             <button name="action_approve" position="before">
@@ -90,7 +90,7 @@
         <field name="model">sale.missing.tracking.exception</field>
         <field
             name="inherit_id"
-            ref="sale_missing_cart_tracking.view_sale_missing_tracking_exception_search"
+            ref="sale_missing_tracking.view_sale_missing_tracking_exception_search"
         />
         <field name="arch" type="xml">
             <filter name="request" position="before">
