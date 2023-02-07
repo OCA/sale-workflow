@@ -1,5 +1,6 @@
-This module extends the functionality of Pricelist Module to let
-the possibility to have "technical pricelists" that are available
-only to compute another pricelists.
-Those technical pricelists are hidden in the rest of the odoo Interface
-avoiding bad selection by user on sale order form, customer form, etc...
+This module extends the functionality of the Pricelist module to make it
+possible to create "technical pricelists" that can only be used
+to compute another pricelists.
+
+These technical pricelists are hidden in the rest of the Odoo interface,
+preventing users from using them on sale order forms, customer forms, etc..

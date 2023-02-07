@@ -10,8 +10,8 @@ class ProductPricelist(models.Model):
 
     is_technical = fields.Boolean(
         string="Is Technical",
-        help="Check this box if you want to prevent user to use"
-        " this pricelist on the orders, or in the customer form."
-        " This is usefull for pricelist created only to compute"
+        help="Check this box if you want to prevent users from using"
+        " this pricelist on orders or in customer forms."
+        " This is useful for pricelists that are created only to compute"
         " other pricelists.",
     )

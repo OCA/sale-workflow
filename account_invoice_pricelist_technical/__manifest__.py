@@ -3,8 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "Technical Pricelists For account Invoice",
-    "summary": "Prevent to select some pricelists on invoices form",
+    "name": "Technical Pricelists For Account Invoice",
+    "summary": "Prevent technical pricelists from being selected on invoice forms",
     "version": "12.0.1.0.1",
     "category": "Product",
     "author": "GRAP,Odoo Community Association (OCA)",
