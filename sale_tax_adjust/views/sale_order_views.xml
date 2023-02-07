@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='price_tax']"
+                position="attributes"
+            >
+                <attribute name="force_save">1</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='price_tax']"
+                position="after"
+            >
+                <field name="tax_adjust" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='tax_totals_json']" position="after">
+                <div
+                    class="text-right"
+                    attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('amount_tax', '=', 0.0)]}"
+                >
+                    <field name="amount_tax" invisible="1" />
+                    <button
+                        aria-label="Opened"
+                        type="object"
+                        name="action_refresh_taxes"
+                        class="btn-link"
+                        string="Refresh Tax"
+                    >
+                        <i title="Refresh Tax" class="fa fa-fw fa-refresh" />
+                    </button>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
