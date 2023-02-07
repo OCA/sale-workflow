@@ -1,1 +1,1 @@
-This module extends the functionality of the Technical pricelist Module (same repository) to prevent user to select undesired pricelist on account invoice form.
+This module extends the functionality of the Technical Pricelist module (same repository) to prevent users from selecting technical pricelists on account invoice forms.
