@@ -8,7 +8,6 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']/tree">
-                <field name="order_partner_id" invisible="1" />
                 <widget name="sale_line_price_history_widget" width="20px" />
             </xpath>
         </field>
