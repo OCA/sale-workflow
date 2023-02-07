@@ -106,4 +106,4 @@ class TestSaleDeliveryBlock(common.TransactionCase):
         so_form.partner_id = partner_block
         so = so_form.save()
         self.assertEqual(so.delivery_block_id, block_reason)
-        self.assertEqual(so.copy_data()[0]["delivery_block_id"], block_reason.id)
+        self.assertEqual(so.copy().delivery_block_id, block_reason)
