@@ -4,7 +4,8 @@
 
 {
     "name": "Technical Pricelists for Sales",
-    "summary": "Prevent to select some pricelists on orders and customer form",
+    "summary": "Prevent some pricelists from being selected on order and"
+    " customer forms",
     "version": "12.0.1.0.1",
     "category": "Product",
     "author": "GRAP,Odoo Community Association (OCA)",
