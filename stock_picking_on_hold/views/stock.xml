@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='action_assign']" position="after">
+                <button
+                    name="action_assign_unpaid"
+                    states="hold"
+                    string="Check Availability (No Payment Check)"
+                    type="object"
+                    groups="base.group_user"
+                />
+            </xpath>
+
+            <xpath expr="//header/button[@name='action_cancel']" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': ['|', ('state', 'not in', ('assigned', 'confirmed',
+                    'partially_available', 'draft', 'waiting', 'hold')), ('is_locked', '=', False)]}
+                </attribute>
+            </xpath>
+
+            <xpath expr="//header/field[@name='state']" position="attributes">
+                <attribute name="statusbar_colors">
+                    {"shipping_except":"red","invoice_except":"red","waiting_date":"blue","hold":"red"}
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
