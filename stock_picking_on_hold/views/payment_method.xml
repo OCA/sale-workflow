@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="payment_method_view_form_picking_on_hold" model="ir.ui.view">
+        <field name="name">sale_payment_method.payment_method.view_form</field>
+        <field name="model">account.payment.method</field>
+        <field
+            name="inherit_id"
+            ref="account_payment_mode.account_payment_method_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_type']" position="after">
+                <field name="hold_picking_until_payment" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
