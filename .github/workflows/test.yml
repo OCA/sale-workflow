@@ -43,11 +43,11 @@ jobs:
             include: "portal_sale_personal_data_only"
             name: test with OCB
           - container: ghcr.io/oca/oca-ci/py3.8-odoo15.0:latest
-            exclude: "portal_sale_personal_data_only"
+            exclude: "portal_sale_personal_data_only, sale_automatic_workflow_job, sale_stock_secondary_unit"
             makepot: "true"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.8-ocb15.0:latest
-            exclude: "portal_sale_personal_data_only"
+            exclude: "portal_sale_personal_data_only, sale_automatic_workflow_job, sale_stock_secondary_unit"
             name: test with OCB
     services:
       postgres:

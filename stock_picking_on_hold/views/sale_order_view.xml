@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_view_form_inherit_payment_method" model="ir.ui.view">
+        <field name="name">sale.order.payment_method.view_form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group[@name='sale_info']//field[@name='invoice_status']"
+                position="after"
+            >
+                <field name="payment_method_id" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_order_tree_stock_picking_on_hold" model="ir.ui.view">
+      <field name="name">sale.order.tree.stock_picking_on_hold</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_tree" />
+      <field name="arch" type="xml">
+        <field name="state" position="after">
+          <field name='payment_method_id' />
+        </field>
+      </field>
+    </record>
+</odoo>
