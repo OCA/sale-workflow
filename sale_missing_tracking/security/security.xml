@@ -1,0 +1,71 @@
+<odoo>
+    <record id="group_sale_missing_tracking_manager" model="res.groups">
+        <field name="name">Sale missing cart tracking manager</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+    <record id="sale_missing_tracking_multi_company" model="ir.rule">
+        <field name="name">Sale missing cart tracking multi-company</field>
+        <field
+            name="model_id"
+            ref="sale_missing_tracking.model_sale_missing_tracking"
+        />
+        <field
+            name="domain_force"
+        >['|',('company_id','=',False),('company_id','in',company_ids)]</field>
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+    <record id="sale_missing_tracking_exception_multi_company" model="ir.rule">
+        <field name="name">Sale missing cart tracking exception multi-company</field>
+        <field
+            name="model_id"
+            ref="sale_missing_tracking.model_sale_missing_tracking_exception"
+        />
+        <field
+            name="domain_force"
+        >['|',('company_id','=',False),('company_id','in',company_ids)]</field>
+        <field name="perm_read" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+    <record id="sale_missing_tracking_user_rule" model="ir.rule">
+        <field name="name">Sale missing cart tracking user</field>
+        <field ref="model_sale_missing_tracking" name="model_id" />
+        <field
+            name="domain_force"
+        >['|',('user_id', '=', user.id), ('user_id','=',False)]</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
+    </record>
+    <record id="sale_missing_tracking_exception_user_rule" model="ir.rule">
+        <field name="name">Sale missing cart tracking exception user</field>
+        <field ref="model_sale_missing_tracking_exception" name="model_id" />
+        <field
+            name="domain_force"
+        >['|',('user_id', '=', user.id), ('user_id','=',False)]</field>
+        <field
+            name="groups"
+            eval="[(4, ref('sales_team.group_sale_salesman_all_leads'))]"
+        />
+    </record>
+    <record id="sale_missing_tracking_manager_rule" model="ir.rule">
+        <field name="name">All sale missing cart tracking</field>
+        <field ref="model_sale_missing_tracking" name="model_id" />
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field
+            name="groups"
+            eval="[(4, ref('sales_team.group_sale_salesman_all_leads'))]"
+        />
+    </record>
+    <record id="sale_missing_tracking_exception_manager_rule" model="ir.rule">
+        <field name="name">All sale missing cart tracking exception</field>
+        <field ref="model_sale_missing_tracking_exception" name="model_id" />
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field
+            name="groups"
+            eval="[(4, ref('sales_team.group_sale_salesman_all_leads'))]"
+        />
+    </record>
+</odoo>

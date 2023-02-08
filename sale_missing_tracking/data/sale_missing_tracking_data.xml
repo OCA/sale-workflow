@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="0">
+    <record id="missing_tracking_notification_cron" model="ir.cron">
+        <field name="name">Sale Missing Cart Tracking Notification</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False" />
+        <field name="model_id" ref="model_sale_missing_tracking" />
+        <field name="code">model.missing_tracking_notification()</field>
+        <field name="active" eval="True" />
+    </record>
+    <record id="missing_tracking_create_exception" model="ir.actions.server">
+        <field name="name">Create exception</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_sale_missing_tracking" />
+        <field name="binding_model_id" ref="model_sale_missing_tracking" />
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">records.action_create_exception()</field>
+    </record>
+    <record id="pending_missing_tracking_reason_action" model="ir.actions.server">
+        <field name="name">Update pending missing tracking reason</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_sale_order" />
+        <field name="state">code</field>
+        <field name="code">
+action = model.action_pending_missing_tracking_reason()
+action.pop("flags", None)
+action["context"]["action_from_menu"] = True
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form_sale" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//div[@id='sale_config_online_confirmation_sign']/.."
+                position="after"
+            >
+                <h2>Missing products tracking</h2>
+                <div class="row mt16 o_settings_container" id="sale_missing_tracking">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="sale_missing_max_delay_times" />
+                            <div class="text-muted">
+                            </div>
+                            <field name="sale_missing_max_delay_times" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="sale_missing_days_notification" />
+                            <div class="text-muted">
+                            </div>
+                            <field name="sale_missing_days_notification" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="sale_missing_days_from" />
+                            <div class="text-muted">
+                            </div>
+                            <field name="sale_missing_days_from" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="sale_missing_days_to" />
+                            <div class="text-muted">
+                            </div>
+                            <field name="sale_missing_days_to" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="sale_missing_months_consumption" />
+                            <div class="text-muted">
+                            </div>
+                            <field name="sale_missing_months_consumption" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="sale_missing_minimal_consumption" />
+                            <div class="text-muted">
+                            </div>
+                            <field name="sale_missing_minimal_consumption" />
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

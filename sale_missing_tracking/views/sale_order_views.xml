@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    type="object"
+                    name="action_open_missing_tracking"
+                    class="oe_stat_button"
+                    icon="fa-warning"
+                    attrs="{'invisible': [('missing_tracking_count', '=', 0)]}"
+                    groups="base.group_user"
+                >
+                    <field
+                        name="missing_tracking_count"
+                        widget="statinfo"
+                        string="Missing tracking"
+                    />
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

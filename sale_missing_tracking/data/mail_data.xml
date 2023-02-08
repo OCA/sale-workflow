@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="mt_sale_missing_tracking_notification" model="mail.message.subtype">
+        <field name="name">Sale missing cart tracking</field>
+        <field name="sequence">99</field>
+        <field name="res_model">crm.team</field>
+    </record>
+</odoo>

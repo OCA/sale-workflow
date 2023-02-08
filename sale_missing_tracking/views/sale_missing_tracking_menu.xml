@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+        id="sale_missing_tracking_menu_root"
+        parent="sale.sale_menu_root"
+        name="Missing tracking"
+        sequence="4"
+    />
+</odoo>

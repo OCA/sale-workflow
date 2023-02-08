@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sale_missing_tracking_exception_tree" model="ir.ui.view">
+        <field name="name">sale.missing.tracking.exception.tree</field>
+        <field name="model">sale.missing.tracking.exception</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="request_date" />
+                <field name="date" />
+                <field name="user_id" />
+                <field name="partner_id" />
+                <field name="product_id" />
+                <field name="consumption" />
+                <field name="company_id" groups="base.group_multi_company" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_sale_missing_tracking_exception_search" model="ir.ui.view">
+        <field name="name">sale.missing.tracking.exception.search</field>
+        <field name="model">sale.missing.tracking.exception</field>
+        <field name="arch" type="xml">
+            <search string="Search Sale missing cart tracking exception">
+                <field name="user_id" string="User" />
+                <field name="partner_id" />
+                <field name="product_id" />
+                <separator />
+                <filter
+                    string="Archived"
+                    name="inactive"
+                    domain="[('active', '=', False)]"
+                />
+                <separator />
+                <filter
+                    string="Requested"
+                    name="request"
+                    domain="[('state', '=', 'request')]"
+                />
+                <filter
+                    string="Approved"
+                    name="approved"
+                    domain="[('state', '=', 'approved')]"
+                />
+                <filter
+                    string="Refused"
+                    name="refused"
+                    domain="[('state', '=', 'refused')]"
+                />
+                <filter
+                    string="Recovered"
+                    name="recovered"
+                    domain="[('state', '=', 'recovered')]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Partner"
+                        name="partner"
+                        context="{'group_by': 'partner_id'}"
+                    />
+                    <filter
+                        string="Product"
+                        name="product"
+                        context="{'group_by': 'product_id'}"
+                    />
+                    <filter
+                        string="State"
+                        name="state"
+                        context="{'group_by': 'state'}"
+                    />
+                    <filter string="Date" name="date" context="{'group_by': 'date'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="view_sale_missing_tracking_exception_form" model="ir.ui.view">
+        <field name="name">sale.missing.tracking.exception.form</field>
+        <field name="model">sale.missing.tracking.exception</field>
+        <field name="arch" type="xml">
+            <form string="Sale missing cart tracking exception">
+                <header>
+                    <button
+                        name="action_approve"
+                        string="Approve"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('state', '!=', 'request')]}"
+                    />
+                    <button
+                        name="action_refuse"
+                        string="Refuse"
+                        type="object"
+                        attrs="{'invisible': [('state', '!=', 'request')]}"
+                    />
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <field name="active" invisible="1" />
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <group>
+                        <field name="request_date" />
+                        <field name="date" />
+                        <field name="partner_id" />
+                        <field name="product_id" />
+                        <field name="consumption" />
+                        <field name="user_id" />
+                        <field
+                            name='company_id'
+                            options="{'no_create': True}"
+                            groups="base.group_multi_company"
+                        />
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="action_sale_missing_tracking_exception" model="ir.actions.act_window">
+        <field name="name">Sale missing cart tracking exception</field>
+        <field name="res_model">sale.missing.tracking.exception</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field
+            name="search_view_id"
+            ref="view_sale_missing_tracking_exception_search"
+        />
+    </record>
+    <menuitem
+        id="sale_missing_tracking_exception_menu"
+        parent="sale_missing_tracking_menu_root"
+        action="action_sale_missing_tracking_exception"
+        name="Missing sales tracking exception"
+        sequence="20"
+    />
+</odoo>

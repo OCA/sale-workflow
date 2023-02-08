@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_missing_tracking_wiz" model="ir.ui.view">
+        <field name="name">Sale missing cart tracking wizard</field>
+        <field name="model">sale.missing.tracking.wiz</field>
+        <field name="arch" type="xml">
+            <form string="Sale missing cart tracking wizard">
+                <sheet>
+                    <field name="has_pending_lines" invisible="1" />
+                    <h2>Sale missing tracking advice</h2>
+                    <group>
+                        <field name="reason_id" options="{'no_create': True}" />
+                        <field name="reason_note" />
+                        <button
+                            name="action_mass_update"
+                            type="object"
+                            string="Update reason"
+                        />
+                    </group>
+                    <group>
+                        <field
+                            name="missing_tracking_ids"
+                            nolabel="1"
+                            create="false"
+                            context="{'reason_id': reason_id}"
+                        />
+                    </group>
+                    <footer invisible="context.get('action_from_menu', False)">
+                        <button
+                            name="missing_tracking_action_confirm"
+                            string="Confirm"
+                            type="object"
+                            class="btn-primary"
+                            attrs="{'invisible': [('has_pending_lines', '=', True)]}"
+                        />
+                        <button
+                            name="missing_tracking_action_confirm"
+                            string="Delay advice and confirm sale order"
+                            type="object"
+                            attrs="{'invisible': [('has_pending_lines', '=', False)]}"
+                            confirm="Do you want to postpone this advice of
+                                     sale missing tracking?"
+                        />
+                        <button
+                            string="Cancel"
+                            class="oe_link"
+                            type="object"
+                            special="cancel"
+                        />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_sale_missing_tracking_wiz" model="ir.actions.act_window">
+        <field name="name">Sale missing cart tracking</field>
+        <field name="res_model">sale.missing.tracking.wiz</field>
+        <field name="view_mode">form</field>
+    </record>
+    <menuitem
+        id="pending_missing_tracking_reason_menu"
+        parent="sale_missing_tracking_menu_root"
+        action="pending_missing_tracking_reason_action"
+        name="Pending missing cart tracking reason"
+        sequence="40"
+    />
+</odoo>

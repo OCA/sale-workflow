@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sale_missing_tracking_reason_tree" model="ir.ui.view">
+        <field name="name">sale.missing.tracking.reason.tree</field>
+        <field name="model">sale.missing.tracking.reason</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="name" />
+                <field name="note" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_sale_missing_tracking_reason_search" model="ir.ui.view">
+        <field name="name">sale.missing.tracking.reason.search</field>
+        <field name="model">sale.missing.tracking.reason</field>
+        <field name="arch" type="xml">
+            <search string="Search Sale missing cart tracking reason">
+                <field name="name" string="Name" />
+            </search>
+        </field>
+    </record>
+    <record id="action_sale_missing_tracking_reason" model="ir.actions.act_window">
+        <field name="name">Sale missing cart tracking reason</field>
+        <field name="res_model">sale.missing.tracking.reason</field>
+        <field name="view_mode">tree</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+        <field name="search_view_id" ref="view_sale_missing_tracking_reason_search" />
+    </record>
+    <menuitem
+        id="sale_missing_tracking_reason_menu"
+        parent="sale_missing_tracking_menu_root"
+        action="action_sale_missing_tracking_reason"
+        name="Missing sales tracking reason"
+        sequence="30"
+        groups="sale_missing_tracking.group_sale_missing_tracking_manager"
+    />
+</odoo>

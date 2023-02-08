@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+-->
+<odoo noupdate="0">
+    <!--Email template -->
+    <record id="missing_tracking_notification_template" model="mail.template">
+        <field name="name">Sale missing cart tracking - Send by Email</field>
+        <field
+            name="email_from"
+        >{{(object.write_uid.email and '&quot;%s&quot; &lt;%s&gt;' % (object.write_uid.name, object.write_uid.email) or '')|safe}}</field>
+        <field name="subject">Sale missing cart tracking</field>
+        <field
+            name="partner_to"
+        >{{object.partner_id and object.partner_id.id or ''}}</field>
+        <field
+            name="model_id"
+            ref="sale_missing_tracking.model_sale_missing_tracking"
+        />
+        <field name="auto_delete" eval="True" />
+        <field
+            name="body_html"
+        ><![CDATA[
+<p>You have sale missing cart tracking</p>
+<p>Thank you,</p>
+
+]]></field>
+    </record>
+</odoo>
