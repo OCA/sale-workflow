@@ -32,6 +32,8 @@ This configuration is available in Sales / Configuration / Settings, and the opt
 * All partners (default)
 * Only parent accounts (no contacts)
 * Parent accounts and contact persons
+* Only contacts (no parents account)
+* Only delivery addresses can be selected for SO customer
 
 **Table of contents**
 
@@ -70,6 +72,9 @@ Contributors
 ~~~~~~~~~~~~
 
 * Oriol Villamayor <oriol.villamayor@forgeflow.com>
+* Ooops404 <https://ooops404.com>
+* Cetmix <https://cetmix.com>
+* Dessan Hemrayev <dessanhemrayev@gmail.com>
 
 Maintainers
 ~~~~~~~~~~~
