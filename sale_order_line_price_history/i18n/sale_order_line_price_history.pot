@@ -38,7 +38,6 @@ msgid ""
 msgstr ""
 
 #. module: sale_order_line_price_history
-#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line__order_partner_id
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__partner_id
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__partner_id
 msgid "Customer"
@@ -153,11 +152,6 @@ msgstr ""
 #. module: sale_order_line_price_history
 #: model:ir.model,name:sale_order_line_price_history.model_sale_order_line_price_history_line
 msgid "Sale order line price history line"
-msgstr ""
-
-#. module: sale_order_line_price_history
-#: model:ir.model,name:sale_order_line_price_history.model_sale_order_line
-msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_order_line_price_history
