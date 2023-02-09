@@ -80,7 +80,7 @@ addon | version | maintainers | summary
 [sale_order_line_description](sale_order_line_description/) | 13.0.1.0.0 |  | Sale order line description
 [sale_order_line_input](sale_order_line_input/) | 13.0.1.1.2 |  | Search, create or modify directly sale order lines
 [sale_order_line_packaging_qty](sale_order_line_packaging_qty/) | 13.0.1.3.1 |  | Define quantities according to product packaging on sale order lines
-[sale_order_line_price_history](sale_order_line_price_history/) | 13.0.2.0.0 |  | Sale order line price history
+[sale_order_line_price_history](sale_order_line_price_history/) | 13.0.2.1.0 |  | Sale order line price history
 [sale_order_line_sequence](sale_order_line_sequence/) | 13.0.1.0.2 |  | Propagates SO line sequence to invoices and stock picking.
 [sale_order_lot_selection](sale_order_lot_selection/) | 13.0.2.1.0 | [![bodedra](https://github.com/bodedra.png?size=30px)](https://github.com/bodedra) | Sale Order Lot Selection
 [sale_order_partner_no_autofollow](sale_order_partner_no_autofollow/) | 13.0.1.0.0 | [![dessanhemrayev](https://github.com/dessanhemrayev.png?size=30px)](https://github.com/dessanhemrayev) [![CetmixGitDrone](https://github.com/CetmixGitDrone.png?size=30px)](https://github.com/CetmixGitDrone) | Do not add customer as follower in Sales Orders
