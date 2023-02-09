@@ -5,3 +5,5 @@ This configuration is available in Sales / Configuration / Settings, and the opt
 * All partners (default)
 * Only parent accounts (no contacts)
 * Parent accounts and contact persons
+* Only contacts (no parents account)
+* Only delivery addresses can be selected for SO customer
