@@ -92,10 +92,7 @@ msgid "Customer sale warning"
 msgstr ""
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_exception_rule__display_name
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__display_name
-#: model:ir.model.fields,field_description:sale_exception.field_sale_order__display_name
-#: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__display_name
 msgid "Display Name"
 msgstr "Naziv za prikaz"
 
@@ -124,10 +121,7 @@ msgid "Exceptions to resolve"
 msgstr "Pravila izuzetaka"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_exception_rule__id
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__id
-#: model:ir.model.fields,field_description:sale_exception.field_sale_order__id
-#: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__id
 msgid "ID"
 msgstr "ID"
 
@@ -141,10 +135,7 @@ msgid "Ignore Exceptions"
 msgstr "Izuzeci u prodaji"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_exception_rule____last_update
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm____last_update
-#: model:ir.model.fields,field_description:sale_exception.field_sale_order____last_update
-#: model:ir.model.fields,field_description:sale_exception.field_sale_order_line____last_update
 msgid "Last Modified on"
 msgstr "Zadnja promjena"
 
@@ -207,11 +198,6 @@ msgid "Sale Exception Rules"
 msgstr "Pravila izuzetaka u prodaji"
 
 #. module: sale_exception
-#: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
-msgid "Sale Exceptions"
-msgstr "Izuzeci u prodaji"
-
-#. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_exception_confirm
 msgid "Sale exception confirm wizard"
 msgstr ""
@@ -245,7 +231,6 @@ msgstr ""
 #. module: sale_exception
 #: model:ir.actions.server,name:sale_exception.ir_cron_test_orders_ir_actions_server
 #: model:ir.cron,cron_name:sale_exception.ir_cron_test_orders
-#: model:ir.cron,name:sale_exception.ir_cron_test_orders
 msgid "Test Draft Orders"
 msgstr ""
 
@@ -263,6 +248,9 @@ msgstr ""
 #: model:exception.rule,description:sale_exception.excep_no_free
 msgid "The total can't be 0"
 msgstr ""
+
+#~ msgid "Sale Exceptions"
+#~ msgstr "Izuzeci u prodaji"
 
 #~ msgid "sale.exception.confirm"
 #~ msgstr "sale.exception.confirm"
