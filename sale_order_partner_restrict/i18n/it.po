@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-30 13:47+0000\n"
+"PO-Revision-Date: 2023-02-10 11:23+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -60,12 +60,12 @@ msgstr "Ultima modifica il"
 #. module: sale_order_partner_restrict
 #: model:ir.model.fields.selection,name:sale_order_partner_restrict.selection__res_company__sale_order_partner_restrict__only_contacts
 msgid "Only contacts (no parent accounts)"
-msgstr ""
+msgstr "Solo contatti (non partner genitori)"
 
 #. module: sale_order_partner_restrict
 #: model:ir.model.fields.selection,name:sale_order_partner_restrict.selection__res_company__sale_order_partner_restrict__only_delivery_addresses
 msgid "Only delivery addresses can be selected for SO customer"
-msgstr ""
+msgstr "Solo indirizzi di consegna"
 
 #. module: sale_order_partner_restrict
 #: model:ir.model.fields.selection,name:sale_order_partner_restrict.selection__res_company__sale_order_partner_restrict__only_parents
