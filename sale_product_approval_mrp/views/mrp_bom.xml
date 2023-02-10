@@ -1,0 +1,70 @@
+<odoo>
+    <record id="mrp_bom_form_approval_inherit" model="ir.ui.view">
+        <field name="name">mrp.bom.form.inherit.approval</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view" />
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath
+                expr="//form/sheet/group/group/field[@name='product_tmpl_id']"
+                position="replace"
+            >
+                <label for="product_tmpl_id" />
+                <div>
+                    <field
+                        name="product_tmpl_id"
+                        context="{'default_type': 'product'}"
+                        class="oe_inline"
+                    />
+                    <button
+                        style="margin-left: 25px;"
+                        attrs="{'invisible':['|',('bom_exceptions','=',False),('product_tmpl_id','=',False)]}"
+                        class="fa fa-exclamation-triangle"
+                        title="A product on this BoM has been marked as not allowed."
+                    />
+
+                </div>
+                <field invisible="1" name="bom_exceptions" />
+                <field invisible="1" name="bom_line_exceptions" />
+            </xpath>
+            <xpath
+                expr="//form/sheet/group/group/field[@name='product_id']"
+                position="replace"
+            >
+                <label for="product_id" groups="product.group_product_variant" />
+                <div>
+                    <button
+                        attrs="{'invisible':['|',('bom_exceptions','=',False),('product_id','=',False)]}"
+                        class="fa fa-exclamation-triangle"
+                        title="A product on this BoM has been marked as not allowed."
+                    />
+                    <field
+                        name="product_id"
+                        groups="product.group_product_variant"
+                        context="{'default_type': 'product'}"
+                        class="oe_inline"
+                    />
+                </div>
+
+            </xpath>
+            <xpath
+                expr="//notebook/page/field/tree/field[@name='product_id']"
+                position="after"
+            >
+                <button
+                    attrs="{'invisible':[('approved_bom_ok','=',True)]}"
+                    class="fa fa-exclamation-triangle"
+                    title="A product on this Manufacturing Order has been marked as not allowed."
+                />
+                <field invisible="1" name="approved_bom_ok" />
+            </xpath>
+            <xpath expr="//form/sheet/group" position="before">
+                <div
+                    attrs="{'invisible':[('bom_line_exceptions','=',False)]}"
+                    class="alert alert-warning text-center"
+                    role="alert"
+                >Exception: A product on this BoM is in a state which need to be fixed before moving forward.</div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
