@@ -177,6 +177,8 @@ class PricelistCache(models.Model):
             )
             product_prices = pricelist._get_product_prices(product_ids_to_update)
             self._update_pricelist_cache(pricelist.id, product_prices)
+            # Once this is done, set pricelist cache as computed on pricelist
+            pricelist.is_pricelist_cache_computed = True
 
     def _update_pricelist_items_cache(self, pricelist_items):
         """Updates cache for a given recordset of pricelist items, then update
@@ -191,13 +193,13 @@ class PricelistCache(models.Model):
 
     def create_full_cache(self):
         """Creates cache for all prices applied to all pricelists."""
-        pricelist_ids = self.env["product.pricelist"].search([]).ids
+        pricelists = self.env["product.pricelist"].search([])
+        pricelist_ids = pricelists.ids
         # Spawn a job every 3 pricelists (reduce the number of jobs created)
         for chunk_ids in tools.misc.split_every(3, pricelist_ids):
             self.with_delay().update_product_pricelist_cache(pricelist_ids=chunk_ids)
 
-    def cron_reset_pricelist_cache(self):
-        """Recreates the whole price list cache."""
+    def flush_pricelist_cache(self):
         # flush table
         flush_query = "TRUNCATE TABLE product_pricelist_cache CASCADE;"
         self.env.cr.execute(flush_query)
@@ -206,6 +208,11 @@ class PricelistCache(models.Model):
             ALTER SEQUENCE product_pricelist_cache_id_seq RESTART WITH 1;
         """
         self.env.cr.execute(sequence_query)
+        self.env["product.pricelist"].search([]).is_pricelist_cache_computed = False
+
+    def cron_reset_pricelist_cache(self):
+        """Recreates the whole price list cache."""
+        self.flush_pricelist_cache()
         # Re-create everything
         self.create_full_cache()
 

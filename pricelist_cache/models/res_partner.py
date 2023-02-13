@@ -1,11 +1,15 @@
 # Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import fields, models
+from odoo import _, exceptions, fields, models
 
 
 class Partner(models.Model):
     _inherit = "res.partner"
+
+    is_pricelist_cache_available = fields.Boolean(
+        related="property_product_pricelist.is_pricelist_cache_available"
+    )
 
     def _default_pricelist_cache_product_filter_id(self):
         # When the module is installed, Odoo creates the new field and at the
@@ -26,6 +30,8 @@ class Partner(models.Model):
     )
 
     def _pricelist_cache_get_prices(self):
+        if not self.is_pricelist_cache_available:
+            raise exceptions.UserError(_("Pricelist caching in progress. Retry later"))
         pricelist = self._pricelist_cache_get_pricelist()
         products = self._pricelist_cache_get_products()
         cache_model = self.env["product.pricelist.cache"]
