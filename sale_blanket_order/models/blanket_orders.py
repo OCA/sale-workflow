@@ -327,7 +327,7 @@ class BlanketOrder(models.Model):
 
     def action_view_sale_orders(self):
         sale_orders = self._get_sale_orders()
-        action = self.env.ref("sale.action_orders").read()[0]
+        action = self.env.ref("sale.action_orders").sudo().read()[0]
         if len(sale_orders) > 0:
             action["domain"] = [("id", "in", sale_orders.ids)]
             action["context"] = [("id", "in", sale_orders.ids)]
@@ -336,9 +336,13 @@ class BlanketOrder(models.Model):
         return action
 
     def action_view_sale_blanket_order_line(self):
-        action = self.env.ref(
-            "sale_blanket_order" ".act_open_sale_blanket_order_lines_view_tree"
-        ).read()[0]
+        action = (
+            self.env.ref(
+                "sale_blanket_order" ".act_open_sale_blanket_order_lines_view_tree"
+            )
+            .sudo()
+            .read()[0]
+        )
         lines = self.mapped("line_ids")
         if len(lines) > 0:
             action["domain"] = [("id", "in", lines.ids)]
