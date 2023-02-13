@@ -3,11 +3,49 @@
 
 from datetime import date
 
-from odoo import api, models
+from odoo import api, fields, models
 
 
 class Pricelist(models.Model):
     _inherit = "product.pricelist"
+
+    parent_pricelist_ids = fields.Many2many(
+        "product.pricelist",
+        relation="product_pricelist_cache__parent_pricelist_ids_rel",
+        column1="pricelist_id",
+        column2="parent_pricelist_id",
+        compute="_compute_parent_pricelist_ids",
+        store=True,
+    )
+    is_pricelist_cache_computed = fields.Boolean()
+    is_pricelist_cache_available = fields.Boolean(
+        compute="_compute_is_pricelist_cache_available", store=True
+    )
+
+    @api.depends(
+        "item_ids", "item_ids.applied_on", "item_ids.base", "item_ids.base_pricelist_id"
+    )
+    def _compute_parent_pricelist_ids(self):
+        for record in self:
+            record.parent_pricelist_ids = record._get_parent_pricelists()
+
+    @api.depends(
+        "is_pricelist_cache_computed",
+        "item_ids",
+        "item_ids.applied_on",
+        "item_ids.base",
+        "item_ids.base_pricelist_id",
+        "item_ids.base_pricelist_id.is_pricelist_cache_available",
+    )
+    def _compute_is_pricelist_cache_available(self):
+        # TODO This might be slow, if pricelist tree is deep.
+        for record in self:
+            record.is_pricelist_cache_available = (
+                record.is_pricelist_cache_computed
+                and all(
+                    record.parent_pricelist_ids.mapped("is_pricelist_cache_available")
+                )
+            )
 
     @api.model_create_multi
     def create(self, vals_list):

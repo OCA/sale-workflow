@@ -71,6 +71,18 @@ msgid "ID"
 msgstr ""
 
 #. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist__is_pricelist_cache_available
+#: model:ir.model.fields,field_description:pricelist_cache.field_res_partner__is_pricelist_cache_available
+#: model:ir.model.fields,field_description:pricelist_cache.field_res_users__is_pricelist_cache_available
+msgid "Is Pricelist Cache Available"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist__is_pricelist_cache_computed
+msgid "Is Pricelist Cache Computed"
+msgstr ""
+
+#. module: pricelist_cache
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist____last_update
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache____last_update
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard____last_update
@@ -95,6 +107,11 @@ msgstr ""
 #. module: pricelist_cache
 #: model_terms:ir.ui.view,arch_db:pricelist_cache.product_pricelist_cache_wizard_view_form
 msgid "Open"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist__parent_pricelist_ids
+msgid "Parent Pricelist"
 msgstr ""
 
 #. module: pricelist_cache
@@ -177,6 +194,12 @@ msgstr ""
 #. module: pricelist_cache
 #: model:ir.filters,name:pricelist_cache.product_filter_default
 msgid "Pricelist cache default product filter for partner"
+msgstr ""
+
+#. module: pricelist_cache
+#: code:addons/pricelist_cache/models/res_partner.py:0
+#, python-format
+msgid "Pricelist caching in progress. Retry later"
 msgstr ""
 
 #. module: pricelist_cache
