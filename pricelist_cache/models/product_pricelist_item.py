@@ -1,9 +1,12 @@
 # Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
+import logging
 from collections import defaultdict
 
 from odoo import fields, models
+
+_logger = logging.getLogger("POTATO")
 
 
 class PricelistItem(models.Model):
@@ -27,12 +30,25 @@ class PricelistItem(models.Model):
             pricelist_products[item.pricelist_id.id].append(item.product_id.id)
         return pricelist_products
 
-    def update_product_pricelist_cache(self):
+    def already_cached(self):
+        return bool(
+            self.env["product.pricelist.cache"].search(
+                [
+                    ("pricelist_id", "=", self.pricelist_id.id),
+                    ("product_id", "=", self.product_id.id),
+                ]
+            )
+        )
+
+    def create_product_pricelist_cache(self):
         """Executed when a product item is modified. Filters items not based
         on variants or based on dates, then updates the cache.
         """
-        # Filter items applied on variants
+        # Filter items not applied on variants
         items = self.filtered(lambda i: i.applied_on == "0_product_variant")
+        # FIXME, when a pricelist item referencing a product is created,
+        # this method is triggered multiple times, hence creating multiple cache records
+        items = items.filtered(lambda i: not i.already_cached())
         # Filter items based on dates
         item_ids_to_update = []
         for item in items:
@@ -48,6 +64,6 @@ class PricelistItem(models.Model):
         # Update cache
         cache_object = self.env["product.pricelist.cache"]
         for pricelist_id, product_ids in pricelist_products.items():
-            cache_object.with_delay().update_product_pricelist_cache(
+            cache_object.with_delay().create_product_pricelist_cache(
                 product_ids=product_ids, pricelist_ids=[pricelist_id]
             )

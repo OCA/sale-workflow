@@ -24,6 +24,9 @@ class Partner(models.Model):
         domain=[("model_id", "=", "product.product")],
         default=lambda o: o._default_pricelist_cache_product_filter_id(),
     )
+    is_pricelist_cache_available = fields.Boolean(
+        related="property_product_pricelist.is_pricelist_cache_available"
+    )
 
     def _pricelist_cache_get_prices(self):
         pricelist = self._pricelist_cache_get_pricelist()

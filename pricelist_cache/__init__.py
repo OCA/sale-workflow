@@ -1,3 +1,4 @@
 from . import models
 from . import wizards
-from .hooks import set_default_partner_product_filter
+from .hooks import pre_init_hook
+from .hooks import post_init_hook

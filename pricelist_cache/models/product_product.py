@@ -65,7 +65,7 @@ class ProductProduct(models.Model):
         global_pricelist_ids = pricelist_model._get_global_pricelist_ids()
         if global_pricelist_ids and res:
             cache_model = self.env["product.pricelist.cache"]
-            cache_model.with_delay().update_product_pricelist_cache(
+            cache_model.with_delay().create_product_pricelist_cache(
                 res.ids, global_pricelist_ids
             )
         return res
