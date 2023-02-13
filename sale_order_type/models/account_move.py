@@ -19,11 +19,17 @@ class AccountMove(models.Model):
     )
 
     @api.depends("partner_id", "company_id")
+    @api.depends_context(
+        "default_move_type", "default_journal_id", "active_model", "company"
+    )
     def _compute_sale_type_id(self):
         # If create invoice from sale order, sale type will not computed.
-        if not self.env.context.get("default_move_type", False) or self.env.context.get(
-            "active_model", False
-        ) in ["sale.order", "sale.advance.payment.inv"]:
+        if (
+            not self.env.context.get("default_move_type", False)
+            or self.env.context.get("default_journal_id", False)
+            or self.env.context.get("active_model", False)
+            in ["sale.order", "sale.advance.payment.inv"]
+        ):
             return
         self.sale_type_id = self.env["sale.order.type"]
         for record in self:
