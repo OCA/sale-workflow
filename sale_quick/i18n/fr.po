@@ -7,19 +7,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-11 09:21+0000\n"
-"PO-Revision-Date: 2022-01-11 09:21+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2023-02-13 17:23+0000\n"
+"Last-Translator: Kévin Roche <kevin.roche@akretion.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: sale_quick
 #: model_terms:ir.ui.view,arch_db:sale_quick.view_sale_form
 msgid "Add"
-msgstr "Ajouter"
+msgstr "Ajouter Produits"
 
 #. module: sale_quick
 #: model:ir.model.fields,field_description:sale_quick.field_product_product__display_name
