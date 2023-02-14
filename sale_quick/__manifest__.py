@@ -10,6 +10,6 @@
     "license": "AGPL-3",
     "category": "Sale",
     "depends": ["base_product_mass_addition", "sale"],
-    "data": ["views/sale_view.xml", "views/product_view.xml"],
+    "data": ["views/sale_view.xml", "views/product_view.xml", "security/groups.xml"],
     "installable": True,
 }

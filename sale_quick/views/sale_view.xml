@@ -11,6 +11,7 @@
                     string="Add"
                     type="object"
                     attrs="{'invisible': [('state', 'not in', ('draft', 'sent'))]}"
+                    groups="sale_quick.group_show_add_button"
                     class="oe_highlight"
                 />
             </field>
