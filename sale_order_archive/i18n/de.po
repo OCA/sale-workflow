@@ -28,6 +28,7 @@ msgid "Archived"
 msgstr "Archiviert"
 
 #. module: sale_order_archive
+#. odoo-python
 #: code:addons/sale_order_archive/models/sale_order.py:0
 #, python-format
 msgid "Only 'Locked' or 'Canceled' orders can be archived"
