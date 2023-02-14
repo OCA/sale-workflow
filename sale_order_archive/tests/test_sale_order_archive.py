@@ -13,8 +13,6 @@ class TestSaleOrderArchive(TransactionCase):
         cls.env = cls.env(context=dict(test_context, tracking_disable=True))
         cls.partner = cls.env.ref("base.res_partner_2")
         product = cls.env.ref("product.product_product_9")
-        cls.normal_delivery_carrier = cls.env.ref("delivery.normal_delivery_carrier")
-        cls.normal_delivery_carrier.fixed_price = 10
         sale_order_form = Form(cls.env["sale.order"])
         sale_order_form.partner_id = cls.partner
         with sale_order_form.order_line.new() as line_form:
