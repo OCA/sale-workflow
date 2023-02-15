@@ -62,7 +62,7 @@ class SaleOrder(models.Model):
             self.picking_policy = workflow.picking_policy
         if workflow.team_id:
             self.team_id = workflow.team_id.id
-        if workflow.warning:
+        if workflow.warning and workflow.validate_order:
             warning = {"title": _("Workflow Warning"), "message": workflow.warning}
             return {"warning": warning}
 
