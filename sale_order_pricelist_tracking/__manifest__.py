@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "Track sale order pricelist changes",
-    "version": "13.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Partner Management",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
