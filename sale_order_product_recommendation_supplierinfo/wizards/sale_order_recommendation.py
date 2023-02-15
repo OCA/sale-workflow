@@ -41,35 +41,40 @@ class SaleOrderRecommendation(models.TransientModel):
                     ln.product_id.id or ln.product_tmpl_id.product_variant_id.id,
                     ln.product_id.name or ln.product_tmpl_id.product_variant_id.name,
                 ),
-                "vendor_id": (ln.name.id, ln.name.name),
-                "comment": ln[self._get_supplierinfo_comment()],
+                "supplierinfo_id": (ln.id, ln.name),
+                "supplierinfo_comment": ln[self._get_supplierinfo_comment()],
             }
             for ln in supplierinfos
         ]
 
     def _prepare_recommendation_line_vals(self, group_line, so_line=False):
         vals = super()._prepare_recommendation_line_vals(group_line, so_line=so_line)
-        if group_line.get("vendor_id", False):
-            vals["vendor_id"] = group_line["vendor_id"][0]
-        if group_line.get("comment", False):
-            vals["vendor_comment"] = group_line["comment"]
+        if group_line.get("supplierinfo_id", False):
+            vals["supplierinfo_id"] = group_line["supplierinfo_id"][0]
+        if group_line.get("supplierinfo_comment", False):
+            vals["supplierinfo_comment"] = group_line["supplierinfo_comment"]
         return vals
 
 
 class SaleOrderRecommendationLine(models.TransientModel):
     _inherit = "sale.order.recommendation.line"
 
-    vendor_id = fields.Many2one(comodel_name="res.partner", readonly=True)
-    vendor_comment = fields.Char(readonly=True)
+    supplierinfo_id = fields.Many2one(
+        comodel_name="product.supplierinfo", readonly=True
+    )
+    supplierinfo_comment = fields.Char(readonly=True)
 
     def _prepare_update_so_line(self, line_form):
         res = super()._prepare_update_so_line(line_form)
-        if self.vendor_comment and self.vendor_comment not in line_form.name:
-            line_form.name += self.vendor_comment
+        if (
+            self.supplierinfo_comment
+            and self.supplierinfo_comment not in line_form.name
+        ):
+            line_form.name += self.supplierinfo_comment
         return res
 
     def _prepare_new_so_line(self, line_form, sequence):
         res = super()._prepare_new_so_line(line_form, sequence)
-        if self.vendor_comment:
-            line_form.name += self.vendor_comment
+        if self.supplierinfo_id:
+            line_form.supplierinfo_id = self.supplierinfo_id
         return res

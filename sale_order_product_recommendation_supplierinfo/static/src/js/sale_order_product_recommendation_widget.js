@@ -12,8 +12,8 @@ odoo.define(
             _setOrderLineContext: function () {
                 var ctx = this._super.apply(this, arguments);
                 ctx = Object.assign(ctx, {
-                    default_vendor_id: this.data.vendor_id.res_id,
-                    default_vendor_comment: this.data.vendor_comment,
+                    default_supplierinfo_id: this.data.supplierinfo_id.res_id,
+                    default_supplierinfo_comment: this.data.supplierinfo_comment,
                 });
                 return ctx;
             },

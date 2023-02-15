@@ -12,7 +12,11 @@
     "application": False,
     "installable": True,
     "depends": ["sale_order_product_recommendation", "purchase"],
-    "data": ["views/product_views.xml", "wizards/sale_order_recommendation_view.xml"],
+    "data": [
+        "views/product_views.xml",
+        "views/sale_order_views.xml",
+        "wizards/sale_order_recommendation_view.xml",
+    ],
     "development_status": "Beta",
     "assets": {
         "web.assets_backend": [

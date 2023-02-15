@@ -14,11 +14,11 @@
                 position="before"
             >
                 <field
-                    name="vendor_id"
+                    name="supplierinfo_id"
                     attrs="{'column_invisible': [('parent.origin_recommendation', '!=', 'supplierinfo')]}"
                 />
                 <field
-                    name="vendor_comment"
+                    name="supplierinfo_comment"
                     attrs="{'column_invisible': [('parent.origin_recommendation', '!=', 'supplierinfo')]}"
                 />
             </xpath>
