@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-20 22:37+0000\n"
-"PO-Revision-Date: 2023-02-15 16:29+0000\n"
+"PO-Revision-Date: 2023-02-15 19:23+0000\n"
 "Last-Translator: Bole <bole@dajmi5.com>\n"
 "Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
 "Language: hr\n"
@@ -34,7 +34,7 @@ msgstr "Analitički konto"
 #. module: sale_order_type
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
 msgid "Archived"
-msgstr ""
+msgstr "Arhivirano"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__journal_id
@@ -55,7 +55,7 @@ msgstr "Poduzeće"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__create_uid
@@ -102,12 +102,12 @@ msgstr "Incoterm"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_account_invoice_report
 msgid "Invoices Statistics"
-msgstr ""
+msgstr "Statistike računa"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Stavka dnevnika"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type____last_update
@@ -134,7 +134,7 @@ msgstr "Naziv"
 #: code:addons/sale_order_type/models/sale.py:0
 #, python-format
 msgid "New"
-msgstr ""
+msgstr "Novo"
 
 #. module: sale_order_type
 #: model:sale.order.type,name:sale_order_type.normal_sale_type
@@ -160,12 +160,12 @@ msgstr "Cjenik"
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__quotation_validity_days
 msgid "Quotation Validity (Days)"
-msgstr ""
+msgstr "Valjanost ponude (dana)"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__route_id
 msgid "Route"
-msgstr ""
+msgstr "Ruta"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_report__sale_type_id
@@ -186,12 +186,12 @@ msgstr "Vrsta prodaje"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_advance_payment_inv
 msgid "Sales Advance Payment Invoice"
-msgstr ""
+msgstr "Račun za avansnu uplatu"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_report
 msgid "Sales Analysis Report"
-msgstr ""
+msgstr "Izvještaj analize prodaje"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
