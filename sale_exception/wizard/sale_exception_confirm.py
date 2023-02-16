@@ -14,6 +14,7 @@ class SaleExceptionConfirm(models.TransientModel):
 
     def action_confirm(self):
         self.ensure_one()
-        if self.ignore:
+        exceptions_blocking = self.exception_ids.filtered("is_blocking")
+        if self.ignore and not exceptions_blocking:
             self.related_model_id.ignore_exception = True
         return super().action_confirm()

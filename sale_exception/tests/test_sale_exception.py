@@ -165,3 +165,42 @@ class TestSaleException(TransactionCase):
         sale_order2 = sale_order.copy()
         sale_order2.detect_exceptions()
         self.assertTrue(sale_order2.exception_ids.filtered(lambda x: x == exception))
+
+    def test_exception_no_free(self):
+        # No allow ignoring exceptions if the "is_blocking" field is checked
+        self.sale_exception_confirm = self.env["sale.exception.confirm"]
+        exception = self.env.ref("sale_exception.excep_no_free")
+        exception.active = True
+        exception.is_blocking = True
+        partner = self.env.ref("base.res_partner_1")
+        p = self.env.ref("product.product_product_6")
+        sale_order = self.env["sale.order"].create(
+            {
+                "partner_id": partner.id,
+                "partner_invoice_id": partner.id,
+                "partner_shipping_id": partner.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "name": p.name,
+                            "product_id": p.id,
+                            "product_uom_qty": 2,
+                            "product_uom": p.uom_id.id,
+                            "price_unit": 0,
+                        },
+                    )
+                ],
+            }
+        )
+        sale_order.action_confirm()
+        so_except_confirm = self.sale_exception_confirm.with_context(
+            **{
+                "active_id": sale_order.id,
+                "active_ids": [sale_order.id],
+                "exception_ids": [exception.id],
+                "active_model": sale_order._name,
+            }
+        ).create({"ignore": True})
+        so_except_confirm.action_confirm()
+        self.assertFalse(sale_order.ignore_exception)
+        self.assertTrue(sale_order.state == "draft")
