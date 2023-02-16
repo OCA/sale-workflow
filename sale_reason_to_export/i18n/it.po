@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-04-29 00:56+0000\n"
-"PO-Revision-Date: 2022-12-29 16:47+0000\n"
+"PO-Revision-Date: 2023-02-16 17:23+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -81,7 +81,7 @@ msgstr "Motivi di esportazione"
 #. module: sale_reason_to_export
 #: model:ir.model,name:sale_reason_to_export.model_sale_order
 msgid "Sales Order"
-msgstr "Ordini vendita"
+msgstr "Ordine di vendita"
 
 #. module: sale_reason_to_export
 #: view:sale.reason_to_export:sale_reason_to_export.view_sale_reason_to_export_filter
