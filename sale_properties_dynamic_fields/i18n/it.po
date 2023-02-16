@@ -10,15 +10,16 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-18 04:14+0000\n"
-"PO-Revision-Date: 2017-02-17 15:46+0000\n"
-"Last-Translator: Paolo Valier\n"
+"PO-Revision-Date: 2023-02-16 17:23+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: sale_properties_dynamic_fields
 #: field:mrp.property.group,draw_dynamically:0
@@ -61,7 +62,7 @@ msgstr "Gruppo proprietà %s già presente"
 #. module: sale_properties_dynamic_fields
 #: model:ir.model,name:sale_properties_dynamic_fields.model_sale_order
 msgid "Sales Order"
-msgstr "Ordini vendita"
+msgstr "Ordine di vendita"
 
 #. module: sale_properties_dynamic_fields
 #: model:ir.model,name:sale_properties_dynamic_fields.model_sale_order_line
