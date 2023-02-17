@@ -7,3 +7,4 @@
 * Raf Ven <raf.ven@dynapps.be>
 * Jeroen Evens <jeroen.evens@dynapps.be>
 * Kitti U. <kittiu@ecosoft.co.th>
+* Denis Leemann <denis.leemann@camptocamp.com>
