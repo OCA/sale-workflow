@@ -1,4 +1,5 @@
 # Copyright 2020 Tecnativa - Carlos Roca
+# Copyright 2023 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -17,22 +18,20 @@ class SaleOrder(models.Model):
 
     @api.depends("partner_id", "partner_shipping_id", "partner_invoice_id")
     def _compute_product_assortment_ids(self):
-        # If we don't initialize the fields we get an error with NewId
-        self.allowed_product_ids = self.env["product.product"]
+        self.allowed_product_ids = False
         self.has_allowed_products = False
         partner_field = (
             self.env["ir.config_parameter"]
             .sudo()
             .get_param("sale_order_product_assortment.partner_field", "partner_id")
         )
-        partner = self[partner_field]
         product_domain = []
-        if partner:
+        if self[partner_field]:
             filters_partner_domain = self.env["ir.filters"].search(
                 [("is_assortment", "=", True)]
             )
             for ir_filter in filters_partner_domain:
-                if partner.id in ir_filter.get_all_partner_ids():
+                if self[partner_field] & ir_filter.all_partner_ids:
                     product_domain = expression.AND(
                         [product_domain, ir_filter._get_eval_domain()]
                     )
