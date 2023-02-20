@@ -24,13 +24,14 @@ class SaleOrder(models.Model):
             .sudo()
             .get_param("sale_order_product_assortment.partner_field", "partner_id")
         )
+        partner = self[partner_field]
         product_domain = []
-        if self[partner_field]:
+        if partner:
             filters_partner_domain = self.env["ir.filters"].search(
                 [("is_assortment", "=", True)]
             )
             for ir_filter in filters_partner_domain:
-                if self[partner_field] & ir_filter.all_partner_ids:
+                if partner.id in ir_filter.get_all_partner_ids():
                     product_domain = expression.AND(
                         [product_domain, ir_filter._get_eval_domain()]
                     )
