@@ -1,0 +1,32 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_order_transmit_method
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2021-03-23 11:47+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"Language-Team: none\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: sale_order_transmit_method
+#: model:ir.model,name:sale_order_transmit_method.model_sale_order
+msgid "Sale Order"
+msgstr "Comandes de venda"
+
+#. module: sale_order_transmit_method
+#: model:ir.model,name:sale_order_transmit_method.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr "Factura de pagament anticipat de vendes"
+
+#. module: sale_order_transmit_method
+#: model:ir.model.fields,field_description:sale_order_transmit_method.field_sale_order__transmit_method_id
+msgid "Transmission Method"
+msgstr "Mètode de transmissió"
