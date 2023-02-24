@@ -59,6 +59,7 @@ class ProductPricelistCache(models.Model):
             sql_template = self._create_cache_with_date__get_sql_template()
             self.flush()
             execute_values(self.env.cr, sql_template, raw_values)
+        pricelists.is_pricelist_cache_computed = True
 
     def _create_cache_with_date(self):
         pricelists = self.env["product.pricelist"].search([])
@@ -70,12 +71,10 @@ class ProductPricelistCache(models.Model):
             )
 
     def create_full_cache(self):
-        super().create_full_cache()
-        # As `pricelist_cache` already stored prices for all items as of today,
-        # We need to store the informations about dates.
-        # We might currently be in a pricelist item date range, or one could start in
-        # a few days…
-        self._create_cache_with_date()
+        if self.env.company.pricelist_cache_by_date:
+            self._create_cache_with_date()
+        else:
+            super().create_full_cache()
 
     def _get_cached_price_args(self, pricelist_id, product_ids, **kwargs):
         args = super()._get_cached_price_args(pricelist_id, product_ids, **kwargs)

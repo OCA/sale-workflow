@@ -112,22 +112,14 @@ class Pricelist(models.Model):
         return product_ids
 
     def _get_product_prices(self, product_ids, at_date):
-        # TODO needs refactor (add hooks)
-        # If order for this to be compatible with pricelist_cache_history,
-        # we need to be able to build a dictionnary like so:
-        # {prod_id, set of (price, date_start, date_end)}.
-        # The reason for that is that we might have multiple prices to cache
-        # for a pair of (product, pricelist) at different dates.
         self.ensure_one()
-        product_prices = defaultdict(set)
         # Search instead of browse, since products could have been unlinked
         # between the time where records have been created / modified
         # and the time this method is executed.
         products = self.env["product.product"].search([("id", "in", product_ids)])
         products_qty_partner = [(p, 1, False) for p in products]
         results = self._compute_price_rule(products_qty_partner, at_date)
-        for product_id, price in results.items():
-            product_prices[product_id] = price[0]
+        product_prices = {prod: price[0] for prod, price in results.items()}
         return product_prices
 
     def _get_root_pricelist_ids(self):

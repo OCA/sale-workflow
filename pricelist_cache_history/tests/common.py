@@ -12,6 +12,11 @@ class TestPricelistCacheHistoryCommonCase(TestPricelistCacheCommon):
         cls.setUpClassItems()
 
     @classmethod
+    def setUpClassBaseCache(cls):
+        cls.env.company.pricelist_cache_by_date = True
+        super().setUpClassBaseCache()
+
+    @classmethod
     def setUpClassVars(cls):
         cls.product = cls.p6
         cls.item_model = cls.env["product.pricelist.item"]
@@ -22,6 +27,10 @@ class TestPricelistCacheHistoryCommonCase(TestPricelistCacheCommon):
         cls.list = cls.env.ref("pricelist_cache_history.list_with_dates")
         cls.ending_list = cls.env.ref("pricelist_cache_history.list_with_ending_dates")
         cls.formula_list = cls.env.ref("pricelist_cache_history.list_with_formulas")
+        cls.never_ending_formula_list = cls.env.ref(
+            "pricelist_cache_history.never_ending_list_with_formulas"
+        )
+        cls.factor_list = cls.env.ref("pricelist_cache_history.factor_list_with_dates")
         cls.item1 = cls.env.ref("pricelist_cache_history.item1")
         cls.item2 = cls.env.ref("pricelist_cache_history.item2")
         cls.item3 = cls.env.ref("pricelist_cache_history.item3")

@@ -13,4 +13,8 @@
     "demo": [
         "data/demo.xml",
     ],
+    "data": [
+        "wizards/pricelist_cache_wizard.xml",
+        "views/res_config_settings.xml",
+    ],
 }

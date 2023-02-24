@@ -1,8 +1,9 @@
 # Copyright 2022 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from datetime import timedelta
+from datetime import datetime, timedelta
 from itertools import tee  # pairwise
+from itertools import groupby
 
 from odoo import models
 
@@ -10,39 +11,69 @@ from odoo import models
 class ProductPricelistItem(models.Model):
     _inherit = "product.pricelist.item"
 
-    # def _get_item_values(self):
-    # self.ensure_one()
-    # return {
-    # "pricelist_id": self.pricelist_id.id,
-    # "date_to_check": self.date_start or self.date_end,
-    # "product_id": self.product_id.id,
-    # "date_start": self.date_start or None,
-    # "date_end": self.date_end or None,
-    # }
+    def _group_by_product(self):
+        items = self.sorted(lambda item: item.product_id.id)
+        return groupby(items, key=lambda item: item.product_id.id)
 
-    def _get_dates_by_type(self):
-        """Returns an ordered list of date_start, date_end.
+    def _get_date_items(self):
+        return self.filtered(
+            lambda i: (
+                i.product_id
+                and i.product_id.active
+                and (i.date_start or i.date_end)
+            )
+        )
+
+    def _get_product_formula_items(self):
+        return self.filtered(
+            lambda i: (
+                i.product_id
+                and i.product_id.active
+                and i.compute_price == "formula"
+                and (i.price_surcharge or i.price_discount)
+            )
+        )
+
+    def _get_global_formula_items(self):
+        return self.filtered(
+            lambda i: (
+                not i.product_id
+                and i.compute_price == "formula"
+                and (i.price_surcharge or i.price_discount)
+            )
+        )
+
+    def _get_dates_by_type(self, pricelist_id, date_range):
+        """Returns an ordered list of date_start, date_end within
+        the provided date range.
 
         Dates should be overlapping.
         """
-        result = []
         # Because we cannot compare dates with boolean values, we will
         # have to add the False values afterwards.
         # So, declare variables here, to determine if we found any of those
         # cases in the recordset.
-        starts_with_false = False
-        ends_with_false = False
+        range_start, range_end = date_range
+        result = []
+        starts_with_false = range_start == datetime.min
+        ends_with_false = range_end == datetime.max
         for record in self:
-            # Skip if no date start
-            if record.date_start:
-                result.append((record.date_start, "start"))
+            is_parent_item = not record.pricelist_id.id == pricelist_id
+            # TODO ugly ifbox
+            if is_parent_item:
+                item_start = record.date_start or datetime.min
+                item_end = record.date_end or datetime.min
+                if range_start <= item_start <= range_end:
+                    if record.date_start:
+                        result.append((record.date_start, "start"))
+                if range_start <= item_end <= range_end:
+                    if record.date_end:
+                        result.append((record.date_end, "end"))
             else:
-                starts_with_false = True
-            # Skip if no date end
-            if record.date_end:
-                result.append((record.date_end, "end"))
-            else:
-                ends_with_false = True
+                if record.date_start:
+                    result.append((record.date_start, "start"))
+                if record.date_end:
+                    result.append((record.date_end, "end"))
         # Sort
         # TODO: find a better way
         # idea: (same_date, start) should be before (same_date, end)
@@ -56,7 +87,7 @@ class ProductPricelistItem(models.Model):
             result.append((False, "end"))
         return result
 
-    def _get_not_overlapping_date_ranges(self):
+    def _get_not_overlapping_date_ranges(self, pricelist_id):
         """Returns a list of not overlapping date ranges.
 
         returns : a list of not overlapping date ranges
@@ -72,34 +103,47 @@ class ProductPricelistItem(models.Model):
         # item5:                         <-------------------
         # First, get all dates with their type (start or end)
         result = []
-        overlapping_groups = self._get_overlapping_groups()
-        for overlapping_group in overlapping_groups:
-            dates_by_type = overlapping_group._get_dates_by_type()
-            pairs = overlapping_group._get_pairs(dates_by_type)
+        for overlapping_group in self._get_overlapping_groups(pricelist_id):
+            date_range = overlapping_group._get_date_limits(pricelist_id)
+            dates_by_type = overlapping_group._get_dates_by_type(
+                pricelist_id, date_range
+            )
+            pairs = overlapping_group._get_date_ranges(dates_by_type)
             result.extend(pairs)
         return result
 
+    def _get_date_limits(self, pricelist_id, force_date=True):
+        """Returns a tuple containing the earliest date_start and the
+        latest date_end from the recordset.
+        """
+        child_items = self.filtered(lambda i: i.pricelist_id.id == pricelist_id)
+        min_date_start = min([i.date_start or datetime.min for i in child_items])
+        max_date_end = max([i.date_end or datetime.max for i in child_items])
+        if not force_date:
+            if min_date_start == datetime.min:
+                min_date_start = False
+            if max_date_end == datetime.max:
+                max_date_end = False
+        return min_date_start, max_date_end
+
     def _sort_by_date(self):
-        # TODO find better
-        self.env.cr.execute(
-            """
+        # TODO: No idea how to sort like that in python.
+        query = """
             SELECT id
             FROM product_pricelist_item
             WHERE id in %(item_ids)s
             ORDER BY date_start ASC NULLS FIRST,
                      date_end ASC NULLS LAST
-            """,
-            {"item_ids": tuple(self.ids)},
-        )
+        """
+        self.env.cr.execute(query, {"item_ids": tuple(self.ids)})
         return self.browse([row[0] for row in self.env.cr.fetchall()])
 
-    def _get_overlapping_groups(self):
+    def _get_overlapping_groups(self, pricelist_id):
         """Returns overlapping groupped items."""
         self = self._sort_by_date()
         groups = []
         current_group = False
         current_date_end = False
-        # TODO clean that up
         for item in self:
             if not current_group:
                 current_group = item
@@ -107,11 +151,18 @@ class ProductPricelistItem(models.Model):
                 continue
             if not current_date_end:
                 # we have a never ending item in the group.
-                # every item is overlapping
+                # Current group is overlapping with every remaining item,
+                # since the recordset is sorted by date_start.
                 current_group |= item
                 continue
-            elif current_date_end >= item.date_start:
+            elif current_date_end >= (item.date_start or datetime.min):
                 current_group |= item
+                # If item.pricelist_id != pricelist_id, it means that this item
+                # is coming from a parent pricelist.
+                # It is part of the group, but shouldn't alter it by expanding its
+                # range.
+                if item.pricelist_id.id != pricelist_id:
+                    continue
                 if not item.date_end:
                     # item is a never ending item
                     current_date_end = item.date_end
@@ -120,6 +171,7 @@ class ProductPricelistItem(models.Model):
                     current_date_end = item.date_end
                 continue
             # item is not overlapping with current group
+            # Store the group in the list of groups, and create a new one.
             groups.append(current_group)
             current_group = item
             current_date_end = item.date_end
@@ -127,40 +179,11 @@ class ProductPricelistItem(models.Model):
             groups.append(current_group)
         return groups
 
-    def _get_overlapping_parent_items(self):
-        query = """
-            WITH RECURSIVE parent_pricelist AS (
-                SELECT id
-                FROM product_pricelist
-                WHERE id = %(pricelist_id)s
-                UNION SELECT item.base_pricelist_id AS id
-                      FROM product_pricelist_item item
-                      INNER JOIN parent_pricelist parent
-                              ON item.pricelist_id = parent.id
-            )
-            SELECT pi.id
-            FROM product_pricelist_item pi
-            JOIN parent_pricelist pp ON pi.pricelist_id = pp.id
-            WHERE pi.product_id = %(product_id)s
-            AND date_start IS NULL or date_start <= %(date_end)s
-            AND date_end IS NULL or date_end >= %(date_start)s
-            AND active = TRUE;
+    def _get_date_ranges(self, dates):
+        """From a list of dates, return a list date ranges.
+        
+        [A, B, C] -> [(A, B), (B, C)]
         """
-        self.flush()
-        ids = []
-        for item in self:
-            args = {
-                "product_id": item.product_id.id,
-                "date_end": item.date_end,
-                "date_start": item.date_start,
-                "pricelist_id": item.pricelist_id.id,
-            }
-            self.env.cr.execute(query, args)
-            ids.extend([row[0] for row in self.env.cr.fetchall()])
-        return self.browse(ids)
-
-    def _get_pairs(self, dates):
-        """TODO docstring, comments, and stuff."""
 
         # Copied from itertools documentation.
         # TODO To be replaced by itertools.pairwise when python >= 3.10
@@ -172,9 +195,13 @@ class ProductPricelistItem(models.Model):
         one_day = timedelta(days=1)
         result = []
         for pair in pairwise(dates):
+            # If date_start is coming from item.date_end, it is exclusive,
+            # and we should add a day
             date_start, date_start_type = pair[0]
             if date_start_type == "end":
                 date_start += one_day
+            # If date_end is coming from item.date_start, it is exclusive,
+            # and we should retrieve one day
             date_end, date_end_type = pair[1]
             if date_end_type == "start":
                 date_end -= one_day

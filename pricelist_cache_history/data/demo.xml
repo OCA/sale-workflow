@@ -51,12 +51,21 @@
         <field name="name">Pricelist with dates 2</field>
     </record>
 
-    <record id="item5" model="product.pricelist.item">
+    <record id="ending_item_january" model="product.pricelist.item">
         <field name="product_id" ref="product.product_product_6" />
         <field name="pricelist_id" ref="list_with_ending_dates" />
         <field name="applied_on">0_product_variant</field>
         <field name="date_start">2023-01-01</field>
         <field name="date_end">2023-01-31</field>
+        <field name="fixed_price">6.0</field>
+    </record>
+
+    <record id="ending_item_march" model="product.pricelist.item">
+        <field name="product_id" ref="product.product_product_6" />
+        <field name="pricelist_id" ref="list_with_ending_dates" />
+        <field name="applied_on">0_product_variant</field>
+        <field name="date_start">2023-03-01</field>
+        <field name="date_end">2023-03-31</field>
         <field name="fixed_price">6.0</field>
     </record>
 
@@ -79,4 +88,33 @@
         <field name="base_pricelist_id" ref="list_with_dates" />
     </record>
 
+    <record id="never_ending_list_with_formulas" model="product.pricelist">
+        <field name="name">Pricelist with formulas</field>
+    </record>
+
+    <record id="item7" model="product.pricelist.item">
+        <field name="product_id" ref="product.product_product_6" />
+        <field name="pricelist_id" ref="never_ending_list_with_formulas" />
+        <field name="applied_on">0_product_variant</field>
+        <field name="compute_price">formula</field>
+        <field name="date_start" eval="False" />
+        <field name="date_end" eval="False" />
+        <field name="price_surcharge">20</field>
+        <field name="base">pricelist</field>
+        <field name="base_pricelist_id" ref="list_with_dates" />
+    </record>
+
+
+    <record id="factor_list_with_dates" model="product.pricelist">
+        <field name="name">Factor list with dates</field>
+    </record>
+
+    <record id="factor_item_with_dates" model="product.pricelist.item">
+        <field name="pricelist_id" ref="factor_list_with_dates" />
+        <field name="applied_on">3_global</field>
+        <field name="compute_price">formula</field>
+        <field name="base">pricelist</field>
+        <field name="base_pricelist_id" ref="list_with_dates" />
+        <field name="price_surcharge">20</field>
+    </record>
 </odoo>

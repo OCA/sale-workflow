@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Camptocamp SA
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="job_function_pricelist_cache_history_update" model="queue.job.function">
+        <field name="model_id" ref="pricelist_cache.model_product_pricelist_cache" />
+        <field name="method">create_product_pricelist_cache_with_date</field>
+        <field name="channel_id" ref="pricelist_cache.channel_pricelist_cache" />
+    </record>
+
+</odoo>

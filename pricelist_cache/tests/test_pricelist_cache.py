@@ -150,7 +150,7 @@ class TestPricelistCache(TestPricelistCacheCommon):
         list_0_parent = self.list0._get_parent_pricelists()
         self.assertFalse(list_0_parent)
         # test _is_factor_pricelist
-        factor_pricelist = pricelist_model.browse(factor_pricelist_ids)
+        factor_pricelist = pricelist_model.browse(expected_factor_pricelist_id)
         self.assertTrue(factor_pricelist._is_factor_pricelist())
         root_pricelists = pricelist_model.browse(root_pricelist_ids)
         for pricelist in root_pricelists:
