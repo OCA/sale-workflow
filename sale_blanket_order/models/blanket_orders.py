@@ -437,29 +437,20 @@ class BlanketOrderLine(models.Model):
                 }
             )
 
-    name = fields.Char(
-        string="Description",
-        tracking=True
-    )
+    name = fields.Char(string="Description", tracking=True)
     sequence = fields.Integer()
     order_id = fields.Many2one(
         "sale.blanket.order",
         # required=True,
-        ondelete="cascade"
+        ondelete="cascade",
     )
     product_id = fields.Many2one(
         "product.product",
         string="Product",
         domain=[("sale_ok", "=", True)],
     )
-    product_uom = fields.Many2one(
-        "uom.uom",
-        string="Unit of Measure"
-    )
-    price_unit = fields.Float(
-        string="Price",
-        digits="Product Price"
-    )
+    product_uom = fields.Many2one("uom.uom", string="Unit of Measure")
+    price_unit = fields.Float(string="Price", digits="Product Price")
     taxes_id = fields.Many2many(
         "account.tax",
         string="Taxes",
@@ -472,19 +463,13 @@ class BlanketOrderLine(models.Model):
         digits="Product Unit of Measure",
     )
     ordered_uom_qty = fields.Float(
-        string="Ordered quantity",
-        compute="_compute_quantities",
-        store=True
+        string="Ordered quantity", compute="_compute_quantities", store=True
     )
     invoiced_uom_qty = fields.Float(
-        string="Invoiced quantity",
-        compute="_compute_quantities",
-        store=True
+        string="Invoiced quantity", compute="_compute_quantities", store=True
     )
     remaining_uom_qty = fields.Float(
-        string="Remaining quantity",
-        compute="_compute_quantities",
-        store=True
+        string="Remaining quantity", compute="_compute_quantities", store=True
     )
     remaining_qty = fields.Float(
         string="Remaining quantity in base UoM",
@@ -492,9 +477,7 @@ class BlanketOrderLine(models.Model):
         store=True,
     )
     delivered_uom_qty = fields.Float(
-        string="Delivered quantity",
-        compute="_compute_quantities",
-        store=True
+        string="Delivered quantity", compute="_compute_quantities", store=True
     )
     sale_lines = fields.One2many(
         "sale.order.line",
@@ -504,45 +487,21 @@ class BlanketOrderLine(models.Model):
         copy=False,
     )
     company_id = fields.Many2one(
-        "res.company",
-        related="order_id.company_id",
-        store=True
+        "res.company", related="order_id.company_id", store=True
     )
-    currency_id = fields.Many2one(
-        "res.currency",
-        related="order_id.currency_id"
-    )
-    partner_id = fields.Many2one(
-        related="order_id.partner_id",
-        string="Customer"
-    )
-    user_id = fields.Many2one(
-        related="order_id.user_id",
-        string="Responsible"
-    )
+    currency_id = fields.Many2one("res.currency", related="order_id.currency_id")
+    partner_id = fields.Many2one(related="order_id.partner_id", string="Customer")
+    user_id = fields.Many2one(related="order_id.user_id", string="Responsible")
     payment_term_id = fields.Many2one(
-        related="order_id.payment_term_id",
-        string="Payment Terms"
+        related="order_id.payment_term_id", string="Payment Terms"
     )
-    pricelist_id = fields.Many2one(
-        related="order_id.pricelist_id",
-        string="Pricelist"
-    )
+    pricelist_id = fields.Many2one(related="order_id.pricelist_id", string="Pricelist")
 
     price_subtotal = fields.Monetary(
-        compute="_compute_amount",
-        string="Subtotal",
-        store=True
+        compute="_compute_amount", string="Subtotal", store=True
     )
-    price_total = fields.Monetary(
-        compute="_compute_amount",
-        string="Total",
-        store=True
-    )
-    price_tax = fields.Float(
-        compute="_compute_amount",
-        string="Tax", store=True
-    )
+    price_total = fields.Monetary(compute="_compute_amount", string="Total", store=True)
+    price_tax = fields.Float(compute="_compute_amount", string="Tax", store=True)
     # NOTE: analytics tags are removed in odoo 16.0
     # analytic_tag_ids = fields.Many2many(
     #     comodel_name="account.analytic.tag",
@@ -742,7 +701,9 @@ class BlanketOrderLine(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for values in vals_list:
-            if values.get("display_type", self.default_get(["display_type"])["display_type"]):
+            if values.get(
+                "display_type", self.default_get(["display_type"])["display_type"]
+            ):
                 values.update(product_id=False, price_unit=0, product_uom=False)
         return super().create(vals_list)
 

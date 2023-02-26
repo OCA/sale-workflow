@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2018 ACSONE SA/NV
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
@@ -9,7 +9,8 @@
         <field name="arch" type="xml">
             <xpath
                 expr="//div[hasclass('row','mt16','o_settings_container')][position() = 3]"
-                position="after">
+                position="after"
+            >
                 <h2>Blanket Orders</h2>
                 <div class="row mt16 o_settings_container">
                     <div class="col-xs-12 col-md-6 o_setting_box">
