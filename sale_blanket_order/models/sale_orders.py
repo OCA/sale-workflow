@@ -113,10 +113,10 @@ class SaleOrderLine(models.Model):
 
     @api.onchange("product_uom_qty", "product_uom")
     def product_uom_change(self):
-        res = super().product_uom_change()
+        # res = super().product_uom_change()
         if self.product_id and not self.env.context.get("skip_blanket_find", False):
             return self.get_assigned_bo_line()
-        return res
+        # return res
 
     @api.onchange("blanket_order_line")
     def onchange_blanket_order_line(self):
