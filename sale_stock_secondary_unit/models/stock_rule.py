@@ -27,13 +27,18 @@ class StockRule(models.Model):
             company_id,
             values,
         )
-        if values.get("sale_line_id"):
-            sale_line = self.env["sale.order.line"].browse(values["sale_line_id"])
-            if sale_line.secondary_uom_id:
-                res.update(
-                    {
-                        "secondary_uom_id": sale_line.secondary_uom_id.id,
-                        "secondary_uom_qty": sale_line.secondary_uom_qty,
-                    }
-                )
+        sale_line_id = values.get("sale_line_id", False)
+        # Record can be a sale order line or a stock move depending of pull
+        # and push rules
+        if sale_line_id:
+            record = self.env["sale.order.line"].browse(sale_line_id)
+        else:
+            record = values.get("move_dest_ids", self.env["stock.move"].browse())[:1]
+        if record and record.secondary_uom_id:
+            res.update(
+                {
+                    "secondary_uom_id": record.secondary_uom_id.id,
+                    "secondary_uom_qty": record.secondary_uom_qty,
+                }
+            )
         return res
