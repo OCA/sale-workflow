@@ -8,25 +8,29 @@ from odoo.tools import format_date
 
 
 class TestSaleDelivery(TransactionCase):
-    def setUp(self):
-        super(TestSaleDelivery, self).setUp()
-        customer = self.env.ref("base.res_partner_3")
-        p1 = self.env.ref("product.product_product_16")
-        p2 = self.env.ref("product.product_product_25")
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        customer = cls.env.ref("base.res_partner_3")
+        p1 = cls.env.ref("product.product_product_16")
+        p2 = cls.env.ref("product.product_product_25")
         today = datetime.datetime(2020, 1, 1)
-        self.dt1 = today + datetime.timedelta(days=9)
-        self.dt2 = today + datetime.timedelta(days=10)
-        self.date_sooner = self.dt1
-        self.date_later = self.dt2
-        self.so = self._create_sale_order(customer)
-        self.so_line1 = self._create_sale_order_line(self.so, p1, 10, 100.0, self.dt1)
-        self.so_line2 = self._create_sale_order_line(self.so, p2, 10, 200.0, self.dt1)
+        cls.dt1 = today + datetime.timedelta(days=9)
+        cls.dt2 = today + datetime.timedelta(days=10)
+        cls.date_sooner = cls.dt1
+        cls.date_later = cls.dt2
+        cls.so = cls._create_sale_order(customer)
+        cls.so_line1 = cls._create_sale_order_line(cls.so, p1, 10, 100.0, cls.dt1)
+        cls.so_line2 = cls._create_sale_order_line(cls.so, p2, 10, 200.0, cls.dt1)
 
-    def _create_sale_order(self, customer):
-        return self.env["sale.order"].create({"partner_id": customer.id})
+    @classmethod
+    def _create_sale_order(cls, customer):
+        return cls.env["sale.order"].create({"partner_id": customer.id})
 
-    def _create_sale_order_line(self, sale, product, qty, price, date):
-        return self.env["sale.order.line"].create(
+    @classmethod
+    def _create_sale_order_line(cls, sale, product, qty, price, date):
+        return cls.env["sale.order.line"].create(
             {
                 "product_id": product.id,
                 "name": "cool product",
