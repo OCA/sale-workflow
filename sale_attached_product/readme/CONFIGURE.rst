@@ -1,6 +1,6 @@
 To configure attached products:
 
-#. Go to *Sales > Catalog > Products* and choose on you want to attach products to.
+#. Go to *Sales > Products > Products* and choose on you want to attach products to.
 #. Go to the *Sales* tab and then to the *Attached products* section.
 #. Add as many products as you want to.
 
