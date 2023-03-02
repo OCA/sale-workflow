@@ -166,7 +166,8 @@ class SaleOrderLine(models.Model):
     )
     attached_from_line_id = fields.Many2one(comodel_name="sale.order.line")
     attached_line_ids = fields.One2many(
-        comodel_name="sale.order.line", inverse_name="attached_from_line_id",
+        comodel_name="sale.order.line",
+        inverse_name="attached_from_line_id",
     )
 
     def _get_attached_products(self):
