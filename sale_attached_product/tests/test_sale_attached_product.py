@@ -1,9 +1,9 @@
 # Copyright 2022 Tecnativa - David Vidal
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests import Form, common
+from odoo.tests import Form, TransactionCase
 
 
-class TestSaleAttachedProduct(common.SavepointCase):
+class TestSaleAttachedProduct(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
