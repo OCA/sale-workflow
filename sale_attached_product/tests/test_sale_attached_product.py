@@ -90,7 +90,9 @@ class TestSaleAttachedProduct(common.SavepointCase):
         # We can delete attached lines in this mode
         self.sale.order_line.filtered(lambda x: x.product_id == self.product_2).unlink()
         self.assertEqual(
-            len(self.sale.order_line), 2, "The line should stay removed",
+            len(self.sale.order_line),
+            2,
+            "The line should stay removed",
         )
         # Removing the main line will kill the optional ones anyway
         product_1_line.unlink()
@@ -133,7 +135,9 @@ class TestSaleAttachedProduct(common.SavepointCase):
         # attached lines consitency
         self.sale.order_line.filtered(lambda x: x.product_id == self.product_2).unlink()
         self.assertEqual(
-            len(self.sale.order_line), 3, "The removed line should be recreated",
+            len(self.sale.order_line),
+            3,
+            "The removed line should be recreated",
         )
         # Adding another product doesn't have any effect on the rest
         self._add_product(self.sale, self.product_4)
@@ -155,7 +159,9 @@ class TestSaleAttachedProduct(common.SavepointCase):
         # If we change it back, the attached lines will be added back as well
         product_1_line.product_id = self.product_1
         self.assertEqual(
-            len(self.sale.order_line), 4, "The attached lines should be added again",
+            len(self.sale.order_line),
+            4,
+            "The attached lines should be added again",
         )
         self.assertEqual(
             self._get_attached_lines(self.sale).product_id,
