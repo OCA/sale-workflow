@@ -53,6 +53,7 @@ setuptools.setup(
         'odoo-addon-sale_order_qty_change_no_recompute>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_secondary_unit>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_type>=15.0dev,<15.1dev',
+        'odoo-addon-sale_partner_incoterm>=15.0dev,<15.1dev',
         'odoo-addon-sale_partner_selectable_option>=15.0dev,<15.1dev',
         'odoo-addon-sale_payment_sheet>=15.0dev,<15.1dev',
         'odoo-addon-sale_planner_calendar>=15.0dev,<15.1dev',
