@@ -22,6 +22,13 @@ class Elaboration(models.Model):
         help="If unchecked, it will allow you to hide the product "
         "elaborations without removing it.",
     )
+    route_id = fields.Many2one(
+        "stock.location.route",
+        string="Route",
+        domain=[("sale_selectable", "=", True)],
+        ondelete="restrict",
+        check_company=True,
+    )
 
     _sql_constraints = [
         ("name_uniq", "unique(name)", "Name must be unique!"),

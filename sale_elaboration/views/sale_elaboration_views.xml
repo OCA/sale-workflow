@@ -23,6 +23,13 @@
                             context="{'default_is_elaboration': True, 'default_type': 'service'}"
                         />
                     </group>
+                    <group>
+                        <field
+                            name="route_id"
+                            groups="stock.group_adv_location"
+                            options="{'no_create': True}"
+                        />
+                    </group>
                 </sheet>
             </form>
         </field>
@@ -37,6 +44,11 @@
                 <field
                     name="product_id"
                     context="{'default_is_elaboration': True, 'default_type': 'service'}"
+                />
+                <field
+                    name="route_id"
+                    groups="stock.group_adv_location"
+                    options="{'no_create': True}"
                 />
                 <field name="active" widget="boolean_toggle" />
             </tree>
