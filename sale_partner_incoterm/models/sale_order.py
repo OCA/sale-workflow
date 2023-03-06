@@ -9,6 +9,4 @@ class SaleOrder(models.Model):
 
     @api.onchange("partner_id")
     def onchange_partner_id(self):
-        res = super().onchange_partner_id()
         self.incoterm = self.partner_id.sale_incoterm_id
-        return res
