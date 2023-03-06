@@ -17,6 +17,6 @@ class TestSalePartnerIncoterm(TransactionCase):
             {"sale_incoterm_id": incoterm.id, "sale_incoterm_address_id": address.id}
         )
         sale_order = self.env["sale.order"].create({"partner_id": customer.id})
-        sale_order.onchange_partner_id()
+        sale_order.onchange_partner_id_set_incoterm()
         self.assertEqual(sale_order.incoterm, incoterm)
         self.assertEqual(sale_order.incoterm_address_id, address)
