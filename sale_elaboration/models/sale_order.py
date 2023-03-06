@@ -58,11 +58,17 @@ class SaleOrderLine(models.Model):
         readonly=False,
     )
     date_order = fields.Datetime(related="order_id.date_order", string="Date")
+    route_id = fields.Many2one(
+        compute="_compute_elaboration_note", store=True, readonly=False
+    )
 
     @api.depends("elaboration_ids")
     def _compute_elaboration_note(self):
         for line in self:
             line.elaboration_note = ", ".join(line.elaboration_ids.mapped("name"))
+            route_id = line.elaboration_ids.route_id[:1]
+            if route_id:
+                line.route_id = route_id
 
     def _prepare_invoice_line(self, **optional_values):
         vals = super()._prepare_invoice_line(**optional_values)
