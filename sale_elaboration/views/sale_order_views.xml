@@ -8,19 +8,18 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//field[@name='order_line']/form//field[@name='name']"
-                position="after"
-            >
-                <field
-                    name="elaboration_ids"
-                    widget="many2many_tags"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
-                />
-                <field
-                    name="elaboration_note"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
-                />
+            <xpath expr="//field[@name='order_line']/form/group" position="inside">
+                <group string="Elaborations" name="elaboration">
+                    <field
+                        name="elaboration_ids"
+                        widget="many2many_tags"
+                        attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    />
+                    <field
+                        name="elaboration_note"
+                        attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    />
+                </group>
             </xpath>
             <xpath
                 expr="//field[@name='order_line']/tree//field[@name='price_unit']"
@@ -35,6 +34,24 @@
                     name="elaboration_note"
                     attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
                 />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/kanban//field[@name='company_id']"
+                position="after"
+            >
+                <field name="elaboration_ids" invisible="1" />
+                <field name="elaboration_note" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/kanban//t[@t-esc='record.price_unit.value']/../.."
+                position="after"
+            >
+                <div class="row">
+                    <div class="col-12 text-muted">
+                        Elaboration:
+                        <t t-esc="record.elaboration_note.value" />
+                    </div>
+                </div>
             </xpath>
         </field>
     </record>
