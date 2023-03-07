@@ -82,6 +82,7 @@ addon | version | maintainers | summary
 [sale_sourced_by_line](sale_sourced_by_line/) | 15.0.1.1.0 |  | Multiple warehouse source locations for Sale order
 [sale_start_end_dates](sale_start_end_dates/) | 15.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Adds start date and end date on sale order lines
 [sale_stock_cancel_restriction](sale_stock_cancel_restriction/) | 15.0.1.0.1 |  | Sale Stock Cancel Restriction
+[sale_stock_delivery_address](sale_stock_delivery_address/) | 15.0.1.0.0 |  | Sale Stock Delivery Address
 [sale_stock_invoice_plan](sale_stock_invoice_plan/) | 15.0.1.0.0 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to sales order, ability to manage future invoice plan
 [sale_stock_last_date](sale_stock_last_date/) | 15.0.1.0.0 |  | Displays last delivery date in sale order lines
 [sale_stock_picking_blocking](sale_stock_picking_blocking/) | 15.0.1.0.1 |  | Allow you to block the creation of deliveries from a sale order.
