@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form - sale_stock_delivery_address</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree" position="inside">
+                <field
+                    name="dest_address_id"
+                    attrs="{'readonly': [('product_updatable', '=', False)]}"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='route_id']"
+                position="after"
+            >
+                <field
+                    name="dest_address_id"
+                    attrs="{'readonly': [('product_updatable', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_order_line_tree_inherit_sale_stock" model="ir.ui.view">
+        <field name="name">sale.order.line - sale_stock_delivery_address</field>
+        <field name="model">sale.order.line</field>
+        <field
+            name="inherit_id"
+            ref="sale_stock.view_order_line_tree_inherit_sale_stock"
+        />
+        <field name="arch" type="xml">
+            <field name="route_id" position="after">
+                <field
+                    name="dest_address_id"
+                    attrs="{'readonly': [('product_updatable', '=', False)]}"
+                />
+                <field name="product_updatable" invisible="1" />
+            </field>
+        </field>
+    </record>
+</odoo>
