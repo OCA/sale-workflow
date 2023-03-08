@@ -88,8 +88,10 @@ class TestSaleOrderSecondaryUnit(TransactionCase):
         self.order.order_line.secondary_uom_id = self.secondary_unit.id
         self.order.order_line.secondary_uom_id.write({"dependency_type": "independent"})
 
+        # Remember previous UoM quantity for avoiding interactions with other modules
+        previous_uom_qty = self.order.order_line.product_uom_qty
         self.order.order_line.write({"secondary_uom_qty": 2})
-        self.assertEqual(self.order.order_line.product_uom_qty, 1)
+        self.assertEqual(self.order.order_line.product_uom_qty, previous_uom_qty)
         self.assertEqual(self.order.order_line.secondary_uom_qty, 2)
 
         self.order.order_line.write({"product_uom_qty": 17})
