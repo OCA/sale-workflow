@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo-addon-product_supplierinfo_for_customer_elaboration>=15.0dev,<15.1dev',
         'odoo-addon-product_supplierinfo_for_customer_sale>=15.0dev,<15.1dev',
         'odoo-addon-sale_advance_payment>=15.0dev,<15.1dev',
+        'odoo-addon-sale_attached_product>=15.0dev,<15.1dev',
         'odoo-addon-sale_automatic_workflow>=15.0dev,<15.1dev',
         'odoo-addon-sale_automatic_workflow_job>=15.0dev,<15.1dev',
         'odoo-addon-sale_automatic_workflow_payment_mode>=15.0dev,<15.1dev',
