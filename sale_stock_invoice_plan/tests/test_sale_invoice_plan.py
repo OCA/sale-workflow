@@ -231,7 +231,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         with self.assertRaises(ValidationError) as e:
             wizard.with_context(**ctx).create_invoices_by_plan()
         self.assertIn(
-            "Plan quantity: 5.0, exceed invoiceable quantity: 3.0", e.exception.name
+            "Plan quantity: 5.0, exceed invoiceable quantity: 3.0", e.exception.args[0]
         )
         # Deliver all the rest and create invoice plan again
         pick = self.so_product.picking_ids.filtered(lambda l: l.state != "done")
