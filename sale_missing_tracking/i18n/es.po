@@ -31,6 +31,11 @@ msgstr ""
 "\n"
 
 #. module: sale_missing_tracking
+#: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_kanban
+msgid "<i class=\"fa fa-exclamation-circle\" title=\"Create exception\"/>"
+msgstr ""
+
+#. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__message_needaction
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__message_needaction
 msgid "Action Needed"
