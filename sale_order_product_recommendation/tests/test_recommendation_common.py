@@ -1,8 +1,11 @@
 # Copyright 2017 Tecnativa - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from freezegun import freeze_time
+
 from odoo.tests.common import TransactionCase
 
 
+@freeze_time("2021-10-02 15:30:00")
 class RecommendationCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
@@ -16,6 +19,12 @@ class RecommendationCase(TransactionCase):
         )
         cls.partner = cls.env["res.partner"].create(
             {"name": "Mr. Odoo", "property_product_pricelist": cls.pricelist.id}
+        )
+        cls.partner_delivery = cls.env["res.partner"].create(
+            {
+                "name": "Mr. Odoo Delivery",
+                "property_product_pricelist": cls.pricelist.id,
+            }
         )
         cls.product_obj = cls.env["product.product"]
         cls.prod_1 = cls.product_obj.create(
@@ -40,11 +49,12 @@ class RecommendationCase(TransactionCase):
             }
         )
         # Create old sale orders to have searchable history
+        # (Remember to change the dates if the tests fail)
         cls.order1 = cls.env["sale.order"].create(
             {
                 "partner_id": cls.partner.id,
                 "state": "done",
-                "date_order": "2020-11-15",
+                "date_order": "2021-05-05",
                 "order_line": [
                     (
                         0,
@@ -88,8 +98,9 @@ class RecommendationCase(TransactionCase):
         cls.order2 = cls.env["sale.order"].create(
             {
                 "partner_id": cls.partner.id,
+                "partner_shipping_id": cls.partner_delivery.id,
                 "state": "done",
-                "date_order": "2020-11-10",
+                "date_order": "2021-05-03",
                 "order_line": [
                     (
                         0,

@@ -3,9 +3,13 @@
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import logging
+from datetime import datetime, timedelta
 
 from odoo import api, fields, models
 from odoo.tests import Form
+
+_logger = logging.getLogger(__name__)
 
 
 class SaleOrderRecommendation(models.TransientModel):
@@ -26,9 +30,7 @@ class SaleOrderRecommendation(models.TransientModel):
         help="Consider these months backwards to generate recommendations.",
     )
     line_ids = fields.One2many(
-        "sale.order.recommendation.line",
-        "wizard_id",
-        "Products",
+        "sale.order.recommendation.line", "wizard_id", "Products"
     )
     line_amount = fields.Integer(
         "Number of recommendations",
@@ -43,6 +45,7 @@ class SaleOrderRecommendation(models.TransientModel):
         string="Product price origin",
         default="pricelist",
     )
+    use_delivery_address = fields.Boolean(string="Use delivery address")
 
     @api.model
     def _default_order_id(self):
@@ -50,21 +53,40 @@ class SaleOrderRecommendation(models.TransientModel):
 
     def _recomendable_sale_order_lines_domain(self):
         """Domain to find recent SO lines."""
-        other_sales = self.env["sale.order"].search(
-            [
-                (
-                    "partner_id",
-                    "child_of",
-                    self.order_id.partner_id.commercial_partner_id.id,
-                ),
-            ]
+        start = datetime.now() - timedelta(days=self.months * 30)
+        start = fields.Datetime.to_string(start)
+        partner = (
+            self.order_id.partner_shipping_id
+            if self.use_delivery_address
+            else self.order_id.partner_id.commercial_partner_id
         )
-        return [
+        sale_order_partner_field = (
+            "partner_shipping_id" if self.use_delivery_address else "partner_id"
+        )
+        # Search with sudo for get sale order from other commercials users
+        other_sales = (
+            self.env["sale.order"]
+            .sudo()
+            .search(
+                [
+                    ("company_id", "=", self.order_id.company_id.id),
+                    (sale_order_partner_field, "child_of", partner.id),
+                    ("date_order", ">=", start),
+                ]
+            )
+        )
+        domain = [
             ("order_id", "in", (other_sales - self.order_id).ids),
             ("product_id.active", "=", True),
             ("product_id.sale_ok", "=", True),
             ("qty_delivered", "!=", 0.0),
         ]
+        # Exclude delivery products
+        # We can not use the method _is_delivery() from sale module because we are
+        # doing a domain for a readgroup query
+        if "is_delivery" in self.env["sale.order.line"]._fields:
+            domain.append(("is_delivery", "=", False))
+        return domain
 
     def _prepare_recommendation_line_vals(self, group_line, so_line=False):
         """Return the vals dictionary for creating a new recommendation line.
@@ -81,35 +103,40 @@ class SaleOrderRecommendation(models.TransientModel):
             vals["sale_line_id"] = so_line.id
         return vals
 
-    @api.onchange("order_id", "months", "line_amount")
+    @api.onchange("order_id", "months", "line_amount", "use_delivery_address")
     def _generate_recommendations(self):
         """Generate lines according to context sale order."""
-        last_compute = "{}-{}-{}".format(self.id, self.months, self.line_amount)
+        last_compute = "{}-{}-{}-{}".format(
+            self.id, self.months, self.line_amount, self.use_delivery_address
+        )
         # Avoid execute onchange as times as fields in api.onchange
         # ORM must control this?
         if self.last_compute == last_compute:
             return
         self.last_compute = last_compute
         # Search delivered products in previous months
-        found_lines = self.env["sale.order.line"].read_group(
-            self._recomendable_sale_order_lines_domain(),
-            ["product_id", "qty_delivered"],
-            ["product_id"],
+        # Search with sudo for get sale order from other commercials users
+        found_lines = (
+            self.env["sale.order.line"]
+            .sudo()
+            .read_group(
+                self._recomendable_sale_order_lines_domain(),
+                ["product_id", "qty_delivered"],
+                ["product_id"],
+            )
         )
         # Manual ordering that circumvents ORM limitations
         found_lines = sorted(
             found_lines,
-            key=lambda res: (
-                res["product_id_count"],
-                res["qty_delivered"],
-            ),
+            key=lambda res: (res["product_id_count"], res["qty_delivered"]),
             reverse=True,
         )
         found_dict = {product["product_id"][0]: product for product in found_lines}
         recommendation_lines = self.env["sale.order.recommendation.line"]
         existing_product_ids = set()
-        # Always recommend all products already present in the linked SO
-        for line in self.order_id.order_line:
+        # Always recommend all products already present in the linked SO except delivery
+        # carrier products
+        for line in self.order_id.order_line.filtered(lambda ln: not ln._is_delivery()):
             found_line = found_dict.get(
                 line.product_id.id,
                 {
@@ -170,31 +197,13 @@ class SaleOrderRecommendationLine(models.TransientModel):
     _description = "Recommended product for current sale order"
     _order = "id"
 
-    currency_id = fields.Many2one(
-        related="product_id.currency_id",
-        readonly=True,
-    )
-    partner_id = fields.Many2one(
-        related="wizard_id.order_id.partner_id",
-        readonly=True,
-    )
-    product_id = fields.Many2one(
-        "product.product",
-        string="Product",
-    )
-    price_unit = fields.Monetary(
-        compute="_compute_price_unit",
-    )
-    pricelist_id = fields.Many2one(
-        related="wizard_id.order_id.pricelist_id",
-        readonly=True,
-    )
-    times_delivered = fields.Integer(
-        readonly=True,
-    )
-    units_delivered = fields.Float(
-        readonly=True,
-    )
+    currency_id = fields.Many2one(related="product_id.currency_id")
+    partner_id = fields.Many2one(related="wizard_id.order_id.partner_id")
+    product_id = fields.Many2one("product.product", string="Product")
+    price_unit = fields.Monetary(compute="_compute_price_unit")
+    pricelist_id = fields.Many2one(related="wizard_id.order_id.pricelist_id")
+    times_delivered = fields.Integer(readonly=True)
+    units_delivered = fields.Float(readonly=True)
     units_included = fields.Float()
     wizard_id = fields.Many2one(
         "sale.order.recommendation",
@@ -203,18 +212,8 @@ class SaleOrderRecommendationLine(models.TransientModel):
         required=True,
         readonly=True,
     )
-    sale_line_id = fields.Many2one(
-        comodel_name="sale.order.line",
-    )
-    sale_uom_id = fields.Many2one(
-        compute="_compute_sale_uom_id", comodel_name="uom.uom", store=True
-    )
-
-    @api.depends("sale_line_id.product_uom", "product_id.uom_id")
-    def _compute_sale_uom_id(self):
-        for record in self:
-            if record.sale_line_id:
-                record.sale_uom_id = record.sale_uom_id or record.product_id.uom_id
+    sale_line_id = fields.Many2one(comodel_name="sale.order.line")
+    sale_uom_id = fields.Many2one(related="sale_line_id.product_uom")
 
     @api.depends(
         "partner_id",
@@ -233,7 +232,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
         for one in self:
             if price_origin == "pricelist":
                 one.price_unit = one.product_id.with_context(
-                    partner=one.partner_id,
+                    partner=one.partner_id.id,
                     pricelist=one.pricelist_id.id,
                     quantity=one.units_included,
                 ).price
@@ -263,8 +262,9 @@ class SaleOrderRecommendationLine(models.TransientModel):
             .sudo()
             .search(
                 [
-                    ("company_id", "=", self.env.user.company_id.id),
+                    ("company_id", "=", self.wizard_id.order_id.company_id.id),
                     ("partner_id", "=", self.partner_id.id),
+                    ("date_order", "!=", False),
                     ("state", "not in", ("draft", "sent", "cancel")),
                     ("order_line.product_id", "=", self.product_id.id),
                 ],
