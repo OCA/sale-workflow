@@ -178,7 +178,10 @@
                                         type="object"
                                         class="btn btn-primary pull-right"
                                     >
-                                        <i class="fa fa-exclamation-circle" />
+                                        <i
+                                            class="fa fa-exclamation-circle"
+                                            title="Create exception"
+                                        />
                                     </button>
                                 </div>
                             </div>
