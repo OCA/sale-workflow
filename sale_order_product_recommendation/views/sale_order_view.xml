@@ -9,10 +9,21 @@
         <field name="arch" type="xml">
             <xpath expr="//form//header//button[@name='action_draft']" position="after">
                 <button
-                    name="%(sale_order_recommendation_action)d"
+                    name="action_sale_order_product_recommendation_wiz"
                     states="draft,sent,sale"
                     string="Recommended Products"
-                    type="action"
+                    type="object"
+                />
+            </xpath>
+            <xpath
+                expr="//control/create[@name='add_product_control']"
+                position="before"
+            >
+                <create
+                    name="add_product_recommendation_control"
+                    string="Add a recommended product"
+                    class="o_field_x2many_recommendation"
+                    context="{'open_product_recommendation': True}"
                 />
             </xpath>
         </field>

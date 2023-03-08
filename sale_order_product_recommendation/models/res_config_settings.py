@@ -13,3 +13,7 @@ class ResConfigSettings(models.TransientModel):
         default_model="sale.order.recommendation",
         required=True,
     )
+    default_sale_recommendation_available_product = fields.Boolean(
+        string="Display available products",
+        default_model="sale.order.recommendation",
+    )

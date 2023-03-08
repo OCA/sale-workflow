@@ -4,6 +4,34 @@
 from odoo import fields, models
 
 
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    def action_sale_order_product_recommendation_wiz(self):
+        recommendation_wiz = self.env["sale.order.recommendation"].search(
+            [("order_id", "=", self.id)], limit=1
+        )
+        # Re-generate all so lines in recommendation lines
+        recommendation_wiz.line_ids.filtered("sale_line_id").unlink()
+        found_dict = {}
+        existing_product_ids = set()
+        recommendation_wiz.line_ids += (
+            recommendation_wiz._fill_existing_sale_order_line(
+                found_dict, existing_product_ids
+            )
+        )
+        next_sequence = (
+            self.order_line and max(self.mapped("order_line.sequence")) + 1 or 10
+        )
+        action = recommendation_wiz.get_formview_action()
+        action["context"] = {
+            "default_order_id": self.id,
+            "default_sequence": next_sequence,
+        }
+        action["target"] = "new"
+        return action
+
+
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 

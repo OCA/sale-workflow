@@ -157,3 +157,26 @@ class RecommendationCaseTests(RecommendationCase):
         wiz_line_prod1.units_included = 3
         wizard.action_accept()
         self.assertEqual(so_line_prod1.price_unit, 60.0)
+
+    def test_recommendations_filter_by_attribute_value(self):
+        wizard = self.wizard()
+        wizard.product_attribute_value_id = self.attribute_value_1
+        wizard._generate_recommendations()
+        wiz_line_prod1 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
+        self.assertTrue(wiz_line_prod1)
+        wizard.product_attribute_value_id = self.attribute_value_2
+        wizard._generate_recommendations()
+        wiz_line_prod1 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
+        self.assertFalse(wiz_line_prod1)
+
+    def test_recommendations_filter_by_category(self):
+        # TODO: change
+        wizard = self.wizard()
+        wizard.product_category_id = self.product_categ_1
+        wizard._generate_recommendations()
+        wiz_line_prod1 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
+        self.assertTrue(wiz_line_prod1)
+        wizard.product_category_id = self.product_categ_2
+        wizard._generate_recommendations()
+        wiz_line_prod1 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
+        self.assertFalse(wiz_line_prod1)
