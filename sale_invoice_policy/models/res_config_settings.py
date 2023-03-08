@@ -10,10 +10,6 @@ class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
     sale_default_invoice_policy = fields.Selection(
-        selection=[
-            ("order", "Ordered quantities"),
-            ("delivery", "Delivered quantities"),
-        ],
         related="default_invoice_policy",
         string="Default Sale Invoice Policy",
         readonly=True,
