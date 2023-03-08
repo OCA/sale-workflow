@@ -89,6 +89,22 @@
                     attrs="{'invisible': [('invoice_plan_process', '=', False)]}"
                 />
             </xpath>
+            <xpath
+                expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d'][1]"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': ['|', ('invoice_plan_process', '=', True), ('invoice_status', '!=', 'to invoice')]}</attribute>
+            </xpath>
+            <xpath
+                expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d'][2]"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': ['|', ('invoice_plan_process', '=', True), '|', ('invoice_status', '!=', 'no'), ('state', '!=', 'sale')]}</attribute>
+            </xpath>
             <xpath expr="/form/sheet/notebook/page" position="after">
                 <page
                     string="Invoice Plan"
