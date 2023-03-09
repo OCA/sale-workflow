@@ -46,12 +46,16 @@
                 expr="//field[@name='order_line']/kanban//t[@t-esc='record.price_unit.value']/../.."
                 position="after"
             >
-                <div class="row">
-                    <div class="col-12 text-muted">
-                        Elaboration:
-                        <t t-esc="record.elaboration_note.value" />
+                <t t-if="record.elaboration_ids.raw_value.length gt 0">
+                    <div class="row mt8">
+                        <div class="col-12">
+                            <strong><field
+                                    name="elaboration_ids"
+                                    widget="many2many_tags"
+                                /></strong>
+                        </div>
                     </div>
-                </div>
+                </t>
             </xpath>
         </field>
     </record>
