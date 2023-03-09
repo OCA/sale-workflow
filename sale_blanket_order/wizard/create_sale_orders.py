@@ -109,7 +109,6 @@ class BlanketOrderWizard(models.TransientModel):
             "blanket_order_line": line.blanket_line_id.id,
             "product_uom_qty": line.qty,
             "tax_id": [(6, 0, line.taxes_id.ids)],
-            "analytic_tag_ids": [(6, 0, line.blanket_line_id.analytic_tag_ids.ids)],
         }
 
     def _prepare_so_vals(
