@@ -2,3 +2,4 @@
 
   * Carlos Roca
   * Ernesto Tejeda
+  * Sergio Teruel
