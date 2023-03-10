@@ -26,13 +26,6 @@ msgid "Auto Generate Lot"
 msgstr "Generació automàtica de lot"
 
 #. module: sale_order_lot_generator
-#: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_template__display_name
-#: model:ir.model.fields,field_description:sale_order_lot_generator.field_sale_order__display_name
-#: model:ir.model.fields,field_description:sale_order_lot_generator.field_sale_order_line__display_name
-msgid "Display Name"
-msgstr "Nom Visible"
-
-#. module: sale_order_lot_generator
 #: model:ir.model.fields,help:sale_order_lot_generator.field_product_product__auto_generate_prodlot
 #: model:ir.model.fields,help:sale_order_lot_generator.field_product_template__auto_generate_prodlot
 msgid ""
@@ -43,23 +36,9 @@ msgstr ""
 "aquest producte des de la confirmació de la comanda de venda"
 
 #. module: sale_order_lot_generator
-#: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_template__id
-#: model:ir.model.fields,field_description:sale_order_lot_generator.field_sale_order__id
-#: model:ir.model.fields,field_description:sale_order_lot_generator.field_sale_order_line__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_order_lot_generator
-#: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_template____last_update
-#: model:ir.model.fields,field_description:sale_order_lot_generator.field_sale_order____last_update
-#: model:ir.model.fields,field_description:sale_order_lot_generator.field_sale_order_line____last_update
-msgid "Last Modified on"
-msgstr "Darrera modificació el"
-
-#. module: sale_order_lot_generator
 #: model:ir.model,name:sale_order_lot_generator.model_product_template
-msgid "Product Template"
-msgstr "Plantilla de producte"
+msgid "Product"
+msgstr ""
 
 #. module: sale_order_lot_generator
 #: model:ir.model,name:sale_order_lot_generator.model_sale_order
@@ -70,6 +49,18 @@ msgstr "Comanda de venda"
 #: model:ir.model,name:sale_order_lot_generator.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línia de comanda de vendes"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom Visible"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Darrera modificació el"
+
+#~ msgid "Product Template"
+#~ msgstr "Plantilla de producte"
 
 #, fuzzy
 #~ msgid "Sale Order"
