@@ -21,6 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[account_invoice_pricelist_technical](account_invoice_pricelist_technical/) | 12.0.1.0.1 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Prevent technical pricelists from being selected on invoice forms
 [partner_contact_sale_info_propagation](partner_contact_sale_info_propagation/) | 12.0.1.0.0 |  | Propagate Salesperson and Sales Channel from Company to Contacts
 [partner_prospect](partner_prospect/) | 12.0.1.0.0 |  | Partner Prospect
 [partner_sale_pivot](partner_sale_pivot/) | 12.0.1.0.0 | [![ernestotejeda](https://github.com/ernestotejeda.png?size=30px)](https://github.com/ernestotejeda) | Sales analysis from customer form view
@@ -86,6 +87,7 @@ addon | version | maintainers | summary
 [sale_order_type](sale_order_type/) | 12.0.1.3.0 |  | Sale Order Type
 [sale_order_weight](sale_order_weight/) | 12.0.1.0.2 |  | Sale Order Weight
 [sale_partner_incoterm](sale_partner_incoterm/) | 12.0.1.0.1 |  | Set the customer preferred incoterm on each sales order
+[sale_pricelist_technical](sale_pricelist_technical/) | 12.0.1.0.1 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Prevent some pricelists from being selected on order and customer forms
 [sale_procurement_group_by_commitment_date](sale_procurement_group_by_commitment_date/) | 12.0.1.0.0 |  | Groups pickings based on commitment date of order line
 [sale_procurement_group_by_line](sale_procurement_group_by_line/) | 12.0.1.0.0 |  | Base module for multiple procurement group by Sale order
 [sale_product_category_menu](sale_product_category_menu/) | 12.0.1.0.3 |  | Shows 'Product Categories' menu item in Sales
