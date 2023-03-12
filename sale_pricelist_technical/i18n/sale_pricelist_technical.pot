@@ -1,16 +1,13 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#   * sale_pricelist_technical
+#	* sale_pricelist_technical
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-07 16:38+0000\n"
-"PO-Revision-Date: 2023-02-07 16:38+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -18,15 +15,8 @@ msgstr ""
 
 #. module: sale_pricelist_technical
 #: model:ir.model.fields,help:sale_pricelist_technical.field_product_pricelist__is_technical
-msgid ""
-"Check this box if you want to prevent users from using this pricelist on "
-"orders or in customer forms. This is useful for pricelists that are created "
-"only to compute other pricelists."
+msgid "Check this box if you want to prevent users from using this pricelist on orders or in customer forms. This is useful for pricelists that are created only to compute other pricelists."
 msgstr ""
-"Cocher cette case si vous souhaitez empêcher les utilisateurs d'utiliser "
-"cette liste de prix dans les devis, ou sur le formulaire client. Ceci est "
-"utile pour les liste de prix créée uniquement pour le calcul d'autres liste "
-"de prix."
 
 #. module: sale_pricelist_technical
 #: model:ir.model,name:sale_pricelist_technical.model_res_partner
@@ -36,7 +26,7 @@ msgstr ""
 #. module: sale_pricelist_technical
 #: model:ir.model.fields,field_description:sale_pricelist_technical.field_product_pricelist__is_technical
 msgid "Is Technical"
-msgstr "Est technique"
+msgstr ""
 
 #. module: sale_pricelist_technical
 #: model:ir.model,name:sale_pricelist_technical.model_product_pricelist
@@ -44,27 +34,26 @@ msgstr "Est technique"
 #: model:ir.model.fields,field_description:sale_pricelist_technical.field_res_users__property_product_pricelist
 #: model:ir.model.fields,field_description:sale_pricelist_technical.field_sale_order__pricelist_id
 msgid "Pricelist"
-msgstr "Liste de prix"
+msgstr ""
 
 #. module: sale_pricelist_technical
 #: model:ir.model.fields,help:sale_pricelist_technical.field_sale_order__pricelist_id
 msgid "Pricelist for current sales order."
-msgstr "Liste de prix du bon de commande actuel"
+msgstr ""
 
 #. module: sale_pricelist_technical
 #: model:ir.model,name:sale_pricelist_technical.model_sale_order
 msgid "Sale Order"
-msgstr "Bon de commande"
+msgstr ""
 
 #. module: sale_pricelist_technical
 #: model:product.pricelist,name:sale_pricelist_technical.technical_pricelist
 msgid "Technical Pricelist"
-msgstr "Liste de prix technique"
+msgstr ""
 
 #. module: sale_pricelist_technical
 #: model:ir.model.fields,help:sale_pricelist_technical.field_res_partner__property_product_pricelist
 #: model:ir.model.fields,help:sale_pricelist_technical.field_res_users__property_product_pricelist
-msgid ""
-"This pricelist will be used, instead of the default one, for sales to the "
-"current partner"
+msgid "This pricelist will be used, instead of the default one, for sales to the current partner"
 msgstr ""
+
