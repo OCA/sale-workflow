@@ -1,0 +1,6 @@
+diff a/.github/workflows/test.yml b/.github/workflows/test.yml	(rejected hunks)
+@@ -30,3 +30,3 @@ jobs:
+   test:
+-    runs-on: ubuntu-latest
++    runs-on: ubuntu-20.04
+     container: ${{ matrix.container }}
