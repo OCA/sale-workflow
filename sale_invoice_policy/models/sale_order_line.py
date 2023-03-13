@@ -15,7 +15,7 @@ class SaleOrderLine(models.Model):
         "order_id.state",
         "order_id.invoice_policy",
     )
-    def _get_to_invoice_qty(self):
+    def _compute_qty_to_invoice(self):
         invoice_policies = set(self.mapped("order_id.invoice_policy"))
         line_by_id = {line.id: line for line in self}
         done_lines = self.env["sale.order.line"].browse()
@@ -25,17 +25,16 @@ class SaleOrderLine(models.Model):
                 .filtered(lambda x, p=invoice_policy: x.order_id.invoice_policy == p)
                 .with_prefetch()
             )
-            done_lines |= so_lines
-            so_lines.mapped("product_id")
             if so_lines:
-                super(SaleOrderLine, so_lines)._get_to_invoice_qty()
+                done_lines |= so_lines
+                super(SaleOrderLine, so_lines)._compute_qty_to_invoice()
                 for line in so_lines:
                     # due to the change of context in compute methods,
                     # assign the value in the modified context to self
                     line_by_id[line.id].qty_to_invoice = line.qty_to_invoice
         # Not to break function if (it could not happen) some records
         # were not in so_lines
-        super(SaleOrderLine, self - done_lines)._get_to_invoice_qty()
+        super(SaleOrderLine, self - done_lines)._compute_qty_to_invoice()
         return True
 
     @api.depends(
