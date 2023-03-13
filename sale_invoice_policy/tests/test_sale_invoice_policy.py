@@ -37,9 +37,9 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
 
         self.assertEqual(len(so.picking_ids), 1)
 
-        for picking in so.picking_ids:
-            picking.action_assign()
-            self.assertEqual(picking.state, "assigned")
+        picking = so.picking_ids
+        picking.action_assign()
+        self.assertEqual(picking.state, "assigned")
         so_line = so.order_line[0]
         self.assertEqual(so_line.qty_to_invoice, 2)
         self.assertEqual(so_line.invoice_status, "to invoice")
@@ -64,9 +64,9 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
 
         self.assertEqual(len(so.picking_ids), 1)
 
-        for picking in so.picking_ids:
-            picking.action_assign()
-            self.assertEqual(picking.state, "assigned")
+        picking = so.picking_ids
+        picking.action_assign()
+        self.assertEqual(picking.state, "assigned")
 
         so_line = so.order_line[0]
         self.assertEqual(so_line.qty_to_invoice, 0)
@@ -76,8 +76,8 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         self.assertEqual(so_line.qty_to_invoice, 0)
         self.assertEqual(so_line.invoice_status, "no")
 
-        for mv in picking.move_lines:
-            mv.quantity_done = mv.product_uom_qty
+        for mv in picking.move_line_ids:
+            mv.qty_done = mv.reserved_uom_qty
         picking.button_validate()
         self.assertEqual(picking.state, "done")
 
@@ -155,7 +155,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         )
         # Shouldn't be impacted by the context because the type is service
         self.assertEqual(product.invoice_policy, invoice_policy)
-        # This one is not a service so it must be impacted by the context
+        # This one is not a service, so it must be impacted by the context
         self.assertEqual(product2.invoice_policy, new_invoice_policy)
         product = product.with_context(
             invoice_policy=invoice_policy,
@@ -165,17 +165,18 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         )
         # Shouldn't be impacted by the context because the type is service
         self.assertEqual(product.invoice_policy, invoice_policy)
-        # This one is not a service so it must be impacted by the context
+        # This one is not a service, so it must be impacted by the context
         self.assertEqual(product2.invoice_policy, invoice_policy)
         return True
 
     def test_inverse_invoice_policy(self):
         self.product.default_invoice_policy = "order"
-        self.assertEqual("order", self.product.default_invoice_policy)
+        self.assertEqual("order", self.product.invoice_policy)
         self.product.invoice_policy = "delivery"
         self.assertEqual("delivery", self.product.default_invoice_policy)
 
     def test_settings(self):
+        # delivery policy is the default
         settings = self.env["res.config.settings"].create({})
         settings.sale_default_invoice_policy = "delivery"
         settings.sale_invoice_policy_required = True
@@ -184,4 +185,12 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
             {"partner_id": self.env.ref("base.res_partner_2").id}
         )
         self.assertEqual(so.invoice_policy, "delivery")
+        self.assertTrue(so.invoice_policy_required)
+        # order policy is the default
+        settings.sale_default_invoice_policy = "order"
+        settings.execute()
+        so = self.env["sale.order"].create(
+            {"partner_id": self.env.ref("base.res_partner_2").id}
+        )
+        self.assertEqual(so.invoice_policy, "order")
         self.assertTrue(so.invoice_policy_required)
