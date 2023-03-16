@@ -16,7 +16,7 @@ class TestSaleStock(TestSaleCommonBase):
         self.product2 = self.env.ref("product.product_delivery_02")
         self.product3 = self.env.ref("product.product_order_01")
         self.carrier1 = self.env.ref("delivery.delivery_carrier")
-        self.carrier2 = self.env.ref("delivery.normal_delivery_carrier")
+        self.carrier2 = self.env.ref("delivery.delivery_local_delivery")
         self.stock_location = self.env.ref("stock.stock_location_stock")
         self.env["stock.quant"]._update_available_quantity(
             self.product, self.stock_location, 100
@@ -289,7 +289,7 @@ class TestSaleStock(TestSaleCommonBase):
             'Picking should be created after "manual delivery" wizard call',
         )
         self.assertEqual(
-            len(order3.picking_ids.move_lines),
+            len(order3.picking_ids.move_ids),
             1,
             "Different sales orders should still create different pickings",
         )
@@ -412,7 +412,7 @@ class TestSaleStock(TestSaleCommonBase):
             ' after "manual delivery" wizard call with same date',
         )
         self.assertEqual(
-            sum(first_picking.mapped("move_lines.product_uom_qty")),
+            sum(first_picking.mapped("move_ids.product_uom_qty")),
             7,
         )
 
