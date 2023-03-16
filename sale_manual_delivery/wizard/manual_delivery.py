@@ -84,7 +84,7 @@ class ManualDelivery(models.TransientModel):
         "manual_delivery_id",
         string="Lines to validate",
     )
-    date_planned = fields.Datetime(string="Date Planned")
+    date_planned = fields.Datetime()
 
     def confirm(self):
         """Creates the manual procurements"""
