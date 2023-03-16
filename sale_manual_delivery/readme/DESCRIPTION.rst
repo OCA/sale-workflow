@@ -5,3 +5,10 @@ The goal is to be used on long term projects where not all the material is shipp
 As you make many shipments, every time you make a new delivery, you can choose an new carrier as well
 as a planned date. A wizard helps you to chose what to deliver by showing you how much you already
 planned to ship.
+
+.. image:: ../static/description/field.png
+   :alt: Field
+   :width: 500 px
+.. image:: ../static/description/wizard.png
+   :alt: Wizard
+   :width: 500 px
