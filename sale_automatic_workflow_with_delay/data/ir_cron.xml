@@ -1,4 +1,4 @@
-<odoo>
+<odoo noupdate="1">
     <record
         forcecreate="True"
         id="ir_cron_automatic_workflow_job_delayed"

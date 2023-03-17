@@ -1,3 +1,9 @@
-Allows to add a delay on options of sale automatic workflow.
-It works by having a second cron running wich executes less frequently.
-For the moment only the validation of sales order can be delayed.
+This module allows to execute workflows with a different frequence than
+the related module.
+This is achieved by having an other cron job independent to the first one.
+
+In the workflow configuration, an option can be set to run with delay.
+In such case that option will be executed by the delayed cron job and not
+the regular one.
+
+At the moment only the sales order validation option can be set this way.
