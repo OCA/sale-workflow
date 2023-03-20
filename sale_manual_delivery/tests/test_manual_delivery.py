@@ -162,6 +162,8 @@ class TestSaleStock(TestSaleCommonBase):
         wizard = self._manual_delivery_wizard(order)
         wizard.line_ids.write({"quantity": 2.0})
         wizard.confirm()
+        # checking has_pending_delivery for Create Delivery button to appear
+        self.assertTrue(order.has_pending_delivery)
         # check picking is created
         self.assertEqual(
             len(order.picking_ids),
@@ -194,6 +196,8 @@ class TestSaleStock(TestSaleCommonBase):
         wizard = self._manual_delivery_wizard(order)
         wizard.line_ids.write({"quantity": 3.0})
         wizard.confirm()
+        # checking has_pending_delivery for Create Delivery button to hide
+        self.assertFalse(order.has_pending_delivery)
         self.assertEqual(
             len(order.picking_ids),
             2.0,
