@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-10 15:37+0000\n"
-"PO-Revision-Date: 2022-12-29 16:47+0000\n"
+"PO-Revision-Date: 2023-03-20 09:57+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -25,7 +25,7 @@ msgstr ""
 #. module: sale_last_price_info
 #: field:product.product,last_customer_id:0
 msgid "Last Customer"
-msgstr "Ultimo Cliente"
+msgstr "Ultimo cliente"
 
 #. module: sale_last_price_info
 #: view:product.product:sale_last_price_info.product_last_sale_info_form_view
@@ -50,4 +50,4 @@ msgstr "Prodotto"
 #. module: sale_last_price_info
 #: view:product.product:sale_last_price_info.product_last_sale_info_form_view
 msgid "Sale"
-msgstr "Vendite"
+msgstr "Vendita"
