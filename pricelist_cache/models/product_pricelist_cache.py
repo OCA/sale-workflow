@@ -195,7 +195,17 @@ class PricelistCache(models.Model):
         """Creates cache for all prices applied to all pricelists."""
         pricelists = self.env["product.pricelist"].search([])
         pricelist_ids = pricelists.ids
-        # Spawn a job every 3 pricelists (reduce the number of jobs created)
+        big_plist_ids = self.env["product.pricelist"]._get_root_pricelist_ids()
+        big_plist_ids.extend(self.env["product.pricelist"]._get_factor_pricelist_ids())
+        pricelist_ids = [plid for plid in pricelist_ids if plid not in big_plist_ids]
+        # One job for each root pricelist (they are costly to run)
+        for pricelist_id in big_plist_ids:
+            self.with_delay().update_product_pricelist_cache(
+                pricelist_ids=[
+                    pricelist_id,
+                ]
+            )
+        # Spawn a job every 3 oter pricelists (reduce the number of jobs created)
         for chunk_ids in tools.misc.split_every(3, pricelist_ids):
             self.with_delay().update_product_pricelist_cache(pricelist_ids=chunk_ids)
 
