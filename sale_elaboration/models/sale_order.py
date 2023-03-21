@@ -41,32 +41,20 @@ class SaleOrder(models.Model):
 
 
 class SaleOrderLine(models.Model):
-    _inherit = "sale.order.line"
+    _inherit = ["sale.order.line", "product.elaboration.mixin"]
+    _name = "sale.order.line"
 
-    elaboration_ids = fields.Many2many(
-        comodel_name="product.elaboration",
-        string="Elaborations",
-    )
-    elaboration_note = fields.Char(
-        store=True,
-        compute="_compute_elaboration_note",
-        readonly=False,
-    )
-    is_elaboration = fields.Boolean(
-        store=True,
-        compute="_compute_is_elaboration",
-        readonly=False,
-    )
     date_order = fields.Datetime(related="order_id.date_order", string="Date")
-    route_id = fields.Many2one(
-        compute="_compute_elaboration_note", store=True, readonly=False
-    )
+    route_id = fields.Many2one(compute="_compute_route_id", store=True, readonly=False)
+
+    def get_elaboration_stock_route(self):
+        self.ensure_one()
+        return self.elaboration_ids.route_ids[:1]
 
     @api.depends("elaboration_ids")
-    def _compute_elaboration_note(self):
+    def _compute_route_id(self):
         for line in self:
-            line.elaboration_note = ", ".join(line.elaboration_ids.mapped("name"))
-            route_id = line.elaboration_ids.route_id[:1]
+            route_id = line.get_elaboration_stock_route()
             if route_id:
                 line.route_id = route_id
 
@@ -75,12 +63,3 @@ class SaleOrderLine(models.Model):
         if self.is_elaboration:
             vals["name"] = "{} - {}".format(self.order_id.name, self.name)
         return vals
-
-    @api.depends("product_id")
-    def _compute_is_elaboration(self):
-        """We use computed instead of a related field because related fields are not
-        initialized with their value on one2many which related field is the
-        inverse_name, so with this we get immediately the value on NewIds.
-        """
-        for line in self:
-            line.is_elaboration = line.product_id.is_elaboration
