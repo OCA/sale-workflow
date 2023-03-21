@@ -16,14 +16,3 @@ class StockPicking(models.Model):
                 for product in line.sale_line_id.elaboration_ids.product_id:
                     pick.sale_id._create_elaboration_line(product, line.quantity_done)
         return res
-
-
-class StockMoveLine(models.Model):
-    _inherit = "stock.move.line"
-
-    def _get_aggregated_product_quantities(self, **kwargs):
-        res = super(StockMoveLine, self)._get_aggregated_product_quantities(**kwargs)
-
-        super(StockMoveLine, self)._get_aggregated_product_quantities(**kwargs)
-
-        return res
