@@ -22,9 +22,9 @@ class Elaboration(models.Model):
         help="If unchecked, it will allow you to hide the product "
         "elaborations without removing it.",
     )
-    route_id = fields.Many2one(
-        "stock.location.route",
-        string="Route",
+    route_ids = fields.Many2many(
+        comodel_name="stock.location.route",
+        string="Routes",
         domain=[("sale_selectable", "=", True)],
         ondelete="restrict",
         check_company=True,

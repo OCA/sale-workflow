@@ -13,11 +13,11 @@
                     <field
                         name="elaboration_ids"
                         widget="many2many_tags"
-                        attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                        attrs="{'readonly': ['|', ('product_updatable', '=', False), ('state', 'in', ('done', 'cancel'))]}"
                     />
                     <field
                         name="elaboration_note"
-                        attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                        attrs="{'readonly': ['|', ('product_updatable', '=', False), ('state', 'in', ('done', 'cancel'))]}"
                     />
                 </group>
             </xpath>
@@ -28,11 +28,11 @@
                 <field
                     name="elaboration_ids"
                     widget="many2many_tags"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    attrs="{'readonly': ['|', ('product_updatable', '=', False), ('state', 'in', ('done', 'cancel'))]}"
                 />
                 <field
                     name="elaboration_note"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    attrs="{'readonly': ['|', ('product_updatable', '=', False), ('state', 'in', ('done', 'cancel'))]}"
                 />
             </xpath>
             <xpath

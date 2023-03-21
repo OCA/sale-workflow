@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Tecnativa - Sergio Teruel
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom']"
+                position="after"
+            >
+                <field
+                    name="elaboration_ids"
+                    widget="many2many_tags"
+                    options="{'no_create': True}"
+                    attrs="{'column_invisible': [('parent.immediate_transfer', '=', True)], 'readonly': ['|', ('is_initial_demand_editable', '=', False), '&amp;', '&amp;', ('show_operations', '=', True), ('is_locked', '=', True), ('is_initial_demand_editable', '=', False)]}"
+                />
+                <field
+                    name="elaboration_note"
+                    attrs="{'column_invisible': [('parent.immediate_transfer', '=', True)], 'readonly': ['|', ('is_initial_demand_editable', '=', False), '&amp;', '&amp;', ('show_operations', '=', True), ('is_locked', '=', True), ('is_initial_demand_editable', '=', False)]}"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='move_ids_without_package']/form//field[@name='product_uom']"
+                position="after"
+            >
+                <field
+                    name="elaboration_ids"
+                    widget="many2many_tags"
+                    options="{'no_create': True}"
+                    attrs="{'invisible': [('parent.immediate_transfer', '=', True)], 'readonly': [('is_initial_demand_editable', '=', False)]}"
+                />
+                <field
+                    name="elaboration_note"
+                    attrs="{'invisible': [('parent.immediate_transfer', '=', True)], 'readonly': [('is_initial_demand_editable', '=', False)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
