@@ -20,22 +20,22 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_order_invoice_amount.view_order_tree_invoiced_amount
 #, python-format
 msgid "Invoiced Amount"
-msgstr ""
+msgstr "Importe facturado"
 
 #. module: sale_order_invoice_amount
 #: model:ir.model.fields,help:sale_order_invoice_amount.field_sale_order__invoiced_amount
 msgid "Order amount already invoiced."
-msgstr ""
+msgstr "Importe del pedido ya facturado."
 
 #. module: sale_order_invoice_amount
 #: model:ir.model.fields,help:sale_order_invoice_amount.field_sale_order__uninvoiced_amount
 msgid "Order amount to be invoiced"
-msgstr ""
+msgstr "Importe del pedido pendiente de facturar"
 
 #. module: sale_order_invoice_amount
 #: model:ir.model,name:sale_order_invoice_amount.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Pedidos de venta"
 
 #. module: sale_order_invoice_amount
 #. odoo-javascript
@@ -44,4 +44,4 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_order_invoice_amount.view_order_tree_invoiced_amount
 #, python-format
 msgid "Uninvoiced Amount"
-msgstr ""
+msgstr "Importe no facturado"
