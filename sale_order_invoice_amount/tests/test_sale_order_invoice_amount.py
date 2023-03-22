@@ -10,34 +10,22 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
         super().setUpClass()
 
         # Partners
-        cls.res_partner_1 = cls.env["res.partner"].create({"name": "Wood Corner"})
-        cls.res_partner_address_1 = cls.env["res.partner"].create(
+        partner_model = cls.env["res.partner"]
+        cls.res_partner_1 = partner_model.create({"name": "Wood Corner"})
+        cls.res_partner_address_1 = partner_model.create(
             {"name": "Willie Burke", "parent_id": cls.res_partner_1.id}
         )
-        cls.res_partner_2 = cls.env["res.partner"].create({"name": "Partner 12"})
+        cls.res_partner_2 = partner_model.create({"name": "Partner 12"})
         # Products
-        cls.product_1 = cls.env["product.product"].create(
-            {"name": "Desk Combination", "type": "product"}
+        product_model = cls.env["product.product"]
+        cls.product_1 = product_model.create(
+            {"name": "Desk Combination", "type": "consu"}
         )
-        cls.product_2 = cls.env["product.product"].create(
-            {"name": "Conference Chair", "type": "product"}
+        cls.product_2 = product_model.create(
+            {"name": "Conference Chair", "type": "consu"}
         )
-        cls.product_3 = cls.env["product.product"].create(
+        cls.product_3 = product_model.create(
             {"name": "Repair Services", "type": "service"}
-        )
-        # Location
-        cls.stock_warehouse = cls.env["stock.warehouse"].search(
-            [("company_id", "=", cls.env.company.id)], limit=1
-        )
-        cls.stock_location_14 = cls.env["stock.location"].create(
-            {"name": "Shelf 2", "location_id": cls.stock_warehouse.lot_stock_id.id}
-        )
-        # Replenish products
-        cls.env["stock.quant"]._update_available_quantity(
-            cls.product_1, cls.stock_location_14, 10
-        )
-        cls.env["stock.quant"]._update_available_quantity(
-            cls.product_2, cls.stock_location_14, 10
         )
         # Sale Order
         cls.tax = cls.env["account.tax"].create(
@@ -46,7 +34,8 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
         cls.sale_order_1 = cls.env["sale.order"].create(
             {"partner_id": cls.res_partner_1.id}
         )
-        cls.order_line_1 = cls.env["sale.order.line"].create(
+        sale_order_line_model = cls.env["sale.order.line"]
+        cls.order_line_1 = sale_order_line_model.create(
             {
                 "order_id": cls.sale_order_1.id,
                 "product_id": cls.product_1.id,
@@ -56,7 +45,7 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
                 "tax_id": cls.tax,
             }
         )
-        cls.order_line_2 = cls.env["sale.order.line"].create(
+        cls.order_line_2 = sale_order_line_model.create(
             {
                 "order_id": cls.sale_order_1.id,
                 "product_id": cls.product_2.id,
@@ -66,7 +55,7 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
                 "tax_id": cls.tax,
             }
         )
-        cls.order_line_3 = cls.env["sale.order.line"].create(
+        cls.order_line_3 = sale_order_line_model.create(
             {
                 "order_id": cls.sale_order_1.id,
                 "product_id": cls.product_3.id,
@@ -111,4 +100,21 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             self.sale_order_1.invoiced_amount,
             363.0,
             "Invoiced Amount should be calculated",
+        )
+        tax_totals = self.sale_order_1.tax_totals
+        self.assertEqual(
+            tax_totals["invoiced_amount"],
+            363.0,
+        )
+        self.assertEqual(
+            tax_totals["uninvoiced_amount"],
+            0.0,
+        )
+        self.assertEqual(
+            tax_totals["formatted_invoiced_amount"],
+            "$\xa0363.00",
+        )
+        self.assertEqual(
+            tax_totals["formatted_uninvoiced_amount"],
+            "$\xa00.00",
         )
