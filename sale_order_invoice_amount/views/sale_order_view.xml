@@ -6,10 +6,10 @@
         <field name="inherit_id" ref="sale.view_order_tree" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='amount_tax']" position="after">
-                <field name="invoiced_amount" sum="Invoiced Total" optional="hide" />
+                <field name="invoiced_amount" sum="Invoiced Amount" optional="hide" />
                 <field
                     name="uninvoiced_amount"
-                    sum="Uninvoiced Total"
+                    sum="Uninvoiced Amount"
                     optional="hide"
                 />
             </xpath>
