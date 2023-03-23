@@ -4,7 +4,7 @@
 {
     "name": "Sale Partner Approval",
     "summary": "Control Partners that can be used in Sales Orders",
-    "version": "14.0.2.0.0",
+    "version": "16.0.1.0.0",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
@@ -13,7 +13,7 @@
     "maintainers": ["dreispt"],
     "development_status": "Alpha",
     "depends": [
-        "partner_stage",  # oca/product-attribute
+        "partner_stage",  # oca/partner-contact
         "sale_exception",
     ],
     "data": [
