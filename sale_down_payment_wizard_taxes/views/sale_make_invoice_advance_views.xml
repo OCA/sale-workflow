@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record model="ir.ui.view" id="view_sale_advance_payment_inv">
+    <field name="name">Invoice Orders (in sale_down_payment_wizard_taxes)</field>
+    <field name="model">sale.advance.payment.inv</field>
+    <field name="inherit_id" ref="sale.view_sale_advance_payment_inv" />
+    <field name="arch" type="xml">
+      <field name="deposit_taxes_id" position="attributes">
+        <!-- always display that field -->
+        <attribute name="attrs">
+          {'required': [('advance_payment_method', 'not in',
+          ('delivered'))],'invisible': [('advance_payment_method','in', ('delivered'))]}
+        </attribute>
+      </field>
+    </field>
+  </record>
+</odoo>
