@@ -1,0 +1,129 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_purchase_requisition
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-28 12:51+0000\n"
+"PO-Revision-Date: 2023-03-28 12:51+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_purchase_requisition
+#: code:addons/sale_purchase_requisition/models/sale_order.py:0
+#, python-format
+msgid ""
+"Cannot modify sale order lines because the purchase requisition linked to "
+"the sale order is locked. Set it to draft and try again to continue."
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: code:addons/sale_purchase_requisition/models/sale_order.py:0
+#, python-format
+msgid "Deleted Order Line!"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__display_name
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition_line__display_name
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__id
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition_line__id
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition____last_update
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition_line____last_update
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: model_terms:ir.ui.view,arch_db:sale_purchase_requisition.sale_view_order_form_inherited
+msgid "New Purchase Requisition"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: code:addons/sale_purchase_requisition/models/sale_order.py:0
+#: code:addons/sale_purchase_requisition/models/sale_order.py:0
+#: model:ir.model,name:sale_purchase_requisition.model_purchase_requisition
+#: model_terms:ir.ui.view,arch_db:sale_purchase_requisition.sale_view_order_form_inherited
+#, python-format
+msgid "Purchase Requisition"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: model:ir.model,name:sale_purchase_requisition.model_purchase_requisition_line
+msgid "Purchase Requisition Line"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order__purchase_requisition_ids
+msgid "Purchase requisition"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order_line__purchase_requisition_line_ids
+msgid "Purchase requisition lines"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__sale_id
+#: model_terms:ir.ui.view,arch_db:sale_purchase_requisition.purchase_requisition_form_view_inherited
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition_line__line_order_id
+msgid "Sale Order Line"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: code:addons/sale_purchase_requisition/models/purchase_requisition.py:0
+#, python-format
+msgid "Sale Orders"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__sale_user_id
+msgid "Sale Representative"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,help:sale_purchase_requisition.field_purchase_requisition__sale_id
+msgid "Sale order related to this purchase requisition."
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: model:ir.model,name:sale_purchase_requisition.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: model:ir.model,name:sale_purchase_requisition.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: code:addons/sale_purchase_requisition/models/sale_order.py:0
+#, python-format
+msgid ""
+"You are deleting order lines that cannot be deleted in these purchase "
+"requisitions %s! Do not forget to manually modify the purchase requisition "
+"if needed."
+msgstr ""

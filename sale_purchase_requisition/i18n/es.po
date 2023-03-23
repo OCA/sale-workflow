@@ -1,0 +1,170 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_purchase_requisition
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-27 07:00+0000\n"
+"PO-Revision-Date: 2023-04-27 09:05+0200\n"
+"Last-Translator: Andrea Cattalani <andrea@moduon.team>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.1.1\n"
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__alert_activity
+msgid "Alert Activity"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__display_name
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition_line__display_name
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__id
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition_line__id
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition____last_update
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition_line____last_update
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sale_purchase_requisition
+#: model_terms:ir.ui.view,arch_db:sale_purchase_requisition.sale_view_order_form_inherited
+msgid "New Purchase Requisition"
+msgstr "Nueva solicitud de compra"
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,help:sale_purchase_requisition.field_sale_order__open_purchase_requisition_count
+msgid "Number of purchase requisitions in open state"
+msgstr "Número de acuerdos de compra en estado abierto"
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order__open_purchase_requisition_count
+msgid "Open Purchase Requisitions"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: model:ir.model,name:sale_purchase_requisition.model_purchase_requisition
+#: model_terms:ir.ui.view,arch_db:sale_purchase_requisition.sale_view_order_form_inherited
+msgid "Purchase Requisition"
+msgstr "Solicitud de compra"
+
+#. module: sale_purchase_requisition
+#: model:ir.model,name:sale_purchase_requisition.model_purchase_requisition_line
+msgid "Purchase Requisition Line"
+msgstr "Línea solicitud de compra"
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__purchase_requisition_sync_warning
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order__purchase_requisition_sync_warning
+msgid "Purchase Requisition Sync Warning"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: code:addons/sale_purchase_requisition/models/sale_order.py:0
+#, python-format
+msgid "Purchase Requisition for %s"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: code:addons/sale_purchase_requisition/models/sale_order.py:0
+#, python-format
+msgid "Purchase Requisition(s) for %s"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order_line__purchase_requisition_line_ids
+msgid "Purchase requisition lines"
+msgstr "Líneas de acuerdo de compra"
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order__purchase_requisition_ids
+msgid "Purchase requisitions"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: code:addons/sale_purchase_requisition/models/purchase_requisition.py:0
+#, python-format
+msgid "Resolve differences with the sales order"
+msgstr "Resolver diferencias con la orden de venta"
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__sale_id
+msgid "Sale Order"
+msgstr "Pedido de venta"
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition_line__line_order_id
+msgid "Sale Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__sale_user_id
+msgid "Sale Representative"
+msgstr "Representante de ventas"
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,help:sale_purchase_requisition.field_purchase_requisition__sale_id
+msgid "Sale order related to this purchase requisition."
+msgstr "Pedido de venta relacionado con este acuerdo de compras."
+
+#. module: sale_purchase_requisition
+#: model:ir.model,name:sale_purchase_requisition.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_purchase_requisition
+#: model:ir.model,name:sale_purchase_requisition.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_purchase_requisition
+#: code:addons/sale_purchase_requisition/models/sale_order.py:0
+#, python-format
+msgid ""
+"Some lines are not synced on these Purchase Requisitions: %s please update "
+"this lines manually"
+msgstr ""
+"Algunas líneas no están sincronizadas en este acuerdo de compra: %s "
+"actualice estas líneas manualmente"
+
+#. module: sale_purchase_requisition
+#: code:addons/sale_purchase_requisition/models/purchase_requisition.py:0
+#, python-format
+msgid ""
+"Some lines are not synced on these Sale order:%s please update this lines "
+"manually"
+msgstr ""
+"Algunas líneas no están sincronizadas en este pedido de venta:%s actualice "
+"estas líneas manualmente"
+
+#. module: sale_purchase_requisition
+#: code:addons/sale_purchase_requisition/models/purchase_requisition.py:0
+#, python-format
+msgid "The product quantity %s <br> have changed %d -> %d %s"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,help:sale_purchase_requisition.field_sale_order__purchase_requisition_sync_warning
+msgid ""
+"Warning message to be displayed when order lines are not synced with "
+"purchase requisitions"
+msgstr ""
