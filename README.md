@@ -27,6 +27,7 @@ addon | version | maintainers | summary
 [sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 16.0.1.0.0 |  | Sale Automatic Workflow - Payment Mode
 [sale_commercial_partner](sale_commercial_partner/) | 16.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Add stored related field 'Commercial Entity' on sale orders
 [sale_exception](sale_exception/) | 16.0.1.0.1 |  | Custom exceptions on sale order
+[sale_order_archive](sale_order_archive/) | 16.0.1.0.0 |  | Archive Sale Orders
 [sale_order_line_menu](sale_order_line_menu/) | 16.0.1.0.0 |  | Adds a Sale Order Lines Menu
 [sale_order_lot_selection](sale_order_lot_selection/) | 16.0.1.0.1 | [![bodedra](https://github.com/bodedra.png?size=30px)](https://github.com/bodedra) | Sale Order Lot Selection
 [sale_order_type](sale_order_type/) | 16.0.1.0.1 |  | Sale Order Type
