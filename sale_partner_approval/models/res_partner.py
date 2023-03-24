@@ -33,6 +33,7 @@ class Partner(models.Model):
             else:
                 ok = partner.candidate_sale and partner.stage_id.approved_sale
             super(Partner, partner).write({"sale_ok": ok})
+        return
 
     @api.model
     def create(self, vals):
