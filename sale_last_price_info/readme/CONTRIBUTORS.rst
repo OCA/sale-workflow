@@ -4,3 +4,4 @@
 * Ana Juaristi <anajuaristi@avanzosc.es>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 * Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
+* Murtaza Mithaiwala <mmithaiwala@opensourceintegrators.com>
