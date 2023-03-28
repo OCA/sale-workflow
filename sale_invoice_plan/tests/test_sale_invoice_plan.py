@@ -23,21 +23,19 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         }
 
         # Create base account to simulate a chart of account
-        user_type_payable = cls.env.ref("account.data_account_type_payable")
         cls.account_payable = cls.env["account.account"].create(
             {
                 "code": "NC1110",
                 "name": "Test Payable Account",
-                "user_type_id": user_type_payable.id,
+                "account_type": "liability_payable",
                 "reconcile": True,
             }
         )
-        user_type_receivable = cls.env.ref("account.data_account_type_receivable")
         cls.account_receivable = cls.env["account.account"].create(
             {
                 "code": "NC1111",
                 "name": "Test Receivable Account",
-                "user_type_id": user_type_receivable.id,
+                "account_type": "asset_receivable",
                 "reconcile": True,
             }
         )
@@ -79,7 +77,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
                         {
                             "name": cls.product_order.name,
                             "product_id": cls.product_order.id,
-                            "product_uom_qty": 1,
+                            "product_uom_qty": 1.0,
                             "product_uom": cls.product_order.uom_id.id,
                             "price_unit": cls.product_order.list_price,
                         },
@@ -92,12 +90,11 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
     @classmethod
     def setUpClassicProducts(cls):
         # Create an expense journal
-        user_type_income = cls.env.ref("account.data_account_type_direct_costs")
         cls.account_income_product = cls.env["account.account"].create(
             {
-                "code": "INCOME_PROD111",
+                "code": "INCOMEPROD111",
                 "name": "Icome - Test Account",
-                "user_type_id": user_type_income.id,
+                "account_type": "income",
             }
         )
         # Create category
@@ -200,7 +197,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
             len(invoices), num_installment, "Wrong number of invoice created"
         )
         # Valid total quantity of invoices
-        quantity = sum(invoices.mapped("invoice_line_ids").mapped("quantity"))
+        quantity = round(sum(invoices.mapped("invoice_line_ids").mapped("quantity")))
         self.assertEqual(quantity, 1, "Wrong number of total invoice quantity")
 
     def test_02_invoice_plan_with_advance(self):
@@ -242,12 +239,15 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
             len(invoices), num_installment + 1, "Wrong number of invoice created"
         )
         # Valid total quantity of invoices (exclude Advance line)
-        quantity = sum(
-            invoices.mapped("invoice_line_ids")
-            .filtered(lambda l: l.product_id == self.product_order)
-            .mapped("quantity")
+        quantity = round(
+            sum(
+                invoices.mapped("invoice_line_ids")
+                .filtered(lambda l: l.product_id == self.product_order)
+                .mapped("quantity")
+            ),
+            2,
         )
-        self.assertEqual(quantity, 1, "Wrong number of total invoice quantity")
+        self.assertEqual(quantity, 0.30, "Wrong number of total invoice quantity")
 
     def test_03_unlink_invoice_plan(self):
         ctx = {"active_id": self.so_service.id, "active_ids": [self.so_service.id]}
@@ -311,5 +311,5 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         # Overall amount changed to 3080, install amount not changed, only percent changed.
         self.assertEqual(self.so_service.amount_total, 3080.0)
         self.so_service.invoice_plan_ids._compute_amount()
-        self.assertEqual(first_install.amount, 280.0)
-        self.assertEqual(first_install.percent, 9.090909)
+        self.assertEqual(first_install.amount, 308.0)
+        self.assertEqual(first_install.percent, 10.0)

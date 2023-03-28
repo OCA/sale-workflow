@@ -151,15 +151,16 @@ class SaleInvoicePlan(models.Model):
             rec.last = rec.installment == last
 
     def _compute_new_invoice_quantity(self, invoice_move):
-        self.ensure_one()
-        if self.last:  # For last install, let the system do the calc.
-            return
-        percent = self.percent
-        move = invoice_move.with_context(check_move_validity=False)
-        for line in move.invoice_line_ids:
-            self._update_new_quantity(line, percent)
-        move.line_ids.filtered("exclude_from_invoice_tab").unlink()
-        move._move_autocomplete_invoice_lines_values()  # recompute dr/cr
+        for plan in self:
+            if plan.last:  # For last install, let the system do the calc.
+                return
+            move = invoice_move.with_context(check_move_validity=False)
+            for line in move.invoice_line_ids:
+                plan._update_new_quantity(line, plan.percent)
+            move.line_ids.filtered(
+                lambda x: x.display_type
+                not in ("product", "line_section", "line_note", "payment_term", "tax")
+            ).unlink()
 
     def _update_new_quantity(self, line, percent):
         """Hook function"""
