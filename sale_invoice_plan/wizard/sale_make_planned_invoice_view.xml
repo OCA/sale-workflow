@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_sale_make_planned_invoice" model="ir.ui.view">
         <field name="name">Invoice Orders</field>

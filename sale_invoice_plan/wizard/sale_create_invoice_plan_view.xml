@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="view_sale_create_invoice_plan" model="ir.ui.view">
         <field name="name">Create Invoice Plan</field>
