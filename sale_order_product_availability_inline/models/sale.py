@@ -7,11 +7,8 @@ from odoo import api, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.onchange("product_id")
-    def product_id_change(self):
-        so_line = self
+    @api.depends("product_id")
+    def _compute_name(self):
         if self.env.context.get("so_product_stock_inline"):
-            so_line = self.with_context(
-                so_product_stock_inline=False, warehouse=self.warehouse_id.id
-            )
-        return super(SaleOrderLine, so_line).product_id_change()
+            self = self.with_context(so_product_stock_inline=False)
+        return super(SaleOrderLine, self)._compute_name()
