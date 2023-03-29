@@ -9,10 +9,16 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     discount_total = fields.Monetary(
-        compute="_compute_amount", string="Discount Subtotal", store=True
+        compute="_compute_amount",
+        string="Discount Subtotal",
+        store=True,
+        precompute=True,
     )
     price_total_no_discount = fields.Monetary(
-        compute="_compute_amount", string="Subtotal Without Discount", store=True
+        compute="_compute_amount",
+        string="Subtotal Without Discount",
+        store=True,
+        precompute=True,
     )
 
     def _update_discount_display_fields(self):
