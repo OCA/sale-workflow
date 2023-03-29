@@ -9,8 +9,8 @@ class ResourceBookingType(models.Model):
 
     def action_sale_order_wizard(self):
         """Help user creating a sale order for this RBT."""
-        result = self.env["ir.actions.act_window"].for_xml_id(
-            "sale_resource_booking", "resource_booking_sale_action"
+        result = self.env["ir.actions.act_window"]._for_xml_id(
+            "sale_resource_booking.resource_booking_sale_action"
         )
         result["context"] = dict(self.env.context, default_type_id=self.id)
         return result
