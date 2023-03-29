@@ -23,24 +23,6 @@ msgid "Discount Subtotal"
 msgstr "Subtotal de descompte"
 
 #. module: sale_discount_display_amount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__display_name
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__display_name
-msgid "Display Name"
-msgstr "Nom Visible"
-
-#. module: sale_discount_display_amount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__id
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_discount_display_amount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order____last_update
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line____last_update
-msgid "Last Modified on"
-msgstr "Darrera modificació el"
-
-#. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_sale_order
 msgid "Sales Order"
 msgstr "Comanda de venda"
@@ -55,3 +37,12 @@ msgstr "Línia de comandes de vendes"
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_total_no_discount
 msgid "Subtotal Without Discount"
 msgstr "Subtotal sense descompte"
+
+#~ msgid "Display Name"
+#~ msgstr "Nom Visible"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Darrera modificació el"

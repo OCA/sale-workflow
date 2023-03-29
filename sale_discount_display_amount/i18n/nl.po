@@ -23,24 +23,6 @@ msgid "Discount Subtotal"
 msgstr "Subtotaal Korting"
 
 #. module: sale_discount_display_amount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__display_name
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__display_name
-msgid "Display Name"
-msgstr "Weergavenaam"
-
-#. module: sale_discount_display_amount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__id
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_discount_display_amount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order____last_update
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line____last_update
-msgid "Last Modified on"
-msgstr "Laatst bijgewerkt op"
-
-#. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_sale_order
 msgid "Sales Order"
 msgstr "Verkooporder"
@@ -55,3 +37,12 @@ msgstr "Verkooporder regel"
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_total_no_discount
 msgid "Subtotal Without Discount"
 msgstr "Subtotaal zonder korting"
+
+#~ msgid "Display Name"
+#~ msgstr "Weergavenaam"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Laatst bijgewerkt op"

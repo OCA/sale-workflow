@@ -25,7 +25,6 @@ msgstr "Montant de la remise"
 #. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_sale_order
 #, fuzzy
-#| msgid "Sales Order"
 msgid "Sales Order"
 msgstr "Bons de commande"
 
