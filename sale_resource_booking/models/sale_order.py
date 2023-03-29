@@ -56,8 +56,8 @@ class SaleOrder(models.Model):
             # User without access to resource.booking; no confirm wizard
             return result
         # Support chained actions, like when event_sale is installed
-        action = self.env["ir.actions.act_window"].for_xml_id(
-            "sale_resource_booking", "sale_order_booking_confirm_action"
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "sale_resource_booking.sale_order_booking_confirm_action"
         )
         action["context"] = {"default_order_id": self.id}
         actions = [action]
@@ -68,8 +68,8 @@ class SaleOrder(models.Model):
     def action_bookings_resync(self):
         """User-forced bookings resync."""
         self.with_context(force_bookings_sync=True).order_line._sync_resource_bookings()
-        action = self.env["ir.actions.act_window"].for_xml_id(
-            "sale_resource_booking", "sale_order_booking_confirm_action"
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "sale_resource_booking.sale_order_booking_confirm_action"
         )
         action["context"] = {"default_order_id": self.id}
         return action
