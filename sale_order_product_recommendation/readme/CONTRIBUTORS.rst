@@ -7,3 +7,7 @@
   * Sergio Teruel
   * Carlos Roca
   * Víctor Martínez
+
+* `Pesol <https://www.pesol.es>`__:
+
+  * Jonathan Oscategui Taza <info@pesol.es>

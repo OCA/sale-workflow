@@ -231,11 +231,19 @@ class SaleOrderRecommendationLine(models.TransientModel):
         )
         for one in self:
             if price_origin == "pricelist":
-                one.price_unit = one.product_id.with_context(
-                    partner=one.partner_id.id,
-                    pricelist=one.pricelist_id.id,
-                    quantity=one.units_included,
-                ).price
+                pricelist_rule = self.env["product.pricelist.item"]
+                uom = one.product_id.uom_id
+                date_order = one.wizard_id.order_id.date_order or fields.Date.today()
+                if one.sale_line_id:
+                    pricelist_rule = one.sale_line_id.pricelist_item_id
+                    uom = one.sale_line_id.product_uom
+                one.price_unit = pricelist_rule._compute_price(
+                    one.product_id,
+                    one.units_included,
+                    uom,
+                    date_order,
+                    currency=one.currency_id,
+                )
             else:
                 one.price_unit = one._get_last_sale_price_product()
 
