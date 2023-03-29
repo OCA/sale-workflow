@@ -13,6 +13,7 @@ class TestSaleStockCancelRestriction(TransactionCase):
             {"name": "Product test", "type": "product"}
         )
         cls.partner = cls.env["res.partner"].create({"name": "Partner test"})
+
         so_form = Form(cls.env["sale.order"])
         so_form.partner_id = cls.partner
         with so_form.order_line.new() as soline_form:
@@ -20,8 +21,17 @@ class TestSaleStockCancelRestriction(TransactionCase):
             soline_form.product_uom_qty = 2
         cls.sale_order = so_form.save()
         cls.sale_order.action_confirm()
+
+        so2_form = Form(cls.env["sale.order"])
+        so2_form.partner_id = cls.partner
+        with so2_form.order_line.new() as so2line_form:
+            so2line_form.product_id = cls.product
+            so2line_form.product_uom_qty = 2
+        cls.sale_order2 = so2_form.save()
+        cls.sale_order2.action_confirm()
+
         cls.picking = cls.sale_order.picking_ids
-        cls.picking.move_lines.quantity_done = 2
+        cls.picking.move_ids.quantity_done = 2
 
     def test_cancel_sale_order_restrict(self):
         """Validates the picking and do the assertRaises cancelling the
@@ -34,9 +44,9 @@ class TestSaleStockCancelRestriction(TransactionCase):
     def test_cancel_sale_order_ok(self):
         """Don't validate the picking and cancel the order, being completed."""
         # check the status of invoices after cancelling the order
-        self.sale_order.action_cancel()
+        self.sale_order2.with_context(disable_cancel_warning=True).action_cancel()
         self.assertEqual(
-            self.sale_order.picking_ids.state,
+            self.sale_order2.picking_ids.state,
             "cancel",
             "After cancelling a picking, the state should be cancelled",
         )
