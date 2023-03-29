@@ -6,3 +6,7 @@
   * Vicent Cubells
 
  * Rataapong Chokmasermkul <rattapongc@ecosoft.co.th>
+
+* `Pesol <https://www.pesol.es>`__:
+
+  * Jonathan Oscategui Taza <info@pesol.es>
