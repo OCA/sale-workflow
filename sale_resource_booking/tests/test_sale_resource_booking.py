@@ -4,12 +4,12 @@
 from contextlib import suppress
 from datetime import datetime
 
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests.common import Form, TransactionCase
 
 from odoo.addons.resource_booking.tests.common import create_test_data
 
 
-class SaleResourceBookingsCase(SavepointCase):
+class SaleResourceBookingsCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
