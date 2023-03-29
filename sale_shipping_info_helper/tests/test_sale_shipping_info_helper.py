@@ -17,7 +17,7 @@ class TestDeliveryCost(common.TransactionCase):
         self.pricelist = self.env.ref("product.list0")
         self.product_4 = self.env.ref("product.product_product_4")
         self.product_uom_unit = self.env.ref("uom.product_uom_unit")
-        self.normal_delivery = self.env.ref("delivery.normal_delivery_carrier")
+        self.normal_delivery = self.env.ref("delivery.delivery_local_delivery")
 
     def test_00_shipping_info(self):
         # Create sale order with Normal Delivery Charges
@@ -30,6 +30,9 @@ class TestDeliveryCost(common.TransactionCase):
             }
         )
         self.normal_delivery.product_id.taxes_id = self.percent_tax
+        self.normal_delivery.free_over = False
+        self.normal_delivery.amount = 0.0
+        self.normal_delivery.fixed_price = 10.0
         self.sale = self.SaleOrder.create(
             {
                 "partner_id": self.partner_18.id,
