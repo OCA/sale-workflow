@@ -35,6 +35,7 @@
                 />
                 <button
                     name="action_sale_order_form"
+                    title="Sale Order"
                     type="object"
                     icon="fa-external-link"
                     class="oe_stat_button"
@@ -49,24 +50,44 @@
                 <field name="write_date" widget="date" optional="hide" />
                 <field
                     name="product_id"
-                    attrs="{'readonly': [('product_updatable', '=', False)]}"
+                    attrs="{
+                        'readonly': [('product_updatable', '=', False)],
+                        'required': [('display_type', '=', False)]
+                    }"
                     force_save="1"
-                    context="{'partner_id':order_partner_id, 'quantity':product_uom_qty, 'pricelist':pricelist_id, 'uom':product_uom, 'company_id': company_id}"
+                    context="{
+                        'partner_id': parent.partner_id,
+                        'quantity': product_uom_qty,
+                        'pricelist': parent.pricelist_id,
+                        'uom': product_uom,
+                        'company_id': parent.company_id,
+                        'default_lst_price': price_unit,
+                        'default_description_sale': name,
+                    }"
+                    options="{'no_open': True}"
+                    domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
+                    widget="sol_product_many2one"
                 />
                 <field
                     name="product_template_id"
                     string="Product"
                     invisible="1"
-                    attrs="{'readonly': [('product_updatable', '=', False)]}"
+                    attrs="{
+                        'readonly': [('product_updatable', '=', False)],
+                        'required': [('display_type', '=', False)],
+                    }"
                     context="{
                         'partner_id': parent.partner_id,
                         'quantity': product_uom_qty,
                         'pricelist': parent.pricelist_id,
-                        'uom':product_uom,
-                        'company_id': company_id,
+                        'uom': product_uom,
+                        'company_id': parent.company_id,
                         'default_list_price': price_unit,
-                        'default_description_sale': name
+                        'default_description_sale': name,
                     }"
+                    options="{'no_open': True}"
+                    domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
+                    widget="sol_product_many2one"
                 />
                 <field name="product_uom_category_id" invisible="1" />
                 <field
@@ -76,13 +97,16 @@
                 />
                 <field
                     name="product_uom_qty"
-                    sum="Ordered"
-                    string="Ordered Qty"
                     decoration-info="(not display_type and invoice_status == 'to invoice')"
                     decoration-bf="(not display_type and invoice_status == 'to invoice')"
-                    context="{'partner_id':order_partner_id, 'quantity':product_uom_qty, 'pricelist':pricelist_id, 'uom':product_uom, 'company_id': company_id}"
+                    context="{
+                        'partner_id': parent.partner_id,
+                        'quantity': product_uom_qty,
+                        'pricelist': parent.pricelist_id,
+                        'uom': product_uom,
+                        'company_id': parent.company_id
+                    }"
                     attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
-                    optional="show"
                 />
                 <field
                     name="qty_delivered"
@@ -92,7 +116,6 @@
                     attrs="{'readonly': [('qty_delivered_method', '!=', 'manual')]}"
                     optional="show"
                 />
-                <field name="qty_delivered_manual" invisible="1" />
                 <field
                     name="qty_invoiced"
                     sum="Invoiced"
@@ -101,23 +124,27 @@
                     decoration-bf="(not display_type and invoice_status == 'to invoice')"
                 />
                 <field name="qty_to_invoice" sum="To Invoice" optional="show" />
+                <field name="product_uom" invisible="1" groups="!uom.group_uom" />
                 <field
                     name="product_uom"
+                    force_save="1"
                     string="UoM"
-                    attrs="{'readonly': [('state', 'in', ('sale','done', 'cancel'))]}"
-                    context="{'company_id': company_id}"
+                    attrs="{
+                        'readonly': [('state', 'in', ('sale','done', 'cancel'))],
+                        'required': [('display_type', '=', False)],
+                    }"
+                    context="{'company_id': parent.company_id}"
                     groups="uom.group_uom"
-                    options='{"no_open": True}'
+                    options="{&quot;no_open&quot;: True}"
                     optional="show"
                 />
                 <field
-                    name="analytic_tag_ids"
+                    name="analytic_distribution"
                     attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
-                    domain="['|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
-                    groups="analytic.group_analytic_accounting"
-                    widget="many2many_tags"
-                    options="{'color_field': 'color'}"
+                    widget="analytic_distribution"
                     optional="hide"
+                    groups="analytic.group_analytic_accounting"
+                    options="{'product_field': 'product_id', 'business_domain': 'sale_order'}"
                 />
                 <field
                     name="price_unit"
@@ -177,7 +204,7 @@
                 <field name="name" />
                 <field name="product_uom" groups="uom.group_uom" />
                 <field
-                    name="analytic_tag_ids"
+                    name="analytic_distribution"
                     groups="analytic.group_analytic_accounting"
                 />
                 <separator />
