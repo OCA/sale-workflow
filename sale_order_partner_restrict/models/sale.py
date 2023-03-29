@@ -10,6 +10,12 @@ class SaleOrder(models.Model):
         related="company_id.sale_order_partner_restrict",
         string="Partner Restriction on Sale Orders",
     )
+    sale_order_partner_restrict_ids = fields.Many2many(
+        comodel_name="res.partner", compute="_compute_sale_order_partner_restrict_ids"
+    )
+    partner_id = fields.Many2one(
+        domain="[('id', 'in', sale_order_partner_restrict_ids)]"
+    )
 
     def _get_partner_restrict_domain(self):
         partner_restrict_domain = []
@@ -42,10 +48,12 @@ class SaleOrder(models.Model):
             ]
         return partner_restrict_domain
 
-    @api.onchange("sale_order_partner_restrict")
-    def _onchange_sale_order_partner_restrict(self):
-        self.ensure_one()
-        return {"domain": {"partner_id": self._get_partner_restrict_domain()}}
+    @api.depends("sale_order_partner_restrict")
+    def _compute_sale_order_partner_restrict_ids(self):
+        for rec in self:
+            domain = rec._get_partner_restrict_domain()
+            partners = self.env["res.partner"].search(domain)
+            rec.sale_order_partner_restrict_ids = partners.ids
 
     @api.constrains("partner_id")
     def _check_order_partner_restrict(self):

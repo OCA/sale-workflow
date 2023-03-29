@@ -9,6 +9,7 @@
         <field name="arch" type="xml">
             <field name="partner_id" position="after">
                 <field name="sale_order_partner_restrict" invisible="1" />
+                <field name="sale_order_partner_restrict_ids" invisible="1" />
             </field>
         </field>
     </record>
