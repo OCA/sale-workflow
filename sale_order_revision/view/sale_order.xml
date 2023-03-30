@@ -16,7 +16,7 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="priority">15</field>
         <field name="arch" type="xml">
-            <xpath expr="//header" postion='inside'>
+            <xpath expr="//header" position='inside'>
                 <button
                     name="create_revision"
                     states="cancel,sent"
