@@ -40,6 +40,11 @@ msgid "Default secondary unit for sales"
 msgstr ""
 
 #. module: sale_order_secondary_unit
+#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
+msgid "Group By"
+msgstr ""
+
+#. module: sale_order_secondary_unit
 #: model:ir.model.fields,help:sale_order_secondary_unit.field_product_product__sale_secondary_uom_id
 #: model:ir.model.fields,help:sale_order_secondary_unit.field_product_template__sale_secondary_uom_id
 msgid ""
@@ -49,7 +54,13 @@ msgstr ""
 
 #. module: sale_order_secondary_unit
 #: model:ir.model,name:sale_order_secondary_unit.model_product_template
+#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
 msgid "Product Template"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
+msgid "Product Variant"
 msgstr ""
 
 #. module: sale_order_secondary_unit
@@ -60,4 +71,19 @@ msgstr ""
 #. module: sale_order_secondary_unit
 #: model:ir.model,name:sale_order_secondary_unit.model_sale_order_line
 msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+#: model:ir.actions.act_window,name:sale_order_secondary_unit.product_secondary_unit_action
+msgid "Secondary Unit"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+#: model:ir.ui.menu,name:sale_order_secondary_unit.product_secondary_unit_menu
+msgid "Secondary Units of Measure"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
+msgid "UoM"
 msgstr ""
