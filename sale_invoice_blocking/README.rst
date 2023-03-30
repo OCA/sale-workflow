@@ -14,7 +14,7 @@ Sale Invoice Blocking
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/15.0/sale_invoice_blocking
+    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_invoice_blocking
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/sale-workflow-15-0/sale-workflow-15-0-sale_invoice_blocking
@@ -38,7 +38,7 @@ Configuration
 
 To configure this module, you need to:
 
-#. Go to 'Sales > Configuration > Sales > Invoicing block reasons'.
+#. Go to 'Sales > Configuration > Sales Orders > Invoicing block reasons'.
 #. Create the different reasons that can lead to block the invoices of a
    sales order.
 
@@ -48,7 +48,7 @@ Usage
 To use this module, you need to:
 
 #. Create a new sale order and provide a 'Blocking for invoicing'.
-#. Button "Create Invoice" is invisible if an invoicing blocking reason is set on the sale order
+#. When you try to create Regular Invoice if an invoicing blocking reason is set on the sale order. It will show blocking reasons.
 
 Bug Tracker
 ===========
@@ -72,6 +72,7 @@ Contributors
 ~~~~~~~~~~~~
 
 * Damien Crier <damien.crier@camptocamp.com>
+* Dhara Solanki <dhara.solanki@initos.com>
 
 Maintainers
 ~~~~~~~~~~~
@@ -86,6 +87,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/15.0/sale_invoice_blocking>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_invoice_blocking>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
