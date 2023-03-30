@@ -18,22 +18,35 @@ msgstr ""
 "X-Generator: Poedit 2.0.6\n"
 
 #. module: sale_order_secondary_unit
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_qty
+msgid "2nd Qty"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_unit_price
+msgid "2nd unit price"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_id
+msgid "2nd uom"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.report_saleorder_document
+msgid "<span>Second. Qty</span>"
+msgstr ""
+
+#. module: sale_order_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_product__sale_secondary_uom_id
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_template__sale_secondary_uom_id
 msgid "Default secondary unit for sales"
 msgstr "Ud de venta secundaria por defecto"
 
 #. module: sale_order_secondary_unit
-#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_template__display_name
-#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__display_name
-msgid "Display Name"
-msgstr "Mostrar nombre"
-
-#. module: sale_order_secondary_unit
-#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_template__id
-#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__id
-msgid "ID"
-msgstr "ID (Identificador)"
+#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
+msgid "Group By"
+msgstr ""
 
 #. module: sale_order_secondary_unit
 #: model:ir.model.fields,help:sale_order_secondary_unit.field_product_product__sale_secondary_uom_id
@@ -41,19 +54,25 @@ msgstr "ID (Identificador)"
 msgid ""
 "In order to set a value, please first add at least one record in 'Secondary "
 "Unit of Measure'"
-msgstr "Para establecer un valor, primero agregue al menos un registro en "
-"'Segunda unidad de medida'"
-
-#. module: sale_order_secondary_unit
-#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_template____last_update
-#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr ""
+"Para establecer un valor, primero agregue al menos un registro en 'Segunda "
+"unidad de medida'"
 
 #. module: sale_order_secondary_unit
 #: model:ir.model,name:sale_order_secondary_unit.model_product_template
+#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
 msgid "Product Template"
 msgstr "Plantilla de producto"
+
+#. module: sale_order_secondary_unit
+#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
+msgid "Product Variant"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__product_uom_qty
+msgid "Quantity"
+msgstr ""
 
 #. module: sale_order_secondary_unit
 #: model:ir.model,name:sale_order_secondary_unit.model_sale_order_line
@@ -61,16 +80,34 @@ msgid "Sales Order Line"
 msgstr "Línea de pedido"
 
 #. module: sale_order_secondary_unit
-#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.report_saleorder_document
-msgid "Second. Qty"
-msgstr "Ud. Secundaria"
+#: model:ir.actions.act_window,name:sale_order_secondary_unit.product_secondary_unit_action
+msgid "Secondary Unit"
+msgstr ""
 
 #. module: sale_order_secondary_unit
-#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_qty
-msgid "Secondary Qty"
-msgstr "Cta. Ud. secundaria"
+#: model:ir.ui.menu,name:sale_order_secondary_unit.product_secondary_unit_menu
+msgid "Secondary Units of Measure"
+msgstr ""
 
 #. module: sale_order_secondary_unit
-#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_id
-msgid "Secondary uom"
-msgstr "Unidad Secundaria"
+#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
+msgid "UoM"
+msgstr ""
+
+#~ msgid "Display Name"
+#~ msgstr "Mostrar nombre"
+
+#~ msgid "ID"
+#~ msgstr "ID (Identificador)"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
+
+#~ msgid "Second. Qty"
+#~ msgstr "Ud. Secundaria"
+
+#~ msgid "Secondary Qty"
+#~ msgstr "Cta. Ud. secundaria"
+
+#~ msgid "Secondary uom"
+#~ msgstr "Unidad Secundaria"
