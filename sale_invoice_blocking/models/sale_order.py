@@ -13,8 +13,8 @@ class SaleOrder(models.Model):
     )
 
     @api.depends("invoice_blocking_reason_id", "state", "order_line.invoice_status")
-    def _get_invoice_status(self):
-        res = super()._get_invoice_status()
+    def _compute_invoice_status(self):
+        res = super()._compute_invoice_status()
         for order in self.filtered(
             lambda order: order.invoice_blocking_reason_id
             and order.state in ("sale", "done")
@@ -29,16 +29,8 @@ class SaleOrder(models.Model):
 
         return super()._get_invoiceable_lines(final=final)
 
-    @api.model
-    def _nothing_to_invoice_error(self):
-        error = super()._nothing_to_invoice_error()
-        msg = [x for x in error.args]
+    def _nothing_to_invoice_error_message(self):
+        error = super()._nothing_to_invoice_error_message()
+        error += _("\n- You may have an invoice blocking reason on the sale order")
 
-        msg.append(
-            _(
-                """
-- You may have an invoice blocking reason on the sale order
-        """
-            )
-        )
-        return UserError(msg)
+        return UserError(error)
