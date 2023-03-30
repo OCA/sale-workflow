@@ -40,10 +40,11 @@ class ResPartner(models.Model):
 
     @api.constrains("credit_point")
     def _check_credit_point(self):
-        if self.credit_point < 0 and not self.credit_point_bypass_check():
-            raise exceptions.ValidationError(
-                _("You can't set a credit point lower than 0")
-            )
+        for partner in self:
+            if partner.credit_point < 0 and not partner.credit_point_bypass_check():
+                raise exceptions.ValidationError(
+                    _("You can't set a credit point lower than 0")
+                )
 
     def action_update_credit_point(self):
         """Open update credit point wizard."""
