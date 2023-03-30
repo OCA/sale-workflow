@@ -29,7 +29,9 @@ class PurchaseOrder(models.Model):
     @api.depends("order_line.approved_purchase")
     def _compute_exceptions(self):
         self.exceptions_purchase_approval = any(
-            not line.approved_purchase for line in self.order_line
+            not line.approved_purchase for line in self.order_line if line.display_type not in [
+                "line_section", "line_note"
+            ]
         )
 
     def _log_exception_activity_purchase(self, product_id):
