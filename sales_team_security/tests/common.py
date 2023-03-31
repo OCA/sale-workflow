@@ -33,6 +33,9 @@ class TestCommon(common.TransactionCase):
         cls.partner_child_2 = cls.env["res.partner"].create(
             {"name": "Child 2", "parent_id": cls.partner.id, "type": "invoice"}
         )
+        cls.partner2 = cls.env["res.partner"].create(
+            {"name": "Test partner 2", "user_id": cls.user.id}
+        )
         cls.user2 = cls.env["res.users"].create(
             {
                 "login": "sales_team_security2",
