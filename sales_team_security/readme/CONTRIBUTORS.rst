@@ -9,3 +9,7 @@
   * Ramón Bajona
 
 * Iván Todorovich <ivan.todorovich@gmail.com>
+
+* `Pesol <https://www.pesol.es>`__:
+
+  * Jonathan Oscategui Taza <info@pesol.es>
