@@ -15,19 +15,12 @@ class ResPartner(models.Model):
     team_id = fields.Many2one(index=True)
 
     @api.model
-    def fields_view_get(
-        self, view_id=None, view_type="form", toolbar=False, submenu=False
-    ):
+    def get_view(self, view_id=None, view_type="form", **options):
         """
         Patch view to inject the default value for the team_id and user_id.
         """
         # FIXME: Use base_view_inheritance_extension when available
-        res = super().fields_view_get(
-            view_id=view_id,
-            view_type=view_type,
-            toolbar=toolbar,
-            submenu=submenu,
-        )
+        res = super().get_view(view_id, view_type, **options)
         if view_type == "form":
             eview = etree.fromstring(res["arch"])
             xml_fields = eview.xpath("//field[@name='child_ids']")
