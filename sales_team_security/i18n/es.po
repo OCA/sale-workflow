@@ -58,9 +58,9 @@ msgstr "El usuario interno a cargo de este contacto."
 msgid ""
 "The user will have an access to the documents of the sales teams he/she "
 "belongs to."
-msgstr ""
+msgstr "El usuario tendrá acceso a los documentos de los equipos comerciales a los que pertenece."
 
 #. module: sales_team_security
 #: model:res.groups,name:sales_team_security.group_sale_team_manager
 msgid "User: Team Documents Only"
-msgstr ""
+msgstr "Usuario: Solo documentos del equipo"
