@@ -19,13 +19,6 @@ class SaleOrderLine(models.Model):
         compute="_compute_production_state",
         store=True,
     )
-    production_ids = fields.Many2many(
-        comodel_name="mrp.production",
-        relation="sale_line_production_rel",
-        column1="line_id",
-        column2="production_id",
-        string="Manufacturing orders",
-    )
 
     @api.depends("production_ids", "production_ids.state")
     def _compute_production_state(self):
