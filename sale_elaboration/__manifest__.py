@@ -17,6 +17,7 @@
         "security/security.xml",
         "views/product_views.xml",
         "views/res_config_settings_views.xml",
+        "views/sale_elaboration_profile_views.xml",
         "views/sale_elaboration_views.xml",
         "views/sale_order_views.xml",
         "views/sale_elaboration_report_views.xml",

@@ -6,6 +6,7 @@ from odoo import api, fields, models
 
 class ProductElaborationMixin(models.AbstractModel):
     _name = "product.elaboration.mixin"
+    _description = "Product Elaboration Mixin"
 
     elaboration_ids = fields.Many2many(
         comodel_name="product.elaboration",

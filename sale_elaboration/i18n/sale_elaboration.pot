@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-06 18:49+0000\n"
-"PO-Revision-Date: 2023-03-06 18:49+0000\n"
+"POT-Creation-Date: 2023-04-13 16:16+0000\n"
+"PO-Revision-Date: 2023-04-13 16:16+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -27,6 +27,7 @@ msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__active
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__active
 msgid "Active"
 msgstr ""
 
@@ -38,6 +39,7 @@ msgstr ""
 #. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_form
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.product_elaboration_profile_form_view
 msgid "Archived"
 msgstr ""
 
@@ -53,11 +55,13 @@ msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__create_uid
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__create_date
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__create_date
 msgid "Created on"
 msgstr ""
 
@@ -80,6 +84,7 @@ msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__display_name
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -90,8 +95,18 @@ msgid "Elaboration"
 msgstr ""
 
 #. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_mixin__elaboration_note
 #: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__elaboration_note
+#: model:ir.model.fields,field_description:sale_elaboration.field_stock_move__elaboration_note
+#: model:ir.model.fields,field_description:sale_elaboration.field_stock_move_line__elaboration_note
 msgid "Elaboration Note"
+msgstr ""
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_product__elaboration_profile_id
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_template__elaboration_profile_id
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__elaboration_profile_id
+msgid "Elaboration Profile"
 msgstr ""
 
 #. module: sale_elaboration
@@ -100,13 +115,15 @@ msgid "Elaboration notes will appear on the delivery slip"
 msgstr ""
 
 #. module: sale_elaboration
-#: model_terms:ir.ui.view,arch_db:sale_elaboration.view_order_form
-msgid "Elaboration:"
-msgstr ""
-
-#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_mixin__elaboration_ids
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__elaboration_ids
 #: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__elaboration_ids
+#: model:ir.model.fields,field_description:sale_elaboration.field_stock_move__elaboration_ids
+#: model:ir.model.fields,field_description:sale_elaboration.field_stock_move_line__elaboration_ids
+#: model:ir.ui.menu,name:sale_elaboration.menu_sale_elaboration_root
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_form
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.product_elaboration_profile_form_view
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.product_template_form_view
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_order_form
 msgid "Elaborations"
 msgstr ""
@@ -123,6 +140,7 @@ msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__id
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__id
 msgid "ID"
 msgstr ""
 
@@ -139,30 +157,36 @@ msgid "Include elaboration notes on delivery slip"
 msgstr ""
 
 #. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_mixin__is_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_product__is_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_template__is_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__is_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_stock_move__is_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
 msgid "Is Elaboration"
 msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration____last_update
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__write_uid
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__write_date
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__name
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__name
 msgid "Name"
 msgstr ""
 
@@ -172,9 +196,15 @@ msgid "Name must be unique!"
 msgstr ""
 
 #. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_product_product
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__product_id
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 msgid "Product"
+msgstr ""
+
+#. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_product_elaboration_mixin
+msgid "Product Elaboration Mixin"
 msgstr ""
 
 #. module: sale_elaboration
@@ -188,20 +218,40 @@ msgid "Product Template"
 msgstr ""
 
 #. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_product_elaboration_profile
+msgid "Product elaboration profiles"
+msgstr ""
+
+#. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_product_elaboration
 msgid "Product elaborations"
 msgstr ""
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__route_id
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__profile_ids
+msgid "Profile"
+msgstr ""
+
+#. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__route_id
 msgid "Route"
+msgstr ""
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__route_ids
+msgid "Routes"
 msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.actions.act_window,name:sale_elaboration.sale_elaboration_action
 #: model:ir.ui.menu,name:sale_elaboration.menu_sale_elaboration
 msgid "Sale Elaboration"
+msgstr ""
+
+#. module: sale_elaboration
+#: model:ir.actions.act_window,name:sale_elaboration.sale_elaboration_profile_action
+#: model:ir.ui.menu,name:sale_elaboration.menu_sale_elaboration_profile
+msgid "Sale Elaboration Profiles"
 msgstr ""
 
 #. module: sale_elaboration
@@ -223,7 +273,18 @@ msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__code
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__code
 msgid "Short Code"
+msgstr ""
+
+#. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_stock_rule
+msgid "Stock Rule"
 msgstr ""
 
 #. module: sale_elaboration
