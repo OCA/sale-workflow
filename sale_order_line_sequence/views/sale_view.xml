@@ -9,9 +9,8 @@
                 <field name="max_line_sequence" invisible="1" />
             </field>
             <field name="order_line" position="attributes">
-                <attribute
-                    name="context"
-                >{'default_sequence': max_line_sequence}</attribute>
+                <attribute name="context">{'default_sequence2': max_line_sequence,
+                  'default_sequence': max_line_sequence,}</attribute>
             </field>
             <xpath
                 expr="//field[@name='order_line']/tree/field[@name='product_id']"

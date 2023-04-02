@@ -17,7 +17,8 @@ class SaleOrder(models.Model):
         added as :  max_sequence + 1
         """
         for sale in self:
-            sale.max_line_sequence = max(sale.mapped("order_line.sequence") or [0]) + 1
+            count = len(sale.order_line.filtered(lambda x: x.product_id))
+            sale.max_line_sequence = count + 1
 
     max_line_sequence = fields.Integer(
         string="Max sequence in lines", compute="_compute_max_line_sequence", store=True
@@ -26,9 +27,12 @@ class SaleOrder(models.Model):
     def _reset_sequence(self):
         for rec in self:
             current_sequence = 1
-            for line in sorted(rec.order_line, key=lambda x: (x.sequence, x.id)):
-                if line.sequence != current_sequence:
-                    line.sequence = current_sequence
+            for line in sorted(
+                rec.order_line.filtered(lambda x: x.product_id),
+                key=lambda x: (x.sequence, x.id),
+            ):
+                if line.sequence2 != current_sequence:
+                    line.sequence2 = current_sequence
                 current_sequence += 1
 
     def write(self, line_values):
@@ -54,16 +58,16 @@ class SaleOrderLine(models.Model):
     # displays sequence on the order line
     sequence2 = fields.Integer(
         help="Shows the sequence of this line in the sale order.",
-        related="sequence",
         string="Line Number",
         readonly=True,
         store=True,
+        default=False,
     )
 
     @api.model
     def create(self, values):
         line = super(SaleOrderLine, self).create(values)
         # We do not reset the sequence if we are copying a complete sale order
-        if self.env.context.get("keep_line_sequence"):
+        if not self.env.context.get("keep_line_sequence", False):
             line.order_id._reset_sequence()
         return line
