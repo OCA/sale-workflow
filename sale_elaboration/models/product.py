@@ -3,7 +3,9 @@
 from odoo import fields, models
 
 
-class ProductTemplate(models.Model):
-    _inherit = "product.template"
+class ProductProduct(models.Model):
+    _inherit = "product.product"
 
-    is_elaboration = fields.Boolean()
+    elaboration_profile_id = fields.Many2one(
+        comodel_name="product.elaboration.profile", ondelete="restrict"
+    )

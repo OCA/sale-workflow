@@ -29,6 +29,12 @@ class Elaboration(models.Model):
         ondelete="restrict",
         check_company=True,
     )
+    profile_ids = fields.Many2many(
+        comodel_name="product.elaboration.profile",
+        relation="product_elaboration_profile_rel",
+        column1="elaboration_id",
+        column2="profile_id",
+    )
 
     _sql_constraints = [
         ("name_uniq", "unique(name)", "Name must be unique!"),
