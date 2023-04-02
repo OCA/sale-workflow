@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="product_elaboration_profile_tree_view" model="ir.ui.view">
+        <field name="name">product.elaboration.profile.tree.view</field>
+        <field name="model">product.elaboration.profile</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="code" />
+                <field name="active" widget="boolean_toggle" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_elaboration_profile_form_view" model="ir.ui.view">
+        <field name="name">product.elaboration.profile.form.view</field>
+        <field name="model">product.elaboration.profile</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        attrs="{'invisible': [('active', '=', True)]}"
+                    />
+                    <field name="active" invisible="1" />
+                    <group>
+                        <field name="name" />
+                        <field name="code" />
+                    </group>
+                    <group string="Elaborations">
+                        <field name="elaboration_ids" nolabel="1" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_elaboration_profile_action" model="ir.actions.act_window">
+        <field name="name">Sale Elaboration Profiles</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.elaboration.profile</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="menu_sale_elaboration_root"
+        name="Elaborations"
+        parent="sale.menu_sale_config"
+        sequence="60"
+    />
+    <menuitem
+        id="menu_sale_elaboration_profile"
+        action="sale_elaboration_profile_action"
+        parent="menu_sale_elaboration_root"
+        sequence="10"
+    />
+</odoo>

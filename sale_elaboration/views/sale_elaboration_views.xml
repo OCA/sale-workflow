@@ -52,6 +52,7 @@
                     groups="stock.group_adv_location"
                     options="{'no_create': True}"
                 />
+                <field name="profile_ids" widget="many2many_tags" optional="hide" />
                 <field name="active" widget="boolean_toggle" />
             </tree>
         </field>
@@ -89,7 +90,7 @@
     <menuitem
         id="menu_sale_elaboration"
         action="sale_elaboration_action"
-        parent="sale.prod_config_main"
-        sequence="60"
+        parent="menu_sale_elaboration_root"
+        sequence="20"
     />
 </odoo>
