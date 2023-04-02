@@ -46,6 +46,9 @@ class SaleOrderLine(models.Model):
 
     date_order = fields.Datetime(related="order_id.date_order", string="Date")
     route_id = fields.Many2one(compute="_compute_route_id", store=True, readonly=False)
+    elaboration_profile_id = fields.Many2one(
+        related="product_id.elaboration_profile_id"
+    )
 
     def get_elaboration_stock_route(self):
         self.ensure_one()
