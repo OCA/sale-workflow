@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-20 09:56+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-04-03 22:30+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -309,7 +309,7 @@ msgstr "Followers"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_channel_ids
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_channel_ids
 msgid "Followers (Channels)"
-msgstr "Followers (Channels)"
+msgstr "Seguito da (canali)"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_partner_ids
