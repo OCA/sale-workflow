@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-03 22:30+0000\n"
+"PO-Revision-Date: 2023-04-04 15:26+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -400,7 +400,7 @@ msgstr "Allegato principale"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_has_error
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_has_error
 msgid "Message Delivery error"
-msgstr "Errore di Consegna Messaggio"
+msgstr "Errore consegna messaggio"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_ids
@@ -429,13 +429,13 @@ msgstr "Scadenza prossima attività"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_summary
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_summary
 msgid "Next Activity Summary"
-msgstr "Sommario Attività successiva"
+msgstr "Sommario attività successiva"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_type_id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_type_id
 msgid "Next Activity Type"
-msgstr "Tipo Attività successiva"
+msgstr "Tipo attività successiva"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__note
