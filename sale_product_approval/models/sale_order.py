@@ -13,7 +13,7 @@ class SaleOrder(models.Model):
     exceptions_sale_approval_confirm = fields.Boolean(
         compute="_compute_exceptions", string="Exception", default=False
     )
-    override_exception = fields.Boolean("Override Exception", default=False)
+    override_exception = fields.Boolean(default=False)
 
     @api.depends("order_line.approved_sale_confirm")
     def _compute_exceptions(self):
@@ -35,8 +35,9 @@ class SaleOrder(models.Model):
 
     def _render_product_state_excep(self, order, product_id):
         values = {"sale_order_ref": order, "product_ref": product_id}
-        return self.env.ref("sale_product_approval.exception_on_product")._render(
-            values=values
+        return self.env["ir.ui.view"]._render_template(
+            template=self.env.ref("sale_product_approval.exception_on_product").id,
+            values=values,
         )
 
     def action_confirm(self):

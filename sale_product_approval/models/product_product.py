@@ -71,6 +71,7 @@ class ProductTemplate(models.Model):
                     product.candidate_sale_confirm
                     and product.product_state_id.approved_sale_confirm
                 )
+
                 if not product.sale_ok_confirm:
                     order_ids._log_exception_activity_sale(product)
 

@@ -11,11 +11,7 @@
                 </div>
             </div>
             <page name="inventory" position="after">
-                <page
-                    groups="sale_product_approval.group_product_administrator, base.group_no_one"
-                    name="states"
-                    string="State Configuration"
-                >
+                <page name="states" string="State Configuration">
                     <group name="candidate_fields">
                         <group string="Sales">
                             <field name="can_edit_candidate" invisible="1" />
