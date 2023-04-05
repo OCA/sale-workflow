@@ -85,3 +85,16 @@ class TestSaleOrderRevision(common.SavepointCase):
         sale_order_3 = sale_order_2.copy()
         # Check the 'Order Reference' of the copied Sale Order
         self.assertEqual(sale_order_3.name, sale_order_3.unrevisioned_name)
+
+    def test_copy_after_revision(self):
+        sale_order_4 = self._create_sale_order()
+        self.assertEqual(sale_order_4.name, sale_order_4.unrevisioned_name)
+        # create a revision
+        self._revision_sale_order(sale_order_4)
+        revision_1 = sale_order_4.current_revision_id
+        # Copy the Sale Order revisioned
+        sale_order_5 = revision_1.copy()
+        self.assertFalse(sale_order_5.current_revision_id)
+        sale_order_6 = sale_order_4.copy()
+        self.assertFalse(sale_order_6.current_revision_id)
+        self.assertEqual(sale_order_6.name, sale_order_6.unrevisioned_name)
