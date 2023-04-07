@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-07-13 16:49+0000\n"
+"PO-Revision-Date: 2023-04-07 16:31+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
@@ -84,18 +84,18 @@ msgstr "Listino prezzi per l'ordine di vendita attuale."
 #. module: sale_order_line_input
 #: model:ir.model,name:sale_order_line_input.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Riga Ordine di Vendita"
+msgstr "Riga ordine di vendita"
 
 #. module: sale_order_line_input
 #: model:ir.actions.act_window,name:sale_order_line_input.action_sales_order_line_input
 #: model:ir.ui.menu,name:sale_order_line_input.menu_sales_order_line_input
 msgid "Sales Orders Lines"
-msgstr "Righe Ordini di Vendita"
+msgstr "Righe ordini di vendita"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "To Invoice"
-msgstr "Da Fatturare"
+msgstr "Da fatturare"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
