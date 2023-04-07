@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-07 13:24+0000\n"
+"PO-Revision-Date: 2023-04-07 16:31+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -358,7 +358,7 @@ msgstr "Quantità Fatturata"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_is_follower
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_is_follower
 msgid "Is Follower"
-msgstr "E' un Follower"
+msgstr "Sta seguendo"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order____last_update
@@ -656,22 +656,22 @@ msgstr "Somma Vendita"
 #. module: sale_blanket_order
 #: model:ir.model,name:sale_blanket_order.model_sale_order
 msgid "Sale Order"
-msgstr "Ordine di Vendita"
+msgstr "Ordine di vendita"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
 msgid "Sale Order Lines"
-msgstr "Linee Ordine di Vendita"
+msgstr "Righe ordine di vendita"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
 msgid "Sale Orders"
-msgstr "Ordini di Vendita"
+msgstr "Ordini di vendita"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__sale_lines
 msgid "Sale order lines"
-msgstr "Linee Ordine di Vendita"
+msgstr "Righe ordine di vendita"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
