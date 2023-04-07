@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-13 07:05+0000\n"
-"PO-Revision-Date: 2023-02-01 16:48+0000\n"
+"PO-Revision-Date: 2023-04-07 16:32+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -55,7 +55,7 @@ msgstr "Ordine di vendita"
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Linea d'ordine di vendita"
+msgstr "Riga ordine di vendita"
 
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_stock_move
