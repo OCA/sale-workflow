@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-05 11:23+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-04-07 13:24+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -292,7 +292,7 @@ msgstr "Ordine di vendita"
 #. module: sale_invoice_plan
 #: model:ir.model,name:sale_invoice_plan.model_sale_advance_payment_inv
 msgid "Sales Advance Payment Invoice"
-msgstr "Fattura di anticipo della vendita"
+msgstr "Fattura di vendita con pagamento anticipato"
 
 #. module: sale_invoice_plan
 #: model:ir.actions.act_window,name:sale_invoice_plan.action_sale_invoice_plan
