@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-18 04:14+0000\n"
-"PO-Revision-Date: 2023-02-16 17:23+0000\n"
+"PO-Revision-Date: 2023-04-07 14:25+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -67,7 +67,7 @@ msgstr "Ordine di vendita"
 #. module: sale_properties_dynamic_fields
 #: model:ir.model,name:sale_properties_dynamic_fields.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Riga dell'Ordine di Vendita"
+msgstr "Riga ordine di vendita"
 
 #. module: sale_properties_dynamic_fields
 #: code:addons/sale_properties_dynamic_fields/sale_order.py:34
