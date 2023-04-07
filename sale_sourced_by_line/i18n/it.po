@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-02 17:59+0000\n"
-"PO-Revision-Date: 2023-01-18 11:46+0000\n"
+"PO-Revision-Date: 2023-04-07 14:25+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -46,7 +46,7 @@ msgstr "Ordine di vendita"
 #. module: sale_sourced_by_line
 #: model:ir.model,name:sale_sourced_by_line.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Linea d'ordine di vendita"
+msgstr "Riga ordine di vendita"
 
 #. module: sale_sourced_by_line
 #: model:ir.model.fields,field_description:sale_sourced_by_line.field_sale_order_line__warehouse_id
