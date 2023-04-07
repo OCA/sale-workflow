@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-04-05 11:24+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-04-07 13:24+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -687,7 +687,7 @@ msgstr "Riga ordine di vendita"
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:150
 #, python-format
 msgid "Sales Orders"
-msgstr "Ordini di Vendita"
+msgstr "Ordini di vendita"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__team_id
@@ -697,7 +697,7 @@ msgstr "Team di vendita"
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__user_id
 msgid "Salesperson"
-msgstr "Addetto Vendite"
+msgstr "Addetto vendite"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__date_schedule
