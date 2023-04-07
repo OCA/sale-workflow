@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-30 10:17+0000\n"
-"PO-Revision-Date: 2018-03-30 12:19+0200\n"
-"Last-Translator: Alex Comba <alex.comba@agilebg.com>\n"
+"PO-Revision-Date: 2023-04-07 14:24+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 2.0.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: sale_delivery_split_date
 #: model:ir.model,name:sale_delivery_split_date.model_sale_order
@@ -25,12 +25,12 @@ msgstr "Ordine di vendita"
 #. module: sale_delivery_split_date
 #: model:ir.model,name:sale_delivery_split_date.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Riga Ordine di Vendita"
+msgstr "Riga ordine di vendita"
 
 #. module: sale_delivery_split_date
 #: model:ir.ui.view,arch_db:sale_delivery_split_date.view_picking_internal_search
 msgid "Scheduled Date"
-msgstr "Data pianificata"
+msgstr "Data programmata"
 
 #. module: sale_delivery_split_date
 #: model:ir.model.fields,field_description:sale_delivery_split_date.field_stock_picking_min_dt
