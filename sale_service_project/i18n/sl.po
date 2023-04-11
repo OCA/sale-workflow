@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-04-29 00:56+0000\n"
-"PO-Revision-Date: 2023-03-31 21:27+0000\n"
+"PO-Revision-Date: 2023-04-11 12:25+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/sl/)\n"
@@ -134,7 +134,7 @@ msgstr "Ima opravilo"
 #. module: sale_service_project
 #: field:product.task.work,hours:0 field:sale.order.line.task.work,hours:0
 msgid "Hours"
-msgstr "Ure"
+msgstr "ur"
 
 #. module: sale_service_project
 #: field:product.price.service.wizard,id:0 field:product.task.materials,id:0
