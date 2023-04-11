@@ -3,7 +3,7 @@
 
 {
     "name": "Product Last Price Info - Sale",
-    "version": "15.0.1.0.1",
+    "version": "16.0.1.0.0",
     "author": "AvanzOSC, Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
