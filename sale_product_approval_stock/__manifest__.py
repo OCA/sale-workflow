@@ -4,7 +4,7 @@
 {
     "name": "Delivery Order Approval Workflow",
     "summary": "Delivery Order Product Apploval Workflow",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Products",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",

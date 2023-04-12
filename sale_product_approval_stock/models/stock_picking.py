@@ -13,9 +13,9 @@ class StockPicking(models.Model):
     do_exceptions = fields.Boolean(
         compute="_compute_stock_exception", string="Stock Exception"
     )
-    override_exception = fields.Boolean("Override Exception", default=False)
+    override_exception = fields.Boolean(default=False)
 
-    @api.depends("move_ids_without_package.do_line_exceptions")
+    @api.depends("move_ids_without_package")
     def _compute_stock_exception(self):
         for rec in self:
             rec.do_exceptions = any(
@@ -34,9 +34,12 @@ class StockPicking(models.Model):
 
     def _render_product_state_excep(self, order, product_id):
         values = {"delivery_order_ref": order, "product_ref": product_id}
-        return self.env.ref(
-            "sale_product_approval_stock.exception_on_delivery_order"
-        )._render(values=values)
+        return self.env["ir.ui.view"]._render_template(
+            template=self.env.ref(
+                "sale_product_approval_stock.exception_on_delivery_order"
+            ).id,
+            values=values,
+        )
 
     def button_validate(self):
         res = super().button_validate()
