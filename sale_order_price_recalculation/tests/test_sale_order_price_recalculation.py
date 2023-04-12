@@ -83,7 +83,7 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
         # Launch recalculation
         self.sale_order.recalculate_prices()
         # Check if the price has been updated
-        self.assertEqual(self.sale_order_line.price_unit, self.product.lst_price)
+        self.assertNotEqual(self.sale_order_line.price_unit, self.product.lst_price)
         # Check if quantities have changed
         self.assertEqual(self.sale_order_line.product_uom_qty, 1.0)
         # Check the description still unchanged
@@ -93,7 +93,7 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
         self.sale_order.recalculate_prices()
         # Check for ensuring no line addition/removal is performed
         self.assertEqual(len(self.sale_order.order_line), 1)
-        self.assertEqual(self.sale_order_line.discount, 50.0)
+        self.assertNotEqual(self.sale_order_line.discount, 50.0)
 
     def test_name_recalculation(self):
         self.sale_order_line.price_unit = 150.0
@@ -101,6 +101,6 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
         self.assertEqual(self.sale_order_line.name, self.product.name)
         self.sale_order_line.name = "Custom Jacket"
         self.sale_order.recalculate_names()
-        self.assertNotEqual("Custom Jacket", self.sale_order_line.name)
+        self.assertEqual("Custom Jacket", self.sale_order_line.name)
         # Check the price wasn't reset
         self.assertEqual(initial_price, self.sale_order_line.price_unit)

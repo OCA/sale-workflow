@@ -20,10 +20,8 @@ class SaleOrder(models.Model):
             # we make this to isolate changed values:
             line2 = self.env["sale.order.line"].new(vals)
             line2.env.add_to_compute(
-                line2.product_id._fields["price"], line2.product_id
+                line2.product_id._fields["price_extra"], line2.product_id
             )
-            line2.product_id_change()
-            line2._onchange_discount()
             line.write({field: line2[field] for field in fields})
 
     def recalculate_prices(self):
