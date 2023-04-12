@@ -24,14 +24,12 @@ class PurchaseOrder(models.Model):
     exceptions_purchase_approval = fields.Boolean(
         compute="_compute_exceptions", string="Exception", default=False
     )
-    override_exception = fields.Boolean("Override Exception", default=False)
+    override_exception = fields.Boolean(default=False)
 
     @api.depends("order_line.approved_purchase")
     def _compute_exceptions(self):
         self.exceptions_purchase_approval = any(
-            not line.approved_purchase
-            for line in self.order_line
-            if line.display_type not in ["line_section", "line_note"]
+            not line.approved_purchase for line in self.order_line
         )
 
     def _log_exception_activity_purchase(self, product_id):
@@ -46,9 +44,12 @@ class PurchaseOrder(models.Model):
 
     def _render_product_state_excep(self, order, product_id):
         values = {"purchase_order_ref": order, "product_ref": product_id}
-        return self.env.ref(
-            "sale_product_approval_purchase.exception_on_product"
-        )._render(values=values)
+        return self.env["ir.ui.view"]._render_template(
+            template=self.env.ref(
+                "sale_product_approval_purchase.exception_on_product"
+            ).id,
+            values=values,
+        )
 
     def button_confirm(self):
         res = super(PurchaseOrder, self).button_confirm()
