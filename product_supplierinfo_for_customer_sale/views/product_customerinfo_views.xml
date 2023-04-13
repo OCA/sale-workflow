@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2022 Tecnativa - Carlos Roca
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="action_open_product_customerinfo" model="ir.actions.act_window">
+        <field name="name">Prices for customers</field>
+        <field name="res_model">product.customerinfo</field>
+        <field name="context">{'visible_product_tmpl_id': False}</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        id="menu_product_customerinfo"
+        action="product_supplierinfo_for_customer_sale.action_open_product_customerinfo"
+        name="Prices for customers"
+        parent="sale.menu_sale_config"
+        sequence="1"
+    />
+</odoo>

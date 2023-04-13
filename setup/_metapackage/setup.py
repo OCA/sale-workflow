@@ -10,6 +10,7 @@ setuptools.setup(
     install_requires=[
         'odoo-addon-partner_contact_sale_info_propagation>=16.0dev,<16.1dev',
         'odoo-addon-partner_sale_pivot>=16.0dev,<16.1dev',
+        'odoo-addon-product_supplierinfo_for_customer_sale>=16.0dev,<16.1dev',
         'odoo-addon-sale_automatic_workflow>=16.0dev,<16.1dev',
         'odoo-addon-sale_automatic_workflow_payment_mode>=16.0dev,<16.1dev',
         'odoo-addon-sale_commercial_partner>=16.0dev,<16.1dev',
