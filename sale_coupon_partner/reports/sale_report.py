@@ -18,9 +18,7 @@ class SaleReport(models.Model):
         select_str = """ ,
             scp.partner_id as coupon_program_partner_id
         """
-        from_clause += (
-            "left join sale_coupon_program scp on (l.coupon_program_id = scp.id)"
-        )
+        from_clause += "left join coupon_program scp on (l.coupon_program_id = scp.id)"
         fields.update({"coupon_program_partner_id": select_str})
         groupby += ", scp.partner_id"
         return super()._query(
