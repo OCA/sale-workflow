@@ -4,14 +4,14 @@
 {
     "name": "Sale Order Action Invoice Create Hook",
     "summary": "Add more flexibility in the grouping parameters "
-               "for the creation of invoices",
+    "for the creation of invoices",
     "author": "Eficent, Odoo Community Association (OCA)",
     "version": "12.0.1.0.3",
     "category": "Sale Workflow",
     "website": "https://github.com/OCA/sale-workflow",
-    "license": 'LGPL-3',
+    "license": "LGPL-3",
     "depends": [
-        'sale',
+        "sale",
     ],
-    "installable": True
+    "installable": True,
 }
