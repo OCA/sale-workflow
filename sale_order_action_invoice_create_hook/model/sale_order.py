@@ -1,9 +1,10 @@
 # Copyright 2017 Eficent Business and IT Consulting Services S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+from itertools import groupby
 
-from odoo import _, api, models
-from odoo.exceptions import UserError
-from odoo.tools import float_is_zero
+from odoo import api, models
+from odoo.exceptions import AccessError, UserError
+from odoo.fields import Command
 
 
 class SaleOrder(models.Model):
@@ -18,155 +19,181 @@ class SaleOrder(models.Model):
         return self._get_invoice_group_key(line.order_id)
 
     @api.model
-    def _get_draft_invoices(self, invoices, references):
-        return invoices, references
+    def _get_draft_invoices(self, invoices_vals):
+        return False
 
     @api.model
     def _modify_invoices(self, invoices):
         return invoices
 
-    @api.model_cr
-    def _register_hook(self):
-        def new_action_invoice_create(self, grouped=False, final=False):
-            """
-            Create the invoice associated to the SO.
-            :param grouped: if True, invoices are grouped by SO id. If False,
-            invoices are grouped by (partner_invoice_id, currency)
-            :param final: if True, refunds will be generated if necessary
-            :returns: list of created invoices
-            """
-            if not hasattr(self, "_get_invoice_group_key"):
-                return self.action_invoice_create_original(grouped=grouped, final=final)
-            invoices = {}
-            references = {}
+    def _register_hook(self):  # noqa
+        def new_create_invoices(self, grouped=False, final=False, date=None):
+            """Create invoice(s) for the given Sales Order(s).
 
-            # START HOOK
-            # Take into account draft invoices when creating new ones
-            self._get_draft_invoices(invoices, references)
-            # END HOOK
+            :param bool grouped: if True, invoices are grouped by SO id.
+                If False, invoices are grouped by keys returned by :meth:`_get_invoice_grouping_keys`
+            :param bool final: if True, refunds will be generated if necessary
+            :param date: unused parameter
+            :returns: created invoices
+            :rtype: `account.move` recordset
+            :raises: UserError if one of the orders has no invoiceable lines.
+            """  # noqa
+            if not self.env["account.move"].check_access_rights("create", False):
+                try:
+                    self.check_access_rights("write")
+                    self.check_access_rule("write")
+                except AccessError:
+                    return self.env["account.move"]
 
-            inv_obj = self.env["account.invoice"]
-            precision = self.env["decimal.precision"].precision_get(
-                "Product Unit of Measure"
+            # 1) Create invoices.
+            invoice_vals_list = []
+            invoice_item_sequence = (
+                0  # Incremental sequencing to keep the lines order on the invoice.
+            )
+            for order in self:
+                order = order.with_company(order.company_id).with_context(
+                    lang=order.partner_invoice_id.lang
+                )
+
+                invoice_vals = order._prepare_invoice()
+                invoiceable_lines = order._get_invoiceable_lines(final)
+
+                if not any(not line.display_type for line in invoiceable_lines):
+                    continue
+
+                invoice_line_vals = []
+                down_payment_section_added = False
+                for line in invoiceable_lines:
+                    if not down_payment_section_added and line.is_downpayment:
+                        # Create a dedicated section for the down payments
+                        # (put at the end of the invoiceable_lines)
+                        invoice_line_vals.append(
+                            Command.create(
+                                order._prepare_down_payment_section_line(
+                                    sequence=invoice_item_sequence
+                                )
+                            )
+                        )
+                        down_payment_section_added = True
+                        invoice_item_sequence += 1
+                    invoice_line_vals.append(
+                        Command.create(
+                            line._prepare_invoice_line(sequence=invoice_item_sequence)
+                        )
+                    )
+                    invoice_item_sequence += 1
+
+                invoice_vals["invoice_line_ids"] += invoice_line_vals
+                invoice_vals_list.append(invoice_vals)
+
+            if not invoice_vals_list and self._context.get(
+                "raise_if_nothing_to_invoice", True
+            ):
+                raise UserError(self._nothing_to_invoice_error_message())
+
+            # 2) Manage 'grouped' parameter: group by (partner_id, currency_id).
+            if not grouped:
+                new_invoice_vals_list = []
+                invoice_grouping_keys = self._get_invoice_grouping_keys()
+                invoice_vals_list = sorted(
+                    invoice_vals_list,
+                    key=lambda x: [
+                        x.get(grouping_key) for grouping_key in invoice_grouping_keys
+                    ],
+                )
+                for _grouping_keys, invoices in groupby(
+                    invoice_vals_list,
+                    key=lambda x: [
+                        x.get(grouping_key) for grouping_key in invoice_grouping_keys
+                    ],
+                ):
+                    origins = set()
+                    payment_refs = set()
+                    refs = set()
+                    ref_invoice_vals = None
+                    for invoice_vals in invoices:
+                        if not ref_invoice_vals:
+                            ref_invoice_vals = invoice_vals
+                        else:
+                            ref_invoice_vals["invoice_line_ids"] += invoice_vals[
+                                "invoice_line_ids"
+                            ]
+                        origins.add(invoice_vals["invoice_origin"])
+                        payment_refs.add(invoice_vals["payment_reference"])
+                        refs.add(invoice_vals["ref"])
+                    ref_invoice_vals.update(
+                        {
+                            "ref": ", ".join(refs)[:2000],
+                            "invoice_origin": ", ".join(origins),
+                            "payment_reference": len(payment_refs) == 1
+                            and payment_refs.pop()
+                            or False,
+                        }
+                    )
+                    new_invoice_vals_list.append(ref_invoice_vals)
+                invoice_vals_list = new_invoice_vals_list
+
+            # 3) Create invoices.
+            if len(invoice_vals_list) < len(self):
+                SaleOrderLine = self.env["sale.order.line"]
+                for invoice in invoice_vals_list:
+                    sequence = 1
+                    for line in invoice["invoice_line_ids"]:
+                        line[2]["sequence"] = SaleOrderLine._get_invoice_line_sequence(
+                            new=sequence, old=line[2]["sequence"]
+                        )
+                        sequence += 1
+
+            moves_to_create = []
+            for inv_vals in invoice_vals_list:
+                draft_inv = self._get_draft_invoices(inv_vals)
+                if draft_inv:
+                    draft_inv.update(inv_vals)
+
+                    if final:
+                        draft_inv.sudo().filtered(
+                            lambda m: m.amount_total < 0
+                        ).action_switch_invoice_into_refund_credit_note()
+
+                    draft_inv.message_post_with_view(
+                        "mail.message_origin_link",
+                        values={
+                            "self": draft_inv,
+                            "origin": draft_inv.line_ids.sale_line_ids.order_id,
+                        },
+                        subtype_id=self.env["ir.model.data"]._xmlid_to_res_id(
+                            "mail.mt_note"
+                        ),
+                    )
+                else:
+                    moves_to_create.append(inv_vals)
+
+            moves = (
+                self.env["account.move"]
+                .sudo()
+                .with_context(default_move_type="out_invoice")
+                .create(moves_to_create)
             )
 
-            # START HOOK
-            # As now from the beginning there can be invoices related to that
-            # order, instead of new invoices,
-            # new lines are taking into account in
-            # order to know whether there are invoice lines or not
-            new_lines = False
-            # END HOOK
-            for order in self:
-                # We only want to create sections that
-                # have at least one invoiceable line
-                pending_section = None
-                for line in order.order_line.sorted(key=lambda l: l.qty_to_invoice < 0):
-                    if line.display_type == "line_section":
-                        pending_section = line
-                        continue
-                    if line.display_type != "line_note" and float_is_zero(
-                        line.qty_to_invoice, precision_digits=precision
-                    ):
-                        continue
-                    # START HOOK
-                    # Allow to check if a line should not be invoiced
-                    if line._do_not_invoice():
-                        continue
-                    # END HOOK
-                    # START HOOK
-                    # Add more flexibility in grouping key fields
-                    # WAS: group_key = order.id if grouped
-                    # else (order.partner_invoice_id.id, order.currency_id.id)
-                    group_key = (
-                        order.id if grouped else self._get_invoice_group_line_key(line)
-                    )
-                    # 'invoice' must be always instantiated
-                    # respecting the old logic
-                    if group_key in invoices:
-                        invoice = invoices[group_key]
-                        # END HOOK
-                    if group_key not in invoices:
-                        inv_data = line._prepare_invoice()
-                        invoice = inv_obj.create(inv_data)
-                        references[invoice] = order
-                        invoices[group_key] = invoice
-                    elif group_key in invoices:
-                        # START HOOK
-                        # This line below is added in order
-                        # to cover cases where an invoice is not created
-                        # and instead a draft one is picked
-                        invoice = invoices[group_key]
-                        # END HOOK
-                        vals = {}
-                        if order.name not in invoice.origin.split(", "):
-                            vals["origin"] = invoice.origin + ", " + order.name
-                        if (
-                            order.client_order_ref
-                            and order.client_order_ref not in invoice.name.split(", ")
-                            and order.client_order_ref != invoice.name
-                        ):
-                            vals["name"] = invoice.name + ", " + order.client_order_ref
-                        invoice.write(vals)
-                    if (
-                        line.qty_to_invoice > 0
-                        or (line.qty_to_invoice < 0 and final)
-                        or line.display_type == "line_note"
-                    ):
-                        if pending_section:
-                            pending_section.invoice_line_create(
-                                invoices[group_key].id, pending_section.qty_to_invoice
-                            )
-                            pending_section = None
-                        line.invoice_line_create(
-                            invoices[group_key].id, line.qty_to_invoice
-                        )
-                        # START HOOK
-                        # Change to true if new lines are added
-                        new_lines = True
-                        # END HOOK
-                    if references.get(invoices.get(group_key)):
-                        if order not in references[invoices[group_key]]:
-                            references[invoice] = references[invoice] | order
-
-            # START HOOK
-            # WAS: if not invoices:
-            # Check if new lines have been added in order to determine whether
-            # there are invoice lines or not
-            if not new_lines and not self.env.context.get("no_check_lines", False):
-                raise UserError(_("There is no invoicable line."))
-            # END HOOK
-            self._modify_invoices(invoices)
-
-            for invoice in invoices.values():
-                invoice.compute_taxes()
-                if not invoice.invoice_line_ids:
-                    raise UserError(_("There is no invoicable line."))
-                # If invoice is negative, do a refund invoice instead
-                if invoice.amount_untaxed < 0:
-                    invoice.type = "out_refund"
-                    for line in invoice.invoice_line_ids:
-                        line.quantity = -line.quantity
-                # Use additional field helper function (for account extensions)
-                for line in invoice.invoice_line_ids:
-                    line._set_additional_fields(invoice)
-                # Necessary to force computation of taxes. In account_invoice,
-                # they are triggered by onchanges, which are not triggered when
-                # doing a create.
-                invoice.compute_taxes()
-                # Idem for partner
-                so_payment_term_id = invoice.payment_term_id.id
-                invoice._onchange_partner_id()
-                # To keep the payment terms set on the SO
-                invoice.payment_term_id = so_payment_term_id
-                invoice.message_post_with_view(
+            # 4) Some moves might actually be refunds: convert them if the total amount is negative # noqa
+            if final:
+                moves.sudo().filtered(
+                    lambda m: m.amount_total < 0
+                ).action_switch_invoice_into_refund_credit_note()
+            for move in moves:
+                move.message_post_with_view(
                     "mail.message_origin_link",
-                    values={"self": invoice, "origin": references[invoice]},
-                    subtype_id=self.env.ref("mail.mt_note").id,
+                    values={
+                        "self": move,
+                        "origin": move.line_ids.sale_line_ids.order_id,
+                    },
+                    subtype_id=self.env["ir.model.data"]._xmlid_to_res_id(
+                        "mail.mt_note"
+                    ),
                 )
-            return [inv.id for inv in invoices.values()]
+            return moves
 
-        self._patch_method("action_invoice_create", new_action_invoice_create)
+        self._patch_method("_create_invoices", new_create_invoices)
 
         return super(SaleOrder, self)._register_hook()
 
