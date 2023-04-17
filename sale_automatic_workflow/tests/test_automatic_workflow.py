@@ -80,6 +80,14 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         # Make sure this addon works properly in regards to it.
         mock_path = "odoo.addons.sale.models.sale_order.SaleOrder._create_invoices"
         with mock.patch(mock_path) as mocked:
+            module_sale_order_action_invoice_create_hook = self.env[
+                "ir.module.module"
+            ].search([("name", "=", "sale_order_action_invoice_create_hook")])
+            if (
+                module_sale_order_action_invoice_create_hook
+                and module_sale_order_action_invoice_create_hook.state == "installed"
+            ):
+                sale._revert_method("_create_invoices")
             sale._create_invoices()
             mocked.assert_called()
         self.assertEqual(line.qty_delivered, 0.0)
