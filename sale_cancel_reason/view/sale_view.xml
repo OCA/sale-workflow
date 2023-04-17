@@ -6,14 +6,15 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath expr="/form/sheet/div/h1" position="after">
-                <h2 attrs="{'invisible': [('state', '!=', 'cancel')]}">
-                    <label for="cancel_reason_id" string="Cancellation reason:" />
+                <p >
+                    <label for="cancel_reason_id" string="Cancellation reason:" attrs="{'invisible': [('state', '!=', 'cancel')]}"/>
                     <field
                         name="cancel_reason_id"
                         class="oe_inline"
                         options='{"no_open": True}'
+                        attrs="{'invisible': [('state', '!=', 'cancel')]}"
                     />
-                </h2>
+                </p>
             </xpath>
         </field>
     </record>
