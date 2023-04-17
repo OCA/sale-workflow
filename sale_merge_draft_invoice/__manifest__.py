@@ -4,12 +4,10 @@
 {
     "name": "Sale Merge Draft Invoice",
     "author": "Eficent, Odoo Community Association (OCA)",
-    "version": "12.0.1.0.1",
+    "version": "16.0.1.0.0",
     "category": "Sale Workflow",
     "website": "https://github.com/OCA/sale-workflow",
-    "depends": [
-        "sale_order_action_invoice_create_hook",
-    ],
+    "depends": ["sale_order_action_invoice_create_hook"],
     "data": [
         "security/sale_merge_draft_invoice_security.xml",
         "wizard/sale_make_invoice_advance_views.xml",

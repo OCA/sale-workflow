@@ -41,7 +41,7 @@ class TestSaleMergeDraftInvoice(TransactionCase):
     def _create_user(self, login, groups, company):
         """Create a user."""
         group_ids = [group.id for group in groups]
-        user = self.users_obj.with_context({"no_reset_password": True}).create(
+        user = self.users_obj.with_context(no_reset_password=True).create(
             {
                 "name": "Sale User",
                 "login": login,
@@ -60,41 +60,49 @@ class TestSaleMergeDraftInvoice(TransactionCase):
             {
                 "name": name,
                 "email": "example@yourcompany.com",
-                "customer": True,
+                "customer_rank": 1,
                 "phone": 123456,
                 "currency_id": self.env.ref("base.EUR"),
             }
         )
 
     def _create_product_category(self):
-        product_ctg = self.env["product.category"].create(
-            {
-                "name": "test_product_ctg",
-            }
-        )
+        product_ctg = self.env["product.category"].create({"name": "test_product_ctg"})
         return product_ctg
 
     def _create_product(self, name, product_ctg):
         product = self.env["product.product"].create(
-            {
-                "name": name,
-                "categ_id": product_ctg.id,
-                "type": "service",
-            }
+            {"name": name, "categ_id": product_ctg.id, "type": "service"}
         )
         return product
 
     def _create_sale_order(self, user):
-        so = self.sale_order_model.sudo(user).create(
-            {
-                "partner_id": self.customer.id,
-            }
+        so = (
+            self.sale_order_model.sudo()
+            .with_context(uid=user)
+            .create({"partner_id": self.customer.id})
         )
-        sol1 = self.sale_order_line_model.sudo(user).create(
-            {"product_id": self.service_1.id, "product_uom_qty": 1, "order_id": so.id}
+        sol1 = (
+            self.sale_order_line_model.sudo()
+            .with_context(uid=user)
+            .create(
+                {
+                    "product_id": self.service_1.id,
+                    "product_uom_qty": 1,
+                    "order_id": so.id,
+                }
+            )
         )
-        sol2 = self.sale_order_line_model.sudo(user).create(
-            {"product_id": self.service_2.id, "product_uom_qty": 2, "order_id": so.id}
+        sol2 = (
+            self.sale_order_line_model.sudo()
+            .with_context(uid=user)
+            .create(
+                {
+                    "product_id": self.service_2.id,
+                    "product_uom_qty": 2,
+                    "order_id": so.id,
+                }
+            )
         )
 
         # confirm quotation
@@ -107,18 +115,28 @@ class TestSaleMergeDraftInvoice(TransactionCase):
     def _create_invoice_from_sale(
         self, sale, user, merge_option=False, force_merge=False
     ):
-        data = {"advance_payment_method": "delivered"}
+        data = {"advance_payment_method": "delivered", "sale_order_ids": sale.ids}
         if force_merge:
             data.update({"merge_draft_invoice": merge_option})
-        payment = self.env["sale.advance.payment.inv"].sudo(user).create(data)
+        payment = (
+            self.env["sale.advance.payment.inv"]
+            .sudo()
+            .with_context(uid=user)
+            .create(data)
+        )
         sale_context = {
             "active_id": sale.id,
             "active_ids": sale.ids,
             "active_model": "sale.order",
             "open_invoices": True,
         }
-        res = payment.with_context(sale_context).sudo(user).create_invoices()
-        invoice_id = self.env["account.invoice"].browse(res["res_id"])
+        res = (
+            payment.with_context(**sale_context)
+            .sudo()
+            .with_context(uid=user)
+            .create_invoices()
+        )
+        invoice_id = self.env["account.move"].browse(res["res_id"])
         return invoice_id
 
     def test_create_invoice_case_1(self):

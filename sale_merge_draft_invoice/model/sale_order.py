@@ -8,19 +8,20 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     @api.model
-    def _get_draft_invoices(self, invoices, references):
+    def _get_draft_invoices(self, invoices_vals):
         if self.env.context.get("merge_draft_invoice", False):
-            invoices, references = super(SaleOrder, self)._get_draft_invoices(
-                invoices, references
+            invoices = super(SaleOrder, self)._get_draft_invoices(invoices_vals)
+            invoices = self.env["account.move"].search(
+                [
+                    ("state", "=", "draft"),
+                    ("partner_id", "=", invoices_vals["partner_id"]),
+                    ("currency_id", "=", invoices_vals["currency_id"]),
+                    ("invoice_user_id", "=", invoices_vals["invoice_user_id"]),
+                    ("company_id", "=", invoices_vals["company_id"]),
+                    ("move_type", "=", invoices_vals["move_type"]),
+                ],
+                limit=1,
             )
-            draft_inv = self.env["account.invoice"].search([("state", "=", "draft")])
-            for inv in draft_inv:
-                lines = inv.invoice_line_ids.filtered(lambda l: l.sale_line_ids)
-                if lines:
-                    ref_order = lines[0].sale_line_ids[0].order_id
-                    group_inv_key = self._get_invoice_group_key(ref_order)
-                    references[inv] = ref_order
-                    invoices[group_inv_key] = inv
-            return invoices, references
+            return invoices
         else:
-            return super(SaleOrder, self)._get_draft_invoices(invoices, references)
+            return super(SaleOrder, self)._get_draft_invoices(invoices_vals)

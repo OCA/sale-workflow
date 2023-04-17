@@ -5,18 +5,20 @@
 -->
 <odoo>
 
-        <record id="view_sale_advance_payment_inv" model="ir.ui.view">
-            <field name="name">Invoice Orders</field>
-            <field name="model">sale.advance.payment.inv</field>
-            <field name="inherit_id" ref="sale.view_sale_advance_payment_inv" />
-            <field name="arch" type="xml">
-                <field name="deposit_taxes_id" position="after">
+    <record id="view_sale_advance_payment_inv" model="ir.ui.view">
+        <field name="name">Invoice Orders</field>
+        <field name="model">sale.advance.payment.inv</field>
+        <field name="inherit_id" ref="sale.view_sale_advance_payment_inv" />
+        <field name="arch" type="xml">
+            <group name="down_payment_specification" position="after">
+                <group>
                     <field
-                    name="merge_draft_invoice"
-                    groups="sale_merge_draft_invoice.group_sale_merge_draft_invoice"
-                />
-                </field>
-            </field>
-        </record>
+                        name="merge_draft_invoice"
+                        groups="sale_merge_draft_invoice.group_sale_merge_draft_invoice"
+                    />
+                </group>
+            </group>
+        </field>
+    </record>
 
 </odoo>
