@@ -7,6 +7,7 @@ from odoo import api, fields, models
 class Elaboration(models.Model):
     _name = "product.elaboration"
     _description = "Product elaborations"
+    _rec_name = "code"
 
     name = fields.Char(required=True, translate=True)
     code = fields.Char(string="Short Code")
@@ -47,12 +48,9 @@ class Elaboration(models.Model):
         the rest of the results after.
         """
         args = args or []
-        recs = self.search([("code", operator, name)] + args, limit=limit)
-        res = recs.name_get()
-        limit_rest = limit - len(recs) if limit else limit
-        if limit_rest or not limit:
-            args += [("id", "not in", recs.ids)]
-            res += super().name_search(
-                name, args=args, operator=operator, limit=limit_rest
-            )
-        return res
+        recs = self.browse()
+        if name:
+            recs = self.search([("code", "=ilike", name)] + args, limit=limit)
+        if not recs:
+            recs = self.search([("name", operator, name)] + args, limit=limit)
+        return recs.name_get()
