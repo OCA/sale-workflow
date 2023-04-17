@@ -43,10 +43,10 @@ msgstr "Razón de cancelación:"
 #: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
 msgid ""
 "Choose the reason for the cancellation of the\n"
-"                sale order."
+"                        sale order."
 msgstr ""
 "Elija el motivo de la cancelación del\n"
-"                orden de venta."
+"pedido de venta."
 
 #. module: sale_cancel_reason
 #: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
