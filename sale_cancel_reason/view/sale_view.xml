@@ -6,8 +6,12 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath expr="/form/sheet/div/h1" position="after">
-                <p >
-                    <label for="cancel_reason_id" string="Cancellation reason:" attrs="{'invisible': [('state', '!=', 'cancel')]}"/>
+                <p>
+                    <label
+                        for="cancel_reason_id"
+                        string="Cancellation reason:"
+                        attrs="{'invisible': [('state', '!=', 'cancel')]}"
+                    />
                     <field
                         name="cancel_reason_id"
                         class="oe_inline"
@@ -31,7 +35,7 @@
         <field name="name">Sale Order Cancel Reason</field>
         <field name="model">sale.order.cancel.reason</field>
         <field name="arch" type="xml">
-            <tree string="Sale Order Cancel Reasons">
+            <tree>
                 <field name="name" />
             </tree>
         </field>
