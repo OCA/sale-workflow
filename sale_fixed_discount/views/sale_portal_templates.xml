@@ -15,7 +15,7 @@
             />
         </xpath>
         <xpath
-            expr="//section[@id='details']/table/thead//th[@t-if='display_discount']"
+            expr="//section[@id='details']//table/thead//th[@t-if='display_discount']"
             position="after"
         >
             <th
@@ -26,7 +26,7 @@
             </th>
         </xpath>
         <xpath
-            expr="//section[@id='details']/table/tbody//t[@t-foreach='sale_order.order_line']/tr//t[@t-if='not line.display_type']//td[3]/div"
+            expr="//section[@id='details']//table/tbody//t[@t-foreach='sale_order.order_line']/tr//t[@t-if='not line.display_type']//td[3]/div"
             position="replace"
         >
             <div
@@ -43,7 +43,7 @@
             </div>
         </xpath>
         <xpath
-            expr="//section[@id='details']/table/tbody//t[@t-foreach='sale_order.order_line']/tr//t[@t-if='not line.display_type']//td[@t-if='display_discount']"
+            expr="//section[@id='details']//table/tbody//t[@t-foreach='sale_order.order_line']/tr//t[@t-if='not line.display_type']//td[@t-if='display_discount']"
             position="after"
         >
             <td
