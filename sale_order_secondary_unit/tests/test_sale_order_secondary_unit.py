@@ -16,6 +16,11 @@ class TestSaleOrderSecondaryUnit(TransactionCase):
                 "name": "test",
                 "uom_id": cls.product_uom_kg.id,
                 "uom_po_id": cls.product_uom_kg.id,
+            }
+        )
+        # Set secondary uom on product template
+        cls.product.product_tmpl_id.write(
+            {
                 "secondary_uom_ids": [
                     (
                         0,

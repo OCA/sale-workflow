@@ -11,18 +11,9 @@ class SaleOrderLine(models.Model):
         "uom_field": "product_uom",
     }
 
-    secondary_uom_qty = fields.Float(string="2nd Qty", digits="Product Unit of Measure")
-    secondary_uom_id = fields.Many2one(
-        comodel_name="product.secondary.unit",
-        string="2nd uom",
-        ondelete="restrict",
-    )
-
     secondary_uom_unit_price = fields.Float(
         string="2nd unit price",
-        digits="Product Unit of Measure",
-        store=False,
-        readonly=True,
+        digits="Product Price",
         compute="_compute_secondary_uom_unit_price",
     )
 
@@ -39,7 +30,7 @@ class SaleOrderLine(models.Model):
         self._onchange_helper_product_uom_for_secondary()
 
     @api.onchange("product_id")
-    def product_id_change(self):
+    def _onchange_product_id_warning(self):
         """
         If default sales secondary unit set on product, put on secondary
         quantity 1 for being the default quantity. We override this method,
@@ -48,17 +39,12 @@ class SaleOrderLine(models.Model):
         """
         # Determine if we compute the sale line with one unit of secondary uom as default.
         # Based on method of sale order line _update_taxes
-        default_secondary_qty = 0.0
-        if (
-            not self.product_uom or (self.product_id.uom_id.id != self.product_uom.id)
-        ) and not self.product_uom_qty:
-            default_secondary_qty = 1.0
-        res = super().product_id_change()
+        res = super()._onchange_product_id_warning()
+        line_uom_qty = self.product_uom_qty
+        self.secondary_uom_id = self.product_id.sale_secondary_uom_id
         if self.product_id.sale_secondary_uom_id:
-            line_uom_qty = self.product_uom_qty
-            self.secondary_uom_id = self.product_id.sale_secondary_uom_id
-            if default_secondary_qty:
-                self.secondary_uom_qty = default_secondary_qty
+            if line_uom_qty == 1.0:
+                self.secondary_uom_qty = 1.0
                 self.onchange_product_uom_for_secondary()
             else:
                 self.product_uom_qty = line_uom_qty
