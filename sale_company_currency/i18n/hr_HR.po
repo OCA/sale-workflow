@@ -21,12 +21,12 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: sale_company_currency
-#: model:ir.model.fields,field_description:sale_company_currency.field_sale_order_company_currency_id
+#: model:ir.model.fields,field_description:sale_company_currency.field_sale_order__company_currency_id
 msgid "Company Currency"
 msgstr ""
 
 #. module: sale_company_currency
-#: model:ir.model.fields,help:sale_company_currency.field_sale_order_amount_total_curr
+#: model:ir.model.fields,help:sale_company_currency.field_sale_order__amount_total_curr
 msgid "Sale Order Amount in the company Currency"
 msgstr ""
 
@@ -36,20 +36,19 @@ msgid "Sales Order"
 msgstr "Prodjani nalog"
 
 #. module: sale_company_currency
-#: model:ir.ui.view,arch_db:sale_company_currency.view_order_form
-#: model:ir.ui.view,arch_db:sale_company_currency.view_order_tree
-#: model:ir.ui.view,arch_db:sale_company_currency.view_quotation_tree
+#: model_terms:ir.ui.view,arch_db:sale_company_currency.view_order_tree
+#: model_terms:ir.ui.view,arch_db:sale_company_currency.view_quotation_tree
 msgid "Total"
 msgstr ""
 
 #. module: sale_company_currency
-#: model:ir.ui.view,arch_db:sale_company_currency.view_order_form
-#: model:ir.ui.view,arch_db:sale_company_currency.view_order_tree
-#: model:ir.ui.view,arch_db:sale_company_currency.view_quotation_tree
+#: model_terms:ir.ui.view,arch_db:sale_company_currency.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_company_currency.view_order_tree
+#: model_terms:ir.ui.view,arch_db:sale_company_currency.view_quotation_tree
 msgid "Total (Company Currency)"
 msgstr ""
 
 #. module: sale_company_currency
-#: model:ir.model.fields,field_description:sale_company_currency.field_sale_order_amount_total_curr
+#: model:ir.model.fields,field_description:sale_company_currency.field_sale_order__amount_total_curr
 msgid "Total Amount"
 msgstr ""
