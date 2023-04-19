@@ -1,2 +1,1 @@
 odoo_test_helper
-openupgradelib
