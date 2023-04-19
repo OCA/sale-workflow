@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-22 23:46+0000\n"
-"PO-Revision-Date: 2019-11-10 19:34+0000\n"
-"Last-Translator: Galoperd <jvcsan@gmail.com>\n"
+"PO-Revision-Date: 2023-04-18 11:27+0000\n"
+"Last-Translator: gelo joga Rodríguez <gelo.joga@factorlibre.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.8\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_account_payment_mode__workflow_process_id
@@ -29,21 +29,21 @@ msgstr "Flujo automático"
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_automatic_workflow_job__display_name
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_order__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre mostrado"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_account_payment_mode__id
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_automatic_workflow_job__id
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_account_payment_mode____last_update
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_automatic_workflow_job____last_update
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_order____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación el"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model,name:sale_automatic_workflow_payment_mode.model_account_payment_mode
@@ -53,7 +53,7 @@ msgstr "Modos de pago"
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model,name:sale_automatic_workflow_payment_mode.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Pedido de venta"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model,name:sale_automatic_workflow_payment_mode.model_automatic_workflow_job
@@ -61,6 +61,8 @@ msgid ""
 "Scheduler that will play automatically the validation of invoices, "
 "pickings..."
 msgstr ""
+"Planificador que ejecutará automáticamente la validación de facturas, "
+"albaranes..."
 
 #~ msgid "Automatic Workflow Payment Filter"
 #~ msgstr "Filtro de flujo automático de pago"
