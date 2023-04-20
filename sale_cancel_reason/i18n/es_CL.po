@@ -21,21 +21,6 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: sale_cancel_reason
-#: model:ir.model,name:sale_cancel_reason.model_sale_order_cancel
-msgid " Ask a reason for the sale order cancellation."
-msgstr " Pregunte una razón por la cancelación de la orden de venta."
-
-#. module: sale_cancel_reason
-#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
-msgid "Cancel"
-msgstr "Cancelar"
-
-#. module: sale_cancel_reason
-#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_order_form
-msgid "Cancel Order"
-msgstr "Cancelar Orden"
-
-#. module: sale_cancel_reason
 #: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_order_form
 msgid "Cancellation reason:"
 msgstr "Razon de cancelacion:"
@@ -44,34 +29,25 @@ msgstr "Razon de cancelacion:"
 #: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
 msgid ""
 "Choose the reason for the cancellation of the\n"
-"                sale order."
+"                        sale order."
 msgstr ""
 
 #. module: sale_cancel_reason
-#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
-msgid "Confirm"
-msgstr "Confirmar"
-
-#. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel__create_uid
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel__create_date
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__create_date
 msgid "Created on"
 msgstr "Creado en"
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel__display_name
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel__id
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__id
 msgid "ID"
 msgstr "ID (identificación)"
@@ -82,19 +58,16 @@ msgid "Just for Quotation"
 msgstr "Solo por Cotización"
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel____last_update
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel__write_uid
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización de"
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel__write_date
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__write_date
 msgid "Last Updated on"
 msgstr "Última actualización en"
@@ -116,17 +89,6 @@ msgid "Reason for cancellation"
 msgstr "Razón de la cancelación"
 
 #. module: sale_cancel_reason
-#: model:ir.actions.act_window,name:sale_cancel_reason.action_sale_order_cancel
-#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
-msgid "Reason for the cancellation"
-msgstr "Motivo de la cancelación"
-
-#. module: sale_cancel_reason
-#: model:ir.model,name:sale_cancel_reason.model_sale_order
-msgid "Sale Order"
-msgstr "Orden de Venta"
-
-#. module: sale_cancel_reason
 #: model:ir.actions.act_window,name:sale_cancel_reason.action_sale_order_cancel_reason
 #: model:ir.model,name:sale_cancel_reason.model_sale_order_cancel_reason
 msgid "Sale Order Cancel Reason"
@@ -135,16 +97,41 @@ msgstr "Orden de Venta Cancelar Motivo"
 #. module: sale_cancel_reason
 #: model:ir.ui.menu,name:sale_cancel_reason.menu_sale_order_cancel_reason
 #: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel_reason_form
-#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel_reason_tree
 msgid "Sale Order Cancel Reasons"
 msgstr "Orden de Venta Cancelar Razones"
+
+#. module: sale_cancel_reason
+#: model:ir.model,name:sale_cancel_reason.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_cancel_reason
+#: model:ir.model,name:sale_cancel_reason.model_sale_order_cancel
+msgid "Sales Order Cancel"
+msgstr ""
 
 #. module: sale_cancel_reason
 #: model:sale.order.cancel.reason,name:sale_cancel_reason.cancel_reason_no_service_needed
 msgid "Service no longer needed"
 msgstr "Servicio ya no es necesario"
 
-#. module: sale_cancel_reason
-#: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
-msgid "or"
-msgstr "o"
+#~ msgid " Ask a reason for the sale order cancellation."
+#~ msgstr " Pregunte una razón por la cancelación de la orden de venta."
+
+#~ msgid "Cancel"
+#~ msgstr "Cancelar"
+
+#~ msgid "Cancel Order"
+#~ msgstr "Cancelar Orden"
+
+#~ msgid "Confirm"
+#~ msgstr "Confirmar"
+
+#~ msgid "Reason for the cancellation"
+#~ msgstr "Motivo de la cancelación"
+
+#~ msgid "Sale Order"
+#~ msgstr "Orden de Venta"
+
+#~ msgid "or"
+#~ msgstr "o"
