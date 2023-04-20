@@ -21,13 +21,23 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[partner_contact_sale_info_propagation](partner_contact_sale_info_propagation/) | 16.0.1.0.0 |  | Propagate Salesperson and Sales Channel from Company to Contacts
+[partner_contact_sale_info_propagation](partner_contact_sale_info_propagation/) | 16.0.1.0.1 |  | Propagate Salesperson and Sales Channel from Company to Contacts
 [partner_sale_pivot](partner_sale_pivot/) | 16.0.1.0.0 | [![ernestotejeda](https://github.com/ernestotejeda.png?size=30px)](https://github.com/ernestotejeda) | Sales analysis from customer form view
+[product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 16.0.1.0.0 |  | Loads in every sale order line the customer code defined in the product
 [sale_automatic_workflow](sale_automatic_workflow/) | 16.0.1.0.1 |  | Sale Automatic Workflow
+[sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 16.0.1.0.0 |  | Sale Automatic Workflow - Payment Mode
+[sale_cancel_reason](sale_cancel_reason/) | 16.0.1.0.0 |  | Sale Cancel Reason
 [sale_commercial_partner](sale_commercial_partner/) | 16.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Add stored related field 'Commercial Entity' on sale orders
+[sale_company_currency](sale_company_currency/) | 16.0.1.0.0 |  | Company Currency in Sale Orders
+[sale_exception](sale_exception/) | 16.0.1.0.1 |  | Custom exceptions on sale order
+[sale_order_archive](sale_order_archive/) | 16.0.1.0.0 |  | Archive Sale Orders
+[sale_order_general_discount](sale_order_general_discount/) | 16.0.1.0.0 |  | General discount per sale order
 [sale_order_line_menu](sale_order_line_menu/) | 16.0.1.0.0 |  | Adds a Sale Order Lines Menu
+[sale_order_lot_generator](sale_order_lot_generator/) | 16.0.1.0.0 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) [![mourad-ehm](https://github.com/mourad-ehm.png?size=30px)](https://github.com/mourad-ehm) [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Sale Order Lot Generator
 [sale_order_lot_selection](sale_order_lot_selection/) | 16.0.1.0.1 | [![bodedra](https://github.com/bodedra.png?size=30px)](https://github.com/bodedra) | Sale Order Lot Selection
 [sale_order_type](sale_order_type/) | 16.0.1.0.1 |  | Sale Order Type
+[sale_stock_picking_blocking](sale_stock_picking_blocking/) | 16.0.1.0.0 |  | Allow you to block the creation of deliveries from a sale order.
+[sale_tier_validation](sale_tier_validation/) | 16.0.1.0.0 |  | Extends the functionality of Sale Orders to support a tier validation process.
 [sale_triple_discount](sale_triple_discount/) | 16.0.1.0.1 |  | Manage triple discount on sale order lines
 
 [//]: # (end addons)
