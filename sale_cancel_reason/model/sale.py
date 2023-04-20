@@ -22,6 +22,11 @@ class SaleOrder(models.Model):
                 return True
         return False
 
+    def action_draft(self):
+        res = super().action_draft()
+        self.write({"cancel_reason_id": False})
+        return res
+
 
 class SaleOrderCancelReason(models.Model):
     _name = "sale.order.cancel.reason"
