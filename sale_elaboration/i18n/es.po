@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-13 16:16+0000\n"
-"PO-Revision-Date: 2023-04-13 18:17+0200\n"
+"POT-Creation-Date: 2023-04-24 20:27+0000\n"
+"PO-Revision-Date: 2023-04-24 22:27+0200\n"
 "Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -93,6 +93,11 @@ msgid "Display Name"
 msgstr "Nombre a mostrar"
 
 #. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__elaboration_price_unit
+msgid "Elab. Price"
+msgstr "Precio elab."
+
+#. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
 msgid "Elaboration"
@@ -117,6 +122,11 @@ msgstr "Perfil de elaboración"
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.res_config_settings_view
 msgid "Elaboration notes will appear on the delivery slip"
 msgstr "Las notas de elaboración aparecerán en los albaranes"
+
+#. module: sale_elaboration
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.view_order_form
+msgid "Elaboration price:"
+msgstr "Precio de elaboración:"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_mixin__elaboration_ids
