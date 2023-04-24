@@ -49,6 +49,9 @@ class SaleOrderLine(models.Model):
     elaboration_profile_id = fields.Many2one(
         related="product_id.elaboration_profile_id"
     )
+    elaboration_price_unit = fields.Float(
+        "Elab. Price", compute="_compute_elaboration_price_unit", store=True
+    )
 
     def get_elaboration_stock_route(self):
         self.ensure_one()
@@ -60,6 +63,17 @@ class SaleOrderLine(models.Model):
             route_id = line.get_elaboration_stock_route()
             if route_id:
                 line.route_id = route_id
+
+    @api.depends("elaboration_ids", "order_id.pricelist_id")
+    def _compute_elaboration_price_unit(self):
+        for line in self:
+            elab_price = 0.0
+            for elaboration in line.elaboration_ids:
+                elab_price += elaboration.product_id.with_context(
+                    pricelist=line.order_id.pricelist_id.id,
+                    uom=elaboration.product_id.uom_id.id,
+                ).price
+            line.elaboration_price_unit = elab_price
 
     def _prepare_invoice_line(self, **optional_values):
         vals = super()._prepare_invoice_line(**optional_values)
