@@ -18,7 +18,10 @@ class SaleOrder(models.Model):
 
     def _show_cancel_wizard(self):
         for order in self:
-            if not order._context.get("disable_cancel_warning"):
+            if (
+                not order._context.get("disable_cancel_warning")
+                and self.env.company.enable_sale_cancel_reason
+            ):
                 return True
         return False
 

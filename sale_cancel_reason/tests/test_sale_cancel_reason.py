@@ -28,6 +28,7 @@ class TestSaleCancelReason(TransactionCase):
         super(TestSaleCancelReason, self).setUp()
         SaleOrder = self.env["sale.order"]
         CancelReason = self.env["sale.order.cancel.reason"]
+        self.env.company.write({"enable_sale_cancel_reason": True})
         self.reason = CancelReason.create({"name": "Canceled for tests"})
         self.partner = self.env.ref("base.res_partner_2")
         self.product = self.env.ref("product.product_product_7")
