@@ -7,7 +7,6 @@ from odoo import api, fields, models
 class Elaboration(models.Model):
     _name = "product.elaboration"
     _description = "Product elaborations"
-    _rec_name = "code"
 
     name = fields.Char(required=True, translate=True)
     code = fields.Char(string="Short Code")
