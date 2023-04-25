@@ -25,7 +25,7 @@ class RecommendationCaseTests(RecommendationCase):
                 },
             )
         ]
-        self.new_so.order_line.product_id_change()
+        self.new_so.order_line._onchange_product_id_warning()
         wizard = self.wizard()
         # Order came in from context
         self.assertEqual(wizard.order_id, self.new_so)
