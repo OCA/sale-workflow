@@ -17,8 +17,13 @@
                         <field name="sale_recommendation_price_origin" />
                         <field name="use_delivery_address" />
                     </group>
-                    <group>
-                        <field name="line_ids" nolabel="1" mode="tree,kanban">
+                    <group col="2">
+                        <field
+                            name="line_ids"
+                            nolabel="1"
+                            mode="tree,kanban"
+                            colspan="2"
+                        >
                             <tree create="0" delete="0" editable="top">
                                 <field name="currency_id" invisible="1" />
                                 <field name="sale_line_id" invisible="1" />
