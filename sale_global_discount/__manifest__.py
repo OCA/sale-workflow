@@ -12,4 +12,5 @@
     "data": ["views/sale_order_views.xml", "views/report_sale_order.xml"],
     "application": False,
     "installable": True,
+    "pre_init_hook": "_pre_init_global_discount_fields",
 }
