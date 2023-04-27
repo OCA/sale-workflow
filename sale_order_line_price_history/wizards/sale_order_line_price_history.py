@@ -1,6 +1,7 @@
 # Copyright 2019 Tecnativa - Ernesto Tejeda
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class SaleOrderLinePriceHistory(models.TransientModel):
@@ -80,6 +81,7 @@ class SaleOrderLinePriceHistory(models.TransientModel):
                     {
                         "sale_order_line_id": order_line.id,
                         "history_sale_order_line_id": self.sale_order_line_id.id,
+                        "history_id": self.id,
                     },
                 )
             )
@@ -131,5 +133,11 @@ class SaleOrderLinePriceHistoryline(models.TransientModel):
         return {"price_unit": self.price_unit, "discount": self.discount}
 
     def action_set_price(self):
-        self.ensure_one()
-        self.history_sale_order_line_id.write(self._prepare_set_price_history_vals())
+        if self.history_sale_order_line_id and self.sale_order_line_id:
+            self.history_sale_order_line_id.write(
+                self._prepare_set_price_history_vals()
+            )
+        else:
+            raise ValidationError(
+                _("Not found historical sale order line for this action!")
+            )
