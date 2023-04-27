@@ -75,6 +75,11 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
+msgid "Include Quotations"
+msgstr ""
+
+#. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_commercial_partner
 msgid "Include commercial entity"
 msgstr "包括商业实体"
@@ -83,11 +88,6 @@ msgstr "包括商业实体"
 #: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history__include_commercial_partner
 msgid "Include commercial entity and its contacts in the sale history"
 msgstr "在销售历史中包括商业实体及其联系人"
-
-#. module: sale_order_line_price_history
-#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
-msgid "Include quotations"
-msgstr "包括报价单"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
@@ -113,6 +113,13 @@ msgid "Last Updated on"
 msgstr "上次更新日期"
 
 #. module: sale_order_line_price_history
+#. odoo-python
+#: code:addons/sale_order_line_price_history/wizards/sale_order_line_price_history.py:0
+#, python-format
+msgid "Not found historical sale order line for this action!"
+msgstr ""
+
+#. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_date_order
 msgid "Order Date"
 msgstr "单据日期"
@@ -121,6 +128,11 @@ msgstr "单据日期"
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__order_id
 msgid "Order Reference"
 msgstr "订单参考"
+
+#. module: sale_order_line_price_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.view_order_form
+msgid "Price History"
+msgstr ""
 
 #. module: sale_order_line_price_history
 #: model:ir.actions.act_window,name:sale_order_line_price_history.sale_order_line_price_history_action
@@ -177,6 +189,9 @@ msgstr "单价"
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__history_sale_order_line_id
 msgid "history sale order line"
 msgstr "历史销售订单行"
+
+#~ msgid "Include quotations"
+#~ msgstr "包括报价单"
 
 #~ msgid "Ordered Quantity"
 #~ msgstr "订购数量"

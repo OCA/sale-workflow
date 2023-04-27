@@ -13,8 +13,8 @@
                     <field name="include_commercial_partner" />
                     <field name="include_quotations" />
                 </group>
-                <group string="Sale history">
-                    <field name="line_ids" nolabel="1" readonly="1">
+                <group string="Sale history" col="2">
+                    <field name="line_ids" nolabel="1" readonly="1" colspan="2">
                         <form>
                             <div
                                 class="oe_button_box"
