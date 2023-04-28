@@ -11,8 +11,9 @@ class SaleOrderLine(models.Model):
     _name = "sale.order.line"
 
     exception_ids = fields.Many2many(
-        "exception.rule", string="Exceptions", copy=False, readonly=True
+        related="order_id.exception_ids", string="Exceptions", copy=False, readonly=True
     )
+    has_exception = fields.Boolean(compute="_compute_has_exceptions", default=False)
     exceptions_summary = fields.Html(
         readonly=True, compute="_compute_exceptions_summary"
     )
@@ -27,6 +28,14 @@ class SaleOrderLine(models.Model):
                 rec.exceptions_summary = rec._get_exception_summary()
             else:
                 rec.exceptions_summary = False
+
+    @api.depends("exception_ids")
+    def _compute_has_exceptions(self):
+        for rec in self:
+            if not rec.exception_ids:
+                rec.has_exception = False
+            else:
+                rec.has_exception = True
 
     def _get_exception_summary(self):
         return "<ul>%s</ul>" % "".join(

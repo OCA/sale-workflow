@@ -65,13 +65,13 @@
                 </div>
             </xpath>
             <xpath expr="//field[@name='order_line']/tree" position="inside">
-                <field name="exception_ids" invisible="1" />
+                <field name="has_exception" invisible="1" />
                 <field name="ignore_exception" invisible="1" />
             </xpath>
             <xpath expr="//field[@name='order_line']/tree" position="attributes">
                 <attribute
                     name="decoration-danger"
-                >not ignore_exception and exception_ids</attribute>
+                >not ignore_exception and has_exception</attribute>
             </xpath>
         </field>
     </record>
