@@ -30,6 +30,7 @@ addon | version | maintainers | summary
 [sale_commercial_partner](sale_commercial_partner/) | 16.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Add stored related field 'Commercial Entity' on sale orders
 [sale_company_currency](sale_company_currency/) | 16.0.1.0.0 |  | Company Currency in Sale Orders
 [sale_exception](sale_exception/) | 16.0.1.0.1 |  | Custom exceptions on sale order
+[sale_invoice_policy](sale_invoice_policy/) | 16.0.1.0.0 |  | Sales Management: let the user choose the invoice policy on the order
 [sale_order_archive](sale_order_archive/) | 16.0.1.0.0 |  | Archive Sale Orders
 [sale_order_general_discount](sale_order_general_discount/) | 16.0.1.0.0 |  | General discount per sale order
 [sale_order_line_menu](sale_order_line_menu/) | 16.0.1.0.0 |  | Adds a Sale Order Lines Menu
