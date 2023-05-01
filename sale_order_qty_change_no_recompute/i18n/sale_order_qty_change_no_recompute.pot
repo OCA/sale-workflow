@@ -12,8 +12,3 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: sale_order_qty_change_no_recompute
-#: model:ir.model,name:sale_order_qty_change_no_recompute.model_sale_order_line
-msgid "Sales Order Line"
-msgstr ""
