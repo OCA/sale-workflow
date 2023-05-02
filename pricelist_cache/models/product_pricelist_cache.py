@@ -193,11 +193,11 @@ class PricelistCache(models.Model):
 
     def create_full_cache(self):
         """Creates cache for all prices applied to all pricelists."""
-        pricelists = self.env["product.pricelist"].search([])
-        pricelist_ids = pricelists.ids
         big_plist_ids = self.env["product.pricelist"]._get_root_pricelist_ids()
         big_plist_ids.extend(self.env["product.pricelist"]._get_factor_pricelist_ids())
-        pricelist_ids = [plid for plid in pricelist_ids if plid not in big_plist_ids]
+        pricelist_ids = (
+            self.env["product.pricelist"].search([("id", "not in", big_plist_ids)]).ids
+        )
         # One job for each root pricelist (they are costly to run)
         for pricelist_id in big_plist_ids:
             self.with_delay().update_product_pricelist_cache(
