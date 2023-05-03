@@ -19,6 +19,14 @@ class SaleOrderLine(models.Model):
     ignore_exception = fields.Boolean(
         related="order_id.ignore_exception", store=True, string="Ignore Exceptions"
     )
+    is_exception_danger = fields.Boolean(compute="_compute_is_exception_danger")
+
+    @api.depends("exception_ids", "ignore_exception")
+    def _compute_is_exception_danger(self):
+        for rec in self:
+            rec.is_exception_danger = (
+                len(rec.exception_ids) > 0 and not rec.ignore_exception
+            )
 
     @api.depends("exception_ids", "ignore_exception")
     def _compute_exceptions_summary(self):
