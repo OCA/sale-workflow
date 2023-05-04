@@ -35,14 +35,17 @@ class AutomaticWorkflowJob(models.Model):
         " invoices, pickings..."
     )
 
-    def _do_validate_sale_order(self, sale, domain_filter):
+    def _do_validate_sale_order(self, sale, domain_filter, send_order_confirmation=False):
         """Validate a sales order, filter ensure no duplication"""
         if not self.env["sale.order"].search_count(
             [("id", "=", sale.id)] + domain_filter
         ):
             return "{} {} job bypassed".format(sale.display_name, sale)
         sale.action_confirm()
-        return "{} {} confirmed successfully".format(sale.display_name, sale)
+        res = ""
+        if send_order_confirmation:
+            res = self._do_send_order_confirmation_mail(sale)
+        res = "\n".join(res + "{} {} confirmed successfully".format(sale.display_name, sale))
 
     def _do_send_order_confirmation_mail(self, sale):
         """Send order confirmation mail, while filtering to make sure the order is
@@ -66,10 +69,10 @@ class AutomaticWorkflowJob(models.Model):
         for sale in sales:
             with savepoint(self.env.cr):
                 self._do_validate_sale_order(
-                    sale.with_company(sale.company_id), order_filter
+                    sale.with_company(sale.company_id),
+                    order_filter,
+                    self.env.context.get("send_order_confirmation_mail")
                 )
-                if self.env.context.get("send_order_confirmation_mail"):
-                    self._do_send_order_confirmation_mail(sale)
 
     def _do_create_invoice(self, sale, domain_filter):
         """Create an invoice for a sales order, filter ensure no duplication"""
