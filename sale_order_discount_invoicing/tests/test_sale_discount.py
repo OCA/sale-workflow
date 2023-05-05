@@ -24,7 +24,6 @@ class TestSaleInvoiceDiscount(TransactionCase):
     def setUpCompany(cls):
         """Set up main company"""
         cls.company = cls.env.ref("base.main_company")
-        cls.company.country_id = cls.env.ref("base.fr")
 
     @classmethod
     def setUpAccounts(cls):
@@ -33,29 +32,23 @@ class TestSaleInvoiceDiscount(TransactionCase):
             {
                 "code": "VAT",
                 "name": "VAT",
-                "user_type_id": cls.env.ref(
-                    "account.data_account_type_current_assets"
-                ).id,
+                "account_type": "asset_current",
                 "company_id": cls.company.id,
             }
         )
         cls.account_income_product = cls.env["account.account"].create(
             {
-                "code": "INCOME_PROD111",
+                "code": "INCOMEPROD111",
                 "name": "Income - Test Account",
-                "user_type_id": cls.env.ref(
-                    "account.data_account_type_direct_costs"
-                ).id,
+                "account_type": "expense_direct_cost",
                 "company_id": cls.company.id,
             }
         )
         cls.account_discount_product = cls.env["account.account"].create(
             {
-                "code": "DISCOUNT_PROD111",
+                "code": "DISCOUNTPROD111",
                 "name": "Discount - Test Account",
-                "user_type_id": cls.env.ref(
-                    "account.data_account_type_direct_costs"
-                ).id,
+                "account_type": "expense_direct_cost",
                 "company_id": cls.company.id,
             }
         )
@@ -63,26 +56,24 @@ class TestSaleInvoiceDiscount(TransactionCase):
             {
                 "code": "X2020",
                 "name": "Receivable - Test Account",
-                "user_type_id": cls.env.ref("account.data_account_type_receivable").id,
+                "account_type": "asset_receivable",
                 "reconcile": True,
                 "company_id": cls.company.id,
             }
         )
         cls.account_income = cls.env["account.account"].create(
             {
-                "code": "NC1112-1",
+                "code": "NC11121",
                 "name": "Sale - Test Account",
-                "user_type_id": cls.env.ref(
-                    "account.data_account_type_direct_costs"
-                ).id,
+                "account_type": "expense_direct_cost",
                 "company_id": cls.company.id,
             }
         )
         cls.account_revenue = cls.env["account.account"].create(
             {
-                "code": "NC1114-1",
+                "code": "NC11141",
                 "name": "Sales - Test Sales Account",
-                "user_type_id": cls.env.ref("account.data_account_type_revenue").id,
+                "account_type": "income",
                 "reconcile": True,
                 "company_id": cls.company.id,
             }
@@ -99,7 +90,7 @@ class TestSaleInvoiceDiscount(TransactionCase):
                 "amount": 10.0,
                 "price_include": True,
                 "include_base_amount": False,
-                "country_id": cls.env.ref("base.fr").id,
+                "country_id": cls.env.ref("base.us").id,
                 "invoice_repartition_line_ids": [
                     (
                         0,
@@ -142,7 +133,7 @@ class TestSaleInvoiceDiscount(TransactionCase):
                 "amount": 10.0,
                 "price_include": False,
                 "include_base_amount": False,
-                "country_id": cls.env.ref("base.fr").id,
+                "country_id": cls.env.ref("base.us").id,
                 "invoice_repartition_line_ids": [
                     (
                         0,
@@ -240,7 +231,7 @@ class TestSaleInvoiceDiscount(TransactionCase):
                 "name": "Test Partner",
                 "company_id": False,
                 "property_account_receivable_id": cls.account_property_receivable.id,
-                "country_id": cls.env.ref("base.fr").id,
+                "country_id": cls.env.ref("base.us").id,
             }
         )
 

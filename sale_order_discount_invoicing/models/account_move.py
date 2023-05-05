@@ -9,7 +9,7 @@ from odoo.tools.misc import groupby
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    @api.constrains("line_ids")
+    @api.constrains("invoice_line_ids")
     def _check_split_lines(self):
         lines = self.line_ids.filtered("discount_split_by_sale_line_id")
         if lines:
@@ -23,9 +23,9 @@ class AccountMove(models.Model):
                     )
                 )
 
-    @api.model
-    def _move_autocomplete_invoice_lines_create(self, vals_list):
-        return super()._move_autocomplete_invoice_lines_create(
+    @api.model_create_multi
+    def create(self, vals_list):
+        return super().create(
             [self._update_vals_with_discount_lines(v) for v in vals_list]
         )
 

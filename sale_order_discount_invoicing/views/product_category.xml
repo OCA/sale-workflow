@@ -9,7 +9,10 @@
             <field name="property_account_expense_categ_id" position="after">
                 <field
                     name="property_account_discount_categ_id"
-                    domain="[('internal_type','=','other'),('deprecated', '=', False)]"
+                    domain="[
+                        ('account_type', 'not in', ('asset_receivable', 'liability_payable', 'asset_cash', 'liability_credit_card', 'off_balance')),
+                        ('deprecated', '=', False)
+                    ]"
                 />
             </field>
         </field>
