@@ -45,6 +45,7 @@ class TestAutoWorkflowJob(TestCommon, TestAutomaticWorkflowMixin):
                     ("state", "=", "draft"),
                     ("workflow_process_id", "=", self.sale.workflow_process_id.id),
                 ],
+                False,
             )
             self.assert_job_delayed(
                 delayable_cls, delayable, "_do_validate_sale_order", args
@@ -150,6 +151,7 @@ class TestAutoWorkflowJob(TestCommon, TestAutomaticWorkflowMixin):
                 args=(
                     self.sale,
                     safe_eval(workflow.order_filter_id.domain) + workflow_domain,
+                    False,
                 ),
             )
             job = trap.enqueued_jobs[0]

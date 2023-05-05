@@ -8,7 +8,9 @@ from odoo.addons.queue_job.job import identity_exact
 class AutomaticWorkflowJob(models.Model):
     _inherit = "automatic.workflow.job"
 
-    def _do_validate_sale_order_job_options(self, sale, domain_filter):
+    def _do_validate_sale_order_job_options(
+        self, sale, domain_filter, send_order_confirmation=False
+    ):
         description = _("Validate sales order {}").format(sale.display_name)
         return {
             "description": description,
@@ -21,7 +23,9 @@ class AutomaticWorkflowJob(models.Model):
             domain_filter
         )
 
-    def _do_validate_sale_order(self, sale, domain_filter):
+    def _do_validate_sale_order(
+        self, sale, domain_filter, send_order_confirmation=False
+    ):
         """filter ensure no duplication"""
         if not sale.exists():
             return "Sale order does not exist"
@@ -29,8 +33,12 @@ class AutomaticWorkflowJob(models.Model):
             [("id", "=", sale.id)] + domain_filter
         ):
             return "{} {} job bypassed".format(sale.display_name, sale)
-        super()._do_validate_sale_order(sale, domain_filter)
-        return "{} {} confirmed successfully".format(sale.display_name, sale)
+        super()._do_validate_sale_order(sale, domain_filter, send_order_confirmation)
+        return "{} {} confirmed successfully {}".format(
+            sale.display_name,
+            sale,
+            "and confirmation email sent" if send_order_confirmation else "",
+        )
 
     def _do_send_order_confirmation_mail(self, sale):
         """Filtering to make sure the order is confirmed with
