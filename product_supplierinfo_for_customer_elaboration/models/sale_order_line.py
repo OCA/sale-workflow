@@ -12,7 +12,7 @@ class SaleOrderLine(models.Model):
         comodel_name="product.elaboration",
         compute="_compute_elaboration_ids",
         store=True,
-        readonly=True,
+        readonly=False,
         string="Elaborations",
     )
 
@@ -20,7 +20,8 @@ class SaleOrderLine(models.Model):
     def _compute_elaboration_ids(self):
         for line in self:
             customer_info = line._get_product_customer_info()
-            line.elaboration_ids = customer_info.elaboration_ids
+            if customer_info:
+                line.elaboration_ids = customer_info.elaboration_ids
 
     def _compute_elaboration_note(self):
         res = super()._compute_elaboration_note()
