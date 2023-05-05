@@ -54,9 +54,4 @@ class SaleOrderLine(models.Model):
 
     def action_sale_order_form(self):
         self.ensure_one()
-        action = self.env.ref("sale.action_orders")
-        form = self.env.ref("sale.view_order_form")
-        action = action.read()[0]
-        action["views"] = [(form.id, "form")]
-        action["res_id"] = self.order_id.id
-        return action
+        return self.order_id.get_formview_action()
