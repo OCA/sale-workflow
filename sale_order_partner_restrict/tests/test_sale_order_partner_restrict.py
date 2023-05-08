@@ -41,7 +41,7 @@ class TestSaleOrderPartnerRestrict(TransactionCase):
 
     def _create_sale_order(self, partner):
         so = self.env["sale.order"].create(
-            {"partner_id": partner.id, "name": "/", "company_id": self.main_company.id}
+            {"partner_id": partner.id, "company_id": self.main_company.id}
         )
         return so
 
