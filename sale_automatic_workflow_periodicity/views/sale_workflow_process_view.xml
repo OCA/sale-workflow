@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <record id="sale_workflow_process_view_form" model="ir.ui.view">
+    <field name="name">sale.order.form.automatic.delay.inherit</field>
+    <field name="model">sale.workflow.process</field>
+    <field
+            name="inherit_id"
+            ref="sale_automatic_workflow.sale_workflow_process_view_form"
+        />
+    <field name="arch" type="xml">
+
+        <xpath expr="//div[@name='sale_order_confirm']" position="before">
+          <group
+                    name="workflow_periodicity_exec"
+                    string="Workflow execution periodicity"
+                >
+            <field name="periodicity" />
+            <field name="next_execution" />
+            <field name="periodicity_check_create_date" />
+          </group>
+        </xpath>
+
+    </field>
+  </record>
+</odoo>
