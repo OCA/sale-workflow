@@ -54,22 +54,21 @@
                 expr="//sheet/group/group/div[@name='bom_div']/field[@name='bom_id']"
                 position="replace"
             >
-                <label for="bom_id" attrs="{'readonly': [('state', '!=', 'draft')]}" />
-                <div>
                     <field
                         name="bom_id"
                         context="{'default_product_tmpl_id': product_tmpl_id}"
                         attrs="{'readonly': [('state', '!=', 'draft')]}"
                     />
-                    <field name="bom_mo_exception" invisible="1" />
                     <button
                         style="margin-left: 25px;"
                         class="fa fa-exclamation-triangle"
                         attrs="{'invisible':['|',('bom_mo_exception','=',False),('state','in',('done','cancel'))]}"
                         title="A product on this BoM has been marked as not allowed."
                     />
-
-                </div>
+                    <field name="bom_mo_exception" invisible="1" />
+            </xpath>
+            <xpath expr="//sheet/group/group/label[@name='bom_label']" position="attributes">
+                <attribute name="readonly">[('state', '!=', 'draft')]</attribute>
             </xpath>
             <xpath
                 expr="//notebook/page[@name='miscellaneous']/group/group/field[@name='picking_type_id']"
