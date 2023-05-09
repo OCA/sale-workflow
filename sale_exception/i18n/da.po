@@ -131,6 +131,11 @@ msgid "Ignore Exceptions"
 msgstr ""
 
 #. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__is_exception_danger
+msgid "Is Exception Danger"
+msgstr ""
+
+#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm____last_update
 msgid "Last Modified on"
 msgstr "Sidst ændret den"
