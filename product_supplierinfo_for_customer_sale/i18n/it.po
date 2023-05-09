@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-15 14:31+0000\n"
-"PO-Revision-Date: 2023-04-07 14:25+0000\n"
+"PO-Revision-Date: 2023-05-09 15:34+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -27,7 +27,7 @@ msgstr ""
 #. module: product_supplierinfo_for_customer_sale
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale.field_sale_order_line__product_customer_code
 msgid "Product Customer Code"
-msgstr "Codice Prodotto Cliente"
+msgstr "Codice cliente prodotto"
 
 #. module: product_supplierinfo_for_customer_sale
 #: model:ir.model,name:product_supplierinfo_for_customer_sale.model_sale_order_line
