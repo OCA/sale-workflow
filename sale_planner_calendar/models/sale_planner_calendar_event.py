@@ -23,7 +23,10 @@ class SalePlannerCalendarEvent(models.Model):
     )
     calendar_event_date = fields.Datetime(index=True)
     user_id = fields.Many2one(
-        comodel_name="res.users", default=lambda self: self.env.user.id, index=True
+        comodel_name="res.users",
+        default=lambda self: self.env.user.id,
+        index=True,
+        domain="[('share','=',False)]",
     )
     partner_id = fields.Many2one(comodel_name="res.partner", index=True)
     sale_ids = fields.One2many(
