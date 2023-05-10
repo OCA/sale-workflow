@@ -12,6 +12,7 @@ class SalePlannerCalendarWizard(models.TransientModel):
         comodel_name="res.users",
         string="Salesperson",
         default=lambda self: self.env.user,
+        domain="[('share','=',False)]",
     )
     event_type_id = fields.Many2one(
         comodel_name="calendar.event.type", string="Event type"

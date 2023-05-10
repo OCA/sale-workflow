@@ -26,7 +26,10 @@ class SalePlannerCalendarSummary(models.Model):
         inverse_name="calendar_summary_id",
     )
     user_id = fields.Many2one(
-        comodel_name="res.users", default=lambda self: self.env.user.id, index=True
+        comodel_name="res.users",
+        default=lambda self: self.env.user.id,
+        index=True,
+        domain="[('share','=',False)]",
     )
     sale_ids = fields.One2many(
         comodel_name="sale.order",
