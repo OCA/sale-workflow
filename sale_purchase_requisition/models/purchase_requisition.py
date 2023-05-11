@@ -17,13 +17,15 @@ class PurchaseRequisition(models.Model):
         string="Sale Representative",
         related="sale_id.user_id",
     )
-    purchase_requisition_sync_warning = fields.Char(compute="_compute_sync_sale_order")
+    sale_order_sync_warning = fields.Char(
+        compute="_compute_sale_order_sync_warning", compute_sudo=True
+    )
 
-    def _compute_sync_sale_order(self):
+    def _compute_sale_order_sync_warning(self):
         for rec in self:
-            rec.purchase_requisition_sync_warning = False
+            rec.sale_order_sync_warning = False
             if rec.sale_id._unsynced_prs():
-                rec.purchase_requisition_sync_warning = _(
+                rec.sale_order_sync_warning = _(
                     "Some lines are not synced on this Sale order: %s. "
                     "Please update these lines manually.",
                     rec.sale_id.name,

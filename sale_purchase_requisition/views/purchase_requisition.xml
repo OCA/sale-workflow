@@ -24,9 +24,9 @@
                     id="warning_order_lines_notsync"
                     class="alert alert-danger mb-0"
                     role="alert"
-                    attrs="{'invisible': [('purchase_requisition_sync_warning', '=', False)]}"
+                    attrs="{'invisible': [('sale_order_sync_warning', '=', False)]}"
                 >
-                    <field name="purchase_requisition_sync_warning" />
+                    <field name="sale_order_sync_warning" />
                 </div>
             </xpath>
         </field>

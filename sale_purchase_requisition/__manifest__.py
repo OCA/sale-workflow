@@ -7,12 +7,12 @@
     "category": "Sale",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Moduon, Odoo Community Association (OCA)",
-    "maintainers": ["shide", "anddago78"],
+    "maintainers": ["shide", "anddago78", "yajo"],
     "license": "AGPL-3",
     "application": False,
     "installable": True,
     "depends": [
-        "sale_management",
+        "sale",
         "purchase_requisition",
     ],
     "data": [
