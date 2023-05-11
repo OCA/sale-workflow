@@ -15,6 +15,7 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
         comodel_name="res.users",
         string="Salesperson",
         default=lambda self: self.env.user,
+        domain="[('share','=',False)]",
     )
     event_type_id = fields.Many2one(
         comodel_name="calendar.event.type", string="Event type"
@@ -32,8 +33,15 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
         string="Weekday",
     )
     partner_id = fields.Many2one(comodel_name="res.partner")
-    partner_user_id = fields.Many2one(comodel_name="res.users")
-    new_user_id = fields.Many2one(comodel_name="res.users", string="New salesperson")
+    partner_user_id = fields.Many2one(
+        comodel_name="res.users",
+        domain="[('share','=',False)]",
+    )
+    new_user_id = fields.Many2one(
+        comodel_name="res.users",
+        string="New salesperson",
+        domain="[('share','=',False)]",
+    )
     new_start = fields.Date(default=fields.Date.today, required=True)
     new_end = fields.Date()
     assign_new_salesperson_to_partner = fields.Boolean()
@@ -202,9 +210,15 @@ class SalePlannerCalendarReassignLineWiz(models.TransientModel):
         related="partner_id.user_id",
     )
     event_user_id = fields.Many2one(
-        comodel_name="res.users", string="Planned user", readonly=True
+        comodel_name="res.users",
+        string="Planned user",
+        readonly=True,
+        domain="[('share','=',False)]",
     )
-    new_user_id = fields.Many2one(comodel_name="res.users")
+    new_user_id = fields.Many2one(
+        comodel_name="res.users",
+        domain="[('share','=',False)]",
+    )
     event_start = fields.Datetime(readonly=True)
     until = fields.Datetime(readonly=True)
 
