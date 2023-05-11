@@ -37,7 +37,7 @@ class TestSaleFixedDiscount(SavepointCase):
         )
 
     def test_01_discounts(self):
-        """ Tests multiple discounts in line with taxes."""
+        """Tests multiple discounts in line with taxes."""
         # Apply a fixed discount
         self.sale_line1.discount_fixed = 10.0
         self.assertEqual(self.sale.amount_total, 218.50)
@@ -52,7 +52,7 @@ class TestSaleFixedDiscount(SavepointCase):
         self.assertEqual(self.sale.amount_total, 115.00)
 
     def test_02_discounts_multiple_lines(self):
-        """ Tests multiple lines with mixed taxes and dicount types."""
+        """Tests multiple lines with mixed taxes and dicount types."""
         self.sale_line2 = self.so_line.create(
             {
                 "order_id": self.sale.id,
