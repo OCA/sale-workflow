@@ -50,12 +50,12 @@ class SaleOrderLine(models.Model):
                 "price_unit": line.price_unit,
             }
             line.update({"price_unit": twicked_price})
-        res = super(SaleOrderLine, self)._compute_amount()
+        res = super()._compute_amount()
         for line in vals.keys():
             line.update(vals[line])
         return res
 
-    def _prepare_invoice_line(self):
-        res = super(SaleOrderLine, self)._prepare_invoice_line()
+    def _prepare_invoice_line(self, **optional_values):
+        res = super()._prepare_invoice_line(**optional_values)
         res.update({"discount_fixed": self.discount_fixed})
         return res
