@@ -19,7 +19,7 @@ class TestSaleOrderType(common.TransactionCase):
         )
         self.account_model = self.env["account.account"]
         self.account = self.account_model.create(
-            {"code": "410000", "name": "Income", "account_type": "income"}
+            {"code": "income", "name": "Income", "account_type": "income"}
         )
         self.partner = self.env.ref("base.res_partner_1")
         self.partner_child_1 = self.env["res.partner"].create(
