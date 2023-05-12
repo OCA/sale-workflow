@@ -77,13 +77,12 @@ class SaleOrder(models.Model):
     def get_cutoff_time(self):
         self.ensure_one()
         partner = self.partner_shipping_id
-        if (
-            partner.order_delivery_cutoff_preference == "warehouse_cutoff"
-            and self.warehouse_id.apply_cutoff
-        ):
-            return self.warehouse_id.get_cutoff_time()
-        elif partner.order_delivery_cutoff_preference == "partner_cutoff":
+        delivery_preference = partner.order_delivery_cutoff_preference
+        if delivery_preference == "warehouse_cutoff" and self.warehouse_id.apply_cutoff:
+            cutoff = self.warehouse_id.get_cutoff_time()
+        elif delivery_preference == "partner_cutoff":
             # Cutoff time is related to the warehouse, not to the customer.
-            return self.partner_shipping_id.get_cutoff_time(tz=self.warehouse_id.tz)
+            cutoff = self.partner_shipping_id.get_cutoff_time(tz=self.warehouse_id.tz)
         else:
-            return {}
+            cutoff = {}
+        return cutoff

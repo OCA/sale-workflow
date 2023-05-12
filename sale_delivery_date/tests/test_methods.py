@@ -59,15 +59,15 @@ class TestMethods(Common):
 
     def test_deduct_delay_with_calendar(self):
         from_date = datetime(2023, 4, 11, 17, 0)
-        res = self.order_line._deduct_delay(from_date, 1)
+        res = self.order_line._deduct_delay(from_date, 1, calendar=self.calendar)
         self.assertEqual(str(res), "2023-04-10 09:00:00")
-        res = self.order_line._deduct_delay(from_date, 5)
+        res = self.order_line._deduct_delay(from_date, 5, calendar=self.calendar)
         self.assertEqual(str(res), "2023-04-04 09:00:00")
         # with the `use_calendar` argument set to false, we should have the
         # same results as in `test_deduct_delay_no_calendar`
-        res = self.order_line._deduct_delay(from_date, 1, use_calendar=False)
+        res = self.order_line._deduct_delay(from_date, 1)
         self.assertEqual(str(res), "2023-04-10 17:00:00")
-        res = self.order_line._deduct_delay(from_date, 5, use_calendar=False)
+        res = self.order_line._deduct_delay(from_date, 5)
         self.assertEqual(str(res), "2023-04-06 17:00:00")
 
     # sale.order.line._add_delay
@@ -88,15 +88,15 @@ class TestMethods(Common):
         # that we will be able to process the order within the day
         # A delay of 1 means that the order will be processed by tomorrow at the
         # the end of the attendance, and so on.
-        res = self.order_line._add_delay(from_date, 1)
+        res = self.order_line._add_delay(from_date, 1, calendar=self.calendar)
         self.assertEqual(str(res), "2023-04-12 17:00:00")
-        res = self.order_line._add_delay(from_date, 5)
+        res = self.order_line._add_delay(from_date, 5, calendar=self.calendar)
         self.assertEqual(str(res), "2023-04-18 17:00:00")
         # with the `use_calendar` argument set to false, we should have the
         # same results as in `test_add_delay_no_calendar`
-        res = self.order_line._add_delay(from_date, 1, use_calendar=False)
+        res = self.order_line._add_delay(from_date, 1)
         self.assertEqual(str(res), "2023-04-12 12:00:00")
-        res = self.order_line._add_delay(from_date, 5, use_calendar=False)
+        res = self.order_line._add_delay(from_date, 5)
         self.assertEqual(str(res), "2023-04-16 12:00:00")
 
     def test_add_delay_with_calendar_with_tz(self):
@@ -107,15 +107,15 @@ class TestMethods(Common):
         # that we will be able to process the order within the day
         # A delay of 1 means that the order will be processed by tomorrow at the
         # the end of the attendance, and so on.
-        res = self.order_line._add_delay(from_date, 1)
+        res = self.order_line._add_delay(from_date, 1, calendar=self.calendar)
         self.assertEqual(str(res), "2023-04-12 15:00:00")
-        res = self.order_line._add_delay(from_date, 5)
+        res = self.order_line._add_delay(from_date, 5, calendar=self.calendar)
         self.assertEqual(str(res), "2023-04-18 15:00:00")
         # with the `use_calendar` argument set to false, we should have the
         # same results as in `test_add_delay_no_calendar`
-        res = self.order_line._add_delay(from_date, 1, use_calendar=False)
+        res = self.order_line._add_delay(from_date, 1)
         self.assertEqual(str(res), "2023-04-12 12:00:00")
-        res = self.order_line._add_delay(from_date, 5, use_calendar=False)
+        res = self.order_line._add_delay(from_date, 5)
         self.assertEqual(str(res), "2023-04-16 12:00:00")
 
     # sale.order.line._apply_cutoff
@@ -124,45 +124,57 @@ class TestMethods(Common):
         self._no_cutoff()
         # In such case, input dates shouldn't be altered
         # WH cutoff is 10:00
+        cutoff = {}
         before_cutoff_datetime = datetime(2023, 4, 11, 9, 59, 59)
-        res = self.order_line._apply_cutoff(before_cutoff_datetime)
+        res = self.order_line._apply_cutoff(before_cutoff_datetime, cutoff)
         self.assertEqual(before_cutoff_datetime, res)
         after_cutoff_datetime = datetime(2023, 4, 11, 10, 0, 1)
-        res = self.order_line._apply_cutoff(after_cutoff_datetime)
+        res = self.order_line._apply_cutoff(after_cutoff_datetime, cutoff)
         self.assertEqual(after_cutoff_datetime, res)
 
     def test_apply_cutoff(self):
         before_cutoff_datetime = datetime(2023, 4, 11, 9, 59, 59)
-        res = self.order_line._apply_cutoff(before_cutoff_datetime)
+        cutoff = self.order.get_cutoff_time()
+        res = self.order_line._apply_cutoff(before_cutoff_datetime, cutoff)
         self.assertEqual(str(res), "2023-04-11 10:00:00")
         after_cutoff_datetime = datetime(2023, 4, 11, 10, 0, 1)
-        res = self.order_line._apply_cutoff(after_cutoff_datetime)
+        res = self.order_line._apply_cutoff(after_cutoff_datetime, cutoff)
         self.assertEqual(str(res), "2023-04-12 10:00:00")
         # With keep_same_day, only time is changed to cutoff
-        res = self.order_line._apply_cutoff(before_cutoff_datetime, keep_same_day=True)
+        res = self.order_line._apply_cutoff(
+            before_cutoff_datetime, cutoff, keep_same_day=True
+        )
         self.assertEqual(str(res), "2023-04-11 10:00:00")
-        res = self.order_line._apply_cutoff(after_cutoff_datetime, keep_same_day=True)
+        res = self.order_line._apply_cutoff(
+            after_cutoff_datetime, cutoff, keep_same_day=True
+        )
         self.assertEqual(str(res), "2023-04-11 10:00:00")
 
     def test_apply_cutoff_with_tz(self):
-        self._set_wh_tz("Europe/Paris")
+        tz = "Europe/Paris"
+        self._set_wh_tz(tz)
+        cutoff = self.order.get_cutoff_time()
+        self.assertEqual(cutoff.get("tz"), tz)
         # with Europe/Paris 10:00 as a cutoff, UTC cutoff is 08:00
         before_cutoff_datetime = datetime(2023, 4, 11, 7, 59, 59)
-        res = self.order_line._apply_cutoff(before_cutoff_datetime)
+        res = self.order_line._apply_cutoff(before_cutoff_datetime, cutoff)
         self.assertEqual(str(res), "2023-04-11 08:00:00")
         after_cutoff_datetime = datetime(2023, 4, 11, 8, 0, 1)
-        res = self.order_line._apply_cutoff(after_cutoff_datetime)
+        res = self.order_line._apply_cutoff(after_cutoff_datetime, cutoff)
         self.assertEqual(str(res), "2023-04-12 08:00:00")
         # With keep_same_day, only time is changed to cutoff
-        res = self.order_line._apply_cutoff(before_cutoff_datetime, keep_same_day=True)
+        res = self.order_line._apply_cutoff(
+            before_cutoff_datetime, cutoff, keep_same_day=True
+        )
         self.assertEqual(str(res), "2023-04-11 08:00:00")
-        res = self.order_line._apply_cutoff(after_cutoff_datetime, keep_same_day=True)
+        res = self.order_line._apply_cutoff(
+            after_cutoff_datetime, cutoff, keep_same_day=True
+        )
         self.assertEqual(str(res), "2023-04-11 08:00:00")
 
     # sale.order.line._postpone_to_working_day
 
     def test_postpone_to_working_day_no_calendar(self):
-        self._no_calendar()
         # In such case, input dates shouldn't be altered
         monday_before_cutoff = datetime(2023, 4, 10, 9, 59, 59)
         res = self.order_line._postpone_to_working_day(monday_before_cutoff)
@@ -181,16 +193,22 @@ class TestMethods(Common):
         tuesday_start = datetime(2023, 4, 11, 9, 0, 0)
         sunday = datetime(2023, 4, 9, 10, 0, 0)
         # monday 08:59:59 is before monday's attendance, postpone it to monday 09:00
-        res = self.order_line._postpone_to_working_day(monday_before_start)
+        res = self.order_line._postpone_to_working_day(
+            monday_before_start, calendar=self.calendar
+        )
         self.assertEqual(res, monday_start)
         # sunday isn't a working day, postpone it to monday 9:00
-        res = self.order_line._postpone_to_working_day(sunday)
+        res = self.order_line._postpone_to_working_day(sunday, calendar=self.calendar)
         self.assertEqual(res, monday_start)
         # monday 17:00:01 is after monday's attendance, postpone it to tuesday 09:00
-        res = self.order_line._postpone_to_working_day(monday_after_end)
+        res = self.order_line._postpone_to_working_day(
+            monday_after_end, calendar=self.calendar
+        )
         self.assertEqual(res, tuesday_start)
         # monday 12:00:00 is in monday's attendance, keep it as it is
-        res = self.order_line._postpone_to_working_day(monday_during_attendance)
+        res = self.order_line._postpone_to_working_day(
+            monday_during_attendance, calendar=self.calendar
+        )
         self.assertEqual(res, monday_during_attendance)
 
     def test_postpone_to_working_day_with_calendar_with_tz(self):
@@ -204,16 +222,22 @@ class TestMethods(Common):
         tuesday_start = datetime(2023, 4, 11, 7, 0, 0)
         sunday = datetime(2023, 4, 9, 8, 0, 0)
         # monday 08:59:59 is before monday's attendance, postpone it to monday 09:00
-        res = self.order_line._postpone_to_working_day(monday_before_start)
+        res = self.order_line._postpone_to_working_day(
+            monday_before_start, calendar=self.calendar
+        )
         self.assertEqual(res, monday_start)
         # sunday isn't a working day, postpone it to monday 9:00
-        res = self.order_line._postpone_to_working_day(sunday)
+        res = self.order_line._postpone_to_working_day(sunday, calendar=self.calendar)
         self.assertEqual(res, monday_start)
         # monday 17:00:01 is after monday's attendance, postpone it to tuesday 09:00
-        res = self.order_line._postpone_to_working_day(monday_after_end)
+        res = self.order_line._postpone_to_working_day(
+            monday_after_end, calendar=self.calendar
+        )
         self.assertEqual(res, tuesday_start)
         # monday 12:00:00 is in monday's attendance, keep it as it is
-        res = self.order_line._postpone_to_working_day(monday_during_attendance)
+        res = self.order_line._postpone_to_working_day(
+            monday_during_attendance, calendar=self.calendar
+        )
         self.assertEqual(res, monday_during_attendance)
 
     def test_apply_customer_window_anytime(self):
@@ -222,7 +246,7 @@ class TestMethods(Common):
         self._set_delivery_time_preference(self.partner, "anytime")
         for delivery_day in range(10, 17):  # from monday to sunday
             delivery_date = datetime(2023, 4, delivery_day, 12)
-            res = self.order_line._apply_customer_window(delivery_date)
+            res = self.order_line._apply_customer_window(delivery_date, self.partner)
             self.assertEqual(res, delivery_date)
 
     def test_apply_customer_window_workdays(self):
@@ -232,7 +256,7 @@ class TestMethods(Common):
         next_monday = datetime(2023, 4, 17, 12, 0)
         for i in range(10, 17):
             delivery_date = datetime(2023, 4, i, 12)
-            res = self.order_line._apply_customer_window(delivery_date)
+            res = self.order_line._apply_customer_window(delivery_date, self.partner)
             if delivery_date.weekday() < 5:  # Before saturday
                 self.assertEqual(res, delivery_date)
             else:
@@ -247,7 +271,7 @@ class TestMethods(Common):
         next_monday = datetime(2023, 4, 17, 12, 0)
         for i in range(10, 17):
             delivery_date = datetime(2023, 4, i, 12)
-            res = self.order_line._apply_customer_window(delivery_date)
+            res = self.order_line._apply_customer_window(delivery_date, self.partner)
             if delivery_date.weekday() < 5:  # Before saturday
                 self.assertEqual(res, delivery_date)
             else:
@@ -261,7 +285,7 @@ class TestMethods(Common):
         friday_next_week = datetime(2023, 4, 21, 8, 0)
         for delivery_day in range(10, 17):
             delivery_date = datetime(2023, 4, delivery_day, 12)
-            res = self.order_line._apply_customer_window(delivery_date)
+            res = self.order_line._apply_customer_window(delivery_date, self.partner)
             if delivery_day < 14:
                 # if day is before friday, postpone to saturday this week
                 self.assertEqual(res, friday_this_week)
@@ -281,7 +305,7 @@ class TestMethods(Common):
         friday_next_week = datetime(2023, 4, 21, 6, 0)
         for delivery_day in range(10, 17):
             delivery_date = datetime(2023, 4, delivery_day, 12)
-            res = self.order_line._apply_customer_window(delivery_date)
+            res = self.order_line._apply_customer_window(delivery_date, self.partner)
             if delivery_day < 14:
                 # if day is before friday, postpone to saturday this week
                 self.assertEqual(res, friday_this_week)
@@ -312,13 +336,14 @@ class TestMethods(Common):
     def test_get_latest_work_end_from_date_range_with_calendar(self):
         # When the lastest_expedition_date is within a calendar's attendance,
         # then the date is returned without any modification
+        kwargs = {"calendar": self.calendar}
         inside_attendance_hour = 12
         earliest_expedition_date = datetime(2023, 4, 10, 12, 0)
         friday_end_of_attendance = datetime(2023, 4, 14, 17, 0)
         for day in range(10, 17):
             lastest_expedition_date = datetime(2023, 4, day, inside_attendance_hour)
             res = self.order_line._get_latest_work_end_from_date_range(
-                earliest_expedition_date, lastest_expedition_date
+                earliest_expedition_date, lastest_expedition_date, **kwargs
             )
             if day < 15:  # if inside working days, we can send goods right now
                 self.assertEqual(res, lastest_expedition_date)
@@ -332,7 +357,7 @@ class TestMethods(Common):
         for day in range(10, 17):
             lastest_expedition_date = datetime(2023, 4, day, after_attendance_hour)
             res = self.order_line._get_latest_work_end_from_date_range(
-                earliest_expedition_date, lastest_expedition_date
+                earliest_expedition_date, lastest_expedition_date, **kwargs
             )
             if day < 15:
                 # if inside working days but after the end of an attendance, the right
@@ -351,7 +376,7 @@ class TestMethods(Common):
         for day in range(11, 18):
             lastest_expedition_date = datetime(2023, 4, day, before_attendance_hour)
             res = self.order_line._get_latest_work_end_from_date_range(
-                earliest_expedition_date, lastest_expedition_date
+                earliest_expedition_date, lastest_expedition_date, **kwargs
             )
             if day < 15:
                 # if inside working days but before the start of an attendance
@@ -370,6 +395,6 @@ class TestMethods(Common):
         earliest_expedition_date = datetime(2023, 4, 14, 18, 0)
         lastest_expedition_date = datetime(2023, 4, 17, 6, 0)
         res = self.order_line._get_latest_work_end_from_date_range(
-            earliest_expedition_date, lastest_expedition_date
+            earliest_expedition_date, lastest_expedition_date, **kwargs
         )
         self.assertEqual(res, earliest_expedition_date)
