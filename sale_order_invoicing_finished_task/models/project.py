@@ -41,15 +41,14 @@ class ProjectTask(models.Model):
         if "sale_line_id" in vals:
             self._check_sale_line_state(vals["sale_line_id"])
         res = super().write(vals)
-        if "invoiceable" in vals:
-            self.mapped("sale_line_id")._compute_qty_delivered()
         return res
 
-    @api.model
-    def create(self, vals):
-        if "sale_line_id" in vals:
-            self._check_sale_line_state(vals["sale_line_id"])
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get("sale_line_id"):
+                self._check_sale_line_state(vals["sale_line_id"])
+        return super().create(vals_list)
 
     def _check_sale_line_state(self, sale_line_id=False):
         sale_lines = self.mapped("sale_line_id")
