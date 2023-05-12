@@ -8,5 +8,6 @@
   * Ernesto Tejeda
   * César A. Sánchez
   * Luis D. Lafaurie
+  * Yadier A. De Quesada
 
 * nikulchaudhary2112@gmail.com

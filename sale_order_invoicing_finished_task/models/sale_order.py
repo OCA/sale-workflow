@@ -68,3 +68,13 @@ class SaleOrderLine(models.Model):
             ]
         )
         return vals
+
+    @api.depends(
+        "qty_delivered_method",
+        "analytic_line_ids.so_line",
+        "analytic_line_ids.unit_amount",
+        "analytic_line_ids.product_uom_id",
+        "task_ids.invoiceable",
+    )
+    def _compute_qty_delivered(self):
+        return super()._compute_qty_delivered()
