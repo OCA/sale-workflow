@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-23 03:41+0000\n"
-"PO-Revision-Date: 2023-04-19 11:33+0000\n"
+"PO-Revision-Date: 2023-05-12 12:47+0000\n"
 "Last-Translator: Hughes Damry <hughes@damry.org>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
@@ -35,7 +35,7 @@ msgid ""
 "<strong>There are exceptions on this line blocking the confirmation of this "
 "quotation:</strong>"
 msgstr ""
-"<strong>Cette ligne comporte des  restrictions qui bloquent la confirmation "
+"<strong>Cette ligne comporte des restrictions qui bloquent la confirmation "
 "du devis:</strong>"
 
 #. module: sale_exception
@@ -46,7 +46,7 @@ msgstr "Un article est vendu moins cher que son coût."
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_exception_rule__model
 msgid "Apply on"
-msgstr ""
+msgstr "S'applique à"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_sol
@@ -122,9 +122,8 @@ msgstr "Resumé des restrictions"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__exception_ids
-#, fuzzy
 msgid "Exceptions to resolve"
-msgstr "Règles de restriction"
+msgstr "Exception à corriger"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__id
@@ -178,7 +177,7 @@ msgstr "Pas de vente à perte"
 #. module: sale_exception
 #: model:exception.rule,name:sale_exception.excep_no_free
 msgid "No free order"
-msgstr ""
+msgstr "Pas de commande gratuite"
 
 #. module: sale_exception
 #: model:exception.rule,name:sale_exception.excep_no_sol
@@ -189,7 +188,7 @@ msgstr "Pas de lignes de commande"
 #: model:exception.rule,description:sale_exception.excep_no_stock
 #: model:exception.rule,name:sale_exception.excep_no_stock
 msgid "Not Enough Virtual Stock"
-msgstr "Not Enough Virtual Stock"
+msgstr "Stock virtuel insuffisant"
 
 #. module: sale_exception
 #: model:exception.rule,name:sale_exception.exception_product_sale_warning
