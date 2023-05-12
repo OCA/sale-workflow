@@ -41,33 +41,45 @@ class SaleOrder(models.Model):
             "state": "done",
         }
 
-    def action_set_planner_calendar_event(self):
+    def action_set_planner_calendar_event(self, planner_summary=False):
         orders = self.filtered(lambda so: not so.sale_planner_calendar_event_id)
         if not orders:
             return
         order_dates = orders.mapped("date_order")
-        planner_summary = self.env["sale.planner.calendar.summary"]
+        if not planner_summary:
+            planner_summary = self.env["sale.planner.calendar.summary"]
         date_from = planner_summary._get_datetime_from_date_tz_hour(
             min(order_dates), self.env.company.sale_planner_order_cut_hour
         )
         date_to = planner_summary._get_datetime_from_date_tz_hour(
             max(order_dates), self.env.company.sale_planner_order_cut_hour
         ) + relativedelta(days=1)
+        calendar_event_domain = [
+            ("partner_id", "in", orders.partner_id.ids),
+            ("user_id", "in", orders.user_id.ids),
+            ("date", ">=", date_from),
+            ("date", "<", date_to),
+        ]
+        if planner_summary.event_type_id:
+            calendar_event_domain.append(
+                ("event_type_id", "=", planner_summary.event_type_id.id)
+            )
         calendar_events = self.env["sale.planner.calendar.event"].search(
-            [
-                ("partner_id", "in", orders.partner_id.ids),
-                ("user_id", "in", orders.user_id.ids),
-                ("date", ">=", date_from),
-                ("date", "<", date_to),
-            ]
+            calendar_event_domain
         )
-        event_summaries = self.env["sale.planner.calendar.summary"].search(
-            [
-                ("user_id", "in", orders.user_id.ids),
-                ("date", ">=", date_from.date()),
-                ("date", "<", date_to.date()),
-            ]
-        )
+        planner_summary_domain = [
+            ("user_id", "in", orders.user_id.ids),
+            ("user_id", "in", orders.user_id.ids),
+            ("date", ">=", date_from.date()),
+            ("date", "<", date_to.date()),
+        ]
+        if planner_summary.event_type_id:
+            planner_summary_domain.append(
+                ("event_type_id", "=", planner_summary.event_type_id.id)
+            )
+        event_summaries = planner_summary or self.env[
+            "sale.planner.calendar.summary"
+        ].search(planner_summary_domain)
         if not event_summaries:
             return
         cut_time = date_from.time()
@@ -80,7 +92,7 @@ class SaleOrder(models.Model):
                     ev.date.combine(ev.date.date(), cut_time) + relativedelta(days=1)
                     > order.date_order
                 )
-            )
+            )[:1]
             if not event:
                 event_summary = event_summaries.filtered(
                     lambda sm: sm.user_id == order.user_id
@@ -95,6 +107,9 @@ class SaleOrder(models.Model):
                         )
                     )
                 )
+                if len(event_summary) > 1:
+                    # Sorted to select first summary without event_type
+                    event_summary = event_summary.sorted("event_type_id")[:1]
                 if not event_summary:
                     continue
                 event_vals = order._prepare_calendar_event_planner()
