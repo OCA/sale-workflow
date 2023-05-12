@@ -2,10 +2,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import ValidationError
-from odoo.tests import common
+from odoo.tests import TransactionCase
 
 
-class TestInvoicefinishedTask(common.TransactionCase):
+class TestInvoicefinishedTask(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -92,7 +92,7 @@ class TestInvoicefinishedTask(common.TransactionCase):
             "list_price": 100.00,
             "standard_price": 50.00,
             "invoice_policy": "order",
-            "service_policy": "ordered_timesheet",
+            "service_policy": "delivered_timesheet",
             "service_tracking": "task_global_project",
             "invoicing_finished_task": True,
             "project_id": cls.project.id,
@@ -115,21 +115,26 @@ class TestInvoicefinishedTask(common.TransactionCase):
         self.assertEqual(self.sale_order.invoice_status, "no")
         task = self.sale_order.order_line.task_ids
         # Add a timesheet line
-        self.env["account.analytic.line"].create(
+        timesheet = self.env["account.analytic.line"].create(
             self._prepare_timesheet_vals(task, 5.0)
         )
-        self.assertEqual(self.sale_order.invoice_status, "no")
         # Set task in invoiceable stage
         task.stage_id = self.stage_invoiceable.id
         task._onchange_stage_id()
         self.assertEqual(self.sale_order.invoice_status, "to invoice")
-        # Click on toggle_invoiceable method
-        task.toggle_invoiceable()
+        # delete timesheet
+        timesheet.unlink()
         self.assertEqual(self.sale_order.invoice_status, "no")
+        # Add another timesheet line
+        self.env["account.analytic.line"].create(
+            self._prepare_timesheet_vals(task, 10.0)
+        )
+        # Click on toggle_invoiceable method
         task.toggle_invoiceable()
         self.assertEqual(self.sale_order.invoice_status, "to invoice")
         # Make the invoice
         self.sale_order._create_invoices()
+        self.assertEqual(self.sale_order.invoice_status, "invoiced")
         # Click on toggle_invoiceable method after the so is invoiced
         with self.assertRaises(ValidationError):
             task.toggle_invoiceable()
@@ -154,10 +159,8 @@ class TestInvoicefinishedTask(common.TransactionCase):
         self.env["account.analytic.line"].create(
             self._prepare_timesheet_vals(task, 10.5)
         )
-        self.assertEqual(self.sale_order.order_line.qty_to_invoice, 0.0)
         task.toggle_invoiceable()
-        self.assertEqual(self.sale_order.order_line.qty_to_invoice, 5.0)
-        # Set task an invoiceable state
+        self.assertEqual(self.sale_order.order_line.qty_to_invoice, 10.5)
         self.sale_order_policy_delivery.action_confirm()
         # Add a timesheet line
         task_delivery = self.sale_order_policy_delivery.order_line.task_ids
