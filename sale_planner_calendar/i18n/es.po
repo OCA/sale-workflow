@@ -185,7 +185,6 @@ msgstr "Comentario"
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
 #, fuzzy
-#| msgid "Commercial partner name"
 msgid "Commercial name"
 msgstr "Nombre entidad comercial"
 
@@ -241,6 +240,11 @@ msgstr "Creado el"
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__currency_id
 msgid "Currency"
 msgstr "Moneda"
+
+#. module: sale_planner_calendar
+#: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_customers
+msgid "Customers"
+msgstr ""
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__cycle_number
@@ -390,12 +394,6 @@ msgstr "Meses posteriores para crear eventos de calendario"
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__fri
 msgid "Friday"
 msgstr "Viernes"
-
-#. module: sale_planner_calendar
-#: code:addons/sale_planner_calendar/models/res_partner.py:0
-#, python-format
-msgid "Go to the planner wizard"
-msgstr "Ir al asistente de planificación"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__has_message
@@ -681,14 +679,14 @@ msgid "Partner Mobile"
 msgstr "Móvil de contacto"
 
 #. module: sale_planner_calendar
+#: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_event__partner_name
+msgid "Partner Name"
+msgstr ""
+
+#. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__partner_user_id
 msgid "Partner User"
 msgstr "Comercial del cliente"
-
-#. module: sale_planner_calendar
-#: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_event__partner_name
-msgid "Partner name"
-msgstr "Nombre de la empresa"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__partner_user_id
@@ -773,7 +771,6 @@ msgstr "Referencia"
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_has_sms_error
 #, fuzzy
-#| msgid "Message Delivery error"
 msgid "SMS Delivery error"
 msgstr "Error de Envío de Mensaje"
 
@@ -823,7 +820,6 @@ msgstr "Meses siguientes rutero"
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_company__sale_planner_order_cut_hour
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_config_settings__sale_planner_order_cut_hour
 #, fuzzy
-#| msgid "Sale planner order cut hour"
 msgid "Sale Planner Order Cut Hour"
 msgstr "Hora de corte pedidos rutero"
 
@@ -853,14 +849,12 @@ msgstr "Eventos de rutero"
 #. module: sale_planner_calendar
 #: model:ir.actions.act_window,name:sale_planner_calendar.action_sale_planner_calendar_event
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_event
-#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_tree
 msgid "Sale planner calendar events"
 msgstr "Eventos de rutero"
 
 #. module: sale_planner_calendar
 #: model:ir.actions.act_window,name:sale_planner_calendar.action_sale_planner_calendar_issue
 #: model:ir.actions.act_window,name:sale_planner_calendar.action_sale_planner_calendar_issue_tree
-#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_issue_tree
 msgid "Sale planner calendar issue"
 msgstr "Incidencia rutero"
 
@@ -883,8 +877,8 @@ msgstr "Asistente reasignación rutero"
 #: model:ir.actions.act_window,name:sale_planner_calendar.action_sale_planner_calendar_summary
 #: model:ir.model,name:sale_planner_calendar.model_sale_planner_calendar_summary
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_summary
+#: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_summary_today_non_commercial
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_form
-#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_tree
 msgid "Sale planner calendar summary"
 msgstr "Resúmenes de rutero"
 
@@ -1162,6 +1156,13 @@ msgstr "Asistentes"
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid "or"
 msgstr "o"
+
+#, python-format
+#~ msgid "Go to the planner wizard"
+#~ msgstr "Ir al asistente de planificación"
+
+#~ msgid "Partner name"
+#~ msgstr "Nombre de la empresa"
 
 #, fuzzy
 #~| msgid "Partner"
