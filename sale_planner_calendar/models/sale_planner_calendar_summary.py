@@ -258,7 +258,7 @@ class SalePlannerCalendarSummary(models.Model):
                 ("sale_planner_calendar_event_id", "=", False),
             ]
         )
-        sales.action_set_planner_calendar_event()
+        sales.action_set_planner_calendar_event(self)
 
     @api.model
     def _get_datetime_from_date_tz_hour(self, date, hour_float):
