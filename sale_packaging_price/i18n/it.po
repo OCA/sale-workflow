@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-09-10 02:47+0000\n"
-"PO-Revision-Date: 2023-04-07 16:32+0000\n"
+"PO-Revision-Date: 2023-05-12 12:56+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -37,7 +37,7 @@ msgstr "Creato il"
 #. module: sale_packaging_price
 #: model:ir.model.fields,field_description:sale_packaging_price.field_product_packaging_material_display_name
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome visualizzato"
 
 #. module: sale_packaging_price
 #: model:ir.ui.view,arch_db:sale_packaging_price.product_packaging_filter
