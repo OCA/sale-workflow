@@ -3,7 +3,7 @@
 from datetime import timedelta
 
 from odoo import _, fields, models
-from odoo.exceptions import RedirectWarning
+from odoo.exceptions import ValidationError
 from odoo.tools.date_utils import relativedelta
 
 
@@ -78,13 +78,9 @@ class ResPartner(models.Model):
                 )
             )
             if calendar_events:
-                action = self.env["ir.actions.act_window"]._for_xml_id(
-                    "sale_planner_calendar.action_sale_planner_calendar_reassign_wiz"
-                )
-                action["target"] = "new"
                 msg = _(
                     "This partner has sale planned events\n"
                     "You must change salesperson from the planner wizard"
                 )
-                raise RedirectWarning(msg, action, _("Go to the planner wizard"))
-        return super(ResPartner, self).write(vals)
+                raise ValidationError(msg)
+        return super().write(vals)
