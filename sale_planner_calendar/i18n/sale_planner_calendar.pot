@@ -383,12 +383,6 @@ msgid "Friday"
 msgstr ""
 
 #. module: sale_planner_calendar
-#: code:addons/sale_planner_calendar/models/res_partner.py:0
-#, python-format
-msgid "Go to the planner wizard"
-msgstr ""
-
-#. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__has_message
 msgid "Has Message"
 msgstr ""
