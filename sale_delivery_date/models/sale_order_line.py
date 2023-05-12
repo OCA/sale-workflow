@@ -52,8 +52,18 @@ class SaleOrderLine(models.Model):
         # sol.expected_date is computed exactly the same way date_deadline is computed
         # in _prepare_procurement_values (date_order + customer_lead)
         date_deadline = super()._expected_date()
-        expedition_date = self._expedition_date_from_date_deadline(date_deadline)
-        delivery_date = self._delivery_date_from_expedition_date(expedition_date)
+        delays = self._get_delays()
+        cutoff = self.order_id.get_cutoff_time()
+        calendar = self.order_id.warehouse_id.calendar2_id
+        customer_lead, __, __ = delays
+        date_order = self._deduct_delay(date_deadline, customer_lead)
+        expedition_date = self._expedition_date_from_date_order(
+            date_order, delays, calendar=calendar, cutoff=cutoff
+        )
+        partner = self.order_id.partner_shipping_id
+        delivery_date = self._delivery_date_from_expedition_date(
+            expedition_date, partner, delays
+        )
         return delivery_date
 
     @api.depends("order_id.expected_date")
@@ -74,9 +84,12 @@ class SaleOrderLine(models.Model):
         # 4) apply cutoff (with `keep_same_day` param)
         date_planned = res["date_planned"]
         date_deadline = res["date_deadline"]
+        delays = self._get_delays()
+        calendar = self.order_id.warehouse_id.calendar2_id
         expedition_date = self._expedition_date_from_delivery_date(
-            date_planned, date_deadline
+            date_planned, date_deadline, delays, calendar=calendar
         )
+        cutoff = self.order_id.get_cutoff_time()
         # TODO We should stop here, as the date_planned as defined by odoo represents
         # the expedition date (date_deadline - security_lead).
         # In a next refactor, extract the following code in a glue module
@@ -85,7 +98,9 @@ class SaleOrderLine(models.Model):
         # preparation date before the picking is release, and as the expedition date
         # after it has been released.
         # /TODO Put this in the roadmap
-        preparation_date = self._preparation_date_from_expedition_date(expedition_date)
+        preparation_date = self._preparation_date_from_expedition_date(
+            expedition_date, delays, calendar=calendar, cutoff=cutoff
+        )
         res["date_planned"] = preparation_date
         # Do not change the date_deadline
         res["date_deadline"] = date_deadline
@@ -138,16 +153,25 @@ class SaleOrderLine(models.Model):
         # - workload represents the time needed to process the order
         #   before sending the goods.
         date_deadline = res["date_deadline"]
-        earliest_expedition_date = self._expedition_date_from_date_deadline(
-            date_deadline
+        delays = self._get_delays()
+        cutoff = self.order_id.get_cutoff_time()
+        calendar = self.order_id.warehouse_id.calendar2_id
+        partner = self.order_id.partner_shipping_id
+        calendar = self.order_id.warehouse_id.calendar2_id
+        #
+        customer_lead, __, __ = delays
+        date_order = self._deduct_delay(date_deadline, customer_lead)
+        earliest_expedition_date = self._expedition_date_from_date_order(
+            date_order, delays, calendar=calendar, cutoff=cutoff
         )
         delivery_date = self._delivery_date_from_expedition_date(
-            earliest_expedition_date
+            earliest_expedition_date, partner, delays
         )
         res["date_deadline"] = delivery_date
         expedition_date = self._expedition_date_from_delivery_date(
-            earliest_expedition_date, delivery_date
+            earliest_expedition_date, delivery_date, delays, calendar=calendar
         )
+        cutoff = self.order_id.get_cutoff_time()
         # TODO We should stop here, as the date_planned as defined by odoo represents
         # the expedition date (date_deadline - security_lead).
         # res["date_planned"] = expedition_date
@@ -157,30 +181,35 @@ class SaleOrderLine(models.Model):
         # preparation date before the picking is release, and as the expedition date
         # after it has been released.
         # /TODO Put this in the roadmap
-        preparation_date = self._preparation_date_from_expedition_date(expedition_date)
+        preparation_date = self._preparation_date_from_expedition_date(
+            expedition_date, delays, calendar=calendar, cutoff=cutoff
+        )
         res["date_planned"] = preparation_date
         return res
 
-    def _expedition_date_from_date_deadline(self, date_deadline):
-        customer_lead, __, workload = self._get_delays()
-        # Retrieve the original date, and work from it.
-        date_order = self._deduct_delay(
-            date_deadline, customer_lead, use_calendar=False
-        )
-        earliest_work_start = self._apply_cutoff(date_order)
+    @api.model
+    def _expedition_date_from_date_order(
+        self, date_order, delays, calendar=False, cutoff=None
+    ):
+        if not cutoff:
+            cutoff = {}
+        customer_lead, __, workload = delays
+        earliest_work_start = self._apply_cutoff(date_order, cutoff)
         # Here, we added delays on an order_date without considering working days.
         # Postpone this date to a working date, if necessary.
-        working_day_work_start = self._postpone_to_working_day(earliest_work_start)
+        working_day_work_start = self._postpone_to_working_day(
+            earliest_work_start, calendar=calendar
+        )
         # Once we have a valid working date start, we can apply the workload, and
         # get the earliest possible work end / earliest expedition date
-        earliest_expedition_date = self._add_delay(working_day_work_start, workload)
+        earliest_expedition_date = self._add_delay(
+            working_day_work_start, workload, calendar=calendar
+        )
         return earliest_expedition_date
 
-    def _get_naive_date_from_datetime(self, earliest_delivery_datetime):
+    @api.model
+    def _get_naive_date_from_datetime(self, earliest_delivery_datetime, tz_string):
         """applies time.min() on a datetime with respect to customer's tz"""
-        tz_string = (
-            self.order_id.partner_id.tz or self.env.company.partner_id.tz or "UTC"
-        )
         tz = timezone(tz_string)
         earliest_delivery_datetime_utc = UTC.localize(earliest_delivery_datetime)
         earliest_delivery_datetime_tz = earliest_delivery_datetime_utc.astimezone(tz)
@@ -189,30 +218,31 @@ class SaleOrderLine(models.Model):
         )
         return earliest_delivery_date_tz.replace(tzinfo=None)
 
-    def _delivery_date_from_expedition_date(self, expedition_date):
-        __, security_lead, __ = self._get_delays()
+    @api.model
+    def _delivery_date_from_expedition_date(self, expedition_date, partner, delays):
+        __, security_lead, __ = delays
         # Since the delivery lead is up to the carrier, warehouse calendar is irrelevant.
         # TODO use float_compare, what is the right rounding for days?
         if security_lead > 0:
-            earliest_delivery_datetime = self._add_delay(
-                expedition_date, security_lead, use_calendar=False
-            )
+            earliest_delivery_datetime = self._add_delay(expedition_date, security_lead)
             # TODO /!\ not sure about this.
+            tz_string = self.order_id.partner_id.tz or "UTC"
             earliest_delivery_date_naive = self._get_naive_date_from_datetime(
-                earliest_delivery_datetime
+                earliest_delivery_datetime, tz_string
             )
         else:
             earliest_delivery_date_naive = expedition_date
         # /TODO extract
         expected_delivery_date = self._apply_customer_window(
-            earliest_delivery_date_naive
+            earliest_delivery_date_naive, partner
         )
         return expected_delivery_date
 
+    @api.model
     def _expedition_date_from_delivery_date(
-        self, earliest_expedition_date, delivery_date
+        self, earliest_expedition_date, delivery_date, delays, calendar=False
     ):
-        __, security_lead, __ = self._get_delays()
+        __, security_lead, __ = delays
         # From there, we know the best delivery date, but we don't want to send
         # goods to early, or start working too early.
         # The idea is that, customer might accept deliveries on friday, but the
@@ -228,7 +258,7 @@ class SaleOrderLine(models.Model):
         # TODO float compare
         if security_lead > 0:
             latest_expedition_datetime = self._deduct_delay(
-                delivery_date, security_lead, use_calendar=False
+                delivery_date, security_lead
             )
             latest_expedition_date = datetime.combine(
                 latest_expedition_datetime, time.max
@@ -238,43 +268,51 @@ class SaleOrderLine(models.Model):
         if latest_expedition_date < earliest_expedition_date:
             return earliest_expedition_date
         wh_expedition_date = self._get_latest_work_end_from_date_range(
-            earliest_expedition_date, latest_expedition_date
+            earliest_expedition_date, latest_expedition_date, calendar=calendar
         )
         if wh_expedition_date == latest_expedition_date:
             return latest_expedition_datetime
         return wh_expedition_date
 
-    def _preparation_date_from_expedition_date(self, expedition_date):
-        customer_lead, security_lead, workload = self._get_delays()
+    @api.model
+    def _preparation_date_from_expedition_date(
+        self, expedition_date, delays, calendar=None, cutoff=None
+    ):
+        customer_lead, security_lead, workload = delays
+        if cutoff is None:
+            cutoff = {}
         # But, if we found a date_end closer to the delivery_date, then we might
         # find a better work_start date.
-        latest_work_start = self._deduct_delay(expedition_date, workload)
-        preparation_date = self._apply_cutoff(latest_work_start, keep_same_day=True)
+        latest_work_start = self._deduct_delay(
+            expedition_date, workload, calendar=calendar
+        )
+        preparation_date = self._apply_cutoff(
+            latest_work_start, cutoff, keep_same_day=True
+        )
         return preparation_date
 
     # ======
     # Generic date methods
     # ======
 
-    def _add_delay(self, date_from, delay, use_calendar=True):
-        if use_calendar:
-            calendar = self.order_id.warehouse_id.calendar2_id
-            if calendar:
-                # Plan days is expecting a number of days, not a delay.
-                # Adding 1 day here
-                days = self._delay_to_days(delay)
-                return calendar.plan_days(days, date_from, compute_leaves=True)
+    @api.model
+    def _add_delay(self, date_from, delay, calendar=False):
+        if calendar:
+            # Plan days is expecting a number of days, not a delay.
+            # Adding 1 day here
+            days = self._delay_to_days(delay)
+            return calendar.plan_days(days, date_from, compute_leaves=True)
         return date_from + timedelta(days=delay)
 
-    def _deduct_delay(self, date_from, delay, use_calendar=True):
-        if use_calendar:
-            calendar = self.order_id.warehouse_id.calendar2_id
-            if calendar:
-                days = self._delay_to_days(delay)
-                return calendar.plan_days(-days, date_from, compute_leaves=True)
+    @api.model
+    def _deduct_delay(self, date_from, delay, calendar=False):
+        if calendar:
+            days = self._delay_to_days(delay)
+            return calendar.plan_days(-days, date_from, compute_leaves=True)
         return date_from - timedelta(days=delay)
 
-    def _apply_cutoff(self, date_order, keep_same_day=False):
+    @api.model
+    def _apply_cutoff(self, date_order, cutoff, keep_same_day=False):
         """Apply the cut-off time on a planned date
 
         The cut-off configuration is taken on the partner if set, otherwise
@@ -284,67 +322,31 @@ class SaleOrderLine(models.Model):
         the new planned date is delayed one day later. The argument
         keep_same_day forces keeping the same day.
         """
-        cutoff = self.order_id.get_cutoff_time()
-        partner = self.order_id.partner_shipping_id
         if not cutoff:
-            if not self.order_id.warehouse_id.apply_cutoff:
-                _logger.debug(
-                    "No cutoff applied on order %s as partner %s is set to use "
-                    "%s and warehouse %s doesn't apply cutoff."
-                    % (
-                        self.order_id,
-                        partner,
-                        partner.order_delivery_cutoff_preference,
-                        self.order_id.warehouse_id,
-                    )
-                )
-            else:
-                _logger.warning(
-                    "No cutoff applied on order %s. %s time not applied"
-                    "on line %s."
-                    % (self.order_id, partner.order_delivery_cutoff_preference, self)
-                )
             return date_order
-        new_date_order = self._get_utc_cutoff_datetime(
-            cutoff, date_order, keep_same_day
-        )
-        _logger.debug(
-            "%s applied on order %s. Date planned for line %s"
-            " rescheduled from %s to %s"
-            % (
-                partner.order_delivery_cutoff_preference,
-                self.order_id,
-                self,
-                date_order,
-                new_date_order,
-            )
-        )
-        return new_date_order
+        return self._get_utc_cutoff_datetime(cutoff, date_order, keep_same_day)
 
-    def _postpone_to_working_day(self, date_start):
+    @api.model
+    def _postpone_to_working_day(self, date_start, calendar=False):
         """Returns the nearest calendar's working day"""
-        calendar = self.order_id.warehouse_id.calendar2_id
         if calendar:
             # If inside an attendance, returns the nearest future working day
             # at attendance start
             return calendar.plan_hours(0, date_start, compute_leaves=True)
         return date_start
 
-    def _apply_customer_window(self, delivery_date):
+    @api.model
+    def _apply_customer_window(self, delivery_date, partner):
         """Postpone a delivery date according to customer's delivery preferences"""
-        shipping_partner = self.order_id.partner_shipping_id
-        if shipping_partner.delivery_time_preference == "anytime":
+        if partner.delivery_time_preference == "anytime":
             return delivery_date
+        return partner.next_delivery_window_start_datetime(from_date=delivery_date)
 
-        return shipping_partner.next_delivery_window_start_datetime(
-            from_date=delivery_date
-        )
-
+    @api.model
     def _get_latest_work_end_from_date_range(
-        self, earliest_work_end, latest_expedition_date
+        self, earliest_work_end, latest_expedition_date, calendar=False
     ):
         """Returns the nearest date in a calendar's attendance within a date range"""
-        calendar = self.order_id.warehouse_id.calendar2_id
         if calendar:
             tz_string = calendar.tz or self.env.company.partner_id.tz or "UTC"
             tz = timezone(tz_string)
@@ -362,6 +364,7 @@ class SaleOrderLine(models.Model):
             return earliest_work_end  # TODO latest_expedition_date?
         return latest_expedition_date
 
+    @api.model
     def _delay_to_days(self, number_of_days):
         """Converts a delay to a number of days."""
         if number_of_days >= 0:
@@ -376,6 +379,7 @@ class SaleOrderLine(models.Model):
         workload = max(customer_lead - security_lead, 0.0)
         return customer_lead, security_lead, workload
 
+    @api.model
     def _get_utc_cutoff_datetime(self, cutoff, date, keep_same_day=False):
         tz = cutoff.get("tz")
         if tz:
