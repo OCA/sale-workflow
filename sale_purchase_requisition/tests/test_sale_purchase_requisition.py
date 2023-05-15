@@ -45,6 +45,11 @@ class TestSalePurchaseRequisition(SavepointCase):
             "test_sale_overseer",
             groups="sales_team.group_sale_salesman_all_leads",
         )
+        cls.full_overseer = new_test_user(
+            cls.env,
+            "test_full_overseer",
+            groups="sales_team.group_sale_manager,purchase.group_purchase_manager",
+        )
 
     @users("test_salesperson")
     def test_create_purchase_requisition(self):
@@ -81,16 +86,21 @@ class TestSalePurchaseRequisition(SavepointCase):
         # Now the sale user can still read the PR
         with Form(pr) as pr_form:
             self.assertEqual(pr_form.state, "in_progress")
-        # Also the sale overseer can read the PR
+        # Also the overseers can read the PR
         with Form(pr.with_user(self.sale_overseer)) as pr_form:
             self.assertEqual(pr_form.sale_user_id, self.env.user)
-        # But they cannot edit it
+        with Form(pr.with_user(self.full_overseer)) as pr_form:
+            self.assertEqual(pr_form.sale_user_id, self.env.user)
+        # But the sale people cannot edit it
         with self.assertRaises(AccessError), Form(pr) as pr_form:
             pr_form.user_id = self.env.user
         with self.assertRaises(AccessError), Form(
             pr.with_user(self.sale_overseer)
         ) as pr_form:
             pr_form.user_id = self.env.user
+        # Although the full overseer can
+        with Form(pr.with_user(self.full_overseer)) as pr_form:
+            pr_form.user_id = self.full_overseer
         view = so.fields_view_get(view_type="form")
         doc = etree.XML(view["arch"])
         query = "//div[@id='warning_order_lines_notsync']"

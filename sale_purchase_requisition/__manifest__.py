@@ -17,7 +17,7 @@
     ],
     "data": [
         "security/ir.model.access.csv",
-        "security/purchase_requisition_security.xml",
+        "security/sale_purchase_requisition_security.xml",
         "views/sale_order.xml",
         "views/purchase_requisition.xml",
     ],

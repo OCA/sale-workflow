@@ -137,4 +137,38 @@
             eval="[(4, ref('sales_team.group_sale_salesman_all_leads'))]"
         />
     </record>
+
+    <!-- Purchase person can access all purchase records.
+
+    This rule is probably wrong, as purchase users have the same permissions as
+    purchase managers. However, this is how Odoo currently works, so we keep it.
+
+    TODO Remove these rules if, at some point, purchase groups include some ir.rule
+    records out of the box for purchase models.
+    -->
+    <record id="purchaseperson_purchase_requisition_rule" model="ir.rule">
+        <field name="name">Let purchaseperson access all purchase requisitions</field>
+        <field name="model_id" ref="purchase_requisition.model_purchase_requisition" />
+        <field name="domain_force" eval="[(1, '=', 1)]" />
+        <field name="groups" eval="[(4, ref('purchase.group_purchase_user'))]" />
+    </record>
+
+    <record id="purchaseperson_purchase_requisition_line_rule" model="ir.rule">
+        <field
+            name="name"
+        >Let purchaseperson access all purchase requisition lines</field>
+        <field
+            name="model_id"
+            ref="purchase_requisition.model_purchase_requisition_line"
+        />
+        <field name="domain_force" eval="[(1, '=', 1)]" />
+        <field name="groups" eval="[(4, ref('purchase.group_purchase_user'))]" />
+    </record>
+
+    <record id="purchaseperson_purchase_order_rule" model="ir.rule">
+        <field name="name">Let purchaseperson access all purchase orders</field>
+        <field name="model_id" ref="purchase.model_purchase_order" />
+        <field name="domain_force" eval="[(1, '=', 1)]" />
+        <field name="groups" eval="[(4, ref('purchase.group_purchase_user'))]" />
+    </record>
 </data>
