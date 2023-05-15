@@ -62,7 +62,7 @@ class SaleOrder(models.Model):
         ]
         if planner_summary.event_type_id:
             calendar_event_domain.append(
-                ("event_type_id", "=", planner_summary.event_type_id.id)
+                ("calendar_event_id.categ_ids", "in", planner_summary.event_type_id.ids)
             )
         calendar_events = self.env["sale.planner.calendar.event"].search(
             calendar_event_domain
