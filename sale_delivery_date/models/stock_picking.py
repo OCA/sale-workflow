@@ -148,3 +148,29 @@ class StockPicking(models.Model):
                     % sec_lead_time
                 )
         return res
+
+    def get_cutoff_time(self):
+        self.ensure_one()
+        partner = self.partner_id
+        wh = self.location_id.get_warehouse()
+        delivery_preference = partner.order_delivery_cutoff_preference
+        if delivery_preference == "warehouse_cutoff" and wh.apply_cutoff:
+            cutoff = wh.get_cutoff_time()
+        elif delivery_preference == "partner_cutoff":
+            # Cutoff time is related to the warehouse, not to the customer.
+            cutoff = partner.get_cutoff_time(tz=wh.tz)
+        else:
+            cutoff = {}
+        return cutoff
+
+    def _create_backorder(self):
+        res = super()._create_backorder()
+        now = fields.Datetime.now()
+        for picking in res:
+            # If the scheduled_date is before the current datetime, then date_deadline
+            # cannot be satisfied. Therefore, we need to recompute move's dates
+            if picking.scheduled_date < now:
+                for line in picking.move_lines:
+                    dates = line._get_delivery_dates(from_date=now)
+                    line.write(dates)
+        return res
