@@ -23,7 +23,7 @@ class StockMove(models.Model):
             from_date = fields.Datetime.now()
         partner = self.picking_id.partner_id
         warehouse = self.location_id.get_warehouse()
-        calendar = warehouse.calendar_id
+        calendar = warehouse.calendar2_id
         delays = self._get_delays()
         cutoff = self.picking_id.get_cutoff_time()
         sale_line_model = self.env["sale.order.line"]
@@ -40,7 +40,7 @@ class StockMove(models.Model):
             from_date, delays, calendar=calendar, cutoff=cutoff
         )
         delivery_date = sale_line_model._delivery_date_from_expedition_date(
-            earliest_expedition_date, partner, delays
+            earliest_expedition_date, partner, calendar, delays
         )
         res["date_deadline"] = delivery_date
         expedition_date = sale_line_model._expedition_date_from_delivery_date(

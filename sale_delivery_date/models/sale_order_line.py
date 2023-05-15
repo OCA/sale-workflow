@@ -28,6 +28,15 @@ class SaleOrderLine(models.Model):
     # OVERRIDES
     # =====
 
+    def _action_launch_stock_rule(self, previous_product_uom_qty=False):
+        # Add a context key, so we know in `_prepare_procurement_values` that we
+        # might have to update the date based on today instead of the order date
+        if previous_product_uom_qty:
+            self = self.with_context(updated_line_qty=True)
+        return super(SaleOrderLine, self)._action_launch_stock_rule(
+            previous_product_uom_qty
+        )
+
     def _prepare_procurement_values(self, group_id=False):
         # Here, we need to set date_deadline and date_planned correctly
         # res["date_planned"] is order.date_order + lead_time
@@ -45,6 +54,12 @@ class SaleOrderLine(models.Model):
             res = self._prepare_procurement_values_commitment_date(res)
         else:
             res = self._prepare_procurement_values_no_commitment_date(res)
+        # If `updated_line_qty` context key is set, and now is after the computed
+        # date planned, then we're late, and should postpone the delivery dates
+        now = datetime.now()
+        late = res["date_planned"] <= now
+        if self.env.context.get("updated_line_qty") and late:
+            res = self._prepare_procurement_values_no_commitment_date(res, now)
         return res
 
     def _expected_date(self):
@@ -62,7 +77,7 @@ class SaleOrderLine(models.Model):
         )
         partner = self.order_id.partner_shipping_id
         delivery_date = self._delivery_date_from_expedition_date(
-            expedition_date, partner, delays
+            expedition_date, partner, calendar, delays
         )
         return delivery_date
 
@@ -106,7 +121,7 @@ class SaleOrderLine(models.Model):
         res["date_deadline"] = date_deadline
         return res
 
-    def _prepare_procurement_values_no_commitment_date(self, res):
+    def _prepare_procurement_values_no_commitment_date(self, res, date_from=None):
         # See graph in docs/
         #
         # date_deadline computation:
@@ -152,20 +167,19 @@ class SaleOrderLine(models.Model):
         # - security_lead represents the delivery lead time
         # - workload represents the time needed to process the order
         #   before sending the goods.
-        date_deadline = res["date_deadline"]
         delays = self._get_delays()
         cutoff = self.order_id.get_cutoff_time()
-        calendar = self.order_id.warehouse_id.calendar2_id
         partner = self.order_id.partner_shipping_id
         calendar = self.order_id.warehouse_id.calendar2_id
-        #
         customer_lead, __, __ = delays
-        date_order = self._deduct_delay(date_deadline, customer_lead)
+        if not date_from:
+            date_deadline = res["date_deadline"]
+            date_from = self._deduct_delay(date_deadline, customer_lead)
         earliest_expedition_date = self._expedition_date_from_date_order(
-            date_order, delays, calendar=calendar, cutoff=cutoff
+            date_from, delays, calendar=calendar, cutoff=cutoff
         )
         delivery_date = self._delivery_date_from_expedition_date(
-            earliest_expedition_date, partner, delays
+            earliest_expedition_date, partner, calendar, delays
         )
         res["date_deadline"] = delivery_date
         expedition_date = self._expedition_date_from_delivery_date(
@@ -219,16 +233,29 @@ class SaleOrderLine(models.Model):
         return earliest_delivery_date_tz.replace(tzinfo=None)
 
     @api.model
-    def _delivery_date_from_expedition_date(self, expedition_date, partner, delays):
+    def _delivery_date_from_expedition_date(
+        self, expedition_date, partner, calendar, delays
+    ):
         __, security_lead, __ = delays
         # Since the delivery lead is up to the carrier, warehouse calendar is irrelevant.
         # TODO use float_compare, what is the right rounding for days?
         if security_lead > 0:
             earliest_delivery_datetime = self._add_delay(expedition_date, security_lead)
+            # We might end up on a leave.
+            # Just apply the calendar here in order to postpone to an open day.
+            # This is kinda wrong.
+            # I.E. in CH, they have different public holidays depending on
+            # the state. Meaning that using the warehouse calendar for this
+            # might be wrong, since customer might be in another state.
+            # TODO: res.country.state.calendar ?
+            open_delivery_datetime = self._postpone_to_working_day(
+                datetime.combine(earliest_delivery_datetime, time.min),
+                calendar=calendar,
+            )
             # TODO /!\ not sure about this.
             tz_string = self.order_id.partner_id.tz or "UTC"
             earliest_delivery_date_naive = self._get_naive_date_from_datetime(
-                earliest_delivery_datetime, tz_string
+                open_delivery_datetime, tz_string
             )
         else:
             earliest_delivery_date_naive = expedition_date
