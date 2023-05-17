@@ -13,7 +13,7 @@ class TestWishlist(common.TransactionCase):
         cls.partner2 = cls.env.ref("base.res_partner_2")
 
     def test_wishlist_count_no_typology_match(self):
-        prod_set = self.env.ref("sale_product_set.product_set_services")
+        prod_set = self.env.ref("product_set.product_set_services")
         for __ in range(2):
             prod_set.copy(default={"partner_id": self.partner1.id})
         for __ in range(4):
@@ -22,7 +22,7 @@ class TestWishlist(common.TransactionCase):
         self.assertEqual(self.partner2.wishlists_count, 0)
 
     def test_wishlist_count(self):
-        prod_set = self.env.ref("sale_product_set.product_set_services")
+        prod_set = self.env.ref("product_set.product_set_services")
         vals = {"partner_id": self.partner1.id, "typology": "wishlist"}
         for __ in range(2):
             prod_set.copy(default=vals)
