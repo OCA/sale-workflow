@@ -54,6 +54,7 @@ msgid "Wishlist"
 msgstr "Lista de deseos"
 
 #. module: sale_wishlist
+#. odoo-python
 #: code:addons/sale_wishlist/models/res_partner.py:0
 #, python-format
 msgid "Wishlists"
