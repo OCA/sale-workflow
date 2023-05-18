@@ -45,13 +45,6 @@ msgstr "Montant dans la Devise de la Commande"
 #. module: sale_advance_payment
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
 #, python-format
-msgid "Amount of advance is greater than residual amount on sale"
-msgstr ""
-"Le montant de l'avance est supérieur au montant restant à payer sur la vente"
-
-#. module: sale_advance_payment
-#: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
-#, python-format
 msgid "Amount of advance must be positive."
 msgstr "Le montant de l'avance doit être positif."
 
@@ -109,6 +102,12 @@ msgstr ""
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__inbound
 msgid "Inbound"
 msgstr "Entrant"
+
+#. module: sale_advance_payment
+#: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
+#, python-format
+msgid "Inbound amount of advance is greater than residual amount on sale"
+msgstr ""
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__journal_id
@@ -171,6 +170,12 @@ msgstr "Montant dû de la Commande"
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__outbound
 msgid "Outbound"
 msgstr "Sortant"
+
+#. module: sale_advance_payment
+#: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
+#, python-format
+msgid "Outbound amount of advance is greater than the advanced paid amount"
+msgstr ""
 
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__sale_order__advance_payment_status__paid
@@ -242,3 +247,9 @@ msgid ""
 msgstr ""
 "Le montant avancé doit toujours être positif. Merci de modifier le type de "
 "paiement pour définir s'il s'agit d'un paiement entrant ou sortant."
+
+#, python-format
+#~ msgid "Amount of advance is greater than residual amount on sale"
+#~ msgstr ""
+#~ "Le montant de l'avance est supérieur au montant restant à payer sur la "
+#~ "vente"
