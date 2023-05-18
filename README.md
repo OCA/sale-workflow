@@ -27,7 +27,7 @@ addon | version | maintainers | summary
 [product_form_sale_link](product_form_sale_link/) | 14.0.1.1.0 |  | Adds a button on product forms to access Sale Lines
 [product_supplierinfo_for_customer_elaboration](product_supplierinfo_for_customer_elaboration/) | 14.0.1.0.0 |  | Allows to define default elaborations and elaboration notes on product customerinfos
 [product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 14.0.1.1.0 |  | Loads in every sale order line the customer code defined in the product
-[sale_advance_payment](sale_advance_payment/) | 14.0.1.1.1 |  | Allow to add advance payments on sales and then use them on invoices
+[sale_advance_payment](sale_advance_payment/) | 14.0.1.1.2 |  | Allow to add advance payments on sales and then use them on invoices
 [sale_amount_payment_link](sale_amount_payment_link/) | 14.0.1.0.1 |  | Reduce Amount to be paid while Payment Link is generated on Sale Order, depending on done Transactions.
 [sale_automatic_workflow](sale_automatic_workflow/) | 14.0.1.3.3 |  | Sale Automatic Workflow
 [sale_automatic_workflow_delivery_state](sale_automatic_workflow_delivery_state/) | 14.0.1.0.0 |  | Glue module for sale_automatic_workflow and sale_delivery_state
