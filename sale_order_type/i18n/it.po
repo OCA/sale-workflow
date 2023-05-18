@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-22 23:35+0000\n"
-"PO-Revision-Date: 2023-04-07 18:26+0000\n"
+"PO-Revision-Date: 2023-05-18 19:29+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.16.4\n"
 
 #. module: sale_order_type
 #: model:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
@@ -191,7 +191,7 @@ msgstr "Sequenza"
 #: view:sale.order.type:sale_order_type.sot_sale_order_type_search_view
 #: field:sale.order.type,picking_policy:0
 msgid "Shipping Policy"
-msgstr "Politica Spedizione"
+msgstr "Politica di spedizione"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_stock_move
