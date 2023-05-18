@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-15 22:29+0000\n"
-"PO-Revision-Date: 2023-04-07 18:26+0000\n"
+"PO-Revision-Date: 2023-05-18 19:29+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.16.4\n"
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,create_invoice_on:0
@@ -232,7 +232,7 @@ msgstr "Quantità Spedite"
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,picking_policy:0
 msgid "Shipping Policy"
-msgstr "Politica Spedizione"
+msgstr "Politica di spedizione"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_stock_move
