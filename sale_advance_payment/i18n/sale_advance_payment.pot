@@ -42,12 +42,6 @@ msgstr ""
 #. module: sale_advance_payment
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
 #, python-format
-msgid "Amount of advance is greater than residual amount on sale"
-msgstr ""
-
-#. module: sale_advance_payment
-#: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
-#, python-format
 msgid "Amount of advance must be positive."
 msgstr ""
 
@@ -104,6 +98,12 @@ msgstr ""
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__inbound
 msgid "Inbound"
+msgstr ""
+
+#. module: sale_advance_payment
+#: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
+#, python-format
+msgid "Inbound amount of advance is greater than residual amount on sale"
 msgstr ""
 
 #. module: sale_advance_payment
@@ -166,6 +166,12 @@ msgstr ""
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__outbound
 msgid "Outbound"
+msgstr ""
+
+#. module: sale_advance_payment
+#: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
+#, python-format
+msgid "Outbound amount of advance is greater than the advanced paid amount"
 msgstr ""
 
 #. module: sale_advance_payment
