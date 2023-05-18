@@ -27,7 +27,15 @@ class SaleOrderLine(models.Model):
         res = super()._compute_elaboration_note()
         for line in self:
             customer_info = line._get_product_customer_info()
-            if customer_info and line.elaboration_ids:
+            if (
+                customer_info
+                and line.elaboration_ids
+                and (
+                    # Comparing with ids because comparison with newId doesn't work
+                    line.elaboration_ids.ids == customer_info.elaboration_ids.ids
+                    or not line.elaboration_ids
+                )
+            ):
                 line.elaboration_note = customer_info.elaboration_note
         return res
 
