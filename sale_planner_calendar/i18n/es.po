@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-26 14:42+0000\n"
+"POT-Creation-Date: 2023-05-19 11:40+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
 "Language-Team: \n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_kanban
@@ -351,6 +351,7 @@ msgstr "Planificación"
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__event_type_id
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__event_type_id
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_wizard__event_type_id
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_search
 msgid "Event type"
 msgstr "Tipo de evento"
 
@@ -396,6 +397,11 @@ msgid "Friday"
 msgstr "Viernes"
 
 #. module: sale_planner_calendar
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_search
+msgid "Group By"
+msgstr "Agrupar por"
+
+#. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__has_message
 msgid "Has Message"
 msgstr "Tiene mensaje"
@@ -423,7 +429,6 @@ msgstr "Si está marcado hay nuevos mensajes que requieren su atención."
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,help:sale_planner_calendar.field_sale_planner_calendar_summary__message_has_error
-#: model:ir.model.fields,help:sale_planner_calendar.field_sale_planner_calendar_summary__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 
@@ -767,12 +772,6 @@ msgstr "Eventos de calendario recurrentes"
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_event__partner_ref
 msgid "Reference"
 msgstr "Referencia"
-
-#. module: sale_planner_calendar
-#: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_has_sms_error
-#, fuzzy
-msgid "SMS Delivery error"
-msgstr "Error de Envío de Mensaje"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_event__sale_ids
@@ -1156,33 +1155,3 @@ msgstr "Asistentes"
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid "or"
 msgstr "o"
-
-#, python-format
-#~ msgid "Go to the planner wizard"
-#~ msgstr "Ir al asistente de planificación"
-
-#~ msgid "Partner name"
-#~ msgstr "Nombre de la empresa"
-
-#, fuzzy
-#~| msgid "Partner"
-#~ msgid "Parter"
-#~ msgstr "Empresa"
-
-#~ msgid "Failed Messages"
-#~ msgstr "Mensajes Fallidos"
-
-#~ msgid "Final Date"
-#~ msgstr "Fecha final"
-
-#~ msgid "Followers (Channels)"
-#~ msgstr "Seguidores (Canales)"
-
-#~ msgid "Message Content"
-#~ msgstr "Contenido del mensaje"
-
-#~ msgid "Message content, to be used only in searches"
-#~ msgstr "Contenido del mensaje, para usarse en búsquedas"
-
-#~ msgid "Procurement purchase grouping settings"
-#~ msgstr "Agrupación de la compra abastecida"
