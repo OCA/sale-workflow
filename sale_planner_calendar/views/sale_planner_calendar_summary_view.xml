@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <search string="Search sale planner calendar summary">
                 <field name="state" />
+                <field name="event_type_id" />
                 <filter
                     string="My summaries"
                     name="my_event_planner_summary"
@@ -23,7 +24,13 @@
                     name="start_tomorrow"
                     domain="[('date','&gt;', time.strftime('%%Y-%%m-%%d 23:59:59')),('date','&lt;',(datetime.date.today() + datetime.timedelta(days=2)).strftime('%%Y-%%m-%%d 00:00:00'))]"
                 />
-                <separator />
+                <group string="Group By">
+                    <filter
+                        name="event_type_id"
+                        string="Event type"
+                        context="{'group_by':'event_type_id'}"
+                    />
+                </group>
             </search>
         </field>
     </record>
@@ -35,6 +42,7 @@
             <tree>
                 <field name="date" optional="show" />
                 <field name="user_id" optional="show" />
+                <field name="event_type_id" optional="show" />
                 <field
                     name="sale_order_subtotal"
                     widget="monetary"
