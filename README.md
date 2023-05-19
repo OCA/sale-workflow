@@ -5,6 +5,7 @@
 [![codecov](https://codecov.io/gh/OCA/sale-workflow/branch/15.0/graph/badge.svg)](https://codecov.io/gh/OCA/sale-workflow)
 [![Translation Status](https://translation.odoo-community.org/widgets/sale-workflow-15-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/sale-workflow-15-0/?utm_source=widget)
 
+Test
 <!-- /!\ do not modify above this line -->
 
 # Sale Workflow
