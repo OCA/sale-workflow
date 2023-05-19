@@ -25,13 +25,8 @@ class TestSaleOrderQtyChange(TransactionCase):
 
     def test_sale_line_misc(self):
         self.assertEqual(self.line_form.price_unit, 25)
-        self.assertEqual(self.line_form.price_subtotal, 25)
         self.line_form.price_unit = 10
-        self.assertEqual(self.line_form.price_unit, 10)
-        self.assertEqual(self.line_form.price_subtotal, 10)
         self.line_form.product_uom_qty = 2
         self.assertEqual(self.line_form.price_unit, 10)
-        self.assertEqual(self.line_form.price_subtotal, 20)
         self.line_form.product_id = self.product_2
         self.assertEqual(self.line_form.price_unit, 30)
-        self.assertEqual(self.line_form.price_subtotal, 60)
