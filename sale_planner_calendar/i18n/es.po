@@ -429,6 +429,7 @@ msgstr "Si está marcado hay nuevos mensajes que requieren su atención."
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,help:sale_planner_calendar.field_sale_planner_calendar_summary__message_has_error
+#: model:ir.model.fields,help:sale_planner_calendar.field_sale_planner_calendar_summary__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 
@@ -772,6 +773,11 @@ msgstr "Eventos de calendario recurrentes"
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_event__partner_ref
 msgid "Reference"
 msgstr "Referencia"
+
+#. module: sale_planner_calendar
+#: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_event__sale_ids
