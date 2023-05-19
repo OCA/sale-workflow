@@ -55,17 +55,36 @@ class AccountVoucherWizard(models.TransientModel):
             raise exceptions.ValidationError(_("Amount of advance must be positive."))
         if self.env.context.get("active_id", False):
             self.onchange_date()
-            if (
-                float_compare(
-                    self.currency_amount,
-                    self.order_id.amount_residual,
-                    precision_digits=2,
-                )
-                > 0
-            ):
-                raise exceptions.ValidationError(
-                    _("Amount of advance is greater than residual amount on sale")
-                )
+            if self.payment_type == "inbound":
+                if (
+                    float_compare(
+                        self.currency_amount,
+                        self.order_id.amount_residual,
+                        precision_digits=2,
+                    )
+                    > 0
+                ):
+                    raise exceptions.ValidationError(
+                        _(
+                            "Inbound amount of advance is greater than residual amount on sale"
+                        )
+                    )
+            else:
+                paid_in_advanced = self.order_id.amount_total - self.amount_total
+                if (
+                    float_compare(
+                        self.currency_amount,
+                        paid_in_advanced,
+                        precision_digits=2,
+                    )
+                    > 0
+                ):
+                    raise exceptions.ValidationError(
+                        _(
+                            "Outbound amount of advance is greater than the "
+                            "advanced paid amount"
+                        )
+                    )
 
     @api.model
     def default_get(self, fields_list):
