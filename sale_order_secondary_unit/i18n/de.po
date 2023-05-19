@@ -17,6 +17,7 @@ msgstr ""
 
 #. module: sale_order_secondary_unit
 <<<<<<< HEAD
+<<<<<<< HEAD
 #: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.view_order_form
 msgid "-&gt;"
 msgstr ""
@@ -36,16 +37,18 @@ msgstr ""
 =======
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_qty
 msgid "2nd Qty"
+||||||| parent of 02a8bb30f (sale_order_secondary_unit 15.0.2.0.0)
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_qty
+msgid "2nd Qty"
+=======
+#: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.view_order_form
+msgid "-&gt;"
+>>>>>>> 02a8bb30f (sale_order_secondary_unit 15.0.2.0.0)
 msgstr ""
 
 #. module: sale_order_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_unit_price
 msgid "2nd unit price"
-msgstr ""
-
-#. module: sale_order_secondary_unit
-#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_id
-msgid "2nd uom"
 msgstr ""
 
 #. module: sale_order_secondary_unit
@@ -71,6 +74,11 @@ msgstr ""
 msgid ""
 "In order to set a value, please first add at least one record in 'Secondary "
 "Unit of Measure'"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+#: model:ir.model,name:sale_order_secondary_unit.model_product_product
+msgid "Product"
 msgstr ""
 
 #. module: sale_order_secondary_unit
@@ -118,6 +126,15 @@ msgid "Product Variant"
 msgstr ""
 
 #. module: sale_order_secondary_unit
+#: code:addons/sale_order_secondary_unit/models/product_template.py:0
+#, python-format
+msgid ""
+"Product variants have distinct sale secondary uom:\n"
+"{secondary_uom}\n"
+"All variants will be written with new secondary uom"
+msgstr ""
+
+#. module: sale_order_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__product_uom_qty
 msgid "Quantity"
 msgstr ""
@@ -129,6 +146,7 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_order_secondary_unit
+<<<<<<< HEAD
 <<<<<<< HEAD
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_id
 msgid "Second unit"
@@ -148,6 +166,19 @@ msgstr ""
 
 #. module: sale_order_secondary_unit
 <<<<<<< HEAD
+||||||| parent of 02a8bb30f (sale_order_secondary_unit 15.0.2.0.0)
+=======
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_id
+msgid "Second unit"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_qty
+msgid "Secondary Qty"
+msgstr ""
+
+#. module: sale_order_secondary_unit
+>>>>>>> 02a8bb30f (sale_order_secondary_unit 15.0.2.0.0)
 #: model:ir.actions.act_window,name:sale_order_secondary_unit.product_secondary_unit_action
 msgid "Secondary Unit"
 msgstr ""
@@ -161,6 +192,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
 msgid "UoM"
 msgstr ""
+<<<<<<< HEAD
 
 #. module: sale_order_secondary_unit
 #. odoo-python
@@ -175,3 +207,12 @@ msgid "Secondary uom"
 msgid "UoM"
 >>>>>>> 8a420dee2 (sale_order_secondary_unit 15.0.1.2.0)
 msgstr ""
+||||||| parent of 02a8bb30f (sale_order_secondary_unit 15.0.2.0.0)
+=======
+
+#. module: sale_order_secondary_unit
+#: code:addons/sale_order_secondary_unit/models/product_template.py:0
+#, python-format
+msgid "Warning"
+msgstr ""
+>>>>>>> 02a8bb30f (sale_order_secondary_unit 15.0.2.0.0)
