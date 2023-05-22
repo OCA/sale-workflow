@@ -22,6 +22,19 @@ class Elaboration(models.Model):
         help="If unchecked, it will allow you to hide the product "
         "elaborations without removing it.",
     )
+    route_ids = fields.Many2many(
+        comodel_name="stock.location.route",
+        string="Routes",
+        domain=[("sale_selectable", "=", True)],
+        ondelete="restrict",
+        check_company=True,
+    )
+    profile_ids = fields.Many2many(
+        comodel_name="product.elaboration.profile",
+        relation="product_elaboration_profile_rel",
+        column1="elaboration_id",
+        column2="profile_id",
+    )
 
     _sql_constraints = [
         ("name_uniq", "unique(name)", "Name must be unique!"),
@@ -34,12 +47,9 @@ class Elaboration(models.Model):
         the rest of the results after.
         """
         args = args or []
-        recs = self.search([("code", operator, name)] + args, limit=limit)
-        res = recs.name_get()
-        limit_rest = limit - len(recs) if limit else limit
-        if limit_rest or not limit:
-            args += [("id", "not in", recs.ids)]
-            res += super().name_search(
-                name, args=args, operator=operator, limit=limit_rest
-            )
-        return res
+        recs = self.browse()
+        if name:
+            recs = self.search([("code", "=ilike", name)] + args, limit=limit)
+        if not recs:
+            recs = self.search([("name", operator, name)] + args, limit=limit)
+        return recs.name_get()

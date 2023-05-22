@@ -8,33 +8,84 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//field[@name='order_line']/form//field[@name='name']"
-                position="after"
-            >
-                <field
-                    name="elaboration_ids"
-                    widget="many2many_tags"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
-                />
-                <field
-                    name="elaboration_note"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
-                />
+            <xpath expr="//field[@name='order_line']/form/group" position="inside">
+                <group string="Elaborations" name="elaboration">
+                    <field name="elaboration_profile_id" invisible="1" />
+                    <field
+                        name="elaboration_ids"
+                        widget="many2many_tags"
+                        attrs="{'readonly': ['|', ('product_updatable', '=', False), ('state', 'in', ('done', 'cancel'))]}"
+                        domain="elaboration_profile_id and [('profile_ids', 'in', [elaboration_profile_id])] or []"
+                    />
+                    <field
+                        name="elaboration_note"
+                        attrs="{'readonly': ['|', ('product_updatable', '=', False), ('state', 'in', ('done', 'cancel'))]}"
+                    />
+                    <field
+                        name="elaboration_price_unit"
+                        readonly="1"
+                        widget="monetary"
+                        attrs="{'invisible': [('elaboration_ids', '=', [])]}"
+                    />
+                </group>
             </xpath>
             <xpath
                 expr="//field[@name='order_line']/tree//field[@name='price_unit']"
                 position="after"
             >
+                <field name="elaboration_profile_id" invisible="1" />
                 <field
                     name="elaboration_ids"
                     widget="many2many_tags"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    attrs="{'readonly': ['|', ('product_updatable', '=', False), ('state', 'in', ('done', 'cancel'))]}"
+                    domain="elaboration_profile_id and [('profile_ids', 'in', [elaboration_profile_id])] or []"
                 />
                 <field
                     name="elaboration_note"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    attrs="{'readonly': ['|', ('product_updatable', '=', False), ('state', 'in', ('done', 'cancel'))]}"
                 />
+                <field
+                    name="elaboration_price_unit"
+                    readonly="1"
+                    widget="monetary"
+                    optional="hide"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/kanban//field[@name='company_id']"
+                position="after"
+            >
+                <field name="elaboration_ids" invisible="1" />
+                <field name="elaboration_note" invisible="1" />
+                <field name="elaboration_price_unit" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/kanban//t[@t-esc='record.price_unit.value']"
+                position="after"
+            >
+                <t t-if="record.elaboration_ids.raw_value.length gt 0">
+                    <div>
+                            Elaboration price: <field
+                            name="elaboration_price_unit"
+                            widget="monetary"
+                        />
+                    </div>
+                </t>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/kanban//t[@t-esc='record.price_unit.value']/../.."
+                position="after"
+            >
+                <t t-if="record.elaboration_ids.raw_value.length gt 0">
+                    <div class="row mt8">
+                        <div class="col-12">
+                            <strong><field
+                                    name="elaboration_ids"
+                                    widget="many2many_tags"
+                                /></strong>
+                        </div>
+                    </div>
+                </t>
             </xpath>
         </field>
     </record>

@@ -23,6 +23,14 @@
                             context="{'default_is_elaboration': True, 'default_type': 'service'}"
                         />
                     </group>
+                    <group>
+                        <field
+                            name="route_ids"
+                            widget="many2many_tags"
+                            groups="stock.group_adv_location"
+                            options="{'no_create': True}"
+                        />
+                    </group>
                 </sheet>
             </form>
         </field>
@@ -31,13 +39,20 @@
         <field name="name">Elaborations</field>
         <field name="model">product.elaboration</field>
         <field name="arch" type="xml">
-            <tree editable="top">
+            <tree multi_edit="1" editable="top">
                 <field name="code" />
                 <field name="name" />
                 <field
                     name="product_id"
                     context="{'default_is_elaboration': True, 'default_type': 'service'}"
                 />
+                <field
+                    name="route_ids"
+                    widget="many2many_tags"
+                    groups="stock.group_adv_location"
+                    options="{'no_create': True}"
+                />
+                <field name="profile_ids" widget="many2many_tags" optional="hide" />
                 <field name="active" widget="boolean_toggle" />
             </tree>
         </field>
@@ -75,7 +90,7 @@
     <menuitem
         id="menu_sale_elaboration"
         action="sale_elaboration_action"
-        parent="sale.prod_config_main"
-        sequence="60"
+        parent="menu_sale_elaboration_root"
+        sequence="20"
     />
 </odoo>
