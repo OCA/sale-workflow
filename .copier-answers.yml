@@ -16,11 +16,11 @@ org_name: Odoo Community Association (OCA)
 org_slug: OCA
 rebel_module_groups:
 - sale_order_line_sequence
+- sale_procurement_group_by_commitment_date
 repo_description: This project aim to deal with modules related to manage sale and
-    their related workflow.
+  their related workflow.
 repo_name: Odoo Sales, Workflow and Organization
 repo_slug: sale-workflow
 repo_website: https://github.com/OCA/sale-workflow
 travis_apt_packages: []
 travis_apt_sources: []
-
