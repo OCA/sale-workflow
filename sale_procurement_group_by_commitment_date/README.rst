@@ -23,7 +23,7 @@ Sale Procurement Group by Commitment Date
     :target: https://runbot.odoo-community.org/runbot/167/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 This module creates different procurements groups for different commitment
 dates in a sale order line when the sale order is confirmed.
@@ -80,7 +80,6 @@ Contributors
 * Darshan Patel <darshan.patel.serpentcs@gmail.com>
 * Pimolnat Suntian <pimolnats@ecosoft.co.th>
 * Juany Davila <juany.davila@forgeflow.com>
-
 
 Maintainers
 ~~~~~~~~~~~
