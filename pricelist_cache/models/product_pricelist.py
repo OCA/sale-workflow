@@ -132,14 +132,16 @@ class Pricelist(models.Model):
         globally, and based on another pricelist
         """
         self.ensure_one()
-        parent_pricelist_items = self.item_ids.filtered(
-            lambda i: (
-                i.applied_on == "3_global"
-                and i.base == "pricelist"
-                and i.base_pricelist_id
-            )
-        )
-        return parent_pricelist_items.mapped("base_pricelist_id")
+        query = """
+            SELECT base_pricelist_id
+            FROM product_pricelist_item
+            WHERE applied_on = '3_global'
+            AND base = 'pricelist'
+            AND base_pricelist_id IS NOT NULL
+            AND pricelist_id = %(pricelist_id)s
+        """
+        self.env.cr.execute(query, {"pricelist_id": self.id})
+        return self.browse([row[0] for row in self.env.cr.fetchall()])
 
     def _is_factor_pricelist(self):
         """Returns whether a pricelist is a factor pricelist.
