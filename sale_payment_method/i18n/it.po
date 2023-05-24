@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-15 22:30+0000\n"
-"PO-Revision-Date: 2023-05-22 12:09+0000\n"
+"PO-Revision-Date: 2023-05-24 10:09+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -89,7 +89,7 @@ msgstr ""
 #. module: sale_payment_method
 #: field:payment.method,display_name:0
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome visualizzato"
 
 #. module: sale_payment_method
 #: view:payment.method:sale_payment_method.payment_method_view_form
