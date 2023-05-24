@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-15 22:29+0000\n"
-"PO-Revision-Date: 2023-05-18 19:29+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-05-24 10:09+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16.4\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,create_invoice_on:0
@@ -89,7 +89,7 @@ msgstr "Evade ogni prodotto quando è disponibile"
 #: field:automatic.workflow.job,display_name:0
 #: field:sale.workflow.process,display_name:0
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome visualizzato"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,invoice_date_is_order_date:0
