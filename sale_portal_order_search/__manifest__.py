@@ -6,9 +6,8 @@
     'version': '12.0.1.0.0',
     'category': 'Sales',
     'website': 'https://github.com/OCA/sale-workflow',
-    'author': 'Tecnativa, '
-              'Trey Kilobytes de Soluciones SL, '
-              'Odoo Community Association (OCA)',
+    'author': 'Tecnativa, Odoo Community Association (OCA)',
+    'maintainer': 'Trey Kilobytes de Soluciones SL',
     'license': 'AGPL-3',
     'development_status': 'Beta',
     'depends': ['sale'],
