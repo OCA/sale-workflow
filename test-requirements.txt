@@ -1,0 +1,2 @@
+odoo_test_helper
+git+https://github.com/OCA/sale-workflow@refs/pull/2403/head#subdirectory=setup/sale_procurement_group_by_line
