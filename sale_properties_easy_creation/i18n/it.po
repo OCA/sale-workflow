@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-10 15:38+0000\n"
-"PO-Revision-Date: 2023-04-19 14:34+0000\n"
+"PO-Revision-Date: 2023-05-24 10:09+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_properties_easy_creation
 #: model:ir.actions.act_window,help:sale_properties_easy_creation.mrp_property_formula_action
@@ -47,7 +47,7 @@ msgstr "Creato il"
 #. module: sale_properties_easy_creation
 #: field:mrp.property.formula,display_name:0
 msgid "Display Name"
-msgstr "Nome da visualizzare"
+msgstr "Nome visualizzato"
 
 #. module: sale_properties_easy_creation
 #: code:addons/sale_properties_easy_creation/mrp_property_formula.py:43
