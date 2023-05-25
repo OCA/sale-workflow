@@ -5,13 +5,10 @@
     "category": "Sale",
     "license": "AGPL-3",
     "author": "Akretion, Odoo Community Association (OCA)",
-    "version": "14.0.1.0.0",
+    "version": "16.0.1.0.0",
     "website": "https://github.com/OCA/sale-workflow",
     "summary": "Allows define a BOM in the sales lines.",
-    "depends": [
-        "sale_stock",
-        "mrp",
-    ],
+    "depends": ["mrp", "sale_stock"],
     "data": [
         "security/security.xml",
         "views/sale_order.xml",
