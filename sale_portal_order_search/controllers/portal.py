@@ -14,7 +14,6 @@ class CustomerPortal(CustomerPortal):
         return [
             ('id', 'in', response.qcontext[name].ids),
             ('name', 'ilike', kw['search'])
-
         ]
 
     @route()
