@@ -94,7 +94,7 @@ class TestSaleMrpLink(TransactionCase):
         so, bom_a, bom_b = self._prepare_so()
         picking, boms = so.picking_ids[0], (bom_a, bom_b)
 
-        for i, line in enumerate(picking.move_lines):
+        for i, line in enumerate(picking.move_ids):
             values = line._prepare_procurement_values()
             self.assertEqual(values["bom_id"], boms[i])
 
