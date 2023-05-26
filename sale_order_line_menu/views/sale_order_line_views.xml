@@ -15,6 +15,9 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order.line</field>
         <field name="view_mode">tree,pivot</field>
+        <field
+            name="domain"
+        >[('display_type', 'not in', ['line_section', 'line_note'])]</field>
     </record>
 
     <menuitem
