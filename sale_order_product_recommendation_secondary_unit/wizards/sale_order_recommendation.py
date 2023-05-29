@@ -1,5 +1,6 @@
 # Copyright 2019 David Vidal <david.vidal@tecnativa.com>
 # Copyright 2020 Tecnativa - Pedro M. Baeza
+# Copyright 2023 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -35,6 +36,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
         readonly=True,
         help="To filter secondary uom available",
     )
+    product_uom_readonly = fields.Boolean(related="sale_line_id.product_uom_readonly")
 
     @api.onchange("secondary_uom_id", "secondary_uom_qty")
     def _onchange_secondary_uom(self):
@@ -77,7 +79,9 @@ class SaleOrderRecommendationLine(models.TransientModel):
     def _prepare_update_so_line(self, line_form):
         res = super()._prepare_update_so_line(line_form)
         if self.secondary_uom_id:
-            line_form.secondary_uom_id = self.secondary_uom_id
+            # Avoid error when product_uom_readonly is True
+            if line_form.secondary_uom_id != self.secondary_uom_id:
+                line_form.secondary_uom_id = self.secondary_uom_id
             line_form.secondary_uom_qty = self.secondary_uom_qty
         return res
 
