@@ -17,8 +17,9 @@ class StockMove(models.Model):
 
     def _get_new_picking_values(self):
         vals = super()._get_new_picking_values()
-        sale_note = self.sale_line_id.order_id.picking_note
+        sale_order = self.group_id.sale_id
+        sale_note = sale_order.picking_note
         if sale_note:
             vals.update({"note": sale_note})
-        vals.update({"customer_note": self.sale_line_id.order_id.picking_customer_note})
+        vals.update({"customer_note": sale_order.picking_customer_note})
         return vals
