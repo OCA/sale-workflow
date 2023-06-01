@@ -1,3 +1,9 @@
+This project branch because the PR from product-attribute is not yet migrated, and we need it.
+
+product-attribute: 
+https://github.com/OCA/product-attribute/pull/1325
+
+
 
 [![Runboat](https://img.shields.io/badge/runboat-Try%20me-875A7B.png)](https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0)
 [![Pre-commit Status](https://github.com/OCA/sale-workflow/actions/workflows/pre-commit.yml/badge.svg?branch=16.0)](https://github.com/OCA/sale-workflow/actions/workflows/pre-commit.yml?query=branch%3A16.0)
