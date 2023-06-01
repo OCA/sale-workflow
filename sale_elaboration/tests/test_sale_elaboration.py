@@ -1,10 +1,12 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests import Form, TransactionCase, tagged
+from odoo.tests import Form, tagged
+
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
 @tagged("post_install", "-at_install")
-class TestSaleElaboration(TransactionCase):
+class TestSaleElaboration(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -90,7 +92,7 @@ class TestSaleElaboration(TransactionCase):
 
     def test_sale_elaboration(self):
         self.order.action_confirm()
-        self.order.picking_ids.move_lines.quantity_done = 10.0
+        self.order.picking_ids.move_ids.quantity_done = 10.0
         self.order.picking_ids._action_done()
         elaboration_lines = self.order.order_line.filtered("is_elaboration")
         self.assertEqual(len(elaboration_lines), 1)
@@ -107,7 +109,7 @@ class TestSaleElaboration(TransactionCase):
             }
         )
         self.order.action_confirm()
-        self.order.picking_ids.move_lines.quantity_done = 10.0
+        self.order.picking_ids.move_ids.quantity_done = 10.0
         self.order.picking_ids._action_done()
         elaboration_lines = self.order.order_line.filtered("is_elaboration")
         self.assertEqual(len(elaboration_lines), 1)
@@ -144,10 +146,8 @@ class TestSaleElaboration(TransactionCase):
 
     def test_sale_elaboration_change_product(self):
         self.order.order_line.product_id = self.product_elaboration_A
-        self.order.order_line.product_id_change()
         self.assertTrue(self.order.order_line.is_elaboration)
         self.order.order_line.product_id = self.product
-        self.order.order_line.product_id_change()
         self.assertFalse(self.order.order_line.is_elaboration)
 
     def test_multi_elaboration_per_line(self):
@@ -159,10 +159,10 @@ class TestSaleElaboration(TransactionCase):
                 line_form.elaboration_ids.add(self.elaboration_a)
                 line_form.elaboration_ids.add(self.elaboration_b)
         self.order.action_confirm()
-        move_lines = self.order.picking_ids.move_lines
-        move_line_a = move_lines.filtered(lambda r: r.product_id == self.product)
+        move_ids = self.order.picking_ids.move_ids
+        move_line_a = move_ids.filtered(lambda r: r.product_id == self.product)
         move_line_a.quantity_done = 10.0
-        move_line_b = move_lines.filtered(lambda r: r.product_id == product2)
+        move_line_b = move_ids.filtered(lambda r: r.product_id == product2)
         move_line_b.quantity_done = 1.0
         self.order.picking_ids._action_done()
         elaboration_lines = self.order.order_line.filtered("is_elaboration")

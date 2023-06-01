@@ -31,7 +31,7 @@
                         <field name="code" />
                     </group>
                     <group string="Elaborations">
-                        <field name="elaboration_ids" nolabel="1" />
+                        <field name="elaboration_ids" nolabel="1" colspan="2" />
                     </group>
                 </sheet>
             </form>
