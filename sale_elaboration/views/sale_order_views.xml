@@ -60,7 +60,7 @@
                 <field name="elaboration_price_unit" invisible="1" />
             </xpath>
             <xpath
-                expr="//field[@name='order_line']/kanban//t[@t-esc='record.price_unit.value']"
+                expr="//field[@name='order_line']/kanban//t[@t-out='record.price_unit.value']"
                 position="after"
             >
                 <t t-if="record.elaboration_ids.raw_value.length gt 0">
@@ -73,7 +73,7 @@
                 </t>
             </xpath>
             <xpath
-                expr="//field[@name='order_line']/kanban//t[@t-esc='record.price_unit.value']/../.."
+                expr="//field[@name='order_line']/kanban//t[@t-out='record.price_unit.value']/../.."
                 position="after"
             >
                 <t t-if="record.elaboration_ids.raw_value.length gt 0">
