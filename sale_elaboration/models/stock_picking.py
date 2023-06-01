@@ -9,7 +9,7 @@ class StockPicking(models.Model):
     def _action_done(self):
         res = super()._action_done()
         for pick in self.filtered(lambda x: x.picking_type_code == "outgoing"):
-            elaboration_lines = pick.move_lines.filtered(
+            elaboration_lines = pick.move_ids.filtered(
                 lambda x: x.sale_line_id.elaboration_ids
             )
             for line in elaboration_lines:

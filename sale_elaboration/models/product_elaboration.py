@@ -23,7 +23,7 @@ class Elaboration(models.Model):
         "elaborations without removing it.",
     )
     route_ids = fields.Many2many(
-        comodel_name="stock.location.route",
+        comodel_name="stock.route",
         string="Routes",
         domain=[("sale_selectable", "=", True)],
         ondelete="restrict",

@@ -19,7 +19,7 @@
         >
             <attribute
                 name="t-value"
-                add="or (o.move_lines.sale_line_id.elaboration_ids)"
+                add="or (o.move_ids.sale_line_id.elaboration_ids)"
                 separator=" "
             />
             <attribute

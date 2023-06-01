@@ -67,13 +67,15 @@ class SaleOrderLine(models.Model):
     @api.depends("elaboration_ids", "order_id.pricelist_id")
     def _compute_elaboration_price_unit(self):
         for line in self:
-            elab_price = 0.0
-            for elaboration in line.elaboration_ids:
-                elab_price += elaboration.product_id.with_context(
-                    pricelist=line.order_id.pricelist_id.id,
-                    uom=elaboration.product_id.uom_id.id,
-                ).price
-            line.elaboration_price_unit = elab_price
+            if not line.order_id.pricelist_id:
+                line.elaboration_price_unit = 0
+            else:
+                line.elaboration_price_unit = sum(
+                    line.order_id.pricelist_id._get_products_price(
+                        line.elaboration_ids.product_id,
+                        quantity=1,
+                    ).values()
+                )
 
     def _prepare_invoice_line(self, **optional_values):
         vals = super()._prepare_invoice_line(**optional_values)
