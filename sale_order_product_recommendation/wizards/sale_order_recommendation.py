@@ -229,23 +229,11 @@ class SaleOrderRecommendationLine(models.TransientModel):
         price_origin = (
             fields.first(self).wizard_id.sale_recommendation_price_origin or "pricelist"
         )
-        for one in self:
+        for line in self:
             if price_origin == "pricelist":
-                pricelist_rule = self.env["product.pricelist.item"]
-                uom = one.product_id.uom_id
-                date_order = one.wizard_id.order_id.date_order or fields.Date.today()
-                if one.sale_line_id:
-                    pricelist_rule = one.sale_line_id.pricelist_item_id
-                    uom = one.sale_line_id.product_uom
-                one.price_unit = pricelist_rule._compute_price(
-                    one.product_id,
-                    one.units_included,
-                    uom,
-                    date_order,
-                    currency=one.currency_id,
-                )
+                line.price_unit = line._get_unit_price_from_pricelist()
             else:
-                one.price_unit = one._get_last_sale_price_product()
+                line.price_unit = line._get_last_sale_price_product()
 
     def _prepare_update_so_line(self, line_form):
         """So we can extend SO update"""
@@ -291,3 +279,29 @@ class SaleOrderRecommendationLine(models.TransientModel):
             .with_context(prefetch_fields=False)
         )
         return so_line.price_unit or 0.0
+
+    def _get_unit_price_from_pricelist(self):
+        pricelist_rule_id = self.pricelist_id._get_product_rule(
+            self.product_id,
+            self.units_included or 1.0,
+            uom=self.sale_uom_id or self.product_id.uom_id,
+            date=self.wizard_id.order_id.date_order,
+        )
+        pricelist_rule = self.env["product.pricelist.item"].browse(pricelist_rule_id)
+        price_rule = pricelist_rule._compute_price(
+            self.product_id,
+            self.units_included,
+            self.sale_uom_id or self.product_id.uom_id,
+            self.wizard_id.order_id.date_order,
+            currency=self.currency_id,
+        )
+        price_unit = self.product_id._get_tax_included_unit_price(
+            self.wizard_id.order_id.company_id,
+            self.currency_id,
+            self.wizard_id.order_id.date_order,
+            "sale",
+            fiscal_position=self.wizard_id.order_id.fiscal_position_id,
+            product_price_unit=price_rule,
+            product_currency=self.currency_id,
+        )
+        return price_unit
