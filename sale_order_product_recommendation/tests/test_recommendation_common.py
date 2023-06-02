@@ -1,11 +1,9 @@
 # Copyright 2017 Tecnativa - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from freezegun import freeze_time
 
-from odoo.tests.common import TransactionCase
+from odoo.tests import TransactionCase
 
 
-@freeze_time("2021-10-02 15:30:00")
 class RecommendationCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
@@ -30,21 +28,21 @@ class RecommendationCase(TransactionCase):
         cls.prod_1 = cls.product_obj.create(
             {
                 "name": "Test Product 1",
-                "type": "service",
+                "detailed_type": "service",
                 "list_price": 25.00,
             }
         )
         cls.prod_2 = cls.product_obj.create(
             {
                 "name": "Test Product 2",
-                "type": "service",
+                "detailed_type": "service",
                 "list_price": 50.00,
             }
         )
         cls.prod_3 = cls.product_obj.create(
             {
                 "name": "Test Product 3",
-                "type": "service",
+                "detailed_type": "service",
                 "list_price": 75.00,
             }
         )
