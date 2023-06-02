@@ -125,6 +125,22 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
                 "categ_id": cls.product_category.id,
             }
         )
+        # Advance Product
+        deposit_account = cls.env["account.account"].search(
+            [("internal_group", "=", "income"), ("deprecated", "=", False)], limit=1
+        )
+        cls.product_advance = cls.env["product.product"].create(
+            {
+                "name": _("Down payment"),
+                "type": "service",
+                "invoice_policy": "order",
+                "property_account_income_id": deposit_account.id,
+                "taxes_id": False,
+            }
+        )
+        cls.env["ir.config_parameter"].sudo().set_param(
+            "sale.default_deposit_product_id", cls.product_advance.id
+        )
 
     def test_00_invoice_plan(self):
         # To create next invoice from SO
