@@ -94,10 +94,11 @@ class SaleInvoicePlan(models.Model):
     @api.depends("percent")
     def _compute_amount(self):
         for rec in self:
+            amount_untaxed = rec.sale_id._origin.amount_untaxed
             # With invoice already created, no recompute
             if rec.invoiced:
                 rec.amount = rec.amount_invoiced
-                rec.percent = rec.amount / rec.sale_id.amount_untaxed * 100
+                rec.percent = rec.amount / amount_untaxed * 100
                 continue
             # For last line, amount is the left over
             if rec.last:
@@ -105,9 +106,9 @@ class SaleInvoicePlan(models.Model):
                     lambda l: l.invoice_type == "installment"
                 )
                 prev_amount = sum((installments - rec).mapped("amount"))
-                rec.amount = rec.sale_id.amount_untaxed - prev_amount
+                rec.amount = amount_untaxed - prev_amount
                 continue
-            rec.amount = rec.percent * rec.sale_id.amount_untaxed / 100
+            rec.amount = rec.percent * amount_untaxed / 100
 
     @api.onchange("amount", "percent")
     def _inverse_amount(self):
@@ -137,13 +138,32 @@ class SaleInvoicePlan(models.Model):
                 rec.to_invoice = True
                 break
 
+    def _get_amount_invoice(self, invoices):
+        """Hook function"""
+        amount_invoiced = sum(invoices.mapped("amount_untaxed"))
+        deposit_product_id = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("sale.default_deposit_product_id")
+        )
+        if deposit_product_id:
+            lines = invoices.mapped("invoice_line_ids").filtered(
+                lambda l: l.product_id.id != int(deposit_product_id)
+            )
+            amount_invoiced = sum(lines.mapped("price_subtotal"))
+        return amount_invoiced
+
     def _compute_invoiced(self):
         for rec in self:
             invoiced = rec.invoice_move_ids.filtered(
                 lambda l: l.state in ("draft", "posted")
             )
             rec.invoiced = invoiced and True or False
-            rec.amount_invoiced = invoiced[:1].amount_untaxed
+            rec.amount_invoiced = (
+                sum(invoiced.mapped("amount_untaxed"))
+                if rec.invoice_type == "advance"
+                else rec._get_amount_invoice(invoiced[:1])
+            )
 
     def _compute_last(self):
         for rec in self:
