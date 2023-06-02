@@ -3,6 +3,7 @@
 
 from odoo import api, fields, models
 from odoo.tools import float_compare
+from odoo.tools.float_utils import float_round
 
 
 class SaleOrder(models.Model):
@@ -85,14 +86,17 @@ class SaleOrder(models.Model):
                 invoice_paid_amount += inv.amount_total - inv.amount_residual
             amount_residual = order.amount_total - advance_amount - invoice_paid_amount
             payment_state = "not_paid"
+            inv_currency = order.currency_id or self.env.company.currency_id
             if mls:
                 has_due_amount = float_compare(
-                    amount_residual, 0.0, precision_rounding=order.currency_id.rounding
+                    amount_residual, 0.0, precision_rounding=inv_currency.rounding
                 )
                 if has_due_amount <= 0:
                     payment_state = "paid"
                 elif has_due_amount > 0:
                     payment_state = "partial"
             order.payment_line_ids = mls
-            order.amount_residual = amount_residual
             order.advance_payment_status = payment_state
+            order.amount_residual = float_round(
+                amount_residual, precision_rounding=inv_currency.rounding
+            )
