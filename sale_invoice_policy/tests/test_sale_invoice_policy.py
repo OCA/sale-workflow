@@ -11,13 +11,17 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         cls.sale_obj = cls.env["sale.order"]
         cls.partner = cls.env.ref("base.res_partner_2")
         cls.product = cls.product_obj.create(
-            {"name": "Test", "type": "consu", "list_price": 20.0}
+            {"name": "Test", "detailed_type": "consu", "list_price": 20.0}
         )
         cls.product2 = cls.product_obj.create(
-            {"name": "Test 2", "type": "consu", "list_price": 45.0}
+            {"name": "Test 2", "detailed_type": "consu", "list_price": 45.0}
         )
         cls.product3 = cls.product_obj.create(
-            {"name": "Test 3 (service)", "type": "service", "list_price": 850.5}
+            {
+                "name": "Test 3 (service)",
+                "detailed_type": "service",
+                "list_price": 850.5,
+            }
         )
 
     def test_sale_order_invoice_order(self):
