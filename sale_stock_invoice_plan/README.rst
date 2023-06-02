@@ -14,7 +14,7 @@ Sales Stock Invoice Plan
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/15.0/sale_stock_invoice_plan
+    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_stock_invoice_plan
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
     :target: https://translation.odoo-community.org/projects/sale-workflow-15-0/sale-workflow-15-0-sale_stock_invoice_plan
@@ -85,6 +85,7 @@ Contributors
 
     * Son Ho <sonhd@trobz.com>
 * Jairo Llopis (https://www.moduon.team/)
+* Dhara Solanki <dhara.solanki@initos.com>
 
 Maintainers
 ~~~~~~~~~~~
@@ -107,6 +108,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-kittiu| 
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/15.0/sale_stock_invoice_plan>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_stock_invoice_plan>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
