@@ -116,6 +116,12 @@ msgid "Display Name"
 msgstr "显示名称"
 
 #. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/tests/test_sale_invoice_plan.py:0
+#, python-format
+msgid "Down payment"
+msgstr ""
+
+#. module: sale_invoice_plan
 #: model:ir.model,name:sale_invoice_plan.model_sale_create_invoice_plan
 msgid "Fillig invoice planning criteria"
 msgstr "填写发票计划标准"
