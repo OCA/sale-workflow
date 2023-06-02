@@ -70,7 +70,8 @@ msgstr "Política de facturación"
 #: model:ir.model.fields,help:sale_invoice_policy.field_sale_order__invoice_policy
 msgid ""
 "Ordered Quantity: Invoice based on the quantity the customer ordered.\n"
-"Delivered Quantity: Invoiced based on the quantity the vendor delivered (time or deliveries)."
+"Delivered Quantity: Invoiced based on the quantity the vendor delivered "
+"(time or deliveries)."
 msgstr ""
 "Cantidad pedida: Factura basada en la cantidad solicitada por el cliente.\n"
 "Cantidad entregada: Facturada en base a la cantidad entregada por el "
@@ -94,8 +95,13 @@ msgstr "Cantidades ordenadas"
 
 #. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_product_template
-msgid "Product Template"
-msgstr "Plantilla de producto"
+msgid "Product"
+msgstr ""
+
+#. module: sale_invoice_policy
+#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
+msgid "Sale Invoice Policy"
+msgstr ""
 
 #. module: sale_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
@@ -117,3 +123,6 @@ msgstr "Línea de Pedido de Venta"
 msgid "This makes Invoice Policy required on Sale Orders"
 msgstr ""
 "Esto hace que la política de facturas sea obligatoria en los pedidos de venta"
+
+#~ msgid "Product Template"
+#~ msgstr "Plantilla de producto"
