@@ -9,6 +9,6 @@
     "license": "AGPL-3",
     "depends": ["sale"],
     "data": ["views/res_partner_view.xml"],
-    "installable": False,
+    "installable": True,
     "maintainers": ["victoralmau"],
 }
