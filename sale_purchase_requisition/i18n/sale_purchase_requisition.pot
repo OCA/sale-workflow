@@ -4,30 +4,14 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0+e\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-28 12:51+0000\n"
-"PO-Revision-Date: 2023-03-28 12:51+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: sale_purchase_requisition
-#: code:addons/sale_purchase_requisition/models/sale_order.py:0
-#, python-format
-msgid ""
-"Cannot modify sale order lines because the purchase requisition linked to "
-"the sale order is locked. Set it to draft and try again to continue."
-msgstr ""
-
-#. module: sale_purchase_requisition
-#: code:addons/sale_purchase_requisition/models/sale_order.py:0
-#, python-format
-msgid "Deleted Order Line!"
-msgstr ""
 
 #. module: sale_purchase_requisition
 #: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__display_name
@@ -59,11 +43,18 @@ msgid "New Purchase Requisition"
 msgstr ""
 
 #. module: sale_purchase_requisition
-#: code:addons/sale_purchase_requisition/models/sale_order.py:0
-#: code:addons/sale_purchase_requisition/models/sale_order.py:0
+#: model:ir.model.fields,help:sale_purchase_requisition.field_sale_order__open_purchase_requisition_count
+msgid "Number of purchase requisitions in open state"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order__open_purchase_requisition_count
+msgid "Open Purchase Requisitions"
+msgstr ""
+
+#. module: sale_purchase_requisition
 #: model:ir.model,name:sale_purchase_requisition.model_purchase_requisition
 #: model_terms:ir.ui.view,arch_db:sale_purchase_requisition.sale_view_order_form_inherited
-#, python-format
 msgid "Purchase Requisition"
 msgstr ""
 
@@ -73,8 +64,20 @@ msgid "Purchase Requisition Line"
 msgstr ""
 
 #. module: sale_purchase_requisition
-#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order__purchase_requisition_ids
-msgid "Purchase requisition"
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order__purchase_requisition_sync_warning
+msgid "Purchase Requisition Sync Warning"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: code:addons/sale_purchase_requisition/models/sale_order.py:0
+#, python-format
+msgid "Purchase Requisition for %s"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: code:addons/sale_purchase_requisition/models/sale_order.py:0
+#, python-format
+msgid "Purchase Requisition(s) for %s"
 msgstr ""
 
 #. module: sale_purchase_requisition
@@ -83,8 +86,18 @@ msgid "Purchase requisition lines"
 msgstr ""
 
 #. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order__purchase_requisition_ids
+msgid "Purchase requisitions"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: code:addons/sale_purchase_requisition/models/sale_order.py:0
+#, python-format
+msgid "Resolve differences with the sales order"
+msgstr ""
+
+#. module: sale_purchase_requisition
 #: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__sale_id
-#: model_terms:ir.ui.view,arch_db:sale_purchase_requisition.purchase_requisition_form_view_inherited
 msgid "Sale Order"
 msgstr ""
 
@@ -94,9 +107,8 @@ msgid "Sale Order Line"
 msgstr ""
 
 #. module: sale_purchase_requisition
-#: code:addons/sale_purchase_requisition/models/purchase_requisition.py:0
-#, python-format
-msgid "Sale Orders"
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__sale_order_sync_warning
+msgid "Sale Order Sync Warning"
 msgstr ""
 
 #. module: sale_purchase_requisition
@@ -123,7 +135,29 @@ msgstr ""
 #: code:addons/sale_purchase_requisition/models/sale_order.py:0
 #, python-format
 msgid ""
-"You are deleting order lines that cannot be deleted in these purchase "
-"requisitions %s! Do not forget to manually modify the purchase requisition "
-"if needed."
+"Some lines are not synced on these Purchase Requisitions: %s please update "
+"this lines manually"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: code:addons/sale_purchase_requisition/models/purchase_requisition.py:0
+#, python-format
+msgid ""
+"Some lines are not synced on this Sale order: %s. Please update these lines "
+"manually."
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: code:addons/sale_purchase_requisition/models/purchase_requisition.py:0
+#, python-format
+msgid ""
+"The product quantities %(product)s <br/>  have changed %(old_qty)d -> "
+"%(new_qty)d %(uom)s"
+msgstr ""
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,help:sale_purchase_requisition.field_sale_order__purchase_requisition_sync_warning
+msgid ""
+"Warning message to be displayed when order lines are not synced with "
+"purchase requisitions"
 msgstr ""
