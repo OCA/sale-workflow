@@ -3,7 +3,7 @@
 {
     "name": "Sale purchase requisition",
     "summary": "Connect your quotations with a purchase agreement",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Sale",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Moduon, Odoo Community Association (OCA)",
