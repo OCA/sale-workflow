@@ -9,5 +9,5 @@
     "data": ["view/sale_view.xml"],
     "demo": ["demo/sale_demo.xml"],
     "maintainers": ["bodedra"],
-    "installable": True,
+    "installable": False,
 }

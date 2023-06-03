@@ -17,5 +17,5 @@
         "views/product_customerinfo_views.xml",
         "views/sale_view.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

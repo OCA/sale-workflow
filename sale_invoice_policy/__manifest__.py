@@ -17,4 +17,5 @@
         "views/sale_view.xml",
     ],
     "post_init_hook": "post_init_hook",
+    "installable": False,
 }

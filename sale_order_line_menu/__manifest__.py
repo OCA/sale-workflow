@@ -13,7 +13,7 @@
     "data": [
         "views/sale_order_line_views.xml",
     ],
-    "installable": True,
+    "installable": False,
     "maintainer": "dreispt",
     "development_status": "Beta",
 }

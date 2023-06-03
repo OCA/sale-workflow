@@ -19,5 +19,5 @@
         "data/sale_order_cancel_reason.xml",
     ],
     "auto_install": False,
-    "installable": True,
+    "installable": False,
 }

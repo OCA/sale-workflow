@@ -12,6 +12,6 @@
     "data": [
         "views/account_payment_mode_views.xml",
     ],
-    "installable": True,
+    "installable": False,
     "auto_install": True,
 }

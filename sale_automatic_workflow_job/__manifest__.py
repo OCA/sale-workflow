@@ -13,4 +13,5 @@
     "data": [
         "data/queue_job_data.xml",
     ],
+    "installable": False,
 }

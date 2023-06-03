@@ -12,4 +12,5 @@
     "license": "AGPL-3",
     "depends": ["sale_stock", "base_view_inheritance_extension"],
     "data": ["views/sale_views.xml"],
+    "installable": False,
 }

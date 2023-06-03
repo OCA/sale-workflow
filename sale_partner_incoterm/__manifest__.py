@@ -11,5 +11,5 @@
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale_stock"],
     "data": ["views/res_partner.xml", "views/sale_order.xml"],
-    "installable": True,
+    "installable": False,
 }

@@ -31,5 +31,5 @@
         "reports/account_invoice_report_view.xml",
         "reports/sale_report_view.xml",
     ],
-    "installable": True,
+    "installable": False,
 }

@@ -20,6 +20,6 @@
     "license": "AGPL-3",
     "depends": ["base_revision", "sale_management"],
     "data": ["view/sale_order.xml"],
-    "installable": True,
+    "installable": False,
     "post_init_hook": "populate_unrevisioned_name",
 }

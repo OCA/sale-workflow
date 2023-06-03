@@ -14,5 +14,5 @@
     "contributors": ["Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>"],
     "depends": ["sale"],
     "data": ["views/sale_order.xml", "views/sale_report.xml"],
-    "installable": True,
+    "installable": False,
 }

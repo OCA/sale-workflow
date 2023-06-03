@@ -2,10 +2,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from freezegun import freeze_time
 
+from odoo.fields import Command
 from odoo.tests.common import TransactionCase
 
 
-@freeze_time("2021-10-02 15:30:00")
+# @freeze_time("2021-10-02 15:30:00")
 class RecommendationCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
@@ -30,26 +31,40 @@ class RecommendationCase(TransactionCase):
         cls.prod_1 = cls.product_obj.create(
             {
                 "name": "Test Product 1",
-                "type": "service",
+                "detailed_type": "service",
                 "list_price": 25.00,
             }
         )
         cls.prod_2 = cls.product_obj.create(
             {
                 "name": "Test Product 2",
-                "type": "service",
+                "detailed_type": "service",
                 "list_price": 50.00,
             }
         )
         cls.prod_3 = cls.product_obj.create(
             {
                 "name": "Test Product 3",
-                "type": "service",
+                "detailed_type": "service",
                 "list_price": 75.00,
             }
         )
         # Create old sale orders to have searchable history
         # (Remember to change the dates if the tests fail)
+
+        cls.order1 = cls.env["sale.order"].create(
+            {
+                "partner_id": cls.partner.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": cls.prod_1.id,
+                            "product_uom_qty": 25,
+                        }
+                    )
+                ],
+            }
+        )
         cls.order1 = cls.env["sale.order"].create(
             {
                 "partner_id": cls.partner.id,
@@ -124,11 +139,12 @@ class RecommendationCase(TransactionCase):
             }
         )
 
-    def wizard(self):
+    @classmethod
+    def wizard(cls):
         """Get a wizard."""
         wizard = (
-            self.env["sale.order.recommendation"]
-            .with_context(active_id=self.new_so.id)
+            cls.env["sale.order.recommendation"]
+            .with_context(active_id=cls.new_so.id)
             .create({})
         )
         wizard._generate_recommendations()

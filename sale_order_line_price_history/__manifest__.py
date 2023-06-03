@@ -19,5 +19,5 @@
             "sale_order_line_price_history/static/src/xml/*.xml",
         ],
     },
-    "installable": True,
+    "installable": False,
 }
