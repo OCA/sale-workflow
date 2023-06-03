@@ -25,6 +25,7 @@ class ProductTemplate(models.Model):
         readonly=True,
         search="_search_invoice_policy",
         inverse="_inverse_invoice_policy",
+        precompute=False,
     )
 
     def _inverse_invoice_policy(self):
