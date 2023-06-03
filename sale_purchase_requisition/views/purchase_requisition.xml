@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Moduon Team S.L. <info@moduon.team>
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <record id="purchase_requisition_form_view_inherited" model="ir.ui.view">
+        <field name="name">purchase.requisition.form.inherited</field>
+        <field name="model">purchase.requisition</field>
+        <field
+            name="inherit_id"
+            ref="purchase_requisition.view_purchase_requisition_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="sale_user_id" widget="many2one_avatar_user" />
+            </xpath>
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name='sale_id' groups="sales_team.group_sale_salesman" />
+            </xpath>
+            <xpath expr="//field[@name='line_ids']/tree" position="inside">
+                <field name="line_order_id" optional="hide" />
+            </xpath>
+            <xpath expr="//form/sheet" position="before">
+                <div
+                    id="warning_order_lines_notsync"
+                    class="alert alert-danger mb-0"
+                    role="alert"
+                    attrs="{'invisible': [('sale_order_sync_warning', '=', False)]}"
+                >
+                    <field name="sale_order_sync_warning" />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

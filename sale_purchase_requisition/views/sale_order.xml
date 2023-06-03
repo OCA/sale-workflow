@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Moduon Team S.L. <info@moduon.team>
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <record id="sale_view_order_form_inherited" model="ir.ui.view">
+        <field name="name">sale.order.form.inherited.</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field
+                    name="purchase_requisition_ids"
+                    invisible="1"
+                    widget="many2many_tags"
+                />
+                <field name="open_purchase_requisition_count" invisible="1" />
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_view_purchase_requisitions"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-list-alt"
+                    string="Purchase Requisition"
+                    attrs="{'invisible': [('open_purchase_requisition_count', '=', 0)]}"
+                />
+            </xpath>
+            <xpath expr="//button[@name='action_cancel']" position="before">
+                <button
+                    name="action_create_purchase_requisition"
+                    string="New Purchase Requisition"
+                    type="object"
+                    attrs="{'invisible': ['|', ('state', 'not in', ['draft', 'sent']), ('open_purchase_requisition_count', '>', 0)]}"
+                />
+            </xpath>
+            <xpath expr="//form/sheet" position="before">
+                <div
+                    id="warning_order_lines_notsync"
+                    class="alert alert-danger mb-0"
+                    role="alert"
+                    attrs="{'invisible': [('purchase_requisition_sync_warning', '=', False)]}"
+                >
+                    <field name="purchase_requisition_sync_warning" />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

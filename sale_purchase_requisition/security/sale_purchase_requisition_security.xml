@@ -1,0 +1,174 @@
+<?xml version="1.0" ?>
+<data noupdate="1">
+    <!-- Allow salesperson to access purchase records -->
+    <record id="salesperson_purchase_requisition_draft_rule" model="ir.rule">
+        <field name="name">Let salesperson edit own draft purchase requisitions</field>
+        <field name="model_id" ref="purchase_requisition.model_purchase_requisition" />
+        <field
+            name="domain_force"
+        >[('sale_user_id', '=', user.id), ('state', '=', 'draft')]</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
+    </record>
+
+    <record id="salesperson_purchase_requisition_rule" model="ir.rule">
+        <field name="name">Let salesperson read own purchase requisitions</field>
+        <field name="model_id" ref="purchase_requisition.model_purchase_requisition" />
+        <field name="domain_force">[('sale_user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
+        <field name="perm_create" eval="False" />
+        <field name="perm_write" eval="False" />
+        <field name="perm_unlink" eval="False" />
+    </record>
+
+    <record id="salesperson_purchase_requisition_line_draft_rule" model="ir.rule">
+        <field
+            name="name"
+        >Let salesperson edit own draft purchase requisition lines</field>
+        <field
+            name="model_id"
+            ref="purchase_requisition.model_purchase_requisition_line"
+        />
+        <field
+            name="domain_force"
+        >[('requisition_id.sale_user_id', '=', user.id), ('requisition_id.state', '=', 'draft')]</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
+    </record>
+
+    <record id="salesperson_purchase_requisition_line_rule" model="ir.rule">
+        <field name="name">Let salesperson read own purchase requisition lines</field>
+        <field
+            name="model_id"
+            ref="purchase_requisition.model_purchase_requisition_line"
+        />
+        <field
+            name="domain_force"
+        >[('requisition_id.sale_user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
+        <field name="perm_create" eval="False" />
+        <field name="perm_write" eval="False" />
+        <field name="perm_unlink" eval="False" />
+    </record>
+
+    <record id="salesperson_purchase_order_rule" model="ir.rule">
+        <field name="name">Let salesperson access own purchase orders</field>
+        <field name="model_id" ref="purchase.model_purchase_order" />
+        <field
+            name="domain_force"
+        >[('requisition_id.sale_user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
+    </record>
+
+    <!-- Let salespersons for all leads access all purchase records related to all sales orders -->
+    <record id="salesperson_all_leads_purchase_requisition_draft_rule" model="ir.rule">
+        <field
+            name="name"
+        >Let salesperson (all leads) edit draft purchase requisitions related to sales orders</field>
+        <field name="model_id" ref="purchase_requisition.model_purchase_requisition" />
+        <field
+            name="domain_force"
+        >[('sale_id', '!=', False), ('state', '=', 'draft')]</field>
+        <field
+            name="groups"
+            eval="[(4, ref('sales_team.group_sale_salesman_all_leads'))]"
+        />
+    </record>
+
+    <record id="salesperson_all_leads_purchase_requisition_rule" model="ir.rule">
+        <field
+            name="name"
+        >Let salesperson (all leads) read purchase requisitions related to sales orders</field>
+        <field name="model_id" ref="purchase_requisition.model_purchase_requisition" />
+        <field name="domain_force">[('sale_id', '!=', False)]</field>
+        <field
+            name="groups"
+            eval="[(4, ref('sales_team.group_sale_salesman_all_leads'))]"
+        />
+        <field name="perm_create" eval="False" />
+        <field name="perm_write" eval="False" />
+        <field name="perm_unlink" eval="False" />
+    </record>
+
+    <record
+        id="salesperson_all_leads_purchase_requisition_line_draft_rule"
+        model="ir.rule"
+    >
+        <field
+            name="name"
+        >Let salesperson (all leads) edit draft purchase requisition lines related to sales orders</field>
+        <field
+            name="model_id"
+            ref="purchase_requisition.model_purchase_requisition_line"
+        />
+        <field
+            name="domain_force"
+        >[('requisition_id.sale_id', '!=', False), ('requisition_id.state', '=', 'draft')]</field>
+        <field
+            name="groups"
+            eval="[(4, ref('sales_team.group_sale_salesman_all_leads'))]"
+        />
+    </record>
+
+    <record id="salesperson_all_leads_purchase_requisition_line_rule" model="ir.rule">
+        <field
+            name="name"
+        >Let salesperson (all leads) read purchase requisition lines related to sales orders</field>
+        <field
+            name="model_id"
+            ref="purchase_requisition.model_purchase_requisition_line"
+        />
+        <field name="domain_force">[('requisition_id.sale_id', '!=', False)]</field>
+        <field
+            name="groups"
+            eval="[(4, ref('sales_team.group_sale_salesman_all_leads'))]"
+        />
+        <field name="perm_create" eval="False" />
+        <field name="perm_write" eval="False" />
+        <field name="perm_unlink" eval="False" />
+    </record>
+
+    <record id="salesperson_all_leads_purchase_order_rule" model="ir.rule">
+        <field
+            name="name"
+        >Let salesperson (all leads) access purchase orders related to sales orders</field>
+        <field name="model_id" ref="purchase.model_purchase_order" />
+        <field name="domain_force">[('requisition_id.sale_id', '!=', False)]</field>
+        <field
+            name="groups"
+            eval="[(4, ref('sales_team.group_sale_salesman_all_leads'))]"
+        />
+    </record>
+
+    <!-- Purchase person can access all purchase records.
+
+    This rule is probably wrong, as purchase users have the same permissions as
+    purchase managers. However, this is how Odoo currently works, so we keep it.
+
+    TODO Remove these rules if, at some point, purchase groups include some ir.rule
+    records out of the box for purchase models.
+    -->
+    <record id="purchaseperson_purchase_requisition_rule" model="ir.rule">
+        <field name="name">Let purchaseperson access all purchase requisitions</field>
+        <field name="model_id" ref="purchase_requisition.model_purchase_requisition" />
+        <field name="domain_force" eval="[(1, '=', 1)]" />
+        <field name="groups" eval="[(4, ref('purchase.group_purchase_user'))]" />
+    </record>
+
+    <record id="purchaseperson_purchase_requisition_line_rule" model="ir.rule">
+        <field
+            name="name"
+        >Let purchaseperson access all purchase requisition lines</field>
+        <field
+            name="model_id"
+            ref="purchase_requisition.model_purchase_requisition_line"
+        />
+        <field name="domain_force" eval="[(1, '=', 1)]" />
+        <field name="groups" eval="[(4, ref('purchase.group_purchase_user'))]" />
+    </record>
+
+    <record id="purchaseperson_purchase_order_rule" model="ir.rule">
+        <field name="name">Let purchaseperson access all purchase orders</field>
+        <field name="model_id" ref="purchase.model_purchase_order" />
+        <field name="domain_force" eval="[(1, '=', 1)]" />
+        <field name="groups" eval="[(4, ref('purchase.group_purchase_user'))]" />
+    </record>
+</data>
