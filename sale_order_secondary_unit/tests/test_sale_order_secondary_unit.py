@@ -58,7 +58,7 @@ class TestSaleOrderSecondaryUnit(TransactionCase):
                 "pricelist_id": cls.env.ref("product.list0").id,
             }
         )
-        so.onchange_partner_id()
+        # so.onchange_partner_id()
         cls.order = cls.env["sale.order"].create(so._convert_to_write(so._cache))
 
     def test_onchange_secondary_uom(self):
@@ -75,7 +75,7 @@ class TestSaleOrderSecondaryUnit(TransactionCase):
         self.assertEqual(self.order.order_line.secondary_uom_qty, 7.0)
 
     def test_default_secondary_unit(self):
-        self.order.order_line.product_id_change()
+        self.order.order_line._onchange_product_id_warning()
         self.assertEqual(self.order.order_line.secondary_uom_id, self.secondary_unit)
 
     def test_onchange_order_product_uom(self):
