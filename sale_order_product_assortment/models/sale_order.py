@@ -27,14 +27,10 @@ class SaleOrder(models.Model):
         partner = self[partner_field]
         product_domain = []
         if partner:
-            filters_partner_domain = self.env["ir.filters"].search(
-                [("is_assortment", "=", True)]
-            )
-            for ir_filter in filters_partner_domain:
-                if partner.id in ir_filter.get_all_partner_ids():
-                    product_domain = expression.AND(
-                        [product_domain, ir_filter._get_eval_domain()]
-                    )
+            for ir_filter in partner.applied_assortment_ids:
+                product_domain = expression.AND(
+                    [product_domain, ir_filter._get_eval_domain()]
+                )
             if product_domain:
                 self.allowed_product_ids = self.env["product.product"].search(
                     product_domain
