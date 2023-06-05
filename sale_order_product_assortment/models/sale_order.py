@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.osv import expression
 
 
 class SaleOrder(models.Model):
@@ -17,7 +18,6 @@ class SaleOrder(models.Model):
     @api.depends("partner_id", "partner_shipping_id", "partner_invoice_id")
     def _compute_product_assortment_ids(self):
         # If we don't initialize the fields we get an error with NewId
-        IrFilters = self.env["ir.filters"]
         self.allowed_product_ids = self.env["product.product"]
         self.has_allowed_products = False
         partner_field = (
@@ -25,18 +25,17 @@ class SaleOrder(models.Model):
             .sudo()
             .get_param("sale_order_product_assortment.partner_field", "partner_id")
         )
-        if self[partner_field]:
-            filters = IrFilters.browse()
-            filters_partner_domain = self.env["ir.filters"].search(
-                [("is_assortment", "=", True)]
-            )
-            for ir_filter in filters_partner_domain:
-                if self[partner_field] & ir_filter.all_partner_ids:
-                    filters |= ir_filter
-                    self.allowed_product_ids += self.env["product.product"].search(
-                        ir_filter._get_eval_domain()
-                    )
-            if self.allowed_product_ids:
+        partner = self[partner_field]
+        product_domain = []
+        if partner:
+            for ir_filter in partner.applied_assortment_ids:
+                product_domain = expression.AND(
+                    [product_domain, ir_filter._get_eval_domain()]
+                )
+            if product_domain:
+                self.allowed_product_ids = self.env["product.product"].search(
+                    product_domain
+                )
                 self.has_allowed_products = True
 
     @api.onchange("partner_id", "partner_shipping_id", "partner_invoice_id")
