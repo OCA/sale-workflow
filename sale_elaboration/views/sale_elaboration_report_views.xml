@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018 Tecnativa - Sergio Teruel
+     Copyright 2019 Tecnativa - Pedro M. Baeza
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="report_elaboration_view_tree" model="ir.ui.view">
+        <field name="name">Elaborations</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <tree create="false">
+                <field name="date_order" />
+                <field name="order_id" />
+                <field name="salesman_id" />
+                <field name="order_partner_id" />
+                <field name="product_id" />
+                <field name="elaboration_ids" widget="many2many_tags" />
+                <field name="elaboration_note" />
+                <field name="product_uom_qty" />
+                <field name="product_uom" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_sales_order_line_filter" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <separator />
+                <field
+                    name="date_order"
+                    filter_domain="[('date_order','&gt;=', self)]"
+                    string="After Date"
+                />
+                <field name="elaboration_ids" />
+                <field name="elaboration_note" />
+                <filter
+                    string="Is Elaboration"
+                    domain="['|', ('elaboration_ids', '!=', False), ('elaboration_note', '!=', False)]"
+                    name="is_elaboration"
+                />
+                <separator />
+            </field>
+            <group position="inside">
+                <filter
+                    string="Elaboration"
+                    context="{'group_by':'elaboration_ids'}"
+                    name="elaboration_grouped"
+                />
+            </group>
+        </field>
+    </record>
+    <record id="sale_elaboration_report_action" model="ir.actions.act_window">
+        <field name="name">Sale Elaboration Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_mode">tree,pivot</field>
+        <field name="domain">[('state', '=', 'sale')]</field>
+        <field name="context">{'search_default_is_elaboration':1}</field>
+        <field name="search_view_id" ref="view_sales_order_line_filter" />
+    </record>
+    <menuitem
+        id="menu_sale_elaboration_report"
+        action="sale_elaboration_report_action"
+        parent="sale.menu_sale_report"
+        sequence="60"
+    />
+    <!--  Allow inventory users to access to elaboration report  -->
+    <menuitem
+        id="menu_stock_sale_elaboration_report"
+        action="sale_elaboration_report_action"
+        parent="stock.menu_warehouse_report"
+        sequence="160"
+    />
+</odoo>

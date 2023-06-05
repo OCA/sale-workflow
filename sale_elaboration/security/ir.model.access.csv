@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_elaboration_user,access_elaboration_user,model_product_elaboration,base.group_user,1,0,0,0
+access_elaboration_manager,access_elaboration_manager,model_product_elaboration,sales_team.group_sale_manager,1,1,1,1
+access_elaboration_portal,product.elaboration.portal,model_product_elaboration,base.group_portal,1,0,0,0
+access_elaboration_profile_user,product_elaboration_profile_user,sale_elaboration.model_product_elaboration_profile,base.group_user,1,0,0,0
+access_elaboration_profile_manager,product_elaboration_profile_manager,sale_elaboration.model_product_elaboration_profile,sales_team.group_sale_manager,1,1,1,1
