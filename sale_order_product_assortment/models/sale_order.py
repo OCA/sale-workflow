@@ -18,7 +18,8 @@ class SaleOrder(models.Model):
 
     @api.depends("partner_id", "partner_shipping_id", "partner_invoice_id")
     def _compute_product_assortment_ids(self):
-        self.allowed_product_ids = False
+        # If we don't initialize the fields we get an error with NewId
+        self.allowed_product_ids = self.env["product.product"]
         self.has_allowed_products = False
         partner_field = (
             self.env["ir.config_parameter"]
