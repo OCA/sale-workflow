@@ -22,8 +22,8 @@ msgstr ""
 
 #. module: sale_force_invoiced
 #: model:ir.model.fields,field_description:sale_force_invoiced.field_sale_order__force_invoiced
-msgid "Force invoiced"
-msgstr "强制开具发票"
+msgid "Force Invoiced"
+msgstr ""
 
 #. module: sale_force_invoiced
 #: model:ir.model,name:sale_force_invoiced.model_sale_order
@@ -39,3 +39,6 @@ msgid ""
 "invoice."
 msgstr ""
 "设置此字段时，即使订单或已交付的数量等待发票，销售订单也将被视为完全开票。"
+
+#~ msgid "Force invoiced"
+#~ msgstr "强制开具发票"
