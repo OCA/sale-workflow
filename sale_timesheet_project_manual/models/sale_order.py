@@ -13,7 +13,6 @@ class SaleOrder(models.Model):
         compute="_compute_action_project_manual_allowed"
     )
 
-    @api.multi
     @api.depends(
         "state",
         "order_line.is_service",
@@ -25,17 +24,15 @@ class SaleOrder(models.Model):
                 [
                     line.is_service
                     and line.product_id.service_tracking
-                    in ("task_global_project", "project_only", "task_new_project")
+                    in ("task_global_project", "project_only", "task_in_project")
                     for line in rec.order_line
                 ]
             )
 
-    @api.multi
     def action_project_manual(self):
         self.action_project_manual_allowed_check()
         self.order_line._timesheet_service_generation()
 
-    @api.multi
     def action_project_manual_allowed_check(self):
         for rec in self:
             if not rec.action_project_manual_allowed:

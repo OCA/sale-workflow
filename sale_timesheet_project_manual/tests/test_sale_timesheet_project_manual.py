@@ -2,10 +2,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import ValidationError
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestSaleTimesheetProjectManual(SavepointCase):
+class TestSaleTimesheetProjectManual(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestSaleTimesheetProjectManual, cls).setUpClass()
@@ -13,14 +13,14 @@ class TestSaleTimesheetProjectManual(SavepointCase):
         cls.SaleOrder = cls.env["sale.order"]
 
         cls.partner_agrolait = cls.env.ref("base.res_partner_2")
-        cls.uom_unit_wt = cls.env.ref("product.uom_categ_wtime")
+        cls.uom_unit_wt = cls.env.ref("uom.uom_categ_wtime")
 
         cls.product_service_task = cls.Product.create(
             {
                 "name": "Service (with task)",
                 "type": "service",
                 "service_policy": "delivered_timesheet",
-                "service_tracking": "task_new_project",
+                "service_tracking": "task_in_project",
                 "uom_id": cls.uom_unit_wt.id,
                 "uom_po_id": cls.uom_unit_wt.id,
             }
@@ -77,11 +77,17 @@ class TestSaleTimesheetProjectManual(SavepointCase):
         )
 
         self.assertTrue(order.action_project_manual_allowed)
-        order.action_cancel()
+        order._action_cancel()
 
         self.assertFalse(order.action_project_manual_allowed)
-        with self.assertRaises(ValidationError), self.env.cr.savepoint():
+        with self.assertRaises(ValidationError) as e, self.env.cr.savepoint():
             order.action_project_manual()
+
+        self.assertIn(
+            "You can anticipate the project creation only for draft quotations"
+            " which contain service with timesheet generation.",
+            e.exception.args[0],
+        )
 
         order.action_draft()
         self.assertTrue(order.action_project_manual_allowed)
@@ -100,7 +106,7 @@ class TestSaleTimesheetProjectManual(SavepointCase):
 
         order.action_confirm()
         self.assertFalse(order.action_project_manual_allowed)
-        order.invalidate_cache()
+        order.invalidate_recordset()
 
         analytic_account_1 = order.analytic_account_id
         projects_1 = analytic_account.project_ids
