@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="is_fully_delivered_sale_order_view_tree" model="ir.ui.view">
+        <field name="name">delivered_status.sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="invoice_status" position="before">
+                <field name="is_fully_delivered" invisible="1" />
+            </field>
+        </field>
+    </record>
+</odoo>
