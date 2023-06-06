@@ -134,9 +134,15 @@ class SalePlannerCalendarEvent(models.Model):
         """
         Search or Create an event planner  linked to sale order
         """
-        action = self.env["ir.actions.act_window"]._for_xml_id(
-            "sale.action_quotations_with_onboarding"
+        action_xml_id = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param(
+                "sale_planner_calendar.action_open_sale_order",
+                "sale.action_quotations_with_onboarding",
+            )
         )
+        action = self.env["ir.actions.act_window"]._for_xml_id(action_xml_id)
         action["context"] = {
             "default_sale_planner_calendar_event_id": self.id,
             "default_partner_id": self.partner_id.id,
@@ -145,7 +151,7 @@ class SalePlannerCalendarEvent(models.Model):
         if len(self.sale_ids) > 1:
             action["domain"] = [("sale_planner_calendar_event_id", "=", self.id)]
         else:
-            action["views"] = [(self.env.ref("sale.view_order_form").id, "form")]
+            action["views"] = list(filter(lambda v: v[1] == "form", action["views"]))
             action["res_id"] = self.sale_ids.id
         return action
 
