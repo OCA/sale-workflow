@@ -21,8 +21,8 @@ msgstr ""
 
 #. module: sale_force_invoiced
 #: model:ir.model.fields,field_description:sale_force_invoiced.field_sale_order__force_invoiced
-msgid "Force invoiced"
-msgstr "Facturation forcée"
+msgid "Force Invoiced"
+msgstr ""
 
 #. module: sale_force_invoiced
 #: model:ir.model,name:sale_force_invoiced.model_sale_order
@@ -39,3 +39,6 @@ msgstr ""
 "Lorsque vous définissez ce champ, la commande client sera considérée comme "
 "entièrement facturée, même s'il reste des quantités commandées ou livrées à "
 "facturer."
+
+#~ msgid "Force invoiced"
+#~ msgstr "Facturation forcée"

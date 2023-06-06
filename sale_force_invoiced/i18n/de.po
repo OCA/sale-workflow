@@ -21,8 +21,8 @@ msgstr ""
 
 #. module: sale_force_invoiced
 #: model:ir.model.fields,field_description:sale_force_invoiced.field_sale_order__force_invoiced
-msgid "Force invoiced"
-msgstr "als abgerechnet markieren"
+msgid "Force Invoiced"
+msgstr ""
 
 #. module: sale_force_invoiced
 #: model:ir.model,name:sale_force_invoiced.model_sale_order
@@ -40,3 +40,6 @@ msgstr ""
 "Wenn der Haken gesetzt ist, wird der Verkaufsauftrag als vollständig "
 "abgerechnet interpretiert, auch wenn es noch abzurechende Mengen geben "
 "sollte."
+
+#~ msgid "Force invoiced"
+#~ msgstr "als abgerechnet markieren"
