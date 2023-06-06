@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_force_invoiced
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-31 04:21+0000\n"
+"PO-Revision-Date: 2020-11-06 13:08+0000\n"
+"Last-Translator: brendapaniagua <brenda.paniagua@qubiq.es>\n"
+"Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: sale_force_invoiced
+#: model:ir.model.fields,field_description:sale_force_invoiced.field_sale_order__force_invoiced
+msgid "Force invoiced"
+msgstr "Forçar facturat"
+
+#. module: sale_force_invoiced
+#: model:ir.model,name:sale_force_invoiced.model_sale_order
+msgid "Sales Order"
+msgstr "Comanda de venda"
+
+#. module: sale_force_invoiced
+#: model:ir.model.fields,help:sale_force_invoiced.field_sale_order__force_invoiced
+msgid ""
+"When you set this field, the sales order will be considered as fully "
+"invoiced, even when there may be ordered or delivered quantities pending to "
+"invoice."
+msgstr ""
+"Quan configureu aquest camp, la comanda de venda es considerarà totalment "
+"facturada, fins i tot quan es puguin demanar o lliurar quantitats pendents "
+"de facturar."
