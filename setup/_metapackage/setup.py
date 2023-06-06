@@ -19,6 +19,7 @@ setuptools.setup(
         'odoo-addon-sale_company_currency>=16.0dev,<16.1dev',
         'odoo-addon-sale_elaboration>=16.0dev,<16.1dev',
         'odoo-addon-sale_exception>=16.0dev,<16.1dev',
+        'odoo-addon-sale_force_invoiced>=16.0dev,<16.1dev',
         'odoo-addon-sale_invoice_policy>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_archive>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_general_discount>=16.0dev,<16.1dev',
