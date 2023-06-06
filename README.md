@@ -32,6 +32,7 @@ addon | version | maintainers | summary
 [sale_company_currency](sale_company_currency/) | 16.0.1.0.0 |  | Company Currency in Sale Orders
 [sale_elaboration](sale_elaboration/) | 16.0.1.0.0 |  | Set an elaboration for any sale line
 [sale_exception](sale_exception/) | 16.0.1.2.0 |  | Custom exceptions on sale order
+[sale_force_invoiced](sale_force_invoiced/) | 16.0.1.0.0 |  | Allows to force the invoice status of the sales order to Invoiced
 [sale_invoice_policy](sale_invoice_policy/) | 16.0.1.0.0 |  | Sales Management: let the user choose the invoice policy on the order
 [sale_order_archive](sale_order_archive/) | 16.0.1.0.0 |  | Archive Sale Orders
 [sale_order_general_discount](sale_order_general_discount/) | 16.0.1.0.0 |  | General discount per sale order
