@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-04-29 00:55+0000\n"
-"PO-Revision-Date: 2023-02-01 16:47+0000\n"
+"PO-Revision-Date: 2023-06-06 14:13+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -18,12 +18,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_order_back2draft
 #: view:sale.order:sale_order_back2draft.view_order_form_draft
 msgid "Back to draft"
-msgstr "Reimposta a bozza"
+msgstr "Ritorna a bozza"
 
 #. module: sale_order_back2draft
 #: model:ir.model,name:sale_order_back2draft.model_sale_order
