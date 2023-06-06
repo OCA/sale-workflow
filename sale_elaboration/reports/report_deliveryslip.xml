@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018 Tecnativa - Sergio Teruel
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template
+        id="report_delivery_document"
+        inherit_id="stock.report_delivery_document"
+        priority="20"
+    >
+        <!--
+        Force to print lines from sml instead of aggregate data to display
+        elaboration notes.
+        Odoo has a bad design to do aggregate lines, see here
+        https://github.com/odoo/odoo/blob/15.0/addons/stock/models/stock_move_line.py#L738
+        -->
+        <xpath
+            expr="//t[@t-value=&quot;o.move_line_ids.mapped(&apos;lot_id&apos;)&quot;]"
+            position="attributes"
+        >
+            <attribute
+                name="t-value"
+                add="or (o.move_ids.sale_line_id.elaboration_ids)"
+                separator=" "
+            />
+            <attribute
+                name="groups"
+                add="sale_elaboration.group_elaboration_note_on_delivery_slip"
+                separator=", "
+            />
+        </xpath>
+        <xpath expr="//th[@name='th_sm_quantity']" position="after">
+            <th name="th_sm_elaboration">
+                <strong>Elab.</strong>
+            </th>
+        </xpath>
+        <xpath expr="//span[@t-field='move.quantity_done']/.." position="after">
+            <td>
+                <span
+                    t-esc="', '.join(move.sale_line_id.elaboration_ids.mapped('code'))"
+                />
+            </td>
+        </xpath>
+        <xpath expr="//th[@name='th_sml_quantity']" position="after">
+            <th name="th_sml_elaboration">
+                <strong>Elaboration</strong>
+            </th>
+        </xpath>
+    </template>
+
+    <template
+        id="stock_report_delivery_has_serial_move_line"
+        inherit_id="stock.stock_report_delivery_has_serial_move_line"
+    >
+        <xpath expr="//td[@name='move_line_lot_qty_done']" position="after">
+            <td>
+                <span
+                    t-esc="', '.join(move_line.move_id.sale_line_id.elaboration_ids.mapped('code'))"
+                />
+            </td>
+        </xpath>
+    </template>
+</odoo>
