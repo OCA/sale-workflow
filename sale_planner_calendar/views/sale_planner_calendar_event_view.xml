@@ -45,7 +45,7 @@
         <field name="name">sale.planner.calendar.event.tree</field>
         <field name="model">sale.planner.calendar.event</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree js_class="sale_planner_calendar_event_tree">
                 <field name="date" optional="show" />
                 <field name="user_id" optional="show" />
                 <field name="partner_id" optional="show" />
@@ -239,7 +239,11 @@
         <field name="name">sale.planner.calendar.event.kanban</field>
         <field name="model">sale.planner.calendar.event</field>
         <field name="arch" type="xml">
-            <kanban class="o_kanban_mobile" default_order="calendar_event_date">
+            <kanban
+                class="o_kanban_mobile"
+                default_order="calendar_event_date"
+                js_class="sale_planner_calendar_event_kanban"
+            >
                 <field name="name" />
                 <field name="partner_id" />
                 <field name="state" />

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="sale_planner_calendar.newSaleOrderButton">
+        <button type="button" class="btn btn-secondary o_button_new_sale_order">
+            New Quotation
+        </button>
+    </t>
+
+    <t t-extend="ListView.buttons" t-name="SalePlannerCalendarEventListView.buttons">
+        <t t-jquery="button.o_list_button_add" t-operation="after">
+            <t t-call="sale_planner_calendar.newSaleOrderButton" />
+        </t>
+    </t>
+
+    <t
+        t-extend="KanbanView.buttons"
+        t-name="SalePlannerCalendarEventKanbanView.buttons"
+    >
+        <t t-jquery="button" t-operation="after">
+            <t t-call="sale_planner_calendar.newSaleOrderButton" />
+        </t>
+    </t>
+</templates>
