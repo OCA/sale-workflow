@@ -8,61 +8,65 @@ from odoo.tests.common import TransactionCase
 
 
 class TestSaleProcurementGroupByLine(TransactionCase):
-    def setUp(self):
-        super(TestSaleProcurementGroupByLine, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # Required Models
-        self.product_model = self.env["product.product"]
-        self.product_ctg_model = self.env["product.category"]
-        self.proc_group_model = self.env["procurement.group"]
-        self.sale_model = self.env["sale.order"]
-        self.order_line_model = self.env["sale.order.line"]
+        cls.product_model = cls.env["product.product"]
+        cls.product_ctg_model = cls.env["product.category"]
+        cls.proc_group_model = cls.env["procurement.group"]
+        cls.sale_model = cls.env["sale.order"]
+        cls.order_line_model = cls.env["sale.order.line"]
         # Customer
-        self.customer = self.env.ref("base.res_partner_2")
+        cls.customer = cls.env.ref("base.res_partner_2")
         # Warehouse
-        self.warehouse_id = self.env.ref("stock.warehouse0")
+        cls.warehouse_id = cls.env.ref("stock.warehouse0")
         # Create product category
-        self.product_ctg = self._create_product_category()
+        cls.product_ctg = cls._create_product_category()
         # Create Products
-        self.new_product1 = self._create_product("test_product1")
-        self.new_product2 = self._create_product("test_product2")
-        self.sale = self._create_sale_order()
+        cls.new_product1 = cls._create_product("test_product1")
+        cls.new_product2 = cls._create_product("test_product2")
+        cls.sale = cls._create_sale_order()
 
-    def _create_product_category(self):
-        product_ctg = self.product_ctg_model.create({"name": "test_product_ctg"})
+    @classmethod
+    def _create_product_category(cls):
+        product_ctg = cls.product_ctg_model.create({"name": "test_product_ctg"})
         return product_ctg
 
-    def _create_product(self, name):
-        product = self.product_model.create(
-            {"name": name, "categ_id": self.product_ctg.id, "type": "product"}
+    @classmethod
+    def _create_product(cls, name):
+        product = cls.product_model.create(
+            {"name": name, "categ_id": cls.product_ctg.id, "type": "product"}
         )
         return product
 
-    def _create_sale_order(self):
+    @classmethod
+    def _create_sale_order(cls):
         """Create a Sale Order."""
-        self.sale = self.sale_model.create(
+        cls.sale = cls.sale_model.create(
             {
-                "partner_id": self.customer.id,
-                "warehouse_id": self.warehouse_id.id,
+                "partner_id": cls.customer.id,
+                "warehouse_id": cls.warehouse_id.id,
                 "picking_policy": "direct",
             }
         )
-        self.line1 = self.order_line_model.create(
+        cls.line1 = cls.order_line_model.create(
             {
-                "order_id": self.sale.id,
-                "product_id": self.new_product1.id,
+                "order_id": cls.sale.id,
+                "product_id": cls.new_product1.id,
                 "product_uom_qty": 10.0,
                 "name": "Sale Order Line Demo1",
             }
         )
-        self.line2 = self.order_line_model.create(
+        cls.line2 = cls.order_line_model.create(
             {
-                "order_id": self.sale.id,
-                "product_id": self.new_product2.id,
+                "order_id": cls.sale.id,
+                "product_id": cls.new_product2.id,
                 "product_uom_qty": 5.0,
                 "name": "Sale Order Line Demo2",
             }
         )
-        return self.sale
+        return cls.sale
 
     def test_01_procurement_group_by_line(self):
         self.sale.action_confirm()
@@ -75,7 +79,7 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         self.picking_ids = self.env["stock.picking"].search(
             [("group_id", "in", self.line2.procurement_group_id.ids)]
         )
-        self.picking_ids.move_lines.write({"quantity_done": 5})
+        self.picking_ids.move_ids.write({"quantity_done": 5})
         wiz_act = self.picking_ids.button_validate()
         wiz = Form(
             self.env[wiz_act["res_model"]].with_context(**wiz_act["context"])
