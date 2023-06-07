@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-19 11:40+0000\n"
+"POT-Creation-Date: 2023-06-07 13:34+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
 "Language-Team: \n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_kanban
@@ -244,7 +244,7 @@ msgstr "Moneda"
 #. module: sale_planner_calendar
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_customers
 msgid "Customers"
-msgstr ""
+msgstr "Clientes"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__cycle_number
@@ -429,7 +429,6 @@ msgstr "Si está marcado hay nuevos mensajes que requieren su atención."
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,help:sale_planner_calendar.field_sale_planner_calendar_summary__message_has_error
-#: model:ir.model.fields,help:sale_planner_calendar.field_sale_planner_calendar_summary__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 
@@ -585,6 +584,13 @@ msgstr "Nombre"
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__new_end
 msgid "New End"
 msgstr "Nuevo fin"
+
+#. module: sale_planner_calendar
+#. openerp-web
+#: code:addons/sale_planner_calendar/static/src/xml/sale_planner_calendar_event_sales.xml:0
+#, python-format
+msgid "New Quotation"
+msgstr "Crear pedido"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__new_start
@@ -773,11 +779,6 @@ msgstr "Eventos de calendario recurrentes"
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_event__partner_ref
 msgid "Reference"
 msgstr "Referencia"
-
-#. module: sale_planner_calendar
-#: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_event__sale_ids

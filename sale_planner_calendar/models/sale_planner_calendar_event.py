@@ -188,7 +188,7 @@ class SalePlannerCalendarEvent(models.Model):
         ctx = safe_eval(action["context"])
         ctx.update(
             {
-                "default_invoice_ids": [(6, 0, unpaid_invoices.ids)],
+                "invoice_ids": unpaid_invoices.ids,
                 "default_sale_planner_calendar_event_id": self.id,
                 "default_partner_id": self.partner_id.id,
             }
