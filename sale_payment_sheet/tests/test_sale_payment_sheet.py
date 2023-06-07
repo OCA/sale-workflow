@@ -46,7 +46,8 @@ class TestSaleInvoicePayment(TransactionCase):
         )
         cls.invoice1 = cls._create_invoice(cls)
         cls.invoice2 = cls._create_invoice(cls)
-        (cls.invoice1 + cls.invoice2).action_post()
+        cls.refund1 = cls._create_refund(cls)
+        (cls.invoice1 + cls.invoice2 + cls.refund1).action_post()
 
     def _create_invoice(self):
         with Form(
@@ -60,10 +61,22 @@ class TestSaleInvoicePayment(TransactionCase):
                 line_form.price_unit = 100.00
         return invoice_form.save()
 
+    def _create_refund(self):
+        with Form(
+            self.env["account.move"].with_context(default_move_type="out_refund")
+        ) as invoice_form:
+            invoice_form.partner_id = self.partner
+            with invoice_form.invoice_line_ids.new() as line_form:
+                line_form.name = "invoice test"
+                line_form.account_id = self.account_invoice
+                line_form.quantity = 1.0
+                line_form.price_unit = 10.00
+        return invoice_form.save()
+
     def test_payment_wizard(self):
         PaymentWiz = self.env["sale.invoice.payment.wiz"].with_context(
             active_model="account.move",
-            active_ids=(self.invoice1 + self.invoice2).ids,
+            active_ids=(self.invoice1 + self.invoice2 + self.refund1).ids,
         )
         with Form(PaymentWiz) as wiz_form:
             wiz_form.journal_id = self.bank_journal
@@ -71,7 +84,7 @@ class TestSaleInvoicePayment(TransactionCase):
         wiz = wiz_form.save()
         action = wiz.create_sale_invoice_payment_sheet()
         sheet = self.SalePaymentSheet.browse(action["res_id"])
-        self.assertEqual(len(sheet.line_ids), 2)
+        self.assertEqual(len(sheet.line_ids), 3)
         line_partial_payment = sheet.line_ids.filtered(
             lambda ln: ln.transaction_type == "partial"
         )
@@ -81,7 +94,7 @@ class TestSaleInvoicePayment(TransactionCase):
             lambda ln: ln.transaction_type == "full"
         )
         self.assertTrue(line_full_payment)
-        self.assertEqual(line_full_payment.invoice_id, self.invoice1)
+        self.assertEqual(line_full_payment.invoice_id, (self.invoice1 + self.refund1))
         self.assertEqual(sheet.amount_total, 150.00)
 
     def _create_payment_sheet(self):
@@ -91,7 +104,6 @@ class TestSaleInvoicePayment(TransactionCase):
                 with sheet_form.line_ids.new() as line_sheet:
                     line_sheet.partner_id = self.partner
                     line_sheet.invoice_id = invoice
-                    # line_sheet.ref = "REF{}".format(line_sheet.id)
                     # Only write for partial amount payed, by default the
                     # amount line is total amount residual
                     if index > 0:
@@ -147,6 +159,8 @@ class TestSaleInvoicePayment(TransactionCase):
 
     def test_payment_sheet_unlink(self):
         sheet = self._create_payment_sheet()
+        sheet.unlink()
+        sheet = self._create_payment_sheet()
         sheet.button_confirm_sheet()
         with self.assertRaises(UserError):
             sheet.unlink()
@@ -169,4 +183,48 @@ class TestSaleInvoicePayment(TransactionCase):
                 with sheet_form.line_ids.new() as line_sheet:
                     line_sheet.partner_id = self.partner
                     line_sheet.invoice_id = self.invoice1
-            sheet_form.save()
+
+    def test_wizard_sale_invoice_payment(self):
+        wiz = (
+            self.env["sale.invoice.payment.wiz"]
+            .with_context(
+                active_model="account.move",
+                active_ids=(self.invoice1 + self.invoice2).ids,
+            )
+            .create(
+                {
+                    "journal_id": self.bank_journal.id,
+                    "amount": 100.00,
+                }
+            )
+        )
+        action = wiz.create_sale_invoice_payment_sheet()
+        sheet = self.SalePaymentSheet.browse(action["res_id"])
+        self.assertEqual(len(sheet.line_ids), 1)
+        self.assertEqual(sheet.amount_total, 100.00)
+
+    def test_wizard_sale_invoice_payment_wrong(self):
+        wiz = (
+            self.env["sale.invoice.payment.wiz"]
+            .with_context(active_model="account.move", active_ids=[])
+            .create(
+                {
+                    "journal_id": self.bank_journal.id,
+                    "amount": 100.00,
+                }
+            )
+        )
+        action = wiz.create_sale_invoice_payment_sheet()
+        self.assertFalse(action)
+        wiz = (
+            self.env["sale.invoice.payment.wiz"]
+            .with_context(active_model="account.move.line", active_ids=[])
+            .create(
+                {
+                    "journal_id": self.bank_journal.id,
+                    "amount": 100.00,
+                }
+            )
+        )
+        action = wiz.create_sale_invoice_payment_sheet()
+        self.assertFalse(action)
