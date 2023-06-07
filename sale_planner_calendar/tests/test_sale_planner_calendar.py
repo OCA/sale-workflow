@@ -34,6 +34,9 @@ class TestSalePlannerCalendar(TransactionCase):
         cls.SaleOrder = cls.env["sale.order"]
         cls.SalePlannerCalendarEvent = cls.env["sale.planner.calendar.event"]
 
+        account_group = cls.env.ref("account.group_account_user")
+        cls.env.user.write({"groups_id": [(4, account_group.id)]})
+
         cls.event_type_commercial_visit = cls.env.ref(
             "sale_planner_calendar.event_type_commercial_visit"
         )
@@ -57,12 +60,11 @@ class TestSalePlannerCalendar(TransactionCase):
         cls.create_calendar_planner_event()
 
         # Some account data
-        account_type_income = cls.env.ref("account.data_account_type_revenue")
         cls.account = cls.env["account.account"].create(
             {
                 "code": "test",
                 "name": "Test account",
-                "user_type_id": account_type_income.id,
+                "account_type": "income",
             }
         )
 
