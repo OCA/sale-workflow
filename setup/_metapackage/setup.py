@@ -55,6 +55,7 @@ setuptools.setup(
         'odoo-addon-sale_order_product_availability_inline>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_product_recommendation>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_qty_change_no_recompute>=15.0dev,<15.1dev',
+        'odoo-addon-sale_order_report_without_price>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_revision>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_secondary_unit>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_type>=15.0dev,<15.1dev',
