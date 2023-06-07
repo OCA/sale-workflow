@@ -21,7 +21,7 @@ class TestSaleStockCancelRestriction(TransactionCase):
         cls.sale_order = so_form.save()
         cls.sale_order.action_confirm()
         cls.picking = cls.sale_order.picking_ids
-        cls.picking.move_lines.quantity_done = 2
+        cls.picking.move_ids.quantity_done = 2
 
     def test_cancel_sale_order_restrict(self):
         """Validates the picking and do the assertRaises cancelling the
@@ -32,11 +32,11 @@ class TestSaleStockCancelRestriction(TransactionCase):
             self.sale_order.action_cancel()
 
     def test_cancel_sale_order_ok(self):
-        """Don't validate the picking and cancel the order, being completed."""
-        # check the status of invoices after cancelling the order
-        self.sale_order.action_cancel()
+        """When canceling the order, the wizard is generated with the
+        model 'sale.order.cancel
+        """
+        wizz = self.sale_order.action_cancel()
         self.assertEqual(
-            self.sale_order.picking_ids.state,
-            "cancel",
-            "After cancelling a picking, the state should be cancelled",
+            wizz["res_model"],
+            "sale.order.cancel",
         )
