@@ -51,14 +51,14 @@ class AccountMove(models.Model):
 
     @api.depends("sale_type_id")
     def _compute_invoice_payment_term_id(self):
-        if self.sale_type_id.payment_term_id:
-            self.invoice_payment_term_id = self.sale_type_id.payment_term_id.id
-        else:
-            return super(AccountMove, self)._compute_invoice_payment_term_id()
+        res = super()._compute_invoice_payment_term_id()
+        for move in self.filtered("sale_type_id.payment_term_id"):
+            move.invoice_payment_term_id = move.sale_type_id.payment_term_id
+        return res
 
     @api.depends("sale_type_id")
     def _compute_journal_id(self):
-        if self.sale_type_id.journal_id:
-            self.journal_id = self.sale_type_id.journal_id.id
-        else:
-            return super(AccountMove, self)._compute_journal_id()
+        res = super()._compute_journal_id()
+        for move in self.filtered("sale_type_id.journal_id"):
+            move.journal_id = move.sale_type_id.journal_id
+        return res
