@@ -9,14 +9,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-28 20:48+0000\n"
-"PO-Revision-Date: 2022-06-28 20:48+0000\n"
-"Last-Translator: César A. Sánchez\n"
+"POT-Creation-Date: 2023-06-07 15:56+0000\n"
+"PO-Revision-Date: 2023-09-20 21:26+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_payment_sheet
 #: model:ir.actions.report,print_report_name:sale_payment_sheet.action_report_sale_payment_sheet
@@ -58,6 +60,7 @@ msgid "Amount"
 msgstr "Importe"
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__amount_residual
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_invoice_tree
 msgid "Amount Due"
 msgstr "Importe adeudado"
@@ -101,6 +104,7 @@ msgid "Confirmed"
 msgstr "Confirmado"
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__create_uid
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__create_uid
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__create_uid
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__create_uid
@@ -108,6 +112,7 @@ msgid "Created by"
 msgstr "Creado el"
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__create_date
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__create_date
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__create_date
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__create_date
@@ -115,6 +120,7 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__currency_id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__currency_id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__currency_id
 msgid "Currency"
@@ -134,6 +140,7 @@ msgid "Description"
 msgstr "Descripción"
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__display_name
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__display_name
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__display_name
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__display_name
@@ -144,6 +151,11 @@ msgstr "Nombre a mostrar"
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_search
 msgid "Draft"
 msgstr "Borrador"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__invoice_date_due
+msgid "Due Date"
+msgstr "Fecha de vencimiento"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__reference
@@ -158,7 +170,7 @@ msgstr "Seguidores"
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Seguidores (Empresas)"
+msgstr "Seguidores (Socios)"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields.selection,name:sale_payment_sheet.selection__sale_payment_sheet_line__transaction_type__full
@@ -167,8 +179,7 @@ msgstr "Completo"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet_line__sequence
-msgid ""
-"Gives the sequence order when displaying a list of payment sheet lines."
+msgid "Gives the sequence order when displaying a list of payment sheet lines."
 msgstr ""
 "Indica el orden de secuencia cuando se muestra una lista de líneas de la "
 "hoja de pagos."
@@ -176,7 +187,7 @@ msgstr ""
 #. module: sale_payment_sheet
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_search
 msgid "Group By"
-msgstr "Agrupado por..."
+msgstr "Agrupado por"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__group_lines
@@ -189,6 +200,7 @@ msgid "Has Message"
 msgstr "Tiene mensaje"
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__id
@@ -208,10 +220,16 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__invoice_id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__invoice_id
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
 msgid "Invoice"
 msgstr "Factura"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__invoice_date
+msgid "Invoice/Bill Date"
+msgstr "Fecha de la factura"
 
 #. module: sale_payment_sheet
 #: model:ir.actions.act_window,name:sale_payment_sheet.action_invoice_sale_payment_sheet
@@ -223,6 +241,11 @@ msgstr "Facturas"
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_is_follower
 msgid "Is Follower"
 msgstr "Es seguidor"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__is_selected
+msgid "Is Selected"
+msgstr "está seleccionado/a"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__journal_id
@@ -242,6 +265,7 @@ msgid "Label"
 msgstr "Etiqueta"
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz____last_update
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz____last_update
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet____last_update
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line____last_update
@@ -249,6 +273,7 @@ msgid "Last Modified on"
 msgstr "Última modificación en"
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__write_uid
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__write_uid
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__write_uid
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__write_uid
@@ -256,6 +281,7 @@ msgid "Last Updated by"
 msgstr "Última actualización de"
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__write_date
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__write_date
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__write_date
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__write_date
@@ -318,6 +344,7 @@ msgid "Partial payment"
 msgstr "Parcial"
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__partner_id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__partner_id
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
 msgid "Partner"
@@ -383,6 +410,11 @@ msgid "Sale invoice payment"
 msgstr "Pago de facturas"
 
 #. module: sale_payment_sheet
+#: model:ir.model,name:sale_payment_sheet.model_sale_invoice_payment_line_wiz
+msgid "Sale invoice payment lines wizard"
+msgstr "Asistente de líneas de pago de facturas de venta"
+
+#. module: sale_payment_sheet
 #: model:ir.model,name:sale_payment_sheet.model_sale_invoice_payment_wiz
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.sale_invoice_payment_wiz
 msgid "Sale invoice payment wizard"
@@ -430,6 +462,7 @@ msgid "Statement Line"
 msgstr "Línea de extracto"
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__state
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__state
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__state
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_search
@@ -451,7 +484,8 @@ msgstr "El importe de una transacción en efectivo no puede ser 0."
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
 #, python-format
 msgid ""
-"This invoice already has been included in other payment sheet or the amount payed is greather than residual invoice amount.\n"
+"This invoice already has been included in other payment sheet or the amount "
+"payed is greather than residual invoice amount.\n"
 " Invoice: %(invoice_name)s\n"
 " Amount payed: %(amount_payed)s\n"
 "  Payment sheets: %(payment_lines_name)s"
@@ -461,7 +495,9 @@ msgstr ""
 " Factura: %(invoice_name)s\n"
 " Importe pagado: %(amount_payed)s\n"
 "  Hojas de pago: %(payment_lines_name)s"
+
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__amount_total
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__amount_total
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_invoice_tree
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_form
@@ -501,7 +537,7 @@ msgstr "Usuarios"
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet_line__journal_currency_id
 msgid "Utility field to express amount currency"
-msgstr "Campo útil para expresar importe en divisa."
+msgstr "Campo útil para expresar importe en divisa"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields.selection,name:sale_payment_sheet.selection__sale_payment_sheet__state__confirm
@@ -519,6 +555,16 @@ msgid "Website communication history"
 msgstr "Historial de comunicaciones del sitio web"
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__wiz_id
+msgid "Wiz"
+msgstr "Asistente"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__wiz_line_ids
+msgid "Wiz Line"
+msgstr "Línea de asistente"
+
+#. module: sale_payment_sheet
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
 #, python-format
 msgid "You can not delete a sheet if has related journal items."
@@ -531,13 +577,19 @@ msgstr ""
 #, python-format
 msgid "You can not delete payment lines if have related statement lines."
 msgstr ""
-"No puede eliminar líneas de pago si tienen una línea de extracto relacionada"
+"No puede eliminar líneas de pago si tienen una línea de extracto relacionada."
 
 #. module: sale_payment_sheet
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
 #, python-format
 msgid "You can not reopen a sheet that has any reconciled line."
 msgstr "No puede reabrir una hoja de pagos si tiene alguna línea conciliada."
+
+#. module: sale_payment_sheet
+#: code:addons/sale_payment_sheet/wizards/sale_invoice_payment.py:0
+#, python-format
+msgid "You have to select at least an invoice to make a payment."
+msgstr "Tienes que seleccionar al menos una factura para hacer el pago."
 
 #. module: sale_payment_sheet
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_users_form

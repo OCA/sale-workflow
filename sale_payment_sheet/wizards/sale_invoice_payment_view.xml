@@ -16,18 +16,19 @@
                     <field name="amount" />
                     <field name="ref" />
                     <field name="partner_id" invisible="1" />
-                    <field
-                        name="invoice_ids"
-                        domain="[('state', '=', 'posted'), ('payment_state', '!=', 'paid'), ('partner_id', '=', partner_id)]"
-                        context="{'tree_view_ref': 'sale_payment_sheet.view_invoice_tree'}"
-                    >
-                        <tree>
+
+                </group>
+                <group>
+                    <field name="wiz_line_ids" nolabel="1">
+                        <tree editable="bottom" create="0">
                             <field name="state" invisible="1" />
-                            <field name="name" />
+                            <field name="is_selected" widget="boolean_toggle" />
+                            <field name="invoice_id" />
                             <field name="invoice_date" />
                             <field name="amount_total" />
                             <field name="amount_residual" />
                             <field name="invoice_date_due" />
+                            <field name="currency_id" invisible="1" />
                         </tree>
                     </field>
                 </group>
