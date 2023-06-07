@@ -1,7 +1,7 @@
 # Copyright 2021 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, fields, models
+from odoo import _, api, fields, models
 from odoo.tools import relativedelta
 
 
@@ -116,3 +116,13 @@ class SaleOrder(models.Model):
                 event_vals["calendar_summary_id"] = event_summary.id
                 event = self.env["sale.planner.calendar.event"].create(event_vals)
             order.sale_planner_calendar_event_id = event
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        orders = super().create(vals_list)
+        if self.env.context.get("calendar_summary_id"):
+            planner_summary = self.env["sale.planner.calendar.summary"].browse(
+                self.env.context["calendar_summary_id"]
+            )
+            orders.action_set_planner_calendar_event(planner_summary=planner_summary)
+        return orders
