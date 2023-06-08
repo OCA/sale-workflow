@@ -8,7 +8,7 @@ from odoo.tests import TransactionCase
 class TestSaleFixedDiscount(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestSaleFixedDiscount, cls).setUpClass()
+        super().setUpClass()
         cls.partner = cls.env["res.partner"].create({"name": "Test"})
         cls.tax = cls.env["account.tax"].create(
             {
