@@ -60,11 +60,12 @@ class TestSaleIsolatedQuotation(TransactionCase):
             else:
                 self.assertTrue("search_default_my_quotation" in ctx)
 
-    def setUp(self):
-        super().setUp()
-        self.partner = self.env.ref("base.res_partner_2")
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partner = cls.env.ref("base.res_partner_2")
         vals = {
-            "partner_id": self.partner.id,
+            "partner_id": cls.partner.id,
             "order_sequence": False,
         }
-        self.quotation = self.env["sale.order"].create(vals)
+        cls.quotation = cls.env["sale.order"].create(vals)
