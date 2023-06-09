@@ -8,7 +8,7 @@ from odoo.exceptions import UserError
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    order_sequence = fields.Boolean(string="Order Sequence", readonly=True, index=True)
+    order_sequence = fields.Boolean(readonly=True, index=True)
     quote_id = fields.Many2one(
         comodel_name="sale.order",
         string="Quotation",
@@ -27,7 +27,6 @@ class SaleOrder(models.Model):
     )
     quotation_state = fields.Selection(
         string="Quotation Status",
-        readonly=True,
         related="state",
         help="Only relative quotation states",
     )
@@ -40,6 +39,7 @@ class SaleOrder(models.Model):
         return not order_sequence
 
     def _prepare_order_from_quotation(self):
+        self.ensure_one()
         return {
             "name": self.env["ir.sequence"].next_by_code("sale.order") or "/",
             "order_sequence": True,
