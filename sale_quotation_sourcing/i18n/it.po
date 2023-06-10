@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-29 03:52+0000\n"
-"PO-Revision-Date: 2023-05-24 10:09+0000\n"
+"PO-Revision-Date: 2023-06-10 12:09+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -157,7 +157,7 @@ msgstr ""
 #. module: sale_quotation_sourcing
 #: field:sale.order.line.sourcing,wizard_id:0
 msgid "Wizard"
-msgstr "Wizard"
+msgstr "Procedura guidata"
 
 #. module: sale_quotation_sourcing
 #: view:sale.order.sourcing:sale_quotation_sourcing.sale_order_sourcing_wizard
