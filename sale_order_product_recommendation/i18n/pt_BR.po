@@ -7,19 +7,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-28 21:18+0000\n"
-"PO-Revision-Date: 2022-06-28 21:18+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2023-06-12 15:09+0000\n"
+"Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
 msgid "<span class=\"o_form_label\">Default Number of recommendations</span>"
-msgstr ""
+msgstr "<span class=\"o_form_label\">Número padrão de recomendações</span>"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
@@ -27,6 +28,8 @@ msgid ""
 "<span class=\"o_form_label\">Default months backwards to generate "
 "recommendations</span>"
 msgstr ""
+"<span class=\"o_form_label\">Meses anteriores padrão para gerar "
+"recomendações</span>"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
@@ -36,7 +39,7 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
 msgid "<span class=\"o_form_label\">Use delivery address</span>"
-msgstr ""
+msgstr "<span class=\"o_form_label\">Usar endereço de entrega</span>"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
