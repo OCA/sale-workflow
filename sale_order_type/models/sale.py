@@ -47,20 +47,21 @@ class SaleOrder(models.Model):
 
     @api.depends("partner_id", "company_id")
     def _compute_sale_type_id(self):
-        for record in self:
-            if not record.partner_id:
-                record.type_id = self.env["sale.order.type"].search(
-                    [("company_id", "in", [self.env.company.id, False])], limit=1
-                )
-            else:
-                sale_type = (
-                    record.partner_id.with_company(record.company_id).sale_type
-                    or record.partner_id.commercial_partner_id.with_company(
-                        record.company_id
-                    ).sale_type
-                )
-                if sale_type:
-                    record.type_id = sale_type
+        if 'compute_sale_type_id' not in self.env.context:
+            for record in self:
+                if not record.partner_id:
+                    record.type_id = self.env["sale.order.type"].search(
+                        [("company_id", "in", [self.env.company.id, False])],
+                        limit=1)
+                else:
+                    sale_type = (
+                        record.partner_id.with_company(
+                            record.company_id).sale_type or
+                        record.partner_id.commercial_partner_id.with_company(
+                            record.company_id).sale_type
+                    )
+                    if sale_type:
+                        record.type_id = sale_type
 
     @api.onchange("type_id")
     def onchange_type_id(self):
@@ -106,7 +107,8 @@ class SaleOrder(models.Model):
                 vals["name"] = sale_type.sequence_id.next_by_id(
                     sequence_date=vals.get("date_order")
                 )
-        return super(SaleOrder, self).create(vals)
+        return super(SaleOrder, self.with_context(
+            compute_sale_type_id=False)).create(vals)
 
     def write(self, vals):
         """A sale type could have a different order sequence, so we could
