@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_invoice_blocking_reason_base_user,invoice_blocking_reason base user,model_invoice_blocking_reason,base.group_user,1,0,0,0
+access_invoice_blocking_reason_system,invoice_blocking_reason system,model_invoice_blocking_reason,sales_team.group_sale_manager,1,1,1,1
