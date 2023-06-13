@@ -3,6 +3,7 @@
 
 import json
 
+from odoo import fields
 from odoo.tests import common
 
 
@@ -70,9 +71,22 @@ class TestSaleAdvancePayment(common.SavepointCase):
 
         cls.currency_euro = cls.env["res.currency"].search([("name", "=", "EUR")])
         cls.currency_usd = cls.env["res.currency"].search([("name", "=", "USD")])
-        cls.currency_rate = cls.env["res.currency.rate"].create(
-            {"rate": 1.20, "currency_id": cls.currency_usd.id}
+        cls.currency_rate = cls.env["res.currency.rate"].search(
+            [
+                ("currency_id", "=", cls.currency_usd.id),
+                ("name", "=", fields.Date.today()),
+            ]
         )
+        if cls.currency_rate:
+            cls.currency_rate.write({"rate": 1.20})
+        else:
+            cls.currency_rate = cls.env["res.currency.rate"].create(
+                {
+                    "rate": 1.20,
+                    "currency_id": cls.currency_usd.id,
+                    "name": fields.Date.today(),
+                }
+            )
 
         cls.journal_eur_bank = cls.env["account.journal"].create(
             {
