@@ -17,6 +17,11 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: product_form_sale_link
+#: model_terms:ir.ui.view,arch_db:product_form_sale_link.view_sales_order_line_filter
+msgid "Quotations"
+msgstr ""
+
+#. module: product_form_sale_link
 #: model:ir.actions.act_window,name:product_form_sale_link.action_product_product_sale_list
 #: model:ir.actions.act_window,name:product_form_sale_link.action_product_template_sale_list
 msgid "Sale Order Lines"
@@ -27,3 +32,8 @@ msgstr "Línies de comandes de venda"
 #: model_terms:ir.ui.view,arch_db:product_form_sale_link.product_template_form_view
 msgid "Sales"
 msgstr "Vendes"
+
+#. module: product_form_sale_link
+#: model_terms:ir.ui.view,arch_db:product_form_sale_link.view_sales_order_line_filter
+msgid "Sales Orders"
+msgstr ""
