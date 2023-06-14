@@ -9,20 +9,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2023-05-18 19:28+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-06-14 09:43+0000\n"
+"Last-Translator: Giuseppe Tavormina <gtavormina@dinamicheaziendali.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16.4\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order__all_qty_delivered
 msgid "All quantities delivered"
-msgstr ""
+msgstr "Tutte le quantità consegnate"
 
 #. module: sale_automatic_workflow
 #: model:ir.actions.act_window,name:sale_automatic_workflow.act_sale_workflow_process_form
@@ -31,18 +31,18 @@ msgstr ""
 #: model:ir.ui.menu,name:sale_automatic_workflow.menu_sale_workflow_parent
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
 msgid "Automatic Workflow"
-msgstr ""
+msgstr "Flusso di lavoro automatico"
 
 #. module: sale_automatic_workflow
 #: model:ir.actions.server,name:sale_automatic_workflow.ir_cron_automatic_workflow_job_ir_actions_server
 #: model:ir.cron,cron_name:sale_automatic_workflow.ir_cron_automatic_workflow_job
 msgid "Automatic Workflow Job"
-msgstr ""
+msgstr "Lavoro flusso di lavoro automatico"
 
 #. module: sale_automatic_workflow
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_order_view_form
 msgid "Automation Information"
-msgstr ""
+msgstr "Informazioni sull'automazione"
 
 #. module: sale_automatic_workflow
 #: model:sale.workflow.process,warning:sale_automatic_workflow.automatic_validation
