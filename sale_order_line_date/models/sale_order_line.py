@@ -17,7 +17,7 @@ class SaleOrderLine(models.Model):
     commitment_date = fields.Datetime("Delivery Date")
 
     def _prepare_procurement_values(self, group_id=False):
-        vals = super(SaleOrderLine, self)._prepare_procurement_values(group_id)
+        vals = super()._prepare_procurement_values(group_id)
         # has ensure_one already
         if self.commitment_date:
             vals.update(
