@@ -18,7 +18,7 @@
         <field name="name">sale.order.tag.form</field>
         <field name="model">sale.order.tag</field>
         <field name="arch" type="xml">
-            <form string="Sale Order Tags">
+            <form string="Tags">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button
@@ -57,7 +57,7 @@
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem
-        name="Tags"
+        name="Sale Order Tags"
         id="sale_order_tag_menu"
         parent="sale.menu_sales_config"
         action="sale_order_tag_action"
