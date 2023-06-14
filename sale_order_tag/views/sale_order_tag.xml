@@ -18,7 +18,7 @@
         <field name="name">sale.order.tag.form</field>
         <field name="model">sale.order.tag</field>
         <field name="arch" type="xml">
-            <form string="Tags">
+            <form string="Sale Order Tags">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button
