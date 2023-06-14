@@ -14,7 +14,7 @@ from odoo.addons.sale_promotion_rule.tests.test_promotion import (
 
 class TestSaleOrder(TransactionCase, AbstractCommonPromotionCase):
     def setUp(self, *args, **kwargs):
-        super(TestSaleOrder, self).setUp(*args, **kwargs)
+        super().setUp(*args, **kwargs)
         self.set_up("sale_promotion_rule.sale_order_promotion")
 
     def test_discount_amount(self):

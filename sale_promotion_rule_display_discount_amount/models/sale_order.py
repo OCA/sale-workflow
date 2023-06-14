@@ -27,35 +27,34 @@ class SaleOrder(models.Model):
             discount_total = order.discount_total
             price_total_no_discount = order.price_total_no_discount
             if not order.order_line:
-                return True
-            else:
-                for line in order.order_line:
-                    if not line.is_promotion_line:
-                        continue
-                    price_total = line.price_total
-                    if (
-                        float_compare(
-                            line.price_total,
-                            0.0,
-                            precision_rounding=line.currency_id.rounding,
-                        )
-                        < 1
-                    ):
-                        price_total = -price_total
-                    discount_total += price_total
-                    price_total_no_discount += price_total
-
+                continue
+            for line in order.order_line:
+                if not line.is_promotion_line:
+                    continue
+                price_total = line.price_total
                 if (
                     float_compare(
-                        discount_total,
-                        order.discount_total,
-                        precision_rounding=order.currency_id.rounding,
+                        line.price_total,
+                        0.0,
+                        precision_rounding=line.currency_id.rounding,
                     )
-                    != 0
+                    < 1
                 ):
-                    order.update(
-                        {
-                            "discount_total": discount_total,
-                            "price_total_no_discount": price_total_no_discount,
-                        }
-                    )
+                    price_total = -price_total
+                discount_total += price_total
+                price_total_no_discount += price_total
+
+            if (
+                float_compare(
+                    discount_total,
+                    order.discount_total,
+                    precision_rounding=order.currency_id.rounding,
+                )
+                != 0
+            ):
+                order.update(
+                    {
+                        "discount_total": discount_total,
+                        "price_total_no_discount": price_total_no_discount,
+                    }
+                )
