@@ -21,4 +21,6 @@ class SaleOrderTag(models.Model):
         required=True,
     )
 
-    _sql_constraints = [("name_uniq", "unique (name)", "Tag name already exists!")]
+    _sql_constraints = [
+        ("name_uniq", "unique (name, company_id)", "Tag name already exists!")
+    ]
