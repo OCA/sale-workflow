@@ -272,9 +272,9 @@ according to the strategy
         res = []
         for record in self:
             if record.rule_type == "coupon":
-                res.append((record.id, u"{} ({})".format(record.name, record.code)))
+                res.append((record.id, "{} ({})".format(record.name, record.code)))
             elif record.rule_type == "auto":
-                res.append((record.id, u"{} ({})".format(record.name, _("Automatic"))))
+                res.append((record.id, "{} ({})".format(record.name, _("Automatic"))))
             else:
                 res.extend(super(SalePromotionRule, record)._name_get())
         return res
@@ -494,7 +494,7 @@ according to the strategy
         if not diff:
             return price
         while diff:
-            step = 1.0 / 10 ** precision_digits
+            step = 1.0 / 10**precision_digits
             price += step * -diff
             price_amounts = taxes.compute_all(
                 price,
