@@ -99,6 +99,11 @@ msgid "Code number %s is invalid"
 msgstr "Le code %s est invalide"
 
 #. module: sale_promotion_rule
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__company_id
+msgid "Company"
+msgstr ""
+
+#. module: sale_promotion_rule
 #: model_terms:ir.ui.view,arch_db:sale_promotion_rule.view_sale_promotion_rule_form
 msgid "Condition"
 msgstr "Condition"
@@ -159,9 +164,11 @@ msgid "Date To"
 msgstr "Date de fin"
 
 #. module: sale_promotion_rule
-#: model_terms:ir.ui.view,arch_db:sale_promotion_rule.view_sale_promotion_rule_form
-msgid "Date début/fin"
-msgstr "Date début/fin"
+#: model:ir.model.fields,help:sale_promotion_rule.field_sale_promotion_rule__company_id
+msgid ""
+"Define on which company this promotion rule is available (let it empty if "
+"available for every companies)"
+msgstr ""
 
 #. module: sale_promotion_rule
 #: model:ir.model.fields.selection,name:sale_promotion_rule.selection__sale_promotion_rule__promo_type__discount
@@ -385,6 +392,11 @@ msgid "Sequence"
 msgstr "Sequence"
 
 #. module: sale_promotion_rule
+#: model_terms:ir.ui.view,arch_db:sale_promotion_rule.view_sale_promotion_rule_form
+msgid "Start/End date"
+msgstr ""
+
+#. module: sale_promotion_rule
 #: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__is_minimal_amount_tax_incl
 msgid "Tax included into minimal amount?"
 msgstr ""
@@ -431,6 +443,9 @@ msgid ""
 "You must specify a promotion product for discount rule applaying a specific "
 "amount"
 msgstr ""
+
+#~ msgid "Date début/fin"
+#~ msgstr "Date début/fin"
 
 #~ msgid "Sale Promotion Rule"
 #~ msgstr "Sale Promotion Rule"
