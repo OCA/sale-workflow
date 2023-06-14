@@ -6,7 +6,7 @@
     "summary": """
         This addon allows you to display the amount of the discount applied by
         the sale promotion rules on the sale order""",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "development_status": "Beta",
     "license": "AGPL-3",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
