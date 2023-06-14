@@ -102,6 +102,7 @@ setuptools.setup(
         'odoo14-addon-sale_product_set_packaging_qty',
         'odoo14-addon-sale_product_set_sale_by_packaging',
         'odoo14-addon-sale_promotion_rule',
+        'odoo14-addon-sale_promotion_rule_display_discount_amount',
         'odoo14-addon-sale_purchase_requisition',
         'odoo14-addon-sale_quick',
         'odoo14-addon-sale_quick_seasonality',
