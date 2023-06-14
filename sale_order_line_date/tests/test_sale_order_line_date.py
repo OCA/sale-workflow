@@ -12,43 +12,45 @@ from odoo.tests.common import TransactionCase
 
 
 class TestSaleOrderLineDates(TransactionCase):
-    def setUp(self):
+    @classmethod
+    def setUpClass(cls):
         """Setup a Sale Order with 4 lines."""
-        super(TestSaleOrderLineDates, self).setUp()
-        customer = self.env.ref("base.res_partner_3")
-        self.company = self.env.ref("base.main_company")
-        self.company.security_lead = 1
+        super().setUpClass()
+        customer = cls.env.ref("base.res_partner_3")
+        cls.company = cls.env.ref("base.main_company")
+        cls.company.security_lead = 1
 
         price = 100.0
         qty = 5
-        product_id = self.env.ref("product.product_product_7")
-        self.today = fields.Datetime.now()
-        self.dt1 = self.today + datetime.timedelta(days=9)
-        self.dt2 = self.today + datetime.timedelta(days=10)
-        self.dt3 = self.today + datetime.timedelta(days=3)
-        self.sale1 = self._create_sale_order(customer, self.dt2)
-        self.sale_line1 = self._create_sale_order_line(
-            self.sale1, product_id, qty, price, self.dt1
+        product_id = cls.env.ref("product.product_product_7")
+        cls.today = fields.Datetime.now()
+        cls.dt1 = cls.today + datetime.timedelta(days=9)
+        cls.dt2 = cls.today + datetime.timedelta(days=10)
+        cls.dt3 = cls.today + datetime.timedelta(days=3)
+        cls.sale1 = cls._create_sale_order(customer, cls.dt2)
+        cls.sale_line1 = cls._create_sale_order_line(
+            cls.sale1, product_id, qty, price, cls.dt1
         )
-        self.sale_line2 = self._create_sale_order_line(
-            self.sale1, product_id, qty, price, self.dt2
+        cls.sale_line2 = cls._create_sale_order_line(
+            cls.sale1, product_id, qty, price, cls.dt2
         )
-        self.sale_line3 = self._create_sale_order_line(
-            self.sale1, product_id, qty, price, None
+        cls.sale_line3 = cls._create_sale_order_line(
+            cls.sale1, product_id, qty, price, None
         )
-        self.sale2 = self._create_sale_order(customer, self.dt2)
-        self.sale_line4 = self._create_sale_order_line(
-            self.sale2, product_id, qty, price, self.dt3
+        cls.sale2 = cls._create_sale_order(customer, cls.dt2)
+        cls.sale_line4 = cls._create_sale_order_line(
+            cls.sale2, product_id, qty, price, cls.dt3
         )
-        self.sale_line5 = self._create_sale_order_line(
-            self.sale2, product_id, qty, price, self.dt2
+        cls.sale_line5 = cls._create_sale_order_line(
+            cls.sale2, product_id, qty, price, cls.dt2
         )
-        self.sale_line6 = self._create_sale_order_line(
-            self.sale2, product_id, qty, price, self.dt1
+        cls.sale_line6 = cls._create_sale_order_line(
+            cls.sale2, product_id, qty, price, cls.dt1
         )
 
-    def _create_sale_order(self, customer, date):
-        sale = self.env["sale.order"].create(
+    @classmethod
+    def _create_sale_order(cls, customer, date):
+        sale = cls.env["sale.order"].create(
             {
                 "partner_id": customer.id,
                 "partner_invoice_id": customer.id,
@@ -59,8 +61,9 @@ class TestSaleOrderLineDates(TransactionCase):
         )
         return sale
 
-    def _create_sale_order_line(self, sale, product, qty, price, date):
-        sale_line = self.env["sale.order.line"].create(
+    @classmethod
+    def _create_sale_order_line(cls, sale, product, qty, price, date):
+        sale_line = cls.env["sale.order.line"].create(
             {
                 "product_id": product.id,
                 "name": "cool product",
