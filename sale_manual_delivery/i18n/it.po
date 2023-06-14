@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-07 13:09+0000\n"
+"PO-Revision-Date: 2023-06-14 15:08+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -228,7 +228,7 @@ msgstr "Riga Ordine di Vendita"
 #. module: sale_manual_delivery
 #: model:ir.model,name:sale_manual_delivery.model_crm_team
 msgid "Sales Channels"
-msgstr "Canali di Vendita"
+msgstr "Canali di vendita"
 
 #. module: sale_manual_delivery
 #: model:ir.model,name:sale_manual_delivery.model_sale_order_line
