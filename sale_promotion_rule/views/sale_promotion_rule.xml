@@ -58,7 +58,7 @@
                             <field name="multi_rule_strategy" />
                         </group>
                         <group name="condition" string="Condition" col="3">
-                            <label for="date_from" string="Date début/fin" />
+                            <label for="date_from" string="Start/End date" />
                             <field name="date_from" nolabel="1" />
                             <field name="date_to" nolabel="1" />
                             <field name="minimal_amount" colspan="3" />
