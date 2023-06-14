@@ -17,10 +17,39 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_invoice_auto_deliver
-#: code:addons/sale_invoice_auto_deliver/wizards/sale_make_invoice_advance.py:14
+#: model:ir.model.fields,help:sale_invoice_auto_deliver.field_sale_advance_payment_inv__advance_payment_method
+msgid ""
+"A standard invoice is issued with all the order lines ready for "
+"invoicing,         according to their invoicing policy (based on ordered or "
+"delivered quantity)."
+msgstr ""
+
+#. module: sale_invoice_auto_deliver
+#: model:ir.model.fields,field_description:sale_invoice_auto_deliver.field_sale_advance_payment_inv__advance_payment_method
+msgid "Create Invoice"
+msgstr ""
+
+#. module: sale_invoice_auto_deliver
+#: model:ir.model.fields,field_description:sale_invoice_auto_deliver.field_sale_advance_payment_inv__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_invoice_auto_deliver
+#: model:ir.model.fields,field_description:sale_invoice_auto_deliver.field_sale_advance_payment_inv__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_invoice_auto_deliver
+#: code:addons/sale_invoice_auto_deliver/wizards/sale_make_invoice_advance.py:0
+#: model:ir.model.fields.selection,name:sale_invoice_auto_deliver.selection__sale_advance_payment_inv__advance_payment_method__all_auto
 #, python-format
 msgid "Invoice the whole sales order + Automatic Deliver"
 msgstr "Facturer toute la commande et livrer"
+
+#. module: sale_invoice_auto_deliver
+#: model:ir.model.fields,field_description:sale_invoice_auto_deliver.field_sale_advance_payment_inv____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: sale_invoice_auto_deliver
 #: model:ir.model,name:sale_invoice_auto_deliver.model_sale_advance_payment_inv
@@ -28,7 +57,7 @@ msgid "Sales Advance Payment Invoice"
 msgstr "Facture de paiement d'avance"
 
 #. module: sale_invoice_auto_deliver
-#: code:addons/sale_invoice_auto_deliver/wizards/sale_make_invoice_advance.py:49
+#: code:addons/sale_invoice_auto_deliver/wizards/sale_make_invoice_advance.py:0
 #, python-format
 msgid ""
 "You cannot automatic deliver this order, some products are not available"
