@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="product_product_form_view">
+        <field name="name">product.product.form (in product_form_sale_link)</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="sale.product_form_view_sale_order_button" />
+        <field name="arch" type="xml">
+            <button name="action_view_sales" position="after">
+                <button
+                    class="oe_stat_button"
+                    name="%(product_form_sale_link.action_product_product_sale_list)d"
+                    type="action"
+                    icon="fa-list"
+                    groups="sales_team.group_sale_salesman"
+                    attrs="{'invisible': [('sale_ok', '=', False)]}"
+                >
+                    <field string="Sales" name="sale_lines_count" widget="statinfo" />
+                </button>
+            </button>
+        </field>
+    </record>
+</odoo>
