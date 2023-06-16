@@ -87,6 +87,7 @@ setuptools.setup(
         'odoo14-addon-sale_order_warn_message',
         'odoo14-addon-sale_partner_approval',
         'odoo14-addon-sale_partner_incoterm',
+        'odoo14-addon-sale_partner_shipping_invoice_domain',
         'odoo14-addon-sale_partner_version',
         'odoo14-addon-sale_pricelist_discount_decimal_precision',
         'odoo14-addon-sale_pricelist_from_commitment_date',
