@@ -36,13 +36,13 @@ class Common(TransactionCase):
 
     @classmethod
     def setUpClassPackagingType(cls):
-        cls.packaging_type_tu = cls.env["product.packaging.type"].create(
+        cls.packaging_level_tu = cls.env["product.packaging.level"].create(
             {"name": "Transport Unit", "code": "TU", "sequence": 1}
         )
-        cls.packaging_type_pl = cls.env["product.packaging.type"].create(
+        cls.packaging_level_pl = cls.env["product.packaging.level"].create(
             {"name": "Pallet", "code": "PL", "sequence": 2}
         )
-        cls.packaging_type_cannot_be_sold = cls.env["product.packaging.type"].create(
+        cls.packaging_level_cannot_be_sold = cls.env["product.packaging.level"].create(
             {
                 "name": "Can not be sold",
                 "code": "CNBS",
@@ -57,7 +57,7 @@ class Common(TransactionCase):
             {
                 "name": "PACKAGING TU",
                 "product_id": cls.product.id,
-                "packaging_type_id": cls.packaging_type_tu.id,
+                "packaging_level_id": cls.packaging_level_tu.id,
                 "qty": TU_PRODUCT_QTY,
             }
         )
@@ -65,7 +65,7 @@ class Common(TransactionCase):
             {
                 "name": "PACKAGING PL",
                 "product_id": cls.product.id,
-                "packaging_type_id": cls.packaging_type_pl.id,
+                "packaging_level_id": cls.packaging_level_pl.id,
                 "qty": PL_PRODUCT_QTY,
             }
         )
@@ -74,7 +74,7 @@ class Common(TransactionCase):
                 "name": "Test packaging cannot be sold",
                 "product_id": cls.product.id,
                 "qty": 10.0,
-                "packaging_type_id": cls.packaging_type_cannot_be_sold.id,
+                "packaging_level_id": cls.packaging_level_cannot_be_sold.id,
             }
         )
         cls.sellable_packagings = cls.packaging_tu | cls.packaging_pl

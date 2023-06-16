@@ -4,12 +4,12 @@
 from odoo import _, api, exceptions, fields, models
 
 
-class ProductPackagingType(models.Model):
-    _inherit = "product.packaging.type"
+class ProductPackagingLevel(models.Model):
+    _inherit = "product.packaging.level"
 
     can_be_sold = fields.Boolean(string="Can be sold", default=True)
     packaging_ids = fields.One2many(
-        comodel_name="product.packaging", inverse_name="packaging_type_id"
+        comodel_name="product.packaging", inverse_name="packaging_level_id"
     )
 
     @api.constrains("can_be_sold")

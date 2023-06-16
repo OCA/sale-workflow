@@ -5,7 +5,7 @@ from odoo.exceptions import ValidationError
 from .common import Common
 
 
-class TestPackagingTypeCanBeSold(Common):
+class TestPackagingLevelCanBeSold(Common):
     @classmethod
     def setUpClassSaleOrder(cls):
         super().setUpClassSaleOrder()
@@ -13,7 +13,7 @@ class TestPackagingTypeCanBeSold(Common):
         # Needed for W8110 of pylint-odoo.
         return None
 
-    def test_packaging_type_can_be_sold(self):
+    def test_packaging_level_can_be_sold(self):
         self.order_line.write({"product_packaging_id": self.packaging_tu.id})
         with self.assertRaises(ValidationError):
             self.order_line.write(
@@ -39,11 +39,11 @@ class TestPackagingTypeCanBeSold(Common):
         )
         # Changing the packaging type on product.packaging updates can_be_sold
         self.sellable_packagings.unlink()
-        self.packaging_cannot_be_sold.packaging_type_id = self.packaging_type_tu
-        self.packaging_cannot_be_sold.packaging_type_id = (
-            self.packaging_type_cannot_be_sold
+        self.packaging_cannot_be_sold.packaging_level_id = self.packaging_level_tu
+        self.packaging_cannot_be_sold.packaging_level_id = (
+            self.packaging_level_cannot_be_sold
         )
         self.assertEqual(self.packaging_cannot_be_sold.can_be_sold, False)
-        # Changing the can_be_sold on the packaging_type does not update the packaging
-        self.packaging_type_cannot_be_sold.can_be_sold = True
+        # Changing the can_be_sold on the packaging_level does not update the packaging
+        self.packaging_level_cannot_be_sold.can_be_sold = True
         self.assertEqual(self.packaging_cannot_be_sold.can_be_sold, False)

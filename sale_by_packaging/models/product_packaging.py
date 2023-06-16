@@ -20,7 +20,7 @@ class ProductPackaging(models.Model):
         "quantity to the superior unit (5 for this example).",
     )
 
-    @api.depends("packaging_type_id")
+    @api.depends("packaging_level_id")
     def _compute_can_be_sold(self):
         for record in self:
-            record.can_be_sold = record.packaging_type_id.can_be_sold
+            record.can_be_sold = record.packaging_level_id.can_be_sold
