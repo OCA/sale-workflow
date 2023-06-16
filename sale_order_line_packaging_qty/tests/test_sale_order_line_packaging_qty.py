@@ -1,10 +1,10 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo.exceptions import UserError
-from odoo.tests import SavepointCase
+from odoo.tests import TransactionCase
 
 
-class TestSaleOrderLinePackagingQty(SavepointCase):
+class TestSaleOrderLinePackagingQty(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -32,8 +32,8 @@ class TestSaleOrderLinePackagingQty(SavepointCase):
                 "product_uom_qty": 3.0,
             }
         )
-        order_line.write({"product_packaging": self.packaging.id})
-        order_line._onchange_product_packaging()
+        order_line.write({"product_packaging_id": self.packaging.id})
+        order_line._onchange_product_packaging_id()
         self.assertAlmostEqual(
             order_line.product_uom_qty, self.packaging.qty, places=self.precision
         )
@@ -62,8 +62,8 @@ class TestSaleOrderLinePackagingQty(SavepointCase):
                 "product_uom_qty": 7,
             }
         )
-        order_line.write({"product_packaging": self.packaging2.id})
-        order_line._onchange_product_packaging()
+        order_line.write({"product_packaging_id": self.packaging2.id})
+        order_line._onchange_product_packaging_id()
         self.assertAlmostEqual(
             order_line.product_uom_qty, self.packaging2.qty, places=self.precision
         )
@@ -114,6 +114,6 @@ class TestSaleOrderLinePackagingQty(SavepointCase):
                 "product_uom_qty": 15.0,
             }
         )
-        order_line.write({"product_packaging": self.packaging})
-        order_line._onchange_product_packaging()
+        order_line.write({"product_packaging_id": self.packaging})
+        order_line._onchange_product_packaging_id()
         self.assertEqual(order_line.product_packaging_qty, 3.0)

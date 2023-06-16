@@ -17,14 +17,17 @@ class SaleOrderLine(models.Model):
     )
 
     @api.depends(
-        "product_uom_qty", "product_uom", "product_packaging", "product_packaging.qty"
+        "product_uom_qty",
+        "product_uom",
+        "product_packaging_id",
+        "product_packaging_id.qty",
     )
     def _compute_product_packaging_qty(self):
         for sol in self:
             if (
-                not sol.product_packaging
+                not sol.product_packaging_id
                 or sol.product_uom_qty == 0
-                or sol.product_packaging.qty == 0
+                or sol.product_packaging_id.qty == 0
             ):
                 sol.product_packaging_qty = 0
                 continue
@@ -36,58 +39,60 @@ class SaleOrderLine(models.Model):
             else:
                 product_qty = sol.product_uom_qty
             qty_mod = float_round(
-                product_qty % sol.product_packaging.qty,
-                precision_rounding=sol.product_packaging.product_uom_id.rounding,
+                product_qty % sol.product_packaging_id.qty,
+                precision_rounding=sol.product_packaging_id.product_uom_id.rounding,
             )
-            # After the rounding, the value could be equals to sol.product_packaging.qty
+            # After the rounding, the value could be equals to
+            # sol.product_packaging_id.qty.
             # So just re-apply the '%'
-            qty_mod = qty_mod % sol.product_packaging.qty
+            qty_mod = qty_mod % sol.product_packaging_id.qty
             if not float_is_zero(
                 qty_mod,
-                precision_digits=sol.product_packaging.product_uom_id.rounding,
+                precision_digits=sol.product_packaging_id.product_uom_id.rounding,
             ):
                 # If qty does not fit in package reset package qty
                 sol.product_packaging_qty = 0
             else:
                 # Maybe that product_packaging_qty should be an Integer, no ?
-                qty = product_qty / sol.product_packaging.qty
+                qty = product_qty / sol.product_packaging_id.qty
                 sol.product_packaging_qty = qty
 
     def _prepare_product_packaging_qty_values(self):
         return {
-            "product_uom_qty": self.product_packaging.qty * self.product_packaging_qty,
-            "product_uom": self.product_packaging.product_uom_id.id,
+            "product_uom_qty": self.product_packaging_id.qty
+            * self.product_packaging_qty,
+            "product_uom": self.product_packaging_id.product_uom_id.id,
         }
 
     def _inverse_product_packaging_qty(self):
         for sol in self:
-            if sol.product_packaging_qty and not sol.product_packaging:
+            if sol.product_packaging_qty and not sol.product_packaging_id:
                 raise UserError(
                     _(
                         "You must define a package before setting a quantity "
                         "of said package."
                     )
                 )
-            if sol.product_packaging and sol.product_packaging.qty == 0:
+            if sol.product_packaging_id and sol.product_packaging_id.qty == 0:
                 raise UserError(
                     _("Please select a packaging with a quantity bigger than 0")
                 )
-            if sol.product_packaging and sol.product_packaging_qty:
+            if sol.product_packaging_id and sol.product_packaging_qty:
                 sol.write(sol._prepare_product_packaging_qty_values())
 
     @api.onchange("product_packaging_qty")
     def _onchange_product_packaging_qty(self):
-        if self.product_packaging and self.product_packaging_qty:
+        if self.product_packaging_id and self.product_packaging_qty:
             self.update(self._prepare_product_packaging_qty_values())
 
-    @api.onchange("product_packaging")
-    def _onchange_product_packaging(self):
-        if self.product_packaging:
+    @api.onchange("product_packaging_id")
+    def _onchange_product_packaging_id(self):
+        if self.product_packaging_id:
             pack_qty = 1
-            product_qty = self.product_packaging.qty
+            product_qty = self.product_packaging_id.qty
             if self.product_uom_qty > 0 and product_qty > 0:
-                if (self.product_uom_qty % self.product_packaging.qty) == 0:
-                    pack_qty = self.product_uom_qty / self.product_packaging.qty
+                if (self.product_uom_qty % self.product_packaging_id.qty) == 0:
+                    pack_qty = self.product_uom_qty / self.product_packaging_id.qty
                     product_qty = self.product_uom_qty
             self.update(
                 {
@@ -98,4 +103,4 @@ class SaleOrderLine(models.Model):
             )
         else:
             self.update({"product_packaging_qty": 0})
-        return super()._onchange_product_packaging()
+        return super()._onchange_product_packaging_id()
