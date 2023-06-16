@@ -100,6 +100,7 @@ addon | version | maintainers | summary
 [sale_order_warn_message](sale_order_warn_message/) | 14.0.1.1.0 |  | Add a popup warning on sale to ensure warning is populated
 [sale_partner_approval](sale_partner_approval/) | 14.0.2.0.0 | [![dreispt](https://github.com/dreispt.png?size=30px)](https://github.com/dreispt) | Control Partners that can be used in Sales Orders
 [sale_partner_incoterm](sale_partner_incoterm/) | 14.0.1.2.0 |  | Set the customer preferred incoterm on each sales order
+[sale_partner_shipping_invoice_domain](sale_partner_shipping_invoice_domain/) | 14.0.1.0.0 |  | Adds a sensible domain to the shipping and invoicing addresses on sale form view
 [sale_partner_version](sale_partner_version/) | 14.0.2.0.0 |  | Sale Partner Version
 [sale_pricelist_discount_decimal_precision](sale_pricelist_discount_decimal_precision/) | 14.0.1.0.1 |  | Use Discount decimal precision for pricelist items
 [sale_pricelist_from_commitment_date](sale_pricelist_from_commitment_date/) | 14.0.1.0.2 |  | Use sale order commitment date to compute line price from pricelist
