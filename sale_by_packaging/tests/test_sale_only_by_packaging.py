@@ -10,25 +10,25 @@ from .common import Common
 class TestSaleProductByPackagingOnly(Common):
     def test_write_auto_fill_packaging(self):
         order_line = self.order.order_line
-        self.assertFalse(order_line.product_packaging)
+        self.assertFalse(order_line.product_packaging_id)
         self.assertFalse(order_line.product_packaging_qty)
 
         order_line.write({"product_uom_qty": 3.0})
-        self.assertFalse(order_line.product_packaging)
+        self.assertFalse(order_line.product_packaging_id)
         self.assertFalse(order_line.product_packaging_qty)
 
         self.product.write({"sell_only_by_packaging": True})
-        self.assertFalse(order_line.product_packaging)
+        self.assertFalse(order_line.product_packaging_id)
         self.assertFalse(order_line.product_packaging_qty)
 
         order_line.write({"product_uom_qty": self.packaging_tu.qty * 2})
-        self.assertTrue(order_line.product_packaging)
+        self.assertTrue(order_line.product_packaging_id)
         self.assertTrue(order_line.product_packaging_qty)
-        self.assertEqual(order_line.product_packaging, self.packaging_tu)
+        self.assertEqual(order_line.product_packaging_id, self.packaging_tu)
         self.assertEqual(order_line.product_packaging_qty, 2)
 
         with self.assertRaises(ValidationError):
-            order_line.write({"product_packaging": False})
+            order_line.write({"product_packaging_id": False})
 
     def test_create_auto_fill_packaging(self):
         """Check when the packaging should be set automatically on the line"""
@@ -38,7 +38,7 @@ class TestSaleProductByPackagingOnly(Common):
                 so_line.product_id = self.product
                 so_line.product_uom_qty = self.packaging_tu.qty * 2
         so_line = self.order.order_line[-1]
-        self.assertFalse(so_line.product_packaging)
+        self.assertFalse(so_line.product_packaging_id)
         self.assertFalse(so_line.product_packaging_qty)
 
         # If sell_only_by_packaging is set, a packaging should be automatically
@@ -49,9 +49,9 @@ class TestSaleProductByPackagingOnly(Common):
                 so_line.product_id = self.product
                 so_line.product_uom_qty = self.packaging_tu.qty * 2
         so_line = self.order.order_line[-1]
-        self.assertTrue(so_line.product_packaging)
+        self.assertTrue(so_line.product_packaging_id)
         self.assertTrue(so_line.product_packaging_qty)
-        self.assertEqual(so_line.product_packaging, self.packaging_tu)
+        self.assertEqual(so_line.product_packaging_id, self.packaging_tu)
         self.assertEqual(so_line.product_packaging_qty, 2)
 
         # If qty does not match a packaging qty, an exception should be raised
@@ -74,7 +74,7 @@ class TestSaleProductByPackagingOnly(Common):
         # should happens if the qty doesn't match with packaging multiple.
         with Form(self.order) as sale_order:
             with sale_order.order_line.edit(0) as so_line:
-                so_line.product_packaging = packaging
+                so_line.product_packaging_id = packaging
                 so_line.product_uom_qty = 12
                 self.assertAlmostEqual(
                     so_line.product_uom_qty, 12, places=self.precision
@@ -88,12 +88,12 @@ class TestSaleProductByPackagingOnly(Common):
                     so_line.product_uom_qty, 36, places=self.precision
                 )
                 so_line.product_uom_qty = 10
-                so_line.product_packaging = packaging
+                so_line.product_packaging_id = packaging
         # Now force the qty on the packaging
         packaging.force_sale_qty = True
         with Form(self.order) as sale_order:
             with sale_order.order_line.edit(0) as so_line:
-                so_line.product_packaging = packaging
+                so_line.product_packaging_id = packaging
                 so_line.product_uom_qty = 50
                 self.assertAlmostEqual(
                     so_line.product_uom_qty, 60, places=self.precision

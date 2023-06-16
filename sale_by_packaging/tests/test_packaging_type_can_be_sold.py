@@ -10,12 +10,14 @@ class TestPackagingTypeCanBeSold(Common):
     def setUpClassSaleOrder(cls):
         super().setUpClassSaleOrder()
         cls.order_line.product_uom_qty = 3.0
+        # Needed for W8110 of pylint-odoo.
+        return None
 
     def test_packaging_type_can_be_sold(self):
-        self.order_line.write({"product_packaging": self.packaging_tu.id})
+        self.order_line.write({"product_packaging_id": self.packaging_tu.id})
         with self.assertRaises(ValidationError):
             self.order_line.write(
-                {"product_packaging": self.packaging_cannot_be_sold.id}
+                {"product_packaging_id": self.packaging_cannot_be_sold.id}
             )
             onchange_res = self.order_line._onchange_product_packaging()
             self.assertIn("warning", onchange_res)
@@ -28,11 +30,13 @@ class TestPackagingTypeCanBeSold(Common):
         ).format(self.product.name)
         with self.assertRaisesRegex(ValidationError, exception_msg):
             self.order_line.write(
-                {"product_packaging": self.packaging_cannot_be_sold.id}
+                {"product_packaging_id": self.packaging_cannot_be_sold.id}
             )
         # Packaging can be sold even if the packaging type does not allows it
         self.packaging_cannot_be_sold.can_be_sold = True
-        self.order_line.write({"product_packaging": self.packaging_cannot_be_sold.id})
+        self.order_line.write(
+            {"product_packaging_id": self.packaging_cannot_be_sold.id}
+        )
         # Changing the packaging type on product.packaging updates can_be_sold
         self.sellable_packagings.unlink()
         self.packaging_cannot_be_sold.packaging_type_id = self.packaging_type_tu

@@ -11,22 +11,25 @@ class SaleOrderLine(models.Model):
 
     def _can_be_sold_error_condition(self):
         self.ensure_one()
-        return self.product_packaging and not self.product_packaging.can_be_sold
+        return self.product_packaging_id and not self.product_packaging_id.can_be_sold
 
-    @api.constrains("product_packaging")
+    @api.constrains("product_packaging_id")
     def _check_product_packaging_can_be_sold(self):
         for line in self:
             if line._can_be_sold_error_condition():
                 raise ValidationError(
                     _(
-                        "Packaging %s on product %s must be set as 'Can be sold'"
-                        " in order to be used on a sale order."
+                        "Packaging %(packaging)s on product %(product)s must be"
+                        " set as 'Can be sold' in order to be used on a sale order."
                     )
-                    % (line.product_packaging.name, line.product_id.name)
+                    % {
+                        "packaging": line.product_packaging_id.name,
+                        "product": line.product_id.name,
+                    }
                 )
 
-    @api.onchange("product_packaging")
-    def _onchange_product_packaging(self):
+    @api.onchange("product_packaging_id")
+    def _onchange_product_packaging_id(self):
         if self._can_be_sold_error_condition():
             return {
                 "warning": {
@@ -37,17 +40,17 @@ class SaleOrderLine(models.Model):
                     ),
                 },
             }
-        return super()._onchange_product_packaging()
+        return super()._onchange_product_packaging_id()
 
     @api.constrains(
-        "product_id", "product_packaging", "product_packaging_qty", "product_uom_qty"
+        "product_id", "product_packaging_id", "product_packaging_qty", "product_uom_qty"
     )
     def _check_product_packaging_sell_only_by_packaging(self):
         for line in self:
             if not line.product_id.sell_only_by_packaging:
                 continue
             if (
-                not line.product_packaging
+                not line.product_packaging_id
                 or float_compare(
                     line.product_packaging_qty,
                     0,
@@ -58,8 +61,9 @@ class SaleOrderLine(models.Model):
                 raise ValidationError(
                     _(
                         "Product %s can only be sold with a packaging and a "
-                        "packaging qantity." % line.product_id.name
+                        "packaging qantity."
                     )
+                    % line.product_id.name
                 )
 
     def _force_qty_with_package(self):
@@ -69,7 +73,7 @@ class SaleOrderLine(models.Model):
         """
         self.ensure_one()
         qty = self.product_id._convert_packaging_qty(
-            self.product_uom_qty, self.product_uom, packaging=self.product_packaging
+            self.product_uom_qty, self.product_uom, packaging=self.product_packaging_id
         )
         self.product_uom_qty = qty
         return True
@@ -77,8 +81,6 @@ class SaleOrderLine(models.Model):
     @api.onchange("product_uom_qty")
     def _onchange_product_uom_qty(self):
         self._force_qty_with_package()
-        res = super()._onchange_product_uom_qty()
-        return res
 
     def _get_product_packaging_having_multiple_qty(self, product, qty, uom):
         if uom != product.uom_id:
@@ -88,19 +90,19 @@ class SaleOrderLine(models.Model):
     def _inverse_product_packaging_qty(self):
         # Force skipping of auto assign
         # if we are writing the product_uom_qty directly via inverse
-        super(
+        return super(
             SaleOrderLine, self.with_context(_skip_auto_assign=True)
         )._inverse_product_packaging_qty()
 
     def _inverse_qty_delivered(self):
         # Force skipping of auto assign
-        super(
+        return super(
             SaleOrderLine, self.with_context(_skip_auto_assign=True)
         )._inverse_qty_delivered()
 
     def write(self, vals):
         """Auto assign packaging if needed"""
-        if "product_packaging" in vals.keys() or self.env.context.get(
+        if "product_packaging_id" in vals.keys() or self.env.context.get(
             "_skip_auto_assign"
         ):
             # setting the packaging directly, skip auto assign
@@ -131,15 +133,15 @@ class SaleOrderLine(models.Model):
             )
             # Here, we ensure that no package is already set on the line.
             # If so, it could lead to errors, since product_packaging_qty
-            # isn't updated after product_packaging has been modified.
-            # The simple way to handle that is to not modify product_packaging
+            # isn't updated after product_packaging_id has been modified.
+            # The simple way to handle that is to not modify product_packaging_id
             # if one is already set.
-            if not self.product_packaging:
+            if not self.product_packaging_id:
                 packaging = self._get_product_packaging_having_multiple_qty(
                     product, quantity, uom
                 )
                 if packaging:
-                    return {"product_packaging": packaging.id}
+                    return {"product_packaging_id": packaging.id}
             # No need to raise an error here if no packaging has been found
             #  since the error on _check_product_packaging will be raised
         return {}
@@ -148,7 +150,7 @@ class SaleOrderLine(models.Model):
     def create(self, vals):
         """Auto assign packaging if needed"""
         # Fill the packaging if they are empty and the quantity is a multiple
-        if not vals.get("product_packaging"):
+        if not vals.get("product_packaging_id"):
             vals.update(self._create_auto_assign_packaging(vals))
         return super().create(vals)
 
@@ -166,7 +168,7 @@ class SaleOrderLine(models.Model):
                 product, quantity, uom
             )
             if packaging:
-                return {"product_packaging": packaging.id}
+                return {"product_packaging_id": packaging.id}
             # No need to raise an error here if no packaging has been found
             #  since the error on _check_product_packaging will be raised
         return {}

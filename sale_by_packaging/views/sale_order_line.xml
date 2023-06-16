@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']//form//field[@name='product_packaging']"
+                expr="//field[@name='order_line']//form//field[@name='product_packaging_id']"
                 position="attributes"
             >
                 <attribute
@@ -14,7 +14,7 @@
                 >[('product_id','=',product_id), ('can_be_sold', '=', True)]</attribute>
             </xpath>
             <xpath
-                expr="//field[@name='order_line']//tree//field[@name='product_packaging' and @optional='show']"
+                expr="//field[@name='order_line']//tree//field[@name='product_packaging_id' and @optional='show']"
                 position="attributes"
             >
                 <attribute
