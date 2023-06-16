@@ -21,11 +21,11 @@ class ProductPackagingLevel(models.Model):
             templates = products.product_tmpl_id
             try:
                 templates._check_sell_only_by_packaging_can_be_sold_packaging_ids()
-            except exceptions.ValidationError:
+            except exceptions.ValidationError as e:
                 raise exceptions.ValidationError(
                     _(
                         'Packaging type "{}" must stay with "Can be sold",'
                         ' at least one product configured as "sell only'
                         ' by packaging" is using it.'
                     ).format(record.display_name)
-                )
+                ) from e
