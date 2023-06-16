@@ -79,10 +79,6 @@ class SaleOrderLine(models.Model):
                         "of said package."
                     )
                 )
-            if sol.product_packaging_id and sol.product_packaging_id.qty == 0:
-                raise UserError(
-                    _("Please select a packaging with a quantity bigger than 0")
-                )
             if sol.product_packaging_id and sol.product_packaging_qty:
                 sol.write(sol._prepare_product_packaging_qty_values())
 
