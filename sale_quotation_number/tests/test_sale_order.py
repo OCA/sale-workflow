@@ -6,8 +6,9 @@ from odoo.tests.common import TransactionCase
 
 
 class TestSaleOrder(TransactionCase):
+    @classmethod
     def setUpClass(self, *args, **kwargs):
-        super(TestSaleOrder, self).setUpClass()
+        super().setUpClass()
         self.sale_order_model = self.env["sale.order"]
         company = self.env.company
         company.keep_name_so = False
