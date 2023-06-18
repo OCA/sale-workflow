@@ -7,10 +7,10 @@ from odoo.tests.common import TransactionCase
 
 class TestSaleOrder(TransactionCase):
     @classmethod
-    def setUpClass(self, *args, **kwargs):
+    def setUpClass(cls):
         super().setUpClass()
-        self.sale_order_model = self.env["sale.order"]
-        company = self.env.company
+        cls.sale_order_model = cls.env["sale.order"]
+        company = cls.env.company
         company.keep_name_so = False
 
     def test_enumeration(self):
