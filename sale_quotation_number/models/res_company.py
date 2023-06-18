@@ -11,7 +11,7 @@ class ResCompany(models.Model):
     _inherit = "res.company"
 
     keep_name_so = fields.Boolean(
-        string="Use Same Enumeration",
+        string="Use Same Sale Order Enumeration",
         help="If this is unchecked, quotations use a different sequence from "
         "sale orders",
         default=True,

@@ -10,11 +10,12 @@ from odoo import api, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
-        if self.is_using_quotation_number(vals):
-            sequence = self.env["ir.sequence"].next_by_code("sale.quotation")
-            vals["name"] = sequence or "/"
+        for val in vals:
+            if self.is_using_quotation_number(val):
+                sequence = self.env["ir.sequence"].next_by_code("sale.quotation")
+                val["name"] = sequence or "/"
         return super(SaleOrder, self).create(vals)
 
     @api.model

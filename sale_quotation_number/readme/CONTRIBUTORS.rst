@@ -5,3 +5,4 @@
 * Manuel Regidor <manuel.regidor@sygel.es>
 * Vishnu Vanneri <vanneri.odoodev@gmail.com>
 * Ruchir Shukla <ruchir@bizzappdev.com>
+* Hassan Mahmoud Hassan <hassanmahmoud607@gmail.com>
