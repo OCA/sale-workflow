@@ -23,7 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [partner_contact_sale_info_propagation](partner_contact_sale_info_propagation/) | 16.0.1.0.1 |  | Propagate Salesperson and Sales Channel from Company to Contacts
 [partner_sale_pivot](partner_sale_pivot/) | 16.0.1.0.0 | [![ernestotejeda](https://github.com/ernestotejeda.png?size=30px)](https://github.com/ernestotejeda) | Sales analysis from customer form view
-[product_form_sale_link](product_form_sale_link/) | 16.0.1.0.0 |  | Adds a button on product forms to access Sale Lines
+[product_form_sale_link](product_form_sale_link/) | 16.0.1.0.1 |  | Adds a button on product forms to access Sale Lines
 [product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 16.0.1.0.0 |  | Loads in every sale order line the customer code defined in the product
 [sale_automatic_workflow](sale_automatic_workflow/) | 16.0.1.0.1 |  | Sale Automatic Workflow
 [sale_automatic_workflow_job](sale_automatic_workflow_job/) | 16.0.1.0.0 |  | Execute sale automatic workflows in queue jobs
