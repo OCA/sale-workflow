@@ -1,0 +1,24 @@
+.o_units_included_widget_buttons {
+    display: flex;
+}
+
+.o_units_included_widget_button {
+    border: 1px solid #d9d9d9;
+    padding: 4px;
+    background-color: #f7f7f7;
+    cursor: pointer;
+}
+
+.o_units_included_widget_button:hover {
+    background-color: #ebebeb;
+}
+
+.o_units_included_widget_minus {
+    border-radius: 2px 0 0 2px;
+    width: 30px;
+}
+
+.o_units_included_widget_plus {
+    border-radius: 0 2px 2px 0;
+    width: 30px;
+}

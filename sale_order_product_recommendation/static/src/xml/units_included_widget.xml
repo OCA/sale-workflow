@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright 2023 Tecnativa - Pilar Vargas
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<templates>
+    <t t-name="sale_order_product_recommendation.units_included_widget">
+        <div class="o_units_included_widget_buttons mt-2">
+            <button
+                class="o_units_included_widget_button o_units_included_widget_minus"
+            >-</button>
+            <input
+                class="o_product_widget_input text-center  w-50"
+                type="number"
+                t-att-value="widget.value"
+            />
+            <button
+                class="o_units_included_widget_button o_units_included_widget_plus"
+            >+</button>
+        </div>
+    </t>
+</templates>
