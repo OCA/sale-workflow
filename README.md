@@ -96,7 +96,7 @@ addon | version | maintainers | summary
 [sale_stock_return_request](sale_stock_return_request/) | 15.0.1.0.0 | [![chienandalu](https://github.com/chienandalu.png?size=30px)](https://github.com/chienandalu) | Sale Stock Return Request
 [sale_stock_secondary_unit](sale_stock_secondary_unit/) | 15.0.1.0.1 |  | Get product quantities in a secondary unit
 [sale_substate](sale_substate/) | 15.0.1.0.0 |  | Sale Sub State
-[sale_tier_validation](sale_tier_validation/) | 15.0.1.1.0 |  | Extends the functionality of Sale Orders to support a tier validation process.
+[sale_tier_validation](sale_tier_validation/) | 15.0.1.1.1 |  | Extends the functionality of Sale Orders to support a tier validation process.
 [sale_triple_discount](sale_triple_discount/) | 15.0.1.0.1 |  | Manage triple discount on sale order lines
 [sale_wishlist](sale_wishlist/) | 15.0.1.0.0 |  | Handle sale wishlist for partners
 [sales_team_security](sales_team_security/) | 15.0.1.0.2 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | New group for seeing only sales channel's documents
