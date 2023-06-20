@@ -13,8 +13,12 @@ from odoo.tools.misc import format_date
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    default_start_date = fields.Date()
-    default_end_date = fields.Date()
+    default_start_date = fields.Date(
+        compute="_compute_default_start_date", readonly=False, store=True
+    )
+    default_end_date = fields.Date(
+        compute="_compute_default_end_date", readonly=False, store=True
+    )
 
     @api.constrains("default_start_date", "default_end_date")
     def _check_default_start_end_dates(self):
@@ -26,43 +30,48 @@ class SaleOrder(models.Model):
             ):
                 raise ValidationError(
                     _(
-                        "Default Start Date ({start_date}) should be before or be the "
-                        "same as Default End Date ({end_date}) for sale order '{name}'."
-                    ).format(
-                        start_date=format_date(self.env, order.default_start_date),
-                        end_date=format_date(self.env, order.default_end_date),
-                        name=order.display_name,
+                        "Default Start Date (%(start_date)s) should be before or be the "
+                        "same as Default End Date (%(end_date)s) for sale order '%(name)s'."
                     )
+                    % {
+                        "start_date": format_date(self.env, order.default_start_date),
+                        "end_date": format_date(self.env, order.default_end_date),
+                        "name": order.display_name,
+                    }
                 )
 
-    @api.onchange("default_start_date")
-    def default_start_date_change(self):
-        if (
-            self.default_start_date
-            and self.default_end_date
-            and self.default_start_date > self.default_end_date
-        ):
-            self.default_end_date = self.default_start_date
+    @api.depends("default_end_date")
+    def _compute_default_start_date(self):
+        for order in self:
+            if (
+                order.default_start_date
+                and order.default_end_date
+                and order.default_start_date > order.default_end_date
+            ):
+                order.default_start_date = order.default_end_date
 
-    @api.onchange("default_end_date")
-    def default_end_date_change(self):
-        if (
-            self.default_start_date
-            and self.default_end_date
-            and self.default_start_date > self.default_end_date
-        ):
-            self.default_start_date = self.default_end_date
+    @api.depends("default_start_date")
+    def _compute_default_end_date(self):
+        for order in self:
+            if (
+                order.default_start_date
+                and order.default_end_date
+                and order.default_start_date > order.default_end_date
+            ):
+                order.default_end_date = order.default_start_date
 
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     start_date = fields.Date(
-        readonly=True,
+        compute="_compute_start_date",
+        store=True,
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
     )
     end_date = fields.Date(
-        readonly=True,
+        compute="_compute_end_date",
+        store=True,
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
     )
     number_of_days = fields.Integer(
@@ -70,6 +79,7 @@ class SaleOrderLine(models.Model):
         inverse="_inverse_number_of_days",
         readonly=False,
         store=True,
+        string="Number of Days",
     )
     must_have_dates = fields.Boolean(related="product_id.must_have_dates")
 
@@ -88,13 +98,13 @@ class SaleOrderLine(models.Model):
             if line.number_of_days < 0:
                 res["warning"]["title"] = _("Wrong number of days")
                 res["warning"]["message"] = _(
-                    "On sale order line with product '{product_name}', the "
-                    "number of days is negative ({number_of_days}) ; this is not "
+                    "On sale order line with product '%(product_name)s', the "
+                    "number of days is negative (%(number_of_days)s) ; this is not "
                     "allowed. The number of days has been forced to 1."
-                ).format(
-                    product_name=line.product_id.display_name,
-                    number_of_days=line.number_of_days,
-                )
+                ) % {
+                    "product_name": line.product_id.display_name,
+                    "number_of_days": line.number_of_days,
+                }
                 line.number_of_days = 1
             if line.start_date:
                 line.end_date = line.start_date + relativedelta(
@@ -126,14 +136,15 @@ class SaleOrderLine(models.Model):
                 if line.start_date > line.end_date:
                     raise ValidationError(
                         _(
-                            "Start Date ({start_date}) should be before or "
-                            "be the same as End Date ({end_date}) for sale order line "
-                            "with Product '{product_name}'."
-                        ).format(
-                            start_date=format_date(self.env, line.start_date),
-                            end_date=format_date(self.env, line.end_date),
-                            product_name=line.product_id.display_name,
+                            "Start Date (%(start_date)s) should be before or "
+                            "be the same as End Date (%(end_date)s) for sale order line "
+                            "with Product '%(product_name)s'."
                         )
+                        % {
+                            "start_date": format_date(self.env, line.start_date),
+                            "end_date": format_date(self.env, line.end_date),
+                            "product_name": line.product_id.display_name,
+                        }
                     )
 
     def _prepare_invoice_line(self, **optional_values):
@@ -143,25 +154,32 @@ class SaleOrderLine(models.Model):
             res.update({"start_date": self.start_date, "end_date": self.end_date})
         return res
 
-    @api.onchange("end_date")
-    def end_date_change(self):
-        if self.end_date:
-            if self.start_date and self.start_date > self.end_date:
-                self.start_date = self.end_date
+    @api.depends("end_date", "product_id")
+    def _compute_start_date(self):
+        for line in self:
+            order = line.order_id
+            if (
+                not line.start_date
+                and line.product_id.must_have_dates
+                and order.default_start_date
+            ):
+                line.start_date = order.default_start_date
+            elif line.start_date and not line.product_id.must_have_dates:
+                line.start_date = False
+            elif line.end_date and line.start_date and line.start_date > self.end_date:
+                line.start_date = line.end_date
 
-    @api.onchange("start_date")
-    def start_date_change(self):
-        if self.start_date:
-            if self.end_date and self.start_date > self.end_date:
-                self.end_date = self.start_date
-
-    @api.onchange("product_id")
-    def start_end_dates_product_id_change(self):
-        if self.product_id.must_have_dates:
-            if self.order_id.default_start_date:
-                self.start_date = self.order_id.default_start_date
-            if self.order_id.default_end_date:
-                self.end_date = self.order_id.default_end_date
-        else:
-            self.start_date = False
-            self.end_date = False
+    @api.depends("start_date", "product_id")
+    def _compute_end_date(self):
+        for line in self:
+            order = line.order_id
+            if (
+                not line.end_date
+                and line.product_id.must_have_dates
+                and order.default_end_date
+            ):
+                line.end_date = order.default_end_date
+            elif line.end_date and not line.product_id.must_have_dates:
+                line.end_date = False
+            elif line.end_date and line.start_date and line.start_date > self.end_date:
+                line.end_date = line.start_date
