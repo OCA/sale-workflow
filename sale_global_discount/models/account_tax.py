@@ -50,7 +50,7 @@ class AccountTax(models.Model):
             )
         discounts = base_line.order_id.global_discount_ids.mapped("discount")
         discounted_price_unit = price_unit
-        if base_line.product_id.apply_global_discount:
+        if not base_line.product_id.bypass_global_discount:
             discounted_price_unit = base_line.order_id.get_discounted_global(
                 price_unit, discounts.copy()
             )
