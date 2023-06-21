@@ -29,7 +29,7 @@ class SaleOrderLine(models.Model):
     @api.depends("order_id", "order_id.general_discount")
     def _compute_discount(self):
         if hasattr(super(), "_compute_discount"):
-            super()._compute_discount()
+            return super()._compute_discount()
         for line in self:
             if line.product_id.general_discount_apply:
                 line.discount = line.order_id.general_discount
@@ -37,7 +37,7 @@ class SaleOrderLine(models.Model):
     @api.onchange("product_id")
     def _onchange_product_id(self):
         if hasattr(super(), "_onchange_product_id"):
-            super()._onchange_product_id()
+            return super()._onchange_product_id()
         for line in self:
             line.discount = 0
             if line.product_id.general_discount_apply:
