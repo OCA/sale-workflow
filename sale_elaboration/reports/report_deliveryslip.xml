@@ -28,7 +28,7 @@
                 separator=", "
             />
         </xpath>
-        <xpath expr="//th[@name='th_sm_quantity']" position="after">
+        <xpath expr="//table[@name='stock_move_table']/thead/tr" position="after">
             <th name="th_sm_elaboration">
                 <strong>Elab.</strong>
             </th>
@@ -40,7 +40,7 @@
                 />
             </td>
         </xpath>
-        <xpath expr="//th[@name='th_sml_quantity']" position="after">
+        <xpath expr="//table[@name='stock_move_line_table']/thead/tr" position="inside">
             <th name="th_sml_elaboration">
                 <strong>Elaboration</strong>
             </th>
