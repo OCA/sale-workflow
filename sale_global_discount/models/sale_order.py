@@ -97,9 +97,11 @@ class SaleOrder(models.Model):
             discounts = order.global_discount_ids.mapped("discount")
             amount_discounted_untaxed = amount_discounted_tax = 0
             for line in order.order_line:
-                discounted_subtotal = self.get_discounted_global(
-                    line.price_subtotal, discounts.copy()
-                )
+                discounted_subtotal = line.price_subtotal
+                if line.product_id.apply_global_discount:
+                    discounted_subtotal = self.get_discounted_global(
+                        line.price_subtotal, discounts.copy()
+                    )
                 amount_discounted_untaxed += discounted_subtotal
                 discounted_tax = line.tax_id.compute_all(
                     discounted_subtotal,
