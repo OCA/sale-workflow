@@ -17,9 +17,9 @@ org_slug: OCA
 rebel_module_groups:
 - sale_order_line_sequence
 - sale_procurement_group_by_commitment_date
+- sale_global_discount
 repo_description: This project aim to deal with modules related to manage sale and
     their related workflow.
 repo_name: Odoo Sales, Workflow and Organization
 repo_slug: sale-workflow
 repo_website: https://github.com/OCA/sale-workflow
-
