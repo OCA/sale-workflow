@@ -2,7 +2,8 @@
 # Copyright 2020 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 
 class SaleInvoicePaymentWiz(models.TransientModel):
@@ -32,27 +33,46 @@ class SaleInvoicePaymentWiz(models.TransientModel):
     )
     ref = fields.Char(string="Reference")
     invoice_ids = fields.Many2many(comodel_name="account.move",)
+    wiz_line_ids = fields.One2many("sale.invoice.payment.line.wiz", "wiz_id")
     partner_id = fields.Many2one(comodel_name="res.partner")
 
-    @api.depends("invoice_ids")
+    @api.depends("wiz_line_ids.is_selected")
     def _compute_amount(self):
         for wiz in self:
             amount = 0.0
-            for invoice in wiz.invoice_ids:
-                if invoice.type == "out_refund":
-                    amount -= invoice.amount_residual
+            for wiz_line in wiz.wiz_line_ids.filtered("is_selected"):
+                if wiz_line.invoice_id.type == "out_refund":
+                    amount -= wiz_line.amount_residual
                 else:
-                    amount += invoice.amount_residual
+                    amount += wiz_line.amount_residual
             wiz.amount = amount
+
+    def _prepare_wiz_line_vals(self, invoice):
+        return {
+            "is_selected": True,
+            "invoice_id": invoice.id,
+            "invoice_date": invoice.invoice_date,
+            "amount_total": invoice.amount_total,
+            "amount_residual": invoice.amount_residual,
+            "invoice_date_due": invoice.invoice_date_due,
+            "currency_id": invoice.currency_id.id,
+            "state": invoice.state,
+        }
 
     @api.model
     def default_get(self, fields_list):
         res = super(SaleInvoicePaymentWiz, self).default_get(fields_list)
+        invoice_ids = self.env.context.get("invoice_ids")
         res["journal_id"] = self.env.user.commercial_journal_ids[:1].id
-        if self.env.context.get("active_model", False) != "account.move":
+        if (
+            self.env.context.get("active_model", False) != "account.move"
+            and not invoice_ids
+        ):
             return res
-        invoices = self.env["account.move"].browse(self.env.context.get("active_ids"))
-        res["invoice_ids"] = [(6, 0, invoices.ids)]
+        invoices = self.env["account.move"].browse(
+            invoice_ids or self.env.context.get("active_ids")
+        )
+        res["wiz_line_ids"] = [(0, 0, self._prepare_wiz_line_vals(x)) for x in invoices]
         res["partner_id"] = invoices[:1].partner_id.id
         return res
 
@@ -63,14 +83,15 @@ class SaleInvoicePaymentWiz(models.TransientModel):
 
     def create_sale_invoice_payment_sheet(self):
         invoices = (
-            self.invoice_ids
-            or self.env["account.move"].browse(self.env.context.get("active_ids"))
+            self.wiz_line_ids.filtered("is_selected").mapped("invoice_id")
         ).filtered(
             lambda inv: inv.state == "posted" and inv.invoice_payment_state != "paid"
         )
 
         if not invoices:
-            return
+            raise UserError(
+                _("You have to select at least an invoice to make a payment.")
+            )
         # Search an open payment sheet or create one if not exists
         SalePaymentSheet = self.env["sale.payment.sheet"]
         sheet = SalePaymentSheet.search(
@@ -134,3 +155,18 @@ class SaleInvoicePaymentWiz(models.TransientModel):
             "invoice_id": invoice.id,
             "ref": self.ref,
         }
+
+
+class SaleInvoicePaymentLineWiz(models.TransientModel):
+    _name = "sale.invoice.payment.line.wiz"
+    _description = "Sale invoice payment lines wizard"
+
+    wiz_id = fields.Many2one("sale.invoice.payment.wiz")
+    is_selected = fields.Boolean(default=True)
+    invoice_id = fields.Many2one("account.move")
+    invoice_date = fields.Date(related="invoice_id.invoice_date")
+    amount_total = fields.Monetary(related="invoice_id.amount_total")
+    amount_residual = fields.Monetary(related="invoice_id.amount_residual")
+    invoice_date_due = fields.Date(related="invoice_id.invoice_date_due")
+    currency_id = fields.Many2one("res.currency", related="invoice_id.currency_id")
+    state = fields.Selection(related="invoice_id.state")
