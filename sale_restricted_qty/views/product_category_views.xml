@@ -7,10 +7,10 @@
             <xpath expr="//group[@name='first']" position="after">
                 <group
                     name="sale_restricted_qty"
-                    string="Sale restricted qty"
+                    string="Sale Restricted Qty"
                     colspan="4"
                 >
-                    <group name="sale_min_qty_gr" string="Sale Min qty">
+                    <group name="sale_min_qty_gr" string="Sale Min Qty">
                         <field name="sale_min_qty" />
                         <label for="manual_sale_min_qty" class="oe_edit_only" />
                         <field
@@ -26,7 +26,7 @@
                             nolabel="1"
                         />
                     </group>
-                    <group name="sale_max_qty_gr" string="Sale Max qty">
+                    <group name="sale_max_qty_gr" string="Sale Max Qty">
                         <field name="sale_max_qty" />
                         <label for="manual_sale_max_qty" class="oe_edit_only" />
                         <field
@@ -42,7 +42,7 @@
                             nolabel="1"
                         />
                     </group>
-                        <group name="sale_multiple_qty_gr" string="Sale Miltiple qty">
+                        <group name="sale_multiple_qty_gr" string="Sale Multiple Qty">
                         <field name="sale_multiple_qty" />
                         <label for="manual_sale_multiple_qty" class="oe_edit_only" />
                         <field

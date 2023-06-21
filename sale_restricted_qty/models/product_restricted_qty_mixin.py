@@ -11,38 +11,43 @@ class ProductMinMultipleMixin(models.AbstractModel):
     sale_multiple_qty = fields.Float(
         compute="_compute_sale_restricted_qty",
         store=True,
-        help="Define sale multiple qty"
+        recursive=True,
+        help="Define Sale Multiple Qty"
         " 'If not set', Odoo will"
         " use the value defined in the parent object."
-        "Hierarchy is in this order :"
-        "Product/product Template/product category/parent categoroies ",
+        "Hierarchy is in this order: "
+        "Product/product Template/product category/parent categories ",
         digits="Product Unit of Measure",
     )
     manual_sale_multiple_qty = fields.Float(
-        string="Multiple Sale Qty", digits="Product Unit of Measure"
+        string="Multiple Sale Qty",
+        digits="Product Unit of Measure",
     )
     sale_min_qty = fields.Float(
         compute="_compute_sale_restricted_qty",
         store=True,
-        help="Define sale min qty"
+        recursive=True,
+        help="Define Sale Min Qty"
         " 'If not set, Odoo will"
         " use the value defined in the parent object."
-        "Hierarchy is in this order :"
-        "Product/product Template/product category/parent categoroies ",
+        "Hierarchy is in this order: "
+        "Product/product Template/product category/parent categories ",
         digits="Product Unit of Measure",
     )
     manual_sale_min_qty = fields.Float(
-        string="Min Sale Qty", digits="Product Unit of Measure"
+        string="Min Sale Qty",
+        digits="Product Unit of Measure",
     )
     force_sale_min_qty = fields.Boolean(
         compute="_compute_sale_restricted_qty",
         string="Force Min Qty",
         store=True,
-        help="Define if user can force sale min qty"
+        recursive=True,
+        help="Define if user can force Sale Min Qty"
         " 'If not set', Odoo will"
         " use the value defined in the parent object."
-        "Hierarchy is in this order :"
-        "Product/product Template/product category/parent categoroies ",
+        "Hierarchy is in this order: "
+        "Product/product Template/product category/parent categories ",
     )
     manual_force_sale_min_qty = fields.Selection(
         [
@@ -53,18 +58,19 @@ class ProductMinMultipleMixin(models.AbstractModel):
         string="Manual Force Min Qty",
         required=True,
         default="use_parent",
-        help="If force min qty is checked, the min quantity "
-        "is only indicative value."
-        "If is not test we check parent value",
+        help="If Force Min  Qty is checked, the min quantity "
+        "is only indicative value. "
+        "If is not test we check parent value.",
     )
     sale_max_qty = fields.Float(
         compute="_compute_sale_restricted_qty",
         store=True,
-        help="Define sale max qty"
+        recursive=True,
+        help="Define Sale Max Qty"
         " 'If not set, Odoo will"
         " use the value defined in the parent object."
-        "Hierarchy is in this order :"
-        "Product/product Template/product category/parent categoroies ",
+        "Hierarchy is in this order: "
+        "Product/product Template/product category/parent categories ",
         digits="Product Unit of Measure",
     )
     manual_sale_max_qty = fields.Float(
@@ -74,11 +80,12 @@ class ProductMinMultipleMixin(models.AbstractModel):
         compute="_compute_sale_restricted_qty",
         string="Force Max Qty",
         store=True,
-        help="Define if user can force sale max qty"
+        recursive=True,
+        help="Define if user can force Sale Max Qty"
         " 'If not set', Odoo will"
         " use the value defined in the parent object."
-        "Hierarchy is in this order :"
-        "Product/product Template/product category/parent categoroies ",
+        "Hierarchy is in this order: "
+        "Product/product Template/product category/parent categories ",
     )
     manual_force_sale_max_qty = fields.Selection(
         [
@@ -89,9 +96,9 @@ class ProductMinMultipleMixin(models.AbstractModel):
         required=True,
         default="use_parent",
         string="Manual Force Max Qty",
-        help="If force max qty is checked, the max quantity "
-        "is only indicative value."
-        "If is not test we check parent value",
+        help="If Force Max  Qty is checked, the max quantity "
+        "is only indicative value. "
+        "If is not test we check parent value.",
     )
 
     def _get_sale_restricted_qty(self):

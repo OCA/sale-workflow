@@ -17,13 +17,13 @@ msgstr ""
 #: code:addons/sale_order_min_qty/models/sale.py:51
 #, python-format
 msgid "\n"
-"* If you want sell quantity less than Min Quantity,Check \"force min quatity\" on product"
+"* If you want sell quantity less than Min Quantity, Check \"Force Min Quantity\" on product"
 msgstr ""
 
 #. module: sale_order_min_qty
 #: code:addons/sale_order_min_qty/models/sale.py:48
 #, python-format
-msgid "Check minimum order quantity for this products: * \n"
+msgid "Check minimum order quantity for this product: * \n"
 ""
 msgstr ""
 
@@ -36,7 +36,7 @@ msgstr ""
 #. module: sale_order_min_qty
 #: model:ir.model.fields,help:sale_order_min_qty.field_product_product__force_sale_min_qty
 #: model:ir.model.fields,help:sale_order_min_qty.field_sale_order_line__force_sale_min_qty
-msgid "If force min qty is checked, the min quantity is only indicative value."
+msgid "If Force Min  Qty is checked, the min quantity is only indicative value."
 msgstr ""
 
 #. module: sale_order_min_qty

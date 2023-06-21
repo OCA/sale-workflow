@@ -23,18 +23,18 @@ Sale order min quantity
     :target: https://runbot.odoo-community.org/runbot/167/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allows to define min, max and multiple order quantity on product.
-Min and Max order quantity is either required or recommanded.
-If you check "Force mini/max Qty" on product the min/max qty do not block sale
+Min and Max order quantity is either required or recommended.
+If you check "Force Min/Max Qty" on product the Min/Max Qty do not block sale
 order.
-This can be used if the available stock is less then the min qty
+This can be used if the available stock is less than the Min Qty
 or if you want to sell sample products.
-Max qty can be used if we dont want to sale more than available qty
+Max Qty can be used if we don't want to sale more than available qty
 (end of series product)
 
-Setings are defined on product, if values are not set we use settings from
+Settings are defined on product, if values are not set we use settings from
 product template.
 If settings are not set on product template we use settings from
 product category otherwise parent category.
@@ -48,11 +48,11 @@ Usage
 =====
 
 #. Go to **Sales > Products > Product Variants** and Set "Min Sale Qty".
-    If you dont want block product sale if qty is less the "Min Sale Qty",
-    chek "Force Min Qty"
+    If you don't want block product sale if qty is less the "Min Sale Qty",
+    check "Force Min Qty"
 #. Create a sale order and add a sale order line with this product and check
-    if Qty is less then "Min Qty" A message in displayed "Min Qty Required"
-    Or "Min Qty Recommanded". Check if Min qty is required you can't
+    if Qty is less than "Min Qty" A message in displayed "Min Qty Required"
+    Or "Min Qty Recommended". Check if Min Qty is required you can't
     validate order.
 
 Bug Tracker
@@ -101,7 +101,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-ashishhirapara| 
+|maintainer-ashishhirapara|
 
 This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/14.0/sale_restricted_qty>`_ project on GitHub.
 

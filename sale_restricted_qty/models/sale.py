@@ -50,58 +50,58 @@ class SaleOrderLine(models.Model):
     def check_constraint_restricted_qty(self):
 
         msg = ""
-        invaild_min_lines = []
+        invalid_min_lines = []
         line_to_test = self.filtered(
             lambda sl: not sl.product_id.force_sale_min_qty and sl.is_qty_less_min_qty
         )
         for line in line_to_test:
-            invaild_min_lines.append(
-                _('Product "%s": Min Quantity %s.')
-                % (line.product_id.name, line.sale_min_qty)
+            invalid_min_lines.append(
+                _('Product "%(product)s": Min Quantity %(qty)s.')
+                % {"product": line.product_id.name, "qty": line.sale_min_qty}
             )
 
-        if invaild_min_lines:
+        if invalid_min_lines:
             msg += _(
-                "Check minimum order quantity for this products: * \n"
-            ) + "\n ".join(invaild_min_lines)
+                "Check minimum order quantity for this product: * \n"
+            ) + "\n ".join(invalid_min_lines)
             msg += _(
-                "\n* If you want sell quantity less than Min Quantity"
-                ',Check "force min quatity" on product'
+                "\n* If you want sell quantity less than Min Quantity, "
+                'Check "Force Min Quantity" on product'
             )
-        invaild_max_lines = []
+        invalid_max_lines = []
         line_to_test = self.filtered(
             lambda sl: not sl.product_id.force_sale_max_qty and sl.is_qty_bigger_max_qty
         )
         for line in line_to_test:
-            invaild_max_lines.append(
-                _('Product "%s": max Quantity %s.')
-                % (line.product_id.name, line.sale_max_qty)
+            invalid_max_lines.append(
+                _('Product "%(product)s": Max Quantity %(qty)s.')
+                % {"product": line.product_id.name, "qty": line.sale_min_qty}
             )
 
-        if invaild_max_lines:
+        if invalid_max_lines:
             msg += _(
-                "Check maximum order quantity for this products: * \n"
-            ) + "\n ".join(invaild_max_lines)
+                "Check maximum order quantity for this product: * \n"
+            ) + "\n ".join(invalid_max_lines)
             msg += _(
-                "\n* If you want sell quantity bigger than max Quantity"
-                ',Check "force max quatity" on product'
+                "\n* If you want sell quantity bigger than Max Quantity, "
+                'Check "Force Max Quantity" on product'
             )
         invaild_multiple_lines = []
         line_to_test = self.filtered(lambda sl: sl.is_qty_not_multiple_qty)
         for line in line_to_test:
             invaild_multiple_lines.append(
-                _('Product "%s": multiple Quantity %s.')
-                % (line.product_id.name, line.sale_multiple_qty)
+                _('Product "%(product)s": Multiple Quantity %(qty)s.')
+                % {"product": line.product_id.name, "qty": line.sale_min_qty}
             )
 
         if invaild_multiple_lines:
             msg += _(
-                "Check multiple order quantity for this products: * \n"
+                "Check multiple order quantity for this product: * \n"
             ) + "\n ".join(invaild_multiple_lines)
             msg += _(
-                "\n* If you want sell quantity not multiple Quantity"
-                ",Set multiple quantity to 0 on product or product template"
-                " or product category"
+                "\n* If you want sell quantity not multiple quantity, "
+                "Set Multiple Quantity to 0 on product or product template "
+                "or product category"
             )
 
         if msg:

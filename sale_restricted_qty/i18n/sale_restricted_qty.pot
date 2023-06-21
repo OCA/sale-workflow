@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,7 +18,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"* If you want sell quantity bigger than max Quantity,Check \"force max quatity\" on product"
+"* If you want sell quantity bigger than Max Quantity, Check \"Force Max Quantity\" on product"
 msgstr ""
 
 #. module: sale_restricted_qty
@@ -26,7 +26,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"* If you want sell quantity less than Min Quantity,Check \"force min quatity\" on product"
+"* If you want sell quantity less than Min Quantity, Check \"Force Min Quantity\" on product"
 msgstr ""
 
 #. module: sale_restricted_qty
@@ -34,25 +34,25 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"* If you want sell quantity not multiple Quantity,Set multiple quantity to 0 on product or product template or product category"
+"* If you want sell quantity not Multiple Quantity, Set Multiple Quantity to 0 on product or product template or product category"
 msgstr ""
 
 #. module: sale_restricted_qty
 #: code:addons/sale_restricted_qty/models/sale.py:0
 #, python-format
-msgid "Check maximum order quantity for this products: * \n"
+msgid "Check maximum order quantity for this product: * \n"
 msgstr ""
 
 #. module: sale_restricted_qty
 #: code:addons/sale_restricted_qty/models/sale.py:0
 #, python-format
-msgid "Check minimum order quantity for this products: * \n"
+msgid "Check minimum order quantity for this product: * \n"
 msgstr ""
 
 #. module: sale_restricted_qty
 #: code:addons/sale_restricted_qty/models/sale.py:0
 #, python-format
-msgid "Check multiple order quantity for this products: * \n"
+msgid "Check multiple order quantity for this product: * \n"
 msgstr ""
 
 #. module: sale_restricted_qty
@@ -61,9 +61,9 @@ msgstr ""
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__force_sale_max_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_template__force_sale_max_qty
 msgid ""
-"Define if user can force sale max qty 'If not set', Odoo will use the value "
-"defined in the parent object.Hierarchy is in this order :Product/product "
-"Template/product category/parent categoroies "
+"Define if user can force Sale Max Qty 'If not set', Odoo will use the value "
+"defined in the parent object.Hierarchy is in this order: Product/product "
+"Template/product category/parent categories "
 msgstr ""
 
 #. module: sale_restricted_qty
@@ -72,9 +72,9 @@ msgstr ""
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__force_sale_min_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_template__force_sale_min_qty
 msgid ""
-"Define if user can force sale min qty 'If not set', Odoo will use the value "
-"defined in the parent object.Hierarchy is in this order :Product/product "
-"Template/product category/parent categoroies "
+"Define if user can force Sale Min Qty 'If not set', Odoo will use the value "
+"defined in the parent object.Hierarchy is in this order: Product/product "
+"Template/product category/parent categories "
 msgstr ""
 
 #. module: sale_restricted_qty
@@ -83,9 +83,9 @@ msgstr ""
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__sale_max_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_template__sale_max_qty
 msgid ""
-"Define sale max qty 'If not set, Odoo will use the value defined in the "
-"parent object.Hierarchy is in this order :Product/product Template/product "
-"category/parent categoroies "
+"Define Sale Max Qty 'If not set, Odoo will use the value defined in the "
+"parent object.Hierarchy is in this order: Product/product Template/product "
+"category/parent categories "
 msgstr ""
 
 #. module: sale_restricted_qty
@@ -94,9 +94,9 @@ msgstr ""
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__sale_min_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_template__sale_min_qty
 msgid ""
-"Define sale min qty 'If not set, Odoo will use the value defined in the "
-"parent object.Hierarchy is in this order :Product/product Template/product "
-"category/parent categoroies "
+"Define Sale Min Qty 'If not set, Odoo will use the value defined in the "
+"parent object.Hierarchy is in this order: Product/product Template/product "
+"category/parent categories "
 msgstr ""
 
 #. module: sale_restricted_qty
@@ -105,9 +105,9 @@ msgstr ""
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__sale_multiple_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_template__sale_multiple_qty
 msgid ""
-"Define sale multiple qty 'If not set', Odoo will use the value defined in "
-"the parent object.Hierarchy is in this order :Product/product "
-"Template/product category/parent categoroies "
+"Define Sale Multiple Qty 'If not set', Odoo will use the value defined in "
+"the parent object.Hierarchy is in this order: Product/product "
+"Template/product category/parent categories "
 msgstr ""
 
 #. module: sale_restricted_qty
@@ -160,8 +160,8 @@ msgstr ""
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__manual_force_sale_max_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_template__manual_force_sale_max_qty
 msgid ""
-"If force max qty is checked, the max quantity is only indicative value.If is"
-" not test we check parent value"
+"If Force Max  Qty is checked, the max quantity is only indicative value. If is"
+" not test we check parent value."
 msgstr ""
 
 #. module: sale_restricted_qty
@@ -170,8 +170,8 @@ msgstr ""
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__manual_force_sale_min_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_template__manual_force_sale_min_qty
 msgid ""
-"If force min qty is checked, the min quantity is only indicative value.If is"
-" not test we check parent value"
+"If Force Min  Qty is checked, the min quantity is only indicative value. If is"
+" not test we check parent value."
 msgstr ""
 
 #. module: sale_restricted_qty
@@ -333,6 +333,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_product__sale_max_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__sale_max_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_max_qty
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
 msgid "Sale Max Qty"
 msgstr ""
 
@@ -340,32 +343,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
-msgid "Sale Max qty"
-msgstr ""
-
-#. module: sale_restricted_qty
-#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
-#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
-#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
-msgid "Sale Miltiple qty"
-msgstr ""
-
-#. module: sale_restricted_qty
-#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_min_qty
-#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_product__sale_min_qty
-#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__sale_min_qty
-#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_min_qty
-msgid "Sale Min Qty"
-msgstr ""
-
-#. module: sale_restricted_qty
-#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
-#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
-#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
-msgid "Sale Min qty"
-msgstr ""
-
-#. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_multiple_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_product__sale_multiple_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__sale_multiple_qty
@@ -374,10 +351,21 @@ msgid "Sale Multiple Qty"
 msgstr ""
 
 #. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_min_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_product__sale_min_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__sale_min_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_min_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
-msgid "Sale restricted qty"
+msgid "Sale Min Qty"
+msgstr ""
+
+#. module: sale_restricted_qty
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
+msgid "Sale Restricted Qty"
 msgstr ""
 
 #. module: sale_restricted_qty
