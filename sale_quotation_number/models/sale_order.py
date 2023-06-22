@@ -10,12 +10,13 @@ from odoo import api, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.model
-    def create(self, vals):
-        if self.is_using_quotation_number(vals):
-            sequence = self.env["ir.sequence"].next_by_code("sale.quotation")
-            vals["name"] = sequence or "/"
-        return super(SaleOrder, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if self.is_using_quotation_number(vals):
+                sequence = self.env["ir.sequence"].next_by_code("sale.quotation")
+                vals["name"] = sequence or "/"
+        return super().create(vals_list)
 
     @api.model
     def is_using_quotation_number(self, vals):
@@ -34,7 +35,7 @@ class SaleOrder(models.Model):
             default["origin"] = self.origin + ", " + self.name
         else:
             default["origin"] = self.name
-        return super(SaleOrder, self).copy(default)
+        return super().copy(default)
 
     def action_confirm(self):
         for order in self:
