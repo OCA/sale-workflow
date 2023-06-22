@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="exception_partner_can_order" model="exception.rule">
+        <field name="name">Partner can order all the items in the sale</field>
+        <field name="description">The partner set in the sales order can order only
+            if he/she has a commercial entity that is listed as one of the partners
+            for which the products can be manufactured for.</field>
+        <field name="sequence">50</field>
+        <field name="model">sale.order</field>
+        <field
+            name="code"
+        >failed = not obj.exception_partner_can_order_manufactured_for()</field>
+        <field name="is_blocking">True</field>
+    </record>
+</odoo>
