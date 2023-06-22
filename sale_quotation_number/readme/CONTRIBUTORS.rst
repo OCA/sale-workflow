@@ -5,3 +5,4 @@
 * Manuel Regidor <manuel.regidor@sygel.es>
 * Vishnu Vanneri <vanneri.odoodev@gmail.com>
 * Ruchir Shukla <ruchir@bizzappdev.com>
+* Dhara Solanki <dhara.solanki@initos.com>
