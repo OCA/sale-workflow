@@ -8,6 +8,7 @@ class ProductTemplate(models.Model):
     uom_category_id = fields.Many2one(
         "uom.category", related="uom_id.category_id", string="UOM Category"
     )
+    list_price_base_sale_uom = fields.Boolean("Price based on Sale Uom")
 
     @api.onchange("uom_id")
     def remove_sale_uom(self):
