@@ -1,0 +1,6 @@
+* Kitti Upariphutthiphong. <kittiu@gmail.com> (http://ecosoft.co.th)
+* `Trobz <https://trobz.com>`_:
+
+    * Son Ho <sonhd@trobz.com>
+* Jairo Llopis (https://www.moduon.team/)
+* Dhara Solanki <dhara.solanki@initos.com>
