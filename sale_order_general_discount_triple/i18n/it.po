@@ -42,31 +42,9 @@ msgid "Discount 3"
 msgstr "Sconto 3"
 
 #. module: sale_order_general_discount_triple
-#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_res_config_settings__display_name
-#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order__display_name
-#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order_line__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: sale_order_general_discount_triple
 #: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_res_config_settings__general_discount
-#: model_terms:ir.ui.view,arch_db:sale_order_general_discount_triple.res_config_settings_form_view
 msgid "General Discount"
 msgstr "Sconto Generale"
-
-#. module: sale_order_general_discount_triple
-#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_res_config_settings__id
-#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order__id
-#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order_line__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_order_general_discount_triple
-#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_res_config_settings____last_update
-#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order____last_update
-#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order_line____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
 
 #. module: sale_order_general_discount_triple
 #: model:ir.model,name:sale_order_general_discount_triple.model_sale_order
@@ -77,3 +55,12 @@ msgstr "Ordine di vendita"
 #: model:ir.model,name:sale_order_general_discount_triple.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Riga ordine di vendita"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
