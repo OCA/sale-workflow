@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-10 15:38+0000\n"
-"PO-Revision-Date: 2023-05-24 10:09+0000\n"
+"PO-Revision-Date: 2023-06-26 13:08+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -113,7 +113,7 @@ msgstr "Data Pagamento"
 #. module: sale_quick_payment
 #: view:sale.order:sale_quick_payment.sale_order_view_form
 msgid "Register Payments"
-msgstr "Registra Pagamenti"
+msgstr "Registra pagamenti"
 
 #. module: sale_quick_payment
 #: model:sale.exception,name:sale_quick_payment.must_be_paid
