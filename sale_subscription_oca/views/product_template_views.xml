@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.sub.form</field>
+        <field name="model">product.template</field>
+        <field name="priority" eval="8" />
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales']" position="inside">
+                <group>
+                    <field name="subscribable" />
+                    <field
+                        name="subscription_template_id"
+                        attrs="{'invisible': [('subscribable', '=', False)]}"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_subscription_stage_form" model="ir.ui.view">
+        <field name="name">view.subscription.stage.form</field>
+        <field name="model">sale.subscription.stage</field>
+        <field name="arch" type="xml">
+            <form string="Subscription stage">
+                <sheet>
+                    <group name="main">
+                        <group>
+                            <field name="name" />
+                            <field name="in_progress" invisible="True" />
+                            <field
+                                name="sequence"
+                                help="
+                This field dictates the stages' visual order on the Kanban and form view. Although is purely visual, mind that if the order isn't
+                consequent with your needs, you could have a 'Closed'-type stage before a 'Ready to start' one.
+                "
+                            />
+                            <field
+                                name="type"
+                                help="Stages define the life-cycle of a given subscription; this is,
+                a subscription can be a 'Ready to start', 'In progress' or 'Closed' type of stage.
+                Bear in mind that there can only be one 'Closed'-type stage."
+                            />
+                            <field name="fold" />
+
+                        </group>
+                    </group>
+                    <group>
+                        <field
+                            name="description"
+                            placeholder="Add new description..."
+                            nolabel="1"
+                        />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_subscription_stage_tree" model="ir.ui.view">
+        <field name="name">view.subscription.stage.tree</field>
+        <field name="model">sale.subscription.stage</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="subscription_stage_action" model="ir.actions.act_window">
+        <field name="name">Susbcription stages</field>
+        <field name="res_model">sale.subscription.stage</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new subscription stage.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="subscription_stage_menu"
+        parent="sale_subscription_configuration_menu"
+        action="subscription_stage_action"
+        sequence="20"
+        name="Subscription stages"
+    />
+
+</odoo>

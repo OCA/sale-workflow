@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Inherit Form View to Modify it -->
+    <record id="res_partner_view_form" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <button name="action_view_partner_invoices" position="after">
+                <field name="subscription_ids" invisible="1" />
+                <button
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-recycle"
+                    name="action_view_subscription_ids"
+                    attrs="{'invisible': [('subscription_ids', '=', False)]}"
+                >
+                    <div class="o_form_field o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="subscription_ids_count" />
+                        </span>
+                        <span class="o_stat_text">Subscriptions</span>
+                    </div>
+                </button>
+            </button>
+        </field>
+    </record>
+</odoo>

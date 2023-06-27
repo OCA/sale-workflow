@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="sale_subscription_template_form" model="ir.ui.view">
+        <field name="name">sale.subscription.template.form</field>
+        <field name="model">sale.subscription.template</field>
+        <field name="arch" type="xml">
+
+            <form>
+                <sheet>
+                    <group>
+                        <div class="oe_button_box" name="button_box">
+                            <button
+                                name="action_view_product_ids"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o"
+                            >
+                                <field
+                                    name="product_ids_count"
+                                    widget="statinfo"
+                                    string="Products"
+                                />
+                            </button>
+                            <button
+                                name="action_view_subscription_ids"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o"
+                            >
+                                <field
+                                    name="subscription_ids_count"
+                                    widget="statinfo"
+                                    string="Subscriptions"
+                                />
+                            </button>
+                        </div>
+                    </group>
+                    <div class="oe_title">
+                        <h1>
+                            <field
+                                name="name"
+                                placeholder="e.g. Monthly Subscription"
+                            />
+                        </h1>
+                    </div>
+
+                    <notebook>
+                        <page string="Invoicing">
+                            <group>
+                                <group>
+                                    <label for="recurring_interval" string="Invoice" />
+                                    <div class="o_row oe_inline">
+                                        <span class="every">Every</span>
+                                        <field name="recurring_interval" colspan="2" />
+                                        <field name="recurring_rule_type" colspan="2" />
+                                    </div>
+                                    <field
+                                        name="recurring_rule_boundary"
+                                        widget="radio"
+                                        options="{'horizontal':true}"
+                                    />
+                                    <label
+                                        for="recurring_rule_count"
+                                        attrs="{'invisible': [('recurring_rule_boundary','=','unlimited')]}"
+                                    />
+                                    <div
+                                        class="o_row "
+                                        attrs="{'invisible': [('recurring_rule_boundary','=','unlimited')]}"
+                                    >
+                                        <span class="mr-1">For</span>
+                                        <field
+                                            name="recurring_rule_count"
+                                            class="oe_inline"
+                                        />
+                                        month(s)
+                                    </div>
+                                    <field name="invoicing_mode" widget="radio" />
+                                    <field
+                                        name="invoice_mail_template_id"
+                                        attrs="{'invisible': [('invoicing_mode','!=','invoice_send')], 'required': [('invoicing_mode', '=', 'invoice_send')]}"
+                                    />
+                                </group>
+                                <group>
+                                    <field name="code" readonly="0" />
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Terms and Conditions">
+                            <group>
+                                <field
+                                    nolabel="1"
+                                    name="description"
+                                    placeholder="Terms and Conditions"
+                                />
+                            </group>
+                        </page>
+                    </notebook>
+
+                </sheet>
+
+            </form>
+        </field>
+
+    </record>
+
+    <record id="sale_subscription_template_tree" model="ir.ui.view">
+        <field name="name">sale.subscription.template.tree</field>
+        <field name="model">sale.subscription.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="recurring_interval" />
+                <field name="recurring_rule_type" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="sale_subscription_template_act_window" model="ir.actions.act_window">
+        <field name="name">Subscription templates</field>
+        <field name="res_model">sale.subscription.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="sale_template_subscription_menu"
+        parent="sale_subscription_configuration_menu"
+        action="sale_subscription_template_act_window"
+        sequence="2"
+    />
+</odoo>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+  <data>
+    <record id="seq_id" model="ir.sequence">
+      <field name="name">sale_subscription_sequencer</field>
+      <field name="code">sale.subscription</field>
+      <field name="prefix">SUB</field>
+      <field name="padding">5</field>
+    </record>
+  </data>
+
+  <data noupdate="1">
+    <record id="subscription_stage_draft" model="sale.subscription.stage">
+      <!-- <field eval="True" name="active"/> -->
+      <field name="name">Ready to start</field>
+      <field name="sequence">0</field>
+      <field name="type">pre</field>
+      <field name="description">
+        DEFAULT STAGE
+
+        Draft equivalent, a subscription is ready to start when is not marked as in progress but it can be at any moment. If there's no 'Closed'-type stage defined, when a subscription comes to an end by automatic means, it will be marked with this stage.
+      </field>
+      <field eval="False" name="fold" />
+    </record>
+
+    <record id="subscription_stage_in_progress" model="sale.subscription.stage">
+      <!-- <field eval="True" name="active"/> -->
+      <field name="name">In progress</field>
+      <field name="sequence">1</field>
+      <field name="type">in_progress</field>
+      <field eval="False" name="fold" />
+      <field name="description">
+        DEFAULT STAGE
+
+        As an 'In progress'-type of stage, it will trigger the recurring invoicing process if applicable. If this stage is the first - sequence order - of the available 'In progress' types and there's a stage change from any other non-'In progress' types to this one, an invoice will be created automatically if the start date is the present day.
+      </field>
+    </record>
+
+    <record id="subscription_stage_closed" model="sale.subscription.stage">
+      <!-- <field eval="True" name="active"/> -->
+      <field name="name">Closed</field>
+      <field name="sequence">2</field>
+      <field name="type">post</field>
+      <field eval="False" name="fold" />
+      <field name="description">
+        DEFAULT STAGE
+
+        The final stage of a subscription. There are two ways to mark a subscription as closed. The easiest one is using the kanban card-moving capabilities, pressing the 'Close subscription' button (only available if a subscription is in progress).
+      </field>
+    </record>
+
+
+  </data>
+
+  <record id="close_reason_expensive" model="sale.subscription.close.reason">
+    <!-- <field eval="True" name="active"/> -->
+    <field name="name">The subscription is too expensive</field>
+  </record>
+
+  <record id="close_reason_expecs" model="sale.subscription.close.reason">
+    <!-- <field eval="True" name="active"/> -->
+    <field name="name">Subscription does not meet my requirements</field>
+  </record>
+
+  <record id="close_reason_ended" model="sale.subscription.close.reason">
+    <!-- <field eval="True" name="active"/> -->
+    <field name="name">The subscription ended</field>
+  </record>
+
+  <record id="close_reason_use" model="sale.subscription.close.reason">
+    <!-- <field eval="True" name="active"/> -->
+    <field name="name">I don't really use it</field>
+  </record>
+
+  <record id="close_reason_other" model="sale.subscription.close.reason">
+    <!-- <field eval="True" name="active"/> -->
+    <field name="name">Other</field>
+  </record>
+
+
+</odoo>

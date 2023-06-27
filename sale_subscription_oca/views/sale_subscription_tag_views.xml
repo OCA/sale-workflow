@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sale_subscription_tag_tree" model="ir.ui.view">
+        <field name="name">view.sale.subscription.tag.tree</field>
+        <field name="model">sale.subscription.tag</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="subscription_tag_action" model="ir.actions.act_window">
+        <field name="name">Tags</field>
+        <field name="res_model">sale.subscription.tag</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem
+        id="subscription_tag_menu"
+        parent="sale_subscription_configuration_menu"
+        action="subscription_tag_action"
+        sequence="40"
+        name="Subscription tags"
+    />
+
+</odoo>
