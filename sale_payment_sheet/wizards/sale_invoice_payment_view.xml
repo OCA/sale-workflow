@@ -21,7 +21,7 @@
                     <field name="wiz_line_ids" nolabel="1">
                         <tree editable="bottom" create="0">
                             <field name="state" invisible="1" />
-                            <field name="is_selected" widget="boolean" />
+                            <field name="is_selected" widget="boolean_toggle" />
                             <field name="invoice_id" />
                             <field name="invoice_date" />
                             <field name="amount_total" />
