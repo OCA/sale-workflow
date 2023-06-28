@@ -13,7 +13,6 @@ class SaleOrderLine(models.Model):
 
         return res
 
-
     @api.onchange("product_uom", "product_uom_qty")
     def product_uom_change(self):
         res = super(SaleOrderLine, self).product_uom_change()
