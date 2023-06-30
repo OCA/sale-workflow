@@ -9,6 +9,15 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
 
+            <xpath
+                expr="//button[@name='action_view_project_ids']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                >{'invisible': [('project_ids', '=', [])]}</attribute>
+            </xpath>
+
             <button name="action_confirm" position="before">
                 <field name="action_project_manual_allowed" invisible="1" />
                 <button
