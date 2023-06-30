@@ -65,6 +65,7 @@ addon | version | maintainers | summary
 [sale_mrp_bom](sale_mrp_bom/) | 14.0.1.0.0 |  | Allows define a BOM in the sales lines.
 [sale_order_archive](sale_order_archive/) | 14.0.1.0.0 |  | Archive Sale Orders
 [sale_order_carrier_auto_assign](sale_order_carrier_auto_assign/) | 14.0.1.0.1 |  | Auto assign delivery carrier on sale order confirmation
+[sale_order_change_analytic_account](sale_order_change_analytic_account/) | 14.0.1.0.0 |  | This addon allow user to update analytic account on sale orders and related journal entries.
 [sale_order_digitized_signature](sale_order_digitized_signature/) | 14.0.1.0.0 | [![mgosai](https://github.com/mgosai.png?size=30px)](https://github.com/mgosai) | Capture customer signature on the sales order
 [sale_order_disable_user_autosubscribe](sale_order_disable_user_autosubscribe/) | 14.0.1.0.0 |  | Remove the salesperson from autosubscribed sale followers
 [sale_order_general_discount](sale_order_general_discount/) | 14.0.2.0.0 |  | General discount per sale order
