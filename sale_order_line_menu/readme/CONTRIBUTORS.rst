@@ -2,3 +2,7 @@
 
   * Daniel Reis <dreis@opensourceintegrators.com>
   * Freni Patel <fpatel@opensourceintegrators.com>
+
+* `Moduon Team <https://moduon.team>`:
+
+  * Eduardo de Miguel <edu@moduon.team>
