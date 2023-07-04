@@ -6,6 +6,15 @@ from odoo import SUPERUSER_ID
 
 _logger = logging.getLogger(__name__)
 
+COLUMNS = (
+    ("sale_order", "price_total_no_discount"),
+    ("sale_order", "discount_total"),
+    ("sale_order", "price_subtotal_no_discount"),
+    ("sale_order_line", "price_subtotal_no_discount"),
+    ("sale_order_line", "price_total_no_discount"),
+    ("sale_order_line", "discount_total"),
+)
+
 
 def pre_init_hook(cr):
     _logger.info("Create discount columns in database")
@@ -30,15 +39,19 @@ def post_init_hook(cr, registry):
 
     query = """
     update sale_order_line
-    set price_total_no_discount = price_total
+    set
+        price_subtotal_no_discount = price_subtotal,
+        price_total_no_discount = price_total
     where discount = 0.0
     """
     cr.execute(query)
 
     query = """
-        update sale_order
-        set price_total_no_discount = amount_total
-        """
+    update sale_order
+    set
+        price_subtotal_no_discount = amount_untaxed,
+        price_total_no_discount = amount_total
+    """
     cr.execute(query)
 
     query = """
