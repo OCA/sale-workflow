@@ -5,22 +5,26 @@ from odoo import api, fields, models
 
 
 class SaleOrderLine(models.Model):
-
     _inherit = "sale.order.line"
 
     discount_total = fields.Monetary(
         compute="_compute_amount", string="Discount Subtotal", store=True
     )
-    price_total_no_discount = fields.Monetary(
+    price_subtotal_no_discount = fields.Monetary(
         compute="_compute_amount", string="Subtotal Without Discount", store=True
+    )
+    price_total_no_discount = fields.Monetary(
+        compute="_compute_amount", string="Total Without Discount", store=True
     )
 
     def _update_discount_display_fields(self):
         for line in self:
+            line.price_subtotal_no_discount = 0
             line.price_total_no_discount = 0
             line.discount_total = 0
             if not line.discount:
                 line.price_total_no_discount = line.price_total
+                line.price_subtotal_no_discount = line.price_subtotal
                 continue
             price = line.price_unit
             taxes = line.tax_id.compute_all(
@@ -31,12 +35,14 @@ class SaleOrderLine(models.Model):
                 partner=line.order_id.partner_shipping_id,
             )
 
+            price_subtotal_no_discount = taxes["total_excluded"]
             price_total_no_discount = taxes["total_included"]
             discount_total = price_total_no_discount - line.price_total
 
             line.update(
                 {
                     "discount_total": discount_total,
+                    "price_subtotal_no_discount": price_subtotal_no_discount,
                     "price_total_no_discount": price_total_no_discount,
                 }
             )
