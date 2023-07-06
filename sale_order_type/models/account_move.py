@@ -10,7 +10,6 @@ class AccountMove(models.Model):
     sale_type_id = fields.Many2one(
         comodel_name="sale.order.type",
         string="Sale Type",
-        compute="_compute_sale_type_id",
         store=True,
         readonly=True,
         states={"draft": [("readonly", False)]},
@@ -18,33 +17,30 @@ class AccountMove(models.Model):
         copy=True,
     )
 
-    @api.depends("partner_id", "company_id")
-    def _compute_sale_type_id(self):
-        # If create invoice from sale order, sale type will not computed.
-        if not self.env.context.get("default_move_type", False) or self.env.context.get(
-            "active_model", False
-        ) in ["sale.order", "sale.advance.payment.inv"]:
-            return
-        self.sale_type_id = self.env["sale.order.type"]
-        for record in self:
-            if record.move_type not in ["out_invoice", "out_refund"]:
-                record.sale_type_id = self.env["sale.order.type"]
-                continue
-            else:
-                record.sale_type_id = record.sale_type_id
-            if not record.partner_id:
-                record.sale_type_id = self.env["sale.order.type"].search(
-                    [("company_id", "in", [self.env.company.id, False])], limit=1
-                )
-            else:
-                sale_type = (
-                    record.partner_id.with_company(record.company_id).sale_type
-                    or record.partner_id.commercial_partner_id.with_company(
-                        record.company_id
-                    ).sale_type
-                )
-                if sale_type:
-                    record.sale_type_id = sale_type
+    def default_get(self, fields_list):
+        res = super().default_get(fields_list)
+        if res.get("move_type") in ["out_invoice", "out_refund"]:
+            res.update(
+                {
+                    "sale_type_id": self.env["sale.order.type"].search(
+                        [("company_id", "in", [self.env.company.id, False])], limit=1
+                    )
+                }
+            )
+        return res
+
+    @api.onchange("partner_id")
+    def onchange_type_id(self):
+        if self.move_type in ["out_invoice", "out_refund"]:
+            sale_type = (
+                self.partner_id.with_company(self.company_id).sale_type
+                or self.partner_id.commercial_partner_id.with_company(
+                    self.company_id
+                ).sale_type
+            )
+            if sale_type:
+                self.sale_type_id = sale_type
+                self.onchange_sale_type_id()
 
     @api.onchange("sale_type_id")
     def onchange_sale_type_id(self):
