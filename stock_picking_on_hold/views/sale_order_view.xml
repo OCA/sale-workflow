@@ -10,7 +10,10 @@
                 position="after"
             >
                 <field name="payment_method_id" />
-                <field name="hold_picking_until_payment" />
+                <field
+                    name="hold_picking_until_payment"
+                    attrs="{'readonly': [('payment_method_id', '!=', False)]}"
+                />
             </xpath>
         </field>
     </record>
