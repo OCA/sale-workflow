@@ -3,6 +3,9 @@
 
 from datetime import datetime
 
+from odoo.tests.common import Form
+from odoo.tools import mute_logger
+
 from .common import Common
 
 
@@ -401,3 +404,31 @@ class TestMethods(Common):
             earliest_expedition_date, lastest_expedition_date, **kwargs
         )
         self.assertEqual(res, earliest_expedition_date)
+
+    # picking._get_delays
+
+    def _add_product_in_order(self, order, product_qties):
+        sale_form = Form(order)
+        with mute_logger("odoo.tests.common.onchange"):
+            for product, qty in product_qties:
+                with sale_form.order_line.new() as line:
+                    line.product_id = product
+                    line.product_uom_qty = qty
+        sale_form.save()
+
+    def test_picking_get_delays(self):
+        order = self.order
+        product = self.env["product.product"].create(
+            {"name": "product with delay", "sale_delay": 5, "type": "product"}
+        )
+        self._add_product_in_order(order, [(product, 10)])
+        order.action_confirm()
+        picking = order.picking_ids
+        # with move_type = direct, get_delays should return the smallest sale_delay
+        picking.move_type = "direct"
+        sale_delay, __, __ = picking._get_delays()
+        self.assertEqual(sale_delay, 1.0)
+        # With move_type = one, the biggest one is returned
+        picking.move_type = "one"
+        sale_delay, __, __ = picking._get_delays()
+        self.assertEqual(sale_delay, 5.0)

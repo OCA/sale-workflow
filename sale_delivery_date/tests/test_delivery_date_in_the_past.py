@@ -128,8 +128,7 @@ class TestDeliveryDateInThePast(SavepointCase):
             # customer delivery preferences applied.
             # As customer is set to be delivered anytime, midnight is ok.
             td_security_lead = timedelta(days=picking.company_id.security_lead)
-            expected_datetime = picking.scheduled_date + td_security_lead
-            self.assertEqual(picking.expected_delivery_date, expected_datetime)
+            self.assertEqual(str(picking.expected_delivery_date), "2021-10-16 00:00:00")
 
     def test_delivery_date_as_date_done(self):
         """Date done should be used if both commitment_date and

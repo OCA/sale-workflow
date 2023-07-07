@@ -170,7 +170,7 @@ class Common(SavepointCase):
                             "time_window_end": end,
                             "time_window_weekday_ids": [(6, 0, weekdays.ids)],
                         },
-                    )
+                    ) for start, end in date_ranges
                 ],
             }
         )
