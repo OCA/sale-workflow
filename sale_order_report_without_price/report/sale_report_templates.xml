@@ -6,18 +6,39 @@
         primary="True"
         priority="99"
     >
-        <xpath expr="//th[@name='th_priceunit']" position="replace" />
-        <xpath expr="//th[@name='th_discount']" position="replace" />
-        <xpath expr="//th[@name='th_taxes']" position="replace" />
-        <xpath expr="//th[@name='th_subtotal']" position="replace" />
+        <!-- Avoid replaces to not break inheritance properties -->
+        <xpath expr="//th[@name='th_priceunit']" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath expr="//th[@name='th_discount']" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath expr="//th[@name='th_taxes']" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath expr="//th[@name='th_subtotal']" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
 
-        <xpath expr="//td[@name='td_priceunit']" position="replace" />
-        <xpath expr="//td[count(@name) = 0]" position="replace" />
-        <xpath expr="//td[@name='td_taxes']" position="replace" />
-        <xpath expr="//td[@name='td_subtotal']" position="replace" />
+        <xpath expr="//td[@name='td_priceunit']" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath expr="//td[count(@name) = 0]" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath expr="//td[@name='td_taxes']" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath expr="//td[@name='td_subtotal']" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
 
-        <xpath expr="//tr[hasclass('is-subtotal')]" position="replace" />
-        <xpath expr="//div[@id='total']" position="replace" />
+        <xpath expr="//tr[hasclass('is-subtotal')]" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+        <xpath expr="//div[@id='total']" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
     </template>
 
     <template id="report_saleorder_without_price">
