@@ -9,7 +9,7 @@
             position="before"
         >
             <th>
-                <strong>Sequence</strong>
+                <strong>Line Number</strong>
             </th>
         </xpath>
         <xpath
@@ -17,7 +17,7 @@
             position="before"
         >
             <td>
-                <span t-field="line.sequence2" optional="show" />
+                <span t-field="line.visible_sequence" />
             </td>
         </xpath>
     </template>
