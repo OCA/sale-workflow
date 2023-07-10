@@ -6,11 +6,10 @@ from odoo.exceptions import UserError
 
 
 class SaleOrder(models.Model):
-
     _inherit = "sale.order"
 
     confirmed_invoice_ids = fields.Many2many(
-        comodel_name="account.invoice",
+        comodel_name="account.move",
         compute="_compute_confirmed_invoice_ids",
         help="Technical field in order to retrieve confirmed invoices",
     )
@@ -20,14 +19,14 @@ class SaleOrder(models.Model):
         Return the invoice states that should avoid order cancel
         :return:
         """
-        return ["open"]
+        return ["posted"]
 
-    @api.multi
     @api.depends("invoice_ids")
     def _compute_confirmed_invoice_ids(self):
+        states = self._get_confirmed_invoice_states()
         for sale in self:
             sale.confirmed_invoice_ids = sale.invoice_ids.filtered(
-                lambda i, states=self._get_confirmed_invoice_states(): i.state in states
+                lambda invoice, states=states: invoice.state in states
             )
 
     def action_cancel(self):
