@@ -50,7 +50,7 @@
                                 <field name="currency_id" />
                                 <templates>
                                     <t t-name="kanban-box">
-                                        <div class="oe_kanban_global_click">
+                                        <div>
                                             <div class="o_kanban_image">
                                                 <img
                                                     t-att-src="kanban_image('product.product', 'image_128', record.product_id.raw_value)"
@@ -58,7 +58,9 @@
                                                 />
                                             </div>
                                             <div class="oe_kanban_details">
-                                                <div><field name="product_id" /></div>
+                                                <div>
+                                                    <field name="product_id" />
+                                                </div>
                                                 <div>Price: <field
                                                         name="price_unit"
                                                         widget="monetary"
@@ -72,13 +74,15 @@
                                                     /> <field
                                                         name="sale_uom_id"
                                                     /></div>
-                                                <div><strong><span
-                                                        >To be included: </span><field
-                                                            name="units_included"
-                                                        /><span> </span><field
-                                                            name="sale_uom_id"
-                                                            groups="uom.group_uom"
-                                                        /></strong></div>
+                                            </div>
+                                            <div class="oe_kanban_footer">
+                                                <div class="o_units_included_widget">
+                                                    <field
+                                                        name="units_included"
+                                                        widget="units_included_widget"
+                                                        options="{'precision': 2}"
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
                                     </t>
