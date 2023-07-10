@@ -63,6 +63,7 @@ class TestBaseSubstate(TransactionCase):
 
         # Test that substate_id is set to false if
         # there is not substate corresponding to state
-        so_test1.action_cancel()
+        # Add context to make sure the popup doesn't open
+        so_test1.with_context(disable_cancel_warning=True).action_cancel()
         self.assertTrue(so_test1.state == "cancel")
         self.assertTrue(not so_test1.substate_id)
