@@ -46,11 +46,6 @@ msgstr "<span class=\"o_form_label\">Usar dirección de entrega</span>"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
-msgid "<span>To be included: </span>"
-msgstr "<span>Para ser incluido: </span>"
-
-#. module: sale_order_product_recommendation
-#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Accept"
 msgstr "Aceptar"
 
@@ -303,6 +298,9 @@ msgstr "Asistente"
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "times -"
 msgstr "veces -"
+
+#~ msgid "<span>To be included: </span>"
+#~ msgstr "<span>Para ser incluido: </span>"
 
 #~ msgid "Sale Uom"
 #~ msgstr "Unidad de medida de venta"

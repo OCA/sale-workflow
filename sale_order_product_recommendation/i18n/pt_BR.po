@@ -40,11 +40,6 @@ msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
-msgid "<span>To be included: </span>"
-msgstr "<span>Para ser incluído: </span>"
-
-#. module: sale_order_product_recommendation
-#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Accept"
 msgstr "Aceitar"
 
@@ -290,3 +285,6 @@ msgstr "Assistente"
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "times -"
 msgstr ""
+
+#~ msgid "<span>To be included: </span>"
+#~ msgstr "<span>Para ser incluído: </span>"
