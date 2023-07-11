@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_sale_planner_calendar_issue_type_tree" model="ir.ui.view">
+        <field name="name">sale.planner.calendar.issue.type.tree</field>
+        <field name="model">sale.planner.calendar.issue.type</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_sale_planner_calendar_issue_type" model="ir.actions.act_window">
+        <field name="name">Issue types</field>
+        <field name="res_model">sale.planner.calendar.issue.type</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+</odoo>

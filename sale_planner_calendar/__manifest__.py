@@ -23,6 +23,7 @@
         "views/res_config_settings_views.xml",
         "views/res_partner_view.xml",
         "views/sale_planner_calendar_event_view.xml",
+        "views/sale_planner_calendar_issue_type_view.xml",
         "views/sale_planner_calendar_summary_view.xml",
         "wizard/sale_planner_calendar_reassign.xml",
         "wizard/sale_planner_calendar_wizard.xml",

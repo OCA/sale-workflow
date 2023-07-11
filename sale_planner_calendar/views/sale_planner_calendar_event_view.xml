@@ -175,7 +175,7 @@
                         <field name="partner_id" readonly="1" />
                     </group>
                     <group>
-                        <field name="calendar_issue_type_id" widget="radio" />
+                        <field name="calendar_issue_type_id" widget="selection_badge" />
                     </group>
                     <group>
                         <field name="comment" />
