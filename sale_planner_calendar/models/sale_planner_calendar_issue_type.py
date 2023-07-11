@@ -8,4 +8,4 @@ class SaleEventPlannerIssueType(models.Model):
     _name = "sale.planner.calendar.issue.type"
     _description = "Sale planner calendar issue type"
 
-    name = fields.Char()
+    name = fields.Char(translate=True)

@@ -6,16 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-07 13:34+0000\n"
+"POT-Creation-Date: 2023-07-11 08:40+0000\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
+"Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_kanban
@@ -176,6 +176,11 @@ msgid "Clock"
 msgstr "Reloj"
 
 #. module: sale_planner_calendar
+#: model:sale.planner.calendar.issue.type,name:sale_planner_calendar.event_planner_issue_type_close
+msgid "Closed"
+msgstr "Cerrado"
+
+#. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_event__comment
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__comment
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_form
@@ -184,9 +189,8 @@ msgstr "Comentario"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
-#, fuzzy
 msgid "Commercial name"
-msgstr "Nombre entidad comercial"
+msgstr "Nombre comercial"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_event__partner_commercial_name
@@ -205,9 +209,9 @@ msgid "Company"
 msgstr "Compañía"
 
 #. module: sale_planner_calendar
-#: model:ir.model,name:sale_planner_calendar.model_res_config_settings
-msgid "Config Settings"
-msgstr "Opciones de Configuración"
+#: model:ir.ui.menu,name:sale_planner_calendar.menu_calendar_event_configuration_root
+msgid "Configuration"
+msgstr "Configuración"
 
 #. module: sale_planner_calendar
 #: model:ir.model,name:sale_planner_calendar.model_res_partner
@@ -366,6 +370,11 @@ msgid "Events to update"
 msgstr "Eventos a actualizar"
 
 #. module: sale_planner_calendar
+#: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__failed_message_ids
+msgid "Failed Messages"
+msgstr "Mensajes Fallidos"
+
+#. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid "Fill events from filter values"
 msgstr "Rellenar eventos a partir de los valores de filtrado"
@@ -492,6 +501,12 @@ msgid "Issue"
 msgstr "Incidencia"
 
 #. module: sale_planner_calendar
+#: model:ir.actions.act_window,name:sale_planner_calendar.action_sale_planner_calendar_issue_type
+#: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_issue_type
+msgid "Issue types"
+msgstr "Tipos de Incidencias"
+
+#. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_form
 msgid "Issues"
 msgstr "Incidencias"
@@ -537,14 +552,29 @@ msgid "Main Attachment"
 msgstr "Adjunto principal"
 
 #. module: sale_planner_calendar
+#: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_content
+msgid "Message Content"
+msgstr "Contenido del mensaje"
+
+#. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_has_error
 msgid "Message Delivery error"
 msgstr "Error de Envío de Mensaje"
 
 #. module: sale_planner_calendar
+#: model:ir.model.fields,help:sale_planner_calendar.field_sale_planner_calendar_summary__message_content
+msgid "Message content, to be used only in searches"
+msgstr "Contenido del mensaje, para usarse en búsquedas"
+
+#. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_ids
 msgid "Messages"
 msgstr "Mensajes"
+
+#. module: sale_planner_calendar
+#: model:sale.planner.calendar.issue.type,name:sale_planner_calendar.event_planner_issue_type_missing
+msgid "Missing"
+msgstr "Ausente"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__target_partner_mobile
@@ -693,7 +723,7 @@ msgstr "Móvil de contacto"
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_event__partner_name
 msgid "Partner Name"
-msgstr ""
+msgstr "Nombre del cliente"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__partner_user_id
@@ -757,6 +787,11 @@ msgstr "Evento rutero"
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_form
 msgid "Process"
 msgstr "Procesar"
+
+#. module: sale_planner_calendar
+#: model:ir.model,name:sale_planner_calendar.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr "Agrupación de la compra abastecida"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__reassign_wiz_id
@@ -825,7 +860,6 @@ msgstr "Meses siguientes rutero"
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_company__sale_planner_order_cut_hour
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_config_settings__sale_planner_order_cut_hour
-#, fuzzy
 msgid "Sale Planner Order Cut Hour"
 msgstr "Hora de corte pedidos rutero"
 
@@ -1154,11 +1188,12 @@ msgid "Weekday"
 msgstr "Día de la semana"
 
 #. module: sale_planner_calendar
-#: model:ir.ui.menu,name:sale_planner_calendar.menu_calendar_event_wizard_root
-msgid "Wizards"
-msgstr "Asistentes"
-
-#. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid "or"
 msgstr "o"
+
+#~ msgid "Config Settings"
+#~ msgstr "Opciones de Configuración"
+
+#~ msgid "Wizards"
+#~ msgstr "Asistentes"
