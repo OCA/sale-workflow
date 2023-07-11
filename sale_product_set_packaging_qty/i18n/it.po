@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-10 18:10+0000\n"
+"PO-Revision-Date: 2023-07-11 11:10+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -35,7 +35,7 @@ msgstr "Ultima modifica il"
 #: code:addons/sale_product_set_packaging_qty/models/product_set.py:0
 #, python-format
 msgid "Please select a packaging with a quantity bigger than 0"
-msgstr ""
+msgstr "Seleziona un imballaggio con quantità maggiore di zero"
 
 #. module: sale_product_set_packaging_qty
 #: model:ir.model.fields,field_description:sale_product_set_packaging_qty.field_product_set_line__product_packaging_id
@@ -45,15 +45,16 @@ msgstr "Imballaggio prodotto"
 #. module: sale_product_set_packaging_qty
 #: model:ir.model.fields,field_description:sale_product_set_packaging_qty.field_product_set_line__product_packaging_qty
 msgid "Product Packaging Qty"
-msgstr ""
+msgstr "Q.tà imballaggio prodotto"
 
 #. module: sale_product_set_packaging_qty
 #: model:ir.model,name:sale_product_set_packaging_qty.model_product_set_line
 msgid "Product set line"
-msgstr ""
+msgstr "Riga set prodotto"
 
 #. module: sale_product_set_packaging_qty
 #: code:addons/sale_product_set_packaging_qty/models/product_set.py:0
 #, python-format
 msgid "You must define a package before setting a quantity of said package."
 msgstr ""
+"Devi definire un imballaggio prima di impostare una quantità per lo stesso."
