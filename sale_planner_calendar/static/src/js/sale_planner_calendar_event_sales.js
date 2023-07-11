@@ -22,7 +22,7 @@ odoo.define(
                         res_model: "sale.order",
                         target: "current",
                         views: [[false, "form"]],
-                        context: {calendar_summary_id: calendar_summary_id},
+                        context: {calendar_summary_id: calendar_summary_id || false},
                     });
                 });
             }
