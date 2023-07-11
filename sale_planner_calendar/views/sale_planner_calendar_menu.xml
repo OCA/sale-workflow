@@ -65,20 +65,26 @@
     />
 
     <menuitem
-        id="menu_calendar_event_wizard_root"
+        id="menu_calendar_event_configuration_root"
         parent="menu_sale_planner_calendar_root"
-        name="Wizards"
+        name="Configuration"
         sequence="30"
     />
     <menuitem
+        id="menu_sale_planner_calendar_issue_type"
+        parent="menu_calendar_event_configuration_root"
+        action="action_sale_planner_calendar_issue_type"
+        sequence="20"
+    />
+    <menuitem
         id="menu_sale_planner_calendar_wizard"
-        parent="menu_calendar_event_wizard_root"
+        parent="menu_calendar_event_configuration_root"
         action="sale_planner_calendar_wizard_action"
         sequence="40"
     />
     <menuitem
         id="menu_sale_planner_calendar_reassign_wiz"
-        parent="menu_calendar_event_wizard_root"
+        parent="menu_calendar_event_configuration_root"
         action="action_sale_planner_calendar_reassign_wiz"
         sequence="50"
     />
