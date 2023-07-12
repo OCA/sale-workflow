@@ -100,6 +100,7 @@ setuptools.setup(
         'odoo13-addon-sale_stock_cancel_restriction',
         'odoo13-addon-sale_stock_delivery_address',
         'odoo13-addon-sale_stock_last_date',
+        'odoo13-addon-sale_stock_line_sequence',
         'odoo13-addon-sale_stock_picking_blocking',
         'odoo13-addon-sale_stock_picking_note',
         'odoo13-addon-sale_stock_picking_validation_blocking',
