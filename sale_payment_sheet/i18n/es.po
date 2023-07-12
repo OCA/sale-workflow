@@ -155,7 +155,6 @@ msgstr "Borrador"
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__invoice_date_due
 #, fuzzy
-#| msgid "Date"
 msgid "Due Date"
 msgstr "Fecha"
 
@@ -217,6 +216,7 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_error
+#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 
@@ -391,6 +391,11 @@ msgid "Responsible"
 msgstr "Responsable"
 
 #. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Error en la entrega del SMS"
+
+#. module: sale_payment_sheet
 #: model:ir.model,name:sale_payment_sheet.model_sale_payment_sheet
 msgid "Sale Payment Sheet"
 msgstr "Hoja de pagos"
@@ -408,7 +413,6 @@ msgstr "Pago de facturas"
 #. module: sale_payment_sheet
 #: model:ir.model,name:sale_payment_sheet.model_sale_invoice_payment_line_wiz
 #, fuzzy
-#| msgid "Sale invoice payment wizard"
 msgid "Sale invoice payment lines wizard"
 msgstr "Asistente de pago de factura"
 
@@ -603,6 +607,3 @@ msgstr "Resumen de pagos de facturas"
 #: model:ir.actions.report,name:sale_payment_sheet.action_report_sale_payment_sheet
 msgid "sale payment sheet summary"
 msgstr "Resumen de pagos de facturas"
-
-#~ msgid "SMS Delivery error"
-#~ msgstr "Error en la entrega del SMS"
