@@ -66,6 +66,11 @@ msgid "Created on"
 msgstr "Créé le"
 
 #. module: sale_order_type
+#: model:ir.model,name:sale_order_type.model_res_currency
+msgid "Currency"
+msgstr ""
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__description
 msgid "Description"
 msgstr ""
