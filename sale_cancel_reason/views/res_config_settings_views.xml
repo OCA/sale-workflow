@@ -1,0 +1,26 @@
+<odoo>
+    <record
+        id="res_config_settings_view_form_inherit_sale_management"
+        model="ir.ui.view"
+    >
+        <field name="name">res.config.settings.view.form.inherit.sale.management</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <div id="design_quotation_template_setting" position="after">
+                <div class="col-12 col-lg-6 o_setting_box" id="sale_cancel_reason">
+                    <div class="o_setting_left_pane">
+                        <field name="enable_sale_cancel_reason" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="enable_sale_cancel_reason" />
+                        <div class="text-muted">
+                            If enabled, when trying to cancel a Sale Order, it will ask you a reason.<br
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+</odoo>
