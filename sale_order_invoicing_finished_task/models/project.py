@@ -58,9 +58,8 @@ class ProjectTask(models.Model):
         if sale_line_id:
             sale_lines |= self.env["sale.order.line"].browse(sale_line_id)
         for sale_line in sale_lines:
-            if (
-                sale_line.state in ("done", "cancel")
-                or sale_line.invoice_status == "invoiced"
+            if sale_line.state in ("done", "cancel") or (
+                sale_line.invoice_status == "invoiced" and sale_line.product_uom_qty > 0
             ):
                 raise ValidationError(
                     _(
