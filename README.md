@@ -119,6 +119,7 @@ addon | version | maintainers | summary
 [sale_stock_cancel_restriction](sale_stock_cancel_restriction/) | 13.0.1.0.0 |  | Sale Stock Cancel Restriction
 [sale_stock_delivery_address](sale_stock_delivery_address/) | 13.0.1.0.4 |  | Sale Stock Delivery Address
 [sale_stock_last_date](sale_stock_last_date/) | 13.0.1.0.0 |  | Displays last delivery date in sale order lines
+[sale_stock_line_sequence](sale_stock_line_sequence/) | 13.0.1.0.0 |  | Glue Module for Sale Order Line Sequence and Stock Picking Line Sequence
 [sale_stock_picking_blocking](sale_stock_picking_blocking/) | 13.0.1.1.0 |  | Allow you to block the creation of deliveries from a sale order.
 [sale_stock_picking_note](sale_stock_picking_note/) | 13.0.2.0.0 |  | Add picking note in sale and purchase order
 [sale_stock_picking_validation_blocking](sale_stock_picking_validation_blocking/) | 13.0.1.0.1 |  | This module adds the opportunity to prevent the validation of delivery order from the SO.
