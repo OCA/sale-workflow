@@ -14,6 +14,6 @@
         "views/sale_order_line_views.xml",
     ],
     "installable": True,
-    "maintainer": "dreispt",
+    "maintainer": ["dreispt", "Shide"],
     "development_status": "Beta",
 }
