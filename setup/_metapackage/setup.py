@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo-addon-sale_automatic_workflow_job>=15.0dev,<15.1dev',
         'odoo-addon-sale_automatic_workflow_payment_mode>=15.0dev,<15.1dev',
         'odoo-addon-sale_blanket_order>=15.0dev,<15.1dev',
+        'odoo-addon-sale_cancel_reason>=15.0dev,<15.1dev',
         'odoo-addon-sale_commercial_partner>=15.0dev,<15.1dev',
         'odoo-addon-sale_credit_point>=15.0dev,<15.1dev',
         'odoo-addon-sale_delivery_split_date>=15.0dev,<15.1dev',
