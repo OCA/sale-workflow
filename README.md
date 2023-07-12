@@ -36,6 +36,7 @@ addon | version | maintainers | summary
 [sale_exception](sale_exception/) | 16.0.1.2.0 |  | Custom exceptions on sale order
 [sale_force_invoiced](sale_force_invoiced/) | 16.0.1.0.0 |  | Allows to force the invoice status of the sales order to Invoiced
 [sale_invoice_policy](sale_invoice_policy/) | 16.0.1.0.0 |  | Sales Management: let the user choose the invoice policy on the order
+[sale_manual_delivery](sale_manual_delivery/) | 16.0.1.0.0 |  | Create manually your deliveries
 [sale_mrp_bom](sale_mrp_bom/) | 16.0.1.0.0 |  | Allows define a BOM in the sales lines.
 [sale_order_archive](sale_order_archive/) | 16.0.1.0.0 |  | Archive Sale Orders
 [sale_order_general_discount](sale_order_general_discount/) | 16.0.1.0.0 |  | General discount per sale order
