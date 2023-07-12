@@ -17,13 +17,13 @@ Sale Cancel Reason
     :target: https://github.com/OCA/sale-workflow/tree/15.0/sale_cancel_reason
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-14-0/sale-workflow-14-0-sale_cancel_reason
+    :target: https://translation.odoo-community.org/projects/sale-workflow-15-0/sale-workflow-15-0-sale_cancel_reason
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
     :target: https://runbot.odoo-community.org/runbot/167/15.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5|
+|badge1| |badge2| |badge3| |badge4| |badge5| 
 
 When a sale order is canceled, a reason must be given,
 it is chosen from a configured list.
@@ -38,6 +38,7 @@ Usage
 
 To use this module, you need to:
 
+* Enable Sale Cancel Reason at Sales -> Settings -> Enable Sale Cancel Reason.
 * Click at "Cancel Order" button from a sales order which state equal
   to Draft, Quotation or Sales Order
 * A wizard will show a list of cancel reasons
@@ -70,6 +71,7 @@ Contributors
 * Bhavesh Odedra <bodedra@opensourceintegrators.com>
 * Alan Ramos <alan.ramos@jarsa.com.mx>
 * Aritz Olea <ao@landoo.es>, Landoo SL
+* David Jiménez <david.jimenez@forgeflow.com>
 
 Maintainers
 ~~~~~~~~~~~
