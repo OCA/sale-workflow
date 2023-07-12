@@ -1,0 +1,159 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_substate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_substate
+#: model:mail.template,body_html:sale_substate.mail_template_data_sale_substate_wait_docs
+msgid ""
+"<div>\n"
+"    Dear ${object.partner_id.name or 'customer'},<br/>\n"
+"    Thank you for your order.<br/>\n"
+"        In order to validate your order we need the legal documentation.\n"
+"       <br/><br/>\n"
+"    Thank you.\n"
+"    % if user.signature\n"
+"        <br/>\n"
+"        ${user.signature | safe}\n"
+"    % endif\n"
+"</div>\n"
+"        "
+msgstr ""
+
+#. module: sale_substate
+#: model:mail.template,body_html:sale_substate.mail_template_data_sale_substate_delivery
+msgid ""
+"<div>\n"
+"    Dear ${object.partner_id.name or 'customer'},<br/>\n"
+"    Thank you for your order.<br/>\n"
+"        You order is being prepared for delivery.\n"
+"        You will recive a delivery tracking link to follow your delevery.\n"
+"    <br/><br/>\n"
+"    Thank you,\n"
+"    % if user.signature\n"
+"        <br/>\n"
+"        ${user.signature | safe}\n"
+"    % endif\n"
+"</div>\n"
+"        "
+msgstr ""
+
+#. module: sale_substate
+#: model:ir.model.fields,field_description:sale_substate.field_base_substate_type__model
+msgid "Apply on"
+msgstr ""
+
+#. module: sale_substate
+#: model:ir.model,name:sale_substate.model_base_substate_type
+msgid "Base Substate Type"
+msgstr ""
+
+#. module: sale_substate
+#: model:base.substate,name:sale_substate.base_substate_delivered
+msgid "Delivered"
+msgstr ""
+
+#. module: sale_substate
+#: model:ir.model.fields,field_description:sale_substate.field_base_substate_type__display_name
+#: model:ir.model.fields,field_description:sale_substate.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_substate
+#: model:ir.model.fields,field_description:sale_substate.field_base_substate_type__id
+#: model:ir.model.fields,field_description:sale_substate.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_substate
+#: model:base.substate,name:sale_substate.base_substate_in_delivery
+msgid "In delivering"
+msgstr ""
+
+#. module: sale_substate
+#: model:base.substate,name:sale_substate.base_substate_under_nego
+msgid "In negotiation"
+msgstr ""
+
+#. module: sale_substate
+#: model:ir.model.fields,field_description:sale_substate.field_base_substate_type____last_update
+#: model:ir.model.fields,field_description:sale_substate.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_substate
+#: model:base.substate,name:sale_substate.base_substate_lost
+msgid "Lost"
+msgstr ""
+
+#. module: sale_substate
+#: model:target.state.value,name:sale_substate.target_state_value_draft
+msgid "Quotation"
+msgstr ""
+
+#. module: sale_substate
+#: model:mail.template,subject:sale_substate.mail_template_data_sale_substate_delivery
+#: model:mail.template,subject:sale_substate.mail_template_data_sale_substate_wait_docs
+msgid "Reception of ${object.name}"
+msgstr ""
+
+#. module: sale_substate
+#: model:target.state.value,name:sale_substate.target_state_value_sale
+msgid "Sale"
+msgstr ""
+
+#. module: sale_substate
+#: model:ir.model.fields.selection,name:sale_substate.selection__base_substate_type__model__sale_order
+msgid "Sale order"
+msgstr ""
+
+#. module: sale_substate
+#: model:base.substate.type,name:sale_substate.base_substate_type_sale
+msgid "Sale order Substate"
+msgstr ""
+
+#. module: sale_substate
+#: model:ir.model,name:sale_substate.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_substate
+#: model:ir.model.fields,field_description:sale_substate.field_sale_order__substate_id
+msgid "Sub State"
+msgstr ""
+
+#. module: sale_substate
+#: model_terms:ir.ui.view,arch_db:sale_substate.view_sales_order_filter
+msgid "Substate"
+msgstr ""
+
+#. module: sale_substate
+#: code:addons/sale_substate/models/sale_order.py:0
+#, python-format
+msgid "The substate \"%s\" is not defined for the state \"%s\" but for \"%s\" "
+msgstr ""
+
+#. module: sale_substate
+#: model:base.substate,name:sale_substate.base_substate_valid_docs
+msgid "To validate legal documents"
+msgstr ""
+
+#. module: sale_substate
+#: model:base.substate,name:sale_substate.base_substate_wait_docs
+msgid "Waiting for legal documents"
+msgstr ""
+
+#. module: sale_substate
+#: model:base.substate,name:sale_substate.base_substate_won
+msgid "Won"
+msgstr ""
