@@ -3,7 +3,7 @@
 
 from functools import wraps
 
-from odoo.tests import SavepointCase
+from odoo.tests import common
 
 LIST_PRICES_MAPPING = {
     "pricelist_cache.list0": [
@@ -62,7 +62,7 @@ def check_duplicates(func):
     return wrapper
 
 
-class TestPricelistCacheCommon(SavepointCase):
+class TestPricelistCacheCommon(common.TransactionCase):
     @classmethod
     def setUpClassBaseCache(cls):
         cls.cache_model.cron_reset_pricelist_cache()
