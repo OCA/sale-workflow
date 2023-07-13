@@ -14,8 +14,8 @@ class TestSaleOrderLineSequence(TransactionCase):
 
     def test_sale_order_moves_line_sequence(self):
         """
-            Verify that the sequence is correctly assigned to the move associated
-            with the sale order line it references.
+        Verify that the sequence is correctly assigned to the move associated
+        with the sale order line it references.
         """
         vals = {
             "partner_id": self.partner.id,
@@ -30,7 +30,11 @@ class TestSaleOrderLineSequence(TransactionCase):
                         "price_unit": self.product.lst_price,
                     },
                 ),
-                (0, 0, {"name": "Section 1", "display_type": "line_section"},),
+                (
+                    0,
+                    0,
+                    {"name": "Section 1", "display_type": "line_section"},
+                ),
                 (
                     0,
                     0,
@@ -41,7 +45,11 @@ class TestSaleOrderLineSequence(TransactionCase):
                         "price_unit": self.product.lst_price,
                     },
                 ),
-                (0, 0, {"name": "Note 1", "display_type": "line_note"},),
+                (
+                    0,
+                    0,
+                    {"name": "Note 1", "display_type": "line_note"},
+                ),
                 (
                     0,
                     0,
