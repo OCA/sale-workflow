@@ -61,7 +61,7 @@
     <record id="act_open_wizard_product_set_add_from_set" model="ir.actions.act_window">
         <field name="name">Add set to sale order</field>
         <field name="res_model">product.set.add</field>
-        <field name="binding_model_id" ref="sale_product_set.model_product_set" />
+        <field name="binding_model_id" ref="product_set.model_product_set" />
         <field name="view_mode">form</field>
         <field name="view_id" ref="product_set_add_form_view" />
         <field name="domain">[]</field>
