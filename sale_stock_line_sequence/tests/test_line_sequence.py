@@ -69,7 +69,7 @@ class TestSaleOrderLineSequence(TransactionCase):
         self.assertNotEquals(len(so.order_line), len(moves))
 
         for move in moves:
-            self.assertEqual(move.sequence, move.sale_line_id.sequence)
+            self.assertEqual(move.sequence, move.sale_line_id.visible_sequence)
 
     def test_write_purchase_order_line(self):
         vals = {
@@ -110,4 +110,4 @@ class TestSaleOrderLineSequence(TransactionCase):
 
         moves = so.picking_ids[0].move_ids_without_package
         for move in moves:
-            self.assertEqual(move.sequence, move.sale_line_id.sequence)
+            self.assertEqual(move.sequence, move.sale_line_id.visible_sequence)
