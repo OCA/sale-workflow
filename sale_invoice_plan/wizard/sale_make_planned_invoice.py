@@ -19,8 +19,12 @@ class SaleAdvancePaymentInv(models.TransientModel):
         for plan in invoice_plans.sorted("installment"):
             makeinv_wizard = {"advance_payment_method": "delivered"}
             if plan.invoice_type == "advance":
-                makeinv_wizard["advance_payment_method"] = "percentage"
-                makeinv_wizard["amount"] = plan.percent
+                if sale.advance_type == "percentage":
+                    makeinv_wizard["advance_payment_method"] = "percentage"
+                    makeinv_wizard["amount"] = plan.percent
+                else:
+                    makeinv_wizard["advance_payment_method"] = "fixed"
+                    makeinv_wizard["fixed_amount"] = plan.amount
             makeinvoice = MakeInvoice.create(makeinv_wizard)
             makeinvoice.sudo().with_context(invoice_plan_id=plan.id).create_invoices()
         return {"type": "ir.actions.act_window_close"}
