@@ -15,7 +15,7 @@ class TestProductSet(common.TransactionCase):
         cls.so_model = cls.env["sale.order"]
         cls.so = cls.env.ref("sale.sale_order_6")
         cls.product_set_add = cls.env["product.set.add"]
-        cls.product_set = cls.env.ref("sale_product_set.product_set_i5_computer")
+        cls.product_set = cls.env.ref("product_set.product_set_i5_computer")
 
     def _get_wiz(self, ctx=None, **kw):
         vals = {
@@ -34,12 +34,12 @@ class TestProductSet(common.TransactionCase):
             [x.id for x in wiz._get_lines()], self.product_set.set_line_ids.ids
         )
         # Pass via ctx
-        line_ids = self.env.ref("sale_product_set.product_set_line_computer_1").ids
+        line_ids = self.env.ref("product_set.product_set_line_computer_1").ids
         wiz = self._get_wiz(ctx=dict(product_set_add__set_line_ids=line_ids))
         self.assertEqual(wiz.product_set_line_ids.ids, line_ids)
         self.assertEqual([x.id for x in wiz._get_lines()], line_ids)
         # Pass at create
-        line_ids = self.env.ref("sale_product_set.product_set_line_computer_3").ids
+        line_ids = self.env.ref("product_set.product_set_line_computer_3").ids
         wiz = self._get_wiz()
         wiz.product_set_line_ids = line_ids
         self.assertEqual(wiz.product_set_line_ids.ids, line_ids)
@@ -67,13 +67,13 @@ class TestProductSet(common.TransactionCase):
             sequence[line.product_id.id] = line.sequence
         # make sure sale order line sequence keep sequence set on set
         seq_line1 = sequence.pop(
-            self.env.ref("sale_product_set.product_set_line_computer_4").product_id.id
+            self.env.ref("product_set.product_set_line_computer_4").product_id.id
         )
         seq_line2 = sequence.pop(
-            self.env.ref("sale_product_set.product_set_line_computer_1").product_id.id
+            self.env.ref("product_set.product_set_line_computer_1").product_id.id
         )
         seq_line3 = sequence.pop(
-            self.env.ref("sale_product_set.product_set_line_computer_3").product_id.id
+            self.env.ref("product_set.product_set_line_computer_3").product_id.id
         )
         self.assertTrue(
             max(v for k, v in sequence.items()) < seq_line1 < seq_line2 < seq_line3
@@ -91,13 +91,13 @@ class TestProductSet(common.TransactionCase):
         self.assertEqual(len(so.order_line), count_lines + 3)
         # make sure sale order line sequence keep sequence set on set
         seq_line1 = sequence.pop(
-            self.env.ref("sale_product_set.product_set_line_computer_4").product_id
+            self.env.ref("product_set.product_set_line_computer_4").product_id
         )
         seq_line2 = sequence.pop(
-            self.env.ref("sale_product_set.product_set_line_computer_1").product_id
+            self.env.ref("product_set.product_set_line_computer_1").product_id
         )
         seq_line3 = sequence.pop(
-            self.env.ref("sale_product_set.product_set_line_computer_3").product_id
+            self.env.ref("product_set.product_set_line_computer_3").product_id
         )
         self.assertTrue(
             max(v for k, v in sequence.items()) < seq_line1 < seq_line2 < seq_line3
@@ -154,22 +154,6 @@ class TestProductSet(common.TransactionCase):
         wiz.skip_existing_products = True
         wiz.add_set()
         self.assertEqual(len(so.order_line), 6)
-
-    def test_name(self):
-        product_set = self.product_set
-        # no ref
-        product_set.name = "Foo"
-        product_set.ref = ""
-        self.assertEqual(product_set.name_get(), [(product_set.id, "Foo")])
-        # with ref
-        product_set.ref = "123"
-        self.assertEqual(product_set.name_get(), [(product_set.id, "[123] Foo")])
-        # with partner
-        partner = self.env.ref("base.res_partner_1")
-        product_set.partner_id = partner
-        self.assertEqual(
-            product_set.name_get(), [(product_set.id, "[123] Foo @ %s" % partner.name)]
-        )
 
     def test_discount(self):
         product_test = self.env["product.product"].create(
