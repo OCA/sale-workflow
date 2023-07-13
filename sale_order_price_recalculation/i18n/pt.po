@@ -21,17 +21,17 @@ msgstr ""
 #. module: sale_order_price_recalculation
 #: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.view_order_form
 msgid "Recalculate prices"
-msgstr ""
+msgstr "Recalcular preços"
 
 #. module: sale_order_price_recalculation
 #: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.view_order_form
 msgid "Reset descriptions"
-msgstr ""
+msgstr "Redefinir descrições"
 
 #. module: sale_order_price_recalculation
 #: model:ir.model,name:sale_order_price_recalculation.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordem de Venda"
 
 #, fuzzy
 #~| msgid "Sales Order"
