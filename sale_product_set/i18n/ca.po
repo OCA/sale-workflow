@@ -20,12 +20,6 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set__active
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__active
-msgid "Active"
-msgstr "Actiu"
-
-#. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_order_stock_form
 msgid "Add set"
@@ -47,32 +41,17 @@ msgid "Add set to sale order"
 msgstr ""
 
 #. module: sale_product_set
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_search
-msgid "Archived"
-msgstr ""
-
-#. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 msgid "Cancel"
 msgstr "Cancel·lar"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set__company_id
-msgid "Company"
-msgstr "Companyia"
-
-#. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set__create_uid
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__create_uid
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__create_uid
 msgid "Created by"
 msgstr "Creat per"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set__create_date
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__create_date
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__create_date
 msgid "Created on"
 msgstr "Creat el"
 
@@ -87,9 +66,7 @@ msgid "Discount (%)"
 msgstr "Descompte (%)"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set__display_name
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__display_name
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__display_name
 msgid "Display Name"
 msgstr "Mostrar Nom"
 
@@ -102,101 +79,44 @@ msgstr ""
 "s'inclouen a les línies SO."
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set__id
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__id
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set__ref
-msgid "Internal Reference"
-msgstr "Referència interna"
-
-#. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set____last_update
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add____last_update
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line____last_update
 msgid "Last Modified on"
 msgstr "Última modificació el"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set__write_uid
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__write_uid
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__write_uid
 msgid "Last Updated by"
 msgstr "Darrera Actualització per"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set__write_date
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__write_date
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__write_date
 msgid "Last Updated on"
 msgstr "Darrera Actualització el"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set__name
-msgid "Name"
-msgstr "Nom"
-
-#. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set__partner_id
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_search
-msgid "Partner"
-msgstr "Soci"
-
-#. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__product_id
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_line_search
-msgid "Product"
-msgstr "Producte"
-
-#. module: sale_product_set
-#: model:ir.actions.act_window,name:sale_product_set.act_open_product_set_view
-#: model:ir.model,name:sale_product_set.model_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__product_set_id
 #: model:ir.ui.menu,name:sale_product_set.menu_product_set_config
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_line_search
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_search
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_tree
 msgid "Product set"
 msgstr "Conjunt de productes"
 
 #. module: sale_product_set
-#: model:ir.model.fields,help:sale_product_set.field_product_set__ref
-msgid "Product set internal reference"
-msgstr "Referència interna de conjunt de productes"
-
-#. module: sale_product_set
-#: model:ir.actions.act_window,name:sale_product_set.act_open_product_set_line_view
 #: model:ir.model,name:sale_product_set.model_product_set_line
 #: model:ir.ui.menu,name:sale_product_set.menu_product_set_line_config
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_line_search
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_line_tree
 msgid "Product set line"
 msgstr "Línia de productes"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__product_set_line_ids
-#: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
 msgid "Product set lines"
 msgstr "Línies de productes"
 
 #. module: sale_product_set
-#: model:ir.model.fields,help:sale_product_set.field_product_set__name
-msgid "Product set name"
-msgstr "Nom del conjunt de producte"
-
-#. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set__set_line_ids
-msgid "Products"
-msgstr "Productes"
-
-#. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__quantity
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__quantity
 msgid "Quantity"
 msgstr "Quantitat"
 
@@ -204,16 +124,6 @@ msgstr "Quantitat"
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__order_id
 msgid "Sale Order"
 msgstr "Comanda de venda"
-
-#. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__sequence
-msgid "Sequence"
-msgstr "Seqüència"
-
-#. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__product_set_id
-msgid "Set"
-msgstr "Conjunt"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__skip_existing_products
@@ -226,20 +136,52 @@ msgid "Wizard model to add product set into a quotation"
 msgstr "Model d'assistent per afegir el conjunt de productes a una cotització"
 
 #. module: sale_product_set
-#: model:ir.model.fields,help:sale_product_set.field_product_set__partner_id
-msgid ""
-"You can attache the set to a specific partner or no one. If you don't "
-"specify one, it's going to be available for all of them."
-msgstr ""
-"Podeu adjuntar el conjunt a un soci o a ningú. Si no n'especifiqueu cap, "
-"estarà disponible per a tots ells."
-
-#. module: sale_product_set
+#. odoo-python
 #: code:addons/sale_product_set/wizard/product_set_add.py:0
 #, python-format
 msgid "You can use a sale order assigned only to following partner(s): {}"
 msgstr ""
 "Podeu utilitzar una comanda de venda assignada només als socis següents: {}"
+
+#~ msgid "Active"
+#~ msgstr "Actiu"
+
+#~ msgid "Company"
+#~ msgstr "Companyia"
+
+#~ msgid "Internal Reference"
+#~ msgstr "Referència interna"
+
+#~ msgid "Name"
+#~ msgstr "Nom"
+
+#~ msgid "Partner"
+#~ msgstr "Soci"
+
+#~ msgid "Product"
+#~ msgstr "Producte"
+
+#~ msgid "Product set internal reference"
+#~ msgstr "Referència interna de conjunt de productes"
+
+#~ msgid "Product set name"
+#~ msgstr "Nom del conjunt de producte"
+
+#~ msgid "Products"
+#~ msgstr "Productes"
+
+#~ msgid "Sequence"
+#~ msgstr "Seqüència"
+
+#~ msgid "Set"
+#~ msgstr "Conjunt"
+
+#~ msgid ""
+#~ "You can attache the set to a specific partner or no one. If you don't "
+#~ "specify one, it's going to be available for all of them."
+#~ msgstr ""
+#~ "Podeu adjuntar el conjunt a un soci o a ningú. Si no n'especifiqueu cap, "
+#~ "estarà disponible per a tots ells."
 
 #~ msgid "Select a product set assigned to the same partner of the order."
 #~ msgstr ""

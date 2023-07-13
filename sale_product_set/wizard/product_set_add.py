@@ -123,6 +123,4 @@ class ProductSetAdd(models.TransientModel):
         line_values = set_line.prepare_sale_order_line_values(
             self.order_id, self.quantity, max_sequence=max_sequence
         )
-        sol_model = self.env["sale.order.line"]
-        line_values.update(sol_model.play_onchanges(line_values, line_values.keys()))
         return line_values
