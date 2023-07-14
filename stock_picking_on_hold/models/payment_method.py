@@ -9,4 +9,5 @@ class PaymentMethod(models.Model):
     hold_picking_until_payment = fields.Boolean(
         help="If set to true, pickings will not be automatically confirmed when "
         "the invoice has not been paid.",
+        default=True,
     )
