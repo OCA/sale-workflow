@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-17 11:12+0000\n"
+"PO-Revision-Date: 2023-07-19 13:10+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -99,6 +99,17 @@ msgid ""
 "confirmed after 09:00 will have its delivery order postponed to 09:00 on the "
 "following day."
 msgstr ""
+"Definisce l'orario limite per gli ordini di consegna:\n"
+"\n"
+"* Usa orario limite globale (del magazzino): gli ordini di consegna per le "
+"vendite verranno rimandati al prossimo tempo limite del magazzino\n"
+"* Usa orario limite del partner: gli ordini di consegna per le vendite "
+"saranno rimandati al prossimo tempo limite del partner\n"
+"\n"
+"Esempio: se il tempo limite è impostato alle 09:00, qualsiasi ordine di "
+"vendita confermato prima delle 09:00 avrà un ordine di consegna impostato "
+"per le 09:00, qualsiasi ordine di vendita confermato dopo le 09:00 avrà un "
+"ordine di consegna impostato per le 09:00 del giorno successivo."
 
 #. module: sale_delivery_date
 #: model:ir.model.fields,field_description:sale_delivery_date.field_res_partner__order_delivery_cutoff_preference
@@ -177,6 +188,9 @@ msgid ""
 "deliveries on following time windows:\n"
 "%s"
 msgstr ""
+"La data di consegna è %s, ma il partner ha le preferenze di consegna "
+"impostate per le seguenti finestre temporali:\n"
+"%s"
 
 #. module: sale_delivery_date
 #: code:addons/sale_delivery_date/models/sale_order.py:0
@@ -185,6 +199,8 @@ msgid ""
 "The delivery date is {} ({}), but the partner is set to prefer deliveries on "
 "working days."
 msgstr ""
+"La data di consegna è {} ({}), ma il partner ha la preferenza di consegna "
+"nei giorni lavorativi."
 
 #. module: sale_delivery_date
 #: model:ir.model,name:sale_delivery_date.model_time_cutoff_mixin
@@ -213,7 +229,7 @@ msgstr "Operatore di ricerca non supportato %s"
 #. module: sale_delivery_date
 #: model:ir.model.fields.selection,name:sale_delivery_date.selection__res_partner__order_delivery_cutoff_preference__warehouse_cutoff
 msgid "Use global (warehouse) cutoff time"
-msgstr "Usa tempo limite globale (del magazzino)"
+msgstr "Usa orario limite globale (del magazzino)"
 
 #. module: sale_delivery_date
 #: model:ir.model.fields.selection,name:sale_delivery_date.selection__res_partner__order_delivery_cutoff_preference__partner_cutoff
