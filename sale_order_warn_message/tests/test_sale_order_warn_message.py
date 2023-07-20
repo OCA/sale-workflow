@@ -1,10 +1,10 @@
 # Copyright 2020 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestSaleOrderWarnMessage(SavepointCase):
+class TestSaleOrderWarnMessage(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -48,6 +48,26 @@ class TestSaleOrderWarnMessage(SavepointCase):
             }
         )
         self.assertEqual(sale.sale_warn_msg, self.warn_msg)
+
+    def test_compute_sale_warn_msg_sale_confirm(self):
+        sale = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.env.ref("product.product_product_4").id,
+                            "product_uom_qty": 1,
+                            "price_unit": 42,
+                        },
+                    ),
+                ],
+            }
+        )
+        sale.action_confirm()
+        self.assertEqual(sale.sale_warn_msg, False)
 
     def test_compute_sale_warn_msg_parent(self):
         self.partner.update({"parent_id": self.parent.id})
