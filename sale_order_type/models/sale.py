@@ -1,5 +1,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 # Copyright 2020 Tecnativa - Pedro M. Baeza
+# Copyright 2021 Therp BV <https://therp.nl>.
+# Copyright 2021 Sunflower IT < https://sunflowerweb.nl>.
 
 from datetime import datetime, timedelta
 
@@ -106,11 +108,9 @@ class SaleOrder(models.Model):
     @api.model
     def create(self, vals):
         if vals.get("name", "/") == "/" and vals.get("type_id"):
-            sale_type = self.env["sale.order.type"].browse(vals["type_id"])
-            if sale_type.sequence_id:
-                vals["name"] = sale_type.sequence_id.next_by_id(
-                    sequence_date=vals.get("date_order")
-                )
+            next_sequence = self._get_next_sequence(vals)
+            if next_sequence:
+                vals["name"] = next_sequence
         return super(SaleOrder, self).create(vals)
 
     def write(self, vals):
@@ -150,6 +150,15 @@ class SaleOrder(models.Model):
         if self.type_id:
             res["sale_type_id"] = self.type_id.id
         return res
+
+    def _get_next_sequence(self, vals):
+        sale_type = self.env["sale.order.type"].browse(vals.get("type_id"))
+        sequence = False
+        if sale_type.sequence_id:
+            sequence = sale_type.sequence_id.next_by_id(
+                sequence_date=vals.get("date_order")
+            )
+        return sequence
 
 
 class SaleOrderLine(models.Model):
