@@ -11,15 +11,9 @@ class SaleTermsTemplate(models.Model):
 
     active = fields.Boolean(default=True)
 
-    name = fields.Char(
-        string="Name",
-        required=True,
-    )
+    name = fields.Char(string="Name", required=True)
 
-    text = fields.Html(
-        string="Terms template",
-        translate=True,
-    )
+    text = fields.Html(string="Terms template", translate=True)
 
     def get_value(self, sale_order, add_context=None, post_process=True):
         """Get sales terms from template.
@@ -40,11 +34,12 @@ class SaleTermsTemplate(models.Model):
         self.ensure_one()
         sale_order.ensure_one()
         lang = sale_order.partner_id.lang if sale_order.partner_id else None
-        return self.env["mail.render.mixin"]._render_template(
-            self.with_context(lang=lang).text,
-            "sale.order",
-            [sale_order.id],
-            engine="jinja",
+        comment_texts = self.env["mail.render.mixin"]._render_template(
+            template_src=self.with_context(lang=lang).text,
+            model="sale.order",
+            res_ids=[sale_order.id],
+            engine="inline_template",
             add_context=add_context,
             post_process=post_process,
-        )[sale_order.id]
+        )
+        return comment_texts[sale_order.id] or ""
