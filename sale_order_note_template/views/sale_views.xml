@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record model="ir.ui.view" id="view_order_form_terms_template">
         <field name="name">sale_order_note_templatesale.order.form</field>
