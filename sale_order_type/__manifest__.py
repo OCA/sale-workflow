@@ -10,7 +10,7 @@
 
 {
     "name": "Sale Order Type",
-    "version": "13.0.1.7.4",
+    "version": "13.0.1.7.5",
     "category": "Sales Management",
     "author": "Grupo Vermon,"
     "AvanzOSC,"
