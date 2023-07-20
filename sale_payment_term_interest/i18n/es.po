@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-22 23:35+0000\n"
-"PO-Revision-Date: 2015-09-03 07:09+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2023-07-20 10:15+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_payment_term_interest
 #: view:sale.order:sale_payment_term_interest.view_order_form
@@ -50,7 +51,7 @@ msgstr ""
 #. module: sale_payment_term_interest
 #: model:ir.model,name:sale_payment_term_interest.model_account_payment_term
 msgid "Payment Term"
-msgstr "Modo de pago"
+msgstr "Plazo de pago"
 
 #. module: sale_payment_term_interest
 #: model:ir.model,name:sale_payment_term_interest.model_account_payment_term_line
