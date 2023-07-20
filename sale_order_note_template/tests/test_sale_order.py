@@ -14,7 +14,9 @@ class TestSaleOrder(TransactionCase):
         self.sale_order = self.env.ref("sale.sale_order_2")
 
     def test_on_change_term_template(self):
-        self.assertEqual(self.sale_order.note, "")
+        self.assertEqual(self.sale_order.note, False)
         self.sale_order.terms_template_id = self.term_template
         self.sale_order._onchange_terms_template_id()
-        self.assertEqual(self.sale_order.note, "<p>Terms template Ready Mat</p>")
+        self.assertEqual(
+            self.sale_order.note, "<p>Terms template ${object.partner_id.name}</p>"
+        )
