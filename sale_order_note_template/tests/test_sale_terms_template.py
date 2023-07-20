@@ -16,7 +16,7 @@ class TestSaleTermsTemplate(TransactionCase):
     def test_get_value(self):
         self.assertEqual(
             self.term_template.get_value(self.sale_order),
-            "<p>Terms template Ready Mat</p>",
+            "<p>Terms template ${object.partner_id.name}</p>",
         )
 
     def test_get_value_with_translation(self):
@@ -27,5 +27,5 @@ class TestSaleTermsTemplate(TransactionCase):
         )
         self.assertEqual(
             self.term_template.get_value(self.sale_order),
-            "<p>Testing translated fr_BE `Ready Mat`</p>",
+            "<p>Testing translated fr_BE `${object.partner_id.name}`</p>",
         )
