@@ -36,9 +36,11 @@
                             <field name="name" placeholder="Name" />
                         </h1>
                     </div>
-                    <group>
-                        <field name="text" nolabel="1" />
-                    </group>
+                    <notebook>
+                        <page>
+                            <field name="text" nolabel="1" />
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
