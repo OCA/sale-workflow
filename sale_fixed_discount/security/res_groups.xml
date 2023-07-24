@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="1">
+
+    <record id="product.group_discount_per_so_line" model="res.groups">
+        <field
+            name="implied_ids"
+            eval="[(4, ref('account_invoice_fixed_discount.group_fixed_discount'))]"
+        />
+    </record>
+
+</odoo>
