@@ -2,13 +2,14 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import ValidationError
-from odoo.tests import TransactionCase
+from odoo.tests import Form, TransactionCase
 
 
 class TestSaleFixedDiscount(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env.user.groups_id |= cls.env.ref("product.group_discount_per_so_line")
         cls.partner = cls.env["res.partner"].create({"name": "Test"})
         cls.tax = cls.env["account.tax"].create(
             {
@@ -20,6 +21,9 @@ class TestSaleFixedDiscount(TransactionCase):
         )
         cls.product = cls.env["product.product"].create(
             {"name": "Test product", "type": "consu"}
+        )
+        cls.product2 = cls.env["product.product"].create(
+            {"name": "Test product 2", "type": "consu"}
         )
         cls.sale = cls.env["sale.order"].create(
             {"name": "Test Sale Order", "partner_id": cls.partner.id}
@@ -38,36 +42,63 @@ class TestSaleFixedDiscount(TransactionCase):
 
     def test_01_discounts(self):
         """Tests multiple discounts in line with taxes."""
-        # Apply a fixed discount
-        self.sale_line1.discount_fixed = 10.0
-        self.assertEqual(self.sale.amount_total, 218.50)
-        # Try to add also a % discount
-        with self.assertRaises(ValidationError):
-            self.sale_line1.write({"discount": 50.0})
-        # Apply a % discount
-        self.sale_line1._onchange_discount_fixed()
-        self.sale_line1.discount_fixed = 0.0
-        self.sale_line1.discount = 50.0
-        self.sale_line1._onchange_discount()
+        with Form(self.sale) as sale_order:
+            with sale_order.order_line.edit(0) as line:
+                line.discount_fixed = 20.0
+                self.assertEqual(line.discount, 10.0)
+                self.assertEqual(line.price_subtotal, 180.0)
+
+        self.assertEqual(self.sale.amount_total, 207.00)
+
+        with Form(self.sale) as sale_order:
+            with sale_order.order_line.edit(0) as line:
+                line.product_uom_qty = 2
+                line.price_unit = 200.0
+                self.assertEqual(line.discount, 10.0)
+                self.assertEqual(line.price_subtotal, 360.0)
+
+        self.assertEqual(self.sale.amount_total, 414.00)
+
+        with Form(self.sale) as sale_order:
+            with sale_order.order_line.edit(0) as line:
+                line.product_uom_qty = 1
+                line.price_unit = 200.0
+                line.discount_fixed = 0.0
+                line.discount = 50.0
+                self.assertEqual(line.price_subtotal, 100.0)
+
         self.assertEqual(self.sale.amount_total, 115.00)
 
-    def test_02_discounts_multiple_lines(self):
-        """Tests multiple lines with mixed taxes and dicount types."""
-        self.sale_line2 = self.so_line.create(
-            {
-                "order_id": self.sale.id,
-                "name": "Line 2",
-                "price_unit": 500.0,
-                "product_uom_qty": 1,
-                "product_id": self.product.id,
-                "tax_id": [(5,)],
-            }
-        )
-        self.assertEqual(self.sale_line2.price_subtotal, 500.0)
-        # Add a fixed discount
-        self.sale_line2.discount_fixed = 100.0
-        self.assertEqual(self.sale_line2.price_subtotal, 400.0)
-        self.sale._amount_all()
-        self.assertEqual(self.sale.amount_total, 630.0)
-        self.sale_line1.discount = 50.0
-        self.assertEqual(self.sale.amount_total, 515.0)
+        with Form(self.sale) as sale_order:
+            with sale_order.order_line.new() as line2:
+                line2.product_id = self.product2
+                line2.product_uom_qty = 1
+                line2.price_unit = 100.0
+                line2.discount_fixed = 5.0
+                self.assertEqual(line2.discount, 5.0)
+                self.assertEqual(line2.price_subtotal, 95.0)
+
+        #
+        self.assertEqual(self.sale.amount_total, 224.25)
+
+    def test_02_fixed_discount_mismatch(self):
+        """Tests fixed discount mismatch."""
+        with self.assertRaisesRegex(
+            ValidationError,
+            "Please correct one of the discounts",
+        ):
+            with Form(self.sale) as sale_order:
+                with sale_order.order_line.edit(0) as line:
+                    line.discount_fixed = 20.0
+                    line.discount = 5.0
+
+    def test_03_fixed_discount_invoice(self):
+        """Test discount_fixed value propagation to account.move"""
+        with Form(self.sale) as sale_order:
+            with sale_order.order_line.edit(0) as line:
+                line.discount_fixed = 20.0
+
+        self.sale.action_confirm()
+        self.sale._create_invoices()
+
+        self.assertEqual(self.sale.invoice_ids.invoice_line_ids.discount_fixed, 20.0)

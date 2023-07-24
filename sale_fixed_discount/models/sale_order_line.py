@@ -3,6 +3,7 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.tools.float_utils import float_compare, float_round
 
 
 class SaleOrderLine(models.Model):
@@ -14,45 +15,81 @@ class SaleOrderLine(models.Model):
         help="Fixed amount discount.",
     )
 
-    @api.onchange("discount")
-    def _onchange_discount_percent(self):
-        # _onchange_discount method already exists in core,
-        # but discount is not in the onchange definition
-        if self.discount:
-            self.discount_fixed = 0.0
-
-    @api.onchange("discount_fixed")
-    def _onchange_discount_fixed(self):
-        if self.discount_fixed:
-            self.discount = 0.0
-
-    @api.constrains("discount", "discount_fixed")
-    def _check_only_one_discount(self):
+    @api.constrains("discount_fixed", "discount")
+    def _check_discounts(self):
+        """Check that the fixed discount and the discount percentage are consistent."""
         for line in self:
-            if line.discount and line.discount_fixed:
-                raise ValidationError(
-                    _("You can only set one type of discount per line.")
+            if line.discount_fixed and line.discount:
+                currency = line.currency_id
+                calculated_fixed_discount = float_round(
+                    line._get_discount_from_fixed_discount(),
+                    precision_rounding=currency.rounding,
                 )
 
-    @api.depends(
-        "product_uom_qty", "discount", "price_unit", "tax_id", "discount_fixed"
-    )
-    def _compute_amount(self):
-        vals = {}
-        for line in self.filtered(
-            lambda l: l.discount_fixed and l.order_id.state not in ["done", "cancel"]
-        ):
-            price = line.price_unit * (1 - (line.discount or 0.0) / 100.0) - (
-                line.discount_fixed or 0.0
+                if (
+                    float_compare(
+                        calculated_fixed_discount,
+                        line.discount,
+                        precision_rounding=currency.rounding,
+                    )
+                    != 0
+                ):
+                    raise ValidationError(
+                        _(
+                            "The fixed discount %(fixed)s does not match the calculated "
+                            "discount %(discount)s %%. Please correct one of the discounts."
+                        )
+                        % {
+                            "fixed": line.discount_fixed,
+                            "discount": line.discount,
+                        }
+                    )
+
+    def _convert_to_tax_base_line_dict(self):
+        """Prior to calculating the tax toals for a line, update the discount value
+        used in the tax calculation to the full float value. Otherwise, we get rounding
+        errors in the resulting calculated totals.
+
+        For example:
+            - price_unit = 750.0
+            - discount_fixed = 100.0
+            - discount = 13.33
+            => price_subtotal = 650.03
+
+        :return: A python dictionary.
+        """
+        self.ensure_one()
+
+        # Accurately pass along the fixed discount amount to the tax computation method.
+        if self.discount_fixed:
+            return self.env["account.tax"]._convert_to_tax_base_line_dict(
+                self,
+                partner=self.order_id.partner_id,
+                currency=self.order_id.currency_id,
+                product=self.product_id,
+                taxes=self.tax_id,
+                price_unit=self.price_unit,
+                quantity=self.product_uom_qty,
+                discount=self._get_discount_from_fixed_discount(),
+                price_subtotal=self.price_subtotal,
             )
-            vals[line] = {
-                "price_unit": line.price_unit,
-            }
-            line.update({"price_unit": price})
-        res = super()._compute_amount()
-        for line in vals.keys():
-            line.update(vals[line])
-        return res
+
+        return super()._convert_to_tax_base_line_dict()
+
+    @api.onchange("discount_fixed", "price_unit")
+    def _onchange_discount_fixed(self):
+        if not self.discount_fixed:
+            return
+
+        self.discount = self._get_discount_from_fixed_discount()
+
+    def _get_discount_from_fixed_discount(self):
+        """Calculate the discount percentage from the fixed discount amount."""
+        self.ensure_one()
+        if not self.discount_fixed:
+            return 0.0
+
+        return self.discount_fixed / self.price_unit * 100
 
     def _prepare_invoice_line(self, **optional_values):
         res = super()._prepare_invoice_line(**optional_values)
