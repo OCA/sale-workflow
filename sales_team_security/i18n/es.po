@@ -7,13 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-28 21:00+0000\n"
-"PO-Revision-Date: 2022-06-28 21:00+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2023-07-24 18:09+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sales_team_security
 #: model:ir.model,name:sales_team_security.model_res_partner
@@ -28,7 +30,7 @@ msgid ""
 "this partner"
 msgstr ""
 "Si está configurado, este equipo de ventas será usado para las ventas y "
-"asignaciones relacionadas a este partner."
+"asignaciones relacionadas a este socio"
 
 #. module: sales_team_security
 #: model:ir.model,name:sales_team_security.model_ir_rule
@@ -59,8 +61,10 @@ msgid ""
 "The user will have an access to the documents of the sales teams he/she "
 "belongs to."
 msgstr ""
+"El usuario tendrá acceso a los documentos de los equipos de ventas a los que "
+"pertenezca."
 
 #. module: sales_team_security
 #: model:res.groups,name:sales_team_security.group_sale_team_manager
 msgid "User: Team Documents Only"
-msgstr ""
+msgstr "Usuario: Sólo documentos de equipo"
