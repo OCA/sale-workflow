@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-24 18:09+0000\n"
+"PO-Revision-Date: 2023-07-24 21:09+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -126,74 +126,74 @@ msgstr "Incrementar"
 #: model:ir.model.fields,field_description:sale_credit_point.field_credit_point_history____last_update
 #: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación el"
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_credit_point_history__write_uid
 #: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "actualizado por última vez por"
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_credit_point_history__write_date
 #: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "última actualización el"
 
 #. module: sale_credit_point
 #: model:res.groups,name:sale_credit_point.group_manage_credit_point
 msgid "Manage credit point"
-msgstr ""
+msgstr "Gestionar el punto de crédito"
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_credit_point_history__operation
 msgid "Operation"
-msgstr ""
+msgstr "Operación"
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_credit_point_history__partner_id
 #: model_terms:ir.ui.view,arch_db:sale_credit_point.view_credit_point_history_search
 msgid "Partner"
-msgstr ""
+msgstr "socio"
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point__partner_ids
 msgid "Partners"
-msgstr ""
+msgstr "Socios"
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point__credit_point
 #: model_terms:ir.ui.view,arch_db:sale_credit_point.view_partner_form_points
 msgid "Points"
-msgstr ""
+msgstr "Puntos"
 
 #. module: sale_credit_point
 #: model_terms:ir.ui.view,arch_db:sale_credit_point.view_partner_search_points
 msgid "Points > 0"
-msgstr ""
+msgstr "Puntos > 0"
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_res_partner__credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_res_users__credit_point
 msgid "Points Attribution"
-msgstr ""
+msgstr "Atribución de puntos"
 
 #. module: sale_credit_point
 #: model_terms:ir.ui.view,arch_db:sale_credit_point.wiz_manage_credit_point
 msgid "Reason for the modification"
-msgstr ""
+msgstr "Motivo de la modificación"
 
 #. module: sale_credit_point
 #: model:ir.model.fields.selection,name:sale_credit_point.selection__credit_point_history__operation__replace
 #: model:ir.model.fields.selection,name:sale_credit_point.selection__wiz_manage_credit_point__operation__replace
 msgid "Replace"
-msgstr ""
+msgstr "Reemplazar"
 
 #. module: sale_credit_point
 #: code:addons/sale_credit_point/models/sale_order.py:0
 #, python-format
 msgid "SO %s"
-msgstr ""
+msgstr "SO %s"
 
 #. module: sale_credit_point
 #: code:addons/sale_credit_point/models/sale_order.py:0
@@ -202,61 +202,63 @@ msgid ""
 "Sale Order amount total ({amount}) is higher than your available credit "
 "({points})."
 msgstr ""
+"El importe total del pedido de venta ({importe}) es superior a su crédito "
+"disponible ({puntos})."
 
 #. module: sale_credit_point
 #: code:addons/sale_credit_point/models/sale_order.py:0
 #, python-format
 msgid "Sale Order canceled"
-msgstr ""
+msgstr "Orden de venta cancelada"
 
 #. module: sale_credit_point
 #: model:ir.model,name:sale_credit_point.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Orden de Venta"
 
 #. module: sale_credit_point
 #: model_terms:ir.ui.view,arch_db:sale_credit_point.view_credit_point_history_search
 msgid "Search Invoice"
-msgstr ""
+msgstr "Buscar factura"
 
 #. module: sale_credit_point
 #: model_terms:ir.ui.view,arch_db:sale_credit_point.wiz_manage_credit_point
 msgid "Selected partner(s) will be updated."
-msgstr ""
+msgstr "Se actualizarán los socios seleccionados."
 
 #. module: sale_credit_point
 #: model_terms:ir.ui.view,arch_db:sale_credit_point.view_credit_point_history_search
 msgid "This Year"
-msgstr ""
+msgstr "Este año"
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_wiz_manage_credit_point__operation
 msgid "Type of operation"
-msgstr ""
+msgstr "Tipo de operación"
 
 #. module: sale_credit_point
 #: model_terms:ir.ui.view,arch_db:sale_credit_point.wiz_manage_credit_point
 msgid "Update Credit"
-msgstr ""
+msgstr "Actualizar el crédito"
 
 #. module: sale_credit_point
 #: model:ir.actions.act_window,name:sale_credit_point.action_add_credit_point
 msgid "Update Credit Point"
-msgstr ""
+msgstr "Actualizar el punto de crédito"
 
 #. module: sale_credit_point
 #: model:ir.model,name:sale_credit_point.model_wiz_manage_credit_point
 msgid "Wizard to Manage Credit Points"
-msgstr ""
+msgstr "Asistente para la gestión de puntos de crédito"
 
 #. module: sale_credit_point
 #: model:ir.model.fields,field_description:sale_credit_point.field_res_partner__yearly_point_increase
 #: model:ir.model.fields,field_description:sale_credit_point.field_res_users__yearly_point_increase
 msgid "Yearly points increase"
-msgstr ""
+msgstr "Incremento anual de puntos"
 
 #. module: sale_credit_point
 #: code:addons/sale_credit_point/models/partner.py:0
 #, python-format
 msgid "You can't set a credit point lower than 0"
-msgstr ""
+msgstr "No se puede establecer un punto de crédito inferior a 0"
