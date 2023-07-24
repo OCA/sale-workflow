@@ -17,14 +17,23 @@ msgstr ""
 "PO-Revision-Date: 2019-03-07 18:09+0100\n"
 =======
 "POT-Creation-Date: 2021-01-22 15:23+0000\n"
+<<<<<<< HEAD
 "PO-Revision-Date: 2021-01-22 15:23+0000\n"
 >>>>>>> 2ddeab7d2 ([MIG] sale_order_secondary_unit: Migration to 14.0)
 "Last-Translator: \n"
+||||||| parent of ac594d863 (Translated using Weblate (Spanish))
+"PO-Revision-Date: 2021-01-22 15:23+0000\n"
+"Last-Translator: \n"
+=======
+"PO-Revision-Date: 2023-07-24 18:09+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+>>>>>>> ac594d863 (Translated using Weblate (Spanish))
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+<<<<<<< HEAD
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.17\n"
 
@@ -42,21 +51,28 @@ msgstr "Precio de la 2ª unidad"
 #: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.report_saleorder_document
 msgid "<span>Second. Qty</span>"
 msgstr "<span>Cantidad secundaria</span>"
+||||||| parent of ac594d863 (Translated using Weblate (Spanish))
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.6\n"
+=======
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+>>>>>>> ac594d863 (Translated using Weblate (Spanish))
 
 #. module: sale_order_secondary_unit
 #: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.view_order_form
 msgid "-&gt;"
-msgstr ""
+msgstr "-&gt;"
 
 #. module: sale_order_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_unit_price
 msgid "2nd unit price"
-msgstr ""
+msgstr "Precio de la 2ª unidad"
 
 #. module: sale_order_secondary_unit
 #: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.report_saleorder_document
 msgid "<span>Second. Qty</span>"
-msgstr ""
+msgstr "<span>Cantidad secundaria</span>"
 
 #. module: sale_order_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_product__sale_secondary_uom_id
@@ -112,7 +128,7 @@ msgstr "ID (Identificador)"
 =======
 #: model:ir.model,name:sale_order_secondary_unit.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Producto"
 
 #. module: sale_order_secondary_unit
 #: model:ir.model,name:sale_order_secondary_unit.model_product_template
@@ -179,7 +195,7 @@ msgstr "Cantidad"
 =======
 #: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
 msgid "Product Variant"
-msgstr ""
+msgstr "Variante de Producto"
 
 #. module: sale_order_secondary_unit
 #: code:addons/sale_order_secondary_unit/models/product_template.py:0
@@ -189,11 +205,15 @@ msgid ""
 "{secondary_uom}\n"
 "All variants will be written with new secondary uom"
 msgstr ""
+"Las variantes de producto tienen unidades de medida secundarias de venta "
+"distinto:\n"
+"{secondary_uom}\n"
+"Todas las variantes se escribirán con la nueva unidad de medida secundaria"
 
 #. module: sale_order_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__product_uom_qty
 msgid "Quantity"
-msgstr ""
+msgstr "Cantidad"
 
 #. module: sale_order_secondary_unit
 >>>>>>> 8a420dee2 (sale_order_secondary_unit 15.0.1.2.0)
@@ -221,7 +241,7 @@ msgstr "Ud. Secundaria"
 =======
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_id
 msgid "Second unit"
-msgstr ""
+msgstr "Unidad secundaria"
 
 #. module: sale_order_secondary_unit
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_qty
@@ -232,13 +252,19 @@ msgstr "Cta. Ud. secundaria"
 >>>>>>> 02a8bb30f (sale_order_secondary_unit 15.0.2.0.0)
 #: model:ir.actions.act_window,name:sale_order_secondary_unit.product_secondary_unit_action
 msgid "Secondary Unit"
+<<<<<<< HEAD
 msgstr ""
 >>>>>>> 8a420dee2 (sale_order_secondary_unit 15.0.1.2.0)
+||||||| parent of ac594d863 (Translated using Weblate (Spanish))
+msgstr ""
+=======
+msgstr "Unidad Secundaria"
+>>>>>>> ac594d863 (Translated using Weblate (Spanish))
 
 #. module: sale_order_secondary_unit
 #: model:ir.ui.menu,name:sale_order_secondary_unit.product_secondary_unit_menu
 msgid "Secondary Units of Measure"
-msgstr ""
+msgstr "Unidades de medida secundarias"
 
 #. module: sale_order_secondary_unit
 <<<<<<< HEAD
@@ -284,13 +310,13 @@ msgstr "Unidad Secundaria"
 =======
 #: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
 msgid "UoM"
-msgstr ""
+msgstr "UDM (Unidad De Medida)"
 
 #. module: sale_order_secondary_unit
 #: code:addons/sale_order_secondary_unit/models/product_template.py:0
 #, python-format
 msgid "Warning"
-msgstr ""
+msgstr "Aviso"
 
 #~ msgid "Display Name"
 #~ msgstr "Mostrar nombre"
