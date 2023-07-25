@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-21 07:27+0000\n"
-"PO-Revision-Date: 2020-10-26 12:08+0000\n"
-"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"PO-Revision-Date: 2023-07-25 11:09+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_invoice_plan__invoice_type__advance
@@ -32,19 +32,18 @@ msgstr "Anticipo de la 1ª factura"
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_tree
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_tree_readonly
 msgid "Amount"
-msgstr ""
+msgstr "Importe"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__amount_invoiced
-#, fuzzy
 msgid "Amount Invoiced"
-msgstr "Próxima factura"
+msgstr "Importe Facturado"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__analytic_account_id
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 msgid "Analytic Account"
-msgstr ""
+msgstr "Cuenta Analítica"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
@@ -161,6 +160,8 @@ msgid ""
 "Installment %s: already used and not allowed to delete.\n"
 "Please discard changes."
 msgstr ""
+"Plazo %s: ya utilizado y no se permite borrar.\n"
+"Por favor, descarte los cambios."
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__installment_date
@@ -211,7 +212,7 @@ msgstr "Orden de venta de factura"
 #: code:addons/sale_invoice_plan/models/sale.py:0
 #, python-format
 msgid "Invoice plan total percentage must not exceed 100%"
-msgstr ""
+msgstr "El porcentaje total del plan de facturación no debe superar el 100%"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoice_move_ids
@@ -271,19 +272,19 @@ msgstr "Próxima factura"
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__no_edit
 msgid "No Edit"
-msgstr ""
+msgstr "Sin edición"
 
 #. module: sale_invoice_plan
 #: code:addons/sale_invoice_plan/tests/test_sale_invoice_plan.py:0
 #, python-format
 msgid "No installment raises following error : %s"
-msgstr ""
+msgstr "La ausencia de instalación provoca el siguiente error : %s"
 
 #. module: sale_invoice_plan
 #: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
 #, python-format
 msgid "No matched order line for invoice line"
-msgstr ""
+msgstr "No hay correspondencia entre la línea de pedido y la línea de factura"
 
 #. module: sale_invoice_plan
 #: code:addons/sale_invoice_plan/wizard/sale_create_invoice_plan.py:0
@@ -310,7 +311,7 @@ msgstr "Fecha del plan"
 
 #. module: sale_invoice_plan
 #: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Plan quantity: %(plan_qty)s, exceed invoiceable quantity: "
 "%(invoiceable_qty)s\n"
@@ -318,7 +319,7 @@ msgid ""
 msgstr ""
 "Cantidad planificada: %(plan_qty)s, excede la cantidad facturable: "
 "%(invoiceable_qty)s\n"
-"El producto debe entregarse antes de la factura."
+"El producto debe entregarse antes de la factura"
 
 #. module: sale_invoice_plan
 #: code:addons/sale_invoice_plan/models/sale.py:0
@@ -373,13 +374,12 @@ msgstr "Estado"
 #. module: sale_invoice_plan
 #: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__analytic_account_id
 msgid "The analytic account related to a sales order."
-msgstr ""
+msgstr "La cuenta analítica relacionada con una orden de venta."
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__amount
-#, fuzzy
 msgid "This amount will be used to calculate the percent"
-msgstr "Este porcentaje se utilizará para calcular la nueva cantidad"
+msgstr "Esta cantidad se utilizará para calcular el porcentaje"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__percent
@@ -401,7 +401,7 @@ msgstr "Este asistente le ayuda a crear rápidamente un plan de facturación."
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_total_amount
 msgid "Total Amount"
-msgstr ""
+msgstr "Importe Total"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoice_type
