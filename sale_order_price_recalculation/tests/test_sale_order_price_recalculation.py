@@ -21,6 +21,40 @@ class TestSaleOrderPriceRecalculation(common.TransactionCase):
                 "uom_po_id": uom_id.id,
             }
         )
+        self.pricelist = self.env["product.pricelist"].create(
+            {
+                "name": "Test pricelist",
+                "item_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "applied_on": "3_global",
+                            "compute_price": "formula",
+                            "base": "list_price",
+                        },
+                    ),
+                ],
+            }
+        )
+        self.pricelist_dto = self.env["product.pricelist"].create(
+            {
+                "name": "Test pricelist discount policy",
+                "discount_policy": "without_discount",
+                "item_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "applied_on": "1_product",
+                            "compute_price": "percentage",
+                            "percent_price": 50.0,
+                            "product_tmpl_id": self.product.product_tmpl_id.id,
+                        },
+                    ),
+                ],
+            }
+        )
         self.sale_order = self.env["sale.order"].create(
             {
                 "partner_id": self.partner.id,
