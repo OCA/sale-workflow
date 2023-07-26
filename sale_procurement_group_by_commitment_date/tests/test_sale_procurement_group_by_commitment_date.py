@@ -11,105 +11,106 @@ from odoo.tests.common import TransactionCase
 class TestSaleMultiPickingByCommitmentDate(TransactionCase):
     """Check the _get_shipped method of Sale Order."""
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(cls):
         """Setup a Sale Order with 4 lines.
         And prepare procurements
         """
-        super(TestSaleMultiPickingByCommitmentDate, self).setUp()
-        sale_obj = self.env["sale.order"]
-        self.move_ob = self.env["stock.move"]
-        self.proc_group_obj = self.env["procurement.group"]
-        order_line = self.env["sale.order.line"]
-        Product = self.env["product.product"]
+        super().setUpClass()
+        sale_obj = cls.env["sale.order"]
+        cls.move_ob = cls.env["stock.move"]
+        cls.proc_group_obj = cls.env["procurement.group"]
+        order_line = cls.env["sale.order.line"]
+        Product = cls.env["product.product"]
         p1 = Product.create({"name": "p1", "type": "product"}).id
         today = datetime.datetime.now()
-        self.dt1 = today
-        self.dt2 = today + datetime.timedelta(days=1)
+        cls.dt1 = today
+        cls.dt2 = today + datetime.timedelta(days=1)
 
-        self.sale1 = sale_obj.create({"partner_id": 1})
-        self.sale_line1 = order_line.create(
+        cls.sale1 = sale_obj.create({"partner_id": 1})
+        cls.sale_line1 = order_line.create(
             {
                 "product_id": p1,
                 "name": "cool product",
-                "order_id": self.sale1.id,
-                "commitment_date": self.dt1,
+                "order_id": cls.sale1.id,
+                "commitment_date": cls.dt1,
             }
         )
-        self.sale_line2 = order_line.create(
+        cls.sale_line2 = order_line.create(
             {
                 "product_id": p1,
                 "name": "cool product",
-                "order_id": self.sale1.id,
-                "commitment_date": self.dt2,
+                "order_id": cls.sale1.id,
+                "commitment_date": cls.dt2,
             }
         )
-        self.sale_line3 = order_line.create(
+        cls.sale_line3 = order_line.create(
             {
                 "product_id": p1,
                 "name": "cool product",
-                "order_id": self.sale1.id,
-                "commitment_date": self.dt1,
+                "order_id": cls.sale1.id,
+                "commitment_date": cls.dt1,
             }
         )
-        self.sale_line4 = order_line.create(
+        cls.sale_line4 = order_line.create(
             {
                 "product_id": p1,
                 "name": "cool product",
-                "order_id": self.sale1.id,
-                "commitment_date": self.dt2,
-            }
-        )
-
-        self.sale2 = sale_obj.create({"partner_id": 1})
-        self.sale_line5 = order_line.create(
-            {
-                "product_id": p1,
-                "name": "cool product",
-                "order_id": self.sale2.id,
-                "commitment_date": self.dt1,
-            }
-        )
-        self.sale_line6 = order_line.create(
-            {
-                "product_id": p1,
-                "name": "cool product",
-                "order_id": self.sale2.id,
-                "commitment_date": self.dt1,
-            }
-        )
-        self.sale_line7 = order_line.create(
-            {
-                "product_id": p1,
-                "name": "cool product",
-                "order_id": self.sale2.id,
-                "commitment_date": self.dt1,
-            }
-        )
-        self.sale_line8 = order_line.create(
-            {
-                "product_id": p1,
-                "name": "cool product",
-                "order_id": self.sale2.id,
-                "commitment_date": self.dt1,
+                "order_id": cls.sale1.id,
+                "commitment_date": cls.dt2,
             }
         )
 
-        self.route = self.env["stock.location.route"].create(
+        cls.sale2 = sale_obj.create({"partner_id": 1})
+        cls.sale_line5 = order_line.create(
+            {
+                "product_id": p1,
+                "name": "cool product",
+                "order_id": cls.sale2.id,
+                "commitment_date": cls.dt1,
+            }
+        )
+        cls.sale_line6 = order_line.create(
+            {
+                "product_id": p1,
+                "name": "cool product",
+                "order_id": cls.sale2.id,
+                "commitment_date": cls.dt1,
+            }
+        )
+        cls.sale_line7 = order_line.create(
+            {
+                "product_id": p1,
+                "name": "cool product",
+                "order_id": cls.sale2.id,
+                "commitment_date": cls.dt1,
+            }
+        )
+        cls.sale_line8 = order_line.create(
+            {
+                "product_id": p1,
+                "name": "cool product",
+                "order_id": cls.sale2.id,
+                "commitment_date": cls.dt1,
+            }
+        )
+
+        cls.route = cls.env["stock.location.route"].create(
             {
                 "sale_selectable": True,
                 "name": "test_route",
-                "warehouse_ids": [(4, self.sale1.warehouse_id.id)],
+                "warehouse_ids": [(4, cls.sale1.warehouse_id.id)],
             }
         )
-        sale1_cust_loc = self.sale1.partner_shipping_id.property_stock_customer
-        sale1_wh = self.sale1.warehouse_id
-        self.env["stock.rule"].create(
+        sale1_cust_loc = cls.sale1.partner_shipping_id.property_stock_customer
+        sale1_wh = cls.sale1.warehouse_id
+        cls.env["stock.rule"].create(
             {
                 "name": "test_rule",
                 "action": "pull",
                 "location_id": sale1_cust_loc.id,
                 "location_src_id": sale1_wh.view_location_id.id,
-                "route_id": self.route.id,
+                "route_id": cls.route.id,
                 "picking_type_id": sale1_wh.out_type_id.id,
                 "warehouse_id": sale1_wh.id,
             }

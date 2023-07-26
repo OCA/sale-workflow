@@ -5,7 +5,7 @@
 {
     "name": "Sale Procurement Group by Commitment Date",
     "summary": "Groups pickings based on commitment date of order line",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "ForgeFlow, SerpentCS, Odoo Community Association (OCA)",
