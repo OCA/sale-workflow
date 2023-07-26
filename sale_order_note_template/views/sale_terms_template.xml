@@ -6,7 +6,7 @@
         <field name="model">sale.terms_template</field>
         <field name="arch" type="xml">
             <search string="Terms and conditions Templates">
-                <field name="name" />
+                <field name="name" string="Name" />
             </search>
         </field>
     </record>
@@ -52,7 +52,7 @@
         <field name="priority" eval="6" />
         <field name="arch" type="xml">
             <tree>
-                <field name="name" />
+                <field name="name" string="Name" />
             </tree>
         </field>
     </record>
