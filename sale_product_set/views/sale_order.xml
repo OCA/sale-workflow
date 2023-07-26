@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_order_stock_form">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button
+                    class="btn-primary"
+                    type="action"
+                    name="%(act_open_wizard_product_set_add_from_order)d"
+                    icon="fa-cubes"
+                    attrs="{'invisible': [('state','not in',('draft','sent'))]}"
+                    groups="base.group_user"
+                    string="Add set"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
