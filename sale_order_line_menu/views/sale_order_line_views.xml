@@ -25,6 +25,7 @@
         name="Order Lines"
         action="action_orders_lines"
         parent="sale.sale_order_menu"
+        groups="sales_team.group_sale_salesman"
         sequence="21"
     />
 
