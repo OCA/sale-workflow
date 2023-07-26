@@ -86,7 +86,7 @@ msgstr "Historial de punto de crédito"
 #: code:addons/sale_credit_point/models/partner.py:0
 #, python-format
 msgid "Credit updated to {points}. Reason: {comment}"
-msgstr "Crédito actualizado a {puntos}. Motivo: {comentario}"
+msgstr "Crédito actualizado a {points}. Motivo: {comment}"
 
 #. module: sale_credit_point
 #: model:ir.model,name:sale_credit_point.model_credit_point_history
@@ -202,8 +202,8 @@ msgid ""
 "Sale Order amount total ({amount}) is higher than your available credit "
 "({points})."
 msgstr ""
-"El importe total del pedido de venta ({importe}) es superior a su crédito "
-"disponible ({puntos})."
+"El importe total del pedido de venta ({amount}) es superior a su crédito "
+"disponible ({points})."
 
 #. module: sale_credit_point
 #: code:addons/sale_credit_point/models/sale_order.py:0
