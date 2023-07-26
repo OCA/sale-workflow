@@ -11,7 +11,7 @@ class SaleTermsTemplate(models.Model):
 
     active = fields.Boolean(default=True)
 
-    name = fields.Char(string="Name", required=True)
+    name = fields.Char(required=True)
 
     text = fields.Html(string="Terms template", translate=True)
 
