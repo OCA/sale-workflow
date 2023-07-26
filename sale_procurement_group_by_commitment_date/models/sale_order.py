@@ -16,16 +16,14 @@ class SaleOrderLine(models.Model):
             values["name"] = "/".join([values["name"], com_date])
         return values
 
-    def _prepare_order_line_procurement(self, group_id=False):
-        values = super(SaleOrderLine, self)._prepare_order_line_procurement(
+    def _prepare_procurement_values(self, group_id=False):
+        values = super(SaleOrderLine, self)._prepare_procurement_values(
             group_id=group_id
         )
         com_datetime = self.commitment_date
         com_date = fields.Date.to_string(com_datetime)
         if com_datetime:
             values["date_planned"] = com_date
-            if self._get_procurement_group_key()[0] == 12:
-                values["name"] = "/".join([values["name"], com_date])
         return values
 
     def _get_procurement_group_key(self):
@@ -42,4 +40,4 @@ class SaleOrderLine(models.Model):
         com_date = fields.Date.to_string(com_datetime)
         if com_date:
             return priority, com_date
-        return priority, key
+        return key
