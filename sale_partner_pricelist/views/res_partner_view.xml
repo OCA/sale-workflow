@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_res_partner_form_inherit">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="product.view_partner_property_form" />
+            <field name="arch" type="xml">
+                <xpath
+                expr="//field[@name='property_product_pricelist']"
+                position="after"
+            >
+                    <field
+                    name="allowed_pricelist_ids"
+                    widget="many2many_tags"
+                    options="{'no_create': True}"
+                    attrs="{'invisible': [('is_company','=',False),('parent_id','!=',False)]}"
+                />
+                </xpath>
+            </field>
+    </record>
+</odoo>
