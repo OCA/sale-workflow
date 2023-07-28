@@ -6,7 +6,6 @@
         <field name="inherit_id" ref="product.product_packaging_tree_view" />
         <field name="arch" type="xml">
             <field name="qty" position="after">
-                <field name="can_be_sold" />
                 <field name="force_sale_qty" />
             </field>
         </field>
@@ -17,7 +16,6 @@
         <field name="inherit_id" ref="product.product_packaging_form_view" />
         <field name="arch" type="xml">
             <field name="barcode" position="before">
-                <field name="can_be_sold" />
                 <field name="force_sale_qty" />
             </field>
         </field>

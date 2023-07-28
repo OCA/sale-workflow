@@ -1,4 +1,4 @@
-# Copyright 2020 Camptocamp SA
+# Copyright 2023 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo.exceptions import ValidationError
 from odoo.tests import Form
@@ -30,31 +30,9 @@ class TestSaleProductByPackagingOnly(Common):
         with self.assertRaises(ValidationError):
             order_line.write({"product_packaging_id": False})
 
-    def test_create_auto_fill_packaging(self):
-        """Check when the packaging should be set automatically on the line"""
-        # sell_only_by_packaging is default False
-        with Form(self.order) as so:
-            with so.order_line.new() as so_line:
-                so_line.product_id = self.product
-                so_line.product_uom_qty = self.packaging_tu.qty * 2
-        so_line = self.order.order_line[-1]
-        self.assertFalse(so_line.product_packaging_id)
-        self.assertFalse(so_line.product_packaging_qty)
-
-        # If sell_only_by_packaging is set, a packaging should be automatically
-        # picked if possible
-        self.product.sell_only_by_packaging = True
-        with Form(self.order) as so:
-            with so.order_line.new() as so_line:
-                so_line.product_id = self.product
-                so_line.product_uom_qty = self.packaging_tu.qty * 2
-        so_line = self.order.order_line[-1]
-        self.assertTrue(so_line.product_packaging_id)
-        self.assertTrue(so_line.product_packaging_qty)
-        self.assertEqual(so_line.product_packaging_id, self.packaging_tu)
-        self.assertEqual(so_line.product_packaging_qty, 2)
-
+    def test_error_sale_packaging(self):
         # If qty does not match a packaging qty, an exception should be raised
+        self.product.sell_only_by_packaging = True
         with self.assertRaises(ValidationError):
             with Form(self.order) as so:
                 with so.order_line.new() as so_line:
@@ -70,31 +48,39 @@ class TestSaleProductByPackagingOnly(Common):
         """
         self.product.sell_only_by_packaging = True
         packaging = self.packaging_tu
-        # For this step, the qty is not forced on the packaging so nothing
-        # should happens if the qty doesn't match with packaging multiple.
-        with Form(self.order) as sale_order:
-            with sale_order.order_line.edit(0) as so_line:
-                so_line.product_packaging_id = packaging
-                so_line.product_uom_qty = 12
-                self.assertAlmostEqual(
-                    so_line.product_uom_qty, 12, places=self.precision
-                )
-                so_line.product_uom_qty = 10
-                self.assertAlmostEqual(
-                    so_line.product_uom_qty, 10, places=self.precision
-                )
-                so_line.product_uom_qty = 36
-                self.assertAlmostEqual(
-                    so_line.product_uom_qty, 36, places=self.precision
-                )
-                so_line.product_uom_qty = 10
-                so_line.product_packaging_id = packaging
+        # For this step, the qty is not forced on the packaging
+        # But the warning will be raise because the value of packaging qty is
+        # not integer package
+        with self.assertRaises(ValidationError):
+            with Form(self.order) as sale_order:
+                with sale_order.order_line.edit(0) as so_line:
+                    so_line.product_packaging_id = packaging
+                    so_line.product_uom_qty = 12
+                    self.assertAlmostEqual(
+                        so_line.product_uom_qty, 12, places=self.precision
+                    )
+        with self.assertRaises(ValidationError):
+            with Form(self.order) as sale_order:
+                with sale_order.order_line.edit(0) as so_line:
+                    so_line.product_packaging_id = packaging
+                    so_line.product_uom_qty = 10
+                    self.assertAlmostEqual(
+                        so_line.product_uom_qty, 10, places=self.precision
+                    )
+        with self.assertRaises(ValidationError):
+            with Form(self.order) as sale_order:
+                with sale_order.order_line.edit(0) as so_line:
+                    so_line.product_packaging_id = packaging
+                    so_line.product_uom_qty = 36
+                    self.assertAlmostEqual(
+                        so_line.product_uom_qty, 36, places=self.precision
+                    )
         # Now force the qty on the packaging
         packaging.force_sale_qty = True
         with Form(self.order) as sale_order:
             with sale_order.order_line.edit(0) as so_line:
                 so_line.product_packaging_id = packaging
-                so_line.product_uom_qty = 50
+                so_line.product_uom_qty = 52
                 self.assertAlmostEqual(
                     so_line.product_uom_qty, 60, places=self.precision
                 )
@@ -118,16 +104,6 @@ class TestSaleProductByPackagingOnly(Common):
                 self.assertAlmostEqual(
                     so_line.product_uom_qty, 220, places=self.precision
                 )
-
-    def test_packaging_qty_non_zero(self):
-        """Check product packaging quantity.
-
-        The packaging quantity can not be zero.
-        """
-        self.product.write({"sell_only_by_packaging": True})
-        self.order_line.product_uom_qty = 40  # 2 packs
-        with self.assertRaises(ValidationError):
-            self.order_line.product_packaging_qty = 0
 
     def test_onchange_qty_is_not_pack_multiple(self):
         """Check package when qantity is not a multiple of package quantity.

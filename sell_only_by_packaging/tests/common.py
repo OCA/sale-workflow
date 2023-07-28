@@ -1,4 +1,4 @@
-# Copyright 2021 Camptocamp SA
+# Copyright 2023 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo.tests.common import Form, TransactionCase
@@ -15,6 +15,7 @@ class Common(TransactionCase):
     def setUpClass(cls):
         super(Common, cls).setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.env.user.groups_id += cls.env.ref("product.group_stock_packaging")
         cls.setUpClassPartner()
         cls.setUpClassProduct()
         cls.setUpClassPackagingType()

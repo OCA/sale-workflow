@@ -1,7 +1,7 @@
-# Copyright 2020 Camptocamp SA
+# Copyright 2023 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 {
-    "name": "Sale By Packaging",
+    "name": "Sell Only By Packaging",
     "summary": "Manage sale of packaging",
     "version": "16.0.1.0.0",
     "development_status": "Alpha",
@@ -11,12 +11,10 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["sale_order_line_packaging_qty", "product_packaging_level"],
+    "depends": ["product_packaging_level_sellable", "sale_stock"],
     "data": [
         "views/product_packaging.xml",
-        "views/product_packaging_level.xml",
         "views/product_template.xml",
         "views/product_product.xml",
-        "views/sale_order_line.xml",
     ],
 }

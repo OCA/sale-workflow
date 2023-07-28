@@ -1,4 +1,4 @@
-# Copyright 2020 Camptocamp SA
+# Copyright 2023 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
@@ -9,6 +9,7 @@ class ProductTemplate(models.Model):
 
     sell_only_by_packaging = fields.Boolean(
         string="Only sell by packaging",
+        company_dependent=True,
         default=False,
         help="Restrict the usage of this product on sale order lines without "
         "packaging defined",
@@ -16,7 +17,6 @@ class ProductTemplate(models.Model):
 
     min_sellable_qty = fields.Float(
         compute="_compute_template_min_sellable_qty",
-        readonly=True,
         help=(
             "Minimum sellable quantity, according to the available packagings, "
             "if Only Sell by Packaging is set."
@@ -71,8 +71,9 @@ class ProductTemplate(models.Model):
                         % product.name
                     )
 
-    @api.onchange("sale_ok")
-    def _change_sale_ok(self):
-        if not self.sale_ok and self.sell_only_by_packaging:
-            self.sell_only_by_packaging = False
-        return super()._change_sale_ok()
+    @api.depends("sale_ok")
+    def _compute_expense_policy(self):
+        self.filtered(
+            lambda t: not t.sale_ok and self.sell_only_by_packaging
+        ).sell_only_by_packaging = False
+        return super()._compute_expense_policy()
