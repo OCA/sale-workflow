@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_form" model="ir.ui.view">
+        <field name="name">sale_mrp_bom.sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']//tree//field[@name='name']"
+                position="after"
+            >
+                <field
+                    name="bom_id"
+                    groups="sale_mrp_bom.sale_mrp_bom_group"
+                    context="{'default_product_id': product_id, 'default_product_tmpl_id': product_template_id}"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//form//field[@name='customer_lead']"
+                position="after"
+            >
+                <field name="product_template_id" invisible="1" />
+                <field
+                    name="bom_id"
+                    groups="sale_mrp_bom.sale_mrp_bom_group"
+                    context="{'default_product_id': product_id, 'default_product_tmpl_id': product_template_id}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

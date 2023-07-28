@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Tecnativa - David Vidal
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html). -->
+<templates>
+    <t t-name="sale_order_line_price_history.price_history_widget" owl="1">
+        <div>
+            <a tabindex="0" t-on-click="viewPriceHistory" class="fa fa-history" />
+        </div>
+    </t>
+</templates>

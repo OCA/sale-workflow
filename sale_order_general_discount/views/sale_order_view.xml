@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<!-- Copyright 2018 Tecnativa - Sergio Teruel
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="sale_order_general_discount_form_view" model="ir.ui.view">
+        <field name="name">sale.order.general.discount.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tax_totals']" position="before">
+                <field name="general_discount" class="oe_subtotal_footer" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

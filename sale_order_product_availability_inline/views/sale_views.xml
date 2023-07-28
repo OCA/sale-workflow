@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2020 Tecnativa - Ernesto Tejeda
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/tree//field[@name='product_id']"
+                position="attributes"
+            >
+                <attribute name="context" operation="update">
+                    {"so_product_stock_inline": True,
+                    "warehouse": parent.warehouse_id}
+                </attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='product_id']"
+                position="attributes"
+            >
+                <attribute name="context" operation="update">
+                    {"so_product_stock_inline": True,
+                    "warehouse": parent.warehouse_id}
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

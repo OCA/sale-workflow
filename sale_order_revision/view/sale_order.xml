@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sales_order_filter" model="ir.ui.view">
+        <field name="name">sale.order.list.select</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="current_revision_id" invisible="1" />
+            </field>
+        </field>
+    </record>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="priority">15</field>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position='inside'>
+                <button
+                    name="create_revision"
+                    states="cancel,sent"
+                    string="New Revision of Quotation"
+                    type="object"
+                />
+            </xpath>
+            <xpath expr="//button[@name='action_view_invoice']" position="after">
+                <button
+                    name="action_view_revisions"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-file-archive-o"
+                    attrs="{'invisible': ['|', ('has_old_revisions', '=', False),('revision_count', '=', 0)]}"
+                >
+                    <field
+                        name="revision_count"
+                        widget="statinfo"
+                        string="Prev. revisions"
+                    />
+                </button>
+            </xpath>
+            <field name="client_order_ref" position="after">
+                <field
+                    name="current_revision_id"
+                    attrs="{'invisible': [('current_revision_id', '=', False)]}"
+                />
+                <field name="has_old_revisions" invisible="1" />
+            </field>
+        </field>
+    </record>
+</odoo>

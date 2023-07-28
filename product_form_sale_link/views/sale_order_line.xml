@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_sales_order_line_filter" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="name">sale.order.line.select (in product_form_sale_link)</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
+        <field name="arch" type="xml">
+            <filter name="to_invoice" position="before">
+                <filter
+                    string="Quotations"
+                    name="draft"
+                    domain="[('state','in',('draft', 'sent'))]"
+                />
+                <filter
+                    string="Sales Orders"
+                    name="sales"
+                    domain="[('state','in',('sale','done'))]"
+                />
+                <separator />
+            </filter>
+        </field>
+    </record>
+    <record id="action_product_template_sale_list" model="ir.actions.act_window">
+        <field name="name">Sale Order Lines</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="context">{'search_default_sales':1}</field>
+        <field name="domain">[('product_id.product_tmpl_id', 'in', active_ids)]</field>
+    </record>
+    <record id="action_product_product_sale_list" model="ir.actions.act_window">
+        <field name="name">Sale Order Lines</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="context">{'search_default_sales':1}</field>
+        <field name="domain">[('product_id', 'in', active_ids)]</field>
+    </record>
+</odoo>

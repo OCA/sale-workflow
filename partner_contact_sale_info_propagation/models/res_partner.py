@@ -63,12 +63,11 @@ class ResPartner(models.Model):
         return res
 
     @api.model
-    def get_view(self, view_id=None, view_type="form", toolbar=False, submenu=False):
+    def get_view(self, view_id=None, view_type="form", **options):
         res = super().get_view(
             view_id=view_id,
             view_type=view_type,
-            toolbar=toolbar,
-            submenu=submenu,
+            **options,
         )
         if view_type == "form":
             partner_xml = etree.XML(res["arch"])

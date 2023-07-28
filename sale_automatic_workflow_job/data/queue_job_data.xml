@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+     <!-- Queue Job Channel -->
+     <record id="channel_sale_automatic_workflow" model="queue.job.channel">
+         <field name="name">channel.sale.automatic.workflow</field>
+         <field name="parent_id" ref="queue_job.channel_root" />
+     </record>
+
+     <!-- Queue Job Function -->
+     <record id="job_function_do_validate_sale_order" model="queue.job.function">
+         <field
+            name="model_id"
+            ref="sale_automatic_workflow_job.model_automatic_workflow_job"
+        />
+         <field name="method">_do_validate_sale_order</field>
+         <field name="channel_id" ref="channel_sale_automatic_workflow" />
+         <field
+            name="related_action"
+            eval='{"func_name": "_related_action_sale_automatic_workflow"}'
+        />
+     </record>
+
+     <record id="job_function_do_create_invoice" model="queue.job.function">
+         <field
+            name="model_id"
+            ref="sale_automatic_workflow_job.model_automatic_workflow_job"
+        />
+         <field name="method">_do_create_invoice</field>
+         <field name="channel_id" ref="channel_sale_automatic_workflow" />
+         <field
+            name="related_action"
+            eval='{"func_name": "_related_action_sale_automatic_workflow"}'
+        />
+     </record>
+
+     <record id="job_function_do_validate_invoice" model="queue.job.function">
+         <field
+            name="model_id"
+            ref="sale_automatic_workflow_job.model_automatic_workflow_job"
+        />
+         <field name="method">_do_validate_invoice</field>
+         <field name="channel_id" ref="channel_sale_automatic_workflow" />
+         <field
+            name="related_action"
+            eval='{"func_name": "_related_action_sale_automatic_workflow"}'
+        />
+     </record>
+
+     <record id="job_function_do_validate_picking" model="queue.job.function">
+         <field
+            name="model_id"
+            ref="sale_automatic_workflow_job.model_automatic_workflow_job"
+        />
+         <field name="method">_do_validate_picking</field>
+         <field name="channel_id" ref="channel_sale_automatic_workflow" />
+         <field
+            name="related_action"
+            eval='{"func_name": "_related_action_sale_automatic_workflow"}'
+        />
+     </record>
+
+     <record id="job_function_do_sale_done" model="queue.job.function">
+         <field
+            name="model_id"
+            ref="sale_automatic_workflow_job.model_automatic_workflow_job"
+        />
+         <field name="method">_do_sale_done</field>
+         <field name="channel_id" ref="channel_sale_automatic_workflow" />
+         <field
+            name="related_action"
+            eval='{"func_name": "_related_action_sale_automatic_workflow"}'
+        />
+     </record>
+</odoo>

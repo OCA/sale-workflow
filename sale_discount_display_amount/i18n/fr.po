@@ -1,0 +1,40 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_discount_display_amount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2018-10-10 12:38+0000\n"
+"Last-Translator: Cédric Pigeon (ACSONE) <cedric.pigeon@acsone.eu>\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 3.1.1\n"
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__discount_total
+msgid "Discount Subtotal"
+msgstr "Montant de la remise"
+
+#. module: sale_discount_display_amount
+#: model:ir.model,name:sale_discount_display_amount.model_sale_order
+#, fuzzy
+msgid "Sales Order"
+msgstr "Bons de commande"
+
+#. module: sale_discount_display_amount
+#: model:ir.model,name:sale_discount_display_amount.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Lignes de bon de commande"
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_total_no_discount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_total_no_discount
+msgid "Subtotal Without Discount"
+msgstr "Sous-total sans la remise"
