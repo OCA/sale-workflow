@@ -17,7 +17,7 @@
             position="before"
         >
             <td>
-                <span t-field="line.sequence2" />
+                <span t-field="line.sequence2" optional="show" />
             </td>
         </xpath>
     </template>
