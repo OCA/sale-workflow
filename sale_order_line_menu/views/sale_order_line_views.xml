@@ -63,6 +63,15 @@
             <xpath expr="//field[@name='name']" position="attributes">
                 <attribute name="optional">show</attribute>
             </xpath>
+            <xpath expr="//tree" position="inside">
+                <field
+                    name="invoice_lines"
+                    widget="many2many_tags"
+                    groups="account.group_account_invoice"
+                    optional="hide"
+                    domain="[('move_id.partner_id', 'child_of', parent.parent_partner_id), ('sale_line_ids', 'not in', parent.order_line), ('exclude_from_invoice_tab', '=', False), ('move_id.move_type', 'in', ('out_invoice', 'out_refund', 'out_receipt'))]"
+                />
+            </xpath>
         </field>
     </record>
 
