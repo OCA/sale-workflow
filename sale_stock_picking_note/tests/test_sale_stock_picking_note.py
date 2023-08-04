@@ -31,5 +31,9 @@ class TestSaleStockPickingNote(common.TransactionCase):
             self.order.picking_ids[:1].customer_note, self.order.picking_customer_note
         )
         report = self.env.ref("stock.action_report_delivery")
-        res = str(report._render_qweb_html(self.order.picking_ids.ids)[0])
+        res = str(
+            report._render_qweb_html(
+                "stock.action_report_delivery", self.order.picking_ids.ids
+            )[0]
+        )
         self.assertRegex(res, "Picking comment")
