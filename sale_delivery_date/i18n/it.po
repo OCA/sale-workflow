@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-30 12:25+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-07-19 13:10+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_delivery_date
 #: code:addons/sale_delivery_date/models/stock_picking.py:0
@@ -24,6 +24,10 @@ msgid ""
 "Considering the security lead time of %s days defined on the company, the "
 "delivery will not match the partner timewindows preference."
 msgstr ""
+"\n"
+"Considerando il tempo di risposta sicuro di %s giorni definito per "
+"l'azienda, la consegna non rientrerà nell'intervallo di preferenza del "
+"cliente."
 
 #. module: sale_delivery_date
 #: model_terms:ir.ui.view,arch_db:sale_delivery_date.report_delivery_document
@@ -34,17 +38,17 @@ msgstr "<strong>Data di consegna prevista:</strong>"
 #. module: sale_delivery_date
 #: model_terms:ir.ui.view,arch_db:sale_delivery_date.view_picking_cutoff_search
 msgid "After today's cut-off"
-msgstr ""
+msgstr "Dopo l'orario limite odierno"
 
 #. module: sale_delivery_date
 #: model:ir.model.fields,field_description:sale_delivery_date.field_stock_warehouse__apply_cutoff
 msgid "Apply Cutoff"
-msgstr ""
+msgstr "Applica orario limite"
 
 #. module: sale_delivery_date
 #: model_terms:ir.ui.view,arch_db:sale_delivery_date.view_picking_cutoff_search
 msgid "Before today's cut-off"
-msgstr ""
+msgstr "Prima dell'orario limite odierno"
 
 #. module: sale_delivery_date
 #: code:addons/sale_delivery_date/models/sale_order.py:0
@@ -53,6 +57,8 @@ msgid ""
 "Commitment date does not match shipping partner's Delivery time schedule "
 "preference."
 msgstr ""
+"La data impegno non ricade nelle preferenze di orario di consegna del "
+"partner."
 
 #. module: sale_delivery_date
 #: model:ir.model,name:sale_delivery_date.model_res_partner
@@ -65,17 +71,17 @@ msgstr "Contatto"
 #: model:ir.model.fields,field_description:sale_delivery_date.field_stock_warehouse__cutoff_time
 #: model:ir.model.fields,field_description:sale_delivery_date.field_time_cutoff_mixin__cutoff_time
 msgid "Cutoff Time"
-msgstr ""
+msgstr "Orario limite"
 
 #. module: sale_delivery_date
 #: model:ir.model.fields,field_description:sale_delivery_date.field_stock_picking__cutoff_time_diff
 msgid "Cutoff Time Diff"
-msgstr ""
+msgstr "Differenza orario limite"
 
 #. module: sale_delivery_date
 #: model:ir.model.fields,field_description:sale_delivery_date.field_stock_picking__cutoff_time_hms
 msgid "Cutoff Time Hms"
-msgstr ""
+msgstr "Orario limite h:m:s"
 
 #. module: sale_delivery_date
 #: model:ir.model.fields,help:sale_delivery_date.field_res_partner__order_delivery_cutoff_preference
@@ -93,17 +99,28 @@ msgid ""
 "confirmed after 09:00 will have its delivery order postponed to 09:00 on the "
 "following day."
 msgstr ""
+"Definisce l'orario limite per gli ordini di consegna:\n"
+"\n"
+"* Usa orario limite globale (del magazzino): gli ordini di consegna per le "
+"vendite verranno rimandati al prossimo tempo limite del magazzino\n"
+"* Usa orario limite del partner: gli ordini di consegna per le vendite "
+"saranno rimandati al prossimo tempo limite del partner\n"
+"\n"
+"Esempio: se il tempo limite è impostato alle 09:00, qualsiasi ordine di "
+"vendita confermato prima delle 09:00 avrà un ordine di consegna impostato "
+"per le 09:00, qualsiasi ordine di vendita confermato dopo le 09:00 avrà un "
+"ordine di consegna impostato per le 09:00 del giorno successivo."
 
 #. module: sale_delivery_date
 #: model:ir.model.fields,field_description:sale_delivery_date.field_res_partner__order_delivery_cutoff_preference
 #: model:ir.model.fields,field_description:sale_delivery_date.field_res_users__order_delivery_cutoff_preference
 msgid "Delivery orders cutoff preference"
-msgstr ""
+msgstr "Preferenza orario limite ordini di consegna"
 
 #. module: sale_delivery_date
 #: model:ir.model.fields,field_description:sale_delivery_date.field_sale_order__display_expected_date_ok
 msgid "Display Expected Date Ok"
-msgstr ""
+msgstr "Mostra data prevista ok"
 
 #. module: sale_delivery_date
 #: model:ir.model.fields,field_description:sale_delivery_date.field_res_partner__display_name
@@ -118,7 +135,7 @@ msgstr "Nome visualizzato"
 #. module: sale_delivery_date
 #: model:ir.model.fields,field_description:sale_delivery_date.field_stock_picking__expected_delivery_date
 msgid "Expected Delivery Date"
-msgstr ""
+msgstr "Data di consegna prevista"
 
 #. module: sale_delivery_date
 #: model:ir.model.fields,field_description:sale_delivery_date.field_res_partner__id
@@ -128,12 +145,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_delivery_date.field_stock_warehouse__id
 #: model:ir.model.fields,field_description:sale_delivery_date.field_time_cutoff_mixin__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_delivery_date
 #: model_terms:ir.ui.view,arch_db:sale_delivery_date.view_picking_cutoff_search
 msgid "Inside today's cut-off"
-msgstr ""
+msgstr "All'interno dell'orario limite odierno"
 
 #. module: sale_delivery_date
 #: model:ir.model.fields,field_description:sale_delivery_date.field_res_partner____last_update
@@ -160,6 +177,8 @@ msgstr "Riga ordine di vendita"
 #, python-format
 msgid "Something went wrong trying to find next delivery window. Date: %s"
 msgstr ""
+"Qualcosa non ha funzionato nella ricerca della prossima finestra di "
+"consegna. Data: %s"
 
 #. module: sale_delivery_date
 #: code:addons/sale_delivery_date/models/sale_order.py:0
@@ -169,6 +188,9 @@ msgid ""
 "deliveries on following time windows:\n"
 "%s"
 msgstr ""
+"La data di consegna è %s, ma il partner ha le preferenze di consegna "
+"impostate per le seguenti finestre temporali:\n"
+"%s"
 
 #. module: sale_delivery_date
 #: code:addons/sale_delivery_date/models/sale_order.py:0
@@ -177,11 +199,13 @@ msgid ""
 "The delivery date is {} ({}), but the partner is set to prefer deliveries on "
 "working days."
 msgstr ""
+"La data di consegna è {} ({}), ma il partner ha la preferenza di consegna "
+"nei giorni lavorativi."
 
 #. module: sale_delivery_date
 #: model:ir.model,name:sale_delivery_date.model_time_cutoff_mixin
 msgid "Time Cut-off Mixin"
-msgstr ""
+msgstr "Mixin orario limite"
 
 #. module: sale_delivery_date
 #: model:ir.model.fields,field_description:sale_delivery_date.field_res_partner__tz
@@ -200,17 +224,17 @@ msgstr "Trasferimento"
 #: code:addons/sale_delivery_date/models/stock_picking.py:0
 #, python-format
 msgid "Unsupported search operator %s"
-msgstr ""
+msgstr "Operatore di ricerca non supportato %s"
 
 #. module: sale_delivery_date
 #: model:ir.model.fields.selection,name:sale_delivery_date.selection__res_partner__order_delivery_cutoff_preference__warehouse_cutoff
 msgid "Use global (warehouse) cutoff time"
-msgstr ""
+msgstr "Usa orario limite globale (del magazzino)"
 
 #. module: sale_delivery_date
 #: model:ir.model.fields.selection,name:sale_delivery_date.selection__res_partner__order_delivery_cutoff_preference__partner_cutoff
 msgid "Use partner's cutoff time"
-msgstr ""
+msgstr "Usa orario limite del cliente"
 
 #. module: sale_delivery_date
 #: model:ir.model,name:sale_delivery_date.model_stock_warehouse

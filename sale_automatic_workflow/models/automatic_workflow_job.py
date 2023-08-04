@@ -133,6 +133,7 @@ class AutomaticWorkflowJob(models.Model):
             "partner_id": invoice.partner_id.id,
             "partner_type": partner_type,
             "date": fields.Date.context_today(self),
+            "currency_id": invoice.currency_id.id,
         }
 
     @api.model
@@ -161,6 +162,7 @@ class AutomaticWorkflowJob(models.Model):
             (payment_lines + lines).filtered_domain(
                 [("account_id", "=", account.id), ("reconciled", "=", False)]
             ).reconcile()
+        return payment
 
     @api.model
     def run_with_workflow(self, sale_workflow):
