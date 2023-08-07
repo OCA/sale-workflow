@@ -57,16 +57,14 @@ msgstr ""
 #: code:addons/sale_start_end_dates/models/sale_order.py:0
 #, python-format
 msgid "Missing End Date for sale order line with Product '%s'."
-msgstr ""
-"Date de fin manquante sur la ligne de commande ayant l'article '%s'."
+msgstr "Date de fin manquante sur la ligne de commande ayant l'article '%s'."
 
 #. module: sale_start_end_dates
 #. odoo-python
 #: code:addons/sale_start_end_dates/models/sale_order.py:0
 #, python-format
 msgid "Missing Start Date for sale order line with Product '%s'."
-msgstr ""
-"Date de début manquante sur la ligne de commande ayant l'article '%s'."
+msgstr "Date de début manquante sur la ligne de commande ayant l'article '%s'."
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__must_have_dates
@@ -87,9 +85,9 @@ msgid ""
 "negative (%(number_of_days)s) ; this is not allowed. The number of days has "
 "been forced to 1."
 msgstr ""
-"Sur la ligne de commande ayant l'article '%(product_name)s', le nombre "
-"de jours est négatif (%(number_of_days)s) ; ceci n'est pas autorisé. Le "
-"nombre de jours a été forcé à 1."
+"Sur la ligne de commande ayant l'article '%(product_name)s', le nombre de "
+"jours est négatif (%(number_of_days)s) ; ceci n'est pas autorisé. Le nombre "
+"de jours a été forcé à 1."
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
