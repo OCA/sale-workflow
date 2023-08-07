@@ -46,13 +46,19 @@ class SaleOrder(models.Model):
     @api.depends("partner_id", "company_id")
     def _compute_sale_type_id(self):
         for record in self:
-            # Specific partner sale type value
-            sale_type = (
-                record.partner_id.with_company(record.company_id).sale_type
-                or record.partner_id.commercial_partner_id.with_company(
-                    record.company_id
-                ).sale_type
-            )
+            sale_type = record.type_id
+            #  Primero chequear que no este seteado _type_id
+            if not sale_type:
+                # Specific partner sale type value
+                sale_type = (
+                    record.partner_id.with_company(record.company_id).sale_type
+                    or record.partner_id.commercial_partner_id.with_company(
+                        record.company_id
+                    ).sale_type
+                )
+            # Buscar el sale_type del user
+            if not sale_type:
+                sale_type = record.user.partner_id.with_company(record.company_id).sale_type
             # Default user sale type value
             if not sale_type:
                 sale_type = record.default_get(["type_id"]).get("type_id", False)
