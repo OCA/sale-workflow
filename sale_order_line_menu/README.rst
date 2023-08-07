@@ -66,6 +66,8 @@ Contributors
 * `Moduon Team <https://moduon.team>`:
 
   * Eduardo de Miguel <edu@moduon.team>
+  * Rafael Blasco <rafaelbn@moduon.team>
+  * Emilio Pascual <emilio@moduon.team>
 
 Maintainers
 ~~~~~~~~~~~
