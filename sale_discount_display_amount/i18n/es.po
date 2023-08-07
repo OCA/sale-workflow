@@ -56,7 +56,13 @@ msgid "Sales Order Line"
 msgstr "Línea pedido de venta"
 
 #. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_subtotal_no_discount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_subtotal_no_discount
+msgid "Subtotal Without Discount"
+msgstr "Subtotal Sin Descuento"
+
+#. module: sale_discount_display_amount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_total_no_discount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_total_no_discount
-msgid "Subtotal Without Discount"
+msgid "Total Without Discount"
 msgstr "Total Sin Descuento"
