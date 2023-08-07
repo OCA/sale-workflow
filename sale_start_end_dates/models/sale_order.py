@@ -166,7 +166,7 @@ class SaleOrderLine(models.Model):
                 line.start_date = order.default_start_date
             elif line.start_date and not line.product_id.must_have_dates:
                 line.start_date = False
-            elif line.end_date and line.start_date and line.start_date > self.end_date:
+            elif line.end_date and line.start_date and line.start_date > line.end_date:
                 line.start_date = line.end_date
 
     @api.depends("start_date", "product_id")
@@ -181,5 +181,5 @@ class SaleOrderLine(models.Model):
                 line.end_date = order.default_end_date
             elif line.end_date and not line.product_id.must_have_dates:
                 line.end_date = False
-            elif line.end_date and line.start_date and line.start_date > self.end_date:
+            elif line.end_date and line.start_date and line.start_date > line.end_date:
                 line.end_date = line.start_date
