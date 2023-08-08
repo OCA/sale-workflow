@@ -25,7 +25,7 @@ Sale Order Line Menu
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-Adds a menu item to list all Sales order lines.
+Adds a menu item and some views to navigate through Sale Order lines.
 
 **Table of contents**
 
@@ -63,6 +63,12 @@ Contributors
   * Daniel Reis <dreis@opensourceintegrators.com>
   * Freni Patel <fpatel@opensourceintegrators.com>
   * Murtaza Mithaiwala <mmithaiwala@opensourceintegrators.com>
+
+* `Moduon Team <https://moduon.team>`:
+
+  * Eduardo de Miguel <edu@moduon.team>
+  * Emilio Pascual <emilio@moduon.team>
+  * Rafael Blasco <rafaelbn@moduon.team>
 
 Maintainers
 ~~~~~~~~~~~
