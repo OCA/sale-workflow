@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="currency_rate_precision" model="decimal.precision">
+        <field name="name">Currency Rate Precision</field>
+        <field name="digits">6</field>
+    </record>
+</odoo>
