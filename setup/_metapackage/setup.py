@@ -50,6 +50,7 @@ setuptools.setup(
         'odoo-addon-sale_substate>=16.0dev,<16.1dev',
         'odoo-addon-sale_tier_validation>=16.0dev,<16.1dev',
         'odoo-addon-sale_triple_discount>=16.0dev,<16.1dev',
+        'odoo-addon-sales_team_security>=16.0dev,<16.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
