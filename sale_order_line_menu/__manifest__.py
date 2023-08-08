@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Order Line Menu",
-    "version": "16.0.1.2.0",
+    "version": "16.0.1.3.0",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",
     "summary": "Adds a Sale Order Lines Menu",
     "website": "https://github.com/OCA/sale-workflow",
@@ -14,6 +14,6 @@
         "views/sale_order_line_views.xml",
     ],
     "installable": True,
-    "maintainer": "dreispt",
+    "maintainer": ["dreispt", "EmilioPascual"],
     "development_status": "Beta",
 }
