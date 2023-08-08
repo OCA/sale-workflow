@@ -29,8 +29,8 @@ msgid ""
 "If set, this Sales Team will be used for sales and assignments related to "
 "this partner"
 msgstr ""
-"Se impostato, il team di vendita viene utilizzato per vendite e assegnazioni"
-" correlate al partner"
+"Se impostato, il team di vendita viene utilizzato per vendite e assegnazioni "
+"correlate al partner"
 
 #. module: sales_team_security
 #: model:ir.model,name:sales_team_security.model_ir_rule
