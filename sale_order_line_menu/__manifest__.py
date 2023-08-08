@@ -14,6 +14,6 @@
         "views/sale_order_line_views.xml",
     ],
     "installable": True,
-    "maintainer": "dreispt",
+    "maintainer": ["dreispt", "EmilioPascual"],
     "development_status": "Beta",
 }
