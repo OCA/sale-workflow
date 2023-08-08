@@ -9,7 +9,7 @@
     "author": "Ashish Hirpara, Ooops, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "maintainers": ["ashishhirapara"],
-    "installable": True,
+    "installable": False,
     "depends": ["sale", "sale_order_general_discount", "sale_triple_discount"],
     "data": [
         "views/res_config_settings.xml",
