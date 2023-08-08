@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field
+                    name="currency_rate"
+                    attrs="{'invisible': [('sale_show_currency_rate', 'in', ['no', 'inverse'])]}"
+                />
+                <field
+                    name="inverse_currency_rate"
+                    attrs="{'invisible': [('sale_show_currency_rate', 'in', ['no', 'normal'])]}"
+                />
+                <field name="sale_show_currency_rate" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
