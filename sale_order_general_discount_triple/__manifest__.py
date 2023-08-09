@@ -3,13 +3,13 @@
 {
     "name": "Sale Order General Discount Triple",
     "summary": "General discount per sale order with triple",
-    "version": "16.0.1.0.0",
+    "version": "16.0.2.0.0",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Ashish Hirpara, Ooops, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "maintainers": ["ashishhirapara"],
-    "installable": False,
+    "installable": True,
     "depends": ["sale", "sale_order_general_discount", "sale_triple_discount"],
     "data": [
         "views/res_config_settings.xml",
