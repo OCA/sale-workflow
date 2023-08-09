@@ -27,7 +27,6 @@ setuptools.setup(
         'odoo-addon-sale_mrp_bom>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_archive>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_general_discount>=16.0dev,<16.1dev',
-        'odoo-addon-sale_order_general_discount_triple>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_invoice_amount>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_line_date>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_line_menu>=16.0dev,<16.1dev',
@@ -51,6 +50,7 @@ setuptools.setup(
         'odoo-addon-sale_substate>=16.0dev,<16.1dev',
         'odoo-addon-sale_tier_validation>=16.0dev,<16.1dev',
         'odoo-addon-sale_triple_discount>=16.0dev,<16.1dev',
+        'odoo-addon-sales_team_security>=16.0dev,<16.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',

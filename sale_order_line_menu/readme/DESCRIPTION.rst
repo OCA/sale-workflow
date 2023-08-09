@@ -1,1 +1,1 @@
-Adds a menu item to list all Sales order lines.
+Adds a menu item and some views to navigate through Sale Order lines.
