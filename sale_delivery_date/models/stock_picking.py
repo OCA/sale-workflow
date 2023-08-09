@@ -1,7 +1,7 @@
 # Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from datetime import timedelta
+from datetime import datetime, time, timedelta
 
 from psycopg2 import sql
 
@@ -57,29 +57,25 @@ class StockPicking(models.Model):
         We still try to keep this priority:
             commitment_date > expected_date > date_done > scheduled_date
         """
-        today = fields.Date.today()
+        now = fields.Datetime.now()
+        sale_line_model = self.env["sale.order.line"]
         for record in self:
-            delivery_date = False
-            commitment_date = record.sale_id.commitment_date
-            expected_date = record.sale_id.expected_date
-            # If we commited to deliver on a given date, we never fall back
-            # on the expected_date.
-            # The reason for that is that we might have set and unrealistic
-            # commitment_date at first.
-            # In such case, it's normal to be late, and we do not want to postpone.
-            if commitment_date:
-                if commitment_date.date() >= today:
-                    delivery_date = commitment_date
-            elif expected_date and expected_date.date() >= today:
-                delivery_date = expected_date
-            if not delivery_date:
-                date_done = record.date_done or record.scheduled_date
-                sale_line_model = self.env["sale.order.line"]
-                partner = self.partner_id
-                warehouse = self.location_id.get_warehouse()
-                delays = self._get_delays()
-                delivery_date = sale_line_model._delivery_date_from_expedition_date(
-                    date_done, partner, warehouse.calendar2_id, delays
+            sale_order = record.sale_id
+            delivery_date = record.date_deadline or record.date_done
+            # TODO: At some point, we might need a carrier cutoff or something.
+            late_to_ship = now.date() > record.scheduled_date.date()
+            if late_to_ship:
+                warehouse = record.location_id.get_warehouse()
+                calendar = warehouse.calendar2_id
+                next_ship_date = sale_line_model._postpone_to_working_day(
+                    now, calendar=calendar
+                )
+                delivery_datetime_aware = sale_line_model._add_delay(
+                    next_ship_date, 1, calendar=calendar
+                )
+                tz_string = record.partner_id.tz or "UTC"
+                delivery_date = sale_line_model._get_naive_date_from_datetime(
+                    delivery_datetime_aware, tz_string
                 )
             record.expected_delivery_date = delivery_date
 

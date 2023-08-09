@@ -124,11 +124,10 @@ class TestDeliveryDateInThePast(SavepointCase):
         with freeze_time("2021-10-25"):
             # picking is handled late, order.commitment_date and
             # order.expected_date are outdated.
-            # expected_delivery_date is scheduled date with security_lead and
-            # customer delivery preferences applied.
-            # As customer is set to be delivered anytime, midnight is ok.
+            # expected_delivery_date is postponed from now (as the expedition date)
+            # with respect to customer's time window.
             td_security_lead = timedelta(days=picking.company_id.security_lead)
-            self.assertEqual(str(picking.expected_delivery_date), "2021-10-16 00:00:00")
+            self.assertEqual(str(picking.expected_delivery_date), "2021-10-26 00:00:00")
 
     def test_delivery_date_as_date_done(self):
         """Date done should be used if both commitment_date and

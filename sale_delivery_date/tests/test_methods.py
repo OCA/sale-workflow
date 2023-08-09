@@ -1,7 +1,8 @@
 # Copyright 2023 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from datetime import datetime
+from freezegun import freeze_time
+from datetime import datetime, timedelta
 
 from odoo.tests.common import Form
 from odoo.tools import mute_logger
@@ -432,3 +433,51 @@ class TestMethods(Common):
         picking.move_type = "one"
         sale_delay, __, __ = picking._get_delays()
         self.assertEqual(sale_delay, 5.0)
+
+    def assertDateNotInThePast(self, date_to_check):
+        # Be careful, if now frozen, now will change over time
+        # and tests might break
+        self.assertGreaterEqual(date_to_check, datetime.now())
+
+    @freeze_time("2023-09-05 12:00:00")
+    def test_expected_delivery_date_no_commitment_date(self):
+        # Ensure that expected_delivery_date is always in the future when
+        # no commitment_date is set
+        order = self.order
+        order.action_confirm()
+        picking = order.picking_ids
+        delta_1d = timedelta(days=1)
+        dates = [
+            str(picking.scheduled_date), # 2023-09-06 10:00:00
+            str(picking.scheduled_date - delta_1d),# 2023-09-05 10:00:00
+            str(picking.scheduled_date + delta_1d),# 2023-09-08 10:00:00
+            str(picking.date_deadline), # 2023-09-07 00:00:00
+            str(picking.date_deadline - delta_1d), # 2023-09-06 00:00:00
+            str(picking.date_deadline + delta_1d), # 2023-09-08 00:00:00
+        ]
+        for date_ in dates:
+            picking.invalidate_cache(["expected_delivery_date"])
+            with freeze_time(date_):
+                self.assertDateNotInThePast(picking.expected_delivery_date)
+
+    @freeze_time("2023-09-05 12:00:00")
+    def test_expected_delivery_date_with_commitment_date(self):
+        # Ensure that expected_delivery_date is always in the future when
+        # commitment_date is set
+        order = self.order
+        order.commitment_date = datetime.now()
+        order.action_confirm()
+        picking = order.picking_ids
+        delta_1d = timedelta(days=1)
+        dates = [
+            str(picking.scheduled_date), # 2023-09-04 10:00:00
+            str(picking.scheduled_date - delta_1d), # 2023-09-03 10:00:00
+            str(picking.scheduled_date + delta_1d), # 2023-09-05 10:00:00
+            str(picking.date_deadline), # 2023-09-05 12:00:00
+            str(picking.date_deadline - delta_1d), # 2023-09-04 12:00:00
+            str(picking.date_deadline + delta_1d), # 2023-09-06 12:00:00
+        ]
+        for date_ in dates:
+            picking.invalidate_cache(["expected_delivery_date"])
+            with freeze_time(date_):
+                self.assertDateNotInThePast(picking.expected_delivery_date)
