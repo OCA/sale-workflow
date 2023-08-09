@@ -16,3 +16,11 @@ class SaleOrder(models.Model):
         if general_discount != "no_apply":
             for record in self:
                 record.order_line.update({general_discount: record.general_discount})
+
+    def _create_delivery_line(self, carrier, price_unit):
+        res = super()._create_delivery_line(carrier, price_unit)
+        for line in self.order_line:
+            line._compute_discount()
+            line._compute_discount2()
+            line._compute_discount3()
+        return res
