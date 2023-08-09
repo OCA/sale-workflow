@@ -166,12 +166,12 @@ class TestSaleDeliveryDate(Common):
         expected_delivery_date = "2023-07-07 05:30:00" # 07:30 UTC
         order.action_confirm()
         picking = order.picking_ids
-        # If the employee can process the order now an give the goods to the 
+        # If the employee can process the order now an give the goods to the
         # carrier today, then goods can be received tomorrow at commitment_date.
         self.assertEqual(str(picking.scheduled_date), expected_work_start_date)
         self.assertEqual(str(picking.expected_delivery_date), "2023-07-07 16:00:00")
 
-    @freeze_time("2023-07-06 16:00:00")
+    @freeze_time("2023-07-06 15:00:00") # 15:00 UTC is 17:00 Europe/Brussels
     def test_order_on_thursday_after_cutoff_late_commitment_date(self):
         # Following the above case, this can is impossible to achieve,
         # because the commitment_date will be in the past from the begining
@@ -195,15 +195,13 @@ class TestSaleDeliveryDate(Common):
         # The scheduled date is the start of the previous attendance.
         # This is when we should have started working on this.
         self.assertEqual(str(picking.scheduled_date), "2023-07-04 08:00:00") # 10:00 UTC
-        # Before confirmation, expected_delivery_date is:
-        # scheduled_date + security_lead with time_window applied
+        # date_deadline is immutable.
+        # However, there might be cases where you cannot use a date in the past,
+        # a carrier for instance, whose API would refuse any date in the past.
+        # For such cases, we can use picking.expected_delivery_date, which represents
+        # the next open day.
+        # This date doesn't take into account the customer delivery preferences.
+        # On 2023-07-06 16:00:00, best delivery date is the day after.
         self.assertEqual(
-            str(picking.expected_delivery_date),
-            "2023-07-05 05:30:00" # 07:30 UTC
+            str(picking.expected_delivery_date.date()), "2023-07-07"
         )
-        # But once it's confirmed, it's:
-        # date_done + security_lead with time windows applied
-        picking.move_lines.quantity_done = 10.0
-        picking._action_done()
-        self.assertEqual(str(picking.expected_delivery_date), "2023-07-07 05:30:00")
-
