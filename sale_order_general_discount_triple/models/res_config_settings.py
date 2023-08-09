@@ -6,6 +6,7 @@ class ResConfigSettings(models.TransientModel):
 
     general_discount = fields.Selection(
         [
+            ("no_apply", "No apply"),
             ("discount", "Discount"),
             ("discount2", "Discount 2"),
             ("discount3", "Discount 3"),
