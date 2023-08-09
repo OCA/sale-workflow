@@ -26,7 +26,7 @@ Sale Order General Discount Triple
     :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
     :alt: Try me on Runboat
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 A bridge between Sale Order General Discount(https://github.com/OCA/sale-workflow/tree/14.0/sale_order_general_discoun) and Sale Triple Discount(https://github.com/OCA/sale-workflow/tree/14.0/sale_triple_discount) module to set the general discount on any of the 3 discount field on sale order lines.
 
@@ -41,8 +41,12 @@ Usage
 To use features of this module, you need to:
 
 #. Go to Settings > General Settings > Pricing
-#. Under pricing section, select your prefered Discount type from 'General Discount' field.
-#. The selected discount type among the 3 discounts will be automatically parsed on sale order line while using 'Discount %' text field.
+#. Under pricing section, select your prefered Discount type from 'General Discount' field and
+   the same for 'Pricelist Discount'.
+#. Option 'No apply' will disable functionality, so this kind of discount type won't be applied on lines.
+#. The selected global discount type among the 3 discounts will be automatically parsed on sale order line while using 'Discount %' text field.
+#. If pricelist has a discount, it will be applied on the selected pricelist discount.
+#. If 'General Discount' and 'Pricelist Discount' have the same discount position, 'General Discount' will be applied.
 
 Changelog
 =========
@@ -97,7 +101,7 @@ promote its widespread use.
 
 Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
-|maintainer-ashishhirapara| 
+|maintainer-ashishhirapara|
 
 This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_order_general_discount_triple>`_ project on GitHub.
 

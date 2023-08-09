@@ -13,6 +13,6 @@ class SaleOrder(models.Model):
                 "sale_order_general_discount_triple.general_discount", "discount"
             )
         )
-        if general_discount:
+        if general_discount != "no_apply":
             for record in self:
                 record.order_line.update({general_discount: record.general_discount})
