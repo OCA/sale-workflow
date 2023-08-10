@@ -177,7 +177,6 @@ class TestSaleGlobalDiscount(common.TransactionCase):
         """Change the partner and his global discounts go to the invoice"""
         # (30% then 50%)
         self.sale.partner_id = self.partner_2
-        self.sale.onchange_partner_id()
         self.assertAlmostEqual(self.sale.amount_global_discount, 162.49)
         self.assertAlmostEqual(self.sale.amount_untaxed, 87.5)
         self.assertAlmostEqual(self.sale.amount_untaxed_before_global_discounts, 249.99)
@@ -191,7 +190,6 @@ class TestSaleGlobalDiscount(common.TransactionCase):
     def test_03_global_sale_discounts_to_invoice(self):
         """All the discounts go to the invoice"""
         self.sale.partner_id = self.partner_2
-        self.sale.onchange_partner_id()
         self.sale.order_line.mapped("product_id").write({"invoice_policy": "order"})
         self.sale.action_confirm()
         move = self.sale._create_invoices()
