@@ -48,6 +48,7 @@ setuptools.setup(
         'odoo-addon-sale_start_end_dates>=16.0dev,<16.1dev',
         'odoo-addon-sale_stock_cancel_restriction>=16.0dev,<16.1dev',
         'odoo-addon-sale_stock_picking_blocking>=16.0dev,<16.1dev',
+        'odoo-addon-sale_stock_picking_note>=16.0dev,<16.1dev',
         'odoo-addon-sale_substate>=16.0dev,<16.1dev',
         'odoo-addon-sale_tier_validation>=16.0dev,<16.1dev',
         'odoo-addon-sale_triple_discount>=16.0dev,<16.1dev',
