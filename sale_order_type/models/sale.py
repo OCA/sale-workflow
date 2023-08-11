@@ -14,6 +14,7 @@ class SaleOrder(models.Model):
         comodel_name="sale.order.type",
         string="Type",
         compute="_compute_sale_type_id",
+        precompute=True,
         store=True,
         readonly=False,
         states={
@@ -24,6 +25,14 @@ class SaleOrder(models.Model):
         ondelete="restrict",
         copy=True,
         check_company=True,
+    )
+    # Fields converted to computed writable
+    picking_policy = fields.Selection(
+        compute="_compute_picking_policy", store=True, readonly=False
+    )
+    incoterm = fields.Many2one(compute="_compute_incoterm", store=True, readonly=False)
+    analytic_account_id = fields.Many2one(
+        compute="_compute_analytic_account_id", store=True, readonly=False
     )
 
     @api.model
@@ -67,41 +76,76 @@ class SaleOrder(models.Model):
                 sale_type = record._default_type_id()
             record.type_id = sale_type
 
-    @api.onchange("type_id")
-    def onchange_type_id(self):
-        # TODO: To be changed to computed stored readonly=False if possible in v14?
-        vals = {}
-        for order in self:
+    @api.depends("type_id")
+    def _compute_warehouse_id(self):
+        res = super()._compute_warehouse_id()
+        for order in self.filtered("type_id"):
             order_type = order.type_id
-            # Order values
-            vals = {}
             if order_type.warehouse_id:
-                vals.update({"warehouse_id": order_type.warehouse_id})
+                order.warehouse_id = order_type.warehouse_id
+        return res
+
+    @api.depends("type_id")
+    def _compute_picking_policy(self):
+        res = None
+        if hasattr(super(), "_compute_picking_policy"):
+            res = super()._compute_picking_policy()
+        for order in self.filtered("type_id"):
+            order_type = order.type_id
             if order_type.picking_policy:
-                vals.update({"picking_policy": order_type.picking_policy})
+                order.picking_policy = order_type.picking_policy
+        return res
+
+    @api.depends("type_id")
+    def _compute_payment_term_id(self):
+        res = super()._compute_payment_term_id()
+        for order in self.filtered("type_id"):
+            order_type = order.type_id
             if order_type.payment_term_id:
-                vals.update({"payment_term_id": order_type.payment_term_id})
+                order.payment_term_id = order_type.payment_term_id
+        return res
+
+    @api.depends("type_id")
+    def _compute_pricelist_id(self):
+        res = super()._compute_pricelist_id()
+        for order in self.filtered("type_id"):
+            order_type = order.type_id
             if order_type.pricelist_id:
-                vals.update({"pricelist_id": order_type.pricelist_id})
+                order.pricelist_id = order_type.pricelist_id
+        return res
+
+    @api.depends("type_id")
+    def _compute_incoterm(self):
+        res = None
+        if hasattr(super(), "_compute_incoterm"):
+            res = super()._compute_incoterm()
+        for order in self.filtered("type_id"):
+            order_type = order.type_id
             if order_type.incoterm_id:
-                vals.update({"incoterm": order_type.incoterm_id})
+                order.incoterm = order_type.incoterm_id
+        return res
+
+    @api.depends("type_id")
+    def _compute_analytic_account_id(self):
+        res = None
+        if hasattr(super(), "_compute_analytic_account_id"):
+            res = super()._compute_analytic_account_id()
+        for order in self.filtered("type_id"):
+            order_type = order.type_id
             if order_type.analytic_account_id:
-                vals.update({"analytic_account_id": order_type.analytic_account_id})
+                order.analytic_account_id = order_type.analytic_account_id
+        return res
+
+    @api.depends("type_id")
+    def _compute_validity_date(self):
+        res = super()._compute_validity_date()
+        for order in self.filtered("type_id"):
+            order_type = order.type_id
             if order_type.quotation_validity_days:
-                vals.update(
-                    {
-                        "validity_date": fields.Date.to_string(
-                            datetime.now()
-                            + timedelta(order_type.quotation_validity_days)
-                        )
-                    }
+                order.validity_date = fields.Date.to_string(
+                    datetime.now() + timedelta(order_type.quotation_validity_days)
                 )
-            if vals:
-                order.update(vals)
-            # Order line values
-            line_vals = {}
-            line_vals.update({"route_id": order_type.route_id.id})
-            order.order_line.update(line_vals)
+        return res
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -150,4 +194,21 @@ class SaleOrder(models.Model):
             res["journal_id"] = self.type_id.journal_id.id
         if self.type_id:
             res["sale_type_id"] = self.type_id.id
+        return res
+
+
+class SaleOrderLine(models.Model):
+    _inherit = "sale.order.line"
+
+    route_id = fields.Many2one(compute="_compute_route_id", store=True, readonly=False)
+
+    @api.depends("order_id.type_id")
+    def _compute_route_id(self):
+        res = None
+        if hasattr(super(), "_compute_route_id"):
+            res = super()._compute_route_id()
+        for line in self.filtered("order_id.type_id"):
+            order_type = line.order_id.type_id
+            if order_type.route_id:
+                line.route_id = order_type.route_id
         return res

@@ -152,7 +152,6 @@ class TestSaleOrderType(common.TransactionCase):
         sale_type = self.sale_type
         order = self.create_sale_order()
         self.assertEqual(order.type_id, sale_type)
-        order.onchange_type_id()
         self.assertEqual(order.warehouse_id, sale_type.warehouse_id)
         self.assertEqual(order.picking_policy, sale_type.picking_policy)
         self.assertEqual(order.payment_term_id, sale_type.payment_term_id)
@@ -196,7 +195,6 @@ class TestSaleOrderType(common.TransactionCase):
     def test_sale_order_flow_route(self):
         order = self.create_sale_order()
         order.type_id = self.sale_type_route.id
-        order.onchange_type_id()
         self.assertEqual(order.type_id.route_id, order.order_line[0].route_id)
         sale_line_dict = {
             "product_id": self.product.id,
@@ -205,24 +203,20 @@ class TestSaleOrderType(common.TransactionCase):
             "price_unit": self.product.lst_price,
         }
         order.write({"order_line": [(0, 0, sale_line_dict)]})
-        order.onchange_type_id()
         self.assertEqual(order.type_id.route_id, order.order_line[1].route_id)
 
     def test_sale_order_in_draft_state_update_name(self):
         order = self.create_sale_order()
-        order.onchange_type_id()
         self.assertEqual(order.type_id, self.sale_type)
         self.assertEqual(order.state, "draft")
         self.assertTrue(order.name.startswith("TSO"))
         # change order type on sale order
         order.type_id = self.sale_type_quot
-        order.onchange_type_id()
         self.assertEqual(order.type_id, self.sale_type_quot)
         self.assertTrue(order.name.startswith("TQU"))
 
     def test_sale_order_in_sent_state_update_name(self):
         order = self.create_sale_order()
-        order.onchange_type_id()
         self.assertEqual(order.type_id, self.sale_type)
         self.assertEqual(order.state, "draft")
         self.assertTrue(order.name.startswith("TSO"))
@@ -230,14 +224,12 @@ class TestSaleOrderType(common.TransactionCase):
         order.action_quotation_sent()
         self.assertTrue(order.state == "sent", "Sale: state after sending is wrong")
         order.type_id = self.sale_type_quot
-        order.onchange_type_id()
         self.assertEqual(order.type_id, self.sale_type_quot)
         self.assertTrue(order.name.startswith("TQU"))
 
     @freeze_time("2022-01-01")
     def test_sale_order_quotation_validity(self):
         order = self.create_sale_order()
-        order.onchange_type_id()
         self.assertEqual(fields.Date.to_string(order.validity_date), "2022-01-11")
 
     def test_sale_order_create_invoice_down_payment(self):
