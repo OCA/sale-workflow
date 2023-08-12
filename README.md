@@ -44,6 +44,7 @@ addon | version | maintainers | summary
 [sale_order_line_date](sale_order_line_date/) | 16.0.1.0.0 |  | Adds a commitment date to each sale order line.
 [sale_order_line_menu](sale_order_line_menu/) | 16.0.1.3.0 |  | Adds a Sale Order Lines Menu
 [sale_order_line_price_history](sale_order_line_price_history/) | 16.0.1.0.0 |  | Sale order line price history
+[sale_order_line_sequence](sale_order_line_sequence/) | 16.0.1.0.1 |  | Propagates SO line sequence to invoices and stock picking.
 [sale_order_lot_generator](sale_order_lot_generator/) | 16.0.1.0.0 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) [![mourad-ehm](https://github.com/mourad-ehm.png?size=30px)](https://github.com/mourad-ehm) [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Sale Order Lot Generator
 [sale_order_lot_selection](sale_order_lot_selection/) | 16.0.1.0.1 | [![bodedra](https://github.com/bodedra.png?size=30px)](https://github.com/bodedra) | Sale Order Lot Selection
 [sale_order_product_availability_inline](sale_order_product_availability_inline/) | 16.0.1.0.0 | [![ernestotejeda](https://github.com/ernestotejeda.png?size=30px)](https://github.com/ernestotejeda) | Show product availability in sales order line product drop-down.
@@ -60,6 +61,7 @@ addon | version | maintainers | summary
 [sale_start_end_dates](sale_start_end_dates/) | 16.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Adds start date and end date on sale order lines
 [sale_stock_cancel_restriction](sale_stock_cancel_restriction/) | 16.0.1.0.0 |  | Sale Stock Cancel Restriction
 [sale_stock_picking_blocking](sale_stock_picking_blocking/) | 16.0.1.0.0 |  | Allow you to block the creation of deliveries from a sale order.
+[sale_stock_picking_note](sale_stock_picking_note/) | 16.0.1.0.1 |  | Add picking note in sale and purchase order
 [sale_substate](sale_substate/) | 16.0.1.0.0 |  | Sale Sub State
 [sale_tier_validation](sale_tier_validation/) | 16.0.1.0.2 |  | Extends the functionality of Sale Orders to support a tier validation process.
 [sale_triple_discount](sale_triple_discount/) | 16.0.1.0.1 |  | Manage triple discount on sale order lines
