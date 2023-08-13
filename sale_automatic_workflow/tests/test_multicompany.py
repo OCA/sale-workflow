@@ -33,6 +33,12 @@ class TestMultiCompany(TestMultiCompanyCommon):
         self.assertEqual(order_fr_daughter.state, "draft")
 
         self.env["automatic.workflow.job"].run()
+        self.assertTrue(order_fr.picking_ids)
+        self.assertTrue(order_ch.picking_ids)
+        self.assertTrue(order_be.picking_ids)
+        self.assertEqual(order_fr.picking_ids.state, "done")
+        self.assertEqual(order_ch.picking_ids.state, "done")
+        self.assertEqual(order_be.picking_ids.state, "done")
         invoice_fr = order_fr.invoice_ids
         invoice_ch = order_ch.invoice_ids
         invoice_be = order_be.invoice_ids
