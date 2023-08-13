@@ -1,0 +1,116 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_discount_invoicing
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model,name:sale_order_discount_invoicing.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model,name:sale_order_discount_invoicing.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model.fields,field_description:sale_order_discount_invoicing.field_product_category__property_account_discount_categ_id
+#: model:ir.model.fields,field_description:sale_order_discount_invoicing.field_product_product__property_account_discount_id
+#: model:ir.model.fields,field_description:sale_order_discount_invoicing.field_product_template__property_account_discount_id
+msgid "Discount Account"
+msgstr ""
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model.fields,field_description:sale_order_discount_invoicing.field_account_move_line__discount_split_by_sale_line_id
+msgid "Discount Split By Sale Line"
+msgstr ""
+
+#. module: sale_order_discount_invoicing
+#: code:addons/sale_order_discount_invoicing/models/account_move.py:0
+#, python-format
+msgid "Discount on %s"
+msgstr ""
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model.fields,help:sale_order_discount_invoicing.field_res_config_settings__account_split_discount_line
+#: model_terms:ir.ui.view,arch_db:sale_order_discount_invoicing.res_config_settings_view_form_inherit
+msgid ""
+"If set, a discounted sale line will be split in 2 invoice lines when the "
+"invoice is generated"
+msgstr ""
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model.fields,field_description:sale_order_discount_invoicing.field_account_move_line__is_split_discount_line
+msgid "Is Split Discount Line"
+msgstr ""
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model.fields,field_description:sale_order_discount_invoicing.field_account_move_line__is_split_line
+msgid "Is Split Line"
+msgstr ""
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model,name:sale_order_discount_invoicing.model_account_move
+msgid "Journal Entry"
+msgstr ""
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model,name:sale_order_discount_invoicing.model_account_move_line
+msgid "Journal Item"
+msgstr ""
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model.fields,help:sale_order_discount_invoicing.field_product_product__property_account_discount_id
+#: model:ir.model.fields,help:sale_order_discount_invoicing.field_product_template__property_account_discount_id
+msgid ""
+"Keep this field empty to use the default value from the product category."
+msgstr ""
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model.fields,field_description:sale_order_discount_invoicing.field_sale_order_line__origin_price_unit
+msgid "Origin Price Unit"
+msgstr ""
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model,name:sale_order_discount_invoicing.model_product_category
+msgid "Product Category"
+msgstr ""
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model,name:sale_order_discount_invoicing.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model,name:sale_order_discount_invoicing.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model.fields,field_description:sale_order_discount_invoicing.field_res_company__account_split_discount_line
+#: model:ir.model.fields,field_description:sale_order_discount_invoicing.field_res_config_settings__account_split_discount_line
+msgid "Split Discount Lines"
+msgstr ""
+
+#. module: sale_order_discount_invoicing
+#: code:addons/sale_order_discount_invoicing/models/account_move.py:0
+#, python-format
+msgid ""
+"The lines you have created/deleted/modified are linked some other ones in the Sale Order.\n"
+"Please create/delete/modify both lines."
+msgstr ""
+
+#. module: sale_order_discount_invoicing
+#: model:ir.model.fields,help:sale_order_discount_invoicing.field_product_category__property_account_discount_categ_id
+msgid "This account will be used when validating a customer invoice."
+msgstr ""

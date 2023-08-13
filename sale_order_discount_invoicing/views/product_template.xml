@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="account.product_template_form_view" />
+        <field name="arch" type="xml">
+            <field name="property_account_income_id" position="after">
+                <field
+                    name="property_account_discount_id"
+                    domain="[
+                        ('account_type', 'not in', ('asset_receivable', 'liability_payable', 'asset_cash', 'liability_credit_card', 'off_balance')),
+                        ('deprecated', '=', False)
+                    ]"
+                    groups="account.group_account_user"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
