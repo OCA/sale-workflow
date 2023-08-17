@@ -18,9 +18,7 @@ class TestSaleException(SavepointCase):
         partner_order = cls.env.ref("base.res_partner_1")
         cls.partner_manufactured_for = cls.env.ref("base.res_partner_3")
         cls.product = cls.env.ref("product.product_product_6")
-        cls.product.product_tmpl_id.manufactured_for_partner_ids |= (
-            cls.partner_manufactured_for
-        )
+        cls.product.manufactured_for_partner_ids |= cls.partner_manufactured_for
 
         cls.sale = cls.env["sale.order"].create(
             {
@@ -53,7 +51,7 @@ class TestSaleException(SavepointCase):
     def test_commercial_partner_is_valid(self):
         self.sale.partner_id.commercial_partner_id = self.sale.order_line[
             0
-        ].product_id.product_tmpl_id.manufactured_for_partner_ids[0]
+        ].product_id.manufactured_for_partner_ids[0]
         self.sale.action_confirm()
         self.assertEqual(self.sale.state, "sale")
         self.assertFalse(self.sale.exception_ids)
@@ -66,14 +64,14 @@ class TestSaleException(SavepointCase):
         self.assertEqual(self.sale.exception_ids[0], self.exception)
 
     def test_product_without_limits_partner_with_commercial_entity(self):
-        self.product.product_tmpl_id.manufactured_for_partner_ids = False
+        self.product.manufactured_for_partner_ids = False
         self.sale.partner_id.commercial_partner_id = self.partner_manufactured_for
         self.sale.action_confirm()
         self.assertEqual(self.sale.state, "sale")
         self.assertFalse(self.sale.exception_ids)
 
     def test_product_without_limits_partner_without_commercial_entity(self):
-        self.product.product_tmpl_id.manufactured_for_partner_ids = False
+        self.product.manufactured_for_partner_ids = False
         self.sale.partner_id.commercial_partner_id = False
         self.sale.action_confirm()
         self.assertEqual(self.sale.state, "sale")
