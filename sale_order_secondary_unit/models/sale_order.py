@@ -17,8 +17,16 @@ class SaleOrderLine(models.Model):
         compute="_compute_secondary_uom_unit_price",
     )
 
+    # Inherited fields
     product_uom_qty = fields.Float(
-        store=True, readonly=False, compute="_compute_product_uom_qty", copy=True
+        compute="_compute_product_uom_qty",
+        precompute=True,
+        store=True,
+    )
+    secondary_uom_qty = fields.Float(
+        compute="_compute_secondary_uom_qty",
+        precompute=True,
+        store=True,
     )
 
     @api.depends("secondary_uom_qty", "secondary_uom_id", "product_uom_qty")
@@ -30,14 +38,14 @@ class SaleOrderLine(models.Model):
         self._onchange_helper_product_uom_for_secondary()
 
     @api.onchange("product_id")
-    def product_id_change(self):
+    def _onchange_product_id_warning(self):
         """
         If default sales secondary unit set on product, put on secondary
         quantity 1 for being the default quantity. We override this method,
         that is the one that sets by default 1 on the other quantity with that
         purpose.
         """
-        res = super().product_id_change()
+        res = super()._onchange_product_id_warning()
         line_uom_qty = self.product_uom_qty
         self.secondary_uom_id = self.product_id.sale_secondary_uom_id
         if self.product_id.sale_secondary_uom_id:

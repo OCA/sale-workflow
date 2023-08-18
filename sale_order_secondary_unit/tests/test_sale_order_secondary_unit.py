@@ -65,7 +65,7 @@ class TestSaleOrderSecondaryUnit(TransactionCase):
         self.assertEqual(self.order.order_line.secondary_uom_qty, 7.0)
 
     def test_default_secondary_unit(self):
-        self.order.order_line.product_id_change()
+        self.order.order_line._onchange_product_id_warning()
         self.assertEqual(self.order.order_line.secondary_uom_id, self.secondary_unit)
 
     def test_onchange_order_product_uom(self):
@@ -95,16 +95,18 @@ class TestSaleOrderSecondaryUnit(TransactionCase):
 
     def test_secondary_uom_unit_price(self):
         # Remove secondary uom in sale line to do a complete test of secondary price
+        self.assertEqual(self.order.order_line.price_unit, 1000)
         self.order.order_line.secondary_uom_id = False
+        self.assertEqual(self.order.order_line.price_unit, 1)
         self.assertEqual(self.order.order_line.secondary_uom_unit_price, 0)
         self.order.order_line.update(
             {"secondary_uom_id": self.secondary_unit.id, "product_uom_qty": 2}
         )
 
         self.assertEqual(self.order.order_line.secondary_uom_qty, 4)
-        self.assertEqual(self.order.order_line.secondary_uom_unit_price, 500)
+        self.assertEqual(self.order.order_line.secondary_uom_unit_price, 0.5)
 
         self.order.order_line.write({"product_uom_qty": 8})
         self.assertEqual(self.order.order_line.secondary_uom_qty, 16)
-        self.assertEqual(self.order.order_line.secondary_uom_unit_price, 500)
-        self.assertEqual(self.order.order_line.price_subtotal, 8000)
+        self.assertEqual(self.order.order_line.secondary_uom_unit_price, 0.5)
+        self.assertEqual(self.order.order_line.price_subtotal, 8)
