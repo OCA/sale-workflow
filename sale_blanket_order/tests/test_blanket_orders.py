@@ -8,60 +8,61 @@ from odoo.tests import common
 
 
 class TestSaleBlanketOrders(common.TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.blanket_order_obj = self.env["sale.blanket.order"]
-        self.blanket_order_line_obj = self.env["sale.blanket.order.line"]
-        self.blanket_order_wiz_obj = self.env["sale.blanket.order.wizard"]
-        self.so_obj = self.env["sale.order"]
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.blanket_order_obj = cls.env["sale.blanket.order"]
+        cls.blanket_order_line_obj = cls.env["sale.blanket.order.line"]
+        cls.blanket_order_wiz_obj = cls.env["sale.blanket.order.wizard"]
+        cls.so_obj = cls.env["sale.order"]
 
-        self.payment_term = self.env.ref("account.account_payment_term_immediate")
-        self.sale_pricelist = self.env["product.pricelist"].create(
-            {"name": "Test Pricelist", "currency_id": self.env.ref("base.USD").id}
+        cls.payment_term = cls.env.ref("account.account_payment_term_immediate")
+        cls.sale_pricelist = cls.env["product.pricelist"].create(
+            {"name": "Test Pricelist", "currency_id": cls.env.ref("base.USD").id}
         )
 
         # UoM
-        self.categ_unit = self.env.ref("uom.product_uom_categ_unit")
-        self.uom_dozen = self.env["uom.uom"].create(
+        cls.categ_unit = cls.env.ref("uom.product_uom_categ_unit")
+        cls.uom_dozen = cls.env["uom.uom"].create(
             {
                 "name": "Test-DozenA",
-                "category_id": self.categ_unit.id,
+                "category_id": cls.categ_unit.id,
                 "factor_inv": 12,
                 "uom_type": "bigger",
                 "rounding": 0.001,
             }
         )
 
-        self.partner = self.env["res.partner"].create(
+        cls.partner = cls.env["res.partner"].create(
             {
                 "name": "TEST CUSTOMER",
-                "property_product_pricelist": self.sale_pricelist.id,
+                "property_product_pricelist": cls.sale_pricelist.id,
             }
         )
 
-        self.product = self.env["product.product"].create(
+        cls.product = cls.env["product.product"].create(
             {
                 "name": "Demo",
-                "categ_id": self.env.ref("product.product_category_1").id,
+                "categ_id": cls.env.ref("product.product_category_1").id,
                 "standard_price": 35.0,
                 "type": "consu",
-                "uom_id": self.env.ref("uom.product_uom_unit").id,
+                "uom_id": cls.env.ref("uom.product_uom_unit").id,
                 "default_code": "PROD_DEL01",
             }
         )
-        self.product2 = self.env["product.product"].create(
+        cls.product2 = cls.env["product.product"].create(
             {
                 "name": "Demo 2",
-                "categ_id": self.env.ref("product.product_category_1").id,
+                "categ_id": cls.env.ref("product.product_category_1").id,
                 "standard_price": 50.0,
                 "type": "consu",
-                "uom_id": self.env.ref("uom.product_uom_unit").id,
+                "uom_id": cls.env.ref("uom.product_uom_unit").id,
                 "default_code": "PROD_DEL02",
             }
         )
 
-        self.yesterday = date.today() - timedelta(days=1)
-        self.tomorrow = date.today() + timedelta(days=1)
+        cls.yesterday = date.today() - timedelta(days=1)
+        cls.tomorrow = date.today() + timedelta(days=1)
 
     def test_01_create_blanket_order(self):
         """We create a blanket order and check constrains to confirm BO"""
@@ -94,6 +95,9 @@ class TestSaleBlanketOrders(common.TransactionCase):
             }
         )
         blanket_order.sudo().onchange_partner_id()
+        blanket_order.pricelist_id.discount_policy = "without_discount"
+        blanket_order.line_ids[0].sudo().onchange_product()
+        blanket_order.pricelist_id.discount_policy = "with_discount"
         blanket_order.line_ids[0].sudo().onchange_product()
         blanket_order.line_ids[0].sudo()._get_display_price(self.product)
 

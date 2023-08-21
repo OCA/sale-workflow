@@ -22,8 +22,8 @@ class SaleOrder(models.Model):
             line.blanket_order_line.remaining_qty < 0.0 for line in self.order_line
         )
 
-    def button_confirm(self):
-        res = super().button_confirm()
+    def action_confirm(self):
+        res = super().action_confirm()
         for order in self:
             if order._check_exchausted_blanket_order_line():
                 raise ValidationError(
@@ -111,12 +111,33 @@ class SaleOrderLine(models.Model):
             return self.get_assigned_bo_line()
         return
 
-    @api.onchange("product_uom_qty", "product_uom")
+    @api.onchange("product_uom", "product_uom_qty")
     def product_uom_change(self):
-        res = super().product_uom_change()
+        if not self.product_uom or not self.product_id:
+            self.price_unit = 0.0
+            return
+        if self.order_id.pricelist_id and self.order_id.partner_id:
+            product = self.product_id.with_context(
+                lang=self.order_id.partner_id.lang,
+                partner=self.order_id.partner_id,
+                quantity=self.product_uom_qty,
+                date=self.order_id.date_order,
+                pricelist=self.order_id.pricelist_id.id,
+                uom=self.product_uom.id,
+                fiscal_position=self.env.context.get("fiscal_position"),
+            )
+            self.price_unit = product._get_tax_included_unit_price(
+                self.company_id or self.order_id.company_id,
+                self.order_id.currency_id,
+                self.order_id.date_order,
+                "sale",
+                fiscal_position=self.order_id.fiscal_position_id,
+                product_price_unit=self._get_display_price(),
+                product_currency=self.order_id.currency_id,
+            )
         if self.product_id and not self.env.context.get("skip_blanket_find", False):
             return self.get_assigned_bo_line()
-        return res
+        return
 
     @api.onchange("blanket_order_line")
     def onchange_blanket_order_line(self):
