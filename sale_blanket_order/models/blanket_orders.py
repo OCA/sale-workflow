@@ -6,23 +6,14 @@ from odoo.exceptions import UserError
 from odoo.tools import float_is_zero
 from odoo.tools.misc import format_date
 
+from odoo.addons.sale.models.sale_order import READONLY_FIELD_STATES
+
 
 class BlanketOrder(models.Model):
     _name = "sale.blanket.order"
     _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = "Blanket Order"
-
-    @api.model
-    def _get_default_team(self):
-        return self.env["crm.team"]._get_default_team_id()
-
-    @api.model
-    def _default_currency(self):
-        return self.env.company.currency_id
-
-    @api.model
-    def _default_company(self):
-        return self.env.company
+    _check_company_auto = True
 
     @api.model
     def _default_note(self):
@@ -53,8 +44,7 @@ class BlanketOrder(models.Model):
     partner_id = fields.Many2one(
         "res.partner",
         string="Partner",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        states=READONLY_FIELD_STATES,
     )
     line_ids = fields.One2many(
         "sale.blanket.order.line", "order_id", string="Order lines", copy=True
@@ -73,24 +63,21 @@ class BlanketOrder(models.Model):
         "product.pricelist",
         string="Pricelist",
         required=True,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        states=READONLY_FIELD_STATES,
     )
     currency_id = fields.Many2one("res.currency", related="pricelist_id.currency_id")
     analytic_account_id = fields.Many2one(
         comodel_name="account.analytic.account",
         string="Analytic Account",
-        readonly=True,
         copy=False,
         check_company=True,
-        states={"draft": [("readonly", False)]},
+        states=READONLY_FIELD_STATES,
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
     payment_term_id = fields.Many2one(
         "account.payment.term",
         string="Payment Terms",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        states=READONLY_FIELD_STATES,
     )
     confirmed = fields.Boolean(copy=False)
     state = fields.Selection(
@@ -104,36 +91,32 @@ class BlanketOrder(models.Model):
         store=True,
         copy=False,
     )
-    validity_date = fields.Date(readonly=True, states={"draft": [("readonly", False)]})
+    validity_date = fields.Date(
+        states=READONLY_FIELD_STATES,
+    )
     client_order_ref = fields.Char(
         string="Customer Reference",
         copy=False,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        states=READONLY_FIELD_STATES,
     )
-    note = fields.Text(
-        readonly=True, default=_default_note, states={"draft": [("readonly", False)]}
-    )
+    note = fields.Text(default=_default_note, states=READONLY_FIELD_STATES)
     user_id = fields.Many2one(
         "res.users",
         string="Salesperson",
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        states=READONLY_FIELD_STATES,
     )
     team_id = fields.Many2one(
         "crm.team",
         string="Sales Team",
         change_default=True,
-        default=_get_default_team,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        default=lambda self: self.env["crm.team"]._get_default_team_id(),
+        states=READONLY_FIELD_STATES,
     )
     company_id = fields.Many2one(
-        "res.company",
-        string="Company",
-        default=_default_company,
-        readonly=True,
-        states={"draft": [("readonly", False)]},
+        comodel_name="res.company",
+        required=True,
+        index=True,
+        default=lambda self: self.env.company,
     )
     sale_count = fields.Integer(compute="_compute_sale_count")
 
@@ -227,11 +210,11 @@ class BlanketOrder(models.Model):
 
     def _compute_uom_qty(self):
         for bo in self:
-            bo.original_uom_qty = sum(bo.mapped("order_id.original_uom_qty"))
-            bo.ordered_uom_qty = sum(bo.mapped("order_id.ordered_uom_qty"))
-            bo.invoiced_uom_qty = sum(bo.mapped("order_id.invoiced_uom_qty"))
-            bo.delivered_uom_qty = sum(bo.mapped("order_id.delivered_uom_qty"))
-            bo.remaining_uom_qty = sum(bo.mapped("order_id.remaining_uom_qty"))
+            bo.original_uom_qty = sum(bo.mapped("line_ids.original_uom_qty"))
+            bo.ordered_uom_qty = sum(bo.mapped("line_ids.ordered_uom_qty"))
+            bo.invoiced_uom_qty = sum(bo.mapped("line_ids.invoiced_uom_qty"))
+            bo.delivered_uom_qty = sum(bo.mapped("line_ids.delivered_uom_qty"))
+            bo.remaining_uom_qty = sum(bo.mapped("line_ids.remaining_uom_qty"))
 
     @api.onchange("partner_id")
     def onchange_partner_id(self):
@@ -259,7 +242,7 @@ class BlanketOrder(models.Model):
             ),
             "fiscal_position_id": self.env["account.fiscal.position"]
             .with_context(company_id=self.company_id.id)
-            .get_fiscal_position(self.partner_id.id),
+            ._get_fiscal_position(self.partner_id),
         }
 
         if self.partner_id.user_id:
@@ -331,7 +314,7 @@ class BlanketOrder(models.Model):
 
     def action_view_sale_orders(self):
         sale_orders = self._get_sale_orders()
-        action = self.env.ref("sale.action_orders").read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id("sale.action_orders")
         if len(sale_orders) > 0:
             action["domain"] = [("id", "in", sale_orders.ids)]
             action["context"] = [("id", "in", sale_orders.ids)]
@@ -340,9 +323,9 @@ class BlanketOrder(models.Model):
         return action
 
     def action_view_sale_blanket_order_line(self):
-        action = self.env.ref(
-            "sale_blanket_order" ".act_open_sale_blanket_order_lines_view_tree"
-        ).read()[0]
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "sale_blanket_order.act_open_sale_blanket_order_lines_view_tree"
+        )
         lines = self.mapped("line_ids")
         if len(lines) > 0:
             action["domain"] = [("id", "in", lines.ids)]
@@ -355,7 +338,7 @@ class BlanketOrder(models.Model):
             [("state", "=", "open"), ("validity_date", "<=", today)]
         )
         expired_orders.modified(["validity_date"])
-        expired_orders.recompute()
+        expired_orders.flush_recordset()
 
     @api.model
     def _search_original_uom_qty(self, operator, value):
@@ -406,7 +389,7 @@ class BlanketOrder(models.Model):
 class BlanketOrderLine(models.Model):
     _name = "sale.blanket.order.line"
     _description = "Blanket Order Line"
-    _inherit = ["mail.thread", "mail.activity.mixin"]
+    _inherit = ["mail.thread", "mail.activity.mixin", "analytic.mixin"]
 
     @api.depends(
         "original_uom_qty",
@@ -453,9 +436,7 @@ class BlanketOrderLine(models.Model):
     )
     date_schedule = fields.Date(string="Scheduled Date")
     original_uom_qty = fields.Float(
-        string="Original quantity",
-        default=1,
-        digits="Product Unit of Measure",
+        string="Original quantity", default=1, digits="Product Unit of Measure"
     )
     ordered_uom_qty = fields.Float(
         string="Ordered quantity", compute="_compute_quantities", store=True
@@ -482,7 +463,7 @@ class BlanketOrderLine(models.Model):
         copy=False,
     )
     company_id = fields.Many2one(
-        "res.company", related="order_id.company_id", store=True
+        related="order_id.company_id", store=True, index=True, precompute=True
     )
     currency_id = fields.Many2one("res.currency", related="order_id.currency_id")
     partner_id = fields.Many2one(related="order_id.partner_id", string="Customer")
@@ -497,11 +478,6 @@ class BlanketOrderLine(models.Model):
     )
     price_total = fields.Monetary(compute="_compute_amount", string="Total", store=True)
     price_tax = fields.Float(compute="_compute_amount", string="Tax", store=True)
-    analytic_tag_ids = fields.Many2many(
-        comodel_name="account.analytic.tag",
-        string="Analytic Tags",
-        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
-    )
     display_type = fields.Selection(
         [("line_section", "Section"), ("line_note", "Note")],
         default=False,
@@ -549,7 +525,7 @@ class BlanketOrderLine(models.Model):
                 ):
                     price, rule_id = pricelist_item.base_pricelist_id.with_context(
                         uom=uom.id
-                    ).get_product_price_rule(product, qty, self.order_id.partner_id)
+                    )._get_product_price_rule(product, qty, uom)
                     pricelist_item = PricelistItem.browse(rule_id)
 
             if pricelist_item.base == "standard_price":
@@ -593,9 +569,9 @@ class BlanketOrderLine(models.Model):
         pricelist = self.order_id.pricelist_id
         partner = self.order_id.partner_id
         if self.order_id.pricelist_id.discount_policy == "with_discount":
-            return product.with_context(pricelist=pricelist.id).price
-        final_price, rule_id = pricelist.get_product_price_rule(
-            self.product_id, self.original_uom_qty or 1.0, partner
+            return product.with_context(pricelist=pricelist.id).lst_price
+        final_price, rule_id = pricelist._get_product_price_rule(
+            self.product_id, self.original_uom_qty or 1.0, self.product_uom
         )
         context_partner = dict(
             self.env.context, partner_id=partner.id, date=fields.Date.today()
