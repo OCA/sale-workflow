@@ -107,6 +107,8 @@ class SaleOrderLine(models.Model):
         # to invalidate the cache to avoid to flush the records to the database.
         # This is safe because we are going to restore the original value at the end
         # of the method.
+        digits = discount_field._digits
+        self.env["sale.order.line"]._fields["discount"]._digits = (16, 16)
         with self.env.protecting([discount_field], self):
             old_values = {}
             for line in self:
@@ -120,6 +122,7 @@ class SaleOrderLine(models.Model):
                 line.with_context(
                     restoring_triple_discount=True,
                 ).update({"discount": old_values[line.id]})
+            self.env["sale.order.line"]._fields["discount"]._digits = digits
 
     def _convert_to_tax_base_line_dict(self):
         self.ensure_one()
