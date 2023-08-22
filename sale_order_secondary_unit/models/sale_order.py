@@ -29,9 +29,17 @@ class SaleOrderLine(models.Model):
         store=True,
     )
 
-    @api.depends("secondary_uom_qty", "secondary_uom_id", "product_uom_qty")
+    @api.depends(
+        "display_type",
+        "product_id",
+        "product_packaging_qty",
+        "secondary_uom_qty",
+        "secondary_uom_id",
+        "product_uom_qty",
+    )
     def _compute_product_uom_qty(self):
         self._compute_helper_target_field_qty()
+        return super()._compute_product_uom_qty()
 
     @api.onchange("product_uom")
     def onchange_product_uom_for_secondary(self):
