@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from freezegun import freeze_time
+from datetime import timedelta
 
 from .common import Common
 
@@ -205,3 +206,56 @@ class TestSaleDeliveryDate(Common):
         self.assertEqual(
             str(picking.expected_delivery_date.date()), "2023-07-07"
         )
+
+    @freeze_time("2023-08-18 13:05:50")
+    def test_friday_order_with_commitment_date(self):
+        order = self.order_warehouse_cutoff
+        commitment_date = "2023-08-23"
+        order.commitment_date = commitment_date
+        # WH open from mon to fri, from 8 to 12, then from 13 to 17:30
+        weekday_numbers = tuple(range(5))
+        time_ranges = [(8.0, 12.0), (13.0, 17.5)]
+        self._set_calendar_attendances(self.calendar, weekday_numbers, time_ranges)
+        # Customer receiving goods from 8 to 11 on thursdays
+        weekday_numbers = [3, ]
+        time_window_ranges = [(8, 11), ]
+        self._set_partner_time_window(
+            self.customer_warehouse_cutoff, weekday_numbers, time_window_ranges
+        )
+        order.action_confirm()
+        picking = order.picking_ids
+        self.assertEqual(str(picking.scheduled_date), "2023-08-22 08:00:00")
+        self.assertEqual(str(picking.date_deadline.date()), "2023-08-23")
+        self.assertEqual(str(picking.expected_delivery_date.date()), "2023-08-23")
+        # Also, picking.expected_delivery_date should display the same.
+        # scheduled_date = "expedition date"
+        # As expected_delivery_date is computed and based on the time it is generated
+        # we have to set current time as after the scheduled date, hence the
+        # timedelta
+        with freeze_time(str(picking.scheduled_date + timedelta(hours=1))):
+            self.assertEqual(str(picking.date_deadline.date()), "2023-08-23")
+            self.assertEqual(str(picking.expected_delivery_date.date()), "2023-08-23")
+        # Now, try to get those dates again, late by 1 day
+        picking.invalidate_cache(['expected_delivery_date'])
+        with freeze_time(str(picking.scheduled_date + timedelta(days=1))):
+            self.assertEqual(str(picking.date_deadline.date()), "2023-08-23")
+            self.assertEqual(str(picking.expected_delivery_date.date()), "2023-08-24")
+
+    @freeze_time("2023-08-18 13:05:50")
+    def test_friday_order_with_monday_leave(self):
+        order = self.order_warehouse_cutoff
+        # WH open from mon to fri, from 8 to 12, then from 13 to 17:30
+        weekday_numbers = tuple(range(5))
+        time_ranges = [(8.0, 12.0), (13.0, 17.5)]
+        self._set_calendar_attendances(self.calendar, weekday_numbers, time_ranges)
+        # Set customer to receive goods on any day
+        self.customer_warehouse_cutoff.delivery_time_preference = "anytime"
+        # add a public holiday the 21th of aug
+        days = ["2023-08-21", ]
+        self._add_calendar_leaves(self.calendar, days)
+        order.action_confirm()
+        # Order after cutoff, postponed to next open day (tuesday the 22th)
+        # And delivered the day after (24th of aug)
+        picking = order.picking_ids
+        self.assertEqual(str(picking.scheduled_date), "2023-08-22 08:00:00")
+        self.assertEqual(str(picking.expected_delivery_date.date()), "2023-08-23")
