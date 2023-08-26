@@ -45,7 +45,7 @@ class SaleOrder(models.Model):
     def _default_sequence_id(self):
         """We get the sequence in same way the core next_by_code method does so we can
         get the proper default sequence"""
-        force_company = self.company_id.id or self.env.company.id
+        force_company = self.env.company.id
         return self.env["ir.sequence"].search(
             [
                 ("code", "=", "sale.order"),
@@ -161,7 +161,6 @@ class SaleOrder(models.Model):
     def write(self, vals):
         """A sale type could have a different order sequence, so we could
         need to change it accordingly"""
-        default_sequence = self._default_sequence_id()
         if vals.get("type_id"):
             sale_type = self.env["sale.order.type"].browse(vals["type_id"])
             if sale_type.sequence_id:
@@ -171,7 +170,8 @@ class SaleOrder(models.Model):
                     # sequence has the same default sequence.
                     ignore_default_sequence = (
                         not record.type_id.sequence_id
-                        and sale_type.sequence_id == default_sequence
+                        and sale_type.sequence_id
+                        == record.with_company(record.company_id)._default_sequence_id()
                     )
                     if (
                         record.state in {"draft", "sent"}
