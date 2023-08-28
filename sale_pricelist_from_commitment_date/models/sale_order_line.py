@@ -8,25 +8,26 @@ class SaleOrderLine(models.Model):
 
     _inherit = "sale.order.line"
 
-    @api.onchange("product_id")
-    def product_id_change(self):
-        return super(
-            SaleOrderLine,
-            self.with_context(force_pricelist_date=self.order_id.commitment_date),
-        ).product_id_change()
-
-    @api.onchange("product_uom", "product_uom_qty")
-    def product_uom_change(self):
-        return super(
-            SaleOrderLine,
-            self.with_context(force_pricelist_date=self.order_id.commitment_date),
-        ).product_uom_change()
-
-    @api.onchange(
-        "product_id", "price_unit", "product_uom", "product_uom_qty", "tax_id"
+    @api.depends(
+        "product_id", "product_uom", "product_uom_qty", "order_id.commitment_date"
     )
-    def _onchange_discount(self):
-        return super(
-            SaleOrderLine,
-            self.with_context(force_pricelist_date=self.order_id.commitment_date),
-        )._onchange_discount()
+    def _compute_price_unit(self):
+        for line in self:
+            date = self.env.context.get(
+                "force_pricelist_date", line.order_id.commitment_date
+            )
+            line = line.with_context(force_pricelist_date=date)
+            super(SaleOrderLine, line)._compute_price_unit()
+        return True
+
+    @api.depends(
+        "product_id", "product_uom", "product_uom_qty", "order_id.commitment_date"
+    )
+    def _compute_pricelist_item_id(self):
+        for line in self:
+            date = self.env.context.get(
+                "force_pricelist_date", line.order_id.commitment_date
+            )
+            line = line.with_context(force_pricelist_date=date)
+            super(SaleOrderLine, line)._compute_pricelist_item_id()
+        return True
