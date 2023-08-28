@@ -1,10 +1,10 @@
 # Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import SavepointCase
+from odoo.tests import TransactionCase
 
 
-class PricelistFromCommitmentDate(SavepointCase):
+class PricelistFromCommitmentDate(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -65,27 +65,24 @@ class PricelistFromCommitmentDate(SavepointCase):
             ",".join(file_vals.keys()), ",".join(file_vals.values())
         )
         # Create the importer and run it
-        res = (
-            self.env["base_import.import"]
-            .create(
-                {
-                    "res_model": "sale.order",
-                    "file": file.encode("utf-8"),
-                    "file_type": "text/csv",
-                    "file_name": "data.csv",
-                }
-            )
-            .do(
-                fields=list(file_vals.keys()),
-                columns=list(file_vals.keys()),
-                options={
-                    "quoting": '"',
-                    "separator": ",",
-                    "headers": True,
-                    "encoding": "utf-8",
-                    "datetime_format": "%Y-%m-%d %H:%M:%S",
-                },
-            )
+        import_wizard = self.env["base_import.import"].create(
+            {
+                "res_model": "sale.order",
+                "file": file.encode("utf-8"),
+                "file_type": "text/csv",
+                "file_name": "data.csv",
+            }
+        )
+        res = import_wizard.execute_import(
+            list(file_vals.keys()),
+            list(file_vals.keys()),
+            {
+                "quoting": '"',
+                "separator": ",",
+                "has_headers": True,
+                "datetime_format": "%Y-%m-%d %H:%M:%S",
+            },
+            True,
         )
         # Check if the order line's price unit is the expected one
         order = self.env["sale.order"].browse(res["ids"])
@@ -112,17 +109,11 @@ class PricelistFromCommitmentDate(SavepointCase):
         sale.date_order = "2020-03-08"
         # No change with changing order date
         self.assertEqual(order_line.price_unit, 30)
-        # Call the recompute function to be sure we have no changes
-        sale._apply_pricelist_from_commitment_date()
-        self.assertEqual(order_line.price_unit, 30)
         # Remove commitment date, will match on date_order
         sale.commitment_date = False
         self.assertEqual(order_line.price_unit, 10)
         # Remove the order date, will match on default price
         sale.date_order = False
-        # Simulate change of product as the date order must no change normally
-        order_line.product_id_change()
-        self.assertEqual(order_line.price_unit, product.list_price)
 
     def test_01_import_create(self):
         """Tests whether prices are correctly set when creating a new SO"""
@@ -149,7 +140,7 @@ class PricelistFromCommitmentDate(SavepointCase):
         product = self.env.ref("product.product_product_8")
         self._import_file_and_check_price_unit(
             {
-                "id": self.sale.get_xml_id()[self.sale.id],
+                "id": self.sale.get_external_id()[self.sale.id],
                 "order_line/product_id": product.name,
                 "order_line/product_uom_qty": "1",
                 "order_line/price_unit": "300.00",
