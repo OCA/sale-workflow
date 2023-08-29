@@ -6,7 +6,6 @@
         <field name="name">Display resource booking info in form</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
-        <field name="groups_id" eval="[(4, ref('resource_booking.group_user'), 0)]" />
         <field name="arch" type="xml">
             <button name="action_cancel" position="before">
                 <button
@@ -15,6 +14,7 @@
                     states="draft,sent,sale"
                     string="Sync bookings"
                     help="(Re)sync resource bookings. The sync will be done automatically when confirming the quotation, but you can do it beforehand if needed with this button. It will create missing resource bookings in pending state, or cancel the spare ones."
+                    groups_id="[(4, ref('resource_booking.group_user'), 0)]"
                 />
             </button>
             <div name='button_box' position='inside'>
@@ -24,6 +24,7 @@
                     class="oe_stat_button"
                     icon="fa-calendar-check-o"
                     attrs="{'invisible': [('resource_booking_count', '=', 0)]}"
+                    groups_id="[(4, ref('resource_booking.group_user'), 0)]"
                 >
                     <field
                         name="resource_booking_count"
