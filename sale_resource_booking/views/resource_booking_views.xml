@@ -6,13 +6,13 @@
         <field name="name">Display sale order info in booking form</field>
         <field name="model">resource.booking</field>
         <field name="inherit_id" ref="resource_booking.resource_booking_form" />
-        <field
-            name="groups_id"
-            eval="[(4, ref('sales_team.group_sale_salesman'), 0)]"
-        />
         <field name="arch" type="xml">
             <group name='main' position='inside'>
-                <group name="sale" string="Sales">
+                <group
+                    name="sale"
+                    string="Sales"
+                    groups_id="[(4, ref('sales_team.group_sale_salesman'), 0)]"
+                >
                     <field name="sale_order_line_id" invisible="1" />
                     <field name="sale_order_id" />
                     <field name="sale_order_state" />

@@ -6,10 +6,6 @@
         <field name="name">Sale order generator from booking type form</field>
         <field name="model">resource.booking.type</field>
         <field name="inherit_id" ref="resource_booking.resource_booking_type_form" />
-        <field
-            name="groups_id"
-            eval="[(4, ref('sales_team.group_sale_salesman'), 0)]"
-        />
         <field name="arch" type="xml">
             <header position='inside'>
                 <button
@@ -17,6 +13,7 @@
                     string="Quote"
                     type="object"
                     help="Generate quotation."
+                    groups_id="[(4, ref('sales_team.group_sale_salesman'), 0)]"
                 />
             </header>
         </field>
