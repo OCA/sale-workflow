@@ -113,6 +113,18 @@ class CalendarEvent(models.Model):
                 }
             )
 
+    def _rewrite_recurrence(self, values, time_values, recurrence_values):
+        """Remove key from context when this method is executed to avoid loose
+        information when accesing calendar_event_ids of the recurrence_id.
+        """
+        ctx = self.env.context.copy()
+        if "calendar_event_primary_only" in self.env.context:
+            ctx.pop("calendar_event_primary_only")
+        # pylint: disable=W8121
+        return super(CalendarEvent, self.with_context(ctx))._rewrite_recurrence(
+            values, time_values, recurrence_values
+        )
+
     def search(self, args, offset=0, limit=None, order=None, count=False):
         if self.env.context.get("calendar_event_primary_only", False):
             args = expression.AND([args, [("is_base_recurrent_event", "=", True)]])
