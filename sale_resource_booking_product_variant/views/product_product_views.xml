@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_search_form_view" model="ir.ui.view">
+        <field name="name">product.product.search.inherit.resource.booking</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_search_form_view" />
+        <field name="arch" type="xml">
+            <search position="inside">
+                <filter
+                    string="Booking Type"
+                    name="resource_booking_type"
+                    domain="[('resource_booking_type_id', 'not in', [False, None])]"
+                    groups="resource_booking.group_user"
+                />
+            </search>
+        </field>
+    </record>
+</odoo>
