@@ -7,6 +7,25 @@
         <field name="model">resource.booking</field>
         <field name="inherit_id" ref="resource_booking.resource_booking_form" />
         <field name="arch" type="xml">
+            <header position="inside">
+                <button
+                    name="action_sale_order_wizard"
+                    string="Quote"
+                    type="object"
+                    help="Generate quotation."
+                />
+            </header>
+            <group name="booking" position="inside">
+                <field
+                    name="product_id"
+                    domain="[
+                        ('resource_booking_type_id', '=', type_id),
+                        '|',
+                        ('resource_booking_type_combination_rel_id', 'in', [combination_id]),
+                        ('resource_booking_type_combination_rel_id', '=', None),
+                    ]"
+                />
+            </group>
             <group name='main' position='inside'>
                 <group
                     name="sale"

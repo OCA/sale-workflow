@@ -29,6 +29,7 @@ class ResourceBooking(models.Model):
             "the booking will not be able to become confirmed."
         ),
     )
+    product_id = fields.Many2one("product.product", string="Product")
 
     @api.depends(
         "active", "meeting_id.attendee_ids.state", "sale_order_line_id.order_id.state"
@@ -49,4 +50,17 @@ class ResourceBooking(models.Model):
                 continue
             # SO is not confirmed; neither is booking
             one.state = "scheduled"
+        return result
+
+    def action_sale_order_wizard(self):
+        """Help user creating a sale order for this RB."""
+        result = self.env["ir.actions.act_window"]._for_xml_id(
+            "sale_resource_booking.resource_booking_sale_action"
+        )
+        result["context"] = dict(
+            self.env.context,
+            default_partner_id=self.partner_id.id,
+            default_product_id=self.product_id.id,
+            default_type_id=self.type_id.id,
+        )
         return result
