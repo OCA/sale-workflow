@@ -33,6 +33,15 @@
                     />
                 </button>
             </div>
+            <tree position="inside">
+                <field name="order_id" invisible="1" />
+                <field
+                    name="resource_booking_id"
+                    optional="hide"
+                    domain="[('sale_order_id', '=', order_id)]"
+                />
+                <field name="partner_id" optional="hide" />
+            </tree>
         </field>
     </record>
 </data>

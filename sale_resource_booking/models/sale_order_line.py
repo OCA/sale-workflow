@@ -13,6 +13,14 @@ class SaleOrderLine(models.Model):
         string="Resource bookings",
         copy=False,
     )
+    resource_booking_id = fields.Many2one(
+        "resource.booking",
+        string="Resource booking",
+    )
+    partner_id = fields.Many2one(
+        "res.partner",
+        string="Contact",
+    )
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -71,6 +79,7 @@ class SaleOrderLine(models.Model):
             values = {
                 "sale_order_line_id": line.id,
                 "type_id": line.product_id.resource_booking_type_id.id,
+                "product_id": line.product_id.id,
             }
             rbc_rel = line.product_id.resource_booking_type_combination_rel_id
             context = {
@@ -81,3 +90,11 @@ class SaleOrderLine(models.Model):
             line.with_context(**context)._add_or_cancel_bookings(
                 bookings, int(line.product_uom_qty), values
             )
+            # order_line many2one booking (avoid endless loop with "if"s)
+            if len(line.resource_booking_ids) == 1:
+                booking = line.resource_booking_ids
+                if line.resource_booking_id != booking:
+                    line.resource_booking_id = booking
+                if line.partner_id != booking.partner_id:
+                    line.partner_id = booking.partner_id
+                booking.partner_ids = booking.sale_order_line_ids.mapped("partner_id")

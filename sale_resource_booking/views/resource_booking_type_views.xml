@@ -2,10 +2,13 @@
 <!-- Copyright 2021 Tecnativa - Jairo Llopis
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <data>
-    <record id="resource_booking_type_form" model="ir.ui.view">
+    <record id="resource_booking_type_view_form" model="ir.ui.view">
         <field name="name">Sale order generator from booking type form</field>
         <field name="model">resource.booking.type</field>
-        <field name="inherit_id" ref="resource_booking.resource_booking_type_form" />
+        <field
+            name="inherit_id"
+            ref="resource_booking.resource_booking_type_view_form"
+        />
         <field name="arch" type="xml">
             <header position='inside'>
                 <button

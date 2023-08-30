@@ -2,3 +2,7 @@
 
   * Jairo Llopis
   * Stefan Ungureanu
+
+* `Ows <https://www.ows.cloud>`_:
+
+  * Henrik Norlin

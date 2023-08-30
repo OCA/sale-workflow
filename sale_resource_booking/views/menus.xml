@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_template_action" model="ir.actions.act_window">
+        <field name="name">Products with a resource type</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="context">{"search_default_resource_booking_type": 1}</field>
+    </record>
+    <record id="product_product_action" model="ir.actions.act_window">
+        <field name="name">Products with a resource type</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="context">{"search_default_resource_booking_type": 1}</field>
+    </record>
+    <record id="product_attribute_action" model="ir.actions.act_window">
+        <field name="name">Product Attributes</field>
+        <field name="res_model">product.attribute</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="product_template_menu"
+        name="Products"
+        action="product_template_action"
+        parent="resource_booking.resource_booking_type_configuration_menu"
+        sequence="500"
+    />
+    <menuitem
+        id="product_product_menu"
+        name="Product Variants"
+        action="product_product_action"
+        parent="resource_booking.resource_booking_type_configuration_menu"
+        sequence="501"
+    />
+    <menuitem
+        id="product_attribute_menu"
+        name="Product Attributes"
+        action="product_attribute_action"
+        parent="resource_booking.resource_booking_type_configuration_menu"
+        sequence="502"
+    />
+</odoo>

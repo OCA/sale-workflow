@@ -35,8 +35,17 @@ class SaleOrderBookingConfirm(models.TransientModel):
             )
             share = share_f.save()
             share.action_send_mail()
+        return self.action_return_sale_order()
 
     def action_noop(self):
         # At this point, the record was already created with the required
         # changes; nothing left to do
-        return
+        return self.action_return_sale_order()
+
+    def action_return_sale_order(self):
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": "sale.order",
+            "views": [[False, "form"]],
+            "res_id": self.order_id.id,
+        }

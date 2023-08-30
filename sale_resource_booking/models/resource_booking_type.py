@@ -1,11 +1,17 @@
 # Copyright 2021 Tecnativa - Jairo Llopis
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import models
+from odoo import fields, models
 
 
 class ResourceBookingType(models.Model):
     _inherit = "resource.booking.type"
+
+    product_ids = fields.One2many(
+        comodel_name="product.product",
+        inverse_name="resource_booking_type_id",
+        string="Products",
+    )
 
     def action_sale_order_wizard(self):
         """Help user creating a sale order for this RBT."""

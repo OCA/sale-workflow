@@ -88,7 +88,7 @@ class SaleResourceBookingsCase(TransactionCase):
         else:
             self.assertEqual(bookings.mapped("combination_auto_assign"), [True] * 2)
         # Cancel SO, bookings canceled
-        order.action_cancel()
+        order.with_context(disable_cancel_warning=True).action_cancel()
         self.assertEqual(bookings.mapped("state"), ["canceled"] * 2)
         # Delete SO lines, bookings deleted
         order.order_line.unlink()
@@ -123,7 +123,7 @@ class SaleResourceBookingsCase(TransactionCase):
         self.assertTrue(booking)
         self.assertEqual(booking.state, "pending")
         # Cancel order; booking canceled
-        order.action_cancel()
+        order.with_context(disable_cancel_warning=True).action_cancel()
         self.assertEqual(booking.state, "canceled")
         # Manually set order and booking to pending
         order.action_draft()
