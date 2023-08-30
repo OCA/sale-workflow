@@ -10,7 +10,7 @@
         <field name="arch" type="xml">
             <form string="Mass Action on Selected Quotations and Sale Orders">
                 <group name="action_group">
-                    <field name="confirm" />
+                    <field name="action" />
                 </group>
                 <footer>
                     <button
