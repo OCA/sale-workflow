@@ -16,6 +16,8 @@ class SaleOrder(models.Model):
         return "sale_ids"
 
     def detect_exceptions(self):
+        if self.subscription_management == "upsell":
+            return False
         all_exceptions = super().detect_exceptions()
         lines = self.mapped("order_line")
         all_exceptions += lines.detect_exceptions()
