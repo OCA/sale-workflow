@@ -1,10 +1,17 @@
-Booking type and resource combination may be set on a product variant in three different ways:
+**Workflow**
 
-- Product variant form
-- Product template form (if there is only one variant)
-- Product attribute form (will update all existing variants of this attribute)
+- Incoming phone call directs the user to the contact form (depends on `asterisk_click2dial`).
+- Click Action - Products to answer questions including pricing (depends on `partner_product_price`).
+- Click the desired product.
+- Click the button Bookings.
+- Select the timeline view (depends on `sale_resource_booking_timeline`).
+- Ctrl+Select the desired time interval for a resource combination.
 
-Two new menuitems under Resource Bookings -> Configuration:
+A popup window will show a draft booking with these fields filled out:
 
-- Products
-- Product variants
+- partner_id (depends on `partner_product_price`)
+- type_id
+- combination_id
+- product_id
+- start
+- stop

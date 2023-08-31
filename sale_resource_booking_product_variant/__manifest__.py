@@ -13,7 +13,6 @@
         "views/menus.xml",
     ],
     "depends": [
-        "partner_product_price",
         "sale_resource_booking",
     ],
     "development_status": "Alpha",
