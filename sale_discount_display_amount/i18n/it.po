@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-02-09 12:16+0000\n"
+"PO-Revision-Date: 2023-09-03 13:37+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_discount_display_amount
 #: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.report_saleorder_document_inherit
@@ -30,7 +30,7 @@ msgstr "<strong>Subtotale senza sconto</strong>"
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__discount_total
 msgid "Discount Subtotal"
-msgstr "Subtotale Sconto"
+msgstr "Subtotale sconto"
 
 #. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_sale_order
