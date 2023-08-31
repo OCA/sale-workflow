@@ -39,6 +39,7 @@ setuptools.setup(
         'odoo-addon-sale_order_qty_change_no_recompute>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_revision>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_type>=16.0dev,<16.1dev',
+        'odoo-addon-sale_packaging_default>=16.0dev,<16.1dev',
         'odoo-addon-sale_partner_incoterm>=16.0dev,<16.1dev',
         'odoo-addon-sale_partner_selectable_option>=16.0dev,<16.1dev',
         'odoo-addon-sale_procurement_group_by_line>=16.0dev,<16.1dev',
