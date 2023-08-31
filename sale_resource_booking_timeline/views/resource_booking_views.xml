@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+    <record id="resource_booking_form" model="ir.ui.view">
+        <field name="name">resource.booking.form.inherit.timeline</field>
+        <field name="model">resource.booking</field>
+        <field name="inherit_id" ref="resource_booking.resource_booking_form" />
+        <field name="arch" type="xml">
+            <group name="booking" position="inside">
+                <field name="product_template_ids" widget="many2many_tags" />
+            </group>
+        </field>
+    </record>
+    <record id="resource_booking_view_timeline" model="ir.ui.view">
+        <field name="model">resource.booking</field>
+        <field name="type">timeline</field>
+        <field name="arch" type="xml">
+            <timeline
+                date_start="start"
+                date_delay="duration"
+                date_stop="stop"
+                string="Bookings"
+                default_group_by="combination_id"
+                event_open_popup="true"
+                zoomKey="ctrlKey"
+            >
+                <field name="combination_id" />
+                <templates>
+                    <div t-name="timeline-item">
+                        <div t-esc="record.display_name" />
+                    </div>
+                </templates>
+            </timeline>
+        </field>
+    </record>
+
+    <record id="resource_booking.resource_booking_action" model="ir.actions.act_window">
+        <field name="view_mode">timeline,calendar,tree,form</field>
+    </record>
+</data>
