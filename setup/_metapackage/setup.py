@@ -43,6 +43,7 @@ setuptools.setup(
         'odoo-addon-sale_partner_selectable_option>=16.0dev,<16.1dev',
         'odoo-addon-sale_procurement_group_by_line>=16.0dev,<16.1dev',
         'odoo-addon-sale_product_category_menu>=16.0dev,<16.1dev',
+        'odoo-addon-sale_product_multi_add>=16.0dev,<16.1dev',
         'odoo-addon-sale_product_set>=16.0dev,<16.1dev',
         'odoo-addon-sale_quotation_number>=16.0dev,<16.1dev',
         'odoo-addon-sale_start_end_dates>=16.0dev,<16.1dev',
