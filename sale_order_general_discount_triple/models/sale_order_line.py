@@ -49,6 +49,8 @@ class SaleOrderLine(models.Model):
                 "sale_order_general_discount_triple.general_discount", "discount"
             )
         )
+        flag = False
         if general_discount:
             vals[general_discount] = sale_order.general_discount
-        return super().create(vals)
+            flag = True
+        return super(SaleOrderLine, self.with_context(flag=flag)).create(vals)
