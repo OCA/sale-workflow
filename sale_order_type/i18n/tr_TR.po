@@ -25,6 +25,11 @@ msgid "Active"
 msgstr ""
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order__analytic_account_id
+msgid "Analytic Account"
+msgstr ""
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_account_id
 msgid "Analytic account"
 msgstr ""
@@ -97,9 +102,25 @@ msgid "ID"
 msgstr "Kimlik"
 
 #. module: sale_order_type
+#: model:ir.model.fields,help:sale_order_type.field_sale_order__picking_policy
+msgid ""
+"If you deliver all products at once, the delivery order will be scheduled "
+"based on the greatest product lead time. Otherwise, it will be based on the "
+"shortest."
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order__incoterm
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__incoterm_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Incoterm"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,help:sale_order_type.field_sale_order__incoterm
+msgid ""
+"International Commercial Terms are a series of predefined commercial terms "
+"used in international transactions."
 msgstr ""
 
 #. module: sale_order_type
@@ -166,6 +187,7 @@ msgid "Quotation Validity (Days)"
 msgstr ""
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_line__route_id
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__route_id
 msgid "Route"
 msgstr ""
@@ -203,12 +225,19 @@ msgid "Sales Order"
 msgstr "Satış emri"
 
 #. module: sale_order_type
+#: model:ir.model,name:sale_order_type.model_sale_order_line
+#, fuzzy
+msgid "Sales Order Line"
+msgstr "Satış emri"
+
+#. module: sale_order_type
 #: model:ir.actions.act_window,name:sale_order_type.sot_sale_order_type_action
 #: model:ir.ui.menu,name:sale_order_type.sot_sale_order_type_menu
 msgid "Sales Order Types"
 msgstr ""
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order__picking_policy
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__picking_policy
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Shipping Policy"
@@ -232,10 +261,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr ""
-
-#, fuzzy
-#~ msgid "Sales Order Line"
-#~ msgstr "Satış emri"
 
 #~ msgid "Invoice"
 #~ msgstr "Fatura"
