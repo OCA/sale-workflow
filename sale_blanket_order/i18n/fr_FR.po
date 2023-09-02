@@ -709,6 +709,7 @@ msgstr ""
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
 msgid "Sale Order Lines"
 msgstr ""
 
@@ -887,7 +888,8 @@ msgstr ""
 #: model_terms:ir.actions.act_window,help:sale_blanket_order.act_open_blanket_order_view
 msgid ""
 "Use this menu to search within your blanket orders. For each blanket order,\n"
-"                you can track the related discussion with the customer, control\n"
+"                you can track the related discussion with the customer, "
+"control\n"
 "                the products delivered and control the vendor bills."
 msgstr ""
 
@@ -947,8 +949,8 @@ msgstr ""
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid ""
-"You can not delete an open blanket or with active sale orders! Try to cancel"
-" it before."
+"You can not delete an open blanket or with active sale orders! Try to cancel "
+"it before."
 msgstr ""
 
 #. module: sale_blanket_order
