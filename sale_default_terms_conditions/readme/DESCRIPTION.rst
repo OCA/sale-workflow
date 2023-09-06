@@ -1,1 +1,1 @@
-This module allows sale default terms & conditions from Customer or Company
+This module allows sale default terms & conditions from Customer or Parent

@@ -13,6 +13,13 @@ class SaleOrder(models.Model):
     def _compute_note(self):
         res = super()._compute_note()
         for order in self:
-            if not is_html_empty(order.partner_id.sale_order_note):
-                order.note = order.partner_id.sale_order_note
+            sale_order_note = (
+                order.partner_id.sale_order_note
+                if not is_html_empty(order.partner_id.sale_order_note)
+                else order.partner_id.parent_id.sale_order_note
+            )
+            if not is_html_empty(sale_order_note):
+                order.note = sale_order_note
+            else:
+                order.note = False
         return res
