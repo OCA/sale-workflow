@@ -28,7 +28,6 @@ class ResPartnerr(models.Model):
             if not partner.is_company:
                 continue
 
-
             if (
                 partner.property_product_pricelist
                 and partner.property_product_pricelist
