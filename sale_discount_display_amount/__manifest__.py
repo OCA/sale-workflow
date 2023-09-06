@@ -8,10 +8,11 @@
         sale_order_line and sale_order level""",
     "version": "17.0.1.0.1",
     "license": "AGPL-3",
-    "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
+    "author": "ACSONE SA/NV, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale_management"],
     "data": [
+        "views/res_config_settings_view.xml",
         "views/sale_view.xml",
         "report/sale_report_template.xml",
     ],
