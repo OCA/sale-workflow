@@ -48,6 +48,7 @@ To configure this module, you need to:
 1. Go to Sales/Settings and check "Allow discounts on sales order lines"
 2. Go to Sales/Settings and check or uncheck "Show the Discount with
    TAX" depending on your needs
+3. Also check "Display Total without discount in report" in order to add this field to report.
 
 Usage
 =====
@@ -88,6 +89,8 @@ Contributors
 -  `Pesol <https://www.pesol.es>`__:
 
    -  Jonathan Oscategui Taza <info@pesol.es>
+-  PyTech srl <info@pytech.it>
+-  Ooops404 <info@ooops404.com>
 
 Maintainers
 -----------
