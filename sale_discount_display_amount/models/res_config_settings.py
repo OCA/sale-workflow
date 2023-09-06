@@ -10,3 +10,6 @@ class ResConfigSettings(models.TransientModel):
         related="company_id.display_discount_with_tax",
         readonly=False,
     )
+    report_total_without_discount = fields.Boolean(
+        related="company_id.report_total_without_discount", readonly=False
+    )
