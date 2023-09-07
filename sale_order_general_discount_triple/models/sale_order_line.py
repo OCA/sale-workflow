@@ -51,4 +51,5 @@ class SaleOrderLine(models.Model):
         )
         if general_discount:
             vals[general_discount] = sale_order.general_discount
+            self = self.with_context(no_propagate_general_discount=True)
         return super().create(vals)
