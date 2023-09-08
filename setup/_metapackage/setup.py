@@ -22,6 +22,7 @@ setuptools.setup(
         'odoo-addon-sale_elaboration>=16.0dev,<16.1dev',
         'odoo-addon-sale_exception>=16.0dev,<16.1dev',
         'odoo-addon-sale_force_invoiced>=16.0dev,<16.1dev',
+        'odoo-addon-sale_invoice_frequency>=16.0dev,<16.1dev',
         'odoo-addon-sale_invoice_policy>=16.0dev,<16.1dev',
         'odoo-addon-sale_manual_delivery>=16.0dev,<16.1dev',
         'odoo-addon-sale_mrp_bom>=16.0dev,<16.1dev',
