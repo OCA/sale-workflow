@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:52+0000\n"
-"PO-Revision-Date: 2022-04-08 17:05+0000\n"
+"PO-Revision-Date: 2023-09-08 10:37+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,17 +17,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_triple_discount
 #: model_terms:ir.ui.view,arch_db:sale_triple_discount.report_saleorder_document_triple_discount
 msgid "<span>Disc. 2 (%)</span>"
-msgstr ""
+msgstr "<span>Sconto 2 (%)</span>"
 
 #. module: sale_triple_discount
 #: model_terms:ir.ui.view,arch_db:sale_triple_discount.report_saleorder_document_triple_discount
 msgid "<span>Disc. 3 (%)</span>"
-msgstr ""
+msgstr "<span>Sconto 3 (%)</span>"
 
 #. module: sale_triple_discount
 #: model:ir.model.fields.selection,name:sale_triple_discount.selection__sale_order_line__discounting_type__additive
@@ -63,19 +63,19 @@ msgstr "Tipo sconto"
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_triple_discount
 #: model:ir.model.fields.selection,name:sale_triple_discount.selection__sale_order_line__discounting_type__multiplicative
@@ -91,7 +91,7 @@ msgstr "La riga ordine di vendita %s ha tipo sconto %s sconosciuto"
 #. module: sale_triple_discount
 #: model:ir.model,name:sale_triple_discount.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_triple_discount
 #: model:ir.model,name:sale_triple_discount.model_sale_order_line
