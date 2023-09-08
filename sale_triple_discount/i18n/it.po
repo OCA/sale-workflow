@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:52+0000\n"
-"PO-Revision-Date: 2022-04-08 17:05+0000\n"
+"PO-Revision-Date: 2023-09-08 10:36+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,17 +17,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_triple_discount
 #: model_terms:ir.ui.view,arch_db:sale_triple_discount.report_saleorder_document_triple_discount
 msgid "<span>Disc. 2 (%)</span>"
-msgstr "<span>Sc. 2 (%)</span>"
+msgstr "<span>Sconto 2 (%)</span>"
 
 #. module: sale_triple_discount
 #: model_terms:ir.ui.view,arch_db:sale_triple_discount.report_saleorder_document_triple_discount
 msgid "<span>Disc. 3 (%)</span>"
-msgstr "<span>Sc. 3 (%)</span>"
+msgstr "<span>Sconto 3 (%)</span>"
 
 #. module: sale_triple_discount
 #: selection:sale.order.line,discounting_type:0
