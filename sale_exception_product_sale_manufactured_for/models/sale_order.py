@@ -21,14 +21,13 @@ class SaleOrder(models.Model):
 
         self.env.cr.execute(
             """
-            SELECT rel.product_template_id, ARRAY_AGG(rel.res_partner_id)
+            SELECT rel.product_id, ARRAY_AGG(rel.partner_id)
             FROM sale_order_line sol
-                JOIN product_product pp ON (sol.product_id = pp.id)
-                JOIN product_template pt ON (pp.product_tmpl_id = pt.id)
-                JOIN product_template_res_partner_rel rel ON (rel.product_template_id = pt.id)
+                JOIN product_product prod ON (sol.product_id = prod.id)
+                JOIN product_product_manuf_for_partner_rel rel ON (rel.product_id = prod.id)
             WHERE sol.display_type IS NULL
                 AND sol.order_id = %s
-            GROUP BY rel.product_template_id
+            GROUP BY rel.product_id
         """,
             (self.id,),
         )
