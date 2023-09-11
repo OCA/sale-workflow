@@ -27,6 +27,7 @@
             </form>
         </field>
     </record>
+
     <record id="sale_invoice_frequency_view_tree" model="ir.ui.view">
         <field name="name">Invoice frequency</field>
         <field name="model">sale.invoice.frequency</field>
@@ -36,6 +37,7 @@
             </tree>
         </field>
     </record>
+
     <record id="sale_invoice_frequency_view_search" model="ir.ui.view">
         <field name="name">Invoice frequency</field>
         <field name="model">sale.invoice.frequency</field>
