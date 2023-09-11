@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0+e\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-08 09:25+0000\n"
-"PO-Revision-Date: 2023-09-08 11:26+0200\n"
+"POT-Creation-Date: 2023-09-08 10:25+0000\n"
+"PO-Revision-Date: 2023-09-08 12:26+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -16,6 +16,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
 "X-Generator: Poedit 3.3.1\n"
+
+#. module: sale_invoice_frequency
+#: model:sale.invoice.frequency,name:sale_invoice_frequency.sale_invoice_frequency_annual
+msgid "Annual"
+msgstr "Anual"
+
+#. module: sale_invoice_frequency
+#: model:sale.invoice.frequency,name:sale_invoice_frequency.sale_invoice_frequency_biannual
+msgid "Biannual"
+msgstr "Semestral"
+
+#. module: sale_invoice_frequency
+#: model:sale.invoice.frequency,name:sale_invoice_frequency.sale_invoice_frequency_biweekly
+msgid "Biweekly"
+msgstr "Quincenal"
 
 #. module: sale_invoice_frequency
 #: model:ir.model,name:sale_invoice_frequency.model_res_partner
@@ -36,6 +51,11 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_invoice_frequency__create_date
 msgid "Created on"
 msgstr "Creado el"
+
+#. module: sale_invoice_frequency
+#: model:sale.invoice.frequency,name:sale_invoice_frequency.sale_invoice_frequency_daily
+msgid "Daily"
+msgstr "Diaria"
 
 #. module: sale_invoice_frequency
 #: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_invoice_frequency__display_name
@@ -107,6 +127,16 @@ msgstr ""
 "asignárselo a un cliente."
 
 #. module: sale_invoice_frequency
+#: model:sale.invoice.frequency,name:sale_invoice_frequency.sale_invoice_frequency_quarterly
+msgid "Quarterly"
+msgstr "Trimestral"
+
+#. module: sale_invoice_frequency
 #: model:ir.model,name:sale_invoice_frequency.model_sale_order
 msgid "Sales Order"
 msgstr "Pedido de venta"
+
+#. module: sale_invoice_frequency
+#: model:sale.invoice.frequency,name:sale_invoice_frequency.sale_invoice_frequency_weekly
+msgid "Weekly"
+msgstr "Semanal"
