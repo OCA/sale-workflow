@@ -9,4 +9,6 @@ class SaleInvoiceFrequency(models.Model):
     _name = "sale.invoice.frequency"
     _description = "Invoicing frequency for Customers"
 
-    name = fields.Char()
+    name = fields.Char(
+        translate=True,
+    )
