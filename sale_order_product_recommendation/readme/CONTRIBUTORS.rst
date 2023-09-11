@@ -7,3 +7,6 @@
   * Víctor Martínez
   * Sergio Teruel
   * Carlos Roca
+* `Xtendoo <https://www.xtendoo.es>`_:
+
+  * Daniel Domínguez
