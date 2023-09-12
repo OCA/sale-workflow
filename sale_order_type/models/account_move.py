@@ -56,9 +56,11 @@ class AccountMove(models.Model):
             move.invoice_payment_term_id = move.sale_type_id.payment_term_id
         return res
 
-    @api.depends("sale_type_id")
-    def _compute_journal_id(self):
-        res = super()._compute_journal_id()
+    @api.onchange("sale_type_id")
+    def _onchange_sale_type(self):
+        """It's not ideal to use an onchange instead inheriting the compute.
+        But when using the compute somthing is broken and, for example,
+        duplicating and internal transfer and trying to re-post will bring
+        an error because of currency_id not computed"""
         for move in self.filtered("sale_type_id.journal_id"):
-            move.journal_id = move.sale_type_id.journal_id
-        return res
+            move.journal_id = move.sale_type_id.journal_id.id
