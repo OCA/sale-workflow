@@ -1,5 +1,6 @@
 <?xml version="1.0" ?>
 <!-- Copyright 2018 Tecnativa - Carlos Dauden
+     Copyright 2023 Tecnativa - Carolina Fernandez
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="view_sales_order_line_input_tree" model="ir.ui.view">
@@ -15,7 +16,8 @@
                 editable="top"
                 create="true"
             >
-                <!-- We do not display the type because we don't want the user to be bothered with that information if he has no section or note. -->
+            <!-- We do not display the type because we don't want the user to be bothered with
+                that information if he has no section or note. -->
                 <field name="display_type" invisible="1" />
                 <field
                     name="force_company_id"
@@ -34,6 +36,7 @@
                     options='{"no_open": True, "no_create": True}'
                 />
                 <button
+                    title="Open order"
                     name="action_sale_order_form"
                     type="object"
                     icon="fa-external-link"
@@ -47,125 +50,166 @@
                     attrs="{'readonly': [('order_partner_id', '!=', False), ('order_id', '!=', False)]}"
                 />
                 <field name="write_date" widget="date" optional="hide" />
+                <field name="product_uom_category_id" invisible="1" />
+                <field name="product_type" invisible="1" />
+                <field name="product_updatable" invisible="1" />
                 <field
                     name="product_id"
-                    attrs="{'readonly': [('product_updatable', '=', False)]}"
+                    attrs="{
+                        'readonly': [('product_updatable', '=', False)],
+                        'required': [('display_type', '=', False)],
+                    }"
                     force_save="1"
-                    context="{'partner_id':order_partner_id, 'quantity':product_uom_qty, 'pricelist':pricelist_id, 'uom':product_uom, 'company_id': company_id}"
+                    context="{
+                        'partner_id': order_partner_id,
+                        'quantity': product_uom_qty,
+                        'pricelist': pricelist_id,
+                        'uom':product_uom,
+                        'company_id': company_id,
+                        'default_lst_price': price_unit,
+                        'default_description_sale': name
+                    }"
+                    options="{
+                        'no_open': True,
+                    }"
+                    domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', company_id)]"
+                    widget="sol_product_many2one"
                 />
                 <field
                     name="product_template_id"
                     string="Product"
                     invisible="1"
-                    attrs="{'readonly': [('product_updatable', '=', False)]}"
+                    attrs="{
+                        'readonly': [('product_updatable', '=', False)],
+                        'required': [('display_type', '=', False)],
+                    }"
                     context="{
-                        'partner_id': parent.partner_id,
+                        'partner_id': order_partner_id,
                         'quantity': product_uom_qty,
-                        'pricelist': parent.pricelist_id,
+                        'pricelist': pricelist_id,
                         'uom':product_uom,
                         'company_id': company_id,
                         'default_list_price': price_unit,
                         'default_description_sale': name
                     }"
+                    options="{
+                        'no_open': True,
+                    }"
+                    domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', company_id)]"
+                    widget="sol_product_many2one"
                 />
-                <field name="product_uom_category_id" invisible="1" />
+                <field name="name" widget="section_and_note_text" optional="show" />
                 <field
-                    name="name"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
-                    optional="show"
+                    name="analytic_distribution"
+                    widget="analytic_distribution"
+                    optional="hide"
+                    groups="analytic.group_analytic_accounting"
+                    options="{'product_field': 'product_id', 'business_domain': 'sale_order'}"
                 />
                 <field
                     name="product_uom_qty"
-                    sum="Ordered"
-                    string="Ordered Qty"
                     decoration-info="(not display_type and invoice_status == 'to invoice')"
                     decoration-bf="(not display_type and invoice_status == 'to invoice')"
-                    context="{'partner_id':order_partner_id, 'quantity':product_uom_qty, 'pricelist':pricelist_id, 'uom':product_uom, 'company_id': company_id}"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
-                    optional="show"
+                    context="{
+                        'partner_id': order_partner_id,
+                        'quantity': product_uom_qty,
+                        'pricelist': pricelist_id,
+                        'uom': product_uom,
+                        'company_id': company_id
+                    }"
                 />
                 <field
                     name="qty_delivered"
-                    sum="Delivered"
                     decoration-info="(not display_type and invoice_status == 'to invoice')"
                     decoration-bf="(not display_type and invoice_status == 'to invoice')"
-                    attrs="{'readonly': [('qty_delivered_method', '!=', 'manual')]}"
+                    string="Delivered"
+                    attrs="{
+                        'column_invisible': [('state', 'not in', ['sale', 'done'])],
+                        'readonly': [('qty_delivered_method', '!=', 'manual')]
+                    }"
                     optional="show"
                 />
-                <field name="qty_delivered_manual" invisible="1" />
+                <field name="qty_delivered_method" invisible="1" />
                 <field
                     name="qty_invoiced"
-                    sum="Invoiced"
-                    optional="show"
                     decoration-info="(not display_type and invoice_status == 'to invoice')"
                     decoration-bf="(not display_type and invoice_status == 'to invoice')"
+                    string="Invoiced"
+                    attrs="{'column_invisible': [('state', 'not in', ['sale', 'done'])]}"
+                    optional="show"
                 />
-                <field name="qty_to_invoice" sum="To Invoice" optional="show" />
+                <field name="qty_to_invoice" invisible="1" />
+                <field name="product_uom_readonly" invisible="1" />
+                <field name="product_uom" invisible="1" groups="!uom.group_uom" />
                 <field
                     name="product_uom"
+                    force_save="1"
                     string="UoM"
-                    attrs="{'readonly': [('state', 'in', ('sale','done', 'cancel'))]}"
+                    attrs="{
+                        'readonly': [('product_uom_readonly', '=', True)],
+                        'required': [('display_type', '=', False)],
+                    }"
                     context="{'company_id': company_id}"
                     groups="uom.group_uom"
                     options='{"no_open": True}'
                     optional="show"
                 />
                 <field
-                    name="analytic_tag_ids"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
-                    domain="['|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"
-                    groups="analytic.group_analytic_accounting"
-                    widget="many2many_tags"
-                    options="{'color_field': 'color'}"
+                    name="customer_lead"
                     optional="hide"
+                    attrs="{'readonly': [('state', 'not in', ['draft', 'sent', 'sale'])]}"
+                />
+                <field
+                    name="product_packaging_qty"
+                    attrs="{'invisible': ['|', ('product_id', '=', False), ('product_packaging_id', '=', False)]}"
+                    groups="product.group_stock_packaging"
+                    optional="show"
+                />
+                <field
+                    name="product_packaging_id"
+                    attrs="{'invisible': [('product_id', '=', False)]}"
+                    context="{'default_product_id': product_id, 'tree_view_ref':'product.product_packaging_tree_view', 'form_view_ref':'product.product_packaging_form_view'}"
+                    groups="product.group_stock_packaging"
+                    optional="show"
                 />
                 <field
                     name="price_unit"
                     attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"
-                    optional="show"
                 />
                 <field
                     name="tax_id"
                     widget="many2many_tags"
                     options="{'no_create': True}"
-                    domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"
-                    invisible="context.get('tax_hide', False)"
+                    domain="[('type_tax_use','=','sale'),('company_id','=',company_id)]"
+                    context="{'active_test': True}"
                     attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"
                     optional="show"
                 />
                 <field
                     name="discount"
                     string="Disc.%"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
                     groups="product.group_discount_per_so_line"
                     optional="show"
                 />
+                <field name="is_downpayment" invisible="1" />
                 <field
                     name="price_subtotal"
                     widget="monetary"
                     groups="account.group_show_line_subtotals_tax_excluded"
-                    optional="show"
+                    attrs="{'invisible': [('is_downpayment', '=', True)]}"
                 />
                 <field
                     name="price_total"
                     widget="monetary"
                     groups="account.group_show_line_subtotals_tax_included"
-                    optional="show"
+                    attrs="{'invisible': [('is_downpayment', '=', True)]}"
                 />
-                <field
-                    name="customer_lead"
-                    optional="show"
-                    attrs="{'readonly': [('state', 'not in', ['draft', 'sent', 'sale'])]}"
-                />
-                <field name="product_updatable" invisible="1" />
-                <field name="qty_delivered_method" invisible="1" />
                 <field name="state" invisible="1" />
                 <field name="invoice_status" invisible="1" />
                 <field name="currency_id" invisible="1" />
                 <field name="price_tax" invisible="1" />
-                <field name="pricelist_id" invisible="1" />
                 <field name="company_id" invisible="1" />
-                <field name="product_uom_readonly" invisible="1" />
+                <field name="pricelist_id" invisible="1" />
             </tree>
         </field>
     </record>
@@ -177,7 +221,7 @@
                 <field name="name" />
                 <field name="product_uom" groups="uom.group_uom" />
                 <field
-                    name="analytic_tag_ids"
+                    name="analytic_distribution"
                     groups="analytic.group_analytic_accounting"
                 />
                 <separator />
