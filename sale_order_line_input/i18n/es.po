@@ -30,11 +30,6 @@ msgid "Disc.%"
 msgstr "Desc.%"
 
 #. module: sale_order_line_input
-#: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__force_company_id
-msgid "Forced company"
-msgstr "Compañía forzada"
-
-#. module: sale_order_line_input
 #: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__pricelist_id
 msgid "If you change the pricelist, only newly added lines will be affected."
 msgstr ""
@@ -106,15 +101,6 @@ msgstr "Línea de pedido de venta"
 #: model:ir.ui.menu,name:sale_order_line_input.menu_sales_order_line_input
 msgid "Sales Orders Lines"
 msgstr "Líneas de pedidos"
-
-#. module: sale_order_line_input
-#: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__force_company_id
-msgid ""
-"Technical field to force company or get it from env user if order don't "
-"exist."
-msgstr ""
-"Campo técnico para forzar empresa u obtenerlo del usuario env si el pedido "
-"no existe."
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
