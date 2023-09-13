@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -60,22 +60,17 @@ msgstr ""
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
+msgid "Open order"
+msgstr ""
+
+#. module: sale_order_line_input
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Order"
 msgstr ""
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 msgid "Order State"
-msgstr ""
-
-#. module: sale_order_line_input
-#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
-msgid "Ordered"
-msgstr ""
-
-#. module: sale_order_line_input
-#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
-msgid "Ordered Qty"
 msgstr ""
 
 #. module: sale_order_line_input
@@ -104,11 +99,6 @@ msgstr ""
 msgid ""
 "Technical field to force company or get it from env user if order don't "
 "exist."
-msgstr ""
-
-#. module: sale_order_line_input
-#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
-msgid "To Invoice"
 msgstr ""
 
 #. module: sale_order_line_input
