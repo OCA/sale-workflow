@@ -57,6 +57,7 @@ setuptools.setup(
         'odoo14-addon-sale_order_digitized_signature',
         'odoo14-addon-sale_order_disable_user_autosubscribe',
         'odoo14-addon-sale_order_general_discount',
+        'odoo14-addon-sale_order_general_discount_payment_term',
         'odoo14-addon-sale_order_general_discount_triple',
         'odoo14-addon-sale_order_invoice_amount',
         'odoo14-addon-sale_order_invoicing_finished_task',
