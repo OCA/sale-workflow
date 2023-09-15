@@ -65,7 +65,7 @@ class TestSaleOrderSecondaryUnit(TransactionCase):
         self.assertEqual(self.order.order_line.secondary_uom_qty, 7.0)
 
     def test_default_secondary_unit(self):
-        self.order.order_line.product_id_change()
+        self.order.order_line._onchange_product_id_warning()
         self.assertEqual(self.order.order_line.secondary_uom_id, self.secondary_unit)
 
     def test_onchange_order_product_uom(self):
@@ -95,16 +95,59 @@ class TestSaleOrderSecondaryUnit(TransactionCase):
 
     def test_secondary_uom_unit_price(self):
         # Remove secondary uom in sale line to do a complete test of secondary price
+        self.assertEqual(self.order.order_line.price_unit, 1000)
         self.order.order_line.secondary_uom_id = False
+        self.assertEqual(self.order.order_line.price_unit, 1)
         self.assertEqual(self.order.order_line.secondary_uom_unit_price, 0)
         self.order.order_line.update(
             {"secondary_uom_id": self.secondary_unit.id, "product_uom_qty": 2}
         )
 
         self.assertEqual(self.order.order_line.secondary_uom_qty, 4)
-        self.assertEqual(self.order.order_line.secondary_uom_unit_price, 500)
+        self.assertEqual(self.order.order_line.secondary_uom_unit_price, 0.5)
 
         self.order.order_line.write({"product_uom_qty": 8})
         self.assertEqual(self.order.order_line.secondary_uom_qty, 16)
-        self.assertEqual(self.order.order_line.secondary_uom_unit_price, 500)
-        self.assertEqual(self.order.order_line.price_subtotal, 8000)
+        self.assertEqual(self.order.order_line.secondary_uom_unit_price, 0.5)
+        self.assertEqual(self.order.order_line.price_subtotal, 8)
+
+    def test_packaging_enabled(self):
+        """Make sure module is compatible with packaging feature."""
+        self.env.user.groups_id |= self.env.ref("product.group_stock_packaging")
+        with Form(self.product.product_tmpl_id) as product_f:
+            with product_f.packaging_ids.new() as packaging_f:
+                packaging_f.name = "dozen"
+                packaging_f.qty = 12
+                packaging_f.sales = True
+        packaging = self.product.product_tmpl_id.packaging_ids
+        with Form(self.order) as order_f:
+            with order_f.order_line.edit(0) as line_f:
+                # Line stays as it was
+                self.assertEqual(line_f.price_unit, 1000)
+                self.assertEqual(line_f.product_uom_qty, 1)
+                self.assertEqual(line_f.secondary_uom_id, self.secondary_unit)
+                self.assertEqual(line_f.secondary_uom_qty, 2)
+                self.assertFalse(line_f.product_packaging_id)
+                self.assertFalse(line_f.product_packaging_qty)
+                # We sell 1 dozen by setting the packaging
+                line_f.product_packaging_id = packaging
+                line_f.product_packaging_qty = 1
+                self.assertEqual(line_f.price_unit, 1)
+                self.assertEqual(line_f.product_uom_qty, 12)
+                self.assertEqual(line_f.secondary_uom_id, self.secondary_unit)
+                self.assertEqual(line_f.secondary_uom_qty, 24)
+                # We sell 2 dozens by setting the packaging
+                line_f.product_packaging_qty = 2
+                self.assertEqual(line_f.price_unit, 1)
+                self.assertEqual(line_f.product_uom_qty, 24)
+                self.assertEqual(line_f.secondary_uom_qty, 48)
+                # We sell 1 dozen by setting the secondary unit qty
+                line_f.secondary_uom_qty = 24
+                self.assertEqual(line_f.price_unit, 1)
+                self.assertEqual(line_f.product_uom_qty, 12)
+                self.assertEqual(line_f.product_packaging_qty, 1)
+                # We sell 2 dozens by setting the primary unit qty
+                line_f.product_uom_qty = 24
+                self.assertEqual(line_f.price_unit, 1)
+                self.assertEqual(line_f.secondary_uom_qty, 48)
+                self.assertEqual(line_f.product_packaging_qty, 2)
