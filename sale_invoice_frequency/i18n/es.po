@@ -65,7 +65,7 @@ msgstr "Mostrar nombre"
 #. module: sale_invoice_frequency
 #: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_invoice_frequency__id
 msgid "ID"
-msgstr ""
+msgstr "ID (identificación)"
 
 #. module: sale_invoice_frequency
 #: model_terms:ir.ui.view,arch_db:sale_invoice_frequency.view_sales_order_filter
