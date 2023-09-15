@@ -1,0 +1,55 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_general_discount_triple
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: sale_order_general_discount_triple
+#: model:ir.model,name:sale_order_general_discount_triple.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_general_discount_triple
+#: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__general_discount__discount
+msgid "Discount"
+msgstr ""
+
+#. module: sale_order_general_discount_triple
+#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order_line__discount
+msgid "Discount (%)"
+msgstr ""
+
+#. module: sale_order_general_discount_triple
+#: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__general_discount__discount2
+msgid "Discount 2"
+msgstr ""
+
+#. module: sale_order_general_discount_triple
+#: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__general_discount__discount3
+msgid "Discount 3"
+msgstr ""
+
+#. module: sale_order_general_discount_triple
+#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_res_config_settings__general_discount
+msgid "General Discount"
+msgstr ""
+
+#. module: sale_order_general_discount_triple
+#: model:ir.model,name:sale_order_general_discount_triple.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_general_discount_triple
+#: model:ir.model,name:sale_order_general_discount_triple.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
