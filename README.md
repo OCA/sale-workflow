@@ -44,7 +44,7 @@ addon | version | maintainers | summary
 [sale_order_general_discount](sale_order_general_discount/) | 16.0.1.0.0 |  | General discount per sale order
 [sale_order_invoice_amount](sale_order_invoice_amount/) | 16.0.1.0.0 |  | Display the invoiced and uninvoiced total in the sale order
 [sale_order_line_date](sale_order_line_date/) | 16.0.1.0.0 |  | Adds a commitment date to each sale order line.
-[sale_order_line_menu](sale_order_line_menu/) | 16.0.1.3.0 |  | Adds a Sale Order Lines Menu
+[sale_order_line_menu](sale_order_line_menu/) | 16.0.1.3.1 |  | Adds a Sale Order Lines Menu
 [sale_order_line_price_history](sale_order_line_price_history/) | 16.0.1.0.0 |  | Sale order line price history
 [sale_order_line_sequence](sale_order_line_sequence/) | 16.0.1.0.1 |  | Propagates SO line sequence to invoices and stock picking.
 [sale_order_lot_generator](sale_order_lot_generator/) | 16.0.1.0.0 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) [![mourad-ehm](https://github.com/mourad-ehm.png?size=30px)](https://github.com/mourad-ehm) [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Sale Order Lot Generator
@@ -67,7 +67,7 @@ addon | version | maintainers | summary
 [sale_stock_picking_blocking](sale_stock_picking_blocking/) | 16.0.1.0.0 |  | Allow you to block the creation of deliveries from a sale order.
 [sale_stock_picking_note](sale_stock_picking_note/) | 16.0.1.0.1 |  | Add picking note in sale and purchase order
 [sale_substate](sale_substate/) | 16.0.1.0.0 |  | Sale Sub State
-[sale_tier_validation](sale_tier_validation/) | 16.0.1.0.2 |  | Extends the functionality of Sale Orders to support a tier validation process.
+[sale_tier_validation](sale_tier_validation/) | 16.0.1.0.3 |  | Extends the functionality of Sale Orders to support a tier validation process.
 [sale_triple_discount](sale_triple_discount/) | 16.0.1.0.1 |  | Manage triple discount on sale order lines
 [sales_team_security](sales_team_security/) | 16.0.1.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | New group for seeing only sales channel's documents
 
