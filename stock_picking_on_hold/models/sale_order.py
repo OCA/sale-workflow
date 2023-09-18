@@ -1,4 +1,6 @@
-from odoo import fields, models
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -37,6 +39,7 @@ class SaleOrder(models.Model):
         block.write({"delivery_block_id": block_reason.id})
         unblock.action_remove_delivery_block()
 
+    @api.onchange("partner_id")
     def onchange_partner_id(self):
         result = super().onchange_partner_id()
 
