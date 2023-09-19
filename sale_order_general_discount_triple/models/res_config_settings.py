@@ -11,6 +11,14 @@ class ResConfigSettings(models.TransientModel):
             ("discount3", "Discount 3"),
         ],
         required=True,
-        default="discount",
         config_parameter="sale_order_general_discount_triple.general_discount",
+    )
+    pricelist_discount = fields.Selection(
+        [
+            ("discount", "Discount"),
+            ("discount2", "Discount 2"),
+            ("discount3", "Discount 3"),
+        ],
+        required=True,
+        config_parameter="sale_order_general_discount_triple.pricelist_discount",
     )
