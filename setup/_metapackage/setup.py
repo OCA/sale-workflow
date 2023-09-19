@@ -32,6 +32,7 @@ setuptools.setup(
         'odoo-addon-sale_order_general_discount_triple>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_invoice_amount>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_line_date>=16.0dev,<16.1dev',
+        'odoo-addon-sale_order_line_delivery_state>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_line_menu>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_line_price_history>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_line_sequence>=16.0dev,<16.1dev',

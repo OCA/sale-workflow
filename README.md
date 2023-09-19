@@ -45,6 +45,7 @@ addon | version | maintainers | summary
 [sale_order_general_discount_triple](sale_order_general_discount_triple/) | 16.0.2.0.0 | [![ashishhirapara](https://github.com/ashishhirapara.png?size=30px)](https://github.com/ashishhirapara) | General discount per sale order with triple
 [sale_order_invoice_amount](sale_order_invoice_amount/) | 16.0.1.0.0 |  | Display the invoiced and uninvoiced total in the sale order
 [sale_order_line_date](sale_order_line_date/) | 16.0.1.0.0 |  | Adds a commitment date to each sale order line.
+[sale_order_line_delivery_state](sale_order_line_delivery_state/) | 16.0.1.0.0 |  | Show the delivery state on the sale order line
 [sale_order_line_menu](sale_order_line_menu/) | 16.0.1.3.1 |  | Adds a Sale Order Lines Menu
 [sale_order_line_price_history](sale_order_line_price_history/) | 16.0.1.0.0 |  | Sale order line price history
 [sale_order_line_sequence](sale_order_line_sequence/) | 16.0.1.0.1 |  | Propagates SO line sequence to invoices and stock picking.
