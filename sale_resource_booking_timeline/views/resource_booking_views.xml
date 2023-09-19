@@ -16,7 +16,7 @@
         <field name="arch" type="xml">
             <timeline
                 date_start="start"
-                date_delay="duration"
+                date_delay="duration_in_timeline"
                 date_stop="stop"
                 string="Bookings"
                 default_group_by="combination_id"
