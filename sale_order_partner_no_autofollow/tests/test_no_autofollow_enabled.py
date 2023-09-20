@@ -29,7 +29,7 @@ class TestSaleOrderNoAutofollow(NoAutofollowCommon):
 
     def test_message_subscribe_1(self):
         """'Customer no autofollow' mode is disabled in settings.
-            Test whether the user will be added to the autofollow
+        Test whether the user will be added to the autofollow
         """
         self.sale_order_1.with_context(
             sale_partner_disable_autofollow=self.sale_order_1._partner_disable_autofollow()
@@ -42,7 +42,7 @@ class TestSaleOrderNoAutofollow(NoAutofollowCommon):
 
     def test_message_subscribe_2(self):
         """'Customer no autofollow' mode is disabled in settings.
-            Test whether the user will be added to the autofollow
+        Test whether the user will be added to the autofollow
         """
         self.sale_order_1.with_context(
             sale_partner_disable_autofollow=self.sale_order_1._partner_disable_autofollow()
@@ -55,7 +55,7 @@ class TestSaleOrderNoAutofollow(NoAutofollowCommon):
 
     def test_message_subscribe_3(self):
         """'Customer no autofollow' mode is disabled in settings.
-            Test whether the user will be added to the autofollow
+        Test whether the user will be added to the autofollow
         """
         self.sale_order_1.with_context(
             sale_partner_disable_autofollow=self.sale_order_1._partner_disable_autofollow()
