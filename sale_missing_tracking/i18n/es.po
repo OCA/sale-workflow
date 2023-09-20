@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-31 10:35+0000\n"
-"PO-Revision-Date: 2023-07-25 11:09+0000\n"
+"PO-Revision-Date: 2023-09-20 21:26+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -252,7 +252,7 @@ msgstr "Seguidores"
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__message_partner_ids
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Seguidores (Empresas)"
+msgstr "Seguidores (Socios)"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking_exception__activity_type_icon
