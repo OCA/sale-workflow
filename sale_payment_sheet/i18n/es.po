@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-07 15:56+0000\n"
-"PO-Revision-Date: 2023-07-24 18:09+0000\n"
+"PO-Revision-Date: 2023-09-20 21:26+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -170,7 +170,7 @@ msgstr "Seguidores"
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Seguidores (Empresas)"
+msgstr "Seguidores (Socios)"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields.selection,name:sale_payment_sheet.selection__sale_payment_sheet_line__transaction_type__full
