@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.tests.common import Form
 
 
 class ResourceBooking(models.Model):
@@ -29,7 +30,12 @@ class ResourceBooking(models.Model):
             "the booking will not be able to become confirmed."
         ),
     )
-    product_id = fields.Many2one("product.product", string="Product")
+    product_id = fields.Many2one(
+        "product.product",
+        string="Product",
+        context="{'default_resource_booking_type_id': type_id}",
+        domain="[('resource_booking_type_id', '=', type_id)]",
+    )
 
     @api.depends(
         "active", "meeting_id.attendee_ids.state", "sale_order_line_id.order_id.state"
@@ -64,3 +70,21 @@ class ResourceBooking(models.Model):
             default_type_id=self.type_id.id,
         )
         return result
+
+    def action_generate(self):
+        # Based on resource.booking.sale
+        so_form = Form(self.env["sale.order"])
+        so_form.partner_id = self.partner_id
+        with so_form.order_line.new() as sol_form:
+            sol_form.product_id = self.product_id
+            # sol_form.product_uom_qty = self.product_uom_qty
+        so = so_form.save()
+        self.sale_order_line_id = so.order_line.id  # new
+        return {
+            "res_id": so.id,
+            "res_model": "sale.order",
+            "target": "current",
+            "type": "ir.actions.act_window",
+            "view_mode": "form",
+            "views": [[False, "form"]],
+        }

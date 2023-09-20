@@ -9,7 +9,7 @@
         <field name="arch" type="xml">
             <header position="inside">
                 <button
-                    name="action_sale_order_wizard"
+                    name="action_generate"
                     string="Quote"
                     type="object"
                     help="Generate quotation."
