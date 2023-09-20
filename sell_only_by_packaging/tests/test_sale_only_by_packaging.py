@@ -4,6 +4,9 @@
 from odoo.exceptions import ValidationError
 from odoo.tests import Form
 from odoo.tools import mute_logger
+from odoo.tools import float_round
+import logging
+_logger = logging.getLogger(__name__)
 
 from .common import Common
 
@@ -56,10 +59,32 @@ class TestSaleProductByPackagingOnly(Common):
             with Form(self.order) as sale_order:
                 with sale_order.order_line.edit(0) as so_line:
                     so_line.product_packaging_id = packaging
+                    _logger.info("==============test_convert_packaging_qty===========")
+                    _logger.info(so_line.product_packaging_id)
                     so_line.product_uom_qty = 12
                     self.assertAlmostEqual(
                         so_line.product_uom_qty, 12, places=self.precision
                     )
+                    _logger.info("==============After update qty===========")
+                    _logger.info(so_line.product_id.sell_only_by_packaging)
+                    _logger.info(so_line.product_packaging_id)
+                    _logger.info(so_line.product_packaging_id.qty)
+                    _logger.info(so_line.product_packaging_id.product_uom_id)
+                    _logger.info(so_line.product_uom._compute_quantity(so_line.product_uom_qty, so_line.product_packaging_id.product_uom_id))
+                    _logger.info(so_line.product_uom.name)
+                    _logger.info(so_line.product_uom.rounding)
+                    _logger.info(so_line.product_uom_qty)
+                    _logger.info(so_line.product_packaging_qty)
+                    
+                    _logger.info(float_round(
+                        so_line.product_uom_qty / so_line.product_packaging_id.qty,
+                        precision_rounding=so_line.product_packaging_id.product_uom_id.rounding))
+                    _logger.info(float_round(
+                        12 / 20,
+                        precision_rounding=so_line.product_packaging_id.product_uom_id.rounding))
+                    _logger.info(float_round(
+                        12 / 20,
+                        precision_rounding=0.01))
         with self.assertRaises(ValidationError):
             with Form(self.order) as sale_order:
                 with sale_order.order_line.edit(0) as so_line:

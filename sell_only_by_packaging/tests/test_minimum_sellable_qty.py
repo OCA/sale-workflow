@@ -10,6 +10,7 @@ class TestMinimumSellableQty(TransactionCase):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.product = cls.env.ref("product.product_product_9")
+        cls.product.packaging_ids.unlink()
         cls.packaging_level_1 = cls.env["product.packaging.level"].create(
             {"name": "Packaging level 1", "code": "PL1", "sequence": 1}
         )

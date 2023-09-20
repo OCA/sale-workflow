@@ -34,6 +34,7 @@ class Common(TransactionCase):
     @classmethod
     def setUpClassProduct(cls):
         cls.product = cls.env.ref("product.product_product_9")
+        # cls.product.uom_id.rounding = 0.01
 
     @classmethod
     def setUpClassPackagingType(cls):
@@ -54,6 +55,7 @@ class Common(TransactionCase):
 
     @classmethod
     def setUpClassPackaging(cls):
+        cls.product.packaging_ids.unlink()
         cls.packaging_tu = cls.env["product.packaging"].create(
             {
                 "name": "PACKAGING TU",
