@@ -134,12 +134,14 @@ class SaleOrder(models.Model):
 
     def _create_invoices(self, grouped=False, final=False, date=None):
         moves = super()._create_invoices(grouped=grouped, final=final, date=date)
-        if self.use_invoice_plan:
-            plan = self.invoice_plan_ids.filtered(
+        for sale in self.filtered(lambda s: s.use_invoice_plan):
+            next_installment = sale.invoice_plan_ids.filtered(
                 lambda x: x.to_invoice and x.invoice_type == "installment"
             )[:1]
-            for move in moves:
-                plan._compute_new_invoice_quantity(move)
-                move.invoice_date = plan.plan_date
-                move._compute_date()
+            if next_installment:
+                sale_moves = moves & sale.invoice_ids
+                for move in sale_moves:
+                    next_installment._compute_new_invoice_quantity(move)
+                    move.invoice_date = next_installment.plan_date
+                    move._compute_date()
         return moves
