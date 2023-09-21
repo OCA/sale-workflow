@@ -10,6 +10,8 @@
     "category": "Sale Workflow",
     "website": "https://github.com/OCA/sale-workflow",
     "license": "LGPL-3",
-    "depends": ["sale",],
+    "depends": [
+        "sale",
+    ],
     "installable": True,
 }
