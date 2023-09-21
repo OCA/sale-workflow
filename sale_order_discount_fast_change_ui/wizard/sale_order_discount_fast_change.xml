@@ -4,7 +4,9 @@
         <field name="name">sale.order.discount.fast.change.form</field>
         <field name="model">sale.order.discount.fast.change</field>
         <field name="arch" type="xml">
-            <form string="Enter the global discount amount to apply to all lines according to the policy">
+            <form
+                string="Enter the global discount amount to apply to all lines according to the policy"
+            >
                 <group>
                     <group>
                         <field name="discount" />

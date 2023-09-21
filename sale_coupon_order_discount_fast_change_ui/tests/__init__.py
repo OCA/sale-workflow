@@ -1,0 +1,1 @@
+from . import test_sale_coupon_order_discount_fast_change
