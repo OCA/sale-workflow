@@ -16,7 +16,6 @@ class TestSaleChainedMove(common.SavepointCase):
         cls.agrolait = cls.env.ref("base.res_partner_2")
 
     def _create_sale_order(self):
-
         vals = {
             "partner_id": self.agrolait.id,
         }
@@ -51,7 +50,66 @@ class TestSaleChainedMove(common.SavepointCase):
             4,
             len(self.order.mapped("order_line.chained_move_ids")),
         )
-        self.assertNotIn(
-            self.order.mapped("order_line.move_ids").ids,
-            self.order.mapped("order_line.chained_move_ids").ids,
+        moves = self.order.mapped("order_line.move_ids")
+        chained_moves = self.order.mapped("order_line.chained_move_ids")
+        self.assertTrue(
+            all(move not in chained_moves for move in moves),
+            "Some moves also appear in the chained moves",
+        )
+
+    def test_chained_move_same_product_preserve(self):
+        """
+        Check that multiple lines of the same product are not
+        merged together if the option is activated
+        """
+        self.warehouse.delivery_steps = "pick_pack_ship"
+        self.env["stock.rule"].search([("warehouse_id", "=", self.warehouse.id)]).write(
+            {"preserve_separate_so_lines": True}
+        )
+        self._create_sale_order()
+
+        vals = {
+            "order_id": self.order.id,
+            "product_id": self.product2.id,
+            "product_uom_qty": 45.0,
+        }
+        sale_line_3 = self.sale_order_line_obj.create(vals)
+        sale_line_3.product_id_change()
+        self.order.action_confirm()
+
+        self.assertEqual(
+            6,
+            len(self.order.mapped("order_line.chained_move_ids")),
+            "Move lines have not been preserved",
+        )
+
+        moves = self.order.mapped("order_line.move_ids")
+        chained_moves = self.order.mapped("order_line.chained_move_ids")
+        self.assertTrue(
+            all(move not in chained_moves for move in moves),
+            "Some moves also appear in the chained moves",
+        )
+
+    def test_chained_move_same_product(self):
+        """
+        If preserve_separate_so_lines is not active for
+        a specific type of rule, keep the default behaviour and merge them
+        """
+        self.warehouse.delivery_steps = "pick_pack_ship"
+
+        self._create_sale_order()
+
+        vals = {
+            "order_id": self.order.id,
+            "product_id": self.product2.id,
+            "product_uom_qty": 45.0,
+        }
+        sale_line_3 = self.sale_order_line_obj.create(vals)
+        sale_line_3.product_id_change()
+        self.order.action_confirm()
+
+        self.assertEqual(
+            4,
+            len(self.order.mapped("order_line.chained_move_ids")),
+            "Move lines have been preserved instead of being merged.",
         )

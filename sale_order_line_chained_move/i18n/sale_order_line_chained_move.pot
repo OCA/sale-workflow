@@ -50,6 +50,17 @@ msgid "Pack -> Out"
 msgstr ""
 
 #. module: sale_order_line_chained_move
+#: model:ir.model.fields,field_description:sale_order_line_chained_move.field_stock_rule__preserve_separate_so_lines
+msgid "Preserve Separate Sale Order Lines"
+msgstr ""
+
+#. module: sale_order_line_chained_move
+#: model:ir.model.fields,help:sale_order_line_chained_move.field_stock_rule__preserve_separate_so_lines
+msgid ""
+"Prevents Odoo's default behaviour of merging moves with the same product."
+msgstr ""
+
+#. module: sale_order_line_chained_move
 #: model:product.product,name:sale_order_line_chained_move.product_product_two_steps
 #: model:product.template,name:sale_order_line_chained_move.product_product_two_steps_product_template
 msgid "Product Test Sale Chained Move"
