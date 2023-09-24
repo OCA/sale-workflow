@@ -24,8 +24,12 @@ class ProductProduct(models.Model):
             "resource_booking.resource_booking_action"
         )
         action["context"] = {
-            "default_partner_id": self.partner_id.id,
             "default_product_id": self.id,
             "default_type_id": self.resource_booking_type_id.id,
         }
+        try:
+            # depends on partner_product_price
+            action["context"]["default_partner_id"] = self.partner_id.id
+        except:
+            pass
         return action
