@@ -39,4 +39,14 @@
             </group>
         </field>
     </record>
+    <record id="resource_booking_view_tree" model="ir.ui.view">
+        <field name="name">resource.booking.tree.inherit</field>
+        <field name="model">resource.booking</field>
+        <field name="inherit_id" ref="resource_booking.resource_booking_view_tree" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="product_id"/>
+            </field>
+        </field>
+    </record>
 </data>
