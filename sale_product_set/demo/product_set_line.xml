@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_set.product_set_line_computer_1" model="product.set.line">
+        <field name="discount">25</field>
+    </record>
+    <record id="product_set.product_set_line_services_1" model="product.set.line">
+        <field name="discount">50</field>
+    </record>
+</odoo>

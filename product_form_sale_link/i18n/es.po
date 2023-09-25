@@ -1,0 +1,55 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_form_sale_link
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-07-25 12:10+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: product_form_sale_link
+#: model:ir.model,name:product_form_sale_link.model_product_template
+msgid "Product"
+msgstr "Producto"
+
+#. module: product_form_sale_link
+#: model:ir.model,name:product_form_sale_link.model_product_product
+msgid "Product Variant"
+msgstr "Variante de Producto"
+
+#. module: product_form_sale_link
+#: model_terms:ir.ui.view,arch_db:product_form_sale_link.view_sales_order_line_filter
+msgid "Quotations"
+msgstr "Presupuestos"
+
+#. module: product_form_sale_link
+#: model:ir.actions.act_window,name:product_form_sale_link.action_product_product_sale_list
+#: model:ir.actions.act_window,name:product_form_sale_link.action_product_template_sale_list
+msgid "Sale Order Lines"
+msgstr "L├¡neas de pedido de venta"
+
+#. module: product_form_sale_link
+#: model_terms:ir.ui.view,arch_db:product_form_sale_link.product_product_form_view
+#: model_terms:ir.ui.view,arch_db:product_form_sale_link.product_template_form_view
+msgid "Sales"
+msgstr "Ventas"
+
+#. module: product_form_sale_link
+#: model_terms:ir.ui.view,arch_db:product_form_sale_link.view_sales_order_line_filter
+msgid "Sales Orders"
+msgstr "Órdenes de venta"
+
+#. module: product_form_sale_link
+#: model:ir.model.fields,field_description:product_form_sale_link.field_product_product__sale_lines_count
+#: model:ir.model.fields,field_description:product_form_sale_link.field_product_template__sale_lines_count
+msgid "Sold"
+msgstr "Vendido"

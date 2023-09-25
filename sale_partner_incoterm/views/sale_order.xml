@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_stock_sale_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.stock.sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='incoterm']" position="after">
+                <field name="incoterm_address_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

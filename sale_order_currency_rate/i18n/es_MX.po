@@ -1,0 +1,93 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_currency_rate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-08-16 22:05+0000\n"
+"PO-Revision-Date: 2023-08-16 22:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_currency_rate
+#: model_terms:ir.ui.view,arch_db:sale_order_currency_rate.res_config_settings_view
+msgid "<span class=\"o_form_label\">Show Currency Rate</span>"
+msgstr "<span class=\"o_form_label\">Mostrar tipo de cambio</span>"
+
+#. module: sale_order_currency_rate
+#: model:ir.model.fields.selection,name:sale_order_currency_rate.selection__res_company__sale_show_currency_rate__both
+msgid "Both"
+msgstr "Ambos"
+
+#. module: sale_order_currency_rate
+#: model:ir.model,name:sale_order_currency_rate.model_res_company
+msgid "Companies"
+msgstr "Empresas"
+
+#. module: sale_order_currency_rate
+#: model:ir.model,name:sale_order_currency_rate.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: sale_order_currency_rate
+#: model:ir.model.fields,field_description:sale_order_currency_rate.field_sale_order__currency_rate
+msgid "Currency Rate"
+msgstr "Tipo de cambio"
+
+#. module: sale_order_currency_rate
+#: model:ir.model.fields.selection,name:sale_order_currency_rate.selection__res_company__sale_show_currency_rate__inverse
+msgid "Inverse"
+msgstr "Inverso"
+
+#. module: sale_order_currency_rate
+#: model:ir.model.fields,field_description:sale_order_currency_rate.field_sale_order__inverse_currency_rate
+msgid "Inverse Currency Rate"
+msgstr "Tipo de Cambio Inverso"
+
+#. module: sale_order_currency_rate
+#: model:ir.model.fields.selection,name:sale_order_currency_rate.selection__res_company__sale_show_currency_rate__no
+msgid "No"
+msgstr "No"
+
+#. module: sale_order_currency_rate
+#: model:ir.model.fields.selection,name:sale_order_currency_rate.selection__res_company__sale_show_currency_rate__normal
+msgid "Normal"
+msgstr "Normal"
+
+#. module: sale_order_currency_rate
+#: model:ir.model,name:sale_order_currency_rate.model_sale_order
+msgid "Sales Order"
+msgstr "Orden de venta"
+
+#. module: sale_order_currency_rate
+#: model_terms:ir.ui.view,arch_db:sale_order_currency_rate.res_config_settings_view
+msgid ""
+"Select how to show exchange rate in sale orders.<br/>\n"
+"                            <b>No:</b> Don't show the exchange rate.<br/>\n"
+"                            <b>Normal:</b> Foreing currency to company "
+"currency.<br/>\n"
+"                            <b>Inverse:</b> Company currency to foreign "
+"currency.<br/>\n"
+"                            <b>Both:</b> Show both currency rates."
+msgstr ""
+"Selecciona como mostrar el tipo de cambio en pedido de venta.<br/>\n"
+"                            <b>No:</b> No muestra el tipo de cambio.<br/>\n"
+"                            <b>Normal:</b> Moneda extranjera a moneda de la "
+"empresa.<br/>\n"
+"                            <b>Inverso:</b> Moneda de la empresa a moneda "
+"extranjera.<br/>\n"
+"                            <b>Ambos:</b> Muestra ambos tipos de cambios."
+
+#. module: sale_order_currency_rate
+#: model:ir.model.fields,field_description:sale_order_currency_rate.field_res_company__sale_show_currency_rate
+#: model:ir.model.fields,field_description:sale_order_currency_rate.field_res_config_settings__sale_show_currency_rate
+#: model:ir.model.fields,field_description:sale_order_currency_rate.field_sale_order__sale_show_currency_rate
+msgid "Show Currency Rate"
+msgstr "Mostrar tipo de cambio"
