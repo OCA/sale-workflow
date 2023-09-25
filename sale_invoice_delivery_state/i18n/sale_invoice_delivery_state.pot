@@ -1,0 +1,66 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_invoice_delivery_state
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_invoice_delivery_state
+#: model:ir.model,name:sale_invoice_delivery_state.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sale_invoice_delivery_state
+#: model:ir.model.fields,field_description:sale_invoice_delivery_state.field_res_partner__display_name
+#: model:ir.model.fields,field_description:sale_invoice_delivery_state.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_invoice_delivery_state
+#: model:ir.model.fields.selection,name:sale_invoice_delivery_state.selection__res_partner__invoice_policy__fully
+msgid "Fully Delivered"
+msgstr ""
+
+#. module: sale_invoice_delivery_state
+#: model:ir.model.fields,field_description:sale_invoice_delivery_state.field_res_partner__id
+#: model:ir.model.fields,field_description:sale_invoice_delivery_state.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_invoice_delivery_state
+#: model:ir.model.fields,field_description:sale_invoice_delivery_state.field_res_partner__invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_delivery_state.field_res_users__invoice_policy
+msgid "Invoice Policy"
+msgstr ""
+
+#. module: sale_invoice_delivery_state
+#: model:ir.model.fields,field_description:sale_invoice_delivery_state.field_res_partner____last_update
+#: model:ir.model.fields,field_description:sale_invoice_delivery_state.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_invoice_delivery_state
+#: model:ir.model.fields.selection,name:sale_invoice_delivery_state.selection__res_partner__invoice_policy__partially
+msgid "Partially Delivered"
+msgstr ""
+
+#. module: sale_invoice_delivery_state
+#: model:ir.model.fields,help:sale_invoice_delivery_state.field_res_partner__invoice_policy
+#: model:ir.model.fields,help:sale_invoice_delivery_state.field_res_users__invoice_policy
+msgid ""
+"Partially Delivered: Invoice when the customer is partially delivered.\n"
+"Fully Delivered: Invoice when the customer is fully delivered."
+msgstr ""
+
+#. module: sale_invoice_delivery_state
+#: model:ir.model,name:sale_invoice_delivery_state.model_sale_order
+msgid "Sales Order"
+msgstr ""
