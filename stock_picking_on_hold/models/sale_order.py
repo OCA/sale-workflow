@@ -30,11 +30,17 @@ class SaleOrder(models.Model):
                 "&",
                 ("state", "=", "draft"),
                 ("invoice_status", "=", "no"),
+                "&",
+                ("state", "!=", "sale"),
                 ("invoice_status", "!=", "invoiced"),
             ]
         )
 
-        unblock = recs - block
+        unblock = recs.filtered_domain(
+            [
+                ("invoice_status", "=", "invoiced"),
+            ]
+        )
 
         block.write({"delivery_block_id": block_reason.id})
         unblock.action_remove_delivery_block()
@@ -47,9 +53,25 @@ class SaleOrder(models.Model):
 
         return result
 
+    @api.onchange("payment_method_id")
+    def onchange_payment_method_id(self):
+        self.auto_set_invoice_block()
+
+        # Remove block if payment_method doesn't require it
+        unblock = self.filtered_domain(
+            [("payment_method_id.hold_picking_until_payment", "=", False)]
+        )
+
+        unblock.write({"delivery_block_id": False})
+
     def _get_invoice_status(self):
         result = super()._get_invoice_status()
 
         self.auto_set_invoice_block()
 
         return result
+
+    def action_confirm(self):
+        self.auto_set_invoice_block()
+
+        return super().action_confirm()
