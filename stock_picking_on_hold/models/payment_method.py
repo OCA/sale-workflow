@@ -7,7 +7,6 @@ class PaymentMethod(models.Model):
     _inherit = "account.payment.method"
 
     hold_picking_until_payment = fields.Boolean(
-        help="If set to true, pickings will not be automatically confirmed when "
-        "the invoice has not been paid.",
+        help="Hold deliveries on sale orders with this payment method until invoiced",
         default=True,
     )

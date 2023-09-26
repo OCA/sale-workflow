@@ -15,6 +15,7 @@
     "license": "AGPL-3",
     "data": [
         "views/payment_method.xml",
+        "views/res_config_settings_view.xml",
         "views/sale_order_view.xml",
     ],
     "installable": True,
