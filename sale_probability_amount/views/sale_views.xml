@@ -5,11 +5,7 @@
         <field name="inherit_id" ref="sale.view_quotation_tree" />
         <field name="arch" type="xml">
             <field name="amount_total" position="after">
-                <field
-                    name="expected_amount_cur"
-                    sum="Total Tax Included"
-                    widget="monetary"
-                />
+                <field name="expected_amount_cur" sum="Total" widget="monetary" />
                 <field name="percentage" optional="hide" />
             </field>
         </field>
