@@ -13,16 +13,20 @@ class SaleOrder(models.Model):
     )
 
     def auto_set_invoice_block(self):
-        default_hold = (
-            self.env["ir.config_parameter"]
-            .sudo()
-            .get_param("stock_picking_on_hold.hold_picking_until_payment", False)
-        )
+        default_hold = self.company_id.hold_picking_until_payment
 
-        domain = [("payment_method_id.hold_picking_until_payment", "=", True)]
         if default_hold:
-            domain.insert(0, "|")
-            domain.append(("payment_method_id", "=", False))
+            domain = [
+                "|",
+                ("payment_method_id.hold_picking_until_payment", "=", True),
+                ("payment_method_id", "=", False),
+                ("website_id", "=", False),
+            ]
+        else:
+            domain = [
+                ("payment_method_id.hold_picking_until_payment", "=", True),
+                ("website_id", "=", False),
+            ]
 
         recs = self.filtered_domain(domain)
 

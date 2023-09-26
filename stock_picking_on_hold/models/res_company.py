@@ -3,11 +3,10 @@
 from odoo import fields, models
 
 
-class ResConfigSettings(models.TransientModel):
-    _inherit = "res.config.settings"
+class ResCompany(models.Model):
+    _inherit = "res.company"
 
     hold_picking_until_payment = fields.Boolean(
         help="Hold deliveries on sale orders without a payment method until invoiced",
-        related="company_id.hold_picking_until_payment",
-        readonly=False,
+        default=True,
     )

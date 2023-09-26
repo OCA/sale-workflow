@@ -7,9 +7,9 @@
     "category": "Warehouse",
     "summary": "This module allows to hold the picking until the invoice is paid",
     "depends": [
-        "stock",
-        "sale_stock_picking_blocking",
         "account_payment_mode",
+        "sale_stock_picking_blocking",
+        "website_sale",
     ],
     "author": "initOS GmbH, Odoo Community Association (OCA)",
     "license": "AGPL-3",
