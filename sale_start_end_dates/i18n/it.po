@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-10 15:38+0000\n"
-"PO-Revision-Date: 2023-05-09 12:54+0000\n"
+"PO-Revision-Date: 2023-10-09 08:23+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_start_end_dates
 #: field:sale.order,default_end_date:0
@@ -40,7 +40,7 @@ msgid ""
 "sale order %s"
 msgstr ""
 "La data di inizio deve essere inferiore o uguale alla data di fine per "
-"l'ordine %s."
+"l'ordine %s"
 
 #. module: sale_start_end_dates
 #: field:sale.order.line,end_date:0
@@ -51,19 +51,19 @@ msgstr "Data fine"
 #: code:addons/sale_start_end_dates/sale.py:93
 #, python-format
 msgid "Missing End Date for sale order line with Product '%s'."
-msgstr "Manca la data di fine nell'ordine di vendita per il prodotto '%s'"
+msgstr "Manca la data di fine nell'ordine di vendita per il prodotto '%s'."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/sale.py:98
 #, python-format
 msgid "Missing Start Date for sale order line with Product '%s'."
-msgstr "Manca la data di Inizio per il prodotto '%s'"
+msgstr "Manca la data di Inizio per il prodotto '%s'."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/sale.py:103
 #, python-format
 msgid "Missing number of days for sale order line with Product '%s'."
-msgstr "Mancano i numeri di giorni nell'ordine di vendita per il prodotto '%s'"
+msgstr "Mancano i numeri di giorni nell'ordine di vendita per il prodotto '%s'."
 
 #. module: sale_start_end_dates
 #: field:sale.order.line,must_have_dates:0
@@ -125,9 +125,9 @@ msgstr ""
 #. module: sale_start_end_dates
 #: view:sale.order:sale_start_end_dates.view_order_form
 msgid "{'default_end_date': parent.default_end_date}"
-msgstr ""
+msgstr "{'default_end_date': parent.default_end_date}"
 
 #. module: sale_start_end_dates
 #: view:sale.order:sale_start_end_dates.view_order_form
 msgid "{'default_start_date': parent.default_start_date}"
-msgstr ""
+msgstr "{'default_start_date': parent.default_start_date}"
