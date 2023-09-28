@@ -15,14 +15,14 @@ odoo.define(
                 var self = this;
                 var calendar_summary_id =
                     self.initialState.getContext().default_calendar_summary_id;
-                this.$buttons.on("click", ".o_button_new_sale_order", function () {
-                    self.do_action({
-                        name: "New Quotation",
-                        type: "ir.actions.act_window",
-                        res_model: "sale.order",
-                        target: "current",
-                        views: [[false, "form"]],
-                        context: {calendar_summary_id: calendar_summary_id || false},
+                this._rpc({
+                    model: "sale.planner.calendar.event",
+                    method: "action_open_sale_order",
+                    args: [false, {new_order: true}],
+                    context: {calendar_summary_id: calendar_summary_id || false},
+                }).then(function (action) {
+                    self.$buttons.on("click", ".o_button_new_sale_order", function () {
+                        self.do_action(action);
                     });
                 });
             }

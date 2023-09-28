@@ -130,7 +130,7 @@ class SalePlannerCalendarEvent(models.Model):
             )
             rec.partner_contact_name = contact.name
 
-    def action_open_sale_order(self):
+    def action_open_sale_order(self, new_order=False):
         """
         Search or Create an event planner  linked to sale order
         """
@@ -143,6 +143,10 @@ class SalePlannerCalendarEvent(models.Model):
             )
         )
         action = self.env["ir.actions.act_window"]._for_xml_id(action_xml_id)
+        if new_order:
+            action["name"] = "New Quotation"
+            action["context"] = self.env.context
+            return action
         action["context"] = {
             "default_sale_planner_calendar_event_id": self.id,
             "default_partner_id": self.partner_id.id,
