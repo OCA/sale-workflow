@@ -73,7 +73,7 @@ class ManualDelivery(models.TransientModel):
         ondelete="cascade",
     )
     route_id = fields.Many2one(
-        "stock.location.route",
+        "stock.route",
         string="Use specific Route",
         domain=[("sale_selectable", "=", True)],
         ondelete="cascade",
