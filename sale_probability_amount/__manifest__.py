@@ -7,5 +7,5 @@
     "license": "AGPL-3",
     "installable": True,
     "depends": ["sale_company_currency"],
-    "data": ["views/sale_views.xml"],
+    "data": ["views/sale_views.xml", "data/ir_config_parameter.xml"],
 }

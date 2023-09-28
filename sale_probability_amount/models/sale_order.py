@@ -8,7 +8,14 @@ from odoo import api, fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    percentage = fields.Integer("Winning sale %", default=50)
+    probability = fields.Integer(
+        "Winning sale %",
+        default=lambda self: self.env.ref(
+            "sale_probability_amount.quotation_default_probability",
+            raise_if_not_found=False,
+        ).value,
+    )
+
     expected_amount_cur = fields.Monetary(
         "Expected Amount in currency",
         compute="_compute_expected_amount_cur",
@@ -17,22 +24,20 @@ class SaleOrder(models.Model):
     )
 
     def action_confirm(self):
-        res = super().action_confirm()
-        if res:
-            self.percentage = 100
-        else:
-            return res
+        self.probability = 100
+        return super().action_confirm()
 
     def action_cancel(self):
-        res = super().action_cancel()
-        if res:
-            self.percentage = 0
-        else:
-            return res
+        self.probability = 0
+        return super().action_confirm()
 
-    @api.depends("amount_total_curr", "percentage")
+    def action_draft(self):
+        self.probability = 50
+        return super().action_confirm()
+
+    @api.depends("amount_total_curr", "probability")
     def _compute_expected_amount_cur(self):
         for record in self:
             record.expected_amount_cur = (
-                record.amount_total_curr * record.percentage / 100
+                record.amount_total_curr * record.probability / 100
             )
