@@ -9,11 +9,7 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     probability = fields.Integer(
-        "Winning sale %",
-        default=lambda self: self.env.ref(
-            "sale_probability_amount.quotation_default_probability",
-            raise_if_not_found=False,
-        ).value,
+        "Winning sale %", default=lambda self: self._get_default_value()
     )
 
     expected_amount_cur = fields.Monetary(
@@ -22,6 +18,13 @@ class SaleOrder(models.Model):
         currency_field="company_currency_id",
         store=True,
     )
+
+    def _get_default_value(self):
+        return (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("quotation_default_probability", 50)
+        )
 
     def action_confirm(self):
         self.probability = 100
@@ -32,7 +35,7 @@ class SaleOrder(models.Model):
         return super().action_confirm()
 
     def action_draft(self):
-        self.probability = 50
+        self.probability = self._get_default_value()
         return super().action_confirm()
 
     @api.depends("amount_total_curr", "probability")
