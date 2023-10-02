@@ -17,9 +17,9 @@
             <field name="arch" type="xml">
                 <field name="order_line" position="after">
                     <group
-                    colspan="4"
-                    attrs="{'invisible':[('state', 'not in', ['draft', 'sent'])]}"
-                >
+                        colspan="4"
+                        attrs="{'invisible':[('state', 'not in', ['draft', 'sent'])]}"
+                    >
                         <field name="probability" />
                     </group>
                 </field>

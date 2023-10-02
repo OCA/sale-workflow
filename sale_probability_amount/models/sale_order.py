@@ -27,16 +27,19 @@ class SaleOrder(models.Model):
         )
 
     def action_confirm(self):
+        res = super().action_confirm()
         self.probability = 100
-        return super().action_confirm()
+        return res
 
     def action_cancel(self):
+        res = super().action_cancel()
         self.probability = 0
-        return super().action_confirm()
+        return res
 
     def action_draft(self):
+        res = super().action_draft()
         self.probability = self._get_default_value()
-        return super().action_confirm()
+        return res
 
     @api.depends("amount_total_curr", "probability")
     def _compute_expected_amount_cur(self):
