@@ -65,7 +65,7 @@ addon | version | maintainers | summary
 [sale_product_category_menu](sale_product_category_menu/) | 16.0.1.0.0 |  | Shows 'Product Categories' menu item in Sales
 [sale_product_multi_add](sale_product_multi_add/) | 16.0.1.0.0 |  | Sale Product Multi Add
 [sale_product_set](sale_product_set/) | 16.0.1.1.0 |  | Sale product set
-[sale_quotation_number](sale_quotation_number/) | 16.0.1.0.0 |  | Different sequence for sale quotations
+[sale_quotation_number](sale_quotation_number/) | 16.0.1.0.1 |  | Different sequence for sale quotations
 [sale_start_end_dates](sale_start_end_dates/) | 16.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Adds start date and end date on sale order lines
 [sale_stock_cancel_restriction](sale_stock_cancel_restriction/) | 16.0.1.0.0 |  | Sale Stock Cancel Restriction
 [sale_stock_picking_blocking](sale_stock_picking_blocking/) | 16.0.1.0.0 |  | Allow you to block the creation of deliveries from a sale order.
