@@ -4,7 +4,7 @@
 {
     "name": "Sale Invoice Frequency",
     "summary": "Define the invoice frequency for customers",
-    "version": "15.0.1.1.0",
+    "version": "15.0.1.1.1",
     "development_status": "Beta",
     "category": "Sales/Sales",
     "website": "https://github.com/OCA/sale-workflow",

@@ -33,6 +33,7 @@ setuptools.setup(
         'odoo-addon-sale_force_whole_invoiceability>=15.0dev,<15.1dev',
         'odoo-addon-sale_global_discount>=15.0dev,<15.1dev',
         'odoo-addon-sale_invoice_blocking>=15.0dev,<15.1dev',
+        'odoo-addon-sale_invoice_frequency>=15.0dev,<15.1dev',
         'odoo-addon-sale_invoice_no_mail>=15.0dev,<15.1dev',
         'odoo-addon-sale_invoice_plan>=15.0dev,<15.1dev',
         'odoo-addon-sale_invoice_policy>=15.0dev,<15.1dev',
