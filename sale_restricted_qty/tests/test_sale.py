@@ -1,5 +1,6 @@
 # Copyright 2019 Akretion
 # Update (Migration) 2022 Ooops - Ashish Hirpara <hello@ashish-hirpara.com>
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import odoo.tests.common as common
@@ -49,31 +50,18 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
             }
         )
 
-    def refrech_sale_values(self, sale_order):
-        sale_order.order_line._compute_sale_restricted_qty()
-        sale_order.order_line.product_id_change()
-        sale_order.order_line._compute_is_qty_less_min_qty()
-        sale_order.order_line._compute_is_qty_bigger_max_qty()
-        sale_values = sale_order._convert_to_write(sale_order._cache)
-        return sale_values
-
     def test_check_sale_order_min_qty_required(self):
         line_values = {"product_id": self.product.id, "product_uom_qty": 5.0}
         self.product.manual_sale_min_qty = 10
         # Create sale order line with Qty less than min Qty
         with self.assertRaises(ValidationError):
-            sale_order = self.sale_order_model.new(
-                {"partner_id": self.partner.id, "order_line": [(0, 0, line_values)]}
-            )
-            sale_values = self.refrech_sale_values(sale_order)
-            sale_values.update(
+            self.sale_order_model.create(
                 {
-                    "partner_shipping_id": sale_values["partner_id"],
-                    "partner_invoice_id": sale_values["partner_id"],
+                    "partner_id": self.partner.id,
+                    "order_line": [(0, 0, line_values)],
                     "pricelist_id": 1,
                 }
             )
-            self.sale_order_model.create(sale_values)
         line_values["product_uom_qty"] = 12.0
         # Create sale order line with Qty great then min Qty
         self.sale_order = self.sale_order_model.create(
