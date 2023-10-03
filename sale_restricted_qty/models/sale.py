@@ -1,4 +1,5 @@
 # Copyright 2019 Akretion
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -56,8 +57,11 @@ class SaleOrderLine(models.Model):
         )
         for line in line_to_test:
             invaild_min_lines.append(
-                _('Product "%s": Min Quantity %s.')
-                % (line.product_id.name, line.sale_min_qty)
+                _(
+                    'Product "%(product)s": Min Quantity %(min_qty)s.',
+                    product=line.product_id.name,
+                    min_qty=line.sale_min_qty,
+                )
             )
 
         if invaild_min_lines:
@@ -74,8 +78,11 @@ class SaleOrderLine(models.Model):
         )
         for line in line_to_test:
             invaild_max_lines.append(
-                _('Product "%s": max Quantity %s.')
-                % (line.product_id.name, line.sale_max_qty)
+                _(
+                    'Product "%(product)s": max Quantity %(max_qty)s.',
+                    product=line.product_id.name,
+                    max_qty=line.sale_max_qty,
+                )
             )
 
         if invaild_max_lines:
@@ -90,8 +97,11 @@ class SaleOrderLine(models.Model):
         line_to_test = self.filtered(lambda sl: sl.is_qty_not_multiple_qty)
         for line in line_to_test:
             invaild_multiple_lines.append(
-                _('Product "%s": multiple Quantity %s.')
-                % (line.product_id.name, line.sale_multiple_qty)
+                _(
+                    'Product "%(product)s": multiple Quantity %(multiple_qty)s.',
+                    product=line.product_id.name,
+                    multiple_qty=line.sale_multiple_qty,
+                )
             )
 
         if invaild_multiple_lines:
