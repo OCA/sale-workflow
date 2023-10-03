@@ -1,12 +1,29 @@
 # Copyright 2019 Akretion
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, models
+from odoo import api, fields, models
 
 
 class ProductCategory(models.Model):
     _name = "product.category"
     _inherit = ["product.category", "product.restricted.qty.mixin"]
+
+    sale_multiple_qty = fields.Float(
+        recursive=True,
+    )
+    sale_min_qty = fields.Float(
+        recursive=True,
+    )
+    force_sale_min_qty = fields.Boolean(
+        recursive=True,
+    )
+    sale_max_qty = fields.Float(
+        recursive=True,
+    )
+    force_sale_max_qty = fields.Boolean(
+        recursive=True,
+    )
 
     def _get_sale_restricted_qty(self):
         res = super()._get_sale_restricted_qty()

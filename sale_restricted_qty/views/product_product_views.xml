@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
 <odoo>
 
     <record id="min_order_qty_product_product_form_view" model="ir.ui.view">
@@ -6,7 +10,7 @@
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_normal_form_view" />
         <field name="arch" type="xml">
-            <group name="invoicing" position="before">
+            <xpath expr="//page[@name='sales']/group[@name='sale']" position="after">
                 <group
                     name="sale_restricted_qty"
                     string="Sale restricted qty"
@@ -54,7 +58,7 @@
                         />
                     </group>
                 </group>
-            </group>
+            </xpath>
         </field>
     </record>
 </odoo>
