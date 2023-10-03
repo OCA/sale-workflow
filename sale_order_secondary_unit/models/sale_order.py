@@ -24,29 +24,58 @@ class SaleOrderLine(models.Model):
     @api.depends("secondary_uom_qty", "secondary_uom_id", "product_uom_qty")
     def _compute_product_uom_qty(self):
         self._compute_helper_target_field_qty()
+        # for line in self:
+        #     line_uom_qty = line.product_uom_qty
+        #     line.secondary_uom_id = line.product_id.sale_secondary_uom_id
+        #     if line.product_id.sale_secondary_uom_id:
+        #         if line_uom_qty == 1.0:
+        #             pass
+        #             # line.secondary_uom_qty = 1.0
+        #             # line.onchange_product_uom_for_secondary()
+        #         else:
+        #             line.product_uom_qty = line_uom_qty
 
     @api.onchange("product_uom")
     def onchange_product_uom_for_secondary(self):
         self._onchange_helper_product_uom_for_secondary()
 
-    @api.onchange("product_id")
-    def product_id_change(self):
-        """
-        If default sales secondary unit set on product, put on secondary
-        quantity 1 for being the default quantity. We override this method,
-        that is the one that sets by default 1 on the other quantity with that
-        purpose.
-        """
-        res = super().product_id_change()
-        line_uom_qty = self.product_uom_qty
-        self.secondary_uom_id = self.product_id.sale_secondary_uom_id
-        if self.product_id.sale_secondary_uom_id:
-            if line_uom_qty == 1.0:
-                self.secondary_uom_qty = 1.0
-                self.onchange_product_uom_for_secondary()
-            else:
-                self.product_uom_qty = line_uom_qty
-        return res
+    # @api.onchange("product_id")
+    # def product_id_change(self):
+    #     """
+    #     If default sales secondary unit set on product, put on secondary
+    #     quantity 1 for being the default quantity. We override this method,
+    #     that is the one that sets by default 1 on the other quantity with that
+    #     purpose.
+    #     """
+    #     res = super().product_id_change()
+    #     line_uom_qty = self.product_uom_qty
+    #     self.secondary_uom_id = self.product_id.sale_secondary_uom_id
+    #     if self.product_id.sale_secondary_uom_id:
+    #         if line_uom_qty == 1.0:
+    #             self.secondary_uom_qty = 1.0
+    #             self.onchange_product_uom_for_secondary()
+    #         else:
+    #             self.product_uom_qty = line_uom_qty
+    #     return res
+
+    # def _compute_product_uom_qty(self):
+    #     """
+    #     If default sales secondary unit set on product, put on secondary
+    #     quantity 1 for being the default quantity. We override this method,
+    #     that is the one that sets by default 1 on the other quantity with that
+    #     purpose.
+    #     """
+    #     super()._compute_product_uom_qty()
+    #     for line in self:
+    #         line_uom_qty = line.product_uom_qty
+    #         line.secondary_uom_id = line.product_id.sale_secondary_uom_id
+    #         if line.product_id.sale_secondary_uom_id:
+    #             if line_uom_qty == 1.0:
+    #                 pass
+    #                 # line.secondary_uom_qty = 1.0
+    #                 # line.onchange_product_uom_for_secondary()
+    #             else:
+    #                 line.product_uom_qty = line_uom_qty
 
     @api.depends("secondary_uom_qty", "product_uom_qty", "price_unit")
     def _compute_secondary_uom_unit_price(self):

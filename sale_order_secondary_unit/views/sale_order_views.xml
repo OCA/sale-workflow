@@ -6,16 +6,16 @@
         <field name="name">Sale Order Secondary Unit</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
-        <field name="groups_id" eval="[(4, ref('uom.group_uom'))]" />
         <field name="arch" type="xml">
             <xpath
                 expr="//field[@name='order_line']/form//field[@name='price_subtotal']"
                 position="after"
             >
-                <label for="secondary_uom_qty" />
-                <div class="o_row" name="secondary_uom_qty">
+                <label for="secondary_uom_qty" groups="uom.group_uom" />
+                <div class="o_row" name="secondary_uom_qty" groups="uom.group_uom">
                     <field
                         name="secondary_uom_qty"
+                        groups="uom.group_uom"
                         class="oe_inline oe_no_button"
                         widget="numeric_step"
                         options="{'auto_select': True}"
@@ -23,6 +23,7 @@
                     />
                     <field
                         name="secondary_uom_id"
+                        groups="uom.group_uom"
                         class="oe_inline oe_no_button"
                         domain="['|', ('product_id', '=', product_id),
                                     '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
@@ -38,10 +39,12 @@
             >
                 <field
                     name="secondary_uom_qty"
+                    groups="uom.group_uom"
                     attrs="{'readonly': [('parent.state', 'in', ('done', 'cancel'))]}"
                 />
                 <field
                     name="secondary_uom_id"
+                    groups="uom.group_uom"
                     domain="['|', ('product_id', '=', product_id),
                                 '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
                                          ('product_id', '=', False)]"
@@ -53,16 +56,19 @@
                 expr="//field[@name='order_line']/kanban//field[@name='company_id']"
                 position="after"
             >
-                <field name="secondary_uom_id" invisible="1" />
-                <field name="secondary_uom_qty" invisible="1" />
+                <field name="secondary_uom_id" invisible="1" groups="uom.group_uom" />
+                <field name="secondary_uom_qty" invisible="1" groups="uom.group_uom" />
             </xpath>
             <xpath
-                expr="//field[@name='order_line']/kanban//t[@t-esc='record.product_uom_qty.value']"
+                expr="//field[@name='order_line']/kanban//t[@t-out='record.product_uom_qty.value']"
                 position="before"
             >
                 <t t-if="record.secondary_uom_id.value">
-                    <t t-esc="record.secondary_uom_qty.value" />
-                    <t t-esc="record.secondary_uom_id.value" /> ->
+                    <t t-esc="record.secondary_uom_qty.value" groups="uom.group_uom" />
+                    <t
+                        t-esc="record.secondary_uom_id.value"
+                        groups="uom.group_uom"
+                    /> ->
                 </t>
             </xpath>
         </field>

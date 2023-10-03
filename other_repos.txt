@@ -1,0 +1,15 @@
+odoo-addon-account_invoice_fixed_discount>=16.0dev,<16.1dev
+odoo-addon-account_invoice_start_end_dates>=16.0dev,<16.1dev
+odoo-addon-account_invoice_triple_discount>=16.0dev,<16.1dev
+odoo-addon-account_payment_sale>=16.0dev,<16.1dev
+odoo-addon-base_exception>=16.0dev,<16.1dev
+odoo-addon-base_revision>=16.0dev,<16.1dev
+odoo-addon-base_substate>=16.0dev,<16.1dev
+odoo-addon-base_tier_validation>=16.0dev,<16.1dev
+odoo-addon-base_view_inheritance_extension>=16.0dev,<16.1dev
+odoo-addon-product_secondary_unit>=16.0dev,<16.1dev
+odoo-addon-product_set>=16.0dev,<16.1dev
+odoo-addon-product_supplierinfo_for_customer>=16.0dev,<16.1dev
+odoo-addon-queue_job>=16.0dev,<16.1dev
+odoo-addon-stock_restrict_lot>=16.0dev,<16.1dev
+odoo>=16.0a,<16.1dev
