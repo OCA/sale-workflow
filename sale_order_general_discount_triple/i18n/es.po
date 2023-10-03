@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-20 04:33+0000\n"
+"PO-Revision-Date: 2023-10-09 07:41+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -24,12 +24,12 @@ msgstr "Configuración de Ajustes"
 #. module: sale_order_general_discount_triple
 #: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order_line__discount2
 msgid "Disc. 2 (%)"
-msgstr ""
+msgstr "Desc. 2 (%)"
 
 #. module: sale_order_general_discount_triple
 #: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order_line__discount3
 msgid "Disc. 3 (%)"
-msgstr ""
+msgstr "Desc. 3 (%)"
 
 #. module: sale_order_general_discount_triple
 #: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__general_discount__discount
@@ -57,7 +57,7 @@ msgstr "Descuento General"
 #. module: sale_order_general_discount_triple
 #: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_res_config_settings__pricelist_discount
 msgid "Pricelist Discount"
-msgstr ""
+msgstr "Descuento en la lista de precios"
 
 #. module: sale_order_general_discount_triple
 #: model:ir.model,name:sale_order_general_discount_triple.model_sale_order
