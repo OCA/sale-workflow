@@ -434,8 +434,10 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid ""
-"If the new end field is set, in addition to creating the recurring event assigned to the new commercial,\n"
-"                                a new recurring event will be created from the end date associated with the current commercial."
+"If the new end field is set, in addition to creating the recurring event "
+"assigned to the new commercial,\n"
+"                                a new recurring event will be created from "
+"the end date associated with the current commercial."
 msgstr ""
 
 #. module: sale_planner_calendar
@@ -1025,8 +1027,7 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid ""
-"The changes will be applied to event records with new commercial user "
-"filled."
+"The changes will be applied to event records with new commercial user filled."
 msgstr ""
 
 #. module: sale_planner_calendar
@@ -1050,8 +1051,7 @@ msgstr ""
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.res_config_settings_view_form
-msgid ""
-"Time of the next day until which orders of the current day are assigned"
+msgid "Time of the next day until which orders of the current day are assigned"
 msgstr ""
 
 #. module: sale_planner_calendar

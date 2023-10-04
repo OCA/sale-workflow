@@ -61,6 +61,7 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
         domain = [
             ("recurrency", "=", True),
             ("recurrence_id.until", ">", self.new_start or fields.Date.today()),
+            ("is_base_recurrent_event", "=", True),
         ]
         if self.user_id:
             domain.append(("user_id", "=", self.user_id.id))
@@ -72,11 +73,7 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
             domain.append(("categ_ids", "in", self.event_type_id.ids))
         if self.week_list:
             domain.append((self.week_list.lower(), "=", True))
-        calendar_events = (
-            self.env["calendar.event"]
-            .with_context(calendar_event_primary_only=True)
-            .search(domain)
-        )
+        calendar_events = self.env["calendar.event"].search(domain)
         self.line_ids = False
         for calendar_event in calendar_events:
             self.env["sale.planner.calendar.reassign.line.wiz"].create(
