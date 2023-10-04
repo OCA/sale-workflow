@@ -36,12 +36,11 @@
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_calendar_event_tree_primary_only" />
         <field name="context">{
-            'calendar_event_primary_only':True,
             'default_recurrency':True,
             'search_default_user_id':uid,
         }</field>
         <field name="domain">[('recurrency', '=', True),
-            '|', ('recurrence_id.until', '>=', datetime.date.today().strftime("%Y-%m-%d")), ('recurrence_id.until', '=', False)]</field>
+            ("is_base_recurrent_event", "=", True), '|', ('recurrence_id.until', '>=', datetime.date.today().strftime("%Y-%m-%d")), ('recurrence_id.until', '=', False)]</field>
     </record>
 
     <record id="view_calendar_event_search" model="ir.ui.view">
