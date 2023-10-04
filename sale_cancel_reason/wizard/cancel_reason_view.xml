@@ -12,7 +12,7 @@
                         sale order.
                     </p>
                     <group>
-                        <field name="reason_id" widget="selection" />
+                        <field name="reason_id" />
                     </group>
                 </xpath>
             </field>
