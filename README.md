@@ -1,7 +1,6 @@
-This project branch because the PR from product-attribute is not yet migrated, and we need it.
-
-product-attribute: 
-https://github.com/OCA/product-attribute/pull/1325
+This project branch because the following PRs are pending to be merged:
+ 
+https://github.com/OCA/sale-workflow/pull/2689
 
 
 
