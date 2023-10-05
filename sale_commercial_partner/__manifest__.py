@@ -6,6 +6,7 @@
     "name": "Sale Commercial Partner",
     "summary": "Add stored related field 'Commercial Entity' on sale orders",
     "version": "16.0.1.0.0",
+    "development_status": "Production/Stable",
     "author": "Akretion,Odoo Community Association (OCA)",
     "maintainers": ["alexis-via"],
     "website": "https://github.com/OCA/sale-workflow",
