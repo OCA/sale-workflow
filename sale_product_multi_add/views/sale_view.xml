@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_mass_import_form" model="ir.ui.view">
+        <field name="name">sale.order.mass.import.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="order_line" position="before">
+                <button
+                    name="%(action_import_product_to_sale)d"
+                    class="btn-primary"
+                    style="margin:12px 0px 12px 0px;"
+                    string="Add multiple products"
+                    icon="fa-plus-circle"
+                    Help="Select Products to Import"
+                    type="action"
+                    attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"
+                />
+            </field>
+            <field name="order_line" position="attributes">
+                <attribute
+                    translation="off"
+                    name="options"
+                >{'always_reload':true}</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

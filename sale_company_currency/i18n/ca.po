@@ -1,0 +1,53 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_company_currency
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2021-03-26 10:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: sale_company_currency
+#: model:ir.model.fields,field_description:sale_company_currency.field_sale_order__company_currency_id
+msgid "Company Currency"
+msgstr "Moneda de l'empresa"
+
+#. module: sale_company_currency
+#: model:ir.model.fields,help:sale_company_currency.field_sale_order__amount_total_curr
+msgid "Sale Order Amount in the company Currency"
+msgstr "Import de la comanda de venda a la moneda de l’empresa"
+
+#. module: sale_company_currency
+#: model:ir.model,name:sale_company_currency.model_sale_order
+msgid "Sales Order"
+msgstr "Comandes de venda"
+
+#. module: sale_company_currency
+#: model_terms:ir.ui.view,arch_db:sale_company_currency.view_order_tree
+#: model_terms:ir.ui.view,arch_db:sale_company_currency.view_quotation_tree
+msgid "Total"
+msgstr "Total"
+
+#. module: sale_company_currency
+#: model_terms:ir.ui.view,arch_db:sale_company_currency.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_company_currency.view_order_tree
+#: model_terms:ir.ui.view,arch_db:sale_company_currency.view_quotation_tree
+msgid "Total (Company Currency)"
+msgstr "Total (moneda de l'empresa)"
+
+#. module: sale_company_currency
+#: model:ir.model.fields,field_description:sale_company_currency.field_sale_order__amount_total_curr
+msgid "Total Amount"
+msgstr "Suma total"

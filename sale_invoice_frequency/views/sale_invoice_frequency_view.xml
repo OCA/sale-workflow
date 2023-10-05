@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Moduon Team S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<data>
+    <record id="sale_invoice_frequency_action" model="ir.actions.act_window">
+        <field name="name">Invoicing frequency</field>
+        <field name="res_model">sale.invoice.frequency</field>
+        <field name="view_mode">tree,form</field>
+        <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create a new invoicing frequency record
+            </p><p>
+            Once the invoicing frequency record is created, you can assign it to a Customer.
+            </p>
+        </field>
+    </record>
+
+    <record id="sale_invoice_frequency_view_form" model="ir.ui.view">
+        <field name="name">Invoice frequency</field>
+        <field name="model">sale.invoice.frequency</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="name" />
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_invoice_frequency_view_tree" model="ir.ui.view">
+        <field name="name">Invoice frequency</field>
+        <field name="model">sale.invoice.frequency</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="sale_invoice_frequency_view_search" model="ir.ui.view">
+        <field name="name">Invoice frequency</field>
+        <field name="model">sale.invoice.frequency</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+
+    <menuitem
+        id="sale_invoice_frequency_menu"
+        parent="sale.menu_sale_config"
+        action="sale_invoice_frequency_action"
+        groups="account.group_account_invoice"
+        name="Invoicing frequency"
+        sequence="100"
+    />
+</data>

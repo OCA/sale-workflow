@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_line_tree" model="ir.ui.view">
+        <field name="name">sale_mrp_bom.sale.order.line.tree</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="route_id" position="after">
+                <field name="bom_id" groups="sale_mrp_bom.sale_mrp_bom_group" />
+            </field>
+        </field>
+    </record>
+</odoo>

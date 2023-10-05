@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <form string="Blocked in draft due to exceptions">
                 <group>
-                    <field name="exception_ids" nolabel="1" colspan="4">
+                    <field name="exception_ids" nolabel="1" colspan="2">
                         <tree>
                             <field name="name" />
                             <field name="description" />

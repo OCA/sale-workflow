@@ -1,0 +1,73 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_automatic_workflow_job
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-09-20 04:33+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_automatic_workflow_job
+#. odoo-python
+#: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:0
+#, python-format
+msgid "Create invoices for sales order {}"
+msgstr "Cree facturas para pedidos de venta {}"
+
+#. module: sale_automatic_workflow_job
+#. odoo-python
+#: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:0
+#, python-format
+msgid "Mark sales order {} as done"
+msgstr "Marcar el pedido de ventas {} como hecho"
+
+#. module: sale_automatic_workflow_job
+#: model:ir.model,name:sale_automatic_workflow_job.model_queue_job
+msgid "Queue Job"
+msgstr "Cola de trabajo"
+
+#. module: sale_automatic_workflow_job
+#. odoo-python
+#: code:addons/sale_automatic_workflow_job/models/queue_job.py:0
+#, python-format
+msgid "Sale Automatic Workflow Job"
+msgstr "Flujo Automático de Trabajo"
+
+#. module: sale_automatic_workflow_job
+#: model:ir.model,name:sale_automatic_workflow_job.model_automatic_workflow_job
+msgid ""
+"Scheduler that will play automatically the validation of invoices, "
+"pickings..."
+msgstr ""
+"Programador que reproducirá automáticamente la validación de facturas, "
+"recogidas..."
+
+#. module: sale_automatic_workflow_job
+#. odoo-python
+#: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:0
+#, python-format
+msgid "Validate invoice {}"
+msgstr "Validar factura {}"
+
+#. module: sale_automatic_workflow_job
+#. odoo-python
+#: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:0
+#, python-format
+msgid "Validate sales order {}"
+msgstr "Validar pedido de venta {}"
+
+#. module: sale_automatic_workflow_job
+#. odoo-python
+#: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:0
+#, python-format
+msgid "Validate transfer {}"
+msgstr "Validar transferencia {}"
