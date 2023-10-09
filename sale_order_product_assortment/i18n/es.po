@@ -8,14 +8,14 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-12-02 11:06+0000\n"
 "PO-Revision-Date: 2020-12-02 12:08+0100\n"
+"Last-Translator: Carlos <carlos.roca@tecnativa.com>\n"
 "Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
-"Last-Translator: Carlos <carlos.roca@tecnativa.com>\n"
-"Language: es\n"
 
 #. module: sale_order_product_assortment
 #: model:ir.model.fields,field_description:sale_order_product_assortment.field_sale_order__blacklist_product_ids
@@ -33,10 +33,19 @@ msgid "Has Whitelist"
 msgstr "Tiene lista blanca"
 
 #. module: sale_order_product_assortment
-#: model:ir.model.fields,field_description:sale_order_product_assortment.field_sale_order_line__product_2_id
-#: model:ir.model.fields,field_description:sale_order_product_assortment.field_sale_order_line__product_3_id
+#: model_terms:ir.ui.view,arch_db:sale_order_product_assortment.view_order_form
 msgid "Product"
 msgstr "Producto"
+
+#. module: sale_order_product_assortment
+#: model:ir.model.fields,field_description:sale_order_product_assortment.field_sale_order_line__product_has_blacklist_assortment_id
+msgid "Product with blacklist"
+msgstr ""
+
+#. module: sale_order_product_assortment
+#: model:ir.model.fields,field_description:sale_order_product_assortment.field_sale_order_line__product_has_both_assortment_id
+msgid "Product with whitelist and blacklist"
+msgstr ""
 
 #. module: sale_order_product_assortment
 #: model:ir.model,name:sale_order_product_assortment.model_sale_order
