@@ -16,10 +16,8 @@
                     <field name="amount" />
                     <field name="ref" />
                     <field name="partner_id" invisible="1" />
-
                 </group>
-                <group>
-                    <field name="wiz_line_ids" nolabel="1">
+                    <field name="wiz_line_ids" nolabel="1" colspan="2">
                         <tree editable="bottom" create="0">
                             <field name="state" invisible="1" />
                             <field name="is_selected" widget="boolean_toggle" />
@@ -31,7 +29,6 @@
                             <field name="currency_id" invisible="1" />
                         </tree>
                     </field>
-                </group>
                 <footer>
                     <button
                         name="create_sale_invoice_payment_sheet"
