@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_stock_sourcing_address
+# 	* sale_stock_sourcing_address
 #
 msgid ""
 msgstr ""
@@ -23,12 +23,12 @@ msgstr ""
 "Mostra l'adreça d'abastament a les línies de comandes de factures i factures"
 
 #. module: sale_stock_sourcing_address
-#: model:ir.model,name:sale_stock_sourcing_address.model_account_invoice_line
-msgid "Invoice Line"
-msgstr "Línia de factura"
+#: model:ir.model,name:sale_stock_sourcing_address.model_account_move_line
+msgid "Journal Item"
+msgstr ""
 
 #. module: sale_stock_sourcing_address
-#: model:ir.model.fields,field_description:sale_stock_sourcing_address.field_account_invoice_line__warehouse_id
+#: model:ir.model.fields,field_description:sale_stock_sourcing_address.field_account_move_line__warehouse_id
 #: model:ir.model.fields,field_description:sale_stock_sourcing_address.field_sale_order_line__warehouse_id
 msgid "Order's Warehouse"
 msgstr "Ordres de magatzem"
@@ -39,7 +39,10 @@ msgid "Sales Order Line"
 msgstr "Línia de comandes de vendes"
 
 #. module: sale_stock_sourcing_address
-#: model:ir.model.fields,field_description:sale_stock_sourcing_address.field_account_invoice_line__sourcing_address_id
+#: model:ir.model.fields,field_description:sale_stock_sourcing_address.field_account_move_line__sourcing_address_id
 #: model:ir.model.fields,field_description:sale_stock_sourcing_address.field_sale_order_line__sourcing_address_id
 msgid "Sourcing Address"
 msgstr "Adreça de proveïment"
+
+#~ msgid "Invoice Line"
+#~ msgstr "Línia de factura"
