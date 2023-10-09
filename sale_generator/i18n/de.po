@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_generator
+# 	* sale_generator
 #
 msgid ""
 msgstr ""
@@ -124,7 +124,8 @@ msgstr "ID"
 
 #. module: sale_generator
 #: model_terms:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
-msgid "In order to add customers, you have two\n"
+msgid ""
+"In order to add customers, you have two\n"
 "                    possibilities:"
 msgstr ""
 "Um Kunden hinzuzufügen, \n"
@@ -213,7 +214,8 @@ msgstr "Status"
 #. module: sale_generator
 #: model:ir.model.fields,help:sale_generator.field_sale_generator__company_id
 msgid "The company is automatically set from your user preferences."
-msgstr "Das Unternehmen wird automatisch von den Benutzereinstellungen gezogen."
+msgstr ""
+"Das Unternehmen wird automatisch von den Benutzereinstellungen gezogen."
 
 #. module: sale_generator
 #: model:ir.model.fields,field_description:sale_generator.field_sale_generator__warehouse_id
@@ -222,8 +224,10 @@ msgstr "Lager"
 
 #. module: sale_generator
 #: model_terms:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
-msgid "add an existing customer by searching in your\n"
-"                            database, for that you can click on add item at the end\n"
+msgid ""
+"add an existing customer by searching in your\n"
+"                            database, for that you can click on add item at "
+"the end\n"
 "                            of the list."
 msgstr ""
 "einen existierenden Kunden hinzufügen, indem am Ende der Liste auf 'Eintrag "
@@ -231,7 +235,8 @@ msgstr ""
 
 #. module: sale_generator
 #: model_terms:ir.ui.view,arch_db:sale_generator.view_sale_generator_form
-msgid "create multiple customers simultaneously by launching the\n"
+msgid ""
+"create multiple customers simultaneously by launching the\n"
 "                            following wizard:"
 msgstr ""
 "mehrere Kunden gleichzeitig hinzufügen, indem der folgende Assistent "
