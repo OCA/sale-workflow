@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_delivery_state
+# 	* sale_delivery_state
 #
 msgid ""
 msgstr ""
@@ -18,8 +18,12 @@ msgstr ""
 
 #. module: sale_delivery_state
 #: model:ir.model.fields,help:sale_delivery_state.field_sale_order__force_delivery_state
-msgid "Allow to enforce done state of delivery, for instance if some quantities were cancelled"
-msgstr "指定することで配送ステータスを強制的に完了に変更することを許可します。一例として数量の一部がキャンセルされたときに指定します"
+msgid ""
+"Allow to enforce done state of delivery, for instance if some quantities "
+"were cancelled"
+msgstr ""
+"指定することで配送ステータスを強制的に完了に変更することを許可します。一例と"
+"して数量の一部がキャンセルされたときに指定します"
 
 #. module: sale_delivery_state
 #: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order__delivery_state
