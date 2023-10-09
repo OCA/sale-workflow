@@ -121,11 +121,6 @@ msgid "Reason for the cancellation"
 msgstr ""
 
 #. module: sale_cancel_reason
-#: model:ir.model,name:sale_cancel_reason.model_sale_order
-msgid "Sale Order"
-msgstr ""
-
-#. module: sale_cancel_reason
 #: model:ir.actions.act_window,name:sale_cancel_reason.action_sale_order_cancel_reason
 #: model:ir.model,name:sale_cancel_reason.model_sale_order_cancel_reason
 msgid "Sale Order Cancel Reason"
@@ -136,6 +131,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel_reason_form
 #: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel_reason_tree
 msgid "Sale Order Cancel Reasons"
+msgstr ""
+
+#. module: sale_cancel_reason
+#: model:ir.model,name:sale_cancel_reason.model_sale_order
+msgid "Sales Order"
 msgstr ""
 
 #. module: sale_cancel_reason

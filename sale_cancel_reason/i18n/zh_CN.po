@@ -122,11 +122,6 @@ msgid "Reason for the cancellation"
 msgstr "取消原因"
 
 #. module: sale_cancel_reason
-#: model:ir.model,name:sale_cancel_reason.model_sale_order
-msgid "Sale Order"
-msgstr "销售订单"
-
-#. module: sale_cancel_reason
 #: model:ir.actions.act_window,name:sale_cancel_reason.action_sale_order_cancel_reason
 #: model:ir.model,name:sale_cancel_reason.model_sale_order_cancel_reason
 msgid "Sale Order Cancel Reason"
@@ -140,6 +135,11 @@ msgid "Sale Order Cancel Reasons"
 msgstr "销售订单取消原因"
 
 #. module: sale_cancel_reason
+#: model:ir.model,name:sale_cancel_reason.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_cancel_reason
 #: model:sale.order.cancel.reason,name:sale_cancel_reason.cancel_reason_no_service_needed
 msgid "Service no longer needed"
 msgstr "不再需要服务"
@@ -148,3 +148,6 @@ msgstr "不再需要服务"
 #: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
 msgid "or"
 msgstr "或"
+
+#~ msgid "Sale Order"
+#~ msgstr "销售订单"

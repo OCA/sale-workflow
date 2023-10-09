@@ -122,11 +122,6 @@ msgid "Reason for the cancellation"
 msgstr "Razlog za preklic"
 
 #. module: sale_cancel_reason
-#: model:ir.model,name:sale_cancel_reason.model_sale_order
-msgid "Sale Order"
-msgstr "Prodajni nalog"
-
-#. module: sale_cancel_reason
 #: model:ir.actions.act_window,name:sale_cancel_reason.action_sale_order_cancel_reason
 #: model:ir.model,name:sale_cancel_reason.model_sale_order_cancel_reason
 msgid "Sale Order Cancel Reason"
@@ -140,6 +135,11 @@ msgid "Sale Order Cancel Reasons"
 msgstr "Razlogi za preklic prodajnega naloga"
 
 #. module: sale_cancel_reason
+#: model:ir.model,name:sale_cancel_reason.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_cancel_reason
 #: model:sale.order.cancel.reason,name:sale_cancel_reason.cancel_reason_no_service_needed
 msgid "Service no longer needed"
 msgstr "Storitev ni več potrebovana"
@@ -148,3 +148,6 @@ msgstr "Storitev ni več potrebovana"
 #: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_sale_order_cancel
 msgid "or"
 msgstr "ali"
+
+#~ msgid "Sale Order"
+#~ msgstr "Prodajni nalog"
