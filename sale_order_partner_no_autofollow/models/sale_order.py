@@ -11,7 +11,11 @@ class SaleOrder(models.Model):
             and self.partner_id.id in partner_ids
         ):
             partner_ids.remove(self.partner_id.id)
+<<<<<<< HEAD
         return super().message_subscribe(partner_ids, subtype_ids)
+=======
+        return super(SaleOrder, self).message_subscribe(partner_ids, subtype_ids)
+>>>>>>> sale_order_partner_no_autofollow: Migration to 15.0
 
     @api.model_create_multi
     def create(self, values):
