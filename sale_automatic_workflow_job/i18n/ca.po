@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_automatic_workflow_job
+# 	* sale_automatic_workflow_job
 #
 msgid ""
 msgstr ""
@@ -41,10 +41,12 @@ msgstr "Flux Automatic de Treball"
 
 #. module: sale_automatic_workflow_job
 #: model:ir.model,name:sale_automatic_workflow_job.model_automatic_workflow_job
-msgid "Scheduler that will play automatically the validation of invoices, pickings..."
+msgid ""
+"Scheduler that will play automatically the validation of invoices, "
+"pickings..."
 msgstr ""
-"Programador que reproduirà automàticament la validació de factures, pickings "
-"..."
+"Programador que reproduirà automàticament la validació de factures, "
+"pickings ..."
 
 #. module: sale_automatic_workflow_job
 #: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:120
