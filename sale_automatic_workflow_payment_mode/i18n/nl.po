@@ -29,34 +29,18 @@ msgid "Automatic Workflow Payment Filter"
 msgstr ""
 
 #. module: sale_automatic_workflow_payment_mode
-#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process__payment_filter_domain
-msgid "Payment Filter Domain"
-msgstr ""
-
-#. module: sale_automatic_workflow_payment_mode
 #: model:ir.model,name:sale_automatic_workflow_payment_mode.model_account_payment_mode
 msgid "Payment Modes"
 msgstr ""
 
 #. module: sale_automatic_workflow_payment_mode
-#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process__register_payment
-msgid "Register Payment"
-msgstr ""
-
-#. module: sale_automatic_workflow_payment_mode
-#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_workflow_process__payment_filter_id
-msgid "Register Payment Invoice Filter"
+#: model:ir.model,name:sale_automatic_workflow_payment_mode.model_sale_workflow_process
+msgid "Sale Workflow Process"
 msgstr ""
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model,name:sale_automatic_workflow_payment_mode.model_sale_order
-#, fuzzy
-msgid "Sale Order"
-msgstr "Verkooporder"
-
-#. module: sale_automatic_workflow_payment_mode
-#: model:ir.model,name:sale_automatic_workflow_payment_mode.model_sale_workflow_process
-msgid "Sale Workflow Process"
+msgid "Sales Order"
 msgstr ""
 
 #. module: sale_automatic_workflow_payment_mode
@@ -66,7 +50,6 @@ msgid ""
 "pickings..."
 msgstr ""
 
-#. module: sale_automatic_workflow_payment_mode
-#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow_payment_mode.sale_workflow_process_view_form
-msgid "Set selection based on a search filter:"
-msgstr ""
+#, fuzzy
+#~ msgid "Sale Order"
+#~ msgstr "Verkooporder"
