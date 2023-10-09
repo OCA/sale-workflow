@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -201,13 +201,11 @@ msgstr ""
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_needaction
-#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_unread
 msgid "If checked, new messages require your attention."
 msgstr ""
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_error
-#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 
@@ -317,17 +315,12 @@ msgstr ""
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_needaction_counter
-msgid "Number of messages which requires an action"
+msgid "Number of messages requiring action"
 msgstr ""
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
-
-#. module: sale_payment_sheet
-#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_unread_counter
-msgid "Number of unread messages"
 msgstr ""
 
 #. module: sale_payment_sheet
@@ -382,11 +375,6 @@ msgid "Responsible"
 msgstr ""
 
 #. module: sale_payment_sheet
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
-
-#. module: sale_payment_sheet
 #: model:ir.model,name:sale_payment_sheet.model_sale_payment_sheet
 msgid "Sale Payment Sheet"
 msgstr ""
@@ -438,6 +426,7 @@ msgid "Sheet"
 msgstr ""
 
 #. module: sale_payment_sheet
+#. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
 #, python-format
 msgid "Sheet %s confirmed, bank statement were created."
@@ -467,12 +456,14 @@ msgid "Tax Excluded"
 msgstr ""
 
 #. module: sale_payment_sheet
+#. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
 #, python-format
 msgid "The amount of a cash transaction cannot be 0."
 msgstr ""
 
 #. module: sale_payment_sheet
+#. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
 #, python-format
 msgid ""
@@ -506,18 +497,8 @@ msgid "Transactions"
 msgstr ""
 
 #. module: sale_payment_sheet
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_unread
-msgid "Unread Messages"
-msgstr ""
-
-#. module: sale_payment_sheet
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr ""
-
-#. module: sale_payment_sheet
 #: model:ir.model,name:sale_payment_sheet.model_res_users
-msgid "Users"
+msgid "User"
 msgstr ""
 
 #. module: sale_payment_sheet
@@ -551,24 +532,28 @@ msgid "Wiz Line"
 msgstr ""
 
 #. module: sale_payment_sheet
+#. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
 #, python-format
 msgid "You can not delete a sheet if has related journal items."
 msgstr ""
 
 #. module: sale_payment_sheet
+#. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
 #, python-format
 msgid "You can not delete payment lines if have related statement lines."
 msgstr ""
 
 #. module: sale_payment_sheet
+#. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
 #, python-format
 msgid "You can not reopen a sheet that has any reconciled line."
 msgstr ""
 
 #. module: sale_payment_sheet
+#. odoo-python
 #: code:addons/sale_payment_sheet/wizards/sale_invoice_payment.py:0
 #, python-format
 msgid "You have to select at least an invoice to make a payment."
