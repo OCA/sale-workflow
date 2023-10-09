@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_stock_delivery_address
+# 	* sale_stock_delivery_address
 #
 msgid ""
 msgstr ""
@@ -23,7 +23,9 @@ msgstr "Adreça de destinació"
 
 #. module: sale_stock_delivery_address
 #: model:ir.model.fields,help:sale_stock_delivery_address.field_sale_order_line__dest_address_id
-msgid "If set this address will be the delivery address instead of the one specified in the Sales Order header."
+msgid ""
+"If set this address will be the delivery address instead of the one "
+"specified in the Sales Order header."
 msgstr ""
 "Si es defineix, aquesta adreça serà l'adreça de lliurament en lloc de la "
 "especificada a la capçalera de la comanda de vendes."
