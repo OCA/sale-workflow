@@ -25,8 +25,8 @@ msgid ""
 "<strong>There are exceptions blocking the confirmation of this Sale Order:</"
 "strong>"
 msgstr ""
-"<strong>Esiste una regola che blocca la conferma di questo ordine di "
-"vendita:</strong>"
+"<strong>Esiste una regola che blocca la conferma di questo ordine di vendita:"
+"</strong>"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_dumping
