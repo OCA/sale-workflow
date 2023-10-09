@@ -25,8 +25,7 @@ msgstr ""
 
 #. module: sale_order_line_description
 #: model_terms:ir.ui.view,arch_db:sale_order_line_description.view_sales_config
-msgid ""
-"Allows you to use only product sale description on the sales order line"
+msgid "Allows you to use only product sale description on the sales order line"
 msgstr ""
 "Permet d'utiliser uniquement la description de vente du produit sur la ligne "
 "de commande"
