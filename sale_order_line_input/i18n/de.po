@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_line_input
+# 	* sale_order_line_input
 #
 msgid ""
 msgstr ""
@@ -20,6 +20,31 @@ msgid "Delivered"
 msgstr ""
 
 #. module: sale_order_line_input
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
+msgid "Disc.%"
+msgstr ""
+
+#. module: sale_order_line_input
+#: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_line_input
+#: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__force_company_id
+msgid "Forced company"
+msgstr ""
+
+#. module: sale_order_line_input
+#: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_line_input
+#: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__pricelist_id
+msgid "If you change the pricelist, only newly added lines will be affected."
+msgstr ""
+
+#. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 msgid "Invoice Related"
 msgstr ""
@@ -35,6 +60,11 @@ msgid "Invoiced"
 msgstr ""
 
 #. module: sale_order_line_input
+#: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "New"
 msgstr ""
@@ -46,7 +76,7 @@ msgstr ""
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
-msgid "Open Sale Order"
+msgid "Open Order"
 msgstr ""
 
 #. module: sale_order_line_input
@@ -75,8 +105,8 @@ msgid "Pricelist"
 msgstr ""
 
 #. module: sale_order_line_input
-#: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__pricelist_id
-msgid "Pricelist for current sales order."
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
+msgid "Product"
 msgstr ""
 
 #. module: sale_order_line_input
@@ -91,11 +121,19 @@ msgid "Sales Orders Lines"
 msgstr ""
 
 #. module: sale_order_line_input
+#: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__force_company_id
+msgid ""
+"Technical field to force company or get it from env user if order don't "
+"exist."
+msgstr ""
+
+#. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "To Invoice"
 msgstr ""
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "UoM"
 msgstr ""
