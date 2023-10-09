@@ -43,9 +43,8 @@ msgstr "Maximalna seqvenca u stavkama"
 
 #. module: sale_order_line_sequence
 #: model:ir.model,name:sale_order_line_sequence.model_sale_order
-#, fuzzy
-msgid "Sale Order"
-msgstr "Prodajni nalog"
+msgid "Sales Order"
+msgstr ""
 
 #. module: sale_order_line_sequence
 #: model:ir.model,name:sale_order_line_sequence.model_sale_order_line
@@ -61,3 +60,7 @@ msgstr "Sekvenca"
 #: model:ir.model.fields,help:sale_order_line_sequence.field_sale_order_line__sequence2
 msgid "Shows the sequence of this line in the sale order."
 msgstr "Prikazuje sekvencu ove stavke u ponudi."
+
+#, fuzzy
+#~ msgid "Sale Order"
+#~ msgstr "Prodajni nalog"
