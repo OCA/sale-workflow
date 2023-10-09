@@ -1,11 +1,12 @@
 # Copyright 2020 Tecnativa - Carlos Dauden
 # Copyright 2020 Tecnativa - Sergio Teruel
+# Copyright 2023 Tecnativa - Carolina Fernandez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Sale payment sheet",
     "summary": "Allow to create invoice payments to commercial users without "
     "accounting permissions",
-    "version": "15.0.1.2.0",
+    "version": "16.0.1.0.0",
     "development_status": "Beta",
     "category": "Account",
     "website": "https://github.com/OCA/sale-workflow",

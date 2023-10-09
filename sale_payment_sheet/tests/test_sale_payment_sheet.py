@@ -1,5 +1,6 @@
 # Copyright 2020 Tecnativa - Carlos Dauden
 # Copyright 2020 Tecnativa - Sergio Teruel
+# Copyright 2023 Tecnativa - Carolina Fernandez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from freezegun import freeze_time
@@ -15,34 +16,62 @@ class TestSaleInvoicePayment(TransactionCase):
         super().setUpClass()
         # Remove time zone from user to avoid to time local representation
         cls.env.user.partner_id.tz = False
+        account_group = cls.env.ref("account.group_account_user")
+        cls.env.user.write({"groups_id": [(4, account_group.id)]})
+        no_one_group = cls.env.ref("base.group_no_one")
+        cls.env.user.write({"groups_id": [(4, no_one_group.id)]})
         cls.wizard_obj = cls.env["sale.invoice.payment.wiz"]
         cls.SalePaymentSheet = cls.env["sale.payment.sheet"]
         cls.partner = cls.env["res.partner"].create({"name": "Test partner"})
-        cls.bank_journal = cls.env["account.journal"].create(
-            {"name": "Bank journal", "type": "bank", "code": "test"}
+        suspense_account = cls.env["account.account"].create(
+            {
+                "code": "assetcurrent",
+                "name": "Test Current Asset",
+                "account_type": "asset_current",
+            }
         )
-        account_type_income = cls.env.ref("account.data_account_type_revenue")
+        cls.bank_journal = cls.env["account.journal"].create(
+            {
+                "name": "Bank journal",
+                "type": "bank",
+                "code": "test",
+                "suspense_account_id": suspense_account.id,
+            }
+        )
         cls.account_invoice = cls.env["account.account"].create(
             {
                 "code": "test",
                 "name": "Test account",
-                "user_type_id": account_type_income.id,
+                "account_type": "income",
             }
         )
         cls.invoice1 = cls._create_invoice(cls)
         cls.invoice2 = cls._create_invoice(cls)
-        (cls.invoice1 + cls.invoice2).action_post()
+        cls.refund1 = cls._create_refund(cls)
+        (cls.invoice1 + cls.invoice2 + cls.refund1).action_post()
 
     def _create_invoice(self):
-        with Form(
+        invoice_form = Form(
             self.env["account.move"].with_context(default_move_type="out_invoice")
-        ) as invoice_form:
-            invoice_form.partner_id = self.partner
-            with invoice_form.invoice_line_ids.new() as line_form:
-                line_form.name = "invoice test"
-                line_form.account_id = self.account_invoice
-                line_form.quantity = 1.0
-                line_form.price_unit = 100.00
+        )
+        invoice_form.partner_id = self.partner
+        with invoice_form.invoice_line_ids.new() as line_form:
+            line_form.name = "invoice test"
+            line_form.account_id = self.account_invoice
+            line_form.quantity = 1.0
+            line_form.price_unit = 100.00
+        return invoice_form.save()
+
+    def _create_refund(self):
+        invoice_form = Form(
+            self.env["account.move"].with_context(default_move_type="out_refund")
+        )
+        invoice_form.partner_id = self.partner
+        with invoice_form.invoice_line_ids.new() as line_form:
+            line_form.name = "invoice test"
+            line_form.account_id = self.account_invoice
+            line_form.quantity = 1.0
+            line_form.price_unit = 10.00
         return invoice_form.save()
 
     def test_payment_wizard(self):
@@ -76,7 +105,6 @@ class TestSaleInvoicePayment(TransactionCase):
                 with sheet_form.line_ids.new() as line_sheet:
                     line_sheet.partner_id = self.partner
                     line_sheet.invoice_id = invoice
-                    line_sheet.ref = "REF{}".format(line_sheet.id)
                     # Only write for partial amount payed, by default the
                     # amount line is total amount residual
                     if index > 0:

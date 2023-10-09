@@ -136,8 +136,6 @@ class SalePaymentSheet(models.Model):
                 {
                     "name": sheet.name,
                     "date": sheet.date,
-                    "journal_id": sheet.journal_id.id,
-                    "user_id": sheet.user_id.id,
                 }
             )
             vals_dic = {}
@@ -155,6 +153,8 @@ class SalePaymentSheet(models.Model):
                     vals_dic[key] = {
                         "name": line.name,
                         "date": line.date,
+                        "journal_id": sheet.journal_id.id,
+                        "invoice_user_id": sheet.user_id.id,
                         "amount": amount_line,
                         "partner_id": line.partner_id.id,
                         "payment_ref": line.ref or line.invoice_id.name,
@@ -183,7 +183,6 @@ class SalePaymentSheet(models.Model):
             raise UserError(
                 _("You can not reopen a sheet that has any reconciled line.")
             )
-        self_sudo.statement_id.button_reopen()
         self_sudo.statement_id.unlink()
         self.state = "open"
 
