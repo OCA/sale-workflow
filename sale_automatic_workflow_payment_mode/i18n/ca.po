@@ -66,8 +66,8 @@ msgid ""
 "Scheduler that will play automatically the validation of invoices, "
 "pickings..."
 msgstr ""
-"Programador que reproduirà automàticament la validació de factures, pickings "
-"..."
+"Programador que reproduirà automàticament la validació de factures, "
+"pickings ..."
 
 #. module: sale_automatic_workflow_payment_mode
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow_payment_mode.sale_workflow_process_view_form
