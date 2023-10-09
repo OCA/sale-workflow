@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_priority
+# 	* sale_order_priority
 #
 msgid ""
 msgstr ""
@@ -17,14 +17,12 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_order_priority
-#: selection:sale.order,priority:0
-#: selection:sale.order.line,priority:0
+#: selection:sale.order,priority:0 selection:sale.order.line,priority:0
 msgid "Normal"
 msgstr "Normal"
 
 #. module: sale_order_priority
-#: selection:sale.order,priority:0
-#: selection:sale.order.line,priority:0
+#: selection:sale.order,priority:0 selection:sale.order.line,priority:0
 msgid "Not urgent"
 msgstr "No urgente"
 
@@ -36,7 +34,9 @@ msgstr "Prioridad"
 
 #. module: sale_order_priority
 #: model:ir.model.fields,help:sale_order_priority.field_sale_order__priority
-msgid "Priority for this sale order. Setting manually a value here would set it as priority for all the order lines"
+msgid ""
+"Priority for this sale order. Setting manually a value here would set it as "
+"priority for all the order lines"
 msgstr ""
 "Prioridad para esta orden de venta. Establecer manualmente un valor aquí lo "
 "establecería como prioridad para todas las líneas de pedido"
@@ -52,13 +52,11 @@ msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
 
 #. module: sale_order_priority
-#: selection:sale.order,priority:0
-#: selection:sale.order.line,priority:0
+#: selection:sale.order,priority:0 selection:sale.order.line,priority:0
 msgid "Urgent"
 msgstr "Urgente"
 
 #. module: sale_order_priority
-#: selection:sale.order,priority:0
-#: selection:sale.order.line,priority:0
+#: selection:sale.order,priority:0 selection:sale.order.line,priority:0
 msgid "Very Urgent"
 msgstr "Muy urgente"
