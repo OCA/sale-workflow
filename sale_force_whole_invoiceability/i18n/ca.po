@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_force_whole_invoiceability
+# 	* sale_force_whole_invoiceability
 #
 msgid ""
 msgstr ""
@@ -35,7 +35,8 @@ msgstr "Comanda de venda"
 #. module: sale_force_whole_invoiceability
 #: code:addons/sale_force_whole_invoiceability/models/sale_order.py:21
 #, python-format
-msgid "You can't perform this action once the order has been invoiced once already"
+msgid ""
+"You can't perform this action once the order has been invoiced once already"
 msgstr "No podeu realitzar aquesta acció un cop ja s'hagi facturat la comanda"
 
 #. module: sale_force_whole_invoiceability
