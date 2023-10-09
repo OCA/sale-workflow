@@ -118,13 +118,6 @@ msgid "Sale Delivery Block Reason"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model,name:sale_stock_picking_blocking.model_sale_order
-#, fuzzy
-#| msgid "Sales Order"
-msgid "Sale Order"
-msgstr "Prodajni nalog"
-
-#. module: sale_stock_picking_blocking
 #: model_terms:ir.ui.view,arch_db:sale_stock_picking_blocking.sale_stock_picking_blocking_reason_tree_view
 msgid "Sale Order Delivery Block Reason"
 msgstr ""
@@ -132,6 +125,11 @@ msgstr ""
 #. module: sale_stock_picking_blocking
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__sale_order_ids
 msgid "Sale Orders"
+msgstr ""
+
+#. module: sale_stock_picking_blocking
+#: model:ir.model,name:sale_stock_picking_blocking.model_sale_order
+msgid "Sales Order"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
@@ -148,10 +146,15 @@ msgid ""
 msgstr ""
 
 #. module: sale_stock_picking_blocking
-#: code:addons/sale_stock_picking_blocking/models/sale_order.py:19
+#: code:addons/sale_stock_picking_blocking/models/sale_order.py:0
 #, python-format
 msgid "You cannot block a sale order with \"auto_done_setting\" active."
 msgstr ""
+
+#, fuzzy
+#~| msgid "Sales Order"
+#~ msgid "Sale Order"
+#~ msgstr "Prodajni nalog"
 
 #~ msgid "Partner"
 #~ msgstr "Partner"
