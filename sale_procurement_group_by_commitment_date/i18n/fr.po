@@ -20,11 +20,14 @@ msgstr ""
 
 #. module: sale_procurement_group_by_commitment_date
 #: model:ir.model,name:sale_procurement_group_by_commitment_date.model_sale_order
-#, fuzzy
-msgid "Sale Order"
-msgstr "Bon de commande"
+msgid "Sales Order"
+msgstr ""
 
 #. module: sale_procurement_group_by_commitment_date
 #: model:ir.model,name:sale_procurement_group_by_commitment_date.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Sales Order Line"
+
+#, fuzzy
+#~ msgid "Sale Order"
+#~ msgstr "Bon de commande"
