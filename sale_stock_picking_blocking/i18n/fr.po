@@ -122,19 +122,14 @@ msgid "Sale Delivery Block Reason"
 msgstr "Raison du blocage des livraisons"
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model,name:sale_stock_picking_blocking.model_sale_order
-msgid "Sale Order"
-msgstr "Bons de commande"
-
-#. module: sale_stock_picking_blocking
-#: model_terms:ir.ui.view,arch_db:sale_stock_picking_blocking.sale_stock_picking_blocking_reason_tree_view
-msgid "Sale Order Delivery Block Reason"
-msgstr "Raison du blocage des Commandes de Vente"
-
-#. module: sale_stock_picking_blocking
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__sale_order_ids
 msgid "Sale Orders"
 msgstr "Bons de commande"
+
+#. module: sale_stock_picking_blocking
+#: model:ir.model,name:sale_stock_picking_blocking.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
 
 #. module: sale_stock_picking_blocking
 #: model:ir.model,name:sale_stock_picking_blocking.model_sale_order_line
@@ -152,15 +147,18 @@ msgstr ""
 "commandes de vente clients."
 
 #. module: sale_stock_picking_blocking
-#: code:addons/sale_stock_picking_blocking/models/sale_order.py:19
+#: code:addons/sale_stock_picking_blocking/models/sale_order.py:0
 #, python-format
 msgid "You cannot block a sale order with \"auto_done_setting\" active."
 msgstr ""
 "Vous ne pouvez pas bloquer une commande de vente avec \"auto_done_setting\" "
 "actif."
 
+#~ msgid "Sale Order"
+#~ msgstr "Bons de commande"
+
+#~ msgid "Sale Order Delivery Block Reason"
+#~ msgstr "Raison du blocage des Commandes de Vente"
+
 #~ msgid "Partner"
 #~ msgstr "Partenaire"
-
-#~ msgid "Sales Order"
-#~ msgstr "Bon de commande"
