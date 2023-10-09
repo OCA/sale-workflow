@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_incoterm_place
+# 	* sale_order_incoterm_place
 #
 msgid ""
 msgstr ""
@@ -23,5 +23,8 @@ msgstr "Lugar Incoterm"
 
 #. module: sale_order_incoterm_place
 #: model:ir.model,name:sale_order_incoterm_place.model_sale_order
-msgid "Sale Order"
-msgstr "Orden de venta"
+msgid "Sales Order"
+msgstr ""
+
+#~ msgid "Sale Order"
+#~ msgstr "Orden de venta"
