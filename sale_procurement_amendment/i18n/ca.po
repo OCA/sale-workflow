@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_procurement_amendment
+# 	* sale_procurement_amendment
 #
 msgid ""
 msgstr ""
@@ -17,15 +17,41 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_procurement_amendment
-#: model:ir.model.fields,field_description:sale_procurement_amendment.field_stock_move_can_be_amended
-#: model:ir.model.fields,field_description:sale_procurement_amendment.field_stock_picking_can_be_amended
-msgid "Can be amended"
-msgstr "Es pot modificar"
+#: model:ir.model.fields,field_description:sale_procurement_amendment.field_sale_order_line__can_amend_and_reprocure
+msgid "Can Amend And Reprocure"
+msgstr ""
 
 #. module: sale_procurement_amendment
-#: model:ir.model.fields,field_description:sale_procurement_amendment.field_sale_order_line_pickings_in_progress
-msgid "Pickings in progress"
-msgstr "Seleccions en curs"
+#: model:ir.model.fields,field_description:sale_procurement_amendment.field_stock_move__can_be_amended
+#: model:ir.model.fields,field_description:sale_procurement_amendment.field_stock_picking__can_be_amended
+msgid "Can Be Amended"
+msgstr ""
+
+#. module: sale_procurement_amendment
+#: model:ir.model.fields,field_description:sale_procurement_amendment.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:sale_procurement_amendment.field_stock_move__display_name
+#: model:ir.model.fields,field_description:sale_procurement_amendment.field_stock_picking__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_procurement_amendment
+#: model:ir.model.fields,field_description:sale_procurement_amendment.field_sale_order_line__id
+#: model:ir.model.fields,field_description:sale_procurement_amendment.field_stock_move__id
+#: model:ir.model.fields,field_description:sale_procurement_amendment.field_stock_picking__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_procurement_amendment
+#: model:ir.model.fields,field_description:sale_procurement_amendment.field_sale_order_line____last_update
+#: model:ir.model.fields,field_description:sale_procurement_amendment.field_stock_move____last_update
+#: model:ir.model.fields,field_description:sale_procurement_amendment.field_stock_picking____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_procurement_amendment
+#: model:ir.model.fields,field_description:sale_procurement_amendment.field_sale_order_line__pickings_in_progress
+msgid "Pickings In Progress"
+msgstr ""
 
 #. module: sale_procurement_amendment
 #: model:ir.model,name:sale_procurement_amendment.model_sale_order_line
@@ -38,11 +64,27 @@ msgid "Stock Move"
 msgstr "Moviment d’estoc"
 
 #. module: sale_procurement_amendment
-#: model:ir.model.fields,field_description:sale_procurement_amendment.field_sale_order_line_to_be_procured
-msgid "To be procured"
-msgstr "A adquirir"
+#: model:ir.model.fields,help:sale_procurement_amendment.field_sale_order_line__to_be_procured
+msgid ""
+"Technical field that check if the whole order line quantitieshave the "
+"corresponding stock moves quantities in order to fullfilldemand."
+msgstr ""
+
+#. module: sale_procurement_amendment
+#: model:ir.model.fields,field_description:sale_procurement_amendment.field_sale_order_line__to_be_procured
+msgid "To Be Procured"
+msgstr ""
 
 #. module: sale_procurement_amendment
 #: model:ir.model,name:sale_procurement_amendment.model_stock_picking
 msgid "Transfer"
 msgstr "Transferència"
+
+#~ msgid "Can be amended"
+#~ msgstr "Es pot modificar"
+
+#~ msgid "Pickings in progress"
+#~ msgstr "Seleccions en curs"
+
+#~ msgid "To be procured"
+#~ msgstr "A adquirir"
