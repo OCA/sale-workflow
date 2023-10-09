@@ -276,7 +276,8 @@ msgstr ""
 #: code:addons/sale_invoice_plan/models/sale.py:0
 #, python-format
 msgid "Please fill percentage for all invoice plan lines"
-msgstr "Sisplau, ompliu el percentatge a totes les línies del pla de facturació"
+msgstr ""
+"Sisplau, ompliu el percentatge a totes les línies del pla de facturació"
 
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
