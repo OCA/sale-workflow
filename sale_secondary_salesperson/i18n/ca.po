@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_secondary_salesperson
+# 	* sale_secondary_salesperson
 #
 msgid ""
 msgstr ""
@@ -35,5 +35,6 @@ msgstr "Venda secundària"
 
 #. module: sale_secondary_salesperson
 #: sql_constraint:sale.order:0
-msgid "The secondary salesperson must be different from the primary salesperson!"
+msgid ""
+"The secondary salesperson must be different from the primary salesperson!"
 msgstr "El venedor secundari ha de ser diferent del venedor principal!"
