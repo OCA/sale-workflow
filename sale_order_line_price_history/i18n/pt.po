@@ -75,6 +75,11 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
+msgid "Include Quotations"
+msgstr ""
+
+#. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_commercial_partner
 msgid "Include commercial entity"
 msgstr "Incluir entidade comercial"
@@ -83,11 +88,6 @@ msgstr "Incluir entidade comercial"
 #: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history__include_commercial_partner
 msgid "Include commercial entity and its contacts in the sale history"
 msgstr "Incluir entidade comercial e os seus contactos no histórico de vendas"
-
-#. module: sale_order_line_price_history
-#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
-msgid "Include quotations"
-msgstr "Incluir orçamentos"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
@@ -177,6 +177,9 @@ msgstr "Preço Unitário"
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__history_sale_order_line_id
 msgid "history sale order line"
 msgstr "linha de encomenda de venda do histórico"
+
+#~ msgid "Include quotations"
+#~ msgstr "Incluir orçamentos"
 
 #~ msgid "Ordered Quantity"
 #~ msgstr "Quantidade da Encomenda"

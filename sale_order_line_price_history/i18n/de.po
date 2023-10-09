@@ -75,6 +75,11 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
+msgid "Include Quotations"
+msgstr ""
+
+#. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_commercial_partner
 msgid "Include commercial entity"
 msgstr ""
@@ -83,11 +88,6 @@ msgstr ""
 #: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history__include_commercial_partner
 msgid "Include commercial entity and its contacts in the sale history"
 msgstr ""
-
-#. module: sale_order_line_price_history
-#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
-msgid "Include quotations"
-msgstr "Angebote berücksichtigen"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
@@ -179,6 +179,9 @@ msgstr "Preis pro ME"
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__history_sale_order_line_id
 msgid "history sale order line"
 msgstr "Historie der Auftragszeile"
+
+#~ msgid "Include quotations"
+#~ msgstr "Angebote berücksichtigen"
 
 #~ msgid "Ordered Quantity"
 #~ msgstr "Auftragsmenge"

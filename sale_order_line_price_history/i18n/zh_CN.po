@@ -75,6 +75,11 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
+msgid "Include Quotations"
+msgstr ""
+
+#. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_commercial_partner
 msgid "Include commercial entity"
 msgstr "包括商业实体"
@@ -83,11 +88,6 @@ msgstr "包括商业实体"
 #: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history__include_commercial_partner
 msgid "Include commercial entity and its contacts in the sale history"
 msgstr "在销售历史中包括商业实体及其联系人"
-
-#. module: sale_order_line_price_history
-#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
-msgid "Include quotations"
-msgstr "包括报价单"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
@@ -177,6 +177,9 @@ msgstr "单价"
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__history_sale_order_line_id
 msgid "history sale order line"
 msgstr "历史销售订单行"
+
+#~ msgid "Include quotations"
+#~ msgstr "包括报价单"
 
 #~ msgid "Ordered Quantity"
 #~ msgstr "订购数量"
