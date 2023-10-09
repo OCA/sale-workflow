@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_commitment_lead_time
+# 	* sale_commitment_lead_time
 #
 msgid ""
 msgstr ""
