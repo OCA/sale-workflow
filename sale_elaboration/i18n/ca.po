@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_elaboration
+# 	* sale_elaboration
 #
 msgid ""
 msgstr ""
@@ -97,7 +97,9 @@ msgstr "ID"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,help:sale_elaboration.field_product_elaboration__active
-msgid "If unchecked, it will allow you to hide the product elaborations without removing it."
+msgid ""
+"If unchecked, it will allow you to hide the product elaborations without "
+"removing it."
 msgstr ""
 "Si no està marcat, us permetrà amagar les elaboracions del producte sense "
 "eliminar-les."
