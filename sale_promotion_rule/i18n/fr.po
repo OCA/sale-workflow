@@ -17,17 +17,17 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_promotion_rule
-#: model:ir.ui.view,arch_db:sale_promotion_rule.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_promotion_rule.view_order_form
 msgid "(Add coupon)"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: model:ir.ui.view,arch_db:sale_promotion_rule.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_promotion_rule.view_order_form
 msgid "(Apply discount)"
 msgstr "(Appliquer promotion)"
 
 #. module: sale_promotion_rule
-#: model:ir.ui.view,arch_db:sale_promotion_rule.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_promotion_rule.view_order_form
 #, fuzzy
 msgid "(Remove discount)"
 msgstr "(Appliquer promotion)"
@@ -49,62 +49,70 @@ msgid "Amount (Taxes included)"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: model:ir.ui.view,arch_db:sale_promotion_rule.view_order_form
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order__applied_promotion_rule_ids
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_line__applied_promotion_rule_ids
+msgid "Applied Promotion rules"
+msgstr ""
+
+#. module: sale_promotion_rule
+#: model_terms:ir.ui.view,arch_db:sale_promotion_rule.view_order_form
 #, fuzzy
 msgid "Applied Promotions"
 msgstr "Sale Promotion Rule"
 
 #. module: sale_promotion_rule
-#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:254
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:282
 #: selection:sale.promotion.rule,rule_type:0
 #, python-format
 msgid "Automatic"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: model:ir.ui.view,arch_db:sale_promotion_rule.sale_order_add_coupon_form_view
+#: model_terms:ir.ui.view,arch_db:sale_promotion_rule.sale_order_add_coupon_form_view
 msgid "Cancel"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_coupon_code
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_line_coupon_code
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_code
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order__coupon_code
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_line__coupon_code
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__code
 msgid "Code"
 msgstr "Code"
 
 #. module: sale_promotion_rule
-#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:288
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:312
 #, python-format
 msgid "Code number %s is invalid"
 msgstr "Le code %s est invalide"
 
 #. module: sale_promotion_rule
-#: model:ir.ui.view,arch_db:sale_promotion_rule.view_sale_promotion_rule_form
+#: model_terms:ir.ui.view,arch_db:sale_promotion_rule.view_sale_promotion_rule_form
 msgid "Condition"
 msgstr "Condition"
 
 #. module: sale_promotion_rule
+#: model:product.product,name:sale_promotion_rule.coupon
+#: model:product.template,name:sale_promotion_rule.coupon_product_template
 #: selection:sale.promotion.rule,rule_type:0
 msgid "Coupon"
 msgstr "Coupon"
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_coupon_promotion_rule_id
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_line_coupon_promotion_rule_id
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order__coupon_promotion_rule_id
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_line__coupon_promotion_rule_id
 #, fuzzy
 msgid "Coupon promotion rule"
 msgstr "Promotion rule"
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_add_coupon_create_uid
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_create_uid
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_add_coupon__create_uid
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__create_uid
 msgid "Created by"
 msgstr "Created by"
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_add_coupon_create_date
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_create_date
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_add_coupon__create_date
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__create_date
 msgid "Created on"
 msgstr "Created on"
 
@@ -114,19 +122,19 @@ msgid "Cumulate promotion"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: model:ir.ui.view,arch_db:sale_promotion_rule.view_sale_promotion_rule_form
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__date_from
+msgid "Date From"
+msgstr ""
+
+#. module: sale_promotion_rule
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__date_to
+msgid "Date To"
+msgstr ""
+
+#. module: sale_promotion_rule
+#: model_terms:ir.ui.view,arch_db:sale_promotion_rule.view_sale_promotion_rule_form
 msgid "Date début/fin"
 msgstr "Date début/fin"
-
-#. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_date_from
-msgid "Date from"
-msgstr "Date de début"
-
-#. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_date_to
-msgid "Date to"
-msgstr "Date de fin"
 
 #. module: sale_promotion_rule
 #: selection:sale.promotion.rule,promo_type:0
@@ -135,32 +143,31 @@ msgid "Discount"
 msgstr "type de réduction"
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_discount_amount_currency_id
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__discount_amount
+msgid "Discount Amount"
+msgstr ""
+
+#. module: sale_promotion_rule
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__discount_amount_currency_id
 #, fuzzy
-#| msgid "Discount amount"
 msgid "Discount Amount Currency"
 msgstr "Montant de réduction"
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_discount_amount
-msgid "Discount amount"
-msgstr "Montant de réduction"
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__discount_type
+msgid "Discount Type"
+msgstr ""
 
 #. module: sale_promotion_rule
-#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:104
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:107
 #: sql_constraint:sale.promotion.rule:0
 #, python-format
 msgid "Discount code must be unique !"
 msgstr "Le code doit être unique !"
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_discount_type
-msgid "Discount type"
-msgstr "type de réduction"
-
-#. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_add_coupon_display_name
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_display_name
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_add_coupon__display_name
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__display_name
 #, fuzzy
 msgid "Display Name"
 msgstr "Display name"
@@ -171,23 +178,21 @@ msgid "Exclusive promotion"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_has_promotion_rules
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_line_has_promotion_rules
-#, fuzzy
-msgid "Has promotion rules"
-msgstr "Promotion rule"
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order__has_promotion_rules
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_line__has_promotion_rules
+msgid "Has Promotion Rules"
+msgstr ""
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_add_coupon_id
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_id
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_add_coupon__id
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_line_is_promotion_line
-#, fuzzy
-msgid "Is promotion line"
-msgstr "Promotion rule"
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_line__is_promotion_line
+msgid "Is Promotion Line"
+msgstr ""
 
 #. module: sale_promotion_rule
 #: selection:sale.promotion.rule,multi_rule_strategy:0
@@ -195,36 +200,36 @@ msgid "Keep existing discount"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_add_coupon___last_update
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule___last_update
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_add_coupon____last_update
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule____last_update
 msgid "Last Modified on"
 msgstr "Last Modified on"
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_add_coupon_write_uid
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_write_uid
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_add_coupon__write_uid
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__write_uid
 msgid "Last Updated by"
 msgstr "Last Updated by"
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_add_coupon_write_date
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_write_date
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_add_coupon__write_date
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__write_date
 msgid "Last Updated on"
 msgstr "Last Updated on"
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_minimal_amount
-msgid "Minimal amount"
-msgstr "Montant minimum"
-
-#. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_multi_rule_strategy
-msgid "Multi rule strategy"
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__minimal_amount
+msgid "Minimal Amount"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_add_coupon_name
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_name
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__multi_rule_strategy
+msgid "Multi Rule Strategy"
+msgstr ""
+
+#. module: sale_promotion_rule
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_add_coupon__name
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__name
 msgid "Name"
 msgstr "Name"
 
@@ -234,18 +239,18 @@ msgid "No restriction"
 msgstr "Aucune restriction"
 
 #. module: sale_promotion_rule
-#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:357
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:381
 #, python-format
 msgid "Not supported promotion type %s"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: model:ir.ui.view,arch_db:sale_promotion_rule.sale_order_add_coupon_form_view
+#: model_terms:ir.ui.view,arch_db:sale_promotion_rule.sale_order_add_coupon_form_view
 msgid "OK"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: model:ir.ui.view,arch_db:sale_promotion_rule.view_sale_promotion_rule_form
+#: model_terms:ir.ui.view,arch_db:sale_promotion_rule.view_sale_promotion_rule_form
 msgid "Offer"
 msgstr "Offres"
 
@@ -255,9 +260,9 @@ msgid "One per partner"
 msgstr "Une fois par client"
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_only_newsletter
-msgid "Only newsletter"
-msgstr "Uniquement abonnée newsletter"
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__only_newsletter
+msgid "Only Newsletter"
+msgstr ""
 
 #. module: sale_promotion_rule
 #: selection:sale.promotion.rule,discount_type:0
@@ -265,60 +270,63 @@ msgid "Percentage"
 msgstr "Pourcentage"
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_discount_product_id
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__discount_product_id
 msgid "Product used to apply the promotion"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_promo_type
-msgid "Promo type"
-msgstr "Type de Promo"
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__promo_type
+msgid "Promo Type"
+msgstr ""
 
 #. module: sale_promotion_rule
 #: model:ir.actions.act_window,name:sale_promotion_rule.action_sale_promotion_rule_form
 #: model:ir.ui.menu,name:sale_promotion_rule.menu_action_sale_promotion_rule_form
-#: model:ir.ui.view,arch_db:sale_promotion_rule.view_sale_promotion_rule_form
+#: model_terms:ir.ui.view,arch_db:sale_promotion_rule.view_sale_promotion_rule_form
 msgid "Promotion Rule"
 msgstr "Règle de Promotion"
 
 #. module: sale_promotion_rule
-#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:368
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:392
 #, python-format
 msgid "Promotion of type %s is not a percentage discount"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_applied_promotion_rule_ids
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_line_applied_promotion_rule_ids
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_line_promotion_rule_ids
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_promotion_rule_ids
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order__promotion_rule_ids
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_order_line__promotion_rule_ids
 #, fuzzy
 msgid "Promotion rules"
 msgstr "Promotion rule"
 
 #. module: sale_promotion_rule
-#: model:ir.ui.view,arch_db:sale_promotion_rule.view_order_form
+#: model_terms:ir.ui.view,arch_db:sale_promotion_rule.view_order_form
 #, fuzzy
 msgid "Promotions"
 msgstr "Règle de Promotion"
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_restrict_partner_ids
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__restrict_partner_ids
 msgid "Restricted partners"
 msgstr "Partner"
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_restrict_pricelist_ids
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__restrict_pricelist_ids
 msgid "Restricted pricelists"
 msgstr "Uniquement les listes de prix"
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_rule_type
-msgid "Rule type"
-msgstr "Type de règle"
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__rule_type
+msgid "Rule Type"
+msgstr ""
 
 #. module: sale_promotion_rule
-#: model:ir.ui.view,arch_db:sale_promotion_rule.sale_order_add_coupon_form_view
+#: model:ir.model,name:sale_promotion_rule.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_promotion_rule
+#: model_terms:ir.ui.view,arch_db:sale_promotion_rule.sale_order_add_coupon_form_view
 #, fuzzy
 msgid "Sale Order Add Coupon"
 msgstr "Ligne de commande"
@@ -329,41 +337,41 @@ msgid "Sale Promotion Rule"
 msgstr "Sale Promotion Rule"
 
 #. module: sale_promotion_rule
-#: model:ir.model,name:sale_promotion_rule.model_sale_order
-#, fuzzy
-msgid "Sales Order"
-msgstr "Commande client"
-
-#. module: sale_promotion_rule
 #: model:ir.model,name:sale_promotion_rule.model_sale_order_line
 #, fuzzy
 msgid "Sales Order Line"
 msgstr "Ligne de commande"
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_sequence
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__sequence
 msgid "Sequence"
 msgstr "Sequence"
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_is_minimal_amount_tax_incl
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__is_minimal_amount_tax_incl
 msgid "Tax included into minimal amount?"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,help:sale_promotion_rule.field_sale_order_line_is_promotion_line
+#: model:ir.model.fields,help:sale_promotion_rule.field_sale_order_line__is_promotion_line
 msgid "True if the line has been added by a promotion rule"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: model:ir.ui.view,arch_db:sale_promotion_rule.view_sale_promotion_rule_form
+#: model_terms:ir.ui.view,arch_db:sale_promotion_rule.view_sale_promotion_rule_form
 msgid "Type"
 msgstr "Type"
 
 #. module: sale_promotion_rule
-#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule_usage_restriction
-msgid "Usage restriction"
-msgstr "Restriction d'utilisation"
+#: model:product.product,uom_name:sale_promotion_rule.coupon
+#: model:product.template,uom_name:sale_promotion_rule.coupon_product_template
+msgid "Unit(s)"
+msgstr ""
+
+#. module: sale_promotion_rule
+#: model:ir.model.fields,field_description:sale_promotion_rule.field_sale_promotion_rule__usage_restriction
+msgid "Usage Restriction"
+msgstr ""
 
 #. module: sale_promotion_rule
 #: selection:sale.promotion.rule,multi_rule_strategy:0
@@ -372,14 +380,19 @@ msgid "Use the best promotion"
 msgstr "Restriction d'utilisation"
 
 #. module: sale_promotion_rule
-#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:133
+#: model:ir.model,name:sale_promotion_rule.model_sale_order_add_coupon
+msgid "Wizard to add coupon to a sale order"
+msgstr ""
+
+#. module: sale_promotion_rule
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:145
 #, python-format
 msgid ""
 "You must specify a currency for discount rule applaying a specific amount"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:118
+#: code:addons/sale_promotion_rule/models/sale_promotion_rule.py:125
 #, python-format
 msgid ""
 "You must specify a promotion product for discount rule applaying a specific "
@@ -387,9 +400,49 @@ msgid ""
 msgstr ""
 
 #. module: sale_promotion_rule
-#: model:ir.model,name:sale_promotion_rule.model_sale_order_add_coupon
-msgid "sale.order.add.coupon"
+#: model:product.product,weight_uom_name:sale_promotion_rule.coupon
+#: model:product.template,weight_uom_name:sale_promotion_rule.coupon_product_template
+msgid "kg"
 msgstr ""
+
+#~ msgid "Date from"
+#~ msgstr "Date de début"
+
+#~ msgid "Date to"
+#~ msgstr "Date de fin"
+
+#~ msgid "Discount amount"
+#~ msgstr "Montant de réduction"
+
+#~ msgid "Discount type"
+#~ msgstr "type de réduction"
+
+#, fuzzy
+#~ msgid "Has promotion rules"
+#~ msgstr "Promotion rule"
+
+#, fuzzy
+#~ msgid "Is promotion line"
+#~ msgstr "Promotion rule"
+
+#~ msgid "Minimal amount"
+#~ msgstr "Montant minimum"
+
+#~ msgid "Only newsletter"
+#~ msgstr "Uniquement abonnée newsletter"
+
+#~ msgid "Promo type"
+#~ msgstr "Type de Promo"
+
+#~ msgid "Rule type"
+#~ msgstr "Type de règle"
+
+#, fuzzy
+#~ msgid "Sales Order"
+#~ msgstr "Commande client"
+
+#~ msgid "Usage restriction"
+#~ msgstr "Restriction d'utilisation"
 
 #, fuzzy
 #~ msgid "Restriction amount field"
