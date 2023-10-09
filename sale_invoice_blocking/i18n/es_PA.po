@@ -40,13 +40,11 @@ msgstr ""
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__display_name
-#: model:ir.model.fields,field_description:sale_invoice_blocking.field_sale_order__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__id
-#: model:ir.model.fields,field_description:sale_invoice_blocking.field_sale_order__id
 msgid "ID"
 msgstr ""
 
@@ -58,7 +56,6 @@ msgstr ""
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason____last_update
-#: model:ir.model.fields,field_description:sale_invoice_blocking.field_sale_order____last_update
 msgid "Last Modified on"
 msgstr ""
 
