@@ -77,8 +77,8 @@ msgid ""
 "The value of the field 'Default Validity Duration of Sale Orders' must be "
 "positive or 0."
 msgstr ""
-"El valor del camp \"Durada de validesa per defecte de les comandes de venda\""
-" ha de ser positiu o 0."
+"El valor del camp \"Durada de validesa per defecte de les comandes de venda"
+"\" ha de ser positiu o 0."
 
 #. module: sale_validity
 #: model:ir.model.fields,field_description:sale_validity.field_sale_order__validity_date
