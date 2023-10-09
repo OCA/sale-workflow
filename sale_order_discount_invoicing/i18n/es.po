@@ -113,7 +113,8 @@ msgstr "Líneas de descuento divididas"
 #: code:addons/sale_order_discount_invoicing/models/account_move.py:0
 #, python-format
 msgid ""
-"The lines you have created/deleted/modified are linked some other ones in the Sale Order.\n"
+"The lines you have created/deleted/modified are linked some other ones in "
+"the Sale Order.\n"
 "Please create/delete/modify both lines."
 msgstr ""
 "Las líneas que ha creado/borrado/modificado están vinculadas a otras en el "
