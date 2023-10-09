@@ -31,16 +31,10 @@ class SaleOrder(models.Model):
         for order in self:
             if order.customer_need_po and not order.client_order_ref:
                 raise ValidationError(
-                    _(
-                        "You can not confirm sale order without \
-                    Customer reference."
-                    )
+                    _("You can not confirm sale order without Customer reference.")
                 )
             if order.sale_doc and not order.sale_document_option:
                 raise ValidationError(
-                    _(
-                        "You can not confirm sale order without \
-                    Sale Documentation."
-                    )
+                    _("You can not confirm sale order without Sale Documentation.")
                 )
         return super(SaleOrder, self).action_confirm()
