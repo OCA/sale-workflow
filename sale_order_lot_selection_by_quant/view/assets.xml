@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="assets_backend" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script
+                type="text/javascript"
+                src="/sale_order_lot_selection_by_quant/static/src/js/select_lot_by_quant_widget.js"
+            /><script
+                type="text/javascript"
+                src="/sale_order_lot_selection_by_quant/static/src/js/quant_list_controller.js"
+            />
+            <script
+                type="text/javascript"
+                src="/sale_order_lot_selection_by_quant/static/src/js/sale_order_quant_list_view.js"
+            />
+            <link
+                rel="stylesheet"
+                href="/sale_order_lot_selection_by_quant/static/src/scss/select_lot_by_quant_widget.scss"
+                type="text/scss"
+            />
+        </xpath>
+    </template>
+    <template id="assets_tests" inherit_id="web.assets_tests">
+        <xpath expr=".">
+            <script
+                type="text/javascript"
+                src="/sale_order_lot_selection_by_quant/static/tests/tours/so_lot_selection_by_quant_tour.js"
+            />
+        </xpath>
+    </template>
+</odoo>

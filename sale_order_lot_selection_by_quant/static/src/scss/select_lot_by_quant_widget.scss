@@ -1,0 +1,16 @@
+.o_select_lot_by_quant_widget {
+    .o_input_dropdown {
+        & > input {
+            width: 75%;
+        }
+        a.o_dropdown_button {
+            right: 28% !important;
+        }
+        button.o_select_lot_by_quant {
+            width: 20%;
+            min-width: 16px;
+            margin: 0px 2px 4px;
+            padding: 2px;
+        }
+    }
+}
