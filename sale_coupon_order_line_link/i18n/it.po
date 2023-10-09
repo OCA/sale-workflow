@@ -58,8 +58,7 @@ msgstr ""
 
 #. module: sale_coupon_order_line_link
 #: model:ir.model.fields,help:sale_coupon_order_line_link.field_sale_order_line__reward_origin_generated_line_ids
-msgid ""
-"Origin Link on the reward lines generated meeting this line as criteria"
+msgid "Origin Link on the reward lines generated meeting this line as criteria"
 msgstr ""
 "Collegamento originario alle righe ricompensa create che rispondono ai "
 "criteri di questa riga"
