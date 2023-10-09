@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_resource_booking
+# 	* sale_resource_booking
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,11 @@ msgstr ""
 
 #. module: sale_resource_booking
 #: model_terms:ir.ui.view,arch_db:sale_resource_booking.view_order_form
-msgid "(Re)sync resource bookings. The sync will be done automatically when confirming the quotation, but you can do it beforehand if needed with this button. It will create missing resource bookings in pending state, or cancel the spare ones."
+msgid ""
+"(Re)sync resource bookings. The sync will be done automatically when "
+"confirming the quotation, but you can do it beforehand if needed with this "
+"button. It will create missing resource bookings in pending state, or cancel "
+"the spare ones."
 msgstr ""
 "(Re)synchroniser les réservations de ressources. La synchronisation sera "
 "faite automatiquement à la confirmation du devis mais vous pouvez le faire "
@@ -33,7 +37,7 @@ msgid "Booking type"
 msgstr "Type de réservation"
 
 #. module: sale_resource_booking
-#: code:addons/sale_resource_booking/models/sale_order.py:39
+#: code:addons/sale_resource_booking/models/sale_order.py:0
 #: model_terms:ir.ui.view,arch_db:sale_resource_booking.view_order_form
 #, python-format
 msgid "Bookings"
@@ -115,7 +119,10 @@ msgstr "Si coché, une réservation en attente sera générée à la vente."
 #. module: sale_resource_booking
 #: model:ir.model.fields,help:sale_resource_booking.field_product_product__resource_booking_type_combination_rel_id
 #: model:ir.model.fields,help:sale_resource_booking.field_product_template__resource_booking_type_combination_rel_id
-msgid "If set, the booking will be created with this resource combination. Otherwise, the combination will be assigned automatically later, when the requester schedules the booking."
+msgid ""
+"If set, the booking will be created with this resource combination. "
+"Otherwise, the combination will be assigned automatically later, when the "
+"requester schedules the booking."
 msgstr ""
 "Si coché, la réservation sera crée avec cette combinaison de ressources. "
 "Autrement, la combinaison sera assignée automatiquement plus tard lorsque le "
@@ -123,7 +130,9 @@ msgstr ""
 
 #. module: sale_resource_booking
 #: model:ir.model.fields,help:sale_resource_booking.field_resource_booking__sale_order_state
-msgid "If there is a related quotation and it is not confirmed, the booking will not be able to become confirmed."
+msgid ""
+"If there is a related quotation and it is not confirmed, the booking will "
+"not be able to become confirmed."
 msgstr ""
 "Si il y a un devis lié qui n'est pas confirmé, la réservation ne pourra pas "
 "passer en confirmé."
@@ -211,11 +220,6 @@ msgid "Resource combination"
 msgstr "Combinaison de ressources"
 
 #. module: sale_resource_booking
-#: model:ir.model,name:sale_resource_booking.model_sale_order
-msgid "Sale Order"
-msgstr "Commande"
-
-#. module: sale_resource_booking
 #: model:ir.model,name:sale_resource_booking.model_resource_booking_sale
 msgid "Sale order generator for resource booking types"
 msgstr "Générateur de commandes pour les types de réservation de ressources"
@@ -241,6 +245,11 @@ msgid "Sales"
 msgstr "Ventes"
 
 #. module: sale_resource_booking
+#: model:ir.model,name:sale_resource_booking.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_resource_booking
 #: model:ir.model,name:sale_resource_booking.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Ligne de la commande"
@@ -254,3 +263,6 @@ msgstr "Sauvegarder sans envoyer d'invitations"
 #: model_terms:ir.ui.view,arch_db:sale_resource_booking.view_order_form
 msgid "Sync bookings"
 msgstr "Synchroniser les réservations"
+
+#~ msgid "Sale Order"
+#~ msgstr "Commande"

@@ -38,7 +38,7 @@ msgid "Booking type"
 msgstr "Tipo de reserva/cita"
 
 #. module: sale_resource_booking
-#: code:addons/sale_resource_booking/models/sale_order.py:39
+#: code:addons/sale_resource_booking/models/sale_order.py:0
 #: model_terms:ir.ui.view,arch_db:sale_resource_booking.view_order_form
 #, python-format
 msgid "Bookings"
@@ -220,11 +220,6 @@ msgid "Resource combination"
 msgstr "Combinación de recursos"
 
 #. module: sale_resource_booking
-#: model:ir.model,name:sale_resource_booking.model_sale_order
-msgid "Sale Order"
-msgstr "Pedido de venta"
-
-#. module: sale_resource_booking
 #: model:ir.model,name:sale_resource_booking.model_resource_booking_sale
 msgid "Sale order generator for resource booking types"
 msgstr "Generador de pedidos de venta para tipos de reserva de recursos"
@@ -250,6 +245,11 @@ msgid "Sales"
 msgstr "Ventas"
 
 #. module: sale_resource_booking
+#: model:ir.model,name:sale_resource_booking.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_resource_booking
 #: model:ir.model,name:sale_resource_booking.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
@@ -263,3 +263,6 @@ msgstr "Guardar sin enviar invitaciones"
 #: model_terms:ir.ui.view,arch_db:sale_resource_booking.view_order_form
 msgid "Sync bookings"
 msgstr "Sincronizar reservas/citas"
+
+#~ msgid "Sale Order"
+#~ msgstr "Pedido de venta"
