@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_line_price_history
+# 	* sale_order_line_price_history
 #
 msgid ""
 msgstr ""
@@ -74,7 +74,8 @@ msgstr "Inclure l'entité commerciale"
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history__include_commercial_partner
 msgid "Include commercial entity and its contacts in the sale history"
-msgstr "Inclure l'entité commerciale et ses contacts dans l'historique de vente"
+msgstr ""
+"Inclure l'entité commerciale et ses contacts dans l'historique de vente"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
