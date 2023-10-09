@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_milestone_profile_invoicing
+# 	* sale_milestone_profile_invoicing
 #
 msgid ""
 msgstr ""
