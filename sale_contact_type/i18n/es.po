@@ -25,7 +25,6 @@ msgstr "Tipo de Dirección"
 
 #. module: sale_contact_type
 #: model:ir.model,name:sale_contact_type.model_res_partner
-#: selection:res.partner,type:0
 msgid "Contact"
 msgstr "Contacto"
 
@@ -36,29 +35,17 @@ msgid "Has Ordering Contact Child"
 msgstr "Tiene hijos de tipo 'Contacto de Pedido'"
 
 #. module: sale_contact_type
-#: selection:res.partner,type:0
-msgid "Invoice address"
-msgstr "Dirección de facturación"
+#: model:ir.model.fields,help:sale_contact_type.field_res_partner__type
+#: model:ir.model.fields,help:sale_contact_type.field_res_users__type
+msgid ""
+"Invoice & Delivery addresses are used in sales orders. Private addresses are "
+"only visible by authorized users."
+msgstr ""
 
 #. module: sale_contact_type
-#: selection:res.partner,type:0
+#: model:ir.model.fields.selection,name:sale_contact_type.selection__res_partner__type__ordering
 msgid "Ordering contact"
 msgstr "Contacto de Pedido"
-
-#. module: sale_contact_type
-#: selection:res.partner,type:0
-msgid "Other address"
-msgstr "Otra dirección"
-
-#. module: sale_contact_type
-#: selection:res.partner,type:0
-msgid "Private Address"
-msgstr "Dirección Privada"
-
-#. module: sale_contact_type
-#: selection:res.partner,type:0
-msgid "Shipping address"
-msgstr "Dirección de envío"
 
 #. module: sale_contact_type
 #: model:ir.model.fields,help:sale_contact_type.field_res_partner__has_ordering_contact_child
@@ -66,15 +53,24 @@ msgstr "Dirección de envío"
 msgid "Technical field for use in views"
 msgstr "Campo técnico para ser usado en vistas"
 
-#. module: sale_contact_type
-#: model:ir.model.fields,help:sale_contact_type.field_res_partner__type
-#: model:ir.model.fields,help:sale_contact_type.field_res_users__type
-msgid ""
-"Used by Sales and Purchase Apps to select the relevant address depending on "
-"the context."
-msgstr ""
-"Usado por la aplicaciones de Ventas y Compras para seleccionar la dirección "
-"más idónea dependiendo del contexto."
+#~ msgid "Invoice address"
+#~ msgstr "Dirección de facturación"
+
+#~ msgid "Other address"
+#~ msgstr "Otra dirección"
+
+#~ msgid "Private Address"
+#~ msgstr "Dirección Privada"
+
+#~ msgid "Shipping address"
+#~ msgstr "Dirección de envío"
+
+#~ msgid ""
+#~ "Used by Sales and Purchase Apps to select the relevant address depending "
+#~ "on the context."
+#~ msgstr ""
+#~ "Usado por la aplicaciones de Ventas y Compras para seleccionar la "
+#~ "dirección más idónea dependiendo del contexto."
 
 #~ msgid "Ordering address"
 #~ msgstr "Dirección de pedido"
