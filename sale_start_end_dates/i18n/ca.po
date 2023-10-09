@@ -29,11 +29,12 @@ msgid "Default Start Date"
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale_order.py:21
+#. odoo-python
+#: code:addons/sale_start_end_dates/models/sale_order.py:0
 #, python-format
 msgid ""
-"Default Start Date should be before or be the same as Default End Date for "
-"sale order '%s'."
+"Default Start Date (%(start_date)s) should be before or be the same as "
+"Default End Date (%(end_date)s) for sale order '%(name)s'."
 msgstr ""
 
 #. module: sale_start_end_dates
@@ -49,20 +50,22 @@ msgid ""
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale_order.py:86
+#. odoo-python
+#: code:addons/sale_start_end_dates/models/sale_order.py:0
 #, python-format
 msgid "Missing End Date for sale order line with Product '%s'."
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale_order.py:90
+#. odoo-python
+#: code:addons/sale_start_end_dates/models/sale_order.py:0
 #, python-format
 msgid "Missing Start Date for sale order line with Product '%s'."
 msgstr ""
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__must_have_dates
-msgid "Must Have Start and End Dates"
+msgid "Must Have Start/End Dates"
 msgstr ""
 
 #. module: sale_start_end_dates
@@ -71,19 +74,19 @@ msgid "Number of Days"
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale_order.py:68
+#. odoo-python
+#: code:addons/sale_start_end_dates/models/sale_order.py:0
 #, python-format
 msgid ""
-"On sale order line with product '%s', the number of days is negative (%d) ; "
-"this is not allowed. The number of days has been forced to 1."
+"On sale order line with product '%(product_name)s', the number of days is "
+"negative (%(number_of_days)s) ; this is not allowed. The number of days has "
+"been forced to 1."
 msgstr ""
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
-#, fuzzy
-#| msgid "Sales Order"
-msgid "Sale Order"
-msgstr "Comandes de venda"
+msgid "Sales Order"
+msgstr ""
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order_line
@@ -96,15 +99,22 @@ msgid "Start Date"
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale_order.py:94
+#. odoo-python
+#: code:addons/sale_start_end_dates/models/sale_order.py:0
 #, python-format
 msgid ""
-"Start Date should be before or be the same as End Date for sale order line "
-"with Product '%s'."
+"Start Date (%(start_date)s) should be before or be the same as End Date "
+"(%(end_date)s) for sale order line with Product '%(product_name)s'."
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale_order.py:67
+#. odoo-python
+#: code:addons/sale_start_end_dates/models/sale_order.py:0
 #, python-format
 msgid "Wrong number of days"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Sales Order"
+#~ msgid "Sale Order"
+#~ msgstr "Comandes de venda"
