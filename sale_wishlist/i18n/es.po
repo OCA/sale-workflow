@@ -38,6 +38,24 @@ msgid "Default"
 msgstr "Defecto"
 
 #. module: sale_wishlist
+#: model:ir.model.fields,field_description:sale_wishlist.field_product_set__display_name
+#: model:ir.model.fields,field_description:sale_wishlist.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_wishlist
+#: model:ir.model.fields,field_description:sale_wishlist.field_product_set__id
+#: model:ir.model.fields,field_description:sale_wishlist.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_wishlist
+#: model:ir.model.fields,field_description:sale_wishlist.field_product_set____last_update
+#: model:ir.model.fields,field_description:sale_wishlist.field_res_partner____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_wishlist
 #: model:ir.model,name:sale_wishlist.model_product_set
 msgid "Product set"
 msgstr "Conjunto de productos"
