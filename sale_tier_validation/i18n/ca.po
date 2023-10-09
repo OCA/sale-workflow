@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_tier_validation
+# 	* sale_tier_validation
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,8 @@ msgstr ""
 
 #. module: sale_tier_validation
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.sale_order_form_tier
-msgid "<i class=\"fa fa-info-circle\"/>This SO needs to be\n"
+msgid ""
+"<i class=\"fa fa-info-circle\"/>This SO needs to be\n"
 "                        validated."
 msgstr ""
 "<i class = \"fa fa-info-circle\" /> Aquest SO ha de ser\n"
