@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_contact_type
+# 	* sale_contact_type
 #
 msgid ""
 msgstr ""
@@ -68,7 +68,9 @@ msgstr "Camp tècnic per utilitzar en vistes"
 #. module: sale_contact_type
 #: model:ir.model.fields,help:sale_contact_type.field_res_partner__type
 #: model:ir.model.fields,help:sale_contact_type.field_res_users__type
-msgid "Used by Sales and Purchase Apps to select the relevant address depending on the context."
+msgid ""
+"Used by Sales and Purchase Apps to select the relevant address depending on "
+"the context."
 msgstr ""
 "Utilitzat per les aplicacions de vendes i compres per seleccionar l'adreça "
 "pertinent en funció del context."
