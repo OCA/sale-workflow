@@ -30,17 +30,12 @@ msgid "Default Start Date"
 msgstr "Privzeti začetni datum"
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale_order.py:21
-#, fuzzy, python-format
-#| msgid ""
-#| "Default Start Date should be before or be the same as Default End Date "
-#| "for sale order %s"
+#: code:addons/sale_start_end_dates/models/sale_order.py:0
+#, python-format
 msgid ""
-"Default Start Date should be before or be the same as Default End Date for "
-"sale order '%s'."
+"Default Start Date ({start_date}) should be before or be the same as Default "
+"End Date ({end_date}) for sale order '{name}'."
 msgstr ""
-"Privzeti začetni datum na prodajnem nalogu %s mora biti pred (ali enak) "
-"privzetim končnim datumom"
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__end_date
@@ -51,18 +46,18 @@ msgstr "Končni datum"
 #: model:ir.model.fields,help:sale_start_end_dates.field_sale_order_line__must_have_dates
 msgid ""
 "If this option is active, the user will have to enter a Start Date and an "
-"End Date on the invoice lines that have this product."
+"End Date on the invoice/move lines that have this product."
 msgstr ""
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale_order.py:86
+#: code:addons/sale_start_end_dates/models/sale_order.py:0
 #, python-format
 msgid "Missing End Date for sale order line with Product '%s'."
 msgstr ""
 "Manjkajoči končni datum na postavki prodajnega naloga s proizvodom '%s'."
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale_order.py:90
+#: code:addons/sale_start_end_dates/models/sale_order.py:0
 #, python-format
 msgid "Missing Start Date for sale order line with Product '%s'."
 msgstr ""
@@ -70,20 +65,27 @@ msgstr ""
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__must_have_dates
-msgid "Must Have Start and End Dates"
-msgstr "Zahteva se začetni in končni datum"
+msgid "Must Have Start/End Dates"
+msgstr ""
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__number_of_days
-msgid "Number of Days"
-msgstr "Število dni"
+msgid "Number Of Days"
+msgstr ""
+
+#. module: sale_start_end_dates
+#: code:addons/sale_start_end_dates/models/sale_order.py:0
+#, python-format
+msgid ""
+"On sale order line with product '{product_name}', the number of days is "
+"negative ({number_of_days}) ; this is not allowed. The number of days has "
+"been forced to 1."
+msgstr ""
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
-#, fuzzy
-#| msgid "Sales Order"
-msgid "Sale Order"
-msgstr "Prodajni nalog"
+msgid "Sales Order"
+msgstr ""
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order_line
@@ -96,21 +98,48 @@ msgid "Start Date"
 msgstr "Začetni datum"
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale_order.py:94
+#: code:addons/sale_start_end_dates/models/sale_order.py:0
 #, python-format
 msgid ""
-"Start Date should be before or be the same as End Date for sale order line "
-"with Product '%s'."
+"Start Date ({start_date}) should be before or be the same as End Date "
+"({end_date}) for sale order line with Product '{product_name}'."
 msgstr ""
-"Začetni datum mora biti na postavki prodajnega naloga s proizvodom '%s' pred "
-"končnim datumom (ali enak)."
 
 #. module: sale_start_end_dates
-#: code:addons/sale_start_end_dates/models/sale_order.py:67
+#: code:addons/sale_start_end_dates/models/sale_order.py:0
 #, fuzzy, python-format
-#| msgid "Number of Days"
 msgid "Wrong number of days"
 msgstr "Število dni"
+
+#, fuzzy, python-format
+#~| msgid ""
+#~| "Default Start Date should be before or be the same as Default End Date "
+#~| "for sale order %s"
+#~ msgid ""
+#~ "Default Start Date should be before or be the same as Default End Date "
+#~ "for sale order '%s'."
+#~ msgstr ""
+#~ "Privzeti začetni datum na prodajnem nalogu %s mora biti pred (ali enak) "
+#~ "privzetim končnim datumom"
+
+#~ msgid "Must Have Start and End Dates"
+#~ msgstr "Zahteva se začetni in končni datum"
+
+#~ msgid "Number of Days"
+#~ msgstr "Število dni"
+
+#, fuzzy
+#~| msgid "Sales Order"
+#~ msgid "Sale Order"
+#~ msgstr "Prodajni nalog"
+
+#, python-format
+#~ msgid ""
+#~ "Start Date should be before or be the same as End Date for sale order "
+#~ "line with Product '%s'."
+#~ msgstr ""
+#~ "Začetni datum mora biti na postavki prodajnega naloga s proizvodom '%s' "
+#~ "pred končnim datumom (ali enak)."
 
 #~ msgid "Missing number of days for sale order line with Product '%s'."
 #~ msgstr ""
