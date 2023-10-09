@@ -20,6 +20,15 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. module: sale_order_invoicing_finished_task
+#: model_terms:ir.ui.view,arch_db:sale_order_invoicing_finished_task.edit_project_task_track
+msgid ""
+"<span class=\"text-success\" attrs=\"{'invisible': [('invoiceable', '=', "
+"False)]}\">Invoiceable</span>\n"
+"                    <span class=\"text-danger\" attrs=\"{'invisible': "
+"[('invoiceable', '!=', False)]}\">Not Invoiceable</span>"
+msgstr ""
+
+#. module: sale_order_invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_template__invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_project_task__invoicing_finished_task
@@ -41,14 +50,13 @@ msgstr ""
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_product_template
-msgid "Product Template"
+msgid "Product"
 msgstr ""
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order
-#, fuzzy
-msgid "Sale Order"
-msgstr "Satış emri"
+msgid "Sales Order"
+msgstr ""
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order_line
@@ -71,9 +79,14 @@ msgid "Tasks"
 msgstr ""
 
 #. module: sale_order_invoicing_finished_task
-#: code:addons/sale_order_invoicing_finished_task/models/project.py:65
+#. odoo-python
+#: code:addons/sale_order_invoicing_finished_task/models/project.py:0
 #, python-format
 msgid ""
 "You cannot create/modify a task related with a invoiced, done or cancel sale "
 "order line "
 msgstr ""
+
+#, fuzzy
+#~ msgid "Sale Order"
+#~ msgstr "Satış emri"
