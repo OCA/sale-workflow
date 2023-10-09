@@ -90,9 +90,11 @@ msgid "Day"
 msgstr "Dag"
 
 #. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_advance_payment_inv__display_name
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__display_name
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__display_name
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__display_name
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__display_name
 msgid "Display Name"
 msgstr "Weergavenaam"
 
@@ -107,9 +109,11 @@ msgid "Group By"
 msgstr ""
 
 #. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_advance_payment_inv__id
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__id
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__id
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__id
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__id
 msgid "ID"
 msgstr "ID"
 
@@ -201,9 +205,11 @@ msgid "Last Installment"
 msgstr "Laatste termijn"
 
 #. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_advance_payment_inv____last_update
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan____last_update
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan____last_update
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice____last_update
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order____last_update
 msgid "Last Modified on"
 msgstr "Laatst bijgewerkt op"
 
@@ -237,6 +243,12 @@ msgid "Next Invoice"
 msgstr "Volgende factuur"
 
 #. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
+#, python-format
+msgid "No matched order line for invoice line"
+msgstr ""
+
+#. module: sale_invoice_plan
 #: code:addons/sale_invoice_plan/wizard/sale_create_invoice_plan.py:0
 #, python-format
 msgid "Number Installment must greater than 1"
@@ -258,7 +270,7 @@ msgid "Plan Date"
 msgstr "Plan datum"
 
 #. module: sale_invoice_plan
-#: code:addons/sale_invoice_plan/models/sale.py:0
+#: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
 #, python-format
 msgid ""
 "Plan quantity: %s, exceed invoiceable quantity: %s\n"
