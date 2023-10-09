@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_advance_payment
+# 	* sale_advance_payment
 #
 msgid ""
 msgstr ""
@@ -227,7 +227,9 @@ msgstr "Comanda de venda"
 #. module: sale_advance_payment
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:87
 #, python-format
-msgid "The amount to advance must always be positive. Please use the payment type to indicate if this is an inbound or an outbound payment."
+msgid ""
+"The amount to advance must always be positive. Please use the payment type "
+"to indicate if this is an inbound or an outbound payment."
 msgstr ""
 "L'import d'entrega a compte ha de ser sempre positiu. Si us plau utilitzeu "
 "el tipus de pagament per indicar si es tracta d'un pagament d'entrada o un "

@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_advance_payment
+# 	* sale_advance_payment
 #
 msgid ""
 msgstr ""
@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2022-08-01 15:44+0000\n"
 "Last-Translator: Simone Rubino <sir@takobi.online>\n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -226,5 +227,9 @@ msgstr "Ordine di vendita"
 #. module: sale_advance_payment
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:87
 #, python-format
-msgid "The amount to advance must always be positive. Please use the payment type to indicate if this is an inbound or an outbound payment."
-msgstr "L'importo da anticipare deve sempre essere positivo. Si prega di usare il tipo di pagamento per indicare se il pagamento è in entrata o in uscita."
+msgid ""
+"The amount to advance must always be positive. Please use the payment type "
+"to indicate if this is an inbound or an outbound payment."
+msgstr ""
+"L'importo da anticipare deve sempre essere positivo. Si prega di usare il "
+"tipo di pagamento per indicare se il pagamento è in entrata o in uscita."

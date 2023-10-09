@@ -99,7 +99,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_advance_payment
-#: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__inbound
+#: selection:account.voucher.wizard,payment_type:0
 msgid "Inbound"
 msgstr "Entrante"
 
@@ -134,7 +134,7 @@ msgid "Make advance payment"
 msgstr "Confirmar anticipo"
 
 #. module: sale_advance_payment
-#: model:ir.model.fields.selection,name:sale_advance_payment.selection__sale_order__advance_payment_status__not_paid
+#: selection:sale.order,advance_payment_status:0
 msgid "Not Paid"
 msgstr "No pagado"
 
@@ -159,17 +159,17 @@ msgid "Order Due Amount"
 msgstr "Importe adeudado del pedido"
 
 #. module: sale_advance_payment
-#: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__outbound
+#: selection:account.voucher.wizard,payment_type:0
 msgid "Outbound"
 msgstr "Saliente"
 
 #. module: sale_advance_payment
-#: model:ir.model.fields.selection,name:sale_advance_payment.selection__sale_order__advance_payment_status__paid
+#: selection:sale.order,advance_payment_status:0
 msgid "Paid"
 msgstr "Pagado"
 
 #. module: sale_advance_payment
-#: model:ir.model.fields.selection,name:sale_advance_payment.selection__sale_order__advance_payment_status__partial
+#: selection:sale.order,advance_payment_status:0
 msgid "Partially Paid"
 msgstr "Pagado parcialmente"
 
@@ -221,11 +221,11 @@ msgstr "Venta"
 
 #. module: sale_advance_payment
 #: model:ir.model,name:sale_advance_payment.model_sale_order
-msgid "Sales Order"
-msgstr "Pedido de venta"
+msgid "Sale Order"
+msgstr ""
 
 #. module: sale_advance_payment
-#: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
+#: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:87
 #, python-format
 msgid ""
 "The amount to advance must always be positive. Please use the payment type "
@@ -233,3 +233,6 @@ msgid ""
 msgstr ""
 "El importe a anticipar debe ser siempre positivo. Utilice el tipo de pago "
 "para indicar si se trata de un pago entrante o saliente."
+
+#~ msgid "Sales Order"
+#~ msgstr "Pedido de venta"
