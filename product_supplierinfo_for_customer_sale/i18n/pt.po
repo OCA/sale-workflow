@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* product_supplierinfo_for_customer_sale
+# 	* product_supplierinfo_for_customer_sale
 #
 msgid ""
 msgstr ""
@@ -18,7 +18,9 @@ msgstr ""
 
 #. module: product_supplierinfo_for_customer_sale
 #: model:ir.model.fields,help:product_supplierinfo_for_customer_sale.field_sale_order_line__partner_is_customer
-msgid "Check this box if this contact is a customer. It can be selected in sales orders."
+msgid ""
+"Check this box if this contact is a customer. It can be selected in sales "
+"orders."
 msgstr ""
 "Selecione esta caixa se o contacto for um cliente. Pode ser selecionado na "
 "encomendas de venda."
