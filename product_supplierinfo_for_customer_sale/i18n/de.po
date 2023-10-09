@@ -17,15 +17,9 @@ msgstr ""
 "X-Generator: Weblate 3.7.1\n"
 
 #. module: product_supplierinfo_for_customer_sale
-#: model:ir.model.fields,help:product_supplierinfo_for_customer_sale.field_sale_order_line__partner_is_customer
-msgid ""
-"Check this box if this contact is a customer. It can be selected in sales "
-"orders."
-msgstr ""
-
-#. module: product_supplierinfo_for_customer_sale
-#: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale.field_sale_order_line__partner_is_customer
-msgid "Is a Customer"
+#: model:ir.actions.act_window,name:product_supplierinfo_for_customer_sale.action_open_product_customerinfo
+#: model:ir.ui.menu,name:product_supplierinfo_for_customer_sale.menu_product_customerinfo
+msgid "Prices for customers"
 msgstr ""
 
 #. module: product_supplierinfo_for_customer_sale
@@ -34,18 +28,8 @@ msgid "Product Customer Code"
 msgstr ""
 
 #. module: product_supplierinfo_for_customer_sale
-#: model_terms:ir.ui.view,arch_db:product_supplierinfo_for_customer_sale.product_supplierinfo_search_view
-msgid "Product Template"
-msgstr ""
-
-#. module: product_supplierinfo_for_customer_sale
 #: model:ir.model,name:product_supplierinfo_for_customer_sale.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
-
-#. module: product_supplierinfo_for_customer_sale
-#: model_terms:ir.ui.view,arch_db:product_supplierinfo_for_customer_sale.product_supplierinfo_search_view
-msgid "Supplierinfo"
 msgstr ""
 
 #~ msgid "Product"
