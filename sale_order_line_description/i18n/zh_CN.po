@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_line_description
+# 	* sale_order_line_description
 #
 msgid ""
 msgstr ""
@@ -28,7 +28,8 @@ msgstr "仅允许在销售订单行上使用产品销售描述"
 
 #. module: sale_order_line_description
 #: model:ir.model.fields,help:sale_order_line_description.field_res_config_settings__group_use_product_description_per_so_line
-msgid "Allows you to use only product sale description on the sales order line."
+msgid ""
+"Allows you to use only product sale description on the sales order line."
 msgstr "仅允许在销售订单行上使用产品销售说明。"
 
 #. module: sale_order_line_description
