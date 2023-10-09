@@ -4,16 +4,14 @@ from odoo import api, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    def message_subscribe(self, partner_ids=None, channel_ids=None, subtype_ids=None):
+    def message_subscribe(self, partner_ids=None, subtype_ids=None):
         partner_ids = partner_ids or []
         if (
             self._context.get("sale_partner_disable_autofollow")
             and self.partner_id.id in partner_ids
         ):
             partner_ids.remove(self.partner_id.id)
-        return super(SaleOrder, self).message_subscribe(
-            partner_ids, channel_ids, subtype_ids
-        )
+        return super(SaleOrder, self).message_subscribe(partner_ids, subtype_ids)
 
     @api.model_create_multi
     def create(self, values):
