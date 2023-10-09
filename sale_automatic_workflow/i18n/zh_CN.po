@@ -149,7 +149,8 @@ msgstr "如果设置，则在用户选择销售订单上的流程时显示消息
 msgid ""
 "If this box is checked, when the first invoice is created The service sale "
 "order lines will be included and will be marked as delivered"
-msgstr "如果选中此框，则在创建第一张发票时将包含服务销售订单行，并将其标记为已交付"
+msgstr ""
+"如果选中此框，则在创建第一张发票时将包含服务销售订单行，并将其标记为已交付"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_account_invoice
