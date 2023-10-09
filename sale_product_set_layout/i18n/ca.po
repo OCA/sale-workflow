@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_product_set_layout
+# 	* sale_product_set_layout
 #
 msgid ""
 msgstr ""
@@ -17,12 +17,50 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_product_set_layout
-#: model:ir.model,name:sale_product_set_layout.model_product_set
-msgid "Product set"
-msgstr "Conjunt de productes"
+#: model_terms:ir.ui.view,arch_db:sale_product_set_layout.product_set_add_form_view
+#: model_terms:ir.ui.view,arch_db:sale_product_set_layout.view_product_set_form
+msgid "Add a line"
+msgstr ""
 
 #. module: sale_product_set_layout
-#: model:ir.model.fields,field_description:sale_product_set_layout.field_product_set_section_id
+#: model_terms:ir.ui.view,arch_db:sale_product_set_layout.product_set_add_form_view
+#: model_terms:ir.ui.view,arch_db:sale_product_set_layout.view_product_set_form
+msgid "Add a note"
+msgstr ""
+
+#. module: sale_product_set_layout
+#: model_terms:ir.ui.view,arch_db:sale_product_set_layout.product_set_add_form_view
+#: model_terms:ir.ui.view,arch_db:sale_product_set_layout.view_product_set_form
+msgid "Add a section"
+msgstr ""
+
+#. module: sale_product_set_layout
+#: model:ir.model.fields,field_description:sale_product_set_layout.field_product_set_line__display_type
+msgid "Display Type"
+msgstr ""
+
+#. module: sale_product_set_layout
+#: model:ir.model.fields,field_description:sale_product_set_layout.field_product_set_line__name
+msgid "Name"
+msgstr ""
+
+#. module: sale_product_set_layout
+#: model:ir.model.fields.selection,name:sale_product_set_layout.selection__product_set_line__display_type__line_note
+msgid "Note"
+msgstr ""
+
+#. module: sale_product_set_layout
+#: model:ir.model.fields,field_description:sale_product_set_layout.field_product_set_line__product_id
+msgid "Product"
+msgstr ""
+
+#. module: sale_product_set_layout
+#: model:ir.model,name:sale_product_set_layout.model_product_set_line
+msgid "Product set line"
+msgstr ""
+
+#. module: sale_product_set_layout
+#: model:ir.model.fields.selection,name:sale_product_set_layout.selection__product_set_line__display_type__line_section
 msgid "Section"
 msgstr "Secció"
 
@@ -30,3 +68,6 @@ msgstr "Secció"
 #: model:ir.model,name:sale_product_set_layout.model_product_set_add
 msgid "Wizard model to add product set into a quotation"
 msgstr "Model d'assistent per afegir un conjunt de productes a un pressupost"
+
+#~ msgid "Product set"
+#~ msgstr "Conjunt de productes"
