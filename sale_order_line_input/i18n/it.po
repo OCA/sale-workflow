@@ -27,19 +27,9 @@ msgid "Disc.%"
 msgstr "Sconto (%)"
 
 #. module: sale_order_line_input
-#: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__display_name
-msgid "Display Name"
-msgstr "Nome visualizzato"
-
-#. module: sale_order_line_input
 #: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__force_company_id
 msgid "Forced company"
 msgstr "Azienda forzata"
-
-#. module: sale_order_line_input
-#: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__id
-msgid "ID"
-msgstr "ID"
 
 #. module: sale_order_line_input
 #: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__pricelist_id
@@ -63,11 +53,6 @@ msgid "Invoiced"
 msgstr "Fatturato"
 
 #. module: sale_order_line_input
-#: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "New"
 msgstr "Nuovo"
@@ -76,11 +61,6 @@ msgstr "Nuovo"
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 msgid "Not Invoice Related"
 msgstr "Non Collegato a Fattura"
-
-#. module: sale_order_line_input
-#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
-msgid "Open Order"
-msgstr "Apri ordine"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
@@ -142,3 +122,15 @@ msgstr "Da fatturare"
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "UoM"
 msgstr "UdM"
+
+#~ msgid "Display Name"
+#~ msgstr "Nome visualizzato"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#~ msgid "Open Order"
+#~ msgstr "Apri ordine"
