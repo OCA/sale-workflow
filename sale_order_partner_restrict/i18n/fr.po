@@ -24,7 +24,8 @@ msgstr "Tous les partenaires"
 #. module: sale_order_partner_restrict
 #: model_terms:ir.ui.view,arch_db:sale_order_partner_restrict.res_config_settings_view_form
 msgid "Choose Partner Restrictions on Sale Orders"
-msgstr "Sélectionner la restriction des partenaires sur les commandes de ventes"
+msgstr ""
+"Sélectionner la restriction des partenaires sur les commandes de ventes"
 
 #. module: sale_order_partner_restrict
 #: model:ir.model,name:sale_order_partner_restrict.model_res_company
