@@ -39,9 +39,8 @@ msgid "Default Sale Order Invoice Policy"
 msgstr "Política de facturación de pedidos de venta por defecto"
 
 #. module: sale_invoice_policy
-#: selection:product.template,default_invoice_policy:0
-#: selection:product.template,invoice_policy:0
-#: selection:sale.order,invoice_policy:0
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__product_template__default_invoice_policy__delivery
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__delivery
 msgid "Delivered quantities"
 msgstr "Cantidades entregadas"
 
@@ -90,9 +89,8 @@ msgstr ""
 "Cantidad entregada: Cantidades facturadas entregadas al cliente."
 
 #. module: sale_invoice_policy
-#: selection:product.template,default_invoice_policy:0
-#: selection:product.template,invoice_policy:0
-#: selection:sale.order,invoice_policy:0
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__product_template__default_invoice_policy__order
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__order
 msgid "Ordered quantities"
 msgstr "Cantidades Ordenadas"
 
@@ -102,14 +100,19 @@ msgid "Product Template"
 msgstr "Plantilla de producto"
 
 #. module: sale_invoice_policy
+#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
+msgid "Sale Invoice Policy"
+msgstr ""
+
+#. module: sale_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
 msgid "Sale Invoice Policy Required"
 msgstr "Política de facturación requerida para ventas"
 
 #. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_sale_order
-msgid "Sale Order"
-msgstr "Orden de venta"
+msgid "Sales Order"
+msgstr ""
 
 #. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_sale_order_line
@@ -122,3 +125,6 @@ msgid "This makes Invoice Policy required on Sale Orders"
 msgstr ""
 "Esto hace que la Política de Facturación sea obligatoria en los Pedidos de "
 "Venta"
+
+#~ msgid "Sale Order"
+#~ msgstr "Orden de venta"

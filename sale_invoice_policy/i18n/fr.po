@@ -39,9 +39,8 @@ msgid "Default Sale Order Invoice Policy"
 msgstr "Politique de facturation par défaut des ventes"
 
 #. module: sale_invoice_policy
-#: selection:product.template,default_invoice_policy:0
-#: selection:product.template,invoice_policy:0
-#: selection:sale.order,invoice_policy:0
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__product_template__default_invoice_policy__delivery
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__delivery
 msgid "Delivered quantities"
 msgstr "Quantités Livrées"
 
@@ -93,9 +92,8 @@ msgstr ""
 "livré (temps passé dans le cas de prestations)."
 
 #. module: sale_invoice_policy
-#: selection:product.template,default_invoice_policy:0
-#: selection:product.template,invoice_policy:0
-#: selection:sale.order,invoice_policy:0
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__product_template__default_invoice_policy__order
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__order
 msgid "Ordered quantities"
 msgstr "Quantités Commandées"
 
@@ -105,14 +103,19 @@ msgid "Product Template"
 msgstr "Modèle de produit"
 
 #. module: sale_invoice_policy
+#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
+msgid "Sale Invoice Policy"
+msgstr ""
+
+#. module: sale_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
 msgid "Sale Invoice Policy Required"
 msgstr "Politique de facturation des ventes requise"
 
 #. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_sale_order
-msgid "Sale Order"
-msgstr "Bon de commande"
+msgid "Sales Order"
+msgstr ""
 
 #. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_sale_order_line
@@ -123,3 +126,6 @@ msgstr "Ligne de bon de commande"
 #: model:ir.model.fields,help:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
 msgid "This makes Invoice Policy required on Sale Orders"
 msgstr "La politique de facturation est requise sur les bons de commandes"
+
+#~ msgid "Sale Order"
+#~ msgstr "Bon de commande"
