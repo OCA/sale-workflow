@@ -27,15 +27,14 @@ class StockReturnRequest(models.Model):
 
     def action_view_sales(self):
         """Display returned sales"""
-        action = self.env.ref("sale.action_orders")
-        result = action.read()[0]
-        result["context"] = {}
+        action = self.env["ir.actions.act_window"]._for_xml_id("sale.action_orders")
+        action["context"] = {}
         sales = self.mapped("sale_order_ids")
         if not sales or len(sales) > 1:
             # Sort ids so we can confidently test the string
-            result["domain"] = "[('id', 'in', %s)]" % (sorted(sales.ids))
+            action["domain"] = "[('id', 'in', %s)]" % (sorted(sales.ids))
         elif len(sales) == 1:
             res = self.env.ref("sale.view_order_form", False)
-            result["views"] = [(res and res.id or False, "form")]
-            result["res_id"] = sales.id
-        return result
+            action["views"] = [(res and res.id or False, "form")]
+            action["res_id"] = sales.id
+        return action
