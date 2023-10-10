@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_manual_delivery
+# 	* sale_manual_delivery
 #
 msgid ""
 msgstr ""
@@ -109,7 +109,10 @@ msgstr "ID"
 #. module: sale_manual_delivery
 #: model:ir.model.fields,help:sale_manual_delivery.field_crm_team__manual_delivery
 #: model:ir.model.fields,help:sale_manual_delivery.field_sale_order__manual_delivery
-msgid "If Manual, the deliveries are not created at SO confirmation.        You need to use the Create Delivery button in order to reserve and         ship the goods."
+msgid ""
+"If Manual, the deliveries are not created at SO confirmation.        You "
+"need to use the Create Delivery button in order to reserve and         ship "
+"the goods."
 msgstr ""
 "Si es Manual, las entregas no se crean en la confirmación del SO. Debe "
 "utilizar el botón Crear entrega para reservar y enviar las mercancías."
@@ -183,7 +186,9 @@ msgstr "Producto"
 #. module: sale_manual_delivery
 #: model:ir.model.fields,help:sale_manual_delivery.field_manual_delivery_line__existing_qty
 #: model:ir.model.fields,help:sale_manual_delivery.field_sale_order_line__existing_qty
-msgid "Quantity already planned or shipped (stock movements             already created)"
+msgid ""
+"Quantity already planned or shipped (stock movements             already "
+"created)"
 msgstr "Cantidad ya planificada o enviada (movimientos de stock ya creados)"
 
 #. module: sale_manual_delivery
@@ -239,7 +244,9 @@ msgstr "Líneas de orden de venta"
 
 #. module: sale_manual_delivery
 #: model_terms:ir.ui.view,arch_db:sale_manual_delivery.view_sales_order_undelivered_line_filter
-msgid "Sales Order Lines that are confirmed, done or in exception state and no delivery is created to satisfy them"
+msgid ""
+"Sales Order Lines that are confirmed, done or in exception state and no "
+"delivery is created to satisfy them"
 msgstr ""
 "Líneas de orden de venta que están confirmadas, realizadas o en estado de "
 "excepción y no se crea ninguna entrega para satisfacerlas"
@@ -272,7 +279,9 @@ msgstr "Adquisición manual del asistente"
 #. module: sale_manual_delivery
 #: code:addons/sale_manual_delivery/wizard/manual_proc.py:120
 #, python-format
-msgid "You can not deliver more than the remaining quantity. If you need to do so, please edit the sale order first."
+msgid ""
+"You can not deliver more than the remaining quantity. If you need to do so, "
+"please edit the sale order first."
 msgstr ""
 "No puede entregar más de la cantidad restante. Si necesita hacerlo, primero "
 "edite la orden de venta."
@@ -280,7 +289,8 @@ msgstr ""
 #. module: sale_manual_delivery
 #: code:addons/sale_manual_delivery/models/sale_order.py:45
 #, python-format
-msgid "You can only change to/from manual delivery in a quote, not a confirmed order"
+msgid ""
+"You can only change to/from manual delivery in a quote, not a confirmed order"
 msgstr ""
 "Solo puede cambiar a / desde la entrega manual en un presupuesto, no en un "
 "pedido confirmado"
