@@ -22,6 +22,7 @@ msgid "Active"
 msgstr "有效"
 
 #. module: sale_order_archive
+#: model_terms:ir.ui.view,arch_db:sale_order_archive.sale_order_archive_form_view
 #: model_terms:ir.ui.view,arch_db:sale_order_archive.sale_order_archive_search_view
 msgid "Archived"
 msgstr "已归档"
@@ -35,6 +36,5 @@ msgstr ""
 #. module: sale_order_archive
 #: model:ir.model,name:sale_order_archive.model_sale_order
 #, fuzzy
-#| msgid "Sale Order"
 msgid "Sales Order"
 msgstr "销售订单"
