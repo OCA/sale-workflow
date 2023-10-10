@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_tag
+# 	* sale_order_tag
 #
 msgid ""
 msgstr ""
@@ -47,16 +47,19 @@ msgid "Description"
 msgstr "Descripció"
 
 #. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__display_name
 msgid "Display Name"
 msgstr "Nom visible"
 
 #. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag____last_update
 msgid "Last Modified on"
 msgstr "Darrera modificació el"
@@ -78,11 +81,6 @@ msgid "Name"
 msgstr "Nom"
 
 #. module: sale_order_tag
-#: model:ir.model,name:sale_order_tag.model_sale_order
-msgid "Sale Order"
-msgstr "Comanda de venda"
-
-#. module: sale_order_tag
 #: model:ir.model,name:sale_order_tag.model_sale_order_tag
 msgid "Sale Order Tag"
 msgstr "Etiqueta de comanda de venda"
@@ -95,6 +93,11 @@ msgid "Sale Order Tags"
 msgstr "Etiquetes de comandes de venda"
 
 #. module: sale_order_tag
+#: model:ir.model,name:sale_order_tag.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_tag
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__team_ids
 msgid "Sales Teams"
 msgstr "Equips comercials"
@@ -105,7 +108,7 @@ msgid "Sequence"
 msgstr "Seqüència"
 
 #. module: sale_order_tag
-#: sql_constraint:sale.order.tag:0
+#: model:ir.model.constraint,message:sale_order_tag.constraint_sale_order_tag_name_uniq
 msgid "Tag name already exists!"
 msgstr "El nom de l'etiqueta ja existeix!"
 
@@ -118,3 +121,6 @@ msgstr "Etiquetes"
 #: model_terms:ir.ui.view,arch_db:sale_order_tag.sale_order_tag_view_form
 msgid "tag..."
 msgstr "Etiqueta..."
+
+#~ msgid "Sale Order"
+#~ msgstr "Comanda de venda"
