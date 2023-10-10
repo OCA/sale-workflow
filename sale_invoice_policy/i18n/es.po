@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-11 13:13+0000\n"
-"PO-Revision-Date: 2023-07-25 11:09+0000\n"
+"PO-Revision-Date: 2023-10-10 20:36+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -102,7 +102,7 @@ msgstr "Plantilla de producto"
 #. module: sale_invoice_policy
 #: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
 msgid "Sale Invoice Policy"
-msgstr ""
+msgstr "Política de facturación para ventas"
 
 #. module: sale_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
@@ -112,7 +112,7 @@ msgstr "Política de facturación requerida para ventas"
 #. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Orden de Venta"
 
 #. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_sale_order_line
