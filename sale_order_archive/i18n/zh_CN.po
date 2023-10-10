@@ -22,9 +22,25 @@ msgid "Active"
 msgstr "有效"
 
 #. module: sale_order_archive
+#: model_terms:ir.ui.view,arch_db:sale_order_archive.sale_order_archive_form_view
 #: model_terms:ir.ui.view,arch_db:sale_order_archive.sale_order_archive_search_view
 msgid "Archived"
 msgstr "已归档"
+
+#. module: sale_order_archive
+#: model:ir.model.fields,field_description:sale_order_archive.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_archive
+#: model:ir.model.fields,field_description:sale_order_archive.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_archive
+#: model:ir.model.fields,field_description:sale_order_archive.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: sale_order_archive
 #: code:addons/sale_order_archive/models/sale_order.py:0
@@ -35,6 +51,5 @@ msgstr ""
 #. module: sale_order_archive
 #: model:ir.model,name:sale_order_archive.model_sale_order
 #, fuzzy
-#| msgid "Sale Order"
 msgid "Sales Order"
 msgstr "销售订单"
