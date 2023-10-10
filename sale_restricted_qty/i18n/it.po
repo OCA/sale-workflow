@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_restricted_qty
+# 	* sale_restricted_qty
 #
 msgid ""
 msgstr ""
@@ -19,8 +19,10 @@ msgstr ""
 #. module: sale_restricted_qty
 #: code:addons/sale_restricted_qty/models/sale.py:89
 #, python-format
-msgid "\n"
-"* If you want sell quantity bigger than max Quantity,Check \"force max quatity\" on product"
+msgid ""
+"\n"
+"* If you want sell quantity bigger than max Quantity,Check \"force max "
+"quatity\" on product"
 msgstr ""
 "\n"
 "* se vuoi vendere una quantità maggiore della Quantità massima, Seleziona "
@@ -29,8 +31,10 @@ msgstr ""
 #. module: sale_restricted_qty
 #: code:addons/sale_restricted_qty/models/sale.py:70
 #, python-format
-msgid "\n"
-"* If you want sell quantity less than Min Quantity,Check \"force min quatity\" on product"
+msgid ""
+"\n"
+"* If you want sell quantity less than Min Quantity,Check \"force min quatity"
+"\" on product"
 msgstr ""
 "\n"
 "* se vuoi vendere una quantità inferiore alla Quantità Minima, Seleziona "
@@ -39,8 +43,10 @@ msgstr ""
 #. module: sale_restricted_qty
 #: code:addons/sale_restricted_qty/models/sale.py:105
 #, python-format
-msgid "\n"
-"* If you want sell quantity not multiple Quantity,Set multiple quantity to 0 on product or product template or product category"
+msgid ""
+"\n"
+"* If you want sell quantity not multiple Quantity,Set multiple quantity to 0 "
+"on product or product template or product category"
 msgstr ""
 "\n"
 "* se vuoi vendere quantità non multiple, Imposta quantità multiple a 0 nella "
@@ -50,21 +56,18 @@ msgstr ""
 #: code:addons/sale_restricted_qty/models/sale.py:86
 #, python-format
 msgid "Check maximum order quantity for this products: * \n"
-""
 msgstr "Controlla la quantità di vendita massima per questi prodotti: * \n"
 
 #. module: sale_restricted_qty
 #: code:addons/sale_restricted_qty/models/sale.py:67
 #, python-format
 msgid "Check minimum order quantity for this products: * \n"
-""
 msgstr "Controlla la quantità di vendita minima per questi prodotti: * \n"
 
 #. module: sale_restricted_qty
 #: code:addons/sale_restricted_qty/models/sale.py:102
 #, python-format
 msgid "Check multiple order quantity for this products: * \n"
-""
 msgstr "Controlla la quantità di vendita multipla per questi prodotti: * \n"
 
 #. module: sale_restricted_qty
@@ -72,7 +75,10 @@ msgstr "Controlla la quantità di vendita multipla per questi prodotti: * \n"
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_product__force_sale_max_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__force_sale_max_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_template__force_sale_max_qty
-msgid "Define if user can force sale max qty 'If not set', Odoo will use the value defined in the parent object.Hierarchy is in this order :Product/product Template/product category/parent categoroies "
+msgid ""
+"Define if user can force sale max qty 'If not set', Odoo will use the value "
+"defined in the parent object.Hierarchy is in this order :Product/product "
+"Template/product category/parent categoroies "
 msgstr ""
 "Definisci se l'utente può forzare la quantità massima di vendita 'Se non "
 "impostato', Odoo utilizzerà il valore definito nell'oggetto padre. La "
@@ -84,7 +90,10 @@ msgstr ""
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_product__force_sale_min_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__force_sale_min_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_template__force_sale_min_qty
-msgid "Define if user can force sale min qty 'If not set', Odoo will use the value defined in the parent object.Hierarchy is in this order :Product/product Template/product category/parent categoroies "
+msgid ""
+"Define if user can force sale min qty 'If not set', Odoo will use the value "
+"defined in the parent object.Hierarchy is in this order :Product/product "
+"Template/product category/parent categoroies "
 msgstr ""
 "Definisci se l'utente può forzare la quantità minima di vendita 'Se non "
 "impostato', Odoo utilizzerà il valore definito nell'oggetto padre. La "
@@ -96,7 +105,10 @@ msgstr ""
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_product__sale_max_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__sale_max_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_template__sale_max_qty
-msgid "Define sale max qty 'If not set, Odoo will use the value defined in the parent object.Hierarchy is in this order :Product/product Template/product category/parent categoroies "
+msgid ""
+"Define sale max qty 'If not set, Odoo will use the value defined in the "
+"parent object.Hierarchy is in this order :Product/product Template/product "
+"category/parent categoroies "
 msgstr ""
 "Definisci la qtà massima di vendita 'Se non impostato', Odoo utilizzerà il "
 "valore definito nell'oggetto padre. La gerarchia è in questo ordine: "
@@ -107,7 +119,10 @@ msgstr ""
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_product__sale_min_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__sale_min_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_template__sale_min_qty
-msgid "Define sale min qty 'If not set, Odoo will use the value defined in the parent object.Hierarchy is in this order :Product/product Template/product category/parent categoroies "
+msgid ""
+"Define sale min qty 'If not set, Odoo will use the value defined in the "
+"parent object.Hierarchy is in this order :Product/product Template/product "
+"category/parent categoroies "
 msgstr ""
 "Definisci la qtà minima di vendita 'Se non impostato', Odoo utilizzerà il "
 "valore definito nell'oggetto padre. La gerarchia è in questo ordine: "
@@ -118,7 +133,10 @@ msgstr ""
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_product__sale_multiple_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__sale_multiple_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_template__sale_multiple_qty
-msgid "Define sale multiple qty 'If not set', Odoo will use the value defined in the parent object.Hierarchy is in this order :Product/product Template/product category/parent categoroies "
+msgid ""
+"Define sale multiple qty 'If not set', Odoo will use the value defined in "
+"the parent object.Hierarchy is in this order :Product/product Template/"
+"product category/parent categoroies "
 msgstr ""
 "Definisci la qtà multipla di vendita 'Se non impostato', Odoo utilizzerà il "
 "valore definito nell'oggetto padre. La gerarchia è in questo ordine: "
@@ -165,7 +183,9 @@ msgstr "ID"
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_product__manual_force_sale_max_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__manual_force_sale_max_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_template__manual_force_sale_max_qty
-msgid "If force max qty is checked, the max quantity is only indicative value.If is not test we check parent value"
+msgid ""
+"If force max qty is checked, the max quantity is only indicative value.If is "
+"not test we check parent value"
 msgstr ""
 "Se forza qtà massima è selezionata, la quantità massima è solo un valore "
 "indicativo. Se non è test controlliamo il valore genitore"
@@ -175,7 +195,9 @@ msgstr ""
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_product__manual_force_sale_min_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__manual_force_sale_min_qty
 #: model:ir.model.fields,help:sale_restricted_qty.field_product_template__manual_force_sale_min_qty
-msgid "If force min qty is checked, the min quantity is only indicative value.If is not test we check parent value"
+msgid ""
+"If force min qty is checked, the min quantity is only indicative value.If is "
+"not test we check parent value"
 msgstr ""
 "Se forza qtà minima è selezionata, la quantità minima è solo un valore "
 "indicativo. Se non è test controlliamo il valore genitore"
