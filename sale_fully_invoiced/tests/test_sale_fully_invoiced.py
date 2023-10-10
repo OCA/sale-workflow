@@ -7,34 +7,35 @@ from odoo.tests import common, tagged
 
 @tagged("-at_install", "post_install")
 class TestSaleFullyDelivered(common.TransactionCase):
-    def setUp(self):
-        super().setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
 
         # ENVIRONMENTS
-        self.sale_order = self.env["sale.order"]
-        self.partner_id = self.env.ref("base.res_partner_1")
-        self.product_id_1 = self.env.ref("product.product_product_8")
-        self.account_model = self.env["account.account"]
-        self.product_id_1.write({"invoice_policy": "order"})
-        self.so_vals = {
-            "partner_id": self.partner_id.id,
+        cls.sale_order = cls.env["sale.order"]
+        cls.partner_id = cls.env.ref("base.res_partner_1")
+        cls.product_id_1 = cls.env.ref("product.product_product_8")
+        cls.account_model = cls.env["account.account"]
+        cls.product_id_1.write({"invoice_policy": "order"})
+        cls.so_vals = {
+            "partner_id": cls.partner_id.id,
             "order_line": [
                 (
                     0,
                     0,
                     {
-                        "name": self.product_id_1.name,
-                        "product_id": self.product_id_1.id,
+                        "name": cls.product_id_1.name,
+                        "product_id": cls.product_id_1.id,
                         "product_uom_qty": 5.0,
-                        "product_uom": self.product_id_1.uom_po_id.id,
+                        "product_uom": cls.product_id_1.uom_po_id.id,
                         "price_unit": 500.0,
                     },
                 ),
             ],
         }
-        self.so = self.sale_order.create(self.so_vals)
-        self.currency_eur = self.env.ref("base.EUR")
-        self.supplier = self.env["res.partner"].create({"name": "Test supplier"})
+        cls.so = cls.sale_order.create(cls.so_vals)
+        cls.currency_eur = cls.env.ref("base.EUR")
+        cls.supplier = cls.env["res.partner"].create({"name": "Test supplier"})
 
     def test_00_sale_order_not_delivered(self):
         """
