@@ -53,6 +53,7 @@ msgid "Discount (%)"
 msgstr ""
 
 #. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line__display_name
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__display_name
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__display_name
 msgid "Display Name"
@@ -69,6 +70,7 @@ msgid "History lines"
 msgstr "历史行"
 
 #. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line__id
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__id
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__id
 msgid "ID"
@@ -95,6 +97,7 @@ msgid "Include quotations lines in the sale history"
 msgstr "在销售历史记录中包含报价单行"
 
 #. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line____last_update
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history____last_update
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line____last_update
 msgid "Last Modified on"
