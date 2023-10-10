@@ -30,6 +30,11 @@ msgid "Convert to Order"
 msgstr "In Auftrag umwandeln"
 
 #. module: sale_isolated_quotation
+#: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_isolated_quotation
 #: model:ir.model.fields,help:sale_isolated_quotation.field_sale_order__order_id
 msgid "For Quotation, this field references to its Sales Order"
 msgstr "Bei Angeboten verweist dieses Feld auf den zugehörigen Auftrag."
@@ -38,6 +43,16 @@ msgstr "Bei Angeboten verweist dieses Feld auf den zugehörigen Auftrag."
 #: model:ir.model.fields,help:sale_isolated_quotation.field_sale_order__quote_id
 msgid "For Sales Order, this field references to its Quotation"
 msgstr "Bei Aufträgen verweist dieses Feld auf das zugehörige Angebot."
+
+#. module: sale_isolated_quotation
+#: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_isolated_quotation
+#: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: sale_isolated_quotation
 #: code:addons/sale_isolated_quotation/models/sale.py:0
