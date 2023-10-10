@@ -25,10 +25,12 @@ msgstr "Può essere venduto"
 #. module: sale_by_packaging
 #: model:ir.model.fields,help:sale_by_packaging.field_product_packaging__force_sale_qty
 msgid ""
-"Determine if during the creation of a sale order line, the quantity should be forced with a multiple of the packaging.\n"
+"Determine if during the creation of a sale order line, the quantity should "
+"be forced with a multiple of the packaging.\n"
 "Example:\n"
 "You sell a product by packaging of 5 products.\n"
-"When the user will put 3 as quantity, the system can force the quantity to the superior unit (5 for this example)."
+"When the user will put 3 as quantity, the system can force the quantity to "
+"the superior unit (5 for this example)."
 msgstr ""
 "Determina se durante la creazione di una riga ordine di vendita la quantità "
 "debba essere forzata con un multiplo dell'imballaggio.\n"
@@ -113,8 +115,8 @@ msgid ""
 "Packaging type \"{}\" must stay with \"Can be sold\", at least one product "
 "configured as \"sell only by packaging\" is using it."
 msgstr ""
-"Il tipo imballaggio \"{}\" deve essere impostato come \"Può essere venduto\""
-", dato che almeno un prodotto impostato con \"Vendi solo per imballaggio\" "
+"Il tipo imballaggio \"{}\" deve essere impostato come \"Può essere venduto"
+"\", dato che almeno un prodotto impostato con \"Vendi solo per imballaggio\" "
 "lo sta utilizzando."
 
 #. module: sale_by_packaging
@@ -179,11 +181,11 @@ msgstr "Riga ordine di vendita"
 #: code:addons/sale_by_packaging/models/sale_order_line.py:0
 #, python-format
 msgid ""
-"This product packaging must be set as 'Can be sold' in order to be used on a"
-" sale order."
+"This product packaging must be set as 'Can be sold' in order to be used on a "
+"sale order."
 msgstr ""
-"Questo imballaggio prodotto deve essere impostato come \"Può essere venduto\""
-" per essere usato in un ordine di vendita."
+"Questo imballaggio prodotto deve essere impostato come \"Può essere venduto"
+"\" per essere usato in un ordine di vendita."
 
 #. module: sale_by_packaging
 #: model:ir.model,name:sale_by_packaging.model_product_packaging_type
