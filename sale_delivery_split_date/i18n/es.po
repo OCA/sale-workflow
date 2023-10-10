@@ -17,21 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: sale_delivery_split_date
-#: model:ir.model.fields,field_description:sale_delivery_split_date.field_sale_order_line__display_name
-msgid "Display Name"
-msgstr "Nombre a Mostrar"
-
-#. module: sale_delivery_split_date
-#: model:ir.model.fields,field_description:sale_delivery_split_date.field_sale_order_line__id
-msgid "ID"
-msgstr "ID (identificación)"
-
-#. module: sale_delivery_split_date
-#: model:ir.model.fields,field_description:sale_delivery_split_date.field_sale_order_line____last_update
-msgid "Last Modified on"
-msgstr "Ultima modificación el"
-
-#. module: sale_delivery_split_date
 #: model:ir.model,name:sale_delivery_split_date.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
@@ -40,6 +25,15 @@ msgstr "Línea de pedido de venta"
 #: model_terms:ir.ui.view,arch_db:sale_delivery_split_date.view_picking_internal_search
 msgid "Scheduled Date"
 msgstr "Fecha prevista"
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre a Mostrar"
+
+#~ msgid "ID"
+#~ msgstr "ID (identificación)"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modificación el"
 
 #~ msgid "Sale Order"
 #~ msgstr "Pedido de venta"
