@@ -3,7 +3,7 @@
 {
     "name": "Sale Order General Discount Payment Term",
     "summary": "General discount per sale order set on payment term",
-    "version": "14.0.1.0.0",
+    "version": "14.0.2.0.0",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Nextev," "Ooops," "Odoo Community Association (OCA)",
