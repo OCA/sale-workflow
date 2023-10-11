@@ -5,7 +5,7 @@ from lxml import etree
 from odoo.tests import SavepointCase
 
 
-class TestSaleOrderLineInput(SavepointCase):
+class TestSaleOrderGeneralDiscount(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -21,6 +21,9 @@ class TestSaleOrderLineInput(SavepointCase):
         )
         cls.product = cls.env["product.product"].create(
             {"name": "test_product", "type": "service"}
+        )
+        cls.product_consu = cls.env["product.product"].create(
+            {"name": "test_product_consu", "type": "consu"}
         )
         cls.order = cls.env["sale.order"].create(
             {
@@ -60,7 +63,6 @@ class TestSaleOrderLineInput(SavepointCase):
                 "pricelist_id": cls.env.ref("product.list0").id,
             }
         )
-        cls.View = cls.env["ir.ui.view"]
 
     def test_default_partner_discount(self):
         self.assertEqual(self.order.general_discount, self.partner.sale_discount)
@@ -72,7 +74,7 @@ class TestSaleOrderLineInput(SavepointCase):
 
     def test_sale_order_values(self):
         self.order.general_discount = 10
-        self.assertEqual(self.order.order_line.price_reduce, 900.00)
+        self.assertEqual(self.order.order_line.price_subtotal, 900.00)
 
     def _get_ctx_from_view(self, res):
         order_xml = etree.XML(res["arch"])
@@ -80,48 +82,29 @@ class TestSaleOrderLineInput(SavepointCase):
         order_line_field = order_xml.xpath(order_line_path)[0]
         return order_line_field.attrib.get("context", "{}")
 
-    def test_default_line_discount_value(self):
-
-        res = self.order.fields_view_get(
-            view_id=self.env.ref(
-                "sale_order_general_discount." "sale_order_general_discount_form_view"
-            ).id,
-            view_type="form",
+    def test_general_discount_product_filter(self):
+        """With the filter, the first line should not be discounted
+        rate, while the second follows the general discount
+        """
+        self.order.company_id.general_discount_applicable_to = (
+            '[("type", "=", "consu")]'
         )
-        ctx = self._get_ctx_from_view(res)
-        self.assertTrue("default_discount" in ctx)
-        view = self.View.create(
-            {
-                "name": "test",
-                "type": "form",
-                "model": "sale.order",
-                "arch": """
-                <data>
-                    <field name='order_line'
-                        context="{'default_product_uom_qty': 3.0}">
-                    </field>
-                </data>
-            """,
-            }
-        )
-        res = self.order.fields_view_get(view_id=view.id, view_type="form")
-        ctx = self._get_ctx_from_view(res)
-        self.assertTrue("default_discount" in ctx)
+        self.order.order_line = [
+            (
+                0,
+                0,
+                {
+                    "sequence": 100,
+                    "name": self.product_consu.name,
+                    "product_id": self.product_consu.id,
+                    "product_uom_qty": 1,
+                    "product_uom": self.product_consu.uom_id.id,
+                    "price_unit": 1000.00,
+                },
+            )
+        ]
 
-    def test_sale_order_line_wo_form_view(self):
-        self.order.general_discount = 10
-        vals = {
-            "name": self.product.name,
-            "product_id": self.product.id,
-            "product_uom_qty": 1,
-            "product_uom": self.product.uom_id.id,
-            "price_unit": 1000.00,
-            "order_id": self.order.id,
-        }
-        order_line = self.env["sale.order.line"].create(vals)
-        self.assertEqual(order_line.price_subtotal, 900.00)
-        self.assertEqual(order_line.discount, 10)
-        vals["discount"] = 20
-        order_line2 = self.env["sale.order.line"].create(vals)
-        self.assertEqual(order_line2.price_subtotal, 800.00)
-        self.assertEqual(order_line2.discount, 20)
+        self.order.general_discount = 30
+
+        self.assertEqual(self.order.order_line[0].price_subtotal, 1000.00)
+        self.assertEqual(self.order.order_line[1].price_subtotal, 700.00)

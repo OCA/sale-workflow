@@ -12,5 +12,9 @@
     "application": False,
     "installable": True,
     "depends": ["sale"],
-    "data": ["views/sale_order_view.xml", "views/res_partner_view.xml"],
+    "data": [
+        "views/res_config_settings_view.xml",
+        "views/res_partner_view.xml",
+        "views/sale_order_view.xml",
+    ],
 }
