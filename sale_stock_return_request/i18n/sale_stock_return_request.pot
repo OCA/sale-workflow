@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_stock_return_request
+#: model_terms:ir.ui.view,arch_db:sale_stock_return_request.view_order_form
+msgid "Create Return Request"
+msgstr ""
+
+#. module: sale_stock_return_request
 #: model:ir.model.fields,field_description:sale_stock_return_request.field_stock_return_request__sale_order_ids
 msgid "Involved Sales"
 msgstr ""
@@ -21,6 +26,11 @@ msgstr ""
 #. module: sale_stock_return_request
 #: model:ir.model,name:sale_stock_return_request.model_stock_return_request
 msgid "Perform stock returns across pickings"
+msgstr ""
+
+#. module: sale_stock_return_request
+#: model:ir.model,name:sale_stock_return_request.model_stock_return_request_line
+msgid "Product to search for returns"
 msgstr ""
 
 #. module: sale_stock_return_request
@@ -36,4 +46,19 @@ msgstr ""
 #. module: sale_stock_return_request
 #: model_terms:ir.ui.view,arch_db:sale_stock_return_request.view_stock_return_request_form
 msgid "Sales"
+msgstr ""
+
+#. module: sale_stock_return_request
+#: model:ir.model,name:sale_stock_return_request.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_stock_return_request
+#: model:ir.model.fields,field_description:sale_stock_return_request.field_stock_return_request__filter_sale_order_ids
+msgid "Selected order(s)"
+msgstr ""
+
+#. module: sale_stock_return_request
+#: model:ir.model.fields,field_description:sale_stock_return_request.field_sale_order__show_create_return_request
+msgid "Show Create Return Request"
 msgstr ""
