@@ -27,7 +27,20 @@ class TestProductAssortment(TransactionCase):
                 "whitelist_product_ids": [(4, product_1.id)],
             }
         )
-        sale_order_1 = self.sale_order_obj.create({"partner_id": self.partner_1.id})
+        sale_order_1 = self.sale_order_obj.create(
+            {
+                "partner_id": self.partner_1.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": product_1.id,
+                        },
+                    )
+                ],
+            }
+        )
         self.assertEqual(
             sale_order_1.allowed_product_ids,
             assortment_with_whitelist.whitelist_product_ids,
@@ -46,7 +59,20 @@ class TestProductAssortment(TransactionCase):
                 "black_list_product_domain": [("id", "=", product_3.id)],
             }
         )
-        sale_order_2 = self.sale_order_obj.create({"partner_id": self.partner_1.id})
+        sale_order_2 = self.sale_order_obj.create(
+            {
+                "partner_id": self.partner_1.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": product_1.id,
+                        },
+                    )
+                ],
+            }
+        )
         self.assertNotIn(product_2, sale_order_2.allowed_product_ids)
         self.assertTrue(sale_order_2.has_allowed_products)
         sale_order_3 = self.sale_order_obj.create({"partner_id": self.partner_2.id})
