@@ -22,6 +22,15 @@
                     attrs="{'invisible': [('sale_order_ids', '=', [])]}"
                 />
             </xpath>
+            <xpath expr="//field[@name='to_refund']" position="after">
+                <field
+                    name="filter_sale_order_ids"
+                    widget="many2many_tags"
+                    domain="[('partner_id', '=', partner_id)]"
+                    attrs="{'invisible': [('return_type', '!=', 'customer')]}"
+                    options="{'no_quick_create': True, 'no_create_edit' : True, 'no_create' : True}"
+                />
+            </xpath>
         </field>
     </record>
     <record id="action_sale_stock_return_request_tree" model="ir.actions.act_window">
