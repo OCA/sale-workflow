@@ -16,6 +16,13 @@ class SaleReturnRequestCase(StockReturnRequestCase):
                 "property_stock_customer": cls.customer_loc.id,
             }
         )
+        cls.partner_customer_3 = cls.env["res.partner"].create(
+            {
+                "name": "Mr. Sale 3",
+                "property_stock_supplier": cls.supplier_loc.id,
+                "property_stock_customer": cls.customer_loc.id,
+            }
+        )
         cls.wh1.delivery_route_id.rule_ids.location_id = cls.customer_loc.id
         cls.so_1 = cls.env["sale.order"].create(
             {
@@ -192,3 +199,60 @@ class SaleReturnRequestCase(StockReturnRequestCase):
             "res_id": sale_order.id,
         }
         self.assertEqual(res, {**res, **expedcted_res})
+
+    def test_03_return_sale_stock_from_customer_sale_filtered(self):
+        """Check return stock from customer filtered by sales order"""
+        self.return_request_customer.write(
+            {
+                "partner_id": self.partner_customer_2.id,
+                "to_refund": True,
+                "filter_sale_order_ids": [(4, self.so_1.id)],
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.prod_3.id,
+                            "lot_id": self.prod_3_lot1.id,
+                            "quantity": 3.0,
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.prod_3.id,
+                            "lot_id": self.prod_3_lot2.id,
+                            "quantity": 4.0,
+                        },
+                    ),
+                ],
+            }
+        )
+        self.assertTrue(self.return_request_customer.filter_sale_order_ids)
+        self.return_request_customer.partner_id = self.partner_customer_3
+        self.return_request_customer._onchange_partner_id_sale_stock_return_request()
+        self.assertFalse(self.return_request_customer.filter_sale_order_ids)
+        self.return_request_customer.partner_id = self.partner_customer_2
+        self.return_request_customer.filter_sale_order_ids = [(4, self.so_1.id)]
+        move_domain = self.return_request_customer.line_ids[0]._get_moves_domain()
+        self.assertEqual(move_domain[-1][2], self.so_1.ids)
+        self.return_request_customer.action_confirm()
+        sale_orders = self.return_request_customer.sale_order_ids
+        self.assertEqual(len(sale_orders), 1)
+
+    def test_04_return_sale_stock_sale_order(self):
+        returnable_lines = self.so_1._get_returnable_lines()
+        self.assertEqual(len(returnable_lines), 1)
+        self.assertTrue(self.so_1.show_create_return_request)
+        action = self.so_1.action_create_return_request()
+        self.assertEqual(
+            action["views"][0][0],
+            self.env.ref("stock_return_request.view_stock_return_request_form").id,
+        )
+        self.assertEqual(
+            action["context"]["default_partner_id"], self.so_1.partner_id.id
+        )
+        self.assertEqual(
+            len(action["context"]["default_line_ids"]), len(returnable_lines)
+        )
