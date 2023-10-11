@@ -12,5 +12,5 @@
     "application": False,
     "installable": True,
     "depends": ["sale_stock", "stock_return_request"],
-    "data": ["views/sale_return_request_views.xml"],
+    "data": ["views/sale_order_views.xml", "views/sale_return_request_views.xml"],
 }
