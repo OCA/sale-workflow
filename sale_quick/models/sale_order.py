@@ -4,6 +4,7 @@
 
 from odoo import _, models
 from odoo.exceptions import ValidationError
+from odoo.tools.safe_eval import safe_eval
 
 
 class SaleOrder(models.Model):
@@ -26,7 +27,8 @@ class SaleOrder(models.Model):
         return res
 
     def _get_domain_add_products(self):
-        return []
+        field = self.env["sale.order.line"]._fields.get("product_id")
+        return safe_eval(field.domain, {"company_id": self.company_id.id})
 
     def add_product(self):
         self.ensure_one()
