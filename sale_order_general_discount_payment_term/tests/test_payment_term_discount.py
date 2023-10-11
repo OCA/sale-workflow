@@ -40,7 +40,7 @@ class TestSaleOrderLineInput(SavepointCase):
                 ],
             }
         )
-        cls.View = cls.env["ir.ui.view"]
+        cls.order.order_line._compute_discount()
 
     def test_default_partner_discount(self):
         self.assertEqual(self.order.general_discount, 10)
