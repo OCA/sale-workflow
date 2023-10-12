@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-09 17:37+0000\n"
+"PO-Revision-Date: 2023-10-12 13:38+0000\n"
 "Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
@@ -29,7 +29,7 @@ msgstr "<span>Desc. %</span>"
 #. module: sale_fixed_discount
 #: model_terms:ir.ui.view,arch_db:sale_fixed_discount.sale_order_portal_content
 msgid "<span>Disc. Fixed Amount</span>"
-msgstr "<span>Desc. Valor Fixo</span>"
+msgstr "<span>Desc. Valor</span>"
 
 #. module: sale_fixed_discount
 #: model_terms:ir.ui.view,arch_db:sale_fixed_discount.report_saleorder_document
