@@ -259,3 +259,59 @@ class TestSaleDeliveryDate(Common):
         picking = order.picking_ids
         self.assertEqual(str(picking.scheduled_date), "2023-08-22 08:00:00")
         self.assertEqual(str(picking.expected_delivery_date.date()), "2023-08-23")
+
+    @freeze_time("2023-10-09 08:00:00")
+    def test_delivery_window_on_public_holiday(self):
+        order = self.order_warehouse_cutoff
+        weekday_numbers = tuple(range(5))
+        time_ranges = [(8.0, 12.0), (13.0, 17.5)]
+        self._set_calendar_attendances(self.calendar, weekday_numbers, time_ranges)
+        # Set customer to receive goods on Wednesday, from 12 to 17
+        weekday_numbers = (2,)  # Wednesday
+        time_window_ranges = [(12.00, 17.00), ]
+        self._set_partner_time_window(
+            self.customer_warehouse_cutoff, weekday_numbers, time_window_ranges
+        )
+        # add a public holiday the 11th of October
+        days = ["2023-10-11", ]
+        self._add_calendar_leaves(self.calendar, days)
+        order.action_confirm()
+        picking = order.picking_ids
+        self.assertEqual(str(picking.scheduled_date.date()), "2023-10-17")
+        self.assertEqual(str(picking.date_deadline.date()), "2023-10-18")
+
+    @freeze_time("2023-10-09 08:00:00")
+    def test_no_open_delivery_window_within_twenty_days(self):
+        order = self.order_warehouse_cutoff
+        weekday_numbers = tuple(range(5))
+        time_ranges = [(8.0, 12.0), (13.0, 17.5)]
+        self._set_calendar_attendances(self.calendar, weekday_numbers, time_ranges)
+        # Set customer to receive goods on Wednesday, from 12 to 17
+        weekday_numbers = (2,)  # Wednesday
+        time_window_ranges = [(12.00, 17.00), ]
+        self._set_partner_time_window(
+            self.customer_warehouse_cutoff, weekday_numbers, time_window_ranges
+        )
+        # add a public holiday all fridays
+        days = [
+            "2023-10-11",
+            "2023-10-18",
+            "2023-10-25",
+            "2023-11-01",
+        ]
+        self._add_calendar_leaves(self.calendar, days)
+        logger_name = "odoo.addons.sale_delivery_date.models.sale_order_line"
+        with self.assertLogs(logger_name, level="WARNING") as watcher:
+            line = order.order_line
+            order.action_confirm()
+            expected_message = (
+                f"WARNING:{logger_name}:"
+                f"Unable to find a valid delivery date for line {line.name}. "
+                f"Falling back to 2023-10-11."
+            )
+            self.assertEqual(watcher.output[0], expected_message)
+        picking = order.picking_ids
+        # since we weren't able to find an open friday within 20 days,
+        # we fell back on the first one, being the 11th of october
+        self.assertEqual(str(picking.scheduled_date.date()), "2023-10-10")
+        self.assertEqual(str(picking.date_deadline.date()), "2023-10-11")
