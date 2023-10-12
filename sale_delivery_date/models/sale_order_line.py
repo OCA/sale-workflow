@@ -13,6 +13,18 @@ from odoo.addons.partner_tz.tools import tz_utils
 
 _logger = logging.getLogger(__name__)
 
+# When postponing a delivery date based on calendar leaves, it could happen
+# that we have to look far in the future for a valid day.
+# I.E. when customer's time window is wednesday, and all wednesdays are leaves
+# on the warehouse calendar.
+# In such case, it would create an infinite loop, because no matter how
+# far we look in the future, we will never find an open time window for this customer.
+# In order to avoid this, we use LOOP_THRESHOLD as a hard limit about how
+# far in the future we are willing to look for a valid delivery date.
+# If no valid delivery_date date has been found within this date range,
+# then the next day (with less restrictive constraints) will be used.
+LOOP_THRESHOLD = 20
+
 
 class SaleOrderLine(models.Model):
     """This override adds delays to the date_deadline and the date_planned.
@@ -259,11 +271,32 @@ class SaleOrderLine(models.Model):
             )
         else:
             earliest_delivery_date_naive = expedition_date
-        # /TODO extract
-        expected_delivery_date = self._apply_customer_window(
-            earliest_delivery_date_naive, partner
+        return self._get_next_open_customer_window(partner, calendar, from_date=earliest_delivery_date_naive)
+
+    def _get_next_open_customer_window(self, partner, calendar, from_date=None):
+        if from_date is None:
+            from_date = datetime.today()
+        # Try to find an opened customer window within LOOP_THRESHOLD
+        for days in range(LOOP_THRESHOLD):
+            window_date = self._apply_customer_window(
+                from_date + timedelta(days=days), partner
+            )
+            open_date = self._postpone_to_working_day(
+                datetime.combine(window_date, time.min),
+                calendar=calendar,
+            )
+            if window_date.date() == open_date.date():
+                # We found an opened delivery window
+                return window_date
+        # Fallback to the next customer window
+
+        # TODO should we log something?
+        window_date = self._apply_customer_window(from_date, partner)
+        _logger.warning(
+            f"Unable to find a valid delivery date for line {self.name}. "
+            f"Falling back to {str(window_date.date())}."
         )
-        return expected_delivery_date
+        return window_date
 
     @api.model
     def _expedition_date_from_delivery_date(
