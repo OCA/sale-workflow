@@ -13,3 +13,6 @@ Additional features:
 - User with rights to confirm the SO (validate all tiers that would be
   generated) can directly do the operation, this is, there is no need
   for her/him to request a validation.
+  
+..
+![Alt text](soleil.png)
