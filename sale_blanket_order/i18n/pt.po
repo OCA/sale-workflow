@@ -15,6 +15,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 
 #. module: sale_blanket_order
+#: model:ir.actions.report,print_report_name:sale_blanket_order.report_blanket_order
+msgid "'Blanket Order - %s' % object.name"
+msgstr ""
+
+#. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
 msgid "<span>Blanket Order # </span>"
 msgstr ""
@@ -71,6 +76,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_state
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_state
 msgid "Activity State"
+msgstr ""
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_type_icon
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_type_icon
+msgid "Activity Type Icon"
 msgstr ""
 
 #. module: sale_blanket_order
@@ -267,16 +278,19 @@ msgid "Disable adding more lines to SOs"
 msgstr ""
 
 #. module: sale_blanket_order
-#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_config_settings_form_view
 #: model:res.groups,name:sale_blanket_order.blanket_orders_disable_adding_lines
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_config_settings_form_view
 msgid "Disable adding more lines to SOs from Blanket Orders"
 msgstr ""
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__display_name
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__display_name
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard__display_name
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__display_name
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_order_line__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -326,10 +340,19 @@ msgid "Followers (Partners)"
 msgstr ""
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__activity_type_icon
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard__id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_order_line__id
 msgid "ID"
 msgstr ""
 
@@ -384,10 +407,13 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order____last_update
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line____last_update
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard____last_update
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line____last_update
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_order_line____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -435,6 +461,12 @@ msgstr ""
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Must have some lines"
+msgstr ""
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__my_activity_date_deadline
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__my_activity_date_deadline
+msgid "My Activity Deadline"
 msgstr ""
 
 #. module: sale_blanket_order
@@ -672,6 +704,7 @@ msgstr ""
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
 msgid "Sale Order Lines"
 msgstr ""
 

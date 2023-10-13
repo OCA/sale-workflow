@@ -4,51 +4,30 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    discount = fields.Float(
-        string="Discount (%)",
-        digits="Discount",
-        compute=False,
+    discount2 = fields.Float(
+        compute="_compute_discount",
         store=True,
         readonly=False,
-        default=0.0,
+    )
+    discount3 = fields.Float(
+        compute="_compute_discount",
+        store=True,
+        readonly=False,
     )
 
     @api.model
-    def default_get(self, fields):
-        vals = super(SaleOrderLine, self).default_get(fields)
-        general_discount = (
-            self.env["ir.config_parameter"]
-            .sudo()
-            .get_param(
-                "sale_order_general_discount_triple.general_discount", "discount"
+    def get_discount_vals_for_product(self, product_id, order_id):
+        res = super().get_discount_vals_for_product(product_id, order_id)
+        if res and "discount" in res:
+            discount_field = (
+                self.env["ir.config_parameter"]
+                .sudo()
+                .get_param(
+                    "sale_order_general_discount_triple.general_discount", "discount"
+                )
             )
-        )
-        value = vals.get("discount") or 0.0
-        vals.update(
-            {
-                "discount": 0.0,
-                "discount2": 0.0,
-                "discount3": 0.0,
-            }
-        )
-
-        vals.update(
-            {
-                general_discount: value,
-            }
-        )
-        return vals
-
-    @api.model
-    def create(self, vals):
-        sale_order = self.env["sale.order"].browse(vals["order_id"])
-        general_discount = (
-            self.env["ir.config_parameter"]
-            .sudo()
-            .get_param(
-                "sale_order_general_discount_triple.general_discount", "discount"
-            )
-        )
-        if general_discount:
-            vals[general_discount] = sale_order.general_discount
-        return super().create(vals)
+            discount_value = res["discount"]
+            discount_dict = dict.fromkeys(self._discount_fields(), 0)
+            discount_dict[discount_field] = discount_value
+            res.update(discount_dict)
+        return res

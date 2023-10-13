@@ -22,28 +22,60 @@ msgid "<strong>Discount</strong>"
 msgstr ""
 
 #. module: sale_discount_display_amount
+#: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.sale_discount_display_amount_document
+msgid "<strong>Total Without Discount</strong>"
+msgstr ""
+
+#. module: sale_discount_display_amount
+#: model:ir.model,name:sale_discount_display_amount.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_discount_display_amount
+#: model:ir.model,name:sale_discount_display_amount.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_discount_display_amount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__discount_total
 msgid "Discount Subtotal"
 msgstr "Subtotaal Korting"
 
 #. module: sale_discount_display_amount
+#: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.res_config_settings_view_form
+msgid "Display \"Total without discount\" in report"
+msgstr ""
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_company__display_name
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__display_name
 msgid "Display Name"
 msgstr "Weergavenaam"
 
 #. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_company__id
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_config_settings__id
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_company____last_update
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line____last_update
 msgid "Last Modified on"
 msgstr "Laatst bijgewerkt op"
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_company__report_total_without_discount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_config_settings__report_total_without_discount
+msgid "Report Total Without Discount"
+msgstr ""
 
 #. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_sale_order
@@ -56,7 +88,13 @@ msgid "Sales Order Line"
 msgstr "Verkooporder regel"
 
 #. module: sale_discount_display_amount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_total_no_discount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_total_no_discount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_subtotal_no_discount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_subtotal_no_discount
 msgid "Subtotal Without Discount"
 msgstr "Subtotaal zonder korting"
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_total_no_discount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_total_no_discount
+msgid "Total Without Discount"
+msgstr "Totaal zonder korting"

@@ -1,6 +1,8 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
 from odoo import api, fields, models
+from odoo.osv import expression
 
 
 class SaleOrderLine(models.Model):
@@ -13,19 +15,22 @@ class SaleOrderLine(models.Model):
     )
 
     @api.model
-    def create(self, vals):
-        """Apply general discount for sale order lines which are not created
-        from sale order form view.
-        """
-        if "discount" not in vals and "order_id" in vals:
-            sale_order = self.env["sale.order"].browse(vals["order_id"])
-            if sale_order.general_discount:
-                vals["discount"] = sale_order.general_discount
-        return super().create(vals)
+    def get_discount_vals_for_product(self, product_id, order_id):
+        domain = order_id.company_id.sudo()._get_general_discount_eval_domain()
+        if domain:
+            domain = expression.AND([[("id", "=", product_id.id)], domain])
+            if not self.env["product.product"].sudo().search(domain):
+                return {}
+        return {"discount": order_id.general_discount}
 
-    @api.depends("order_id", "order_id.general_discount")
+    @api.depends("order_id", "order_id.general_discount", "product_id")
     def _compute_discount(self):
         if hasattr(super(), "_compute_discount"):
             super()._compute_discount()
         for line in self:
-            line.discount = line.order_id.general_discount
+            discount_vals = line.get_discount_vals_for_product(
+                line.product_id, line.order_id
+            )
+            # support future extensions such as sale_order_general_discount_triple
+            for field, value in discount_vals.items():
+                line[field] = value

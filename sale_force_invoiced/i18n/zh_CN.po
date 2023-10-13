@@ -21,9 +21,24 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: sale_force_invoiced
+#: model:ir.model.fields,field_description:sale_force_invoiced.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_force_invoiced
 #: model:ir.model.fields,field_description:sale_force_invoiced.field_sale_order__force_invoiced
 msgid "Force invoiced"
 msgstr "强制开具发票"
+
+#. module: sale_force_invoiced
+#: model:ir.model.fields,field_description:sale_force_invoiced.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_force_invoiced
+#: model:ir.model.fields,field_description:sale_force_invoiced.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: sale_force_invoiced
 #: model:ir.model,name:sale_force_invoiced.model_sale_order

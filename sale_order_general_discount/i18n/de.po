@@ -17,6 +17,29 @@ msgstr ""
 "X-Generator: Weblate 3.7.1\n"
 
 #. module: sale_order_general_discount
+#: model_terms:ir.ui.view,arch_db:sale_order_general_discount.res_config_settings_form_view
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" aria-label=\"Values set here are company-specific.\" groups="
+"\"base.group_multi_company\" role=\"img\"/>"
+msgstr ""
+
+#. module: sale_order_general_discount
+#: model_terms:ir.ui.view,arch_db:sale_order_general_discount.res_config_settings_form_view
+msgid "An empty filter means it applies to all products"
+msgstr ""
+
+#. module: sale_order_general_discount
+#: model:ir.model,name:sale_order_general_discount.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_order_general_discount
+#: model:ir.model,name:sale_order_general_discount.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_general_discount
 #: model:ir.model,name:sale_order_general_discount.model_res_partner
 msgid "Contact"
 msgstr "Kontakt"
@@ -33,6 +56,44 @@ msgstr "Rabatt (%)"
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order_line__discount
 msgid "Discount (%)"
 msgstr "Rabatt (%)"
+
+#. module: sale_order_general_discount
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_res_company__display_name
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_res_partner__display_name
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_general_discount
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_res_company__general_discount_applicable_to
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_res_config_settings__general_discount_applicable_to
+msgid "General Discount Applicable To"
+msgstr ""
+
+#. module: sale_order_general_discount
+#: model_terms:ir.ui.view,arch_db:sale_order_general_discount.res_config_settings_form_view
+msgid "General Discount Products"
+msgstr ""
+
+#. module: sale_order_general_discount
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_res_company__id
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_res_partner__id
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_general_discount
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_res_company____last_update
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_res_partner____last_update
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr ""
 
 #. module: sale_order_general_discount
 #: model:ir.model,name:sale_order_general_discount.model_sale_order

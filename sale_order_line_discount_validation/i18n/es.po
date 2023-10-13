@@ -10,6 +10,7 @@ msgstr ""
 "PO-Revision-Date: 2021-12-23 19:56+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -34,11 +35,6 @@ msgstr "Aprobado por"
 #: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_sale_order__approve_date
 msgid "Approved On"
 msgstr "Aprobado el"
-
-#. module: sale_order_line_discount_validation
-#: model:ir.model.fields.selection,name:sale_order_line_discount_validation.selection__sale_order__state__cancel
-msgid "Cancelled"
-msgstr "Cancelado"
 
 #. module: sale_order_line_discount_validation
 #: model:ir.model,name:sale_order_line_discount_validation.model_res_company
@@ -82,21 +78,6 @@ msgid "Last Modified on"
 msgstr "Ultima modificación el"
 
 #. module: sale_order_line_discount_validation
-#: model:ir.model.fields.selection,name:sale_order_line_discount_validation.selection__sale_order__state__done
-msgid "Locked"
-msgstr "Cerrado"
-
-#. module: sale_order_line_discount_validation
-#: model:ir.model.fields.selection,name:sale_order_line_discount_validation.selection__sale_order__state__draft
-msgid "Quotation"
-msgstr "Cotización"
-
-#. module: sale_order_line_discount_validation
-#: model:ir.model.fields.selection,name:sale_order_line_discount_validation.selection__sale_order__state__sent
-msgid "Quotation Sent"
-msgstr "Cotización enviada"
-
-#. module: sale_order_line_discount_validation
 #: model_terms:ir.ui.view,arch_db:sale_order_line_discount_validation.sale_order_view_form_inherit_sale_order_line_discount_validation
 msgid "Refuse"
 msgstr "Rechazar"
@@ -108,7 +89,6 @@ msgstr "Informe de ventas"
 
 #. module: sale_order_line_discount_validation
 #: model:ir.model,name:sale_order_line_discount_validation.model_sale_order
-#: model:ir.model.fields.selection,name:sale_order_line_discount_validation.selection__sale_order__state__sale
 msgid "Sales Order"
 msgstr "Pedidos de venta"
 
@@ -129,5 +109,17 @@ msgid ""
 "Your quotation has been sent for approval. You will be notified when it is "
 "approved or refused."
 msgstr ""
-"Su cotización fue enviada por aprobación. Recibiras una notificación cuando esta "
-"recibida o rechazada."
+"Su cotización fue enviada por aprobación. Recibiras una notificación cuando "
+"esta recibida o rechazada."
+
+#~ msgid "Cancelled"
+#~ msgstr "Cancelado"
+
+#~ msgid "Locked"
+#~ msgstr "Cerrado"
+
+#~ msgid "Quotation"
+#~ msgstr "Cotización"
+
+#~ msgid "Quotation Sent"
+#~ msgstr "Cotización enviada"

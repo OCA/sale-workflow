@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-31 04:21+0000\n"
-"PO-Revision-Date: 2023-03-30 12:25+0000\n"
+"PO-Revision-Date: 2023-10-13 10:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_stock_picking_blocking
 #: model:res.groups,comment:sale_stock_picking_blocking.group_sale_delivery_block
@@ -72,17 +72,26 @@ msgid "Description"
 msgstr "Descrizione"
 
 #. module: sale_stock_picking_blocking
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__display_name
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order_line__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: sale_stock_picking_blocking
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_res_partner__id
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__id
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order_line__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_stock_picking_blocking
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_res_partner____last_update
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason____last_update
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_order_line____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
@@ -118,11 +127,6 @@ msgid "Sale Delivery Block Reason"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model,name:sale_stock_picking_blocking.model_sale_order
-msgid "Sale Order"
-msgstr "Ordine di vendita"
-
-#. module: sale_stock_picking_blocking
 #: model_terms:ir.ui.view,arch_db:sale_stock_picking_blocking.sale_stock_picking_blocking_reason_tree_view
 msgid "Sale Order Delivery Block Reason"
 msgstr ""
@@ -131,6 +135,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__sale_order_ids
 msgid "Sale Orders"
 msgstr "Ordine vendita"
+
+#. module: sale_stock_picking_blocking
+#: model:ir.model,name:sale_stock_picking_blocking.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
 
 #. module: sale_stock_picking_blocking
 #: model:ir.model,name:sale_stock_picking_blocking.model_sale_order_line
@@ -146,13 +155,13 @@ msgid ""
 msgstr ""
 
 #. module: sale_stock_picking_blocking
-#: code:addons/sale_stock_picking_blocking/models/sale_order.py:19
+#: code:addons/sale_stock_picking_blocking/models/sale_order.py:0
 #, python-format
 msgid "You cannot block a sale order with \"auto_done_setting\" active."
 msgstr ""
 
+#~ msgid "Sale Order"
+#~ msgstr "Ordine di vendita"
+
 #~ msgid "Partner"
 #~ msgstr "Partner"
-
-#~ msgid "Sales Order"
-#~ msgstr "Ordini vendita"

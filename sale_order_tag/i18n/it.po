@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_tag
+# 	* sale_order_tag
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-07 13:12+0000\n"
+"PO-Revision-Date: 2023-10-11 10:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -47,16 +47,19 @@ msgid "Description"
 msgstr "Descrizione"
 
 #. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_order_tag
+#: model:ir.model.fields,field_description:sale_order_tag.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag____last_update
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
@@ -78,11 +81,6 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: sale_order_tag
-#: model:ir.model,name:sale_order_tag.model_sale_order
-msgid "Sale Order"
-msgstr "Ordine di vendita"
-
-#. module: sale_order_tag
 #: model:ir.model,name:sale_order_tag.model_sale_order_tag
 msgid "Sale Order Tag"
 msgstr "Tag Ordine"
@@ -95,6 +93,11 @@ msgid "Sale Order Tags"
 msgstr "Tags Ordine"
 
 #. module: sale_order_tag
+#: model:ir.model,name:sale_order_tag.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_tag
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__team_ids
 msgid "Sales Teams"
 msgstr "Team di vendita"
@@ -105,9 +108,9 @@ msgid "Sequence"
 msgstr "Sequenza"
 
 #. module: sale_order_tag
-#: sql_constraint:sale.order.tag:0
+#: model:ir.model.constraint,message:sale_order_tag.constraint_sale_order_tag_name_uniq
 msgid "Tag name already exists!"
-msgstr "Il nome etichetta esiste già!"
+msgstr "Il nome dell'etichetta esiste già!"
 
 #. module: sale_order_tag
 #: model:ir.ui.menu,name:sale_order_tag.sale_order_tag_menu
@@ -118,3 +121,6 @@ msgstr "Etichette"
 #: model_terms:ir.ui.view,arch_db:sale_order_tag.sale_order_tag_view_form
 msgid "tag..."
 msgstr "tag..."
+
+#~ msgid "Sale Order"
+#~ msgstr "Ordine di vendita"

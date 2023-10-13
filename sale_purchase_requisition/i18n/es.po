@@ -18,11 +18,6 @@ msgstr ""
 "X-Generator: Poedit 3.1.1\n"
 
 #. module: sale_purchase_requisition
-#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__alert_activity
-msgid "Alert Activity"
-msgstr ""
-
-#. module: sale_purchase_requisition
 #: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__display_name
 #: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition_line__display_name
 #: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order__display_name
@@ -73,7 +68,6 @@ msgid "Purchase Requisition Line"
 msgstr "Línea solicitud de compra"
 
 #. module: sale_purchase_requisition
-#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__purchase_requisition_sync_warning
 #: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order__purchase_requisition_sync_warning
 msgid "Purchase Requisition Sync Warning"
 msgstr ""
@@ -101,7 +95,7 @@ msgid "Purchase requisitions"
 msgstr ""
 
 #. module: sale_purchase_requisition
-#: code:addons/sale_purchase_requisition/models/purchase_requisition.py:0
+#: code:addons/sale_purchase_requisition/models/sale_order.py:0
 #, python-format
 msgid "Resolve differences with the sales order"
 msgstr "Resolver diferencias con la orden de venta"
@@ -115,6 +109,11 @@ msgstr "Pedido de venta"
 #: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition_line__line_order_id
 msgid "Sale Order Line"
 msgstr "Línea de pedido de venta"
+
+#. module: sale_purchase_requisition
+#: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__sale_order_sync_warning
+msgid "Sale Order Sync Warning"
+msgstr ""
 
 #. module: sale_purchase_requisition
 #: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__sale_user_id
@@ -150,16 +149,16 @@ msgstr ""
 #: code:addons/sale_purchase_requisition/models/purchase_requisition.py:0
 #, python-format
 msgid ""
-"Some lines are not synced on these Sale order:%s please update this lines "
-"manually"
+"Some lines are not synced on this Sale order: %s. Please update these lines "
+"manually."
 msgstr ""
-"Algunas líneas no están sincronizadas en este pedido de venta:%s actualice "
-"estas líneas manualmente"
 
 #. module: sale_purchase_requisition
 #: code:addons/sale_purchase_requisition/models/purchase_requisition.py:0
 #, python-format
-msgid "The product quantity %s <br> have changed %d -> %d %s"
+msgid ""
+"The product quantities %(product)s <br/>  have changed %(old_qty)d -> "
+"%(new_qty)d %(uom)s"
 msgstr ""
 
 #. module: sale_purchase_requisition
@@ -168,3 +167,11 @@ msgid ""
 "Warning message to be displayed when order lines are not synced with "
 "purchase requisitions"
 msgstr ""
+
+#, python-format
+#~ msgid ""
+#~ "Some lines are not synced on these Sale order:%s please update this lines "
+#~ "manually"
+#~ msgstr ""
+#~ "Algunas líneas no están sincronizadas en este pedido de venta:%s "
+#~ "actualice estas líneas manualmente"

@@ -8,7 +8,7 @@
 
 {
     "name": "Sale Order Type",
-    "version": "14.0.3.1.0",
+    "version": "14.0.3.1.1",
     "category": "Sales Management",
     "author": "Grupo Vermon,"
     "AvanzOSC,"
@@ -32,4 +32,6 @@
         "reports/sale_report_view.xml",
     ],
     "installable": True,
+    "pre_init_hook": "pre_init_hook",
+    "post_init_hook": "post_init_hook",
 }

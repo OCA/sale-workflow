@@ -38,6 +38,11 @@ msgid "After Date"
 msgstr ""
 
 #. module: sale_elaboration
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_form
+msgid "Archived"
+msgstr ""
+
+#. module: sale_elaboration
 #: model:ir.model.constraint,message:sale_elaboration.constraint_product_elaboration_code_uniq
 msgid "Code must be unique!"
 msgstr ""
@@ -66,6 +71,10 @@ msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__display_name
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_template__display_name
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:sale_elaboration.field_stock_picking__display_name
 msgid "Display Name"
 msgstr "Anzeigename"
 
@@ -95,6 +104,10 @@ msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__id
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_template__id
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__id
+#: model:ir.model.fields,field_description:sale_elaboration.field_stock_picking__id
 msgid "ID"
 msgstr "ID"
 
@@ -119,6 +132,10 @@ msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration____last_update
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_template____last_update
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line____last_update
+#: model:ir.model.fields,field_description:sale_elaboration.field_stock_picking____last_update
 msgid "Last Modified on"
 msgstr "Zuletzt geändert am"
 
