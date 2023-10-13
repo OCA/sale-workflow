@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Moduon Team S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<data>
+    <record id="sale_order_recommendation_view_form" model="ir.ui.view">
+        <field name="name">Add packaging</field>
+        <field name="model">sale.order.recommendation</field>
+        <field
+            name="inherit_id"
+            ref="sale_order_product_recommendation.sale_order_recommendation_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='line_ids']/tree/field[@name='units_included']"
+                position="before"
+            >
+                <field
+                    name="product_packaging_id"
+                    groups="product.group_stock_packaging"
+                    optional="show"
+                />
+                <field
+                    name="product_packaging_qty"
+                    groups="product.group_stock_packaging"
+                    optional="show"
+                    widget="numeric_step"
+                />
+            </xpath>
+        </field>
+    </record>
+</data>
