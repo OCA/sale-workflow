@@ -19,6 +19,7 @@
                         options="{'no_create' :1}"
                         domain="[('category_id','=',uom_category_id)]"
                     />
+                    <field name="list_price_base_sale_uom" />
                 </field>
             </field>
         </record>
