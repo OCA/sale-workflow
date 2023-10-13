@@ -60,6 +60,7 @@
             <field name="amount_total" position="after">
                 <field
                     name="amount_residual"
+                    sum="Total Residual"
                     widget="monetary"
                     decoration-bf="1"
                     optional="hide"
@@ -85,6 +86,7 @@
             <field name="amount_total" position="after">
                 <field
                     name="amount_residual"
+                    sum="Total Residual"
                     widget="monetary"
                     decoration-bf="1"
                     optional="hide"
