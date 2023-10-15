@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-17 02:40+0000\n"
-"PO-Revision-Date: 2023-09-02 18:13+0000\n"
+"PO-Revision-Date: 2023-10-15 19:36+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
@@ -37,6 +37,8 @@ msgid ""
 "Default Start Date (%(start_date)s) should be before or be the same as "
 "Default End Date (%(end_date)s) for sale order '%(name)s'."
 msgstr ""
+"La fecha de inicio por defecto (%(start_date)s) debe ser anterior o igual a "
+"la fecha final por defecto (%(end_date)s) para el pedido de venta '%(name)s'."
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__end_date
@@ -71,7 +73,7 @@ msgstr ""
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__must_have_dates
 msgid "Must Have Start/End Dates"
-msgstr ""
+msgstr "Debe tener fechas de Inicio/Finalización"
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__number_of_days
@@ -87,11 +89,14 @@ msgid ""
 "negative (%(number_of_days)s) ; this is not allowed. The number of days has "
 "been forced to 1."
 msgstr ""
+"En la línea de pedido de venta con el producto '%(product_name)s', el número "
+"de días es negativo (%(number_of_days)s) ; esto no está permitido. El número "
+"de días se ha forzado a 1."
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Orden de Venta"
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order_line
@@ -111,6 +116,9 @@ msgid ""
 "Start Date (%(start_date)s) should be before or be the same as End Date "
 "(%(end_date)s) for sale order line with Product '%(product_name)s'."
 msgstr ""
+"La fecha inicial (%(start_date)s) debe ser anterior o igual a la fecha final "
+"(%(end_date)s) para la línea de pedido de venta con el producto \""
+"%(product_name)s\"."
 
 #. module: sale_start_end_dates
 #. odoo-python
