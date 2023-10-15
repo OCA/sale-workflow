@@ -1,0 +1,46 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_mrp_bom
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-10-15 19:36+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_mrp_bom
+#: model:res.groups,name:sale_mrp_bom.sale_mrp_bom_group
+msgid "Allows to define a BOM on sale order lines"
+msgstr "Permite definir una lista de materiales en líneas de órdenes de venta"
+
+#. module: sale_mrp_bom
+#: model:ir.model.fields,field_description:sale_mrp_bom.field_sale_order_line__bom_id
+msgid "BoM"
+msgstr "BoM"
+
+#. module: sale_mrp_bom
+#. odoo-python
+#: code:addons/sale_mrp_bom/models/sale_order_line.py:0
+#, python-format
+msgid "Please select BoM that has matched product with the line `{}`"
+msgstr ""
+"Seleccione la lista de materiales que coincida con el producto de la línea "
+"`{}`"
+
+#. module: sale_mrp_bom
+#: model:ir.model,name:sale_mrp_bom.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de Orden de Venta"
+
+#. module: sale_mrp_bom
+#: model:ir.model,name:sale_mrp_bom.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de Existencias"
