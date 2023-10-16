@@ -6,11 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-25 12:46+0000\n"
-"PO-Revision-Date: 2023-09-25 12:46+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -25,12 +22,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_invoice_delivery_state.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_invoice_delivery_state.field_sale_order__display_name
 msgid "Display Name"
-msgstr "Nom affiché"
+msgstr ""
 
 #. module: sale_invoice_delivery_state
 #: model:ir.model.fields.selection,name:sale_invoice_delivery_state.selection__res_partner__invoice_policy__fully
 msgid "Fully Delivered"
-msgstr "Entièrement livré"
+msgstr ""
 
 #. module: sale_invoice_delivery_state
 #: model:ir.model.fields,field_description:sale_invoice_delivery_state.field_res_partner__id
@@ -42,18 +39,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_invoice_delivery_state.field_res_partner__invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_delivery_state.field_res_users__invoice_policy
 msgid "Invoice Policy"
-msgstr "Politique de facturation"
+msgstr ""
 
 #. module: sale_invoice_delivery_state
 #: model:ir.model.fields,field_description:sale_invoice_delivery_state.field_res_partner____last_update
 #: model:ir.model.fields,field_description:sale_invoice_delivery_state.field_sale_order____last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr ""
 
 #. module: sale_invoice_delivery_state
 #: model:ir.model.fields.selection,name:sale_invoice_delivery_state.selection__res_partner__invoice_policy__partially
 msgid "Partially Delivered"
-msgstr "Partiellement livré"
+msgstr ""
 
 #. module: sale_invoice_delivery_state
 #: model:ir.model.fields,help:sale_invoice_delivery_state.field_res_partner__invoice_policy
@@ -62,10 +59,8 @@ msgid ""
 "Partially Delivered: Invoice when the customer is partially delivered.\n"
 "Fully Delivered: Invoice when the customer is fully delivered."
 msgstr ""
-"Partiellement livré: Facturez quand le client est partiellement livré.\n"
-"Entièrement livré: Facturez quand le client est entièrement livré."
 
 #. module: sale_invoice_delivery_state
 #: model:ir.model,name:sale_invoice_delivery_state.model_sale_order
 msgid "Sales Order"
-msgstr "Bon de commande"
+msgstr ""
