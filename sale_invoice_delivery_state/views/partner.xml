@@ -1,0 +1,13 @@
+<odoo>
+    <record id="view_partner_property_form" model="ir.ui.view">
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='accounting']/group" position="inside">
+                <group name="invoicing_policy">
+                    <field name="invoice_policy" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
