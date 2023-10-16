@@ -43,6 +43,7 @@ setuptools.setup(
         'odoo14-addon-sale_global_discount',
         'odoo14-addon-sale_invoice_auto_deliver',
         'odoo14-addon-sale_invoice_blocking',
+        'odoo14-addon-sale_invoice_delivery_state',
         'odoo14-addon-sale_invoice_no_mail',
         'odoo14-addon-sale_invoice_plan',
         'odoo14-addon-sale_invoice_policy',
