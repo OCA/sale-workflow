@@ -63,3 +63,11 @@ msgstr "Ordine di vendita"
 #: model:ir.model,name:sale_order_product_assortment.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Riga ordine di vendita"
+
+#. module: sale_order_product_assortment
+#: code:addons/sale_order_product_assortment/models/sale_order.py:0
+#, python-format
+msgid ""
+"This SO contains one or more products that are not allowed for partner %s:\n"
+"- %s"
+msgstr ""
