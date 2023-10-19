@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-20 22:37+0000\n"
-"PO-Revision-Date: 2023-09-20 04:33+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"POT-Creation-Date: 2023-10-19 21:55+0000\n"
+"PO-Revision-Date: 2023-10-19 23:59+0200\n"
+"Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__active
@@ -251,6 +251,7 @@ msgstr "Política de envío"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_report__type_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+#: model_terms:ir.ui.view,arch_db:sale_order_type.view_sales_order_filter
 msgid "Type"
 msgstr "Tipo"
 
@@ -264,23 +265,3 @@ msgstr "Tipo de pedido de venta"
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr "Almacén"
-
-#~ msgid "The company is automatically set from your user preferences."
-#~ msgstr ""
-#~ "La compañía se configura automáticamente desde sus preferencias de "
-#~ "usuario."
-
-#~ msgid "Journal Entries"
-#~ msgstr "Entradas de diario"
-
-#~ msgid "Sales Order Type"
-#~ msgstr "Tipo de pedido de venta"
-
-#~ msgid "Invoice"
-#~ msgstr "Factura"
-
-#~ msgid "Quotation"
-#~ msgstr "Presupuesto"
-
-#~ msgid "Partner"
-#~ msgstr "Empresa"
