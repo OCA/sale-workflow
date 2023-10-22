@@ -13,6 +13,7 @@
         'sale_stock',
     ],
     'data': [
+        'views/res_partner_views.xml',
         'views/sale_order_view.xml',
     ],
     'installable': True,
