@@ -1,9 +1,11 @@
 # Copyright 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 # Copyright 2016 Serpent Consulting Services Pvt. Ltd.
 # Copyright 2018 Dreambits Technologies Pvt. Ltd. (<http://dreambits.in>)
+# Copyright 2023 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 
 
 class SaleOrder(models.Model):
@@ -121,3 +123,19 @@ class SaleOrder(models.Model):
 
         # Returning the new sale order view with new record.
         return action
+
+    def action_confirm(self):
+        for order in self:
+            current_revision = order.current_revision_id
+            if current_revision:
+                raise UserError(
+                    _(
+                        "Order {order} has a new Revision {revision}:\n"
+                        "Confirm the Revision or create a new one."
+                    )
+                    .format(
+                        order=order.display_name,
+                        revision=current_revision.display_name,
+                    )
+                )
+        return super().action_confirm()

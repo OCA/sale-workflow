@@ -8,3 +8,5 @@ the date they were made obsolete and the user who performed the action.
 
 The old revisions of a sale order are flagged as inactive, so they don't
 clutter up searches.
+
+Only the latest Revision can be confirmed.
