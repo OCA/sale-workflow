@@ -94,8 +94,10 @@ class SaleOrder(models.Model):
                 order.update(vals)
             # Order line values
             line_vals = {}
-            line_vals.update({"route_id": order_type.route_id.id})
-            order.order_line.update(line_vals)
+            if order_type.route_id:
+                line_vals.update({"route_id": order_type.route_id.id})
+            if line_vals:
+                order.order_line.update(line_vals)
 
     @api.model
     def create(self, vals):
