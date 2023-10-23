@@ -371,3 +371,52 @@ class TestSaleAdvancePayment(common.TransactionCase):
         self.assertEqual(invoice.amount_residual, 0.0)
         self.assertEqual(self.sale_order_1.amount_residual, 1600)
         self.assertEqual(invoice.amount_residual, 0)
+
+    def test_04_residual_amount_with_credit_note(self):
+        PaymentRegister = self.env["account.payment.register"]
+        payment_register_vals = {
+            "amount": 3600.0,
+            "group_payment": True,
+            "payment_difference_handling": "open",
+        }
+
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            3600,
+        )
+        # Confirm Sale Order
+        self.sale_order_1.action_confirm()
+
+        # Create Invoice
+        invoice = self.sale_order_1._create_invoices()
+        invoice.action_post()
+        self.assertEqual(invoice.amount_residual, 3600)
+
+        # Pay invoice in full
+        PaymentRegister.with_context(
+            active_model="account.move", active_ids=invoice.ids
+        ).create(payment_register_vals)._create_payments()
+        self.assertEqual(self.sale_order_1.amount_residual, 0)
+
+        # Reverse paid invoice
+        move_reversal = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=invoice.ids)
+            .create(
+                {
+                    "date": fields.Date.today(),
+                    "reason": "client wanted refund",
+                    "refund_method": "refund",
+                }
+            )
+        )
+        reversal = move_reversal.reverse_moves()
+        reverse_move = self.env["account.move"].browse(reversal["res_id"])
+        reverse_move.action_post()
+
+        # Pay reverse invoice in full
+        PaymentRegister.with_context(
+            active_model="account.move", active_ids=reverse_move.ids
+        ).create(payment_register_vals)._create_payments()
+        self.assertEqual(reverse_move.amount_residual, 0)
+        self.assertEqual(self.sale_order_1.amount_residual, 0)
