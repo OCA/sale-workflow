@@ -15,14 +15,14 @@ class SaleOrderLine(models.Model):
             and not line.invoice_lines
             and not line.move_ids.filtered(lambda move: move.state == "done")
         )
-        invoiced_lines = self.filtered(
+        invoiced_lines = self.sudo().filtered(
             lambda line: line.state in ("sale", "done") and line.invoice_lines
         )
         if invoiced_lines:
             raise UserError(
                 _("You can not remove an order line that has been invoiced")
             )
-        delivered_lines = self.filtered(
+        delivered_lines = self.sudo().filtered(
             lambda line: line.state in ("sale", "done")
             and line.move_ids.filtered(lambda move: move.state == "done")
         )
@@ -35,8 +35,12 @@ class SaleOrderLine(models.Model):
     def unlink(self):
         non_removable_lines = self._check_line_unlink()
         for line in self - non_removable_lines:
+            related_pickings = line.move_ids.mapped("picking_id")
             line.move_ids.filtered(
                 lambda move: move.state not in ("done", "cancel")
             )._action_cancel()
             line.move_ids.filtered(lambda move: move.state != "done").unlink()
+            for picking in related_pickings:
+                if not picking.move_ids_without_package:
+                    picking.unlink()
         return super(SaleOrderLine, self).unlink()
