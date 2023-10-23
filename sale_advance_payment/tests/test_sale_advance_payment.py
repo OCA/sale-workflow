@@ -448,7 +448,6 @@ class TestSaleAdvancePayment(AccountTestInvoicingCommon):
                     "date": fields.Date.today(),
                     "reason": "client wanted refund",
                     "refund_method": "refund",
-                    "journal_id": invoice.journal_id.id,
                 }
             )
         )
