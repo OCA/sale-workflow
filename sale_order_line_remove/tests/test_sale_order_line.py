@@ -121,3 +121,33 @@ class TestSaleOrderLine(TransactionCase):
         sale_order._create_invoices()
         with self.assertRaises(Exception):
             sale_order_line._check_line_unlink()
+
+    def test_unlink_empty_picking(self):
+        sale_order = self.SaleOrder.create({"partner_id": self.partner.id})
+        sale_order.action_confirm()
+        sale_order_line1 = self.SaleOrderLine.create(
+            {
+                "order_id": sale_order.id,
+                "product_id": self.product.id,
+                "product_uom_qty": 1,
+                "product_uom": self.uom.id,
+            }
+        )
+        sale_order_line2 = self.SaleOrderLine.create(
+            {
+                "order_id": sale_order.id,
+                "product_id": self.product.id,
+                "product_uom_qty": 1,
+                "product_uom": self.uom.id,
+            }
+        )
+        picking = sale_order.picking_ids[0]
+        picking.action_confirm()
+        picking.action_assign()
+        sale_order_line1.unlink()
+        self.assertTrue(picking.exists(), "Picking was deleted")
+        self.assertNotEqual(
+            picking.state, "cancel", "Picking should not be cancelled yet"
+        )
+        sale_order_line2.unlink()
+        self.assertFalse(picking.exists(), "Picking was not deleted")
