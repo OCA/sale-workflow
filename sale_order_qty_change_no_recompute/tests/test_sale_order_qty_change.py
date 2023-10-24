@@ -7,6 +7,16 @@ class TestSaleOrderQtyChange(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # Remove this variable in v16 and put instead:
+        # from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+        DISABLED_MAIL_CONTEXT = {
+            "tracking_disable": True,
+            "mail_create_nolog": True,
+            "mail_create_nosubscribe": True,
+            "mail_notrack": True,
+            "no_reset_password": True,
+        }
+        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.product_1 = cls.env["product.product"].create(
             {"name": "Test Product 1", "list_price": 25.00, "taxes_id": False}
         )
