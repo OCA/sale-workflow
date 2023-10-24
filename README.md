@@ -75,7 +75,7 @@ addon | version | maintainers | summary
 [sale_order_report_without_price](sale_order_report_without_price/) | 15.0.1.0.0 |  | Allow you to generate quotation and order reports without price.
 [sale_order_revision](sale_order_revision/) | 15.0.1.0.1 |  | Keep track of revised quotations
 [sale_order_secondary_unit](sale_order_secondary_unit/) | 15.0.2.0.0 |  | Sale product in a secondary unit
-[sale_order_type](sale_order_type/) | 15.0.2.1.0 |  | Sale Order Type
+[sale_order_type](sale_order_type/) | 15.0.2.1.1 |  | Sale Order Type
 [sale_partner_incoterm](sale_partner_incoterm/) | 15.0.1.1.0 |  | Set the customer preferred incoterm on each sales order
 [sale_partner_selectable_option](sale_partner_selectable_option/) | 15.0.1.0.1 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Sale Partner Selectable Option
 [sale_payment_sheet](sale_payment_sheet/) | 15.0.1.2.0 | [![sergio-teruel](https://github.com/sergio-teruel.png?size=30px)](https://github.com/sergio-teruel) | Allow to create invoice payments to commercial users without accounting permissions
