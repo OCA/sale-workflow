@@ -10,44 +10,54 @@ from odoo.tests.common import Form, TransactionCase, tagged
 @tagged("-at_install", "post_install")
 @freeze_time("2022-02-04 09:00:00")
 class TestSalePlannerCalendar(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.env = self.env(context=dict(self.env.context, tracking_disable=True))
-        self.CalendarEvent = self.env["calendar.event"]
-        self.ResUsers = self.env["res.users"]
-        self.Partner = self.env["res.partner"]
-        self.ProductTemplate = self.env["product.template"]
-        self.Product = self.env["product.product"]
-        self.AccountInvoice = self.env["account.move"]
-        self.AccountInvoiceLine = self.env["account.move.line"]
-        self.AccountJournal = self.env["account.journal"]
-        self.SaleOrder = self.env["sale.order"]
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        # Remove this variable in v16 and put instead:
+        # from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+        DISABLED_MAIL_CONTEXT = {
+            "tracking_disable": True,
+            "mail_create_nolog": True,
+            "mail_create_nosubscribe": True,
+            "mail_notrack": True,
+            "no_reset_password": True,
+        }
+        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
+        cls.CalendarEvent = cls.env["calendar.event"]
+        cls.ResUsers = cls.env["res.users"]
+        cls.Partner = cls.env["res.partner"]
+        cls.ProductTemplate = cls.env["product.template"]
+        cls.Product = cls.env["product.product"]
+        cls.AccountInvoice = cls.env["account.move"]
+        cls.AccountInvoiceLine = cls.env["account.move.line"]
+        cls.AccountJournal = cls.env["account.journal"]
+        cls.SaleOrder = cls.env["sale.order"]
 
-        self.event_type_commercial_visit = self.env.ref(
+        cls.event_type_commercial_visit = cls.env.ref(
             "sale_planner_calendar.event_type_commercial_visit"
         )
-        self.event_type_delivery = self.env.ref(
+        cls.event_type_delivery = cls.env.ref(
             "sale_planner_calendar.event_type_delivery"
         )
-        self.pricelist = self.env["product.pricelist"].create(
-            {"name": "Test pricelist", "currency_id": self.env.company.currency_id.id}
+        cls.pricelist = cls.env["product.pricelist"].create(
+            {"name": "Test pricelist", "currency_id": cls.env.company.currency_id.id}
         )
 
         # Create some products
-        self._create_products()
+        cls._create_products()
 
         # Create some commercial users
-        self._create_commercial_users()
+        cls._create_commercial_users()
 
         # Create some partners
-        self._create_partners()
+        cls._create_partners()
 
         # Create some calendar planner events
-        self.create_calendar_planner_event()
+        cls.create_calendar_planner_event()
 
         # Some account data
-        account_type_income = self.env.ref("account.data_account_type_revenue")
-        self.account = self.env["account.account"].create(
+        account_type_income = cls.env.ref("account.data_account_type_revenue")
+        cls.account = cls.env["account.account"].create(
             {
                 "code": "test",
                 "name": "Test account",
@@ -55,51 +65,54 @@ class TestSalePlannerCalendar(TransactionCase):
             }
         )
 
-    def _create_commercial_users(self):
+    @classmethod
+    def _create_commercial_users(cls):
         # Create commercial_user_1 and commercial_user_2 with Own Documents
         # Only security group
-        self.commercial_users = self.ResUsers.browse()
+        cls.commercial_users = cls.ResUsers.browse()
         for i in range(2):
             index = i + 1
-            user = self.ResUsers.create(
+            user = cls.ResUsers.create(
                 {
                     "name": "Commercial user %s" % index,
                     "login": "Commercial user %s" % index,
                     "groups_id": [
-                        (4, self.env.ref("sales_team.group_sale_salesman").id)
+                        (4, cls.env.ref("sales_team.group_sale_salesman").id)
                     ],
                 }
             )
-            setattr(self, "commercial_user_%s" % index, user)
-            self.commercial_users |= user
+            setattr(cls, "commercial_user_%s" % index, user)
+            cls.commercial_users |= user
 
-    def _create_partners(self):
-        self.partners = self.Partner.browse()
-        self.partner_1 = self.Partner.create(
+    @classmethod
+    def _create_partners(cls):
+        cls.partners = cls.Partner.browse()
+        cls.partner_1 = cls.Partner.create(
             {
                 "name": "Partner 1",
-                "user_id": self.commercial_user_1.id,
-                "property_product_pricelist": self.pricelist.id,
+                "user_id": cls.commercial_user_1.id,
+                "property_product_pricelist": cls.pricelist.id,
             }
         )
-        self.partner_2 = self.Partner.create(
+        cls.partner_2 = cls.Partner.create(
             {
                 "name": "Partner 2",
-                "user_id": self.commercial_user_1.id,
-                "property_product_pricelist": self.pricelist.id,
+                "user_id": cls.commercial_user_1.id,
+                "property_product_pricelist": cls.pricelist.id,
             }
         )
-        self.partner_3 = self.Partner.create(
+        cls.partner_3 = cls.Partner.create(
             {
                 "name": "Partner 3",
-                "user_id": self.commercial_user_2.id,
-                "property_product_pricelist": self.pricelist.id,
+                "user_id": cls.commercial_user_2.id,
+                "property_product_pricelist": cls.pricelist.id,
             }
         )
-        self.partners = self.partner_1 + self.partner_2 + self.partner_3
+        cls.partners = cls.partner_1 + cls.partner_2 + cls.partner_3
 
-    def _create_products(self):
-        self.product = self.Product.create(
+    @classmethod
+    def _create_products(cls):
+        cls.product = cls.Product.create(
             {
                 "name": "Product test 1",
                 "list_price": 100.00,
@@ -114,16 +127,17 @@ class TestSalePlannerCalendar(TransactionCase):
             line_form.tax_id.remove(index=0)
         return so_form.save()
 
-    def create_calendar_planner_event(self):
+    @classmethod
+    def create_calendar_planner_event(cls):
         # Create one planned recurrent event for every partner.
-        self.planned_events = self.CalendarEvent.browse()
-        for i, partner in enumerate(self.partners):
+        cls.planned_events = cls.CalendarEvent.browse()
+        for i, partner in enumerate(cls.partners):
             action = partner.action_calendar_planner()
             context = dict(action["context"], default_wed=True, default_fri=True)
             # We use Form for auto-computing the recurrence model, that is triggered
             # directly from the initialization of it
-            event_form = Form(self.CalendarEvent.with_context(**context))
-            self.planned_events |= event_form.save()
+            event_form = Form(cls.CalendarEvent.with_context(**context))
+            cls.planned_events |= event_form.save()
             if i == 0:
                 # Create a delivery event for partner 1. We can delivery goods
                 # all mondays at 09:00
@@ -133,10 +147,10 @@ class TestSalePlannerCalendar(TransactionCase):
                     default_start="2022-02-07 09:00:00",
                     default_stop="2022-02-07 10:00:00",
                     default_mon=True,
-                    default_categ_ids=[(4, self.event_type_delivery.id)],
+                    default_categ_ids=[(4, cls.event_type_delivery.id)],
                 )
-                event_form = Form(self.CalendarEvent.with_context(**context))
-                self.planned_events |= event_form.save()
+                event_form = Form(cls.CalendarEvent.with_context(**context))
+                cls.planned_events |= event_form.save()
 
     def _create_sale_order_from_planner(self, event_planner_id):
         so_form = Form(
