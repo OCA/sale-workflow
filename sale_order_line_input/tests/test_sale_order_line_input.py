@@ -8,6 +8,16 @@ class TestSaleOrderLineInput(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # Remove this variable in v16 and put instead:
+        # from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+        DISABLED_MAIL_CONTEXT = {
+            "tracking_disable": True,
+            "mail_create_nolog": True,
+            "mail_create_nosubscribe": True,
+            "mail_notrack": True,
+            "no_reset_password": True,
+        }
+        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.partner = cls.env["res.partner"].create({"name": "Test"})
         cls.product = cls.env["product.product"].create(
             {"name": "test_product", "type": "service"}
