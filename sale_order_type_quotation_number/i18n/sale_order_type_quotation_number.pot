@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_type_quotation_number
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_type_quotation_number
+#: model:ir.model.fields,field_description:sale_order_type_quotation_number.field_sale_order__applied_quotation_seq_id
+msgid "Applied Quotation Seq"
+msgstr ""
+
+#. module: sale_order_type_quotation_number
+#: model:ir.model.fields,field_description:sale_order_type_quotation_number.field_sale_order_type__quotation_sequence_id
+#: model_terms:ir.ui.view,arch_db:sale_order_type_quotation_number.quotation_sot_sale_order_type_search_view
+msgid "Quotation Sequence"
+msgstr ""
+
+#. module: sale_order_type_quotation_number
+#: model:ir.model.fields,field_description:sale_order_type_quotation_number.field_sale_order__recompute_quotation_seq
+msgid "Recompute Quotation Seq"
+msgstr ""
+
+#. module: sale_order_type_quotation_number
+#: model_terms:ir.ui.view,arch_db:sale_order_type_quotation_number.quotation_sot_view_order_form
+msgid "Recompute Quotation Seq."
+msgstr ""
+
+#. module: sale_order_type_quotation_number
+#: model_terms:ir.ui.view,arch_db:sale_order_type_quotation_number.quotation_sot_view_order_form
+msgid ""
+"Recomputing the quotation sequence will generate a gap in the previous "
+"sequence. Would you like to proceed?"
+msgstr ""
+
+#. module: sale_order_type_quotation_number
+#: model:ir.model,name:sale_order_type_quotation_number.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_type_quotation_number
+#: model:ir.model,name:sale_order_type_quotation_number.model_sale_order_type
+msgid "Type of sale order"
+msgstr ""

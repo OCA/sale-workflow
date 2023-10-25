@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
+ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="quotation_sot_sale_order_type_form_view" model="ir.ui.view">
+        <field name="name">quotation.sot.sale.order.type.form.view</field>
+        <field name="model">sale.order.type</field>
+        <field name="inherit_id" ref="sale_order_type.sot_sale_order_type_form_view" />
+        <field name="arch" type="xml">
+            <field name="sequence_id" position="after">
+                <field name="quotation_sequence_id" />
+            </field>
+        </field>
+    </record>
+    <record id="quotation_sot_sale_order_type_tree_view" model="ir.ui.view">
+        <field name="name">quotation.sot.sale.order.type.tree.view</field>
+        <field name="model">sale.order.type</field>
+        <field name="inherit_id" ref="sale_order_type.sot_sale_order_type_tree_view" />
+        <field name="arch" type="xml">
+            <field name="sequence_id" position="after">
+                <field name="quotation_sequence_id" />
+            </field>
+        </field>
+    </record>
+    <record id="quotation_sot_sale_order_type_search_view" model="ir.ui.view">
+        <field name="name">quotation.sot.sale.order.type.search.view</field>
+        <field name="model">sale.order.type</field>
+        <field
+            name="inherit_id"
+            ref="sale_order_type.sot_sale_order_type_search_view"
+        />
+        <field name="arch" type="xml">
+            <field name="sequence_id" position="after">
+                <field name="quotation_sequence_id" string="Quotation Sequence" />
+            </field>
+            <filter name="entry_sequence" position="after">
+                    <filter
+                    name="quotation_sequence"
+                    string="Quotation Sequence"
+                    domain="[]"
+                    context="{'group_by':'quotation_sequence_id'}"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
