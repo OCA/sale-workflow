@@ -4,6 +4,7 @@
 
   * David Vidal
   * Víctor Martínez
+  * Stefan Ungureanu
 
 * Moaad Bourhim <moaad.bourhim@gmail.com>
 * Jairo Llopis (`Moduon <https://www.moduon.team/>`__)
