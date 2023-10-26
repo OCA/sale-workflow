@@ -44,9 +44,17 @@ jobs:
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.8-odoo15.0:latest
             exclude: "portal_sale_personal_data_only"
+            include: "sale_procurement_group_by_commitment_date"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.8-ocb15.0:latest
-            exclude: "portal_sale_personal_data_only"
+            include: "sale_procurement_group_by_commitment_date"
+            name: test with OCB
+            makepot: "true"
+          - container: ghcr.io/oca/oca-ci/py3.8-odoo15.0:latest
+            exclude: "portal_sale_personal_data_only,sale_procurement_group_by_commitment_date"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py3.8-ocb15.0:latest
+            exclude: "portal_sale_personal_data_only,sale_procurement_group_by_commitment_date"
             name: test with OCB
             makepot: "true"
     services:
