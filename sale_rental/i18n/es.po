@@ -256,36 +256,38 @@ msgstr ""
 #: code:addons/sale_rental/models/sale_order.py:0
 #, python-format
 msgid ""
-"On the sale order line with product '%(product)s' the Product Quantity (%(qty)s) should be"
-" the number of days (%(days)s) multiplied by the Rental Quantity (%(rental_qty)s)."
+"On the sale order line with product %(product)s you are trying to sell a "
+"rented product with a quantity (%(qty)s) that is different from the rented "
+"quantity (%(rental_qty)s). This is not supported."
 msgstr ""
-"En la línea de pedido de venta con el producto '%(product)s' la Cantidad de Producto "
-"(%(qty)s) debe ser el número de días (%(days)s) multiplicado por la Cantidad de "
-"Alquiler (%(rental_qty)s)."
+"En la línea de pedido de venta con el producto %(product)s está intentando "
+"vender un producto alquilado con una cantidad (%(qty)s) diferente de la "
+"cantidad alquilada (%(rental_qty)s). Esto no es posible."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:0
 #, python-format
 msgid ""
-"On the sale order line with product %(product)s you are trying to sell a rented "
-"product with a quantity (%(qty)s) that is different from the rented quantity "
-"(%(rental_qty)s). This is not supported."
+"On the sale order line with product '%(product)s' the Product Quantity "
+"(%(qty)s) should be the number of days (%(days)s) multiplied by the Rental "
+"Quantity (%(rental_qty)s)."
 msgstr ""
-"En la línea de pedido de venta con el producto %(product)s está intentando vender un "
-"producto alquilado con una cantidad (%(qty)s) diferente de la cantidad alquilada "
-"(%(rental_qty)s). Esto no es posible."
+"En la línea de pedido de venta con el producto '%(product)s' la Cantidad de "
+"Producto (%(qty)s) debe ser el número de días (%(days)s) multiplicado por la "
+"Cantidad de Alquiler (%(rental_qty)s)."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:0
 #, python-format
 msgid ""
-"On the sale order line with rental service %(product)s, you are trying to extend a "
-"rental with a rental quantity %(qty)s that is different from the quantity of the "
-"original rental %(original_qty)s. This is not supported."
+"On the sale order line with rental service %(product)s, you are trying to "
+"extend a rental with a rental quantity %(qty)s that is different from the "
+"quantity of the original rental %(original_qty)s. This is not supported."
 msgstr ""
-"En la línea de pedido de venta con servicio de alquiler %(product)s, está intentando "
-"ampliar un alquiler con una cantidad de alquiler %(qty)s que es diferente de la "
-"cantidad del alquiler original %(original_qty)s. Esto no es posible."
+"En la línea de pedido de venta con servicio de alquiler %(product)s, está "
+"intentando ampliar un alquiler con una cantidad de alquiler %(qty)s que es "
+"diferente de la cantidad del alquiler original %(original_qty)s. Esto no es "
+"posible."
 
 #. module: sale_rental
 #: model:ir.model.fields.selection,name:sale_rental.selection__sale_rental__state__ordered
@@ -668,10 +670,12 @@ msgstr "Active_model incorrecto. No debería ocurrir nunca."
 #: code:addons/sale_rental/models/sale_order.py:0
 #, python-format
 msgid ""
-"You want to rent %(rental_qty)s %(uom)s but you only have %(available_qty)s %(uom)s currently available "
-"on the stock location '%(location)s' ! Make sure that you get some units back in the "
-"mean time or re-supply the stock location '%(location)s'."
+"You want to rent %(rental_qty)s %(uom)s but you only have %(available_qty)s "
+"%(uom)s currently available on the stock location '%(location)s' ! Make sure "
+"that you get some units back in the mean time or re-supply the stock "
+"location '%(location)s'."
 msgstr ""
-"¡Quiere alquilar %(rental_qty)s %(uom)s pero actualmente solo hay %(available_qty)s %(uom)s "
-"disponible en la ubicación de existencias '%(location)s'! Mientras tanto, asegúrese de "
-"recuperar algunas unidades o reabastecer la ubicación '%(location)s'."
+"¡Quiere alquilar %(rental_qty)s %(uom)s pero actualmente solo hay "
+"%(available_qty)s %(uom)s disponible en la ubicación de existencias "
+"'%(location)s'! Mientras tanto, asegúrese de recuperar algunas unidades o "
+"reabastecer la ubicación '%(location)s'."
