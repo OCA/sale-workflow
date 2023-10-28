@@ -245,6 +245,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_report__type_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+#: model_terms:ir.ui.view,arch_db:sale_order_type.view_sales_order_filter
 msgid "Type"
 msgstr "Tüüp"
 
