@@ -4,7 +4,7 @@
 {
     "name": "Sale Missing Tracking",
     "summary": "Tracking sale missing products",
-    "version": "15.0.1.0.1",
+    "version": "15.0.1.0.2",
     "development_status": "Beta",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
