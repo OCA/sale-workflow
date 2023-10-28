@@ -304,9 +304,7 @@ msgstr "Si está marcado hay nuevos mensajes que requieren su atención."
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking__message_has_error
-#: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking__message_has_sms_error
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking_exception__message_has_error
-#: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking_exception__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 
@@ -633,12 +631,6 @@ msgid "Responsible User"
 msgstr "Usuario responsable"
 
 #. module: sale_missing_tracking
-#: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__message_has_sms_error
-#: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error en la entrega de SMS"
-
-#. module: sale_missing_tracking
 #: model:ir.actions.act_window,name:sale_missing_tracking.action_sale_missing_tracking
 #: model:ir.model,name:sale_missing_tracking.model_sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_form
@@ -846,6 +838,9 @@ msgid ""
 msgstr ""
 "No puedes aplazar este aviso más veces. ¿Por qué ya no compra estos "
 "productos el cliente?\n"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error en la entrega de SMS"
 
 #~ msgid "Failed Messages"
 #~ msgstr "Mensajes Fallidos"
