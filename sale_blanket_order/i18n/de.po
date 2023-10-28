@@ -423,9 +423,7 @@ msgstr "Falls markiert, erfordern neue Nachrichten Ihre Aufmerksamkeit."
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_has_error
-#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_has_sms_error
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_has_error
-#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 "Wenn diese Option aktiviert ist, weisen einige Nachrichten einen "
@@ -725,12 +723,6 @@ msgstr "Verantwortlich"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_user_id
 msgid "Responsible User"
 msgstr "Verantwortlicher Benutzer"
-
-#. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_has_sms_error
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0

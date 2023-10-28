@@ -428,9 +428,7 @@ msgstr "Si coché, les nouveaux messages requièrent votre attention."
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_has_error
-#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_has_sms_error
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_has_error
-#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si coché, certains messages ont des erreurs."
 
@@ -728,12 +726,6 @@ msgstr "Responsable"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_user_id
 msgid "Responsible User"
 msgstr "Utilisateur Responsable"
-
-#. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_has_sms_error
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "SMS Erreur Expédition"
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
@@ -1052,3 +1044,6 @@ msgstr "Vous devez sélectionner des lignes depuis la même société."
 #, python-format
 msgid "remaining"
 msgstr "restant"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "SMS Erreur Expédition"

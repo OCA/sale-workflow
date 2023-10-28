@@ -428,9 +428,7 @@ msgstr "Si activo, los nuevos mensajes requieren su atención."
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_has_error
-#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_has_sms_error
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_has_error
-#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si activo, algunos mensajes tienen error de entrega."
 
@@ -728,12 +726,6 @@ msgstr "Responsable"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_user_id
 msgid "Responsible User"
 msgstr "Usuario responsable"
-
-#. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_has_sms_error
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error en la entrega de SMS"
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
@@ -1053,6 +1045,9 @@ msgstr "Tiene que seleccionar líneas desde la misma compañía."
 #, python-format
 msgid "remaining"
 msgstr "restante"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error en la entrega de SMS"
 
 #~ msgid "Followers (Channels)"
 #~ msgstr "Seguidores (canales)"
