@@ -256,36 +256,36 @@ msgstr ""
 #: code:addons/sale_rental/models/sale_order.py:0
 #, python-format
 msgid ""
-"On the sale order line with product '{}' the Product Quantity ({}) should be "
-"the number of days ({}) multiplied by the Rental Quantity ({})."
+"On the sale order line with product '%(product)s' the Product Quantity (%(qty)s) should be"
+" the number of days (%(days)s) multiplied by the Rental Quantity (%(rental_qty)s)."
 msgstr ""
-"En la línea de pedido de venta con el producto '{}' la Cantidad de Producto "
-"({}) debe ser el número de días ({}) multiplicado por la Cantidad de "
-"Alquiler ({})."
+"En la línea de pedido de venta con el producto '%(product)s' la Cantidad de Producto "
+"(%(qty)s) debe ser el número de días (%(days)s) multiplicado por la Cantidad de "
+"Alquiler (%(rental_qty)s)."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:0
 #, python-format
 msgid ""
-"On the sale order line with product {} you are trying to sell a rented "
-"product with a quantity ({}) that is different from the rented quantity "
-"({}). This is not supported."
+"On the sale order line with product %(product)s you are trying to sell a rented "
+"product with a quantity (%(qty)s) that is different from the rented quantity "
+"(%(rental_qty)s). This is not supported."
 msgstr ""
-"En la línea de pedido de venta con el producto {} está intentando vender un "
-"producto alquilado con una cantidad ({}) diferente de la cantidad alquilada "
-"({}). Esto no es posible."
+"En la línea de pedido de venta con el producto %(product)s está intentando vender un "
+"producto alquilado con una cantidad (%(qty)s) diferente de la cantidad alquilada "
+"(%(rental_qty)s). Esto no es posible."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:0
 #, python-format
 msgid ""
-"On the sale order line with rental service {}, you are trying to extend a "
-"rental with a rental quantity {} that is different from the quantity of the "
-"original rental {}. This is not supported."
+"On the sale order line with rental service %(product)s, you are trying to extend a "
+"rental with a rental quantity %(qty)s that is different from the quantity of the "
+"original rental %(original_qty)s. This is not supported."
 msgstr ""
-"En la línea de pedido de venta con servicio de alquiler {}, está intentando "
-"ampliar un alquiler con una cantidad de alquiler {} que es diferente de la "
-"cantidad del alquiler original {}. Esto no es posible."
+"En la línea de pedido de venta con servicio de alquiler %(product)s, está intentando "
+"ampliar un alquiler con una cantidad de alquiler %(qty)s que es diferente de la "
+"cantidad del alquiler original %(original_qty)s. Esto no es posible."
 
 #. module: sale_rental
 #: model:ir.model.fields.selection,name:sale_rental.selection__sale_rental__state__ordered
@@ -668,51 +668,10 @@ msgstr "Active_model incorrecto. No debería ocurrir nunca."
 #: code:addons/sale_rental/models/sale_order.py:0
 #, python-format
 msgid ""
-"You want to rent {:.2f} {} but you only have {:.2f} {} currently available "
-"on the stock location '{}' ! Make sure that you get some units back in the "
-"mean time or re-supply the stock location '{}'."
+"You want to rent %(rental_qty)s %(uom)s but you only have %(available_qty)s %(uom)s currently available "
+"on the stock location '%(location)s' ! Make sure that you get some units back in the "
+"mean time or re-supply the stock location '%(location)s'."
 msgstr ""
-"¡Quieres alquilar {:.2f} {} pero actualmente solo tienes {:.2f} {} "
-"disponible en la ubicación de stock '{}'! Mientras tanto, asegúrese de "
-"recuperar algunas unidades o reabastecer la ubicación de stock '{}'."
-
-#~ msgid "Day(s)"
-#~ msgstr "Día(s)"
-
-#~ msgid "Inventory"
-#~ msgstr "Inventario"
-
-#, python-format
-#~ msgid ""
-#~ "On the sale order line with rental service {}, you are trying to extend a "
-#~ "rental with a rental quantity ({}) that is different from the quantity of "
-#~ "the original rental ({}). This is not supported."
-#~ msgstr ""
-#~ "En la línea de pedido de venta con servicio de alquiler {}, está "
-#~ "intentando ampliar un alquiler con una cantidad de alquiler ({}) "
-#~ "diferente de la cantidad del alquiler original ({}). Esto no es posible."
-
-#~ msgid "Sale Order"
-#~ msgstr "Orden de venta"
-
-#~ msgid ""
-#~ "You can find a customer by its Name, TIN, Email or Internal Reference."
-#~ msgstr ""
-#~ "Puede encontrar un cliente por su Nombre, TIN, Correo electrónico o "
-#~ "Referencia interna."
-
-#, python-format
-#~ msgid ""
-#~ "You want to rent %.2f {} but you only have %.2f {} currently available on "
-#~ "the stock location '{}' ! Make sure that you get some units back in the "
-#~ "mean time or re-supply the stock location '{}'."
-#~ msgstr ""
-#~ "Quieres alquilar %.2f {} pero sólo tienes %.2f {} disponibles en el "
-#~ "almacén '{}'. Asegúrate de recuperar algunas unidades mientras tanto o "
-#~ "reabastece la ubicación de stock '{}'."
-
-#~ msgid "kg"
-#~ msgstr "kilogramos"
-
-#~ msgid "Procurement"
-#~ msgstr "Abastecimiento"
+"¡Quiere alquilar %(rental_qty)s %(uom)s pero actualmente solo hay %(available_qty)s %(uom)s "
+"disponible en la ubicación de existencias '%(location)s'! Mientras tanto, asegúrese de "
+"recuperar algunas unidades o reabastecer la ubicación '%(location)s'."
