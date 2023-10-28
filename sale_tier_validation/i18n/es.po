@@ -113,6 +113,11 @@ msgid "Validated Message"
 msgstr "Mensaje validado"
 
 #. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validation_status
+msgid "Validation Status"
+msgstr ""
+
+#. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__review_ids
 msgid "Validations"
 msgstr "Validaciones"
