@@ -215,7 +215,6 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_error
-#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 
@@ -388,11 +387,6 @@ msgstr "Reestablecer a Nuevo"
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__user_id
 msgid "Responsible"
 msgstr "Responsable"
-
-#. module: sale_payment_sheet
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error en la entrega del SMS"
 
 #. module: sale_payment_sheet
 #: model:ir.model,name:sale_payment_sheet.model_sale_payment_sheet
@@ -605,3 +599,6 @@ msgstr "Resumen de pagos de facturas"
 #: model:ir.actions.report,name:sale_payment_sheet.action_report_sale_payment_sheet
 msgid "sale payment sheet summary"
 msgstr "Resumen de pagos de facturas"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error en la entrega del SMS"
