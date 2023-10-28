@@ -240,26 +240,27 @@ msgstr ""
 #: code:addons/sale_rental/models/sale_order.py:0
 #, python-format
 msgid ""
-"On the sale order line with product '{}' the Product Quantity ({}) should be "
-"the number of days ({}) multiplied by the Rental Quantity ({})."
+"On the sale order line with product %(product)s you are trying to sell a "
+"rented product with a quantity (%(qty)s) that is different from the rented "
+"quantity (%(rental_qty)s). This is not supported."
 msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:0
 #, python-format
 msgid ""
-"On the sale order line with product {} you are trying to sell a rented "
-"product with a quantity ({}) that is different from the rented quantity "
-"({}). This is not supported."
+"On the sale order line with product '%(product)s' the Product Quantity "
+"(%(qty)s) should be the number of days (%(days)s) multiplied by the Rental "
+"Quantity (%(rental_qty)s)."
 msgstr ""
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:0
 #, python-format
 msgid ""
-"On the sale order line with rental service {}, you are trying to extend a "
-"rental with a rental quantity {} that is different from the quantity of the "
-"original rental {}. This is not supported."
+"On the sale order line with rental service %(product)s, you are trying to "
+"extend a rental with a rental quantity %(qty)s that is different from the "
+"quantity of the original rental %(original_qty)s. This is not supported."
 msgstr ""
 
 #. module: sale_rental
@@ -640,9 +641,10 @@ msgstr ""
 #: code:addons/sale_rental/models/sale_order.py:0
 #, python-format
 msgid ""
-"You want to rent {:.2f} {} but you only have {:.2f} {} currently available "
-"on the stock location '{}' ! Make sure that you get some units back in the "
-"mean time or re-supply the stock location '{}'."
+"You want to rent %(rental_qty)s %(uom)s but you only have %(available_qty)s "
+"%(uom)s currently available on the stock location '%(location)s' ! Make sure "
+"that you get some units back in the mean time or re-supply the stock "
+"location '%(location)s'."
 msgstr ""
 
 #, fuzzy
