@@ -99,15 +99,17 @@ class SaleOrderLine(models.Model):
                 if line.rental_qty != line.extension_rental_id.rental_qty:
                     raise ValidationError(
                         _(
-                            "On the sale order line with rental service {}, "
+                            "On the sale order line with rental service %(product)s, "
                             "you are trying to extend a rental with a rental "
-                            "quantity {} that is different from the quantity "
-                            "of the original rental {}. This is not supported."
-                        ).format(
-                            line.product_id.display_name,
-                            line.rental_qty,
-                            line.extension_rental_id.rental_qty,
+                            "quantity %(qty)s that is different from the quantity "
+                            "of the original rental %(original_qty)s. This is not "
+                            "supported."
                         )
+                        % {
+                            "product": line.product_id.display_name,
+                            "qty": line.rental_qty,
+                            "original_qty": line.extension_rental_id.rental_qty,
+                        }
                     )
             if line.rental_type in ("new_rental", "rental_extension"):
                 if not line.product_id.rented_product_id:
@@ -120,16 +122,17 @@ class SaleOrderLine(models.Model):
                 if line.product_uom_qty != line.rental_qty * line.number_of_days:
                     raise ValidationError(
                         _(
-                            "On the sale order line with product '{}' "
-                            "the Product Quantity ({}) should be the "
-                            "number of days ({}) "
-                            "multiplied by the Rental Quantity ({})."
-                        ).format(
-                            line.product_id.display_name,
-                            line.product_uom_qty,
-                            line.number_of_days,
-                            line.rental_qty,
+                            "On the sale order line with product '%(product)s' "
+                            "the Product Quantity (%(qty)s) should be the "
+                            "number of days (%(days)s) "
+                            "multiplied by the Rental Quantity (%(rental_qty)s)."
                         )
+                        % {
+                            "product": line.product_id.display_name,
+                            "qty": line.product_uom_qty,
+                            "days": line.number_of_days,
+                            "rental_qty": line.rental_qty,
+                        }
                     )
                 # the module sale_start_end_dates checks that, when we have
                 # must_have_dates, we have start + end dates
@@ -137,15 +140,16 @@ class SaleOrderLine(models.Model):
                 if line.product_uom_qty != line.sell_rental_id.rental_qty:
                     raise ValidationError(
                         _(
-                            "On the sale order line with product {} "
+                            "On the sale order line with product %(product)s "
                             "you are trying to sell a rented product with a "
-                            "quantity ({}) that is different from the rented "
-                            "quantity ({}). This is not supported."
-                        ).format(
-                            line.product_id.display_name,
-                            line.product_uom_qty,
-                            line.sell_rental_id.rental_qty,
+                            "quantity (%(qty)s) that is different from the rented "
+                            "quantity (%(rental_qty)s). This is not supported."
                         )
+                        % {
+                            "product": line.product_id.display_name,
+                            "qty": line.product_uom_qty,
+                            "rental_qty": line.rental_qty,
+                        }
                     )
 
     def _prepare_rental(self):
@@ -281,19 +285,18 @@ class SaleOrderLine(models.Model):
                         res["warning"] = {
                             "title": _("Not enough stock !"),
                             "message": _(
-                                "You want to rent {:.2f} {} but you only "
-                                "have {:.2f} {} currently available on the "
-                                "stock location '{}' ! Make sure that you "
-                                "get some units back in the mean time or "
-                                "re-supply the stock location '{}'."
-                            ).format(
-                                self.rental_qty,
-                                product_uom.name,
-                                in_location_available_qty,
-                                product_uom.name,
-                                rental_in_location.name,
-                                rental_in_location.name,
-                            ),
+                                "You want to rent %(rental_qty)s %(uom)s but you only "
+                                "have %(available_qty)s %(uom)s currently available on "
+                                "the stock location '%(location)s' ! Make sure that "
+                                "you get some units back in the mean time or "
+                                "re-supply the stock location '%(location)s'."
+                            )
+                            % {
+                                "rental_qty": self.rental_qty,
+                                "uom": product_uom.name,
+                                "available_qty": in_location_available_qty,
+                                "location": rental_in_location.name,
+                            },
                         }
             elif self.product_id.rental_service_ids:
                 self.can_sell_rental = True
