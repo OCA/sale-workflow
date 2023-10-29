@@ -209,13 +209,11 @@ msgstr "ID (Identificador)"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_needaction
-#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_error
-#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 
@@ -325,18 +323,13 @@ msgstr "Errores"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Número de mensajes que requieren una acción"
+msgid "Number of messages requiring action"
+msgstr ""
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Número de mensajes con error de envío"
-
-#. module: sale_payment_sheet
-#: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Número de mensajes no leidos"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields.selection,name:sale_payment_sheet.selection__sale_payment_sheet_line__transaction_type__partial
@@ -390,11 +383,6 @@ msgid "Responsible"
 msgstr "Responsable"
 
 #. module: sale_payment_sheet
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Error en la entrega del SMS"
-
-#. module: sale_payment_sheet
 #: model:ir.model,name:sale_payment_sheet.model_sale_payment_sheet
 msgid "Sale Payment Sheet"
 msgstr "Hoja de pagos"
@@ -446,6 +434,7 @@ msgid "Sheet"
 msgstr "Hoja"
 
 #. module: sale_payment_sheet
+#. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
 #, python-format
 msgid "Sheet %s confirmed, bank statement were created."
@@ -475,12 +464,14 @@ msgid "Tax Excluded"
 msgstr "Impuesto no incluido"
 
 #. module: sale_payment_sheet
+#. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
 #, python-format
 msgid "The amount of a cash transaction cannot be 0."
 msgstr "El importe de una transacción en efectivo no puede ser 0."
 
 #. module: sale_payment_sheet
+#. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
 #, python-format
 msgid ""
@@ -520,19 +511,9 @@ msgid "Transactions"
 msgstr "Transacciones"
 
 #. module: sale_payment_sheet
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_unread
-msgid "Unread Messages"
-msgstr "Mensajes sin leer"
-
-#. module: sale_payment_sheet
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Contador de mensajes no leidos"
-
-#. module: sale_payment_sheet
 #: model:ir.model,name:sale_payment_sheet.model_res_users
-msgid "Users"
-msgstr "Usuarios"
+msgid "User"
+msgstr ""
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet_line__journal_currency_id
@@ -565,6 +546,7 @@ msgid "Wiz Line"
 msgstr "Línea de asistente"
 
 #. module: sale_payment_sheet
+#. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
 #, python-format
 msgid "You can not delete a sheet if has related journal items."
@@ -573,6 +555,7 @@ msgstr ""
 "relacionado."
 
 #. module: sale_payment_sheet
+#. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
 #, python-format
 msgid "You can not delete payment lines if have related statement lines."
@@ -580,12 +563,14 @@ msgstr ""
 "No puede eliminar líneas de pago si tienen una línea de extracto relacionada."
 
 #. module: sale_payment_sheet
+#. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
 #, python-format
 msgid "You can not reopen a sheet that has any reconciled line."
 msgstr "No puede reabrir una hoja de pagos si tiene alguna línea conciliada."
 
 #. module: sale_payment_sheet
+#. odoo-python
 #: code:addons/sale_payment_sheet/wizards/sale_invoice_payment.py:0
 #, python-format
 msgid "You have to select at least an invoice to make a payment."
@@ -605,3 +590,21 @@ msgstr "Resumen de pagos de facturas"
 #: model:ir.actions.report,name:sale_payment_sheet.action_report_sale_payment_sheet
 msgid "sale payment sheet summary"
 msgstr "Resumen de pagos de facturas"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Número de mensajes que requieren una acción"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Número de mensajes no leidos"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Error en la entrega del SMS"
+
+#~ msgid "Unread Messages"
+#~ msgstr "Mensajes sin leer"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Contador de mensajes no leidos"
+
+#~ msgid "Users"
+#~ msgstr "Usuarios"
