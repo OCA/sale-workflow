@@ -50,7 +50,7 @@ def check_duplicates(func):
     def wrapper(self, *args, **kwargs):
         func(self, *args, **kwargs)
         duplicates_query = """
-            SELECT product_id, pricelist_id, count(*)
+            SELECT DISTINCT ON (product_id, pricelist_id), count(*)
             FROM product_pricelist_cache
             GROUP BY product_id, pricelist_id
             HAVING count(*) > 1;
@@ -63,6 +63,10 @@ def check_duplicates(func):
 
 
 class TestPricelistCacheCommon(SavepointCase):
+    def assert_cache(self, caches, expected_prices):
+        for cache, price in zip(caches, expected_prices):
+            self.assertEqual(cache.price, price)
+
     @classmethod
     def setUpClassBaseCache(cls):
         cls.cache_model.cron_reset_pricelist_cache()
@@ -88,7 +92,6 @@ class TestPricelistCacheCommon(SavepointCase):
         )
         # Odoo does not seems to register hooks by itself when tests are run
         # the following line registers them explicitely
-        cls.env["base.automation"]._register_hook()
         cls.cache_model = cls.env["product.pricelist.cache"]
         # root pricelists
         cls.list0 = cls.env.ref("pricelist_cache.list0")

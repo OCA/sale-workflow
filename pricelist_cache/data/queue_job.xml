@@ -9,7 +9,7 @@
 
     <record id="job_function_pricelist_cache_update" model="queue.job.function">
         <field name="model_id" ref="pricelist_cache.model_product_pricelist_cache" />
-        <field name="method">update_product_pricelist_cache</field>
+        <field name="method">create_product_pricelist_cache</field>
         <field name="channel_id" ref="channel_pricelist_cache" />
     </record>
 </odoo>

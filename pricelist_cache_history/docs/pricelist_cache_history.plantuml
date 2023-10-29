@@ -1,0 +1,34 @@
+@startuml
+concise "Root item 1" as root1
+concise "Root item 2" as root2
+concise "Parent item 1" as parent1
+concise "Child1 Item 1" as child1_1
+concise "Child2 Item 1" as child2_1
+concise "Child3 Item 1" as child3_1
+
+root1 is "12"
+child1_1 is "+10%"
+parent1 is {hidden}
+child2_1 is {hidden}
+child3_1 is {hidden}
+
+@root1
+4 is {hidden}
+
+@root2
+2 is "8"
+5 is {hidden}
+
+@parent1
+3 is "6"
+7 is {hidden}
+
+@child2_1
+1 is "4"
+6 is {hidden}
+
+@child3_1
+1 is "-10%"
+6 is {hidden}
+
+@enduml
