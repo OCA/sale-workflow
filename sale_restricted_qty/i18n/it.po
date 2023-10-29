@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-08 20:56+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-10-29 16:41+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -110,7 +110,7 @@ msgid ""
 "parent object.Hierarchy is in this order :Product/product Template/product "
 "category/parent categoroies "
 msgstr ""
-"Definisci la qtà massima di vendita 'Se non impostato', Odoo utilizzerà il "
+"Definisci la q.tà massima di vendita 'Se non impostato', Odoo utilizzerà il "
 "valore definito nell'oggetto padre. La gerarchia è in questo ordine: "
 "Prodotto/Modello prodotto/categoria prodotto/categorie padre "
 
@@ -124,7 +124,7 @@ msgid ""
 "parent object.Hierarchy is in this order :Product/product Template/product "
 "category/parent categoroies "
 msgstr ""
-"Definisci la qtà minima di vendita 'Se non impostato', Odoo utilizzerà il "
+"Definisci la q.tà minima di vendita 'Se non impostato', Odoo utilizzerà il "
 "valore definito nell'oggetto padre. La gerarchia è in questo ordine: "
 "Prodotto/Modello prodotto/categoria prodotto/categorie padre "
 
@@ -138,7 +138,7 @@ msgid ""
 "the parent object.Hierarchy is in this order :Product/product Template/"
 "product category/parent categoroies "
 msgstr ""
-"Definisci la qtà multipla di vendita 'Se non impostato', Odoo utilizzerà il "
+"Definisci la q.tà multipla di vendita 'Se non impostato', Odoo utilizzerà il "
 "valore definito nell'oggetto padre. La gerarchia è in questo ordine: "
 "Prodotto/Modello prodotto/categoria prodotto/categorie padre "
 
@@ -157,7 +157,7 @@ msgstr "Nome visualizzato"
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__force_sale_max_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__force_sale_max_qty
 msgid "Force Max Qty"
-msgstr "Forza Qtà Massima"
+msgstr "Forza q.tà massima"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__force_sale_min_qty
@@ -165,17 +165,17 @@ msgstr "Forza Qtà Massima"
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__force_sale_min_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__force_sale_min_qty
 msgid "Force Min Qty"
-msgstr "Forza Qtà Minima"
+msgstr "Forza q.tà minima"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__force_sale_max_qty
 msgid "Force Sale Max Qty"
-msgstr "Forza Qtà Minima di Vendita"
+msgstr "Forza q.tà minima di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__force_sale_min_qty
 msgid "Force Sale Min Qty"
-msgstr "Forza Qtà Massima di Vendita"
+msgstr "Forza q.tà massima di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__id
@@ -195,7 +195,7 @@ msgid ""
 "If force max qty is checked, the max quantity is only indicative value.If is "
 "not test we check parent value"
 msgstr ""
-"Se forza qtà massima è selezionata, la quantità massima è solo un valore "
+"Se forza q.tà massima è selezionata, la quantità massima è solo un valore "
 "indicativo. Se non è test controlliamo il valore genitore"
 
 #. module: sale_restricted_qty
@@ -207,7 +207,7 @@ msgid ""
 "If force min qty is checked, the min quantity is only indicative value.If is "
 "not test we check parent value"
 msgstr ""
-"Se forza qtà minima è selezionata, la quantità minima è solo un valore "
+"Se forza q.tà minima è selezionata, la quantità minima è solo un valore "
 "indicativo. Se non è test controlliamo il valore genitore"
 
 #. module: sale_restricted_qty
@@ -225,7 +225,7 @@ msgstr "Ultima Modifica il"
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__manual_force_sale_max_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__manual_force_sale_max_qty
 msgid "Manual Force Max Qty"
-msgstr "Forza Manualmente Qtà Massima"
+msgstr "Forza manualmente q.tà massima"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__manual_force_sale_min_qty
@@ -233,7 +233,7 @@ msgstr "Forza Manualmente Qtà Massima"
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__manual_force_sale_min_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__manual_force_sale_min_qty
 msgid "Manual Force Min Qty"
-msgstr "Forza Manualmente Qtà Minima"
+msgstr "Forza manualmente q.tà minima"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__sale_max_qty
@@ -248,7 +248,7 @@ msgstr "Quantità Massima Superata"
 #. module: sale_restricted_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_order_form
 msgid "Max Quantity Recommended"
-msgstr "Qtà Massima Consigliata"
+msgstr "Q.tà massima consigliata"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__manual_sale_max_qty
@@ -256,22 +256,22 @@ msgstr "Qtà Massima Consigliata"
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__manual_sale_max_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__manual_sale_max_qty
 msgid "Max Sale Qty"
-msgstr "Qtà di Vendita Massima"
+msgstr "Q.tà di vendita massima"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__sale_min_qty
 msgid "Min Qty"
-msgstr "Qtà Minima"
+msgstr "Q.tà minima"
 
 #. module: sale_restricted_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_order_form
 msgid "Min Quantity Recommended"
-msgstr "Qtà Minima Consigliata"
+msgstr "Q.tà minima consigliata"
 
 #. module: sale_restricted_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_order_form
 msgid "Min Quantity Required"
-msgstr "Qtà Minima Richiesta"
+msgstr "Q.tà minima richiesta"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__manual_sale_min_qty
@@ -279,12 +279,12 @@ msgstr "Qtà Minima Richiesta"
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__manual_sale_min_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__manual_sale_min_qty
 msgid "Min Sale Qty"
-msgstr "Qtà di Vendita Minima"
+msgstr "Q.tà di vendita minima"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__sale_multiple_qty
 msgid "Multiple Qty"
-msgstr "Qtà Multiple"
+msgstr "Q.tà multiple"
 
 #. module: sale_restricted_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_order_form
@@ -314,7 +314,7 @@ msgstr "No"
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__is_qty_not_multiple_qty
 msgid "Not Multiple Qty"
-msgstr "Qtà Non Multipla"
+msgstr "Q.tà non multipla"
 
 #. module: sale_restricted_qty
 #: model:ir.model,name:sale_restricted_qty.model_product_product
@@ -357,12 +357,12 @@ msgstr "Modello prodotto"
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__is_qty_less_min_qty
 msgid "Qty < Min Qty"
-msgstr "Qtà < qtà minima"
+msgstr "Q.tà < q.tà minima"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__is_qty_bigger_max_qty
 msgid "Qty > max Qty"
-msgstr "Qtà > Qtà Massima"
+msgstr "Q.tà > q.tà massima"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_max_qty
@@ -370,21 +370,21 @@ msgstr "Qtà > Qtà Massima"
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__sale_max_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_max_qty
 msgid "Sale Max Qty"
-msgstr "Qtà Massima di Vendita"
+msgstr "Q.tà massima di vendita"
 
 #. module: sale_restricted_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
 msgid "Sale Max qty"
-msgstr "qtà Massima di Vendita"
+msgstr "Q.tà massima di vendita"
 
 #. module: sale_restricted_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
 msgid "Sale Miltiple qty"
-msgstr "qtà Multipla di Vendita"
+msgstr "Q.tà multipla di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_min_qty
@@ -392,14 +392,14 @@ msgstr "qtà Multipla di Vendita"
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__sale_min_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_min_qty
 msgid "Sale Min Qty"
-msgstr "Qtà Minima di Vendita"
+msgstr "Q.tà minima di vendita"
 
 #. module: sale_restricted_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
 msgid "Sale Min qty"
-msgstr "qtà Minima di Vendita"
+msgstr "Q.tà minima di vendita"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_multiple_qty
@@ -407,7 +407,7 @@ msgstr "qtà Minima di Vendita"
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__sale_multiple_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_multiple_qty
 msgid "Sale Multiple Qty"
-msgstr "Qtà Multipla di Vendita"
+msgstr "Q.tà multipla di vendita"
 
 #. module: sale_restricted_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
