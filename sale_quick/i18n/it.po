@@ -66,11 +66,6 @@ msgid "Product Variants"
 msgstr "Varianti prodotto"
 
 #. module: sale_quick
-#: model_terms:ir.ui.view,arch_db:sale_quick.product_tree_view4sale
-msgid "Products for sale"
-msgstr "Prodotti in vendita"
-
-#. module: sale_quick
 #: model:ir.model,name:sale_quick.model_sale_order
 msgid "Sales Order"
 msgstr "Ordine di vendita"
@@ -89,3 +84,6 @@ msgstr "Tecnico: utilizzato per calcolare le quantità da vendere."
 #: model_terms:ir.ui.view,arch_db:sale_quick.product_tree_view4sale
 msgid "UoM"
 msgstr "UdM"
+
+#~ msgid "Products for sale"
+#~ msgstr "Prodotti in vendita"
