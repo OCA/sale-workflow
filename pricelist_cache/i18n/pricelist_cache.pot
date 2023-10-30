@@ -125,11 +125,6 @@ msgid "Price"
 msgstr ""
 
 #. module: pricelist_cache
-#: model_terms:ir.ui.view,arch_db:pricelist_cache.product_pricelist_cache_view_tree
-msgid "Price List"
-msgstr ""
-
-#. module: pricelist_cache
 #: model:ir.model,name:pricelist_cache.model_product_pricelist
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__pricelist_id
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__pricelist_id
