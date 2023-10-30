@@ -120,11 +120,6 @@ msgid "Sale Delivery Block Reason"
 msgstr ""
 
 #. module: sale_stock_picking_blocking
-#: model_terms:ir.ui.view,arch_db:sale_stock_picking_blocking.sale_stock_picking_blocking_reason_tree_view
-msgid "Sale Order Delivery Block Reason"
-msgstr ""
-
-#. module: sale_stock_picking_blocking
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__sale_order_ids
 msgid "Sale Orders"
 msgstr ""
