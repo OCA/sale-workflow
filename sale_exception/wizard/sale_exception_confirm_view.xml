@@ -8,7 +8,7 @@
             <form string="Blocked in draft due to exceptions">
                 <group>
                     <field name="exception_ids" nolabel="1" colspan="4">
-                        <tree string="Sale Exceptions">
+                        <tree>
                             <field name="name" />
                             <field name="description" />
                         </tree>
