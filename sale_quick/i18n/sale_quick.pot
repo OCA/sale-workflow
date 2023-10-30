@@ -61,11 +61,6 @@ msgid "Product Variants"
 msgstr ""
 
 #. module: sale_quick
-#: model_terms:ir.ui.view,arch_db:sale_quick.product_tree_view4sale
-msgid "Products for sale"
-msgstr ""
-
-#. module: sale_quick
 #: model:ir.model,name:sale_quick.model_sale_order
 msgid "Sales Order"
 msgstr ""
