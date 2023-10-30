@@ -85,7 +85,7 @@ addon | version | maintainers | summary
 [sale_product_multi_add](sale_product_multi_add/) | 15.0.1.0.0 |  | Sale Product Multi Add
 [sale_product_set](sale_product_set/) | 15.0.1.0.1 |  | Sale product set
 [sale_product_set_layout](sale_product_set_layout/) | 15.0.1.0.1 |  | This module allows to add sections with product sets
-[sale_quotation_number](sale_quotation_number/) | 15.0.2.0.0 |  | Different sequence for sale quotations
+[sale_quotation_number](sale_quotation_number/) | 15.0.2.0.1 |  | Different sequence for sale quotations
 [sale_rental](sale_rental/) | 15.0.1.0.2 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Manage Rental of Products
 [sale_resource_booking](sale_resource_booking/) | 15.0.1.0.0 | [![Yajo](https://github.com/Yajo.png?size=30px)](https://github.com/Yajo) | Link resource bookings with sales
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 15.0.1.0.0 |  | Add shipping amounts on sale order
