@@ -212,11 +212,6 @@ msgid "Sale Exception Rules"
 msgstr "Zasady wyjątku od sprzedaży"
 
 #. module: sale_exception
-#: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
-msgid "Sale Exceptions"
-msgstr "Wyjątek od sprzedaży"
-
-#. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_exception_confirm
 msgid "Sale exception confirm wizard"
 msgstr "Kreator potwierdzania wyjątków sprzedaży"
@@ -267,3 +262,6 @@ msgstr "Produkt posiada ostrzeżenie w swoim formularzu"
 #: model:exception.rule,description:sale_exception.excep_no_free
 msgid "The total can't be 0"
 msgstr "Suma nie może wynosić 0"
+
+#~ msgid "Sale Exceptions"
+#~ msgstr "Wyjątek od sprzedaży"

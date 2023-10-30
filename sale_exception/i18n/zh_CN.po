@@ -205,11 +205,6 @@ msgid "Sale Exception Rules"
 msgstr "销售异常规则"
 
 #. module: sale_exception
-#: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
-msgid "Sale Exceptions"
-msgstr "销售异常"
-
-#. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_exception_confirm
 msgid "Sale exception confirm wizard"
 msgstr ""
@@ -260,6 +255,9 @@ msgstr ""
 #: model:exception.rule,description:sale_exception.excep_no_free
 msgid "The total can't be 0"
 msgstr "总数不能为0"
+
+#~ msgid "Sale Exceptions"
+#~ msgstr "销售异常"
 
 #~ msgid "Sale Order"
 #~ msgstr "销售订单"
