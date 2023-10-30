@@ -5,11 +5,14 @@ from freezegun import freeze_time
 from odoo.tests.common import TransactionCase
 
 
-@freeze_time("2021-10-02 15:30:00")
 class RecommendationCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # HACK https://github.com/spulec/freezegun/issues/485
+        freezer = freeze_time("2021-10-02 15:30:00")
+        freezer.__enter__()
+        cls.addClassCleanup(freezer.__exit__)
         # Remove this variable in v16 and put instead:
         # from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
         DISABLED_MAIL_CONTEXT = {
