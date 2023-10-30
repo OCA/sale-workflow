@@ -17,7 +17,7 @@ class SaleOrder(models.Model):
     @api.model
     def create(self, vals):
         if self.is_using_quotation_number(vals):
-            sequence = self.env["ir.sequence"].next_by_code("sale.quotation")
+            sequence = self.get_quotation_seq()
             vals.update({"name": sequence or "/", "quotation_seq_used": True})
         return super(SaleOrder, self).create(vals)
 
@@ -39,6 +39,10 @@ class SaleOrder(models.Model):
         else:
             default["origin"] = self.name
         return super(SaleOrder, self).copy(default)
+
+    @api.model
+    def get_quotation_seq(self):
+        return self.env["ir.sequence"].next_by_code("sale.quotation")
 
     def get_sale_order_seq(self):
         self.ensure_one()
