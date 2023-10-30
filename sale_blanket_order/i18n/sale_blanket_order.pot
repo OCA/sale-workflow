@@ -684,11 +684,6 @@ msgid "Sale Blanket Order Line count"
 msgstr ""
 
 #. module: sale_blanket_order
-#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_tree
-msgid "Sale Blanket Order Lines"
-msgstr ""
-
-#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__sale_count
 msgid "Sale Count"
 msgstr ""
