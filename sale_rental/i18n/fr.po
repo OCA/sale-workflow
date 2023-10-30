@@ -523,7 +523,6 @@ msgstr "Sales Order Line"
 
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_form
-#: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_tree
 #, fuzzy
 msgid "Sales Rentals"
 msgstr "Locations"

@@ -521,7 +521,6 @@ msgstr "Stavka ponude"
 
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_form
-#: model_terms:ir.ui.view,arch_db:sale_rental.sale_rental_tree
 msgid "Sales Rentals"
 msgstr ""
 
