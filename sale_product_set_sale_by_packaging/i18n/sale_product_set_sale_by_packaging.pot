@@ -74,7 +74,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:sale_product_set_sale_by_packaging.act_open_product_set_line_view
 #: model:ir.model,name:sale_product_set_sale_by_packaging.model_product_set_line
 #: model_terms:ir.ui.view,arch_db:sale_product_set_sale_by_packaging.view_product_set_line_search
-#: model_terms:ir.ui.view,arch_db:sale_product_set_sale_by_packaging.view_product_set_line_tree
 msgid "Product set line"
 msgstr ""
 
