@@ -1,0 +1,49 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_warn_message
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-06-22 19:10+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_order_warn_message
+#: model_terms:ir.ui.view,arch_db:sale_order_warn_message.view_order_form
+msgid ""
+"<i class=\"fa fa-info-circle\"/>\n"
+"                        &amp;nbsp;"
+msgstr ""
+
+#. module: sale_order_warn_message
+#: model:ir.model.fields,field_description:sale_order_warn_message.field_sale_order__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_order_warn_message
+#: model:ir.model.fields,field_description:sale_order_warn_message.field_sale_order__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_warn_message
+#: model:ir.model.fields,field_description:sale_order_warn_message.field_sale_order____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: sale_order_warn_message
+#: model:ir.model.fields,field_description:sale_order_warn_message.field_sale_order__sale_warn_msg
+msgid "Sale Warn Msg"
+msgstr ""
+
+#. module: sale_order_warn_message
+#: model:ir.model,name:sale_order_warn_message.model_sale_order
+msgid "Sales Order"
+msgstr ""
