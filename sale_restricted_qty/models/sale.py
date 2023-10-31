@@ -48,7 +48,6 @@ class SaleOrderLine(models.Model):
         "product_uom_qty", "sale_min_qty", "sale_max_qty", "sale_multiple_qty"
     )
     def check_constraint_restricted_qty(self):
-
         msg = ""
         invaild_min_lines = []
         line_to_test = self.filtered(
@@ -56,10 +55,12 @@ class SaleOrderLine(models.Model):
         )
         for line in line_to_test:
             invaild_min_lines.append(
-                _('Product "%s": Min Quantity %s.')
-                % (line.product_id.name, line.sale_min_qty)
+                _(
+                    "Product %(name)s: Min Quantity %(qty)s.",
+                    name=line.product_id.name,
+                    qty=line.sale_min_qty,
+                )
             )
-
         if invaild_min_lines:
             msg += _(
                 "Check minimum order quantity for this products: * \n"
@@ -74,10 +75,12 @@ class SaleOrderLine(models.Model):
         )
         for line in line_to_test:
             invaild_max_lines.append(
-                _('Product "%s": max Quantity %s.')
-                % (line.product_id.name, line.sale_max_qty)
+                _(
+                    "Product %(name)s: max Quantity %(qty)s.",
+                    name=line.product_id.name,
+                    qty=line.sale_max_qty,
+                )
             )
-
         if invaild_max_lines:
             msg += _(
                 "Check maximum order quantity for this products: * \n"
@@ -90,10 +93,12 @@ class SaleOrderLine(models.Model):
         line_to_test = self.filtered(lambda sl: sl.is_qty_not_multiple_qty)
         for line in line_to_test:
             invaild_multiple_lines.append(
-                _('Product "%s": multiple Quantity %s.')
-                % (line.product_id.name, line.sale_multiple_qty)
+                _(
+                    "Product %(name)s: multiple Quantity %(qty)s.",
+                    name=line.product_id.name,
+                    qty=line.sale_multiple_qty,
+                )
             )
-
         if invaild_multiple_lines:
             msg += _(
                 "Check multiple order quantity for this products: * \n"
@@ -103,7 +108,6 @@ class SaleOrderLine(models.Model):
                 ",Set multiple quantity to 0 on product or product template"
                 " or product category"
             )
-
         if msg:
             raise ValidationError(msg)
 

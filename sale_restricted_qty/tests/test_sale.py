@@ -9,19 +9,20 @@ from odoo.tests import tagged
 
 @tagged("post_install", "-at_install")
 class TestSaleOrderLineMinQty(common.TransactionCase):
-    def setUp(self):
-        super(TestSaleOrderLineMinQty, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
 
         # Create models
-        self.sale_order_model = self.env["sale.order"]
-        self.sale_order_line_model = self.env["sale.order.line"]
-        self.partner_model = self.env["res.partner"]
-        self.product_categ_model = self.env["product.category"]
-        self.product_model = self.env["product.product"]
-        self.sale_order = self.sale_order_model
+        cls.sale_order_model = cls.env["sale.order"]
+        cls.sale_order_line_model = cls.env["sale.order.line"]
+        cls.partner_model = cls.env["res.partner"]
+        cls.product_categ_model = cls.env["product.category"]
+        cls.product_model = cls.env["product.product"]
+        cls.sale_order = cls.sale_order_model
         # Create partner and product
-        self.partner = self.partner_model.create({"name": "Test partner"})
-        self.categ_parent = self.product_categ_model.create(
+        cls.partner = cls.partner_model.create({"name": "Test partner"})
+        cls.categ_parent = cls.product_categ_model.create(
             {
                 "name": "Test Parent categ",
                 "manual_sale_min_qty": 10.0,
@@ -32,16 +33,16 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
             }
         )
 
-        self.categ = self.product_categ_model.create(
+        cls.categ = cls.product_categ_model.create(
             {
                 "name": "Test categ",
-                "parent_id": self.categ_parent.id,
+                "parent_id": cls.categ_parent.id,
                 "manual_force_sale_min_qty": "use_parent",
                 "manual_force_sale_max_qty": "use_parent",
             }
         )
 
-        self.product = self.product_model.create(
+        cls.product = cls.product_model.create(
             {
                 "name": "Test product",
                 "force_sale_min_qty": False,
@@ -51,7 +52,7 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
 
     def refrech_sale_values(self, sale_order):
         sale_order.order_line._compute_sale_restricted_qty()
-        sale_order.order_line.product_id_change()
+        sale_order.order_line._onchange_product_id_warning()
         sale_order.order_line._compute_is_qty_less_min_qty()
         sale_order.order_line._compute_is_qty_bigger_max_qty()
         sale_values = sale_order._convert_to_write(sale_order._cache)
