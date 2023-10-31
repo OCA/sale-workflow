@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_order_lot_selection.view_order_tree_lot" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='lot_id']"
+                position="attributes"
+            >
+                <attribute name="widget">select_lot_by_quant</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form/group/group/field[@name='lot_id']"
+                position="attributes"
+            >
+                <attribute name="widget">select_lot_by_quant</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
