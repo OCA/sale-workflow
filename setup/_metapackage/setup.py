@@ -78,6 +78,7 @@ setuptools.setup(
         'odoo14-addon-sale_order_line_sequence',
         'odoo14-addon-sale_order_lot_generator',
         'odoo14-addon-sale_order_lot_selection',
+        'odoo14-addon-sale_order_lot_selection_by_quant',
         'odoo14-addon-sale_order_mass_action',
         'odoo14-addon-sale_order_note_template',
         'odoo14-addon-sale_order_partner_restrict',
