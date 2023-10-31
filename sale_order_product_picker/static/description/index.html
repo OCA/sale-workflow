@@ -387,17 +387,37 @@ order.</p>
 </div>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
-<p>The default behavior is to display 40 records, but it can be configured by following
-these steps:</p>
+<p>The default behavior is get last sales and last price from partner_id field,
+but partner_delivery_address can be used by following these steps:</p>
+<ul class="simple">
+<li>Create user default value with field <strong>use_delivery_address</strong> of <em>sale.order</em>
+model with <strong>true</strong> value.</li>
+<li>Another option is extend view to show <em>use_delivery_address</em> field and allow that
+user select this option in each sale order.</li>
+</ul>
+<p>The default behavior is to <strong>display 40 records</strong>, but it can be configured by
+following these steps:</p>
 <ul class="simple">
 <li>Activate developer mode.</li>
 <li>Go to <em>Settings &gt; Technical &gt; Parameters &gt; System Parameters</em>.</li>
 <li>Locate the setting with key
-“sale_order_product_picker.product_picker_limit”
+<strong>sale_order_product_picker.product_picker_limit</strong>
 or create a new one if not exists.</li>
 <li>Set desired number of records</li>
-<li>Create ir.default with field use_delivery_address model sale.order value true if needed</li>
 </ul>
+<p>The default behavior is to display <strong>qty_available</strong>,
+but it can be configured by following these steps:</p>
+<ul class="simple">
+<li>Activate developer mode.</li>
+<li>Go to <em>Settings &gt; Technical &gt; Parameters &gt; System Parameters</em>.</li>
+<li>Locate the setting with key
+<strong>sale_order_product_picker.product_available_field</strong>
+or create a new one if not exists.</li>
+<li>Set desired availability field (<strong>virtual_available</strong>, <strong>free_qty</strong>)</li>
+</ul>
+<p>Installation of this module sets <em>sale_planner_calendar.action_open_sale_order</em>
+system parameter as <strong>sale_order_product_picker.action_open_picker_views</strong> to show
+new picker view from sale calendar planner.</p>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-2">Usage</a></h1>
