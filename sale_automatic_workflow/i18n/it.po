@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-15 22:29+0000\n"
-"PO-Revision-Date: 2023-10-31 09:38+0000\n"
+"PO-Revision-Date: 2023-11-01 13:38+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -252,7 +252,7 @@ msgstr "Valida Ordine"
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,warning:0
 msgid "Warning Message"
-msgstr "Messaggio d'Avviso"
+msgstr "Messaggio di avviso"
 
 #. module: sale_automatic_workflow
 #: help:sale.workflow.process,ship_only_available:0
