@@ -13,5 +13,6 @@
     "development_status": "Production/Stable",
     "depends": ["sale_stock"],
     "demo": ["demo/sale_order.xml"],
+    "data": ["views/stock_rule_views.xml"],
     "post_init_hook": "post_init_hook",
 }
