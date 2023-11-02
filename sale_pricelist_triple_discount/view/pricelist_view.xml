@@ -1,14 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <openerp>
     <data>
         <record model="ir.ui.view" id="product_pricelist_view_form_discount">
             <field name="name">product.pricelist.item.form.discount</field>
             <field name="model">product.pricelist.item</field>
-            <field name="inherit_id" ref="sale_pricelist_discount.product_pricelist_view_form_discount"/>
+            <field
+                name="inherit_id"
+                ref="sale_pricelist_discount.product_pricelist_view_form_discount"
+            />
             <field name="arch" type="xml">
                 <field name="discount" position="after">
-                    <field name="discount2"/>
-                    <field name="discount3"/>
+                    <field name="discount2" />
+                    <field name="discount3" />
                 </field>
             </field>
         </record>
