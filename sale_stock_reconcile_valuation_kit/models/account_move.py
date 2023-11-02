@@ -56,3 +56,4 @@ class AccountMove(models.Model):
                         )
                         # Reconcile.
                         sl_product_account_moves.reconcile()
+        return
