@@ -1,55 +1,49 @@
 # Copyright 2019 Simone Rubino - Agile Business Group
+# Copyright 2023 Simone Rubino - Aion Tech
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import api, models
+from odoo import fields, models
+
+from .pricelist import COMPUTE_PRICE_TO_DISCOUNT_FIELD
 
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.multi
-    def product_id_change(
-        self,
-        pricelist,
-        product,
-        qty=0,
-        uom=False,
-        qty_uos=0,
-        uos=False,
-        name="",
-        partner_id=False,
-        lang=False,
-        update_tax=True,
-        date_order=False,
-        packaging=False,
-        fiscal_position=False,
-        flag=False,
-    ):
-        res = super(SaleOrderLine, self).product_id_change(
-            pricelist,
-            product,
-            qty=qty,
-            uom=uom,
-            qty_uos=qty_uos,
-            uos=uos,
-            name=name,
-            partner_id=partner_id,
-            lang=lang,
-            update_tax=update_tax,
-            date_order=date_order,
-            packaging=packaging,
-            fiscal_position=fiscal_position,
-            flag=flag,
-        )
-        if product and pricelist:
-            value = res["value"]
-            current_pricelist = self.env["product.pricelist"].browse(pricelist)
-            list_price = current_pricelist.price_rule_get(
-                product, qty or 1.0, partner_id
-            )
-            rule_id = list_price.get(pricelist) and list_price[pricelist][1] or False
-            rule = self.env["product.pricelist.item"].browse(rule_id)
-            read_rule = rule.read(["discount2", "discount3"])[0]
-            value["discount2"] = read_rule["discount2"] or 0.00
-            value["discount3"] = read_rule["discount3"] or 0.00
+    discount2 = fields.Float(
+        compute="_compute_discount",
+        readonly=False,
+        store=True,
+        precompute=True,
+        default=None,
+    )
+    discount3 = fields.Float(
+        compute="_compute_discount",
+        readonly=False,
+        store=True,
+        precompute=True,
+        default=None,
+    )
+
+    def _compute_discount(self):
+        res = super()._compute_discount()
+        for line in self:
+            discount = line.discount
+            discount2 = discount3 = 0
+
+            pricelist = line.order_id.pricelist_id
+            if pricelist.discount_policy == "without_discount":
+                price_rule = line.pricelist_item_id
+                item_discount_field = COMPUTE_PRICE_TO_DISCOUNT_FIELD.get(
+                    price_rule.compute_price
+                )
+                if item_discount_field is not None:
+                    discount = price_rule[item_discount_field]
+                    discount2 = price_rule.discount2
+                    discount3 = price_rule.discount3
+
+            line.discount = discount
+            line.discount2 = discount2
+            line.discount3 = discount3
+
         return res
