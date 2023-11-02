@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <record model="ir.ui.view" id="product_pricelist_view_form_discount">
+        <field name="name">Add triple discounts to Pricelist Rule form view</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='percent_price']/.." position="after">
+                <label
+                    for="discount2"
+                    string="Discount 2"
+                    attrs="{
+                        'invisible':[
+                            ('compute_price', '!=', 'percentage'),
+                        ],
+                    }"
+                />
+                <div
+                    class="o_row"
+                    attrs="{
+                        'invisible':[
+                            ('compute_price', '!=', 'percentage'),
+                        ],
+                    }"
+                >
+                    <field name="discount2" class="oe_inline" />
+                    <span>%</span>
+                </div>
+                <label
+                    for="discount3"
+                    string="Discount 3"
+                    attrs="{
+                        'invisible':[
+                            ('compute_price', '!=', 'percentage'),
+                        ],
+                    }"
+                />
+                <div
+                    class="o_row"
+                    attrs="{
+                        'invisible':[
+                            ('compute_price', '!=', 'percentage'),
+                        ],
+                    }"
+                >
+                    <field name="discount3" class="oe_inline" />
+                    <span>%</span>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='price_discount']/.." position="after">
+                <label
+                    for="discount2"
+                    string="Discount 2"
+                    attrs="{
+                        'invisible':[
+                            ('compute_price', '!=', 'formula'),
+                        ],
+                    }"
+                />
+                <div
+                    class="o_row"
+                    attrs="{
+                        'invisible':[
+                            ('compute_price', '!=', 'formula'),
+                        ],
+                    }"
+                >
+                    <field name="discount2" class="oe_inline" />
+                    <span>%</span>
+                </div>
+                <label
+                    for="discount3"
+                    string="Discount 3"
+                    attrs="{
+                        'invisible':[
+                            ('compute_price', '!=', 'formula'),
+                        ],
+                    }"
+                />
+                <div
+                    class="o_row"
+                    attrs="{
+                        'invisible':[
+                            ('compute_price', '!=', 'formula'),
+                        ],
+                    }"
+                >
+                    <field name="discount3" class="oe_inline" />
+                    <span>%</span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
