@@ -16,7 +16,7 @@
                 >
                     <p>
                         <i class="fa fa-info-circle" />
-                        &amp;nbsp;
+                        <span>&amp;nbsp;</span>
                         <field name="sale_warn_msg" class="oe_inline" />
                     </p>
                 </div>
