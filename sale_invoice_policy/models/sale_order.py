@@ -27,17 +27,23 @@ class SaleOrder(models.Model):
     @api.model
     def default_get(self, fields_list):
         res = super().default_get(fields_list)
-        default_sale_invoice_policy = self.env["ir.default"].get(
-            "res.config.settings", "sale_default_invoice_policy"
+        default_invoice_policy = (
+            self.env["res.config.settings"]
+            .sudo()
+            .default_get(["default_invoice_policy"])
+            .get("default_invoice_policy", False)
         )
         if "invoice_policy" not in res:
-            res.update({"invoice_policy": default_sale_invoice_policy})
+            res.update({"invoice_policy": default_invoice_policy})
         return res
 
     @api.depends("partner_id")
     def _compute_invoice_policy_required(self):
-        invoice_policy_required = self.env["ir.default"].get(
-            "res.config.settings", "sale_invoice_policy_required"
+        invoice_policy_required = (
+            self.env["res.config.settings"]
+            .sudo()
+            .default_get(["sale_invoice_policy_required"])
+            .get("sale_invoice_policy_required", False)
         )
         for sale in self:
             sale.invoice_policy_required = invoice_policy_required
