@@ -16,5 +16,6 @@
         "views/res_config_settings_view.xml",
         "views/sale_view.xml",
     ],
+    "installable": False,
     "post_init_hook": "post_init_hook",
 }
