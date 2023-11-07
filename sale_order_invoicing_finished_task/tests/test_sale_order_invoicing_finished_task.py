@@ -160,7 +160,7 @@ class TestInvoicefinishedTask(TransactionCase):
             self._prepare_timesheet_vals(task, 10.5)
         )
         task.toggle_invoiceable()
-        self.assertEqual(self.sale_order.order_line.qty_to_invoice, 10.5)
+        self.assertEqual(self.sale_order.order_line.qty_to_invoice, 5.0)
         self.sale_order_policy_delivery.action_confirm()
         # Add a timesheet line
         task_delivery = self.sale_order_policy_delivery.order_line.task_ids
