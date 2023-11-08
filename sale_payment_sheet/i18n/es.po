@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-06-07 15:56+0000\n"
-"PO-Revision-Date: 2023-09-20 21:26+0000\n"
+"PO-Revision-Date: 2023-11-08 13:40+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -324,7 +324,7 @@ msgstr "Errores"
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_needaction_counter
 msgid "Number of messages requiring action"
-msgstr ""
+msgstr "Número de mensajes que requieren una acción"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_error_counter
@@ -513,7 +513,7 @@ msgstr "Transacciones"
 #. module: sale_payment_sheet
 #: model:ir.model,name:sale_payment_sheet.model_res_users
 msgid "User"
-msgstr ""
+msgstr "Usuario"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet_line__journal_currency_id
