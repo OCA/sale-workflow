@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 {
     "name": "Sale Order Line Remove",
-    "version": "13.0.1.0.0",
+    "version": "15.0.1.0.0",
     "category": "Sales",
     "summary": "Allows removal of sale order lines from confirmed "
     "orders if not invoiced or received",

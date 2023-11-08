@@ -1,6 +1,7 @@
 # Copyright 2023 ForgeFlow, S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from odoo.exceptions import UserError
 from odoo.tests import TransactionCase
 
 
@@ -58,7 +59,7 @@ class TestSaleOrderLine(TransactionCase):
         for move in picking.move_ids_without_package:
             move.quantity_done = move.product_uom_qty
         picking.button_validate()
-        with self.assertRaises(Exception):
+        with self.assertRaises(UserError):
             sale_order_line._check_line_unlink()
 
     def test_not_unlinkable_after_picking(self):
@@ -78,7 +79,7 @@ class TestSaleOrderLine(TransactionCase):
         for move in picking.move_ids_without_package:
             move.quantity_done = move.product_uom_qty
         picking.button_validate()
-        with self.assertRaises(Exception):
+        with self.assertRaises(UserError):
             sale_order_line.unlink()
 
     def test_check_line_unlink_delivered(self):
@@ -98,7 +99,7 @@ class TestSaleOrderLine(TransactionCase):
         for move in picking.move_ids_without_package:
             move.quantity_done = move.product_uom_qty
         picking.button_validate()
-        with self.assertRaises(Exception):
+        with self.assertRaises(UserError):
             sale_order_line._check_line_unlink()
 
     def test_check_line_unlink_invoiced(self):
@@ -119,7 +120,7 @@ class TestSaleOrderLine(TransactionCase):
             move.quantity_done = move.product_uom_qty
         picking.button_validate()
         sale_order._create_invoices()
-        with self.assertRaises(Exception):
+        with self.assertRaises(UserError):
             sale_order_line._check_line_unlink()
 
     def test_unlink_empty_picking(self):
