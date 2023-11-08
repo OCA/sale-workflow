@@ -129,6 +129,7 @@ setuptools.setup(
         'odoo14-addon-sale_stock_picking_note',
         'odoo14-addon-sale_stock_reconcile_valuation_kit',
         'odoo14-addon-sale_stock_return_request',
+        'odoo14-addon-sale_stock_secondary_unit',
         'odoo14-addon-sale_substate',
         'odoo14-addon-sale_tier_validation',
         'odoo14-addon-sale_transaction_form_link',
