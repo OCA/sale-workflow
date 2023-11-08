@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2020-10-26 12:08+0000\n"
-"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"PO-Revision-Date: 2023-11-08 13:39+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/es/)\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_quotation_number
 #: model:ir.model,name:sale_quotation_number.model_res_company
@@ -42,7 +42,7 @@ msgstr ""
 #. module: sale_quotation_number
 #: model:ir.model.fields,field_description:sale_quotation_number.field_sale_order__quotation_seq_used
 msgid "Quotation Sequence Used"
-msgstr ""
+msgstr "Secuencia de Cotización Utilizada"
 
 #. module: sale_quotation_number
 #: model:ir.model,name:sale_quotation_number.model_sale_order
