@@ -5,6 +5,7 @@
         name="Calendar planner"
         sequence="50"
         web_icon="sale_planner_calendar,static/description/icon.png"
+        groups="sales_team.group_sale_salesman"
     />
     <menuitem
         id="menu_sale_planner_calendar_summary_general"
