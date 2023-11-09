@@ -10,14 +10,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-23 03:41+0000\n"
-"PO-Revision-Date: 2018-01-23 03:41+0000\n"
-"Last-Translator: Quentin THEURET <odoo@kerpeo.com>, 2018\n"
+"PO-Revision-Date: 2023-11-09 08:39+0000\n"
+"Last-Translator: Denis Leemann <denis.leemann@camptocamp.com>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
@@ -25,18 +26,19 @@ msgid ""
 "<strong>There are exceptions blocking the confirmation of this Sale Order:</"
 "strong>"
 msgstr ""
+"<strong>Des exceptions bloquent la confirmation de cette commande</strong>"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
 msgid ""
 "<strong>There are exceptions on this line blocking the confirmation of this "
 "quotation:</strong>"
-msgstr ""
+msgstr "<strong>Des exceptions bloquent la confirmation de ce devis:</strong>"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_dumping
 msgid "A product is sold cheaper than his cost."
-msgstr ""
+msgstr "Le prix de vente d'un produit est plus faible que son coût."
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_exception_rule__model
