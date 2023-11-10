@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-07-10 15:37+0000\n"
-"PO-Revision-Date: 2023-11-10 11:38+0000\n"
+"PO-Revision-Date: 2023-11-10 15:38+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -42,7 +42,7 @@ msgstr "Riga ordine di vendita"
 #. module: sale_order_line_variant_description
 #: field:product.product,variant_description_sale:0
 msgid "Variant Sale Description"
-msgstr "Descrizione Vendita Variante"
+msgstr "Descrizione vendita variante"
 
 #. module: sale_order_line_variant_description
 #: view:product.product:sale_order_line_variant_description.product_normal_form_view
