@@ -91,8 +91,10 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
             mocked.assert_called()
         self.assertEqual(line.qty_delivered, 1.0)
         sale.action_confirm()
-        self.assertTrue(sale.delivery_status, "pending")
-        self.assertFalse(sale.all_qty_delivered)
+        # Force the state to "full"
+        # note : this is not needed if you have the module sale_delivery_state
+        # installed but sale_automatic_workflow do not depend on it
+        # so we just force it so we can check the sale.all_qty_delivered
         sale.delivery_status = "full"
         sale._compute_all_qty_delivered()
         self.assertTrue(sale.all_qty_delivered)
