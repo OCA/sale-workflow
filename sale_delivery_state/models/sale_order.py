@@ -10,17 +10,15 @@ from odoo.tools import float_compare, float_is_zero
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    delivery_state = fields.Selection(
+    delivery_status = fields.Selection(
         [
-            ("no", "No delivery"),
-            ("unprocessed", "Unprocessed"),
-            ("partially", "Partially processed"),
-            ("done", "Done"),
+            ("pending", "Not Delivered"),
+            ("partial", "Partially Delivered"),
+            ("full", "Fully Delivered"),
         ],
         # Compute method have a different name then the field because
-        # the method _compute_delivery_state already exist to compute
-        # the field delivery_set
-        compute="_compute_sale_delivery_state",
+        # the method _compute_delivery_status already exist in odoo sale_stock
+        compute="_compute_oca_delivery_status",
         store=True,
     )
 
@@ -71,16 +69,16 @@ class SaleOrder(models.Model):
         )
 
     @api.depends("order_line.qty_delivered", "state", "force_delivery_state")
-    def _compute_sale_delivery_state(self):
+    def _compute_oca_delivery_status(self):
         for order in self:
             if order.state in ("draft", "cancel"):
-                order.delivery_state = "no"
+                order.delivery_status = None
             elif order.force_delivery_state or order._all_qty_delivered():
-                order.delivery_state = "done"
+                order.delivery_status = "full"
             elif order._partially_delivered():
-                order.delivery_state = "partially"
+                order.delivery_status = "partial"
             else:
-                order.delivery_state = "unprocessed"
+                order.delivery_status = "pending"
 
     def action_force_delivery_state(self):
         self.write({"force_delivery_state": True})
