@@ -7,3 +7,7 @@
   * Sergio Teruel
   * Carlos Roca
   * Víctor Martínez
+
+* `Camptocamp SA <https://www.camptocamp.com>`_:
+
+  * Telmo Santos

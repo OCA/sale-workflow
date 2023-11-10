@@ -169,3 +169,29 @@ class RecommendationCaseTests(RecommendationCase):
         wizard._generate_recommendations()
         self.assertEqual(len(wizard.line_ids), 1)
         self.assertEqual(wizard.line_ids[0].product_id, self.prod_2)
+
+    @freeze_time("2021-10-02 15:30:00")
+    def test_sale_product_recommendation_add_zero_units_included(self):
+        so = self.env["sale.order"].create({"partner_id": self.partner.id})
+        wizard = (
+            self.env["sale.order.recommendation"]
+            .with_context(active_id=so.id)
+            .create({})
+        )
+        wizard._generate_recommendations()
+        wiz_line_prod1 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
+        self.assertEqual(wiz_line_prod1.units_included, 0.0)
+        wizard.action_accept()
+        order_line = so.order_line.filtered(lambda ol: ol.product_id == self.prod_1)
+        self.assertEqual(len(order_line), 0)
+
+        self.enable_force_zero_units_included()
+        order_line.product_uom_qty = 1
+        wizard._generate_recommendations()
+        wiz_line_prod1 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
+        self.assertEqual(wiz_line_prod1.units_included, 0.0)
+        wiz_line_prod1.units_included = 0
+        wizard.action_accept()
+        order_line = so.order_line.filtered(lambda ol: ol.product_id == self.prod_1)
+        self.assertEqual(len(order_line), 1)
+        self.assertEqual(order_line.product_uom_qty, 0.0)
