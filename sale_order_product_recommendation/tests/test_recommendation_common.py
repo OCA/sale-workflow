@@ -3,11 +3,14 @@
 
 from odoo.tests import TransactionCase
 
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+
 
 class RecommendationCase(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env["base"].with_context(**DISABLED_MAIL_CONTEXT).env
         # Make sure user has UoM activated for Forms to work
         cls.env.user.groups_id = [(4, cls.env.ref("uom.group_uom").id)]
         cls.pricelist = cls.env["product.pricelist"].create(
@@ -131,3 +134,8 @@ class RecommendationCase(TransactionCase):
         )
         wizard._generate_recommendations()
         return wizard
+
+    def enable_force_zero_units_included(self):
+        self.settings = self.env["res.config.settings"].create({})
+        self.settings.force_zero_units_included = True
+        self.settings.set_values()

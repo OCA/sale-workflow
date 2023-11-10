@@ -27,3 +27,8 @@ class ResConfigSettings(models.TransientModel):
         default_model="sale.order.recommendation",
         default=15,
     )
+    force_zero_units_included = fields.Boolean(
+        related="company_id.force_zero_units_included",
+        readonly=False,
+        help="Add recomented products in so even if units included is zero.",
+    )

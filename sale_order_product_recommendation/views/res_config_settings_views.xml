@@ -59,6 +59,19 @@
                             <field name="default_line_amount" />
                         </div>
                     </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="force_zero_units_included" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <span
+                                class="o_form_label"
+                            >Add recommended with zero units included</span>
+                            <div class="text-muted">
+                                Add recomented products in so even if units included is zero.
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </xpath>
         </field>
