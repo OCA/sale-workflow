@@ -12,7 +12,7 @@
                     type="object"
                     string="Force delivery done"
                     states="done"
-                    attrs="{'invisible': ['|', '|', ('force_delivery_state', '=', True), ('delivery_state', '=', 'done')]}"
+                    attrs="{'invisible': ['|', '|', ('force_delivery_state', '=', True), ('delivery_status', '=', 'full')]}"
                 />
                 <button
                     name="action_unforce_delivery_state"
@@ -22,45 +22,14 @@
                     attrs="{'invisible': ['|', ('force_delivery_state', '=', False)]}"
                 />
             </field>
-            <field name='date_order' position="after">
-                <field name="delivery_state" readonly="True" />
-                <field name="force_delivery_state" invisible="True" />
-            </field>
+            <group name="sale_shipping" position="inside">
+                <field
+                    name="delivery_status"
+                    attrs="{'invisible': [('state', 'not in', ['sale', 'done'])]}"
+                />
+                <field name="force_delivery_state" invisible="1" />
+            </group>
         </field>
     </record>
 
-    <record id="view_quotation_tree_inherit_delivery_state" model="ir.ui.view">
-        <field name="inherit_id" ref="sale.view_quotation_tree" />
-        <field name="model">sale.order</field>
-        <field name="arch" type="xml">
-            <field name="invoice_status" position="after">
-                <field
-                    name="delivery_state"
-                    widget="badge"
-                    optional="hide"
-                    decoration-info="delivery_state == 'unprocessed'"
-                    decoration-warning="delivery_state == 'partially'"
-                    decoration-success="delivery_state == 'done'"
-                />
-            </field>
-        </field>
-    </record>
-
-    <record id="view_order_tree_inherit_delivery_state" model="ir.ui.view">
-        <field name="name">sale.order.tree</field>
-        <field name="inherit_id" ref="sale.view_order_tree" />
-        <field name="model">sale.order</field>
-        <field name="arch" type="xml">
-            <field name="invoice_status" position="after">
-                <field
-                    name="delivery_state"
-                    widget="badge"
-                    optional="hide"
-                    decoration-info="delivery_state == 'unprocessed'"
-                    decoration-warning="delivery_state == 'partially'"
-                    decoration-success="delivery_state == 'done'"
-                />
-            </field>
-        </field>
-    </record>
 </odoo>
