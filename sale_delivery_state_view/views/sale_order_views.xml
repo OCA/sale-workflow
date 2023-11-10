@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form_inherit_delivery_status" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="delivery_status" invisible="1" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_quotation_tree_inherit_delivery_status" model="ir.ui.view">
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <field name="invoice_status" position="after">
+                <field
+                    name="delivery_status"
+                    widget="badge"
+                    optional="hide"
+                    decoration-info="delivery_status == 'pending'"
+                    decoration-warning="delivery_status == 'partial'"
+                    decoration-success="delivery_status == 'full'"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_tree_inherit_delivery_status" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <field name="invoice_status" position="after">
+                <field
+                    name="delivery_status"
+                    widget="badge"
+                    optional="hide"
+                    decoration-info="delivery_status == 'pending'"
+                    decoration-warning="delivery_status == 'partial'"
+                    decoration-success="delivery_status == 'full'"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
