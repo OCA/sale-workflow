@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-20 22:37+0000\n"
-"PO-Revision-Date: 2023-07-25 12:10+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-11-08 13:40+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -22,6 +22,11 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__active
 msgid "Active"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order__analytic_account_id
+msgid "Analytic Account"
 msgstr ""
 
 #. module: sale_order_type
@@ -84,7 +89,7 @@ msgstr "Nome visualizzato"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__sequence_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Entry Sequence"
-msgstr "Sequenza d'Immissione"
+msgstr "Sequenza di immissione"
 
 #. module: sale_order_type
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
@@ -97,10 +102,26 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_order_type
+#: model:ir.model.fields,help:sale_order_type.field_sale_order__picking_policy
+msgid ""
+"If you deliver all products at once, the delivery order will be scheduled "
+"based on the greatest product lead time. Otherwise, it will be based on the "
+"shortest."
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order__incoterm
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__incoterm_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Incoterm"
 msgstr "Incoterm"
+
+#. module: sale_order_type
+#: model:ir.model.fields,help:sale_order_type.field_sale_order__incoterm
+msgid ""
+"International Commercial Terms are a series of predefined commercial terms "
+"used in international transactions."
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_account_invoice_report
@@ -166,6 +187,7 @@ msgid "Quotation Validity (Days)"
 msgstr ""
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_line__route_id
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__route_id
 msgid "Route"
 msgstr ""
@@ -203,12 +225,19 @@ msgid "Sales Order"
 msgstr "Ordini vendita"
 
 #. module: sale_order_type
+#: model:ir.model,name:sale_order_type.model_sale_order_line
+#, fuzzy
+msgid "Sales Order Line"
+msgstr "Ordini vendita"
+
+#. module: sale_order_type
 #: model:ir.actions.act_window,name:sale_order_type.sot_sale_order_type_action
 #: model:ir.ui.menu,name:sale_order_type.sot_sale_order_type_menu
 msgid "Sales Order Types"
 msgstr "Tipi di Ordine di Vendita"
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order__picking_policy
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__picking_policy
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Shipping Policy"
@@ -219,6 +248,7 @@ msgstr "Politica di spedizione"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_report__type_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+#: model_terms:ir.ui.view,arch_db:sale_order_type.view_sales_order_filter
 msgid "Type"
 msgstr "Tipo"
 
@@ -232,10 +262,6 @@ msgstr "Tipo di ordine di vendita"
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr "Magazzino"
-
-#, fuzzy
-#~ msgid "Sales Order Line"
-#~ msgstr "Ordini vendita"
 
 #~ msgid "Sales Order Type"
 #~ msgstr "Tipo di Ordine di Vendita"

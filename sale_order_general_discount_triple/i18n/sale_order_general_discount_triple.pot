@@ -19,28 +19,41 @@ msgid "Config Settings"
 msgstr ""
 
 #. module: sale_order_general_discount_triple
+#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order_line__discount2
+msgid "Disc. 2 (%)"
+msgstr ""
+
+#. module: sale_order_general_discount_triple
+#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order_line__discount3
+msgid "Disc. 3 (%)"
+msgstr ""
+
+#. module: sale_order_general_discount_triple
 #: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__general_discount__discount
+#: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__pricelist_discount__discount
 msgid "Discount"
 msgstr ""
 
 #. module: sale_order_general_discount_triple
-#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order_line__discount
-msgid "Discount (%)"
-msgstr ""
-
-#. module: sale_order_general_discount_triple
 #: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__general_discount__discount2
+#: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__pricelist_discount__discount2
 msgid "Discount 2"
 msgstr ""
 
 #. module: sale_order_general_discount_triple
 #: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__general_discount__discount3
+#: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__pricelist_discount__discount3
 msgid "Discount 3"
 msgstr ""
 
 #. module: sale_order_general_discount_triple
 #: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_res_config_settings__general_discount
 msgid "General Discount"
+msgstr ""
+
+#. module: sale_order_general_discount_triple
+#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_res_config_settings__pricelist_discount
+msgid "Pricelist Discount"
 msgstr ""
 
 #. module: sale_order_general_discount_triple

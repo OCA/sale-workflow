@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-18 05:48+0000\n"
-"PO-Revision-Date: 2023-06-12 15:09+0000\n"
+"PO-Revision-Date: 2023-10-09 17:37+0000\n"
 "Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_commercial_partner.sale_report_search
 #: model_terms:ir.ui.view,arch_db:sale_commercial_partner.view_sales_order_filter
 msgid "Customer Entity"
-msgstr ""
+msgstr "Entidade do Cliente"
 
 #. module: sale_commercial_partner
 #: model:ir.model,name:sale_commercial_partner.model_sale_order

@@ -21,29 +21,9 @@ msgstr ""
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_account_payment_mode__workflow_process_id
+#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_order__workflow_process_id
 msgid "Automatic Workflow"
 msgstr "Flujo automático"
-
-#. module: sale_automatic_workflow_payment_mode
-#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_account_payment_mode__display_name
-#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_automatic_workflow_job__display_name
-#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_order__display_name
-msgid "Display Name"
-msgstr "Nombre mostrado"
-
-#. module: sale_automatic_workflow_payment_mode
-#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_account_payment_mode__id
-#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_automatic_workflow_job__id
-#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_automatic_workflow_payment_mode
-#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_account_payment_mode____last_update
-#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_automatic_workflow_job____last_update
-#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_order____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
 
 #. module: sale_automatic_workflow_payment_mode
 #: model:ir.model,name:sale_automatic_workflow_payment_mode.model_account_payment_mode
@@ -63,6 +43,15 @@ msgid ""
 msgstr ""
 "Planificador que ejecutará automáticamente la validación de facturas, "
 "albaranes..."
+
+#~ msgid "Display Name"
+#~ msgstr "Nombre mostrado"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
 
 #~ msgid "Automatic Workflow Payment Filter"
 #~ msgstr "Filtro de flujo automático de pago"

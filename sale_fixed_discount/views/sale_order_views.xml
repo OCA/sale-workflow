@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017-20 ForgeFlow S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form - sale_fixed_discount</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/form//label[@for='discount']"
+                position="before"
+            >
+                <field
+                    name="discount_fixed"
+                    groups="product.group_discount_per_so_line"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='discount']"
+                position="before"
+            >
+                <field
+                    name="discount_fixed"
+                    groups="product.group_discount_per_so_line"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

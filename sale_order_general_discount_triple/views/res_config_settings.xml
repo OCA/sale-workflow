@@ -16,6 +16,15 @@
                             <field name="general_discount" class="oe_inline" />
                         </div>
                     </div>
+                    <div class="o_setting_right_pane">
+                        <div class="row mt16">
+                            <label
+                                for="pricelist_discount"
+                                class="col-lg-4 o_light_label"
+                            />
+                            <field name="pricelist_discount" class="oe_inline" />
+                        </div>
+                    </div>
                 </div>
             </xpath>
         </field>

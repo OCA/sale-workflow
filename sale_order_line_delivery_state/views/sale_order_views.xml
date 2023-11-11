@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form - sale_order_line_delivery_state</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/form/group/group/div[@name='delivered_qty']"
+                position="after"
+            >
+                <label for="delivery_state" string="Delivery State" />
+                <div name="delivery_state">
+                    <field name="force_delivery_state" invisible="True" />
+                    <field name="delivery_state" readonly="True" />
+                    <button
+                        name="action_force_delivery_state"
+                        type="object"
+                        string="Force delivery done"
+                        states="done"
+                        attrs="{'invisible': ['|', ('force_delivery_state', '=', True), ('delivery_state', '=', 'done')]}"
+                    />
+                    <button
+                        name="action_unforce_delivery_state"
+                        type="object"
+                        string="Unforce delivery done"
+                        states="done"
+                        attrs="{'invisible': [('force_delivery_state', '=', False)]}"
+                    />
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree" position="inside">
+                <field name="delivery_state" readonly="True" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
