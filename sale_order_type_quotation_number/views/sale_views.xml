@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
+ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="quotation_sot_view_order_form" model="ir.ui.view">
+        <field name="name">quotation.sot.view.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <button name="action_draft" position="after">
+                <field name="recompute_quotation_seq" invisible="1" />
+                <button
+                    name="action_recompute_quotation_seq"
+                    type="object"
+                    string="Recompute Quotation Seq."
+                    attrs="{'invisible': [('recompute_quotation_seq', '=', False)]}"
+                    confirm="Recomputing the quotation sequence will generate a gap in the previous sequence. Would you like to proceed?"
+                />
+            </button>
+        </field>
+    </record>
+</odoo>

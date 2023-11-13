@@ -1,0 +1,1 @@
+This module allows to set a quotation sequence depending on the sale order type. It also makes compatible the modules sale_order_type and sale_quotation_number, so both a sale order sequence and a quotation sequence can be set in a sale order type.
