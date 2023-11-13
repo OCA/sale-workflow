@@ -9,12 +9,12 @@
     <field name="arch" type="xml">
       <xpath expr="//button[@name='action_view_revisions']" position="after">
         <button
-                    name="action_view_sale_order_variants"
+                    name="action_view_sale_order_revisions"
                     type="object"
                     class="oe_stat_button"
                     icon="fa-file-archive-o"
                 >
-          <field name="so_variant_count" widget="statinfo" string="Variants" />
+          <field name="so_revision_count" widget="statinfo" string="Revisions" />
         </button>
       </xpath>
 
@@ -27,7 +27,7 @@
         <attribute name="states">draft,sent,cancel</attribute>
       </xpath>
 
-      <!-- override the always hide this button -->
+      <!-- override to always hide this button -->
       <xpath expr="//button[@name='action_view_revisions']" position="attributes">
         <attribute name="invisible">1</attribute>
       </xpath>

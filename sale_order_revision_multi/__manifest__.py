@@ -1,6 +1,6 @@
 {
     "name": "Sale order revisions multi",
-    "summary": "Keep track of several active revised quotations",
+    "summary": "Manage multiple active revisions for quotations",
     "version": "15.0.1.0.0",
     "category": "Sale Management",
     "author": "Camptocamp," "Odoo Community Association (OCA)",
