@@ -10,7 +10,8 @@
                     attrs="{'invisible': [('move_type', 'not in', ['out_invoice', 'out_refund'])]}"
                 />
             </label>
-            <xpath expr="//notebook//tree//field[@name='sequence']" position="before">
+            <!-- TRESCLOUD: arreglamos xpath siendo más específicos, evitamos que se seleccione otro sequence (l10n_ec_custom_line_ids) -->
+            <xpath expr="//notebook//page[@id='invoice_tab']//tree//field[@name='sequence']" position="before">
                 <field name="account_id" invisible="1" />
             </xpath>
         </field>
