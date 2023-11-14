@@ -32,3 +32,8 @@ class ResConfigSettings(models.TransientModel):
         readonly=False,
         help="Add recomented products in so even if units included is zero.",
     )
+    sale_line_recommendation_domain = fields.Char(
+        related="company_id.sale_line_recommendation_domain",
+        readonly=False,
+        help="Domain applied to find SO lines to propose as recommended products.",
+    )

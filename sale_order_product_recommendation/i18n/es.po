@@ -19,6 +19,12 @@ msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid ""
+"<span class=\"o_form_label\">Add recommended with zero units included</span>"
+msgstr ""
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
 msgid "<span class=\"o_form_label\">Default Number of recommendations</span>"
 msgstr ""
 "<span class=\"o_form_label\">Número de recomendaciones por defecto</span>"
@@ -41,6 +47,12 @@ msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid ""
+"<span class=\"o_form_label\">Sale order product recommendation domain</span>"
+msgstr ""
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
 msgid "<span class=\"o_form_label\">Use delivery address</span>"
 msgstr "<span class=\"o_form_label\">Usar dirección de entrega</span>"
 
@@ -55,9 +67,20 @@ msgid "Accept"
 msgstr "Aceptar"
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields,help:sale_order_product_recommendation.field_res_config_settings__force_zero_units_included
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid "Add recomented products in so even if units included is zero."
+msgstr ""
+
+#. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Cancel"
 msgstr "Cancelar"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model,name:sale_order_product_recommendation.model_res_company
+msgid "Companies"
+msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model:ir.model,name:sale_order_product_recommendation.model_res_config_settings
@@ -111,6 +134,22 @@ msgstr "Entregado:"
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__display_name
 msgid "Display Name"
 msgstr "Nombre a mostrar"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid "Domain applied on sale orders lines to recommend products for sales"
+msgstr ""
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,help:sale_order_product_recommendation.field_res_config_settings__sale_line_recommendation_domain
+msgid "Domain applied to find SO lines to propose as recommended products."
+msgstr ""
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_company__force_zero_units_included
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_config_settings__force_zero_units_included
+msgid "Force Zero Units Included"
+msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__id
@@ -239,6 +278,12 @@ msgstr "Productos recomendados para el pedido de venta actual"
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__sale_line_id
 msgid "Sale Line"
 msgstr "Pedido de venta"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_company__sale_line_recommendation_domain
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_config_settings__sale_line_recommendation_domain
+msgid "Sale Line Recommendation Domain"
+msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__order_id
