@@ -72,6 +72,24 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-12 col-lg-12 o_setting_box">
+                        <div class="o_setting_left_pane" />
+                        <div class="o_setting_right_pane">
+                            <span
+                                class="o_form_label"
+                            >Sale order product recommendation domain</span>
+                            <div class="text-muted">
+                                Domain applied on sale orders lines to recommend products for sales
+                            </div>
+                            <div class="text-muted">
+                                <field
+                                    name="sale_line_recommendation_domain"
+                                    widget="domain"
+                                    options="{'model': 'sale.order.line'}"
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </xpath>
         </field>

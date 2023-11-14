@@ -8,3 +8,4 @@ class ResCompany(models.Model):
     _inherit = "res.company"
 
     force_zero_units_included = fields.Boolean()
+    sale_line_recommendation_domain = fields.Char(default="[]")
