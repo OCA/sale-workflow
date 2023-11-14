@@ -195,3 +195,28 @@ class RecommendationCaseTests(RecommendationCase):
         order_line = so.order_line.filtered(lambda ol: ol.product_id == self.prod_1)
         self.assertEqual(len(order_line), 1)
         self.assertEqual(order_line.product_uom_qty, 0.0)
+
+    def test_sale_product_recommendation_with_extended_domain(self):
+        self.prod_1.type = "consu"
+        so = self.env["sale.order"].create({"partner_id": self.partner.id})
+        wizard = (
+            self.env["sale.order.recommendation"]
+            .with_context(active_id=so.id)
+            .create({})
+        )
+        wizard._generate_recommendations()
+        self.assertIn("service", wizard.line_ids.mapped("product_id.type"))
+
+        # Add extended domain to exclude services
+        self.settings = self.env["res.config.settings"].create({})
+        self.settings.sale_line_recommendation_domain = (
+            "[('product_id.type', '!=', 'service')]"
+        )
+        self.settings.set_values()
+        wizard = (
+            self.env["sale.order.recommendation"]
+            .with_context(active_id=so.id)
+            .create({})
+        )
+        wizard._generate_recommendations()
+        self.assertNotIn("service", wizard.line_ids.mapped("product_id.type"))

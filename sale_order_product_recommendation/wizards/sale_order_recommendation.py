@@ -7,7 +7,9 @@ import logging
 from datetime import datetime, timedelta
 
 from odoo import api, fields, models
+from odoo.osv import expression
 from odoo.tests import Form
+from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
 
@@ -51,6 +53,10 @@ class SaleOrderRecommendation(models.TransientModel):
     def _default_order_id(self):
         return self.env.context.get("active_id", False)
 
+    def _extended_recommendable_sale_order_lines_domain(self):
+        """Extra domain to include or exclude SO lines"""
+        return safe_eval(self.env.user.company_id.sale_line_recommendation_domain)
+
     def _recommendable_sale_order_lines_domain(self):
         """Domain to find recent SO lines."""
         start = datetime.now() - timedelta(days=self.months * 30)
@@ -86,6 +92,8 @@ class SaleOrderRecommendation(models.TransientModel):
         # doing a domain for a readgroup query
         if "is_delivery" in self.env["sale.order.line"]._fields:
             domain.append(("is_delivery", "=", False))
+        extended_domain = self._extended_recommendable_sale_order_lines_domain()
+        domain = expression.AND([domain, extended_domain])
         return domain
 
     def _prepare_recommendation_line_vals(self, group_line, so_line=False):
