@@ -1,4 +1,5 @@
 # Copyright 2020 Tecnativa - Carlos Roca
+# Copyright 2020 Tecnativa - Carolina Fernandez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
 {
@@ -12,10 +13,6 @@
     "maintainers": ["CarlosRoca13"],
     "license": "AGPL-3",
     "installable": True,
-    "depends": [
-        "sale",
-        "product_assortment",
-        "web_domain_field",
-    ],
+    "depends": ["sale", "product_assortment", "base_view_inheritance_extension"],
     "data": ["views/sale_order_view.xml"],
 }
