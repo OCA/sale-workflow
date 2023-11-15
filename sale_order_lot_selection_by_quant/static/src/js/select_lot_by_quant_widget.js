@@ -52,7 +52,15 @@ odoo.define("sale_order_lot_selection_by_quant.select_lot_by_quant_widget", func
                 btn.hide();
             }
             if (this.__parentedParent._onResize) {
-                this.__parentedParent._onResize();
+                const parent = this.__parentedParent;
+                const columns = parent.columns;
+                // This check avoids an error that happens when
+                // a new column is inserted in the table but
+                // it's not rendered yet, so it doesn't have a <th> yet
+                // so resizing at this point fails
+                if (columns && columns.every(parent._getColumnHeader.bind(parent))) {
+                    parent._onResize();
+                }
             }
         },
 
