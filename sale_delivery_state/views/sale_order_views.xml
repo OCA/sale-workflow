@@ -32,4 +32,22 @@
         </field>
     </record>
 
+    <record id="view_order_tree_inherit_delivery_status" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <field name="invoice_status" position="before">
+                <field
+                    name="delivery_status"
+                    widget="badge"
+                    optional="hide"
+                    decoration-info="delivery_status == 'pending'"
+                    decoration-warning="delivery_status == 'partial'"
+                    decoration-success="delivery_status == 'full'"
+                />
+            </field>
+        </field>
+    </record>
+
 </odoo>
