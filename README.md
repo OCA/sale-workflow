@@ -99,6 +99,7 @@ addon | version | maintainers | summary
 [sale_stock_delivery_address](sale_stock_delivery_address/) | 15.0.1.0.0 |  | Sale Stock Delivery Address
 [sale_stock_invoice_plan](sale_stock_invoice_plan/) | 15.0.1.0.1 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to sales order, ability to manage future invoice plan
 [sale_stock_last_date](sale_stock_last_date/) | 15.0.1.0.0 |  | Displays last delivery date in sale order lines
+[sale_stock_line_sequence](sale_stock_line_sequence/) | 15.0.1.0.0 |  | Glue Module for Sale Order Line Sequence and Stock Picking Line Sequence
 [sale_stock_picking_blocking](sale_stock_picking_blocking/) | 15.0.1.0.1 |  | Allow you to block the creation of deliveries from a sale order.
 [sale_stock_picking_note](sale_stock_picking_note/) | 15.0.1.0.1 |  | Add picking note in sale and purchase order
 [sale_stock_return_request](sale_stock_return_request/) | 15.0.1.0.1 | [![chienandalu](https://github.com/chienandalu.png?size=30px)](https://github.com/chienandalu) | Sale Stock Return Request

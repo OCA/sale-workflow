@@ -86,6 +86,7 @@ setuptools.setup(
         'odoo-addon-sale_stock_delivery_address>=15.0dev,<15.1dev',
         'odoo-addon-sale_stock_invoice_plan>=15.0dev,<15.1dev',
         'odoo-addon-sale_stock_last_date>=15.0dev,<15.1dev',
+        'odoo-addon-sale_stock_line_sequence>=15.0dev,<15.1dev',
         'odoo-addon-sale_stock_picking_blocking>=15.0dev,<15.1dev',
         'odoo-addon-sale_stock_picking_note>=15.0dev,<15.1dev',
         'odoo-addon-sale_stock_return_request>=15.0dev,<15.1dev',
