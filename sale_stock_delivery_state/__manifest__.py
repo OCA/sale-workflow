@@ -19,6 +19,7 @@
         "sale_stock",
         "sale_delivery_state",
     ],
-    "data": [],
+    "auto_install": True,
+    "data": ["views/sale_order_views.xml"],
     "demo": [],
 }
