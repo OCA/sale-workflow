@@ -1,0 +1,32 @@
+<odoo>
+    <record id="view_order_form_inherit_delivery_status" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group[@name='sale_shipping']/field[@name='delivery_status']"
+                position="attributes"
+            >
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_tree_inherit_delivery_status" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field
+            name="inherit_id"
+            ref="sale_delivery_state.view_order_tree_inherit_delivery_status"
+        />
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <field
+                name="delivery_status"
+                decoration-info="delivery_status == 'pending'"
+                position="attributes"
+            >
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
