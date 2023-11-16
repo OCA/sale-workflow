@@ -8,7 +8,7 @@
 {
     "name": "Price recalculation in sales orders",
     "summary": "Recalculate prices / Reset descriptions on sale order lines",
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "AvanzOSC,"
