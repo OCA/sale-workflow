@@ -12,7 +12,7 @@ class TestProductSetLayout(common.TransactionCase):
         so = self.env.ref("sale.sale_order_6")
         base_line_ids = so.order_line
         count_lines = len(so.order_line)
-        product_set_with_section = self.env.ref("sale_product_set.product_set_services")
+        product_set_with_section = self.env.ref("product_set.product_set_services")
         so_set = self.product_set_add.create(
             {
                 "product_set_id": product_set_with_section.id,
