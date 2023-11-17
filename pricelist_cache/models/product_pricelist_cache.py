@@ -193,8 +193,21 @@ class PricelistCache(models.Model):
 
     def create_full_cache(self):
         """Creates cache for all prices applied to all pricelists."""
-        pricelists = self.env["product.pricelist"].search([])
-        pricelist_ids = pricelists.ids
+        pricelist_model = self.env["product.pricelist"]
+        # Here, we split price computation in 2.
+        # Huge pricelists (root pricelists and factor pricelists) are computed
+        # on their own, in order to avoid long sql transactions.pricelist_model
+        # Smaller pricelists can be computed 3 by 3, since they are taking
+        # less time to process.
+        global_list_ids = pricelist_model._get_global_pricelist_ids()
+        # Belt and braces. Just to ensure higher level lists are executed first
+        global_list_ids.sort()
+        for list_id in global_list_ids:
+            self.with_delay().update_product_pricelist_cache(pricelist_ids=[list_id])
+        regular_list_ids = self.env["product.pricelist"].search(
+            [("id", "not in", global_list_ids)]
+        )
+        pricelist_ids = regular_list_ids.ids
         # Spawn a job every 3 pricelists (reduce the number of jobs created)
         for chunk_ids in tools.misc.split_every(3, pricelist_ids):
             self.with_delay().update_product_pricelist_cache(pricelist_ids=chunk_ids)
