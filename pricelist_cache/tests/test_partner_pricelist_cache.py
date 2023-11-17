@@ -23,21 +23,6 @@ class TestPricelistCache(TestPricelistCacheCommon):
             result.sort(key=lambda r: r["id"])
             self.assertEqual(result, expected_result)
 
-    def _flush_cache(self):
-        self.cache_model.flush_pricelist_cache()
-
-    def assert_cache_available(self, lists):
-        self.assertTrue(all(lists.mapped("is_pricelist_cache_available")))
-
-    def assert_cache_computed(self, lists):
-        self.assertTrue(all(lists.mapped("is_pricelist_cache_computed")))
-
-    def assert_cache_not_available(self, lists):
-        self.assertFalse(any(lists.mapped("is_pricelist_cache_available")))
-
-    def assert_cache_not_computed(self, lists):
-        self.assertFalse(any(lists.mapped("is_pricelist_cache_computed")))
-
     def assert_partner_cache_not_available(self):
         regex = r"Pricelist caching in progress. Retry later"
         with self.assertRaisesRegex(UserError, regex):
@@ -47,7 +32,6 @@ class TestPricelistCache(TestPricelistCacheCommon):
         self.partner._pricelist_cache_get_prices()
 
     def test_partner_inconsistent_cache(self):
-        cache_model = self.cache_model.with_context(debug_test=True)
         # Initialize
         partner = self.partner
         list3 = self.list3
@@ -71,7 +55,7 @@ class TestPricelistCache(TestPricelistCacheCommon):
         # Computation
         # - list0, list1, list3 -> False
         # - list2               -> True
-        cache_model.update_product_pricelist_cache(pricelist_ids=list2.ids)
+        self._update_cache(pricelist_ids=list2.ids)
         self.assert_cache_computed(list2)
         self.assert_cache_not_computed(list3 | list1 | list0)
         # No cache is available, because list2 depends on pricelists that
@@ -86,7 +70,7 @@ class TestPricelistCache(TestPricelistCacheCommon):
         # Computation
         # - list0, list3 -> False
         # - list1, list2 -> True
-        cache_model.update_product_pricelist_cache(pricelist_ids=list1.ids)
+        self._update_cache(pricelist_ids=list1.ids)
         self.assert_cache_computed(list2 | list1)
         self.assert_cache_not_computed(list3 | list0)
         # No cache is available, because list1 and list2 depends on list0 that
@@ -102,7 +86,7 @@ class TestPricelistCache(TestPricelistCacheCommon):
         # Computation
         # - list0, list1, list2 -> True
         # - list3               -> False
-        cache_model.update_product_pricelist_cache(pricelist_ids=list0.ids)
+        self._update_cache(pricelist_ids=list0.ids)
         self.assert_cache_computed(list0 | list1 | list2)
         self.assert_cache_not_computed(list3)
         # Now, all list0-2 are available, because none of them have a parent pricelist
@@ -118,7 +102,7 @@ class TestPricelistCache(TestPricelistCacheCommon):
         # - all_lists -> True
         # Computation
         # - all_lists -> True
-        cache_model.update_product_pricelist_cache(pricelist_ids=list3.ids)
+        self._update_cache(pricelist_ids=list3.ids)
         self.assert_cache_available(all_lists)
         self.assert_cache_computed(all_lists)
         self.assert_partner_cache_available()
