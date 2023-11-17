@@ -16,7 +16,7 @@ class SaleOrder(models.Model):
                 ]
             ):
                 for picking in order.picking_ids:
-                    for move in picking.move_lines:
+                    for move in picking.move_ids:
                         if move.sale_line_id.display_type:
                             continue
                         move.write({"sequence": move.sale_line_id.visible_sequence})
