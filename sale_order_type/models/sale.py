@@ -17,11 +17,6 @@ class SaleOrder(models.Model):
         precompute=True,
         store=True,
         readonly=False,
-        states={
-            "sale": [("readonly", True)],
-            "done": [("readonly", True)],
-            "cancel": [("readonly", True)],
-        },
         ondelete="restrict",
         copy=True,
         check_company=True,
