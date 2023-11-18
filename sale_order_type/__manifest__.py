@@ -8,14 +8,16 @@
 
 {
     "name": "Sale Order Type",
-    "version": "16.0.1.1.0",
+    "version": "17.0.1.0.0",
     "category": "Sales Management",
-    "author": "Grupo Vermon,"
-    "AvanzOSC,"
-    "Tecnativa,"
-    "Agile Business Group,"
-    "Niboo,"
-    "Odoo Community Association (OCA)",
+    "author": [
+        "Grupo Vermon,"
+        "AvanzOSC,"
+        "Tecnativa,"
+        "Agile Business Group,"
+        "Niboo,"
+        "Odoo Community Association (OCA)"
+    ],
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
     "depends": ["sale_stock", "account", "sale_management"],

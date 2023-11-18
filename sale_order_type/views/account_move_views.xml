@@ -7,7 +7,7 @@
             <label for="journal_id" position="before">
                 <field
                     name="sale_type_id"
-                    attrs="{'invisible': [('move_type', 'not in', ['out_invoice', 'out_refund'])]}"
+                    invisible="('move_type', 'not in', ['out_invoice', 'out_refund'])"
                 />
             </label>
             <xpath expr="//notebook//tree//field[@name='sequence']" position="before">
