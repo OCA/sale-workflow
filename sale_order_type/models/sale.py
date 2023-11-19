@@ -17,11 +17,6 @@ class SaleOrder(models.Model):
         precompute=True,
         store=True,
         readonly=False,
-        states={
-            "sale": [("readonly", True)],
-            "done": [("readonly", True)],
-            "cancel": [("readonly", True)],
-        },
         ondelete="restrict",
         copy=True,
         check_company=True,
@@ -189,7 +184,7 @@ class SaleOrder(models.Model):
         return super().write(vals)
 
     def _prepare_invoice(self):
-        res = super(SaleOrder, self)._prepare_invoice()
+        res = super()._prepare_invoice()
         if self.type_id.journal_id:
             res["journal_id"] = self.type_id.journal_id.id
         if self.type_id:

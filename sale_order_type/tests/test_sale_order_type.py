@@ -11,7 +11,7 @@ from odoo.tests import Form
 
 class TestSaleOrderType(common.TransactionCase):
     def setUp(self):
-        super(TestSaleOrderType, self).setUp()
+        super().setUp()
         self.sale_type_model = self.env["sale.order.type"]
         self.sale_order_model = self.env["sale.order"]
         self.invoice_model = self.env["account.move"].with_context(
