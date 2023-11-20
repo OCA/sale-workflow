@@ -16,7 +16,7 @@ class SaleOrder(models.Model):
         compute="_compute_sale_type_id",
         precompute=True,
         store=True,
-        readonly=False,
+        readonly="state in ['sale', 'done', 'cancel']"
         ondelete="restrict",
         copy=True,
         check_company=True,
