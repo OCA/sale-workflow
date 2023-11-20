@@ -55,7 +55,7 @@ class SaleOrder(models.Model):
     def _compute_advance_payment(self):
         for order in self:
             mls = order.account_payment_ids.mapped("move_id.line_ids").filtered(
-                lambda x: x.account_id.internal_type == "receivable"
+                lambda x: x.account_id.account_type == "asset_receivable"
                 and x.parent_state == "posted"
             )
             advance_amount = 0.0
