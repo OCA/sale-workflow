@@ -5,3 +5,4 @@
 * Simone Rubino <simone.rubino@agilebg.com>
 * Jacques-Etienne Baudoux (BCIM sprl) <je@bcim.be>
 * Pimolnat Suntian <pimolnats@ecosoft.co.th>
+* Michael Tietz (MT Software) <mtietz@mt-software.de>
