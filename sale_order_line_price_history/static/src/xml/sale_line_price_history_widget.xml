@@ -4,7 +4,8 @@
 <templates>
     <div t-name="sale_order_line_price_history.price_history_widget">
         <div>
-            <a tabindex="0" class="fa fa-clock-o text-dark price_history" />
+            <a tabindex="0" class="fa fa-clock-o price_history" t-if="widget.data.id" />
+            <a tabindex="0" class="fa fa-clock-o text-danger price_history" t-else="" />
         </div>
     </div>
 </templates>

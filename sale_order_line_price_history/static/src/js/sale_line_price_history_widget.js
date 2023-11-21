@@ -43,6 +43,9 @@ odoo.define("sale_order_line_price_history.price_history_widget", function (requ
                 "sale_order_line_price_history.sale_order_line_price_history_action",
                 {
                     additional_context: additional_context,
+                    on_close: () => {
+                        this.trigger_up("reload");
+                    },
                 }
             );
         },
