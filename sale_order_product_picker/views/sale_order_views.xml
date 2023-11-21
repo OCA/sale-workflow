@@ -114,6 +114,14 @@
                 <field name="state" />
                 <field name="is_different_price" />
                 <field name="list_price" />
+                <field
+                    name="product_packaging_id"
+                    groups="product.group_stock_packaging"
+                />
+                <field
+                    name="product_packaging_qty"
+                    groups="product.group_stock_packaging"
+                />
             </xpath>
             <xpath
                 expr="//field[@name='order_line']/kanban//t[@t-out='record.price_unit.value']/.."
