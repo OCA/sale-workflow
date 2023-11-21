@@ -83,3 +83,13 @@ class SalePackagingDefaultCase(ProductCommon):
             line_f.product_uom_qty = 120
             self.assertEqual(line_f.product_packaging_qty, 10)
             self.assertEqual(line_f.product_packaging_id, self.dozen)
+            # If I set a uom qty without packaging, it is emptied
+            line_f.product_uom_qty = 7
+            self.assertFalse(line_f.product_packaging_id)
+            self.assertEqual(line_f.product_packaging_qty, 0)
+            self.assertEqual(line_f.product_uom_qty, 7)
+            # Setting zero uom qty resets to the default packaging
+            line_f.product_uom_qty = 0
+            self.assertEqual(line_f.product_packaging_id, self.big_box)
+            self.assertEqual(line_f.product_packaging_qty, 0)
+            self.assertEqual(line_f.product_uom_qty, 0)
