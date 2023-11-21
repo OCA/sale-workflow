@@ -14,7 +14,12 @@ class SaleOrder(models.Model):
     def create(self, vals_list):
         for vals in vals_list:
             if self.is_using_quotation_number(vals):
-                sequence = self.env["ir.sequence"].next_by_code("sale.quotation")
+                company_id = vals.get("company_id", self.env.company.id)
+                sequence = (
+                    self.with_company(company_id)
+                    .env["ir.sequence"]
+                    .next_by_code("sale.quotation")
+                )
                 vals["name"] = sequence or "/"
         return super().create(vals_list)
 
@@ -47,6 +52,10 @@ class SaleOrder(models.Model):
                 quo = order.origin + ", " + order.name
             else:
                 quo = order.name
-            sequence = self.env["ir.sequence"].next_by_code("sale.order")
+            sequence = (
+                self.with_company(order.company_id.id)
+                .env["ir.sequence"]
+                .next_by_code("sale.order")
+            )
             order.write({"origin": quo, "name": sequence})
         return super().action_confirm()

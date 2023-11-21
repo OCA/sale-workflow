@@ -21,6 +21,15 @@ msgstr ""
 "X-Generator: Weblate 3.8\n"
 
 #. module: sale_order_invoicing_finished_task
+#: model_terms:ir.ui.view,arch_db:sale_order_invoicing_finished_task.edit_project_task_track
+msgid ""
+"<span class=\"text-success\" attrs=\"{'invisible': [('invoiceable', '=', "
+"False)]}\">Invoiceable</span>\n"
+"                    <span class=\"text-danger\" attrs=\"{'invisible': "
+"[('invoiceable', '!=', False)]}\">Not Invoiceable</span>"
+msgstr ""
+
+#. module: sale_order_invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_template__invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_project_task__invoicing_finished_task
@@ -42,13 +51,13 @@ msgstr "按任务进行发票控制"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_product_template
-msgid "Product Template"
-msgstr "产品模板"
+msgid "Product"
+msgstr ""
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order
-msgid "Sale Order"
-msgstr "销售订单"
+msgid "Sales Order"
+msgstr ""
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order_line
@@ -71,9 +80,16 @@ msgid "Tasks"
 msgstr "任务"
 
 #. module: sale_order_invoicing_finished_task
-#: code:addons/sale_order_invoicing_finished_task/models/project.py:65
+#. odoo-python
+#: code:addons/sale_order_invoicing_finished_task/models/project.py:0
 #, python-format
 msgid ""
 "You cannot create/modify a task related with a invoiced, done or cancel sale "
 "order line "
 msgstr "不能创建/修改已开票、已完成或取消销售订单行相关的任务 "
+
+#~ msgid "Product Template"
+#~ msgstr "产品模板"
+
+#~ msgid "Sale Order"
+#~ msgstr "销售订单"

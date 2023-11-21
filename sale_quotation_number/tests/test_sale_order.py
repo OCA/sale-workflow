@@ -2,17 +2,28 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import SavepointCase
 
 
-class TestSaleOrder(TransactionCase):
+class TestSaleOrder(SavepointCase):
     @classmethod
-    def setUpClass(cls, *args, **kwargs):
+    def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.sale_order_model = cls.env["sale.order"]
         company = cls.env.company
         company.keep_name_so = False
+        cls.company1 = cls.env["res.company"].create(
+            {"name": "Test Company 1", "keep_name_so": False}
+        )
+        cls.partner = cls.env["res.partner"].create({"name": "Test Partner"})
+        cls.order_company1 = cls.env["sale.order"].create(
+            {
+                "name": "SQ/2023/001",
+                "partner_id": cls.partner.id,
+                "company_id": cls.company1.id,
+            }
+        )
 
     def test_enumeration(self):
         order1 = self.sale_order_model.create(
@@ -84,3 +95,14 @@ class TestSaleOrder(TransactionCase):
         # Now the SQ can be confirmed
         order.action_confirm()
         self.assertEqual(next_name, order.name)
+
+    def test_sequence_assignment(self):
+        sequence_id = self.env["ir.sequence"].search(
+            [
+                ("code", "=", "sale.order"),
+                ("company_id", "in", [self.order_company1.company_id.id, False]),
+            ]
+        )
+        next_name = sequence_id.get_next_char(sequence_id.number_next_actual)
+        self.order_company1.action_confirm()
+        self.assertEqual(next_name, self.order_company1.name)

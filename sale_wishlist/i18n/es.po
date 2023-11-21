@@ -1,0 +1,61 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_wishlist
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2020-07-27 10:19+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.10\n"
+
+#. module: sale_wishlist
+#: model:ir.model.fields,field_description:sale_wishlist.field_res_partner__wishlists_count
+#: model:ir.model.fields,field_description:sale_wishlist.field_res_users__wishlists_count
+msgid "# Wishlists"
+msgstr "# Listas de deseos"
+
+#. module: sale_wishlist
+#: model_terms:ir.ui.view,arch_db:sale_wishlist.res_partner_view_form
+msgid "<span class=\"o_stat_text\">Wishlists</span>"
+msgstr "<span class = \"o_stat_text\">Listas de deseos</span>"
+
+#. module: sale_wishlist
+#: model:ir.model,name:sale_wishlist.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: sale_wishlist
+#: model:ir.model.fields.selection,name:sale_wishlist.selection__product_set__typology__set
+msgid "Default"
+msgstr "Defecto"
+
+#. module: sale_wishlist
+#: model:ir.model,name:sale_wishlist.model_product_set
+msgid "Product set"
+msgstr "Conjunto de productos"
+
+#. module: sale_wishlist
+#: model:ir.model.fields,field_description:sale_wishlist.field_product_set__typology
+#: model_terms:ir.ui.view,arch_db:sale_wishlist.view_product_set_search
+msgid "Typology"
+msgstr "Tipología"
+
+#. module: sale_wishlist
+#: model:ir.model.fields.selection,name:sale_wishlist.selection__product_set__typology__wishlist
+msgid "Wishlist"
+msgstr "Lista de deseos"
+
+#. module: sale_wishlist
+#. odoo-python
+#: code:addons/sale_wishlist/models/res_partner.py:0
+#, python-format
+msgid "Wishlists"
+msgstr "Lista de deseos"

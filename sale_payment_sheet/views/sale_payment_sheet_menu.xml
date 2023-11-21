@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--
+    Use a custom view instead of account.view_invoice_tree because this one has
+    a lot fields and in small screens there are to many columns
+     -->
+    <record id="view_invoice_tree" model="ir.ui.view">
+        <field name="name">sale.payment.sheet.account.invoice.tree</field>
+        <field name="model">account.move</field>
+        <field name="arch" type="xml">
+            <tree
+                decoration-info="state == 'draft'"
+                decoration-muted="state == 'cancel'"
+            >
+                <field name="date" />
+                <field name="name" />
+                <field name="partner_shipping_id" optional="show" />
+                <field name="partner_id" optional="show" />
+                <field name="ref" optional="hide" />
+                <field name="invoice_user_id" optional="hide" string="Sales Person" />
+                <field name="invoice_date_due" optional="show" />
+                <field
+                    name="amount_untaxed_signed"
+                    string="Tax Excluded"
+                    sum="Total"
+                    optional="hide"
+                />
+                <field name="amount_total_signed" sum="Total Amount" string="Total" />
+                <field
+                    name="amount_residual_signed"
+                    string="Amount Due"
+                    sum="Amount Due"
+                    optional="show"
+                />
+                <field name="state" optional="hide" />
+                <field
+                    name="company_id"
+                    groups="base.group_multi_company"
+                    optional="show"
+                />
+                <field name="currency_id" invisible="1" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_invoice_sale_payment_sheet" model="ir.actions.act_window">
+        <field name="name">Invoices</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="sale_payment_sheet.view_invoice_tree" />
+        <field name="domain">[
+            ('state', '=', 'posted'),
+            ('move_type', 'in', ['out_invoice', 'out_refund'])]</field>
+        <field name="context">{
+                'default_move_type':'out_invoice',
+                'move_type':'out_invoice',
+                'journal_type': 'sale',
+                'search_default_in_payment': True,
+                'search_default_unpaid': True,
+            }
+        </field>
+        <field name="search_view_id" ref="account.view_account_invoice_filter" />
+    </record>
+    <menuitem
+        id="sale_payment_invoice"
+        parent="sale.sale_order_menu"
+        action="action_invoice_sale_payment_sheet"
+        name="Invoices"
+        sequence="100"
+    />
+</odoo>

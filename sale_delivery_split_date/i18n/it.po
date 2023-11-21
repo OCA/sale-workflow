@@ -1,0 +1,37 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_delivery_split_date
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-31 14:57+0000\n"
+"PO-Revision-Date: 2023-11-21 09:34+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_delivery_split_date
+#: model:ir.model,name:sale_delivery_split_date.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Riga ordine di vendita"
+
+#. module: sale_delivery_split_date
+#: model_terms:ir.ui.view,arch_db:sale_delivery_split_date.view_picking_internal_search
+msgid "Scheduled Date"
+msgstr "Data programmata"
+
+#~ msgid "Sale Order"
+#~ msgstr "Ordine di vendita"
+
+#~ msgid "Scheduled Date (for filter purpose only)"
+#~ msgstr "Data pianificata (solo per i filtri)"
+
+#~ msgid "Transfer"
+#~ msgstr "Trasferimento"
