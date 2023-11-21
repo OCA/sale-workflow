@@ -132,9 +132,9 @@ patch(KanbanRecord.prototype, "sale_order_product_picker.KanbanRecord", {
         const orderLines = x2mList.records.filter(
             (line) => line.data.product_id[0] === record.data.product_id[0]
         );
+        this.disableGlobalClick = true;
         if (!orderLines.length) {
             // Disable global click to avoid actions while record is added
-            this.disableGlobalClick = true;
             const lineRec = await x2mList.addNew({
                 position: "bottom",
                 context: ctx,
@@ -144,21 +144,25 @@ patch(KanbanRecord.prototype, "sale_order_product_picker.KanbanRecord", {
                     record.data.product_uom_qty + lineRec.data.product_uom_qty,
                 is_in_order: true,
             });
-            this.disableGlobalClick = false;
         } else if (orderLines.length === 1) {
             const pickedRecord = orderLines[0];
             const last_qty = pickedRecord.data.product_uom_qty;
             const field = pickedRecord.data.secondary_uom_id
                 ? "secondary_uom_qty"
                 : "product_uom_qty";
-            await pickedRecord.update({
-                [field]: pickedRecord.data[field] + 1,
-            });
+            await x2mList.applyCommands("order_line", [
+                {
+                    operation: "UPDATE",
+                    record: pickedRecord,
+                    data: {[field]: pickedRecord.data[field] + 1},
+                },
+            ]);
             const diff_qty = pickedRecord.data.product_uom_qty - last_qty;
             record.update({product_uom_qty: record.data.product_uom_qty + diff_qty});
         } else {
             this._openMultiLineModalPicker(x2mList, orderLines);
         }
+        this.disableGlobalClick = false;
     },
     /**
      * Add new record using form to lines.
