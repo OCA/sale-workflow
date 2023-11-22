@@ -1,0 +1,38 @@
+<odoo>
+    <record id="product_template_form_view_inherit_purchase" model="ir.ui.view">
+        <field name="name">product_template_form_view_inherit_purchase</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <group name="candidate_fields" position="inside">
+                <group>
+                    <separator string="Purchase" />
+                    <field
+                        name="candidate_purchase"
+                        attrs="{'readonly': [('can_edit_candidate', '=', False)]}"
+                    />
+                </group>
+            </group>
+            <page name="purchase" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('candidate_purchase','=',False)]}</attribute>
+            </page>
+        </field>
+    </record>
+    <record id="product_template_form_view_inherit_purchase_button" model="ir.ui.view">
+        <field name="name">product_template_form_view_inherit_purchase_button</field>
+        <field name="model">product.template</field>
+        <field
+            name="inherit_id"
+            ref="purchase.view_product_template_purchase_buttons_from"
+        />
+        <field name="arch" type="xml">
+            <button name="action_view_po" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': [('candidate_purchase', '=', False)]}</attribute>
+            </button>
+        </field>
+    </record>
+</odoo>
