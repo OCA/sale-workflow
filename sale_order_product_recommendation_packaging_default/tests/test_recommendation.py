@@ -97,6 +97,16 @@ class PackagingRecommendationCase(test_recommendation_common.RecommendationCase)
             self.assertEqual(line.units_included, 0)
             line.product_packaging_qty = 2
             self.assertEqual(line.units_included, 24)
+        with wiz_f.line_ids.edit(1) as line:
+            # Product 3 is sold by units
+            self.assertFalse(line.product_packaging_id)
+            self.assertEqual(line.product_packaging_qty, 0)
+            self.assertEqual(line.units_included, 0)
+            # I want to sell 100 units of product 3
+            line.units_included = 100
+            self.assertFalse(line.product_packaging_id)
+            self.assertEqual(line.product_packaging_qty, 0)
+            self.assertEqual(line.units_included, 100)
         with wiz_f.line_ids.edit(2) as line:
             self.assertEqual(line.product_packaging_id, self.prod_1_dozen)
             # I cannot sell product 1 in pallets
@@ -124,6 +134,12 @@ class PackagingRecommendationCase(test_recommendation_common.RecommendationCase)
                     "product_packaging_id": self.prod_2_dozen.id,
                     "product_packaging_qty": 2,
                     "product_uom_qty": 24,
+                },
+                {
+                    "product_id": self.prod_3.id,
+                    "product_packaging_id": False,
+                    "product_packaging_qty": 0,
+                    "product_uom_qty": 100,
                 },
                 {
                     "product_id": self.prod_1.id,

@@ -4,7 +4,7 @@
 {
     "name": "Sale Order Product Recommendation with Default Packaging",
     "summary": "Quickly add recommended products to sale order by packagings",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "development_status": "Alpha",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",

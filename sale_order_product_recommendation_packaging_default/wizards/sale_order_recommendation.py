@@ -81,5 +81,6 @@ class SaleOrderRecommendationLine(models.TransientModel):
         """Prepare product packaging info for new sale order line."""
         result = super()._prepare_new_so_line(line_form, sequence)
         line_form.product_packaging_id = self.product_packaging_id
-        line_form.product_packaging_qty = self.product_packaging_qty
+        if self.product_packaging_id:
+            line_form.product_packaging_qty = self.product_packaging_qty
         return result
