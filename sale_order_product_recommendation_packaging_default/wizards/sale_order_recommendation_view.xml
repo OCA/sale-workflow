@@ -24,6 +24,7 @@
                     groups="product.group_stock_packaging"
                     optional="show"
                     widget="numeric_step"
+                    attrs="{'invisible': [('product_packaging_id', '=', False)]}"
                 />
             </xpath>
         </field>
