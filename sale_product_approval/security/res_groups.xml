@@ -1,0 +1,6 @@
+<odoo>
+    <record id="group_product_administrator" model="res.groups">
+        <field name="name">Product Administrator</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+</odoo>
