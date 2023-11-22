@@ -13,8 +13,9 @@ odoo.define("sale_order_line_price_history.price_history_widget", function (requ
             "click .price_history": "_onClickButton",
         }),
 
-        init: function (parent, params) {
-            this.data = params.data;
+        init: function (parent, record) {
+            this.data = record.data;
+            this.dataPointID = record.id;
             this._super(parent);
         },
 
@@ -43,6 +44,14 @@ odoo.define("sale_order_line_price_history.price_history_widget", function (requ
                 "sale_order_line_price_history.sale_order_line_price_history_action",
                 {
                     additional_context: additional_context,
+                    on_close: (value) => {
+                        if (value && "price" in value) {
+                            this.getParent().trigger_up("field_changed", {
+                                dataPointID: this.dataPointID,
+                                changes: {price_unit: value.price},
+                            });
+                        }
+                    },
                 }
             );
         },
