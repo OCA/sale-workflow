@@ -61,17 +61,19 @@ class StockPicking(models.Model):
         sale_line_model = self.env["sale.order.line"]
         for record in self:
             sale_order = record.sale_id
+            warehouse = record.location_id.get_warehouse()
+            calendar = warehouse.calendar2_id
             delivery_date = record.date_deadline or record.date_done
+            # plan_hours will return the current attendance if now is part of one,
+            # otherwise the beginning of the next one.
+            # If the returned date is after the scheduled date, then we are late
+            # to ship.
             # TODO: At some point, we might need a carrier cutoff or something.
-            late_to_ship = now.date() > record.scheduled_date.date()
+            next_expedition_date = calendar.plan_hours(0, now, compute_leaves=True)
+            late_to_ship = next_expedition_date.date() > record.scheduled_date.date()
             if late_to_ship:
-                warehouse = record.location_id.get_warehouse()
-                calendar = warehouse.calendar2_id
-                next_ship_date = sale_line_model._postpone_to_working_day(
-                    now, calendar=calendar
-                )
                 delivery_datetime_aware = sale_line_model._add_delay(
-                    next_ship_date, 1, calendar=calendar
+                    next_expedition_date, 1, calendar=calendar
                 )
                 tz_string = record.partner_id.tz or "UTC"
                 delivery_date = sale_line_model._get_naive_date_from_datetime(
@@ -193,9 +195,15 @@ class StockPicking(models.Model):
         res = super()._create_backorder()
         now = fields.Datetime.now()
         for picking in res:
-            # If the scheduled_date is before the current datetime, then date_deadline
-            # cannot be satisfied. Therefore, we need to recompute move's dates
-            if picking.scheduled_date < now:
+            warehouse = picking.location_id.get_warehouse()
+            calendar = warehouse.calendar2_id
+            # plan_hours will return the same datetime if now is part of an attendance,
+            # otherwise the beginning of the next one.
+            # If the returned date is after the scheduled date, then we are late
+            # to ship, and we need to postpone the delivery dates of the moves.
+            next_expedition_date = calendar.plan_hours(0, now, compute_leaves=True)
+            late_to_ship = next_expedition_date.date() > picking.scheduled_date.date()
+            if late_to_ship:
                 for line in picking.move_lines:
                     dates = line._get_delivery_dates(from_date=now)
                     line.write(dates)
