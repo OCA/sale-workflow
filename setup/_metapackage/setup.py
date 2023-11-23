@@ -63,6 +63,7 @@ setuptools.setup(
         'odoo-addon-sale_quotation_number>=16.0dev,<16.1dev',
         'odoo-addon-sale_start_end_dates>=16.0dev,<16.1dev',
         'odoo-addon-sale_stock_cancel_restriction>=16.0dev,<16.1dev',
+        'odoo-addon-sale_stock_line_sequence>=16.0dev,<16.1dev',
         'odoo-addon-sale_stock_picking_blocking>=16.0dev,<16.1dev',
         'odoo-addon-sale_stock_picking_note>=16.0dev,<16.1dev',
         'odoo-addon-sale_substate>=16.0dev,<16.1dev',
