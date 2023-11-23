@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.tools import float_compare
 
 
 class SaleOrderLine(models.Model):
@@ -23,9 +24,15 @@ class SaleOrderLine(models.Model):
 
     @api.depends("product_qty_remains_to_deliver", "state")
     def _compute_can_cancel_remaining_qty(self):
+        precision = self.env["decimal.precision"].precision_get(
+            "Product Unit of Measure"
+        )
         for rec in self:
             rec.can_cancel_remaining_qty = (
-                rec.product_qty_remains_to_deliver > 0
+                float_compare(
+                    rec.product_qty_remains_to_deliver, 0, precision_digits=precision
+                )
+                == 1
                 and rec.state == "done"
                 and rec.move_ids
             )
