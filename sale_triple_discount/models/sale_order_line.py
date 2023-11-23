@@ -131,3 +131,21 @@ class SaleOrderLine(models.Model):
             discount=self._get_final_discount(),
             price_subtotal=self.price_subtotal,
         )
+
+    def _needs_remaining_calculation(self, inv_lines):
+        res = super()._needs_remaining_calculation(inv_lines)
+        if res:
+            return res
+        if self.discount2 or self.discount3:
+            res = any(
+                inv_lines.mapped(
+                    lambda inv_l: inv_l.discount2 != self.discount2
+                    or inv_l.discount3 != self.discount3
+                )
+            )
+        return res
+
+    def _get_discount(self):
+        if self.discount2 or self.discount3:
+            return self._get_final_discount()
+        return super()._get_discount()
