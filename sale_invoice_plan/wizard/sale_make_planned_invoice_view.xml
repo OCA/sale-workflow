@@ -11,7 +11,7 @@
                 <footer>
                     <button
                         name="create_invoices_by_plan"
-                        string="Create Next Inovice"
+                        string="Create Next Invoice"
                         type="object"
                         class="btn-primary"
                     />
@@ -20,7 +20,6 @@
                         string="Create All Remaining Invoices"
                         type="object"
                         context="{'all_remain_invoices': True}"
-                        class="btn-primary"
                     />
                     <button string="Cancel" class="btn-default" special="cancel" />
                 </footer>
