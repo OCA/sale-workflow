@@ -27,3 +27,13 @@ class ResConfigSettings(models.TransientModel):
         default_model="sale.order.recommendation",
         default=15,
     )
+    force_zero_units_included = fields.Boolean(
+        related="company_id.force_zero_units_included",
+        readonly=False,
+        help="Add recomented products in so even if units included is zero.",
+    )
+    sale_line_recommendation_domain = fields.Char(
+        related="company_id.sale_line_recommendation_domain",
+        readonly=False,
+        help="Domain applied to find SO lines to propose as recommended products.",
+    )

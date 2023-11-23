@@ -7,7 +7,9 @@ import logging
 from datetime import datetime, timedelta
 
 from odoo import api, fields, models
+from odoo.osv import expression
 from odoo.tests import Form
+from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
 
@@ -51,7 +53,11 @@ class SaleOrderRecommendation(models.TransientModel):
     def _default_order_id(self):
         return self.env.context.get("active_id", False)
 
-    def _recomendable_sale_order_lines_domain(self):
+    def _extended_recommendable_sale_order_lines_domain(self):
+        """Extra domain to include or exclude SO lines"""
+        return safe_eval(self.env.user.company_id.sale_line_recommendation_domain)
+
+    def _recommendable_sale_order_lines_domain(self):
         """Domain to find recent SO lines."""
         start = datetime.now() - timedelta(days=self.months * 30)
         start = fields.Datetime.to_string(start)
@@ -86,6 +92,8 @@ class SaleOrderRecommendation(models.TransientModel):
         # doing a domain for a readgroup query
         if "is_delivery" in self.env["sale.order.line"]._fields:
             domain.append(("is_delivery", "=", False))
+        extended_domain = self._extended_recommendable_sale_order_lines_domain()
+        domain = expression.AND([domain, extended_domain])
         return domain
 
     def _prepare_recommendation_line_vals(self, group_line, so_line=False):
@@ -120,7 +128,7 @@ class SaleOrderRecommendation(models.TransientModel):
             self.env["sale.order.line"]
             .sudo()
             .read_group(
-                self._recomendable_sale_order_lines_domain(),
+                self._recommendable_sale_order_lines_domain(),
                 ["product_id", "qty_delivered"],
                 ["product_id"],
             )
@@ -171,12 +179,17 @@ class SaleOrderRecommendation(models.TransientModel):
         sequence = max(self.order_id.mapped("order_line.sequence") or [0])
         order_form = Form(self.order_id.sudo())
         to_remove = []
-        for wiz_line in self.line_ids.filtered(
-            lambda x: x.sale_line_id or x.units_included
-        ):
+        force_zero_units_included = self.env.user.company_id.force_zero_units_included
+        for wiz_line in self.line_ids:
+            if (
+                not wiz_line.sale_line_id
+                and not wiz_line.units_included
+                and not force_zero_units_included
+            ):
+                continue
             if wiz_line.sale_line_id:
                 index = self.order_id.order_line.ids.index(wiz_line.sale_line_id.id)
-                if wiz_line.units_included:
+                if wiz_line.units_included or force_zero_units_included:
                     with order_form.order_line.edit(index) as line_form:
                         wiz_line._prepare_update_so_line(line_form)
                 else:
