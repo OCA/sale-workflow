@@ -14,7 +14,6 @@ This module also works with delivery.carrier fees that are added as a
 sale order line. Thoses line are special as they will never be considered delivered.
 Delivery fees lines are ignored in the computation of the delivery state.
 
-
-This module do not add the "views" for the field "delivery_status".
-If you have the sale_stock module installed please installed "sale_stock_delivery_state".
-If not install the module "sale_delivery_state_view".
+When the 'sale_stock' module is installed, the glue module 'sale_stock_delivery_state'
+should also be installed; this module is designed to override the compute method
+of the delivery status field from 'sale_stock'.
