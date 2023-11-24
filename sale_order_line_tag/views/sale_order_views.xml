@@ -1,0 +1,63 @@
+<odoo>
+
+    <record id="view_order_line_tree_add_tag" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.add.tag</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="qty_to_invoice" position="after">
+                <field
+                    name="tag_ids"
+                    options="{'no_create': True, 'no_create_edit':True}"
+                    context="{'create': False}"
+                    widget="many2many_tags"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_order_form_inherit_add_tag" model="ir.ui.view">
+        <field name="name">sale.order.form.add.tags</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='qty_to_invoice']"
+                position="after"
+            >
+                <field
+                    name="tag_ids"
+                    options="{'no_create': True, 'no_create_edit':True}"
+                    context="{'create': False}"
+                    widget="many2many_tags"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_line_tag_view_tree" model="ir.ui.view">
+        <field name="name">sale.order.line.tag.tree</field>
+        <field name="model">sale.order.line.tag</field>
+        <field name="arch" type="xml">
+            <tree editable="top">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="sale_order_line_tag_action" model="ir.actions.act_window">
+        <field name="name">Sales Order Line Tags</field>
+        <field name="res_model">sale.order.line.tag</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem
+        id="sale_order_line_tag_action_menu"
+        name="Sales Order Line Tags"
+        parent="sale.menu_sale_config"
+        action="sale_order_line_tag_action"
+        sequence="25"
+    />
+
+</odoo>
