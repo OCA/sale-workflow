@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_discount_fast_change" model="ir.ui.view">
+        <field name="name">sale.order.discount.fast.change.form</field>
+        <field name="model">sale.order.discount.fast.change</field>
+        <field name="arch" type="xml">
+            <form
+                string="Enter the global discount amount to apply to all lines according to the policy"
+            >
+                <group>
+                    <group>
+                        <field name="discount" />
+                        <field name="application_policy" />
+                    </group>
+                </group>
+                <footer>
+                    <button
+                        name="apply_global_discount"
+                        string="Apply"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_order_apply_global_discount" model="ir.actions.act_window">
+        <field name="name">Global Discount Amount</field>
+        <field name="res_model">sale.order.discount.fast.change</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="sale_order_discount_fast_change" />
+     </record>
+</odoo>
