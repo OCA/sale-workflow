@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Tecnativa - Carlos Roca
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html). -->
+<templates>
+    <div t-name="sale_order_line_price_history.set_price_to_line_widget">
+        <div>
+            <a tabindex="0" class="fa fa-check text-success set_price_to_line" />
+        </div>
+    </div>
+</templates>

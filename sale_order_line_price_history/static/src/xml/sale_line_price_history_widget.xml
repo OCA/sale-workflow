@@ -4,7 +4,7 @@
 <templates>
     <div t-name="sale_order_line_price_history.price_history_widget">
         <div>
-            <a tabindex="0" class="fa fa-clock-o text-dark price_history" />
+            <a tabindex="0" class="fa fa-clock-o price_history" />
         </div>
     </div>
 </templates>
