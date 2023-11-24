@@ -44,6 +44,7 @@ addon | version | maintainers | summary
 [sale_commitment_date_mandatory](sale_commitment_date_mandatory/) | 14.0.1.1.0 |  | Set commitment data mandatory and don't allowto add lines unless this field is filled
 [sale_company_currency](sale_company_currency/) | 14.0.1.0.1 |  | Company Currency in Sale Orders
 [sale_contact_type](sale_contact_type/) | 14.0.1.0.0 |  | Define ordering contact type
+[sale_coupon_order_discount_fast_change_ui](sale_coupon_order_discount_fast_change_ui/) | 14.0.1.0.0 |  | This module adds an option related to the reward lines to the Sale Order Discount Fast Change UI module
 [sale_default_uom](sale_default_uom/) | 14.0.1.1.1 | [![ashishhirapara](https://github.com/ashishhirapara.png?size=30px)](https://github.com/ashishhirapara) | Set default Unit of Measure value of a product in sales order lines.
 [sale_delivery_date](sale_delivery_date/) | 14.0.1.1.0 | [![mmequignon](https://github.com/mmequignon.png?size=30px)](https://github.com/mmequignon) | Postpones delivery dates based on customer preferences, and/or warehouse configuration.
 [sale_delivery_split_date](sale_delivery_split_date/) | 14.0.1.0.1 |  | Sale Deliveries split by date
@@ -71,6 +72,7 @@ addon | version | maintainers | summary
 [sale_order_change_analytic_account](sale_order_change_analytic_account/) | 14.0.1.0.0 |  | This addon allow user to update analytic account on sale orders and related journal entries.
 [sale_order_digitized_signature](sale_order_digitized_signature/) | 14.0.1.0.0 | [![mgosai](https://github.com/mgosai.png?size=30px)](https://github.com/mgosai) | Capture customer signature on the sales order
 [sale_order_disable_user_autosubscribe](sale_order_disable_user_autosubscribe/) | 14.0.1.0.0 |  | Remove the salesperson from autosubscribed sale followers
+[sale_order_discount_fast_change_ui](sale_order_discount_fast_change_ui/) | 14.0.1.0.1 |  | This module disables the slow odoo discount change wizard interface and replaces it with a non transactional faster one
 [sale_order_general_discount](sale_order_general_discount/) | 14.0.3.0.1 |  | General discount per sale order
 [sale_order_general_discount_payment_term](sale_order_general_discount_payment_term/) | 14.0.2.0.0 | [![odooNextev](https://github.com/odooNextev.png?size=30px)](https://github.com/odooNextev) | General discount per sale order set on payment term
 [sale_order_general_discount_triple](sale_order_general_discount_triple/) | 14.0.2.0.1 | [![ashishhirapara](https://github.com/ashishhirapara.png?size=30px)](https://github.com/ashishhirapara) | General discount per sale order with triple
