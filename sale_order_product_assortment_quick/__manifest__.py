@@ -6,7 +6,7 @@
     "version": "14.0.1.0.0",
     "depends": ["sale_order_product_assortment", "sale_quick"],
     "author": "PyTech SRL, Ooops404, Odoo Community Association (OCA)",
-    "maintainers": ["renda-dev", "pytech-bot"],
+    "maintainers": ["renda-dev", "aleuffre"],
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Category",
     "summary": """
