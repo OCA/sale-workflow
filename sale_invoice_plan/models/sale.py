@@ -45,14 +45,13 @@ class SaleOrder(models.Model):
         for rec in self:
             has_invoice_plan = rec.use_invoice_plan and rec.invoice_plan_ids
             to_invoice = rec.invoice_plan_ids.filtered(lambda l: not l.invoiced)
-            invoice_plan_process = False
-            if rec.state == "sale" and has_invoice_plan and to_invoice:
-                if rec.invoice_status in [
-                    "to invoice",
-                    "no",
-                ] and "advance" in to_invoice.mapped("invoice_type"):
-                    invoice_plan_process = True
-            rec.invoice_plan_process = invoice_plan_process
+            rec.invoice_plan_process = (
+                rec.state == "sale"
+                and has_invoice_plan
+                and to_invoice
+                and rec.invoice_status in ["to invoice", "no"]
+                and "advance" in to_invoice.mapped("invoice_type")
+            )
 
     @api.constrains("invoice_plan_ids")
     def _check_invoice_plan_total_percent(self):
@@ -136,12 +135,11 @@ class SaleOrder(models.Model):
     def _create_invoices(self, grouped=False, final=False, date=None):
         moves = super()._create_invoices(grouped=grouped, final=final, date=date)
         if self.use_invoice_plan:
-            plan = self.env["sale.invoice.plan"].search(
-                [("sale_id", "=", self.id)], limit=1
-            )
+            plan = self.invoice_plan_ids.filtered(
+                lambda x: x.to_invoice and x.invoice_type == "installment"
+            )[:1]
             for move in moves:
                 plan._compute_new_invoice_quantity(move)
                 move.invoice_date = plan.plan_date
                 move._compute_date()
-            plan.invoice_move_ids += moves
         return moves
