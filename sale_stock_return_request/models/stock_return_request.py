@@ -1,17 +1,31 @@
 # Copyright 2019 Tecnativa - David Vidal
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import fields, models
+from odoo import api, fields, models
+from odoo.osv import expression
 
 
 class StockReturnRequest(models.Model):
     _inherit = "stock.return.request"
 
+    filter_sale_order_ids = fields.Many2many(
+        comodel_name="sale.order",
+        relation="stock_return_request_so_filter",
+        string="Selected order(s)",
+        copy=False,
+        domain=[("state", "in", ["sale", "done"])],
+    )
     sale_order_ids = fields.Many2many(
         comodel_name="sale.order",
         string="Involved Sales",
         readonly=True,
         copy=False,
     )
+
+    @api.onchange("partner_id")
+    def _onchange_partner_id_sale_stock_return_request(self):
+        self.filter_sale_order_ids = self.filter_sale_order_ids.filtered(
+            lambda x: x.partner_id == self.partner_id
+        )
 
     def _prepare_move_default_values(self, line, qty, move):
         """Extend this method to add values to return move"""
@@ -38,3 +52,24 @@ class StockReturnRequest(models.Model):
             action["views"] = [(res and res.id or False, "form")]
             action["res_id"] = sales.id
         return action
+
+
+class StockReturnRequestLine(models.Model):
+    _inherit = "stock.return.request.line"
+
+    def _get_moves_domain(self):
+        domain = super()._get_moves_domain()
+        if self.request_id.filter_sale_order_ids:
+            domain = expression.AND(
+                [
+                    domain,
+                    [
+                        (
+                            "sale_line_id.order_id",
+                            "in",
+                            self.request_id.filter_sale_order_ids.ids,
+                        )
+                    ],
+                ]
+            )
+        return domain
