@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-20 09:25+0000\n"
-"PO-Revision-Date: 2023-04-20 11:45+0200\n"
-"Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
+"PO-Revision-Date: 2023-11-26 18:33+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_order_product_picker
 #: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
@@ -29,6 +29,9 @@ msgid ""
 "                                                                Quantity:\n"
 "                                                            </span>"
 msgstr ""
+"<span class=\"text-muted\">\n"
+"                                                                Cantidad:\n"
+"                                                            </span>"
 
 #. module: sale_order_product_picker
 #: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
@@ -36,6 +39,8 @@ msgid ""
 "<strong style=\"font-size: 1.2em\">+1\n"
 "                                                                </strong>"
 msgstr ""
+"<strong style=\"font-size: 1.2em\">+1\n"
+"                                                                </strong>"
 
 #. module: sale_order_product_picker
 #: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
@@ -60,7 +65,7 @@ msgstr "Disponible:"
 #. module: sale_order_product_picker
 #: model:ir.model.fields.selection,name:sale_order_product_picker.selection__sale_order__picker_order__categ_id
 msgid "Category"
-msgstr ""
+msgstr "Categoría"
 
 #. module: sale_order_product_picker
 #: model:ir.actions.act_window,name:sale_order_product_picker.action_open_picker_views
@@ -86,6 +91,7 @@ msgstr "Moneda"
 #: model:ir.model.fields,help:sale_order_product_picker.field_sale_order_picker__uom_id
 msgid "Default unit of measure used for all stock operations."
 msgstr ""
+"Unidad de medida por defecto usada para todas las operaciones de Inventario."
 
 #. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__qty_delivered
@@ -127,7 +133,7 @@ msgstr "Introduzca código o nombre del producto"
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_line__is_different_price
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__is_different_price
 msgid "Is Different Price"
-msgstr ""
+msgstr "Es un precio Diferente"
 
 #. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__is_in_order
@@ -162,7 +168,7 @@ msgstr "Últimas ventas"
 #. module: sale_order_product_picker
 #: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
 msgid "Manage product filters (Reload after modify)"
-msgstr ""
+msgstr "Gestionar filtros de productos (Recargar después de modificar)"
 
 #. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__qty_available
@@ -189,7 +195,7 @@ msgstr "Catálogo"
 #. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order__picker_order
 msgid "Picker Order"
-msgstr ""
+msgstr "Orden de recogida"
 
 #. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order__picker_origin_data
@@ -215,7 +221,7 @@ msgstr "Precio"
 #: model:ir.model.fields,help:sale_order_product_picker.field_sale_order_line__list_price
 #: model:ir.model.fields,help:sale_order_product_picker.field_sale_order_picker__list_price
 msgid "Price at which the product is sold to customers."
-msgstr ""
+msgstr "Precio de venta del producto a los clientes."
 
 #. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__product_id
@@ -226,12 +232,12 @@ msgstr "Producto"
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_line__categ_id
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__category_id
 msgid "Product Category"
-msgstr ""
+msgstr "Categoría del producto"
 
 #. module: sale_order_product_picker
 #: model:ir.actions.act_window,name:sale_order_product_picker.product_normal_action_sell_picker
 msgid "Product Variants (Picker)"
-msgstr ""
+msgstr "Variantes de productos (Selector)"
 
 #. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__product_uom_qty
@@ -251,18 +257,18 @@ msgstr "Pedido de venta"
 #. module: sale_order_product_picker
 #: model:ir.model,name:sale_order_product_picker.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Línea de Orden de Venta"
 
 #. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_line__list_price
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__list_price
 msgid "Sales Price"
-msgstr ""
+msgstr "Precio de Venta"
 
 #. module: sale_order_product_picker
 #: model:ir.ui.menu,name:sale_order_product_picker.menu_email_campaigns
 msgid "Salesman Quotations"
-msgstr ""
+msgstr "Presupuestos de Vendedores"
 
 #. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order__product_name_search
@@ -277,7 +283,7 @@ msgstr "Veces entregado"
 #. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__unit_name
 msgid "Unit Name"
-msgstr ""
+msgstr "Nombre de la Unidad"
 
 #. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__price_unit
@@ -287,7 +293,7 @@ msgstr "Precio unitario"
 #. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__uom_id
 msgid "Unit of Measure"
-msgstr ""
+msgstr "Unidad de Medida"
 
 #. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order__use_delivery_address
@@ -297,7 +303,7 @@ msgstr "Usar dirección de entrega"
 #. module: sale_order_product_picker
 #: model:ir.model,name:sale_order_product_picker.model_sale_order_picker
 msgid "sale.order.picker"
-msgstr ""
+msgstr "sale.order.picker"
 
 #, python-format
 #~ msgid ""
