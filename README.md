@@ -127,6 +127,7 @@ addon | version | maintainers | summary
 [sale_product_set_packaging_qty](sale_product_set_packaging_qty/) | 14.0.1.1.0 |  | Manage packaging and quantities on product set lines
 [sale_product_set_sale_by_packaging](sale_product_set_sale_by_packaging/) | 14.0.1.0.2 |  | Glue module between `sale_by_packaging` and `sale_product_set_packaging_qty`.
 [sale_promotion_rule](sale_promotion_rule/) | 14.0.1.0.1 |  | Module to manage promotion rule on sale order
+[sale_promotion_rule_assortment](sale_promotion_rule_assortment/) | 14.0.1.0.0 |  | This addon allows to reduce the appliance of a promotion rule to a set of products
 [sale_promotion_rule_delivery](sale_promotion_rule_delivery/) | 14.0.1.0.0 |  | Manage promotion rule with delivery
 [sale_promotion_rule_display_discount_amount](sale_promotion_rule_display_discount_amount/) | 14.0.1.0.1 |  | This addon allows you to display the amount of the discount applied by the sale promotion rules on the sale order
 [sale_purchase_requisition](sale_purchase_requisition/) | 14.0.1.0.1 | [![shide](https://github.com/shide.png?size=30px)](https://github.com/shide) [![anddago78](https://github.com/anddago78.png?size=30px)](https://github.com/anddago78) [![yajo](https://github.com/yajo.png?size=30px)](https://github.com/yajo) | Connect your quotations with a purchase agreement
