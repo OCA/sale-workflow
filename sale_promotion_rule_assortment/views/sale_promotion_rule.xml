@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018-2021 Acsone SA/Nv
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="sale_promotion_rule_form_view">
+        <field
+            name="name"
+        >sale.promotion.rule.form (in sale_promotion_rule_assortment)</field>
+        <field name="model">sale.promotion.rule</field>
+        <field
+            name="inherit_id"
+            ref="sale_promotion_rule.view_sale_promotion_rule_form"
+        />
+        <field name="arch" type="xml">
+            <field name="restrict_partner_ids" position="before">
+                <field name="filter_id" />
+            </field>
+        </field>
+    </record>
+</odoo>
