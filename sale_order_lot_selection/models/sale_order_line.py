@@ -1,4 +1,5 @@
 from odoo import api, fields, models
+from odoo.tools.safe_eval import safe_eval
 
 
 class SaleOrderLine(models.Model):
@@ -9,7 +10,11 @@ class SaleOrderLine(models.Model):
     def _prepare_procurement_values(self, group_id=False):
         vals = super()._prepare_procurement_values(group_id=group_id)
         if self.lot_id:
-            vals["restrict_lot_id"] = self.lot_id.id
+            product_domain = safe_eval(
+                self.company_id.product_apply_lot_restriction_domain
+            )
+            if self.product_id.filtered_domain(product_domain):
+                vals["restrict_lot_id"] = self.lot_id.id
         return vals
 
     @api.onchange("product_id")

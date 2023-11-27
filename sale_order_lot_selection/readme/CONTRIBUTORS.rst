@@ -4,3 +4,8 @@
 * Bhavesh Odedra <bodedra@opensourceintegrators.com>
 * François Honoré <francois.honore@acsone.eu>
 * Florian da Costa <florian.dacosta@akretion.com>
+
+* Ooops404
+
+* PyTech SRL
+  * Alessandro Uffreduzzi <alessandro.uffreduzzi@pytech.it>
