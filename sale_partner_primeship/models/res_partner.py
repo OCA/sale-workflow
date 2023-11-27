@@ -31,3 +31,9 @@ class ResPartner(models.Model):
     def _compute_primeship_count(self):
         for record in self:
             record.primeship_count = len(record.commercial_partner_id.primeship_ids)
+
+    @api.model
+    def _check_expired_primeships(self):
+        self.with_context(
+            active_test=False,
+        ).search([("active_primeship", "=", True)])._compute_active_primeship()

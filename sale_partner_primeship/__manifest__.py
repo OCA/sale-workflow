@@ -14,6 +14,7 @@
         "views/res_partner_views.xml",
         "security/ir.model.access.csv",
         "security/sale_partner_primeship.xml",
+        "data/ir_cron.xml",
     ],
     "license": "LGPL-3",
 }
