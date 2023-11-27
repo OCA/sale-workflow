@@ -10,7 +10,10 @@ class SaleOrder(models.Model):
     applied_quotation_seq_id = fields.Many2one(
         comodel_name="ir.sequence", readonly=True
     )
-    recompute_quotation_seq = fields.Boolean(compute="_compute_recompute_quotation_seq")
+    recompute_quotation_seq = fields.Boolean(
+        compute="_compute_recompute_quotation_seq",
+        store=True,
+    )
 
     @api.model
     def create(self, vals):
@@ -21,15 +24,17 @@ class SaleOrder(models.Model):
             order.applied_quotation_seq_id = order.get_quotation_seq_id()
         return orders
 
-    @api.depends("type_id", "type_id.quotation_sequence_id")
+    @api.depends("type_id", "type_id.quotation_sequence_id", "state")
     def _compute_recompute_quotation_seq(self):
-        orders_to_recompute = self.filtered(
-            lambda a: a.state in ["draft", "sent"]
-            and a.type_id.quotation_sequence_id
-            and a.type_id.quotation_sequence_id != a.applied_quotation_seq_id
-        )
-        orders_to_recompute.write({"recompute_quotation_seq": True})
-        (self - orders_to_recompute).write({"recompute_quotation_seq": False})
+        for sel in self:
+            res = False
+            if (
+                sel.state in ["draft", "sent"]
+                and sel.type_id.quotation_sequence_id
+                and sel.type_id.quotation_sequence_id != sel.applied_quotation_seq_id
+            ):
+                res = True
+            sel.recompute_quotation_seq = res
 
     def action_recompute_quotation_seq(self):
         for sel in self.filtered(
