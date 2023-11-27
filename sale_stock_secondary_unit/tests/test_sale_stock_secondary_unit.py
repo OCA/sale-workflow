@@ -88,4 +88,5 @@ class TestSaleStockOrderSecondaryUnit(TransactionCase):
         self.order.order_line._onchange_helper_product_uom_for_secondary()
         self.order.action_confirm()
         picking = self.order.picking_ids
-        self.assertEqual(picking.move_line_ids.secondary_uom_qty, 5.0)
+        # Second qty on sml only manage done quantities
+        self.assertEqual(picking.move_line_ids.secondary_uom_qty, 0.0)
