@@ -35,7 +35,10 @@ class SaleOrderLine(models.Model):
         # `product_uom_qty` to zero. In other cases, we are maybe getting
         # default values and this difference will get fixed by other compute
         # methods later.
-        if "product_uom_qty" not in self.env.context.get("changing_fields", set()):
+        if (
+            self.env.context.get("changing_fields")
+            and "product_uom_qty" not in self.env.context["changing_fields"]
+        ):
             return result
         for line in self:
             with suppress(ZeroDivisionError):
