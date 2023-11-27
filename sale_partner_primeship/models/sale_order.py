@@ -1,3 +1,7 @@
+# Copyright 2021 Akretion France (http://www.akretion.com/)
+# Copyright 2024 Akretion France (http://www.akretion.com/)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from dateutil.relativedelta import relativedelta
 
 from odoo import api, fields, models
@@ -6,8 +10,9 @@ from odoo import api, fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    def action_confirm(self):
-        rv = super().action_confirm()
+    def _action_confirm(self):
+        super()._action_confirm()
+        sale_primeship = self.env["sale.primeship"]
         for record in self:
             partner = record.partner_id.commercial_partner_id
 
@@ -28,22 +33,35 @@ class SaleOrder(models.Model):
                                 start = primeship.end_date
                                 end = start + relativedelta(months=duration)
 
-                    self.env["sale.primeship"].create(
-                        {
-                            "start_date": start,
-                            "end_date": end,
-                            "partner_id": partner.id,
-                            "order_line_id": line.id,
-                        }
-                    )
-        return rv
+                    vals = {
+                        "start_date": start,
+                        "end_date": end,
+                        "partner_id": partner.id,
+                        "order_line_id": line.id,
+                        # this is to reactivate a maybe deactivated existing primeship
+                        "active": True,
+                    }
+                    if line.primeship_id:
+                        # Hm... something seems to have gone wrong here,
+                        # but we handle it nonetheless.
+                        line.primeship_id.write(vals)
+                    else:
+                        # We may have a deactivated primeship because of an order
+                        # cancellation.
+                        primeship = sale_primeship.with_context(
+                            active_test=False,
+                        ).search([("order_line_id", "=", line.id)])
+                        if primeship:
+                            primeship.write(vals)
+                        else:
+                            sale_primeship.create(vals)
+
+        return True
 
     def action_cancel(self):
         rv = super().action_cancel()
-
         for record in self:
             record.order_line.mapped("primeship_id").active = False
-
         return rv
 
 
@@ -65,8 +83,7 @@ class SaleOrderLine(models.Model):
     @api.depends("primeship_ids")
     def _compute_primeship_id(self):
         for record in self:
-            if record.primeship_ids:
-                record.primeship_id = record.primeship_ids[0]
+            record.primeship_id = record.primeship_ids[:1]
 
     def _inverse_primeship_id(self):
         for record in self:
@@ -78,10 +95,10 @@ class SaleOrderLine(models.Model):
 
             record.primeship_id.order_line_id = record
 
-    # Update invoice start/end dates
     def _prepare_invoice_line(self, **optional_values):
-        # Set invoice start/end dates to primeship start/end dates
-        # In case of multi quantity, this assumes continuous date ranges
+        """Update invoice start/end dates.
+        Set invoice start/end dates to primeship start/end dates
+        In case of multi quantity, this assumes continuous date ranges."""
         self.ensure_one()
         res = super()._prepare_invoice_line(**optional_values)
         if self.primeship_id:

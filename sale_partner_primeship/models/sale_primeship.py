@@ -1,3 +1,7 @@
+# Copyright 2021 Akretion France (http://www.akretion.com/)
+# Copyright 2024 Akretion France (http://www.akretion.com/)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
@@ -19,15 +23,22 @@ class SalePrimeship(models.Model):
         ondelete="cascade",
         index=True,
     )
-
     order_line_id = fields.Many2one(
         comodel_name="sale.order.line",
         string="Sale Order Line",
     )
-
     order_id = fields.Many2one(string="Sale Order", related="order_line_id.order_id")
 
     current = fields.Boolean(string="Currently Active", compute="_compute_current")
+
+    _sql_constraints = [
+        # Constraint for One2one impl of "sale.order.line".primeship_id
+        (
+            "unique_order_line",
+            "UNIQUE(order_line_id)",
+            "A sale order line can only have one primeship!",
+        )
+    ]
 
     @api.depends("start_date", "end_date")
     def _compute_name(self):
