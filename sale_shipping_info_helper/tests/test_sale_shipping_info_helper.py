@@ -7,17 +7,18 @@ from odoo.tools import float_compare
 
 
 class TestDeliveryCost(common.TransactionCase):
-    def setUp(self):
-        super(TestDeliveryCost, self).setUp()
-        self.tax_model = self.env["account.tax"]
-        self.SaleOrder = self.env["sale.order"]
-        self.SaleOrderLine = self.env["sale.order.line"]
+    @classmethod
+    def setUpClass(cls):
+        super(TestDeliveryCost, cls).setUpClass()
+        cls.tax_model = cls.env["account.tax"]
+        cls.SaleOrder = cls.env["sale.order"]
+        cls.SaleOrderLine = cls.env["sale.order.line"]
 
-        self.partner_18 = self.env.ref("base.res_partner_18")
-        self.pricelist = self.env.ref("product.list0")
-        self.product_4 = self.env.ref("product.product_product_4")
-        self.product_uom_unit = self.env.ref("uom.product_uom_unit")
-        self.normal_delivery = self.env.ref("delivery.normal_delivery_carrier")
+        cls.partner_18 = cls.env.ref("base.res_partner_18")
+        cls.pricelist = cls.env.ref("product.list0")
+        cls.product_4 = cls.env.ref("product.product_product_4")
+        cls.product_uom_unit = cls.env.ref("uom.product_uom_unit")
+        cls.normal_delivery = cls.env.ref("delivery.normal_delivery_carrier")
 
     def test_00_shipping_info(self):
         # Create sale order with Normal Delivery Charges
