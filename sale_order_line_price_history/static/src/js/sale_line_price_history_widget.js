@@ -48,7 +48,10 @@ odoo.define("sale_order_line_price_history.price_history_widget", function (requ
                         if (value && "price" in value) {
                             this.getParent().trigger_up("field_changed", {
                                 dataPointID: this.dataPointID,
-                                changes: {price_unit: value.price},
+                                changes: {
+                                    price_unit: value.price,
+                                    discount: value.discount,
+                                },
                             });
                         }
                     },
