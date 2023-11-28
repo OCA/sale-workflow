@@ -3,6 +3,7 @@
 from odoo.tests import Form
 
 from odoo.addons.product_packaging_container_deposit.tests.common import Common
+from odoo.tests import Form
 
 
 class TestSaleProductPackagingContainerDeposit(Common):
@@ -274,3 +275,21 @@ class TestSaleProductPackagingContainerDeposit(Common):
         order_line.qty_delivered = 200
         self.assertEqual(pallet_line.qty_delivered, 0)
         self.assertEqual(box_line.qty_delivered, 8)
+
+    def test_sale_product_packaging_container_deposit_quantities_case8(self):
+        """Test add and delete container deposit lines"""
+        sale_form = Form(self.env['sale.order'])
+        sale_form.partner_id = self.sale_order.partner_id
+        with sale_form.order_line.new() as line:
+            line.product_id = self.product_a
+            line.product_uom_qty = 280
+        sale = sale_form.save()
+        with sale_form.order_line.edit(0) as line:
+            line.product_uom_qty = 10
+        sale_form.save()
+        pallet_line = sale.order_line.filtered(
+            lambda ol: ol.product_id == self.pallet
+        )
+        # Pallet was deleted from order
+        self.assertFalse(pallet_line)
+
