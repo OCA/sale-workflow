@@ -24,13 +24,30 @@
                         name="product_set_line_ids"
                         nolabel="1"
                         colspan="4"
+                        widget="section_and_note_one2many"
                         domain="[('product_set_id', '=', product_set_id)]"
                     >
                         <tree>
                             <field
                                 name="product_id"
                                 options="{'no_open': True, 'no_create': True}"
+                                attrs="{'required': [('display_type', '=', False)]}"
                             />
+                            <field name="display_type" />
+                            <field name="name" widget="section_and_note_text" />
+                            <control>
+                                <create name="add_line_control" string="Add a line" />
+                                <create
+                                    name="add_section_control"
+                                    string="Add a section"
+                                    context="{'default_display_type': 'line_section'}"
+                                />
+                                <create
+                                    name="add_note_control"
+                                    string="Add a note"
+                                    context="{'default_display_type': 'line_note'}"
+                                />
+                            </control>
                         </tree>
                     </field>
                 </group>

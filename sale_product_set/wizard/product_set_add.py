@@ -123,4 +123,9 @@ class ProductSetAdd(models.TransientModel):
         line_values = set_line.prepare_sale_order_line_values(
             self.order_id, self.quantity, max_sequence=max_sequence
         )
+        if set_line.display_type:
+            line_values.update(
+                {"name": set_line.name, "display_type": set_line.display_type}
+            )
+
         return line_values

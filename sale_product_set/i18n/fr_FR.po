@@ -18,6 +18,21 @@ msgstr ""
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
+msgid "Add a line"
+msgstr ""
+
+#. module: sale_product_set
+#: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
+msgid "Add a note"
+msgstr ""
+
+#. module: sale_product_set
+#: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
+msgid "Add a section"
+msgstr ""
+
+#. module: sale_product_set
+#: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_order_stock_form
 msgid "Add set"
 msgstr "Ajout d'un Set"
