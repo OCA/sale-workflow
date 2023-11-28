@@ -43,6 +43,7 @@
 
             <field name="amount_total" position="after">
                 <field name="total_ordered_weight"/>
+                <field name="total_delivered_weight"/>
             </field>
 
             <xpath expr="//field[@name='order_line']/tree//field[@name='price_subtotal']" position="before">
