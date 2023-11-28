@@ -4,7 +4,7 @@
 {
     "name": "Default packaging for sales",
     "summary": "Set a default product packaging and simplify its usage in sales orders",
-    "version": "16.0.1.2.0",
+    "version": "16.0.1.2.1",
     "development_status": "Alpha",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
