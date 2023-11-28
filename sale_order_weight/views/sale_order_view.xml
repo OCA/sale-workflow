@@ -45,7 +45,7 @@
                 <field name="total_ordered_weight"/>
             </field>
 
-            <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
+            <xpath expr="//field[@name='order_line']/tree//field[@name='price_subtotal']" position="before">
                 <field name="unit_weight" invisible="1"/>
                 <field name="total_ordered_weight"/>
             </xpath>
