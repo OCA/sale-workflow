@@ -112,7 +112,11 @@ class SaleOrderRecommendation(models.TransientModel):
         return vals
 
     @api.onchange("order_id", "months", "line_amount", "use_delivery_address")
-    def _generate_recommendations(self):
+    def _remove_recommendations(self):
+        """Empty the list of recommendations."""
+        self.line_ids = False
+
+    def generate_recommendations(self):
         """Generate lines according to context sale order."""
         last_compute = "{}-{}-{}-{}".format(
             self.id, self.months, self.line_amount, self.use_delivery_address
@@ -173,6 +177,14 @@ class SaleOrderRecommendation(models.TransientModel):
         self.line_ids = recommendation_lines.sorted(
             key=lambda x: x.times_delivered, reverse=True
         )
+        # Reopen wizard
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": self._name,
+            "res_id": self.id,
+            "view_mode": "form",
+            "target": "new",
+        }
 
     def action_accept(self):
         """Propagate recommendations to sale order."""
