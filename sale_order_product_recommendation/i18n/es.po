@@ -22,8 +22,8 @@ msgstr ""
 msgid ""
 "<span class=\"o_form_label\">Add recommended with zero units included</span>"
 msgstr ""
-"<span class=\"o_form_label\">Añadir recomendado con cero unidades "
-"incluidas</span>"
+"<span class=\"o_form_label\">Añadir recomendado con cero unidades incluidas</"
+"span>"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
@@ -159,6 +159,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_config_settings__force_zero_units_included
 msgid "Force Zero Units Included"
 msgstr "Unidades Fuerza Cero Incluidas"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
+msgid "Get recommendations"
+msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__id
