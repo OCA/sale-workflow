@@ -132,7 +132,7 @@ class RecommendationCase(TransactionCase):
             .with_context(active_id=self.new_so.id)
             .create({})
         )
-        wizard._generate_recommendations()
+        wizard.generate_recommendations()
         return wizard
 
     def enable_force_zero_units_included(self):

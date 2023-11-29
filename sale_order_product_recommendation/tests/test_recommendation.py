@@ -50,7 +50,7 @@ class RecommendationCaseTests(RecommendationCase):
         self.assertEqual(wiz_line_prod3.units_included, 0)
         # Only 1 product if limited as such
         wizard.line_amount = 1
-        wizard._generate_recommendations()
+        wizard.generate_recommendations()
         self.assertEqual(len(wizard.line_ids), 2)
 
     def test_recommendations_archived_product(self):
@@ -62,7 +62,7 @@ class RecommendationCaseTests(RecommendationCase):
         self.prod_1.active = False
         self.prod_2.sale_ok = False
         wizard = self.wizard()
-        wizard._generate_recommendations()
+        wizard.generate_recommendations()
         self.assertNotIn(self.prod_1, wizard.line_ids.mapped("product_id"))
         self.assertNotIn(self.prod_2, wizard.line_ids.mapped("product_id"))
 
@@ -166,7 +166,7 @@ class RecommendationCaseTests(RecommendationCase):
         self.new_so.partner_shipping_id = self.partner_delivery
         wizard = self.wizard()
         wizard.use_delivery_address = True
-        wizard._generate_recommendations()
+        wizard.generate_recommendations()
         self.assertEqual(len(wizard.line_ids), 1)
         self.assertEqual(wizard.line_ids[0].product_id, self.prod_2)
 
@@ -178,7 +178,7 @@ class RecommendationCaseTests(RecommendationCase):
             .with_context(active_id=so.id)
             .create({})
         )
-        wizard._generate_recommendations()
+        wizard.generate_recommendations()
         wiz_line_prod1 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
         self.assertEqual(wiz_line_prod1.units_included, 0.0)
         wizard.action_accept()
@@ -187,7 +187,7 @@ class RecommendationCaseTests(RecommendationCase):
 
         self.enable_force_zero_units_included()
         order_line.product_uom_qty = 1
-        wizard._generate_recommendations()
+        wizard.generate_recommendations()
         wiz_line_prod1 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
         self.assertEqual(wiz_line_prod1.units_included, 0.0)
         wiz_line_prod1.units_included = 0
@@ -204,7 +204,7 @@ class RecommendationCaseTests(RecommendationCase):
             .with_context(active_id=so.id)
             .create({})
         )
-        wizard._generate_recommendations()
+        wizard.generate_recommendations()
         self.assertIn("service", wizard.line_ids.mapped("product_id.type"))
 
         # Add extended domain to exclude services
@@ -218,5 +218,5 @@ class RecommendationCaseTests(RecommendationCase):
             .with_context(active_id=so.id)
             .create({})
         )
-        wizard._generate_recommendations()
+        wizard.generate_recommendations()
         self.assertNotIn("service", wizard.line_ids.mapped("product_id.type"))
