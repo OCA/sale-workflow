@@ -1,6 +1,6 @@
 {
     "name": "Sale Order Lot Selection By Quant",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Sales Management",
     "author": "Ooops404, PyTech SRL, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
