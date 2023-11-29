@@ -8,6 +8,7 @@
     "category": "Sale",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
+    "maintainers": ["CarlosRoca13", "sergio-teruel"],
     "license": "AGPL-3",
     "application": False,
     "installable": True,

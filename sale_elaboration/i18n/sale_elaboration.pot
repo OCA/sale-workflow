@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-01 09:40+0000\n"
+"PO-Revision-Date: 2023-12-01 09:40+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -44,11 +46,6 @@ msgstr ""
 #. module: sale_elaboration
 #: model:ir.model.constraint,message:sale_elaboration.constraint_product_elaboration_code_uniq
 msgid "Code must be unique!"
-msgstr ""
-
-#. module: sale_elaboration
-#: model:ir.model,name:sale_elaboration.model_res_config_settings
-msgid "Config Settings"
 msgstr ""
 
 #. module: sale_elaboration
@@ -204,6 +201,11 @@ msgid "Name must be unique!"
 msgstr ""
 
 #. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_res_config_settings
+msgid "Procurement purchase grouping settings"
+msgstr ""
+
+#. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_product_product
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__product_id
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
@@ -298,4 +300,10 @@ msgstr ""
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_stock_picking
 msgid "Transfer"
+msgstr ""
+
+#. module: sale_elaboration
+#: code:addons/sale_elaboration/models/sale_order.py:0
+#, python-format
+msgid "Unsupported operator %s for searching on is_prepared"
 msgstr ""
