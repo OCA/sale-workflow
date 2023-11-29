@@ -4,13 +4,14 @@
 {
     "name": "Sale Order Product Recommendation",
     "summary": "Recommend products to sell to customer based on history",
-    "version": "16.0.1.1.0",
+    "version": "16.0.1.2.0",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
+    "maintainers": ["sergio-teruel", "rafaelbn", "yajo"],
     "depends": [
         "sale",
     ],
