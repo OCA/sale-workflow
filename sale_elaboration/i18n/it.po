@@ -87,6 +87,11 @@ msgid "Display Name"
 msgstr "Nome visualizzato"
 
 #. module: sale_elaboration
+#: model:ir.model.fields,help:sale_elaboration.field_sale_order_line__is_prepared
+msgid "Dummy field to be able to find prepared lines"
+msgstr ""
+
+#. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__elaboration_price_unit
 msgid "Elab. Price"
 msgstr "Elab. prezzo"
@@ -187,6 +192,17 @@ msgstr "Includi note elaborazione nell operazioni di prelievo"
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
 msgid "Is Elaboration"
 msgstr "È elaborazione"
+
+#. module: sale_elaboration
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
+msgid "Is Not Prepared"
+msgstr ""
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__is_prepared
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
+msgid "Is Prepared"
+msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration____last_update
@@ -313,6 +329,13 @@ msgstr "Regola di giacenza"
 #: model:ir.model,name:sale_elaboration.model_stock_picking
 msgid "Transfer"
 msgstr "Trasferimento"
+
+#. module: sale_elaboration
+#. odoo-python
+#: code:addons/sale_elaboration/models/sale_order.py:0
+#, python-format
+msgid "Unsupported operator %s for searching on is_prepared"
+msgstr ""
 
 #~ msgid "<strong>Elab.</strong>"
 #~ msgstr "<strong>Elab.</strong>"

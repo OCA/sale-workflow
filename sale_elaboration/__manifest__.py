@@ -3,7 +3,7 @@
 {
     "name": "Sale Elaboration",
     "summary": "Set an elaboration for any sale line",
-    "version": "16.0.1.5.3",
+    "version": "16.0.1.7.0",
     "development_status": "Production/Stable",
     "category": "Sale",
     "website": "https://github.com/OCA/sale-workflow",
@@ -28,5 +28,5 @@
         "reports/report_picking_operations.xml",
     ],
     "pre_init_hook": "pre_init_hook",
-    "maintainers": ["rafaelbn", "yajo"],
+    "maintainers": ["CarlosRoca13", "rafaelbn", "sergio-teruel", "yajo"],
 }
