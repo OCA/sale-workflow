@@ -11,6 +11,7 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
+    "maintainers": ["sergio-teruel", "rafaelbn", "yajo"],
     "depends": [
         "sale",
     ],
