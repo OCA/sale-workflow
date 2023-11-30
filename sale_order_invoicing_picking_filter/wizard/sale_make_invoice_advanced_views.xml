@@ -1,0 +1,33 @@
+<odoo>
+<!-- Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
+ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+    <record id="sale_order_invoiceing_picking_filter_invoice_wizard" model="ir.ui.view">
+        <field name="name">sale.order.invoiceing.picking.filter.invoice.wizard</field>
+        <field name="model">sale.advance.payment.inv</field>
+        <field name="inherit_id" ref="sale.view_sale_advance_payment_inv" />
+        <field name="arch" type="xml">
+            <group name="down_payment_specification" position="after">
+                <group>
+                    <field
+                        name="stock_picking_ids"
+                        widget="many2many_tags"
+                        options="{'no_create_edit': True, 'no_create': True}"
+                        attrs="{'invisible': [('advance_payment_method', '!=', 'delivered')]}"
+                    />
+                </group>
+                <group>
+                    <field
+                        name="inv_service_products"
+                        attrs="{'invisible': [('stock_picking_ids', '=', [])]}"
+                    />
+                    <field name="there_are_service_product" invisible="1" />
+                </group>
+                    <span
+                    attrs="{'invisible': [('there_are_service_product', '=', False)]}"
+                >
+                        There are any non-invoiced service products among the selected pickings
+                    </span>
+            </group>
+        </field>
+    </record>
+</odoo>
