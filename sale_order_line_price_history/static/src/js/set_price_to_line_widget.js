@@ -21,7 +21,10 @@ odoo.define(
             _onClickSetPrice: function () {
                 this.do_action({
                     type: "ir.actions.act_window_close",
-                    infos: {price: this.record.data.price_unit},
+                    infos: {
+                        price: this.record.data.price_unit,
+                        discount: this.record.data.discount,
+                    },
                 });
             },
         });
