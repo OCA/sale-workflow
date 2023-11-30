@@ -23,7 +23,7 @@
                                 <field name="state" />
                                 <field name="type_id" />
                                 <field name="combination_id" />
-                                <field name="partner_id" />
+                                <field name="partner_ids" widget="many2many_tags" />
                                 <field name="start" />
                                 <field name="stop" />
                             </tree>
