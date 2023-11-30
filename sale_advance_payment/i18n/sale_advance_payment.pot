@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -45,6 +45,7 @@ msgid "Amount in Order Currency"
 msgstr ""
 
 #. module: sale_advance_payment
+#. odoo-python
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
 #, python-format
 msgid "Amount of advance must be positive."
@@ -97,6 +98,7 @@ msgid "Inbound"
 msgstr ""
 
 #. module: sale_advance_payment
+#. odoo-python
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
 #, python-format
 msgid "Inbound amount of advance is greater than residual amount on sale"
@@ -168,6 +170,7 @@ msgid "Outbound"
 msgstr ""
 
 #. module: sale_advance_payment
+#. odoo-python
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
 #, python-format
 msgid "Outbound amount of advance is greater than the advanced paid amount"
@@ -235,6 +238,7 @@ msgid "Sales Order"
 msgstr ""
 
 #. module: sale_advance_payment
+#. odoo-python
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
 #, python-format
 msgid ""
