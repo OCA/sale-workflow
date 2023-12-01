@@ -25,9 +25,8 @@ class PackagingRecommendationCase(test_recommendation_common.RecommendationCase)
                     "name": "Dozen",
                     "product_id": cls.prod_1.id,
                     "qty": 12,
-                    "sales_default": True,
                     "sales": True,
-                    "sequence": 20,
+                    "sequence": 1,
                 },
                 # It can be also sold in big boxes
                 {
@@ -47,7 +46,7 @@ class PackagingRecommendationCase(test_recommendation_common.RecommendationCase)
                 },
             ]
         )
-        # Product 2 has only one sale packaging, but by default is sold by units
+        # Product 2 has only one sale packaging, used by default
         cls.prod_2_dozen = cls.env["product.packaging"].create(
             {
                 "name": "Dozen",
@@ -65,7 +64,7 @@ class PackagingRecommendationCase(test_recommendation_common.RecommendationCase)
             [
                 {
                     "product_id": self.prod_2.id,
-                    "product_packaging_id": False,
+                    "product_packaging_id": self.prod_2_dozen.id,
                     "product_packaging_qty": 0,
                     "units_included": 0,
                 },
@@ -88,11 +87,13 @@ class PackagingRecommendationCase(test_recommendation_common.RecommendationCase)
         """User makes changes in lines, and they behave as expected."""
         wiz_f = Form(self.wizard())
         with wiz_f.line_ids.edit(0) as line:
-            self.assertFalse(line.product_packaging_id)
+            # Setting to zero works as expected
+            line.product_packaging_qty = 0
+            self.assertEqual(line.product_packaging_id, self.prod_2_dozen)
             self.assertEqual(line.product_packaging_qty, 0)
             self.assertEqual(line.units_included, 0)
             # I want to sell 2 dozens of product 2
-            line.product_packaging_id = self.prod_2_dozen
+            self.assertEqual(line.product_packaging_id, self.prod_2_dozen)
             self.assertEqual(line.product_packaging_qty, 0)
             self.assertEqual(line.units_included, 0)
             line.product_packaging_qty = 2
