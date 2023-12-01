@@ -45,9 +45,11 @@ class StockPicking(models.Model):
     def _get_expected_expedition_date(self):
         """Retrieves the latest expedition date from date_deadline"""
         self.ensure_one()
+        date_deadline = self.date_deadline
+        if not date_deadline:
+            return fields.Datetime.now()
         sale_line_model = self.env["sale.order.line"]
         delays = self._get_delays()
-        date_deadline = self.date_deadline
         calendar = self._get_warehouse_calendar()
         return sale_line_model._expedition_date_from_delivery_date(
             date_deadline - timedelta(days=7), # TODO: we don't know the start of the date range
@@ -96,7 +98,7 @@ class StockPicking(models.Model):
         now = fields.Datetime.now()
         sol_model = self.env["sale.order.line"]
         for record in self:
-            delivery_date = record.date_deadline or record.date_done
+            delivery_date = record.date_deadline or record.date_done or now
             next_expedition_date = record._get_next_expedition_date(now)
             if record._is_late_to_ship(next_expedition_date):
                 delays = record._get_delays()
