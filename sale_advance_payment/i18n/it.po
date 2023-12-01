@@ -1,0 +1,255 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_advance_payment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-02-05 09:41+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_advance_payment
+#: model:ir.model,name:sale_advance_payment.model_account_voucher_wizard
+msgid "Account Voucher Wizard"
+msgstr "Procedura per ricevuta contabile"
+
+#. module: sale_advance_payment
+#: model:ir.actions.act_window,name:sale_advance_payment.action_view_account_voucher_wizard
+#: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
+msgid "Advance Payment"
+msgstr "Pagamento anticipato"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_sale_order__advance_payment_status
+msgid "Advance Payment Status"
+msgstr "Stato pagamento anticipato"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__amount_total
+msgid "Amount Total"
+msgstr "Importo totale"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__amount_advance
+msgid "Amount advanced"
+msgstr "Importo anticipato"
+
+#. module: sale_advance_payment
+#: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
+msgid "Amount in Order Currency"
+msgstr "Importo nella valuta dell'ordine"
+
+#. module: sale_advance_payment
+#. odoo-python
+#: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
+#, python-format
+msgid "Amount of advance must be positive."
+msgstr "L'importo dell'anticipo deve essere positivo."
+
+#. module: sale_advance_payment
+#: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__currency_amount
+msgid "Curr. amount"
+msgstr "Importo valuta"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__currency_id
+#: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
+msgid "Currency"
+msgstr "Valuta"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__date
+msgid "Date"
+msgstr "Data"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__inbound
+msgid "Inbound"
+msgstr "In entrata"
+
+#. module: sale_advance_payment
+#. odoo-python
+#: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
+#, python-format
+msgid "Inbound amount of advance is greater than residual amount on sale"
+msgstr ""
+"L'importo dell'anticipo in entrata è superiore all'importo residuo in vendita"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__journal_id
+msgid "Journal"
+msgstr "Registro"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__journal_currency_id
+msgid "Journal Currency"
+msgstr "Valuta registro"
+
+#. module: sale_advance_payment
+#: model:ir.model,name:sale_advance_payment.model_account_move
+msgid "Journal Entry"
+msgstr "Registrazione contabile"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: sale_advance_payment
+#: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
+msgid "Make advance payment"
+msgstr "Effettua il pagamento anticipato"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields.selection,name:sale_advance_payment.selection__sale_order__advance_payment_status__not_paid
+msgid "Not Paid"
+msgstr "Non pagato"
+
+#. module: sale_advance_payment
+#: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
+msgid "Operation"
+msgstr "Operazione"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__order_id
+msgid "Order"
+msgstr "Ordine"
+
+#. module: sale_advance_payment
+#: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
+msgid "Order Currency"
+msgstr "Valuta ordine"
+
+#. module: sale_advance_payment
+#: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
+msgid "Order Due Amount"
+msgstr "Importo dovuto dell'ordine"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__outbound
+msgid "Outbound"
+msgstr "In uscita"
+
+#. module: sale_advance_payment
+#. odoo-python
+#: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
+#, python-format
+msgid "Outbound amount of advance is greater than the advanced paid amount"
+msgstr ""
+"L'importo dell'anticipo in uscita è superiore all'importo dell'anticipo "
+"pagato"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields.selection,name:sale_advance_payment.selection__sale_order__advance_payment_status__paid
+msgid "Paid"
+msgstr "Pagato"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields.selection,name:sale_advance_payment.selection__sale_order__advance_payment_status__partial
+msgid "Partially Paid"
+msgstr "Pagato parzialmente"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_sale_order__account_payment_ids
+#: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_order_form
+msgid "Pay sale advanced"
+msgstr "Paga anticipo vendita"
+
+#. module: sale_advance_payment
+#: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
+msgid "Payment Method"
+msgstr "Metodo di pagamento"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__payment_type
+msgid "Payment Type"
+msgstr "Tipo pagamento"
+
+#. module: sale_advance_payment
+#: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_order_form
+msgid "Payment advances"
+msgstr "Pagamenti anticipati"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_sale_order__payment_line_ids
+msgid "Payment move lines"
+msgstr "Righe movimento pagamento"
+
+#. module: sale_advance_payment
+#: model:ir.model,name:sale_advance_payment.model_account_payment
+msgid "Payments"
+msgstr "Pagamenti"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__payment_ref
+msgid "Ref."
+msgstr "Rif."
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_sale_order__amount_residual
+msgid "Residual amount"
+msgstr "Importo residuo"
+
+#. module: sale_advance_payment
+#: model:ir.model.fields,field_description:sale_advance_payment.field_account_payment__sale_id
+msgid "Sale"
+msgstr "Vendita"
+
+#. module: sale_advance_payment
+#: model:ir.model,name:sale_advance_payment.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: sale_advance_payment
+#. odoo-python
+#: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
+#, python-format
+msgid ""
+"The amount to advance must always be positive. Please use the payment type "
+"to indicate if this is an inbound or an outbound payment."
+msgstr ""
+"L'importo da anticipare deve essere sempre positivo. Utilizzare il tipo di "
+"pagamento per indicare se si tratta di un pagamento in entrata o in uscita."
