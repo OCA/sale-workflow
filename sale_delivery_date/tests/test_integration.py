@@ -147,7 +147,7 @@ class TestSaleDeliveryDate(Common):
         self.assertEqual(str(picking.scheduled_date.date()), expected_work_start_date)
         self.assertEqual(str(order.expected_date.date()), expected_delivery_date)
 
-    @freeze_time("2023-07-06 16:00:00")
+    @freeze_time("2023-07-06 15:00:00")
     def test_order_after_cutoff_to_delivery_tomorrow(self):
         # Let's say we can ask a guy in the warehouse to work on this order
         # right now to be ready to deliver today.
@@ -207,7 +207,7 @@ class TestSaleDeliveryDate(Common):
             str(picking.expected_delivery_date.date()), "2023-07-07"
         )
 
-    @freeze_time("2023-08-18 13:05:50")
+    @freeze_time("2023-08-18 13:05:50") # 15:05:50 Europe/Brussels
     def test_friday_order_with_commitment_date(self):
         order = self.order_warehouse_cutoff
         commitment_date = "2023-08-23"

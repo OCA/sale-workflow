@@ -73,8 +73,8 @@ class TestBackorderDate(Common):
 
     def test_backorder_before_scheduled_date(self):
         # If we want the backorder to be delivered this week, then it has to be
-        # created before monday's cutoff.
-        # If so, it will be delivered friday, at 06:00
+        # created before the planned expedition (THURSDAY)
+        # If so, scheduled date and date deadline won't be postponed.
         with freeze_time(f"{THURSDAY} {BEFORE_CUTOFF_UTC}"):
             backorder = self._create_backorder()
         self.assertEqual(str(backorder.scheduled_date), f"{THURSDAY} {CUTOFF_UTC}")
@@ -83,10 +83,11 @@ class TestBackorderDate(Common):
         )
 
     def test_backorder_after_scheduled_date(self):
-        # If we want the backorder to be delivered this week, then it has to be
-        # created before monday's cutoff.
-        # If so, it will be delivered friday, at 06:00
-        with freeze_time(f"{THURSDAY} {AFTER_CUTOFF_UTC}"):
+        # If we want the backorder to be delivered this week, it has to be created
+        # before the planned expedition(THURSDAY)
+        # Here, we're creating the backorder on FRIDAY, it should be postponed
+        # to next THURSDAY for preparation, and next FRIDAY for delivery
+        with freeze_time(f"{FRIDAY} {BEFORE_CUTOFF_UTC}"):
             backorder = self._create_backorder()
         self.assertEqual(str(backorder.scheduled_date), f"{NEXT_THURSDAY} {CUTOFF_UTC}")
         self.assertEqual(
