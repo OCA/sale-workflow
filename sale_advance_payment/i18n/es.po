@@ -48,6 +48,7 @@ msgid "Amount in Order Currency"
 msgstr "Importe en la divisa del pedido"
 
 #. module: sale_advance_payment
+#. odoo-python
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
 #, python-format
 msgid "Amount of advance must be positive."
@@ -100,6 +101,7 @@ msgid "Inbound"
 msgstr "Entrante"
 
 #. module: sale_advance_payment
+#. odoo-python
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
 #, python-format
 msgid "Inbound amount of advance is greater than residual amount on sale"
@@ -173,6 +175,7 @@ msgid "Outbound"
 msgstr "Saliente"
 
 #. module: sale_advance_payment
+#. odoo-python
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
 #, python-format
 msgid "Outbound amount of advance is greater than the advanced paid amount"
@@ -242,6 +245,7 @@ msgid "Sales Order"
 msgstr "Órdenes de Venta"
 
 #. module: sale_advance_payment
+#. odoo-python
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
 #, python-format
 msgid ""
