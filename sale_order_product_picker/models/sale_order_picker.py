@@ -6,13 +6,19 @@ from odoo import api, fields, models
 from odoo.tools import float_compare
 
 
-class SaleOrderPicker(models.Model):
+class SaleOrderPicker(models.TransientModel):
     _name = "sale.order.picker"
     _description = "sale.order.picker"
 
     order_id = fields.Many2one(comodel_name="sale.order")
     product_id = fields.Many2one(comodel_name="product.product")
     product_image = fields.Image(related="product_id.image_256")
+    product_packaging_id = fields.Many2one(
+        comodel_name="product.packaging",
+        string="Packaging",
+        compute="_compute_packaging",
+    )
+    qty_per_packaging = fields.Float(related="product_packaging_id.qty")
     sale_line_id = fields.Many2one(comodel_name="sale.order.line")
     is_in_order = fields.Boolean()
     product_uom_qty = fields.Float(string="Quantity", digits="Product Unit of Measure")
@@ -68,6 +74,14 @@ class SaleOrderPicker(models.Model):
         )
         for line in self:
             line.qty_available = line.product_id[available_field]
+
+    @api.depends("product_id", "sale_line_id")
+    def _compute_packaging(self):
+        """Assign the line packaging, or the default one."""
+        for line in self:
+            line.product_packaging_id = line.product_id.packaging_ids.filtered("sales")[
+                :1
+            ]
 
     def _get_last_sale_price_product(self, use_delivery_address=False):
         """

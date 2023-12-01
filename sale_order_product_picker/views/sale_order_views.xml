@@ -327,6 +327,30 @@
                                                                     />
                                                                 </strong>
                                                             </a>
+                                                            <a
+                                                                role="button"
+                                                                class="btn btn-secondary o_picker_quick_add_packaging w-100"
+                                                                style="padding-left:0px; padding-right:0px;"
+                                                                groups="product.group_stock_packaging"
+                                                                attrs="{'invisible': [('product_packaging_id', '=', False)]}"
+                                                            >
+                                                                <strong
+                                                                    style="font-size: 1.2em"
+                                                                >+1
+                                                                </strong>
+                                                                <strong
+                                                                    style="font-size: 0.8em"
+                                                                >
+                                                                    <field
+                                                                        name="product_packaging_id"
+                                                                        readonly="1"
+                                                                    />
+                                                                    <field
+                                                                        name="qty_per_packaging"
+                                                                        invisible="1"
+                                                                    />
+                                                                </strong>
+                                                            </a>
                                                         </div>
                                                     </div>
                                                     <div class="row">

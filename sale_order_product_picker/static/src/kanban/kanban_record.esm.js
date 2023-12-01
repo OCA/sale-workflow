@@ -85,6 +85,8 @@ patch(KanbanRecord.prototype, "sale_order_product_picker.KanbanRecord", {
         if ($(ev.target).closest(".o_picker_quick_add").length) {
             // Quick add clicked
             this._onQuickAddClicked();
+        } else if ($(ev.target).closest(".o_picker_quick_add_packaging").length) {
+            this._onQuickAddPackagingClicked();
         } else if ($(ev.target).closest(".o_picker_form_add").length) {
             // Duplicate line clicked
             this._onFormAddClicked();
@@ -163,6 +165,76 @@ patch(KanbanRecord.prototype, "sale_order_product_picker.KanbanRecord", {
             this._openMultiLineModalPicker(x2mList, orderLines);
         }
         this.disableGlobalClick = false;
+    },
+    /**
+     * Add +1 packaging quickly to lines.
+     *
+     * @private
+     */
+    async _onQuickAddPackagingClicked() {
+        this.disableGlobalClick = true;
+        try {
+            const {record} = this.props;
+            const x2mList = record.model.root.data.order_line;
+            const productLines = x2mList.records.filter(
+                (line) => line.data.product_id[0] === record.data.product_id[0]
+            );
+            const pkgLines = productLines.filter(
+                (line) =>
+                    line.data.product_uom_qty % record.data.qty_per_packaging === 0
+            );
+            if (!pkgLines.length) {
+                // Add new line with 1 packaging
+                var ctx = this.contextPicker();
+                ctx.default_product_packaging_id = record.data.product_packaging_id[0];
+                ctx.default_product_packaging_qty = 1;
+                ctx.default_product_uom_qty = record.data.qty_per_packaging;
+                const lineRec = await x2mList.addNew({
+                    position: "bottom",
+                    context: ctx,
+                });
+                record.update({
+                    product_uom_qty: lineRec.data.product_uom_qty,
+                    is_in_order: true,
+                });
+            } else if (pkgLines.length === 1) {
+                // Update existing line
+                const pickedRecord = pkgLines[0];
+                const new_qty =
+                    pickedRecord.data.product_uom_qty + record.data.qty_per_packaging;
+                await x2mList.applyCommands("order_line", [
+                    {
+                        operation: "UPDATE",
+                        record: pickedRecord,
+                        data: {
+                            product_packaging_id: {
+                                id: `product.packaging_${record.data.product_packaging_id[0]}`,
+                                display_name: record.data.product_packaging_id[1],
+                            },
+                            product_packaging_qty:
+                                new_qty / record.data.qty_per_packaging,
+                            product_uom_qty: new_qty,
+                        },
+                    },
+                ]);
+                // Update picker record; its qty is the sum of all lines with
+                // the same product, no matter their packaging
+                record.update({
+                    product_uom_qty: x2mList.records.reduce(
+                        (acc, line) =>
+                            line.data.product_id[0] === record.data.product_id[0]
+                                ? acc + line.data.product_uom_qty
+                                : acc,
+                        0
+                    ),
+                });
+            } else {
+                // Manual edition per line
+                this._openMultiLineModalPicker(x2mList, pkgLines);
+            }
+        } finally {
+            this.disableGlobalClick = false;
+        }
     },
     /**
      * Add new record using form to lines.
