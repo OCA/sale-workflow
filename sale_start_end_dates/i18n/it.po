@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-17 02:40+0000\n"
-"PO-Revision-Date: 2023-10-13 14:38+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-12-01 15:35+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -37,6 +37,8 @@ msgid ""
 "Default Start Date (%(start_date)s) should be before or be the same as "
 "Default End Date (%(end_date)s) for sale order '%(name)s'."
 msgstr ""
+"La data inizio predefinita (%(start_date)s) deve essere antecedente o uguale "
+"alla data fine (%(end_date)s) per lordine di vendita '%(name)s'."
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__end_date
@@ -49,6 +51,8 @@ msgid ""
 "If this option is active, the user will have to enter a Start Date and an "
 "End Date on the invoice lines that have this product."
 msgstr ""
+"Se questa opzione è attiva, l'utente dovrà inserire data inizio e data fine "
+"nelle righe fattura che contengono questo prodotto."
 
 #. module: sale_start_end_dates
 #. odoo-python
