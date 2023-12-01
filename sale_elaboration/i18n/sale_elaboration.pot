@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-01 09:40+0000\n"
-"PO-Revision-Date: 2023-12-01 09:40+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -49,6 +47,11 @@ msgid "Code must be unique!"
 msgstr ""
 
 #. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__create_uid
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__create_uid
 msgid "Created by"
@@ -81,6 +84,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__display_name
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: sale_elaboration
+#: model:ir.model.fields,help:sale_elaboration.field_sale_order_line__is_prepared
+msgid "Dummy field to be able to find prepared lines"
 msgstr ""
 
 #. module: sale_elaboration
@@ -172,6 +180,17 @@ msgid "Is Elaboration"
 msgstr ""
 
 #. module: sale_elaboration
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
+msgid "Is Not Prepared"
+msgstr ""
+
+#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__is_prepared
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
+msgid "Is Prepared"
+msgstr ""
+
+#. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration____last_update
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile____last_update
 msgid "Last Modified on"
@@ -198,11 +217,6 @@ msgstr ""
 #. module: sale_elaboration
 #: model:ir.model.constraint,message:sale_elaboration.constraint_product_elaboration_name_uniq
 msgid "Name must be unique!"
-msgstr ""
-
-#. module: sale_elaboration
-#: model:ir.model,name:sale_elaboration.model_res_config_settings
-msgid "Procurement purchase grouping settings"
 msgstr ""
 
 #. module: sale_elaboration
