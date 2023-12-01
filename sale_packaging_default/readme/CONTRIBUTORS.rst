@@ -1,1 +1,0 @@
-* Jairo Llopis (`Moduon <https://www.moduon.team/>`__)
