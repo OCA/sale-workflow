@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-01 07:17+0000\n"
+"PO-Revision-Date: 2023-12-01 07:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -106,6 +108,11 @@ msgstr ""
 #. module: sale_invoice_frequency
 #: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_invoice_frequency__write_date
 msgid "Last Updated on"
+msgstr ""
+
+#. module: sale_invoice_frequency
+#: model:sale.invoice.frequency,name:sale_invoice_frequency.sale_invoice_frequency_monthly
+msgid "Monthly"
 msgstr ""
 
 #. module: sale_invoice_frequency
