@@ -11,6 +11,9 @@
     <record id="sale_invoice_frequency_biweekly" model="sale.invoice.frequency">
         <field name="name">Biweekly</field>
     </record>
+    <record id="sale_invoice_frequency_monthly" model="sale.invoice.frequency">
+        <field name="name">Monthly</field>
+    </record>
     <record id="sale_invoice_frequency_quarterly" model="sale.invoice.frequency">
         <field name="name">Quarterly</field>
     </record>
