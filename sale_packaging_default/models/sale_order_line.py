@@ -26,7 +26,7 @@ class SaleOrderLine(models.Model):
             if line.product_id and not line.product_packaging_id:
                 line.product_packaging_id = (
                     line.product_id.packaging_ids.filtered_domain(
-                        [("sales_default", "=", True), ("sales", "=", True)]
+                        [("sales", "=", True)]
                     )[:1]
                 )
         result = super()._compute_product_packaging_id()
