@@ -152,7 +152,6 @@ class TestMultiCompany(TestCommon):
         return order
 
     def test_sale_order_multicompany(self):
-
         self.env.user.company_id = self.env.ref("base.main_company")
         order_fr = self.create_auto_wkf_order(
             self.company_fr, self.customer_fr, self.product_fr, 5
