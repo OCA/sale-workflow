@@ -43,9 +43,10 @@ class ResPartner(models.Model):
                                (Leave empty to use 7 days or 1 week)
         :return: Datetime object
         """
-        self.ensure_one()
         if not from_date:
             from_date = datetime.now()
+        if not self:
+            return from_date
         if self.is_in_delivery_window(from_date):
             return from_date
         if timedelta_days is None:

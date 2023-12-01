@@ -265,13 +265,20 @@ class SaleOrderLine(models.Model):
                 calendar=calendar,
             )
             # TODO /!\ not sure about this.
-            tz_string = self.order_id.partner_id.tz or "UTC"
+            if partner:
+                tz_string = partner.tz or "UTC"
+            else:
+                tz_string = "UTC"
             earliest_delivery_date_naive = self._get_naive_date_from_datetime(
                 open_delivery_datetime, tz_string
             )
         else:
             earliest_delivery_date_naive = expedition_date
+        if not partner:
+            # If no partner, do not apply delivery window
+            return earliest_delivery_date_naive
         return self._get_next_open_customer_window(partner, calendar, from_date=earliest_delivery_date_naive)
+
 
     def _get_next_open_customer_window(self, partner, calendar, from_date=None):
         if from_date is None:
@@ -398,7 +405,7 @@ class SaleOrderLine(models.Model):
     @api.model
     def _apply_customer_window(self, delivery_date, partner):
         """Postpone a delivery date according to customer's delivery preferences"""
-        if partner.delivery_time_preference == "anytime":
+        if not partner or partner.delivery_time_preference == "anytime":
             return delivery_date
         return partner.next_delivery_window_start_datetime(from_date=delivery_date)
 

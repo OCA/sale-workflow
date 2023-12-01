@@ -256,6 +256,13 @@ class TestMethods(Common):
             res = self.order_line._apply_customer_window(delivery_date, self.partner)
             self.assertEqual(res, delivery_date)
 
+    def test_apply_customer_window_no_partner(self):
+        # If no partner, date is not postponed
+        partner = self.env["res.partner"]
+        delivery_date = "2023-12-01 00:00:00"
+        res = self.order_line._apply_customer_window(delivery_date, partner)
+        self.assertEqual(delivery_date, res)
+
     def test_apply_customer_window_workdays(self):
         # In this case, input date is returned without any modification, no
         # matter the day of the week
@@ -481,3 +488,12 @@ class TestMethods(Common):
             picking.invalidate_cache(["expected_delivery_date"])
             with freeze_time(date_):
                 self.assertDateNotInThePast(picking.expected_delivery_date)
+
+    def test_get_next_open_customer_window_no_partner_no_calendar(self):
+        # If no partner nor calendar, date is not postponed
+        from_date = datetime(2023, 12, 1 ,0 ,0, 0)
+        calendar = self.env["resource.calendar"]
+        partner = self.env["res.partner"]
+        order_line = self.env["sale.order.line"]
+        res = order_line._get_next_open_customer_window(partner, calendar, from_date=from_date)
+        self.assertEqual(from_date, res)
