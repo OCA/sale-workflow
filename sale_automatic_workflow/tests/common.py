@@ -12,7 +12,7 @@ class TestCommon(TransactionCase):
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
 
 
-class TestAutomaticWorkflowMixin(object):
+class TestAutomaticWorkflowMixin:
     def create_sale_order(self, workflow, override=None):
         sale_obj = self.env["sale.order"]
 

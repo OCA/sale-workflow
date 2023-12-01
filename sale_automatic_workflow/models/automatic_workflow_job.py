@@ -40,9 +40,9 @@ class AutomaticWorkflowJob(models.Model):
         if not self.env["sale.order"].search_count(
             [("id", "=", sale.id)] + domain_filter
         ):
-            return "{} {} job bypassed".format(sale.display_name, sale)
+            return f"{sale.display_name} {sale} job bypassed"
         sale.action_confirm()
-        return "{} {} confirmed successfully".format(sale.display_name, sale)
+        return f"{sale.display_name} {sale} confirmed successfully"
 
     def _do_send_order_confirmation_mail(self, sale):
         """Send order confirmation mail, while filtering to make sure the order is
@@ -50,13 +50,11 @@ class AutomaticWorkflowJob(models.Model):
         if not self.env["sale.order"].search_count(
             [("id", "=", sale.id), ("state", "=", "sale")]
         ):
-            return "{} {} job bypassed".format(sale.display_name, sale)
+            return f"{sale.display_name} {sale} job bypassed"
         if sale.user_id:
             sale = sale.with_user(sale.user_id)
         sale._send_order_confirmation_mail()
-        return "{} {} send order confirmation mail successfully".format(
-            sale.display_name, sale
-        )
+        return f"{sale.display_name} {sale} send order confirmation mail successfully"
 
     @api.model
     def _validate_sale_orders(self, order_filter):
@@ -76,12 +74,12 @@ class AutomaticWorkflowJob(models.Model):
         if not self.env["sale.order"].search_count(
             [("id", "=", sale.id)] + domain_filter
         ):
-            return "{} {} job bypassed".format(sale.display_name, sale)
+            return f"{sale.display_name} {sale} job bypassed"
         payment = self.env["sale.advance.payment.inv"].create(
             {"sale_order_ids": sale.ids}
         )
         payment.with_context(active_model="sale.order").create_invoices()
-        return "{} {} create invoice successfully".format(sale.display_name, sale)
+        return f"{sale.display_name} {sale} create invoice successfully"
 
     @api.model
     def _create_invoices(self, create_filter):
@@ -99,11 +97,9 @@ class AutomaticWorkflowJob(models.Model):
         if not self.env["account.move"].search_count(
             [("id", "=", invoice.id)] + domain_filter
         ):
-            return "{} {} job bypassed".format(invoice.display_name, invoice)
+            return f"{invoice.display_name} {invoice} job bypassed"
         invoice.with_company(invoice.company_id).action_post()
-        return "{} {} validate invoice successfully".format(
-            invoice.display_name, invoice
-        )
+        return f"{invoice.display_name} {invoice} validate invoice successfully"
 
     @api.model
     def _validate_invoices(self, validate_invoice_filter):
@@ -121,11 +117,9 @@ class AutomaticWorkflowJob(models.Model):
         if not self.env["stock.picking"].search_count(
             [("id", "=", picking.id)] + domain_filter
         ):
-            return "{} {} job bypassed".format(picking.display_name, picking)
+            return f"{picking.display_name} {picking} job bypassed"
         picking.validate_picking()
-        return "{} {} validate picking successfully".format(
-            picking.display_name, picking
-        )
+        return f"{picking.display_name} {picking} validate picking successfully"
 
     @api.model
     def _validate_pickings(self, picking_filter):
@@ -141,9 +135,9 @@ class AutomaticWorkflowJob(models.Model):
         if not self.env["sale.order"].search_count(
             [("id", "=", sale.id)] + domain_filter
         ):
-            return "{} {} job bypassed".format(sale.display_name, sale)
+            return f"{sale.display_name} {sale} job bypassed"
         sale.action_done()
-        return "{} {} set done successfully".format(sale.display_name, sale)
+        return f"{sale.display_name} {sale} set done successfully"
 
     @api.model
     def _sale_done(self, sale_done_filter):
