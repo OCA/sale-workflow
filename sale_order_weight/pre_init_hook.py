@@ -30,14 +30,6 @@ def pre_init_hook(cr):
         WHERE product_product.id = sale_order_line.product_id
         AND product_product.weight != 0;
         """)
-    _logger.info(
-        "Fast computation of sale_order_line.total_ordered_weight field"
-    )
-    cr.execute("""
-        UPDATE sale_order_line
-        SET unit_weight = unit_weight * product_uom_qty
-        WHERE unit_weight != 0;
-        """)
 
     _logger.info(
         "sale.order: Create 'total_ordered_weight' and"
