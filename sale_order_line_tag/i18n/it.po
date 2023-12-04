@@ -1,0 +1,78 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_tag
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-12-13 12:34+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_order_line_tag
+#: model:ir.model.fields,field_description:sale_order_line_tag.field_sale_order_line_tag__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: sale_order_line_tag
+#: model:ir.model.fields,field_description:sale_order_line_tag.field_sale_order_line_tag__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: sale_order_line_tag
+#: model:ir.model.fields,field_description:sale_order_line_tag.field_sale_order_line_tag__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_order_line_tag
+#: model:ir.model.fields,field_description:sale_order_line_tag.field_sale_order_line_tag__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_line_tag
+#: model:ir.model.fields,field_description:sale_order_line_tag.field_sale_order_line_tag____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: sale_order_line_tag
+#: model:ir.model.fields,field_description:sale_order_line_tag.field_sale_order_line_tag__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: sale_order_line_tag
+#: model:ir.model.fields,field_description:sale_order_line_tag.field_sale_order_line_tag__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: sale_order_line_tag
+#: model:ir.model.fields,field_description:sale_order_line_tag.field_sale_order_line_tag__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: sale_order_line_tag
+#: model:ir.model,name:sale_order_line_tag.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Riga ordine di vendita"
+
+#. module: sale_order_line_tag
+#: model:ir.model,name:sale_order_line_tag.model_sale_order_line_tag
+msgid "Sales Order Line Tag Model"
+msgstr "Modello etichetta riga ordine di vendita"
+
+#. module: sale_order_line_tag
+#: model:ir.actions.act_window,name:sale_order_line_tag.sale_order_line_tag_action
+#: model:ir.ui.menu,name:sale_order_line_tag.sale_order_line_tag_action_menu
+msgid "Sales Order Line Tags"
+msgstr "Etichette riga ordine di vendita"
+
+#. module: sale_order_line_tag
+#: model:ir.model.fields,field_description:sale_order_line_tag.field_sale_order_line__tag_ids
+msgid "Tags"
+msgstr "Etichette"
