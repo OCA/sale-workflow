@@ -115,6 +115,7 @@ addon | version | maintainers | summary
 [sale_pricelist_discount_decimal_precision](sale_pricelist_discount_decimal_precision/) | 14.0.1.0.1 |  | Use Discount decimal precision for pricelist items
 [sale_pricelist_from_commitment_date](sale_pricelist_from_commitment_date/) | 14.0.1.0.2 |  | Use sale order commitment date to compute line price from pricelist
 [sale_pricelist_item_advanced](sale_pricelist_item_advanced/) | 14.0.1.0.0 |  | Pricelist items menu
+[sale_probability_amount](sale_probability_amount/) | 14.0.1.0.1 |  | add a win probability on quotation
 [sale_procurement_amendment](sale_procurement_amendment/) | 14.0.1.0.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Allow to reflect confirmed sale lines quantity amendments to procurements
 [sale_procurement_group_by_commitment_date](sale_procurement_group_by_commitment_date/) | 14.0.1.0.0 |  | Groups pickings based on commitment date of order line
 [sale_procurement_group_by_line](sale_procurement_group_by_line/) | 14.0.1.0.2 |  | Base module for multiple procurement group by Sale order

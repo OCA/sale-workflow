@@ -102,6 +102,7 @@ setuptools.setup(
         'odoo14-addon-sale_pricelist_discount_decimal_precision',
         'odoo14-addon-sale_pricelist_from_commitment_date',
         'odoo14-addon-sale_pricelist_item_advanced',
+        'odoo14-addon-sale_probability_amount',
         'odoo14-addon-sale_procurement_amendment',
         'odoo14-addon-sale_procurement_group_by_commitment_date',
         'odoo14-addon-sale_procurement_group_by_line',
