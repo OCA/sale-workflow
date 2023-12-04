@@ -13,8 +13,3 @@ class SaleOrderLine(models.Model):
 
     def _get_product_qty_delivered_received_field(self):
         return "qty_delivered"
-
-    def _compute_qty_delivered(self):
-        res = super()._compute_qty_delivered()
-        self.mapped("order_id").update_order_container_deposit_quantity()
-        return res
