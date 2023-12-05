@@ -13,7 +13,6 @@
                     string="Total (Company Currency)"
                     widget="monetary"
                     options="{'currency_field': 'company_currency_id'}"
-                    optional="show"
                 />
             </field>
         </field>
@@ -47,7 +46,6 @@
                     string="Total (Company Currency)"
                     widget="monetary"
                     options="{'currency_field': 'company_currency_id'}"
-                    optional="show"
                 />
             </field>
         </field>
