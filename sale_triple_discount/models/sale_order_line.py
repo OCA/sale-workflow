@@ -70,6 +70,13 @@ class SaleOrderLine(models.Model):
         self.triple_discount_postprocess(prev_values)
         return res
 
+    @api.depends("discount2", "discount3", "discounting_type")
+    def _compute_price_reduce(self):
+        prev_values = self.triple_discount_preprocess()
+        res = super()._compute_price_reduce()
+        self.triple_discount_postprocess(prev_values)
+        return res
+
     _sql_constraints = [
         (
             "discount2_limit",
