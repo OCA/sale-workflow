@@ -4,7 +4,7 @@
 
 {
     "name": "Sale Order Line Cancel",
-    "version": "16.0.1.0.0",
+    "version": "14.0.1.0.0",
     "author": "Okia, BCIM, Camptocamp, ACSONE SA/NV, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Sales",

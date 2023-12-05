@@ -1,11 +1,10 @@
 # Copyright 2023 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import Command
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import SavepointCase
 
 
-class TestSaleOrderLineCancelBase(TransactionCase):
+class TestSaleOrderLineCancelBase(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -39,7 +38,9 @@ class TestSaleOrderLineCancelBase(TransactionCase):
         warehouse = cls.warehouse
         sale_order_model = cls.env["sale.order"]
         lines = [
-            Command.create(
+            (
+                0,
+                0,
                 {
                     "name": p.name,
                     "product_id": p.id,
