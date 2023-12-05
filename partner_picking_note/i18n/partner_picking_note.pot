@@ -1,0 +1,46 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* partner_picking_note
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-05 08:41+0000\n"
+"PO-Revision-Date: 2023-12-05 08:41+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: partner_picking_note
+#: model:ir.model,name:partner_picking_note.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: partner_picking_note
+#: model:ir.model.fields,field_description:partner_picking_note.field_sale_order__picking_customer_note
+msgid "Picking Customer Comments"
+msgstr ""
+
+#. module: partner_picking_note
+#: model:ir.model.fields,field_description:partner_picking_note.field_sale_order__picking_note
+msgid "Picking Internal Note"
+msgstr ""
+
+#. module: partner_picking_note
+#: model_terms:ir.ui.view,arch_db:partner_picking_note.view_partner_form_inherit_partner_picking_note
+msgid "Picking customer notes..."
+msgstr ""
+
+#. module: partner_picking_note
+#: model_terms:ir.ui.view,arch_db:partner_picking_note.view_partner_form_inherit_partner_picking_note
+msgid "Picking notes..."
+msgstr ""
+
+#. module: partner_picking_note
+#: model:ir.model,name:partner_picking_note.model_sale_order
+msgid "Sales Order"
+msgstr ""
