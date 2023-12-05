@@ -21,7 +21,7 @@ class TestSaleOrderLineCancel(TestSaleOrderLineCancelBase):
         sale2 = self._add_done_sale_order(picking_policy="one")
         line = sale2.order_line
         ship = sale2.picking_ids
-        ship.move_ids.move_line_ids.qty_done = 5
+        ship.move_lines.move_line_ids.qty_done = 5
         ship.with_context(cancel_backorder=True)._action_done()
         self.assertEqual(ship.state, "done")
         self.assertEqual(line.product_qty_canceled, 5)
@@ -32,7 +32,7 @@ class TestSaleOrderLineCancel(TestSaleOrderLineCancelBase):
         sale2 = self._add_done_sale_order(picking_policy="one")
         line = sale2.order_line
         ship = sale2.picking_ids
-        ship.move_ids.move_line_ids.qty_done = 5
+        ship.move_lines.move_line_ids.qty_done = 5
         ship.with_context(cancel_backorder=False)._action_done()
         self.assertEqual(ship.state, "done")
         self.assertEqual(line.product_qty_canceled, 0)
@@ -63,11 +63,11 @@ class TestSaleOrderLineCancel(TestSaleOrderLineCancelBase):
     def test_cancel_move_kit(self):
         """when all remaining moves are canceled product_qty_canceled increased"""
         self.assertTrue(self.sale.order_line.can_cancel_remaining_qty)
-        move = self.sale.picking_ids.move_ids
+        move = self.sale.picking_ids.move_lines
         self.assertEqual(move.sale_line_id, self.sale.order_line)
         # simulate a kit with a second move linked to the sale SO line
         move2 = move.copy()
-        move2._action_confirm()
+        move2._action_confirm(merge=False)
         self.assertEqual(move2.sale_line_id, self.sale.order_line)
         move._action_cancel()
         self.assertEqual(self.sale.order_line.product_qty_canceled, 0)
@@ -82,7 +82,7 @@ class TestSaleOrderLineCancel(TestSaleOrderLineCancelBase):
     def test_reset_to_draft(self):
         ship = self.sale.picking_ids
         ship.action_assign()
-        ship.move_ids.move_line_ids.qty_done = 5
+        ship.move_lines.move_line_ids.qty_done = 5
         ship.with_context(cancel_backorder=True)._action_done()
         self.assertEqual(self.sale.order_line.product_qty_canceled, 5)
         self.assertEqual(self.sale.order_line.product_qty_remains_to_deliver, 0)
@@ -96,7 +96,7 @@ class TestSaleOrderLineCancel(TestSaleOrderLineCancelBase):
     def test_reset_to_draft_after_cancel(self):
         ship = self.sale.picking_ids
         ship.action_assign()
-        ship.move_ids.move_line_ids.qty_done = 5
+        ship.move_lines.move_line_ids.qty_done = 5
         ship.with_context(cancel_backorder=False)._action_done()
         self.assertEqual(self.sale.order_line.product_qty_canceled, 0)
         self.assertEqual(self.sale.order_line.product_qty_remains_to_deliver, 5)
