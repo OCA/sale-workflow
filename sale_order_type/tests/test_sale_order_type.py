@@ -11,7 +11,7 @@ from odoo.tests import Form
 
 class TestSaleOrderType(common.TransactionCase):
     def setUp(self):
-        super(TestSaleOrderType, self).setUp()
+        super().setUp()
         self.sale_type_model = self.env["sale.order.type"]
         self.sale_order_model = self.env["sale.order"]
         self.invoice_model = self.env["account.move"].with_context(
@@ -53,7 +53,9 @@ class TestSaleOrderType(common.TransactionCase):
             {"type": "service", "invoice_policy": "order", "name": "Test product"}
         )
         self.immediate_payment = self.env.ref("account.account_payment_term_immediate")
-        self.sale_pricelist = self.env.ref("product.list0")
+        self.sale_pricelist = self.env["product.pricelist"].create(
+            {"name": "Public Pricelist", "sequence": 1}
+        )
         self.free_carrier = self.env.ref("account.incoterm_FCA")
         self.sale_type = self.sale_type_model.create(
             {
