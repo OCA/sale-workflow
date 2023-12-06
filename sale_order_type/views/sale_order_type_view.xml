@@ -11,7 +11,7 @@
                         name="web_ribbon"
                         title="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active"
                     />
                     <div class="oe_title">
                         <label for="name" class="oe_edit_only" />
@@ -34,7 +34,7 @@
                             />
                             <field
                                 name="route_id"
-                                attrs="{'invisible': [('warehouse_id', '=', False)]}"
+                                invisible="not warehouse_id"
                                 groups="stock.group_adv_location"
                             />
                             <field name="sequence_id" />
@@ -52,10 +52,7 @@
                                 name="pricelist_id"
                                 groups="product.group_product_pricelist"
                             />
-                            <field
-                                name="incoterm_id"
-                                groups="sale_stock.group_display_incoterm"
-                            />
+                            <field name="incoterm_id" />
                         </group>
                     </group>
                     <group>
@@ -81,7 +78,7 @@
                 <field name="picking_policy" />
                 <field name="payment_term_id" />
                 <field name="pricelist_id" groups="product.group_product_pricelist" />
-                <field name="incoterm_id" groups="sale_stock.group_display_incoterm" />
+                <field name="incoterm_id" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="description" />
             </tree>
@@ -103,7 +100,7 @@
                 <field name="picking_policy" />
                 <field name="payment_term_id" />
                 <field name="pricelist_id" groups="product.group_product_pricelist" />
-                <field name="incoterm_id" groups="sale_stock.group_display_incoterm" />
+                <field name="incoterm_id" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <group expand="0" string="Group By">
                     <filter
@@ -149,7 +146,6 @@
                         string="Incoterm"
                         domain="[]"
                         context="{'group_by':'incoterm_id'}"
-                        groups="sale_stock.group_display_incoterm"
                     />
                 </group>
             </search>
