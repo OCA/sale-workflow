@@ -17,11 +17,6 @@ class SaleOrder(models.Model):
         precompute=True,
         store=True,
         readonly=False,
-        states={
-            "sale": [("readonly", True)],
-            "done": [("readonly", True)],
-            "cancel": [("readonly", True)],
-        },
         ondelete="restrict",
         copy=True,
         check_company=True,
@@ -182,14 +177,14 @@ class SaleOrder(models.Model):
                         new_vals["name"] = sale_type.sequence_id.next_by_id(
                             sequence_date=vals.get("date_order")
                         )
-                        super(SaleOrder, record).write(new_vals)
+                        super().write(new_vals)
                     else:
-                        super(SaleOrder, record).write(vals)
+                        super().write(vals)
                 return True
         return super().write(vals)
 
     def _prepare_invoice(self):
-        res = super(SaleOrder, self)._prepare_invoice()
+        res = super()._prepare_invoice()
         if self.type_id.journal_id:
             res["journal_id"] = self.type_id.journal_id.id
         if self.type_id:
