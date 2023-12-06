@@ -17,26 +17,26 @@ Sale Order Type
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_order_type
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_order_type
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_order_type
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_order_type
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds a typology for the sales orders. In each different type, you
-can define, invoicing and refunding journal, a warehouse, a stock route,
-a sequence, the shipping policy, the invoicing policy, a payment term,
-a pricelist and an incoterm.
+This module adds a typology for the sales orders. In each different
+type, you can define, invoicing and refunding journal, a warehouse, a
+stock route, a sequence, the shipping policy, the invoicing policy, a
+payment term, a pricelist and an incoterm.
 
 You can see sale types as lines of business.
 
-You are able to select a sales order type by partner so that when you add a
-partner to a sales order it will get the related info to it.
+You are able to select a sales order type by partner so that when you
+add a partner to a sales order it will get the related info to it.
 
 **Table of contents**
 
@@ -48,16 +48,17 @@ Configuration
 
 To configure Sale Order Types you need to:
 
-#. Go to **Sales > Configuration > Sales Orders Types**
-#. Create a new sale order type with all the settings you want
+1. Go to **Sales > Configuration > Sales Orders Types**
+2. Create a new sale order type with all the settings you want
 
 Usage
 =====
 
-#. Go to **Sales > Sales Orders** and create a new sale order. Select the new
-   type you have created before and all settings will be propagated.
-#. You can also define a type for a particular partner if you go to *Sales &
-   Purchases* and set a sale order type.
+1. Go to **Sales > Sales Orders** and create a new sale order. Select
+   the new type you have created before and all settings will be
+   propagated.
+2. You can also define a type for a particular partner if you go to
+   *Sales & Purchases* and set a sale order type.
 
 Bug Tracker
 ===========
@@ -65,7 +66,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_type%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_type%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -73,7 +74,7 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Grupo Vermon
 * AvanzOSC
@@ -82,57 +83,57 @@ Authors
 * Niboo
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Vermon <http://www.grupovermon.com>`_
+-  `Vermon <http://www.grupovermon.com>`__
 
-  * Carlos Sánchez Cifuentes <csanchez@grupovermon.com>
+   -  Carlos Sánchez Cifuentes <csanchez@grupovermon.com>
 
-* `AvanzOsc <http://avanzosc.es>`_
+-  `AvanzOsc <http://avanzosc.es>`__
 
-  * Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
-  * Ana Juaristi <anajuaristi@avanzosc.es>
-  * Daniel Campos <danielcampos@avanzosc.es>
-  * Ainara Galdona <ainaragaldona@avanzosc.es>
+   -  Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
+   -  Ana Juaristi <anajuaristi@avanzosc.es>
+   -  Daniel Campos <danielcampos@avanzosc.es>
+   -  Ainara Galdona <ainaragaldona@avanzosc.es>
 
-* `Agile Business Group <https://www.agilebg.com>`_
+-  `Agile Business Group <https://www.agilebg.com>`__
 
-  * Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+   -  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 
-* `Niboo <https://www.niboo.be/>`_
+-  `Niboo <https://www.niboo.be/>`__
 
-  * Samuel Lefever <sam@niboo.be>
-  * Pierre Faniel <pierre@niboo.be>
+   -  Samuel Lefever <sam@niboo.be>
+   -  Pierre Faniel <pierre@niboo.be>
 
-* `Tecnativa <https://www.tecnativa.com>`_
+-  `Tecnativa <https://www.tecnativa.com>`__
 
-  * Pedro M. Baeza
-  * David Vidal
-  * Carlos Dauden
-  * Sergio Teruel
+   -  Pedro M. Baeza
+   -  David Vidal
+   -  Carlos Dauden
+   -  Sergio Teruel
 
-* `Pesol <https://www.pesol.es>`_
+-  `Pesol <https://www.pesol.es>`__
 
-  * Angel Moya Pardo <angel.moya@pesol.es>
-  * Antonio J Rubio Lorente <antonio.rubio@pesol.es>
+   -  Angel Moya Pardo <angel.moya@pesol.es>
+   -  Antonio J Rubio Lorente <antonio.rubio@pesol.es>
 
-* Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
+-  Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
+-  `Druidoo <https://www.druidoo.io>`__
 
-* `Druidoo <https://www.druidoo.io>`_
+   -  Iván Todorovich <ivan.todorovich@druidoo.io>
 
-  * Iván Todorovich <ivan.todorovich@druidoo.io>
+-  `GSLab.it <https://www.gslab.it>`__
 
-* `GSLab.it <https://www.gslab.it>`_
+   -  Giovanni Serra <giovanni@gslab.it>
 
-  * Giovanni Serra <giovanni@gslab.it>
+-  Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
+-  Isaac Gallart <igallart@puntsistemes.es>
 
-* Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
-* Isaac Gallart <igallart@puntsistemes.es>
-
-Do not contact contributors directly about support or help with technical issues.
+Do not contact contributors directly about support or help with
+technical issues.
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -144,6 +145,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_order_type>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_order_type>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
