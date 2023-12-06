@@ -48,4 +48,4 @@ def post_init_hook(cr, registry):
     order_ids = cr.fetchall()
 
     orders = env["sale.order"].search([("id", "in", order_ids)])
-    orders.mapped("order_line")._update_discount_display_fields()
+    orders.mapped("order_line")._compute_amount()
