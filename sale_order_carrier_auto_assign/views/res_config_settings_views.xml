@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="res_config_settings_view_form_sale" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='shipping_setting_container']" position="inside">
+                <div class="col-12 col-lg-6 o_setting_box" id="carrier_auto_assign">
+                    <div class="o_setting_left_pane">
+                        <field name="carrier_auto_assign" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="carrier_auto_assign" string="Carrier auto assign" />
+                        <div class="text-muted">
+                            Assigns automatically delivery carrier on sale order confirmation.
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
