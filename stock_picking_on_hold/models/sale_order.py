@@ -20,12 +20,10 @@ class SaleOrder(models.Model):
                 "|",
                 ("payment_method_id.hold_picking_until_payment", "=", True),
                 ("payment_method_id", "=", False),
-                ("website_id", "=", False),
             ]
         else:
             domain = [
                 ("payment_method_id.hold_picking_until_payment", "=", True),
-                ("website_id", "=", False),
             ]
 
         recs = self.filtered_domain(domain)
