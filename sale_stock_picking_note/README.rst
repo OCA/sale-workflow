@@ -39,9 +39,13 @@ that will be transferred to the picking.
 Usage
 =====
 
-#. Place a new sale order with stockable products.
+#. Go to Sales > Orders > Customers.
+#. Create new customer and set **Picking Internal Note** and **Picking Customer Comments** in *Sales & Purchase* tab.
+#. Go to Sales > Orders > Orders.
+#. Create new sale order with storable products and select customer created before.
 #. Go to *Other information* tab.
-#. Set the **Picking Internal Note** and **Picking Customer Comments** you want to.
+#. Fields **Picking Internal Note** and **Picking Customer Comments** will be filled with values from customer.
+#. Can update the **Picking Internal Note** and **Picking Customer Comments** you want to.
 #. Confirm the Sale Order and go to the created picking.
 #. On the "Comments" tab, you will see both the internal note and customer comments.
 
@@ -74,6 +78,9 @@ Contributors
   * Víctor Martínez
 
 * Sudhir Arya <sudhir@erpharbor.com>
+* Emilio Pascual (`Moduon <https://www.moduon.team/>`__)
+* Rafael Blasco (`Moduon <https://www.moduon.team/>`__)
+* Gelo Joga (`Moduon <https://www.moduon.team/>`__)
 
 Maintainers
 ~~~~~~~~~~~
@@ -87,6 +94,23 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-carlosdauden| image:: https://github.com/carlosdauden.png?size=40px
+    :target: https://github.com/carlosdauden
+    :alt: carlosdauden
+.. |maintainer-victoralmau| image:: https://github.com/victoralmau.png?size=40px
+    :target: https://github.com/victoralmau
+    :alt: victoralmau
+.. |maintainer-chienandalu| image:: https://github.com/chienandalu.png?size=40px
+    :target: https://github.com/chienandalu
+    :alt: chienandalu
+.. |maintainer-EmilioPascual| image:: https://github.com/EmilioPascual.png?size=40px
+    :target: https://github.com/EmilioPascual
+    :alt: EmilioPascual
+
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-carlosdauden| |maintainer-victoralmau| |maintainer-chienandalu| |maintainer-EmilioPascual| 
 
 This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_stock_picking_note>`_ project on GitHub.
 
