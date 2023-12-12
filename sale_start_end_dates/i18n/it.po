@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-22 23:46+0000\n"
-"PO-Revision-Date: 2023-10-09 07:55+0000\n"
+"PO-Revision-Date: 2023-12-12 11:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -57,19 +57,22 @@ msgstr ""
 #: code:addons/sale_start_end_dates/models/sale.py:64
 #, python-format
 msgid "Missing End Date for sale order line with Product '%s'."
-msgstr "Manca la data di fine nell'ordine di vendita per il prodotto '%s'"
+msgstr ""
+"Manca la data di fine nella riga ordine di vendita con il prodotto '%s'."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale.py:68
 #, python-format
 msgid "Missing Start Date for sale order line with Product '%s'."
-msgstr "Manca la data di Inizio per il prodotto '%s'"
+msgstr ""
+"Manca la data di inizio per la riga ordine di vendita con il prodotto '%s'."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale.py:72
 #, python-format
 msgid "Missing number of days for sale order line with Product '%s'."
-msgstr "Mancano i numeri di giorni nell'ordine di vendita per il prodotto '%s'"
+msgstr ""
+"Mancano i numeri di giorni nella riga ordine di vendita con il prodotto '%s'."
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line_must_have_dates
