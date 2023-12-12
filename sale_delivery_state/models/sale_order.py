@@ -2,6 +2,8 @@
 # @author Pierrick BRUN <pierrick.brun@akretion.com>
 # Copyright 2018 Camptocamp
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
 from odoo.tools import float_compare, float_is_zero
@@ -43,7 +45,9 @@ class SaleOrder(models.Model):
         """
         self.ensure_one()
         # Skip delivery costs lines
-        sale_lines = self.order_line.filtered(lambda rec: not rec._is_delivery())
+        sale_lines = self.order_line.filtered(
+            lambda rec: not rec._is_delivery() and not rec.skip_sale_delivery_state
+        )
         precision = self.env["decimal.precision"].precision_get(
             "Product Unit of Measure"
         )
@@ -63,7 +67,9 @@ class SaleOrder(models.Model):
         """
         self.ensure_one()
         # Skip delivery costs lines
-        sale_lines = self.order_line.filtered(lambda rec: not rec._is_delivery())
+        sale_lines = self.order_line.filtered(
+            lambda rec: not rec._is_delivery() and not rec.skip_sale_delivery_state
+        )
         precision = self.env["decimal.precision"].precision_get(
             "Product Unit of Measure"
         )
@@ -72,7 +78,12 @@ class SaleOrder(models.Model):
             for line in sale_lines
         )
 
-    @api.depends("order_line.qty_delivered", "state", "force_delivery_state")
+    @api.depends(
+        "order_line.qty_delivered",
+        "order_line.skip_sale_delivery_state",
+        "state",
+        "force_delivery_state",
+    )
     def _compute_sale_delivery_state(self):
         for order in self:
             if order.state in ("draft", "cancel"):

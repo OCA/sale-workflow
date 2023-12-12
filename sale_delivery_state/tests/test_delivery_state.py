@@ -17,6 +17,9 @@ class TestDeliveryState(SavepointCase):
         cls.delivery_cost = cls.env["product.product"].create(
             {"name": "delivery", "type": "service"}
         )
+        cls.service_product = cls.env["product.product"].create(
+            {"name": "service", "type": "service"}
+        )
 
     def _mock_delivery(self, delivery_prod=None):
         delivery_prod = delivery_prod or self.delivery_cost
@@ -35,6 +38,19 @@ class TestDeliveryState(SavepointCase):
                 "product_uom_qty": 1,
                 "product_uom": self.env.ref("uom.product_uom_unit").id,
                 "price_unit": 10.0,
+            }
+        )
+
+    def _add_service_line(self, skip_sale_delivery_state=False):
+        self.env["sale.order.line"].create(
+            {
+                "order_id": self.order.id,
+                "name": "Service",
+                "product_id": self.service_product.id,
+                "product_uom_qty": 1,
+                "product_uom": self.env.ref("uom.product_uom_unit").id,
+                "price_unit": 10.0,
+                "skip_sale_delivery_state": skip_sale_delivery_state,
             }
         )
 
@@ -91,3 +107,16 @@ class TestDeliveryState(SavepointCase):
                     continue
                 line.qty_delivered = line.product_uom_qty
             self.assertEqual(self.order.delivery_state, "done")
+
+    def test_skip_service_line(self):
+        self._add_service_line()
+        self.order.action_confirm()
+        for line in self.order.order_line:
+            if line.product_id == self.service_product:
+                continue
+            line.qty_delivered = line.product_uom_qty
+        self.assertEqual(self.order.delivery_state, "partially")
+        self.order.order_line.filtered(
+            lambda a: a.product_id and a.product_id == self.service_product
+        ).write({"skip_sale_delivery_state": True})
+        self.assertEqual(self.order.delivery_state, "done")
