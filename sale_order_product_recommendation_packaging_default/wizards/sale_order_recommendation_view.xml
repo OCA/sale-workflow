@@ -27,6 +27,21 @@
                     attrs="{'invisible': [('product_packaging_id', '=', False)]}"
                 />
             </xpath>
+            <xpath
+                expr="//field[@name='line_ids']/form//field[@name='units_included']"
+                position="before"
+            >
+                <field
+                    name="product_packaging_id"
+                    groups="product.group_stock_packaging"
+                />
+                <field
+                    name="product_packaging_qty"
+                    groups="product.group_stock_packaging"
+                    widget="numeric_step"
+                    attrs="{'readonly': [('product_packaging_id', '=', False)]}"
+                />
+            </xpath>
         </field>
     </record>
 </data>
