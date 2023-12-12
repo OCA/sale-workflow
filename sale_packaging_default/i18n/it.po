@@ -17,11 +17,6 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: sale_packaging_default
-#: model:ir.model.fields,field_description:sale_packaging_default.field_product_packaging__sales_default
-msgid "Default for sales"
-msgstr "Predefinito per le vendite"
-
-#. module: sale_packaging_default
 #: model:ir.model,name:sale_packaging_default.model_product_packaging
 msgid "Product Packaging"
 msgstr "Imballaggio prodotto"
@@ -31,11 +26,12 @@ msgstr "Imballaggio prodotto"
 msgid "Sales Order Line"
 msgstr "Riga ordine di vendita"
 
-#. module: sale_packaging_default
-#: model:ir.model.fields,help:sale_packaging_default.field_product_packaging__sales_default
-msgid ""
-"The first packaging with this option checked will be used by default in "
-"sales orders."
-msgstr ""
-"Il primo imballaggio con questa opzione selezionata verrà utilizzato in modo "
-"predefinito negli ordini di vendita."
+#~ msgid "Default for sales"
+#~ msgstr "Predefinito per le vendite"
+
+#~ msgid ""
+#~ "The first packaging with this option checked will be used by default in "
+#~ "sales orders."
+#~ msgstr ""
+#~ "Il primo imballaggio con questa opzione selezionata verrà utilizzato in "
+#~ "modo predefinito negli ordini di vendita."
