@@ -42,7 +42,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
             if not line.units_included:
                 line.product_packaging_id = (
                     line.sale_line_id.product_packaging_id
-                    or sale_pkgs.filtered_domain([("sales_default", "=", True)])[:1]
+                    or sale_pkgs.filtered_domain([("sales", "=", True)])[:1]
                 )
                 line.product_packaging_qty = 0
                 continue
