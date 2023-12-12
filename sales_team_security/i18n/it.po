@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-06-28 21:01+0000\n"
-"PO-Revision-Date: 2023-12-01 15:35+0000\n"
+"PO-Revision-Date: 2023-12-12 11:01+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -53,7 +53,7 @@ msgstr "Addetto vendite"
 #: model:ir.model.fields,help:sales_team_security.field_res_partner__user_id
 #: model:ir.model.fields,help:sales_team_security.field_res_users__user_id
 msgid "The internal user in charge of this contact."
-msgstr "L'utente interno responsabile di questo contatto. "
+msgstr "L'utente interno responsabile di questo contatto."
 
 #. module: sales_team_security
 #: model:res.groups,comment:sales_team_security.group_sale_team_manager
