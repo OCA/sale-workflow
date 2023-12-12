@@ -74,7 +74,7 @@ class SaleOrderLine(models.Model):
             }
             rbc_rel = line.product_id.resource_booking_type_combination_rel_id
             context = {
-                "default_partner_id": line.order_id.partner_id.id,
+                "default_partner_ids": [(4, line.order_id.partner_id.id)],
                 "default_combination_auto_assign": not rbc_rel,
                 "default_combination_id": rbc_rel.combination_id.id,
             }
