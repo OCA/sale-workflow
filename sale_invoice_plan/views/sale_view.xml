@@ -78,13 +78,12 @@
                     <label for="use_invoice_plan" />
                 </div>
             </xpath>
-            <xpath expr="//button[@name='payment_action_capture']" position="before">
+            <xpath expr="//button[@name='action_quotation_send']" position="before">
                 <field name="invoice_plan_process" invisible="1" />
                 <button
                     name="%(action_view_sale_make_planned_invoice)d"
                     string="Create Invoice by Plan"
                     type="action"
-                    class="btn-primary"
                     attrs="{'invisible': [('invoice_plan_process', '=', False)]}"
                 />
             </xpath>
@@ -120,6 +119,61 @@
                 </page>
             </xpath>
         </field>
+    </record>
+    <record id="view_order_tree_invoice_plan" model="ir.ui.view">
+        <field name="name">view.order.tree.invoice.plan</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <tree position="inside">
+                <field name="next_installment_date" optional="hide" />
+                <field name="invoiced_installment_amount" optional="hide" />
+                <field name="pending_installment_amount" optional="hide" />
+            </tree>
+        </field>
+    </record>
+    <record id="view_order_search_invoice_plan" model="ir.ui.view">
+        <field name="name">view.order.search.invoice.plan</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='my_sale_orders_filter']" position="after">
+                <separator />
+                <filter
+                    string="Has Invoice Plan"
+                    name="has_invoice_plan"
+                    domain="[('invoice_plan_ids','!=', False)]"
+                />
+                <filter
+                    string="Has Pending Installment Amount"
+                    name="has_pending_installment_amount"
+                    domain="[('pending_installment_amount','!=', 0)]"
+                />
+                <filter
+                    string="This Months Installments"
+                    name="this_months_installments"
+                    domain="[
+                    ('next_installment_date', '>=', (context_today() - relativedelta(day=1)).strftime('%Y-%m-%d')),
+                    ('next_installment_date', '&lt;=', (context_today() + relativedelta(months=1, day=1, days=-1)).strftime('%Y-%m-%d'))]"
+                />
+                <filter
+                    string="Previous Month Installments"
+                    name="last_months_installments"
+                    domain="[
+                    ('next_installment_date', '>=', (context_today() - relativedelta(months=1, day=1)).strftime('%Y-%m-%d')),
+                    ('next_installment_date', '&lt;=', (context_today() - relativedelta(day=1, days=1)).strftime('%Y-%m-%d'))]"
+                />
+                <separator />
+            </xpath>
+            <group position="inside">
+                <filter
+                    string="Next Installment Date"
+                    name="groupby_next_installment_date"
+                    domain="[]"
+                    context="{'group_by': 'next_installment_date'}"
+                />
+            </group>
+       </field>
     </record>
     <!-- Invoice Plan Lines -->
     <record id="view_sale_invoice_plan_filter" model="ir.ui.view">

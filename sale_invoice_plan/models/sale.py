@@ -13,7 +13,7 @@ class SaleOrder(models.Model):
     invoice_plan_ids = fields.One2many(
         comodel_name="sale.invoice.plan",
         inverse_name="sale_id",
-        string="Inovice Plan",
+        string="Invoice Plan",
         copy=False,
     )
     use_invoice_plan = fields.Boolean(
@@ -33,14 +33,40 @@ class SaleOrder(models.Model):
         compute="_compute_invoice_plan_total",
         string="Total Amount",
     )
+    # Reporting
+    next_installment_id = fields.Many2one(
+        "sale.invoice.plan",
+        string="Next Installment To Invoice",
+        compute="_compute_next_to_invoice_plan_id",
+        store=True,
+    )
+    next_installment_date = fields.Date(
+        related="next_installment_id.plan_date",
+        string="Next Installment Date",
+        store=True,
+    )
+    invoiced_installment_amount = fields.Monetary(
+        compute="_compute_invoiced_installment_amount",
+        store=True,
+    )
+    pending_installment_amount = fields.Monetary(
+        compute="_compute_pending_installment_amount",
+        store=True,
+    )
 
-    @api.depends("invoice_plan_ids")
+    @api.depends("invoice_plan_ids.percent", "invoice_plan_ids.amount")
     def _compute_invoice_plan_total(self):
         for rec in self:
             installments = rec.invoice_plan_ids.filtered("installment")
             rec.invoice_plan_total_percent = sum(installments.mapped("percent"))
             rec.invoice_plan_total_amount = sum(installments.mapped("amount"))
 
+    @api.depends(
+        "use_invoice_plan",
+        "state",
+        "invoice_status",
+        "invoice_plan_ids.invoiced",
+    )
     def _compute_invoice_plan_process(self):
         for rec in self:
             has_invoice_plan = rec.use_invoice_plan and rec.invoice_plan_ids
@@ -50,6 +76,37 @@ class SaleOrder(models.Model):
                 and has_invoice_plan
                 and to_invoice
                 and rec.invoice_status in ["to invoice", "no"]
+            )
+
+    @api.depends("invoice_plan_ids.invoice_move_ids", "invoice_plan_ids.invoiced")
+    def _compute_next_to_invoice_plan_id(self):
+        for sale in self:
+            last_invoiced = sale.invoice_plan_ids.filtered("invoice_move_ids")[-1:]
+            last_installment = last_invoiced.installment or 0
+            next_to_invoice = sale.invoice_plan_ids.filtered(
+                lambda x: x.installment == last_installment + 1
+            )
+            sale.next_installment_id = next_to_invoice
+
+    @api.depends(
+        "next_installment_id",
+        "invoice_plan_ids.amount_invoiced",
+        "invoice_plan_ids.invoice_move_ids.state",
+    )
+    def _compute_invoiced_installment_amount(self):
+        for sale in self:
+            # Invoice Plan computations are not always triggered when changes happen
+            # So we need to force that recomputation
+            sale.invoice_plan_ids._compute_invoiced()
+            invoiced_plans = sale.invoice_plan_ids.filtered("invoiced")
+            invoiced_amount = sum(invoiced_plans.mapped("amount_invoiced"))
+            sale.invoiced_installment_amount = invoiced_amount
+
+    @api.depends("invoice_plan_total_amount", "invoiced_installment_amount")
+    def _compute_pending_installment_amount(self):
+        for sale in self:
+            sale.pending_installment_amount = (
+                sale.invoice_plan_total_amount - sale.invoiced_installment_amount
             )
 
     @api.constrains("invoice_plan_ids")
