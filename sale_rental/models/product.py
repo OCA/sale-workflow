@@ -26,7 +26,7 @@ class ProductProduct(models.Model):
         day_uom = self.env.ref("uom.product_uom_day")
         for product in self:
             if product.rented_product_id:
-                if product.type != "service":
+                if product.detailed_type != "service":
                     raise ValidationError(
                         _("The rental product '{}' must be of type 'Service'.").format(
                             product.name
