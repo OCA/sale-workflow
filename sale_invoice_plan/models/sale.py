@@ -33,6 +33,48 @@ class SaleOrder(models.Model):
         compute="_compute_invoice_plan_total",
         string="Total Amount",
     )
+    next_installment_date = fields.Date(
+        string="Next Installment Date",
+        compute="_compute_next_installment_date",
+        store=True,
+    )
+    invoiced_installment_amount = fields.Monetary(
+        string="Invoiced Installment Amount",
+        compute="_compute_invoiced_installment_amount",
+        store=True,
+    )
+    pending_installment_amount = fields.Monetary(
+        string="Pending Installment Amount",
+        compute="_compute_pending_installment_amount",
+        store=True,
+    )
+
+    @api.depends("invoice_plan_ids")
+    def _compute_next_installment_date(self):
+        for rec in self:
+            plans_to_invoice = rec.invoice_plan_ids.filtered(lambda x: x.to_invoice == True)
+            if plans_to_invoice:
+                rec.next_installment_date = plans_to_invoice[0].plan_date
+            else:
+                rec.next_installment_date = False
+
+    @api.depends("invoice_plan_ids")
+    def _compute_invoiced_installment_amount(self):
+        for rec in self:
+            invoiced_plans = rec.invoice_plan_ids.filtered(lambda x: x.invoiced == True)
+            if invoiced_plans:
+                rec.invoiced_installment_amount = invoiced_plans[-1].amount_invoiced
+            else:
+                rec.invoiced_installment_amount = 0                
+                
+    @api.depends("invoice_plan_ids")
+    def _compute_pending_installment_amount(self):
+        for rec in self:
+            plans_to_invoice = rec.invoice_plan_ids.filtered(lambda x: x.to_invoice == True)
+            if plans_to_invoice:
+                rec.pending_installment_amount = plans_to_invoice[0].amount
+            else:
+                rec.pending_installment_amount = 0
 
     @api.depends("invoice_plan_ids")
     def _compute_invoice_plan_total(self):

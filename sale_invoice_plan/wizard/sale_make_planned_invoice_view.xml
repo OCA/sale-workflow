@@ -27,7 +27,7 @@
         </field>
     </record>
     <record id="action_view_sale_make_planned_invoice" model="ir.actions.act_window">
-        <field name="name">Invoice Order</field>
+        <field name="name">Invoice Installments</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.make.planned.invoice</field>
         <field name="binding_view_types">form</field>
