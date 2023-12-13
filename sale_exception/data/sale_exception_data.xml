@@ -26,7 +26,9 @@
         <field name="description">Not Enough Virtual Stock</field>
         <field name="sequence">50</field>
         <field name="model">sale.order.line</field>
-        <field name="code">failed=self.product_id and self.product_id.type == 'product'
+        <field
+            name="code"
+        >failed=self.product_id and self.product_id.detailed_type == 'product'
             and self.virtual_available_at_date &lt; self.product_uom_qty</field>
         <field name="active" eval="False" />
     </record>
