@@ -12,7 +12,7 @@ class SaleOrder(models.Model):
             if any(
                 [
                     ptype in ["product", "consu"]
-                    for ptype in order.order_line.mapped("product_id.type")
+                    for ptype in order.order_line.mapped("product_id.detailed_type")
                 ]
             ):
                 for picking in order.picking_ids:
