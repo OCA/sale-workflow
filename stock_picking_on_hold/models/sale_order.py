@@ -12,6 +12,18 @@ class SaleOrder(models.Model):
         ondelete="restrict",
     )
 
+    def unblock_website_orders(self):
+        website_domain = [
+            ("website_id", "!=", False),
+            ("delivery_block_id", "!=", False),
+            ("payment_method_id.hold_picking_until_payment", "=", False),
+        ]
+
+        # Remove block from website-created sale orders, because their payment
+        # method gets set too late for the other check
+        website_orders = self.filtered_domain(website_domain)
+        website_orders.write({"delivery_block_id": False})
+
     def auto_set_invoice_block(self):
         default_hold = self.company_id.hold_picking_until_payment
 
@@ -27,6 +39,8 @@ class SaleOrder(models.Model):
             ]
 
         recs = self.filtered_domain(domain)
+
+        self.unblock_website_orders()
 
         if not recs:
             return
