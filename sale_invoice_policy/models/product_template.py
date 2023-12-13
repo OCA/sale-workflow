@@ -31,19 +31,19 @@ class ProductTemplate(models.Model):
         for template in self.filtered("invoice_policy"):
             template.default_invoice_policy = template.invoice_policy
 
-    @api.depends("type", "default_invoice_policy")
+    @api.depends("detailed_type", "default_invoice_policy")
     @api.depends_context("invoice_policy")
     def _compute_invoice_policy(self):
         """
         Apply the invoice_policy given by context (if exist) otherwise use the
         default invoice policy given by the field with this same name.
-        If the product is type = 'service', we don't have to apply the invoice
+        If the product is detailed_type = 'service', we don't have to apply the invoice
         policy given by the context.
         :return:
         """
         invoice_policy = self.env.context.get("invoice_policy")
         for tmpl in self:
-            if tmpl.type != "service" and invoice_policy:
+            if tmpl.detailed_type != "service" and invoice_policy:
                 tmpl.invoice_policy = invoice_policy
             else:
                 tmpl.invoice_policy = tmpl.default_invoice_policy
