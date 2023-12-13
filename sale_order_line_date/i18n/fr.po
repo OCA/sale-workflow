@@ -26,13 +26,13 @@ msgstr ""
 #. module: sale_order_line_date
 #: model:ir.model.fields,field_description:sale_order_line_date.field_sale_order_line__commitment_date
 msgid "Delivery Date"
-msgstr ""
+msgstr "Date de livraison"
 
 #. module: sale_order_line_date
 #: model:ir.model.fields,field_description:sale_order_line_date.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_order_line_date.field_sale_order_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom affiché"
 
 #. module: sale_order_line_date
 #: model:ir.model.fields,field_description:sale_order_line_date.field_sale_order__id
@@ -44,7 +44,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_line_date.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_order_line_date.field_sale_order_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Dernière modification le"
 
 #. module: sale_order_line_date
 #: model:ir.model,name:sale_order_line_date.model_sale_order
