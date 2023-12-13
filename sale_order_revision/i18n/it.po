@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-11-02 17:38+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-12-13 12:36+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr "Nome visualizzato"
 #. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__has_old_revisions
 msgid "Has Old Revisions"
-msgstr "Ha versioni precedenti"
+msgstr "Ha revisioni precedenti"
 
 #. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__id
@@ -49,17 +49,17 @@ msgstr "Ultima modifica il"
 #. module: sale_order_revision
 #: model_terms:ir.ui.view,arch_db:sale_order_revision.view_order_form
 msgid "New Revision of Quotation"
-msgstr "Nuova versione di preventivo"
+msgstr "Nuova rersione preventivo"
 
 #. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__old_revision_ids
 msgid "Old revisions"
-msgstr "Vecchie revisioni"
+msgstr "Revisioni precedenti"
 
 #. module: sale_order_revision
 #: model:ir.model.constraint,message:sale_order_revision.constraint_sale_order_revision_unique
 msgid "Order Reference and revision must be unique per Company."
-msgstr "Riferimento d'ordine e revisione devono essere unici per l'Azienda."
+msgstr "Riferimento d'ordine e revisione devono essere unici per azienda."
 
 #. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__unrevisioned_name
@@ -69,12 +69,12 @@ msgstr "Riferimento originale"
 #. module: sale_order_revision
 #: model_terms:ir.ui.view,arch_db:sale_order_revision.view_order_form
 msgid "Prev. revisions"
-msgstr "Prec. revisioni"
+msgstr "Revisioni precedenti"
 
 #. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__revision_count
 msgid "Previous versions count"
-msgstr "Conteggio Versioni precedenti"
+msgstr "Conteggio rersioni precedenti"
 
 #. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__revision_number
