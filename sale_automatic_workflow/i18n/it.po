@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-15 22:29+0000\n"
-"PO-Revision-Date: 2023-11-01 13:38+0000\n"
+"PO-Revision-Date: 2023-12-13 12:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -117,7 +117,7 @@ msgstr "Fattura"
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,order_policy:0
 msgid "Invoice Policy"
-msgstr "Politica Fattura"
+msgstr "Politica fatturazione"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,invoice_quantity:0
@@ -175,7 +175,7 @@ msgstr "Configurazione Ordine"
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,invoice_quantity:0
 msgid "Ordered Quantities"
-msgstr "Quantità Ordinate"
+msgstr "Quantità ordinate"
 
 #. module: sale_automatic_workflow
 #: view:sale.order:sale_automatic_workflow.sale_order_view_form
