@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-10-09 07:45+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-12-13 12:34+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -25,17 +25,17 @@ msgstr "Impostazioni configurazione"
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_product_product__default_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_product_template__default_invoice_policy
 msgid "Default Invoicing Policy"
-msgstr "Politica di Fatturazione di Default"
+msgstr "Politica fatturazione predefinita"
 
 #. module: sale_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_default_invoice_policy
 msgid "Default Sale Invoice Policy"
-msgstr "Politica di Fatturazione Vendite di Default"
+msgstr "Politica fatturazione vendite predefinita"
 
 #. module: sale_invoice_policy
 #: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
 msgid "Default Sale Order Invoice Policy"
-msgstr "Politica di Fatturazione Ordini di Vendita di Default"
+msgstr "Politica fatturazione ordini di vendita predefinita"
 
 #. module: sale_invoice_policy
 #: selection:product.template,default_invoice_policy:0
@@ -47,17 +47,17 @@ msgstr "Quantità consegnate"
 #. module: sale_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order__invoice_policy
 msgid "Invoice Policy"
-msgstr "Politica Fatturazione"
+msgstr "Politica fatturazione"
 
 #. module: sale_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order__invoice_policy_required
 msgid "Invoice Policy Required"
-msgstr "Politica Fatturazione Richiesta"
+msgstr "Richiesta politica fatturazione"
 
 #. module: sale_invoice_policy
 #: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
 msgid "Invoice Policy required in Sale Orders"
-msgstr "Politica Fatturazione richiesta negli Ordini di Vendita"
+msgstr "Politica fatturazione richiesta negli ordini di vendita"
 
 #. module: sale_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_product_product__invoice_policy
@@ -74,9 +74,9 @@ msgid ""
 "Delivered Quantity: Invoiced based on the quantity the vendor delivered "
 "(time or deliveries)."
 msgstr ""
-"Quantità Ordinate: Fattura basata sulle quantità ordinate dal cliente.\n"
-"Quantità Consegnate: Fattura basata sulle quantità consegnate (tempi o "
-"merci)."
+"Quantità ordinate: fattura basata sulle quantità ordinate dal cliente.\n"
+"Quantità consegnate: fattura basata sulle quantità consegnate da fornitore ("
+"tempo o consegne)."
 
 #. module: sale_invoice_policy
 #: model:ir.model.fields,help:sale_invoice_policy.field_product_product__invoice_policy
@@ -103,7 +103,7 @@ msgstr "Modello prodotto"
 #. module: sale_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
 msgid "Sale Invoice Policy Required"
-msgstr "Politica Fatturazione Vendite Richiesta"
+msgstr "Richiesta politica fatturazione vendite"
 
 #. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_sale_order
