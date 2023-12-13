@@ -42,7 +42,7 @@ class SaleOrderLine(models.Model):
     def _get_to_invoice_qty(self):
         lines = self.filtered(
             lambda x: (
-                x.product_id.type == "service"
+                x.product_id.detailed_type == "service"
                 and x.product_id.invoicing_finished_task
                 and x.product_id.service_tracking
                 in ["task_global_project", "task_in_project"]
