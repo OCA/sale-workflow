@@ -16,7 +16,7 @@ class SaleOrder(models.Model):
     def _get_returnable_lines(self):
         return self.order_line.filtered(
             lambda x: not x.display_type
-            and x.product_id.type != "service"
+            and x.product_id.detailed_type != "service"
             and float_compare(
                 x.qty_delivered, 0.0, precision_rounding=x.product_uom.rounding
             )
