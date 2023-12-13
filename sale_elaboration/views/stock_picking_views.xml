@@ -15,10 +15,12 @@
                     widget="many2many_tags"
                     options="{'no_create': True}"
                     attrs="{'column_invisible': [('parent.immediate_transfer', '=', True)], 'readonly': ['|', ('is_initial_demand_editable', '=', False), '&amp;', '&amp;', ('show_operations', '=', True), ('is_locked', '=', True), ('is_initial_demand_editable', '=', False)]}"
+                    optional="show"
                 />
                 <field
                     name="elaboration_note"
                     attrs="{'column_invisible': [('parent.immediate_transfer', '=', True)], 'readonly': ['|', ('is_initial_demand_editable', '=', False), '&amp;', '&amp;', ('show_operations', '=', True), ('is_locked', '=', True), ('is_initial_demand_editable', '=', False)]}"
+                    optional="show"
                 />
             </xpath>
             <xpath
