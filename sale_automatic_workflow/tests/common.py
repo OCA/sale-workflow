@@ -44,7 +44,7 @@ class TestAutomaticWorkflowMixin(object):
         order = sale_obj.create(values)
         # Create inventory
         for line in order.order_line:
-            if line.product_id.type == "product":
+            if line.product_id.detailed_type == "product":
                 inventory = self.env["stock.quant"].create(
                     {
                         "product_id": line.product_id.id,
