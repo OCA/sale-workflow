@@ -40,7 +40,10 @@ class SaleOrderLine(models.Model):
             previous_product_uom_qty = {}
         for line in self:
             line = line.with_company(line.company_id)
-            if line.state != "sale" or line.product_id.type not in ("consu", "product"):
+            if line.state != "sale" or line.product_id.detailed_type not in (
+                "consu",
+                "product",
+            ):
                 continue
             qty = line._get_qty_procurement(previous_product_uom_qty)
             if (
