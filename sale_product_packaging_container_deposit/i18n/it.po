@@ -30,3 +30,8 @@ msgstr "Ordine di vendita"
 #: model:ir.model,name:sale_product_packaging_container_deposit.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Riga ordine di vendita"
+
+#. module: sale_product_packaging_container_deposit
+#: model:ir.model,name:sale_product_packaging_container_deposit.model_stock_move
+msgid "Stock Move"
+msgstr ""
