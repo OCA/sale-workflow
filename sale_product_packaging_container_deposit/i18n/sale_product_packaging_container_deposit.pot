@@ -27,3 +27,8 @@ msgstr ""
 #: model:ir.model,name:sale_product_packaging_container_deposit.model_sale_order_line
 msgid "Sales Order Line"
 msgstr ""
+
+#. module: sale_product_packaging_container_deposit
+#: model:ir.model,name:sale_product_packaging_container_deposit.model_stock_move
+msgid "Stock Move"
+msgstr ""
