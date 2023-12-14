@@ -48,6 +48,7 @@ class ResPartner(models.Model):
                     ],
                 )
             ],
+            "choose_unlink_method": True,
         }
         action["view_mode"] = "tree,form"
         action["view_id"] = False

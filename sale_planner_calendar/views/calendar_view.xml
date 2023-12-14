@@ -6,6 +6,7 @@
         <field name="arch" type="xml">
             <field name="duration" position="after">
                 <field name="until" optional="hide" />
+                <field name="recurrence_id" invisible="1" />
             </field>
         </field>
     </record>
@@ -25,6 +26,7 @@
                 <field name="location" optional="hide" />
                 <field name="duration" widget="float_time" optional="hide" />
                 <field name="recurrency" optional="hide" />
+                <field name="recurrence_id" invisible="1" />
             </tree>
         </field>
     </record>
@@ -38,6 +40,7 @@
         <field name="context">{
             'default_recurrency':True,
             'search_default_user_id':uid,
+            'choose_unlink_method': True,
         }</field>
         <field name="domain">[('recurrency', '=', True),
             ("is_base_recurrent_event", "=", True), '|', ('recurrence_id.until', '>=', datetime.date.today().strftime("%Y-%m-%d")), ('recurrence_id.until', '=', False)]</field>
@@ -174,7 +177,10 @@
             Schedule a new calendar event
           </p>
         </field>
-        <field name="context">{'search_default_start_today': 1}</field>
+        <field name="context">{
+            'search_default_start_today': 1,
+            'choose_unlink_method': True,
+        }</field>
         <field name="domain">[('user_id', '=', uid)]</field>
     </record>
 </odoo>

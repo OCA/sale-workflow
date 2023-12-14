@@ -207,6 +207,13 @@ msgid "Configuration"
 msgstr ""
 
 #. module: sale_planner_calendar
+#. openerp-web
+#: code:addons/sale_planner_calendar/static/src/js/basic_controller.js:0
+#, python-format
+msgid "Confirm"
+msgstr ""
+
+#. module: sale_planner_calendar
 #: model:ir.model,name:sale_planner_calendar.model_res_partner
 msgid "Contact"
 msgstr ""
@@ -291,6 +298,13 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event_type__duration
 msgid "Duration"
+msgstr ""
+
+#. module: sale_planner_calendar
+#. openerp-web
+#: code:addons/sale_planner_calendar/static/src/js/basic_controller.js:0
+#, python-format
+msgid "Edit Recurrent event"
 msgstr ""
 
 #. module: sale_planner_calendar
