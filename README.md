@@ -77,6 +77,7 @@ addon | version | maintainers | summary
 [sale_product_packaging_container_deposit](sale_product_packaging_container_deposit/) | 16.0.1.0.0 |  | Sale Product Packaging Container Deposit
 [sale_product_set](sale_product_set/) | 16.0.1.1.0 |  | Sale product set
 [sale_quotation_number](sale_quotation_number/) | 16.0.1.0.1 |  | Different sequence for sale quotations
+[sale_sourced_by_line](sale_sourced_by_line/) | 16.0.1.0.0 |  | Multiple warehouse source locations for Sale order
 [sale_start_end_dates](sale_start_end_dates/) | 16.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Adds start date and end date on sale order lines
 [sale_stock_cancel_restriction](sale_stock_cancel_restriction/) | 16.0.1.0.0 |  | Sale Stock Cancel Restriction
 [sale_stock_delivery_state](sale_stock_delivery_state/) | 16.0.1.0.1 |  | Change the way to compute the delivery state
