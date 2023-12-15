@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-15 22:29+0000\n"
-"PO-Revision-Date: 2023-12-13 12:34+0000\n"
+"PO-Revision-Date: 2023-12-15 18:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -78,12 +78,12 @@ msgstr "Creato il"
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,picking_policy:0
 msgid "Deliver all products at once"
-msgstr "Evade tutti i prodotti in una volta sola"
+msgstr "Consegna tutti i prodotti in una volta"
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,picking_policy:0
 msgid "Deliver each product when available"
-msgstr "Evade ogni prodotto quando è disponibile"
+msgstr "Consegna ogni prodotto quando disponibile"
 
 #. module: sale_automatic_workflow
 #: field:automatic.workflow.job,display_name:0
@@ -94,7 +94,7 @@ msgstr "Nome visualizzato"
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,invoice_date_is_order_date:0
 msgid "Force Invoice Date"
-msgstr "Forza Data Fattura"
+msgstr "Forza data fattura"
 
 #. module: sale_automatic_workflow
 #: field:automatic.workflow.job,id:0 field:sale.workflow.process,id:0
@@ -170,7 +170,7 @@ msgstr "Su conferma dell'Ordine di Vendita"
 #. module: sale_automatic_workflow
 #: view:sale.workflow.process:sale_automatic_workflow.sale_workflow_process_view_form
 msgid "Order Configuration"
-msgstr "Configurazione Ordine"
+msgstr "Configurazione ordine"
 
 #. module: sale_automatic_workflow
 #: selection:sale.workflow.process,invoice_quantity:0
@@ -197,12 +197,12 @@ msgstr "Ordine vendita"
 #: model:ir.model,name:sale_automatic_workflow.model_sale_workflow_process
 #: field:stock.picking,workflow_process_id:0
 msgid "Sale Workflow Process"
-msgstr "Processo Workflow di Vendita"
+msgstr "Flusso di vendita"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,property_journal_id:0
 msgid "Sales Journal"
-msgstr "Sezionale Vendite"
+msgstr "Registro delle vendite"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_order
@@ -217,7 +217,7 @@ msgstr "Team di vendita"
 #. module: sale_automatic_workflow
 #: help:sale.workflow.process,property_journal_id:0
 msgid "Set default journal to use on invoice"
-msgstr "Imposta sezionale di default per la fattura"
+msgstr "Imposta il registro predefinito da utilizzare sulla fattura"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,ship_only_available:0
@@ -242,12 +242,12 @@ msgstr "Movimento di magazzino"
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,validate_invoice:0
 msgid "Validate Invoice"
-msgstr "Valida Fattura"
+msgstr "Validare la fattura"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,validate_order:0
 msgid "Validate Order"
-msgstr "Valida Ordine"
+msgstr "Validazione ordine"
 
 #. module: sale_automatic_workflow
 #: field:sale.workflow.process,warning:0
@@ -266,15 +266,16 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: help:sale.workflow.process,invoice_date_is_order_date:0
 msgid "When checked, the invoice date will be the same than the order's date"
-msgstr "Quando selezionato la data della fattura sarà la stessa dell'ordine"
+msgstr ""
+"Quando spuntata, la data dalla fattura sarà la stessa della data dell'ordine"
 
 #. module: sale_automatic_workflow
 #: view:sale.workflow.process:sale_automatic_workflow.sale_workflow_process_view_form
 msgid "Workflow Options"
-msgstr "Opzioni Workflow"
+msgstr "Opzioni flusso"
 
 #. module: sale_automatic_workflow
 #: code:addons/sale_automatic_workflow/sale.py:66
 #, python-format
 msgid "Workflow Warning"
-msgstr "Avviso Workflow"
+msgstr "Avviso flusso"
