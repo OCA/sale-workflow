@@ -36,17 +36,17 @@ jobs:
       matrix:
         include:
           - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
-            include: "sale_packaging_default,sale_order_product_recommendation,sale_order_product_recommendation_packaging_default"
+            include: "sale_packaging_default,sale_order_product_recommendation,sale_order_product_recommendation_packaging_default,sale_order_product_recommendation_elaboration"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
-            include: "sale_packaging_default,sale_order_product_recommendation,sale_order_product_recommendation_packaging_default"
+            include: "sale_packaging_default,sale_order_product_recommendation,sale_order_product_recommendation_packaging_default,sale_order_product_recommendation_elaboration"
             name: test with OCB
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
-            exclude: "sale_packaging_default,sale_order_product_recommendation,sale_order_product_recommendation_packaging_default"
+            exclude: "sale_packaging_default,sale_order_product_recommendation,sale_order_product_recommendation_packaging_default,sale_order_product_recommendation_elaboration"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
-            exclude: "sale_packaging_default,sale_order_product_recommendation,sale_order_product_recommendation_packaging_default"
+            exclude: "sale_packaging_default,sale_order_product_recommendation,sale_order_product_recommendation_packaging_default,sale_order_product_recommendation_elaboration"
             name: test with OCB
             makepot: "true"
     services:
