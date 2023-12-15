@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-04-29 00:55+0000\n"
-"PO-Revision-Date: 2023-07-03 16:10+0000\n"
+"PO-Revision-Date: 2023-12-15 18:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -48,7 +48,7 @@ msgstr "Bloccati in bozza"
 #: view:sale.exception.confirm:sale_exceptions.view_sale_exception_confirm
 #, python-format
 msgid "Blocked in draft due to exceptions"
-msgstr "Bloccato in stato bozza dovuto alla eccezzioni"
+msgstr "Bloccati in bozza per eccezioni"
 
 #. module: sale_exceptions
 #: field:sale.exception,create_uid:0 field:sale.exception.confirm,create_uid:0
@@ -160,12 +160,12 @@ msgstr "Eccezione principale"
 #. module: sale_exceptions
 #: model:sale.exception,name:sale_exceptions.excep_no_zip
 msgid "No ZIP code on destination"
-msgstr "No ZIP sull'indirizzo di destinazione"
+msgstr "Nessun CAP sull'indirizzo di destinazione"
 
 #. module: sale_exceptions
 #: model:sale.exception,name:sale_exceptions.excep_no_stock
 msgid "Not Enough Virtual Stock"
-msgstr "Non abbastanza stock virtuale"
+msgstr "Giacenza vituale non sufficiente"
 
 #. module: sale_exceptions
 #: field:sale.exception,code:0
