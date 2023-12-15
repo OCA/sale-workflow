@@ -220,11 +220,17 @@ class SaleOrderRecommendation(models.TransientModel):
 class SaleOrderRecommendationLine(models.TransientModel):
     _name = "sale.order.recommendation.line"
     _description = "Recommended product for current sale order"
-    _order = "id"
+    _order = "product_priority desc, id"
 
     currency_id = fields.Many2one(related="product_id.currency_id")
     partner_id = fields.Many2one(related="wizard_id.order_id.partner_id")
     product_id = fields.Many2one("product.product", string="Product")
+    product_categ_id = fields.Many2one(
+        related="product_id.categ_id", readonly=True, store=True
+    )
+    product_priority = fields.Selection(
+        related="product_id.priority", store=True, readonly=False
+    )
     price_unit = fields.Monetary(compute="_compute_price_unit")
     pricelist_id = fields.Many2one(related="wizard_id.order_id.pricelist_id")
     times_delivered = fields.Integer(readonly=True)
