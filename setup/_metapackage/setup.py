@@ -31,6 +31,7 @@ setuptools.setup(
         'odoo-addon-sale_invoice_frequency>=16.0dev,<16.1dev',
         'odoo-addon-sale_manual_delivery>=16.0dev,<16.1dev',
         'odoo-addon-sale_mrp_bom>=16.0dev,<16.1dev',
+        'odoo-addon-sale_numeric_step>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_archive>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_currency_rate>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_general_discount>=16.0dev,<16.1dev',
