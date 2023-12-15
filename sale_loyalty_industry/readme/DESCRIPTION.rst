@@ -1,0 +1,1 @@
+This module allow to restrict the industries in which the sale loyalty program applies.
