@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-10 15:06+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-12-18 20:10+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
-"Language: it\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_stock_line_sequence
 #. odoo-python
@@ -24,15 +24,15 @@ msgid ""
 "Not allowed to change the sequence of moves from the picking, you can do it "
 "from the SO."
 msgstr ""
-"Non abilitato alla modifica della sequenza dei movimenti dal prelievo, si "
-"può fare dall'OV."
+"No se permite cambiar la secuencia de movimientos desde el albarán, se puede "
+"hacer desde el SO."
 
 #. module: sale_stock_line_sequence
 #: model:ir.model,name:sale_stock_line_sequence.model_sale_order
 msgid "Sales Order"
-msgstr "Ordine di vendita"
+msgstr "Pedidos de Venta"
 
 #. module: sale_stock_line_sequence
 #: model:ir.model,name:sale_stock_line_sequence.model_stock_move
 msgid "Stock Move"
-msgstr "Movimento di magazzino"
+msgstr "Movimiento de Existencias"
