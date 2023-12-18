@@ -77,10 +77,24 @@ class SaleOrderRecommendationLine(models.TransientModel):
                         line.product_packaging_id.qty * line.product_packaging_qty
                     )
 
+    def _prepare_packaging_line_form(self, line_form):
+        """Prepare packaging info for sale order line."""
+        try:
+            line_form.product_packaging_id = self.product_packaging_id
+        except (AssertionError, KeyError):
+            # No access to packaging
+            return
+        if self.product_packaging_id:
+            line_form.product_packaging_qty = self.product_packaging_qty
+
+    def _prepare_update_so_line(self, line_form):
+        """Update a sale order line with packaging info."""
+        result = super()._prepare_update_so_line(line_form)
+        self._prepare_packaging_line_form(line_form)
+        return result
+
     def _prepare_new_so_line(self, line_form, sequence):
         """Prepare product packaging info for new sale order line."""
         result = super()._prepare_new_so_line(line_form, sequence)
-        line_form.product_packaging_id = self.product_packaging_id
-        if self.product_packaging_id:
-            line_form.product_packaging_qty = self.product_packaging_qty
+        self._prepare_packaging_line_form(line_form)
         return result
