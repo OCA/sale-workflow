@@ -50,7 +50,6 @@ class SaleOrder(models.Model):
                 and has_invoice_plan
                 and to_invoice
                 and rec.invoice_status in ["to invoice", "no"]
-                and "advance" in to_invoice.mapped("invoice_type")
             )
 
     @api.constrains("invoice_plan_ids")
