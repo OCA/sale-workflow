@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-07-20 09:11+0000\n"
+"PO-Revision-Date: 2023-12-18 09:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -118,7 +118,7 @@ msgstr "Registro"
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__journal_currency_id
 msgid "Journal Currency"
-msgstr "Registro valuta"
+msgstr "Valuta registro"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_payment____last_update
@@ -165,7 +165,7 @@ msgstr "Valuta ordine"
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Order Due Amount"
-msgstr "Importo dovuto ordine"
+msgstr "Importo dovuto dell'ordine"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__outbound
@@ -194,7 +194,7 @@ msgstr "Pagato parzialmente"
 #: model:ir.model.fields,field_description:sale_advance_payment.field_sale_order__account_payment_ids
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_order_form
 msgid "Pay sale advanced"
-msgstr "Acconto ordine"
+msgstr "Paga anticipo vendita"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
@@ -204,17 +204,17 @@ msgstr "Metodo di pagamento"
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__payment_type
 msgid "Payment Type"
-msgstr "Modalità di pagamento"
+msgstr "Tipo pagamento"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_order_form
 msgid "Payment advances"
-msgstr "Anticipi di pagamento"
+msgstr "Pagamenti anticipati"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_sale_order__payment_line_ids
 msgid "Payment move lines"
-msgstr "Linee movimenti di pagamento"
+msgstr "Righe movimento pagamento"
 
 #. module: sale_advance_payment
 #: model:ir.model,name:sale_advance_payment.model_account_payment
@@ -248,5 +248,5 @@ msgid ""
 "The amount to advance must always be positive. Please use the payment type "
 "to indicate if this is an inbound or an outbound payment."
 msgstr ""
-"L'importo da anticipare deve essere sempre positivo. Utilizza il tipo di "
+"L'importo da anticipare deve essere sempre positivo. Utilizzare il tipo di "
 "pagamento per indicare se si tratta di un pagamento in entrata o in uscita."
