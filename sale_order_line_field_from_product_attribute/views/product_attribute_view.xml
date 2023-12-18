@@ -1,0 +1,16 @@
+<odoo>
+
+    <record id="product_attribute_view_form" model="ir.ui.view">
+        <field name="model">product.attribute</field>
+        <field name="inherit_id" ref="product.product_attribute_view_form" />
+        <field name="arch" type="xml">
+            <field name="create_variant" position="after">
+                <field
+                    name="store_in_field"
+                    attrs="{'invisible': [('create_variant', '!=', 'no_variant')]}"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
