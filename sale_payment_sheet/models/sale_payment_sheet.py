@@ -151,7 +151,6 @@ class SalePaymentSheet(models.Model):
 
                 if key not in vals_dic:
                     vals_dic[key] = {
-                        "name": line.name,
                         "date": line.date,
                         "journal_id": sheet.journal_id.id,
                         "invoice_user_id": sheet.user_id.id,
@@ -164,7 +163,6 @@ class SalePaymentSheet(models.Model):
                     }
                 else:
                     vals_dic[key]["amount"] += amount_line
-                    vals_dic[key]["name"] += " {}".format(line.invoice_id.name)
                     vals_dic[key]["payment_sheet_line_ids"] += line
             for vals in vals_dic.values():
                 payment_sheet_line_ids = vals.pop("payment_sheet_line_ids", None)
