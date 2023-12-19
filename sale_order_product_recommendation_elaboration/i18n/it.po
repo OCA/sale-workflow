@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_product_recommendation_elaboration
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-12-19 15:34+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_order_product_recommendation_elaboration
+#: model:ir.model.fields,field_description:sale_order_product_recommendation_elaboration.field_sale_order_recommendation_line__elaboration_note
+msgid "Elaboration Note"
+msgstr "Nota elaborazione"
+
+#. module: sale_order_product_recommendation_elaboration
+#: model:ir.model.fields,field_description:sale_order_product_recommendation_elaboration.field_sale_order_recommendation_line__elaboration_ids
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation_elaboration.view_order_form
+msgid "Elaborations"
+msgstr "Elaborazioni"
+
+#. module: sale_order_product_recommendation_elaboration
+#: model:ir.model.fields,field_description:sale_order_product_recommendation_elaboration.field_sale_order_recommendation_line__is_elaboration
+msgid "Is Elaboration"
+msgstr "È elaborazione"
+
+#. module: sale_order_product_recommendation_elaboration
+#: model:ir.model,name:sale_order_product_recommendation_elaboration.model_sale_order_recommendation_line
+msgid "Recommended product for current sale order"
+msgstr "Prodotto consigliato per questo ordine di vendita"
+
+#. module: sale_order_product_recommendation_elaboration
+#: model:ir.model,name:sale_order_product_recommendation_elaboration.model_sale_order_recommendation
+msgid "Recommended products for current sale order"
+msgstr "Prodotto consigliato per questo ordine di vendita"
