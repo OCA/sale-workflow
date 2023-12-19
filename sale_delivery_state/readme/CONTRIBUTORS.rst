@@ -3,3 +3,4 @@
 * Yannick Vaucher <yannick.vaucher@camptocamp.com>
 * Daniel Reis <dreis@opensourceintegrators.com>,
   `Open Source Integrators <https://opensourceintegrators.com>`_
+* Manuel Regidor <manuel.regidor@sygel.es>
