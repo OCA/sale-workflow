@@ -26,6 +26,9 @@
                 <field name="delivery_state" readonly="True" />
                 <field name="force_delivery_state" invisible="True" />
             </field>
+            <xpath expr="//field[@name='order_line']//tree" position="inside">
+                <field name="skip_sale_delivery_state" optional="hide" />
+            </xpath>
         </field>
     </record>
 
