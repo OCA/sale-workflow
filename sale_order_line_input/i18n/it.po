@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-13 14:34+0000\n"
+"PO-Revision-Date: 2023-12-20 12:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -35,7 +35,7 @@ msgstr "Azienda forzata"
 #: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__pricelist_id
 msgid "If you change the pricelist, only newly added lines will be affected."
 msgstr ""
-"Se cambi il listino prezzi, verrà applicato solo alle nuove righe aggiunte."
+"Se si modifica il listino, solo le nuove righe aggiunte verranno interessate."
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
