@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form_inherit_delivery_state" model="ir.ui.view">
+        <field name="name">sale.order.form.sale.stock</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <!-- states and attrs[invisible] must be combined with an extra & -->
+                <button
+                    name="action_force_delivery_state"
+                    type="object"
+                    string="Force delivery done"
+                    states="done"
+                    attrs="{'invisible': ['|', '|', ('force_delivery_state', '=', True), ('delivery_status', '=', 'full')]}"
+                />
+                <button
+                    name="action_unforce_delivery_state"
+                    type="object"
+                    string="Unforce delivery done"
+                    states="done"
+                    attrs="{'invisible': ['|', ('force_delivery_state', '=', False)]}"
+                />
+            </field>
+            <group name="sale_shipping" position="inside">
+                <field
+                    name="delivery_status"
+                    attrs="{'invisible': [('state', 'not in', ['sale', 'done'])]}"
+                />
+                <field name="force_delivery_state" invisible="1" />
+            </group>
+        </field>
+    </record>
+
+    <record id="view_order_tree_inherit_delivery_status" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <field name="invoice_status" position="before">
+                <field
+                    name="delivery_status"
+                    widget="badge"
+                    optional="hide"
+                    decoration-info="delivery_status == 'pending'"
+                    decoration-warning="delivery_status == 'partial'"
+                    decoration-success="delivery_status == 'full'"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>

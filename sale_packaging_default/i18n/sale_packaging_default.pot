@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_packaging_default
-#: model:ir.model.fields,field_description:sale_packaging_default.field_product_packaging__sales_default
-msgid "Default for sales"
-msgstr ""
-
-#. module: sale_packaging_default
 #: model:ir.model,name:sale_packaging_default.model_product_packaging
 msgid "Product Packaging"
 msgstr ""
@@ -26,11 +21,4 @@ msgstr ""
 #. module: sale_packaging_default
 #: model:ir.model,name:sale_packaging_default.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
-
-#. module: sale_packaging_default
-#: model:ir.model.fields,help:sale_packaging_default.field_product_packaging__sales_default
-msgid ""
-"The first packaging with this option checked will be used by default in "
-"sales orders."
 msgstr ""

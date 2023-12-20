@@ -109,6 +109,11 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: sale_invoice_frequency
+#: model:sale.invoice.frequency,name:sale_invoice_frequency.sale_invoice_frequency_monthly
+msgid "Monthly"
+msgstr ""
+
+#. module: sale_invoice_frequency
 #: model:ir.model.fields,field_description:sale_invoice_frequency.field_sale_invoice_frequency__name
 msgid "Name"
 msgstr ""

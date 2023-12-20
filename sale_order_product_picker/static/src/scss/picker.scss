@@ -1,0 +1,22 @@
+#picker-multiline-modal .oe_kanban_card:not(.product-selected) {
+    display: none;
+}
+#picker-multiline-modal .o_data_row:not(.product-selected) {
+    display: none;
+}
+.o_field_widget.o_field_selection_badge .o_selection_badge.active {
+    font-weight: bold;
+}
+.o_form_view.o_form_editable .o_row > .o_field_widget,
+.o_form_view.o_form_editable .o_row > div {
+    width: auto !important;
+}
+// This is used to show list price stroke
+.price_picker {
+    display: flex;
+
+    div[name="list_price"] {
+        text-decoration: line-through;
+        margin-left: 5px;
+    }
+}

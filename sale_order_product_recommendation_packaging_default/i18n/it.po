@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_product_recommendation_packaging_default
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-12-07 18:33+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_order_product_recommendation_packaging_default
+#: model:ir.model.fields,field_description:sale_order_product_recommendation_packaging_default.field_sale_order_recommendation_line__product_packaging_id
+msgid "Packaging"
+msgstr "Imballaggio"
+
+#. module: sale_order_product_recommendation_packaging_default
+#: model:ir.model.fields,field_description:sale_order_product_recommendation_packaging_default.field_sale_order_recommendation_line__product_packaging_qty
+msgid "Packaging Qty."
+msgstr "Q.tà imballagio"
+
+#. module: sale_order_product_recommendation_packaging_default
+#: model:ir.model.fields,help:sale_order_product_recommendation_packaging_default.field_sale_order_recommendation_line__product_packaging_id
+msgid "Packaging used for selling this product."
+msgstr "Imballaggio utilizzato per vendere questo prodotto."
+
+#. module: sale_order_product_recommendation_packaging_default
+#: model:ir.model.fields,help:sale_order_product_recommendation_packaging_default.field_sale_order_recommendation_line__product_packaging_qty
+msgid "Quantity of packagings to sell."
+msgstr "Quantità di imballaggio da vendere."
+
+#. module: sale_order_product_recommendation_packaging_default
+#: model:ir.model,name:sale_order_product_recommendation_packaging_default.model_sale_order_recommendation_line
+msgid "Recommended product for current sale order"
+msgstr "Prodotto consigliato per questo ordine di vendita"

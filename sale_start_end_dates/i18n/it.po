@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-17 02:40+0000\n"
-"PO-Revision-Date: 2023-10-13 14:38+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-12-12 11:01+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -37,6 +37,8 @@ msgid ""
 "Default Start Date (%(start_date)s) should be before or be the same as "
 "Default End Date (%(end_date)s) for sale order '%(name)s'."
 msgstr ""
+"La data inizio predefinita (%(start_date)s) deve essere antecedente o uguale "
+"alla data fine (%(end_date)s) per lordine di vendita '%(name)s'."
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__end_date
@@ -49,25 +51,29 @@ msgid ""
 "If this option is active, the user will have to enter a Start Date and an "
 "End Date on the invoice lines that have this product."
 msgstr ""
+"Se questa opzione è attiva, l'utente dovrà inserire data inizio e data fine "
+"nelle righe fattura che contengono questo prodotto."
 
 #. module: sale_start_end_dates
 #. odoo-python
 #: code:addons/sale_start_end_dates/models/sale_order.py:0
 #, python-format
 msgid "Missing End Date for sale order line with Product '%s'."
-msgstr "Manca la data di fine nell'ordine di vendita per il prodotto '%s'"
+msgstr ""
+"Manca la data di fine nella riga ordine di vendita con il prodotto '%s'."
 
 #. module: sale_start_end_dates
 #. odoo-python
 #: code:addons/sale_start_end_dates/models/sale_order.py:0
 #, python-format
 msgid "Missing Start Date for sale order line with Product '%s'."
-msgstr "Manca la data di Inizio per il prodotto '%s'"
+msgstr ""
+"Manca la data di inizio per la riga ordine di vendita con il prodotto '%s'."
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__must_have_dates
 msgid "Must Have Start/End Dates"
-msgstr ""
+msgstr "Deve avere le date inizio/fine"
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__number_of_days
@@ -83,11 +89,14 @@ msgid ""
 "negative (%(number_of_days)s) ; this is not allowed. The number of days has "
 "been forced to 1."
 msgstr ""
+"Nella riga ordine contentene il prodotto '%(product_name)s, il numero di "
+"giorni è negativo (%(number_of_days)s) ; questo non è permesso. Il numero di "
+"giorni è stato impostato a 1."
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order_line
@@ -107,13 +116,15 @@ msgid ""
 "Start Date (%(start_date)s) should be before or be the same as End Date "
 "(%(end_date)s) for sale order line with Product '%(product_name)s'."
 msgstr ""
+"La data inizio (%(start_date)s) deve essere antecedente o uguale alla data "
+"fine (%(end_date)s) per l'ordine di vendita con prodotto '%(product_name)s'."
 
 #. module: sale_start_end_dates
 #. odoo-python
 #: code:addons/sale_start_end_dates/models/sale_order.py:0
-#, fuzzy, python-format
+#, python-format
 msgid "Wrong number of days"
-msgstr "Numero di giorni"
+msgstr "Numero di giorni errato"
 
 #, fuzzy, python-format
 #~| msgid ""

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record id="excep_commit_on_public_holiday" model="exception.rule">
+        <field name="name">Delivery Date is a public holiday</field>
+        <field name="description">Delivery Date is a public holiday</field>
+        <field name="sequence">100</field>
+        <field name="model">sale.order</field>
+        <field name="code">failed=not self.check_commitment_date()</field>
+        <field name="active" eval="False" />
+    </record>
+</odoo>

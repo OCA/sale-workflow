@@ -42,7 +42,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
             if not line.units_included:
                 line.product_packaging_id = (
                     line.sale_line_id.product_packaging_id
-                    or sale_pkgs.filtered_domain([("sales_default", "=", True)])[:1]
+                    or sale_pkgs.filtered_domain([("sales", "=", True)])[:1]
                 )
                 line.product_packaging_qty = 0
                 continue
@@ -77,9 +77,24 @@ class SaleOrderRecommendationLine(models.TransientModel):
                         line.product_packaging_id.qty * line.product_packaging_qty
                     )
 
+    def _prepare_packaging_line_form(self, line_form):
+        """Prepare packaging info for sale order line."""
+        try:
+            line_form.product_packaging_id = self.product_packaging_id
+        except (AssertionError, KeyError):
+            # No access to packaging
+            return
+        if self.product_packaging_id:
+            line_form.product_packaging_qty = self.product_packaging_qty
+
+    def _prepare_update_so_line(self, line_form):
+        """Update a sale order line with packaging info."""
+        result = super()._prepare_update_so_line(line_form)
+        self._prepare_packaging_line_form(line_form)
+        return result
+
     def _prepare_new_so_line(self, line_form, sequence):
         """Prepare product packaging info for new sale order line."""
         result = super()._prepare_new_so_line(line_form, sequence)
-        line_form.product_packaging_id = self.product_packaging_id
-        line_form.product_packaging_qty = self.product_packaging_qty
+        self._prepare_packaging_line_form(line_form)
         return result

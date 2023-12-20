@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0)
 
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class ResPartner(models.Model):
@@ -13,3 +13,7 @@ class ResPartner(models.Model):
         string="Invoicing frequency",
         help="Invoicing frequency for this customer",
     )
+
+    @api.model
+    def _commercial_fields(self):
+        return super()._commercial_fields() + ["invoice_frequency_id"]

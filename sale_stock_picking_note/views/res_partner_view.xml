@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Moduon Team S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<odoo>
+    <record id="view_partner_form_inherit_partner_picking_note" model="ir.ui.view">
+        <field name="name">Partner Picking Note</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='sale']" position="inside">
+                <field
+                    name="picking_note"
+                    placeholder="Picking notes..."
+                    groups="sales_team.group_sale_salesman,stock.group_stock_user"
+                />
+                <field
+                    name="picking_customer_note"
+                    placeholder="Picking customer notes..."
+                    groups="sales_team.group_sale_salesman,stock.group_stock_user"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

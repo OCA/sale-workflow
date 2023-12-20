@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--  New view to disable edition options -->
+    <record id="product_product_tree_picker_filter_view" model="ir.ui.view">
+        <field name="name">product.product.tree.picker.filter</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="create">0</attribute>
+                <attribute name="edit">0</attribute>
+                <attribute name="multi_edit">0</attribute>
+                <attribute name="delete">0</attribute>
+            </xpath>
+            <!--  Ensure that cost is not displayed in this view -->
+            <xpath expr="//tree/field[@name='standard_price']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <!--  Specific action to manage product picker filters -->
+    <record id="product_normal_action_sell_picker" model="ir.actions.act_window">
+        <field name="name">Product Variants (Picker)</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">tree</field>
+        <field name="context">{"search_default_filter_to_sell":1}</field>
+        <field
+            name="view_id"
+            ref="sale_order_product_picker.product_product_tree_picker_filter_view"
+        />
+        <field name="search_view_id" ref="product.product_search_form_view" />
+    </record>
+</odoo>

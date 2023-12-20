@@ -1,0 +1,466 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_product_picker
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-20 09:25+0000\n"
+"PO-Revision-Date: 2023-11-26 18:33+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_order_product_picker
+#: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
+msgid "<i class=\"fa fa-files-o\" title=\"Add new line\"/>"
+msgstr "<i class=\"fa fa-files-o\" title=\"Añadir nueva línea\"/>"
+
+#. module: sale_order_product_picker
+#: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
+msgid ""
+"<span class=\"text-muted\">\n"
+"                                                                Quantity:\n"
+"                                                            </span>"
+msgstr ""
+"<span class=\"text-muted\">\n"
+"                                                                Cantidad:\n"
+"                                                            </span>"
+
+#. module: sale_order_product_picker
+#: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
+msgid ""
+"<strong style=\"font-size: 1.2em\">+1\n"
+"                                                                </strong>"
+msgstr ""
+"<strong style=\"font-size: 1.2em\">+1\n"
+"                                                                </strong>"
+
+#. module: sale_order_product_picker
+#: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
+msgid "Attribute"
+msgstr "Atributo"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order__picker_product_attribute_value_id
+msgid "Attribute value"
+msgstr "Valor del Atributo"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order__picker_only_available
+msgid "Available"
+msgstr "Disponible"
+
+#. module: sale_order_product_picker
+#: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
+msgid "Available:"
+msgstr "Disponible:"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields.selection,name:sale_order_product_picker.selection__sale_order__picker_order__categ_id
+msgid "Category"
+msgstr "Categoría"
+
+#. module: sale_order_product_picker
+#: model:ir.actions.act_window,name:sale_order_product_picker.action_open_picker_views
+msgid "Commercial Quotations"
+msgstr "Presupuestos (Comerciales)"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,help:sale_order_product_picker.field_sale_order_picker__uom_id
+msgid "Default unit of measure used for all stock operations."
+msgstr ""
+"Unidad de medida por defecto usada para todas las operaciones de Inventario."
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__qty_delivered
+msgid "Delivered"
+msgstr "Entregado"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__display_name
+msgid "Display Name"
+msgstr "Nombre a mostrar"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order__picker_filter
+#: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
+msgid "Filter"
+msgstr "Filtro"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,help:sale_order_product_picker.field_sale_order__picker_product_attribute_value_id
+msgid "Filter products by attribute value"
+msgstr "Filtrar de productos por valor del atributo"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__product_image
+msgid "Image 256"
+msgstr "Imagen"
+
+#. module: sale_order_product_picker
+#: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
+msgid "Input product code or name"
+msgstr "Introduzca código o nombre del producto"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_line__is_different_price
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__is_different_price
+msgid "Is Different Price"
+msgstr "Es un precio Diferente"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__is_in_order
+msgid "Is In Order"
+msgstr "Está en pedido"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__write_uid
+msgid "Last Updated by"
+msgstr "Última modificación por"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields.selection,name:sale_order_product_picker.selection__sale_order__picker_price_origin__last_sale_price
+msgid "Last price"
+msgstr "Último precio"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields.selection,name:sale_order_product_picker.selection__sale_order__picker_origin_data__sale_order
+msgid "Last sales"
+msgstr "Últimas ventas"
+
+#. module: sale_order_product_picker
+#: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
+msgid "Manage product filters (Reload after modify)"
+msgstr "Gestionar filtros de productos (Recargar después de modificar)"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__qty_available
+msgid "On Hand"
+msgstr "A mano"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__order_id
+#: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
+msgid "Order"
+msgstr "Pedido"
+
+#. module: sale_order_product_picker
+#: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
+msgid "Origin"
+msgstr "Origen"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order__picker_ids
+#: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
+msgid "Picker"
+msgstr "Catálogo"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order__picker_order
+msgid "Picker Order"
+msgstr "Orden de recogida"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order__picker_origin_data
+msgid "Picker Origin Data"
+msgstr "Origen de datos para catálogo"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order__picker_price_origin
+msgid "Picker Price Origin"
+msgstr "Origen del precio"
+
+#. module: sale_order_product_picker
+#: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
+msgid "Previous delivered:"
+msgstr "Entregas previas:"
+
+#. module: sale_order_product_picker
+#: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
+msgid "Price"
+msgstr "Precio"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,help:sale_order_product_picker.field_sale_order_line__list_price
+#: model:ir.model.fields,help:sale_order_product_picker.field_sale_order_picker__list_price
+msgid "Price at which the product is sold to customers."
+msgstr "Precio de venta del producto a los clientes."
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_line__categ_id
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__category_id
+msgid "Product Category"
+msgstr "Categoría del producto"
+
+#. module: sale_order_product_picker
+#: model:ir.actions.act_window,name:sale_order_product_picker.product_normal_action_sell_picker
+msgid "Product Variants (Picker)"
+msgstr "Variantes de productos (Selector)"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__product_uom_qty
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__sale_line_id
+msgid "Sale Line"
+msgstr "Línea de venta"
+
+#. module: sale_order_product_picker
+#: model:ir.model,name:sale_order_product_picker.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_order_product_picker
+#: model:ir.model,name:sale_order_product_picker.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de Orden de Venta"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_line__list_price
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__list_price
+msgid "Sales Price"
+msgstr "Precio de Venta"
+
+#. module: sale_order_product_picker
+#: model:ir.ui.menu,name:sale_order_product_picker.menu_email_campaigns
+msgid "Salesman Quotations"
+msgstr "Presupuestos de Vendedores"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order__product_name_search
+msgid "Search product"
+msgstr "Buscar producto"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__times_delivered
+msgid "Times Delivered"
+msgstr "Veces entregado"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__unit_name
+msgid "Unit Name"
+msgstr "Nombre de la Unidad"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__price_unit
+msgid "Unit Price"
+msgstr "Precio unitario"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__uom_id
+msgid "Unit of Measure"
+msgstr "Unidad de Medida"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order__use_delivery_address
+msgid "Use Delivery Address"
+msgstr "Usar dirección de entrega"
+
+#. module: sale_order_product_picker
+#: model:ir.model,name:sale_order_product_picker.model_sale_order_picker
+msgid "sale.order.picker"
+msgstr "sale.order.picker"
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "                <div class=\"modal o_legacy_dialog o_technical_modal\" id="
+#~ "\"picker-image-full-modal\" role=\"dialog\">\n"
+#~ "                    <div class=\"modal-dialog modal-lg ui-draggable modal-"
+#~ "dialog-centered\">\n"
+#~ "                        <!-- Modal content-->\n"
+#~ "                        <div class=\"modal-content\">\n"
+#~ "                            <div class=\"modal-header ui-draggable-handle"
+#~ "\">\n"
+#~ "                                <button type=\"button\" class=\"close\" "
+#~ "data-dismiss=\"modal\">&times;</button>\n"
+#~ "                            </div>\n"
+#~ "                            <div class=\"modal-body text-center\">\n"
+#~ "                                <img src=\"/web/image/product.product/"
+#~ "${product_id}/image_1920\" style=\"max-width: 100%; object-fit: contain;"
+#~ "\" alt=\"Product image\"/>\n"
+#~ "                            </div>\n"
+#~ "                        </div>\n"
+#~ "                    </div>\n"
+#~ "                </div>"
+#~ msgstr ""
+#~ "\n"
+#~ "                <div class=\"modal o_legacy_dialog o_technical_modal\" id="
+#~ "\"picker-image-full-modal\" role=\"dialog\">\n"
+#~ "                    <div class=\"modal-dialog modal-lg ui-draggable modal-"
+#~ "dialog-centered\">\n"
+#~ "                        <!-- Modal content-->\n"
+#~ "                        <div class=\"modal-content\">\n"
+#~ "                            <div class=\"modal-header ui-draggable-handle"
+#~ "\">\n"
+#~ "                                <button type=\"button\" class=\"close\" "
+#~ "data-dismiss=\"modal\">&times;</button>\n"
+#~ "                            </div>\n"
+#~ "                            <div class=\"modal-body text-center\">\n"
+#~ "                                <img src=\"/web/image/product.product/"
+#~ "${product_id}/image_1920\" style=\"max-width: 100%; object-fit: contain;"
+#~ "\" alt=\"Imagen del producto\"/>\n"
+#~ "                            </div>\n"
+#~ "                        </div>\n"
+#~ "                    </div>\n"
+#~ "                </div>"
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "                <div class=\"modal o_legacy_dialog o_technical_modal\" id="
+#~ "\"picker-multiline-modal\" role=\"dialog\">\n"
+#~ "                    <div class=\"modal-dialog modal-lg ui-draggable\">\n"
+#~ "                        <!-- Modal content-->\n"
+#~ "                        <div class=\"modal-content\">\n"
+#~ "                            <div class=\"modal-header ui-draggable-handle"
+#~ "\">\n"
+#~ "                                <h4 class=\"modal-title\">Select witch "
+#~ "line you want to modify</h4>\n"
+#~ "                                <button type=\"button\" class=\"close\" "
+#~ "data-dismiss=\"modal\">&times;</button>\n"
+#~ "                            </div>\n"
+#~ "                            <div class=\"modal-body\" />\n"
+#~ "                            <div class=\"modal-footer\">\n"
+#~ "                                <button type=\"button\" class=\"btn btn-"
+#~ "primary\" data-dismiss=\"modal\">Close</button>\n"
+#~ "                            </div>\n"
+#~ "                        </div>\n"
+#~ "                    </div>\n"
+#~ "                </div>"
+#~ msgstr ""
+#~ "\n"
+#~ "                <div class=\"modal o_legacy_dialog o_technical_modal\" id="
+#~ "\"picker-multiline-modal\" role=\"dialog\">\n"
+#~ "                    <div class=\"modal-dialog modal-lg ui-draggable\">\n"
+#~ "                        <!-- Modal content-->\n"
+#~ "                        <div class=\"modal-content\">\n"
+#~ "                            <div class=\"modal-header ui-draggable-handle"
+#~ "\">\n"
+#~ "                                <h4 class=\"modal-title\">Seleccione la "
+#~ "línea que quiera modificar</h4>\n"
+#~ "                                <button type=\"button\" class=\"close\" "
+#~ "data-dismiss=\"modal\">&times;</button>\n"
+#~ "                            </div>\n"
+#~ "                            <div class=\"modal-body\" />\n"
+#~ "                            <div class=\"modal-footer\">\n"
+#~ "                                <button type=\"button\" class=\"btn btn-"
+#~ "primary\" data-dismiss=\"modal\">Close</button>\n"
+#~ "                            </div>\n"
+#~ "                        </div>\n"
+#~ "                    </div>\n"
+#~ "                </div>"
+
+#~ msgid "<strong style=\"font-size: 1.2em\">+1</strong>"
+#~ msgstr "<strong style=\"font-size: 1.2em\">+1</strong>"
+
+#~ msgid "Cancelled"
+#~ msgstr "Cancelado"
+
+#~ msgid ""
+#~ "Current quantity of products.\n"
+#~ "In a context with a single Stock Location, this includes goods stored at "
+#~ "this Location, or any of its children.\n"
+#~ "In a context with a single Warehouse, this includes goods stored in the "
+#~ "Stock Location of this Warehouse, or any of its children.\n"
+#~ "stored in the Stock Location of the Warehouse of this Shop, or any of its "
+#~ "children.\n"
+#~ "Otherwise, this includes goods stored in any Stock Location with "
+#~ "'internal' type."
+#~ msgstr ""
+#~ "Cantidad actual de los productos.\n"
+#~ "En un contexto de una sola ubicación de existencias, esto incluye los "
+#~ "bienes almacenados en esta ubicación, o cualquiera de sus hijas.\n"
+#~ "En un contexto de un solo almacén, esto incluye los bienes almacenados en "
+#~ "la ubicación de existencias de ese almacén, o cualquiera de sus hijas.\n"
+#~ "En cualquier otro caso, esto incluye los bienes almacenados en cualquier "
+#~ "ubicación de existencias de tipo 'Interna'."
+
+#~ msgid "Display Qty Widget"
+#~ msgstr "Mostrar widget de cantidad"
+
+#~ msgid "Forecast Expected Date"
+#~ msgstr "Fecha prevista"
+
+#~ msgid "Free Qty Today"
+#~ msgstr "Cant. libre hoy"
+
+#~ msgid "Is Mto"
+#~ msgstr "Es MTO"
+
+#~ msgid "Locked"
+#~ msgstr "Bloqueado"
+
+#~ msgid "Move"
+#~ msgstr "Movimiento"
+
+#~ msgid "Qty Available Today"
+#~ msgstr "Cant. Disponible Hoy"
+
+#~ msgid "Qty To Deliver"
+#~ msgstr "Cant. a entregar"
+
+#~ msgid "Quantity:"
+#~ msgstr "Cantidad:"
+
+#~ msgid "Quotation"
+#~ msgstr "Presupuesto"
+
+#~ msgid "Quotation Sent"
+#~ msgstr "Presupuesto enviado"
+
+#~ msgid "Scheduled Date"
+#~ msgstr "Fecha prevista"
+
+#~ msgid "State"
+#~ msgstr "Estado"
+
+#~ msgid "Virtual Available At Date"
+#~ msgstr "Virtual disponible en la fecha"
+
+#~ msgid "Warehouse"
+#~ msgstr "Almacén"

@@ -7,6 +7,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
+            <!-- Move packaging and packaging qty before product qty in tree view -->
             <xpath
                 expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
                 position="before"
@@ -17,6 +18,21 @@
                 />
                 <xpath
                     expr="//field[@name='order_line']/tree/field[@name='product_packaging_qty']"
+                    position="move"
+                />
+            </xpath>
+
+            <!-- Move packaging and packaging qty before product qty in form view -->
+            <xpath
+                expr="//field[@name='order_line']/form//label[@for='product_uom_qty']"
+                position="before"
+            >
+                <xpath
+                    expr="//field[@name='order_line']/form//field[@name='product_packaging_id']"
+                    position="move"
+                />
+                <xpath
+                    expr="//field[@name='order_line']/form//field[@name='product_packaging_qty']"
                     position="move"
                 />
             </xpath>
