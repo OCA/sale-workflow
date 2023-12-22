@@ -15,25 +15,33 @@ class RecommendationCaseTests(test_recommendation_common.RecommendationCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # Product 2 was sold with 2 elaborations
+        # Product 2 was sold with 2 small elaborations
         o1p2line = cls.order1.order_line[1]
         assert o1p2line.product_id == cls.prod_2
-        cls.prod_2_elab_1, cls.prod_2_elab_2 = cls.env["product.elaboration"].create(
+        cls.prod_small_elab = cls.env["product.product"].create(
+            {
+                "name": "Small elaboration",
+                "is_elaboration": True,
+                "type": "service",
+                "list_price": 1,
+            }
+        )
+        cls.elab_1, cls.elab_2 = cls.env["product.elaboration"].create(
             [
                 {
-                    "product_id": cls.prod_2.id,
+                    "product_id": cls.prod_small_elab.id,
                     "name": "Elaboration 1",
                 },
                 {
-                    "product_id": cls.prod_2.id,
+                    "product_id": cls.prod_small_elab.id,
                     "name": "Elaboration 2",
                 },
             ]
         )
-        o1p2line.elaboration_ids = cls.prod_2_elab_1 | cls.prod_2_elab_2
+        o1p2line.elaboration_ids = cls.elab_1 | cls.elab_2
         # An older order had only elaboration 1, but the newest one will be used
         assert cls.order2.order_line.product_id == cls.prod_2
-        cls.order2.order_line.elaboration_ids = cls.prod_2_elab_1
+        cls.order2.order_line.elaboration_ids = cls.elab_1
 
     def test_recommendations_from_last_sale(self):
         wizard = self.wizard()
@@ -41,10 +49,8 @@ class RecommendationCaseTests(test_recommendation_common.RecommendationCase):
         wiz_line = wizard.line_ids.filtered_domain(
             [("product_id", "=", self.prod_2.id)]
         )
-        self.assertTrue(wiz_line)
-        self.assertEqual(
-            wiz_line.elaboration_ids, self.prod_2_elab_1 | self.prod_2_elab_2
-        )
+        wiz_line.ensure_one()
+        self.assertEqual(wiz_line.elaboration_ids, self.elab_1 | self.elab_2)
         self.assertEqual(wiz_line.elaboration_note, "Elaboration 1, Elaboration 2")
         wiz_line.elaboration_note = "Elaborations 1 and 2"
         # Include 1 of those
@@ -56,7 +62,7 @@ class RecommendationCaseTests(test_recommendation_common.RecommendationCase):
         self.assertEqual(self.new_so.order_line.product_uom_qty, 1)
         self.assertEqual(
             self.new_so.order_line.elaboration_ids,
-            self.prod_2_elab_1 | self.prod_2_elab_2,
+            self.elab_1 | self.elab_2,
         )
         self.assertEqual(
             self.new_so.order_line.elaboration_note, "Elaborations 1 and 2"
@@ -68,7 +74,7 @@ class RecommendationCaseTests(test_recommendation_common.RecommendationCase):
                 {
                     "product_id": self.prod_2.id,
                     "product_uom_qty": 1,
-                    "elaboration_ids": self.prod_2_elab_2,
+                    "elaboration_ids": self.elab_2,
                 }
             )
         ]
@@ -78,5 +84,5 @@ class RecommendationCaseTests(test_recommendation_common.RecommendationCase):
         wiz = self.wizard()
         wiz_line = wiz.line_ids.filtered_domain([("product_id", "=", self.prod_2.id)])
         self.assertTrue(wiz_line)
-        self.assertEqual(wiz_line.elaboration_ids, self.prod_2_elab_2)
+        self.assertEqual(wiz_line.elaboration_ids, self.elab_2)
         self.assertEqual(wiz_line.elaboration_note, "custom")

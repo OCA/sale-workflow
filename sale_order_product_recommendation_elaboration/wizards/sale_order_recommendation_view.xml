@@ -12,11 +12,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='line_ids']/form" position="inside">
                 <group string="Elaborations" name="elaboration">
-                    <field
-                        name="elaboration_ids"
-                        widget="many2many_tags"
-                        context="{'default_product_id': product_id}"
-                    />
+                    <field name="elaboration_ids" widget="many2many_tags" />
                     <field name="elaboration_note" />
                 </group>
             </xpath>
@@ -24,12 +20,7 @@
                 expr="//field[@name='line_ids']/tree//field[@name='units_included']"
                 position="after"
             >
-                <field
-                    name="elaboration_ids"
-                    widget="many2many_tags"
-                    optional="show"
-                    context="{'default_product_id': product_id}"
-                />
+                <field name="elaboration_ids" widget="many2many_tags" optional="show" />
                 <field name="elaboration_note" optional="show" />
             </xpath>
         </field>
