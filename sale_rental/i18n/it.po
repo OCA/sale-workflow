@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2023-06-20 14:08+0000\n"
+"PO-Revision-Date: 2023-12-24 19:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -253,7 +253,7 @@ msgstr "Nuovo noleggio"
 #: code:addons/sale_rental/models/sale_order.py:0
 #, python-format
 msgid "Not enough stock !"
-msgstr "Non abbastanza stock"
+msgstr "Non abbastanza stock!"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:0
@@ -263,7 +263,7 @@ msgid ""
 "rental service product !"
 msgstr ""
 "Nella nuova riga dell'ordine di vendita per il prodotto %s, e' necessario "
-"avere un prodotto di tipo \"servizio noleggio\" "
+"avere un prodotto di tipo \"servizio noleggio\"!"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:0
@@ -688,9 +688,8 @@ msgid ""
 "the stock location '%s' ! Make sure that you get some units back in the mean "
 "time or re-supply the stock location '%s'."
 msgstr ""
-"Si vuole noleggiare %.2f %s  ma sono solo disponibili %.2f %s nella "
-"locazione '%s'. Assicurarsi prima il rientro o procedere alla riallocazione "
-"di '%s'"
+"Si vuole noleggiare %.2f %s ma sono solo disponibili %.2f %s nella locazione "
+"'%s'. Assicurarsi prima il rientro o procedere alla riallocazione di '%s'"
 
 #~ msgid "Sale Order"
 #~ msgstr "Ordine di vendita"
