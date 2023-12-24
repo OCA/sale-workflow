@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-22 14:34+0000\n"
+"PO-Revision-Date: 2023-12-24 15:33+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -29,7 +29,7 @@ msgstr "Anticipo sulla prima fattura"
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
 msgid "Are you sure to remove this invoice plan?"
-msgstr "Sei sicuro di rimuovere questo piano di fatturazione?"
+msgstr "Si è sicuri di rimuovere questo piano di fatturazione?"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,help:sale_invoice_plan.field_sale_order__ip_invoice_plan
@@ -314,7 +314,7 @@ msgstr "Ordini di vendita"
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 msgid "Search Sales Invoice Plan Lines"
-msgstr "Ricerca righe piano di fatturazione"
+msgstr "Ricerca righe piano di fatturazione vendite"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__state
@@ -338,7 +338,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_create_invoice_plan
 msgid "This wizard help you quickly create invoice plan."
 msgstr ""
-"Questa procedura guidata ti aiuterà a creare velocemente un piano di "
+"Questa procedura guidata aiuterà a creare velocemente un piano di "
 "fatturazione."
 
 #. module: sale_invoice_plan
@@ -360,7 +360,7 @@ msgstr "Piano di fatturazione selezionato, ma nessun piano creato"
 #. module: sale_invoice_plan
 #: model_terms:ir.actions.act_window,help:sale_invoice_plan.action_sale_invoice_plan
 msgid "View sales invoice plan lines"
-msgstr "Visualizza le righe di piano di fatturazione"
+msgstr "Visualizza le righe di piano di fatturazione vendite"
 
 #. module: sale_invoice_plan
 #: model:ir.model,name:sale_invoice_plan.model_sale_make_planned_invoice
