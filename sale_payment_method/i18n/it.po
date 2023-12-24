@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-15 22:30+0000\n"
-"PO-Revision-Date: 2023-10-13 12:39+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2023-12-24 18:37+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
 "Language: it\n"
@@ -166,7 +166,7 @@ msgstr "Metodo di pagamento"
 #: model:ir.actions.act_window,name:sale_payment_method.act_payment_method_form
 #: model:ir.ui.menu,name:sale_payment_method.menu_action_paymetn_method_form
 msgid "Payment Methods "
-msgstr "Metodi di Pagamento"
+msgstr "Metodi di Pagamento "
 
 #. module: sale_payment_method
 #: field:payment.method,payment_term_id:0
