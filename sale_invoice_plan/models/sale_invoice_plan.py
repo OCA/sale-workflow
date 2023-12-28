@@ -59,6 +59,7 @@ class SaleInvoicePlan(models.Model):
         column2="move_id",
         string="Invoices",
         readonly=True,
+        copy=False,
     )
     amount_invoiced = fields.Float(compute="_compute_invoiced")
     to_invoice = fields.Boolean(
@@ -93,22 +94,27 @@ class SaleInvoicePlan(models.Model):
 
     @api.depends("percent")
     def _compute_amount(self):
+        """Amount to be invoiced"""
         for rec in self:
-            amount_untaxed = rec.sale_id._origin.amount_untaxed
+            amount_untaxed = rec.sale_id.amount_untaxed
             # With invoice already created, no recompute
             if rec.invoiced:
                 rec.amount = rec.amount_invoiced
-                rec.percent = rec.amount / amount_untaxed * 100
-                continue
             # For last line, amount is the left over
-            if rec.last:
+            elif rec.last:
                 installments = rec.sale_id.invoice_plan_ids.filtered(
                     lambda l: l.invoice_type == "installment"
                 )
                 prev_amount = sum((installments - rec).mapped("amount"))
                 rec.amount = amount_untaxed - prev_amount
-                continue
-            rec.amount = rec.percent * amount_untaxed / 100
+            else:
+                # Simulate the amount to be invoiced, as close as possible
+                # For this, round quantities on each order line
+                rec.amount = sum(
+                    sol._get_installment_invoice_amount(rec.percent)
+                    for sol in rec.sale_id.order_line
+                )
+            rec.percent = rec.amount / amount_untaxed * 100
 
     @api.onchange("amount", "percent")
     def _inverse_amount(self):
