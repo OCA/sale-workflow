@@ -11,7 +11,7 @@
         <xpath expr="//group[@name='sale']" position="inside">
             <field name="pricelist_cache_product_filter_id" />
         </xpath>
-        <xpath expr="//div[@name='button_box']" postion="inside">
+        <xpath expr="//div[@name='button_box']" position="inside">
           <button
                     name="button_open_pricelist_cache_tree"
                     string="Display Customer Prices"
