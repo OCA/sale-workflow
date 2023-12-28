@@ -48,7 +48,6 @@ class SaleOrder(models.Model):
         block_reason = self.env.ref("sale_stock_picking_blocking.pay_before_delivery")
 
         # Block records that are not yet invoiced or draft
-        # Unblock the rest
         block = recs.filtered_domain(
             [
                 "|",
@@ -61,13 +60,12 @@ class SaleOrder(models.Model):
             ]
         )
 
-        unblock = recs.filtered_domain(
-            [
-                ("invoice_status", "=", "invoiced"),
-            ]
-        )
-
         block.write({"delivery_block_id": block_reason.id})
+
+        # Check for fully invoiced and paid orders
+        unblock = recs.filtered_domain([("invoice_status", "=", "invoiced")])
+        unblock -= recs.filtered_domain([("invoice_ids.payment_state", "!=", "paid")])
+
         unblock.action_remove_delivery_block()
 
     @api.onchange("partner_id")
