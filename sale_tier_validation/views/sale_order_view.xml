@@ -11,7 +11,7 @@
                 <filter
                     name="needs_review"
                     string="Needs my Review"
-                    domain="[('reviewer_ids','in',uid), ('state', 'not in', ['done', 'cancel','to approve'])]"
+                    domain="[('reviewer_ids','in',uid), ('state', 'not in', ['sale', 'cancel','to approve'])]"
                     help="My Sales to review"
                 />
                 <filter

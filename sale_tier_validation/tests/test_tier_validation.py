@@ -3,12 +3,15 @@
 from odoo.exceptions import ValidationError
 from odoo.tests import common, tagged
 
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+
 
 @tagged("post_install")
 class TestSaleTierValidation(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         # Get sale order model
         cls.so_model = cls.env.ref("sale.model_sale_order")
 
