@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-22 14:34+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2023-12-29 20:35+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -543,7 +543,7 @@ msgstr "Partner"
 #: code:addons/sale_blanket_order/models/blanket_orders.py:221
 #, python-format
 msgid "Partner is mandatory"
-msgstr "Cliente è obbligatorio"
+msgstr "Il partner è obbligatorio"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__payment_term_id
@@ -929,7 +929,7 @@ msgstr "Non puoi ordinare più della quantità rimanente"
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:47
 #, python-format
 msgid "You have to select lines from the same company."
-msgstr "Devi selezionare righe dalla stessa azienda."
+msgstr "Devi selezionare le righe della stessa azienda."
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/blanket_orders.py:429
