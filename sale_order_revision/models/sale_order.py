@@ -54,7 +54,7 @@ class SaleOrder(models.Model):
     @api.returns('self', lambda value: value.id)
     def copy(self, default=None):
         if default is None:
-            default = {}
+            default = {'current_revision_id': None}
         if default.get('name', '/') == '/':
             seq = self.env['ir.sequence']
             default['name'] = seq.next_by_code('sale.order') or '/'
