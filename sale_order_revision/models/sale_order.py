@@ -51,6 +51,16 @@ class SaleOrder(models.Model):
             "context": context,
         }
 
+    def create_revision(self):
+        # Extends base_revision module
+        action = super().create_revision()
+        # Keep links to Invoices on the new Sale Order
+        old_lines = self.order_line
+        new_lines = self.current_revision_id.order_line
+        for old_line, new_line in zip(old_lines, new_lines):
+            new_line.invoice_lines = old_line.invoice_lines
+        return action
+
     def action_cancel_create_revision(self):
         for sale in self:
             sale.action_cancel()
