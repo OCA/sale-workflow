@@ -14,12 +14,14 @@ class SaleOrder(models.Model):
         compute="_compute_picking_notes",
         store=True,
         readonly=False,
+        copy=False,
     )
     picking_customer_note = fields.Text(
         string="Picking Customer Comments",
         compute="_compute_picking_notes",
         store=True,
         readonly=False,
+        copy=False,
     )
 
     @api.depends("partner_id", "partner_shipping_id")

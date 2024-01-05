@@ -12,11 +12,13 @@ class StockPicking(models.Model):
         compute="_compute_picking_notes",
         store=True,
         readonly=False,
+        copy=False,
     )
     note = fields.Html(
         compute="_compute_picking_notes",
         store=True,
         readonly=False,
+        copy=False,
     )
 
     @api.depends(

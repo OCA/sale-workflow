@@ -108,3 +108,69 @@ class TestSaleStockPickingNote(common.TransactionCase):
             )[0]
         )
         self.assertNotRegex(res, self.partner.picking_customer_note)
+
+    def test_04_sale_to_picking_note(self):
+        """Duplicate sale order should not duplicate notes"""
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    (0, 0, {"product_id": self.product.id, "product_uom_qty": 1})
+                ],
+            }
+        )
+        self.partner.update(
+            {
+                "picking_note": "<p>Test note 2</p>",
+                "picking_customer_note": "Test customer note 2",
+            }
+        )
+        # Duplicate sale order
+        order2 = order.copy()
+        # Check that notes are not duplicated in sales order
+        self.assertNotEqual(order2.picking_note, "<p>Test note</p>")
+        self.assertNotEqual(order2.picking_customer_note, "Test customer note")
+        self.assertEqual(order2.picking_note, "<p>Test note 2</p>")
+        self.assertEqual(order2.picking_customer_note, "Test customer note 2")
+
+    def test_05_sale_to_picking_note(self):
+        """Duplicate picking should not duplicate notes"""
+        picking = self.env["stock.picking"].create(
+            {
+                "partner_id": self.partner.id,
+                "picking_type_id": self.env.ref("stock.picking_type_out").id,
+                "location_id": self.env.ref("stock.stock_location_stock").id,
+                "location_dest_id": self.env.ref("stock.stock_location_customers").id,
+                "move_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Test",
+                            "product_id": self.product.id,
+                            "product_uom_qty": 1,
+                            "product_uom": self.product.uom_id.id,
+                            "location_id": self.env.ref(
+                                "stock.stock_location_stock"
+                            ).id,
+                            "location_dest_id": self.env.ref(
+                                "stock.stock_location_customers"
+                            ).id,
+                        },
+                    )
+                ],
+            }
+        )
+        self.partner.update(
+            {
+                "picking_note": "<p>Test note 2</p>",
+                "picking_customer_note": "Test customer note 2",
+            }
+        )
+        # Duplicate picking
+        picking2 = picking.copy()
+        # Check that notes are not duplicated in pickings
+        self.assertNotEqual(picking2.note, "<p>Test note</p>")
+        self.assertNotEqual(picking2.customer_note, "Test customer note")
+        self.assertEqual(picking2.note, "<p>Test note 2</p>")
+        self.assertEqual(picking2.customer_note, "Test customer note 2")
