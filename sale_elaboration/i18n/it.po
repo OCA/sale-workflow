@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-20 11:36+0000\n"
+"PO-Revision-Date: 2024-01-05 10:38+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -120,7 +120,7 @@ msgstr "Profilo elaborazione"
 #. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.res_config_settings_view
 msgid "Elaboration notes will appear on the delivery slip"
-msgstr "Le note di elaborazine verranno visualizzate nella bolla di consegna"
+msgstr "Le note di elaborazione verranno visualizzate nella bolla di consegna"
 
 #. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_order_form
