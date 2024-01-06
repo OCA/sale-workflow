@@ -13,7 +13,13 @@ Sale Order Secondary Unit
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
    !! source digest: sha256:b6cd5a500712cd2681b14605e629fd1e3f3b710411c41958b917d87d6ed24898
+||||||| parent of 7f4a3a380 ([IMP] sale_order_secondary_unit: Require secondary_uom_id when secondary_uom_qty is filled)
+   !! source digest: sha256:61f4456857459ed3b5629b34c15869328cac813be1fd18ea0713783768d311d5
+=======
+   !! source digest: sha256:d870b4aa2365687416065e0cd5aef2754fc39659c2bef870bbf907d7d5b0cd6c
+>>>>>>> 7f4a3a380 ([IMP] sale_order_secondary_unit: Require secondary_uom_id when secondary_uom_qty is filled)
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ||||||| parent of 4afac9303 (Translated using Weblate (Finnish))
 =======

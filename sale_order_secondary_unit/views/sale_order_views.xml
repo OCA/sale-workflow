@@ -98,7 +98,7 @@
                                     '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
                                              ('product_id', '=', False)]"
                         options="{'no_create': True, 'no_open': True}"
-                        attrs="{'readonly': [('product_uom_readonly', '=', True)]}"
+                        attrs="{'readonly': [('product_uom_readonly', '=', True)], 'required': [('secondary_uom_qty', '!=', 0.0)]}"
                     />
                 </div>
 >>>>>>> c0e2baecd ([IMP] sale_order_secondary_unit: Compatibility with product variants)
@@ -163,7 +163,7 @@
                                 '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
                                          ('product_id', '=', False)]"
                     options="{'no_create': True}"
-                    attrs="{'readonly': [('product_uom_readonly', '=', True)]}"
+                    attrs="{'readonly': [('product_uom_readonly', '=', True)], 'required': [('secondary_uom_qty', '!=', 0.0)]}"
                 />
 >>>>>>> 331900273 ([MIG] migrate sale_order_secondary_unit from 12.0 to 13.0)
             </xpath>
