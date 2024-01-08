@@ -4,7 +4,15 @@
         id="report_saleorder_document_triple_discount"
         inherit_id="sale.report_saleorder_document"
     >
+
+        <xpath expr="//t[@t-set='display_discount']" position="attributes">
+            <attribute name="t-value">False</attribute>
+        </xpath>
         <xpath expr="//t[@t-set='display_discount']" position="after">
+            <t
+                t-set="display_discount1"
+                t-value="any([l.discount1 for l in doc.order_line])"
+            />
             <t
                 t-set="display_discount2"
                 t-value="any([l.discount2 for l in doc.order_line])"
@@ -15,6 +23,13 @@
             />
         </xpath>
         <xpath expr="//table/thead/tr/th[@name='th_discount']" position="after">
+            <th
+                t-if="display_discount1"
+                class="text-right"
+                groups="product.group_discount_per_so_line"
+            >
+                <span>Disc. 1 (%)</span>
+            </th>
             <th
                 t-if="display_discount2"
                 class="text-right"
@@ -31,6 +46,13 @@
             </th>
         </xpath>
         <xpath expr="//table/tbody//tr//td[@t-if='display_discount']" position="after">
+            <td
+                t-if="display_discount1"
+                class="text-right"
+                groups="product.group_discount_per_so_line"
+            >
+                <span t-field="line.discount1" />
+            </td>
             <td
                 t-if="display_discount2"
                 class="text-right"
