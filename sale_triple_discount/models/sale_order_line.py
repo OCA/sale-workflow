@@ -11,6 +11,15 @@ from odoo.exceptions import ValidationError
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
+    discount = fields.Float(
+        string="Total discount",
+        readonly=True,
+    )
+    discount1 = fields.Float(
+        string="Disc. 1 (%)",
+        digits="Discount",
+        default=0.0,
+    )
     discount2 = fields.Float(
         string="Disc. 2 (%)",
         digits="Discount",
@@ -62,16 +71,27 @@ class SaleOrderLine(models.Model):
 
     @api.model
     def _discount_fields(self):
-        return ["discount", "discount2", "discount3"]
+        return ["discount1", "discount2", "discount3"]
 
-    @api.depends("discount2", "discount3", "discounting_type")
-    def _compute_amount(self):
-        prev_values = self.triple_discount_preprocess()
-        res = super()._compute_amount()
-        self.triple_discount_postprocess(prev_values)
-        return res
+    # pylint: disable=W8110
+    @api.depends("discount1", "discount2", "discount3", "discounting_type")
+    def _compute_discount(self):
+        super()._compute_discount()
+        for line in self:
+            # Reset discount if not done in super
+            if not (
+                line.order_id.pricelist_id
+                and line.order_id.pricelist_id.discount_policy == "without_discount"
+            ):
+                line.discount = 0.0
+            line.discount += line._get_final_discount()
 
     _sql_constraints = [
+        (
+            "discount1_limit",
+            "CHECK (discount1 <= 100.0)",
+            "Discount 1 must be lower or equal than 100%.",
+        ),
         (
             "discount2_limit",
             "CHECK (discount2 <= 100.0)",
@@ -90,51 +110,14 @@ class SaleOrderLine(models.Model):
         more discount fields to the invoice lines
         """
         res = super()._prepare_invoice_line(**kwargs)
-        res.update({"discount2": self.discount2, "discount3": self.discount3})
+        if self.discounting_type == "multiplicative":
+            res.update(
+                {
+                    "discount1": self.discount1,
+                    "discount2": self.discount2,
+                    "discount3": self.discount3,
+                }
+            )
+        else:
+            res.update({"discount1": self.discount})
         return res
-
-    def triple_discount_preprocess(self):
-        """Prepare data for post processing.
-
-        Save the values of the discounts in a dictionary,
-        to be restored in postprocess.
-        Resetting every discount except the main one to 0.0 avoids issues if
-        this method is called multiple times.
-        Updating the cache provides consistency through re-computations."""
-        prev_values = dict()
-        self.invalidate_cache(fnames=self._discount_fields(), ids=self.ids)
-        for line in self:
-            prev_values[line] = {
-                fname: line[fname] for fname in self._discount_fields()
-            }
-
-            vals = {fname: 0 for fname in self._discount_fields()}
-            vals["discount"] = line._get_final_discount()
-
-            line._cache.update(vals)
-        return prev_values
-
-    @api.model
-    def triple_discount_postprocess(self, prev_values):
-        """Restore the discounts of the lines in the dictionary prev_values.
-        Updating the cache provides consistency through re-computations."""
-        self.invalidate_cache(
-            fnames=self._discount_fields(),
-            ids=[line.id for line in list(prev_values.keys())],
-        )
-        for line, prev_vals_dict in list(prev_values.items()):
-            line.update(prev_vals_dict)
-
-    def _convert_to_tax_base_line_dict(self):
-        self.ensure_one()
-        return self.env["account.tax"]._convert_to_tax_base_line_dict(
-            self,
-            partner=self.order_id.partner_id,
-            currency=self.order_id.currency_id,
-            product=self.product_id,
-            taxes=self.tax_id,
-            price_unit=self.price_unit,
-            quantity=self.product_uom_qty,
-            discount=self._get_final_discount(),
-            price_subtotal=self.price_subtotal,
-        )
