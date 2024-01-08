@@ -4,3 +4,4 @@ from . import sale_order
 from . import sale_order_line
 from . import sale_stock_picking_blocking_reason
 from . import res_partner
+from . import account_payment_term

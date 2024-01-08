@@ -54,6 +54,16 @@ policy to add that delivery block to his sales by default:
 #. The 'Default Delivery Block Reason' will be added
    automatically when creating a new sales order for the customer.
 
+You can also set a payment term with a 'Default Delivery Block Reason'
+policy to add that delivery block to his sales by default (only if the
+customer does not have one set), in a similar way to the customers:
+
+#. Go to 'Invoicing > Configuration > Invoicing > Payment Terms'.
+#. Add a 'Default Delivery Block Reason'.
+#. The 'Default Delivery Block Reason' will be added
+   automatically when creating a new sales order for the payment term,
+   in case the customer does not have one.
+
 Usage
 =====
 
@@ -80,12 +90,12 @@ Credits
 Authors
 ~~~~~~~
 
-* Eficent
+* ForgeFlow
 
 Contributors
 ~~~~~~~~~~~~
 
-* Lois Rilo <lois.rilo@eficent.com>
+* Lois Rilo <lois.rilo@forgeflow.com>
 * Sudhir Arya <sudhir@erpharbor.com>
 * Julien Coux <julien.coux@camptocamp.com>
 
