@@ -1,5 +1,5 @@
 # Do NOT update manually; changes here will be overwritten by Copier
-_commit: v1.19
+_commit: v1.20
 _src_path: gh:oca/oca-addons-repo-template
 additional_ruff_rules: []
 ci: GitHub
@@ -17,7 +17,8 @@ odoo_version: 17.0
 org_name: Odoo Community Association (OCA)
 org_slug: OCA
 rebel_module_groups: []
-repo_description: 'TODO: add repo description.'
+repo_description: This project aim to deal with modules related to manage sale and
+    their related workflow.
 repo_name: sale-workflow
 repo_slug: sale-workflow
 repo_website: https://github.com/OCA/sale-workflow
