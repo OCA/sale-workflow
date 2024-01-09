@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-04-29 00:55+0000\n"
-"PO-Revision-Date: 2023-12-24 18:37+0000\n"
+"PO-Revision-Date: 2024-01-09 15:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -124,7 +124,7 @@ msgstr "Eccezioni da risolvere"
 #. module: sale_exceptions
 #: help:sale.exception,sequence:0
 msgid "Gives the sequence order when applying the test"
-msgstr "Indicare una sequenza quando applichi il test"
+msgstr "Indica l'ordine di sequenza quando si applica il test"
 
 #. module: sale_exceptions
 #: field:sale.exception,id:0 field:sale.exception.confirm,id:0
