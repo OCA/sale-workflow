@@ -1,0 +1,2 @@
+This module allows to create a project from quotation without confirming it. It can also create tasks from sales order lines.
+Important difference is that it allows to create task for any product type not just services.

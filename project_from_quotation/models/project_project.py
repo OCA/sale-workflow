@@ -1,0 +1,12 @@
+# Copyright (C) 2024 Cetmix OÜ
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from odoo import fields, models
+
+
+class Project(models.Model):
+    _inherit = "project.project"
+
+    quotation_id = fields.Many2one(
+        comodel_name="sale.order",
+        domain="[('state', 'in', ['draft', 'sent'])]",
+    )
