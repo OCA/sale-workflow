@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="project_from_quotation_action" model="ir.actions.act_window">
+        <field name="name">Create Quotation Project</field>
+        <field name="res_model">project.from.quotation</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="project_from_quotation_view_form" model="ir.ui.view">
+        <field name="name">project.from.quotation.view.form</field>
+        <field name="model">project.from.quotation</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <field name="sale_order_id" invisible="1" />
+                    <group>
+                        <group>
+                            <field name="mode" placeholder="...choose an option" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="order_lines" string="Order Lines">
+                            <field name="order_line_ids">
+                                <tree>
+                                    <field name="product_id" />
+                                    <field name="name" />
+                                    <field name="product_uom_qty" />
+                                    <field name="product_uom" />
+                                    <field name="price_unit" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button
+                            string="Create Project"
+                            name="action_create_project"
+                            type="object"
+                            class="oe_highlight"
+                        />
+                        <button
+                            string="Cancel"
+                            special="cancel"
+                            class="btn-secondary"
+                        />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
