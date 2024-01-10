@@ -9,7 +9,7 @@
 
 # sale-workflow
 
-TODO: add repo description.
+This project aim to deal with modules related to manage sale and their related workflow.
 
 <!-- /!\ do not modify below this line -->
 
