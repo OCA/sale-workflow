@@ -15,7 +15,6 @@ class SaleOrder(models.Model):
         string="Delivery Block Reason",
         compute="_compute_delivery_block_id",
         store=True,
-        states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
     )
 
     @api.constrains("delivery_block_id")

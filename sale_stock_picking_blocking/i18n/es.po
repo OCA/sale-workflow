@@ -87,11 +87,6 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_stock_picking_blocking
-#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
-
-#. module: sale_stock_picking_blocking
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
@@ -154,6 +149,9 @@ msgstr ""
 msgid "You cannot block a sale order with \"auto_done_setting\" active."
 msgstr ""
 "No se puede bloquear un pedido de venta con \"auto_done_setting\" activo."
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
 
 #, fuzzy
 #~| msgid "Sale Orders"
