@@ -52,6 +52,7 @@ class ProductProduct(models.Model):
                 pack.qty, precision_rounding=pack.product_uom_id.rounding
             )
             and float_is_zero(
-                qty % pack.qty, precision_rounding=pack.product_uom_id.rounding
+                (qty / pack.qty) - round(qty / pack.qty, 0),
+                precision_rounding=pack.product_uom_id.rounding,
             )
         )
