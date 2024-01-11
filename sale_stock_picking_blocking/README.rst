@@ -17,13 +17,13 @@ Sale Stock Picking Blocking
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_stock_picking_blocking
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_stock_picking_blocking
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_stock_picking_blocking
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_stock_picking_blocking
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -41,27 +41,27 @@ Configuration
 
 To configure this module, you need to:
 
-#. Go to 'Sales > Configuration > Sales > Delivery Block Reason'.
-#. Create the different reasons that can lead to block the deliveries of a
-   sales order.
-#. Add some users to the group 'Release Delivery Block in Sales Orders'.
+1. Go to 'Sales > Configuration > Sales > Delivery Block Reason'.
+2. Create the different reasons that can lead to block the deliveries of
+   a sales order.
+3. Add some users to the group 'Release Delivery Block in Sales Orders'.
 
-Additionally, you can set a customer with a 'Default Delivery Block Reason'
-policy to add that delivery block to his sales by default:
+Additionally, you can set a customer with a 'Default Delivery Block
+Reason' policy to add that delivery block to his sales by default:
 
-#. Go to 'Sales > Sales > Customers'.
-#. In the 'Sales & Purchases' add a 'Default Delivery Block Reason'.
-#. The 'Default Delivery Block Reason' will be added
-   automatically when creating a new sales order for the customer.
+1. Go to 'Sales > Sales > Customers'.
+2. In the 'Sales & Purchases' add a 'Default Delivery Block Reason'.
+3. The 'Default Delivery Block Reason' will be added automatically when
+   creating a new sales order for the customer.
 
 Usage
 =====
 
 To use this module, you need to:
 
-#. Create a new sales order and provide a 'Delivery Block Reason'.
-#. Confirm Sale (No delivery would be created).
-#. Release Delivery Block when it is time to create the deliveries for
+1. Create a new sales order and provide a 'Delivery Block Reason'.
+2. Confirm Sale (No delivery would be created).
+3. Release Delivery Block when it is time to create the deliveries for
    the sales order.
 
 Bug Tracker
@@ -70,7 +70,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_stock_picking_blocking%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_stock_picking_blocking%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -78,19 +78,19 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Eficent
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Lois Rilo <lois.rilo@eficent.com>
-* Sudhir Arya <sudhir@erpharbor.com>
-* Julien Coux <julien.coux@camptocamp.com>
+-  Lois Rilo <lois.rilo@eficent.com>
+-  Sudhir Arya <sudhir@erpharbor.com>
+-  Julien Coux <julien.coux@camptocamp.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -102,6 +102,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_stock_picking_blocking>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_stock_picking_blocking>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
