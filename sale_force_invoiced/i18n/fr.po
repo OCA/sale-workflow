@@ -30,6 +30,17 @@ msgid "Sales Order"
 msgstr "Bon de commande"
 
 #. module: sale_force_invoiced
+#. odoo-python
+#: code:addons/sale_force_invoiced/wizard/sale_make_invoice_advance.py:0
+#, python-format
+msgid ""
+"The order %(name)s is forced as invoiced. "
+"You should first remove this flag to create a new invoice."
+msgstr ""
+"Votre commande %(name)s est forcée comme facturée. "
+"Vous devez d'abord supprimer ce paramètre pour créer une nouvelle facture."
+
+#. module: sale_force_invoiced
 #: model:ir.model.fields,help:sale_force_invoiced.field_sale_order__force_invoiced
 msgid ""
 "When you set this field, the sales order will be considered as fully "
