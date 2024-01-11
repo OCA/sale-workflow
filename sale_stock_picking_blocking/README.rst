@@ -41,7 +41,7 @@ Configuration
 
 To configure this module, you need to:
 
-1. Go to 'Sales > Configuration > Sales > Delivery Block Reason'.
+1. Go to 'Sales > Configuration > Sales Orders > Delivery Block Reason'.
 2. Create the different reasons that can lead to block the deliveries of
    a sales order.
 3. Add some users to the group 'Release Delivery Block in Sales Orders'.
@@ -88,6 +88,7 @@ Contributors
 -  Lois Rilo <lois.rilo@eficent.com>
 -  Sudhir Arya <sudhir@erpharbor.com>
 -  Julien Coux <julien.coux@camptocamp.com>
+-  Nguyen Minh Chien <chien@trobz.com>
 
 Maintainers
 -----------
