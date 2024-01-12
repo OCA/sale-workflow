@@ -497,3 +497,46 @@ class TestMethods(Common):
         order_line = self.env["sale.order.line"]
         res = order_line._get_next_open_customer_window(partner, calendar, from_date=from_date)
         self.assertEqual(from_date, res)
+
+    def test_get_delivery_date_from_expedition_date(self):
+        order_line_model = self.env["sale.order.line"]
+        customer = self.customer_warehouse_cutoff
+        calendar = self.calendar
+        order_line_model = self.env["sale.order.line"]
+        delays = (1, 1, 0) # customer_lead, security_lead, worload
+        # Customer is set to receive goods on wednesdays between 12 and 17
+        weekday_numbers = (2,)  # Wednesday
+        time_window_ranges = [(12.00, 17.00), ]
+        self._set_partner_time_window(
+            self.customer_warehouse_cutoff, weekday_numbers, time_window_ranges
+        )
+        # For a customer with delivery preferences set to wednesdays,
+        # any date returned by _delivery_date_from_expedition_date should be a
+        # wednesday
+        delivery_date = order_line_model._delivery_date_from_expedition_date(
+            datetime(2024, 1, 8, 0), # 8th of january
+            customer, calendar, delays
+        )
+        self.assertEqual(str(delivery_date.date()), "2024-01-10")
+        # If a wednesday is used as expedition date, the next wednesday is returned
+        delivery_date = order_line_model._delivery_date_from_expedition_date(
+            datetime(2024, 1, 10, 0), # 8th of january
+            customer, calendar, delays
+        )
+        self.assertEqual(str(delivery_date.date()), "2024-01-17")
+        # If sale_delivery_date__ignore_customer_window is set in context,
+        # the next day is returned, instead of the next customer availability
+        order_line_model = order_line_model.with_context(
+            sale_delivery_date__ignore_customer_window=True
+        )
+        delivery_date = order_line_model._delivery_date_from_expedition_date(
+            datetime(2024, 1, 8, 0), # 8th of january
+            customer, calendar, delays
+        )
+        self.assertEqual(str(delivery_date.date()), "2024-01-09")
+        # If a wednesday is used as expedition date, the next day is returned
+        delivery_date = order_line_model._delivery_date_from_expedition_date(
+            datetime(2024, 1, 10, 0), # 8th of january
+            customer, calendar, delays
+        )
+        self.assertEqual(str(delivery_date.date()), "2024-01-11")
