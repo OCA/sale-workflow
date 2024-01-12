@@ -87,7 +87,9 @@ class Pricelist(models.Model):
                     base_pricelist_id IS NOT NULL
                     AND base = 'pricelist'
                 )
-            );
+            )
+            AND active = true
+            ;
         """
         self.flush()
         self.env.cr.execute(no_parent_query)
@@ -113,7 +115,9 @@ class Pricelist(models.Model):
                         OR price_surcharge != 0.0
                     )
                 )
-            );
+            )
+            AND active = true
+            ;
         """
         self.flush()
         self.env.cr.execute(factor_pricelist_query)
