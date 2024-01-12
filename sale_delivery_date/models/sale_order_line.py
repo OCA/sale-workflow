@@ -274,10 +274,15 @@ class SaleOrderLine(models.Model):
             )
         else:
             earliest_delivery_date_naive = expedition_date
-        if not partner:
+        ignore_partner_window = self.env.context.get(
+            "sale_delivery_date__ignore_customer_window"
+        )
+        if not partner or ignore_partner_window:
             # If no partner, do not apply delivery window
             return earliest_delivery_date_naive
-        return self._get_next_open_customer_window(partner, calendar, from_date=earliest_delivery_date_naive)
+        return self._get_next_open_customer_window(
+            partner, calendar, from_date=earliest_delivery_date_naive
+        )
 
 
     def _get_next_open_customer_window(self, partner, calendar, from_date=None):

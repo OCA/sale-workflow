@@ -80,6 +80,13 @@ class StockPicking(models.Model):
         else:
             return from_date
 
+    def _get_delivery_date_from_expedition_date(
+            self, next_expedition_date, partner, calendar, delays
+        ):
+        return self.env["sale.order.line"]._delivery_date_from_expedition_date(
+            next_expedition_date, partner, calendar, delays
+        )
+
     def _compute_expected_delivery_date(self):
         """Computes the expected delivery date.
 
@@ -104,7 +111,7 @@ class StockPicking(models.Model):
                 delays = record._get_delays()
                 partner = record.partner_id
                 calendar = record._get_warehouse_calendar()
-                delivery_date = sol_model._delivery_date_from_expedition_date(
+                delivery_date = record._get_delivery_date_from_expedition_date(
                     next_expedition_date, partner, calendar, delays
                 )
             record.expected_delivery_date = delivery_date
