@@ -27,4 +27,10 @@ class SaleOrderLineCancel(models.TransientModel):
             return False
         cancel_moves = self._get_moves_to_cancel(line)
         cancel_moves._action_cancel()
+        line.order_id.message_post(
+            body=_(
+                "<b>%(product)s</b>: The order line has been canceled",
+                product=line.product_id.display_name,
+            )
+        )
         return True
