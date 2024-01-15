@@ -1,4 +1,3 @@
-# Copyright 2022 Camptocamp SA (<https://www.camptocamp.com>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
 from odoo.tests import Form
@@ -22,7 +21,9 @@ class TestSaleOrderRevision(test_base_revision.TestBaseRevision):
         return sale_form.save()
 
     def test_revision_preserve_state(self):
-        """New revision create does not change state of original SO."""
+        """Creating a new revision should not change the state of the SO from which it
+        is generated
+        """
         # We create an SO and a revision
         tester_1 = self._create_tester()
         self.assertTrue(tester_1.active)

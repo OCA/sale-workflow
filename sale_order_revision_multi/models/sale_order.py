@@ -7,24 +7,17 @@ from odoo import fields, models
 class SaleOrder(models.Model):
     _inherit = ["sale.order"]
 
-    so_revision_ids = fields.One2many(
-        "sale.order", compute="_compute_so_revision_ids", string="Revisions"
-    )
-    so_revision_count = fields.Integer(
-        compute="_compute_so_revision_ids", string="Revision Count"
-    )
-
-    def _compute_so_revision_ids(self):
+    def _compute_so_variant_ids(self):
         for order in self:
-            revision_orders = self.search(
+            variant_orders = self.search(
                 [
                     ("unrevisioned_name", "=", order.unrevisioned_name),
                     ("id", "!=", order.id),
                 ]
             )
-            order.so_revision_count = len(revision_orders)
+            order.so_variant_count = len(variant_orders)
 
-    def action_view_sale_order_revisions(self):
+    def action_view_sale_order_variants(self):
         action = self.env["ir.actions.act_window"]._for_xml_id(
             "sale.act_res_partner_2_sale_order"
         )
@@ -33,6 +26,13 @@ class SaleOrder(models.Model):
             ("id", "!=", self.id),
         ]
         return action
+
+    so_variant_ids = fields.One2many(
+        "sale.order", compute="_compute_so_variant_ids", string="Variants"
+    )
+    so_variant_count = fields.Integer(
+        compute="_compute_so_variant_ids", string="Variant Count"
+    )
 
     def _get_next_rev_number(self):
         self.ensure_one()
