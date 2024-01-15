@@ -47,6 +47,7 @@
                     attrs="{'readonly': [('order_partner_id', '!=', False), ('order_id', '!=', False)]}"
                 />
                 <field name="write_date" widget="date" optional="hide" />
+                <field name="product_uom" string="Unit of Measure" invisible="1"/>
                 <field
                     name="product_id"
                     attrs="{'readonly': [('product_updatable', '=', False)]}"
@@ -92,7 +93,9 @@
                     attrs="{'readonly': [('qty_delivered_method', '!=', 'manual')]}"
                     optional="show"
                 />
+                <!--
                 <field name="qty_delivered_manual" invisible="1" />
+                -->
                 <field
                     name="qty_invoiced"
                     sum="Invoiced"
@@ -110,6 +113,7 @@
                     options='{"no_open": True}'
                     optional="show"
                 />
+                <!--
                 <field
                     name="analytic_tag_ids"
                     attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
@@ -119,6 +123,7 @@
                     options="{'color_field': 'color'}"
                     optional="hide"
                 />
+                -->
                 <field
                     name="price_unit"
                     attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"
@@ -176,10 +181,12 @@
             <xpath expr="//field[@name='salesman_id']" position="after">
                 <field name="name" />
                 <field name="product_uom" groups="uom.group_uom" />
+                <!--
                 <field
                     name="analytic_tag_ids"
                     groups="analytic.group_analytic_accounting"
                 />
+                -->
                 <separator />
                 <filter
                     name="not_invoice_related"
