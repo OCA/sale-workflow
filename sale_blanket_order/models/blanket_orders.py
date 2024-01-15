@@ -450,27 +450,27 @@ class BlanketOrderLine(models.Model):
     )
     date_schedule = fields.Date(string="Scheduled Date")
     original_uom_qty = fields.Float(
-        string="Original quantity",
+        string="Original Qty",
         required=True,
         default=1,
         digits="Product Unit of Measure",
     )
     ordered_uom_qty = fields.Float(
-        string="Ordered quantity", compute="_compute_quantities", store=True
+        string="Ordered Qty", compute="_compute_quantities", store=True
     )
     invoiced_uom_qty = fields.Float(
-        string="Invoiced quantity", compute="_compute_quantities", store=True
+        string="Invoiced Qty", compute="_compute_quantities", store=True
     )
     remaining_uom_qty = fields.Float(
-        string="Remaining quantity", compute="_compute_quantities", store=True
+        string="Remaining Qty", compute="_compute_quantities", store=True
     )
     remaining_qty = fields.Float(
-        string="Remaining quantity in base UoM",
+        string="Remaining Qty in base UoM",
         compute="_compute_quantities",
         store=True,
     )
     delivered_uom_qty = fields.Float(
-        string="Delivered quantity", compute="_compute_quantities", store=True
+        string="Delivered Qty", compute="_compute_quantities", store=True
     )
     sale_lines = fields.One2many(
         "sale.order.line",
