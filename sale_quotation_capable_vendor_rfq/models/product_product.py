@@ -17,13 +17,13 @@ class ProductProduct(models.Model):
         """
         self.ensure_one()
 
-        #get all vendors that match the criteria
+        # get all vendors that match the criteria
         supplierinfo = self.seller_ids.filtered(
             lambda s: (not output_time or s.delay >= output_time)
             and s.min_qty <= quantity
         )
 
-        #get the lowest price from each vendor
+        # get the lowest price from each vendor
         min_prices = {}
         for info in supplierinfo:
             if info.partner_id not in min_prices:
