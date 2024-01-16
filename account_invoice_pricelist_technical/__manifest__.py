@@ -3,18 +3,15 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "Technical Pricelists For Account Invoice",
+    "name": "Technical Pricelists For Account Invoices",
     "summary": "Prevent technical pricelists from being selected on invoice forms",
-    "version": "12.0.1.0.1",
+    "version": "16.0.1.0.0",
     "category": "Product",
     "author": "GRAP,Odoo Community Association (OCA)",
     "maintainers": ["legalsylvain"],
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
-    "depends": [
-        "sale_pricelist_technical",
-        "account_invoice_pricelist",
-    ],
+    "depends": ["sale_pricelist_technical", "account_invoice_pricelist"],
     "installable": True,
     "auto_install": True,
 }
