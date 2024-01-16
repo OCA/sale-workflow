@@ -1,0 +1,52 @@
+<odoo>
+    <record model="ir.ui.view" id="view_sales_order_line_filter">
+        <field name="name">sale.order.line.select (in sale_order_line_menu)</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
+        <field name="arch" type="xml">
+            <filter name="my_sales_order_lines" position="after">
+                <separator />
+                <filter
+                    name="show_only_product_lines"
+                    string="Only Product Lines"
+                    domain="[('display_type','=',False)]"
+                />
+            </filter>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_order_line_tree">
+        <field name="name">sale.order.line.tree (in sale_order_line_menu)</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_id']" position="before">
+                <field name="currency_id" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_sale_order_line_pivot">
+        <field name="name">sale.order.line.pivot</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <pivot string="Order Lines">
+                <field name="product_id" type="row" />
+                <field name="product_uom_qty" type="col" />
+                <field name="price_subtotal" type="measure" />
+            </pivot>
+        </field>
+    </record>
+    <record id="action_orders_lines" model="ir.actions.act_window">
+        <field name="name">Order Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_mode">tree,pivot</field>
+        <field name="context">{"search_default_show_only_product_lines": 1}</field>
+    </record>
+    <menuitem
+        id="sale_order_line_menu"
+        name="Order Lines"
+        action="action_orders_lines"
+        parent="sale.sale_order_menu"
+        sequence="2"
+    />
+</odoo>
