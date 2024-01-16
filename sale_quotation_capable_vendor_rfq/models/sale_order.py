@@ -66,29 +66,37 @@ class SaleOrder(models.Model):
         self.ensure_one()
         vendors_dict = self._get_vendor_dict()
         for vendor, value in vendors_dict.items():
-            vals_purchase = {
-                "partner_id": vendor.id,
-                "origin": self.name,
-                "sale_order_id": self.id,
-                "currency_id": self.currency_id.id,
-                "company_id": self.company_id.id,
-            }
-            purchase = self.env["purchase.order"].create(vals_purchase)
+            purchase = self.env["purchase.order"].create(
+                self._prepare_purchase_order_vals(vendor)
+            )
             for line in value:
-                vals_purchase_line = {
-                    "order_id": purchase.id,
-                    "product_id": line["line"].product_id.id,
-                    "name": line["line"].name,
-                    "product_qty": line["line"].product_uom_qty,
-                    "product_uom": line["line"].product_uom.id,
-                    "price_unit": self._convert_to_currency(
-                        line["supplierinfo"].price,
-                        line["supplierinfo"].currency_id,
-                        purchase.currency_id,
-                    ),
-                    "date_planned": fields.Datetime.now(),
-                }
-                self.env["purchase.order.line"].create(vals_purchase_line)
+                self.env["purchase.order.line"].create(
+                    self._prepare_purchase_order_line_vals(purchase, line)
+                )
+
+    def _prepare_purchase_order_vals(self, vendor):
+        return {
+            "partner_id": vendor.id,
+            "origin": self.name,
+            "sale_order_id": self.id,
+            "currency_id": self.currency_id.id,
+            "company_id": self.company_id.id,
+        }
+
+    def _prepare_purchase_order_line_vals(self, purchase, line):
+        return {
+            "order_id": purchase.id,
+            "product_id": line["line"].product_id.id,
+            "name": line["line"].name,
+            "product_qty": line["line"].product_uom_qty,
+            "product_uom": line["line"].product_uom.id,
+            "price_unit": self._convert_to_currency(
+                line["supplierinfo"].price,
+                line["supplierinfo"].currency_id,
+                purchase.currency_id,
+            ),
+            "date_planned": fields.Datetime.now(),
+        }
 
     def _get_vendor_dict(self, lead_time=0):
         vendors_dict = {}

@@ -9,6 +9,5 @@ class PurchaseOrder(models.Model):
 
     sale_order_id = fields.Many2one(
         "sale.order",
-        string="Sale Order",
         help="Sale order that created this purchase order",
     )
