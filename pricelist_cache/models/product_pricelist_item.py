@@ -9,6 +9,16 @@ from odoo import fields, models
 class PricelistItem(models.Model):
     _inherit = "product.pricelist.item"
 
+    base_pricelist_id = fields.Many2one(index=True)
+    product_tmpl_id = fields.Many2one(index=True)
+    product_id = fields.Many2one(index=True)
+    date_start = fields.Datetime(index=True)
+    date_end = fields.Datetime(index=True)
+    applied_on = fields.Selection(index=True)
+    categ_id = fields.Many2one(index=True)
+    min_quantity = fields.Float(index=True)
+    company_id = fields.Many2one(index=True)
+
     pricelist_cache_update_skipped = fields.Boolean()
 
     def _has_date_range(self):
