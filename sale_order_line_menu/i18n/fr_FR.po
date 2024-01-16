@@ -17,6 +17,11 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
+msgid "Only Product Lines"
+msgstr ""
+
+#. module: sale_order_line_menu
 #: model:ir.actions.act_window,name:sale_order_line_menu.action_orders_lines
 #: model:ir.ui.menu,name:sale_order_line_menu.sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sale_order_line_pivot
