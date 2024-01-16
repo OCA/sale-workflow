@@ -1,4 +1,6 @@
-To use this module, you need to go to Sale / Configuration / Pricelists
+To use this module, you should be member of "Technical / Basic Pricelists".
+
+* Go to Sale / Configuration / Pricelists
 
 * Check the box "Is Technical" on your desired pricelist
 

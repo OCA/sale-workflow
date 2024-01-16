@@ -6,21 +6,14 @@
     "name": "Technical Pricelists for Sales",
     "summary": "Prevent some pricelists from being selected on order and"
     " customer forms",
-    "version": "12.0.1.0.1",
+    "version": "16.0.1.0.0",
     "category": "Product",
     "author": "GRAP,Odoo Community Association (OCA)",
     "maintainers": ["legalsylvain"],
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
-    "depends": [
-        "sale",
-    ],
-    "data": [
-        "views/view_product_pricelist.xml",
-    ],
-    "demo": [
-        "demo/res_groups.xml",
-        "demo/product_pricelist.xml",
-    ],
+    "depends": ["sale"],
+    "data": ["views/view_product_pricelist.xml"],
+    "demo": ["demo/product_pricelist.xml"],
     "installable": True,
 }

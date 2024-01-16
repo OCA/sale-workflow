@@ -9,7 +9,6 @@ class ProductPricelist(models.Model):
     _inherit = "product.pricelist"
 
     is_technical = fields.Boolean(
-        string="Is Technical",
         help="Check this box if you want to prevent users from using"
         " this pricelist on orders or in customer forms."
         " This is useful for pricelists that are created only to compute"
