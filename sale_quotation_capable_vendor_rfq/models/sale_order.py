@@ -1,7 +1,8 @@
 # Copyright (C) 2024 Cetmix OÜ
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 
 
 class SaleOrder(models.Model):
@@ -44,7 +45,7 @@ class SaleOrder(models.Model):
         self._create_purchase_orders()
         if self.purchase_count:
             return self.action_view_purchase_orders()
-        return True
+        raise UserError(_("No purchase orders created"))
 
     def _get_capable_vendors(self, lead_time=0):
         """

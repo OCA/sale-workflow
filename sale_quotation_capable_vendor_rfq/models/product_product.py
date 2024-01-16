@@ -16,7 +16,19 @@ class ProductProduct(models.Model):
         :return: Recordset of product.supplierinfo
         """
         self.ensure_one()
-        return self.seller_ids.filtered(
+
+        #get all vendors that match the criteria
+        supplierinfo = self.seller_ids.filtered(
             lambda s: (not output_time or s.delay >= output_time)
             and s.min_qty <= quantity
         )
+
+        #get the lowest price from each vendor
+        min_prices = {}
+        for info in supplierinfo:
+            if info.partner_id not in min_prices:
+                min_prices[info.partner_id] = info
+            else:
+                if info.price < min_prices[info.partner_id].price:
+                    min_prices[info.partner_id] = info
+        return min_prices.values()
