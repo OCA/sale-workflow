@@ -60,6 +60,7 @@ setuptools.setup(
         'odoo13-addon-sale_order_line_delivery_state',
         'odoo13-addon-sale_order_line_description',
         'odoo13-addon-sale_order_line_input',
+        'odoo13-addon-sale_order_line_menu',
         'odoo13-addon-sale_order_line_packaging_qty',
         'odoo13-addon-sale_order_line_price_history',
         'odoo13-addon-sale_order_line_remove',
