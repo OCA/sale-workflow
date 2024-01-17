@@ -1,6 +1,5 @@
 /** @odoo-module **/
 const {Component} = owl;
-// Import the registry
 import {registry} from "@web/core/registry";
 import {standardFieldProps} from "@web/views/fields/standard_field_props";
 import {useService} from "@web/core/utils/hooks";
@@ -20,6 +19,11 @@ export class PriceHistoryWidget extends Component {
                     default_partner_id: this.props.record.data.order_partner_id[0],
                     default_active_id: this.props.value,
                     default_sale_order_line_id: this.props.value,
+                },
+                onClose: (value) => {
+                    if (value && "price_unit" in value) {
+                        this.props.record.update(value);
+                    }
                 },
             }
         );
