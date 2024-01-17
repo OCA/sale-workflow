@@ -1,4 +1,5 @@
 # Copyright 2019 Tecnativa - Ernesto Tejeda
+# Copyright 2024 Moduon Team S.L. <info@moduon.team>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
@@ -71,7 +72,12 @@ class SaleOrderLinePriceHistory(models.TransientModel):
                 domain += [("order_partner_id", "child_of", self.partner_id.ids)]
 
         vals = []
-        order_lines = self.env["sale.order.line"].search(domain, limit=20)
+        sol_limit = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("sale_order_line_price_history.order_line_limit", default="20")
+        )
+        order_lines = self.env["sale.order.line"].search(domain, limit=int(sol_limit))
         order_lines -= self.sale_order_line_id
         for order_line in order_lines:
             vals.append(
@@ -91,10 +97,15 @@ class SaleOrderLinePriceHistory(models.TransientModel):
 class SaleOrderLinePriceHistoryline(models.TransientModel):
     _name = "sale.order.line.price.history.line"
     _description = "Sale order line price history line"
+    _order = "sale_order_date_order desc"
 
     history_id = fields.Many2one(
         comodel_name="sale.order.line.price.history",
         string="History",
+    )
+    target_sale_order_line_id = fields.Many2one(
+        comodel_name="sale.order.line",
+        related="history_id.sale_order_line_id",
     )
     history_sale_order_line_id = fields.Many2one(
         comodel_name="sale.order.line",
@@ -106,6 +117,9 @@ class SaleOrderLinePriceHistoryline(models.TransientModel):
     )
     order_id = fields.Many2one(
         related="sale_order_line_id.order_id",
+    )
+    order_state = fields.Selection(
+        related="order_id.state",
     )
     partner_id = fields.Many2one(
         related="sale_order_line_id.order_partner_id",
