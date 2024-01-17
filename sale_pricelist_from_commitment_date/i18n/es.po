@@ -1,0 +1,59 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_pricelist_from_commitment_date
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: sale_pricelist_from_commitment_date
+#: model:ir.model.fields,field_description:sale_pricelist_from_commitment_date.field_product_pricelist__display_name
+#: model:ir.model.fields,field_description:sale_pricelist_from_commitment_date.field_product_product__display_name
+#: model:ir.model.fields,field_description:sale_pricelist_from_commitment_date.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_pricelist_from_commitment_date.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_pricelist_from_commitment_date
+#: model:ir.model.fields,field_description:sale_pricelist_from_commitment_date.field_product_pricelist__id
+#: model:ir.model.fields,field_description:sale_pricelist_from_commitment_date.field_product_product__id
+#: model:ir.model.fields,field_description:sale_pricelist_from_commitment_date.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_pricelist_from_commitment_date.field_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_pricelist_from_commitment_date
+#: model:ir.model.fields,field_description:sale_pricelist_from_commitment_date.field_product_pricelist____last_update
+#: model:ir.model.fields,field_description:sale_pricelist_from_commitment_date.field_product_product____last_update
+#: model:ir.model.fields,field_description:sale_pricelist_from_commitment_date.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_pricelist_from_commitment_date.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_pricelist_from_commitment_date
+#: model:ir.model,name:sale_pricelist_from_commitment_date.model_product_pricelist
+msgid "Pricelist"
+msgstr ""
+
+#. module: sale_pricelist_from_commitment_date
+#: model:ir.model,name:sale_pricelist_from_commitment_date.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: sale_pricelist_from_commitment_date
+#: model:ir.model,name:sale_pricelist_from_commitment_date.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_pricelist_from_commitment_date
+#: model:ir.model,name:sale_pricelist_from_commitment_date.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
