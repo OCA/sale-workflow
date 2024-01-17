@@ -19,5 +19,6 @@
             "sale_order_line_price_history/static/src/xml/*.xml",
         ],
     },
+    "maintainers": ["ernestotejeda", "CarlosRoca13", "Shide"],
     "installable": True,
 }
