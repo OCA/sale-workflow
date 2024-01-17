@@ -1,14 +1,13 @@
 # Copyright (C) 2023 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import models
+from odoo import api, models
 
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    def write(self, vals):
-        res = super().write(vals)
+    def _store_attribute_in_field(self, vals):
         if "product_no_variant_attribute_value_ids" in vals:
             for sol in self:
                 sol_pav = sol.product_no_variant_attribute_value_ids
@@ -26,5 +25,16 @@ class SaleOrderLine(models.Model):
                     )
                     pav_vals[field_name] = value
                 if pav_vals:
-                    super().write(pav_vals)
+                    super(SaleOrderLine, sol).write(pav_vals)
+        return True
+
+    @api.model
+    def create(self, vals):
+        res = super().create(vals)
+        res._store_attribute_in_field(vals)
+        return res
+
+    def write(self, vals):
+        res = super().write(vals)
+        self._store_attribute_in_field(vals)
         return res
