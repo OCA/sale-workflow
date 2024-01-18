@@ -43,6 +43,7 @@ setuptools.setup(
         'odoo-addon-sale_order_line_date>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_line_delivery_state>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_line_field_from_product_attribute>=16.0dev,<16.1dev',
+        'odoo-addon-sale_order_line_input>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_line_menu>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_line_price_history>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_line_sequence>=16.0dev,<16.1dev',
