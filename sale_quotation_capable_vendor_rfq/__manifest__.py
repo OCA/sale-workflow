@@ -19,6 +19,8 @@
         "views/sale_order_views.xml",
     ],
     "demo": [
+        "demo/vendors.xml",
+        "demo/product_product.xml",
         "demo/product_supplierinfo.xml",
     ],
 }

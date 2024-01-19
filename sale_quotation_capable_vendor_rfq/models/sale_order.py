@@ -8,44 +8,44 @@ from odoo.exceptions import UserError
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    purchase_order_ids = fields.One2many(
+    rfq_ids = fields.One2many(
         "purchase.order",
-        "sale_order_id",
-        string="Purchase Orders",
-        help="Purchase orders created from this sale order",
+        "sale_quotation_id",
+        string="RFQs",
+        help="RFQs created from this sale order",
     )
-    purchase_count = fields.Integer(
-        string="Purchase Orders",
-        compute="_compute_purchase_count",
-        help="Number of purchase orders created from this sale order",
+    rfq_count = fields.Integer(
+        string="RFQ count",
+        compute="_compute_rfq_count",
+        help="Number of RFQ created from this sale order",
     )
 
-    @api.depends("purchase_order_ids")
-    def _compute_purchase_count(self):
+    @api.depends("rfq_ids")
+    def _compute_rfq_count(self):
         """
         Compute the number of RFQs created from this sale order
         """
         for order in self:
-            order.purchase_count = len(order.purchase_order_ids)
+            order.rfq_count = len(order.rfq_ids)
 
-    def action_view_purchase_orders(self):
+    def action_view_rfq(self):
         """
         View the purchase orders created from this sale order
         """
         self.ensure_one()
         action = self.env.ref("purchase.purchase_rfq").read()[0]
-        action["domain"] = [("id", "in", self.purchase_order_ids.ids)]
+        action["domain"] = [("id", "in", self.rfq_ids.ids)]
         return action
 
-    def action_create_purchase_orders(self):
+    def action_create_rfq(self):
         """
         Create purchase orders from this sale order
         """
         self.ensure_one()
         self._create_purchase_orders()
-        if self.purchase_count:
-            return self.action_view_purchase_orders()
-        raise UserError(_("No purchase orders created"))
+        if self.rfq_count:
+            return self.action_view_rfq()
+        raise UserError(_("No RFQs created"))
 
     def _get_capable_vendors(self, lead_time=0):
         """
@@ -67,25 +67,40 @@ class SaleOrder(models.Model):
         vendors_dict = self._get_vendor_dict()
         for vendor, value in vendors_dict.items():
             purchase = self.env["purchase.order"].create(
-                self._prepare_purchase_order_vals(vendor)
+                self._prepare_rfq_vals(vendor)
             )
             for line in value:
                 self.env["purchase.order.line"].create(
-                    self._prepare_purchase_order_line_vals(purchase, line)
+                    self._prepare_rfq_line_vals(purchase, line)
                 )
 
-    def _prepare_purchase_order_vals(self, vendor):
+    def _prepare_rfq_vals(self, vendor):
+        """
+        Prepare values for purchase.order
+
+        :param vendor: res.partner
+
+        :return: dict
+        """
         return {
             "partner_id": vendor.id,
             "origin": self.name,
-            "sale_order_id": self.id,
+            "sale_quotation_id": self.id,
             "currency_id": self.currency_id.id,
             "company_id": self.company_id.id,
         }
 
-    def _prepare_purchase_order_line_vals(self, purchase, line):
+    def _prepare_rfq_line_vals(self, rfq, line):
+        """
+        Prepare values for purchase.order.line
+
+        :param rfq: purchase.order
+        :param line: dict
+
+        :return: dict
+        """
         return {
-            "order_id": purchase.id,
+            "order_id": rfq.id,
             "product_id": line["line"].product_id.id,
             "name": line["line"].name,
             "product_qty": line["line"].product_uom_qty,
@@ -93,12 +108,19 @@ class SaleOrder(models.Model):
             "price_unit": self._convert_to_currency(
                 line["supplierinfo"].price,
                 line["supplierinfo"].currency_id,
-                purchase.currency_id,
+                rfq.currency_id,
             ),
             "date_planned": fields.Datetime.now(),
         }
 
     def _get_vendor_dict(self, lead_time=0):
+        """
+        Returns a dict of res.partner records that match the criteria
+
+        :param lead_time: Integer of days to match
+
+        :return: dict
+        """
         vendors_dict = {}
         for line in self.order_line:
             supplierinfo_ids = line.product_id._get_matching_vendor_pricelists(
@@ -118,6 +140,12 @@ class SaleOrder(models.Model):
     def _convert_to_currency(self, price, currency_id, currency_to_id):
         """
         Convert price to currency
+
+        :param price: float
+        :param currency_id: res.currency
+        :param currency_to_id: res.currency
+
+        :return: float
         """
         if currency_id != currency_to_id:
             price = currency_id._convert(

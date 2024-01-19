@@ -7,7 +7,8 @@ from odoo import fields, models
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
-    sale_order_id = fields.Many2one(
+    sale_quotation_id = fields.Many2one(
         "sale.order",
-        help="Sale order that created this purchase order",
+        string="Quotation",
+        help="Quotation this purchase order was created from",
     )

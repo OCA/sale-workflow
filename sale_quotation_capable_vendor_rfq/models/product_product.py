@@ -21,6 +21,7 @@ class ProductProduct(models.Model):
         supplierinfo = self.seller_ids.filtered(
             lambda s: (not output_time or s.delay >= output_time)
             and s.min_qty <= quantity
+            and (s.product_id == self or not s.product_id)
         )
 
         # get the lowest price from each vendor

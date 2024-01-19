@@ -8,18 +8,18 @@
             <xpath expr="//button[@name='action_view_invoice']" position="before">
                 <button
                     type="object"
-                    name="action_view_purchase_orders"
+                    name="action_view_rfq"
                     class="oe_stat_button"
                     icon="fa-truck"
-                    attrs="{'invisible': [('purchase_count', '=', 0)]}"
+                    attrs="{'invisible': [('rfq_count', '=', 0)]}"
                 >
-                    <field name="purchase_count" widget="statinfo" string="RFQ" />
+                    <field name="rfq_count" widget="statinfo" string="RFQ" />
                 </button>
             </xpath>
             <xpath expr="//button[@name='action_draft']" position="after">
                 <button
                     type="object"
-                    name="action_create_purchase_orders"
+                    name="action_create_rfq"
                     string="Create RFQ"
                     class="oe_highlight"
                 />
