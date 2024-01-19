@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 class ProductPricelistItem(models.Model):
@@ -23,6 +23,13 @@ class ProductPricelistItem(models.Model):
         store=True,
         readonly=False,
     )
+
+    def _compute_name_and_price(self):
+        result = super()._compute_name_and_price()
+        for item in self:
+            if item.applied_on == "2b_product_price_category":
+                item.name = _("Price Category: %s", item.price_category_id.display_name)
+        return result
 
     @api.depends("applied_on")
     def _compute_price_category(self):

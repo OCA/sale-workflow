@@ -138,3 +138,8 @@ class TestSale(TransactionCase):
             self.assertTrue(item_form.price_category_id)
             item_form.applied_on = "3_global"
             self.assertFalse(item_form.price_category_id)
+
+    def test_name(self):
+        item = self.pricelist.item_ids[0]
+        expected_name = "Price Category: %s" % item.price_category_id.display_name
+        self.assertEqual(expected_name, item.name)
