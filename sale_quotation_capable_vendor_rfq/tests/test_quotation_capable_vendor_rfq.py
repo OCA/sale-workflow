@@ -1,9 +1,10 @@
 # Copyright (C) 2024 Cetmix OÜ
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase, tagged
 
 
+@tagged("test11")
 class TestSaleOrder(TransactionCase):
     @classmethod
     def setUpClass(cls):
@@ -119,14 +120,14 @@ class TestSaleOrder(TransactionCase):
                 ],
             }
         )
-        sale_order._create_purchase_orders()
+        sale_order._create_rfq()
         # Check RFQ
         self.assertEqual(sale_order.partner_id, self.partner)
         self.assertEqual(len(sale_order.order_line), 2)
-        self.assertEqual(sale_order.purchase_count, 2)
+        self.assertEqual(sale_order.rfq_count, 2)
 
         # Check RFQ
-        purchase_order_1 = sale_order.purchase_order_ids.filtered(
+        purchase_order_1 = sale_order.rfq_ids.filtered(
             lambda p: p.partner_id == self.vendor_1
         )
         self.assertEqual(len(purchase_order_1), 1)
@@ -142,7 +143,7 @@ class TestSaleOrder(TransactionCase):
         )
         self.assertEqual(len(purchase_order_1_line_2), 0)
 
-        purchase_order_2 = sale_order.purchase_order_ids.filtered(
+        purchase_order_2 = sale_order.rfq_ids.filtered(
             lambda p: p.partner_id == self.vendor_2
         )
         self.assertEqual(len(purchase_order_2), 1)
@@ -190,14 +191,14 @@ class TestSaleOrder(TransactionCase):
                 ],
             }
         )
-        sale_order._create_purchase_orders()
+        sale_order._create_rfq()
         # Check RFQ
         self.assertEqual(sale_order.partner_id, self.partner)
         self.assertEqual(len(sale_order.order_line), 2)
-        self.assertEqual(sale_order.purchase_count, 2)
+        self.assertEqual(sale_order.rfq_count, 2)
 
         # Check RFQ
-        purchase_order_1 = sale_order.purchase_order_ids.filtered(
+        purchase_order_1 = sale_order.rfq_ids.filtered(
             lambda p: p.partner_id == self.vendor_1
         )
         self.assertEqual(len(purchase_order_1), 1)
@@ -213,7 +214,7 @@ class TestSaleOrder(TransactionCase):
         )
         self.assertEqual(purchase_order_1_line_2.price_unit, 110)
 
-        purchase_order_2 = sale_order.purchase_order_ids.filtered(
+        purchase_order_2 = sale_order.rfq_ids.filtered(
             lambda p: p.partner_id == self.vendor_2
         )
         self.assertEqual(len(purchase_order_2), 1)

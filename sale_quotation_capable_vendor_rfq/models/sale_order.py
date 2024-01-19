@@ -42,7 +42,7 @@ class SaleOrder(models.Model):
         Create purchase orders from this sale order
         """
         self.ensure_one()
-        self._create_purchase_orders()
+        self._create_rfq()
         if self.rfq_count:
             return self.action_view_rfq()
         raise UserError(_("No RFQs created"))
@@ -59,7 +59,7 @@ class SaleOrder(models.Model):
         vendors_dict = self._get_vendor_dict(lead_time)
         return vendors_dict.keys()
 
-    def _create_purchase_orders(self):
+    def _create_rfq(self):
         """
         Create purchase orders from this sale order
         """
