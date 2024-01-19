@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sale_order_cancel" model="ir.ui.view">
+        <field name="name">sale.order.cancel - sale_cancel_confirmed_invoice</field>
+        <field name="model">sale.order.cancel</field>
+        <field name="inherit_id" ref="sale.sale_order_cancel_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//footer" position="before">
+                    <field name="sale_cancel_confirmed_invoice" invisible="1" />
+                    <div
+                    attrs="{'invisible': [('sale_cancel_confirmed_invoice', '=', False)]}"
+                >
+                        <span>
+                            Cancelling the sale order will automatically
+                            cancel all open not paid related invoices.
+                        </span>
+                    </div>
+                </xpath>
+            </field>
+    </record>
+</odoo>
