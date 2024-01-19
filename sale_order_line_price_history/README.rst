@@ -42,7 +42,10 @@ Usage
 
 To use this module, you need to:
 
-#. Go to *Sales -> Quotations* and select a Quotation.
+#. Go to System Parameters and configure the
+   ``sale_order_line_price_history.order_line_limit`` parameter to limit the
+   number of Sale Order Lines to show on the Wizard.
+#. Go to *Sales -> Quotations* and select a Quotation. Default is 20 lines.
 #. Click on the new clock button in one of the sale order lines.
 #. A pop-up will open and you will see the *price history* for the product of
    the sale order line and for the customer of the sale order.
@@ -55,15 +58,7 @@ To use this module, you need to:
 Known issues / Roadmap
 ======================
 
-* The number of entries of prices history in the wizard should be configurable,
-  currently it is limited to 20.
 * A backend tour would be nice to have.
-* It is not possible to set a price from the tree view of the wizard lines,
-  currently it can only be done from the form view of those lines
-  (by clicking on one of them). This is not solved by simply putting a
-  'Set price' button in the wizard lines because that button will be
-  disabled since when the wizard is launched there is still no wizard
-  record in the database (this is an Odoo limitation).
 
 Bug Tracker
 ===========
@@ -91,10 +86,12 @@ Contributors
   * Pedro M. Baeza
   * Ernesto Tejeda
   * David Vidal
+  * Carlos Roca
 
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 * Dhara Solanki <dhara.solanki@initos.com>
 * Ruchir Shukla <ruchir@bizzappdev.com>
+* Eduardo de Miguel (`Moduon <https://www.moduon.team/>`__)
 
 Maintainers
 ~~~~~~~~~~~
@@ -108,6 +105,20 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-ernestotejeda| image:: https://github.com/ernestotejeda.png?size=40px
+    :target: https://github.com/ernestotejeda
+    :alt: ernestotejeda
+.. |maintainer-CarlosRoca13| image:: https://github.com/CarlosRoca13.png?size=40px
+    :target: https://github.com/CarlosRoca13
+    :alt: CarlosRoca13
+.. |maintainer-Shide| image:: https://github.com/Shide.png?size=40px
+    :target: https://github.com/Shide
+    :alt: Shide
+
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-ernestotejeda| |maintainer-CarlosRoca13| |maintainer-Shide| 
 
 This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_order_line_price_history>`_ project on GitHub.
 
