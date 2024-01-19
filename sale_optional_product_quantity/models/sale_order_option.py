@@ -12,6 +12,17 @@ class SaleOrderOption(models.Model):
         store=True,
     )
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        """
+        Recompute quantity on option creation to override
+        default behaviour of quantity assignment via
+        product configurator
+        """
+        res = super().create(vals_list)
+        res._compute_quantity()
+        return res
+
     @api.depends("order_id.order_line")
     def _compute_quantity(self):
         for option in self:
