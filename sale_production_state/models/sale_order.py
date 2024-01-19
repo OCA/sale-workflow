@@ -18,6 +18,7 @@ class SaleOrder(models.Model):
         string="Manufacturing state",
         compute="_compute_production_state",
         store=True,
+        index=True,
     )
 
     @api.depends("order_line.production_state")
