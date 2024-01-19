@@ -66,9 +66,7 @@ class SaleOrder(models.Model):
         self.ensure_one()
         vendors_dict = self._get_vendor_dict()
         for vendor, value in vendors_dict.items():
-            purchase = self.env["purchase.order"].create(
-                self._prepare_rfq_vals(vendor)
-            )
+            purchase = self.env["purchase.order"].create(self._prepare_rfq_vals(vendor))
             for line in value:
                 self.env["purchase.order.line"].create(
                     self._prepare_rfq_line_vals(purchase, line)
