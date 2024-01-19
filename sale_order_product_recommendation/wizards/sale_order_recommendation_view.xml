@@ -10,7 +10,7 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <group>
+                    <group attrs="{'invisible': [('line_ids', '!=', [])]}">
                         <group>
                             <field name="order_id" invisible="1" />
                             <field name="months" widget="numeric_step" />
@@ -154,6 +154,13 @@
                         type="object"
                         string="Accept"
                         class="oe_highlight"
+                    />
+                    <button
+                        attrs="{'invisible': [('line_ids', '=', [])]}"
+                        confirm="You will lose any changes you have made. Are you sure?"
+                        name="action_reset"
+                        string="Change criteria"
+                        type="object"
                     />
                     <button special="cancel" string="Cancel" />
                 </footer>

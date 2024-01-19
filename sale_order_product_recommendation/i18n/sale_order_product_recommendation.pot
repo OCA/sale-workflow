@@ -69,6 +69,11 @@ msgid "Cancel"
 msgstr ""
 
 #. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
+msgid "Change criteria"
+msgstr ""
+
+#. module: sale_order_product_recommendation
 #: model:ir.model,name:sale_order_product_recommendation.model_res_company
 msgid "Companies"
 msgstr ""
@@ -169,11 +174,6 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation_line__pricelist_id
 msgid "If you change the pricelist, only newly added lines will be affected."
-msgstr ""
-
-#. module: sale_order_product_recommendation
-#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__last_compute
-msgid "Last Compute"
 msgstr ""
 
 #. module: sale_order_product_recommendation
@@ -340,6 +340,11 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__wizard_id
 msgid "Wizard"
+msgstr ""
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
+msgid "You will lose any changes you have made. Are you sure?"
 msgstr ""
 
 #. module: sale_order_product_recommendation
