@@ -20,7 +20,7 @@
     ],
     "demo": [
         "demo/vendors.xml",
-        "demo/product_product.xml",
+        "demo/product_template.xml",
         "demo/product_supplierinfo.xml",
     ],
 }

@@ -88,4 +88,92 @@
         <field name="price">60</field>
         <field name="currency_id" ref="base.USD" />
     </record>
+    <record id="product_supplierinfo_9" model="product.supplierinfo">
+        <field
+            name="product_tmpl_id"
+            ref="sale_quotation_capable_vendor_rfq.product_b"
+        />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_1" />
+        <field name="delay">2</field>
+        <field name="min_qty">50</field>
+        <field name="price">300</field>
+        <field name="currency_id" ref="base.USD" />
+    </record>
+    <record id="product_supplierinfo_10" model="product.supplierinfo">
+        <field
+            name="product_tmpl_id"
+            ref="sale_quotation_capable_vendor_rfq.product_b"
+        />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_1" />
+        <field name="delay">2</field>
+        <field name="min_qty">0</field>
+        <field name="price">529</field>
+        <field name="currency_id" ref="base.USD" />
+    </record>
+    <record id="product_supplierinfo_11" model="product.supplierinfo">
+        <field
+            name="product_tmpl_id"
+            ref="sale_quotation_capable_vendor_rfq.product_a"
+        />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_1" />
+        <field name="delay">2</field>
+        <field name="min_qty">0</field>
+        <field name="price">110</field>
+        <field name="currency_id" ref="base.USD" />
+    </record>
+    <record id="product_supplierinfo_12" model="product.supplierinfo">
+        <field
+            name="product_tmpl_id"
+            ref="sale_quotation_capable_vendor_rfq.product_b"
+        />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_2" />
+        <field name="delay">2</field>
+        <field name="min_qty">0</field>
+        <field name="price">120</field>
+        <field name="currency_id" ref="base.USD" />
+    </record>
+    <record id="product_supplierinfo_13" model="product.supplierinfo">
+        <field
+            name="product_tmpl_id"
+            ref="sale_quotation_capable_vendor_rfq.product_b"
+        />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_2" />
+        <field name="delay">2</field>
+        <field name="min_qty">40</field>
+        <field name="price">80</field>
+        <field name="currency_id" ref="base.USD" />
+    </record>
+    <record id="product_supplierinfo_14" model="product.supplierinfo">
+        <field
+            name="product_tmpl_id"
+            ref="sale_quotation_capable_vendor_rfq.product_b"
+        />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_3" />
+        <field name="delay">2</field>
+        <field name="min_qty">20</field>
+        <field name="price">420</field>
+        <field name="currency_id" ref="base.USD" />
+    </record>
+    <record id="product_supplierinfo_15" model="product.supplierinfo">
+        <field
+            name="product_tmpl_id"
+            ref="sale_quotation_capable_vendor_rfq.product_b"
+        />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_3" />
+        <field name="delay">2</field>
+        <field name="min_qty">80</field>
+        <field name="price">380</field>
+        <field name="currency_id" ref="base.USD" />
+    </record>
+    <record id="product_supplierinfo_16" model="product.supplierinfo">
+        <field
+            name="product_tmpl_id"
+            ref="sale_quotation_capable_vendor_rfq.product_b"
+        />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_3" />
+        <field name="delay">2</field>
+        <field name="min_qty">50</field>
+        <field name="price">370</field>
+        <field name="currency_id" ref="base.USD" />
+    </record>
 </odoo>
