@@ -3,23 +3,24 @@
 # © 2016 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import TransactionCase
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleSourcedByLine(TransactionCase):
-    def setUp(self):
-        super(TestSaleSourcedByLine, self).setUp()
-        self.sale_order_model = self.env["sale.order"]
-        self.sale_order_line_model = self.env["sale.order.line"]
-        self.stock_move_model = self.env["stock.move"]
-        self.stock_warehouse_model = self.env["stock.warehouse"]
+class TestSaleSourcedByLine(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.sale_order_model = cls.env["sale.order"]
+        cls.sale_order_line_model = cls.env["sale.order.line"]
+        cls.stock_move_model = cls.env["stock.move"]
+        cls.stock_warehouse_model = cls.env["stock.warehouse"]
 
         # Refs
-        self.customer = self.env.ref("base.res_partner_2")
-        self.product_1 = self.env.ref("product.product_product_27")
-        self.product_2 = self.env.ref("product.product_product_24")
-        self.warehouse0 = self.env.ref("stock.warehouse0")
-        self.warehouse1 = self.stock_warehouse_model.create(
+        cls.customer = cls.env.ref("base.res_partner_2")
+        cls.product_1 = cls.env.ref("product.product_product_27")
+        cls.product_2 = cls.env.ref("product.product_product_24")
+        cls.warehouse0 = cls.env.ref("stock.warehouse0")
+        cls.warehouse1 = cls.stock_warehouse_model.create(
             {"name": "Test Warehouse", "code": "TWH"}
         )
 
