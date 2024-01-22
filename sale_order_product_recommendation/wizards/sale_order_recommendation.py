@@ -40,7 +40,6 @@ class SaleOrderRecommendation(models.TransientModel):
         required=True,
         help="The less, the faster they will be found.",
     )
-    last_compute = fields.Char()
     # Get default value from config settings
     sale_recommendation_price_origin = fields.Selection(
         [("pricelist", "Pricelist"), ("last_sale_price", "Last sale price")],
@@ -111,21 +110,23 @@ class SaleOrderRecommendation(models.TransientModel):
             vals["sale_line_id"] = so_line.id
         return vals
 
-    @api.onchange("order_id", "months", "line_amount", "use_delivery_address")
-    def _remove_recommendations(self):
+    def _reopen_wizard(self):
+        """Tell the client to close the wizard and open it again."""
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": self._name,
+            "res_id": self.id,
+            "view_mode": "form",
+            "target": "new",
+        }
+
+    def action_reset(self):
         """Empty the list of recommendations."""
         self.line_ids = False
+        return self._reopen_wizard()
 
     def generate_recommendations(self):
         """Generate lines according to context sale order."""
-        last_compute = "{}-{}-{}-{}".format(
-            self.id, self.months, self.line_amount, self.use_delivery_address
-        )
-        # Avoid execute onchange as times as fields in api.onchange
-        # ORM must control this?
-        if self.last_compute == last_compute:
-            return
-        self.last_compute = last_compute
         # Search delivered products in previous months
         # Search with sudo for get sale order from other commercials users
         found_lines = (
@@ -178,13 +179,7 @@ class SaleOrderRecommendation(models.TransientModel):
             key=lambda x: x.times_delivered, reverse=True
         )
         # Reopen wizard
-        return {
-            "type": "ir.actions.act_window",
-            "res_model": self._name,
-            "res_id": self.id,
-            "view_mode": "form",
-            "target": "new",
-        }
+        return self._reopen_wizard()
 
     def action_accept(self):
         """Propagate recommendations to sale order."""
