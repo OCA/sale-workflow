@@ -79,6 +79,11 @@ msgid "Cancel"
 msgstr "Annulla"
 
 #. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
+msgid "Change criteria"
+msgstr ""
+
+#. module: sale_order_product_recommendation
 #: model:ir.model,name:sale_order_product_recommendation.model_res_company
 msgid "Companies"
 msgstr "Aziende"
@@ -189,11 +194,6 @@ msgstr ""
 msgid "If you change the pricelist, only newly added lines will be affected."
 msgstr ""
 "Se si modifica il listino, solo le nuove righe aggiunte verranno interessate."
-
-#. module: sale_order_product_recommendation
-#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__last_compute
-msgid "Last Compute"
-msgstr "Ultimo calcolo"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation____last_update
@@ -365,5 +365,13 @@ msgstr "Procedura guidata"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
+msgid "You will lose any changes you have made. Are you sure?"
+msgstr ""
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "times -"
 msgstr "numero -"
+
+#~ msgid "Last Compute"
+#~ msgstr "Ultimo calcolo"
