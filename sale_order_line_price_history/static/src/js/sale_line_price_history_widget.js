@@ -31,7 +31,11 @@ export class PriceHistoryWidget extends Component {
 }
 
 PriceHistoryWidget.template = "sale_order_line_price_history.price_history_widget";
-PriceHistoryWidget.props = standardFieldProps;
+PriceHistoryWidget.props = {
+    ...standardFieldProps,
+    // Onchange decorator returns an undefined value for the id instead of false
+    value: {optional: true},
+};
 
 // Add the field to the correct category
 registry.category("fields").add("sale_line_price_history_widget", PriceHistoryWidget);
