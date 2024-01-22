@@ -14,7 +14,6 @@ class SaleOrder(models.Model):
         "stock.warehouse",
         string="Default Warehouse",
         readonly=True,
-        states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
         help="If no source warehouse is selected on line, "
         "this warehouse is used as default. ",
     )
@@ -28,7 +27,6 @@ class SaleOrderLine(models.Model):
         "Source Warehouse",
         readonly=True,
         related="",
-        states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
         help="If a source warehouse is selected, "
         "it will be used to define the route. "
         "Otherwise, it will get the warehouse of "
@@ -36,7 +34,7 @@ class SaleOrderLine(models.Model):
     )
 
     def _prepare_procurement_group_vals(self):
-        vals = super(SaleOrderLine, self)._prepare_procurement_group_vals()
+        vals = super()._prepare_procurement_group_vals()
         # for compatibility with sale_quotation_sourcing
         if self._get_procurement_group_key()[0] == 10:
             if self.warehouse_id:
@@ -50,7 +48,7 @@ class SaleOrderLine(models.Model):
         override in order to add other custom key that could
         be used in move/po creation.
         """
-        values = super(SaleOrderLine, self)._prepare_procurement_values(group_id)
+        values = super()._prepare_procurement_values(group_id)
         self.ensure_one()
         if self.warehouse_id:
             values["warehouse_id"] = self.warehouse_id
@@ -62,7 +60,7 @@ class SaleOrderLine(models.Model):
 
         """
         priority = 10
-        key = super(SaleOrderLine, self)._get_procurement_group_key()
+        key = super()._get_procurement_group_key()
         # Check priority
         if key[0] >= priority:
             return key

@@ -9,7 +9,7 @@
                 expr="//field[@name='order_line']/tree/field[@name='price_subtotal']"
                 position="after"
             >
-                <field name="warehouse_id" />
+                <field name="warehouse_id" readonly="state not in ['draft', 'sent']" />
             </xpath>
         </field>
     </record>
@@ -22,7 +22,7 @@
                 expr="//field[@name='order_line']/form//field[@name='route_id']"
                 position="before"
             >
-                <field name="warehouse_id" />
+                <field name="warehouse_id" readonly="state not in ['draft', 'sent']" />
             </xpath>
             <xpath expr="//field[@name='order_line']" position="attributes">
                 <attribute
