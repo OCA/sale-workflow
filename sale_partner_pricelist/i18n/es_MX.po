@@ -80,8 +80,8 @@ msgstr "La lista de precios seleccionada no está permitida para este cliente."
 #: code:addons/sale_partner_pricelist/models/res_partner.py:0
 #, python-format
 msgid ""
-"The selected Pricelist is not allowed for this Partner. Please select one "
-"of the allowed pricelists."
+"The selected Pricelist is not allowed for this Partner. Please select one of "
+"the allowed pricelists."
 msgstr ""
 "La lista de precios seleccionada no está permitida para este cliente. Por "
 "favor seleccione una de las listas de precios permitidas."
