@@ -79,6 +79,11 @@ msgid "Companies"
 msgstr ""
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_categ_complete_name
+msgid "Complete Name"
+msgstr ""
+
+#. module: sale_order_product_recommendation
 #: model:ir.model,name:sale_order_product_recommendation.model_res_config_settings
 msgid "Config Settings"
 msgstr ""
@@ -206,6 +211,11 @@ msgid "Months"
 msgstr ""
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_name
+msgid "Name"
+msgstr ""
+
+#. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__line_amount
 msgid "Number of recommendations"
 msgstr ""
@@ -240,8 +250,13 @@ msgid "Product"
 msgstr ""
 
 #. module: sale_order_product_recommendation
-#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_categ_id
-msgid "Product Category"
+#: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__product_categ_complete_name_asc
+msgid "Product category"
+msgstr ""
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__product_name_asc
+msgid "Product name"
 msgstr ""
 
 #. module: sale_order_product_recommendation
@@ -252,6 +267,11 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__line_ids
 msgid "Products"
+msgstr ""
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__recommendations_order
+msgid "Recommendations Order"
 msgstr ""
 
 #. module: sale_order_product_recommendation
@@ -317,6 +337,11 @@ msgid "Times Delivered"
 msgstr ""
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__times_delivered_desc
+msgid "Times delivered"
+msgstr ""
+
+#. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__sale_uom_id
 msgid "Unit of Measure"
 msgstr ""
@@ -329,6 +354,11 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__units_included
 msgid "Units Included"
+msgstr ""
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__units_delivered_desc
+msgid "Units delivered"
 msgstr ""
 
 #. module: sale_order_product_recommendation

@@ -19,6 +19,7 @@
                         <group>
                             <field name="sale_recommendation_price_origin" />
                             <field name="use_delivery_address" />
+                            <field name="recommendations_order" />
                         </group>
                     </group>
                     <group col="2">
@@ -29,12 +30,7 @@
                             colspan="2"
                             attrs="{'invisible': [('line_ids', '=', [])]}"
                         >
-                            <tree
-                                create="0"
-                                delete="0"
-                                editable="top"
-                                context="{'group_by': 'product_categ_id'}"
-                            >
+                            <tree create="0" delete="0" editable="top">
                                 <field
                                     name="product_priority"
                                     widget="priority"
@@ -43,7 +39,10 @@
                                 />
                                 <field name="currency_id" invisible="1" />
                                 <field name="sale_line_id" invisible="1" />
-                                <field name="product_categ_id" optional="show" />
+                                <field
+                                    name="product_categ_complete_name"
+                                    optional="show"
+                                />
                                 <field name="product_id" readonly="1" force_save="1" />
                                 <field name="price_unit" />
                                 <field name="times_delivered" />

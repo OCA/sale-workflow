@@ -28,12 +28,16 @@ class RecommendationCase(TransactionCase):
                 "property_product_pricelist": cls.pricelist.id,
             }
         )
+        cls.cat_a, cls.cat_b = cls.env["product.category"].create(
+            [{"name": "A"}, {"name": "B"}]
+        )
         cls.product_obj = cls.env["product.product"]
         cls.prod_1 = cls.product_obj.create(
             {
                 "name": "Test Product 1",
                 "detailed_type": "service",
                 "list_price": 25.00,
+                "categ_id": cls.cat_b.id,
             }
         )
         cls.prod_2 = cls.product_obj.create(
@@ -41,6 +45,7 @@ class RecommendationCase(TransactionCase):
                 "name": "Test Product 2",
                 "detailed_type": "service",
                 "list_price": 50.00,
+                "categ_id": cls.cat_b.id,
             }
         )
         cls.prod_3 = cls.product_obj.create(
@@ -48,6 +53,7 @@ class RecommendationCase(TransactionCase):
                 "name": "Test Product 3",
                 "detailed_type": "service",
                 "list_price": 75.00,
+                "categ_id": cls.cat_a.id,
             }
         )
         # Create old sale orders to have searchable history
