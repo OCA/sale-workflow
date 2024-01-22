@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+Copyright (C) 2015 - Today: GRAP (http://www.grap.coop)
+@author: Sylvain LE GAL (https://twitter.com/legalsylvain)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <record id="view_product_pricelist_form" model="ir.ui.view">
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view" />
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="is_technical" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_product_pricelist_tree" model="ir.ui.view">
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="is_technical" />
+            </field>
+        </field>
+    </record>
+
+</odoo>
