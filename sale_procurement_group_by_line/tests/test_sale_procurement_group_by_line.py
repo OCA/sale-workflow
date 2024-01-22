@@ -79,7 +79,7 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         self.picking_ids = self.env["stock.picking"].search(
             [("group_id", "in", self.line2.procurement_group_id.ids)]
         )
-        self.picking_ids.move_ids.write({"quantity_done": 5})
+        self.picking_ids.move_ids.write({"quantity": 5})
         wiz_act = self.picking_ids.button_validate()
         wiz = Form(
             self.env[wiz_act["res_model"]].with_context(**wiz_act["context"])
@@ -133,7 +133,8 @@ class TestSaleProcurementGroupByLine(TransactionCase):
 
     def test_06_update_sale_order_line_respect_procurement_group(self):
         """
-        When launching the stock rule again, use maintain same procurement group in lines
+        When launching the stock rule again,
+        use maintain same procurement group in lines
         """
         self.sale.action_confirm()
         proc_group = self.sale.order_line[1].procurement_group_id
