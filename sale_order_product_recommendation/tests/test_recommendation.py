@@ -6,6 +6,7 @@
 from freezegun import freeze_time
 
 from odoo.exceptions import UserError
+from odoo.tests.common import Form
 
 from .test_recommendation_common import RecommendationCase
 
@@ -52,6 +53,41 @@ class RecommendationCaseTests(RecommendationCase):
         wizard.line_amount = 1
         wizard.generate_recommendations()
         self.assertEqual(len(wizard.line_ids), 2)
+
+    def test_recommendations_ordered_by_category(self):
+        wiz_f = Form(
+            self.env["sale.order.recommendation"].with_context(active_id=self.new_so.id)
+        )
+        wiz_f.recommendations_order = "product_categ_complete_name asc"
+        wizard = wiz_f.save()
+        wizard.generate_recommendations()
+        # Prod 3 is 1st because its category is named "A"
+        self.assertRecordValues(
+            wizard.line_ids,
+            [
+                {
+                    "product_id": self.prod_3.id,
+                    "product_categ_complete_name": "A",
+                    "times_delivered": 1,
+                    "units_delivered": 100,
+                    "units_included": 0,
+                },
+                {
+                    "product_id": self.prod_2.id,
+                    "product_categ_complete_name": "B",
+                    "times_delivered": 2,
+                    "units_delivered": 100,
+                    "units_included": 0,
+                },
+                {
+                    "product_id": self.prod_1.id,
+                    "product_categ_complete_name": "B",
+                    "times_delivered": 1,
+                    "units_delivered": 25,
+                    "units_included": 0,
+                },
+            ],
+        )
 
     def test_recommendations_archived_product(self):
         self.env["sale.order"].create(
