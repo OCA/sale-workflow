@@ -1,0 +1,35 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_auto_remove_zero_quantity_lines
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-23 08:30+0000\n"
+"PO-Revision-Date: 2024-01-23 08:30+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_auto_remove_zero_quantity_lines
+#: model:ir.model.fields,help:sale_auto_remove_zero_quantity_lines.field_res_config_settings__sale_auto_remove_zero_quantity_lines
+#: model_terms:ir.ui.view,arch_db:sale_auto_remove_zero_quantity_lines.res_config_settings_view_form_sale
+msgid "Auto remove sale order lines with zero quantity upon confirmation."
+msgstr "Automatische Entfernung von Verkaufsauftragszeilen mit Nullmenge bei Bestätigung."
+
+#. module: sale_auto_remove_zero_quantity_lines
+#: model:ir.model.fields,field_description:sale_auto_remove_zero_quantity_lines.field_res_config_settings__sale_auto_remove_zero_quantity_lines
+msgid "Automatic Removal of Zero Quantity Lines"
+msgstr "Automatische Entfernung von Nullmengen-Linien"
+
+#. module: sale_auto_remove_zero_quantity_lines
+#. odoo-python
+#: code:addons/sale_auto_remove_zero_quantity_lines/models/sale_order.py:0
+#, python-format
+msgid ""
+"Some sale order lines with zero quantities were removed upon confirmation."
+msgstr "Einige Verkaufsauftragszeilen mit Nullmengen wurden bei der Bestätigung entfernt."
