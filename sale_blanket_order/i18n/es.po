@@ -264,13 +264,14 @@ msgid "Date Scheduled"
 msgstr "Fecha prevista"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__delivered_uom_qty
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_search
 msgid "Delivered Qty"
 msgstr "Ctdad entregada"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__delivered_uom_qty
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__delivered_uom_qty
 msgid "Delivered quantity"
 msgstr "Cantidad entregada"
 
@@ -390,13 +391,14 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Si activo, algunos mensajes tienen error de entrega."
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__invoiced_uom_qty
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_search
 msgid "Invoiced Qty"
 msgstr "Ctdad facturada"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__invoiced_uom_qty
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__invoiced_uom_qty
 msgid "Invoiced quantity"
 msgstr "Cantidad facturada"
 
@@ -554,13 +556,13 @@ msgid "Order lines"
 msgstr "Líneas de pedido"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__ordered_uom_qty
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_search
 msgid "Ordered Qty"
 msgstr "Ctdad pedida"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__ordered_uom_qty
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__ordered_uom_qty
 msgid "Ordered quantity"
 msgstr "Cantidad pedida"
 
@@ -570,16 +572,14 @@ msgid "Origin blanket order"
 msgstr "Programación orígen"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__original_uom_qty
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
-#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_tree
-#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_search
 msgid "Original Qty"
 msgstr "Ctdad original"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__original_uom_qty
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__original_uom_qty
 msgid "Original quantity"
 msgstr "Cantidad original"
 
@@ -637,6 +637,11 @@ msgid "Purchase Order"
 msgstr "Pedido de compra"
 
 #. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
+msgid "Qty"
+msgstr ""
+
+#. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Quantity must be greater than zero"
@@ -648,21 +653,21 @@ msgid "Quantity to Order"
 msgstr "Cantidad pedida"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__remaining_uom_qty
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__remaining_uom_qty
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_search
 msgid "Remaining Qty"
 msgstr "Ctdad restante"
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__remaining_uom_qty
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__remaining_uom_qty
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__remaining_uom_qty
-msgid "Remaining quantity"
-msgstr "Cantidad restante"
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__remaining_qty
+msgid "Remaining Qty in base UoM"
+msgstr ""
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__remaining_qty
-msgid "Remaining quantity in base UoM"
-msgstr "Cantidad restante en base UdM"
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__remaining_uom_qty
+msgid "Remaining quantity"
+msgstr "Cantidad restante"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__user_id
@@ -843,8 +848,14 @@ msgid "To Draft"
 msgstr "A Borrador"
 
 #. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
+msgid "To Invoice Qty"
+msgstr ""
+
+#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__amount_total
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__price_total
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
 msgid "Total"
 msgstr "Total"
 
@@ -862,6 +873,7 @@ msgstr "Precio unitario"
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__product_uom
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__product_uom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
 msgid "Unit of Measure"
 msgstr "Unidad de Medida"
 
@@ -984,6 +996,9 @@ msgstr "Tiene que seleccionar líneas desde la misma compañía."
 #, python-format
 msgid "remaining"
 msgstr "restante"
+
+#~ msgid "Remaining quantity in base UoM"
+#~ msgstr "Cantidad restante en base UdM"
 
 #~ msgid "Sale Blanket Order Lines"
 #~ msgstr "Líneas de programación de venta"
