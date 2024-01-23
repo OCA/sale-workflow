@@ -21,11 +21,15 @@ class SaleOrderLineCancel(models.TransientModel):
     def _get_moves_to_cancel(self, line):
         return line.move_ids.filtered(lambda m: m.state not in ("done", "cancel"))
 
+    def _check_moves_to_cancel(self, moves):
+        """override this method to add checks before cancel"""
+
     def cancel_remaining_qty(self):
         line = self._get_sale_order_line()
         if not line.can_cancel_remaining_qty:
             return False
         cancel_moves = self._get_moves_to_cancel(line)
+        self._check_moves_to_cancel(cancel_moves)
         cancel_moves._action_cancel()
         line.order_id.message_post(
             body=_(
