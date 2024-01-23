@@ -5,6 +5,7 @@
     "category": "Sale",
     "license": "AGPL-3",
     "author": "Acsone SA/NV, Odoo Community Association (OCA)",
+    "maintainers": ["aleuffre", "renda-dev", "PicchiSeba"],
     "version": "14.0.1.1.1",
     "website": "https://github.com/OCA/sale-workflow",
     "summary": "Blanket Orders",
