@@ -52,6 +52,7 @@ class SaleOrderRecommendation(models.TransientModel):
             ("times_delivered desc", "Times delivered"),
             ("units_delivered desc", "Units delivered"),
             ("product_categ_complete_name asc", "Product category"),
+            ("product_default_code asc", "Product code"),
             ("product_name asc", "Product name"),
         ],
         required=True,
@@ -192,7 +193,7 @@ class SaleOrderRecommendation(models.TransientModel):
         priority_multiplier = 1 if order_dir == "desc" else -1
         self.line_ids = recommendation_lines.sorted(
             key=lambda line: (
-                line[order_field],
+                "" if line[order_field] is False else line[order_field],
                 int(line.product_priority) * priority_multiplier,
             ),
             reverse=order_dir == "desc",
@@ -247,6 +248,9 @@ class SaleOrderRecommendationLine(models.TransientModel):
         related="product_id.categ_id.complete_name",
         readonly=True,
         store=True,
+    )
+    product_default_code = fields.Char(
+        related="product_id.default_code", readonly=True, store=True
     )
     product_priority = fields.Selection(
         related="product_id.priority", store=True, readonly=False

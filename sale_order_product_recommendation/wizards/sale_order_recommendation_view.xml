@@ -43,10 +43,17 @@
                                     name="product_categ_complete_name"
                                     optional="show"
                                 />
-                                <field name="product_id" readonly="1" force_save="1" />
-                                <field name="price_unit" />
-                                <field name="times_delivered" />
-                                <field name="units_delivered" />
+                                <field
+                                    name="product_id"
+                                    readonly="1"
+                                    force_save="1"
+                                    optional="hide"
+                                />
+                                <field name="product_default_code" optional="show" />
+                                <field name="product_name" optional="show" />
+                                <field name="price_unit" optional="show" />
+                                <field name="times_delivered" optional="show" />
+                                <field name="units_delivered" optional="show" />
                                 <field name="units_included" widget="numeric_step" />
                                 <field
                                     name="sale_uom_id"

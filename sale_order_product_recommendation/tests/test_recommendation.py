@@ -89,6 +89,41 @@ class RecommendationCaseTests(RecommendationCase):
             ],
         )
 
+    def test_recommendations_ordered_by_code(self):
+        wiz_f = Form(
+            self.env["sale.order.recommendation"].with_context(active_id=self.new_so.id)
+        )
+        wiz_f.recommendations_order = "product_default_code asc"
+        wizard = wiz_f.save()
+        wizard.generate_recommendations()
+        # Prod 3 is 1st because its code is "A"
+        self.assertRecordValues(
+            wizard.line_ids,
+            [
+                {
+                    "product_id": self.prod_2.id,
+                    "product_default_code": False,
+                    "times_delivered": 2,
+                    "units_delivered": 100,
+                    "units_included": 0,
+                },
+                {
+                    "product_id": self.prod_1.id,
+                    "product_default_code": False,
+                    "times_delivered": 1,
+                    "units_delivered": 25,
+                    "units_included": 0,
+                },
+                {
+                    "product_id": self.prod_3.id,
+                    "product_default_code": "TEST-PROD-3",
+                    "times_delivered": 1,
+                    "units_delivered": 100,
+                    "units_included": 0,
+                },
+            ],
+        )
+
     def test_recommendations_archived_product(self):
         self.env["sale.order"].create(
             {
