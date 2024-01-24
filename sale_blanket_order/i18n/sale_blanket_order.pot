@@ -240,11 +240,6 @@ msgid "Currency"
 msgstr ""
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__partner_id
-msgid "Customer"
-msgstr ""
-
-#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__client_order_ref
 msgid "Customer Reference"
 msgstr ""
@@ -582,6 +577,7 @@ msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__partner_id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__partner_id
 msgid "Partner"
 msgstr ""
 
