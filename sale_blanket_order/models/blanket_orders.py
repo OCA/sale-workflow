@@ -483,7 +483,9 @@ class BlanketOrderLine(models.Model):
         "res.company", related="order_id.company_id", store=True
     )
     currency_id = fields.Many2one("res.currency", related="order_id.currency_id")
-    partner_id = fields.Many2one(related="order_id.partner_id", string="Customer")
+    partner_id = fields.Many2one(
+        related="order_id.partner_id", string="Partner", store=True
+    )
     user_id = fields.Many2one(related="order_id.user_id", string="Responsible")
     payment_term_id = fields.Many2one(
         related="order_id.payment_term_id", string="Payment Terms"
