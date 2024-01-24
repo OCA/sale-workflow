@@ -71,6 +71,7 @@ class SaleOrder(models.Model):
                 self.env["purchase.order.line"].create(
                     self._prepare_rfq_line_vals(purchase, line)
                 )
+        self._added_alternative_rfq()
 
     def _prepare_rfq_vals(self, vendor):
         """
@@ -150,3 +151,25 @@ class SaleOrder(models.Model):
                 price, currency_to_id, self.env.company, fields.Date.today()
             )
         return price
+
+    def _added_alternative_rfq(self):
+        """
+        Added alternative RFQ
+        """
+        self.ensure_one()
+        if len(self.rfq_ids) <= 1:
+            return
+        self.rfq_ids.write(
+            {
+                "purchase_group_id": self._get_alternative_group_id(),
+            }
+        )
+
+    def _get_alternative_group_id(self):
+        """
+        Get alternative group id
+
+        :return: purchase.order.group
+        """
+        self.ensure_one()
+        return self.env["purchase.order.group"].create({}).id

@@ -14,6 +14,7 @@
     "depends": [
         "sale_management",
         "purchase",
+        "purchase_requisition",
     ],
     "data": [
         "views/sale_order_views.xml",
