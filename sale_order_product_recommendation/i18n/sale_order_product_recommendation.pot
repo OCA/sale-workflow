@@ -182,6 +182,11 @@ msgid "If you change the pricelist, only newly added lines will be affected."
 msgstr ""
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_default_code
+msgid "Internal Reference"
+msgstr ""
+
+#. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation____last_update
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line____last_update
 msgid "Last Modified on"
@@ -252,6 +257,11 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__product_categ_complete_name_asc
 msgid "Product category"
+msgstr ""
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__product_default_code_asc
+msgid "Product code"
 msgstr ""
 
 #. module: sale_order_product_recommendation

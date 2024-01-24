@@ -54,6 +54,7 @@ class RecommendationCase(TransactionCase):
                 "detailed_type": "service",
                 "list_price": 75.00,
                 "categ_id": cls.cat_a.id,
+                "default_code": "TEST-PROD-3",
             }
         )
         # Create old sale orders to have searchable history
