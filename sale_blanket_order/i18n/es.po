@@ -248,11 +248,6 @@ msgid "Currency"
 msgstr "Moneda"
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__partner_id
-msgid "Customer"
-msgstr "Cliente"
-
-#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__client_order_ref
 msgid "Customer Reference"
 msgstr "Expediente del Cliente"
@@ -590,6 +585,7 @@ msgstr "Otra Información"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__partner_id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__partner_id
 msgid "Partner"
 msgstr "Cliente"
 
@@ -996,6 +992,9 @@ msgstr "Tiene que seleccionar líneas desde la misma compañía."
 #, python-format
 msgid "remaining"
 msgstr "restante"
+
+#~ msgid "Customer"
+#~ msgstr "Cliente"
 
 #~ msgid "Remaining quantity in base UoM"
 #~ msgstr "Cantidad restante en base UdM"

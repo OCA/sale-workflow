@@ -249,11 +249,6 @@ msgid "Currency"
 msgstr "Währung"
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__partner_id
-msgid "Customer"
-msgstr "Kunde"
-
-#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__client_order_ref
 msgid "Customer Reference"
 msgstr "Kunden-Referenz"
@@ -594,6 +589,7 @@ msgstr "Weitere Informationen"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__partner_id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__partner_id
 msgid "Partner"
 msgstr "Partner"
 
@@ -996,6 +992,9 @@ msgstr "Sie müssen Zeilen desselben Unternehmens auswählen."
 #, python-format
 msgid "remaining"
 msgstr "verbleibend"
+
+#~ msgid "Customer"
+#~ msgstr "Kunde"
 
 #~ msgid "Remaining quantity in base UoM"
 #~ msgstr "Verbleibende Menge in Basis-ME"
