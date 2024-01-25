@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-22 11:37+0000\n"
+"PO-Revision-Date: 2024-01-25 10:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -81,7 +81,7 @@ msgstr "Annulla"
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Change criteria"
-msgstr ""
+msgstr "Modifica criterio"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model,name:sale_order_product_recommendation.model_res_company
@@ -91,7 +91,7 @@ msgstr "Aziende"
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_categ_complete_name
 msgid "Complete Name"
-msgstr ""
+msgstr "Nome completo"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model,name:sale_order_product_recommendation.model_res_config_settings
@@ -203,7 +203,7 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_default_code
 msgid "Internal Reference"
-msgstr ""
+msgstr "Riferimento interno"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation____last_update
@@ -237,7 +237,7 @@ msgstr "Mesi"
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_name
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__line_amount
@@ -276,17 +276,17 @@ msgstr "Prodotto"
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__product_categ_complete_name_asc
 msgid "Product category"
-msgstr ""
+msgstr "Categoria prodotto"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__product_default_code_asc
 msgid "Product code"
-msgstr ""
+msgstr "Codice prodotto"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__product_name_asc
 msgid "Product name"
-msgstr ""
+msgstr "Nome prodotto"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__sale_recommendation_price_origin
@@ -301,7 +301,7 @@ msgstr "Prodotti"
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__recommendations_order
 msgid "Recommendations Order"
-msgstr ""
+msgstr "Suggerimenti ordine"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.view_order_form
@@ -316,7 +316,7 @@ msgstr "Prodtti suggeriti per questo cliente"
 #. module: sale_order_product_recommendation
 #: model:ir.model,name:sale_order_product_recommendation.model_sale_order_recommendation_line
 msgid "Recommended product for current sale order"
-msgstr "Prodotto suggerito per questo ordine di vendita"
+msgstr "Prodotto consigliato per questo ordine di vendita"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model,name:sale_order_product_recommendation.model_sale_order_recommendation
@@ -370,7 +370,7 @@ msgstr "Numero consegne"
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__times_delivered_desc
 msgid "Times delivered"
-msgstr ""
+msgstr "Numero consegne"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__sale_uom_id
@@ -390,7 +390,7 @@ msgstr "Unità incluse"
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__units_delivered_desc
 msgid "Units delivered"
-msgstr ""
+msgstr "Unità consegnate"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_config_settings__default_use_delivery_address
@@ -406,7 +406,7 @@ msgstr "Procedura guidata"
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "You will lose any changes you have made. Are you sure?"
-msgstr ""
+msgstr "Verranno perse tutte le modifiche fatte. Sicuri di procedere?"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
