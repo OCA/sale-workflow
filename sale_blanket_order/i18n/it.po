@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-25 13:37+0000\n"
+"PO-Revision-Date: 2024-01-25 16:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -750,7 +750,7 @@ msgstr "Addetto vendite"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__date_schedule
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
 msgid "Scheduled Date"
-msgstr "Data programmata"
+msgstr "Data schedulata"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_search
@@ -841,7 +841,7 @@ msgstr "La vendita è stata già completata."
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
 msgid "To Draft"
-msgstr "In bozza"
+msgstr "A bozza"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
