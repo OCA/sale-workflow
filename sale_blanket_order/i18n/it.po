@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-24 11:08+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2024-01-25 13:37+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -189,8 +189,8 @@ msgstr ""
 msgid ""
 "Click to create a blanket order that can be converted into a sale order."
 msgstr ""
-"Clicca per creare un ordine aperto che può essere convertito in un ordine di "
-"vendita."
+"Cliccare per creare un ordine aperto che può essere convertito in un ordine "
+"di vendita."
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__company_id
@@ -257,7 +257,7 @@ msgstr "Riferimento cliente"
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Date Scheduled"
-msgstr "Data programmata"
+msgstr "Data schedulata"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__delivered_uom_qty
@@ -279,13 +279,13 @@ msgstr "Descrizione"
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__group_blanket_disable_adding_lines
 msgid "Disable adding more lines to SOs"
-msgstr "Disabilita l'aggiunta di altre righe nei SO"
+msgstr "Disabilita l'aggiunta di altre righe negli OV"
 
 #. module: sale_blanket_order
 #: model:res.groups,name:sale_blanket_order.blanket_orders_disable_adding_lines
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_config_settings_form_view
 msgid "Disable adding more lines to SOs from Blanket Orders"
-msgstr "Disabilita l'aggiunta di altre righe nei SO da ordini aperti"
+msgstr "Disabilita l'aggiunta di altre righe negli OV da ordini aperti"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__display_name
@@ -696,7 +696,7 @@ msgstr "Numero righe ordine di vendita aperto"
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__sale_count
 msgid "Sale Count"
-msgstr "Numero vendite"
+msgstr "Conteggio vendite"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
