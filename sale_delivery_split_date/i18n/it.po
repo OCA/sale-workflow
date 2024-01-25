@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-08-31 14:57+0000\n"
-"PO-Revision-Date: 2023-11-21 09:34+0000\n"
+"PO-Revision-Date: 2024-01-25 15:34+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -25,7 +25,7 @@ msgstr "Riga ordine di vendita"
 #. module: sale_delivery_split_date
 #: model_terms:ir.ui.view,arch_db:sale_delivery_split_date.view_picking_internal_search
 msgid "Scheduled Date"
-msgstr "Data programmata"
+msgstr "Data schedulata"
 
 #~ msgid "Sale Order"
 #~ msgstr "Ordine di vendita"
