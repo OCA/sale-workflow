@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-31 01:43+0000\n"
-"PO-Revision-Date: 2024-01-09 14:36+0000\n"
+"PO-Revision-Date: 2024-01-25 13:37+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-9-0/"
 "language/it/)\n"
@@ -213,7 +213,7 @@ msgstr "Riga ordine di vendita"
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_sale_order_ids
 msgid "Sale Orders"
-msgstr "Ordine vendita"
+msgstr "Ordini di vendita"
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_order
