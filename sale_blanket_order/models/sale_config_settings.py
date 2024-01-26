@@ -12,3 +12,7 @@ class SaleConfigSettings(models.TransientModel):
         string="Disable adding more lines to SOs",
         implied_group="sale_blanket_order.blanket_orders_disable_adding_lines",
     )
+    blanket_order_seq_number_from_draft = fields.Boolean(
+        related="company_id.blanket_order_seq_number_from_draft",
+        readonly=False,
+    )
