@@ -7,44 +7,44 @@ msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-07 11:28+0000\n"
-"PO-Revision-Date: 2022-07-07 13:31+0200\n"
-"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"PO-Revision-Date: 2024-01-27 11:41+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Weblate 4.17\n"
 "SO-Revision-Date: 2019-05-08 12:03+0000\n"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__can_review
 msgid "Can Review"
-msgstr ""
+msgstr "Puede Revisar"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_tier_validation.field_tier_definition__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__has_comment
 msgid "Has Comment"
-msgstr ""
+msgstr "Tiene Comentario"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_tier_validation.field_tier_definition__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_tier_validation.field_tier_definition____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #. module: sale_tier_validation
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
@@ -54,7 +54,7 @@ msgstr "Mis ventas a revisar"
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__need_validation
 msgid "Need Validation"
-msgstr ""
+msgstr "Necesita Validación"
 
 #. module: sale_tier_validation
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
@@ -64,22 +64,22 @@ msgstr "Necesita mi Revisión"
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__next_review
 msgid "Next Review"
-msgstr ""
+msgstr "Siguiente Revisión"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__rejected
 msgid "Rejected"
-msgstr ""
+msgstr "Rechazado"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__rejected_message
 msgid "Rejected Message"
-msgstr ""
+msgstr "Mensaje Rechazado"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__reviewer_ids
 msgid "Reviewers"
-msgstr ""
+msgstr "Revisores"
 
 #. module: sale_tier_validation
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
@@ -117,7 +117,7 @@ msgstr "Validación de nivel solicitada"
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__to_validate_message
 msgid "To Validate Message"
-msgstr ""
+msgstr "Para Validar el Mensaje"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validated
@@ -128,17 +128,17 @@ msgstr "Validada"
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validated_message
 msgid "Validated Message"
-msgstr ""
+msgstr "Mensaje Validado"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validation_status
 msgid "Validation Status"
-msgstr ""
+msgstr "Estado de Validación"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__review_ids
 msgid "Validations"
-msgstr ""
+msgstr "Validaciones"
 
 #~ msgid ""
 #~ "<i class=\"fa fa-info-circle\"/>This SO needs to be\n"
