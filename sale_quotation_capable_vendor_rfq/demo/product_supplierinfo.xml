@@ -5,7 +5,7 @@
             name="product_tmpl_id"
             ref="sale_quotation_capable_vendor_rfq.product_a"
         />
-        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_1" />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_doge" />
         <field name="delay">2</field>
         <field name="min_qty">10</field>
         <field name="price">100</field>
@@ -16,7 +16,7 @@
             name="product_tmpl_id"
             ref="sale_quotation_capable_vendor_rfq.product_a"
         />
-        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_1" />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_doge" />
         <field name="delay">2</field>
         <field name="min_qty">30</field>
         <field name="price">90</field>
@@ -27,7 +27,7 @@
             name="product_tmpl_id"
             ref="sale_quotation_capable_vendor_rfq.product_a"
         />
-        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_1" />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_doge" />
         <field name="delay">2</field>
         <field name="min_qty">0</field>
         <field name="price">110</field>
@@ -38,7 +38,7 @@
             name="product_tmpl_id"
             ref="sale_quotation_capable_vendor_rfq.product_a"
         />
-        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_2" />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_pepe" />
         <field name="delay">2</field>
         <field name="min_qty">0</field>
         <field name="price">120</field>
@@ -49,7 +49,7 @@
             name="product_tmpl_id"
             ref="sale_quotation_capable_vendor_rfq.product_a"
         />
-        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_2" />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_pepe" />
         <field name="delay">2</field>
         <field name="min_qty">40</field>
         <field name="price">80</field>
@@ -60,7 +60,7 @@
             name="product_tmpl_id"
             ref="sale_quotation_capable_vendor_rfq.product_a"
         />
-        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_3" />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_chad" />
         <field name="delay">2</field>
         <field name="min_qty">12</field>
         <field name="price">105</field>
@@ -71,7 +71,7 @@
             name="product_tmpl_id"
             ref="sale_quotation_capable_vendor_rfq.product_a"
         />
-        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_3" />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_chad" />
         <field name="delay">2</field>
         <field name="min_qty">25</field>
         <field name="price">86</field>
@@ -82,7 +82,7 @@
             name="product_tmpl_id"
             ref="sale_quotation_capable_vendor_rfq.product_a"
         />
-        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_3" />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_chad" />
         <field name="delay">2</field>
         <field name="min_qty">50</field>
         <field name="price">60</field>
@@ -93,7 +93,7 @@
             name="product_tmpl_id"
             ref="sale_quotation_capable_vendor_rfq.product_b"
         />
-        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_1" />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_doge" />
         <field name="delay">2</field>
         <field name="min_qty">50</field>
         <field name="price">300</field>
@@ -104,7 +104,7 @@
             name="product_tmpl_id"
             ref="sale_quotation_capable_vendor_rfq.product_b"
         />
-        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_1" />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_doge" />
         <field name="delay">2</field>
         <field name="min_qty">0</field>
         <field name="price">529</field>
@@ -113,12 +113,12 @@
     <record id="product_supplierinfo_11" model="product.supplierinfo">
         <field
             name="product_tmpl_id"
-            ref="sale_quotation_capable_vendor_rfq.product_a"
+            ref="sale_quotation_capable_vendor_rfq.product_b"
         />
-        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_1" />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_doge" />
         <field name="delay">2</field>
-        <field name="min_qty">0</field>
-        <field name="price">110</field>
+        <field name="min_qty">30</field>
+        <field name="price">411</field>
         <field name="currency_id" ref="base.USD" />
     </record>
     <record id="product_supplierinfo_12" model="product.supplierinfo">
@@ -126,7 +126,7 @@
             name="product_tmpl_id"
             ref="sale_quotation_capable_vendor_rfq.product_b"
         />
-        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_2" />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_pepe" />
         <field name="delay">2</field>
         <field name="min_qty">0</field>
         <field name="price">120</field>
@@ -137,7 +137,7 @@
             name="product_tmpl_id"
             ref="sale_quotation_capable_vendor_rfq.product_b"
         />
-        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_2" />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_pepe" />
         <field name="delay">2</field>
         <field name="min_qty">40</field>
         <field name="price">80</field>
@@ -148,7 +148,7 @@
             name="product_tmpl_id"
             ref="sale_quotation_capable_vendor_rfq.product_b"
         />
-        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_3" />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_chad" />
         <field name="delay">2</field>
         <field name="min_qty">20</field>
         <field name="price">420</field>
@@ -159,7 +159,7 @@
             name="product_tmpl_id"
             ref="sale_quotation_capable_vendor_rfq.product_b"
         />
-        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_3" />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_chad" />
         <field name="delay">2</field>
         <field name="min_qty">80</field>
         <field name="price">380</field>
@@ -170,7 +170,7 @@
             name="product_tmpl_id"
             ref="sale_quotation_capable_vendor_rfq.product_b"
         />
-        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_3" />
+        <field name="partner_id" ref="sale_quotation_capable_vendor_rfq.partner_chad" />
         <field name="delay">2</field>
         <field name="min_qty">50</field>
         <field name="price">370</field>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo noupdate="0">
-    <record model="res.partner" id="partner_1">
+    <record model="res.partner" id="partner_doge">
         <field name="name">Doge</field>
         <field name="supplier_rank">1</field>
     </record>
-    <record model="res.partner" id="partner_2">
+    <record model="res.partner" id="partner_pepe">
         <field name="name">Pepe</field>
         <field name="supplier_rank">2</field>
     </record>
-    <record model="res.partner" id="partner_3">
+    <record model="res.partner" id="partner_chad">
         <field name="name">Chad</field>
         <field name="supplier_rank">3</field>
     </record>

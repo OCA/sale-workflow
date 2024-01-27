@@ -127,6 +127,14 @@ Authors
 
 * Cetmix
 
+Contributors
+------------
+
+-  `Cetmix <https://www.cetmix.com>`__:
+
+   -  Ivan Sokolov
+   -  Mykola Demchuk
+
 Maintainers
 -----------
 
