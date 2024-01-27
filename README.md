@@ -44,7 +44,7 @@ addon | version | maintainers | summary
 [sale_force_invoiced](sale_force_invoiced/) | 16.0.1.0.0 |  | Allows to force the invoice status of the sales order to Invoiced
 [sale_invoice_frequency](sale_invoice_frequency/) | 16.0.1.2.1 | [![Shide](https://github.com/Shide.png?size=30px)](https://github.com/Shide) [![yajo](https://github.com/yajo.png?size=30px)](https://github.com/yajo) [![EmilioPascual](https://github.com/EmilioPascual.png?size=30px)](https://github.com/EmilioPascual) | Define the invoice frequency for customers
 [sale_last_price_info](sale_last_price_info/) | 16.0.1.0.0 |  | Product Last Price Info - Sale
-[sale_manual_delivery](sale_manual_delivery/) | 16.0.1.0.0 |  | Create manually your deliveries
+[sale_manual_delivery](sale_manual_delivery/) | 16.0.1.0.1 |  | Create manually your deliveries
 [sale_mrp_bom](sale_mrp_bom/) | 16.0.1.0.0 |  | Allows define a BOM in the sales lines.
 [sale_numeric_step](sale_numeric_step/) | 16.0.1.0.1 | [![rafaelbn](https://github.com/rafaelbn.png?size=30px)](https://github.com/rafaelbn) [![yajo](https://github.com/yajo.png?size=30px)](https://github.com/yajo) | Improve mobile/tablet sale process by adding numeric step widgets
 [sale_order_archive](sale_order_archive/) | 16.0.1.0.0 |  | Archive Sale Orders
