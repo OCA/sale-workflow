@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-28 14:35+0000\n"
+"PO-Revision-Date: 2024-01-28 17:34+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -111,13 +111,13 @@ msgstr "Línea de Orden de Venta"
 #. module: sale_delivery_state
 #: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order_line__skip_sale_delivery_state
 msgid "Skip Delivery State"
-msgstr ""
+msgstr "Saltar Estado de Entrega"
 
 #. module: sale_delivery_state
 #: model:ir.model.fields,field_description:sale_delivery_state.field_res_company__skip_service_sale_delivery_state
 #: model:ir.model.fields,field_description:sale_delivery_state.field_res_config_settings__skip_service_sale_delivery_state
 msgid "Skip Service products for Sale Delivery State"
-msgstr ""
+msgstr "Saltar productos de servicio a la venta Estado de entrega"
 
 #. module: sale_delivery_state
 #: model_terms:ir.ui.view,arch_db:sale_delivery_state.view_order_form_inherit_delivery_state
