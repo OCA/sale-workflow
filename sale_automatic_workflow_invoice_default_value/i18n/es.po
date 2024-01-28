@@ -1,0 +1,125 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_automatic_workflow_invoice_default_value
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model,name:sale_automatic_workflow_invoice_default_value.model_automatic_workflow_invoice_default_value
+msgid "Automatic Workflow Invoice Default Value"
+msgstr ""
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_sale_workflow_process__create_invoice_default_value_ids
+msgid "Create Invoice Default values"
+msgstr ""
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__default_char_value
+#: model:ir.model.fields.selection,name:sale_automatic_workflow_invoice_default_value.selection__automatic_workflow_invoice_default_value__value_type__default_char_value
+msgid "Default Char Value"
+msgstr ""
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__display_name
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_job__display_name
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_sale_workflow_process__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields.selection,name:sale_automatic_workflow_invoice_default_value.selection__automatic_workflow_invoice_default_value__value_type__from_sale_order
+msgid "From Sale Order"
+msgstr ""
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__id
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_job__id
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_sale_workflow_process__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__invoice_field_id
+msgid "Invoice Field"
+msgstr ""
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value____last_update
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_job____last_update
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_sale_workflow_process____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__process_id
+msgid "Process"
+msgstr ""
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__sale_order_field_id
+msgid "Sale Order Field"
+msgstr ""
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model,name:sale_automatic_workflow_invoice_default_value.model_sale_workflow_process
+msgid "Sale Workflow Process"
+msgstr ""
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model,name:sale_automatic_workflow_invoice_default_value.model_automatic_workflow_job
+msgid ""
+"Scheduler that will play automatically the validation of invoices, "
+"pickings..."
+msgstr ""
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__value_type
+msgid "Value Type"
+msgstr ""
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: code:addons/sale_automatic_workflow_invoice_default_value/models/automatic_workflow_invoice_default_value.py:0
+#, python-format
+msgid ""
+"With a default char value, the invoice field must be of type char and not: "
+"{invoice_field_type}."
+msgstr ""
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: code:addons/sale_automatic_workflow_invoice_default_value/models/automatic_workflow_invoice_default_value.py:0
+#, python-format
+msgid ""
+"With a from sale order value, the invoice field type ({invoice_field_type}) "
+"must be the same type than the sale order field ({sale_order_field_type})."
+msgstr ""
