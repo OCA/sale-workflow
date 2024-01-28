@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-03-26 16:46+0000\n"
-"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"PO-Revision-Date: 2024-01-28 14:35+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_promotion_rule_delivery
 #: model:ir.model,name:sale_promotion_rule_delivery.model_sale_promotion_rule
@@ -28,21 +28,29 @@ msgid ""
 "this rule. Otherwise the process will loop over each rule and apply it\n"
 "according to the strategy\n"
 msgstr ""
+"\n"
+"    Regla de promoción de venta\n"
+"    Es posible aplicar varias promociones a un pedido de venta. En tal caso\n"
+"las reglas se aplicarán en el orden secuencial.\n"
+"Si la primera regla aplicable es 'exclusice' el proceso sólo aplicará\n"
+"esta regla. En caso contrario, el proceso pasará por cada regla y la "
+"aplicará\n"
+"según la estrategia\n"
 
 #. module: sale_promotion_rule_delivery
 #: model:ir.model.fields,field_description:sale_promotion_rule_delivery.field_sale_promotion_rule__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar Nombre"
 
 #. module: sale_promotion_rule_delivery
 #: model:ir.model.fields,field_description:sale_promotion_rule_delivery.field_sale_promotion_rule__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_promotion_rule_delivery
 #: model:ir.model.fields,field_description:sale_promotion_rule_delivery.field_sale_promotion_rule____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última Modificación el"
 
 #~ msgid "Sale Promotion Rule"
 #~ msgstr "Regla de promoción de venta"
