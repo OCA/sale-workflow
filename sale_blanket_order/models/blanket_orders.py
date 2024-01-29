@@ -136,7 +136,10 @@ class BlanketOrder(models.Model):
     sale_count = fields.Integer(compute="_compute_sale_count")
 
     fiscal_position_id = fields.Many2one(
-        "account.fiscal.position", string="Fiscal Position"
+        "account.fiscal.position",
+        string="Fiscal Position",
+        domain="[('company_id', '=', company_id)]",
+        check_company=True,
     )
 
     amount_untaxed = fields.Monetary(
@@ -259,6 +262,26 @@ class BlanketOrder(models.Model):
         if self.partner_id.team_id:
             values["team_id"] = self.partner_id.team_id.id
         self.update(values)
+
+    @api.onchange("fiscal_position_id")
+    def _onchange_fiscal_position(self):
+        # Tax computation is based on sale module
+        # https://bit.ly/3M3iyy1
+        for order_line in self.line_ids:
+            fpos = (
+                order_line.order_id.fiscal_position_id
+                or order_line.order_id.partner_id.property_account_position_id
+            )
+            taxes = order_line.product_id.taxes_id.filtered(
+                lambda r: r.company_id == order_line.order_id.company_id
+            )
+            order_line.taxes_id = (
+                fpos.map_tax(
+                    taxes, order_line.product_id, order_line.order_id.partner_id
+                )
+                if fpos
+                else taxes
+            )
 
     def unlink(self):
         for order in self:
