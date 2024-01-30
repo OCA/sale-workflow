@@ -19,7 +19,8 @@ class SaleOrderLine(models.Model):
         for line in self:
             if line.product_id:
                 supplierinfo = line.product_id._select_customerinfo(
-                    partner=line.order_partner_id
+                    partner=line.order_partner_id,
+                    quantity=None,
                 )
                 code = supplierinfo.product_code
             else:
@@ -56,7 +57,7 @@ class SaleOrderLine(models.Model):
             )
             if items:
                 supplierinfo = line.product_id._select_customerinfo(
-                    partner=line.order_partner_id
+                    partner=line.order_partner_id, quantity=None
                 )
                 if supplierinfo and supplierinfo.min_qty:
                     line.product_uom_qty = supplierinfo.min_qty
