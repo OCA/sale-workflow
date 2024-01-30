@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2024-01-29 19:36+0000\n"
+"PO-Revision-Date: 2024-01-30 14:34+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
@@ -224,7 +224,7 @@ msgstr "Dominio del filtro de pedido"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__payment_filter_domain
 msgid "Payment Filter Domain"
-msgstr ""
+msgstr "Dominio del Filtro de Pagos"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_filter_id
@@ -239,12 +239,12 @@ msgstr "Dominio del filtro de albarán"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__register_payment
 msgid "Register Payment"
-msgstr ""
+msgstr "Registro de Pago"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__payment_filter_id
 msgid "Register Payment Invoice Filter"
-msgstr ""
+msgstr "Filtro de Registro de Facturas de Pago"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__sale_done
@@ -297,7 +297,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__send_order_confirmation_mail
 msgid "Send order confirmation mail"
-msgstr ""
+msgstr "Enviar email de confirmación del pedido"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__property_journal_id
@@ -355,6 +355,8 @@ msgid ""
 "When checked, after order confirmation, a confirmation email will be sent "
 "(if not already sent)."
 msgstr ""
+"Si está marcada, tras la confirmación del pedido se enviará un correo "
+"electrónico de confirmación (si no se ha enviado ya)."
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__invoice_date_is_order_date
