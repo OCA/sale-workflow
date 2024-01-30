@@ -140,3 +140,26 @@ class TestSaleProductByPackagingOnly(Common):
         self.order_line.product_uom_qty = 40  # 2 packs
         with self.assertRaises(ValidationError):
             self.order_line.product_uom_qty = 18
+
+    def test_get_packagings_with_multiple_qty(self):
+        """
+            Check if packages are correctly taken
+            even with packages with quantity that are float
+        """
+        special_type = self.env["product.packaging.type"].create(
+            {"name": "special", "code": "S", "sequence": 2}
+        )
+        self.env["product.packaging"].create(
+            {
+                "name": "PACKAGING S",
+                "product_id": self.product.id,
+                "packaging_type_id": special_type.id,
+                "qty": 1.27,
+            }
+        )
+
+        # with package of 1.27 and a required quantity of 62.23
+        # which correspond to 49.0 packs, the modulo doesn't work properly:
+        # 62.23 % 1.27 != 0 but 62.23/1.27 = 49.0
+
+        self.assertTrue(self.product._get_packagings_with_multiple_qty(62.23))
