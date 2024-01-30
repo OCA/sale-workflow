@@ -103,6 +103,11 @@ msgid "Tier Validation Accepted Notification"
 msgstr "Validación de nivel aceptada"
 
 #. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__tier_validation_before_write
+msgid "Tier Validation Before Write"
+msgstr ""
+
+#. module: sale_tier_validation
 #: model:mail.message.subtype,name:sale_tier_validation.crm_team_tier_validation_rejected
 #: model:mail.message.subtype,name:sale_tier_validation.sale_order_tier_validation_rejected
 msgid "Tier Validation Rejected Notification"
