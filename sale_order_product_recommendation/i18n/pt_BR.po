@@ -243,6 +243,13 @@ msgid "Name"
 msgstr ""
 
 #. module: sale_order_product_recommendation
+#. odoo-python
+#: code:addons/sale_order_product_recommendation/wizards/sale_order_recommendation.py:0
+#, python-format
+msgid "Nothing found! Modify your criteria or fill the order manually."
+msgstr ""
+
+#. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__line_amount
 msgid "Number of recommendations"
 msgstr "Número de recomendações"
