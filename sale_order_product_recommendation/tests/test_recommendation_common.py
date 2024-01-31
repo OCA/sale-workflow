@@ -11,9 +11,19 @@ class RecommendationCase(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         # Make sure user has UoM activated for Forms to work
-        cls.env = new_test_user(
-            cls.env, "test_recommendation", "uom.group_uom", DISABLED_MAIL_CONTEXT
-        ).env
+        cls.user_salesman = new_test_user(
+            cls.env,
+            "test_recommendation",
+            "sales_team.group_sale_salesman",
+            DISABLED_MAIL_CONTEXT,
+        )
+        cls.user_invoice = new_test_user(
+            cls.env,
+            "test_recommendation_invoice",
+            "account.group_account_invoice",
+            DISABLED_MAIL_CONTEXT,
+        )
+        cls.env = cls.user_salesman.env
         cls.pricelist = cls.env["product.pricelist"].create(
             {
                 "name": "Pricelist for test",
@@ -59,6 +69,7 @@ class RecommendationCase(TransactionCase):
         )
         # Create old sale orders to have searchable history
         # (Remember to change the dates if the tests fail)
+        cls.env = cls.env(user=cls.user_salesman)
         cls.order1 = cls.env["sale.order"].create(
             {
                 "partner_id": cls.partner.id,
@@ -144,6 +155,6 @@ class RecommendationCase(TransactionCase):
         return wizard
 
     def enable_force_zero_units_included(self):
-        self.settings = self.env["res.config.settings"].create({})
+        self.settings = self.env["res.config.settings"].sudo().create({})
         self.settings.force_zero_units_included = True
         self.settings.set_values()

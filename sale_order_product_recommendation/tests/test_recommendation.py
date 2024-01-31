@@ -167,7 +167,7 @@ class RecommendationCaseTests(RecommendationCase):
             )
         )
         adv_wiz.with_context(open_invoices=True).create_invoices()
-        self.new_so.invoice_ids.action_post()
+        self.new_so.invoice_ids.with_user(self.user_invoice).action_post()
         # Open the wizard and add more product qty
         wizard = self.wizard()
         wiz_line = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
@@ -279,7 +279,7 @@ class RecommendationCaseTests(RecommendationCase):
         self.assertIn("service", wizard.line_ids.mapped("product_id.type"))
 
         # Add extended domain to exclude services
-        self.settings = self.env["res.config.settings"].create({})
+        self.settings = self.env["res.config.settings"].sudo().create({})
         self.settings.sale_line_recommendation_domain = (
             "[('product_id.type', '!=', 'service')]"
         )
