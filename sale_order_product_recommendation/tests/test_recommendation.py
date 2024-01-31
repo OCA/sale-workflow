@@ -291,3 +291,9 @@ class RecommendationCaseTests(RecommendationCase):
         )
         wizard.generate_recommendations()
         self.assertNotIn("service", wizard.line_ids.mapped("product_id.type"))
+
+    def test_no_recommendations_found(self):
+        new_partner = self.partner.copy()
+        self.new_so.partner_id = new_partner
+        with self.assertRaisesRegex(UserError, "Nothing found!"):
+            self.wizard()

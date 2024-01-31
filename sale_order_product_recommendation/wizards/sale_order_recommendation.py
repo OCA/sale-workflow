@@ -6,7 +6,8 @@
 import logging
 from datetime import datetime, timedelta
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 from odoo.osv import expression
 from odoo.tests import Form
 from odoo.tools.safe_eval import safe_eval
@@ -198,6 +199,10 @@ class SaleOrderRecommendation(models.TransientModel):
             ),
             reverse=order_dir == "desc",
         )
+        if not self.line_ids:
+            raise UserError(
+                _("Nothing found! Modify your criteria or fill the order manually.")
+            )
         # Reopen wizard
         return self._reopen_wizard()
 
