@@ -8,40 +8,47 @@ from odoo.tests.common import TransactionCase
 
 
 class TestSaleStartEndDates(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.partner = self.env.ref("base.res_partner_3")
-        self.product_id = self.env.ref(
-            "account_invoice_start_end_dates.product_insurance_contract_demo"
-        )
-        self.assertTrue(self.product_id.must_have_dates)
-        self.product_no_dates = self.env.ref("product.product_product_7")
-        self.assertFalse(self.product_no_dates.must_have_dates)
-        self.default_start_date = datetime.datetime.now()
-        self.default_end_date = self.default_start_date + datetime.timedelta(days=9)
-        self.so = self.env["sale.order"].create(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.partner = cls.env["res.partner"].create({"name": "Test Partner"})
+        cls.product_id = cls.env["product.product"].create(
             {
-                "partner_id": self.partner.id,
-                "partner_invoice_id": self.partner.id,
-                "partner_shipping_id": self.partner.id,
-                "default_start_date": self.default_start_date,
-                "default_end_date": self.default_end_date,
-                "pricelist_id": self.env.ref("product.list0").id,
+                "name": "Test insurance",
+                "type": "service",
+                "must_have_dates": True,
+                "list_price": 1200,
             }
         )
-        self.order_line = self.env["sale.order.line"].create(
+        cls.product_no_dates = cls.env["product.product"].create(
             {
-                "order_id": self.so.id,
-                "name": self.product_id.display_name,
-                "product_id": self.product_id.id,
+                "name": "My test product",
+                "type": "service",
+                "must_have_dates": False,
+                "list_price": 2400,
+            }
+        )
+        cls.default_start_date = datetime.datetime.now()
+        cls.default_end_date = cls.default_start_date + datetime.timedelta(days=9)
+        cls.so = cls.env["sale.order"].create(
+            {
+                "partner_id": cls.partner.id,
+                "default_start_date": cls.default_start_date,
+                "default_end_date": cls.default_end_date,
+            }
+        )
+        cls.order_line = cls.env["sale.order.line"].create(
+            {
+                "order_id": cls.so.id,
+                "product_id": cls.product_id.id,
                 "product_uom_qty": 2,
-                "product_uom": self.product_id.uom_id.id,
-                "price_unit": self.product_id.list_price,
-                "start_date": self.default_start_date,
-                "end_date": self.default_end_date,
+                "price_unit": cls.product_id.list_price,
+                "start_date": cls.default_start_date,
+                "end_date": cls.default_end_date,
             }
         )
-        self.so.action_confirm()
+        cls.so.action_confirm()
 
     def test_default_start_end_date_constraint(self):
         with self.assertRaises(ValidationError):
