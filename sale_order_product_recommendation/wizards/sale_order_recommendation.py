@@ -194,7 +194,7 @@ class SaleOrderRecommendation(models.TransientModel):
         self.line_ids = recommendation_lines.sorted(
             key=lambda line: (
                 "" if line[order_field] is False else line[order_field],
-                int(line.product_priority) * priority_multiplier,
+                int(line.product_id.priority) * priority_multiplier,
             ),
             reverse=order_dir == "desc",
         )
