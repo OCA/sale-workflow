@@ -30,15 +30,13 @@ class SaleOrder(models.Model):
             ):
                 raise ValidationError(
                     _(
-                        "Default Start Date (%(start_date)s) should be before or be "
-                        "the same as Default End Date (%(end_date)s) "
-                        "for sale order '%(name)s'."
+                        "Default start date (%(start_date)s) should be before or be "
+                        "the same as default end date (%(end_date)s) "
+                        "for sale order '%(name)s'.",
+                        start_date=format_date(self.env, order.default_start_date),
+                        end_date=format_date(self.env, order.default_end_date),
+                        name=order.display_name,
                     )
-                    % {
-                        "start_date": format_date(self.env, order.default_start_date),
-                        "end_date": format_date(self.env, order.default_end_date),
-                        "name": order.display_name,
-                    }
                 )
 
     @api.depends("default_end_date")
@@ -68,12 +66,12 @@ class SaleOrderLine(models.Model):
     start_date = fields.Date(
         compute="_compute_start_date",
         store=True,
-        states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
+        readonly=False,
     )
     end_date = fields.Date(
         compute="_compute_end_date",
         store=True,
-        states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
+        readonly=False,
     )
     number_of_days = fields.Integer(
         compute="_compute_number_of_days",
@@ -101,11 +99,10 @@ class SaleOrderLine(models.Model):
                 res["warning"]["message"] = _(
                     "On sale order line with product '%(product_name)s', the "
                     "number of days is negative (%(number_of_days)s) ; this is not "
-                    "allowed. The number of days has been forced to 1."
-                ) % {
-                    "product_name": line.product_id.display_name,
-                    "number_of_days": line.number_of_days,
-                }
+                    "allowed. The number of days has been forced to 1.",
+                    product_name=line.product_id.display_name,
+                    number_of_days=line.number_of_days,
+                )
                 line.number_of_days = 1
             if line.start_date:
                 line.end_date = line.start_date + relativedelta(
@@ -137,15 +134,13 @@ class SaleOrderLine(models.Model):
                 if line.start_date > line.end_date:
                     raise ValidationError(
                         _(
-                            "Start Date (%(start_date)s) should be before or "
-                            "be the same as End Date (%(end_date)s) for "
-                            "sale order line with Product '%(product_name)s'."
+                            "Start date (%(start_date)s) should be before or "
+                            "be the same as end date (%(end_date)s) for "
+                            "sale order line with product '%(product_name)s'.",
+                            start_date=format_date(self.env, line.start_date),
+                            end_date=format_date(self.env, line.end_date),
+                            product_name=line.product_id.display_name,
                         )
-                        % {
-                            "start_date": format_date(self.env, line.start_date),
-                            "end_date": format_date(self.env, line.end_date),
-                            "product_name": line.product_id.display_name,
-                        }
                     )
 
     def _prepare_invoice_line(self, **optional_values):

@@ -17,15 +17,18 @@
             >
                 <field
                     name="start_date"
-                    attrs="{'invisible': [('must_have_dates', '=', False)], 'required': [('must_have_dates', '=', True)]}"
+                    invisible="not must_have_dates"
+                    required="must_have_dates"
                 />
                 <field
                     name="end_date"
-                    attrs="{'invisible': [('must_have_dates', '=', False)], 'required': [('must_have_dates', '=', True)]}"
+                    invisible="not must_have_dates"
+                    required="must_have_dates"
                 />
                 <field
                     name="number_of_days"
-                    attrs="{'invisible': [('must_have_dates', '=', False)], 'required': [('must_have_dates', '=', True)]}"
+                    invisible="not must_have_dates"
+                    required="must_have_dates"
                 />
                 <field name="must_have_dates" invisible="1" />
             </xpath>
@@ -35,20 +38,30 @@
             >
                 <field
                     name="start_date"
-                    attrs="{'required': [('must_have_dates', '=', True)]}"
+                    required="must_have_dates"
+                    invisible="not must_have_dates"
                     optional="show"
                 />
                 <field
                     name="end_date"
-                    attrs="{'required': [('must_have_dates', '=', True)]}"
+                    required="must_have_dates"
+                    invisible="not must_have_dates"
                     optional="show"
                 />
-                <field name="number_of_days" optional="hide" />
-                <field name="must_have_dates" invisible="1" />
+                <field
+                    name="number_of_days"
+                    required="must_have_dates"
+                    invisible="not must_have_dates"
+                    optional="hide"
+                />
+                <field name="must_have_dates" column_invisible="1" />
             </xpath>
             <field name="payment_term_id" position="after">
-                <field name="default_start_date" />
-                <field name="default_end_date" />
+                <field
+                    name="default_start_date"
+                    readonly="state == 'cancel' or locked"
+                />
+                <field name="default_end_date" readonly="state == 'cancel' or locked" />
             </field>
         </field>
     </record>
