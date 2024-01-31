@@ -18,25 +18,33 @@ class RecommendationCaseTests(test_recommendation_common.RecommendationCase):
         # Product 2 was sold with 2 small elaborations
         o1p2line = cls.order1.order_line[1]
         assert o1p2line.product_id == cls.prod_2
-        cls.prod_small_elab = cls.env["product.product"].create(
-            {
-                "name": "Small elaboration",
-                "is_elaboration": True,
-                "type": "service",
-                "list_price": 1,
-            }
+        cls.prod_small_elab = (
+            cls.env["product.product"]
+            .sudo()
+            .create(
+                {
+                    "name": "Small elaboration",
+                    "is_elaboration": True,
+                    "type": "service",
+                    "list_price": 1,
+                }
+            )
         )
-        cls.elab_1, cls.elab_2 = cls.env["product.elaboration"].create(
-            [
-                {
-                    "product_id": cls.prod_small_elab.id,
-                    "name": "Elaboration 1",
-                },
-                {
-                    "product_id": cls.prod_small_elab.id,
-                    "name": "Elaboration 2",
-                },
-            ]
+        cls.elab_1, cls.elab_2 = (
+            cls.env["product.elaboration"]
+            .sudo()
+            .create(
+                [
+                    {
+                        "product_id": cls.prod_small_elab.id,
+                        "name": "Elaboration 1",
+                    },
+                    {
+                        "product_id": cls.prod_small_elab.id,
+                        "name": "Elaboration 2",
+                    },
+                ]
+            )
         )
         o1p2line.elaboration_ids = cls.elab_1 | cls.elab_2
         # An older order had only elaboration 1, but the newest one will be used
