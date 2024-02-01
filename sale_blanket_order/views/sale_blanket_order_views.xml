@@ -140,19 +140,24 @@
                                     />
                                     <field name="product_uom" groups="uom.group_uom" />
                                     <field name="price_unit" />
-                                    <field name="date_schedule" />
-                                    <field name="ordered_uom_qty" />
-                                    <field name="invoiced_uom_qty" />
-                                    <field name="delivered_uom_qty" />
-                                    <field name="remaining_uom_qty" />
+                                    <field name="date_schedule" optional="show" />
+                                    <field name="ordered_uom_qty" optional="show" />
+                                    <field name="invoiced_uom_qty" optional="show" />
+                                    <field name="delivered_uom_qty" optional="show" />
+                                    <field name="remaining_uom_qty" optional="show" />
                                     <field
                                         name="taxes_id"
                                         widget="many2many_tags"
                                         domain="[('type_tax_use','=','sale')]"
                                         context="{'default_type_tax_use': 'sale'}"
                                         options="{'no_create': True}"
+                                        optional="show"
                                     />
-                                    <field name="price_subtotal" widget="monetary" />
+                                    <field
+                                        name="price_subtotal"
+                                        widget="monetary"
+                                        optional="show"
+                                    />
                                 </tree>
                                 <form>
                                     <field name="name" invisible="1" />
@@ -351,23 +356,24 @@
                 />
                 <field name="product_uom" invisible="1" />
                 <field name="price_unit" />
-                <field name="date_schedule" />
+                <field name="date_schedule" optional="show" />
                 <field
                     name="original_uom_qty"
                     context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': parent.company_id}"
                 />
-                <field name="ordered_uom_qty" />
-                <field name="invoiced_uom_qty" />
-                <field name="delivered_uom_qty" />
-                <field name="remaining_uom_qty" />
+                <field name="ordered_uom_qty" optional="show" />
+                <field name="invoiced_uom_qty" optional="show" />
+                <field name="delivered_uom_qty" optional="show" />
+                <field name="remaining_uom_qty" optional="show" />
                 <field
                     name="taxes_id"
                     widget="many2many_tags"
                     domain="[('type_tax_use','=','sale')]"
                     context="{'default_type_tax_use': 'sale'}"
                     options="{'no_create': True}"
+                    optional="show"
                 />
-                <field name="price_subtotal" widget="monetary" />
+                <field name="price_subtotal" widget="monetary" optional="show" />
             </tree>
         </field>
     </record>
