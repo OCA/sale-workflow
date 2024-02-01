@@ -75,6 +75,20 @@ class SalePackagingDefaultCase(ProductCommon):
             self.assertEqual(line_f.product_packaging_qty, 0)
             self.assertEqual(line_f.product_uom_qty, 0)
 
+    def test_default_packaging_order_on_sale_order(self):
+        """Check if changing packaging order on product is reflected"""
+        # Create a sale order with the product
+        so_f = Form(self.env["sale.order"])
+        so_f.partner_id = self.partner
+        # Change the sequence of the 2nd packaging to be the first
+        self.dozen.sequence = 1
+        with so_f.order_line.new() as line_f:
+            line_f.product_id = self.product
+            # Automatically set the default packaging and the quantity
+            self.assertEqual(line_f.product_packaging_id, self.dozen)
+            self.assertEqual(line_f.product_packaging_qty, 1)
+            self.assertEqual(line_f.product_uom_qty, 12)
+
     def test_sale_order_product_picker_compatibility(self):
         """Emulate a call done by the product picker module and see it works.
 

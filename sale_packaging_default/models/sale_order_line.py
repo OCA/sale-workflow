@@ -27,7 +27,7 @@ class SaleOrderLine(models.Model):
                 line.product_packaging_id = (
                     line.product_id.packaging_ids.filtered_domain(
                         [("sales", "=", True)]
-                    )[:1]
+                    ).sorted("sequence")[:1]
                 )
         result = super()._compute_product_packaging_id()
         # If there's no way to package the desired qty, remove the packaging.
