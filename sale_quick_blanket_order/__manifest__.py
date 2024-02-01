@@ -1,6 +1,6 @@
 {
     "name": "Quick Sale Blanket Orders",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "author": "Odoo Community Association (OCA), PyTech-SRL",
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",

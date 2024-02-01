@@ -120,6 +120,7 @@ setuptools.setup(
         'odoo14-addon-sale_promotion_rule_display_discount_amount',
         'odoo14-addon-sale_purchase_requisition',
         'odoo14-addon-sale_quick',
+        'odoo14-addon-sale_quick_blanket_order',
         'odoo14-addon-sale_quick_seasonality',
         'odoo14-addon-sale_quotation_number',
         'odoo14-addon-sale_quotation_template_product_multi_add',
