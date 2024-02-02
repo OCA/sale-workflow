@@ -108,6 +108,11 @@ msgid "Analytic Tags"
 msgstr ""
 
 #. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_config_settings_form_view
+msgid "Assign BO number to draft BO"
+msgstr ""
+
+#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_attachment_count
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_attachment_count
 msgid "Attachment Count"
@@ -175,6 +180,11 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__cancel
+msgid "Cancelled"
+msgstr ""
+
+#. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/sale_orders.py:0
 #, python-format
 msgid ""
@@ -191,6 +201,11 @@ msgid ""
 msgstr ""
 "Klicken um einen Rahmenauftrag zu erstellen, der in einen Verkaufsauftrag "
 "umgewandelt werden kann."
+
+#. module: sale_blanket_order
+#: model:ir.model,name:sale_blanket_order.model_res_company
+msgid "Companies"
+msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__company_id
@@ -289,6 +304,7 @@ msgstr ""
 "Deaktivieren Sie das Hinzufügen weiterer Zeilen zu SOs aus Rahmenaufträgen"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_res_company__display_name
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__display_name
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__display_name
@@ -305,9 +321,17 @@ msgid "Done"
 msgstr "Erledigt"
 
 #. module: sale_blanket_order
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__draft
+#, python-format
 msgid "Draft"
 msgstr "Entwurf"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_res_company__enable_numbered_bo
+#: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__enable_numbered_bo
+msgid "Enable numbered BO"
+msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.actions.server,name:sale_blanket_order.expired_blanket_orders_cron_ir_actions_server
@@ -315,11 +339,6 @@ msgstr "Entwurf"
 #: model:ir.cron,name:sale_blanket_order.expired_blanket_orders_cron
 msgid "Expire Blanket Orders"
 msgstr "Auslaufende Rahmenaufträge"
-
-#. module: sale_blanket_order
-#: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__expired
-msgid "Expired"
-msgstr "Abgelaufen"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__fiscal_position_id
@@ -351,6 +370,7 @@ msgid "Font awesome icon e.g. fa-tasks"
 msgstr ""
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_res_company__id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__id
@@ -413,6 +433,7 @@ msgid "Is Follower"
 msgstr "Ist Abonnent"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_res_company____last_update
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order____last_update
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line____last_update
@@ -992,6 +1013,9 @@ msgstr "Sie müssen Zeilen desselben Unternehmens auswählen."
 #, python-format
 msgid "remaining"
 msgstr "verbleibend"
+
+#~ msgid "Expired"
+#~ msgstr "Abgelaufen"
 
 #~ msgid "Customer"
 #~ msgstr "Kunde"
