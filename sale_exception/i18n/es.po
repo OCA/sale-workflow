@@ -22,11 +22,11 @@ msgstr ""
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
 msgid ""
-"<strong>There are exceptions blocking the confirmation of this Sale Order:</"
-"strong>"
+"<strong>There are exceptions blocking the confirmation of this Sale "
+"Order:</strong>"
 msgstr ""
-"<strong>Hay excepciones que bloquean la confirmación de esta orden de venta:"
-"</strong>"
+"<strong>Hay excepciones que bloquean la confirmación de esta orden de "
+"venta:</strong>"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
@@ -127,7 +127,7 @@ msgstr "Excepciones a resolver"
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__ignore
@@ -255,6 +255,3 @@ msgstr "El producto tiene una advertencia en su formulario"
 #: model:exception.rule,description:sale_exception.excep_no_free
 msgid "The total can't be 0"
 msgstr "El Total no puede ser 0"
-
-#~ msgid "Quotation"
-#~ msgstr "Quotation"
