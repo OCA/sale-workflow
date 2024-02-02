@@ -21,8 +21,8 @@ msgstr ""
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
 msgid ""
-"<strong>There are exceptions blocking the confirmation of this Sale Order:</"
-"strong>"
+"<strong>There are exceptions blocking the confirmation of this Sale "
+"Order:</strong>"
 msgstr ""
 
 #. module: sale_exception
@@ -83,7 +83,7 @@ msgstr "Nork sortua"
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__create_date
 msgid "Created on"
-msgstr "Created on"
+msgstr ""
 
 #. module: sale_exception
 #: model:exception.rule,name:sale_exception.exception_partner_sale_warning
@@ -120,7 +120,7 @@ msgstr ""
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__ignore
@@ -143,12 +143,12 @@ msgstr ""
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__write_uid
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr ""
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__write_date
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr ""
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order__main_exception_id

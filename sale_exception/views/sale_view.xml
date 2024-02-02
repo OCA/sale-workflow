@@ -30,7 +30,7 @@
                     class="alert alert-danger"
                     role="alert"
                     style="margin-bottom:0px;"
-                    attrs="{'invisible': [('exceptions_summary','=',False)]}"
+                    invisible="not exceptions_summary"
                 >
                     <p>
                         <strong
@@ -48,14 +48,14 @@
                 </div>
             </sheet>
             <xpath expr="//field[@name='date_order']/.." position="inside">
-                <field name="ignore_exception" states="sale" />
+                <field name="ignore_exception" invisible="state != 'sale'" />
             </xpath>
             <xpath expr="//field[@name='order_line']/form/group[1]" position="before">
                 <div
                     class="alert alert-danger"
                     role="alert"
                     style="margin-bottom:0px;"
-                    attrs="{'invisible': [('exceptions_summary', '=', False)]}"
+                    invisible="not exceptions_summary"
                 >
                     <p>
                         <strong
@@ -65,7 +65,7 @@
                 </div>
             </xpath>
             <xpath expr="//field[@name='order_line']/tree" position="inside">
-                <field name="is_exception_danger" invisible="1" />
+                <field name="is_exception_danger" column_invisible="1" />
             </xpath>
             <xpath expr="//field[@name='order_line']/tree" position="attributes">
                 <attribute name="decoration-danger">is_exception_danger</attribute>
