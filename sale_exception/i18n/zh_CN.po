@@ -11,8 +11,7 @@ msgstr ""
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
 "PO-Revision-Date: 2019-10-16 18:32+0000\n"
 "Last-Translator: 黎伟杰 <674416404@qq.com>\n"
-"Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
-"zh_CN/)\n"
+"Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/zh_CN/)\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,8 +22,8 @@ msgstr ""
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
 msgid ""
-"<strong>There are exceptions blocking the confirmation of this Sale Order:</"
-"strong>"
+"<strong>There are exceptions blocking the confirmation of this Sale "
+"Order:</strong>"
 msgstr "<strong>有一些例外情况会阻止此销售订单的确认：</strong>"
 
 #. module: sale_exception
@@ -122,7 +121,7 @@ msgstr "解决的异常情况"
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__ignore
@@ -250,21 +249,3 @@ msgstr ""
 #: model:exception.rule,description:sale_exception.excep_no_free
 msgid "The total can't be 0"
 msgstr "总数不能为0"
-
-#~ msgid "Sale Exceptions"
-#~ msgstr "销售异常"
-
-#~ msgid "Sale Order"
-#~ msgstr "销售订单"
-
-#~ msgid "sale.exception.confirm"
-#~ msgstr "sale.exception.confirm"
-
-#~ msgid "Error:"
-#~ msgstr "错误："
-
-#~ msgid "Exception"
-#~ msgstr "异常"
-
-#~ msgid "Quotation"
-#~ msgstr "Quotation"

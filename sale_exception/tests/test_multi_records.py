@@ -11,6 +11,11 @@ class TestSaleExceptionMultiRecord(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.default_pl = cls.env["product.pricelist"].create(
+            {
+                "name": "Public Pricelist",
+            }
+        )
 
     def test_sale_order_exception(self):
         exception_no_sol = self.env.ref("sale_exception.excep_no_sol")
@@ -37,7 +42,7 @@ class TestSaleExceptionMultiRecord(TransactionCase):
                         },
                     )
                 ],
-                "pricelist_id": self.env.ref("product.list0").id,
+                "pricelist_id": self.default_pl.id,
             }
         )
 
@@ -46,7 +51,7 @@ class TestSaleExceptionMultiRecord(TransactionCase):
                 "partner_id": partner.id,
                 "partner_invoice_id": partner.id,
                 "partner_shipping_id": partner.id,
-                "pricelist_id": self.env.ref("product.list0").id,
+                "pricelist_id": self.default_pl.id,
             }
         )
 
@@ -66,7 +71,7 @@ class TestSaleExceptionMultiRecord(TransactionCase):
                         },
                     )
                 ],
-                "pricelist_id": self.env.ref("product.list0").id,
+                "pricelist_id": self.default_pl.id,
             }
         )
 

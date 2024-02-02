@@ -16,15 +16,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Weblate 3.0.1\n"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
 msgid ""
-"<strong>There are exceptions blocking the confirmation of this Sale Order:</"
-"strong>"
+"<strong>There are exceptions blocking the confirmation of this Sale "
+"Order:</strong>"
 msgstr ""
 
 #. module: sale_exception
@@ -254,18 +253,3 @@ msgstr ""
 #: model:exception.rule,description:sale_exception.excep_no_free
 msgid "The total can't be 0"
 msgstr ""
-
-#~ msgid "Sale Exceptions"
-#~ msgstr "خلل المبيعات"
-
-#~ msgid "Error:"
-#~ msgstr "خلل:"
-
-#~ msgid "Exception"
-#~ msgstr "خلل مبيعات"
-
-#~ msgid "Quotation"
-#~ msgstr "عرض مبدئي"
-
-#~ msgid "_Close"
-#~ msgstr "_إغلاق"

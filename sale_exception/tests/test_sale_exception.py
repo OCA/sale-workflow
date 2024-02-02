@@ -14,6 +14,11 @@ class TestSaleException(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.default_pl = cls.env["product.pricelist"].create(
+            {
+                "name": "Public Pricelist",
+            }
+        )
 
     def test_sale_order_exception(self):
         self.sale_exception_confirm = self.env["sale.exception.confirm"]
@@ -40,7 +45,7 @@ class TestSaleException(TransactionCase):
                         },
                     )
                 ],
-                "pricelist_id": self.env.ref("product.list0").id,
+                "pricelist_id": self.default_pl.id,
             }
         )
 
@@ -68,7 +73,7 @@ class TestSaleException(TransactionCase):
                         },
                     )
                 ],
-                "pricelist_id": self.env.ref("product.list0").id,
+                "pricelist_id": self.default_pl.id,
             }
         )
         self.env["sale.order"].test_all_draft_orders()
