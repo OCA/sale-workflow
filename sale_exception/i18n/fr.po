@@ -26,8 +26,8 @@ msgid ""
 "<strong>There are exceptions blocking the confirmation of this Sale "
 "Order:</strong>"
 msgstr ""
-"<strong>Il y a des exceptions qui bloquent la confirmation de cette Vente:</"
-"strong>"
+"<strong>Il y a des exceptions qui bloquent la confirmation de cette "
+"Vente:</strong>"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
