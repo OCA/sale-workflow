@@ -297,3 +297,22 @@ class RecommendationCaseTests(RecommendationCase):
         self.new_so.partner_id = new_partner
         with self.assertRaisesRegex(UserError, "Nothing found!"):
             self.wizard()
+
+    def test_recommendations_user_filtered(self):
+        """The user applies a custom filter to the recommendations."""
+        # The user creates a custom filter in the product.product view
+        my_filter = self.env["ir.filters"].create(
+            {
+                "name": "My filter",
+                "model_id": "product.product",
+                "domain": "[('name', 'ilike', '1')]",
+            }
+        )
+        wiz_f = Form(
+            self.env["sale.order.recommendation"].with_context(active_id=self.new_so.id)
+        )
+        wiz_f.recommendations_filter_id = my_filter
+        wizard = wiz_f.save()
+        wizard.generate_recommendations()
+        self.assertEqual(len(wizard.line_ids), 1)
+        self.assertEqual(wizard.line_ids.product_id, self.prod_1)

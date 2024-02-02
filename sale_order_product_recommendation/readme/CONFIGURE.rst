@@ -27,7 +27,15 @@ You can then edit the desired quantities directly in the sale order.
 #. Go to *Sales > Configuration > Settings > Sale order recommendations*.
 #. Select *Force zero units included*
 
-You can add a filter domain to exclude or include additional recommended products.
+You can add a company-wide filter domain to exclude or include additional recommended products.
 
 #. Go to *Sales > Configuration > Settings > Sale order recommendations*.
 #. Add a filter in section *Sale order product recommendation domain* Example: ``[("product_type", "!=" "service")]``
+
+You can also use your own filters when computing the recommendations.
+
+#. Go to *Sales > Products > Products* or *Sales > Products > Product Variants*.
+#. Apply some filters.
+#. Save them as a favorite search.
+#. Now, when you ask for recommendations following the steps under *Usage*,
+   you can use the favorite search to filter the products to be recommended.MT-4424

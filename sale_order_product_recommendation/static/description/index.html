@@ -420,10 +420,18 @@ You can then edit the desired quantities directly in the sale order.</p>
 <li>Go to <em>Sales &gt; Configuration &gt; Settings &gt; Sale order recommendations</em>.</li>
 <li>Select <em>Force zero units included</em></li>
 </ol>
-<p>You can add a filter domain to exclude or include additional recommended products.</p>
+<p>You can add a company-wide filter domain to exclude or include additional recommended products.</p>
 <ol class="arabic simple">
 <li>Go to <em>Sales &gt; Configuration &gt; Settings &gt; Sale order recommendations</em>.</li>
 <li>Add a filter in section <em>Sale order product recommendation domain</em> Example: <tt class="docutils literal"><span class="pre">[(&quot;product_type&quot;,</span> <span class="pre">&quot;!=&quot;</span> <span class="pre">&quot;service&quot;)]</span></tt></li>
+</ol>
+<p>You can also use your own filters when computing the recommendations.</p>
+<ol class="arabic simple">
+<li>Go to <em>Sales &gt; Products &gt; Products</em> or <em>Sales &gt; Products &gt; Product Variants</em>.</li>
+<li>Apply some filters.</li>
+<li>Save them as a favorite search.</li>
+<li>Now, when you ask for recommendations following the steps under <em>Usage</em>,
+you can use the favorite search to filter the products to be recommended.MT-4424</li>
 </ol>
 </div>
 <div class="section" id="usage">

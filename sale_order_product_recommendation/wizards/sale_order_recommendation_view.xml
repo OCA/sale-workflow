@@ -20,6 +20,7 @@
                             <field name="sale_recommendation_price_origin" />
                             <field name="use_delivery_address" />
                             <field name="recommendations_order" />
+                            <field name="recommendations_filter_id" />
                         </group>
                     </group>
                     <group col="2">

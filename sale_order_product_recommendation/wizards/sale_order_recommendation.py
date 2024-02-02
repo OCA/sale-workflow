@@ -59,6 +59,14 @@ class SaleOrderRecommendation(models.TransientModel):
         required=True,
         default="times_delivered desc",
     )
+    recommendations_filter_id = fields.Many2one(
+        "ir.filters",
+        string="Filter",
+        domain=[
+            ("model_id", "in", ["product.product", "product.template"]),
+        ],
+        help="Filter to apply to recommendations",
+    )
 
     @api.model
     def _default_order_id(self):
@@ -66,7 +74,19 @@ class SaleOrderRecommendation(models.TransientModel):
 
     def _extended_recommendable_sale_order_lines_domain(self):
         """Extra domain to include or exclude SO lines"""
-        return safe_eval(self.env.user.company_id.sale_line_recommendation_domain)
+        company_domain = safe_eval(
+            self.env.user.company_id.sale_line_recommendation_domain
+        )
+        user_domain = safe_eval(self.recommendations_filter_id.domain or "[]")
+        # Prefix the user domain for product_id in sale.order.line model
+        prefixed_user_domain = []
+        for leaf in user_domain:
+            try:
+                field, operator, value = leaf
+                prefixed_user_domain.append((f"product_id.{field}", operator, value))
+            except ValueError:
+                prefixed_user_domain.append(leaf)
+        return expression.AND([company_domain, prefixed_user_domain])
 
     def _recommendable_sale_order_lines_domain(self):
         """Domain to find recent SO lines."""
