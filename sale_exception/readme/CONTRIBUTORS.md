@@ -9,3 +9,4 @@
 - Raphaël Reverdy \<<raphael.reverdy@akretion.com>\>
 - Florian da Costa \<<florian.dacosta@akretion.com>\>
 - Iván Todorovich \<<ivan.todorovich@druidoo.io>\>
+- Nguyen Minh Chien \<<chien@trobz.com>\>
