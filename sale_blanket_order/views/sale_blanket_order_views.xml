@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <tree
                 decoration-info="state in ('draft','to_approve')"
-                decoration-muted="state in ('expired')"
+                decoration-muted="state in ('cancel')"
             >
                 <field name="name" />
                 <field name="user_id" />
@@ -31,14 +31,14 @@
                     />
                     <button
                         name="set_to_draft"
-                        states="expired,done"
+                        states="cancel,done"
                         string="To Draft"
                         class="btn-secondary"
                         type="object"
                     />
                     <button
                         name="action_cancel"
-                        states="open"
+                        states="draft,open"
                         string="Cancel"
                         class="btn-secondary"
                         type="object"
@@ -53,7 +53,7 @@
                     <field
                         name="state"
                         widget="statusbar"
-                        statusbar_visible="draft,open,expired"
+                        statusbar_visible="draft,open,cancel"
                     />
                 </header>
                 <sheet>
@@ -117,7 +117,7 @@
                         <page string="Order Lines" name="order_lines">
                             <field
                                 name="line_ids"
-                                attrs="{'readonly': [('state', 'in', ('open','expired'))]}"
+                                attrs="{'readonly': [('state', 'in', ('open','cancel'))]}"
                             >
                                 <tree editable="bottom">
                                     <field name="sequence" widget="handle" />
