@@ -133,11 +133,6 @@ msgid "Journal Entry"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type____last_update
-msgid "Last Modified on"
-msgstr "Сүүлийн засвар хийсэн огноо"
-
-#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__write_uid
 msgid "Last Updated by"
 msgstr "Сүүлийн засвар хийсэн"
@@ -259,6 +254,9 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "Сүүлийн засвар хийсэн огноо"
 
 #~ msgid "Invoice"
 #~ msgstr "Нэхэмжлэл"

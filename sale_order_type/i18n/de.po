@@ -133,11 +133,6 @@ msgid "Journal Entry"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type____last_update
-msgid "Last Modified on"
-msgstr "Zuletzt geändert am"
-
-#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__write_uid
 msgid "Last Updated by"
 msgstr "Zuletzt akualisiert durch"
@@ -261,6 +256,9 @@ msgstr "Art des Verkaufsauftrags"
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr "Lager"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Zuletzt geändert am"
 
 #~ msgid "Sales Order Type"
 #~ msgstr "Verkaufsauftragsart"
