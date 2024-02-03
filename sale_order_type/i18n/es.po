@@ -139,11 +139,6 @@ msgid "Journal Entry"
 msgstr "Entrada diaria"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
-
-#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
@@ -265,3 +260,6 @@ msgstr "Tipo de pedido de venta"
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr "Almacén"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"

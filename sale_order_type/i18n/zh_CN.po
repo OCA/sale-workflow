@@ -135,11 +135,6 @@ msgid "Journal Entry"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type____last_update
-msgid "Last Modified on"
-msgstr "最后修改时间"
-
-#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__write_uid
 msgid "Last Updated by"
 msgstr "最后更新者"
@@ -263,6 +258,9 @@ msgstr "销售订单类型"
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr "仓库"
+
+#~ msgid "Last Modified on"
+#~ msgstr "最后修改时间"
 
 #~ msgid "The company is automatically set from your user preferences."
 #~ msgstr "公司将根据您的用户首选项自动设置。"
