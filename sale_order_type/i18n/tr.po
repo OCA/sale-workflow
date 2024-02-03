@@ -134,11 +134,6 @@ msgid "Journal Entry"
 msgstr "Yevmiye Girişleri"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type____last_update
-msgid "Last Modified on"
-msgstr "Son Değiştirme"
-
-#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__write_uid
 msgid "Last Updated by"
 msgstr "Son Güncelleyen"
@@ -261,6 +256,9 @@ msgstr "Satış siparişi türü"
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr "Depo"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Son Değiştirme"
 
 #~ msgid "Invoice"
 #~ msgstr "Fatura"
