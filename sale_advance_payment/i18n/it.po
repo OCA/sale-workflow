@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-18 09:37+0000\n"
+"PO-Revision-Date: 2024-02-05 09:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. module: sale_advance_payment
 #: model:ir.model,name:sale_advance_payment.model_account_voucher_wizard
 msgid "Account Voucher Wizard"
-msgstr ""
+msgstr "Procedura per ricevuta contabile"
 
 #. module: sale_advance_payment
 #: model:ir.actions.act_window,name:sale_advance_payment.action_view_account_voucher_wizard
@@ -71,7 +71,7 @@ msgstr "Creato il"
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__currency_amount
 msgid "Curr. amount"
-msgstr ""
+msgstr "Importo valuta"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__currency_id
