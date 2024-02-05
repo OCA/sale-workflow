@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__applied_on
+msgid "Apply On"
+msgstr ""
+
+#. module: pricelist_cache
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__display_cache_line_ids
 msgid "Cached prices"
 msgstr ""
@@ -21,6 +26,11 @@ msgstr ""
 #. module: pricelist_cache
 #: model_terms:ir.ui.view,arch_db:pricelist_cache.product_pricelist_cache_wizard_view_form
 msgid "Cancel"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__company_id
+msgid "Company"
 msgstr ""
 
 #. module: pricelist_cache
@@ -58,6 +68,25 @@ msgstr ""
 #. module: pricelist_cache
 #: model_terms:ir.ui.view,arch_db:pricelist_cache.product_pricelist_view
 msgid "Display Pricelist Prices"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__date_end
+msgid "End Date"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__date_end
+msgid ""
+"Ending datetime for the pricelist item validation\n"
+"The displayed value depends on the timezone set in your preferences."
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__min_quantity
+msgid ""
+"For the rule to apply, bought/sold quantity must be greater than or equal to the minimum quantity specified in this field.\n"
+"Expressed in the default unit of measure of the product."
 msgstr ""
 
 #. module: pricelist_cache
@@ -105,8 +134,18 @@ msgid "Last Updated on"
 msgstr ""
 
 #. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__min_quantity
+msgid "Min. Quantity"
+msgstr ""
+
+#. module: pricelist_cache
 #: model_terms:ir.ui.view,arch_db:pricelist_cache.product_pricelist_cache_wizard_view_form
 msgid "Open"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__base_pricelist_id
+msgid "Other Pricelist"
 msgstr ""
 
 #. module: pricelist_cache
@@ -182,6 +221,11 @@ msgid "Pricelist Cache Update Skipped"
 msgstr ""
 
 #. module: pricelist_cache
+#: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__applied_on
+msgid "Pricelist Item applicable on selected option"
+msgstr ""
+
+#. module: pricelist_cache
 #: model:ir.model,name:pricelist_cache.model_product_pricelist_item
 msgid "Pricelist Rule"
 msgstr ""
@@ -200,11 +244,18 @@ msgstr ""
 #. module: pricelist_cache
 #: model:ir.model,name:pricelist_cache.model_product_product
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__product_id
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__product_tmpl_id
 msgid "Product"
 msgstr ""
 
 #. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__categ_id
+msgid "Product Category"
+msgstr ""
+
+#. module: pricelist_cache
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__product_id
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__product_id
 msgid "Product Variant"
 msgstr ""
 
@@ -213,6 +264,39 @@ msgstr ""
 #: model:ir.cron,cron_name:pricelist_cache.cron_reset_pricelist_cache
 #: model:ir.cron,name:pricelist_cache.cron_reset_pricelist_cache
 msgid "Reset pricelist cache"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__categ_id
+msgid ""
+"Specify a product category if this rule only applies to products belonging "
+"to this category or its children categories. Keep empty otherwise."
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__product_id
+msgid ""
+"Specify a product if this rule only applies to one product. Keep empty "
+"otherwise."
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__product_tmpl_id
+msgid ""
+"Specify a template if this rule only applies to one product template. Keep "
+"empty otherwise."
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__date_start
+msgid "Start Date"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__date_start
+msgid ""
+"Starting datetime for the pricelist item validation\n"
+"The displayed value depends on the timezone set in your preferences."
 msgstr ""
 
 #. module: pricelist_cache
