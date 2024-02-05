@@ -109,11 +109,6 @@ msgid "Analytic Tags"
 msgstr "Étiquettes analytique"
 
 #. module: sale_blanket_order
-#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_config_settings_form_view
-msgid "Assign BO number to draft BO"
-msgstr ""
-
-#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_attachment_count
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_attachment_count
 msgid "Attachment Count"
@@ -181,11 +176,6 @@ msgid "Cancel"
 msgstr "Annulé"
 
 #. module: sale_blanket_order
-#: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__cancel
-msgid "Cancelled"
-msgstr ""
-
-#. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/sale_orders.py:0
 #, python-format
 msgid ""
@@ -197,11 +187,6 @@ msgstr ""
 #: model_terms:ir.actions.act_window,help:sale_blanket_order.act_open_blanket_order_view
 msgid ""
 "Click to create a blanket order that can be converted into a sale order."
-msgstr ""
-
-#. module: sale_blanket_order
-#: model:ir.model,name:sale_blanket_order.model_res_company
-msgid "Companies"
 msgstr ""
 
 #. module: sale_blanket_order
@@ -300,7 +285,6 @@ msgid "Disable adding more lines to SOs from Blanket Orders"
 msgstr ""
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_res_company__display_name
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__display_name
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__display_name
@@ -317,16 +301,8 @@ msgid "Done"
 msgstr ""
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__draft
-#, python-format
 msgid "Draft"
-msgstr ""
-
-#. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_res_company__enable_numbered_bo
-#: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__enable_numbered_bo
-msgid "Enable numbered BO"
 msgstr ""
 
 #. module: sale_blanket_order
@@ -334,6 +310,11 @@ msgstr ""
 #: model:ir.cron,cron_name:sale_blanket_order.expired_blanket_orders_cron
 #: model:ir.cron,name:sale_blanket_order.expired_blanket_orders_cron
 msgid "Expire Blanket Orders"
+msgstr ""
+
+#. module: sale_blanket_order
+#: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__expired
+msgid "Expired"
 msgstr ""
 
 #. module: sale_blanket_order
@@ -366,7 +347,6 @@ msgid "Font awesome icon e.g. fa-tasks"
 msgstr ""
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_res_company__id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__id
@@ -427,7 +407,6 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_res_company____last_update
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order____last_update
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line____last_update

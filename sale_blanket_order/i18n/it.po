@@ -108,11 +108,6 @@ msgid "Analytic Tags"
 msgstr "Etichette analitiche"
 
 #. module: sale_blanket_order
-#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_config_settings_form_view
-msgid "Assign BO number to draft BO"
-msgstr "Assegna numero OA a bozza OA"
-
-#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_attachment_count
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_attachment_count
 msgid "Attachment Count"
@@ -180,11 +175,6 @@ msgid "Cancel"
 msgstr "Annulla"
 
 #. module: sale_blanket_order
-#: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__cancel
-msgid "Cancelled"
-msgstr "Annullato"
-
-#. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/sale_orders.py:0
 #, python-format
 msgid ""
@@ -201,11 +191,6 @@ msgid ""
 msgstr ""
 "Cliccare per creare un ordine aperto che può essere convertito in un ordine "
 "di vendita."
-
-#. module: sale_blanket_order
-#: model:ir.model,name:sale_blanket_order.model_res_company
-msgid "Companies"
-msgstr "Aziende"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__company_id
@@ -303,7 +288,6 @@ msgid "Disable adding more lines to SOs from Blanket Orders"
 msgstr "Disabilita l'aggiunta di altre righe negli OV da ordini aperti"
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_res_company__display_name
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__display_name
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__display_name
@@ -320,17 +304,9 @@ msgid "Done"
 msgstr "Completato"
 
 #. module: sale_blanket_order
-#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__draft
-#, python-format
 msgid "Draft"
 msgstr "Bozza"
-
-#. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_res_company__enable_numbered_bo
-#: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__enable_numbered_bo
-msgid "Enable numbered BO"
-msgstr "Abilita OA numerati"
 
 #. module: sale_blanket_order
 #: model:ir.actions.server,name:sale_blanket_order.expired_blanket_orders_cron_ir_actions_server
@@ -338,6 +314,11 @@ msgstr "Abilita OA numerati"
 #: model:ir.cron,name:sale_blanket_order.expired_blanket_orders_cron
 msgid "Expire Blanket Orders"
 msgstr "Scadenza ordini aperti"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__expired
+msgid "Expired"
+msgstr "Scaduto"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__fiscal_position_id
@@ -369,7 +350,6 @@ msgid "Font awesome icon e.g. fa-tasks"
 msgstr "Icona Font Awesome es. fa-tasks"
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_res_company__id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__id
@@ -430,7 +410,6 @@ msgid "Is Follower"
 msgstr "Segue"
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_res_company____last_update
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order____last_update
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line____last_update
@@ -1013,8 +992,17 @@ msgstr "Devi selezionare le righe della stessa azienda."
 msgid "remaining"
 msgstr "rimanenti"
 
-#~ msgid "Expired"
-#~ msgstr "Scaduto"
+#~ msgid "Assign BO number to draft BO"
+#~ msgstr "Assegna numero OA a bozza OA"
+
+#~ msgid "Cancelled"
+#~ msgstr "Annullato"
+
+#~ msgid "Companies"
+#~ msgstr "Aziende"
+
+#~ msgid "Enable numbered BO"
+#~ msgstr "Abilita OA numerati"
 
 #~ msgid "Customer"
 #~ msgstr "Cliente"
