@@ -81,7 +81,7 @@ addon | version | maintainers | summary
 [sale_packaging_default](sale_packaging_default/) | 16.0.2.0.0 | [![yajo](https://github.com/yajo.png?size=30px)](https://github.com/yajo) | Simplify using products default packaging for sales
 [sale_partner_incoterm](sale_partner_incoterm/) | 16.0.1.0.0 |  | Set the customer preferred incoterm on each sales order
 [sale_partner_pricelist](sale_partner_pricelist/) | 16.0.1.0.0 |  | Sale Partner Pricelist
-[sale_partner_selectable_option](sale_partner_selectable_option/) | 16.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Sale Partner Selectable Option
+[sale_partner_selectable_option](sale_partner_selectable_option/) | 16.0.1.1.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Sale Partner Selectable Option
 [sale_payment_sheet](sale_payment_sheet/) | 16.0.1.0.1 | [![sergio-teruel](https://github.com/sergio-teruel.png?size=30px)](https://github.com/sergio-teruel) | Allow to create invoice payments to commercial users without accounting permissions
 [sale_pricelist_from_commitment_date](sale_pricelist_from_commitment_date/) | 16.0.1.0.0 |  | Use sale order commitment date to compute line price from pricelist
 [sale_pricelist_technical](sale_pricelist_technical/) | 16.0.1.0.1 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Prevent some pricelists from being selected on order and customer forms
