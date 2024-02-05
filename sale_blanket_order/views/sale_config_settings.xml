@@ -24,20 +24,6 @@
                             </div>
                         </div>
                     </div>
-                    <div
-                        class="col-xs-12 col-md-6 o_setting_box"
-                        id="assign_bo_number_setting"
-                    >
-                        <div class="o_setting_left_pane">
-                            <field name="enable_numbered_bo" />
-                        </div>
-                        <div class="o_setting_right_pane">
-                            <label for="enable_numbered_bo" />
-                            <div class="text-muted">
-                                Assign BO number to draft BO
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </xpath>
         </field>

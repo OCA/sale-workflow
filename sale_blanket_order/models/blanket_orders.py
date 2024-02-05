@@ -98,7 +98,7 @@ class BlanketOrder(models.Model):
             ("draft", "Draft"),
             ("open", "Open"),
             ("done", "Done"),
-            ("cancel", "Cancelled"),
+            ("expired", "Expired"),
         ],
         compute="_compute_state",
         store=True,
@@ -212,7 +212,7 @@ class BlanketOrder(models.Model):
             if not order.confirmed:
                 order.state = "draft"
             elif order.validity_date <= today:
-                order.state = "cancel"
+                order.state = "expired"
             elif float_is_zero(
                 sum(order.line_ids.mapped("remaining_uom_qty")),
                 precision_digits=precision,
@@ -264,24 +264,9 @@ class BlanketOrder(models.Model):
             values["team_id"] = self.partner_id.team_id.id
         self.update(values)
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        translated_draft = _("Draft")
-        for vals in vals_list:
-            if (
-                self.env.company.enable_numbered_bo
-                and vals.get("name", translated_draft) == translated_draft
-            ):
-                vals["name"] = (
-                    self.env["ir.sequence"].next_by_code("sale.blanket.order")
-                    or translated_draft
-                )
-        result = super().create(vals_list)
-        return result
-
     def unlink(self):
         for order in self:
-            if order.state not in ("draft", "cancel") or order._check_active_orders():
+            if order.state not in ("draft", "expired") or order._check_active_orders():
                 raise UserError(
                     _(
                         "You can not delete an open blanket or "
@@ -337,7 +322,7 @@ class BlanketOrder(models.Model):
                         "Try to cancel them before."
                     )
                 )
-            order.write({"state": "cancel"})
+            order.write({"state": "expired"})
         return True
 
     def action_view_sale_orders(self):
