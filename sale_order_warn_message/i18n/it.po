@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-22 19:10+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2024-02-05 09:40+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -22,6 +22,8 @@ msgid ""
 "<i class=\"fa fa-info-circle\"/>\n"
 "                        &amp;nbsp;"
 msgstr ""
+"<i class=\"fa fa-info-circle\"/>\n"
+"                        &amp;nbsp;"
 
 #. module: sale_order_warn_message
 #: model:ir.model.fields,field_description:sale_order_warn_message.field_sale_order__display_name
@@ -41,9 +43,9 @@ msgstr "Ultima modifica il"
 #. module: sale_order_warn_message
 #: model:ir.model.fields,field_description:sale_order_warn_message.field_sale_order__sale_warn_msg
 msgid "Sale Warn Msg"
-msgstr ""
+msgstr "Messaggio avviso vendita"
 
 #. module: sale_order_warn_message
 #: model:ir.model,name:sale_order_warn_message.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
