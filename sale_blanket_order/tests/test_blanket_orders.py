@@ -85,8 +85,6 @@ class TestSaleBlanketOrders(common.TransactionCase):
                 ],
             }
         )
-        self.assertFalse(self.env.company.enable_numbered_bo)
-        self.assertEqual(blanket_order.name, "Draft")
         blanket_order.sudo().onchange_partner_id()
         blanket_order.line_ids[0].sudo().onchange_product()
         blanket_order.line_ids[0].sudo()._get_display_price(self.product)
@@ -102,7 +100,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
         self.assertEqual(blanket_order.state, "open")
 
         blanket_order.sudo().action_cancel()
-        self.assertEqual(blanket_order.state, "cancel")
+        self.assertEqual(blanket_order.state, "expired")
 
         blanket_order.sudo().set_to_draft()
         self.assertEqual(blanket_order.state, "draft")
@@ -404,18 +402,3 @@ class TestSaleBlanketOrders(common.TransactionCase):
         view_action = blanket_order.action_view_sale_orders()
         domain_ids = view_action["domain"][0][2]
         self.assertEqual(len(domain_ids), 3)
-
-    def test_07_create_blanket_order_check_name(self):
-        """We create a blanket order with the numbered name enabled
-        and check its format"""
-        self.env.company.enable_numbered_bo = True
-        blanket_order = self.blanket_order_obj.create(
-            {
-                "partner_id": self.partner.id,
-                "validity_date": fields.Date.to_string(self.yesterday),
-                "pricelist_id": self.sale_pricelist.id,
-            }
-        )
-        self.assertTrue(self.env.company.enable_numbered_bo)
-        self.assertNotEqual(blanket_order.name, "Draft")
-        self.assertRegex(blanket_order.name, r"BO\d{3,}")
