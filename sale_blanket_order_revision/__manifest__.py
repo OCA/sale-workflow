@@ -11,5 +11,5 @@
     "data": [
         "views/sale_blanket_order_view.xml",
     ],
-    "installable": True,
+    "installable": False,
 }
