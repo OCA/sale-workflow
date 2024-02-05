@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-25 16:36+0000\n"
+"PO-Revision-Date: 2024-02-05 09:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -110,7 +110,7 @@ msgstr "Etichette analitiche"
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_config_settings_form_view
 msgid "Assign BO number to draft BO"
-msgstr ""
+msgstr "Assegna numero OA a bozza OA"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_attachment_count
@@ -182,7 +182,7 @@ msgstr "Annulla"
 #. module: sale_blanket_order
 #: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__cancel
 msgid "Cancelled"
-msgstr ""
+msgstr "Annullato"
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/sale_orders.py:0
@@ -205,7 +205,7 @@ msgstr ""
 #. module: sale_blanket_order
 #: model:ir.model,name:sale_blanket_order.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__company_id
@@ -330,7 +330,7 @@ msgstr "Bozza"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_company__enable_numbered_bo
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__enable_numbered_bo
 msgid "Enable numbered BO"
-msgstr ""
+msgstr "Abilita OA numerati"
 
 #. module: sale_blanket_order
 #: model:ir.actions.server,name:sale_blanket_order.expired_blanket_orders_cron_ir_actions_server
