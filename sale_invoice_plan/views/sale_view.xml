@@ -236,6 +236,7 @@
         action="action_sale_invoice_plan"
         id="menu_sale_invoice_plan"
         parent="sale.sale_order_menu"
+        groups="sales_team.group_sale_salesman"
         sequence="2"
     />
 </odoo>
