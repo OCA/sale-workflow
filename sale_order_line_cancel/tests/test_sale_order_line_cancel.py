@@ -46,8 +46,8 @@ class TestSaleOrderLineCancel(TestSaleOrderLineCancelBase):
             active_id=self.sale.order_line.id, active_model="sale.order.line"
         ).cancel_remaining_qty()
         self.assertEqual(ship.state, "cancel")
-        self.assertEqual(self.sale.order_line.product_qty_canceled, 10)
         self.assertEqual(self.sale.order_line.product_qty_remains_to_deliver, 0)
+        self.assertEqual(self.sale.order_line.product_qty_canceled, 10)
 
     def test_cancel_pickings(self):
         """if picking is canceled product_qty_canceled increased"""
@@ -92,3 +92,10 @@ class TestSaleOrderLineCancel(TestSaleOrderLineCancelBase):
         self.sale.action_draft()
         self.assertEqual(self.sale.order_line.product_qty_canceled, 0)
         self.assertEqual(self.sale.order_line.product_qty_remains_to_deliver, 5)
+
+    def test_so_cancel_by_running_procurements(self):
+        self.assertEqual(self.sale.order_line.product_qty_remains_to_deliver, 10)
+        self.sale._action_cancel()
+        self.assertEqual(self.sale.order_line.product_uom_qty, 10)
+        self.assertEqual(self.sale.order_line.product_qty_canceled, 10)
+        self.assertEqual(self.sale.order_line.product_qty_remains_to_deliver, 0)
