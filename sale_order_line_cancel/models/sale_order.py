@@ -15,8 +15,20 @@ class SaleOrder(models.Model):
         return res
 
     def _action_cancel(self):
-        res = super()._action_cancel()
-        orders = self.filtered(lambda s: s.state == "cancel")
-        for line in orders.order_line:
-            line.product_qty_canceled = line.product_uom_qty - line.qty_delivered
+        orders = self.filtered(lambda s: s.state != "cancel")
+        orders_with_picking = orders.filtered("picking_ids")
+        res = None
+        if orders_with_picking:
+            orders_with_picking = orders_with_picking.with_context(
+                orders_cancel_by_running_procurements=orders_with_picking.ids
+            )
+            res = super(SaleOrder, orders_with_picking)._action_cancel()
+        remaining_orders = orders - orders_with_picking
+        if remaining_orders:
+            res = super(SaleOrder, remaining_orders)._action_cancel()
+
         return res
+
+    def _cancel_by_running_procurements(self):
+        orders = self.filtered(lambda s: s.state != "cancel")
+        orders.order_line.cancel_remaining_qty()
