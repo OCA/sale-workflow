@@ -104,3 +104,34 @@ class TestSaleMrpLink(TransactionCase):
         self.assertEqual(line_a.bom_id, bom_a)
         with self.assertRaises(ValidationError):
             line_a.write({"bom_id": bom_b})
+
+    def test_accept_bom_with_no_variant(self):
+        # make variants for template of product A
+        product_tmpl_a = self.product_a.product_tmpl_id
+        prod_att_color = self.env["product.attribute"].create({"name": "Color"})
+        product_attr_val_red, product_attr_val_green = self.env[
+            "product.attribute.value"
+        ].create(
+            [
+                {"name": "red", "attribute_id": prod_att_color.id, "sequence": 1},
+                {"name": "blue", "attribute_id": prod_att_color.id, "sequence": 2},
+            ]
+        )
+        product_tmpl_a.attribute_line_ids = [
+            (
+                0,
+                0,
+                {
+                    "attribute_id": prod_att_color.id,
+                    "value_ids": [
+                        (6, 0, [product_attr_val_red.id, product_attr_val_green.id])
+                    ],
+                },
+            )
+        ]
+        product_a = product_tmpl_a.product_variant_ids[0]
+        bom_no_variant = self._create_bom(product_tmpl_a)
+        so = self._create_sale_order(self.partner, "SO2")
+        self._create_sale_order_line(so, product_a, 2, 25, bom_no_variant)
+        line_a = so.order_line[0]
+        line_a.bom_id = bom_no_variant
