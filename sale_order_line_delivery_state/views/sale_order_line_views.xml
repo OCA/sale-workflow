@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_order_line_search" model="ir.ui.view">
+        <field name="name">sale.order.line.delivery.state.search</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//search/filter[@name='to_invoice']" position="after">
+                <separator />
+                <field name="delivery_state" invisible="1" />
+                <filter
+                    string="Goods Not Delivered"
+                    name="goods_not_delivered"
+                    domain="[('delivery_state', '!=', 'done')]"
+                    help="Goods Not Delivered"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -11,6 +11,9 @@
     "license": "AGPL-3",
     "installable": True,
     "depends": ["sale"],
-    "data": ["views/sale_order_views.xml"],
+    "data": [
+        "views/sale_order_views.xml",
+        "views/sale_order_line_views.xml",
+    ],
     "demo": [],
 }
