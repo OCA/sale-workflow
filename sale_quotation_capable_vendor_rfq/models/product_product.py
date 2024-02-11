@@ -32,7 +32,4 @@ class ProductProduct(models.Model):
             else:
                 if info.price < min_prices[info.partner_id].price:
                     min_prices[info.partner_id] = info
-        supplierinfo_ids = [info.id for info in min_prices.values()]
-        if not supplierinfo_ids:
-            return []
-        return self.env["product.supplierinfo"].browse(supplierinfo_ids)
+        return self.env["product.supplierinfo"].concat(*min_prices.values())

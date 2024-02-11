@@ -1,5 +1,6 @@
 # Copyright (C) 2024 Cetmix OÜ
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from collections import defaultdict
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
@@ -104,10 +105,11 @@ class SaleOrder(models.Model):
             "name": line["line"].name,
             "product_qty": line["line"].product_uom_qty,
             "product_uom": line["line"].product_uom.id,
-            "price_unit": self._convert_to_currency(
+            "price_unit": line["supplierinfo"].currency_id._convert(
                 line["supplierinfo"].price,
-                line["supplierinfo"].currency_id,
                 rfq.currency_id,
+                self.env.company,
+                fields.Date.today(),
             ),
             "date_planned": fields.Datetime.now(),
         }
@@ -120,20 +122,17 @@ class SaleOrder(models.Model):
 
         :return: dict
         """
-        vendors_dict = {}
+        vendors_dict = defaultdict(list)
         for line in self.order_line:
-            supplierinfo_ids = line.product_id._get_matching_vendor_pricelists(
+            supplierinfos = line.product_id._get_matching_vendor_pricelists(
                 line.product_uom_qty, lead_time
             )
-            for supplierinfo in supplierinfo_ids:
+            for supplierinfo in supplierinfos:
                 vals = {
                     "supplierinfo": supplierinfo,
                     "line": line,
                 }
-                if supplierinfo.partner_id not in vendors_dict:
-                    vendors_dict[supplierinfo.partner_id] = [vals]
-                else:
-                    vendors_dict[supplierinfo.partner_id].append(vals)
+                vendors_dict[supplierinfo.partner_id].append(vals)
         return vendors_dict
 
     def _convert_to_currency(self, price, currency_id, currency_to_id):
@@ -161,15 +160,6 @@ class SaleOrder(models.Model):
             return
         self.rfq_ids.write(
             {
-                "purchase_group_id": self._get_alternative_group_id(),
+                "purchase_group_id": self.env["purchase.order.group"].create({}).id,
             }
         )
-
-    def _get_alternative_group_id(self):
-        """
-        Get alternative group id
-
-        :return: purchase.order.group
-        """
-        self.ensure_one()
-        return self.env["purchase.order.group"].create({}).id
