@@ -3,6 +3,7 @@
     <template
         id="report_saleorder_document"
         inherit_id="sale.report_saleorder_document"
+        priority="100"
     >
         <xpath expr="//td[@name='td_subtotal']" position="replace">
             <td name="td_subtotal" class="text-right o_price_total">

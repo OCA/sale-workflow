@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+    <template
+        id="report_invoice_document"
+        inherit_id="account.report_invoice_document"
+        priority="100"
+    >
         <xpath expr="//span[@t-field='line.price_subtotal']" position="replace">
                 <span
                 t-if="o.price_tax_state != 'include'"
