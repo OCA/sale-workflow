@@ -26,3 +26,4 @@ class TestDiscountDisplay(TransactionCase):
         self.assertAlmostEqual(so.price_subtotal_no_discount, 30.75)
         self.assertAlmostEqual(so.price_total_no_discount, 35.36)
         self.assertAlmostEqual(so.discount_total, 3.53)
+        self.assertAlmostEqual(so.discount_subtotal, 3.07)
