@@ -48,16 +48,19 @@ class SaleOrder(models.Model):
         self.ensure_one()
         return self.env["ir.sequence"].next_by_code("sale.order")
 
-    def action_confirm(self):
+    def _action_confirm(self):
         for order in self:
-            if not self.quotation_seq_used:
+            if not (
+                order.state == "sale"
+                and order.quotation_seq_used
+                and not order.company_id.keep_name_so
+            ):
                 continue
-            if order.state not in ("draft", "sent") or order.company_id.keep_name_so:
-                continue
+            quo = ""
             if order.origin and order.origin != "":
                 quo = order.origin + ", " + order.name
             else:
                 quo = order.name
             sequence = order.get_sale_order_seq()
             order.write({"origin": quo, "name": sequence, "quotation_seq_used": False})
-        return super().action_confirm()
+        return super()._action_confirm()
