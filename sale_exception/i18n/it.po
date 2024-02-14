@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-31 01:43+0000\n"
-"PO-Revision-Date: 2024-01-25 13:37+0000\n"
+"PO-Revision-Date: 2024-02-14 13:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-9-0/"
 "language/it/)\n"
@@ -100,7 +100,7 @@ msgstr "Nome eccezione"
 #: model:ir.actions.act_window,name:sale_exception.action_sale_test_tree
 #: model:ir.ui.menu,name:sale_exception.menu_sale_test
 msgid "Exception Rules"
-msgstr "Regola eccezione"
+msgstr "Regole eccezione"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_exception_ids
