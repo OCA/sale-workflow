@@ -36,8 +36,9 @@ class SaleOrderLine(models.Model):
                 ):
                     raise ValidationError(
                         _(
-                            "The fixed discount %(fixed)s does not match the calculated "
-                            "discount %(discount)s %%. Please correct one of the discounts."
+                            "The fixed discount %(fixed)s does not match the calculated"
+                            "discount %(discount)s %%."
+                            "Please correct one of the discounts."
                         )
                         % {
                             "fixed": line.discount_fixed,
@@ -45,7 +46,7 @@ class SaleOrderLine(models.Model):
                         }
                     )
 
-    def _convert_to_tax_base_line_dict(self):
+    def _convert_to_tax_base_line_dict(self, **kwargs):
         """Prior to calculating the tax toals for a line, update the discount value
         used in the tax calculation to the full float value. Otherwise, we get rounding
         errors in the resulting calculated totals.
@@ -72,15 +73,13 @@ class SaleOrderLine(models.Model):
                 quantity=self.product_uom_qty,
                 discount=self._get_discount_from_fixed_discount(),
                 price_subtotal=self.price_subtotal,
+                **kwargs,
             )
 
         return super()._convert_to_tax_base_line_dict()
 
     @api.onchange("discount_fixed", "price_unit")
     def _onchange_discount_fixed(self):
-        if not self.discount_fixed:
-            return
-
         self.discount = self._get_discount_from_fixed_discount()
 
     def _get_discount_from_fixed_discount(self):
