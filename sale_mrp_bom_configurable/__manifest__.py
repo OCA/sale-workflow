@@ -7,7 +7,7 @@
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Akretion, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "depends": ["mrp_bom_configurable", "sale"],
+    "depends": ["mrp_bom_configurable", "sale", "sale_mrp_bom"],
     "maintainer": [
         "franzpoize",
     ],

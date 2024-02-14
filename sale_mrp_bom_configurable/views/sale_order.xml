@@ -4,19 +4,34 @@
     <field name="model">sale.order</field>
     <field name="inherit_id" ref="sale.view_order_form" />
     <field name="arch" type="xml">
-        <header>
-            <button
-                    name="open_input_line_wizard"
-                    string="Create line"
-                    type="object"
-                    class="oe_highlight"
-                />
-        </header>
         <group name="sale_header" position="inside">
-            <group name="input_config_details">
+            <group name="input_config_selection">
                 <field name="input_config_id" />
             </group>
         </group>
+        <xpath expr="//page[@name='order_lines']//tree/field[@name='product_template_id']" position="before">
+            <field name="allowed_product_id" invisible="1"/>
+            <field name="should_filter_product" invisible="1"/>
+        </xpath>
+        <xpath expr="//page[@name='order_lines']//tree/field[@name='product_template_id']" position="attributes">
+            <attribute name="domain">['|', ('sale_ok', '=', should_filter_product), ('id', '=', allowed_product_id), ('sale_ok', '=', True)]</attribute>
+        </xpath>
+        <xpath expr="//page[@name='order_lines']//tree/field[@name='product_template_id']" position="after">
+            <field name="input_config_id" invisible="1"/>
+            <field name="input_line_domain" invisible="1"/>
+            <field
+                name="input_line_id"
+                attrs="{'invisible': [('input_config_id', '=', False)]}"
+                domain="input_line_domain"
+                />
+            <button
+                    name="action_show_input_line"
+                    class="fa fa-eye"
+                    type="object"
+                    title="Info"
+                    attrs="{'invisible': [('input_line_id', '=', False)]}"
+                />
+        </xpath>
     </field>
 </record>
 </odoo>
