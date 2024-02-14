@@ -1,5 +1,3 @@
-import json
-
 from odoo import api, fields, models
 
 
@@ -12,8 +10,11 @@ class SaleOrderLine(models.Model):
 
     input_line_id = fields.Many2one(
         comodel_name="input.line",
+        compute="_compute_input_line_id",
+        inverse="_inverse_input_line_id",
+        store=True,
     )
-    input_line_domain = fields.Char(
+    input_line_domain = fields.Binary(
         compute="_compute_input_line_domain",
     )
     bom_id = fields.Many2one(compute="_compute_bom_id")
@@ -21,9 +22,19 @@ class SaleOrderLine(models.Model):
     should_filter_product = fields.Boolean(compute="_compute_should_filter_product")
 
     @api.depends("input_config_id")
+    def _compute_input_line_id(self):
+        for rec in self:
+            if rec.input_line_id.id in rec.input_config_id.line_ids.mapped("id"):
+                rec.input_line_id = rec.input_line_id
+            else:
+                rec.input_line_id = False
+
+    def _inverse_input_line_id(self):
+        pass
+
+    @api.depends("input_config_id")
     def _compute_input_line_domain(self):
         for rec in self:
-            breakpoint()
             allowed_ids = (
                 self.env["input.line"]
                 .search([("config_id", "=", rec.input_config_id.id)])
