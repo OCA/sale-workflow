@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="sale_order_confirm_partial_action" model="ir.actions.act_window">
+        <field name="name">Partial Quotation Confirmation</field>
+        <field name="res_model">sale.order.confirm.partial</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="sale_order_confirm_partial_view_form" model="ir.ui.view">
+        <field name="name">sale.order.confirm.partial.view.form</field>
+        <field name="model">sale.order.confirm.partial</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="sale_order_id" invisible="1" />
+                    <group>
+                        <group name="general">
+                            <field name="mode" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page
+                            name="lines"
+                            string="Lines To Confirm"
+                            attrs="{'invisible': [('mode', '!=', 'selected')]}"
+                        >
+                            <field name="line_ids">
+                                <tree editable="top" create="0" delete="0">
+                                    <field name="wizard_id" invisible="1" />
+                                    <field name="so_line_id" />
+                                    <field name="confirmed_qty" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button
+                            string="Confirm"
+                            name="action_confirm"
+                            type="object"
+                            class="oe_highlight"
+                        />
+                        <button
+                            string="Cancel"
+                            special="cancel"
+                            class="btn-secondary"
+                        />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
