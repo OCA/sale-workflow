@@ -1,0 +1,2 @@
+Sometimes you need to confirm only selected lines of a Sales Order.
+Eg your customer has asked you a quotation for a desk, five chairs and a sofa. However in the end he decides to order only a desk and 2 chairs.
