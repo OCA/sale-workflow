@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/tree//field[@name='company_id']"
+                position="after"
+            >
+                <field
+                    name="untaxed_amount_to_invoice"
+                    string="To Invoice"
+                    optional="hide"
+                />
+            </xpath>
+            <xpath expr="//field[@name='tax_totals']" position="after">
+                <field
+                    name="untaxed_amount_to_invoice"
+                    string="To Invoice"
+                    attrs="{'invisible': [('state', '!=', 'sale')]}"
+                />
+            </xpath>
+        </field>
+    </record>
+     <record id="view_order_tree" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="invoice_status" position="after">
+                <field
+                    name="untaxed_amount_to_invoice"
+                    string="To Invoice"
+                    attrs="{'invisible': [('state', '!=', 'sale')]}"
+                    optional="hide"
+                    sum="To Invoice"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="view_quotation_tree" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <field name="invoice_status" position="after">
+                <field
+                    name="untaxed_amount_to_invoice"
+                    string="To Invoice"
+                    attrs="{'invisible': [('state', '!=', 'sale')]}"
+                    optional="hide"
+                    sum="To Invoice"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
