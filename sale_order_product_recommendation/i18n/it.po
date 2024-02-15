@@ -79,6 +79,11 @@ msgid "Cancel"
 msgstr "Annulla"
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_uom_category_id
+msgid "Category"
+msgstr ""
+
+#. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Change criteria"
 msgstr "Modifica criterio"
@@ -102,6 +107,13 @@ msgstr "Impostazioni configurazione"
 #: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation__months
 msgid "Consider these months backwards to generate recommendations."
 msgstr "Considerare questi mesi precedenti per generare suggerimenti."
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation_line__product_uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__create_uid
@@ -280,6 +292,11 @@ msgstr "Listino prezzi"
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Product"
 msgstr "Prodotto"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_uom_readonly
+msgid "Product Uom Readonly"
+msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__product_categ_complete_name_asc
