@@ -1,0 +1,121 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_tier_validation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2022-11-04 11:44+0000\n"
+"Last-Translator: Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>\n"
+"Language-Team: none\n"
+"Language: es_MX\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__can_review
+msgid "Can Review"
+msgstr "Puede revisar"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__has_comment
+msgid "Has Comment"
+msgstr "Tiene comentario"
+
+#. module: sale_tier_validation
+#: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
+msgid "My Sales to review"
+msgstr "Mis ventas para revisar"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__need_validation
+msgid "Need Validation"
+msgstr "Necesita validación"
+
+#. module: sale_tier_validation
+#: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
+msgid "Needs my Review"
+msgstr "Necesita mi revisión"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__next_review
+msgid "Next Review"
+msgstr "Siguiente revisión"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__rejected
+msgid "Rejected"
+msgstr "Rechazado"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__rejected_message
+msgid "Rejected Message"
+msgstr "Mensaje rechazado"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__reviewer_ids
+msgid "Reviewers"
+msgstr "Revisores"
+
+#. module: sale_tier_validation
+#: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
+msgid "SOs validated and ready to be confirmed"
+msgstr "SOs validados y listos para ser confirmados"
+
+#. module: sale_tier_validation
+#: model:ir.model,name:sale_tier_validation.model_sale_order
+msgid "Sales Order"
+msgstr "Orden de venta"
+
+#. module: sale_tier_validation
+#: model:ir.model,name:sale_tier_validation.model_tier_definition
+msgid "Tier Definition"
+msgstr "Definición de Nivel"
+
+#. module: sale_tier_validation
+#: model:mail.message.subtype,name:sale_tier_validation.crm_team_tier_validation_accepted
+#: model:mail.message.subtype,name:sale_tier_validation.sale_order_tier_validation_accepted
+msgid "Tier Validation Accepted Notification"
+msgstr "Notificación de validación de nivel aceptada"
+
+#. module: sale_tier_validation
+#: model:mail.message.subtype,name:sale_tier_validation.crm_team_tier_validation_rejected
+#: model:mail.message.subtype,name:sale_tier_validation.sale_order_tier_validation_rejected
+msgid "Tier Validation Rejected Notification"
+msgstr "Notificación de rechazo de validación de nivel"
+
+#. module: sale_tier_validation
+#: model:mail.message.subtype,name:sale_tier_validation.crm_team_tier_validation_requested
+#: model:mail.message.subtype,name:sale_tier_validation.sale_order_tier_validation_requested
+msgid "Tier Validation Requested"
+msgstr "Validación de nivel solicitada"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__to_validate_message
+msgid "To Validate Message"
+msgstr "Mensaje para validar"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validated
+#: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
+msgid "Validated"
+msgstr "Validado"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validated_message
+msgid "Validated Message"
+msgstr "Mensaje validado"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validation_status
+msgid "Validation Status"
+msgstr ""
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__review_ids
+msgid "Validations"
+msgstr "Validaciones"

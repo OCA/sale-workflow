@@ -1,0 +1,121 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_tier_validation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-03-30 22:51+0000\n"
+"Last-Translator: Ediz Duman <neps1192@gmail.com>\n"
+"Language-Team: none\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.14.1\n"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__can_review
+msgid "Can Review"
+msgstr "Gözden Geçirebilir"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__has_comment
+msgid "Has Comment"
+msgstr "Yorum Var"
+
+#. module: sale_tier_validation
+#: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
+msgid "My Sales to review"
+msgstr "İncelenecek Satışlarım"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__need_validation
+msgid "Need Validation"
+msgstr "Doğrulama Gerekiyor"
+
+#. module: sale_tier_validation
+#: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
+msgid "Needs my Review"
+msgstr "İncelememe ihtiyacı var"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__next_review
+msgid "Next Review"
+msgstr "Sonraki İnceleme"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__rejected
+msgid "Rejected"
+msgstr "Reddedildi"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__rejected_message
+msgid "Rejected Message"
+msgstr "Reddedilme Mesaj"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__reviewer_ids
+msgid "Reviewers"
+msgstr "İnceleyenler"
+
+#. module: sale_tier_validation
+#: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
+msgid "SOs validated and ready to be confirmed"
+msgstr "SO'lar doğrulandı ve onaylanmaya hazır"
+
+#. module: sale_tier_validation
+#: model:ir.model,name:sale_tier_validation.model_sale_order
+msgid "Sales Order"
+msgstr "Satış Siparişi"
+
+#. module: sale_tier_validation
+#: model:ir.model,name:sale_tier_validation.model_tier_definition
+msgid "Tier Definition"
+msgstr "Seviye Tanımı"
+
+#. module: sale_tier_validation
+#: model:mail.message.subtype,name:sale_tier_validation.crm_team_tier_validation_accepted
+#: model:mail.message.subtype,name:sale_tier_validation.sale_order_tier_validation_accepted
+msgid "Tier Validation Accepted Notification"
+msgstr "Seviye Doğrulama Kabul Bildirimi"
+
+#. module: sale_tier_validation
+#: model:mail.message.subtype,name:sale_tier_validation.crm_team_tier_validation_rejected
+#: model:mail.message.subtype,name:sale_tier_validation.sale_order_tier_validation_rejected
+msgid "Tier Validation Rejected Notification"
+msgstr "Seviye Doğrulaması Reddedildi Bildirimi"
+
+#. module: sale_tier_validation
+#: model:mail.message.subtype,name:sale_tier_validation.crm_team_tier_validation_requested
+#: model:mail.message.subtype,name:sale_tier_validation.sale_order_tier_validation_requested
+msgid "Tier Validation Requested"
+msgstr "Seviye Doğrulama İstendi"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__to_validate_message
+msgid "To Validate Message"
+msgstr "Mesajı Doğrulamak İçin"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validated
+#: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
+msgid "Validated"
+msgstr "Doğrulandı"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validated_message
+msgid "Validated Message"
+msgstr "Doğrulanmış Mesaj"
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validation_status
+msgid "Validation Status"
+msgstr ""
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__review_ids
+msgid "Validations"
+msgstr "Doğrulamalar"
