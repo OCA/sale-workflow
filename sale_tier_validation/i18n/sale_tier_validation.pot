@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,6 +21,16 @@ msgstr ""
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__has_comment
 msgid "Has Comment"
+msgstr ""
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__hide_reviews
+msgid "Hide Reviews"
+msgstr ""
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,help:sale_tier_validation.field_sale_order__has_comment
+msgid "If set, Allow the reviewer to leave a comment on the review."
 msgstr ""
 
 #. module: sale_tier_validation
