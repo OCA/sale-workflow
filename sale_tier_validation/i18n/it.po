@@ -27,6 +27,16 @@ msgid "Has Comment"
 msgstr "Ha commenti"
 
 #. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__hide_reviews
+msgid "Hide Reviews"
+msgstr ""
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,help:sale_tier_validation.field_sale_order__has_comment
+msgid "If set, Allow the reviewer to leave a comment on the review."
+msgstr ""
+
+#. module: sale_tier_validation
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
 msgid "My Sales to review"
 msgstr "Le mie vendte da revisionare"
