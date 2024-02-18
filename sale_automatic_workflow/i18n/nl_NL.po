@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2018-03-02 10:22+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
-"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/"
-"teams/23907/nl_NL/)\n"
+"PO-Revision-Date: 2024-02-18 12:37+0000\n"
+"Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/"
+"23907/nl_NL/)\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order__all_qty_delivered
@@ -102,7 +103,7 @@ msgstr "Weergavenaam"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__payment_filter_domain
 msgid "Domain"
-msgstr ""
+msgstr "Domein"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__invoice_date_is_order_date
