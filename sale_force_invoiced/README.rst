@@ -17,30 +17,29 @@ Sale Force Invoiced
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_force_invoiced
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_force_invoiced
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_force_invoiced
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_force_invoiced
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds the possibility for users to force the invoice status of the
-sales orders to 'Invoiced', even when not all the quantities ordered or
-delivered have been invoiced.
+This module adds the possibility for users to force the invoice status
+of the sales orders to 'Invoiced', even when not all the quantities
+ordered or delivered have been invoiced.
 
 This feature useful in the following scenario:
 
-* The customer disputes the quantities to be invoiced for, after the
-  products have been delivered to her/him, and you agree to reduce the
-  quantity to invoice (without sending a refund).
-
-* When migrating from a previous Odoo version, in some cases there is less
-  quantity invoiced to what was delivered, and you don't want these old sales
-  orders to appear in your 'To Invoice' list.
+-  The customer disputes the quantities to be invoiced for, after the
+   products have been delivered to her/him, and you agree to reduce the
+   quantity to invoice (without sending a refund).
+-  When migrating from a previous Odoo version, in some cases there is
+   less quantity invoiced to what was delivered, and you don't want
+   these old sales orders to appear in your 'To Invoice' list.
 
 **Table of contents**
 
@@ -50,12 +49,12 @@ This feature useful in the following scenario:
 Usage
 =====
 
-#. Create a sales order and confirm it.
-#. Deliver the products/services.
-#. Create an invoice and reduce the invoiced quantity. The sales order
+1. Create a sales order and confirm it.
+2. Deliver the products/services.
+3. Create an invoice and reduce the invoiced quantity. The sales order
    invoicing status is 'To Invoice'.
-#. Check the field 'Force Invoiced'. The sales order invoicing status will be
-   'Invoiced'.
+4. Check the field 'Force Invoiced'. The sales order invoicing status
+   will be 'Invoiced'.
 
 Bug Tracker
 ===========
@@ -63,7 +62,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_force_invoiced%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_force_invoiced%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -71,17 +70,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * ForgeFlow
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Jordi Ballester <jordi.ballester@forgeflow.com>
+-  Jordi Ballester <jordi.ballester@forgeflow.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -93,6 +92,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_force_invoiced>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_force_invoiced>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
