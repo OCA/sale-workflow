@@ -156,7 +156,8 @@ class TestSaleDelivery(TransactionCase):
         self.assertEqual(
             self.so.picking_ids.scheduled_date,
             security_date,
-            "The picking must be planned at the expected date (with security lead time)",
+            "The picking must be planned at the expected date "
+            "(with security lead time)",
         )
         self.assertEqual(
             self.so_line1.procurement_group_id,
@@ -188,12 +189,14 @@ class TestSaleDelivery(TransactionCase):
         self.assertEqual(
             sorted_pickings[0].scheduled_date,
             security_date_sooner,
-            "The first picking must be planned at the soonest date (with security lead time)",
+            "The first picking must be planned at the soonest date "
+            "(with security lead time)",
         )
         self.assertEqual(
             sorted_pickings[1].scheduled_date,
             security_date_later,
-            "The second picking must be planned at the latest date (with security lead time)",
+            "The second picking must be planned at the latest date "
+            "(with security lead time)",
         )
         self.assertNotEqual(
             self.so_line1.procurement_group_id,
