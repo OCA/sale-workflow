@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 from contextlib import suppress
 
-from odoo import api, models
+from odoo import api, fields, models
 
 
 class SaleOrderLine(models.Model):
@@ -24,11 +24,7 @@ class SaleOrderLine(models.Model):
         """Set a default packaging for sales if possible."""
         for line in self:
             if line.product_id and not line.product_packaging_id:
-                line.product_packaging_id = (
-                    line.product_id.packaging_ids.filtered_domain(
-                        [("sales", "=", True)]
-                    )[:1]
-                )
+                line.product_packaging_id = line._get_default_packaging(line.product_id)
         result = super()._compute_product_packaging_id()
         # If there's no way to package the desired qty, remove the packaging.
         # It is only done when the user is currently manually setting
@@ -48,6 +44,12 @@ class SaleOrderLine(models.Model):
                 ):
                     line.product_packaging_id = False
         return result
+
+    @api.model
+    def _get_default_packaging(self, product):
+        return fields.first(
+            product.packaging_ids.filtered_domain([("sales", "=", True)])
+        )
 
     @api.depends("product_packaging_id", "product_uom", "product_uom_qty")
     def _compute_product_packaging_qty(self):
