@@ -1,7 +1,6 @@
 # Copyright 2019 Eficent Business and IT Consulting Services S.L.
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from odoo.exceptions import ValidationError
 from odoo.tests import Form, common
 
 
@@ -50,7 +49,7 @@ class TestSaleDeliveryBlock(common.TransactionCase):
         }
         cls.sale_order_line = cls.sol_model.with_user(cls.user_test).create(sol_dict)
 
-    def test_check_auto_done(self):
+    def test_block_with_auto_done_enabled(self):
         # Set active auto done configuration
         config = self.env["res.config.settings"].create(
             {"group_auto_done_setting": True}
@@ -60,9 +59,29 @@ class TestSaleDeliveryBlock(common.TransactionCase):
             {"name": "Test Block."}
         )
         so = self.sale_order
-        # Check settings constraints
-        with self.assertRaises(ValidationError):
-            so.write({"delivery_block_id": block_reason.id})
+        so.write({"delivery_block_id": block_reason.id})
+        so.action_confirm()
+        self.assertEqual(so.state, "sale")
+        self._picking_comp(so)
+        pick = self._picking_comp(so)
+        self.assertEqual(pick, 0, "The delivery should have been blocked")
+        # Remove block
+        so.action_remove_delivery_block()
+        pick = self._picking_comp(so)
+        self.assertNotEqual(pick, 0, "A delivery should have been made")
+        self.assertEqual(so.state, "done")
+
+    def test_no_block_with_auto_done_enabled(self):
+        """Tests if normal behaviour without block."""
+        config = self.env["res.config.settings"].create(
+            {"group_auto_done_setting": True}
+        )
+        config.execute()
+        so = self.sale_order
+        so.action_confirm()
+        pick = self._picking_comp(so)
+        self.assertNotEqual(pick, 0, "A delivery should have been made")
+        self.assertEqual(so.state, "done")
 
     def _picking_comp(self, so):
         """count created pickings"""
