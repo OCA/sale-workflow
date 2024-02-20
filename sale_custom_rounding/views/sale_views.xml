@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Manuel Regidor <manuel.regidor@sygel.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="invoice_custom_rounding_view_order_form" model="ir.ui.view">
+        <field name="name">invoice.custom.rounding.view.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="fiscal_position_id" position="before">
+                <field
+                    name="tax_calculation_rounding_method"
+                    class="oe_inline"
+                    attrs="{'readonly': [('state', 'not in', ['draft', 'sent'])]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
