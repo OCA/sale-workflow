@@ -1,0 +1,2 @@
+odoo-test-helper
+odoo-addon-base_revision @ git+https://github.com/OCA/server-ux.git@refs/pull/829/head#subdirectory=base_revision
