@@ -1,0 +1,2 @@
+odoo-addon-sale_order_line_date @ git+https://github.com/OCA/sale-workflow.git@refs/pull/2962/head#subdirectory=sale_order_line_date
+odoo-addon-sale_procurement_group_by_line @ git+https://github.com/OCA/sale-workflow.git@refs/pull/2915/head#subdirectory=sale_procurement_group_by_line
