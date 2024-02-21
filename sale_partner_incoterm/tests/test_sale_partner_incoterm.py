@@ -1,7 +1,6 @@
 # Copyright 2015 Opener B.V. (<https://opener.am>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
-from odoo.tests.common import TransactionCase
+from odoo.tests import Form, TransactionCase
 
 
 class TestSalePartnerIncoterm(TransactionCase):
@@ -16,7 +15,7 @@ class TestSalePartnerIncoterm(TransactionCase):
         customer.write(
             {"sale_incoterm_id": incoterm.id, "sale_incoterm_address_id": address.id}
         )
-        sale_order = self.env["sale.order"].create({"partner_id": customer.id})
-        sale_order.onchange_partner_id_set_incoterm()
+        sale_order = Form(self.env["sale.order"])
+        sale_order.partner_id = customer
         self.assertEqual(sale_order.incoterm, incoterm)
         self.assertEqual(sale_order.incoterm_address_id, address)

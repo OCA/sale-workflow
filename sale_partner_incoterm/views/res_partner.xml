@@ -11,13 +11,9 @@
                 <field
                     name="sale_incoterm_id"
                     string="Default Sales Incoterm"
-                    widget="selection"
-                    groups="sale_stock.group_display_incoterm"
+                    options="{'no_create': True, 'no_open': True}"
                 />
-                <field
-                    name="sale_incoterm_address_id"
-                    groups="sale_stock.group_display_incoterm"
-                />
+                <field name="sale_incoterm_address_id" />
             </field>
         </field>
     </record>
