@@ -10,7 +10,6 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     manual_delivery = fields.Boolean(
-        default=False,
         help="If enabled, the deliveries are not created at SO confirmation. "
         "You need to use the Create Delivery button in order to reserve "
         "and ship the goods.",
