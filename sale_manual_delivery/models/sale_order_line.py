@@ -100,7 +100,7 @@ class SaleOrderLine(models.Model):
             # Qty comes from the manual delivery wizard
             # This is different than the original method
             manual_line = manual_delivery.line_ids.filtered(
-                lambda l: l.order_line_id == line
+                lambda mdl, ln=line: mdl.order_line_id == ln
             )
             if not manual_line.quantity:
                 continue
