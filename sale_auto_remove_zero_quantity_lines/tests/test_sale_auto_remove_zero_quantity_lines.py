@@ -42,9 +42,17 @@ class TestSaleAutoRemoveZeroQuantityLines(TransactionCase):
                             "price_unit": p.list_price,
                         },
                     ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Note test",
+                            "display_type": "line_note",
+                        },
+                    ),
                 ],
                 "pricelist_id": self.env.ref("product.list0").id,
             }
         )
         so.action_confirm()
-        self.assertEqual(len(so.order_line), 1)
+        self.assertEqual(len(so.order_line), 2)
