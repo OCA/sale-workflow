@@ -83,6 +83,10 @@ Contributors
 
    -  nguyenhk <nguyenhk@trobz.com>
 
+-  `360ERP <https://www.360erp.com>`__:
+
+   -  Andrea Stirpe
+
 Other credits
 -------------
 
