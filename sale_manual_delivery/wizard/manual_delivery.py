@@ -58,13 +58,9 @@ class ManualDelivery(models.TransientModel):
     partner_id = fields.Many2one(
         "res.partner",
         string="Delivery Address",
-        domain="""
-            [
-                "|",
-                ("id", "=", commercial_partner_id),
-                ("parent_id", "=", commercial_partner_id),
-            ],
-        """,
+        domain="['|',"
+        "('id', '=', commercial_partner_id),"
+        "('parent_id', '=', commercial_partner_id)]",
         ondelete="cascade",
     )
     carrier_id = fields.Many2one(

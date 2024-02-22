@@ -1,4 +1,5 @@
-def pre_init_hook(cr):
+def pre_init_hook(env):
+    cr = env.cr
     cr.execute(
         """
         ALTER TABLE sale_order_line ADD COLUMN IF NOT EXISTS qty_procured numeric;

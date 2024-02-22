@@ -26,25 +26,7 @@ class StockMove(models.Model):
         manual_delivery = self.env.context.get("sale_manual_delivery")
         if manual_delivery:
             # original domain used in super()
-            domain = [
-                ("group_id", "=", self.group_id.id),
-                ("location_id", "=", self.location_id.id),
-                ("location_dest_id", "=", self.location_dest_id.id),
-                ("picking_type_id", "=", self.picking_type_id.id),
-                ("printed", "=", False),
-                ("immediate_transfer", "=", False),
-                (
-                    "state",
-                    "in",
-                    [
-                        "draft",
-                        "confirmed",
-                        "waiting",
-                        "partially_available",
-                        "assigned",
-                    ],
-                ),
-            ]
+            domain = self._search_picking_for_assignation_domain()
             # Filter on carrier
             if manual_delivery.carrier_id:
                 domain += [
