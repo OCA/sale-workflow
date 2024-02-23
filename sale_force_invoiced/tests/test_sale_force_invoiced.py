@@ -6,7 +6,7 @@ from odoo.tests.common import TransactionCase
 
 class TestSaleForceInvoiced(TransactionCase):
     def setUp(self):
-        super(TestSaleForceInvoiced, self).setUp()
+        super().setUp()
         self.sale_order_model = self.env["sale.order"]
         self.sale_order_line_model = self.env["sale.order.line"]
 
@@ -69,7 +69,7 @@ class TestSaleForceInvoiced(TransactionCase):
             so.invoice_status, "to invoice", "The invoice status should be To Invoice"
         )
 
-        so.action_done()
+        so.action_lock()
         so.force_invoiced = True
         self.assertEqual(
             so.invoice_status, "invoiced", "The invoice status should be Invoiced"
