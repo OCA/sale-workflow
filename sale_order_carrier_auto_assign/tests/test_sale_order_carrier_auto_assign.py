@@ -12,7 +12,7 @@ class TestSaleOrderCarrierAutoAssign(TransactionCase):
         cls.env = cls.env["base"].with_context(**DISABLED_MAIL_CONTEXT).env
         cls.settings = cls.env["res.config.settings"].create({})
         cls.settings.carrier_auto_assign = True
-        cls.settings.execute()
+        cls.settings.set_values()
 
         cls.partner = cls.env.ref("base.res_partner_2")
         product = cls.env.ref("product.product_product_9")
