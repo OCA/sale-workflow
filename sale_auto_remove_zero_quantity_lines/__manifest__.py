@@ -4,7 +4,7 @@
 
 {
     "name": "Sale auto remove zero quantity lines",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.2",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "summary": "On sale confirmation remove lines with zero quantities",
     "website": "https://github.com/OCA/sale-workflow",
