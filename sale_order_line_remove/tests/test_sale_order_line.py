@@ -6,13 +6,14 @@ from odoo.tests import TransactionCase
 
 
 class TestSaleOrderLine(TransactionCase):
-    def setUp(self):
-        super(TestSaleOrderLine, self).setUp()
-        self.SaleOrder = self.env["sale.order"]
-        self.SaleOrderLine = self.env["sale.order.line"]
-        self.partner = self.env.ref("base.res_partner_2")
-        self.product = self.env.ref("product.product_product_4")
-        self.uom = self.env.ref("uom.product_uom_unit")
+    @classmethod
+    def setUpClass(cls):
+        super(TestSaleOrderLine, cls).setUpClass()
+        cls.SaleOrder = cls.env["sale.order"]
+        cls.SaleOrderLine = cls.env["sale.order.line"]
+        cls.partner = cls.env.ref("base.res_partner_2")
+        cls.product = cls.env.ref("product.product_product_4")
+        cls.uom = cls.env.ref("uom.product_uom_unit")
 
     def test_check_line_unlink(self):
         sale_order = self.SaleOrder.create({"partner_id": self.partner.id})
