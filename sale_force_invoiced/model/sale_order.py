@@ -12,7 +12,6 @@ class SaleOrder(models.Model):
         "fully invoiced, even when there may be ordered or delivered "
         "quantities pending to invoice.",
         readonly=True,
-        states={"done": [("readonly", False)], "sale": [("readonly", False)]},
         tracking=20,
         copy=False,
     )
@@ -20,7 +19,7 @@ class SaleOrder(models.Model):
     @api.depends("force_invoiced")
     def _compute_invoice_status(self):
         res = super()._compute_invoice_status()
-        self.filtered(
-            lambda so: so.force_invoiced and so.state in ("sale", "done")
-        ).update({"invoice_status": "invoiced"})
+        self.filtered(lambda so: so.force_invoiced and so.state == "sale").update(
+            {"invoice_status": "invoiced"}
+        )
         return res
