@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_blanket_order_line_tree" model="ir.ui.view">
+        <field name="model">sale.blanket.order.line</field>
+        <field
+            name="inherit_id"
+            ref="sale_blanket_order.sale_blanket_order_line_tree"
+        />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="product_customer_reference" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_blanket_order_line_search" model="ir.ui.view">
+        <field name="model">sale.blanket.order.line</field>
+        <field
+            name="inherit_id"
+            ref="sale_blanket_order.sale_blanket_order_line_search"
+        />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="product_customer_reference" />
+            </field>
+        </field>
+    </record>
+</odoo>
