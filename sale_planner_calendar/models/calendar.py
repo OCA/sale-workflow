@@ -55,7 +55,9 @@ class CalendarEvent(models.Model):
         self.with_context(create_recurrence_new_user=False).write(
             {"recurrency": True, "follow_recurrence": True}
         )
-        return to_update._apply_recurrence()
+        return to_update.with_context(
+            create_recurrence_new_user=False
+        )._apply_recurrence()
 
     @api.depends("recurrence_id", "recurrence_id.calendar_event_ids")
     def _compute_is_base_recurrent_event(self):
