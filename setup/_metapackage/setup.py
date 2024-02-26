@@ -23,6 +23,7 @@ setuptools.setup(
         'odoo-addon-sale_cancel_reason>=15.0dev,<15.1dev',
         'odoo-addon-sale_commercial_partner>=15.0dev,<15.1dev',
         'odoo-addon-sale_credit_point>=15.0dev,<15.1dev',
+        'odoo-addon-sale_custom_rounding>=15.0dev,<15.1dev',
         'odoo-addon-sale_delivery_split_date>=15.0dev,<15.1dev',
         'odoo-addon-sale_delivery_state>=15.0dev,<15.1dev',
         'odoo-addon-sale_discount_display_amount>=15.0dev,<15.1dev',
