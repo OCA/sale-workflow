@@ -206,11 +206,6 @@ msgid "Sale Exception Rules"
 msgstr ""
 
 #. module: sale_exception
-#: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
-msgid "Sale Exceptions"
-msgstr ""
-
-#. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_exception_confirm
 msgid "Sale exception confirm wizard"
 msgstr ""

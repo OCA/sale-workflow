@@ -31,7 +31,7 @@
         <field name="name">Elaborations</field>
         <field name="model">product.elaboration</field>
         <field name="arch" type="xml">
-            <tree string="Elaborations" editable="top">
+            <tree editable="top">
                 <field name="code" />
                 <field name="name" />
                 <field

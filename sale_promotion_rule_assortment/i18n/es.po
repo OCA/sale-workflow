@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_promotion_rule_assortment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-01-28 14:35+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_promotion_rule_assortment
+#: model:ir.model,name:sale_promotion_rule_assortment.model_sale_promotion_rule
+msgid ""
+"\n"
+"    Sale Promotion Rule\n"
+"    It's possible to apply multiple promotions to a sale order. In such a case\n"
+"the rules will be applied in the sequence order.\n"
+"If the first applicable rule is 'exclusice' the process will only apply\n"
+"this rule. Otherwise the process will loop over each rule and apply it\n"
+"according to the strategy\n"
+msgstr ""
+"\n"
+"    Regla de promoción de venta\n"
+"    Es posible aplicar varias promociones a un pedido de venta. En tal caso\n"
+"las reglas se aplicarán en el orden secuencial.\n"
+"Si la primera regla aplicable es 'exclusice' el proceso sólo aplicará\n"
+"esta regla. En caso contrario, el proceso pasará por cada regla y la "
+"aplicará\n"
+"según la estrategia\n"
+
+#. module: sale_promotion_rule_assortment
+#: model:ir.filters,name:sale_promotion_rule_assortment.promotion_assortment1
+msgid "Consu Products"
+msgstr "Productos de Consumo"
+
+#. module: sale_promotion_rule_assortment
+#: model:ir.model.fields,field_description:sale_promotion_rule_assortment.field_sale_promotion_rule__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: sale_promotion_rule_assortment
+#: model:ir.model.fields,help:sale_promotion_rule_assortment.field_sale_promotion_rule__filter_id
+msgid "Export only products matching with the filter domain"
+msgstr "Exportar solo productos que coincidan con el dominio de filtro"
+
+#. module: sale_promotion_rule_assortment
+#: model:ir.model.fields,field_description:sale_promotion_rule_assortment.field_sale_promotion_rule__filter_id
+msgid "Filter"
+msgstr "Filtro"
+
+#. module: sale_promotion_rule_assortment
+#: model:ir.model.fields,field_description:sale_promotion_rule_assortment.field_sale_promotion_rule__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_promotion_rule_assortment
+#: model:ir.model.fields,field_description:sale_promotion_rule_assortment.field_sale_promotion_rule____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"

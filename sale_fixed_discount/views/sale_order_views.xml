@@ -23,6 +23,7 @@
                 <field
                     name="discount_fixed"
                     groups="product.group_discount_per_so_line"
+                    optional="show"
                 />
             </xpath>
         </field>

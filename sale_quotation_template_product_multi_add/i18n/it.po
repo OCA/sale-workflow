@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-10 12:08+0000\n"
+"PO-Revision-Date: 2023-12-14 12:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -24,7 +24,7 @@ msgstr "Aggiungi prodotti"
 #. module: sale_quotation_template_product_multi_add
 #: model_terms:ir.ui.view,arch_db:sale_quotation_template_product_multi_add.sale_order_template_view_form_inherit
 msgid "Add multiple products"
-msgstr "Aggiungi prodotti"
+msgstr "Aggiungere prodotti multipli"
 
 #. module: sale_quotation_template_product_multi_add
 #: model_terms:ir.ui.view,arch_db:sale_quotation_template_product_multi_add.view_add_products_to_qt

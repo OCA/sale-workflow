@@ -1,0 +1,99 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_note_template
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-01-28 13:33+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_order_note_template
+#: model:ir.model.fields,field_description:sale_order_note_template.field_sale_terms_template__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: sale_order_note_template
+#: model:ir.model.fields,field_description:sale_order_note_template.field_sale_terms_template__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sale_order_note_template
+#: model:ir.model.fields,field_description:sale_order_note_template.field_sale_terms_template__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: sale_order_note_template
+#: model:ir.model.fields,field_description:sale_order_note_template.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_order_note_template.field_sale_terms_template__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: sale_order_note_template
+#: model:ir.model.fields,field_description:sale_order_note_template.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_order_note_template.field_sale_terms_template__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_note_template
+#: model:ir.model.fields,field_description:sale_order_note_template.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_order_note_template.field_sale_terms_template____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: sale_order_note_template
+#: model:ir.model.fields,field_description:sale_order_note_template.field_sale_terms_template__write_uid
+msgid "Last Updated by"
+msgstr "Última Modificación por"
+
+#. module: sale_order_note_template
+#: model:ir.model.fields,field_description:sale_order_note_template.field_sale_terms_template__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: sale_order_note_template
+#: model:ir.model.fields,field_description:sale_order_note_template.field_sale_terms_template__name
+#: model_terms:ir.ui.view,arch_db:sale_order_note_template.view_sale_terms_template_form
+msgid "Name"
+msgstr "Nombre"
+
+#. module: sale_order_note_template
+#: model:ir.model.fields,field_description:sale_order_note_template.field_sale_order__note
+msgid "Note"
+msgstr "Nota"
+
+#. module: sale_order_note_template
+#: model:ir.model,name:sale_order_note_template.model_sale_terms_template
+msgid "Sale terms template"
+msgstr "Plantilla de las condiciones de venta"
+
+#. module: sale_order_note_template
+#: model:ir.model,name:sale_order_note_template.model_sale_order
+msgid "Sales Order"
+msgstr "Orden de Ventas"
+
+#. module: sale_order_note_template
+#: model_terms:ir.ui.view,arch_db:sale_order_note_template.view_sale_terms_template_form
+#: model_terms:ir.ui.view,arch_db:sale_order_note_template.view_sale_terms_template_search
+msgid "Terms and conditions Templates"
+msgstr "Plantillas de Términos y Condiciones"
+
+#. module: sale_order_note_template
+#: model:ir.actions.act_window,name:sale_order_note_template.action_sale_terms_template
+#: model:ir.model.fields,field_description:sale_order_note_template.field_sale_order__terms_template_id
+#: model_terms:ir.ui.view,arch_db:sale_order_note_template.view_order_form_terms_template
+msgid "Terms and conditions template"
+msgstr "Plantilla de Términos y Condiciones"
+
+#. module: sale_order_note_template
+#: model:ir.model.fields,field_description:sale_order_note_template.field_sale_terms_template__text
+msgid "Terms template"
+msgstr "Plantilla de Términos"

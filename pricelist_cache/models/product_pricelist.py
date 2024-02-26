@@ -19,7 +19,7 @@ class Pricelist(models.Model):
     )
     is_pricelist_cache_computed = fields.Boolean()
     is_pricelist_cache_available = fields.Boolean(
-        compute="_compute_is_pricelist_cache_available", store=True
+        compute="_compute_is_pricelist_cache_available"
     )
 
     @api.depends(
@@ -29,23 +29,30 @@ class Pricelist(models.Model):
         for record in self:
             record.parent_pricelist_ids = record._get_parent_pricelists()
 
-    @api.depends(
-        "is_pricelist_cache_computed",
-        "item_ids",
-        "item_ids.applied_on",
-        "item_ids.base",
-        "item_ids.base_pricelist_id",
-        "item_ids.base_pricelist_id.is_pricelist_cache_available",
-    )
     def _compute_is_pricelist_cache_available(self):
-        # TODO This might be slow, if pricelist tree is deep.
         for record in self:
-            record.is_pricelist_cache_available = (
-                record.is_pricelist_cache_computed
-                and all(
-                    record.parent_pricelist_ids.mapped("is_pricelist_cache_available")
-                )
+            parents = record._get_parent_list_tree()
+            record.is_pricelist_cache_available = all(
+                parents.mapped("is_pricelist_cache_computed")
             )
+
+    def _get_parent_list_tree(self):
+        self.ensure_one()
+        query = """
+            WITH RECURSIVE parent_pricelist AS (
+                SELECT id
+                FROM product_pricelist
+                WHERE id = %(pricelist_id)s
+                UNION SELECT item.base_pricelist_id AS id
+                    FROM product_pricelist_item item
+                    INNER JOIN parent_pricelist parent
+                        ON item.pricelist_id = parent.id
+            )
+            SELECT id FROM parent_pricelist;
+        """
+        self.flush()
+        self.env.cr.execute(query, {"pricelist_id": self.id})
+        return self.search([("id", "in", [row[0] for row in self.env.cr.fetchall()])])
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -87,7 +94,8 @@ class Pricelist(models.Model):
                     base_pricelist_id IS NOT NULL
                     AND base = 'pricelist'
                 )
-            );
+            )
+            AND active = TRUE;
         """
         self.flush()
         self.env.cr.execute(no_parent_query)
@@ -113,7 +121,8 @@ class Pricelist(models.Model):
                         OR price_surcharge != 0.0
                     )
                 )
-            );
+            )
+            AND active = TRUE;
         """
         self.flush()
         self.env.cr.execute(factor_pricelist_query)

@@ -17,12 +17,21 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: sale_stock_return_request
+#: model_terms:ir.ui.view,arch_db:sale_stock_return_request.view_order_form
+msgid "Create Return Request"
+msgstr ""
+
+#. module: sale_stock_return_request
+#: model:ir.model.fields,field_description:sale_stock_return_request.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_stock_return_request.field_stock_return_request__display_name
+#: model:ir.model.fields,field_description:sale_stock_return_request.field_stock_return_request_line__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: sale_stock_return_request
+#: model:ir.model.fields,field_description:sale_stock_return_request.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_stock_return_request.field_stock_return_request__id
+#: model:ir.model.fields,field_description:sale_stock_return_request.field_stock_return_request_line__id
 msgid "ID"
 msgstr ""
 
@@ -32,7 +41,9 @@ msgid "Involved Sales"
 msgstr "Vendes implicades"
 
 #. module: sale_stock_return_request
+#: model:ir.model.fields,field_description:sale_stock_return_request.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_stock_return_request.field_stock_return_request____last_update
+#: model:ir.model.fields,field_description:sale_stock_return_request.field_stock_return_request_line____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -40,6 +51,11 @@ msgstr ""
 #: model:ir.model,name:sale_stock_return_request.model_stock_return_request
 msgid "Perform stock returns across pickings"
 msgstr "Realitzeu devolucions d’accions en totes les seleccions"
+
+#. module: sale_stock_return_request
+#: model:ir.model,name:sale_stock_return_request.model_stock_return_request_line
+msgid "Product to search for returns"
+msgstr ""
 
 #. module: sale_stock_return_request
 #: model:ir.ui.menu,name:sale_stock_return_request.menu_sale_stock_return_request
@@ -55,3 +71,18 @@ msgstr "Sol·licituds de devolució de venda"
 #: model_terms:ir.ui.view,arch_db:sale_stock_return_request.view_stock_return_request_form
 msgid "Sales"
 msgstr "Vendes"
+
+#. module: sale_stock_return_request
+#: model:ir.model,name:sale_stock_return_request.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_stock_return_request
+#: model:ir.model.fields,field_description:sale_stock_return_request.field_stock_return_request__filter_sale_order_ids
+msgid "Selected order(s)"
+msgstr ""
+
+#. module: sale_stock_return_request
+#: model:ir.model.fields,field_description:sale_stock_return_request.field_sale_order__show_create_return_request
+msgid "Show Create Return Request"
+msgstr ""

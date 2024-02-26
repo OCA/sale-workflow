@@ -1,0 +1,56 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_promotion_rule_assortment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_promotion_rule_assortment
+#: model:ir.model,name:sale_promotion_rule_assortment.model_sale_promotion_rule
+msgid ""
+"\n"
+"    Sale Promotion Rule\n"
+"    It's possible to apply multiple promotions to a sale order. In such a case\n"
+"the rules will be applied in the sequence order.\n"
+"If the first applicable rule is 'exclusice' the process will only apply\n"
+"this rule. Otherwise the process will loop over each rule and apply it\n"
+"according to the strategy\n"
+msgstr ""
+
+#. module: sale_promotion_rule_assortment
+#: model:ir.filters,name:sale_promotion_rule_assortment.promotion_assortment1
+msgid "Consu Products"
+msgstr ""
+
+#. module: sale_promotion_rule_assortment
+#: model:ir.model.fields,field_description:sale_promotion_rule_assortment.field_sale_promotion_rule__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_promotion_rule_assortment
+#: model:ir.model.fields,help:sale_promotion_rule_assortment.field_sale_promotion_rule__filter_id
+msgid "Export only products matching with the filter domain"
+msgstr ""
+
+#. module: sale_promotion_rule_assortment
+#: model:ir.model.fields,field_description:sale_promotion_rule_assortment.field_sale_promotion_rule__filter_id
+msgid "Filter"
+msgstr ""
+
+#. module: sale_promotion_rule_assortment
+#: model:ir.model.fields,field_description:sale_promotion_rule_assortment.field_sale_promotion_rule__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_promotion_rule_assortment
+#: model:ir.model.fields,field_description:sale_promotion_rule_assortment.field_sale_promotion_rule____last_update
+msgid "Last Modified on"
+msgstr ""

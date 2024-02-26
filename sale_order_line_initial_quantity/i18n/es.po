@@ -1,0 +1,55 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_initial_quantity
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-01-16 18:36+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_order_line_initial_quantity
+#: model:ir.model.fields,field_description:sale_order_line_initial_quantity.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_order_line_initial_quantity.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: sale_order_line_initial_quantity
+#: model:ir.model.fields,field_description:sale_order_line_initial_quantity.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_order_line_initial_quantity.field_sale_order_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_line_initial_quantity
+#: model:ir.model.fields,field_description:sale_order_line_initial_quantity.field_sale_order__initial_qty_changed
+msgid "Initial Quantity Changed"
+msgstr "Cantidad Inicial Cambiada"
+
+#. module: sale_order_line_initial_quantity
+#: model:ir.model.fields,field_description:sale_order_line_initial_quantity.field_sale_order_line__product_uom_initial_qty
+msgid "Initial quantity"
+msgstr "Cantidad inicial"
+
+#. module: sale_order_line_initial_quantity
+#: model:ir.model.fields,field_description:sale_order_line_initial_quantity.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_order_line_initial_quantity.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: sale_order_line_initial_quantity
+#: model:ir.model,name:sale_order_line_initial_quantity.model_sale_order
+msgid "Sales Order"
+msgstr "Órdenes de Venta"
+
+#. module: sale_order_line_initial_quantity
+#: model:ir.model,name:sale_order_line_initial_quantity.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de Orden de Venta"

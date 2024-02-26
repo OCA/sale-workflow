@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_blanket_order_form" model="ir.ui.view">
+        <field name="name">sale.blanket.order.form</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form" />
+        <field name="arch" type="xml">
+            <header position="inside">
+                <button
+                    name="create_revision"
+                    string="New Revision of Blanket Order"
+                    type="object"
+                    attrs="{'invisible': [('state', 'not in', ['cancel', 'done'])]}"
+                />
+            </header>
+            <div name="button_box" position="inside">
+                <field name="revision_count" invisible="1" />
+                <button
+                    name="action_view_revisions"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-file-archive-o"
+                    attrs="{'invisible': ['|', ('has_old_revisions', '=', False), ('revision_count', '=', 0)]}"
+                >
+                    <field
+                        name="revision_count"
+                        widget="statinfo"
+                        string="Prev. revisions"
+                    />
+                </button>
+            </div>
+            <field name="validity_date" position="after">
+                <field
+                    name="current_revision_id"
+                    attrs="{'invisible': [('current_revision_id', '=', False)]}"
+                />
+                <field name="has_old_revisions" invisible="1" />
+            </field>
+        </field>
+    </record>
+</odoo>

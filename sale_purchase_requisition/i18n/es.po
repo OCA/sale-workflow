@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-27 07:00+0000\n"
-"PO-Revision-Date: 2023-04-27 09:05+0200\n"
-"Last-Translator: Andrea Cattalani <andrea@moduon.team>\n"
+"PO-Revision-Date: 2024-01-29 19:36+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 3.1.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_purchase_requisition
 #: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__display_name
@@ -54,7 +54,7 @@ msgstr "Número de acuerdos de compra en estado abierto"
 #. module: sale_purchase_requisition
 #: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order__open_purchase_requisition_count
 msgid "Open Purchase Requisitions"
-msgstr ""
+msgstr "Solicitudes de Compra Pendientes"
 
 #. module: sale_purchase_requisition
 #: model:ir.model,name:sale_purchase_requisition.model_purchase_requisition
@@ -70,19 +70,19 @@ msgstr "Línea solicitud de compra"
 #. module: sale_purchase_requisition
 #: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order__purchase_requisition_sync_warning
 msgid "Purchase Requisition Sync Warning"
-msgstr ""
+msgstr "Advertencia de Sincronización de Solicitud de Compra"
 
 #. module: sale_purchase_requisition
 #: code:addons/sale_purchase_requisition/models/sale_order.py:0
 #, python-format
 msgid "Purchase Requisition for %s"
-msgstr ""
+msgstr "Solicitud de Compra para %s"
 
 #. module: sale_purchase_requisition
 #: code:addons/sale_purchase_requisition/models/sale_order.py:0
 #, python-format
 msgid "Purchase Requisition(s) for %s"
-msgstr ""
+msgstr "Solicitud(es) de Compra para %s"
 
 #. module: sale_purchase_requisition
 #: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order_line__purchase_requisition_line_ids
@@ -92,7 +92,7 @@ msgstr "Líneas de acuerdo de compra"
 #. module: sale_purchase_requisition
 #: model:ir.model.fields,field_description:sale_purchase_requisition.field_sale_order__purchase_requisition_ids
 msgid "Purchase requisitions"
-msgstr ""
+msgstr "Requerimiento de compra"
 
 #. module: sale_purchase_requisition
 #: code:addons/sale_purchase_requisition/models/sale_order.py:0
@@ -113,7 +113,7 @@ msgstr "Línea de pedido de venta"
 #. module: sale_purchase_requisition
 #: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__sale_order_sync_warning
 msgid "Sale Order Sync Warning"
-msgstr ""
+msgstr "Aviso de Sincronización de Orden de Venta"
 
 #. module: sale_purchase_requisition
 #: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__sale_user_id
@@ -152,6 +152,8 @@ msgid ""
 "Some lines are not synced on this Sale order: %s. Please update these lines "
 "manually."
 msgstr ""
+"Algunas líneas no están sincronizadas en esta Orden de venta: %s. Por favor, "
+"actualice estas líneas manualmente."
 
 #. module: sale_purchase_requisition
 #: code:addons/sale_purchase_requisition/models/purchase_requisition.py:0
@@ -160,6 +162,8 @@ msgid ""
 "The product quantities %(product)s <br/>  have changed %(old_qty)d -> "
 "%(new_qty)d %(uom)s"
 msgstr ""
+"Las cantidades de producto %(product)s <br/> han cambiado %(old_qty)d -> "
+"%(new_qty)d %(uom)s"
 
 #. module: sale_purchase_requisition
 #: model:ir.model.fields,help:sale_purchase_requisition.field_sale_order__purchase_requisition_sync_warning
@@ -167,6 +171,8 @@ msgid ""
 "Warning message to be displayed when order lines are not synced with "
 "purchase requisitions"
 msgstr ""
+"Mensaje de advertencia que se mostrará cuando las líneas de pedido no se "
+"sincronicen con las solicitudes de compra"
 
 #, python-format
 #~ msgid ""

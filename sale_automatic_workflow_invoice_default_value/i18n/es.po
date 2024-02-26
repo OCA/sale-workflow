@@ -1,0 +1,134 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_automatic_workflow_invoice_default_value
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-01-28 13:33+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model,name:sale_automatic_workflow_invoice_default_value.model_automatic_workflow_invoice_default_value
+msgid "Automatic Workflow Invoice Default Value"
+msgstr "Flujo de Trabajo Automático Valor por Defecto de la Factura"
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_sale_workflow_process__create_invoice_default_value_ids
+msgid "Create Invoice Default values"
+msgstr "Crear Factura Valores Predeterminados"
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__default_char_value
+#: model:ir.model.fields.selection,name:sale_automatic_workflow_invoice_default_value.selection__automatic_workflow_invoice_default_value__value_type__default_char_value
+msgid "Default Char Value"
+msgstr "Valor por Defecto del Carácter"
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__display_name
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_job__display_name
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_sale_workflow_process__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields.selection,name:sale_automatic_workflow_invoice_default_value.selection__automatic_workflow_invoice_default_value__value_type__from_sale_order
+msgid "From Sale Order"
+msgstr "De la Orden de Venta"
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__id
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_job__id
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_sale_workflow_process__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__invoice_field_id
+msgid "Invoice Field"
+msgstr "Campo Factura"
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value____last_update
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_job____last_update
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_sale_workflow_process____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__process_id
+msgid "Process"
+msgstr "Procesar"
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__sale_order_field_id
+msgid "Sale Order Field"
+msgstr "Campo Orden de Venta"
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model,name:sale_automatic_workflow_invoice_default_value.model_sale_workflow_process
+msgid "Sale Workflow Process"
+msgstr "Proceso de Flujo de Venta"
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model,name:sale_automatic_workflow_invoice_default_value.model_automatic_workflow_job
+msgid ""
+"Scheduler that will play automatically the validation of invoices, "
+"pickings..."
+msgstr ""
+"Programador que reproducirá automáticamente la validación de facturas, "
+"recogidas..."
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: model:ir.model.fields,field_description:sale_automatic_workflow_invoice_default_value.field_automatic_workflow_invoice_default_value__value_type
+msgid "Value Type"
+msgstr "Tipo del Valor"
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: code:addons/sale_automatic_workflow_invoice_default_value/models/automatic_workflow_invoice_default_value.py:0
+#, python-format
+msgid ""
+"With a default char value, the invoice field must be of type char and not: "
+"{invoice_field_type}."
+msgstr ""
+"Con un valor de carácter predeterminado, el campo de la factura debe ser del "
+"tipo carácter y no: {invoice_field_type}."
+
+#. module: sale_automatic_workflow_invoice_default_value
+#: code:addons/sale_automatic_workflow_invoice_default_value/models/automatic_workflow_invoice_default_value.py:0
+#, python-format
+msgid ""
+"With a from sale order value, the invoice field type ({invoice_field_type}) "
+"must be the same type than the sale order field ({sale_order_field_type})."
+msgstr ""
+"Con un valor de orden de venta, el tipo de campo de factura "
+"({invoice_field_type}) debe ser del mismo tipo que el campo de orden de "
+"venta ({sale_order_field_type})."

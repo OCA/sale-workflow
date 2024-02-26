@@ -3,7 +3,7 @@
 {
     "name": "Default Sale UOM",
     "summary": """ Set default Unit of Measure value of a product in sales order lines.""",
-    "version": "14.0.1.1.0",
+    "version": "14.0.1.1.1",
     "category": "Sales",
     "author": "Ashish Hirpara, Ooops, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",

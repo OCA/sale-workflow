@@ -7,7 +7,7 @@
     <field name="name">product.pricelist.cache.tree</field>
     <field name="model">product.pricelist.cache</field>
     <field name="arch" type="xml">
-      <tree string="Price List" create="false" edit="false">
+      <tree create="false" edit="false">
           <field name="product_id" />
           <field name="price" />
       </tree>

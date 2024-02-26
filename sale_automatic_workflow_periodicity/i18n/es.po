@@ -1,0 +1,84 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_automatic_workflow_periodicity
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-01-26 20:34+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_automatic_workflow_periodicity
+#: model:ir.model.fields,field_description:sale_automatic_workflow_periodicity.field_automatic_workflow_job__display_name
+#: model:ir.model.fields,field_description:sale_automatic_workflow_periodicity.field_sale_workflow_process__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: sale_automatic_workflow_periodicity
+#: model:ir.model.fields,field_description:sale_automatic_workflow_periodicity.field_sale_workflow_process__periodicity_check_create_date
+msgid "Enforce on creation time"
+msgstr "Aplicar en el momento de la creación"
+
+#. module: sale_automatic_workflow_periodicity
+#: model:ir.model.fields,field_description:sale_automatic_workflow_periodicity.field_automatic_workflow_job__id
+#: model:ir.model.fields,field_description:sale_automatic_workflow_periodicity.field_sale_workflow_process__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_automatic_workflow_periodicity
+#: model:ir.model.fields,field_description:sale_automatic_workflow_periodicity.field_automatic_workflow_job____last_update
+#: model:ir.model.fields,field_description:sale_automatic_workflow_periodicity.field_sale_workflow_process____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: sale_automatic_workflow_periodicity
+#: model:ir.model.fields,field_description:sale_automatic_workflow_periodicity.field_sale_workflow_process__next_execution
+msgid "Next Execution"
+msgstr "Próxima Ejecución"
+
+#. module: sale_automatic_workflow_periodicity
+#: model:ir.model.fields,field_description:sale_automatic_workflow_periodicity.field_sale_workflow_process__periodicity
+msgid "Run every (in seconds)"
+msgstr "Ejecutar cada (en segundos)"
+
+#. module: sale_automatic_workflow_periodicity
+#: model:ir.model,name:sale_automatic_workflow_periodicity.model_sale_workflow_process
+msgid "Sale Workflow Process"
+msgstr "Proceso de Flujo de Venta"
+
+#. module: sale_automatic_workflow_periodicity
+#: model:ir.model,name:sale_automatic_workflow_periodicity.model_automatic_workflow_job
+msgid ""
+"Scheduler that will play automatically the validation of invoices, "
+"pickings..."
+msgstr ""
+"Programador que reproducirá automáticamente la validación de facturas, "
+"recogidas..."
+
+#. module: sale_automatic_workflow_periodicity
+#: model:ir.model.fields,help:sale_automatic_workflow_periodicity.field_sale_workflow_process__periodicity
+msgid "Sets a periodicity for this workflow to be executed (in seconds)"
+msgstr ""
+"Establece una periodicidad para que se ejecute este flujo de trabajo (en "
+"segundos)"
+
+#. module: sale_automatic_workflow_periodicity
+#: model:ir.model.fields,help:sale_automatic_workflow_periodicity.field_sale_workflow_process__periodicity_check_create_date
+msgid ""
+"When checked only sales created before the last execution will be processed."
+msgstr ""
+"Si se marca, sólo se procesarán las ventas creadas antes de la última "
+"ejecución."
+
+#. module: sale_automatic_workflow_periodicity
+#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow_periodicity.sale_workflow_process_view_form
+msgid "Workflow execution periodicity"
+msgstr "Periodicidad de ejecución del flujo de trabajo"

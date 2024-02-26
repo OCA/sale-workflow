@@ -1,0 +1,444 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_restricted_qty
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-01-16 18:36+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_restricted_qty
+#: code:addons/sale_restricted_qty/models/sale.py:0
+#, python-format
+msgid ""
+"\n"
+"* If you want sell quantity bigger than max Quantity,Check \"force max quatity\" on product"
+msgstr ""
+"\n"
+"* Si desea vender una cantidad superior a la cantidad máxima, marque \"forzar"
+" cantidad máxima\" en el producto"
+
+#. module: sale_restricted_qty
+#: code:addons/sale_restricted_qty/models/sale.py:0
+#, python-format
+msgid ""
+"\n"
+"* If you want sell quantity less than Min Quantity,Check \"force min quatity\" on product"
+msgstr ""
+"\n"
+"* Si desea vender una cantidad inferior a la cantidad mínima, marque la "
+"\"cantidad mínima forzada\" en el producto"
+
+#. module: sale_restricted_qty
+#: code:addons/sale_restricted_qty/models/sale.py:0
+#, python-format
+msgid ""
+"\n"
+"* If you want sell quantity not multiple Quantity,Set multiple quantity to 0 on product or product template or product category"
+msgstr ""
+"\n"
+"* Si usted quiere vender cantidad no múltiple Cantidad, Establecer cantidad "
+"múltiple a 0 en el producto o plantilla de producto o categoría de producto"
+
+#. module: sale_restricted_qty
+#: code:addons/sale_restricted_qty/models/sale.py:0
+#, python-format
+msgid "Check maximum order quantity for this products: * \n"
+msgstr "Compruebe la cantidad máxima de pedido para estos productos: * \n"
+
+#. module: sale_restricted_qty
+#: code:addons/sale_restricted_qty/models/sale.py:0
+#, python-format
+msgid "Check minimum order quantity for this products: * \n"
+msgstr "Verifique la cantidad mínima de pedido para estos productos: * \n"
+
+#. module: sale_restricted_qty
+#: code:addons/sale_restricted_qty/models/sale.py:0
+#, python-format
+msgid "Check multiple order quantity for this products: * \n"
+msgstr "Compruebe la cantidad de pedidos múltiples para estos productos: * \n"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_category__force_sale_max_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_product__force_sale_max_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__force_sale_max_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_template__force_sale_max_qty
+msgid ""
+"Define if user can force sale max qty 'If not set', Odoo will use the value "
+"defined in the parent object.Hierarchy is in this order :Product/product "
+"Template/product category/parent categoroies "
+msgstr ""
+"Defina si el usuario puede forzar la cantidad máxima de venta 'Si no se "
+"establece', Odoo usará el valor definido en el objeto parental. La jerarquía "
+"es en este orden :Producto/Plantilla de producto/Categoría de producto/"
+"Categorías parentales "
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_category__force_sale_min_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_product__force_sale_min_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__force_sale_min_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_template__force_sale_min_qty
+msgid ""
+"Define if user can force sale min qty 'If not set', Odoo will use the value "
+"defined in the parent object.Hierarchy is in this order :Product/product "
+"Template/product category/parent categoroies "
+msgstr ""
+"Definir si el usuario puede forzar la venta de la cantidad min. 'Si no se "
+"establece', Odoo utilizará el valor definido en el objeto parental .La "
+"jerarquía es en este orden :Producto/Plantilla de producto/Categoría de "
+"producto/Categorías parentales "
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_category__sale_max_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_product__sale_max_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__sale_max_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_template__sale_max_qty
+msgid ""
+"Define sale max qty 'If not set, Odoo will use the value defined in the "
+"parent object.Hierarchy is in this order :Product/product Template/product "
+"category/parent categoroies "
+msgstr ""
+"Definir cantidad máxima de venta 'Si no se establece, Odoo utilizará el "
+"valor definido en el objeto parental. la jerarquía es en este orden :"
+"Producto/Plantilla de producto/Categoría de producto/Categorías parentales "
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_category__sale_min_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_product__sale_min_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__sale_min_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_template__sale_min_qty
+msgid ""
+"Define sale min qty 'If not set, Odoo will use the value defined in the "
+"parent object.Hierarchy is in this order :Product/product Template/product "
+"category/parent categoroies "
+msgstr ""
+"Definir venta min cant. 'Si no se establece, Odoo utilizará el valor "
+"definido en el objeto principal. La jerarquía es en este orden :Producto/"
+"plantilla de producto/categoría de producto/categorías principales "
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_category__sale_multiple_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_product__sale_multiple_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__sale_multiple_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_template__sale_multiple_qty
+msgid ""
+"Define sale multiple qty 'If not set', Odoo will use the value defined in "
+"the parent object.Hierarchy is in this order :Product/product "
+"Template/product category/parent categoroies "
+msgstr ""
+"Definir cantidad de venta múltiple 'Si no se establece', Odoo utilizará el "
+"valor definido en el objeto primario. La jerarquía es en este orden: "
+"Producto / Plantilla de producto / categoría de producto / categorías "
+"primarias. "
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__display_name
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_product__display_name
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__display_name
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__display_name
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__force_sale_max_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_product__force_sale_max_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__force_sale_max_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__force_sale_max_qty
+msgid "Force Max Qty"
+msgstr "Forzar Cant Máx"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__force_sale_min_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_product__force_sale_min_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__force_sale_min_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__force_sale_min_qty
+msgid "Force Min Qty"
+msgstr "Forzar Cntd Mín"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__force_sale_max_qty
+msgid "Force Sale Max Qty"
+msgstr "Forzar Venta Cntd Máx"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__force_sale_min_qty
+msgid "Force Sale Min Qty"
+msgstr "Forzar Vender Cntd Min"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__id
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_product__id
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__id
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__id
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_category__manual_force_sale_max_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_product__manual_force_sale_max_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__manual_force_sale_max_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_template__manual_force_sale_max_qty
+msgid ""
+"If force max qty is checked, the max quantity is only indicative value.If is"
+" not test we check parent value"
+msgstr ""
+"Si se marca la forzar cantidad máxima, la cantidad máxima es solo un valor "
+"indicativo. Si no es una prueba, verificamos el valor principal"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_category__manual_force_sale_min_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_product__manual_force_sale_min_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_restricted_qty_mixin__manual_force_sale_min_qty
+#: model:ir.model.fields,help:sale_restricted_qty.field_product_template__manual_force_sale_min_qty
+msgid ""
+"If force min qty is checked, the min quantity is only indicative value.If is"
+" not test we check parent value"
+msgstr ""
+"Si se marca forzar cantidad mínima , la cantidad mínima es solo un valor "
+"indicativo. Si no es una prueba, verificamos el valor principal"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category____last_update
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_product____last_update
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin____last_update
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template____last_update
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__manual_force_sale_max_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_product__manual_force_sale_max_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__manual_force_sale_max_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__manual_force_sale_max_qty
+msgid "Manual Force Max Qty"
+msgstr "Forzar Manualmente Ctd. Máx"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__manual_force_sale_min_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_product__manual_force_sale_min_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__manual_force_sale_min_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__manual_force_sale_min_qty
+msgid "Manual Force Min Qty"
+msgstr "Forzar Manualmente Ctd. Min"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__sale_max_qty
+msgid "Max Qty"
+msgstr "Ctd Máx"
+
+#. module: sale_restricted_qty
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_order_form
+msgid "Max Quantity Exceeded"
+msgstr "Cantidad Máxima Excedida"
+
+#. module: sale_restricted_qty
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_order_form
+msgid "Max Quantity Recommended"
+msgstr "Cantidad Máx. Recomendada"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__manual_sale_max_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_product__manual_sale_max_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__manual_sale_max_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__manual_sale_max_qty
+msgid "Max Sale Qty"
+msgstr "Cantidad Máx. Venta"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__sale_min_qty
+msgid "Min Qty"
+msgstr "Ctd Mín"
+
+#. module: sale_restricted_qty
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_order_form
+msgid "Min Quantity Recommended"
+msgstr "Cantidad Mín Recomendada"
+
+#. module: sale_restricted_qty
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_order_form
+msgid "Min Quantity Required"
+msgstr "Cantidad Mín Requerida"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__manual_sale_min_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_product__manual_sale_min_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__manual_sale_min_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__manual_sale_min_qty
+msgid "Min Sale Qty"
+msgstr "Cantidad Mín de Venta"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__sale_multiple_qty
+msgid "Multiple Qty"
+msgstr "Ctd Múltiple"
+
+#. module: sale_restricted_qty
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_order_form
+msgid "Multiple Quantity Required"
+msgstr "Cantidad Múltiple Requerida"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__manual_sale_multiple_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_product__manual_sale_multiple_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__manual_sale_multiple_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__manual_sale_multiple_qty
+msgid "Multiple Sale Qty"
+msgstr "Ctd. de Venta Múltiple"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_category__manual_force_sale_max_qty__not_force
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_category__manual_force_sale_min_qty__not_force
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_product__manual_force_sale_max_qty__not_force
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_product__manual_force_sale_min_qty__not_force
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_restricted_qty_mixin__manual_force_sale_max_qty__not_force
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_restricted_qty_mixin__manual_force_sale_min_qty__not_force
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_template__manual_force_sale_max_qty__not_force
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_template__manual_force_sale_min_qty__not_force
+msgid "No"
+msgstr "No"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__is_qty_not_multiple_qty
+msgid "Not Multiple Qty"
+msgstr "No Ctd. Múltiple"
+
+#. module: sale_restricted_qty
+#: model:ir.model,name:sale_restricted_qty.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_restricted_qty
+#: code:addons/sale_restricted_qty/models/sale.py:0
+#, python-format
+msgid "Product \"%s\": Min Quantity %s."
+msgstr "Producto \"%s\": Cantidad Mín %s."
+
+#. module: sale_restricted_qty
+#: code:addons/sale_restricted_qty/models/sale.py:0
+#, python-format
+msgid "Product \"%s\": max Quantity %s."
+msgstr "Producto \"%s\": Cantidad Máx %s."
+
+#. module: sale_restricted_qty
+#: code:addons/sale_restricted_qty/models/sale.py:0
+#, python-format
+msgid "Product \"%s\": multiple Quantity %s."
+msgstr "Producto \"%s\": Cantidad múltiple %s."
+
+#. module: sale_restricted_qty
+#: model:ir.model,name:sale_restricted_qty.model_product_category
+msgid "Product Category"
+msgstr "Categoría de Producto"
+
+#. module: sale_restricted_qty
+#: model:ir.model,name:sale_restricted_qty.model_product_restricted_qty_mixin
+msgid "Product Restrict Qty Mixin"
+msgstr "Mezcla de Cntd Restringida de Productos"
+
+#. module: sale_restricted_qty
+#: model:ir.model,name:sale_restricted_qty.model_product_template
+msgid "Product Template"
+msgstr "Plantilla Producto"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__is_qty_less_min_qty
+msgid "Qty < Min Qty"
+msgstr "Cant. < Cant. Mín"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__is_qty_bigger_max_qty
+msgid "Qty > max Qty"
+msgstr "Ctd. > Ctd. máx"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_max_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_product__sale_max_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__sale_max_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_max_qty
+msgid "Sale Max Qty"
+msgstr "Venta Ctd. Máx"
+
+#. module: sale_restricted_qty
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
+msgid "Sale Max qty"
+msgstr "Venta ctd. Máx"
+
+#. module: sale_restricted_qty
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
+msgid "Sale Miltiple qty"
+msgstr "Venta cant. Múltiple"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_min_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_product__sale_min_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__sale_min_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_min_qty
+msgid "Sale Min Qty"
+msgstr "Venta Ctd Min"
+
+#. module: sale_restricted_qty
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
+msgid "Sale Min qty"
+msgstr "Venta ctd Min"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_multiple_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_product__sale_multiple_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_restricted_qty_mixin__sale_multiple_qty
+#: model:ir.model.fields,field_description:sale_restricted_qty.field_product_template__sale_multiple_qty
+msgid "Sale Multiple Qty"
+msgstr "Venta Cant. Múltiple"
+
+#. module: sale_restricted_qty
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
+msgid "Sale restricted qty"
+msgstr "Ctd. de venta restringida"
+
+#. module: sale_restricted_qty
+#: model:ir.model,name:sale_restricted_qty.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de Orden de Venta"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_category__manual_force_sale_max_qty__use_parent
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_category__manual_force_sale_min_qty__use_parent
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_product__manual_force_sale_max_qty__use_parent
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_product__manual_force_sale_min_qty__use_parent
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_restricted_qty_mixin__manual_force_sale_max_qty__use_parent
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_restricted_qty_mixin__manual_force_sale_min_qty__use_parent
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_template__manual_force_sale_max_qty__use_parent
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_template__manual_force_sale_min_qty__use_parent
+msgid "Use Parent Setting"
+msgstr "Usar Configuración Parental"
+
+#. module: sale_restricted_qty
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_category__manual_force_sale_max_qty__force
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_category__manual_force_sale_min_qty__force
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_product__manual_force_sale_max_qty__force
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_product__manual_force_sale_min_qty__force
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_restricted_qty_mixin__manual_force_sale_max_qty__force
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_restricted_qty_mixin__manual_force_sale_min_qty__force
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_template__manual_force_sale_max_qty__force
+#: model:ir.model.fields.selection,name:sale_restricted_qty.selection__product_template__manual_force_sale_min_qty__force
+msgid "Yes"
+msgstr "Si"

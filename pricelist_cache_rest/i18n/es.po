@@ -1,0 +1,76 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pricelist_cache_rest
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-01-17 14:34+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: pricelist_cache_rest
+#: model_terms:ir.ui.view,arch_db:pricelist_cache_rest.res_config_settings_view_form_pricelist_cache_rest_inherit
+msgid "<b modifiers=\"{}\">Authorized Pricelist Cache API keys</b>"
+msgstr ""
+"<b modifiers=\"{}\">Claves API de caché de lista de precios autorizadas</b>"
+
+#. module: pricelist_cache_rest
+#: model:ir.model.fields,help:pricelist_cache_rest.field_res_company__pricelist_cache_auhorize_apikey_ids
+#: model:ir.model.fields,help:pricelist_cache_rest.field_res_config_settings__pricelist_cache_auhorize_apikey_ids
+msgid "API keys that can retrieve pricelist data via REST endpoints."
+msgstr ""
+"Claves API que pueden recuperar datos de listas de precios a través de "
+"puntos finales REST."
+
+#. module: pricelist_cache_rest
+#: model:ir.model,name:pricelist_cache_rest.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: pricelist_cache_rest
+#: model:ir.model,name:pricelist_cache_rest.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes Config"
+
+#. module: pricelist_cache_rest
+#: model_terms:ir.ui.view,arch_db:pricelist_cache_rest.res_config_settings_view_form_pricelist_cache_rest_inherit
+msgid ""
+"Defines the list of api keys authorized to retrieve prices from the api"
+msgstr "Define la lista de claves api autorizadas a recuperar precios de la api"
+
+#. module: pricelist_cache_rest
+#: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_company__display_name
+#: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: pricelist_cache_rest
+#: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_company__id
+#: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_config_settings__id
+msgid "ID"
+msgstr "ID"
+
+#. module: pricelist_cache_rest
+#: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_company____last_update
+#: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_config_settings____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: pricelist_cache_rest
+#: model_terms:ir.ui.view,arch_db:pricelist_cache_rest.res_config_settings_view_form_pricelist_cache_rest_inherit
+msgid "Pricelist Cache API keys"
+msgstr "Claves API de la caché de listas de precios"
+
+#. module: pricelist_cache_rest
+#: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_company__pricelist_cache_auhorize_apikey_ids
+#: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_config_settings__pricelist_cache_auhorize_apikey_ids
+msgid "Pricelist Cache Auhorize Apikey"
+msgstr "Lista de precios Caché Autorizar Apikey"

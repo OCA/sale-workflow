@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_stock_quant_tree_selection_embed" model="ir.ui.view">
+        <field name="name">stock.quant.tree</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_tree" />
+        <field name="mode">primary</field>
+        <field name="priority" eval="999" />
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="js_class">sale_order_lot_selection_by_quant</attribute>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_select_lot_by_location" model="ir.actions.act_window">
+        <field name="name">Select Lot By Location</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.quant</field>
+        <field name="view_mode">tree</field>
+        <field name="target">new</field>
+        <field
+            name="view_id"
+            ref="sale_order_lot_selection_by_quant.view_stock_quant_tree_selection_embed"
+        />
+        <field name="domain">
+            [
+                ('product_id', '=', default_product_id),
+                ('lot_id', '!=', False),
+                ('location_id.usage', 'in', ['internal', 'transit']),
+                '|',
+                    ('company_id', '=', False),
+                    ('company_id', '=', default_company_id),
+            ]
+        </field>
+    </record>
+</odoo>

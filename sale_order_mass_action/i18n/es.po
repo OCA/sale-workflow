@@ -1,0 +1,92 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_mass_action
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-01-16 18:36+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_order_mass_action
+#: model_terms:ir.ui.view,arch_db:sale_order_mass_action.view_sale_order_mass_action_wizard_form
+msgid "Apply"
+msgstr "Aplicar"
+
+#. module: sale_order_mass_action
+#: model_terms:ir.ui.view,arch_db:sale_order_mass_action.view_sale_order_mass_action_wizard_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sale_order_mass_action
+#: model:ir.model.fields,help:sale_order_mass_action.field_sale_order_mass_action_wizard__confirm
+msgid "Check this box if you want to confirm all the selected quotations."
+msgstr "Marque esta casilla si desea confirmar todas las ofertas seleccionadas."
+
+#. module: sale_order_mass_action
+#: model:ir.model.fields,field_description:sale_order_mass_action.field_sale_order_mass_action_wizard__confirm
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: sale_order_mass_action
+#: model:ir.model.fields,field_description:sale_order_mass_action.field_sale_order_mass_action_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sale_order_mass_action
+#: model:ir.model.fields,field_description:sale_order_mass_action.field_sale_order_mass_action_wizard__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: sale_order_mass_action
+#: model:ir.model.fields,field_description:sale_order_mass_action.field_sale_order_mass_action_wizard__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: sale_order_mass_action
+#: model:ir.model.fields,field_description:sale_order_mass_action.field_sale_order_mass_action_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_mass_action
+#: model:ir.model.fields,field_description:sale_order_mass_action.field_sale_order_mass_action_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: sale_order_mass_action
+#: model:ir.model.fields,field_description:sale_order_mass_action.field_sale_order_mass_action_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: sale_order_mass_action
+#: model:ir.model.fields,field_description:sale_order_mass_action.field_sale_order_mass_action_wizard__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: sale_order_mass_action
+#: model:ir.actions.act_window,name:sale_order_mass_action.action_sale_order_mass_action
+msgid "Mass Action"
+msgstr "Acción Masiva"
+
+#. module: sale_order_mass_action
+#: model_terms:ir.ui.view,arch_db:sale_order_mass_action.view_sale_order_mass_action_wizard_form
+msgid "Mass Action on Selected Quotations and Sale Orders"
+msgstr "Acción Masiva sobre Presupuestos y Órdenes de Venta Seleccionadas"
+
+#. module: sale_order_mass_action
+#: model:ir.model,name:sale_order_mass_action.model_sale_order_mass_action_wizard
+msgid "Sale Order Mass Action"
+msgstr "Orden de Venta Acción en Masa"
+
+#. module: sale_order_mass_action
+#: model_terms:ir.ui.view,arch_db:sale_order_mass_action.view_sale_order_mass_action_wizard_form
+msgid "or"
+msgstr "o"

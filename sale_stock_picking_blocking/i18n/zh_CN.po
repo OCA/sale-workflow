@@ -132,11 +132,6 @@ msgid "Sale Delivery Block Reason"
 msgstr "销售交货阻止原因"
 
 #. module: sale_stock_picking_blocking
-#: model_terms:ir.ui.view,arch_db:sale_stock_picking_blocking.sale_stock_picking_blocking_reason_tree_view
-msgid "Sale Order Delivery Block Reason"
-msgstr "销售订单交货阻止原因"
-
-#. module: sale_stock_picking_blocking
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_sale_delivery_block_reason__sale_order_ids
 msgid "Sale Orders"
 msgstr "销售订单"
@@ -164,6 +159,9 @@ msgstr "设置一个默认阻止此客户销售订单中的交货的原因。"
 #, python-format
 msgid "You cannot block a sale order with \"auto_done_setting\" active."
 msgstr "您无法在“auto_done_setting”处于活动状态时阻止销售订单。"
+
+#~ msgid "Sale Order Delivery Block Reason"
+#~ msgstr "销售订单交货阻止原因"
 
 #~ msgid "Sale Order"
 #~ msgstr "销售订单"

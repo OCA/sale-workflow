@@ -327,7 +327,7 @@ class BlanketOrder(models.Model):
 
     def action_view_sale_orders(self):
         sale_orders = self._get_sale_orders()
-        action = self.env.ref("sale.action_orders").read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id("sale.action_orders")
         if len(sale_orders) > 0:
             action["domain"] = [("id", "in", sale_orders.ids)]
             action["context"] = [("id", "in", sale_orders.ids)]
@@ -336,9 +336,9 @@ class BlanketOrder(models.Model):
         return action
 
     def action_view_sale_blanket_order_line(self):
-        action = self.env.ref(
-            "sale_blanket_order" ".act_open_sale_blanket_order_lines_view_tree"
-        ).read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "sale_blanket_order.act_open_sale_blanket_order_lines_view_tree"
+        )
         lines = self.mapped("line_ids")
         if len(lines) > 0:
             action["domain"] = [("id", "in", lines.ids)]
@@ -450,27 +450,27 @@ class BlanketOrderLine(models.Model):
     )
     date_schedule = fields.Date(string="Scheduled Date")
     original_uom_qty = fields.Float(
-        string="Original quantity",
+        string="Original Qty",
         required=True,
         default=1,
         digits="Product Unit of Measure",
     )
     ordered_uom_qty = fields.Float(
-        string="Ordered quantity", compute="_compute_quantities", store=True
+        string="Ordered Qty", compute="_compute_quantities", store=True
     )
     invoiced_uom_qty = fields.Float(
-        string="Invoiced quantity", compute="_compute_quantities", store=True
+        string="Invoiced Qty", compute="_compute_quantities", store=True
     )
     remaining_uom_qty = fields.Float(
-        string="Remaining quantity", compute="_compute_quantities", store=True
+        string="Remaining Qty", compute="_compute_quantities", store=True
     )
     remaining_qty = fields.Float(
-        string="Remaining quantity in base UoM",
+        string="Remaining Qty in base UoM",
         compute="_compute_quantities",
         store=True,
     )
     delivered_uom_qty = fields.Float(
-        string="Delivered quantity", compute="_compute_quantities", store=True
+        string="Delivered Qty", compute="_compute_quantities", store=True
     )
     sale_lines = fields.One2many(
         "sale.order.line",
@@ -483,7 +483,9 @@ class BlanketOrderLine(models.Model):
         "res.company", related="order_id.company_id", store=True
     )
     currency_id = fields.Many2one("res.currency", related="order_id.currency_id")
-    partner_id = fields.Many2one(related="order_id.partner_id", string="Customer")
+    partner_id = fields.Many2one(
+        related="order_id.partner_id", string="Partner", store=True
+    )
     user_id = fields.Many2one(related="order_id.user_id", string="Responsible")
     payment_term_id = fields.Many2one(
         related="order_id.payment_term_id", string="Payment Terms"

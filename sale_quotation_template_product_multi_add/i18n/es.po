@@ -1,0 +1,140 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_quotation_template_product_multi_add
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-01-28 13:33+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_quotation_template_product_multi_add
+#: model:ir.actions.act_window,name:sale_quotation_template_product_multi_add.action_import_product_to_sale
+msgid "Add Products"
+msgstr "Añadir Productos"
+
+#. module: sale_quotation_template_product_multi_add
+#: model_terms:ir.ui.view,arch_db:sale_quotation_template_product_multi_add.sale_order_template_view_form_inherit
+msgid "Add multiple products"
+msgstr "Agregar múltiples productos"
+
+#. module: sale_quotation_template_product_multi_add
+#: model_terms:ir.ui.view,arch_db:sale_quotation_template_product_multi_add.view_add_products_to_qt
+#: model_terms:ir.ui.view,arch_db:sale_quotation_template_product_multi_add.view_add_products_to_qt2
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sale_quotation_template_product_multi_add
+#: model_terms:ir.ui.view,arch_db:sale_quotation_template_product_multi_add.view_add_products_to_qt
+msgid "Click \"Add a line\" to select products to add."
+msgstr ""
+"Haga clic en \"Añadir una línea\" para seleccionar los productos que desea "
+"añadir."
+
+#. module: sale_quotation_template_product_multi_add
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products__create_uid
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products_item__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sale_quotation_template_product_multi_add
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products__create_date
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products_item__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: sale_quotation_template_product_multi_add
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products_item__name
+msgid "Description"
+msgstr "Descripción"
+
+#. module: sale_quotation_template_product_multi_add
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products__display_name
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products_item__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: sale_quotation_template_product_multi_add
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products__id
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products_item__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_quotation_template_product_multi_add
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products__item_ids
+msgid "Item"
+msgstr "Artículo"
+
+#. module: sale_quotation_template_product_multi_add
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products____last_update
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products_item____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: sale_quotation_template_product_multi_add
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products__write_uid
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products_item__write_uid
+msgid "Last Updated by"
+msgstr "Última Actualización por"
+
+#. module: sale_quotation_template_product_multi_add
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products__write_date
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products_item__write_date
+msgid "Last Updated on"
+msgstr "Última Actualización el"
+
+#. module: sale_quotation_template_product_multi_add
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products__product_ids
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products_item__product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_quotation_template_product_multi_add
+#: model_terms:ir.ui.view,arch_db:sale_quotation_template_product_multi_add.view_add_products_to_qt
+#: model_terms:ir.ui.view,arch_db:sale_quotation_template_product_multi_add.view_add_products_to_qt2
+msgid "Products"
+msgstr "Productos"
+
+#. module: sale_quotation_template_product_multi_add
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products_item__quantity
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: sale_quotation_template_product_multi_add
+#: model:ir.model,name:sale_quotation_template_product_multi_add.model_sale_template_add_products
+msgid "Quotation Template Add Products"
+msgstr "Plantilla de Presupuesto Añadir Productos"
+
+#. module: sale_quotation_template_product_multi_add
+#: model:ir.model,name:sale_quotation_template_product_multi_add.model_sale_template_add_products_item
+msgid "Quotation Template Add Products Item"
+msgstr "Plantilla de Presupuesto Añadir Productos Artículo"
+
+#. module: sale_quotation_template_product_multi_add
+#: model_terms:ir.ui.view,arch_db:sale_quotation_template_product_multi_add.view_add_products_to_qt2
+msgid "Select"
+msgstr "Seleccione"
+
+#. module: sale_quotation_template_product_multi_add
+#: model_terms:ir.ui.view,arch_db:sale_quotation_template_product_multi_add.view_add_products_to_qt
+msgid "Set Description and Quantities"
+msgstr "Descripción y Cantidades del Conjunto"
+
+#. module: sale_quotation_template_product_multi_add
+#: model:ir.model.fields,field_description:sale_quotation_template_product_multi_add.field_sale_template_add_products_item__wizard_id
+msgid "Wizard"
+msgstr "Asistente"
+
+#. module: sale_quotation_template_product_multi_add
+#: model_terms:ir.ui.view,arch_db:sale_quotation_template_product_multi_add.view_add_products_to_qt
+#: model_terms:ir.ui.view,arch_db:sale_quotation_template_product_multi_add.view_add_products_to_qt2
+msgid "or"
+msgstr "o"

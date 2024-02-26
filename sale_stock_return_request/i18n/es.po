@@ -7,25 +7,34 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-10 15:40+0000\n"
-"PO-Revision-Date: 2019-10-10 17:44+0200\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2023-12-01 15:37+0000\n"
+"Last-Translator: \"David Alonso (Solvos)\" <david.alonso@solvos.es>\n"
 "Language-Team: \n"
-"Language: en\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 2.2.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_stock_return_request
+#: model_terms:ir.ui.view,arch_db:sale_stock_return_request.view_order_form
+msgid "Create Return Request"
+msgstr "Crear solicitud de devolución"
+
+#. module: sale_stock_return_request
+#: model:ir.model.fields,field_description:sale_stock_return_request.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_stock_return_request.field_stock_return_request__display_name
+#: model:ir.model.fields,field_description:sale_stock_return_request.field_stock_return_request_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre a mostrar"
 
 #. module: sale_stock_return_request
+#: model:ir.model.fields,field_description:sale_stock_return_request.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_stock_return_request.field_stock_return_request__id
+#: model:ir.model.fields,field_description:sale_stock_return_request.field_stock_return_request_line__id
 msgid "ID"
-msgstr ""
+msgstr "Id."
 
 #. module: sale_stock_return_request
 #: model:ir.model.fields,field_description:sale_stock_return_request.field_stock_return_request__sale_order_ids
@@ -33,14 +42,21 @@ msgid "Involved Sales"
 msgstr "Ventas involucradas"
 
 #. module: sale_stock_return_request
+#: model:ir.model.fields,field_description:sale_stock_return_request.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_stock_return_request.field_stock_return_request____last_update
+#: model:ir.model.fields,field_description:sale_stock_return_request.field_stock_return_request_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Últ. modificación en"
 
 #. module: sale_stock_return_request
 #: model:ir.model,name:sale_stock_return_request.model_stock_return_request
 msgid "Perform stock returns across pickings"
 msgstr "Devolver mercancía desde múltiples albaranes"
+
+#. module: sale_stock_return_request
+#: model:ir.model,name:sale_stock_return_request.model_stock_return_request_line
+msgid "Product to search for returns"
+msgstr "Producto a buscar para las devoluciones"
 
 #. module: sale_stock_return_request
 #: model:ir.ui.menu,name:sale_stock_return_request.menu_sale_stock_return_request
@@ -56,3 +72,18 @@ msgstr "Solicitud de devoluciones de venta"
 #: model_terms:ir.ui.view,arch_db:sale_stock_return_request.view_stock_return_request_form
 msgid "Sales"
 msgstr "Ventas"
+
+#. module: sale_stock_return_request
+#: model:ir.model,name:sale_stock_return_request.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_stock_return_request
+#: model:ir.model.fields,field_description:sale_stock_return_request.field_stock_return_request__filter_sale_order_ids
+msgid "Selected order(s)"
+msgstr "Pedido(s) seleccionado(s)"
+
+#. module: sale_stock_return_request
+#: model:ir.model.fields,field_description:sale_stock_return_request.field_sale_order__show_create_return_request
+msgid "Show Create Return Request"
+msgstr "Mostrar Crear solicitud de devolución"

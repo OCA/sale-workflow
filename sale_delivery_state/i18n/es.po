@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2022-05-13 13:05+0000\n"
-"Last-Translator: Jesús Ventosinos Mayor <jesus@comunitea.com>\n"
+"PO-Revision-Date: 2024-01-28 17:34+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_delivery_state
 #: model:ir.model.fields,help:sale_delivery_state.field_sale_order__force_delivery_state
@@ -26,12 +26,25 @@ msgstr ""
 "cantidades"
 
 #. module: sale_delivery_state
+#: model:ir.model,name:sale_delivery_state.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: sale_delivery_state
+#: model:ir.model,name:sale_delivery_state.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes Config"
+
+#. module: sale_delivery_state
 #: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order__delivery_state
 msgid "Delivery state"
 msgstr "Estado de envío"
 
 #. module: sale_delivery_state
+#: model:ir.model.fields,field_description:sale_delivery_state.field_res_company__display_name
+#: model:ir.model.fields,field_description:sale_delivery_state.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order_line__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
@@ -51,12 +64,27 @@ msgid "Force delivery state"
 msgstr "Forzar estado de envío"
 
 #. module: sale_delivery_state
+#: model:ir.model.fields,field_description:sale_delivery_state.field_res_company__id
+#: model:ir.model.fields,field_description:sale_delivery_state.field_res_config_settings__id
 #: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order_line__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_delivery_state
+#: model_terms:ir.ui.view,arch_db:sale_delivery_state.sale_delivery_state_res_config_settings_view_form
+msgid ""
+"If active, sale order lines containing Service products will not be "
+"evaluated by default when determining the Delivery State."
+msgstr ""
+"Si está activo, las líneas de pedido de venta que contengan productos de "
+"Servicio no se evaluarán por defecto al determinar el Estado de entrega."
+
+#. module: sale_delivery_state
+#: model:ir.model.fields,field_description:sale_delivery_state.field_res_company____last_update
+#: model:ir.model.fields,field_description:sale_delivery_state.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order_line____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
@@ -73,7 +101,23 @@ msgstr "Parcialmente procesado"
 #. module: sale_delivery_state
 #: model:ir.model,name:sale_delivery_state.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Orden de Venta"
+
+#. module: sale_delivery_state
+#: model:ir.model,name:sale_delivery_state.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de Orden de Venta"
+
+#. module: sale_delivery_state
+#: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order_line__skip_sale_delivery_state
+msgid "Skip Delivery State"
+msgstr "Saltar Estado de Entrega"
+
+#. module: sale_delivery_state
+#: model:ir.model.fields,field_description:sale_delivery_state.field_res_company__skip_service_sale_delivery_state
+#: model:ir.model.fields,field_description:sale_delivery_state.field_res_config_settings__skip_service_sale_delivery_state
+msgid "Skip Service products for Sale Delivery State"
+msgstr "Saltar productos de servicio a la venta Estado de entrega"
 
 #. module: sale_delivery_state
 #: model_terms:ir.ui.view,arch_db:sale_delivery_state.view_order_form_inherit_delivery_state

@@ -87,7 +87,7 @@
     <field name="name">sale.rental.tree</field>
     <field name="model">sale.rental</field>
     <field name="arch" type="xml">
-        <tree string="Sales Rentals" create="false" edit="false">
+        <tree create="false" edit="false">
             <field name="start_order_id" optional="show" />
             <field name="partner_id" />
             <field name="rented_product_id" />

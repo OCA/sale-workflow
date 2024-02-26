@@ -249,11 +249,6 @@ msgid "Currency"
 msgstr "Moeda"
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__partner_id
-msgid "Customer"
-msgstr "Cliente"
-
-#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__client_order_ref
 msgid "Customer Reference"
 msgstr "Referência do Cliente"
@@ -265,13 +260,14 @@ msgid "Date Scheduled"
 msgstr "Data Agendada"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__delivered_uom_qty
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_search
 msgid "Delivered Qty"
 msgstr "Quantidade Entregue"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__delivered_uom_qty
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__delivered_uom_qty
 msgid "Delivered quantity"
 msgstr "Quantidade Entregue"
 
@@ -387,20 +383,19 @@ msgstr "Se marcado, novas mensagens solicitarão sua atenção."
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_has_error
-#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_has_sms_error
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_has_error
-#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Se marcado, algumas mensagens tem erro de entrega."
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__invoiced_uom_qty
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_search
 msgid "Invoiced Qty"
 msgstr "Qtd Faturada"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__invoiced_uom_qty
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__invoiced_uom_qty
 msgid "Invoiced quantity"
 msgstr "Quantidade Faturada"
 
@@ -558,13 +553,13 @@ msgid "Order lines"
 msgstr "Linhas de pedido"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__ordered_uom_qty
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_search
 msgid "Ordered Qty"
 msgstr "Qtd Solicitada"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__ordered_uom_qty
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__ordered_uom_qty
 msgid "Ordered quantity"
 msgstr "Quantidade solicitada"
 
@@ -574,16 +569,14 @@ msgid "Origin blanket order"
 msgstr "Origem do Pedido Guarda-Chuva"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__original_uom_qty
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
-#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_tree
-#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_search
 msgid "Original Qty"
 msgstr "Quantidade Original"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__original_uom_qty
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__original_uom_qty
 msgid "Original quantity"
 msgstr "Quantidade original"
 
@@ -594,6 +587,7 @@ msgstr "Outra Informação"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__partner_id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__partner_id
 msgid "Partner"
 msgstr "Parceiro"
 
@@ -641,6 +635,11 @@ msgid "Purchase Order"
 msgstr "Pedido de Compra"
 
 #. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
+msgid "Qty"
+msgstr ""
+
+#. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Quantity must be greater than zero"
@@ -652,21 +651,21 @@ msgid "Quantity to Order"
 msgstr "Quantidade a Pedir"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__remaining_uom_qty
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__remaining_uom_qty
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_search
 msgid "Remaining Qty"
 msgstr "Qtde Remanescente"
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__remaining_uom_qty
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__remaining_uom_qty
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__remaining_uom_qty
-msgid "Remaining quantity"
-msgstr "Quantidade Restante"
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__remaining_qty
+msgid "Remaining Qty in base UoM"
+msgstr ""
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__remaining_qty
-msgid "Remaining quantity in base UoM"
-msgstr "Quantidade restante na UM básica"
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__remaining_uom_qty
+msgid "Remaining quantity"
+msgstr "Quantidade Restante"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__user_id
@@ -678,12 +677,6 @@ msgstr "Responsável"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_user_id
 msgid "Responsible User"
 msgstr "Usuário Responsável"
-
-#. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_has_sms_error
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr "Erro de Entrega de SMS"
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
@@ -700,11 +693,6 @@ msgstr "Linha de Pedido Guarda-Chuva de Venda"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__line_count
 msgid "Sale Blanket Order Line count"
 msgstr "Contagem de Linhas do Pedido Guarda-Chuva de Venda"
-
-#. module: sale_blanket_order
-#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_tree
-msgid "Sale Blanket Order Lines"
-msgstr "Linhas do Pedido Guarda-Chuva de Venda"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__sale_count
@@ -856,8 +844,14 @@ msgid "To Draft"
 msgstr "Para o Rascunho"
 
 #. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
+msgid "To Invoice Qty"
+msgstr ""
+
+#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__amount_total
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__price_total
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
 msgid "Total"
 msgstr "Total"
 
@@ -875,6 +869,7 @@ msgstr "Preço Unitário"
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__product_uom
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__product_uom
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
 msgid "Unit of Measure"
 msgstr "Unidade de Medida"
 
@@ -998,3 +993,15 @@ msgstr "Você deve selecionar linhas da mesma empresa."
 #, python-format
 msgid "remaining"
 msgstr "restando"
+
+#~ msgid "Customer"
+#~ msgstr "Cliente"
+
+#~ msgid "Remaining quantity in base UoM"
+#~ msgstr "Quantidade restante na UM básica"
+
+#~ msgid "SMS Delivery error"
+#~ msgstr "Erro de Entrega de SMS"
+
+#~ msgid "Sale Blanket Order Lines"
+#~ msgstr "Linhas do Pedido Guarda-Chuva de Venda"

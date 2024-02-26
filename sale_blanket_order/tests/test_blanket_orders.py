@@ -156,6 +156,13 @@ class TestSaleBlanketOrders(common.TransactionCase):
         for so in sos:
             self.assertEqual(so.origin, blanket_order.name)
 
+        action = blanket_order.action_view_sale_blanket_order_line()
+        self.assertEqual(
+            action["xml_id"],
+            "sale_blanket_order.act_open_sale_blanket_order_lines_view_tree",
+        )
+        self.assertEqual(action["domain"], [("id", "in", blanket_order.line_ids.ids)])
+
     def test_03_create_sale_orders_from_blanket_order_line(self):
         """We create a blanket order and create two sale orders
         from the blanket order lines"""

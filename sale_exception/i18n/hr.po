@@ -207,11 +207,6 @@ msgid "Sale Exception Rules"
 msgstr "Pravila izuzetaka u prodaji"
 
 #. module: sale_exception
-#: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
-msgid "Sale Exceptions"
-msgstr "Izuzeci u prodaji"
-
-#. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_exception_confirm
 msgid "Sale exception confirm wizard"
 msgstr ""
@@ -263,6 +258,9 @@ msgstr ""
 #: model:exception.rule,description:sale_exception.excep_no_free
 msgid "The total can't be 0"
 msgstr ""
+
+#~ msgid "Sale Exceptions"
+#~ msgstr "Izuzeci u prodaji"
 
 #~ msgid "sale.exception.confirm"
 #~ msgstr "sale.exception.confirm"

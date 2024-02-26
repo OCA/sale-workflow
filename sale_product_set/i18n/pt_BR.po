@@ -158,9 +158,7 @@ msgstr "Produto"
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__product_set_id
 #: model:ir.ui.menu,name:sale_product_set.menu_product_set_config
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_line_search
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_search
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_tree
 msgid "Product set"
 msgstr "Conjunto de Produtos"
 
@@ -174,14 +172,11 @@ msgstr "Referencia interna do conjunto de produtos"
 #: model:ir.model,name:sale_product_set.model_product_set_line
 #: model:ir.ui.menu,name:sale_product_set.menu_product_set_line_config
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_line_search
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_line_tree
 msgid "Product set line"
 msgstr "Linha de conjunto de produtos"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__product_set_line_ids
-#: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
-#: model_terms:ir.ui.view,arch_db:sale_product_set.view_product_set_form
 msgid "Product set lines"
 msgstr "Linhas de conjunto de produtos"
 

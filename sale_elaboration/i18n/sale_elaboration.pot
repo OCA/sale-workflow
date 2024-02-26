@@ -88,8 +88,6 @@ msgstr ""
 
 #. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_form
-#: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_tree
-#: model_terms:ir.ui.view,arch_db:sale_elaboration.report_elaboration_view_tree
 msgid "Elaborations"
 msgstr ""
 

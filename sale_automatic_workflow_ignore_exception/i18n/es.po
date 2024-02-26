@@ -1,0 +1,62 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_automatic_workflow_ignore_exception
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-01-27 14:35+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_automatic_workflow_ignore_exception
+#: model:ir.model.fields,field_description:sale_automatic_workflow_ignore_exception.field_automatic_workflow_job__display_name
+#: model:ir.model.fields,field_description:sale_automatic_workflow_ignore_exception.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_automatic_workflow_ignore_exception.field_sale_workflow_process__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: sale_automatic_workflow_ignore_exception
+#: model:ir.model.fields,field_description:sale_automatic_workflow_ignore_exception.field_automatic_workflow_job__id
+#: model:ir.model.fields,field_description:sale_automatic_workflow_ignore_exception.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_automatic_workflow_ignore_exception.field_sale_workflow_process__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_automatic_workflow_ignore_exception
+#: model:ir.model.fields,field_description:sale_automatic_workflow_ignore_exception.field_sale_workflow_process__ignore_exception_when_confirm
+msgid "Ignore Exception When Confirm"
+msgstr "Ignorar Excepción al Confirmar"
+
+#. module: sale_automatic_workflow_ignore_exception
+#: model:ir.model.fields,field_description:sale_automatic_workflow_ignore_exception.field_automatic_workflow_job____last_update
+#: model:ir.model.fields,field_description:sale_automatic_workflow_ignore_exception.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_automatic_workflow_ignore_exception.field_sale_workflow_process____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"
+
+#. module: sale_automatic_workflow_ignore_exception
+#: model:ir.model,name:sale_automatic_workflow_ignore_exception.model_sale_workflow_process
+msgid "Sale Workflow Process"
+msgstr "Proceso de Flujo de Venta"
+
+#. module: sale_automatic_workflow_ignore_exception
+#: model:ir.model,name:sale_automatic_workflow_ignore_exception.model_sale_order
+msgid "Sales Order"
+msgstr "Órdenes de Venta"
+
+#. module: sale_automatic_workflow_ignore_exception
+#: model:ir.model,name:sale_automatic_workflow_ignore_exception.model_automatic_workflow_job
+msgid ""
+"Scheduler that will play automatically the validation of invoices, "
+"pickings..."
+msgstr ""
+"Programador que reproducirá automáticamente la validación de facturas, "
+"recogidas..."

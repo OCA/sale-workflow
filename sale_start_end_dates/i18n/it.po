@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-17 02:40+0000\n"
-"PO-Revision-Date: 2023-05-09 13:37+0000\n"
+"PO-Revision-Date: 2023-12-12 11:35+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order__default_end_date
@@ -73,13 +73,15 @@ msgstr ""
 #: code:addons/sale_start_end_dates/models/sale_order.py:0
 #, python-format
 msgid "Missing End Date for sale order line with Product '%s'."
-msgstr "Manca la data di fine nell'ordine di vendita per il prodotto '%s'."
+msgstr ""
+"Manca la data di fine nella riga ordine di vendita con il prodotto '%s'."
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale_order.py:0
 #, python-format
 msgid "Missing Start Date for sale order line with Product '%s'."
-msgstr "Manca la data di Inizio per il prodotto '%s'."
+msgstr ""
+"Manca la data di inizio per la riga ordine di vendita con il prodotto '%s'."
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__must_have_dates
@@ -99,8 +101,8 @@ msgid ""
 "this is not allowed. The number of days has been forced to 1."
 msgstr ""
 "Nella riga ordine contentene il prodotto '%s', il numero di giorni è "
-"negativo (%d) ; questo non e' permesso. Il numero di giorni è stato "
-"impostato a 1."
+"negativo (%d) ; questo non è permesso. Il numero di giorni è stato impostato "
+"a 1."
 
 #. module: sale_start_end_dates
 #: model:ir.model,name:sale_start_end_dates.model_sale_order

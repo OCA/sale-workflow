@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-03-30 12:25+0000\n"
+"PO-Revision-Date: 2024-01-05 15:13+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_global_discount
 #: model_terms:ir.ui.view,arch_db:sale_global_discount.report_saleorder_document
@@ -65,7 +65,7 @@ msgstr "Ultima modifica il"
 #: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__global_discount_ids
 #: model_terms:ir.ui.view,arch_db:sale_global_discount.view_order_form
 msgid "Sale Global Discounts"
-msgstr "Sconti Globali Vendite"
+msgstr "Sconti globali vendita"
 
 #. module: sale_global_discount
 #: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__global_discount_ids_readonly
