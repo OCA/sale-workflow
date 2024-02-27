@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="lot_cable" model="stock.lot">
+        <field name="product_id" ref="stock.product_cable_management_box" />
+        <field name="name">cbl mng</field>
+        <field name="company_id" ref="base.main_company" />
+    </record>
+
+    <record id="sale1" model="sale.order">
+        <field name="partner_id" ref="base.res_partner_1" />
+        <field name="user_id" ref="base.user_admin" />
+    </record>
+
+    <record id="sol1" model="sale.order.line">
+        <field name="order_id" ref="sale_order_lot_selection.sale1" />
+        <field name="product_id" ref="stock.product_cable_management_box" />
+        <field name="product_uom_qty">1</field>
+        <field name="lot_id" ref="sale_order_lot_selection.lot_cable" />
+    </record>
+    <record id="sol2" model="sale.order.line">
+        <field name="order_id" ref="sale_order_lot_selection.sale1" />
+        <field name="product_id" ref="stock.product_cable_management_box" />
+        <field name="product_uom_qty">1</field>
+        <field name="lot_id" ref="sale_order_lot_selection.lot_cable" />
+    </record>
+
+</odoo>
