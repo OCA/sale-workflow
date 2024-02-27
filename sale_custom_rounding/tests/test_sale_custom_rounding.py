@@ -1,12 +1,12 @@
 # Copyright 2024 Manuel Regidor <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.addons.invoice_custom_rounding.tests.common import (
-    TestInvoiceCustomRoundingCommon,
+from odoo.addons.account_invoice_custom_rounding.tests.common import (
+    TestAccountInvoiceCustomRoundingCommon,
 )
 
 
-class TestSaleCustomRounding(TestInvoiceCustomRoundingCommon):
+class TestSaleCustomRounding(TestAccountInvoiceCustomRoundingCommon):
     def create_sale_order(self):
         sale_order = self.env["sale.order"].create(
             {

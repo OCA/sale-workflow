@@ -34,21 +34,31 @@ class SaleOrder(models.Model):
 
     @api.depends("tax_calculation_rounding_method")
     def _compute_tax_totals_json(self):
-        super(
-            SaleOrder,
-            self.filtered(
-                lambda a: a.tax_calculation_rounding_method == "round_per_line"
-            ).with_context(round=True),
-        )._compute_tax_totals_json()
-        super(
-            SaleOrder,
-            self.filtered(
-                lambda a: a.tax_calculation_rounding_method == "round_globally"
-            ).with_context(round=False),
-        )._compute_tax_totals_json()
-        return super(
-            SaleOrder, self.filtered(lambda a: not a.tax_calculation_rounding_method)
-        )._compute_tax_totals_json()
+        ret = True
+        if self.filtered(
+            lambda a: a.tax_calculation_rounding_method == "round_per_line"
+        ):
+            ret = super(
+                SaleOrder,
+                self.filtered(
+                    lambda a: a.tax_calculation_rounding_method == "round_per_line"
+                ).with_context(round=True),
+            )._compute_tax_totals_json()
+        if self.filtered(
+            lambda a: a.tax_calculation_rounding_method == "round_globally"
+        ):
+            ret = super(
+                SaleOrder,
+                self.filtered(
+                    lambda a: a.tax_calculation_rounding_method == "round_globally"
+                ).with_context(round=False),
+            )._compute_tax_totals_json()
+        if self.filtered(lambda a: not a.tax_calculation_rounding_method):
+            ret = super(
+                SaleOrder,
+                self.filtered(lambda a: not a.tax_calculation_rounding_method),
+            )._compute_tax_totals_json()
+        return ret
 
     def _prepare_invoice(self):
         vals = super()._prepare_invoice()
@@ -69,19 +79,30 @@ class SaleOrderLine(models.Model):
 
     @api.depends("order_id.tax_calculation_rounding_method")
     def _compute_amount(self):
-        super(
-            SaleOrderLine,
-            self.filtered(
-                lambda a: a.order_id.tax_calculation_rounding_method == "round_per_line"
-            ),
-        )._compute_amount()
-        super(
-            SaleOrderLine,
-            self.filtered(
-                lambda a: a.order_id.tax_calculation_rounding_method == "round_globally"
-            ),
-        )._compute_amount()
-        return super(
-            SaleOrderLine,
-            self.filtered(lambda a: not a.order_id.tax_calculation_rounding_method),
-        )._compute_amount()
+        ret = True
+        if self.filtered(
+            lambda a: a.order_id.tax_calculation_rounding_method == "round_per_line"
+        ):
+            ret = super(
+                SaleOrderLine,
+                self.filtered(
+                    lambda a: a.order_id.tax_calculation_rounding_method
+                    == "round_per_line"
+                ).with_context(round=True),
+            )._compute_amount()
+        if self.filtered(
+            lambda a: a.order_id.tax_calculation_rounding_method == "round_globally"
+        ):
+            ret = super(
+                SaleOrderLine,
+                self.filtered(
+                    lambda a: a.order_id.tax_calculation_rounding_method
+                    == "round_globally"
+                ).with_context(round=False),
+            )._compute_amount()
+        if self.filtered(lambda a: not a.order_id.tax_calculation_rounding_method):
+            ret = super(
+                SaleOrderLine,
+                self.filtered(lambda a: not a.order_id.tax_calculation_rounding_method),
+            )._compute_amount()
+        return ret
