@@ -25,7 +25,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.customer_location = self.env.ref("stock.stock_location_customers")
         self.stock_location = self.env.ref("stock.stock_location_stock")
         self.product_model = self.env["product.product"]
-        self.lot_model = self.env["stock.lot"]
+        self.lot_model = self.env["stock.production.lot"]
         self.lot_cable = self.env.ref("sale_order_lot_selection.lot_cable")
         self.sale = self.env.ref("sale_order_lot_selection.sale1")
 
@@ -36,7 +36,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         # We should not be able to reserve if some stock is available but with another
         # lot
         self._inventory_products(self.prd_cable, self.lot_cable, 1)
-        other_lot = self.env["stock.lot"].create(
+        other_lot = self.env["stock.production.lot"].create(
             {
                 "name": "test2",
                 "product_id": self.prd_cable.id,
