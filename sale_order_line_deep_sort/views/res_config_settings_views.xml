@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.sale.sort</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='group_warning_sale']/../.." position="after">
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    title="Select a default sort criteria for sale order lines."
+                >
+                    <div class="o_setting_left_pane" />
+                    <div class="o_setting_right_pane">
+                        <!--                        <label for="" string='Default Sort Criteria'/>-->
+                        <div class="text-muted">
+                            Default sort criteria for sale order lines
+                        </div>
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <label
+                                    string="Line Order 1"
+                                    for="so_line_order_default"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field
+                                    name="so_line_order_default"
+                                    options="{'no_create': True}"
+                                />
+                            </div>
+                            <div class="row mt16">
+                                <label
+                                    string="Line Order 2"
+                                    for="so_line_order_2_default"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field
+                                    name="so_line_order_2_default"
+                                    options="{'no_create': True}"
+                                />
+                            </div>
+                            <div
+                                class="row mt16"
+                                attrs="{'invisible': [('so_line_order_default', '=', False)]}"
+                            >
+                                <label
+                                    string="Direction"
+                                    for="so_line_direction_default"
+                                    class="col-lg-3 o_light_label"
+                                />
+                                <field
+                                    name="so_line_direction_default"
+                                    attrs="{'required': [('so_line_order_default', '!=', False)]}"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
