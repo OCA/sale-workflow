@@ -30,7 +30,6 @@ msgstr "Rabatt (%)"
 
 #. module: sale_order_general_discount
 #: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order__general_discount
-#: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order_line__discount
 msgid "Discount (%)"
 msgstr "Rabatt (%)"
 
