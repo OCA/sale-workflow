@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="action_nitrokey_pre_order_amount" model="ir.actions.act_window">
+        <field name="name">Pre-Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.picking</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="stock.vpicktree" />
+        <field name="domain">[
+            ('picking_type_id.code', '=', 'outgoing'),
+            ('state', 'in', ['confirmed', 'assigned'])
+        ]</field>
+    </record>
+
+    <menuitem
+        id="menu_nitrokey_pre_order_amount"
+        name="Pre-Orders"
+        action="action_nitrokey_pre_order_amount"
+        parent="stock.menu_warehouse_report"
+        sequence="200"
+    />
+
+</odoo>
