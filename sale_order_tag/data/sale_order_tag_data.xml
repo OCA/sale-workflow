@@ -1,0 +1,10 @@
+<!-- Copyright 2020 Patrick Wilson <patrickraymondwilson@gmail.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).-->
+<odoo noupdate="1">
+    <record id="sale_order_tag_seq" model="ir.sequence">
+        <field name="name">sale.order.tag.sequence</field>
+        <field name="code">sale.order.tag</field>
+        <field name="prefix">0</field>
+        <field name="padding">1</field>
+    </record>
+</odoo>
