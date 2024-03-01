@@ -9,7 +9,7 @@ class SaleOrder(models.Model):
 
     display_discount_with_tax = fields.Boolean(
         name="Show the Discount with TAX",
-        help='Check this field to show the Discount with TAX',
+        help="Check this field to show the Discount with TAX",
         related="company_id.display_discount_with_tax",
     )
     discount_total = fields.Monetary(
