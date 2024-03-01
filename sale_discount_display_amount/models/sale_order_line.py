@@ -70,6 +70,7 @@ class SaleOrderLine(models.Model):
 
     @api.depends(lambda self: self._get_compute_amount_depends())
     def _compute_amount(self):
-        res = super().compute_amount()
-        self._update_discount_display_fields()
-        return res
+        if hasattr(super(), '_compute_amount'):
+            res = super()._compute_amount()
+            self._update_discount_display_fields()
+            return res
