@@ -1,4 +1,3 @@
-
 To use this module, you need to:
 
 #. Go on a sale order

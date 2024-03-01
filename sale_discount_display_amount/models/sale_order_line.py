@@ -5,7 +5,6 @@ from odoo import api, fields, models
 
 
 class SaleOrderLine(models.Model):
-
     _inherit = "sale.order.line"
 
     discount_total = fields.Monetary(
@@ -71,6 +70,6 @@ class SaleOrderLine(models.Model):
 
     @api.depends(lambda self: self._get_compute_amount_depends())
     def _compute_amount(self):
-        res = super(SaleOrderLine, self)._compute_amount()
+        res = super().compute_amount()
         self._update_discount_display_fields()
         return res

@@ -11,7 +11,7 @@
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale_management"],
-    "data": ["views/sale_view.xml","views/res_config_settings_views.xml"],
+    "data": ["views/sale_view.xml", "views/res_config_settings_views.xml"],
     'installable': True,
     'auto_install': False,
     'application': False,

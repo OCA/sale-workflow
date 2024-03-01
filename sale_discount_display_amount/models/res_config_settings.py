@@ -10,4 +10,3 @@ class ResConfigSettings(models.TransientModel):
         related="company_id.display_discount_with_tax",
         readonly=False,
     )
-    
