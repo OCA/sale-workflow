@@ -141,6 +141,6 @@ class SaleOrder(models.Model):
             for move in moves:
                 plan._compute_new_invoice_quantity(move)
                 move.invoice_date = plan.plan_date
-                move._onchange_invoice_date()
+                move._compute_date()
             plan.invoice_move_ids += moves
         return moves

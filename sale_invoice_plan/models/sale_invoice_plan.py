@@ -178,8 +178,10 @@ class SaleInvoicePlan(models.Model):
         move = invoice_move.with_context(check_move_validity=False)
         for line in move.invoice_line_ids:
             self._update_new_quantity(line, percent)
-        move.line_ids.filtered("exclude_from_invoice_tab").unlink()
-        move._move_autocomplete_invoice_lines_values()  # recompute dr/cr
+        move.line_ids.filtered(
+            lambda x: x.display_type
+            not in ("product", "line_section", "line_note", "payment_term", "tax")
+        ).unlink()
 
     def _update_new_quantity(self, line, percent):
         """Hook function"""
