@@ -33,6 +33,18 @@ class SaleOrder(models.Model):
         compute="_compute_invoice_plan_total",
         string="Total Amount",
     )
+    advance_type = fields.Selection(
+        selection=[
+            ("percentage", "Down payment (percentage)"),
+            ("fixed", "Down payment (fixed amount)"),
+        ],
+        default="percentage",
+        readonly=True,
+        states={
+            "draft": [("readonly", False)],
+            "sent": [("readonly", False)],
+        },
+    )
 
     @api.depends("invoice_plan_ids")
     def _compute_invoice_plan_total(self):

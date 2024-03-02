@@ -125,6 +125,12 @@
                         attrs="{'invisible': ['|', ('invoice_plan_ids', '=', []), ('invoice_count', '>', 0)]}"
                         confirm="Are you sure to remove this invoice plan?"
                     />
+                    <group>
+                        <field
+                            name="advance_type"
+                            attrs="{'invisible': [('invoice_plan_ids', '=', [])]}"
+                        />
+                    </group>
                     <field
                         name="invoice_plan_ids"
                         context="{'tree_view_ref': 'sale_invoice_plan.view_sale_invoice_plan_tree'}"

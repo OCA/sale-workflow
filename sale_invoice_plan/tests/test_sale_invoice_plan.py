@@ -220,6 +220,14 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         self.assertEqual(quantity, 1, "Wrong number of total invoice quantity")
 
     def test_02_invoice_plan_with_advance(self):
+        tax = self.env["account.tax"].create(
+            {
+                "name": "TAX 10%",
+                "amount_type": "percent",
+                "type_tax_use": "sale",
+                "amount": 10.0,
+            }
+        )
         # To create all remaining invoice from SO
         ctx = {
             "active_id": self.so_service.id,
@@ -245,6 +253,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
             lambda l: l.invoice_type == "advance"
         )
         self.assertEqual(len(advance_line), 1, "No one advance line")
+        self.so_service.order_line.tax_id = tax.ids
         # Add 10% to advance
         advance_line.percent = 10
         # Can confirm the SO after advance is filled
@@ -264,6 +273,65 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
             .mapped("quantity")
         )
         self.assertEqual(quantity, 1, "Wrong number of total invoice quantity")
+        # Down payment with advance type = percentage
+        self.assertEqual(self.so_service.advance_type, "percentage")
+        so_line_down_payment = self.so_service.order_line.filtered(
+            lambda l: l.product_uom_qty <= 0.0
+        )
+        inv_line = invoices.mapped("invoice_line_ids").filtered(
+            lambda l: l.product_id == so_line_down_payment.product_id
+            and l.quantity > 0.0
+        )
+        move_down_payment = inv_line.move_id
+        self.assertEqual(len(move_down_payment), 1)
+        # Advance Type = percentage, it include taxes in lines.
+        # 10% of amount of product + tax 10% of advance = 28 + 2.8 = 30.8
+        self.assertEqual(move_down_payment.amount_total, 30.8)
+
+        # Test create advance type is fixed
+        so_service2 = self.so_service.copy()
+        so_service2.advance_type = "fixed"
+        self.assertEqual(so_service2.advance_type, "fixed")
+        # To create all remaining invoice from SO
+        ctx = {
+            "active_id": so_service2.id,
+            "active_ids": [so_service2.id],
+            "all_remain_invoices": True,
+        }
+        # Create Invoice Plan 3 installment with Advance
+        num_installment = 3
+        f = Form(self.env["sale.create.invoice.plan"])
+        f.num_installment = num_installment
+        f.advance = True  # Advance
+        plan = f.save()
+        plan.with_context(**ctx).sale_create_invoice_plan()
+        advance_line = so_service2.invoice_plan_ids.filtered(
+            lambda l: l.invoice_type == "advance"
+        )
+        self.assertEqual(len(advance_line), 1, "No one advance line")
+        so_service2.order_line.tax_id = tax.ids
+        # Add 10% to advance
+        advance_line.percent = 10
+        # Can confirm the SO after advance is filled
+        so_service2.action_confirm()
+        # Create all invoice plan
+        wizard = self.env["sale.make.planned.invoice"].create({})
+        wizard.with_context(**ctx).create_invoices_by_plan()
+        # Valid number of invoices, including advance
+        invoices = so_service2.invoice_ids
+        # Down payment with advance type = fixed
+        so_line_down_payment = so_service2.order_line.filtered(
+            lambda l: l.product_uom_qty <= 0.0
+        )
+        inv_line = invoices.mapped("invoice_line_ids").filtered(
+            lambda l: l.product_id == so_line_down_payment.product_id
+            and l.quantity > 0.0
+        )
+        move_down_payment = inv_line.move_id
+        self.assertEqual(len(move_down_payment), 1)
+        # Advance Type = fixed, it exclude taxes in lines.
+        # 10% of amount of product = 28
+        self.assertEqual(move_down_payment.amount_total, 28.0)
 
     def test_03_unlink_invoice_plan(self):
         ctx = {"active_id": self.so_service.id, "active_ids": [self.so_service.id]}
@@ -277,7 +345,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         self.so_service.remove_invoice_plan()
         self.assertFalse(self.so_service.invoice_plan_ids)
 
-    def test_invoice_plan_so_edit(self):
+    def test_04_invoice_plan_so_edit(self):
         """Case when some installment already invoiced,
         but then, the SO line added. Test to ensure that
         the invoiced amount of the done installment is fixed"""
