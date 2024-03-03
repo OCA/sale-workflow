@@ -60,7 +60,7 @@ class SaleInvoicePlan(models.Model):
         string="Invoices",
         readonly=True,
     )
-    amount_invoiced = fields.Float(compute="_compute_invoiced")
+    amount_invoiced = fields.Float(compute="_compute_invoiced", store=True)
     to_invoice = fields.Boolean(
         string="Next Invoice",
         compute="_compute_to_invoice",
@@ -69,6 +69,7 @@ class SaleInvoicePlan(models.Model):
     invoiced = fields.Boolean(
         string="Invoice Created",
         compute="_compute_invoiced",
+        store=True,
         help="If this line already invoiced",
     )
     no_edit = fields.Boolean(
@@ -153,12 +154,13 @@ class SaleInvoicePlan(models.Model):
             amount_invoiced = sum(lines.mapped("price_subtotal"))
         return amount_invoiced
 
+    @api.depends("invoice_move_ids.state")
     def _compute_invoiced(self):
         for rec in self:
             invoiced = rec.invoice_move_ids.filtered(
                 lambda l: l.state in ("draft", "posted")
             )
-            rec.invoiced = invoiced and True or False
+            rec.invoiced = True if invoiced else False
             rec.amount_invoiced = (
                 sum(invoiced.mapped("amount_untaxed"))
                 if rec.invoice_type == "advance"
