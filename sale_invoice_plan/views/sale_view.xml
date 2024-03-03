@@ -162,31 +162,31 @@
                 <group expand="0" string="Group By">
                     <filter
                         string="Customer"
-                        name="customer"
+                        name="groupby_customer"
                         domain="[]"
                         context="{'group_by':'partner_id'}"
                     />
                     <filter
                         string="Sales Order"
-                        name="sale"
+                        name="groupby_sale"
                         domain="[]"
                         context="{'group_by':'sale_id'}"
                     />
                     <filter
                         string="Analytic Account"
-                        name="analytic_account_id"
+                        name="groupby_analytic_account_id"
                         domain="[]"
                         context="{'group_by':'analytic_account_id'}"
                     />
                     <filter
                         string="Installment"
-                        name="install"
+                        name="groupby_install"
                         domain="[]"
                         context="{'group_by':'installment'}"
                     />
                     <filter
                         string="Status"
-                        name="state"
+                        name="groupby_state"
                         domain="[]"
                         context="{'group_by':'state'}"
                     />
@@ -222,7 +222,7 @@
         <field name="search_view_id" ref="view_sale_invoice_plan_filter" />
         <field
             name="context"
-        >{'search_default_draft': 1, 'search_default_sale': 1}</field>
+        >{'search_default_sales': 1, 'search_default_groupby_sale': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
             View sales invoice plan lines
@@ -237,6 +237,6 @@
         id="menu_sale_invoice_plan"
         parent="sale.sale_order_menu"
         groups="sales_team.group_sale_salesman"
-        sequence="22"
+        sequence="25"
     />
 </odoo>
