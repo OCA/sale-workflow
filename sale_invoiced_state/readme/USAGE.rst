@@ -1,0 +1,1 @@
+A field in the tree and form views of Sales Orders will show if the order has been fully invoiced, partially invoiced, if only the downpayment has been invoiced, or if it has not been invoiced at all. The field will update automatically as invoices are created.
