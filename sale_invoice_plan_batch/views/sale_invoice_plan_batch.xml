@@ -1,0 +1,195 @@
+<odoo>
+    <record id="view_sale_invoice_plan_batch_form" model="ir.ui.view">
+        <field name="name">sale.invoice.plan.batch.form</field>
+        <field name="model">sale.invoice.plan.batch</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <form string="Sales Invoice Plan Batch">
+                <header>
+                    <button
+                        name="get_planned_installments"
+                        states="draft"
+                        type="object"
+                        string="Search Installments"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="create_invoices"
+                        states="ready"
+                        type="object"
+                        string="Create Invoices"
+                        class="oe_highlight"
+                    />
+                    <button
+                        name="reset_to_draft"
+                        states="ready"
+                        type="object"
+                        string="Reset"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,done"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button
+                            name="open_sales"
+                            icon="fa-bars"
+                            class="oe_stat_button"
+                            string="Sales Order"
+                            type="object"
+                        />
+                        <button
+                            name="open_invoices"
+                            icon="fa-bars"
+                            class="oe_stat_button"
+                            string="Invoices"
+                            type="object"
+                        />
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group name="main_group">
+                        <group>
+                            <field name="description" />
+                        </group>
+                        <group>
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                    </group>
+                    <group name="filters" string="Filter Installments">
+                        <group>
+                            <field name="plan_date_from" />
+                            <field name="plan_date_to" />
+                        </group>
+                        <group>
+                            <field name="sale_ids" widget="many2many_tags" />
+                            <field name="partner_ids" widget="many2many_tags" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Planned Installments" name="profile_report">
+                            <field name="batch_line_ids">
+                                <tree editable="bottom" create="0" delete="1">
+                                    <field name="invoice_plan_id" invisible="1" />
+                                    <field name="sale_id" />
+                                    <field name="partner_id" />
+                                    <field name="installment" />
+                                    <field name="plan_date" optional="show" />
+                                    <field name="invoice_type" optional="show" />
+                                    <field name="percent" optional="show" />
+                                    <field
+                                        name="amount"
+                                        optional="show"
+                                        sum="Total Amount"
+                                    />
+                                    <field name="invoiced" optional="show" />
+                                    <field
+                                        name="invoice_move_ids"
+                                        widget="many2many_tags"
+                                        invisible="0"
+                                        optional="hidden"
+                                    />
+                                    <field name="error" optional="hidden" />
+                                    <field name="error_message" optional="hidden" />
+                                </tree>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field
+                                                name="invoice_plan_id"
+                                                invisible="1"
+                                            />
+                                            <field name="sale_id" />
+                                            <field name="partner_id" />
+                                            <field name="installment" />
+                                            <field name="plan_date" />
+                                        </group>
+                                        <group>
+                                            <field name="invoice_type" />
+                                            <field name="percent" />
+                                            <field name="amount" />
+                                            <field name="invoiced" />
+                                            <field
+                                                name="invoice_move_ids"
+                                                widget="many2many_tags"
+                                            />
+                                        </group>
+                                    </group>
+                                    <group
+                                        attrs="{'invisible': [('error', '=', False)]}"
+                                    >
+                                        <field name="error" />
+                                        <field name="error_message" />
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_sale_invoice_plan_batch_tree" model="ir.ui.view">
+        <field name="name">sale.invoice.plan.batch.tree</field>
+        <field name="model">sale.invoice.plan.batch</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="description" />
+                <field name="plan_date_from" />
+                <field name="plan_date_to" />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-info="state == 'draft'"
+                    decoration-success="state == 'done'"
+                    decoration-danger="state == 'exception'"
+                />
+                <field name="company_id" groups="base.group_multi_company" />
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="search_sale_invoice_plan_batch_filter">
+        <field name="name">search.sale.invoice.plan.batch.filter</field>
+        <field name="model">sale.invoice.plan.batch</field>
+        <field name="arch" type="xml">
+            <search string="Asset Compute Batch">
+                <field
+                    name="name"
+                    string="Batch Number"
+                    filter_domain="[('name', 'ilike', self)]"
+                />
+            </search>
+        </field>
+    </record>
+
+    <record id="sale_invoice_plan_batch_action" model="ir.actions.act_window">
+        <field name="name">Sales Invoice Plan Batch</field>
+        <field name="res_model">sale.invoice.plan.batch</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_sale_invoice_plan_batch_tree" />
+        <field name="search_view_id" ref="search_sale_invoice_plan_batch_filter" />
+    </record>
+
+    <menuitem
+        id="sale_invoice_plan_batch_menu"
+        action="sale_invoice_plan_batch_action"
+        parent="sale.sale_order_menu"
+        sequence="27"
+    />
+</odoo>
