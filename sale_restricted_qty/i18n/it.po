@@ -324,20 +324,20 @@ msgstr "Prodotto"
 #. module: sale_restricted_qty
 #: code:addons/sale_restricted_qty/models/sale.py:0
 #, python-format
-msgid "Product \"%s\": Min Quantity %s."
-msgstr "Prodotto \"%s\": Quantità Minima %s."
+msgid "Product \"%(product_name)s\": Min Quantity %(sale_min_qty)s."
+msgstr "Prodotto \"%(product_name)s\": Quantità Minima %(sale_min_qty)s."
 
 #. module: sale_restricted_qty
 #: code:addons/sale_restricted_qty/models/sale.py:0
 #, python-format
-msgid "Product \"%s\": max Quantity %s."
-msgstr "Prodotto \"%s\": Quantità Massima %s."
+msgid "Product \"%(product_name)s\": max Quantity %(sale_max_qty)s."
+msgstr "Prodotto \"%(product_name)s\": Quantità Massima %(sale_max_qty)s."
 
 #. module: sale_restricted_qty
 #: code:addons/sale_restricted_qty/models/sale.py:0
 #, python-format
-msgid "Product \"%s\": multiple Quantity %s."
-msgstr "prodotto \"%s\": Quantità Multipla %s."
+msgid "Product \"%(product_name)s\": multiple Quantity %(sale_multiple_qty)s."
+msgstr "prodotto \"%(product_name)s\": Quantità Multipla %(sale_multiple_qty)s."
 
 #. module: sale_restricted_qty
 #: model:ir.model,name:sale_restricted_qty.model_product_category
