@@ -33,9 +33,10 @@ class SaleOrderLine(models.Model):
         res = super().write(vals)
         moves_to_upd = set()
         if "commitment_date" in vals:
-            for move in self.move_ids:
-                if move.state not in ["cancel", "done"]:
-                    moves_to_upd.add(move.id)
+            for line in self:
+                for move in line.move_ids:
+                    if move.state not in ["cancel", "done"]:
+                        moves_to_upd.add(move.id)
         if moves_to_upd:
             self.env["stock.move"].browse(moves_to_upd).write(
                 {"date_deadline": vals.get("commitment_date")}
