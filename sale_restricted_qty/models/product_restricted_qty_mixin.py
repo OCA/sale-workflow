@@ -18,6 +18,7 @@ class ProductMinMultipleMixin(models.AbstractModel):
         "Hierarchy is in this order :"
         "Product/product Template/product category/parent categories ",
         digits="Product Unit of Measure",
+        recursive=True,
     )
     manual_sale_multiple_qty = fields.Float(
         string="Multiple Sale Qty", digits="Product Unit of Measure"
@@ -31,6 +32,7 @@ class ProductMinMultipleMixin(models.AbstractModel):
         "Hierarchy is in this order :"
         "Product/product Template/product category/parent categories ",
         digits="Product Unit of Measure",
+        recursive=True,
     )
     manual_sale_min_qty = fields.Float(
         string="Min Sale Qty", digits="Product Unit of Measure"
@@ -44,6 +46,7 @@ class ProductMinMultipleMixin(models.AbstractModel):
         " use the value defined in the parent object."
         "Hierarchy is in this order :"
         "Product/product Template/product category/parent categories ",
+        recursive=True,
     )
     manual_force_sale_min_qty = fields.Selection(
         [
@@ -67,6 +70,7 @@ class ProductMinMultipleMixin(models.AbstractModel):
         "Hierarchy is in this order :"
         "Product/product Template/product category/parent categories ",
         digits="Product Unit of Measure",
+        recursive=True,
     )
     manual_sale_max_qty = fields.Float(
         string="Max Sale Qty", digits="Product Unit of Measure"
@@ -80,6 +84,7 @@ class ProductMinMultipleMixin(models.AbstractModel):
         " use the value defined in the parent object."
         "Hierarchy is in this order :"
         "Product/product Template/product category/parent categories ",
+        recursive=True,
     )
     manual_force_sale_max_qty = fields.Selection(
         [
