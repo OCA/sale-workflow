@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_invoice_plan_batch,sale.invoice.plan.batch,model_sale_invoice_plan_batch,account.group_account_invoice,1,1,1,1
+access_sale_invoice_plan_batch_line,sale.invoice.plan.batch.line,model_sale_invoice_plan_batch_line,account.group_account_invoice,1,1,1,1
