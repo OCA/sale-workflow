@@ -371,8 +371,8 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/sale-workflow/tree/14.0/sale_restricted_qty"><img alt="OCA/sale-workflow" src="https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/sale-workflow-14-0/sale-workflow-14-0-sale_restricted_qty"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&amp;target_branch=14.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>This module allows to define min, max and multiple order quantity on product.
-Min and Max order quantity is either required or recommanded.
-If you check “Force mini/max Qty” on product the min/max qty do not block sale
+Min and Max order quantity is either required or recommended.
+If you check “Force min/max Qty” on product the min/max qty do not block sale
 order.
 This can be used if the available stock is less then the min qty
 or if you want to sell sample products.
@@ -401,13 +401,13 @@ product category otherwise parent category.</p>
 <li><dl class="first docutils">
 <dt>Go to <strong>Sales &gt; Products &gt; Product Variants</strong> and Set “Min Sale Qty”.</dt>
 <dd>If you dont want block product sale if qty is less the “Min Sale Qty”,
-chek “Force Min Qty”</dd>
+check “Force Min Qty”</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>Create a sale order and add a sale order line with this product and check</dt>
 <dd>if Qty is less then “Min Qty” A message in displayed “Min Qty Required”
-Or “Min Qty Recommanded”. Check if Min qty is required you can’t
+Or “Min Qty Recommended”. Check if Min qty is required you can’t
 validate order.</dd>
 </dl>
 </li>

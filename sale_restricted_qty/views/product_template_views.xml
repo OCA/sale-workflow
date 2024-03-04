@@ -43,7 +43,7 @@
                             nolabel="1"
                         />
                     </group>
-                    <group name="sale_multiple_qty_gr" string="Sale Miltiple qty">
+                    <group name="sale_multiple_qty_gr" string="Sale Multiple qty">
                         <field name="sale_multiple_qty" />
                         <label for="manual_sale_multiple_qty" class="oe_edit_only" />
                         <field
