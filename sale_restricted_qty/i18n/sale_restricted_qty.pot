@@ -63,7 +63,7 @@ msgstr ""
 msgid ""
 "Define if user can force sale max qty 'If not set', Odoo will use the value "
 "defined in the parent object.Hierarchy is in this order :Product/product "
-"Template/product category/parent categoroies "
+"Template/product category/parent categories "
 msgstr ""
 
 #. module: sale_restricted_qty
@@ -74,7 +74,7 @@ msgstr ""
 msgid ""
 "Define if user can force sale min qty 'If not set', Odoo will use the value "
 "defined in the parent object.Hierarchy is in this order :Product/product "
-"Template/product category/parent categoroies "
+"Template/product category/parent categories "
 msgstr ""
 
 #. module: sale_restricted_qty
@@ -85,7 +85,7 @@ msgstr ""
 msgid ""
 "Define sale max qty 'If not set, Odoo will use the value defined in the "
 "parent object.Hierarchy is in this order :Product/product Template/product "
-"category/parent categoroies "
+"category/parent categories "
 msgstr ""
 
 #. module: sale_restricted_qty
@@ -96,7 +96,7 @@ msgstr ""
 msgid ""
 "Define sale min qty 'If not set, Odoo will use the value defined in the "
 "parent object.Hierarchy is in this order :Product/product Template/product "
-"category/parent categoroies "
+"category/parent categories "
 msgstr ""
 
 #. module: sale_restricted_qty
@@ -107,7 +107,7 @@ msgstr ""
 msgid ""
 "Define sale multiple qty 'If not set', Odoo will use the value defined in "
 "the parent object.Hierarchy is in this order :Product/product "
-"Template/product category/parent categoroies "
+"Template/product category/parent categories "
 msgstr ""
 
 #. module: sale_restricted_qty
@@ -347,7 +347,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
-msgid "Sale Miltiple qty"
+msgid "Sale Multiple qty"
 msgstr ""
 
 #. module: sale_restricted_qty

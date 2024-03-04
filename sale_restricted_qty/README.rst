@@ -29,8 +29,8 @@ Sale order min quantity
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allows to define min, max and multiple order quantity on product.
-Min and Max order quantity is either required or recommanded.
-If you check "Force mini/max Qty" on product the min/max qty do not block sale
+Min and Max order quantity is either required or recommended.
+If you check "Force min/max Qty" on product the min/max qty do not block sale
 order.
 This can be used if the available stock is less then the min qty
 or if you want to sell sample products.
@@ -52,10 +52,10 @@ Usage
 
 #. Go to **Sales > Products > Product Variants** and Set "Min Sale Qty".
     If you dont want block product sale if qty is less the "Min Sale Qty",
-    chek "Force Min Qty"
+    check "Force Min Qty"
 #. Create a sale order and add a sale order line with this product and check
     if Qty is less then "Min Qty" A message in displayed "Min Qty Required"
-    Or "Min Qty Recommanded". Check if Min qty is required you can't
+    Or "Min Qty Recommended". Check if Min qty is required you can't
     validate order.
 
 Bug Tracker
