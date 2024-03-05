@@ -1,12 +1,12 @@
 # Copyright (C) 2024 Cetmix OÜ
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests import tagged
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import SavepointCase, tagged
+from odoo.tests.common import Form
 
 
 @tagged("post_install", "-at_install")
-class TestSaleOrderInvoiceAmount(TransactionCase):
+class TestSaleOrderInvoiceAmount(SavepointCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
