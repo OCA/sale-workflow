@@ -1,0 +1,4 @@
+# https://github.com/OCA/server-backend/pull/165
+git+https://github.com/OCA/server-backend@refs/pull/165/head#subdirectory=setup/base_global_discount
+# https://github.com/OCA/account-invoicing/pull/1150
+git+https://github.com/OCA/account-invoicing@refs/pull/1150/head#subdirectory=setup/account_global_discount

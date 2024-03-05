@@ -1,5 +1,6 @@
 # Copyright 2020 Tecnativa - David Vidal
 # Copyright 2020 Tecnativa - Pedro M. Baeza
+# Copyright 2022 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     'name': 'Sale Global Discount',

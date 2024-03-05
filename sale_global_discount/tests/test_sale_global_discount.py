@@ -1,4 +1,5 @@
 # Copyright 2020 Tecnativa - David Vidal
+# Copyright 2022 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import exceptions
 from odoo.tests import common
@@ -38,6 +39,13 @@ class TestSaleGlobalDiscount(common.SavepointCase):
             'name': 'Test Discount 3',
             'sequence': 3,
             'discount_scope': 'sale',
+            'discount': 50,
+            'account_id': cls.account.id,
+        })
+        cls.global_discount_total = cls.global_discount_obj.create({
+            'name': 'Test Total Discount',
+            'discount_scope': 'sale',
+            'discount_base': 'total',
             'discount': 50,
             'account_id': cls.account.id,
         })
@@ -185,3 +193,38 @@ class TestSaleGlobalDiscount(common.SavepointCase):
         self.sale.order_line[1].tax_id = False
         with self.assertRaises(exceptions.UserError):
             self.sale.global_discount_ids = self.global_discount_1
+
+    def test_mixed_discount_base(self):
+        """
+        Check that a sale order can only have discount having the same base.
+        """
+        with self.assertRaises(exceptions.UserError) as ue:
+            self.sale.global_discount_ids = \
+                self.global_discount_1 + self.global_discount_total
+        exception_message = ue.exception.name
+        self.assertIn('must have the same base', exception_message)
+
+    def test_discount_total(self):
+        """
+        Add global discounts on total to the sale order.
+
+        Check that only the total amount is discounted,
+        taxes and subtotal remain the same.
+        """
+        # Pre-condition: check starting amounts and the discount base
+        self.assertAlmostEqual(self.sale.amount_untaxed, 249.99)
+        self.assertAlmostEqual(self.sale.amount_tax, 50.0)
+        self.assertAlmostEqual(self.sale.amount_global_discount, 0)
+        self.assertAlmostEqual(self.sale.amount_total, 299.99)
+        self.assertEqual(self.global_discount_total.discount_base, 'total')
+
+        # Act: set the global total discount
+        self.sale.global_discount_ids = self.global_discount_total
+
+        # Assert: global discounts are applied to the total
+        # and taxes remain the same:
+        # 299.99 - 50% (global disc. 1) =  149.99
+        self.assertAlmostEqual(self.sale.amount_untaxed, 249.99)
+        self.assertAlmostEqual(self.sale.amount_tax, 50.0)
+        self.assertAlmostEqual(self.sale.amount_global_discount, 150)
+        self.assertAlmostEqual(self.sale.amount_total, 149.99)
