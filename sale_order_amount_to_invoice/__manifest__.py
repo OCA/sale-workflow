@@ -11,7 +11,6 @@
     "summary": "Show total amount to invoice in quotations/sales orders ",
     "depends": [
         "sale",
-        "account",
     ],
     "data": [
         "views/sale_order_view.xml",
