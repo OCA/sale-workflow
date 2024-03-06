@@ -49,9 +49,8 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
             }
         )
 
-    def refrech_sale_values(self, sale_order):
+    def refresh_sale_values(self, sale_order):
         sale_order.order_line._compute_sale_restricted_qty()
-        sale_order.order_line.product_id_change()
         sale_order.order_line._compute_is_qty_less_min_qty()
         sale_order.order_line._compute_is_qty_bigger_max_qty()
         sale_values = sale_order._convert_to_write(sale_order._cache)
@@ -65,7 +64,7 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
             sale_order = self.sale_order_model.new(
                 {"partner_id": self.partner.id, "order_line": [(0, 0, line_values)]}
             )
-            sale_values = self.refrech_sale_values(sale_order)
+            sale_values = self.refresh_sale_values(sale_order)
             sale_values.update(
                 {
                     "partner_shipping_id": sale_values["partner_id"],
@@ -107,7 +106,7 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
             sale_order = self.sale_order_model.create(
                 {"partner_id": self.partner.id, "order_line": [(0, 0, line_values)]}
             )
-            sale_values = self.refrech_sale_values(sale_order)
+            sale_values = self.refresh_sale_values(sale_order)
             self.sale_order_model.create(sale_values)
         line_values["product_uom_qty"] = 2.0
         # Create sale order line with Qty great then max Qty
@@ -143,7 +142,7 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
             sale_order = self.sale_order_model.create(
                 {"partner_id": self.partner.id, "order_line": [(0, 0, line_values)]}
             )
-            sale_values = self.refrech_sale_values(sale_order)
+            sale_values = self.refresh_sale_values(sale_order)
             self.sale_order_model.create(sale_values)
         line_values["product_uom_qty"] = 20
         # Create sale order line with Qty multiple Qty
