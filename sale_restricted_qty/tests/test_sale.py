@@ -1,4 +1,5 @@
 # Copyright 2019 Akretion
+# Copyright 2024 CorporateHub
 # Update (Migration) 2022 Ooops - Ashish Hirpara <hello@ashish-hirpara.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
@@ -60,8 +61,8 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
         line_values = {"product_id": self.product.id, "product_uom_qty": 5.0}
         self.product.manual_sale_min_qty = 10
         # Create sale order line with Qty less than min Qty
-        with self.assertRaises(ValidationError):
-            sale_order = self.sale_order_model.new(
+        with self.assertRaises(ValidationError), self.cr.savepoint():
+            sale_order = self.sale_order_model.create(
                 {"partner_id": self.partner.id, "order_line": [(0, 0, line_values)]}
             )
             sale_values = self.refresh_sale_values(sale_order)
@@ -72,7 +73,7 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
                     "pricelist_id": 1,
                 }
             )
-            self.sale_order_model.create(sale_values)
+            self.sale_order_model.update(sale_values)
         line_values["product_uom_qty"] = 12.0
         # Create sale order line with Qty great then min Qty
         self.sale_order = self.sale_order_model.create(
@@ -102,12 +103,12 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
         line_values = {"product_id": self.product.id, "product_uom_qty": 15.0}
         self.product.manual_sale_max_qty = 10
         # Create sale order line with Qty bigger than max Qty
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(ValidationError), self.cr.savepoint():
             sale_order = self.sale_order_model.create(
                 {"partner_id": self.partner.id, "order_line": [(0, 0, line_values)]}
             )
             sale_values = self.refresh_sale_values(sale_order)
-            self.sale_order_model.create(sale_values)
+            self.sale_order_model.update(sale_values)
         line_values["product_uom_qty"] = 2.0
         # Create sale order line with Qty great then max Qty
         self.sale_order = self.sale_order_model.create(
@@ -138,12 +139,12 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
         self.product.manual_sale_min_qty = 10
         self.product.manual_sale_multiple_qty = 10
         # Create sale order line with Qty not multiple Qty
-        with self.assertRaises(ValidationError):
+        with self.assertRaises(ValidationError), self.cr.savepoint():
             sale_order = self.sale_order_model.create(
                 {"partner_id": self.partner.id, "order_line": [(0, 0, line_values)]}
             )
             sale_values = self.refresh_sale_values(sale_order)
-            self.sale_order_model.create(sale_values)
+            self.sale_order_model.update(sale_values)
         line_values["product_uom_qty"] = 20
         # Create sale order line with Qty multiple Qty
         self.sale_order = self.sale_order_model.create(

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Copyright 2019 Akretion
-    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<!--
+    Copyright 2019 Akretion
+    Copyright 2024 CorporateHub
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
 <odoo>
     <record id="view_order_form" model="ir.ui.view">
         <field name="model">sale.order</field>
@@ -22,39 +25,35 @@
                     colspan="2"
                     for="sale_min_qty"
                     string="Min Quantity Recommended"
-                    attrs="{'invisible': ['|',  ('is_qty_less_min_qty','=', False),
-                     '&amp;', ('is_qty_less_min_qty','=', True), ('force_sale_min_qty','=', False,)]}"
+                    invisible="not is_qty_less_min_qty or (is_qty_less_min_qty and not force_sale_min_qty)"
                     style="background-color:yellow"
                 />
                 <label
                     colspan="2"
                     for="sale_min_qty"
                     string="Min Quantity Required"
-                    attrs="{'invisible': ['|',  ('is_qty_less_min_qty','=', False),
-                     '&amp;', ('is_qty_less_min_qty','=', True), ('force_sale_min_qty','=', True,)]}"
+                    invisible="not is_qty_less_min_qty or (is_qty_less_min_qty and force_sale_min_qty)"
                     style="background-color:red"
                 />
                 <label
                     colspan="2"
                     for="sale_min_qty"
                     string="Multiple Quantity Required"
-                    attrs="{'invisible': [('is_qty_not_multiple_qty','=', False)]}"
+                    invisible="not is_qty_not_multiple_qty"
                     style="background-color:red"
                 />
                 <label
                     colspan="2"
                     for="sale_min_qty"
                     string="Max Quantity Recommended"
-                    attrs="{'invisible': ['|',  ('is_qty_bigger_max_qty','=', False),
-                     '&amp;', ('is_qty_bigger_max_qty','=', True), ('force_sale_max_qty','=', False,)]}"
+                    invisible="not is_qty_bigger_max_qty or (is_qty_bigger_max_qty and not force_sale_max_qty)"
                     style="background-color:yellow"
                 />
                 <label
                     colspan="2"
                     for="sale_min_qty"
                     string="Max Quantity Exceeded"
-                    attrs="{'invisible': ['|',  ('is_qty_bigger_max_qty','=', True),
-                     '&amp;', ('is_qty_bigger_max_qty','=', True), ('force_sale_max_qty','=', True,)]}"
+                    invisible="not is_qty_bigger_max_qty or (is_qty_bigger_max_qty and force_sale_max_qty)"
                     style="background-color:red"
                 />
            </xpath>
@@ -63,12 +62,12 @@
                 position="after"
             >
                <field name="sale_min_qty" optional="hide" />
-               <field name="is_qty_less_min_qty" invisible="1" />
-               <field name="force_sale_min_qty" invisible="1" />
+               <field name="is_qty_less_min_qty" column_invisible="1" />
+               <field name="force_sale_min_qty" column_invisible="1" />
                <field name="sale_max_qty" optional="hide" />
-               <field name="is_qty_bigger_max_qty" invisible="1" />
-               <field name="force_sale_max_qty" invisible="1" />
-               <field name="is_qty_not_multiple_qty" invisible="1" />
+               <field name="is_qty_bigger_max_qty" column_invisible="1" />
+               <field name="force_sale_max_qty" column_invisible="1" />
+               <field name="is_qty_not_multiple_qty" column_invisible="1" />
            </xpath>
 
             <xpath expr="//field[@name='order_line']/tree" position="attributes">
