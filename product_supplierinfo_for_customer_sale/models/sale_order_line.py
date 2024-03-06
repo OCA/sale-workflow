@@ -16,13 +16,13 @@ class SaleOrderLine(models.Model):
     @api.depends("product_id")
     def _compute_product_customer_code(self):
         for line in self:
+            code = ""
             if line.product_id:
                 supplierinfo = line.product_id._select_customerinfo(
                     partner=line.order_partner_id
                 )
-                code = supplierinfo.product_code
-            else:
-                code = ""
+                if supplierinfo:
+                    code = supplierinfo.product_code
             line.product_customer_code = code
 
     @api.onchange("product_id")
