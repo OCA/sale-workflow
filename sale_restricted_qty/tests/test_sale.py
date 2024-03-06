@@ -10,7 +10,7 @@ from odoo.tests import tagged
 @tagged("post_install", "-at_install")
 class TestSaleOrderLineMinQty(common.TransactionCase):
     def setUp(self):
-        super(TestSaleOrderLineMinQty, self).setUp()
+        super().setUp()
 
         # Create models
         self.sale_order_model = self.env["sale.order"]

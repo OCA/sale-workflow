@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -369,19 +368,16 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:1c96b9ab4a5f52f04233a4d0d47e6c5b19d7871794cec15c15d9a8821109c2dc
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/sale-workflow/tree/15.0/sale_restricted_qty"><img alt="OCA/sale-workflow" src="https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/sale-workflow-15-0/sale-workflow-15-0-sale_restricted_qty"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&amp;target_branch=15.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module allows to define min, max and multiple order quantity on product.
-Min and Max order quantity is either required or recommended.
-If you check “Force min/max Qty” on product the min/max qty do not block sale
-order.
-This can be used if the available stock is less then the min qty
-or if you want to sell sample products.
-Max qty can be used if we dont want to sale more than available qty
-(end of series product)</p>
-<p>Settings are defined on product, if values are not set we use settings from
-product template.
-If settings are not set on product template we use settings from
-product category otherwise parent category.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/sale-workflow/tree/17.0/sale_restricted_qty"><img alt="OCA/sale-workflow" src="https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_restricted_qty"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>This module allows to define min, max and multiple order quantity on
+product. Min and Max order quantity is either required or recommended.
+If you check “Force min/max Qty” on product the min/max qty do not block
+sale order. This can be used if the available stock is less then the min
+qty or if you want to sell sample products. Max qty can be used if we
+dont want to sale more than available qty (end of series product)</p>
+<p>Settings are defined on product, if values are not set we use settings
+from product template. If settings are not set on product template we
+use settings from product category otherwise parent category.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -397,19 +393,21 @@ product category otherwise parent category.</p>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-1">Usage</a></h1>
-<ol class="arabic simple">
-<li><dl class="first docutils">
-<dt>Go to <strong>Sales &gt; Products &gt; Product Variants</strong> and Set “Min Sale Qty”.</dt>
-<dd>If you dont want block product sale if qty is less the “Min Sale Qty”,
-check “Force Min Qty”</dd>
-</dl>
+<ol class="arabic">
+<li><div class="first line-block">
+<div class="line">Go to <strong>Sales &gt; Products &gt; Product Variants</strong> and Set “Min Sale
+Qty”.</div>
+<div class="line">If you dont want block product sale if qty is less the “Min Sale
+Qty”, check “Force Min Qty”</div>
+</div>
 </li>
-<li><dl class="first docutils">
-<dt>Create a sale order and add a sale order line with this product and check</dt>
-<dd>if Qty is less then “Min Qty” A message in displayed “Min Qty Required”
-Or “Min Qty Recommended”. Check if Min qty is required you can’t
-validate order.</dd>
-</dl>
+<li><div class="first line-block">
+<div class="line">Create a sale order and add a sale order line with this product and
+check</div>
+<div class="line">if Qty is less then “Min Qty” A message in displayed “Min Qty
+Required” Or “Min Qty Recommended”. Check if Min qty is required
+you can’t validate order.</div>
+</div>
 </li>
 </ol>
 </div>
@@ -418,7 +416,7 @@ validate order.</dd>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/sale-workflow/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_restricted_qty%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_restricted_qty%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -452,7 +450,7 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/ashishhirapara"><img alt="ashishhirapara" src="https://github.com/ashishhirapara.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/sale-workflow/tree/15.0/sale_restricted_qty">OCA/sale-workflow</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/sale-workflow/tree/17.0/sale_restricted_qty">OCA/sale-workflow</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

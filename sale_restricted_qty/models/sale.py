@@ -48,7 +48,6 @@ class SaleOrderLine(models.Model):
         "product_uom_qty", "sale_min_qty", "sale_max_qty", "sale_multiple_qty"
     )
     def check_constraint_restricted_qty(self):
-
         msg = ""
         invaild_min_lines = []
         line_to_test = self.filtered(
@@ -97,7 +96,8 @@ class SaleOrderLine(models.Model):
         for line in line_to_test:
             invaild_multiple_lines.append(
                 _(
-                    'Product "%(product_name)s": multiple Quantity %(sale_multiple_qty)s.'
+                    'Product "%(product_name)s": multiple Quantity '
+                    "%(sale_multiple_qty)s."
                 )
                 % {
                     "product_name": line.product_id.name,
