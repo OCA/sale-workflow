@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2019 Akretion
+    Copyright 2024 CorporateHub
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='price_unit']"
+                position="after"
+            >
+                <field name="restrict_min_qty" invisible="1" />
+                <field name="is_below_min_qty" invisible="1" />
+
+                <field name="restrict_max_qty" invisible="1" />
+                <field name="is_above_max_qty" invisible="1" />
+
+                <field name="restrict_multiple_of_qty" invisible="1" />
+                <field name="is_not_multiple_of_qty" invisible="1" />
+            </xpath>
+
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='product_uom_qty']"
+                position="attributes"
+            >
+                <attribute
+                    name="decoration-danger"
+                    add="(restrict_min_qty and is_below_min_qty)"
+                    separator=" or "
+                />
+                <attribute
+                    name="decoration-warning"
+                    add="(not restrict_min_qty and is_below_min_qty)"
+                    separator=" or "
+                />
+                <attribute
+                    name="decoration-danger"
+                    add="(restrict_max_qty and is_above_max_qty)"
+                    separator=" or "
+                />
+                <attribute
+                    name="decoration-warning"
+                    add="(not restrict_max_qty and is_above_max_qty)"
+                    separator=" or "
+                />
+                <attribute
+                    name="decoration-danger"
+                    add="(restrict_multiple_of_qty and is_not_multiple_of_qty)"
+                    separator=" or "
+                />
+                <attribute
+                    name="decoration-warning"
+                    add="(not restrict_multiple_of_qty and is_not_multiple_of_qty)"
+                    separator=" or "
+                />
+            </xpath>
+
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
+                position="after"
+            >
+                <field name="min_qty" optional="hide" />
+                <field name="restrict_min_qty" column_invisible="1" />
+                <field name="is_below_min_qty" column_invisible="1" />
+                <field name="max_qty" optional="hide" />
+                <field name="restrict_max_qty" column_invisible="1" />
+                <field name="is_above_max_qty" column_invisible="1" />
+                <field name="multiple_of_qty" optional="hide" />
+                <field name="restrict_multiple_of_qty" column_invisible="1" />
+                <field name="is_not_multiple_of_qty" column_invisible="1" />
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                <attribute
+                    name="decoration-danger"
+                    add="(restrict_min_qty and is_below_min_qty)"
+                    separator=" or "
+                />
+                <attribute
+                    name="decoration-warning"
+                    add="(not restrict_min_qty and is_below_min_qty)"
+                    separator=" or "
+                />
+                <attribute
+                    name="decoration-danger"
+                    add="(restrict_max_qty and is_above_max_qty)"
+                    separator=" or "
+                />
+                <attribute
+                    name="decoration-warning"
+                    add="(not restrict_max_qty and is_above_max_qty)"
+                    separator=" or "
+                />
+                <attribute
+                    name="decoration-danger"
+                    add="(restrict_multiple_of_qty and is_not_multiple_of_qty)"
+                    separator=" or "
+                />
+                <attribute
+                    name="decoration-warning"
+                    add="(not restrict_multiple_of_qty and is_not_multiple_of_qty)"
+                    separator=" or "
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
