@@ -4,7 +4,9 @@ from odoo import models
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    def price_compute(self, price_type, uom=None, currency=None, company=None, date=False):
+    def price_compute(
+        self, price_type, uom=None, currency=None, company=None, date=False
+    ):
         price_config = self.env.context.get("price_config")
         input_line = self.env.context.get("input_line")
 

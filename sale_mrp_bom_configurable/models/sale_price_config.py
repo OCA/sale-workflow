@@ -1,5 +1,4 @@
 from odoo import api, fields, models
-from odoo.tools.safe_eval import safe_eval
 
 
 class SalePriceConfig(models.Model):
@@ -43,16 +42,17 @@ class SalePriceConfigLine(models.Model):
 
     target_field = fields.Many2one(comodel_name="ir.model.fields", string="Field")
     target_field_domain = fields.Binary(
-        compute="_compute_target_field_domain",
-        readonly=True,
-        store=False
+        compute="_compute_target_field_domain", readonly=True, store=False
     )
 
-    included_product_or_category = fields.Reference(selection=[('product.template', 'Product'), ('product.category', 'Category')], string="Included product or category")
+    included_product_or_category = fields.Reference(
+        selection=[("product.template", "Product"), ("product.category", "Category")],
+        string="Included product or category",
+    )
 
-    domain = fields.Char(string="Domain")
+    domain = fields.Char()
 
-    amount = fields.Monetary(string="Amount", currency_field="currency_id")
+    amount = fields.Monetary(currency_field="currency_id")
 
     currency_id = fields.Many2one(
         related="company_id.currency_id", string="Company Currency", store=True
@@ -61,7 +61,9 @@ class SalePriceConfigLine(models.Model):
     @api.depends("line_type")
     def _compute_target_field_domain(self):
         for rec in self:
-            input_line_model = self.env["ir.model"].search([("model", "=", "input.line")])
+            input_line_model = self.env["ir.model"].search(
+                [("model", "=", "input.line")]
+            )
             rec.target_field_domain = [
                 (
                     "model_id",
@@ -81,10 +83,14 @@ class SalePriceConfigLine(models.Model):
                 for line in lines:
                     if res_id._name == "product.category":
                         if line["product_tmpl_id"].categ_id.id == res_id.id:
-                            return line["product_tmpl_id"].list_price * line["product_qty"]
+                            return (
+                                line["product_tmpl_id"].list_price * line["product_qty"]
+                            )
                     else:
                         if line["product_tmpl_id"].id == res_id.id:
-                            return line["product_tmpl_id"].list_price * line["product_qty"]
+                            return (
+                                line["product_tmpl_id"].list_price * line["product_qty"]
+                            )
             case "factor":
                 factor = input_line[self.target_field.name]
                 return factor * self.amount

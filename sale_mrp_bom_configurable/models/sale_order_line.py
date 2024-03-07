@@ -13,6 +13,7 @@ class SaleOrderLine(models.Model):
         compute="_compute_input_line_id",
         inverse="_inverse_input_line_id",
         store=True,
+        precompute=True,
     )
     input_line_domain = fields.Binary(
         compute="_compute_input_line_domain",
@@ -69,6 +70,7 @@ class SaleOrderLine(models.Model):
                 input_line=rec.input_line_id,
             )
             super(SaleOrderLine, rec)._compute_price_unit()
+        return True
 
     def action_show_input_line(self):
         self.ensure_one()
