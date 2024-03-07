@@ -1,0 +1,1 @@
+odoo-addon-mrp_bom_configurable @ git+https://github.com/OCA/manufacture.git@refs/pull/1079/head#subdirectory=setup/mrp_bom_configurable
