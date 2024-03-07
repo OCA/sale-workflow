@@ -1,4 +1,5 @@
 # Copyright 2019 Akretion
+# Copyright 2024 CorporateHub
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, models
@@ -8,41 +9,134 @@ class ProductCategory(models.Model):
     _name = "product.category"
     _inherit = ["product.category", "product.restricted.qty.mixin"]
 
-    def _get_sale_restricted_qty(self):
-        res = super()._get_sale_restricted_qty()
-        force_sale_min_qty = False
-        if self.manual_force_sale_min_qty == "force":
-            force_sale_min_qty = True
-        elif self.manual_force_sale_min_qty == "not_force":
-            force_sale_min_qty = False
-        else:
-            force_sale_min_qty = self.parent_id.force_sale_min_qty
-        force_sale_max_qty = False
-        if self.manual_force_sale_max_qty == "force":
-            force_sale_max_qty = True
-        elif self.manual_force_sale_max_qty == "not_force":
-            force_sale_max_qty = False
-        else:
-            force_sale_max_qty = self.parent_id.force_sale_max_qty
-        res.update(
-            {
-                "sale_min_qty": self.manual_sale_min_qty or self.parent_id.sale_min_qty,
-                "force_sale_min_qty": force_sale_min_qty,
-                "sale_max_qty": self.manual_sale_max_qty or self.parent_id.sale_max_qty,
-                "force_sale_max_qty": force_sale_max_qty,
-                "sale_multiple_qty": self.manual_sale_multiple_qty
-                or self.parent_id.sale_multiple_qty,
-            }
-        )
-        return res
+    @api.depends("parent_id.is_sale_min_qty_set")
+    def _compute_is_sale_inherited_min_qty_set(self):
+        return super()._compute_is_sale_inherited_min_qty_set()
 
-    @api.depends(
-        "parent_id.force_sale_min_qty",
-        "parent_id.sale_min_qty",
-        "parent_id.force_sale_max_qty",
-        "parent_id.sale_max_qty",
-        "parent_id.sale_multiple_qty",
-    )
-    def _compute_sale_restricted_qty(self):
-        for rec in self:
-            rec.update(rec._get_sale_restricted_qty())
+    def _get_is_sale_inherited_min_qty_set(self):
+        if not self.parent_id:
+            return super()._get_is_sale_inherited_min_qty_set()
+
+        self.ensure_one()
+        return self.parent_id.is_sale_min_qty_set
+
+    @api.depends("parent_id.sale_min_qty")
+    def _compute_sale_inherited_min_qty(self):
+        return super()._compute_sale_inherited_min_qty()
+
+    def _get_sale_inherited_min_qty(self):
+        if not self.parent_id:
+            return super()._get_sale_inherited_min_qty()
+
+        self.ensure_one()
+        return self.parent_id.sale_min_qty
+
+    @api.depends("parent_id.is_sale_restrict_min_qty_set")
+    def _compute_is_sale_inherited_restrict_min_qty_set(self):
+        return super()._compute_is_sale_inherited_restrict_min_qty_set()
+
+    def _get_is_sale_inherited_restrict_min_qty_set(self):
+        if not self.parent_id:
+            return super()._get_is_sale_inherited_restrict_min_qty_set()
+
+        self.ensure_one()
+        return self.parent_id.is_sale_restrict_min_qty_set
+
+    @api.depends("parent_id.sale_restrict_min_qty")
+    def _compute_sale_inherited_restrict_min_qty(self):
+        return super()._compute_sale_inherited_restrict_min_qty()
+
+    def _get_sale_inherited_restrict_min_qty(self):
+        if not self.parent_id:
+            return super()._get_sale_inherited_restrict_min_qty()
+
+        self.ensure_one()
+        return self.parent_id.sale_restrict_min_qty
+
+    @api.depends("parent_id.is_sale_max_qty_set")
+    def _compute_is_sale_inherited_max_qty_set(self):
+        return super()._compute_is_sale_inherited_max_qty_set()
+
+    def _get_is_sale_inherited_max_qty_set(self):
+        if not self.parent_id:
+            return super()._get_is_sale_inherited_max_qty_set()
+
+        self.ensure_one()
+        return self.parent_id.is_sale_max_qty_set
+
+    @api.depends("parent_id.sale_max_qty")
+    def _compute_sale_inherited_max_qty(self):
+        return super()._compute_sale_inherited_max_qty()
+
+    def _get_sale_inherited_max_qty(self):
+        if not self.parent_id:
+            return super()._get_sale_inherited_max_qty()
+
+        self.ensure_one()
+        return self.parent_id.sale_max_qty
+
+    @api.depends("parent_id.is_sale_restrict_max_qty_set")
+    def _compute_is_sale_inherited_restrict_max_qty_set(self):
+        return super()._compute_is_sale_inherited_restrict_max_qty_set()
+
+    def _get_is_sale_inherited_restrict_max_qty_set(self):
+        if not self.parent_id:
+            return super()._get_is_sale_inherited_restrict_max_qty_set()
+
+        self.ensure_one()
+        return self.parent_id.is_sale_restrict_max_qty_set
+
+    @api.depends("parent_id.sale_restrict_max_qty")
+    def _compute_sale_inherited_restrict_max_qty(self):
+        return super()._compute_sale_inherited_restrict_max_qty()
+
+    def _get_sale_inherited_restrict_max_qty(self):
+        if not self.parent_id:
+            return super()._get_sale_inherited_restrict_max_qty()
+
+        self.ensure_one()
+        return self.parent_id.sale_restrict_max_qty
+
+    @api.depends("parent_id.is_sale_multiple_of_qty_set")
+    def _compute_is_sale_inherited_multiple_of_qty_set(self):
+        return super()._compute_is_sale_inherited_multiple_of_qty_set()
+
+    def _get_is_sale_inherited_multiple_of_qty_set(self):
+        if not self.parent_id:
+            return super()._get_is_sale_inherited_multiple_of_qty_set()
+
+        self.ensure_one()
+        return self.parent_id.is_sale_multiple_of_qty_set
+
+    @api.depends("parent_id.sale_multiple_of_qty")
+    def _compute_sale_inherited_multiple_of_qty(self):
+        return super()._compute_sale_inherited_multiple_of_qty()
+
+    def _get_sale_inherited_multiple_of_qty(self):
+        if not self.parent_id:
+            return super()._get_sale_inherited_multiple_of_qty()
+
+        self.ensure_one()
+        return self.parent_id.sale_multiple_of_qty
+
+    @api.depends("parent_id.is_sale_restrict_multiple_of_qty_set")
+    def _compute_is_sale_inherited_restrict_multiple_of_qty_set(self):
+        return super()._compute_is_sale_inherited_restrict_multiple_of_qty_set()
+
+    def _get_is_sale_inherited_restrict_multiple_of_qty_set(self):
+        if not self.parent_id:
+            return super()._get_is_sale_inherited_restrict_multiple_of_qty_set()
+
+        self.ensure_one()
+        return self.parent_id.is_sale_restrict_multiple_of_qty_set
+
+    @api.depends("parent_id.sale_restrict_multiple_of_qty")
+    def _compute_sale_inherited_restrict_multiple_of_qty(self):
+        return super()._compute_sale_inherited_restrict_multiple_of_qty()
+
+    def _get_sale_inherited_restrict_multiple_of_qty(self):
+        if not self.parent_id:
+            return super()._get_sale_inherited_restrict_multiple_of_qty()
+
+        self.ensure_one()
+        return self.parent_id.sale_restrict_multiple_of_qty

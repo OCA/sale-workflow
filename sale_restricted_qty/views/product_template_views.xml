@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Copyright 2019 Akretion
+    Copyright 2024 CorporateHub
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
 <odoo>
 
     <record id="view_product_template_form" model="ir.ui.view">
@@ -8,49 +13,136 @@
             <group name="description" position="before">
                 <group
                     name="sale_restricted_qty"
-                    string="Sale restricted qty"
+                    string="Sale Restricted Qty"
                     colspan="4"
                 >
-                    <group name="sale_min_qty_gr" string="Sale Min qty">
-                        <field name="sale_min_qty" />
-                        <label for="manual_sale_min_qty" class="oe_edit_only" />
-                        <field
-                            name="manual_sale_min_qty"
-                            class="oe_edit_only"
-                            nolabel="1"
-                        />
-                        <field name="force_sale_min_qty" />
-                        <label for="manual_force_sale_min_qty" class="oe_edit_only" />
-                        <field
-                            name="manual_force_sale_min_qty"
-                            class="oe_edit_only"
-                            nolabel="1"
-                        />
+                    <group string="Min Qty">
+                        <field name="is_sale_min_qty_set" invisible="1" />
+                        <label for="sale_min_qty" string="Value" />
+                        <div>
+                            <field name="is_sale_own_min_qty_set" class="oe_inline" />
+                            <span invisible="not is_sale_min_qty_set">
+                                <field
+                                    name="sale_min_qty"
+                                    class="oe_inline"
+                                    readonly="not is_sale_own_min_qty_set"
+                                    required="is_sale_own_min_qty_set"
+                                />
+                                <span
+                                    class="o_form_label oe_inline fst-italic text-muted"
+                                    invisible="is_sale_own_min_qty_set"
+                                > (inherited)</span>
+                            </span>
+                        </div>
+
+                        <field name="is_sale_restrict_min_qty_set" invisible="1" />
+                        <label for="sale_restrict_min_qty" string="Restrict" />
+                        <div>
+                            <field
+                                name="is_sale_own_restrict_min_qty_set"
+                                class="oe_inline"
+                            />
+                            <span invisible="not is_sale_restrict_min_qty_set">
+                                <field
+                                    name="sale_restrict_min_qty"
+                                    class="oe_inline"
+                                    readonly="not is_sale_own_restrict_min_qty_set"
+                                    required="is_sale_own_restrict_min_qty_set"
+                                />
+                                <span
+                                    class="o_form_label oe_inline fst-italic text-muted"
+                                    invisible="is_sale_own_restrict_min_qty_set"
+                                > (inherited)</span>
+                            </span>
+                        </div>
                     </group>
-                    <group name="sale_max_qty_gr" string="Sale Max qty">
-                        <field name="sale_max_qty" />
-                        <label for="manual_sale_max_qty" class="oe_edit_only" />
-                        <field
-                            name="manual_sale_max_qty"
-                            class="oe_edit_only"
-                            nolabel="1"
-                        />
-                        <field name="force_sale_max_qty" />
-                        <label for="manual_force_sale_max_qty" class="oe_edit_only" />
-                        <field
-                            name="manual_force_sale_max_qty"
-                            class="oe_edit_only"
-                            nolabel="1"
-                        />
+
+                    <group string="Max Qty">
+                        <field name="is_sale_max_qty_set" invisible="1" />
+                        <label for="sale_max_qty" string="Value" />
+                        <div>
+                            <field name="is_sale_own_max_qty_set" class="oe_inline" />
+                            <span invisible="not is_sale_max_qty_set">
+                                <field
+                                    name="sale_max_qty"
+                                    class="oe_inline"
+                                    readonly="not is_sale_own_max_qty_set"
+                                    required="is_sale_own_max_qty_set"
+                                />
+                                <span
+                                    class="o_form_label oe_inline fst-italic text-muted"
+                                    invisible="is_sale_own_max_qty_set"
+                                > (inherited)</span>
+                            </span>
+                        </div>
+
+                        <field name="is_sale_restrict_max_qty_set" invisible="1" />
+                        <label for="sale_restrict_max_qty" string="Restrict" />
+                        <div>
+                            <field
+                                name="is_sale_own_restrict_max_qty_set"
+                                class="oe_inline"
+                            />
+                            <span invisible="not is_sale_restrict_max_qty_set">
+                                <field
+                                    name="sale_restrict_max_qty"
+                                    class="oe_inline"
+                                    readonly="not is_sale_own_restrict_max_qty_set"
+                                    required="is_sale_own_restrict_max_qty_set"
+                                />
+                                <span
+                                    class="o_form_label oe_inline fst-italic text-muted"
+                                    invisible="is_sale_own_restrict_max_qty_set"
+                                > (inherited)</span>
+                            </span>
+                        </div>
                     </group>
-                    <group name="sale_multiple_qty_gr" string="Sale Multiple qty">
-                        <field name="sale_multiple_qty" />
-                        <label for="manual_sale_multiple_qty" class="oe_edit_only" />
+
+                    <group string="Multiple-Of Qty">
+                        <field name="is_sale_multiple_of_qty_set" invisible="1" />
+                        <label for="sale_multiple_of_qty" string="Value" />
+                        <div>
+                            <field
+                                name="is_sale_own_multiple_of_qty_set"
+                                class="oe_inline"
+                            />
+                            <span invisible="not is_sale_multiple_of_qty_set">
+                                <field
+                                    name="sale_multiple_of_qty"
+                                    class="oe_inline"
+                                    readonly="not is_sale_own_multiple_of_qty_set"
+                                    required="is_sale_own_multiple_of_qty_set"
+                                />
+                                <span
+                                    class="o_form_label oe_inline fst-italic text-muted"
+                                    invisible="is_sale_own_multiple_of_qty_set"
+                                > (inherited)</span>
+                            </span>
+                        </div>
+
                         <field
-                            name="manual_sale_multiple_qty"
-                            class="oe_edit_only"
-                            nolabel="1"
+                            name="is_sale_restrict_multiple_of_qty_set"
+                            invisible="1"
                         />
+                        <label for="sale_restrict_multiple_of_qty" string="Restrict" />
+                        <div>
+                            <field
+                                name="is_sale_own_restrict_multiple_of_qty_set"
+                                class="oe_inline"
+                            />
+                            <span invisible="not is_sale_restrict_multiple_of_qty_set">
+                                <field
+                                    name="sale_restrict_multiple_of_qty"
+                                    class="oe_inline"
+                                    readonly="not is_sale_own_restrict_multiple_of_qty_set"
+                                    required="is_sale_own_restrict_multiple_of_qty_set"
+                                />
+                                <span
+                                    class="o_form_label oe_inline fst-italic text-muted"
+                                    invisible="is_sale_own_restrict_multiple_of_qty_set"
+                                > (inherited)</span>
+                            </span>
+                        </div>
                     </group>
                 </group>
             </group>

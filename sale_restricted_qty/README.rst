@@ -1,6 +1,6 @@
-=======================
-Sale order min quantity
-=======================
+=====================================================
+Sale order restricted quantity: min, max, multiple-of
+=====================================================
 
 .. 
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -28,16 +28,9 @@ Sale order min quantity
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows to define min, max and multiple order quantity on
-product. Min and Max order quantity is either required or recommended.
-If you check "Force min/max Qty" on product the min/max qty do not block
-sale order. This can be used if the available stock is less then the min
-qty or if you want to sell sample products. Max qty can be used if we
-dont want to sale more than available qty (end of series product)
-
-Settings are defined on product, if values are not set we use settings
-from product template. If settings are not set on product template we
-use settings from product category otherwise parent category.
+This module allows to set mininal, maximal, and multiple-of quantity
+constraints on product categories and products, and to check and
+optionally enforce these constraints on sale orders.
 
 **Table of contents**
 
@@ -47,16 +40,25 @@ use settings from product category otherwise parent category.
 Usage
 =====
 
-1. | Go to **Sales > Products > Product Variants** and Set "Min Sale
-     Qty".
-   | If you dont want block product sale if qty is less the "Min Sale
-     Qty", check "Force Min Qty"
+To set quantity constraints on a product: navigate to **Sales > Products
+> Products**, open the product, and on the **Sales** tab in the **Qty
+Constraints** section set corresponding values in the *Min Qty*, *Max
+Qty*, or *Multiple-Of Qty* fields.
 
-2. | Create a sale order and add a sale order line with this product and
-     check
-   | if Qty is less then "Min Qty" A message in displayed "Min Qty
-     Required" Or "Min Qty Recommended". Check if Min qty is required
-     you can't validate order.
+To set quantity constraints on a product variant: navigate to **Sales >
+Products > Product Variants**, open the product variant, and on the
+**Sales** tab in the **Qty Constraints** section set corresponding
+values in the *Min Qty*, *Max Qty*, or *Multiple-Of Qty* fields.
+
+To set quantity constraints on a product category: navigate to **Sales >
+Configuration > Product Categories**, open the product category, and in
+the **Sales Qty Constraints** section set corresponding values in the
+*Min Qty*, *Max Qty*, or *Multiple-Of Qty* fields.
+
+The settings are inherited from the product category to the product, and
+from the product to the product variant. To override the inherited
+settings, check the checkbox next to the corresponding value and set the
+value in the product or product variant.
 
 Bug Tracker
 ===========
@@ -100,14 +102,6 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
-
-.. |maintainer-ashishhirapara| image:: https://github.com/ashishhirapara.png?size=40px
-    :target: https://github.com/ashishhirapara
-    :alt: ashishhirapara
-
-Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
-
-|maintainer-ashishhirapara| 
 
 This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_restricted_qty>`_ project on GitHub.
 
