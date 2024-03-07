@@ -1,4 +1,5 @@
 from odoo import api, fields, models
+from odoo.exceptions import UserError
 
 
 class SalePriceConfig(models.Model):
@@ -38,6 +39,7 @@ class SalePriceConfigLine(models.Model):
             ("include_product_or_category", "Include product or category"),
         ],
         string="Type",
+        required=True,
     )
 
     target_field = fields.Many2one(comodel_name="ir.model.fields", string="Field")
