@@ -81,16 +81,15 @@ class SalePriceConfigLine(models.Model):
                 lines = input_line.create_bom_line_data()
                 res_id = self.included_product_or_category
                 for line in lines:
-                    if res_id._name == "product.category":
-                        if line["product_tmpl_id"].categ_id.id == res_id.id:
-                            return (
-                                line["product_tmpl_id"].list_price * line["product_qty"]
-                            )
-                    else:
-                        if line["product_tmpl_id"].id == res_id.id:
-                            return (
-                                line["product_tmpl_id"].list_price * line["product_qty"]
-                            )
+                    if res_id._name == "product.category" and line["product_tmpl_id"].categ_id.id == res_id.id:
+                        return (
+                            line["product_tmpl_id"].list_price * line["product_qty"]
+                        )
+                    if res_id._name == "product.template" and line["product_tmpl_id"].id == res_id.id:
+                        return (
+                            line["product_tmpl_id"].list_price * line["product_qty"]
+                        )
+                return 0.0
             case "factor":
                 factor = input_line[self.target_field.name]
                 return factor * self.amount
