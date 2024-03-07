@@ -288,13 +288,13 @@ msgstr ""
 #. module: sale_restricted_qty
 #: code:addons/sale_restricted_qty/models/sale.py:0
 #, python-format
-msgid "Product \"%(product_name)s\": Min Quantity %(sale_min_qty)s."
+msgid "Product \"%(product_name)s\": Min Quantity %(sale_own_min_qty)s."
 msgstr ""
 
 #. module: sale_restricted_qty
 #: code:addons/sale_restricted_qty/models/sale.py:0
 #, python-format
-msgid "Product \"%(product_name)s\": Max Quantity %(sale_max_qty)s."
+msgid "Product \"%(product_name)s\": Max Quantity %(sale_own_max_qty)s."
 msgstr ""
 
 #. module: sale_restricted_qty

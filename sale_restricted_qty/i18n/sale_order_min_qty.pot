@@ -67,7 +67,7 @@ msgstr ""
 #. module: sale_order_min_qty
 #: code:addons/sale_order_min_qty/models/sale.py:43
 #, python-format
-msgid "Product \"%(product_name)s\": Min Quantity %(sale_min_qty)s."
+msgid "Product \"%(product_name)s\": Min Quantity %(sale_own_min_qty)s."
 msgstr ""
 
 #. module: sale_order_min_qty
