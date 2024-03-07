@@ -13,6 +13,8 @@
     ],
     "data": [
         "views/sale_order.xml",
+        "views/sale_price_config.xml",
+        "security/ir.model.access.csv",
     ],
     "installable": True,
 }

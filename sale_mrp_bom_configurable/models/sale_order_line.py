@@ -61,6 +61,15 @@ class SaleOrderLine(models.Model):
         for rec in self:
             rec.should_filter_product = not bool(rec.input_config_id)
 
+    @api.depends("product_id", "product_uom", "product_uom_qty", "input_line_id")
+    def _compute_price_unit(self):
+        for rec in self:
+            rec = rec.with_context(
+                price_config=rec.product_id.product_tmpl_id._find_price_config(),
+                input_line=rec.input_line_id,
+            )
+            super(SaleOrderLine, rec)._compute_price_unit()
+
     def action_show_input_line(self):
         self.ensure_one()
         return {
