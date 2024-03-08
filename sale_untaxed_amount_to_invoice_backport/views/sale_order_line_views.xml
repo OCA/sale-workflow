@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="untaxed_amount_to_invoice_1" model="ir.ui.view">
+        <field name="name">sale.order.amount.to.invoice</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree/field[@name='amount_total']"
+                   position="after" invisible="1">
+                <field name="untaxed_amount_to_invoice" sum="Total untaxed to amount" string="To invoice"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="untaxed_amount_to_invoice_2" model="ir.ui.view">
+        <field name="name">sale.order.amount.invoice</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name = 'amount_total' position = 'after'>
+                <field name="untaxed_amount_to_invoice" sum="Total untaxed to amount" string="To invoice"/>
+            </field>
+        </field>
+    </record>
+    <record id="untaxed_amount_to_invoice_3" model="ir.ui.view">
+        <field name="name">sale.order.line.amount.to.invoice</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']"
+                   position="after" invisible="1">
+                <field name="untaxed_amount_to_invoice" string="To invoice"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="untaxed_amount_to_invoice_form" model="ir.ui.view">
+        <field name="name">order.line.amount.invoice</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page/group/field[@name='amount_total']" position="after">
+                <div class="oe_subtotal_footer oe_inline oe_right o_td_label">
+                    <label for="untaxed_amount_to_invoice" string="To invoice"/>
+                </div>
+                <field name="untaxed_amount_to_invoice" nolabel="1" class="oe_subtotal_footer_separate o_td_label"
+                       widget="monetary" options="{'currency_field': 'currency_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
