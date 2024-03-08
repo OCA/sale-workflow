@@ -109,6 +109,11 @@ msgid "Analytic Tags"
 msgstr "Etiquetas Analíticas"
 
 #. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_config_settings_form_view
+msgid "Assign Blanket Order number to draft Blanket Order"
+msgstr ""
+
+#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_attachment_count
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_attachment_count
 msgid "Attachment Count"
@@ -174,6 +179,11 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__cancel
+msgid "Cancelled"
+msgstr ""
+
+#. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/sale_orders.py:0
 #, python-format
 msgid ""
@@ -190,6 +200,11 @@ msgid ""
 msgstr ""
 "Click para crear una pedido programado que puede ser convertido en un pedido "
 "de venta."
+
+#. module: sale_blanket_order
+#: model:ir.model,name:sale_blanket_order.model_res_company
+msgid "Companies"
+msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__company_id
@@ -287,6 +302,7 @@ msgid "Disable adding more lines to SOs from Blanket Orders"
 msgstr "Desactivar añadir más líneas a Pedidos desde Programaciones"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_res_company__display_name
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__display_name
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__display_name
@@ -303,9 +319,17 @@ msgid "Done"
 msgstr "Hecho"
 
 #. module: sale_blanket_order
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__draft
+#, python-format
 msgid "Draft"
 msgstr "Borrador"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_res_company__blanket_order_seq_number_from_draft
+#: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__blanket_order_seq_number_from_draft
+msgid "Enable Blanket Order numbering from draft state"
+msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.actions.server,name:sale_blanket_order.expired_blanket_orders_cron_ir_actions_server
@@ -349,6 +373,7 @@ msgid "Font awesome icon e.g. fa-tasks"
 msgstr "Fuente iconos sorprendentes , por ejemplo fa-tasks"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_res_company__id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__id
@@ -409,6 +434,7 @@ msgid "Is Follower"
 msgstr "Es seguidor"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_res_company____last_update
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order____last_update
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line____last_update
@@ -971,9 +997,9 @@ msgstr ""
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
-msgid "You can't create a sale order from an expired blanket order!"
+msgid ""
+"You can't create a sale order from a cancelled or expired blanket order!"
 msgstr ""
-"¡No puede crear un pedido de venta a partir de un pedido programado vencido!"
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
@@ -992,6 +1018,12 @@ msgstr "Tiene que seleccionar líneas desde la misma compañía."
 #, python-format
 msgid "remaining"
 msgstr "restante"
+
+#, python-format
+#~ msgid "You can't create a sale order from an expired blanket order!"
+#~ msgstr ""
+#~ "¡No puede crear un pedido de venta a partir de un pedido programado "
+#~ "vencido!"
 
 #~ msgid "Customer"
 #~ msgstr "Cliente"
