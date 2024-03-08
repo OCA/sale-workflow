@@ -99,6 +99,7 @@ class BlanketOrder(models.Model):
             ("open", "Open"),
             ("done", "Done"),
             ("expired", "Expired"),
+            ("cancel", "Cancelled"),
         ],
         compute="_compute_state",
         store=True,
@@ -211,7 +212,7 @@ class BlanketOrder(models.Model):
         for order in self:
             if not order.confirmed:
                 order.state = "draft"
-            elif order.validity_date <= today:
+            elif order.validity_date <= today and order.state != "cancel":
                 order.state = "expired"
             elif float_is_zero(
                 sum(order.line_ids.mapped("remaining_uom_qty")),
@@ -264,9 +265,33 @@ class BlanketOrder(models.Model):
             values["team_id"] = self.partner_id.team_id.id
         self.update(values)
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        translated_draft = _("Draft")
+        for vals in vals_list:
+            company_id = vals.get("company_id")
+            company = (
+                self.env["res.company"].browse(company_id)
+                if company_id
+                else self.env.company
+            )
+            if (
+                company.blanket_order_seq_number_from_draft
+                and vals.get("name", translated_draft) == translated_draft
+            ):
+                vals["name"] = (
+                    self.env["ir.sequence"].next_by_code("sale.blanket.order")
+                    or translated_draft
+                )
+        result = super().create(vals_list)
+        return result
+
     def unlink(self):
         for order in self:
-            if order.state not in ("draft", "expired") or order._check_active_orders():
+            if (
+                order.state not in ("draft", "expired", "cancel")
+                or order._check_active_orders()
+            ):
                 raise UserError(
                     _(
                         "You can not delete an open blanket or "
@@ -297,12 +322,17 @@ class BlanketOrder(models.Model):
 
     def action_confirm(self):
         self._validate()
+        translated_draft = _("Draft")
         for order in self:
-            sequence_obj = self.env["ir.sequence"]
-            if order.company_id:
-                sequence_obj = sequence_obj.with_company(order.company_id.id)
-            name = sequence_obj.next_by_code("sale.blanket.order")
-            order.write({"confirmed": True, "name": name})
+            update_data = {"confirmed": True}
+            # if the order already had a sequence number we don't need to set it again
+            if not order.name or order.name == translated_draft:
+                sequence_obj = self.env["ir.sequence"]
+                if order.company_id:
+                    sequence_obj = sequence_obj.with_company(order.company_id.id)
+                name = sequence_obj.next_by_code("sale.blanket.order")
+                update_data["name"] = name
+            order.write(update_data)
         return True
 
     def _check_active_orders(self):
@@ -322,7 +352,7 @@ class BlanketOrder(models.Model):
                         "Try to cancel them before."
                     )
                 )
-            order.write({"state": "expired"})
+            order.write({"state": "cancel"})
         return True
 
     def action_view_sale_orders(self):

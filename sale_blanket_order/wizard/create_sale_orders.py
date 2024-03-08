@@ -20,9 +20,12 @@ class BlanketOrderWizard(models.TransientModel):
         blanket_order = self.env["sale.blanket.order"].search(
             [("id", "=", self.env.context["active_id"])], limit=1
         )
-        if blanket_order.state == "expired":
+        if blanket_order.state in ["expired", "cancel"]:
             raise UserError(
-                _("You can't create a sale order from " "an expired blanket order!")
+                _(
+                    "You can't create a sale order from a cancelled or expired blanket"
+                    " order!"
+                )
             )
         return blanket_order
 
