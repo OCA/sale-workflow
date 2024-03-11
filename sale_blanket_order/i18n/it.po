@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-05 09:40+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2024-03-11 09:52+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -110,7 +110,7 @@ msgstr "Etichette analitiche"
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_config_settings_form_view
 msgid "Assign Blanket Order number to draft Blanket Order"
-msgstr ""
+msgstr "Assegna progressivo ordine aperto agli ordini aperti in bozza"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_attachment_count
@@ -330,7 +330,7 @@ msgstr "Bozza"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_company__blanket_order_seq_number_from_draft
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__blanket_order_seq_number_from_draft
 msgid "Enable Blanket Order numbering from draft state"
-msgstr ""
+msgstr "Abilita la numerazione degli ordini aperti dallo stato bozza"
 
 #. module: sale_blanket_order
 #: model:ir.actions.server,name:sale_blanket_order.expired_blanket_orders_cron_ir_actions_server
@@ -1000,6 +1000,7 @@ msgstr ""
 msgid ""
 "You can't create a sale order from a cancelled or expired blanket order!"
 msgstr ""
+"Non puoi creare un ordine di vendita da un ordine aperto scaduto o annullato!"
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
