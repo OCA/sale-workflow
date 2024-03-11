@@ -84,11 +84,6 @@ msgid "Companies"
 msgstr ""
 
 #. module: sale_order_product_recommendation
-#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_categ_complete_name
-msgid "Complete Name"
-msgstr ""
-
-#. module: sale_order_product_recommendation
 #: model:ir.model,name:sale_order_product_recommendation.model_res_config_settings
 msgid "Config Settings"
 msgstr ""
@@ -279,6 +274,7 @@ msgid "Product Uom Readonly"
 msgstr ""
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_categ_complete_name
 #: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__product_categ_complete_name_asc
 msgid "Product category"
 msgstr ""

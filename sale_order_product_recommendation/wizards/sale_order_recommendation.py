@@ -249,7 +249,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
         name="Product name", related="product_id.name", readonly=True, store=True
     )
     product_categ_complete_name = fields.Char(
-        name="Product category",
+        string="Product category",
         related="product_id.categ_id.complete_name",
         readonly=True,
         store=True,
