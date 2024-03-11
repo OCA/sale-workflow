@@ -139,12 +139,5 @@ msgid ""
 "orders."
 msgstr ""
 
-#. module: sale_stock_picking_blocking
-#. odoo-python
-#: code:addons/sale_stock_picking_blocking/models/sale_order.py:0
-#, python-format
-msgid "You cannot block a sale order with \"auto_done_setting\" active."
-msgstr ""
-
 #~ msgid "Partner"
 #~ msgstr "พาร์ทเนอร์"
