@@ -374,18 +374,10 @@ msgid "Sale Max Qty"
 msgstr "Qté max vendable"
 
 #. module: sale_restricted_qty
-#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
 msgid "Sale Max qty"
 msgstr "Qté max vendable"
-
-#. module: sale_restricted_qty
-#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
-#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
-#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
-msgid "Sale Multiple qty"
-msgstr "Qté multiple par commande"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_product_category__sale_min_qty
@@ -396,7 +388,6 @@ msgid "Sale Min Qty"
 msgstr "Qté min vendable"
 
 #. module: sale_restricted_qty
-#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
 msgid "Sale Min qty"
@@ -411,7 +402,12 @@ msgid "Sale Multiple Qty"
 msgstr "Qté multiple vendable"
 
 #. module: sale_restricted_qty
-#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
+msgid "Sale Multiple qty"
+msgstr "Qté multiple par commande"
+
+#. module: sale_restricted_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
 msgid "Sale restricted qty"
