@@ -2,14 +2,18 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo.tests import Form, TransactionCase
 
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+
 
 class TestSaleOrderCarrierAutoAssign(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        test_context = cls.env.context.copy()
-        test_context["test_carrier_auto_assign"] = True
-        cls.env = cls.env(context=dict(test_context, tracking_disable=True))
+        cls.env = cls.env["base"].with_context(**DISABLED_MAIL_CONTEXT).env
+        cls.settings = cls.env["res.config.settings"].create({})
+        cls.settings.carrier_auto_assign = True
+        cls.settings.set_values()
+
         cls.partner = cls.env.ref("base.res_partner_2")
         product = cls.env.ref("product.product_product_9")
         cls.delivery_local_delivery = cls.env.ref("delivery.delivery_local_delivery")

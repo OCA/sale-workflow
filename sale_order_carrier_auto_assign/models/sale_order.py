@@ -1,7 +1,6 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import models
-from odoo.tools import config
 
 
 class SaleOrder(models.Model):
@@ -9,11 +8,10 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     def action_confirm(self):
-        if config["test_enable"] and not self.env.context.get(
-            "test_carrier_auto_assign"
-        ):
-            return super().action_confirm()
-        self._add_delivery_carrier_on_confirmation()
+        for rec in self:
+            if not rec.company_id.carrier_auto_assign:
+                continue
+            rec._add_delivery_carrier_on_confirmation()
         return super().action_confirm()
 
     def _add_delivery_carrier_on_confirmation(self):
