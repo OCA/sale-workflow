@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-11 08:56+0000\n"
+"PO-Revision-Date: 2024-03-11 08:56+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -81,11 +83,6 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model,name:sale_order_product_recommendation.model_res_company
 msgid "Companies"
-msgstr ""
-
-#. module: sale_order_product_recommendation
-#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_categ_complete_name
-msgid "Complete Name"
 msgstr ""
 
 #. module: sale_order_product_recommendation
@@ -279,6 +276,7 @@ msgid "Product Uom Readonly"
 msgstr ""
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_categ_complete_name
 #: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__product_categ_complete_name_asc
 msgid "Product category"
 msgstr ""
