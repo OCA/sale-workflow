@@ -91,6 +91,8 @@ Contributors
   * Carlos Roca
   * Ernesto Tejeda
 
+* Eduardo de Miguel (`Moduon <https://www.moduon.team/>`__)
+
 Maintainers
 ~~~~~~~~~~~
 
