@@ -8,7 +8,7 @@ from odoo.tools import float_compare
 
 class TestDeliveryCost(common.TransactionCase):
     def setUp(self):
-        super(TestDeliveryCost, self).setUp()
+        super().setUp()
         self.tax_model = self.env["account.tax"]
         self.SaleOrder = self.env["sale.order"]
         self.SaleOrderLine = self.env["sale.order.line"]
