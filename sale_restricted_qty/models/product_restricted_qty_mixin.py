@@ -1,4 +1,5 @@
 # Copyright 2019 Akretion
+# Copyright 2024 CorporateHub
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -15,7 +16,7 @@ class ProductMinMultipleMixin(models.AbstractModel):
         " 'If not set', Odoo will"
         " use the value defined in the parent object."
         "Hierarchy is in this order :"
-        "Product/product Template/product category/parent categoroies ",
+        "Product/product Template/product category/parent categories ",
         digits="Product Unit of Measure",
     )
     manual_sale_multiple_qty = fields.Float(
@@ -28,7 +29,7 @@ class ProductMinMultipleMixin(models.AbstractModel):
         " 'If not set, Odoo will"
         " use the value defined in the parent object."
         "Hierarchy is in this order :"
-        "Product/product Template/product category/parent categoroies ",
+        "Product/product Template/product category/parent categories ",
         digits="Product Unit of Measure",
     )
     manual_sale_min_qty = fields.Float(
@@ -42,7 +43,7 @@ class ProductMinMultipleMixin(models.AbstractModel):
         " 'If not set', Odoo will"
         " use the value defined in the parent object."
         "Hierarchy is in this order :"
-        "Product/product Template/product category/parent categoroies ",
+        "Product/product Template/product category/parent categories ",
     )
     manual_force_sale_min_qty = fields.Selection(
         [
@@ -64,7 +65,7 @@ class ProductMinMultipleMixin(models.AbstractModel):
         " 'If not set, Odoo will"
         " use the value defined in the parent object."
         "Hierarchy is in this order :"
-        "Product/product Template/product category/parent categoroies ",
+        "Product/product Template/product category/parent categories ",
         digits="Product Unit of Measure",
     )
     manual_sale_max_qty = fields.Float(
@@ -78,7 +79,7 @@ class ProductMinMultipleMixin(models.AbstractModel):
         " 'If not set', Odoo will"
         " use the value defined in the parent object."
         "Hierarchy is in this order :"
-        "Product/product Template/product category/parent categoroies ",
+        "Product/product Template/product category/parent categories ",
     )
     manual_force_sale_max_qty = fields.Selection(
         [
