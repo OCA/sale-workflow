@@ -80,3 +80,9 @@ class AccountSpread(models.Model):
                 "sale_line": spread.sale_line_id.name,
             }
             spread.sale_id.message_post(body=msg_body)
+
+    def _compute_spread_board(self):
+        self.ensure_one()
+        if self.invoice_line_id.spread_on_sale:
+            return
+        super()._compute_spread_board()

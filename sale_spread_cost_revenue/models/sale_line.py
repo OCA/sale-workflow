@@ -113,6 +113,7 @@ class SaleOrderLine(models.Model):
         res = super()._prepare_invoice_line(**optional_values)
         # Creating invoice from sales order, ensure same spread account
         if self.spread_id:
+            res["spread_on_sale"] = True
             res["spread_id"] = self.spread_id.id
             res["account_id"] = self.spread_id.debit_account_id.id
         return res
