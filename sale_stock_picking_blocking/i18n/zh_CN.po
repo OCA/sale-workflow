@@ -145,12 +145,9 @@ msgid ""
 "orders."
 msgstr "设置一个默认阻止此客户销售订单中的交货的原因。"
 
-#. module: sale_stock_picking_blocking
-#. odoo-python
-#: code:addons/sale_stock_picking_blocking/models/sale_order.py:0
 #, python-format
-msgid "You cannot block a sale order with \"auto_done_setting\" active."
-msgstr "您无法在“auto_done_setting”处于活动状态时阻止销售订单。"
+#~ msgid "You cannot block a sale order with \"auto_done_setting\" active."
+#~ msgstr "您无法在“auto_done_setting”处于活动状态时阻止销售订单。"
 
 #~ msgid "Sale Order"
 #~ msgstr "销售订单"
