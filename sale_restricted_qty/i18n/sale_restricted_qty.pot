@@ -337,17 +337,9 @@ msgid "Sale Max Qty"
 msgstr ""
 
 #. module: sale_restricted_qty
-#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
 msgid "Sale Max qty"
-msgstr ""
-
-#. module: sale_restricted_qty
-#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
-#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
-#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
-msgid "Sale Multiple qty"
 msgstr ""
 
 #. module: sale_restricted_qty
@@ -359,7 +351,6 @@ msgid "Sale Min Qty"
 msgstr ""
 
 #. module: sale_restricted_qty
-#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
 msgid "Sale Min qty"
@@ -374,7 +365,12 @@ msgid "Sale Multiple Qty"
 msgstr ""
 
 #. module: sale_restricted_qty
-#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.min_order_qty_product_product_form_view
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
+#: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
+msgid "Sale Multiple qty"
+msgstr ""
+
+#. module: sale_restricted_qty
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_category_form
 #: model_terms:ir.ui.view,arch_db:sale_restricted_qty.view_product_template_form
 msgid "Sale restricted qty"
