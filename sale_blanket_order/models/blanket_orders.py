@@ -6,8 +6,6 @@ from odoo.exceptions import UserError
 from odoo.tools import float_is_zero
 from odoo.tools.misc import format_date
 
-from odoo.addons.sale.models.sale_order import READONLY_FIELD_STATES
-
 
 class BlanketOrder(models.Model):
     _name = "sale.blanket.order"
@@ -44,7 +42,7 @@ class BlanketOrder(models.Model):
     partner_id = fields.Many2one(
         "res.partner",
         string="Partner",
-        states=READONLY_FIELD_STATES,
+
     )
     line_ids = fields.One2many(
         "sale.blanket.order.line", "order_id", string="Order lines", copy=True
@@ -63,7 +61,7 @@ class BlanketOrder(models.Model):
         "product.pricelist",
         string="Pricelist",
         required=True,
-        states=READONLY_FIELD_STATES,
+
     )
     currency_id = fields.Many2one("res.currency", related="pricelist_id.currency_id")
     analytic_account_id = fields.Many2one(
@@ -71,13 +69,13 @@ class BlanketOrder(models.Model):
         string="Analytic Account",
         copy=False,
         check_company=True,
-        states=READONLY_FIELD_STATES,
+
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
     payment_term_id = fields.Many2one(
         "account.payment.term",
         string="Payment Terms",
-        states=READONLY_FIELD_STATES,
+
     )
     confirmed = fields.Boolean(copy=False)
     state = fields.Selection(
@@ -92,25 +90,25 @@ class BlanketOrder(models.Model):
         copy=False,
     )
     validity_date = fields.Date(
-        states=READONLY_FIELD_STATES,
+
     )
     client_order_ref = fields.Char(
         string="Customer Reference",
         copy=False,
-        states=READONLY_FIELD_STATES,
+
     )
-    note = fields.Text(default=_default_note, states=READONLY_FIELD_STATES)
+    note = fields.Text(default=_default_note)
     user_id = fields.Many2one(
         "res.users",
         string="Salesperson",
-        states=READONLY_FIELD_STATES,
+
     )
     team_id = fields.Many2one(
         "crm.team",
         string="Sales Team",
         change_default=True,
         default=lambda self: self.env["crm.team"]._get_default_team_id(),
-        states=READONLY_FIELD_STATES,
+
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
