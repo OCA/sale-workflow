@@ -1,1 +1,1 @@
-from . import product_set_add
+from . import sale_product_set_wizard
