@@ -5,9 +5,9 @@
 from odoo import _, api, exceptions, fields, models
 
 
-class ProductSetAdd(models.TransientModel):
-    _name = "product.set.add"
-    _rec_name = "product_set_id"
+class SaleProductSetWizard(models.TransientModel):
+    _inherit = "product.set.wizard"
+    _name = "sale.product.set.wizard"
     _description = "Wizard model to add product set into a quotation"
 
     order_id = fields.Many2one(
@@ -20,21 +20,6 @@ class ProductSetAdd(models.TransientModel):
         ondelete="cascade",
     )
     partner_id = fields.Many2one(related="order_id.partner_id", ondelete="cascade")
-    product_set_id = fields.Many2one(
-        "product.set", "Product set", required=True, ondelete="cascade"
-    )
-    product_set_line_ids = fields.Many2many(
-        "product.set.line",
-        string="Product set lines",
-        required=True,
-        store=True,
-        ondelete="cascade",
-        compute="_compute_product_set_line_ids",
-        readonly=False,
-    )
-    quantity = fields.Float(
-        digits="Product Unit of Measure", required=True, default=1.0
-    )
     skip_existing_products = fields.Boolean(
         default=False,
         help="Enable this to not add new lines "
@@ -42,14 +27,10 @@ class ProductSetAdd(models.TransientModel):
     )
 
     @api.depends_context("product_set_add__set_line_ids")
-    @api.depends("product_set_id")
     def _compute_product_set_line_ids(self):
         line_ids = self.env.context.get("product_set_add__set_line_ids", [])
         lines_from_ctx = self.env["product.set.line"].browse(line_ids)
         for rec in self:
-            if rec.product_set_line_ids:
-                # Passed on creation
-                continue
             lines = lines_from_ctx.filtered(
                 lambda x: x.product_set_id == rec.product_set_id
             )
@@ -58,7 +39,7 @@ class ProductSetAdd(models.TransientModel):
                 rec.product_set_line_ids = lines
             else:
                 # Fallback to all lines from current set
-                rec.product_set_line_ids = rec.product_set_id.set_line_ids
+                return super()._compute_product_set_line_ids()
 
     def _check_partner(self):
         """Validate order partner against product set's partner if any."""
@@ -66,7 +47,6 @@ class ProductSetAdd(models.TransientModel):
             "product_set_add_skip_validation"
         ):
             return
-
         allowed_partners = self._allowed_order_partners()
         if self.order_id.partner_id not in allowed_partners:
             raise exceptions.ValidationError(
@@ -75,6 +55,7 @@ class ProductSetAdd(models.TransientModel):
                     "only to following partner(s): {}"
                 ).format(", ".join(allowed_partners.mapped("name")))
             )
+        return super()._check_partner()
 
     def _allowed_order_partners(self):
         """Product sets' partners allowed for current sale order."""
@@ -85,7 +66,9 @@ class ProductSetAdd(models.TransientModel):
 
     def add_set(self):
         """Add product set, multiplied by quantity in sale order line"""
-        self._check_partner()
+        res = super().add_set()
+        if not self.order_id:
+            return res
         order_lines = self._prepare_order_lines()
         if order_lines:
             self.order_id.write({"order_line": order_lines})
@@ -111,7 +94,8 @@ class ProductSetAdd(models.TransientModel):
         return max_sequence
 
     def _get_lines(self):
-        # hook here to take control on used lines
+        if not self.order_id:
+            yield from super()._get_lines()
         so_product_ids = self.order_id.order_line.mapped("product_id").ids
         for set_line in self.product_set_line_ids:
             if self.skip_existing_products and set_line.product_id.id in so_product_ids:
