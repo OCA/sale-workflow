@@ -1,0 +1,55 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_partner_incoterm
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-23 08:14+0000\n"
+"PO-Revision-Date: 2019-09-01 11:23+0000\n"
+"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-sale-"
+"workflow-8-0/language/zh_CN/)\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: sale_partner_incoterm
+#: model:ir.model,name:sale_partner_incoterm.model_res_partner
+msgid "Contact"
+msgstr "联系人"
+
+#. module: sale_partner_incoterm
+#: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_partner__sale_incoterm_address_id
+#: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_users__sale_incoterm_address_id
+msgid "Default Sale Incoterm Address"
+msgstr ""
+
+#. module: sale_partner_incoterm
+#: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_partner__sale_incoterm_id
+#: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_users__sale_incoterm_id
+#: model_terms:ir.ui.view,arch_db:sale_partner_incoterm.view_partner_property_form
+msgid "Default Sales Incoterm"
+msgstr "默认销售国际贸易术语"
+
+#. module: sale_partner_incoterm
+#: model:ir.model.fields,field_description:sale_partner_incoterm.field_sale_order__incoterm_address_id
+msgid "Incoterm Address"
+msgstr ""
+
+#. module: sale_partner_incoterm
+#: model:ir.model,name:sale_partner_incoterm.model_sale_order
+#, fuzzy
+msgid "Sales Order"
+msgstr "销售订单"
+
+#. module: sale_partner_incoterm
+#: model:ir.model.fields,help:sale_partner_incoterm.field_res_partner__sale_incoterm_id
+#: model:ir.model.fields,help:sale_partner_incoterm.field_res_users__sale_incoterm_id
+msgid "The default incoterm for new sales orders for this customer."
+msgstr "此客户在新销售订单的默认国际贸易术语。"
