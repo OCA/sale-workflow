@@ -14,7 +14,7 @@ class TestProductSet(common.TransactionCase):
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.so_model = cls.env["sale.order"]
         cls.so = cls.env.ref("sale.sale_order_6")
-        cls.product_set_add = cls.env["product.set.add"]
+        cls.product_set_add = cls.env["sale.product.set.wizard"]
         cls.product_set = cls.env.ref("product_set.product_set_i5_computer")
 
     def _get_wiz(self, ctx=None, **kw):
