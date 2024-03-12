@@ -15,7 +15,7 @@ class SaleOrder(models.Model):
         for order in self:
             if order._should_auto_remove_zero_quantity_lines():
                 zero_lines = order.order_line.filtered(
-                    lambda line: line.product_uom_qty == 0
+                    lambda line: line.product_id and line.product_uom_qty == 0
                 )
                 if zero_lines:
                     body = _(
