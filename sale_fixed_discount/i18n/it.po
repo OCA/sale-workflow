@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-14 17:30+0000\n"
-"PO-Revision-Date: 2024-02-14 17:30+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2024-03-12 09:36+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_fixed_discount
 #: model_terms:ir.ui.view,arch_db:sale_fixed_discount.report_saleorder_document
@@ -59,6 +60,8 @@ msgid ""
 "The fixed discount %(fixed)s does not match the calculateddiscount "
 "%(discount)s %%.Please correct one of the discounts."
 msgstr ""
+"Lo sconto fisso %(fixed)s non corrisponde allo sconto calcolato %(discount)s "
+"%%. Correggere uno degli sconti."
 
 #, python-format
 #~ msgid ""
