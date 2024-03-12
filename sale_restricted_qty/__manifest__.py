@@ -6,8 +6,7 @@
     "version": "14.0.1.1.2",
     "category": "Sales Management",
     "author": "Akretion, Odoo Community Association (OCA)",
-    "contributors": ["Ashish Hirpara"],
-    "maintainers": ["ashishhirapara"],
+    "maintainers": ["alexey-pelykh"],
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
     "external_dependencies": {
