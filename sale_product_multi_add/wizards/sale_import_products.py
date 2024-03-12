@@ -57,8 +57,8 @@ class SaleImportProducts(models.TransientModel):
                 for item in wizard.items:
                     vals = self._get_line_values(sale, item)
                     if vals:
-                        self.env["sale.order.line"].create(vals)
-
+                        line = self.env["sale.order.line"].create(vals)
+                        line._onchange_discount()
         return {"type": "ir.actions.act_window_close"}
 
 
