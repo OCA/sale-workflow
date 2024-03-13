@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2024-03-13 10:37+0000\n"
+"PO-Revision-Date: 2024-03-13 13:35+0000\n"
 "Last-Translator: Pierre-François Teyssier <pierre-francois@scalizer.fr>\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
 "Language: fr\n"
@@ -138,7 +138,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
 msgid "Invoice Options"
-msgstr ""
+msgstr "Options de facturation"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__invoice_service_delivery
@@ -148,7 +148,7 @@ msgstr "Comptabilisation de la facture à la livraison"
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Entrée du journal"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job____last_update
@@ -201,12 +201,12 @@ msgstr "Domaine du filtre de préparation de commande"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__register_payment
 msgid "Register Payment"
-msgstr ""
+msgstr "Enregistrer un paiement"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__payment_filter_id
 msgid "Register Payment Invoice Filter"
-msgstr ""
+msgstr "Filtre de la facturation Enregistrer un paiement"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__sale_done
@@ -239,9 +239,8 @@ msgstr "Journal des ventes"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_order
-#, fuzzy
 msgid "Sales Order"
-msgstr "Confirmer les commandes"
+msgstr "Bons de commande"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__team_id
@@ -254,11 +253,13 @@ msgid ""
 "Scheduler that will play automatically the validation of invoices, "
 "pickings..."
 msgstr ""
+"Planificateur qui lancera automatiquement la validation des factures, "
+"tranferts, ..."
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__send_order_confirmation_mail
 msgid "Send Order Confirmation Mail"
-msgstr ""
+msgstr "Envoyer un mail de confirmation de commande"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__property_journal_id
@@ -268,7 +269,7 @@ msgstr "Définir le journal par défaut des factures"
 #. module: sale_automatic_workflow
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
 msgid "Set selection based on a search filter:"
-msgstr "Définir une sélection en fonction d'un filtre de recherche:"
+msgstr "Définir une sélection en fonction d'un filtre de recherche :"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_policy
@@ -316,12 +317,14 @@ msgid ""
 "When checked, after order confirmation, a confirmation email will be sent "
 "(if not already sent)."
 msgstr ""
+"Quand sélectionné, après une confirmation de commande, un mail de "
+"confirmation sera envoyé (s'il n'a pas encore été envoyé)."
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__invoice_date_is_order_date
 msgid "When checked, the invoice date will be the same than the order's date"
 msgstr ""
-"Si activé, la date de facturation sera identique à la date de la commande."
+"Si activé, la date de facturation sera identique à la date de la commande"
 
 #. module: sale_automatic_workflow
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
