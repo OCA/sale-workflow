@@ -20,9 +20,6 @@ class ResPartner(models.Model):
         sale_planner_forward_months = self.env.company.sale_planner_forward_months
         # TODO: Get default values from res.config.settings
         action["context"] = {
-            "no_mail_to_attendees": False
-            if self.env.company.sale_planner_mail_to_attendees
-            else True,
             "default_target_partner_id": self.id,
             "default_categ_ids": [(4, categ.id)],
             "default_location": self._display_address(),
@@ -50,6 +47,13 @@ class ResPartner(models.Model):
             ],
             "choose_unlink_method": True,
         }
+        if not self.env.company.sale_planner_mail_to_attendees:
+            action["context"].update(
+                {
+                    "no_mail_to_attendees": True,
+                    "dont_notify": True,
+                }
+            )
         action["view_mode"] = "tree,form"
         action["view_id"] = False
         action["views"] = []

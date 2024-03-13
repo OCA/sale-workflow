@@ -64,3 +64,9 @@ class SalePlannerCalendarWizard(models.TransientModel):
 
     def apply(self):
         pass
+
+    def write(self, vals):
+        # Not send emails to attendees for update events
+        if not self.env.company.sale_planner_mail_to_attendees:
+            self = self.with_context(no_mail_to_attendees=True, dont_notify=True)
+        return super().write(vals)
