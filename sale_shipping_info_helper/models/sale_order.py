@@ -11,22 +11,40 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     shipping_amount_total = fields.Float(
-        compute="_compute_shipping", digits="Account", store=True
+        compute="_compute_shipping",
+        digits="Account",
+        store=True,
+        help="Total shipping amount including taxes",
     )
     shipping_amount_untaxed = fields.Float(
-        compute="_compute_shipping", digits="Account", store=True
+        compute="_compute_shipping",
+        digits="Account",
+        store=True,
+        help="Untaxed portion of the shipping amount",
     )
     shipping_amount_tax = fields.Float(
-        compute="_compute_shipping", digits="Account", store=True
+        compute="_compute_shipping",
+        digits="Account",
+        store=True,
+        help="Tax portion of the shipping amount",
     )
     item_amount_total = fields.Float(
-        compute="_compute_shipping", digits="Account", store=True
+        compute="_compute_shipping",
+        digits="Account",
+        store=True,
+        help="Total amount for items excluding shipping",
     )
     item_amount_untaxed = fields.Float(
-        compute="_compute_shipping", digits="Account", store=True
+        compute="_compute_shipping",
+        digits="Account",
+        store=True,
+        help="Untaxed portion of the item amount",
     )
     item_amount_tax = fields.Float(
-        compute="_compute_shipping", digits="Account", store=True
+        compute="_compute_shipping",
+        digits="Account",
+        store=True,
+        help="Tax portion of the item amount",
     )
 
     @api.depends("amount_total", "amount_untaxed")
@@ -34,7 +52,7 @@ class SaleOrder(models.Model):
         for record in self:
             shipping_amount_untaxed = shipping_amount_total = shipping_amount_tax = 0
             for line in record.order_line:
-                if not line.is_delivery:
+                if not line._is_delivery():
                     continue
                 shipping_amount_untaxed += line.price_subtotal
                 shipping_amount_total += line.price_total
