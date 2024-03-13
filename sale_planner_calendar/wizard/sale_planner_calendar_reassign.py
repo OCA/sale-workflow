@@ -102,7 +102,7 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
     def apply(self):
         # Not send emails to attendees in copy methods
         if not self.env.company.sale_planner_mail_to_attendees:
-            self = self.with_context(no_mail_to_attendees=True)
+            self = self.with_context(no_mail_to_attendees=True, dont_notify=True)
         for line in self.line_ids:
             if not line.new_user_id:
                 continue
