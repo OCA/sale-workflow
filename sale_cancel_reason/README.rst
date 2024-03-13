@@ -74,6 +74,7 @@ Contributors
 * Alan Ramos <alan.ramos@jarsa.com.mx>
 * Aritz Olea <ao@landoo.es>, Landoo SL
 * Hugo Córdoba <hugo.cordoba@factorlibre.com>
+* Dhaval Patel <dhaval@moltis.net>
 
 Maintainers
 ~~~~~~~~~~~
