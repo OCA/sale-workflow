@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -46,4 +46,34 @@ msgstr ""
 #. module: sale_shipping_info_helper
 #: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__shipping_amount_untaxed
 msgid "Shipping Amount Untaxed"
+msgstr ""
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,help:sale_shipping_info_helper.field_sale_order__item_amount_tax
+msgid "Tax portion of the item amount"
+msgstr ""
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,help:sale_shipping_info_helper.field_sale_order__shipping_amount_tax
+msgid "Tax portion of the shipping amount"
+msgstr ""
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,help:sale_shipping_info_helper.field_sale_order__item_amount_total
+msgid "Total amount for items excluding shipping"
+msgstr ""
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,help:sale_shipping_info_helper.field_sale_order__shipping_amount_total
+msgid "Total shipping amount including taxes"
+msgstr ""
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,help:sale_shipping_info_helper.field_sale_order__item_amount_untaxed
+msgid "Untaxed portion of the item amount"
+msgstr ""
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,help:sale_shipping_info_helper.field_sale_order__shipping_amount_untaxed
+msgid "Untaxed portion of the shipping amount"
 msgstr ""
