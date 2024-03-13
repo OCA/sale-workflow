@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form_inherit_sale_stock_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.sale.stock.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="priority" eval="100" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='order_lines']//form//field[@name='product_packaging_id']"
+                position="attributes"
+            >
+                <attribute
+                    name="domain"
+                >[('product_id','=',product_id), ('can_be_sold', '=', True)]</attribute>
+            </xpath>
+            <xpath
+                expr="//page[@name='order_lines']//tree//field[@name='product_packaging_id' and @optional='show']"
+                position="attributes"
+            >
+                <attribute
+                    name="domain"
+                >[('product_id','=',product_id), ('can_be_sold', '=', True)]</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

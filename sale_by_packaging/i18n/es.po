@@ -1,0 +1,178 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_by_packaging
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2021-01-20 13:44+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: sale_by_packaging
+#: model:ir.model.fields,field_description:sale_by_packaging.field_product_packaging__can_be_sold
+#: model:ir.model.fields,field_description:sale_by_packaging.field_product_packaging_type__can_be_sold
+msgid "Can be sold"
+msgstr "Puede ser vendido"
+
+#. module: sale_by_packaging
+#: model:ir.model.fields,help:sale_by_packaging.field_product_packaging__force_sale_qty
+msgid ""
+"Determine if during the creation of a sale order line, the quantity should "
+"be forced with a multiple of the packaging.\n"
+"Example:\n"
+"You sell a product by packaging of 5 products.\n"
+"When the user will put 3 as quantity, the system can force the quantity to "
+"the superior unit (5 for this example)."
+msgstr ""
+"Determine si durante la creación de una línea de orden de venta, la cantidad "
+"debe forzarse con un múltiplo del empaque.\n"
+"Ejemplo:\n"
+"Vendes un producto por empaque de 5 productos.\n"
+"Cuando el usuario pone 3 como cantidad, el sistema puede forzar la cantidad "
+"a la unidad superior (5 para este ejemplo)."
+
+#. module: sale_by_packaging
+#: model:ir.model.fields,field_description:sale_by_packaging.field_product_packaging__force_sale_qty
+msgid "Force sale quantity"
+msgstr "Cantidad de venta forzada"
+
+#. module: sale_by_packaging
+#: model:ir.model.fields,field_description:sale_by_packaging.field_product_product__sell_only_by_packaging
+#: model:ir.model.fields,field_description:sale_by_packaging.field_product_template__sell_only_by_packaging
+msgid "Only sell by packaging"
+msgstr "Solo vendemos por embalaje"
+
+#. module: sale_by_packaging
+#: model:ir.model.fields,field_description:sale_by_packaging.field_product_packaging_type__packaging_ids
+msgid "Packaging"
+msgstr "Empaquetado"
+
+#. module: sale_by_packaging
+#: code:addons/sale_by_packaging/models/sale_order_line.py:0
+#, python-format
+msgid ""
+"Packaging %s on product %s must be set as 'Can be sold' in order to be used "
+"on a sale order."
+msgstr ""
+"El embalaje %s del producto %s debe establecerse como 'Se puede vender' para "
+"poder utilizarlo en un pedido de venta."
+
+#. module: sale_by_packaging
+#: code:addons/sale_by_packaging/models/product_packaging_type.py:0
+#, python-format
+msgid ""
+"Packaging type \"{}\" must stay with \"Can be sold\", at least one product "
+"configured as \"sell only by packaging\" is using it."
+msgstr ""
+"El tipo de empaquetado \"{}\" debe permanecer con \"Se puede vender\", al "
+"menos un producto configurado como \"vender solo por empaque\" lo está "
+"usando."
+
+#. module: sale_by_packaging
+#: model:ir.model,name:sale_by_packaging.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_by_packaging
+#: code:addons/sale_by_packaging/models/sale_order_line.py:0
+#, python-format
+msgid "Product %s can only be sold with a packaging and a packaging qantity."
+msgstr ""
+"El producto %s solo se puede vender con un embalaje y una cantidad de "
+"embalaje."
+
+#. module: sale_by_packaging
+#: code:addons/sale_by_packaging/models/product_template.py:0
+#, python-format
+msgid ""
+"Product %s cannot be defined to be sold only by packaging if it cannot be "
+"sold."
+msgstr ""
+"No se puede definir que el producto %s se venda solo por embalaje si no se "
+"puede vender."
+
+#. module: sale_by_packaging
+#: code:addons/sale_by_packaging/models/product_template.py:0
+#, python-format
+msgid ""
+"Product %s cannot be defined to be sold only by packaging if it does not "
+"have any packaging that can be sold defined."
+msgstr ""
+"No se puede definir que el producto %s se venda solo por embalaje si no "
+"tiene ningún embalaje definido."
+
+#. module: sale_by_packaging
+#: model:ir.model,name:sale_by_packaging.model_product_packaging
+msgid "Product Packaging"
+msgstr "Empaquetado del producto"
+
+#. module: sale_by_packaging
+#: model:ir.model,name:sale_by_packaging.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: sale_by_packaging
+#: model:ir.model.fields,help:sale_by_packaging.field_product_product__sell_only_by_packaging
+#: model:ir.model.fields,help:sale_by_packaging.field_product_template__sell_only_by_packaging
+msgid ""
+"Restrict the usage of this product on sale order lines without packaging "
+"defined"
+msgstr ""
+"Restrinja el uso de este producto en las líneas de orden de venta sin "
+"embalaje definido"
+
+#. module: sale_by_packaging
+#: model:ir.model,name:sale_by_packaging.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea pedido de venta"
+
+#. module: sale_by_packaging
+#: code:addons/sale_by_packaging/models/sale_order_line.py:0
+#, python-format
+msgid ""
+"This product packaging must be set as 'Can be sold' in order to be used on a "
+"sale order."
+msgstr ""
+"El embalaje de este producto debe establecerse como 'Se puede vender' para "
+"poder utilizarlo en un pedido de venta."
+
+#. module: sale_by_packaging
+#: model:ir.model,name:sale_by_packaging.model_product_packaging_type
+msgid "Type management for product.packaging"
+msgstr "Gestión de tipos para el embalaje del producto"
+
+#. module: sale_by_packaging
+#: code:addons/sale_by_packaging/models/sale_order_line.py:0
+#, python-format
+msgid "Warning"
+msgstr "Advertencia"
+
+#~ msgid ""
+#~ "For the product {prod}\n"
+#~ "The {qty} is not the multiple of any pack.\n"
+#~ "Please add a package"
+#~ msgstr ""
+#~ "Para el producto {prod}\n"
+#~ "La {qty} no es el múltiplo de ningún paquete.\n"
+#~ "Por favor agregue un paquete"
+
+#~ msgid "Product quantity cannot be packed"
+#~ msgstr "La cantidad del producto no se puede empaquetar"
+
+#~ msgid "Product %s can only be sold with a packaging."
+#~ msgstr "El producto %s solo se puede vender con un embalaje."
+
+#~ msgid ""
+#~ "Product %s cannot be defined to be sold only by packaging if it does not "
+#~ "have any packaging defined."
+#~ msgstr ""
+#~ "No se puede definir que el producto %s se venda solo por embalaje si no "
+#~ "tiene ningún embalaje definido."
