@@ -1,7 +1,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 # Copyright 2020 Tecnativa - Pedro M. Baeza
+# Copyright 2020 Tecnativa - Carlos Dauden
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class AccountMove(models.Model):
@@ -17,7 +19,7 @@ class AccountMove(models.Model):
         copy=True,
     )
 
-    @api.depends("partner_id", "company_id")
+    @api.depends("partner_id")
     def _compute_sale_type_id(self):
         for record in self:
             if record.type not in ["out_invoice", "out_refund"]:
@@ -48,3 +50,17 @@ class AccountMove(models.Model):
             self.invoice_payment_term_id = self.sale_type_id.payment_term_id.id
         if self.sale_type_id.journal_id:
             self.journal_id = self.sale_type_id.journal_id.id
+
+    # check_company=True don't raises error
+    @api.constrains("company_id", "sale_type_id")
+    def _check_sale_type_company_constrains(self):
+        for inv in self.sudo():
+            sale_type_company = inv.sale_type_id.company_id
+            if sale_type_company and inv.company_id != sale_type_company:
+                raise ValidationError(
+                    _(
+                        "The company of the invoice %s does not match "
+                        "with that of the sale type"
+                    )
+                    % inv.name
+                )
