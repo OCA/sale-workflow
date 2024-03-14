@@ -109,8 +109,8 @@ class SaleOrder(models.Model):
         next_date = fields.Date.to_string(next_date)
         return next_date
 
-    def _create_invoices(self, grouped=False, final=False):
-        moves = super()._create_invoices(grouped=grouped, final=final)
+    def _create_invoices(self, grouped=False, final=False, date=None):
+        moves = super()._create_invoices(grouped=grouped, final=final, date=date)
         invoice_plan_id = self._context.get("invoice_plan_id")
         if invoice_plan_id:
             plan = self.env["sale.invoice.plan"].browse(invoice_plan_id)
@@ -240,8 +240,8 @@ class SaleInvoicePlan(models.Model):
                 if float_compare(plan_qty, line.quantity, prec) == 1:
                     raise ValidationError(
                         _(
-                            f"Plan quantity: {plan_qty}, exceed invoiceable "
-                            f"quantity: {line.quantity}"
+                            f"Plan quantity: {plan_qty}, exceed "
+                            f"invoiceable quantity: {line.quantity}"
                             f"\nProduct should be delivered before invoice"
                         )
                     )
