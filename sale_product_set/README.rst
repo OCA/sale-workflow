@@ -91,6 +91,9 @@ Contributors
 * Adria Gil Sorribes <adria.gil@forgeflow.com>
 * Phuc (Tran Thanh) <phuc@trobz.com>
 * Manuel Regidor <manuel.regidor@sygel.es>
+* `Tecnativa <https://www.tecnativa.com>`_:
+
+  * Pilar Vargas
 
 Other credits
 ~~~~~~~~~~~~~

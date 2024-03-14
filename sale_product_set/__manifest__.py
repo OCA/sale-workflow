@@ -13,7 +13,7 @@
         "security/ir.model.access.csv",
         "views/product_set.xml",
         "views/product_set_line.xml",
-        "wizard/product_set_add.xml",
+        "wizard/sale_product_set_wizard_view.xml",
         "views/sale_order.xml",
     ],
     "demo": ["demo/product_set_line.xml"],
