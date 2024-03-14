@@ -6,7 +6,6 @@
         <field name="partner_invoice_id" ref="base.res_partner_2" />
         <field name="partner_shipping_id" ref="base.res_partner_2" />
         <field name="user_id" ref="base.user_demo" />
-        <field name="pricelist_id" ref="product.list0" />
         <field name="team_id" ref="sales_team.team_sales_department" />
         <field
             name="date_order"
