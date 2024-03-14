@@ -6,27 +6,21 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="state" position="before">
-                <!-- states and attrs[invisible] must be combined with an extra & -->
                 <button
                     name="action_force_delivery_state"
                     type="object"
                     string="Force delivery done"
-                    states="done"
-                    attrs="{'invisible': ['|', '|', ('force_delivery_state', '=', True), ('delivery_status', '=', 'full')]}"
+                    invisible="force_delivery_state or delivery_status == 'full' or state != 'sale' or not locked"
                 />
                 <button
                     name="action_unforce_delivery_state"
                     type="object"
                     string="Unforce delivery done"
-                    states="done"
-                    attrs="{'invisible': ['|', ('force_delivery_state', '=', False)]}"
+                    invisible="not force_delivery_state or state != 'sale' or not locked"
                 />
             </field>
             <group name="sale_shipping" position="inside">
-                <field
-                    name="delivery_status"
-                    attrs="{'invisible': [('state', 'not in', ['sale', 'done'])]}"
-                />
+                <field name="delivery_status" invisible="state != 'sale'" />
                 <field name="force_delivery_state" invisible="1" />
             </group>
         </field>
