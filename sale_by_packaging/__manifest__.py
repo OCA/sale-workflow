@@ -2,7 +2,7 @@
     "name": "Sale By Packaging",
     "summary": "Manage sale of packaging",
     "version": "16.0.1.0.0",
-    "development_status": "Beta",
+    "development_status": "Alpha",
     "category": "Warehouse Management",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Ametras - Camptocamp, Odoo Community Association (OCA)",
