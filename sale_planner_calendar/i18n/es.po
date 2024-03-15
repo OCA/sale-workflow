@@ -113,6 +113,11 @@ msgstr ""
 "suscripciones"
 
 #. module: sale_planner_calendar
+#: model:ir.model,name:sale_planner_calendar.model_calendar_attendee
+msgid "Calendar Attendee Information"
+msgstr ""
+
+#. module: sale_planner_calendar
 #: model:ir.model,name:sale_planner_calendar.model_calendar_event
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_event__calendar_event_id
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__calendar_event_id
@@ -942,6 +947,12 @@ msgid "Sale planner calendar: Update dynamic event final date"
 msgstr "Sale planner calendar: Actualizar fecha final de los eventos dinámicos"
 
 #. module: sale_planner_calendar
+#: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__target_partner_id
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_calendar_event_form
+msgid "Sale planner partner"
+msgstr "Empresa rutero"
+
+#. module: sale_planner_calendar
 #: model:ir.model,name:sale_planner_calendar.model_sale_order
 msgid "Sales Order"
 msgstr "Pedido de venta"
@@ -1044,12 +1055,6 @@ msgstr "Domingo"
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_config_settings__susbscriptions_backward_days
 msgid "Susbscriptions Backward Days"
 msgstr "Suscripciones días anteriores"
-
-#. module: sale_planner_calendar
-#: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__target_partner_id
-#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_calendar_event_form
-msgid "Sale planner partner"
-msgstr "Empresa rutero"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
