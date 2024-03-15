@@ -96,7 +96,6 @@ class SaleOrder(models.Model):
                 order.picking_policy = order_type.picking_policy
         return res
 
-    @api.depends("type_id")
     def _compute_payment_term_id(self):
         res = super()._compute_payment_term_id()
         for order in self.filtered("type_id"):
@@ -105,7 +104,11 @@ class SaleOrder(models.Model):
                 order.payment_term_id = order_type.payment_term_id
         return res
 
-    @api.depends("type_id")
+    @api.onchange("type_id")
+    def _onchange_payment_term_id(self):
+        if self.type_id and self.type_id.payment_term_id:
+            self.payment_term_id = self.type_id.payment_term_id
+
     def _compute_pricelist_id(self):
         res = super()._compute_pricelist_id()
         for order in self.filtered("type_id"):
@@ -113,6 +116,11 @@ class SaleOrder(models.Model):
             if order_type.pricelist_id:
                 order.pricelist_id = order_type.pricelist_id
         return res
+
+    @api.onchange("type_id")
+    def _onchange_pricelist_id(self):
+        if self.type_id and self.type_id.pricelist_id:
+            self.pricelist_id = self.type_id.pricelist_id
 
     @api.depends("type_id")
     def _compute_incoterm(self):
