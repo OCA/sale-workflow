@@ -3,7 +3,7 @@
 {
     "name": "Sale planner calendar",
     "summary": "Sale planner calendar",
-    "version": "15.0.1.5.2",
+    "version": "15.0.1.6.0",
     "development_status": "Beta",
     "category": "Sale",
     "website": "https://github.com/OCA/sale-workflow",
