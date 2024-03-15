@@ -23,7 +23,7 @@ class SaleOrderLine(models.Model):
     def _compute_product_packaging_id(self):
         """Set a default packaging for sales if possible."""
         for line in self:
-            if line.product_id and not line.product_packaging_id:
+            if line.product_id != line.product_packaging_id.product_id:
                 line.product_packaging_id = line._get_default_packaging(line.product_id)
         result = super()._compute_product_packaging_id()
         # If there's no way to package the desired qty, remove the packaging.
@@ -54,6 +54,12 @@ class SaleOrderLine(models.Model):
     @api.depends("product_packaging_id", "product_uom", "product_uom_qty")
     def _compute_product_packaging_qty(self):
         """Set a valid packaging quantity."""
+        changing_fields = self.env.context.get("changing_fields", set())
+        # Keep the packaging qty when changing the product
+        if "product_id" in changing_fields and all(
+            line.product_id and line.product_packaging_qty for line in self
+        ):
+            return
         result = super()._compute_product_packaging_qty()
         for line in self:
             if not line.product_packaging_id:
@@ -61,8 +67,7 @@ class SaleOrderLine(models.Model):
             # Reset to 1 packaging if it's empty or not a whole number
             if not line.product_packaging_qty or line.product_packaging_qty % 1:
                 line.product_packaging_qty = int(
-                    "product_uom_qty"
-                    not in self.env.context.get("changing_fields", set())
+                    "product_uom_qty" not in changing_fields
                 )
         return result
 
