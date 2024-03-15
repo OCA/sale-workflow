@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-25 15:37+0000\n"
+"PO-Revision-Date: 2024-03-15 16:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -902,16 +902,16 @@ msgid ""
 "You can not delete a blanket order with opened purchase orders! Try to "
 "cancel them before."
 msgstr ""
-"Non puoi annullare un ordine aperto con ordini di acquisto aperti! Prova a "
-"cancellarli prima."
+"Non si può cancellare un ordine aperto con ordini di acquisto aperti! "
+"Provare prima a cancellarli."
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/blanket_orders.py:208
 #, python-format
 msgid "You can not delete an open blanket order! Try to cancel it before."
 msgstr ""
-"Non puoi annullare un ordine aperto in stato aperto! Prova prima a "
-"cancellarlo."
+"Non si può cancellare un ordine aperto in stato aperto! Prova prima ad "
+"annullarlo."
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:22
@@ -923,13 +923,13 @@ msgstr "Non puoi creare un ordine di vendita da un ordine aperto scaduto!"
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:97
 #, python-format
 msgid "You can't order more than the remaining quantities"
-msgstr "Non puoi ordinare più della quantità rimanente"
+msgstr "Non si può ordinare più della quantità rimanente"
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:47
 #, python-format
 msgid "You have to select lines from the same company."
-msgstr "Devi selezionare le righe della stessa azienda."
+msgstr "Bisogna selezionare le righe della stessa azienda."
 
 #. module: sale_blanket_order
 #: code:addons/sale_blanket_order/models/blanket_orders.py:429
