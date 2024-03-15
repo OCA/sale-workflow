@@ -206,6 +206,7 @@ class SalePlannerCalendarSummary(models.Model):
             ("start", ">=", self.date.strftime("%Y-%m-%d 00:00:00")),
             ("start", "<=", self.date.strftime("%Y-%m-%d 23:59:59")),
             ("user_id", "=", self.user_id.id),
+            ("target_partner_id", "!=", False),
         ]
         if self.event_type_id:
             calendar_event_domain.append(("categ_ids", "in", self.event_type_id.ids))

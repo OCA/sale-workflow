@@ -1048,8 +1048,8 @@ msgstr "Suscripciones días anteriores"
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__target_partner_id
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_calendar_event_form
-msgid "Target partner"
-msgstr "Empresa objetivo"
+msgid "Sale planner partner"
+msgstr "Empresa rutero"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz

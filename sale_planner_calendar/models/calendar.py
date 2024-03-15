@@ -16,7 +16,7 @@ class CalendarEvent(models.Model):
 
     target_partner_id = fields.Many2one(
         comodel_name="res.partner",
-        string="Target partner",
+        string="Sale planner partner",
         help="Is the partner used in planner",
     )
     currency_id = fields.Many2one(
