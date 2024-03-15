@@ -1,6 +1,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from . import calendar
 from . import calendar_event_type
+from . import calendar_attendee
 from . import res_config_settings
 from . import res_partner
 from . import sale_order

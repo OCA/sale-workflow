@@ -75,7 +75,7 @@
         <field name="inherit_id" ref="calendar.view_calendar_event_form" />
         <field name="arch" type="xml">
             <field name="user_id" position="after">
-                <label for="target_partner_id" string="Target partner" />
+                <label for="target_partner_id" string="Sale planner partner" />
                 <field name="target_partner_id" nolabel="1" />
 
             </field>
