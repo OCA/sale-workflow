@@ -94,6 +94,9 @@ You will notice that:
 -  The packaging quantity is set to 1 packaging unit.
 -  The product UoM quantity is set to the amount of units contained in 1
    packaging.
+-  When changing to another product, instead of keeping the amount of
+   UoM units, we now keep the packaging qty, and the UoM qty is
+   recomputed accordingly.
 
 Bug Tracker
 ===========
