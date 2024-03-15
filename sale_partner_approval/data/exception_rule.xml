@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="excep_partner_approved" model="exception.rule">
+        <field name="name">Customer is Approved</field>
+        <field name="description">Customer must be a customer approved for Sales</field>
+        <field name="model">sale.order</field>
+        <field name="exception_type">by_domain</field>
+        <field name="domain">[('partner_id.sale_ok', '=', False)]</field>
+        <field name="is_blocking">True</field>
+        <field name="active">False</field>
+    </record>
+    <record id="excep_partner_invoice_approved" model="exception.rule">
+        <field name="name">Invoicing Address is Approved</field>
+        <field
+            name="description"
+        >Invoice Address must be a contact approved for Sales</field>
+        <field name="model">sale.order</field>
+        <field name="exception_type">by_domain</field>
+        <field name="domain">[('partner_invoice_id.sale_ok', '=', False)]</field>
+        <field name="is_blocking">True</field>
+        <field name="active">False</field>
+    </record>
+</odoo>
