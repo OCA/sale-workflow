@@ -88,7 +88,11 @@ class SaleOrderLine(models.Model):
         if not self.discount_fixed:
             return 0.0
 
-        return self.discount_fixed / self.price_unit * 100
+        return (
+            (self.price_unit != 0)
+            and ((self.discount_fixed) / self.price_unit) * 100
+            or 0.00
+        )
 
     def _prepare_invoice_line(self, **optional_values):
         res = super()._prepare_invoice_line(**optional_values)
