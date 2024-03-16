@@ -53,6 +53,11 @@ class SaleWorkflowProcess(models.Model):
         string="Validate Invoice Filter Domain",
         related="validate_invoice_filter_id.domain",
     )
+    send_invoice = fields.Boolean()
+    send_invoice_filter_domain = fields.Text(
+        string="Send Invoice Filter Domain",
+        related="send_invoice_filter_id.domain",
+    )
     validate_picking = fields.Boolean(string="Confirm and Transfer Picking")
     picking_filter_domain = fields.Text(
         string="Picking Filter Domain", related="picking_filter_id.domain"
@@ -110,6 +115,13 @@ class SaleWorkflowProcess(models.Model):
         string="Validate Invoice Filter",
         default=lambda self: self._default_filter(
             "sale_automatic_workflow." "automatic_workflow_validate_invoice_filter"
+        ),
+    )
+    send_invoice_filter_id = fields.Many2one(
+        "ir.filters",
+        string="Send Invoice Filter",
+        default=lambda self: self._default_filter(
+            "sale_automatic_workflow." "automatic_workflow_send_invoice_filter"
         ),
     )
     sale_done_filter_id = fields.Many2one(

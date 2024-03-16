@@ -10,13 +10,28 @@ class TestCommon(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.user = cls.env["res.users"].create(
+            {
+                "name": "Sales Person",
+                "login": "salesperson",
+                "password": "salesperson",
+                "groups_id": [
+                    (4, cls.env.ref("sales_team.group_sale_manager").id),
+                    (4, cls.env.ref("account.group_account_manager").id),
+                ],
+            }
+        )
+        cls.user.partner_id.email = "salesperson@example.com"
 
 
 class TestAutomaticWorkflowMixin(object):
     def create_sale_order(self, workflow, override=None):
         sale_obj = self.env["sale.order"]
 
-        partner_values = {"name": "Imperator Caius Julius Caesar Divus"}
+        partner_values = {
+            "name": "Imperator Caius Julius Caesar Divus",
+            "email": "test@example.com",
+        }
         partner = self.env["res.partner"].create(partner_values)
 
         product_values = {"name": "Bread", "list_price": 5, "type": "product"}
@@ -65,6 +80,7 @@ class TestAutomaticWorkflowMixin(object):
                 "validate_picking": True,
                 "create_invoice": True,
                 "validate_invoice": True,
+                "send_invoice": True,
                 "invoice_date_is_order_date": True,
             }
         )
