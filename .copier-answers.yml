@@ -17,6 +17,7 @@ org_name: Odoo Community Association (OCA)
 org_slug: OCA
 rebel_module_groups:
 - sale_packaging_default,sale_order_product_recommendation,sale_order_product_recommendation_packaging_default,sale_order_product_recommendation_elaboration
+- sale_order_qty_change_no_recompute
 repo_description: 'TODO: add repo description.'
 repo_name: sale-workflow
 repo_slug: sale-workflow
