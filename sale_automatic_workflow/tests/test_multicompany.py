@@ -1,20 +1,12 @@
 # Copyright 2017 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 from odoo.tests import tagged
 
-from .common import TestCommon
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
 @tagged("post_install", "-at_install")
-class TestMultiCompany(TestCommon):
-    def setUp(self):
-        super().setUp()
-
-    @classmethod
-    def create_company(cls, values):
-        return cls.env["res.company"].create(values)
-
+class TestMultiCompany(AccountTestInvoicingCommon):
     @classmethod
     def create_product(cls, values):
         values.update({"type": "consu", "invoice_policy": "order"})
@@ -22,7 +14,7 @@ class TestMultiCompany(TestCommon):
         return product_template.product_variant_id
 
     @classmethod
-    def setUpClass(cls):
+    def setUpClass(cls, chart_template_ref=None):
         super().setUpClass()
         cls.env = cls.env(
             context=dict(
@@ -34,38 +26,37 @@ class TestMultiCompany(TestCommon):
                 _job_force_sync=True,
             )
         )
-        coa = cls.env.user.company_id.chart_template_id
-        cls.company_fr = cls.create_company(
+        cls.company_fr = cls.setup_company_data(
             {
                 "name": "French company",
                 "currency_id": cls.env.ref("base.EUR").id,
                 "country_id": cls.env.ref("base.fr").id,
             }
-        )
+        )["company"]
 
-        cls.company_ch = cls.create_company(
+        cls.company_ch = cls.setup_company_data(
             {
                 "name": "Swiss company",
                 "currency_id": cls.env.ref("base.CHF").id,
                 "country_id": cls.env.ref("base.ch").id,
             }
-        )
+        )["company"]
 
-        cls.company_be = cls.create_company(
+        cls.company_be = cls.setup_company_data(
             {
                 "name": "Belgian company",
                 "currency_id": cls.env.ref("base.EUR").id,
                 "country_id": cls.env.ref("base.be").id,
             }
-        )
+        )["company"]
 
-        cls.company_fr_daughter = cls.create_company(
+        cls.company_fr_daughter = cls.setup_company_data(
             {
                 "name": "French company daughter",
                 "currency_id": cls.env.ref("base.EUR").id,
                 "country_id": cls.env.ref("base.fr").id,
             }
-        )
+        )["company"]
 
         cls.env.user.company_ids |= cls.company_fr
         cls.env.user.company_ids |= cls.company_ch
@@ -73,7 +64,6 @@ class TestMultiCompany(TestCommon):
         cls.env.user.company_ids |= cls.company_fr_daughter
 
         cls.env.user.company_id = cls.company_fr.id
-        coa.try_loading(company=cls.env.user.company_id)
         cls.customer_fr = (
             cls.env["res.partner"]
             .with_context(default_company_id=cls.company_fr.id)
@@ -82,14 +72,13 @@ class TestMultiCompany(TestCommon):
         cls.product_fr = cls.create_product({"name": "Evian bottle", "list_price": 2.0})
 
         cls.env.user.company_id = cls.company_ch.id
-        coa.try_loading(company=cls.env.user.company_id)
+
         cls.customer_ch = cls.env["res.partner"].create({"name": "Customer CH"})
         cls.product_ch = cls.create_product(
             {"name": "Henniez bottle", "list_price": 3.0}
         )
 
         cls.env.user.company_id = cls.company_be.id
-        coa.try_loading(company=cls.env.user.company_id)
         cls.customer_be = cls.env["res.partner"].create({"name": "Customer BE"})
         cls.product_be = (
             cls.env["product.template"]
@@ -105,7 +94,6 @@ class TestMultiCompany(TestCommon):
         )
 
         cls.env.user.company_id = cls.company_fr_daughter.id
-        coa.try_loading(company=cls.env.user.company_id)
         cls.customer_fr_daughter = cls.env["res.partner"].create(
             {"name": "Customer FR Daughter"}
         )
