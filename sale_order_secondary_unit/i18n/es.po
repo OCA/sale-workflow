@@ -23,7 +23,7 @@ msgid "-&gt;"
 msgstr "-&gt;"
 
 #. module: sale_order_secondary_unit
-#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_unit_price
+#: model:ir.model.fields,field_description:sale_order_secondary_unit.field_sale_order_line__secondary_uom_price_unit
 msgid "2nd unit price"
 msgstr "Precio de la 2ª unidad"
 
