@@ -19,18 +19,18 @@ class StockPicking(models.Model):
         for picking in self:
             picking.action_assign()
             for move in picking.move_ids.filtered(
-                lambda m: m.state not in ["done", "cancel"]
+                lambda m: m.picked and m.state not in ["done", "cancel"]
             ):
                 rounding = move.product_id.uom_id.rounding
                 if (
                     float_compare(
-                        move.quantity_done,
+                        move.quantity,
                         move.product_qty,
                         precision_rounding=rounding,
                     )
                     == -1
                 ):
                     for move_line in move.move_line_ids:
-                        move_line.qty_done = move_line.reserved_uom_qty
+                        move_line.quantity = move_line.quantity_product_uom
             picking.with_context(skip_immediate=True, skip_sms=True).button_validate()
         return True

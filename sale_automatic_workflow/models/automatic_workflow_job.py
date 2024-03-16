@@ -131,18 +131,17 @@ class AutomaticWorkflowJob(models.Model):
                 self._do_validate_picking(picking, picking_filter)
 
     def _do_sale_done(self, sale, domain_filter):
-        """Set a sales order to done, filter ensure no duplication"""
+        """Lock a sales order, filter ensure no duplication"""
         if not self.env["sale.order"].search_count(
             [("id", "=", sale.id)] + domain_filter
         ):
             return f"{sale.display_name} {sale} job bypassed"
-        sale.action_done()
-        return f"{sale.display_name} {sale} set done successfully"
+        sale.action_lock()
+        return f"{sale.display_name} {sale} locked successfully"
 
     @api.model
     def _sale_done(self, sale_done_filter):
-        sale_obj = self.env["sale.order"]
-        sales = sale_obj.search(sale_done_filter)
+        sales = self.env["sale.order"].search(sale_done_filter)
         _logger.debug("Sale Orders to done: %s", sales.ids)
         for sale in sales:
             with savepoint(self.env.cr):
