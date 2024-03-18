@@ -32,6 +32,7 @@ In standard Odoo only display the rate of the discount applied, never the
 amount. It could be great to be able to tell the customer how much he spares.
 This is the goal of this addons, it will show on a sale
 order the total without the discount and the value of the discount.
+You can choose if you want the discount on the Total with or the Total without TAX.
 
 **Table of contents**
 
@@ -44,6 +45,7 @@ Configuration
 To configure this module, you need to:
 
 #. Go to Sales/Settings and check "Allow discounts on sales order lines"
+#. Go to Sales/Settings and check or uncheck "Show the Discount with TAX" depending on your needs
 
 Usage
 =====
