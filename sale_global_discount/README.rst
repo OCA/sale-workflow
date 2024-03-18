@@ -23,7 +23,7 @@ Sale Global Discount
     :target: https://runbot.odoo-community.org/runbot/167/14.0
     :alt: Try me on Runbot
 
-|badge1| |badge2| |badge3| |badge4| |badge5| 
+|badge1| |badge2| |badge3| |badge4| |badge5|
 
 Apply global financial discounts to sales that will be transmited to invoices
 and accounting.
@@ -85,6 +85,9 @@ Contributors
   * David Vidal
   * Pedro M. Baeza
 * Omar Castiñeira <omar@comunitea.com>
+* `Studio73 <https://www.studio73.es>`_
+
+  * Miguel Gandia
 
 Maintainers
 ~~~~~~~~~~~

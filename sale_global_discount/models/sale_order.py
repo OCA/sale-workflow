@@ -67,7 +67,7 @@ class SaleOrder(models.Model):
         if not self.global_discount_ids:
             return True
         taxes_keys = {}
-        for line in self.order_line.filtered(lambda l: not l.display_type):
+        for line in self.order_line.filtered(lambda line: not line.display_type):
             if not line.tax_id:
                 raise exceptions.UserError(
                     _("With global discounts, taxes in lines are required.")
@@ -98,7 +98,7 @@ class SaleOrder(models.Model):
             amount_discounted_untaxed = amount_discounted_tax = 0
             for line in order.order_line:
                 discounted_subtotal = line.price_subtotal
-                if line.product_id.apply_global_discount:
+                if not line.product_id.not_apply_global_discount:
                     discounted_subtotal = self.get_discounted_global(
                         line.price_subtotal, discounts.copy()
                     )
@@ -139,11 +139,12 @@ class SaleOrder(models.Model):
 
     @api.onchange("partner_id")
     def onchange_partner_id_set_gbl_disc(self):
+        commercial = self.partner_id.commercial_partner_id
         self.global_discount_ids = (
             self.partner_id.customer_global_discount_ids.filtered(
                 lambda d: d.company_id == self.company_id
             )
-            or self.partner_id.commercial_partner_id.customer_global_discount_ids.filtered(
+            or commercial.customer_global_discount_ids.filtered(
                 lambda d: d.company_id == self.company_id
             )
         )
