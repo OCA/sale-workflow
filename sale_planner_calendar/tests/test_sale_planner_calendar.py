@@ -32,6 +32,7 @@ class TestSalePlannerCalendar(TransactionCase):
         cls.AccountInvoiceLine = cls.env["account.move.line"]
         cls.AccountJournal = cls.env["account.journal"]
         cls.SaleOrder = cls.env["sale.order"]
+        cls.SalePlannerCalendarEvent = cls.env["sale.planner.calendar.event"]
 
         cls.event_type_commercial_visit = cls.env.ref(
             "sale_planner_calendar.event_type_commercial_visit"
@@ -101,11 +102,19 @@ class TestSalePlannerCalendar(TransactionCase):
                 "property_product_pricelist": cls.pricelist.id,
             }
         )
+        cls.commercial_partner_3 = cls.Partner.create(
+            {
+                "name": "Company partner 3",
+                "user_id": cls.commercial_user_2.id,
+                "property_product_pricelist": cls.pricelist.id,
+            }
+        )
         cls.partner_3 = cls.Partner.create(
             {
                 "name": "Partner 3",
                 "user_id": cls.commercial_user_2.id,
                 "property_product_pricelist": cls.pricelist.id,
+                "parent_id": cls.commercial_partner_3.id,
             }
         )
         cls.partners = cls.partner_1 + cls.partner_2 + cls.partner_3
@@ -290,4 +299,29 @@ class TestSalePlannerCalendar(TransactionCase):
         )
         self.assertIsNone(
             invoice.with_user(self.commercial_user_2).check_access_rule("write")
+        )
+
+    def test_parter_sale_order(self):
+        """User can setup a system parameter to create sale order from a event planner
+        for a event planner partner or commercial partner
+        """
+        calendar_event = self.planned_events.filtered(
+            lambda p: p.target_partner_id == self.partner_3
+        )[:1]
+        sale_planned_event = self.SalePlannerCalendarEvent.create(
+            {
+                "partner_id": self.partner_3.id,
+                "calendar_event_id": calendar_event.id,
+            }
+        )
+        so_action = sale_planned_event.action_open_sale_order()
+        self.assertEqual(so_action["context"]["default_partner_id"], self.partner_3.id)
+        # Set parameter to create sale order to commercial partner
+        self.env["ir.config_parameter"].sudo().set_param(
+            "sale_planner_calendar.create_so_to_commercial_partner", "True"
+        )
+        so_action = sale_planned_event.action_open_sale_order()
+        self.assertEqual(
+            so_action["context"]["default_partner_id"],
+            self.partner_3.commercial_partner_id.id,
         )

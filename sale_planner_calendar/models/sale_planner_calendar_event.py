@@ -147,9 +147,22 @@ class SalePlannerCalendarEvent(models.Model):
             action["name"] = "New Quotation"
             action["context"] = self.env.context
             return action
+        # Create sale order to planner partner or commercial partner depending of the
+        # system parameter
+        create_so_to_commercial_partner = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("sale_planner_calendar.create_so_to_commercial_partner", "False")
+        )
+        partner = (
+            self.partner_id
+            if create_so_to_commercial_partner == "False"
+            else self.partner_id.commercial_partner_id
+        )
         action["context"] = {
             "default_sale_planner_calendar_event_id": self.id,
-            "default_partner_id": self.partner_id.id,
+            "default_partner_id": partner.id,
+            "default_partner_shipping_id": self.partner_id.id,
             "default_user_id": self.user_id.id,
         }
         if len(self.sale_ids) > 1:
