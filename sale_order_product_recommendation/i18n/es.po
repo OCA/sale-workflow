@@ -289,7 +289,6 @@ msgid "Pricelist"
 msgstr "Tarifa"
 
 #. module: sale_order_product_recommendation
-#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_line__product_id
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_id
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Product"
@@ -373,11 +372,6 @@ msgid "Sale order recommendations"
 msgstr "Recomendaciones de orden de venta"
 
 #. module: sale_order_product_recommendation
-#: model:ir.model,name:sale_order_product_recommendation.model_sale_order_line
-msgid "Sales Order Line"
-msgstr "Línea de pedido de venta"
-
-#. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
 msgid ""
 "Select the origin for display product price in sale orders recommendation"
@@ -440,6 +434,9 @@ msgstr "Perderás todos los cambios que hayas hecho. ¿Está seguro?"
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "times -"
 msgstr "veces -"
+
+#~ msgid "Sales Order Line"
+#~ msgstr "Línea de pedido de venta"
 
 #~ msgid "Complete Name"
 #~ msgstr "Nombre Completo"
