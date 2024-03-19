@@ -134,6 +134,10 @@ Contributors
   * Gelo Joga
   * Jairo Llopis
 
+* `Trobz <https://www.trobz.com>`_:
+
+  * Tris Doan
+
 Maintainers
 ~~~~~~~~~~~
 
