@@ -12,9 +12,6 @@
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale_management"],
     "data": ["views/sale_view.xml", "views/res_config_settings_views.xml"],
-    "installable": True,
-    "auto_install": False,
-    "application": False,
     "pre_init_hook": "pre_init_hook",
     "post_init_hook": "post_init_hook",
 }
