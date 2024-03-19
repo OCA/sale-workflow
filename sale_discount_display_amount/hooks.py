@@ -4,7 +4,7 @@ import logging
 
 from odoo.tools.sql import column_exists, create_column
 
-logger = logging.getLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 COLUMNS = (
     ("sale_order", "price_subtotal_no_discount"),
@@ -22,13 +22,13 @@ def pre_init_hook(env):
     cr = env.cr  # Retrieve the database cursor
     for table, column in COLUMNS:
         if not column_exists(cr, table, column):
-            logger.info("Create discount column %s in database", column)
+            _logger.info("Create discount column %s in database", column)
             create_column(cr, table, column, "numeric")
 
 
 def post_init_hook(env):
     cr = env.cr  # Retrieve the database cursor
-    logger.info("Compute discount columns")
+    _logger.info("Compute discount columns")
 
     query = """
     update sale_order_line
