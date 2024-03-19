@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="allowed_product_ids" invisible="1" />
+                <field name="allowed_product_tmpl_ids" invisible="1" />
+                <field name="has_allowed_products" invisible="1" />
+                </field>
+            <!-- Form -->
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='product_id']"
+                position="attributes"
+            >
+                <attribute
+                    name="domain"
+                    operation="domain_add"
+                    condition="parent.has_allowed_products"
+                >
+                    [('id', 'in', parent.allowed_product_ids)]
+                </attribute>
+            </xpath>
+            <!-- Tree -->
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='product_id']"
+                position="attributes"
+            >
+                <attribute
+                    name="domain"
+                    operation="domain_add"
+                    condition="parent.has_allowed_products"
+                >
+                    [('id', 'in', parent.allowed_product_ids)]
+                </attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='product_template_id']"
+                position="attributes"
+            >
+                <attribute
+                    name="domain"
+                    operation="domain_add"
+                    condition="parent.has_allowed_products"
+                >
+                    [('id', 'in', parent.allowed_product_tmpl_ids)]
+                </attribute>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
