@@ -1,0 +1,5 @@
+- [Cetmix](https://www.cetmix.com):
+  - Ivan Sokolov
+  - Dessan Hemrayev
+- [Ooops404](https://www.ooops404.com/)
+  - Eduard Brahas <eduardbrhas@outlook.it>
