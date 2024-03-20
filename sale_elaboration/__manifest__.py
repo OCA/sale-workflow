@@ -26,4 +26,5 @@
         "reports/report_deliveryslip.xml",
     ],
     "pre_init_hook": "pre_init_hook",
+    "maintainers": ["rafaelbn", "yajo"],
 }

@@ -168,3 +168,31 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
         elaboration_lines = self.order.order_line.filtered("is_elaboration")
         self.assertEqual(len(elaboration_lines), 2)
         self.assertEqual(sum(elaboration_lines.mapped("product_uom_qty")), 12.0)
+
+    def test_propagation_from_sale_order_to_stock_move(self):
+        with Form(self.order) as order_f:
+            # Edit order's line to add custom elaboration note
+            with order_f.order_line.edit(0) as line_f:
+                line_f.elaboration_note = "Custom note 1"
+            # Add a new line with a custom elaboration note, but without elaborations
+            with order_f.order_line.new() as line_f:
+                line_f.product_id = self.product
+                line_f.product_uom_qty = 1
+                line_f.elaboration_note = "Custom note 2"
+        self.order.action_confirm()
+        # Check that the custom elaboration notes are propagated to the stock moves
+        self.assertRecordValues(
+            self.order.picking_ids.move_ids,
+            [
+                {
+                    "product_id": self.product.id,
+                    "elaboration_ids": self.elaboration_a.ids,
+                    "elaboration_note": "Custom note 1",
+                },
+                {
+                    "product_id": self.product.id,
+                    "elaboration_ids": [],
+                    "elaboration_note": "Custom note 2",
+                },
+            ],
+        )
