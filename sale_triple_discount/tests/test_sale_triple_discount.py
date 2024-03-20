@@ -208,3 +208,11 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line2.price_subtotal, 600.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 1200.0)
         self.assertAlmostEqual(self.order.amount_tax, 180.0)
+
+    def test_07_discount_16_digits(self):
+        self.so_line1.product_uom_qty = 2.0
+        self.so_line1.price_unit = 138.0
+        self.so_line1.discount = 45.0
+        self.so_line1.discount2 = 5.0
+        self.so_line1.discount3 = 10.0
+        self.assertAlmostEqual(self.so_line1.price_subtotal, 129.79)

@@ -97,6 +97,9 @@ class SaleOrderLine(models.Model):
         this method is called multiple times."""
 
         prev_values = dict()
+        digits = self._fields["discount"]._digits
+        self.env["sale.order.line"]._fields["discount"]._digits = (16, 16)
+        prev_values["discount_digits"] = digits
         for line in self:
             prev_values[line] = dict(
                 discount=line.discount,
@@ -115,6 +118,8 @@ class SaleOrderLine(models.Model):
     @api.model
     def triple_discount_postprocess(self, prev_values):
         """Restore the discounts of the lines in the dictionary prev_values."""
+        digits = prev_values.pop("discount_digits")
+        self.env["sale.order.line"]._fields["discount"]._digits = digits
         for line, prev_vals_dict in list(prev_values.items()):
             line.update(prev_vals_dict)
 
