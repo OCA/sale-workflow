@@ -34,7 +34,7 @@ class StockRule(models.Model):
             record = self.env["sale.order.line"].browse(sale_line_id)
         else:
             record = values.get("move_dest_ids", self.env["stock.move"].browse())[:1]
-        if record and record.elaboration_ids:
+        if record and (record.elaboration_ids or record.elaboration_note):
             res.update(
                 {
                     "elaboration_ids": [(6, 0, record.elaboration_ids.ids)],
