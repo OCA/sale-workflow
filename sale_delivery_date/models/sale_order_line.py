@@ -7,7 +7,7 @@ from datetime import datetime, time, timedelta
 import pytz
 from pytz import UTC, timezone
 
-from odoo import api, models
+from odoo import api, models, tools
 
 from odoo.addons.partner_tz.tools import tz_utils
 
@@ -368,6 +368,7 @@ class SaleOrderLine(models.Model):
     # ======
 
     @api.model
+    @tools.ormcache("date_from", "delay", "calendar")
     def _add_delay(self, date_from, delay, calendar=False):
         if calendar:
             # Plan days is expecting a number of days, not a delay.
@@ -377,6 +378,7 @@ class SaleOrderLine(models.Model):
         return date_from + timedelta(days=delay)
 
     @api.model
+    @tools.ormcache("date_from", "delay", "calendar")
     def _deduct_delay(self, date_from, delay, calendar=False):
         if calendar:
             days = self._delay_to_days(delay)
@@ -399,6 +401,7 @@ class SaleOrderLine(models.Model):
         return self._get_utc_cutoff_datetime(cutoff, date_order, keep_same_day)
 
     @api.model
+    @tools.ormcache("date_start", "calendar")
     def _postpone_to_working_day(self, date_start, calendar=False):
         """Returns the nearest calendar's working day"""
         if calendar:
@@ -415,6 +418,7 @@ class SaleOrderLine(models.Model):
         return partner.next_delivery_window_start_datetime(from_date=delivery_date)
 
     @api.model
+    @tools.ormcache("earliest_work_end", "latest_expedition_date", "calendar")
     def _get_latest_work_end_from_date_range(
         self, earliest_work_end, latest_expedition_date, calendar=False
     ):

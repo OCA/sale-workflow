@@ -7,3 +7,4 @@ from . import test_sale_partner_delivery_window
 from . import test_delivery_date_in_the_past
 from . import test_methods
 from . import test_backorder_date
+from . import test_sale_order_line_cache

@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 from pytz import timezone, utc
 
-from odoo import _, fields, models
+from odoo import _, fields, models, tools
 from odoo.exceptions import UserError
 from odoo.tools.date_utils import date_range
 
@@ -91,6 +91,12 @@ class ResPartner(models.Model):
             if date.weekday() < 5
         ]
 
+    @tools.ormcache("weekday_number")
+    def _get_weekday(self, weekday_number):
+        return self.env["time.weekday"].search(
+            [("name", "=", weekday_number)], limit=1
+        )
+
     def get_next_windows_start_datetime(self, from_datetime, to_datetime):
         """Get all delivery windows start time.
 
@@ -117,9 +123,7 @@ class ResPartner(models.Model):
             from_datetime_tz, to_datetime_tz, timedelta(days=1)
         ):
             this_weekday_number = this_datetime.weekday()
-            this_weekday = self.env["time.weekday"].search(
-                [("name", "=", this_weekday_number)], limit=1
-            )
+            this_weekday = self._get_weekday(this_weekday_number)
             # Sort by start time to ensure the window we'll find will be the first
             # one for the weekday
             this_weekday_windows = self.delivery_time_window_ids.filtered(
