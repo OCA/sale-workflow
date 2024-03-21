@@ -22,6 +22,9 @@ class TestSaleOrderLineInput(TransactionCase):
         cls.product = cls.env["product.product"].create(
             {"name": "test_product", "type": "service"}
         )
+        cls.pricelist = cls.env["product.pricelist"].create(
+            {"name": "Public Pricelist", "sequence": 1}
+        )
         cls.order = cls.env["sale.order"].create(
             {
                 "partner_id": cls.partner.id,
@@ -38,7 +41,7 @@ class TestSaleOrderLineInput(TransactionCase):
                         },
                     )
                 ],
-                "pricelist_id": cls.env.ref("product.list0").id,
+                "pricelist_id": cls.pricelist.id,
             }
         )
         cls.contact_order = cls.env["sale.order"].create(
@@ -57,7 +60,7 @@ class TestSaleOrderLineInput(TransactionCase):
                         },
                     )
                 ],
-                "pricelist_id": cls.env.ref("product.list0").id,
+                "pricelist_id": cls.pricelist.id,
             }
         )
         cls.View = cls.env["ir.ui.view"]
@@ -72,7 +75,7 @@ class TestSaleOrderLineInput(TransactionCase):
 
     def test_sale_order_values(self):
         self.order.general_discount = 10
-        self.assertEqual(self.order.order_line.price_reduce, 900.00)
+        self.assertEqual(self.order.order_line.price_subtotal, 900.00)
 
     def _get_ctx_from_view(self, res):
         order_xml = etree.XML(res["arch"])
@@ -95,11 +98,11 @@ class TestSaleOrderLineInput(TransactionCase):
                 "type": "form",
                 "model": "sale.order",
                 "arch": """
-                <data>
+                <form>
                     <field name='order_line'
                         context="{'default_product_uom_qty': 3.0}">
                     </field>
-                </data>
+                </form>
             """,
             }
         )
