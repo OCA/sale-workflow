@@ -6,32 +6,32 @@ from odoo import api, fields, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    general_discount_apply = fields.Boolean(
-        string="Apply general discount",
-        compute="_compute_general_discount_apply",
-        inverse="_inverse_general_discount_apply",
-        search="_search_general_discount_apply",
-        help="If this checkbox is ticked, it means changing general discount on sale order "
-        "will impact sale order lines with this related product.",
+    not_general_discount_apply = fields.Boolean(
+        string="Don't apply general discount",
+        compute="_compute_not_general_discount_apply",
+        inverse="_inverse_not_general_discount_apply",
+        search="_search_not_general_discount_apply",
+        help="If this checkbox is not ticked, it means changing general discount on "
+        "sale order will impact sale order lines with this related product.",
     )
 
-    def _search_general_discount_apply(self, operator, value):
+    def _search_not_general_discount_apply(self, operator, value):
         templates = self.with_context(active_test=False).search(
-            [("product_variant_ids.general_discount_apply", operator, value)]
+            [("product_variant_ids.not_general_discount_apply", operator, value)]
         )
         return [("id", "in", templates.ids)]
 
-    @api.depends("product_variant_ids.general_discount_apply")
-    def _compute_general_discount_apply(self):
-        self.general_discount_apply = True
+    @api.depends("product_variant_ids.not_general_discount_apply")
+    def _compute_not_general_discount_apply(self):
+        self.not_general_discount_apply = False
         for template in self:
             if len(template.product_variant_ids) == 1:
-                template.general_discount_apply = (
-                    template.product_variant_ids.general_discount_apply
+                template.not_general_discount_apply = (
+                    template.product_variant_ids.not_general_discount_apply
                 )
 
-    def _inverse_general_discount_apply(self):
+    def _inverse_not_general_discount_apply(self):
         if len(self.product_variant_ids) == 1:
-            self.product_variant_ids.general_discount_apply = (
-                self.general_discount_apply
+            self.product_variant_ids.not_general_discount_apply = (
+                self.not_general_discount_apply
             )

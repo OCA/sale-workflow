@@ -24,7 +24,7 @@ class SaleOrderLine(models.Model):
                     product = self.env["product.product"].browse(
                         vals.get("product_id", False)
                     )
-                    if product and product.general_discount_apply:
+                    if product and not product.not_general_discount_apply:
                         vals["discount"] = sale_order.general_discount
         return super().create(vals_list)
 
@@ -36,7 +36,7 @@ class SaleOrderLine(models.Model):
             # the case where a discount was set to a value != 0 and then
             # set again to 0 to remove the discount on all the lines at the same
             # time
-            if line.product_id.general_discount_apply and (
+            if not line.product_id.not_general_discount_apply and (
                 line.order_id.general_discount or line.order_id._origin.general_discount
             ):
                 line.discount = line.order_id.general_discount
