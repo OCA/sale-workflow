@@ -21,7 +21,7 @@ class TestSaleOrderArchive(TransactionCase):
 
     def test_sale_order_archive_toggle_active(self):
         self.assertTrue(self.sale_order.active)
-        self.sale_order.state = "done"
+        self.sale_order.state = "sale"
         self.sale_order.toggle_active()
         self.assertFalse(self.sale_order.active)
 

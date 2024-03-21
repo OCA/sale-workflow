@@ -11,6 +11,6 @@ class SaleOrder(models.Model):
     active = fields.Boolean(default=True)
 
     def toggle_active(self):
-        if self.filtered(lambda so: so.state not in ["done", "cancel"] and so.active):
+        if self.filtered(lambda so: so.state not in ["sale", "cancel"] and so.active):
             raise UserError(_("Only 'Locked' or 'Canceled' orders can be archived"))
         return super().toggle_active()
