@@ -1,0 +1,13 @@
+<odoo noupdate="1">
+    <record
+        id="sale_invoice_plan_batch_security_batch_multi_company_rule"
+        model="ir.rule"
+    >
+        <field name="name">Sales Invoice Plan Batch multi-company</field>
+        <field name="model_id" ref="model_sale_invoice_plan_batch" />
+        <field eval="True" name="global" />
+        <field
+            name="domain_force"
+        >['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>
