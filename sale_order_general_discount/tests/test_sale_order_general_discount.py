@@ -81,7 +81,6 @@ class TestSaleOrderLineInput(TransactionCase):
         return order_line_field.attrib.get("context", "{}")
 
     def test_default_line_discount_value(self):
-
         res = self.order.get_view(
             view_id=self.env.ref(
                 "sale_order_general_discount." "sale_order_general_discount_form_view"
