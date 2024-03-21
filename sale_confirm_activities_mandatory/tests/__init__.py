@@ -1,1 +1,2 @@
-from . import test_activities_confirm
+# TO MIGRATE
+# from . import test_activities_confirm

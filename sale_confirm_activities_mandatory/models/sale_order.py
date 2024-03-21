@@ -10,30 +10,29 @@ class SaleOrder(models.Model):
 
     def manage_activities(self):
         # manage activities creation
-        model_id = self.env["ir.model"]._get(self._name).id
         activity_types = self.env["mail.activity.type"].search(
             [
-                ("res_model_id", "=", model_id),
+                ("res_model", "=", self._name),
                 ("category", "=", "validation"),
                 ("previous_type_ids", "=", False),
             ]
         )
         Activity = self.env["mail.activity"]
-        for rec in self:
+        for order in self:
             for activity_type in activity_types:
-                Activity.create(rec._prepare_activity_data(activity_type))
+                Activity.create(order._prepare_activity_data(activity_type))
 
-    @api.model
-    def create(self, vals):
-        res = super().create(vals)
-        res.manage_activities()
-        return res
+    @api.model_create_multi
+    def create(self, vals_list):
+        orders = super().create(vals_list)
+        orders.manage_activities()
+        return orders
 
     def _prepare_activity_data(self, activity_type):
         self.ensure_one()
         res = {
             "res_id": self.id,
-            "res_model_id": activity_type.res_model_id.id,
+            "res_model": activity_type.res_model,
             "activity_type_id": activity_type.id,
             "summary": activity_type.summary,
             "automated": True,
@@ -44,7 +43,7 @@ class SaleOrder(models.Model):
         # check if some validation activities remain for each sale order
         # given in self
         # All done activities are unlinked
-        # (see action_feedback of mail.activity model)
+        # (see _action_done of mail.activity model)
         if not self.check_validation_activities_todo():
             raise UserError(
                 _(
@@ -55,11 +54,12 @@ class SaleOrder(models.Model):
         return super().action_confirm()
 
     def action_draft(self):
-        super().action_draft()
-        for rec in self:
+        orders = super().action_draft()
+        for order in orders:
             # delete old activities
-            rec.activity_ids.filtered(
+            order.activity_ids.filtered(
                 lambda a: a.activity_type_id.category == "validation"
             ).unlink()
             # generate new ones
-            rec.manage_activities()
+            order.manage_activities()
+        return True

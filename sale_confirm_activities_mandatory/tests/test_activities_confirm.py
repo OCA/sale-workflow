@@ -1,34 +1,36 @@
 # Copyright 2022 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
-from odoo.addons.sale.tests import test_sale_common
 from odoo.exceptions import AccessError, UserError
+
+from odoo.addons.sale.tests import test_sale_common
 
 
 class TestSaleActivitiesConfirm(test_sale_common.TestCommonSaleNoChart):
     @classmethod
     def setUpClass(cls):
-
-        super(TestSaleActivitiesConfirm, cls).setUpClass()
-
-        SaleOrder = cls.env["sale.order"].with_context(tracking_disable=True)
-
-        model_so_id = cls.env["ir.model"]._get("sale.order").id
+        super().setUpClass()
+        cls.env = cls.env(
+            context=dict(cls.env.context, tracking_disable=True, no_reset_password=True)
+        )
+        SaleOrder = cls.env["sale.order"]
         ActivityType = cls.env["mail.activity.type"]
+        model_so_id = cls.env["ir.model"]._get("sale.order").id
+
         cls.not_validation_step = ActivityType.create(
-            {"category": "default", "name": "Test1", "res_model_id": model_so_id}
+            {"category": "default", "name": "Test1", "res_model": "sale.order"}
         )
         cls.validation_step1 = ActivityType.create(
             {
                 "category": "validation",
                 "name": "Test1 validation",
-                "res_model_id": model_so_id,
+                "res_model": "sale.order",
             }
         )
         cls.validation_step2 = ActivityType.create(
             {
                 "category": "validation",
                 "name": "Test2 validation",
-                "res_model_id": model_so_id,
+                "res_model": "sale.order",
                 "force_next": True,
             }
         )
@@ -36,7 +38,7 @@ class TestSaleActivitiesConfirm(test_sale_common.TestCommonSaleNoChart):
             {
                 "category": "validation",
                 "name": "Test2_1 validation",
-                "res_model_id": model_so_id,
+                "res_model": "sale.order",
                 "previous_type_ids": [(6, 0, [cls.validation_step2.id])],
             }
         )
