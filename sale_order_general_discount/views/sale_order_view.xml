@@ -8,7 +8,9 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='tax_totals']" position="before">
-                <field name="general_discount" class="oe_subtotal_footer" />
+                <group>
+                    <field name="general_discount" class="oe_subtotal_footer" />
+                </group>
             </xpath>
         </field>
     </record>
