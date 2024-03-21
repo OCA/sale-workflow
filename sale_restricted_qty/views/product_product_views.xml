@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright 2023 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+
+    <record id="min_order_qty_product_product_form_view" model="ir.ui.view">
+        <field name="name">product.product.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales']/group[@name='sale']" position="after">
+                <group
+                    name="sale_restricted_qty"
+                    string="Sale restricted qty"
+                    colspan="4"
+                >
+                    <group name="sale_min_qty_gr" string="Sale Min qty">
+                        <field name="sale_min_qty" />
+                        <label for="manual_sale_min_qty" class="oe_edit_only" />
+                        <field
+                            name="manual_sale_min_qty"
+                            class="oe_edit_only"
+                            nolabel="1"
+                        />
+                        <field name="force_sale_min_qty" />
+                        <label for="manual_force_sale_min_qty" class="oe_edit_only" />
+                        <field
+                            name="manual_force_sale_min_qty"
+                            class="oe_edit_only"
+                            nolabel="1"
+                        />
+                    </group>
+                    <group name="sale_max_qty_gr" string="Sale Max qty">
+                        <field name="sale_max_qty" />
+                        <label for="manual_sale_max_qty" class="oe_edit_only" />
+                        <field
+                            name="manual_sale_max_qty"
+                            class="oe_edit_only"
+                            nolabel="1"
+                        />
+                        <field name="force_sale_max_qty" />
+                        <label for="manual_force_sale_max_qty" class="oe_edit_only" />
+                        <field
+                            name="manual_force_sale_max_qty"
+                            class="oe_edit_only"
+                            nolabel="1"
+                        />
+                    </group>
+                        <group name="sale_multiple_qty_gr" string="Sale Miltiple qty">
+                        <field name="sale_multiple_qty" />
+                        <label for="manual_sale_multiple_qty" class="oe_edit_only" />
+                        <field
+                            name="manual_sale_multiple_qty"
+                            class="oe_edit_only"
+                            nolabel="1"
+                        />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
