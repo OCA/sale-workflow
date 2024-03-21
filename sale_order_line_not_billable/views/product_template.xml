@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<odoo>
+
+  <record id="product_template_form_view_invoice_policy" model="ir.ui.view">
+    <field
+            name="name"
+        >sale_order_line_not_billable.product_template_form_view_invoice_policy</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="sale.product_template_form_view_invoice_policy" />
+    <field name="arch" type="xml">
+      <data>
+        <field name="invoice_policy" position="after">
+          <field name="billable" />
+        </field>
+      </data>
+    </field>
+  </record>
+
+</odoo>

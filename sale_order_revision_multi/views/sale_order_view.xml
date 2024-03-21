@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+  <record id="view_order_form" model="ir.ui.view">
+    <field name="name">sale.order.form.override</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale_order_revision.view_order_form" />
+    <field name="priority">15</field>
+    <field name="arch" type="xml">
+      <xpath expr="//button[@name='action_view_revisions']" position="after">
+        <button
+                    name="action_view_sale_order_variants"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-file-archive-o"
+                >
+          <field name="so_variant_count" widget="statinfo" string="Variants" />
+        </button>
+      </xpath>
+
+      <xpath expr="//field[@name='current_revision_id']" position="attributes">
+        <attribute name="invisible">1</attribute>
+      </xpath>
+
+      <!-- override the create revision button to make is visible when it's a quotation or when it is canceled -->
+      <xpath expr="//button[@name='create_revision']" position="attributes">
+        <attribute name="states">draft,sent,cancel</attribute>
+      </xpath>
+
+      <!-- override the always hide this button -->
+      <xpath expr="//button[@name='action_view_revisions']" position="attributes">
+        <attribute name="invisible">1</attribute>
+      </xpath>
+
+    </field>
+  </record>
+
+  <record id="view_order_tree" model="ir.ui.view">
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_tree" />
+    <field name="arch" type="xml">
+      <field name="state" position="attributes">
+        <attribute name="invisible">0</attribute>
+        <attribute name="optional">show</attribute>
+      </field>
+    </field>
+  </record>
+</odoo>
