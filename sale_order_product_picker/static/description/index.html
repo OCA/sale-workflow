@@ -415,6 +415,19 @@ but it can be configured by following these steps:</p>
 or create a new one if not exists.</li>
 <li>Set desired availability field (<strong>virtual_available</strong>, <strong>free_qty</strong>)</li>
 </ul>
+<p>When available field is <strong>virtual_available</strong> the default behavior is take into account
+moves to commitment date or today at exactly time, but it can be configured by following
+these steps:</p>
+<ul class="simple">
+<li>Activate developer mode.</li>
+<li>Go to <em>Settings &gt; Technical &gt; Parameters &gt; System Parameters</em>.</li>
+<li>Locate the setting with key
+<strong>sale_order_product_picker.product_virtual_available_time</strong>
+or create a new one if not exists.</li>
+<li>Set desired time to be used in available quantities compute (Example: <strong>23:59</strong>)</li>
+</ul>
+<p><strong>ATTENTION</strong>: <strong>product_virtual_available_time</strong> is a technical parameter and the value must be set
+in server timezone</p>
 <p>Installation of this module sets <em>sale_planner_calendar.action_open_sale_order</em>
 system parameter as <strong>sale_order_product_picker.action_open_picker_views</strong> to show
 new picker view from sale calendar planner.</p>
