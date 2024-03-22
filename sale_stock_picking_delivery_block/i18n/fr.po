@@ -1,0 +1,107 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_stock_picking_delivery_block
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-09-15 14:58+0000\n"
+"PO-Revision-Date: 2022-09-15 14:58+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_stock_picking_delivery_block
+#: model_terms:ir.ui.view,arch_db:sale_stock_picking_delivery_block.sale_release_delivery_form_view
+msgid "Are you sure you want to release the delivery?"
+msgstr "Êtes-vous sur de vouloir libérer la livraison?"
+
+#. module: sale_stock_picking_delivery_block
+#: model:ir.model.fields,field_description:sale_stock_picking_delivery_block.field_sale_order__block_delivery
+#: model:ir.model.fields,field_description:sale_stock_picking_delivery_block.field_stock_picking__block_delivery
+msgid "Block Delivery"
+msgstr "Bloquer la livraison"
+
+#. module: sale_stock_picking_delivery_block
+#: model_terms:ir.ui.view,arch_db:sale_stock_picking_delivery_block.sale_release_delivery_form_view
+msgid "Cancel"
+msgstr "Annuler"
+
+#. module: sale_stock_picking_delivery_block
+#: model:ir.model.fields,field_description:sale_stock_picking_delivery_block.field_sale_release_delivery_wizard__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: sale_stock_picking_delivery_block
+#: model:ir.model.fields,field_description:sale_stock_picking_delivery_block.field_sale_release_delivery_wizard__create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: sale_stock_picking_delivery_block
+#: code:addons/sale_stock_picking_delivery_block/wizard/release_delivery_wizard.py:0
+#, python-format
+msgid "Delivery released by %s: %s"
+msgstr "Livraison libérée par %s: %s"
+
+#. module: sale_stock_picking_delivery_block
+#: model:ir.model.fields,field_description:sale_stock_picking_delivery_block.field_sale_release_delivery_wizard__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: sale_stock_picking_delivery_block
+#: model:ir.model.fields,field_description:sale_stock_picking_delivery_block.field_sale_release_delivery_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_stock_picking_delivery_block
+#: model:ir.model.fields,field_description:sale_stock_picking_delivery_block.field_sale_release_delivery_wizard____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: sale_stock_picking_delivery_block
+#: model:ir.model.fields,field_description:sale_stock_picking_delivery_block.field_sale_release_delivery_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: sale_stock_picking_delivery_block
+#: model:ir.model.fields,field_description:sale_stock_picking_delivery_block.field_sale_release_delivery_wizard__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: sale_stock_picking_delivery_block
+#: model:ir.model.fields,field_description:sale_stock_picking_delivery_block.field_sale_release_delivery_wizard__log_reason
+msgid "Reason"
+msgstr "Raison(s)"
+
+#. module: sale_stock_picking_delivery_block
+#: code:addons/sale_stock_picking_delivery_block/models/sale_order.py:0
+#: model_terms:ir.ui.view,arch_db:sale_stock_picking_delivery_block.sale_release_delivery_form_view
+#, python-format
+msgid "Release Delivery"
+msgstr "Libérer la livraison"
+
+#. module: sale_stock_picking_delivery_block
+#: model_terms:ir.ui.view,arch_db:sale_stock_picking_delivery_block.view_order_form_inherit_sale_stock
+msgid "Release delivery"
+msgstr "Libérer la livraison"
+
+#. module: sale_stock_picking_delivery_block
+#: model:ir.model.fields,field_description:sale_stock_picking_delivery_block.field_sale_release_delivery_wizard__sale_id
+msgid "Sale Order"
+msgstr "Commande client"
+
+
+#. module: sale_stock_picking_delivery_block
+#: model:ir.model.fields,field_description:sale_stock_picking_delivery_block.field_stock_picking__sale_state
+msgid "Status"
+msgstr "Statut"
+
+
+#. module: sale_stock_picking_delivery_block
+#: model:ir.model,name:sale_stock_picking_delivery_block.model_sale_release_delivery_wizard
+msgid "Wizard before releasing delivery"
+msgstr "Assistant avant de libérer la livraison"

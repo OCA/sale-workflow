@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wizard_release_delivery,Wizard Release Delivery ALL,model_sale_release_delivery_wizard,,1,1,1,1
