@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-22 12:42+0000\n"
+"PO-Revision-Date: 2024-03-22 12:42+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,6 +26,34 @@ msgid ""
 "<span class=\"text-muted\">\n"
 "                                                                Quantity:\n"
 "                                                            </span>"
+msgstr ""
+
+#. module: sale_order_product_picker
+#: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
+msgid ""
+"<span>\n"
+"                                                                Discount:\n"
+"                                                            </span>"
+msgstr ""
+
+#. module: sale_order_product_picker
+#: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
+msgid ""
+"<span>\n"
+"                            Discount:\n"
+"                        </span>"
+msgstr ""
+
+#. module: sale_order_product_picker
+#: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
+msgid "<span>%</span>"
+msgstr ""
+
+#. module: sale_order_product_picker
+#: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
+msgid ""
+"<span><i class=\"fa fa-exclamation-triangle\"/> Multiple discounts "
+"selected</span>"
 msgstr ""
 
 #. module: sale_order_product_picker
@@ -49,11 +79,6 @@ msgid "Available"
 msgstr ""
 
 #. module: sale_order_product_picker
-#: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
-msgid "Available:"
-msgstr ""
-
-#. module: sale_order_product_picker
 #: model:ir.model.fields.selection,name:sale_order_product_picker.selection__sale_order__picker_order__categ_id
 msgid "Category"
 msgstr ""
@@ -61,6 +86,11 @@ msgstr ""
 #. module: sale_order_product_picker
 #: model:ir.actions.act_window,name:sale_order_product_picker.action_open_picker_views
 msgid "Commercial Quotations"
+msgstr ""
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__compute_price_unit
+msgid "Compute Price Unit"
 msgstr ""
 
 #. module: sale_order_product_picker
@@ -89,8 +119,18 @@ msgid "Delivered"
 msgstr ""
 
 #. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__discount
+msgid "Discount (%)"
+msgstr ""
+
+#. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__product_no_variant_attribute_value_ids
+msgid "Extra Values"
 msgstr ""
 
 #. module: sale_order_product_picker
@@ -156,8 +196,18 @@ msgid "Last sales"
 msgstr ""
 
 #. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__line_price_reduce
+msgid "Line Price Reduce"
+msgstr ""
+
+#. module: sale_order_product_picker
 #: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
 msgid "Manage product filters (Reload after modify)"
+msgstr ""
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__multiple_discounts
+msgid "Multiple Discounts"
 msgstr ""
 
 #. module: sale_order_product_picker
@@ -211,6 +261,11 @@ msgstr ""
 #: model:ir.model.fields,help:sale_order_product_picker.field_sale_order_line__list_price
 #: model:ir.model.fields,help:sale_order_product_picker.field_sale_order_picker__list_price
 msgid "Price at which the product is sold to customers."
+msgstr ""
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__pricelist_item_id
+msgid "Pricelist Item"
 msgstr ""
 
 #. module: sale_order_product_picker
@@ -288,6 +343,11 @@ msgstr ""
 #. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order__use_delivery_address
 msgid "Use Delivery Address"
+msgstr ""
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__warehouse_id
+msgid "Warehouse"
 msgstr ""
 
 #. module: sale_order_product_picker

@@ -54,7 +54,7 @@ patch(KanbanRecord.prototype, "sale_order_product_picker.KanbanRecord", {
         this.disableGlobalClick = false;
     },
     defaultFields() {
-        return ["product_id", "price_unit"];
+        return ["product_id", "price_unit", "discount"];
     },
     contextPicker() {
         var ctx = {};
@@ -89,7 +89,7 @@ patch(KanbanRecord.prototype, "sale_order_product_picker.KanbanRecord", {
             // Duplicate line clicked
             this._onFormAddClicked();
         } else if ($(ev.target).closest(".o_picker_img_full_size").length) {
-            // Duplicate line clicked
+            // Open image clicked
             this._openImageFullResolution();
         } else if ($kanban.length) {
             // General click
