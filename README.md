@@ -65,6 +65,7 @@ addon | version | maintainers | summary
 [sale_order_line_description](sale_order_line_description/) | 15.0.1.0.0 |  | Sale order line description
 [sale_order_line_input](sale_order_line_input/) | 15.0.1.0.2 |  | Search, create or modify directly sale order lines
 [sale_order_line_menu](sale_order_line_menu/) | 15.0.1.2.0 |  | Adds a Sale Order Lines Menu
+[sale_order_line_note](sale_order_line_note/) | 15.0.1.0.0 |  | Note on sale order line
 [sale_order_line_price_history](sale_order_line_price_history/) | 15.0.2.0.1 |  | Sale order line price history
 [sale_order_line_remove](sale_order_line_remove/) | 15.0.1.0.0 |  | Allows removal of sale order lines from confirmed orders if not invoiced or received
 [sale_order_line_sequence](sale_order_line_sequence/) | 15.0.2.0.0 |  | Propagates SO line sequence to invoices and stock picking.

@@ -52,6 +52,7 @@ setuptools.setup(
         'odoo-addon-sale_order_line_description>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_line_input>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_line_menu>=15.0dev,<15.1dev',
+        'odoo-addon-sale_order_line_note>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_line_price_history>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_line_remove>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_line_sequence>=15.0dev,<15.1dev',
