@@ -102,3 +102,13 @@ class TestSaleFixedDiscount(TransactionCase):
         self.sale._create_invoices()
 
         self.assertEqual(self.sale.invoice_ids.invoice_line_ids.discount_fixed, 20.0)
+
+    def test_04_fixed_discount_without_price(self):
+        with Form(self.sale) as sale_order:
+            with sale_order.order_line.edit(0) as line:
+                line.product_uom_qty = 1.0
+                line.price_unit = 0.0
+                line.discount_fixed = 50.0
+                self.assertEqual(line.discount, 0.0)
+                self.assertEqual(line.price_subtotal, 0.0)
+        self.assertEqual(self.sale.amount_total, 0.0)
