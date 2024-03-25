@@ -86,7 +86,8 @@ class SaleOrder(models.Model):
             for inv in order.invoice_ids.filtered(
                 lambda x: x.move_type == "out_invoice"
             ):
-                invoice_paid_amount += inv.amount_total - inv.amount_residual
+                if inv.state == "posted":
+                    invoice_paid_amount += inv.amount_total - inv.amount_residual
             amount_residual = order.amount_total - advance_amount - invoice_paid_amount
             payment_state = "not_paid"
             if mls:
