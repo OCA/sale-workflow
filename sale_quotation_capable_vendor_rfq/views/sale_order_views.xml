@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form_inherit_sale_stock" model="ir.ui.view">
+        <field name="name">sale.order.form.sale.stock</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_invoice']" position="before">
+                <button
+                    type="object"
+                    name="action_view_rfq"
+                    class="oe_stat_button"
+                    icon="fa-truck"
+                    attrs="{'invisible': [('rfq_count', '=', 0)]}"
+                >
+                    <field name="rfq_count" widget="statinfo" string="RFQ" />
+                </button>
+            </xpath>
+            <xpath expr="//button[@name='action_draft']" position="after">
+                <button
+                    type="object"
+                    name="action_create_rfq"
+                    string="Create RFQ"
+                    class="oe_highlight"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
