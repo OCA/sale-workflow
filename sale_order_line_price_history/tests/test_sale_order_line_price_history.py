@@ -166,3 +166,8 @@ class TestSaleOrderLinePriceHistory(TransactionCase):
         history_line.action_set_price()
         self.assertEqual(self.sale_order_line_3.price_unit, 10)
         self.assertEqual(self.sale_order_line_3.discount, 5)
+
+    def test_change_partner_populate_lines(self):
+        """Change partner_id in SO and assert than order_partner_id is updated"""
+        self.sale_order_3.partner_id = self.partner_1
+        self.assertEqual(self.sale_order_line_3.order_partner_id, self.partner_1)
