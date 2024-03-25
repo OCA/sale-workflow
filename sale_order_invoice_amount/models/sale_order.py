@@ -28,13 +28,27 @@ class SaleOrder(models.Model):
     )
     def _compute_invoice_amount(self):
         for rec in self:
-            if rec.state != "cancel" and rec.invoice_ids:
-                invoiced_amount = 0.0
+            if (
+                rec.state != "cancel"
+                and rec.invoice_ids
+                and rec.invoice_status != "invoiced"
+            ):
+                rec.invoiced_amount = 0.0
                 for invoice in rec.invoice_ids:
                     if invoice.state != "cancel":
-                        invoiced_amount += invoice.amount_total_in_currency_signed
-                rec.invoiced_amount = invoiced_amount
+                        if invoice.currency_id != rec.currency_id:
+                            rec.invoiced_amount += invoice.currency_id._convert(
+                                invoice.amount_total,
+                                rec.currency_id,
+                                invoice.company_id,
+                                invoice.invoice_date or fields.Date.today(),
+                            )
+                        else:
+                            rec.invoiced_amount += invoice.amount_total
                 rec.uninvoiced_amount = max(0, rec.amount_total - rec.invoiced_amount)
+            elif rec.invoice_status == "invoiced":
+                rec.invoiced_amount = rec.amount_total
+                rec.uninvoiced_amount = 0.0
             else:
                 rec.invoiced_amount = 0.0
                 if rec.state in ["draft", "sent", "cancel"]:
