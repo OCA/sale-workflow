@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+        id="menu_sale_planner_calendar_root"
+        name="Calendar planner"
+        sequence="50"
+        web_icon="sale_planner_calendar,static/description/icon.png"
+    />
+    <menuitem
+        id="menu_sale_planner_calendar_summary_general"
+        name="Planner"
+        parent="menu_sale_planner_calendar_root"
+        sequence="10"
+    />
+    <!-- For sales managers display summaries list instead of form view -->
+    <menuitem
+        id="menu_sale_planner_calendar_summary_today_non_commercial"
+        parent="menu_sale_planner_calendar_summary_general"
+        action="action_sale_planner_calendar_summary"
+        sequence="5"
+        groups="sales_team.group_sale_salesman_all_leads"
+    />
+    <menuitem
+        id="menu_sale_planner_calendar_summary_today"
+        parent="menu_sale_planner_calendar_summary_general"
+        action="action_sale_planner_calendar_summary_today"
+        sequence="10"
+    />
+    <menuitem
+        id="menu_sale_planner_calendar_summary"
+        parent="menu_sale_planner_calendar_summary_general"
+        action="action_sale_planner_calendar_summary"
+        sequence="20"
+    />
+    <menuitem
+        id="menu_sale_planner_calendar_event"
+        parent="menu_sale_planner_calendar_summary_general"
+        action="action_sale_planner_calendar_event"
+        sequence="30"
+    />
+    <menuitem
+        id="menu_sale_planner_calendar_customers"
+        parent="menu_sale_planner_calendar_summary_general"
+        action="account.res_partner_action_customer"
+        sequence="40"
+    />
+    <menuitem
+        id="menu_calendar_event_root"
+        parent="menu_sale_planner_calendar_root"
+        name="Calendar events"
+        sequence="20"
+    />
+
+    <menuitem
+        id="menu_event_calendar"
+        parent="menu_calendar_event_root"
+        action="action_calendar_event"
+        sequence="10"
+    />
+    <menuitem
+        id="menu_calendar_event_tree_primary_only"
+        parent="menu_calendar_event_root"
+        action="calendar_event_tree_primary_only_action"
+        sequence="20"
+    />
+
+    <menuitem
+        id="menu_calendar_event_wizard_root"
+        parent="menu_sale_planner_calendar_root"
+        name="Wizards"
+        sequence="30"
+    />
+    <menuitem
+        id="menu_sale_planner_calendar_wizard"
+        parent="menu_calendar_event_wizard_root"
+        action="sale_planner_calendar_wizard_action"
+        sequence="40"
+    />
+    <menuitem
+        id="menu_sale_planner_calendar_reassign_wiz"
+        parent="menu_calendar_event_wizard_root"
+        action="action_sale_planner_calendar_reassign_wiz"
+        sequence="50"
+    />
+</odoo>

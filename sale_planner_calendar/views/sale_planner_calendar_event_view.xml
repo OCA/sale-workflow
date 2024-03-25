@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_sale_planner_calendar_search" model="ir.ui.view">
+        <field name="name">sale.planner.calendar.event</field>
+        <field name="model">sale.planner.calendar.event</field>
+        <field name="arch" type="xml">
+            <search string="Search sale planner calendar events">
+                <field name="partner_id" />
+                <separator />
+                <field name="state" />
+                <filter
+                    string="My events"
+                    name="my_event_planner"
+                    domain="[('user_id','=', uid)]"
+                />
+                <separator />
+                <filter
+                    string="Pending"
+                    name="state_pending"
+                    domain="[('state','=', 'pending')]"
+                />
+                <filter
+                    string="Done"
+                    name="state_done"
+                    domain="[('state','=', 'done')]"
+                />
+                <separator />
+                <filter
+                    string="Today"
+                    name="start_today"
+                    domain="[('date','&gt;=', time.strftime('%%Y-%%m-%%d 00:00:00')),('date','&lt;',(datetime.date.today() + datetime.timedelta(days=1)).strftime('%%Y-%%m-%%d 00:00:00'))]"
+                />
+                <filter
+                    string="Tomorrow"
+                    name="start_tomorrow"
+                    domain="[('date','&gt;', time.strftime('%%Y-%%m-%%d 23:59:59')),('date','&lt;',(datetime.date.today() + datetime.timedelta(days=2)).strftime('%%Y-%%m-%%d 00:00:00'))]"
+                />
+                <separator />
+            </search>
+        </field>
+    </record>
+
+    <record id="view_sale_planner_calendar_tree" model="ir.ui.view">
+        <field name="name">sale.planner.calendar.event.tree</field>
+        <field name="model">sale.planner.calendar.event</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date" optional="show" />
+                <field name="user_id" optional="show" />
+                <field name="partner_id" optional="show" />
+                <field name="name" optional="show" />
+                <field
+                    name="sale_order_subtotal"
+                    widget="monetary"
+                    options="{'currency_field': 'currency_id'}"
+                    optional="show"
+                />
+                <field name="state" optional="show" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_sale_planner_calendar_form" model="ir.ui.view">
+        <field name="name">sale.planner.calendar.event.form</field>
+        <field name="model">sale.planner.calendar.event</field>
+        <field name="arch" type="xml">
+            <form string="Sale planner calendar event">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <div class="pull-left">
+                            <button
+                                string="Done"
+                                class="oe_stat_button"
+                                name="action_done"
+                                type="object"
+                                attrs="{'invisible':[('state', 'not in', ['pending'])]}"
+                                icon="fa-check"
+                            >
+                            </button>
+                            <button
+                                class="oe_stat_button"
+                                name="action_cancel"
+                                string="Cancel"
+                                type="object"
+                                attrs="{'invisible':[('state', 'in', ['cancel', 'done'])]}"
+                                icon="fa-close"
+                            />
+                            <button
+                                string="Pending"
+                                class="oe_stat_button"
+                                name="action_pending"
+                                type="object"
+                                attrs="{'invisible':[('state', 'in', ['pending'])]}"
+                                icon="fa-pencil-square-o"
+                            />
+                        </div>
+                        <div class="oe_right">
+                            <button
+                                class="oe_stat_button"
+                                name="action_open_sale_order"
+                                type="object"
+                                icon="fa-dollar"
+                            >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field
+                                            name="sale_order_subtotal"
+                                            widget="monetary"
+                                            options="{'currency_field': 'currency_id'}"
+                                        />
+                                    </span>
+                                    <span class="o_stat_text">Sales</span>
+                                </div>
+                            </button>
+                            <button
+                                class="oe_stat_button"
+                                name="action_open_unpaid_invoice"
+                                type="object"
+                                icon="fa-pencil-square-o"
+                            >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_value">
+                                        <field
+                                            name="invoice_amount_residual"
+                                            widget="monetary"
+                                            options="{'currency_field': 'currency_id'}"
+                                        />
+                                    </span>
+                                    <span class="o_stat_text">Invoices</span>
+                                </div>
+                            </button>
+                    </div>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" />
+                            <field name="partner_id" />
+                            <field name="date" />
+                            <field name="calendar_event_date" />
+                            <field name="user_id" />
+                            <field name="currency_id" invisible="1" />
+                        </group>
+                        <group>
+                            <field name="state" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                            <field name="sale_order_subtotal" />
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="calendar_issue_type_id" widget="selection" />
+                            <field name="comment" />
+                        </group>
+                        <group string="Event schedule">
+                            <field name="calendar_event_id" readonly="1" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_sale_planner_calendar_issue_form" model="ir.ui.view">
+        <field name="name">sale.planner.calendar.issue.form</field>
+        <field name="model">sale.planner.calendar.event</field>
+        <field name="priority" eval="999" />
+        <field name="arch" type="xml">
+            <form string="Sale planner calendar event">
+                <sheet>
+                    <group>
+                        <field name="partner_id" readonly="1" />
+                    </group>
+                    <group>
+                        <field name="calendar_issue_type_id" widget="radio" />
+                    </group>
+                    <group>
+                        <field name="comment" />
+                    </group>
+                    <footer invisible="context.get('hide_footer', False)">
+                        <button
+                            name="action_apply_issue"
+                            type="object"
+                            string="Apply"
+                            class="btn-primary"
+                        />
+                        <button
+                            string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"
+                        />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_sale_planner_calendar_issue_tree" model="ir.ui.view">
+        <field name="name">sale.planner.calendar.issue.tree</field>
+        <field name="model">sale.planner.calendar.event</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date" optional="show" />
+                <field name="user_id" optional="show" />
+                <field name="partner_id" optional="show" />
+                <field name="calendar_issue_type_id" />
+                <field name="comment" />
+                <field name="state" optional="show" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_sale_planner_calendar_issue" model="ir.actions.act_window">
+        <field name="name">Sale planner calendar issue</field>
+        <field name="res_model">sale.planner.calendar.event</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field
+            name="context"
+        >{'form_view_ref': 'sale_planner_calendar.view_sale_planner_calendar_issue_form'}</field>
+    </record>
+
+    <record id="action_sale_planner_calendar_issue_tree" model="ir.actions.act_window">
+        <field name="name">Sale planner calendar issue</field>
+        <field name="res_model">sale.planner.calendar.event</field>
+        <field name="view_mode">tree,form</field>
+        <field
+            name="context"
+        >{'form_view_ref': 'sale_planner_calendar.view_sale_planner_calendar_issue_form',
+          'tree_view_ref': 'sale_planner_calendar.view_sale_planner_calendar_issue_tree',
+          'hide_footer': True
+          }</field>
+    </record>
+
+    <record id="view_sale_planner_calendar_kanban" model="ir.ui.view">
+        <field name="name">sale.planner.calendar.event.kanban</field>
+        <field name="model">sale.planner.calendar.event</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile" default_order="calendar_event_date">
+                <field name="name" />
+                <field name="partner_id" />
+                <field name="state" />
+                <field name="user_id" />
+                <field name="date" />
+                <field name="calendar_event_date" />
+                <field name="sale_ids" />
+                <field name="partner_ref" />
+                <field name="partner_name" />
+                <field name="partner_commercial_name" />
+                <field name="partner_street" />
+                <field name="partner_city" />
+                <field name="partner_mobile" />
+                <field name="partner_contact_name" />
+                <field name="calendar_issue_type_id" />
+                <field name="currency_id" />
+                <field name="comment" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div
+                            t-attf-class="oe_kanban_card oe_kanban_card_full_width oe_kanban_global_click"
+                        >
+                            <div class="row">
+                                <div class="col-sm-2 text-center">
+                                    <div class="row" title="Clock">
+                                        <i class="col fa fa-clock-o fa-4x" />
+                                    </div>
+                                    <div class="row">
+                                        <strong class="col"><span><t
+                                                    t-esc="record.calendar_event_date.value"
+                                                /></span></strong>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <field
+                                                name="state"
+                                                widget="label_selection"
+                                                options="{'classes': {'pending': 'info', 'cancel': 'danger', 'done': 'success'}}"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="row font-weight-bold">
+                                        <div
+                                            class="col-1 text-center p-0"
+                                            title="Partner"
+                                        >
+                                            <i class="fa fa-user fa-2x" />
+                                        </div>
+                                        <div class="col">
+                                            <field name="partner_ref" />  <field
+                                                name="partner_name"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div
+                                            class="col-1 text-center p-0"
+                                            title="Commercial name"
+                                        >
+                                            <i class="fa fa-home fa-2x" />
+                                        </div>
+                                        <div class="col">
+                                            <field name="partner_commercial_name" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div
+                                            class="col-1 text-center p-0"
+                                            title="Street"
+                                        >
+                                            <i class="fa fa-map-marker fa-2x" />
+                                        </div>
+                                        <div class="col-5">
+                                            <field name="partner_street" />
+                                        </div>
+                                        <div class="col-1 text-center p-0" title="City">
+                                            <i class="fa fa-building-o fa-2x" />
+                                        </div>
+                                        <div class="col-5">
+                                            <field name="partner_city" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div
+                                            class="col-1 text-center p-0"
+                                            title="Mobile"
+                                        >
+                                            <i class="fa fa-phone fa-2x" />
+                                        </div>
+                                        <div class="col">
+                                            <t t-if="record.partner_mobile.value">
+                                                <field
+                                                    name="partner_mobile"
+                                                    widget="phone"
+                                                />
+                                            </t>
+                                            <t t-if="record.partner_contact_name.value">
+                                                (<field name="partner_contact_name" />)
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5 mb-3">
+                                    <div class="row mt16 h-100">
+                                        <div class="col">
+                                            <button
+                                                class="btn btn-primary w-100 h-80"
+                                                title="Info"
+                                            >
+                                                <i
+                                                    t-attf-class="fa fa-info fa-2x #{record.comment.raw_value ? 'text-warning' : ''}"
+                                                />
+                                                <div>Info</div>
+                                            </button>
+                                        </div>
+                                        <div class="col">
+                                            <button
+                                                class="btn btn-primary w-100 h-80"
+                                                name="action_open_sale_order"
+                                                type="object"
+                                                title="Order"
+                                            >
+                                                <i class="fa fa-dollar fa-2x" />
+                                                <div>Order</div>
+                                            </button>
+                                            <div
+                                                t-if="record.sale_order_subtotal.raw_value "
+                                                class="text-center mt4"
+                                            >
+                                                <field
+                                                    class="text-center"
+                                                    name="sale_order_subtotal"
+                                                    widget="monetary"
+                                                    options="{'currency_field': 'currency_id'}"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <button
+                                                class="btn btn-primary w-100 h-80"
+                                                name="action_open_invoices"
+                                                type="object"
+                                                title="Invoices"
+                                            >
+                                                <i
+                                                    class="fa fa-pencil-square-o fa-2x"
+                                                />
+                                                <div class="o_stat_text">Invoices</div>
+                                            </button>
+                                        </div>
+                                        <div class="col">
+                                            <button
+                                                class="btn btn-primary w-100 h-80"
+                                                name="action_open_unpaid_invoice"
+                                                type="object"
+                                                title="Due"
+                                            >
+                                                <i
+                                                    class="fa fa-pencil-square-o fa-2x"
+                                                />
+                                                <div class="o_stat_text">Due</div>
+                                            </button>
+                                            <div
+                                                t-if="record.invoice_amount_residual.raw_value "
+                                                class="text-center mt4 text-danger font-weight-bold"
+                                            >
+                                                <field
+                                                    class="text-center"
+                                                    name="invoice_amount_residual"
+                                                    widget="monetary"
+                                                    options="{'currency_field': 'currency_id'}"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <button
+                                                t-attf-class="btn w-100 h-80 #{record.calendar_issue_type_id.raw_value ? 'btn-danger' : 'btn-primary'}"
+                                                name="action_open_issue"
+                                                type="object"
+                                                title="Issue"
+                                            >
+                                                <i
+                                                    class="fa fa-exclamation-triangle fa-2x"
+                                                />
+                                                <div class="o_stat_text">Issue</div>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_sale_planner_calendar_event" model="ir.actions.act_window">
+        <field name="name">Sale planner calendar events</field>
+        <field name="res_model">sale.planner.calendar.event</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field
+            name="context"
+        >{'search_default_start_today': 1, 'search_default_my_event_planner': 1}</field>
+    </record>
+</odoo>
