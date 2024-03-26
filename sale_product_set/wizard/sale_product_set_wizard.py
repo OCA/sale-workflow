@@ -32,7 +32,7 @@ class SaleProductSetWizard(models.TransientModel):
         lines_from_ctx = self.env["product.set.line"].browse(line_ids)
         for rec in self:
             lines = lines_from_ctx.filtered(
-                lambda x: x.product_set_id == rec.product_set_id
+                lambda x, rec=rec: x.product_set_id == rec.product_set_id
             )
             if lines:
                 # Use the ones from ctx but make sure they belong to the same set.

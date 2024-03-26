@@ -5,15 +5,15 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//header" position="inside">
+            <xpath expr="//button[@name='action_add_from_catalog']" position="before">
                 <button
-                    class="btn-primary"
+                    class="px-2 btn-link"
                     type="action"
                     name="%(act_open_wizard_product_set_add_from_order)d"
-                    icon="fa-cubes"
-                    attrs="{'invisible': [('state','not in',('draft','sent'))]}"
+                    invisible="state not in ('draft', 'sent')"
                     groups="base.group_user"
                     string="Add set"
+                    context="{'order_id': parent.id}"
                 />
             </xpath>
         </field>
