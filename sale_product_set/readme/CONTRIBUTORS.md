@@ -8,3 +8,4 @@
 - Manuel Regidor \<<manuel.regidor@sygel.es>\>
 - [Tecnativa](https://www.tecnativa.com):
   - Pilar Vargas
+- Nils Coenen \<<nils.coenen@nico-solutions.de>\>

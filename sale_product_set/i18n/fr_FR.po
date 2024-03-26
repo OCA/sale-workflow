@@ -96,11 +96,6 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__write_uid
 msgid "Last Updated by"
 msgstr "Modifié par"
@@ -155,6 +150,9 @@ msgid "You can use a sale order assigned only to following partner(s): {}"
 msgstr ""
 "Vous pouvez utiliser un ordre de vente affecté uniquement au(x) "
 "partenaire(s) suivant(s) : {}"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
 
 #~ msgid "Active"
 #~ msgstr "Actif"
