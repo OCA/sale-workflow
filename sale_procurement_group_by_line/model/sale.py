@@ -3,9 +3,18 @@
 # © 2016 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import api, fields, models
 from odoo.tools.float_utils import float_compare
 
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
+
+    @api.depends('order_line.procurement_group_id.stock_move_ids.created_purchase_line_id.order_id', 'order_line.procurement_group_id.stock_move_ids.move_orig_ids.purchase_line_id.order_id')
+    def _compute_purchase_order_count(self):
+        super(SaleOrder, self)._compute_purchase_order_count()
+
+    def _get_purchase_orders(self):
+        return super(SaleOrder, self)._get_purchase_orders() | self.order_line.procurement_group_id.stock_move_ids.created_purchase_line_id.order_id | self.order_line.procurement_group_id.stock_move_ids.move_orig_ids.purchase_line_id.order_id
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
