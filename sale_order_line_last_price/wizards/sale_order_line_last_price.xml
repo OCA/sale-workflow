@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 Tecnativa - Ernesto Tejeda
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record id="sale_order_line_last_price_view_form" model="ir.ui.view">
+        <field name="name">sale.order.line.last.price.view.form</field>
+        <field name="model">sale.order.line.price.history</field>
+        <field name="priority" eval="100" />
+        <field
+            name="inherit_id"
+            ref="sale_order_line_price_history.sale_order_line_price_history_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//group/field[@name='partner_id']" position="replace">
+            </xpath>
+            <xpath expr="//tree/field[@name='partner_id']" position="replace">
+            </xpath>
+            <xpath
+                expr="//field[@name='include_commercial_partner']"
+                position="replace"
+            >
+            </xpath>
+        </field>
+    </record>
+</odoo>
