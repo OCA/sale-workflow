@@ -21,3 +21,12 @@ class TestPackaging(Common):
         # 20*30 = 600
         expected_qty = PL_PRODUCT_QTY
         self.assertEqual(self.order_line.product_uom_qty, expected_qty)
+
+    def test_compute_qties_with_new_packaging_id(self):
+        with Form(self.order) as so:
+            with so.order_line.edit(0) as line:
+                line.product_uom_qty = 0
+                line.product_packaging_id = self.packaging_tu
+
+        self.assertEqual(self.order_line.product_packaging_qty, 1)
+        self.assertEqual(self.order_line.product_uom_qty, TU_PRODUCT_QTY)
