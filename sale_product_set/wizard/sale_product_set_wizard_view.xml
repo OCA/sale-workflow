@@ -31,7 +31,7 @@
                             <field
                                 name="product_id"
                                 options="{'no_open': True, 'no_create': True}"
-                                attrs="{'required': [('display_type', '=', False)]}"
+                                required="not display_type"
                             />
                             <field name="display_type" />
                             <field name="name" widget="section_and_note_text" />
@@ -72,7 +72,7 @@
         <field name="view_mode">form</field>
         <field name="view_id" ref="product_set_add_form_view" />
         <field name="domain">[]</field>
-        <field name="context">{'default_order_id': active_id}</field>
+        <field name="context">{'default_order_id': order_id}</field>
         <field name="target">new</field>
     </record>
     <record id="act_open_wizard_product_set_add_from_set" model="ir.actions.act_window">
@@ -82,7 +82,7 @@
         <field name="view_mode">form</field>
         <field name="view_id" ref="product_set_add_form_view" />
         <field name="domain">[]</field>
-        <field name="context">{'default_product_set_id': active_id}</field>
+        <field name="context">{'default_product_set_id': product_set_id}</field>
         <field name="target">new</field>
     </record>
 </odoo>
