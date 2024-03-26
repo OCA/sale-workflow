@@ -1,0 +1,3 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_zone_delivery_time_window_user,access_zone_delivery_time_window_user,model_zone_delivery_time_window,base.group_user,1,0,0,0
+access_zone_delivery_time_window_manager,access_zone_delivery_time_window_manager,model_zone_delivery_time_window,stock.group_stock_manager,1,1,1,1
