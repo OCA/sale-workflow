@@ -98,6 +98,7 @@ Contributors
 
 -  Jairo Llopis (`Moduon <https://www.moduon.team/>`__)
 -  Rafael Blasco (`Moduon <https://www.moduon.team/>`__)
+-  Tris Doan (`Trobz <https://www.trobz.com/>`__)
 
 Maintainers
 -----------

@@ -2,14 +2,12 @@
 # Copyright 2018 Carlos Dauden <carlos.dauden@tecnativa.com>
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 import logging
 from datetime import datetime, timedelta
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.osv import expression
-from odoo.tests import Form
 from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
@@ -209,8 +207,9 @@ class SaleOrderRecommendation(models.TransientModel):
     def action_accept(self):
         """Propagate recommendations to sale order."""
         sequence = max(self.order_id.mapped("order_line.sequence") or [0])
-        order_form = Form(self.order_id.sudo())
         to_remove = []
+        sale_order_line_obj = self.env["sale.order.line"].sudo()
+        new_line_vals = []
         force_zero_units_included = self.env.user.company_id.force_zero_units_included
         for wiz_line in self.line_ids:
             if (
@@ -220,21 +219,21 @@ class SaleOrderRecommendation(models.TransientModel):
             ):
                 continue
             if wiz_line.sale_line_id:
-                index = self.order_id.order_line.ids.index(wiz_line.sale_line_id.id)
                 if wiz_line.units_included or force_zero_units_included:
-                    with order_form.order_line.edit(index) as line_form:
-                        wiz_line._prepare_update_so_line(line_form)
+                    wiz_line.sale_line_id.update(
+                        wiz_line._prepare_update_so_line_vals()
+                    )
                 else:
-                    to_remove.append(index)
+                    to_remove.append(wiz_line.sale_line_id.id)
             else:
                 sequence += 1
-                with order_form.order_line.new() as line_form:
-                    wiz_line._prepare_new_so_line(line_form, sequence)
+                vals = wiz_line._prepare_new_so_line_vals(sequence)
+                new_line_vals.append(vals)
         # Remove at the end and in reverse order for not having problems
         to_remove.reverse()
-        for index in to_remove:
-            order_form.order_line.remove(index)
-        order_form.save()
+        sale_order_line_obj.browse(to_remove).unlink()
+        if new_line_vals:
+            sale_order_line_obj.create(new_line_vals)
 
 
 class SaleOrderRecommendationLine(models.TransientModel):
@@ -311,21 +310,24 @@ class SaleOrderRecommendationLine(models.TransientModel):
             else:
                 line.price_unit = line._get_last_sale_price_product()
 
-    def _prepare_update_so_line(self, line_form):
-        """So we can extend SO update"""
+    def _prepare_update_so_line_vals(self):
+        vals = {"product_uom_qty": self.units_included}
         if not self.product_uom_readonly:
-            line_form.product_uom = self.sale_uom_id
-        line_form.product_uom_qty = self.units_included
+            vals["product_uom"] = self.sale_uom_id.id
+        return vals
 
-    def _prepare_new_so_line(self, line_form, sequence):
-        """So we can extend SO create"""
-        line_form.product_id = self.product_id
-        line_form.sequence = sequence
+    def _prepare_new_so_line_vals(self, sequence):
+        vals = {
+            "product_id": self.product_id.id,
+            "sequence": sequence,
+            "product_uom_qty": self.units_included,
+            "order_id": self.wizard_id.order_id.id,
+        }
         if not self.product_uom_readonly:
-            line_form.product_uom = self.sale_uom_id
-        line_form.product_uom_qty = self.units_included
+            vals["product_uom"] = self.sale_uom_id.id
         if self.wizard_id.sale_recommendation_price_origin == "last_sale_price":
-            line_form.price_unit = self.price_unit
+            vals["price_unit"] = self.price_unit
+        return vals
 
     def _get_last_sale_price_product(self):
         """

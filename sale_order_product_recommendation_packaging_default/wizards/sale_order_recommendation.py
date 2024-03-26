@@ -77,24 +77,31 @@ class SaleOrderRecommendationLine(models.TransientModel):
                         line.product_packaging_id.qty * line.product_packaging_qty
                     )
 
-    def _prepare_packaging_line_form(self, line_form):
+    def _prepare_packaging_line_vals(self, vals):
         """Prepare packaging info for sale order line."""
-        try:
-            line_form.product_packaging_id = self.product_packaging_id
-        except (AssertionError, KeyError):
-            # No access to packaging
-            return
+        if self.sale_line_id:
+            try:
+                self.sale_line_id.product_packaging_id = self.product_packaging_id
+            except (AssertionError, KeyError):
+                # No access to packaging
+                return
         if self.product_packaging_id:
-            line_form.product_packaging_qty = self.product_packaging_qty
+            vals.update(
+                {
+                    "product_packaging_id": self.product_packaging_id.id,
+                    "product_packaging_qty": self.product_packaging_qty,
+                }
+            )
+        return vals
 
-    def _prepare_update_so_line(self, line_form):
+    def _prepare_update_so_line_vals(self):
         """Update a sale order line with packaging info."""
-        result = super()._prepare_update_so_line(line_form)
-        self._prepare_packaging_line_form(line_form)
-        return result
+        result = super()._prepare_update_so_line_vals()
+        vals = self._prepare_packaging_line_vals(result)
+        return vals
 
-    def _prepare_new_so_line(self, line_form, sequence):
+    def _prepare_new_so_line_vals(self, sequence):
         """Prepare product packaging info for new sale order line."""
-        result = super()._prepare_new_so_line(line_form, sequence)
-        self._prepare_packaging_line_form(line_form)
-        return result
+        result = super()._prepare_new_so_line_vals(sequence)
+        vals = self._prepare_packaging_line_vals(result)
+        return vals
