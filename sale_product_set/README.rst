@@ -99,6 +99,8 @@ Contributors
 
    -  Pilar Vargas
 
+-  Nils Coenen <nils.coenen@nico-solutions.de>
+
 Other credits
 -------------
 
