@@ -17,28 +17,28 @@ Sale product set
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_product_set
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_product_set
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_product_set
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_product_set
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-A **product set** is a list of products which end customers aren't aware, this
-list is defined by sales manager.
+A **product set** is a list of products which end customers aren't
+aware, this list is defined by sales manager.
 
-This module aims to help salesman to quickly create several sale order lines
-at once in a quotation.
+This module aims to help salesman to quickly create several sale order
+lines at once in a quotation.
 
-After a *product set* is added to the sale order, each line can be updated or
-removed as any other sale order lines.
+After a *product set* is added to the sale order, each line can be
+updated or removed as any other sale order lines.
 
-This differs from packing products as you don't follow *product set*
-are not linked to sale order lines once they are added.
+This differs from packing products as you don't follow *product set* are
+not linked to sale order lines once they are added.
 
 **Table of contents**
 
@@ -50,17 +50,21 @@ Usage
 
 To use this module, you need to:
 
-* Define a *product set* as sale manager:
-    - choose products
-    - for each products, define a quantity.
-    - for each products (if Discounts setting is active), define a discount or leave default value
-    - Sort *set* lines, this order will be the default when added into the
-      quotation
+-  Define a *product set* as sale manager:
 
-* Then you can remove or update added lines as any other sale order lines.
+   -  choose products
+   -  for each products, define a quantity.
+   -  for each products (if Discounts setting is active), define a
+      discount or leave default value
+   -  Sort *set* lines, this order will be the default when added into
+      the quotation
 
-.. image:: https://raw.githubusercontent.com/sale_product_set/static/description/sale_order.png
-    :alt: Sale order
+-  Then you can remove or update added lines as any other sale order
+   lines.
+
+|Sale order|
+
+.. |Sale order| image:: https://raw.githubusercontent.com/sale_product_set/static/description/sale_order.png
 
 Bug Tracker
 ===========
@@ -68,7 +72,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_product_set%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_product_set%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -76,34 +80,34 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Anybox
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Clovis Nzouendjou <clovis@anybox.fr>
-* Pierre Verkest <pverkest@anybox.fr>
-* Denis Leemann <denis.leemann@camptocamp.com>
-* Simone Orsi <simone.orsi@camptocamp.com>
-* Souheil Bejaoui <souheil.bejaoui@acsone.eu>
-* Adria Gil Sorribes <adria.gil@forgeflow.com>
-* Phuc (Tran Thanh) <phuc@trobz.com>
-* Manuel Regidor <manuel.regidor@sygel.es>
-* `Tecnativa <https://www.tecnativa.com>`_:
+-  Clovis Nzouendjou <clovis@anybox.fr>
+-  Pierre Verkest <pverkest@anybox.fr>
+-  Denis Leemann <denis.leemann@camptocamp.com>
+-  Simone Orsi <simone.orsi@camptocamp.com>
+-  Souheil Bejaoui <souheil.bejaoui@acsone.eu>
+-  Adria Gil Sorribes <adria.gil@forgeflow.com>
+-  Phuc (Tran Thanh) <phuc@trobz.com>
+-  Manuel Regidor <manuel.regidor@sygel.es>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Pilar Vargas
+   -  Pilar Vargas
 
 Other credits
-~~~~~~~~~~~~~
+-------------
 
 The development of this module has been financially supported by:
 
-* Camptocamp
+-  Camptocamp
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -115,6 +119,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_product_set>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_product_set>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
