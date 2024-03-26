@@ -3,7 +3,7 @@
 
 {
     "name": "Sale order min quantity",
-    "version": "14.0.1.1.2",
+    "version": "14.0.1.1.3",
     "category": "Sales Management",
     "author": "Akretion, Odoo Community Association (OCA)",
     "maintainers": ["alexey-pelykh"],
