@@ -90,7 +90,7 @@ addon | version | maintainers | summary
 [sale_procurement_group_by_line](sale_procurement_group_by_line/) | 16.0.1.0.0 |  | Base module for multiple procurement group by Sale order
 [sale_product_category_menu](sale_product_category_menu/) | 16.0.1.0.0 |  | Shows 'Product Categories' menu item in Sales
 [sale_product_multi_add](sale_product_multi_add/) | 16.0.1.0.0 |  | Sale Product Multi Add
-[sale_product_packaging_container_deposit](sale_product_packaging_container_deposit/) | 16.0.1.0.1 |  | Sale Product Packaging Container Deposit
+[sale_product_packaging_container_deposit](sale_product_packaging_container_deposit/) | 16.0.1.1.0 |  | Sale Product Packaging Container Deposit
 [sale_product_set](sale_product_set/) | 16.0.3.0.0 |  | Sale product set
 [sale_quotation_number](sale_quotation_number/) | 16.0.1.0.2 |  | Different sequence for sale quotations
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 16.0.1.0.0 |  | Add shipping amounts on sale order
