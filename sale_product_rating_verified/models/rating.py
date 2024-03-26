@@ -7,9 +7,7 @@ from odoo import api, fields, models
 class Rating(models.Model):
     _inherit = "rating.rating"
 
-    purchase_verified = fields.Boolean(
-        required=True, default=False, compute="_compute_purchase_verified", store=True
-    )
+    purchase_verified = fields.Boolean(compute="_compute_purchase_verified", store=True)
 
     @api.depends("partner_id", "res_id", "res_model")
     def _compute_purchase_verified(self):
