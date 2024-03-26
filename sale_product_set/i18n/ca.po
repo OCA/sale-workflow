@@ -99,11 +99,6 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard____last_update
-msgid "Last Modified on"
-msgstr "Última modificació el"
-
-#. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__write_uid
 msgid "Last Updated by"
 msgstr "Darrera Actualització per"
@@ -157,6 +152,9 @@ msgstr "Model d'assistent per afegir el conjunt de productes a una cotització"
 msgid "You can use a sale order assigned only to following partner(s): {}"
 msgstr ""
 "Podeu utilitzar una comanda de venda assignada només als socis següents: {}"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificació el"
 
 #~ msgid "Active"
 #~ msgstr "Actiu"
