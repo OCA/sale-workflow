@@ -4,6 +4,7 @@
     "version": "14.0.1.0.0",
     "category": "Sales",
     "license": "AGPL-3",
+    "maintainers": "ooops404/team-ooops",
     "author": "Ilyas, Ooops404, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale_management"],
