@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="account.tax" id="account_tax_sale_1">
+        <field name="name">Demo Sale Tax 20%</field>
+        <field name="type_tax_use">sale</field>
+        <field name="amount">20</field>
+    </record>
+    <record model="account.tax" id="account_tax_sale_2">
+        <field name="name">Demo Sale Tax 20% included</field>
+        <field name="type_tax_use">sale</field>
+        <field name="price_include" eval="True" />
+        <field name="amount">20</field>
+    </record>
+    <record model="account.tax" id="account_tax_sale_inc_papeete_1">
+        <field name="name">Papeete Sale Tax 16% included</field>
+        <field name="type_tax_use">sale</field>
+        <field name="price_include" eval="True" />
+        <field name="amount">16</field>
+    </record>
+    <record model="account.tax" id="account_tax_sale_inc_papeete_2">
+        <field name="name">Papeete Sale Tax 1% included</field>
+        <field name="type_tax_use">sale</field>
+        <field name="price_include" eval="True" />
+        <field name="amount">1</field>
+    </record>
+
+    <record model="account.tax" id="account_tax_sale_exp">
+        <field name="name">Demo Export 0%</field>
+        <field name="type_tax_use">sale</field>
+        <field name="amount">0</field>
+    </record>
+
+    <record id="ak_product" model="product.product">
+        <field name="name">ak product</field>
+        <field
+            name="taxes_id"
+            eval="[(4, ref('sale_order_pricelist_tax.account_tax_sale_2'))]"
+        />
+        <field name="type">consu</field>
+        <field name="list_price">10</field>
+    </record>
+
+    <record id="ht_pricelist" model="product.pricelist">
+        <field name="name">Prix HT</field>
+        <field name="price_include_taxes" eval="False" />
+    </record>
+
+    <record id="ttc_pricelist" model="product.pricelist">
+        <field name="name">Prix TTC</field>
+        <field name="price_include_taxes" eval="True" />
+    </record>
+
+    <record id="ht_item" model="product.pricelist.item">
+        <field name="applied_on">0_product_variant</field>
+        <field name="compute_price">fixed</field>
+        <field name="fixed_price">10</field>
+        <field name="product_id" eval="ref('ak_product')" />
+        <field name="pricelist_id" eval="ref('ht_pricelist')" />
+    </record>
+    <record id="ttc_item" model="product.pricelist.item">
+        <field name="applied_on">0_product_variant</field>
+        <field name="compute_price">fixed</field>
+        <field name="fixed_price">12</field>
+        <field name="product_id" eval="ref('ak_product')" />
+        <field name="pricelist_id" eval="ref('ttc_pricelist')" />
+    </record>
+
+    <record id="fiscal_position_exp" model="account.fiscal.position">
+        <field name="sequence">50</field>
+        <field name="name">Import/Export</field>
+        <field name="auto_apply" eval="False" />
+    </record>
+
+    <record id="fiscal_position_exp_map_1" model="account.fiscal.position.tax">
+        <field name="position_id" ref="fiscal_position_exp" />
+        <field name="tax_src_id" ref="account_tax_sale_1" />
+        <field name="tax_dest_id" ref="account_tax_sale_exp" />
+    </record>
+
+    <record id="fiscal_position_exp_map_2" model="account.fiscal.position.tax">
+        <field name="position_id" ref="fiscal_position_exp" />
+        <field name="tax_src_id" ref="account_tax_sale_2" />
+        <field name="tax_dest_id" ref="account_tax_sale_exp" />
+    </record>
+
+    <record id="fiscal_position_papeete" model="account.fiscal.position">
+        <field name="sequence">50</field>
+        <field name="name">Papeete</field>
+        <field name="auto_apply" eval="False" />
+    </record>
+
+    <record id="fiscal_position_papeete_map_1" model="account.fiscal.position.tax">
+        <field name="position_id" ref="fiscal_position_papeete" />
+        <field name="tax_src_id" ref="account_tax_sale_2" />
+        <field name="tax_dest_id" ref="account_tax_sale_inc_papeete_1" />
+    </record>
+
+    <record id="fiscal_position_papeete_map_2" model="account.fiscal.position.tax">
+        <field name="position_id" ref="fiscal_position_papeete" />
+        <field name="tax_src_id" ref="account_tax_sale_2" />
+        <field name="tax_dest_id" ref="account_tax_sale_inc_papeete_2" />
+    </record>
+</odoo>
