@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_normal_form_view" model="ir.ui.view">
+        <field name="name">product.product.form.inherit.sale.resource.booking</field>
+        <field name="model">product.product</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    class="oe_stat_button"
+                    type="object"
+                    name="action_view_resource_booking"
+                    groups="resource_booking.group_user"
+                    icon="fa-calendar"
+                >
+                    <field
+                        string="Bookings"
+                        name="resource_booking_count"
+                        widget="statinfo"
+                    />
+                </button>
+            </div>
+        </field>
+    </record>
+    <record id="product_product_tree_view" model="ir.ui.view">
+        <field name="name">product.product.tree.inherit.sale.resource.booking</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view" />
+        <field name="arch" type="xml">
+            <field name="product_template_variant_value_ids" position="after">
+                <field name="resource_booking_type_id" invisible="1" />
+                <button
+                    class="btn btn-primary"
+                    type="object"
+                    name="action_view_resource_booking"
+                    string="Book"
+                    attrs="{'invisible': [('resource_booking_type_id', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
