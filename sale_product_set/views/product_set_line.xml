@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_product_set_line_tree" model="ir.ui.view">
+        <field name="name">product.set.line.tree</field>
+        <field name="model">product.set.line</field>
+        <field name="type">tree</field>
+        <field name="inherit_id" ref="product_set.view_product_set_line_tree" />
+        <field name="arch" type="xml">
+            <field name="quantity" position="after">
+                 <field name="discount" groups="product.group_discount_per_so_line" />
+            </field>
+        </field>
+    </record>
+     <menuitem
+        id="menu_product_set_line_config"
+        parent="sale.product_menu_catalog"
+        groups="sales_team.group_sale_manager"
+        sequence="20"
+        action="product_set.act_open_product_set_line_view"
+    />
+</odoo>
