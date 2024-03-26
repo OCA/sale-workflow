@@ -11,7 +11,7 @@ class TestReports(Common):
 
     def test_reports(self):
         # One of those should raise an exception is anything wrong occurs
-        order = self.order_partner_cutoff
+        order = self._create_order_partner_cutoff()
         order.action_confirm()
         sale_report = self.env.ref("sale.action_report_saleorder")
         content, _ = sale_report._render(

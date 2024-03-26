@@ -82,6 +82,15 @@ class TestDeliveryDateInThePast(SavepointCase):
         then expected_date is still valid, since it's updated when the
         so is confirmed.
         """
+        # Parameters:
+        #   - customer_lead = 0
+        #   - security_lead = 1
+        #   - date_order = "2021-10-25 00:00" (Monday)
+        #   - partner's cutoff time at 09:00
+        #   - no partner's delivery time window
+        #   - no WH calendar
+        # Expected result:
+        #   - date_planned = "2021-10-24"
         with freeze_time("2021-10-15"):
             order = self._create_order(partner=self.customer_partner)
         with freeze_time("2021-10-25"):

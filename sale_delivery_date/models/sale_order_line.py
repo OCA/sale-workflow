@@ -6,124 +6,201 @@ from datetime import datetime, time, timedelta
 
 import pytz
 
-from odoo import api, fields, models
+from odoo import _, api, exceptions, fields, models
 
 from odoo.addons.partner_tz.tools import tz_utils
 
 _logger = logging.getLogger(__name__)
 
+FIND_WORKING_DAY_COUNT = 10  # To avoid infinite loops, could be increased
+
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
+    def _action_launch_stock_rule(self, previous_product_uom_qty=False):
+        # Add a context key, so we know in `_prepare_procurement_values` that we
+        # might have to update the date based on today instead of the order date
+        if previous_product_uom_qty:
+            self = self.with_context(updated_line_qty=True)
+        return super(SaleOrderLine, self)._action_launch_stock_rule(
+            previous_product_uom_qty
+        )
+
     def _prepare_procurement_values(self, group_id=False):
+        # Update 'date_planned' and 'date_deadline' with respect to:
+        #   - the warehouse or partner cutoff time
+        #   - the warehouse calendar
+        #   - the delivery time window of the customer
+        # knowing that 'date_planned' is when the transfer starts to be processed
+        # internally and 'date_deadline' is when the goods will be delivered to
+        # the customer.
+        # There's 2 cases here:
+        #   1) commitment_date is set, compute date_planned from date_deadline
+        #   2) commitment_date isn't set, compute date_planned and date_deadline
         res = super()._prepare_procurement_values(group_id=group_id)
-        res = self._cutoff_time_delivery_prepare_procurement_values(res)
-        res = self._warehouse_calendar_prepare_procurement_values(res)
-        res = self._delivery_window_prepare_procurement_values(res)
-        return res
-
-    def _cutoff_time_delivery_prepare_procurement_values(self, res):
-        date_planned = res.get("date_planned")
-        if not date_planned:
-            return res
-        new_date_planned = self._prepare_procurement_values_cutoff_time(
-            fields.Datetime.to_datetime(date_planned),
-            # if we have a commitment date, even if we are too late, respect
-            # the original planned date (but change the time), the transfer
-            # will be considered as "late"
-            keep_same_day=bool(self.order_id.commitment_date),
-        )
-        if new_date_planned:
-            res["date_planned"] = new_date_planned
-        return res
-
-    def _warehouse_calendar_prepare_procurement_values(self, res):
-        date_planned = res.get("date_planned")
-        calendar = self.order_id.warehouse_id.calendar_id
-        if date_planned and calendar:
-            customer_lead, security_lead, workload = self._get_delays()
-            # plan_days() expect a number of days instead of a delay
-            workload_days = self._delay_to_days(workload)
-            td_workload = timedelta(days=workload)
-            # Remove the workload that has been added by odoo
-            date_planned -= td_workload
-            # Add the workload, with respect to the wh calendar
-            res["date_planned"] = calendar.plan_days(
-                workload_days, date_planned, compute_leaves=True
-            )
-        return res
-
-    def _delivery_window_prepare_procurement_values(self, res):
-        date_planned = res.get("date_planned")
-        if not date_planned:
-            return res
-        new_date_planned = self._prepare_procurement_values_time_windows(
-            fields.Datetime.to_datetime(date_planned)
-        )
-        if new_date_planned:
-            res["date_planned"] = new_date_planned
-        return res
-
-    def _prepare_procurement_values_time_windows(self, date_planned):
-        # ORIGINAL
-        if (
-            self.order_id.partner_shipping_id.delivery_time_preference != "time_windows"
-            # if a commitment_date is set we don't change the result as lead
-            # time and delivery windows must have been considered
-            or self.order_id.commitment_date
-        ):
-            _logger.debug(
-                "Commitment date set on order %s. Delivery window not applied "
-                "on line.",
-                self.order_id.name,
-            )
-            return
-        # If no commitment date is set, we must consider next preferred delivery
-        #  window to postpone date_planned
-
-        # Remove security lead time to ensure the delivery date (and not the
-        # date planned of the picking) will match delivery windows
-        date_planned_without_sec_lead = date_planned + timedelta(
-            days=self.order_id.company_id.security_lead
-        )
-        ops = self.order_id.partner_shipping_id
-        next_preferred_date = ops.next_delivery_window_start_datetime(
-            from_date=date_planned_without_sec_lead
-        )
-        # Add back security lead time
-        next_preferred_date_with_sec_lead = next_preferred_date - timedelta(
-            days=self.order_id.company_id.security_lead
-        )
-        if date_planned != next_preferred_date_with_sec_lead:
-            _logger.debug(
-                "Delivery window applied for order %s. Date planned for line %s"
-                " rescheduled from %s to %s",
-                self.order_id.name,
-                self.name,
-                date_planned,
-                next_preferred_date_with_sec_lead,
-            )
-            # if we have a new datetime proposed by a delivery time window,
-            # apply the warehouse/partner cutoff time
-            cutoff_datetime = self._prepare_procurement_values_cutoff_time(
-                next_preferred_date_with_sec_lead,
-                # the correct day has already been computed, only change
-                # the cut-off time
-                keep_same_day=True,
-            )
-            if cutoff_datetime:
-                return cutoff_datetime
-            return next_preferred_date_with_sec_lead
+        if self.order_id.commitment_date:
+            res = self._prepare_procurement_values_commitment_date(res)
         else:
-            _logger.debug(
-                "Delivery window not applied for order %s. Date planned for line %s",
-                " already in delivery window",
-                self.order_id.name,
-                self.name,
-            )
-        return
+            res = self._prepare_procurement_values_no_commitment_date(res)
+        # If `updated_line_qty` context key is set, and now is after the computed
+        # date planned, then we're late, and should postpone the delivery dates
+        now = datetime.now()
+        late = res["date_planned"] <= now
+        if self.env.context.get("updated_line_qty") and late:
+            res = self._prepare_procurement_values_no_commitment_date(res, now)
+        return res
 
+    def _prepare_procurement_values_commitment_date(self, res):
+        """Set 'date_planned' according to 'commitment_date'.
+
+        We want to find the date when we could start working on the transfers
+        so we will be able to ship the goods to the customer in respect to the
+        `commitment_date`.
+        The 'date_deadline' is already set to the 'commitment_date' (that should
+        preferably fit the partner's time window if any).
+        """
+        warehouse = self.order_id.warehouse_id
+        partner = self.order_id.partner_id
+        __, security_lead, workload = self._get_delays()
+        worload_days = self._delay_to_days(workload)
+        # Find the first date in the WH calendar by going back in the past, if any.
+        res["date_planned"] = self._deduce_workload_and_security_lead(
+            res["date_deadline"], partner, warehouse, worload_days, security_lead
+        )
+        return res
+
+    def _prepare_procurement_values_no_commitment_date(self, res, date_from=None):
+        """Set 'date_planned' and 'date_deadline' if no 'commitment_date'.
+
+        If date_from is set, use it as the starting date to compute delivery dates,
+        otherwise, use order's date_order.
+        """
+        customer_lead, security_lead, workload = self._get_delays()
+        workload_days = self._delay_to_days(workload)
+        if not date_from:
+            date_from = self.order_id.date_order
+        date_planned = (
+            date_from
+            + timedelta(days=customer_lead or 0.0)
+            - timedelta(days=security_lead)
+        )
+        partner = self.order_id.partner_shipping_id
+        warehouse = self.order_id.warehouse_id
+        calendar = warehouse.calendar_id
+        date_planned = self._apply_cutoff(date_planned, partner, warehouse)
+        date_planned = self._apply_workload(date_planned, workload_days, calendar)
+        date_deadline = self._apply_delivery_window(
+            date_planned, partner, security_lead, calendar
+        )
+        date_planned = self._deduce_workload_and_security_lead(
+            date_deadline, partner, warehouse, workload_days, security_lead
+        )
+        res.update({"date_deadline": date_deadline, "date_planned": date_planned})
+        return res
+
+    @api.model
+    def _deduce_workload_and_security_lead(
+        self, date_deadline, partner, warehouse, days, security_lead
+    ):
+        """Return the 'date_planned' from the 'date_deadline'.
+
+        Once we know the delivery date of the customer, we are able to
+        compute the final scheduled date of the transfer by taking into
+        account the workload, the WH calendar and the cutoff time.
+        """
+        # Remove the security lead from the date_deadline
+        # If there's a calendar, remove 1 day until we get to a working day.
+        # The reason for that is the parcel cannot be given to the carrier
+        # on a non-working day.
+        calendar = warehouse.calendar_id
+        date_planned = date_deadline - timedelta(days=security_lead)
+        if calendar:
+            next_working_day = self._next_working_day(date_planned, calendar)
+            count = 0
+            while next_working_day.date() != date_planned.date():
+                if count > FIND_WORKING_DAY_COUNT:  # To avoid infinite loop
+                    raise exceptions.UserError(
+                        _(
+                            "Unable to find a working day matching "
+                            "customer's delivery time window."
+                        )
+                    )
+                date_planned -= timedelta(days=1)
+                next_working_day = self._next_working_day(date_planned, calendar)
+                count += 1
+        # Deduce the workload, if date_planned is after the cutoff
+        date_planned_w_cutoff = self._apply_cutoff(
+            date_planned, partner, warehouse, keep_same_day=True
+        )
+        if date_planned > date_planned_w_cutoff:
+            date_planned = self._apply_workload(
+                date_planned, -days, warehouse.calendar_id
+            )
+            # the correct day has already been computed, only change the cut-off time
+            return self._apply_cutoff(
+                date_planned, partner, warehouse, keep_same_day=True
+            )
+        return date_planned_w_cutoff
+
+    @api.model
+    def _apply_cutoff(self, date, partner, warehouse, keep_same_day=False):
+        cutoff = self.env["sale.order"].get_cutoff_time(partner, warehouse)
+        if not cutoff:
+            return date
+        return self._get_utc_cutoff_datetime(cutoff, date, keep_same_day)
+
+    @api.model
+    def _apply_workload(self, date, days, calendar=None):
+        if calendar:
+            return calendar.plan_days(days, date, compute_leaves=True)
+        return date
+
+    @api.model
+    def _apply_delivery_window(
+        self, date_planned, partner, security_lead, calendar=None
+    ):
+        datetime_done = date_planned + timedelta(days=security_lead)
+        # Only the date here is relevant, both to find out if this is a working day
+        # and to apply the delivery window on top of it.
+        date_done = datetime_done.replace(hour=0, minute=0, second=0, microsecond=0)
+        date_done = self._next_working_day(date_done, calendar)
+        if partner.delivery_time_preference != "time_windows":
+            return date_done
+        next_preferred_date = partner.next_delivery_window_start_datetime(
+            from_date=date_done
+        )
+        next_working_day = self._next_working_day(next_preferred_date, calendar)
+        count = 0
+        while next_working_day.date() != next_preferred_date.date():
+            if count > FIND_WORKING_DAY_COUNT:  # To avoid infinite loop
+                raise exceptions.UserError(
+                    _(
+                        "Unable to find a working day matching "
+                        "customer's delivery time window."
+                    )
+                )
+            next_preferred_date = partner.next_delivery_window_start_datetime(
+                from_date=next_working_day
+            )
+            next_working_day = self._next_working_day(next_preferred_date, calendar)
+            count += 1
+        # Now that next_working_day.date() equals next_preferred_date.date(),
+        # goods can't leave the warehouse outside of working hours
+        preferred_date = max(next_preferred_date, next_working_day)
+        # If scheduled date and deadline are the same day, we promise the latest date
+        if date_planned.date() == preferred_date.date():
+            preferred_date = max(date_planned, preferred_date)
+        return preferred_date
+
+    @api.model
+    def _next_working_day(self, date_, calendar=None):
+        """Return the next working day starting from `date_`."""
+        if calendar:
+            return calendar.plan_hours(0, date_, compute_leaves=True)
+        return date_
+
+    @api.model
     def _delay_to_days(self, number_of_days):
         """Converts a delay to a number of days."""
         return number_of_days + 1
@@ -136,97 +213,33 @@ class SaleOrderLine(models.Model):
         return customer_lead, security_lead, workload
 
     def _expected_date(self):
-        # Computes the expected date with respect to the WH calendar, if any.
-        expected_date = super()._expected_date()
-        expected_date = self._cutoff_time_delivery_expected_date(expected_date)
-        expected_date = self._warehouse_calendar_expected_date(expected_date)
-        expected_date = self._delivery_window_expected_date(expected_date)
-        return expected_date
-
-    def _warehouse_calendar_expected_date(self, expected_date):
-        calendar = self.order_id.warehouse_id.calendar_id
-        if calendar:
-            customer_lead, security_lead, workload = self._get_delays()
-            td_customer_lead = timedelta(days=customer_lead)
-            td_security_lead = timedelta(days=security_lead)
-            # plan_days() expect a number of days instead of a delay
-            workload_days = self._delay_to_days(workload)
-            # Remove customer_lead added to order_date in sale_stock
-            expected_date -= td_customer_lead
-            # Add the workload, with respect to the wh calendar
-            expected_date = calendar.plan_days(
-                workload_days, expected_date, compute_leaves=True
-            )
-            # add back the security lead
-            expected_date += td_security_lead
-        return expected_date
-
-    def _delivery_window_expected_date(self, expected_date):
+        # Overwritten to compute the expected date with respect to:
+        #   - the warehouse or partner cutoff time
+        #   - the warehouse calendar
+        #   - the delivery time window of the customer
+        customer_lead, security_lead, workload = self._get_delays()
+        date_planned = (
+            (self.order_id.date_order or fields.Datetime.now())
+            + timedelta(days=customer_lead or 0.0)
+            - timedelta(days=security_lead)
+        )
         partner = self.order_id.partner_shipping_id
-        if not partner or partner.delivery_time_preference == "anytime":
-            return expected_date
-        return partner.next_delivery_window_start_datetime(from_date=expected_date)
+        warehouse = self.order_id.warehouse_id
+        calendar = warehouse.calendar_id
+        workload_days = self._delay_to_days(workload)
+        date_planned = self._apply_cutoff(date_planned, partner, warehouse)
+        date_planned = self._apply_workload(date_planned, workload_days, calendar)
+        expected_date = self._apply_delivery_window(
+            date_planned, partner, security_lead, calendar
+        )
+        return expected_date
 
     @api.depends("order_id.expected_date")
     def _compute_qty_at_date(self):
         """Trigger computation of qty_at_date when expected_date is updated"""
         return super()._compute_qty_at_date()
 
-    def _prepare_procurement_values_cutoff_time(
-        self, date_planned, keep_same_day=False
-    ):
-        """Apply the cut-off time on a planned date
-
-        The cut-off configuration is taken on the partner if set, otherwise
-        on the warehouse.
-
-        By default, if the planned date is the same day but after the cut-off,
-        the new planned date is delayed one day later. The argument
-        keep_same_day forces keeping the same day.
-        """
-        cutoff = self.order_id.get_cutoff_time()
-        partner = self.order_id.partner_shipping_id
-        if not cutoff:
-            if not self.order_id.warehouse_id.apply_cutoff:
-                _logger.debug(
-                    "No cutoff applied on order %s as partner %s is set to use "
-                    "%s and warehouse %s doesn't apply cutoff."
-                    % (
-                        self.order_id,
-                        partner,
-                        partner.order_delivery_cutoff_preference,
-                        self.order_id.warehouse_id,
-                    )
-                )
-            else:
-                _logger.warning(
-                    "No cutoff applied on order %s. %s time not applied"
-                    "on line %s."
-                    % (self.order_id, partner.order_delivery_cutoff_preference, self)
-                )
-            return
-        new_date_planned = self._get_utc_cutoff_datetime(
-            cutoff, date_planned, keep_same_day
-        )
-        _logger.debug(
-            "%s applied on order %s. Date planned for line %s"
-            " rescheduled from %s to %s"
-            % (
-                partner.order_delivery_cutoff_preference,
-                self.order_id,
-                self,
-                date_planned,
-                new_date_planned,
-            )
-        )
-        return new_date_planned
-
-    def _cutoff_time_delivery_expected_date(self, expected_date):
-        cutoff = self.order_id.get_cutoff_time()
-        if not cutoff:
-            return expected_date
-        return self._get_utc_cutoff_datetime(cutoff, expected_date)
-
+    @api.model
     def _get_utc_cutoff_datetime(self, cutoff, date, keep_same_day=False):
         tz = cutoff.get("tz")
         if tz:
