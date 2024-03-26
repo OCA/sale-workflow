@@ -1,0 +1,1 @@
+When you create a new quotation, the *Expiration Date* will be set by default to today's date plus the number of days configured in *Sale Settings* page. If you modify the *Order Date* field, the *Expiration Date* will be updated accordingly.
