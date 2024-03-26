@@ -1,6 +1,6 @@
 # Copyright 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
 # Copyright 2013 Camptocamp SA (author: Guewen Baconnier)
-# Copyright 2016 Sodexis
+# Copyright 2016-21 Sodexis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -13,16 +13,19 @@ _logger = logging.getLogger(__name__)
 
 
 @contextmanager
-def savepoint(cr):
+def savepoint(cr, autocommit=False):
     """Open a savepoint on the cursor, then yield.
 
     Warning: using this method, the exceptions are logged then discarded.
     """
     try:
-        with cr.savepoint():
-            yield
+        yield
     except Exception:
         _logger.exception("Error during an automatic workflow action.")
+        cr.rollback()
+    else:
+        if autocommit:
+            cr.commit()  # pylint: disable=E8102
 
 
 class AutomaticWorkflowJob(models.Model):

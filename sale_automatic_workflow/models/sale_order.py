@@ -20,6 +20,17 @@ class SaleOrder(models.Model):
         store=True,
     )
 
+    @api.model
+    def default_get(self, fields):
+        res = super(SaleOrder, self).default_get(fields)
+        if "workflow_process_id" in fields:
+            default_workflow = self.env["sale.workflow.process"].search(
+                [("default", "=", True)], limit=1
+            )
+            if default_workflow:
+                res["workflow_process_id"] = default_workflow.id
+        return res
+
     @api.depends("delivery_status")
     def _compute_all_qty_delivered(self):
         for order in self:
