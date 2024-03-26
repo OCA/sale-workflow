@@ -28,6 +28,7 @@ class SaleWorkflowProcess(models.Model):
         return self.env["ir.filters"].browse()
 
     name = fields.Char()
+    default = fields.Boolean()
     picking_policy = fields.Selection(
         selection=[
             ("direct", "Deliver each product when available"),
@@ -132,3 +133,5 @@ class SaleWorkflowProcess(models.Model):
         string="Payment Filter Domain",
         related="payment_filter_id.domain",
     )
+    auto_commit = fields.Boolean()
+    search_limit = fields.Integer(default=20)
