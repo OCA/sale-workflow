@@ -98,7 +98,7 @@ class Common(SavepointCase):
                 "apply_cutoff": True,
                 "cutoff_time": WAREHOUSE_CUTOFF_TIME,
                 "tz": TZ,
-                "calendar_id": cls.calendar,
+                "calendar2_id": cls.calendar,
             }
         )
 

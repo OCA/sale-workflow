@@ -127,22 +127,22 @@ class TestSaleDeliveryWindow(SavepointCase):
 
     @freeze_time("2020-03-24 01:00:00")  # Tuesday
     def test_prepare_procurement_values(self):
-        # Without setting a commitment date, picking is scheduled for next
-        #  preferred delivery window start time
+        # Without setting a commitment date, picking 'date_deadline' is set
+        # for next preferred delivery window start time
         order = self._create_order()
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-26 08:00:00")
+            picking.date_deadline, fields.Datetime.to_datetime("2020-03-26 08:00:00")
         )
-        # As long as we're not in a window, picking is scheduled for next
-        #  preferred delivery window start time
+        # As long as we're not in a window, picking 'date_deadline' is set
+        # for next preferred delivery window start time
         with freeze_time("2020-03-24 09:00:00"):
             order_2 = self._create_order()
             order_2.action_confirm()
             picking_2 = order_2.picking_ids
             self.assertEqual(
-                picking_2.scheduled_date,
+                picking_2.date_deadline,
                 fields.Datetime.to_datetime("2020-03-26 08:00:00"),
             )
         self.customer_shipping.delivery_time_window_ids.write(
@@ -158,7 +158,7 @@ class TestSaleDeliveryWindow(SavepointCase):
             order_3.action_confirm()
             picking_3 = order_3.picking_ids
             self.assertEqual(
-                picking_3.scheduled_date,
+                picking_3.date_deadline,
                 fields.Datetime.to_datetime("2020-03-26 08:00:00"),
             )
         # If we're already in a window, picking is not postponed
@@ -167,7 +167,7 @@ class TestSaleDeliveryWindow(SavepointCase):
             order_3.action_confirm()
             picking_3 = order_3.picking_ids
             self.assertEqual(
-                picking_3.scheduled_date,
+                picking_3.date_deadline,
                 fields.Datetime.to_datetime("2020-03-26 12:00:00"),
             )
         # If we're after delivery window on the only preferred weekday, picking
@@ -177,36 +177,60 @@ class TestSaleDeliveryWindow(SavepointCase):
             order_3.action_confirm()
             picking_3 = order_3.picking_ids
             self.assertEqual(
-                picking_3.scheduled_date,
+                picking_3.date_deadline,
                 fields.Datetime.to_datetime("2020-04-02 08:00:00"),
             )
         # If we introduce a security lead time at company level, it must be
-        #  considered to compute delivery date and schedule picking accordingly
+        #  considered to compute the picking 'date_deadline' accordingly
+        #   - date_order = "2020-03-26 20:00:00"
+        #   - date_planned = "2020-03-22 20:00:00"  (security lead taken into account)
+        #   - delivery preparation should be finished on "2020-03-26 20:00"
+        #     (adding the security lead)
+        #   - as it's too late to ship it to the customer for this Thursday, the
+        #     next available delivery window is the next Thursday 08:00
+        #   - date_deadline = "2020-03-28 08:00"
         self.env.user.company_id.security_lead = 4
         with freeze_time("2020-03-26 20:00:00"):
             order_3 = self._create_order()
             order_3.action_confirm()
             picking_3 = order_3.picking_ids
             self.assertEqual(
-                picking_3.scheduled_date,
-                fields.Datetime.to_datetime("2020-03-29 08:00:00"),
+                picking_3.date_deadline,
+                fields.Datetime.to_datetime("2020-04-02 08:00:00"),
             )
 
     @freeze_time("2020-03-24 01:00:00")  # Tuesday
     def test_prepare_procurement_values_commitment(self):
+        # Parameters:
+        #   - customer_lead = 0
+        #   - security_lead = 4
+        #   - date_order = "2020-03-24 01:00" (Tuesday)
+        #   - commitment_date = "2020-03-27 10:00" (Saturday)
+        #   - partner's delivery time window: Monday & Friday 08:00-18:00
+        # Expected result:
+        #   - date_planned = "2020-03-23 10:00" (subtracting security_lead and workload)
+        #   - date_deadline = commitment_date
+        self.product.sale_delay = 0
+        self.env.company.security_lead = 4
         # Using a commitment date on a preferred weekday is perfectly fine
         order = self._create_order()
-        order.commitment_date = "2020-03-28 10:00:00"
+        order.commitment_date = "2020-03-27 10:00:00"  # Friday
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-28 10:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-23 10:00:00")
+        )
+        self.assertEqual(
+            picking.date_deadline, fields.Datetime.to_datetime("2020-03-27 10:00:00")
         )
         # Using a commitment date on an weekday not preferred is still allowed
         order_2 = self._create_order()
-        order_2.commitment_date = "2020-03-30 06:00:00"
+        order_2.commitment_date = "2020-03-28 10:00:00"  # Saturday
         order_2.action_confirm()
         picking_2 = order_2.picking_ids
         self.assertEqual(
-            picking_2.scheduled_date, fields.Datetime.to_datetime("2020-03-30 06:00:00")
+            picking_2.scheduled_date, fields.Datetime.to_datetime("2020-03-24 10:00:00")
+        )
+        self.assertEqual(
+            picking_2.date_deadline, fields.Datetime.to_datetime("2020-03-28 10:00:00")
         )

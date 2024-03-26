@@ -139,128 +139,230 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
 
     @freeze_time("2020-03-27 18:00:00")  # friday evening
     def test_after_cutoff_other_weekday(self):
-        # After partner cutoff
+        # Parameters:
+        #   - customer_lead = 0
+        #   - security_lead = 0
+        #   - date_order = "2020-03-27 18:00" (Friday)
+        #   - partner's delivery time window: Monday & Friday 08:00-18:00
+        # Expected result:
+        #   With partner's cutoff set to 09:00:
+        #   - date_planned = "2020-03-28 09:00"
+        #   - date_deadline = "2020-03-30 08:00" (next time window is Monday 08:00)
+        #   With warehouse's cutoff set to 10:00:
+        #   - date_planned = "2020-03-28 10:00"
+        #   - date_deadline = "2020-03-30 08:00" (next time window is Monday 08:00)
+        # With partner's cutoff
         order = self._create_order(partner=self.customer_partner)
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 09:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-28 09:00:00")
         )
-        # After warehouse cutoff
+        self.assertEqual(
+            picking.date_deadline, fields.Datetime.to_datetime("2020-03-30 08:00:00")
+        )
+        # With warehouse's cutoff
         order = self._create_order(partner=self.customer_warehouse)
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 10:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-28 10:00:00")
+        )
+        self.assertEqual(
+            picking.date_deadline, fields.Datetime.to_datetime("2020-03-30 08:00:00")
         )
 
     @freeze_time("2020-03-28 08:00:00")  # saturday morning
     def test_before_cutoff_other_weekday(self):
-        # Before partner cutoff
+        # Parameters:
+        #   - customer_lead = 0
+        #   - security_lead = 0
+        #   - date_order = "2020-03-28 08:00" (Saturday)
+        #   - partner's delivery time window: Monday & Friday 08:00-18:00
+        # Expected result:
+        #   With partner's cutoff set to 09:00:
+        #   - date_planned = "2020-03-28 09:00" (partner's cutoff)
+        #   - date_deadline = "2020-03-30 08:00" (same day but can't promise 08:00)
+        #   With warehouse's cutoff set to 10:00:
+        #   - date_planned = "2020-03-27 10:00" (customer_lead and WH's cutoff)
+        #   - date_deadline = "2020-03-27 10:00" (same day but can't promise 08:00)
+        self.product.sale_delay = 0
+        self.env.company.security_lead = 0
+        # With partner's cutoff
         order = self._create_order(partner=self.customer_partner)
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 09:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-28 09:00:00")
         )
-        # Before warehouse cutoff
+        self.assertEqual(
+            picking.date_deadline, fields.Datetime.to_datetime("2020-03-30 08:00:00")
+        )
+        # With warehouse's cutoff
         order = self._create_order(partner=self.customer_warehouse)
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 10:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-28 10:00:00")
+        )
+        self.assertEqual(
+            picking.date_deadline, fields.Datetime.to_datetime("2020-03-30 08:00:00")
         )
 
     @freeze_time("2020-03-23 08:00:00")  # monday morning
     def test_before_cutoff_lead_time_preferred_weekday(self):
+        # Parameters:
+        #   - customer_lead = 4
+        #   - security_lead = 0
+        #   - date_order = "2020-03-23 08:00" (Monday)
+        #   - partner's delivery time window: Monday & Friday 08:00-18:00
+        # Expected result:
+        #   With partner's cutoff set to 09:00:
+        #   - date_planned = "2020-03-27 09:00" (customer_lead and partner's cutoff)
+        #   - date_deadline = "2020-03-27 09:00" (same day but can't promise 08:00)
+        #   With warehouse's cutoff set to 10:00:
+        #   - date_planned = "2020-03-27 10:00" (customer_lead and WH's cutoff)
+        #   - date_deadline = "2020-03-27 10:00" (same day but can't promise 08:00)
         self.product.sale_delay = 4
-        # Before partner cutoff
+        self.env.company.security_lead = 0
+        # With partner's cutoff
         order = self._create_order(partner=self.customer_partner)
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
             picking.scheduled_date, fields.Datetime.to_datetime("2020-03-27 09:00:00")
         )
-        # Before partner cutoff
+        self.assertEqual(
+            picking.date_deadline, fields.Datetime.to_datetime("2020-03-27 09:00:00")
+        )
+        # With warehouse's cutoff
         order = self._create_order(partner=self.customer_warehouse)
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
             picking.scheduled_date, fields.Datetime.to_datetime("2020-03-27 10:00:00")
         )
+        self.assertEqual(
+            picking.date_deadline, fields.Datetime.to_datetime("2020-03-27 10:00:00")
+        )
 
     @freeze_time("2020-03-23 18:00:00")  # monday evening
     def test_after_cutoff_lead_time_preferred_weekday(self):
-        # THIS IS PROBABLY THE MOST IMPORTANT TEST HERE:
-        #  This test ensures that cutoff is applied before delivery window
-        #  because both sale_cutoff_time_delivery and sale_weekday_delivery
-        #  override _get_procurement_values.
-        # Also, at the beginning both modules had the same dependency and it
-        #  did seem to work because sale_cutoff_time_delivery is alphabetically
-        #  before sale_partner_delivery_window /!\
-        #  Anyway, here we want the computation to happen as follows:
-        #  confirmation time: 2020-03-23 18:00:00
-        #  application of lead time: 2020-03-27 18:00:00
-        #  application of cutoff: 2020-03-28 09:00:00
-        #  application of weekday: 2020-03-30 08:00:00
-        # what matches both cutoff and delivery window preference
-
-        # If somehow the MRO of _prepare_procurement_values is WRONG we'd have:
-        #  confirmation time: 2020-03-23 18:00:00
-        #  application of lead time: 2020-03-27 18:00:00
-        #  application of weekday: 2020-03-27 18:00:00
-        #  application of cutoff: 2020-03-28 09:00:00
-        # what doesn't match the delivery window preference!
+        # Parameters:
+        #   - customer_lead = 4
+        #   - security_lead = 0
+        #   - date_order = "2020-03-23 18:00" (Monday)
+        #   - partner's delivery time window: Monday & Friday 08:00-18:00
+        # Expected result:
+        #   With partner's cutoff set to 09:00:
+        #   - date_planned = "2020-03-28 09:00" (customer_lead and partner's cutoff)
+        #   - date_deadline = "2020-03-30 08:00" (next time window is Monday 08:00)
+        #   With warehouse's cutoff set to 10:00:
+        #   - date_planned = "2020-03-28 10:00" (customer_lead and WH's cutoff)
+        #   - date_deadline = "2020-03-30 08:00" (next time window is Monday 08:00)
         self.product.sale_delay = 4
-        # Before partner cutoff
+        self.env.company.security_lead = 0
+        # With partner's cutoff
         order = self._create_order(partner=self.customer_partner)
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 09:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-28 09:00:00")
         )
-        # Before partner cutoff
+        self.assertEqual(
+            picking.date_deadline, fields.Datetime.to_datetime("2020-03-30 08:00:00")
+        )
+        # With warehouse's cutoff
         order = self._create_order(partner=self.customer_warehouse)
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 10:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-28 10:00:00")
+        )
+        self.assertEqual(
+            picking.date_deadline, fields.Datetime.to_datetime("2020-03-30 08:00:00")
         )
 
     @freeze_time("2020-03-24 08:00:00")  # tuesday morning
     def test_before_cutoff_lead_time_other_weekday(self):
+        # Parameters:
+        #   - customer_lead = 4
+        #   - security_lead = 0
+        #   - date_order = "2020-03-24 08:00" (Tuesday)
+        #   - partner's delivery time window: Monday & Friday 08:00-18:00
+        # Expected result:
+        #   With partner's cutoff set to 09:00:
+        #   - date_planned = "2020-03-28 09:00" (customer_lead and partner's cutoff)
+        #   - date_deadline = "2020-03-30 08:00" (next time window is Monday 08:00)
+        #   With warehouse's cutoff set to 10:00:
+        #   - date_planned = "2020-03-28 10:00" (customer_lead and partner's cutoff)
+        #   - date_deadline = "2020-03-30 08:00" (next time window is Monday 08:00)
         self.product.sale_delay = 4
-        # Before partner cutoff
+        self.env.company.security_lead = 0
+        # With partner's cutoff
         order = self._create_order(partner=self.customer_partner)
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 09:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-28 09:00:00")
         )
-        # Before partner cutoff
+        self.assertEqual(
+            picking.date_deadline, fields.Datetime.to_datetime("2020-03-30 08:00:00")
+        )
+        # With warehouse's cutoff
         order = self._create_order(partner=self.customer_warehouse)
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 10:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-28 10:00:00")
+        )
+        self.assertEqual(
+            picking.date_deadline, fields.Datetime.to_datetime("2020-03-30 08:00:00")
         )
 
     @freeze_time("2020-03-24 18:00:00")  # tuesday evening
     def test_after_cutoff_lead_time_other_weekday(self):
+        # Parameters:
+        #   - customer_lead = 4
+        #   - security_lead = 0
+        #   - date_order = "2020-03-24 18:00" (Tuesday)
+        #   - partner's delivery time window: Monday & Friday 08:00-18:00
+        # Expected result:
+        #   With partner's cutoff set to 09:00:
+        #   - date_planned = "2020-03-29 09:00" (customer_lead and partner's cutoff)
+        #   - date_deadline = "2020-03-30 08:00" (next time window is Monday 08:00)
+        #   With warehouse's cutoff set to 10:00:
+        #   - date_planned = "2020-03-29 10:00" (customer_lead and partner's cutoff)
+        #   - date_deadline = "2020-03-30 08:00" (next time window is Monday 08:00)
         self.product.sale_delay = 4
-        # Before partner cutoff
+        self.env.company.security_lead = 0
+        # With partner's cutoff
         order = self._create_order(partner=self.customer_partner)
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 09:00:00")
+            # With respect to partner's cutoff
+            picking.scheduled_date,
+            fields.Datetime.to_datetime("2020-03-29 09:00:00"),
         )
-        # Before partner cutoff
+        self.assertEqual(
+            # With respect to partner's delivery time window
+            picking.date_deadline,
+            fields.Datetime.to_datetime("2020-03-30 08:00:00"),
+        )
+        # With warehouse's cutoff
         order = self._create_order(partner=self.customer_warehouse)
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 10:00:00")
+            # With respect to warehouse's cutoff
+            picking.scheduled_date,
+            fields.Datetime.to_datetime("2020-03-29 10:00:00"),
+        )
+        self.assertEqual(
+            # With respect to partner's delivery time window
+            picking.date_deadline,
+            fields.Datetime.to_datetime("2020-03-30 08:00:00"),
         )
 
     @freeze_time("2020-03-24 18:00:00")  # tuesday evening
@@ -271,6 +373,22 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         The expected time should not default to the delivery time window but to the
         warehouse cutoff.
         """
+        # FIXME: the docstring says the partner has no cutoff but the code below
+        # set it to 09:00, so currently this test is a duplicate
+        # of 'test_after_cutoff_lead_time_other_weekday'
+        # Parameters:
+        #   - customer_lead = 4
+        #   - security_lead = 0
+        #   - date_order = "2020-03-24 18:00" (Tuesday)
+        #   - partner's cutoff set to 09:00
+        #   - partner's delivery time window: Monday & Friday 14:00-15:00
+        # Expected result:
+        #   With partner's cutoff:
+        #   - date_planned = "2020-03-29 09:00" (customer_lead and partner's cutoff)
+        #   - date_deadline = "2020-03-30 08:00" (next time window is Monday 08:00)
+        #   With warehouse's cutoff:
+        #   - date_planned = "2020-03-29 10:00" (customer_lead and partner's cutoff)
+        #   - date_deadline = "2020-03-30 08:00" (next time window is Monday 08:00)
         partner = self.env["res.partner"].create(
             {
                 "name": "Partner cutoff",
@@ -310,7 +428,10 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-30 09:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-03-29 09:00:00")
+        )
+        self.assertEqual(
+            picking.date_deadline, fields.Datetime.to_datetime("2020-03-30 14:00:00")
         )
 
     @freeze_time("2020-03-24 18:00:00")  # tuesday evening
@@ -319,6 +440,15 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
 
         And we set a commitment date on the sales order.
         """
+        # Parameters:
+        #   - customer_lead = 4 (ignored if a commitment_date is provided)
+        #   - security_lead = 1
+        #   - date_order = "2020-03-24 18:00" (Tuesday)
+        #   - commitment_date = "2020-04-03 15:00" (Friday)
+        #   - partner's delivery time window: Monday & Friday 14:00-15:00
+        # Expected result:
+        #   - date_planned = "2020-04-02 09:00" (security lead time + cutoff)
+        #   - date_deadline = commitment_date
         partner = self.env["res.partner"].create(
             {
                 "name": "Partner cutoff",
@@ -353,11 +483,14 @@ class TestSaleCutoffDeliveryWindow(SavepointCase):
         )
 
         self.product.sale_delay = 4
-        # Before partner cutoff
+        self.env.company.security_lead = 1
         order = self._create_order(partner=partner)
         order.commitment_date = fields.Datetime.to_datetime("2020-04-03 15:00:00")
         order.action_confirm()
         picking = order.picking_ids
         self.assertEqual(
-            picking.scheduled_date, fields.Datetime.to_datetime("2020-04-03 09:00:00")
+            picking.scheduled_date, fields.Datetime.to_datetime("2020-04-02 09:00:00")
+        )
+        self.assertEqual(
+            picking.date_deadline, fields.Datetime.to_datetime("2020-04-03 15:00:00")
         )
