@@ -32,7 +32,7 @@ class TestSaleCutoffTimeDelivery(Common):
     def setUpClassWarehouse(cls):
         super().setUpClassWarehouse()
         cls.apply_cutoff = False
-        cls.warehouse.calendar_id = False
+        cls.warehouse.calendar2_id = False
 
     @classmethod
     def setUpClassProduct(cls):
@@ -112,11 +112,24 @@ class TestSaleCutoffTimeDelivery(Common):
         """If order is confirmed after partner cutoff,
         delivery is postponed by 1 day.
         """
+        # >>> (Pdb++) order.order_line._get_delays()
+        # (1.0, 1.0, 0.0)
+        # >>> (Pdb++) datetime.now()
+        # FakeDatetime(2021, 10, 4, 23, 30)
+        # This is datetime(2021, 10, 5, 01, 30) in customer's tz context
+        # Cutoff is 09:00 Europe/Paris, 07:00 UTC
+        # next cutoff is 2021-10-05 07:00:00
+        # no calendar on wh, so this is 24/7, and they can start working right now
+        # work_start is 2021-10-05 07:00:00
+        # work_end is 2021-10-05 07:00:00 as there's no workload
+        # earliest delivery date is 2021-10-06 07:00:00
+        # time.min is applied before time window 2021-10-06 00:00:00
+        # No time window, delivery date is keps as is -> 2021-10-06 06:00:00
         order = self.order_partner_cutoff
         order.action_confirm()
         picking = order.picking_ids
-        self.assertEqual(str(order.expected_date.date()), WEDNESDAY)
-        self.assertEqual(str(picking.scheduled_date.date()), TUESDAY)
+        self.assertEqual(str(order.expected_date), f"{WEDNESDAY} 00:00:00")
+        self.assertEqual(str(picking.scheduled_date), f"{TUESDAY} 07:00:00")
 
     @freeze_time(MONDAY_AFTER_CUTOFF_TZ)
     def test_after_warehouse_cutoff_tz(self):

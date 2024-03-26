@@ -9,3 +9,4 @@ class StockWarehouse(models.Model):
     _inherit = ["stock.warehouse", "time.cutoff.mixin"]
 
     apply_cutoff = fields.Boolean()
+    calendar2_id = fields.Many2one("resource.calendar", string="Working Hours")

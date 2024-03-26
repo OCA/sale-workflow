@@ -15,11 +15,18 @@
     "installable": True,
     "auto_install": True,
     "depends": [
+        # core
         "delivery",
-        "partner_tz",
+        "resource",
         "sale_stock",
+        # OCA/partner-contact
+        "partner_tz",
+        # OCA/stock-logistics-workflow
         "stock_partner_delivery_window",
+        # OCA/stock-logistics-warehouse
         "stock_warehouse_calendar",
+        # OCA/sale-workflow
+        "sale_order_line_date",
     ],
     "data": [
         # reports

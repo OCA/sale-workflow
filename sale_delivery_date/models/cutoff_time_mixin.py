@@ -16,12 +16,12 @@ class TimeCutoffMixin(models.AbstractModel):
     cutoff_time = fields.Float()
     tz = fields.Selection(_tz_get, string="Timezone")
 
-    def get_cutoff_time(self):
+    def get_cutoff_time(self, tz=None):
         hour, minute = self._get_hour_min_from_value(self.cutoff_time)
         return {
             "hour": hour,
             "minute": minute,
-            "tz": self.tz,
+            "tz": tz or self.tz,
         }
 
     @api.model
