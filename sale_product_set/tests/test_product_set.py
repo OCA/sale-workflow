@@ -57,7 +57,7 @@ class TestProductSet(common.TransactionCase):
         # check all lines are included
         for line in self.product_set.set_line_ids:
             order_line = so.order_line.filtered(
-                lambda x: x.product_id == line.product_id
+                lambda x, line=line: x.product_id == line.product_id
             )
             order_line.ensure_one()
             self.assertEqual(order_line.product_uom_qty, line.quantity * wiz.quantity)
