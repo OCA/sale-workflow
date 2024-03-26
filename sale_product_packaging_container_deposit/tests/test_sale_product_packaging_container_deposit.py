@@ -1,5 +1,6 @@
 # Copyright 2023 Camptocamp (<https://www.camptocamp.com>).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+from odoo.exceptions import UserError
 from odoo.tests import Form
 
 from odoo.addons.product_packaging_container_deposit.tests.common import Common
@@ -291,3 +292,56 @@ class TestSaleProductPackagingContainerDeposit(Common):
         )
         with self._check_delete_after_commit(lines_to_delete):
             sale_form.save()
+
+    def test_sale_product_packaging_container_deposit_quantities_case9(self):
+        """
+        Case 9: With locked order, Product A | qty = 280. Result:
+                280 // 240 = 1 => add SO line for 1 Pallet
+                280 // 24 (biggest PACK) => add SO line for 11 boxes of 24
+
+        """
+        self.env.user.groups_id += self.env.ref("sale.group_auto_done_setting")
+        self.env["sale.order.line"].with_context(
+            skip_update_container_deposit=True
+        ).create(
+            [
+                {
+                    "order_id": self.sale_order.id,
+                    "name": self.product_a.name,
+                    "product_id": self.product_a.id,
+                    "product_uom_qty": 280,
+                },
+            ]
+        )
+        # Not have any container deposit product
+        self.assertEqual(len(self.sale_order.order_line), 1)
+        self.sale_order.action_confirm()
+
+        # For now, the SO has been locked, so we can't modify the lines
+        with self.assertRaisesRegex(
+            UserError,
+            "It is forbidden to modify the following fields in a locked order:\nQuantity",
+        ):
+            self.sale_order.order_line.write(
+                {
+                    "product_uom_qty": 3,
+                }
+            )
+        # With the "update_order_container_deposit_quantity" context
+        # We can update order container deposit quantity on locked order
+        self.sale_order.with_context(
+            skip_update_container_deposit=False
+        ).update_order_container_deposit_quantity()
+
+        # Check on locked order
+        self.assertEqual(len(self.sale_order.order_line), 3)
+
+        pallet_line = self.sale_order.order_line.filtered(
+            lambda ol: ol.product_id == self.pallet
+        )
+        box_line = self.sale_order.order_line.filtered(
+            lambda ol: ol.product_id == self.box
+        )
+
+        self.assertEqual(pallet_line.product_uom_qty, 1)
+        self.assertEqual(box_line.product_uom_qty, 11)
