@@ -16,6 +16,7 @@ org_name: Odoo Community Association (OCA)
 org_slug: OCA
 rebel_module_groups:
 - portal_sale_personal_data_only
+- sale_procurement_group_by_commitment_date
 repo_description: 'TODO: add repo description.'
 repo_name: Sale Workflow
 repo_slug: sale-workflow
