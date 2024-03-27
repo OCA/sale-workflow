@@ -1,0 +1,459 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_invoice_plan
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-21 07:27+0000\n"
+"PO-Revision-Date: 2019-10-07 08:25+0000\n"
+"Last-Translator: Cas Vissers <c.vissers@brahoo.nl>\n"
+"Language-Team: none\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_invoice_plan__invoice_type__advance
+msgid "Advance"
+msgstr "Vooruit"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__advance
+msgid "Advance on 1st Invoice"
+msgstr "Vooruitbetaling eerste factuur"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__amount
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_tree
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_tree_readonly
+msgid "Amount"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__amount_invoiced
+#, fuzzy
+msgid "Amount Invoiced"
+msgstr "Volgende factuur"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__analytic_account_id
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Analytic Account"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
+msgid "Are you sure to remove this invoice plan?"
+msgstr "Weet je zeker dat je deze facturatie planning wil verwijderen?"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_order__invoice_plan_process
+msgid "At least one invoice plan line pending to create invoice"
+msgstr ""
+"Ten minste één facturatie plannings regel in behandeling om factuur te maken"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_create_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
+msgid "Cancel"
+msgstr "Annuleer"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
+msgid "Create All Remaining Invoices"
+msgstr "Maak alle resterende facturen"
+
+#. module: sale_invoice_plan
+#: model:ir.actions.act_window,name:sale_invoice_plan.action_sale_create_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_create_invoice_plan
+msgid "Create Invoice Plan"
+msgstr "Maak facturatie planning"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
+msgid "Create Invoice by Plan"
+msgstr "Maak factuur per plan"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
+msgid "Create Next Inovice"
+msgstr "Maak volgende factuur"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__create_uid
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__create_uid
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__create_uid
+msgid "Created by"
+msgstr "Aangemaakt door"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__create_date
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__create_date
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__create_date
+msgid "Created on"
+msgstr "Aangemaakt op"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__partner_id
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Customer"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_create_invoice_plan__interval_type__day
+msgid "Day"
+msgstr "Dag"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__display_name
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__display_name
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__display_name
+msgid "Display Name"
+msgstr "Weergavenaam"
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/tests/test_sale_invoice_plan.py:0
+#, python-format
+msgid "Down payment"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model,name:sale_invoice_plan.model_sale_create_invoice_plan
+msgid "Fillig invoice planning criteria"
+msgstr "Indienen van facturatie planning criteria"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Group By"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__id
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__id
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__invoiced
+msgid "If this line already invoiced"
+msgstr "Of deze regel reeds gefactureerd is"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__to_invoice
+msgid "If this line is ready to create new invoice"
+msgstr "Of deze regels klaar is om een factuur te maken"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_ids
+msgid "Inovice Plan"
+msgstr "Facturatie planning"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__installment
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_invoice_plan__invoice_type__installment
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Installment"
+msgstr "Termijn"
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
+#, python-format
+msgid ""
+"Installment %s: already used and not allowed to delete.\n"
+"Please discard changes."
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__installment_date
+msgid "Installment Date"
+msgstr "Termijn datum"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__interval
+msgid "Interval"
+msgstr "Interval"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__interval_type
+msgid "Interval Type"
+msgstr "Interval type"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoiced
+msgid "Invoice Created"
+msgstr "Factuur gemaakt"
+
+#. module: sale_invoice_plan
+#: model:ir.actions.act_window,name:sale_invoice_plan.action_view_sale_make_planned_invoice
+msgid "Invoice Order"
+msgstr "Factureer order"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
+msgid "Invoice Plan"
+msgstr "Facturatie planning"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_process
+msgid "Invoice Plan In Process"
+msgstr "Facturatie planning in behandeling"
+
+#. module: sale_invoice_plan
+#: model:ir.model,name:sale_invoice_plan.model_sale_invoice_plan
+msgid "Invoice Planning Detail"
+msgstr "Facturatie planning detail"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
+msgid "Invoice Sales Order"
+msgstr "Factureer verkooporder"
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/models/sale.py:0
+#, python-format
+msgid "Invoice plan total percentage must not exceed 100%"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoice_move_ids
+msgid "Invoices"
+msgstr "Facturen"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
+msgid ""
+"Invoices will be created in draft for this installment\n"
+"                        so that you can review them before validation."
+msgstr ""
+"Facturen worden in concept aangemaakt voor dit termijn\n"
+"                        zodat deze kunnen worden gecontroleerd voor "
+"validatie."
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__last
+msgid "Last Installment"
+msgstr "Laatste termijn"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan____last_update
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan____last_update
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice____last_update
+msgid "Last Modified on"
+msgstr "Laatst bijgewerkt op"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__write_uid
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__write_uid
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__write_uid
+msgid "Last Updated by"
+msgstr "Laatst bijgewerkt door"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__write_date
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__write_date
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__write_date
+msgid "Last Updated on"
+msgstr "Laatste bijgewerkt op"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__last
+msgid "Last installment will create invoice use remaining amount"
+msgstr "Laatste termijn maakt factuur voor resterende hoeveelheid"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_create_invoice_plan__interval_type__month
+msgid "Month"
+msgstr "Maand"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__to_invoice
+msgid "Next Invoice"
+msgstr "Volgende factuur"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__no_edit
+msgid "No Edit"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/tests/test_sale_invoice_plan.py:0
+#, python-format
+msgid "No installment raises following error : %s"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
+#, python-format
+msgid "No matched order line for invoice line"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/wizard/sale_create_invoice_plan.py:0
+#, python-format
+msgid "Number Installment must greater than 1"
+msgstr "Aantal termijnen moet groter zijn dan 1"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__num_installment
+msgid "Number of Installment"
+msgstr "Aantal termijnen"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__percent
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_total_percent
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_tree_readonly
+msgid "Percent"
+msgstr "Procent"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__plan_date
+msgid "Plan Date"
+msgstr "Plan datum"
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
+#, fuzzy, python-format
+msgid ""
+"Plan quantity: %(plan_qty)s, exceed invoiceable quantity: "
+"%(invoiceable_qty)s\n"
+"Product should be delivered before invoice"
+msgstr ""
+"Plan hoeveel: %(plan_qty)s, is meer dan te factureren hoeveelheid: "
+"%(invoiceable_qty)s\n"
+"Product moet geleverd worden voor factuur"
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/models/sale.py:0
+#, python-format
+msgid "Please fill percentage for all invoice plan lines"
+msgstr "Vul een percentage in voor alle facturatie planning regels"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Quotations"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_form
+msgid "Related Invoices"
+msgstr "Gerelateerde facturen"
+
+#. module: sale_invoice_plan
+#: model:ir.model,name:sale_invoice_plan.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr "Verkoop aanbetalingsfactuur"
+
+#. module: sale_invoice_plan
+#: model:ir.actions.act_window,name:sale_invoice_plan.action_sale_invoice_plan
+#: model:ir.ui.menu,name:sale_invoice_plan.menu_sale_invoice_plan
+#, fuzzy
+msgid "Sales Invoice Plan"
+msgstr "Gebruik facturatie planning"
+
+#. module: sale_invoice_plan
+#: model:ir.model,name:sale_invoice_plan.model_sale_order
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__sale_id
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Sales Order"
+msgstr "Verkooporder"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+#, fuzzy
+msgid "Sales Orders"
+msgstr "Verkooporder"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+#, fuzzy
+msgid "Search Sales Invoice Plan Lines"
+msgstr "Maak facturatie planning"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__state
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Status"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__analytic_account_id
+msgid "The analytic account related to a sales order."
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__amount
+#, fuzzy
+msgid "This amount will be used to calculate the percent"
+msgstr "Procent berekend de nieuwe hoeveelheid"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__percent
+msgid "This percent will be used to calculate new quantity"
+msgstr "Procent berekend de nieuwe hoeveelheid"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.actions.act_window,help:sale_invoice_plan.action_sale_invoice_plan
+msgid "This view show all available invoice plan line for reporting purposes"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_create_invoice_plan
+msgid "This wizard help you quickly create invoice plan."
+msgstr "Deze wizard helpt je om eenvoudig een facturatie planning te maken."
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_total_amount
+msgid "Total Amount"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoice_type
+msgid "Type"
+msgstr "Type"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__use_invoice_plan
+msgid "Use Invoice Plan"
+msgstr "Gebruik facturatie planning"
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/models/sale.py:0
+#, python-format
+msgid "Use Invoice Plan selected, but no plan created"
+msgstr ""
+"Gebruik facturatie planning geselecteerd maar geen planning beschikbaar"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.actions.act_window,help:sale_invoice_plan.action_sale_invoice_plan
+#, fuzzy
+msgid "View sales invoice plan lines"
+msgstr "Vul een percentage in voor alle facturatie planning regels"
+
+#. module: sale_invoice_plan
+#: model:ir.model,name:sale_invoice_plan.model_sale_make_planned_invoice
+msgid "Wizard when create invoice by plan"
+msgstr "Wizard om factureren aan te maken per plan"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_create_invoice_plan__interval_type__year
+msgid "Year"
+msgstr "Jaar"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
+msgid "⇒ Create Invoice Plan"
+msgstr "⇒ Maak facturatie planning"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
+msgid "⇒ Remove Invoice Plan"
+msgstr "⇒ Verwijder facturatie planning"
+
+#~ msgid "Sale Order"
+#~ msgstr "Verkooporder"
