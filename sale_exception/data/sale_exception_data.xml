@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record forcecreate="True" id="ir_cron_test_orders" model="ir.cron">
+        <field name="name">Test Draft Orders</field>
+        <field name="active" eval="False" />
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">20</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field eval="False" name="doall" />
+        <field name="model_id" ref="sale.model_sale_order" />
+        <field name="state">code</field>
+        <field name="code">model.test_all_draft_orders()</field>
+    </record>
+    <record id="excep_no_zip" model="exception.rule">
+        <field name="name">No ZIP code on destination</field>
+        <field name="description">No ZIP code on destination</field>
+        <field name="sequence">50</field>
+        <field name="model">sale.order</field>
+        <field name="code">failed=not self.partner_shipping_id.zip</field>
+        <field name="active" eval="False" />
+    </record>
+    <record id="excep_no_stock" model="exception.rule">
+        <field name="name">Not Enough Virtual Stock</field>
+        <field name="description">Not Enough Virtual Stock</field>
+        <field name="sequence">50</field>
+        <field name="model">sale.order.line</field>
+        <field
+            name="code"
+        >failed=self.product_id and self.product_id.type == 'product' and self.virtual_available_at_date &lt; self.product_uom_qty</field>
+        <field name="active" eval="False" />
+    </record>
+    <record id="exception_partner_sale_warning" model="exception.rule">
+        <field name="name">Customer sale warning</field>
+        <field name="description">The customer has a sale warning in his form</field>
+        <field name="sequence">40</field>
+        <field name="model">sale.order</field>
+        <field name="code">failed=self.partner_id.sale_warn == "warning"</field>
+        <field name="active" eval="False" />
+    </record>
+    <record id="exception_product_sale_warning" model="exception.rule">
+        <field name="name">Product warning</field>
+        <field name="description">The product has a warning in his form</field>
+        <field name="sequence">40</field>
+        <field name="model">sale.order.line</field>
+        <field name="code">failed=self.product_id.sale_line_warn == "warning"</field>
+        <field name="active" eval="False" />
+    </record>
+</odoo>
