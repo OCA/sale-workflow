@@ -51,8 +51,8 @@ class TestSaleOrder(common.TransactionCase):
 
     def test_01_sale_order_classic_discount(self):
         """Tests with single discount"""
-        self.so_line1.discount = 50.0
-        self.so_line2.discount = 75.0
+        self.so_line1.discount1 = 50.0
+        self.so_line2.discount1 = 75.0
         self.assertAlmostEqual(self.so_line1.price_subtotal, 300.0)
         self.assertAlmostEqual(self.so_line2.price_subtotal, 150.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 450.0)
@@ -65,19 +65,22 @@ class TestSaleOrder(common.TransactionCase):
         """Tests on a single line"""
         self.so_line2.unlink()
         # Divide by two on every discount:
-        self.so_line1.discount = 50.0
+        self.so_line1.discount1 = 50.0
         self.so_line1.discount2 = 50.0
         self.so_line1.discount3 = 50.0
+        self.assertAlmostEqual(self.so_line1.discount, 87.5)
         self.assertAlmostEqual(self.so_line1.price_subtotal, 75.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 75.0)
         self.assertAlmostEqual(self.order.amount_tax, 11.25)
         # Unset first discount:
-        self.so_line1.discount = 0.0
+        self.so_line1.discount1 = 0.0
+        self.assertAlmostEqual(self.so_line1.discount, 75)
         self.assertAlmostEqual(self.so_line1.price_subtotal, 150.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 150.0)
         self.assertAlmostEqual(self.order.amount_tax, 22.5)
         # Set a charge instead:
         self.so_line1.discount2 = -50.0
+        self.assertAlmostEqual(self.so_line1.discount, 25)
         self.assertAlmostEqual(self.so_line1.price_subtotal, 450.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 450.0)
         self.assertAlmostEqual(self.order.amount_tax, 67.5)
@@ -88,10 +91,11 @@ class TestSaleOrder(common.TransactionCase):
             67.5,
         )
         # set discount_type to additive
-        self.so_line1.discount = 10.0
+        self.so_line1.discount1 = 10.0
         self.so_line1.discount2 = 10.0
         self.so_line1.discount3 = 10.0
         self.so_line1.discounting_type = "additive"
+        self.assertAlmostEqual(self.so_line1.discount, 30.0)
         self.assertAlmostEqual(self.so_line1.price_subtotal, 420.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 420.0)
         self.assertAlmostEqual(self.order.amount_tax, 63.0)
@@ -102,47 +106,54 @@ class TestSaleOrder(common.TransactionCase):
             63.0,
         )
         # set discount over 100%
-        self.so_line1.discount = 30.0
+        self.so_line1.discount1 = 30.0
         self.so_line1.discount2 = 70.0
         self.so_line1.discount3 = 50.0
+        self.assertAlmostEqual(self.so_line1.discount, 100.0)
         self.assertAlmostEqual(self.so_line1.price_subtotal, 0.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 0.0)
         self.assertAlmostEqual(self.order.amount_tax, 0.0)
         # set discount_type to multiplicative
-        self.so_line1.discount = 50.0
+        self.so_line1.discount1 = 50.0
         self.so_line1.discount2 = 50.0
         self.so_line1.discount3 = 50.0
         self.so_line1.discounting_type = "multiplicative"
+        self.assertAlmostEqual(self.so_line1.discount, 87.5)
         self.assertAlmostEqual(self.so_line1.price_subtotal, 75.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 75.0)
         self.assertAlmostEqual(self.order.amount_tax, 11.25)
 
     def test_03_sale_order_complex_triple_discount(self):
         """Tests on multiple lines"""
-        self.so_line1.discount = 50.0
+        self.so_line1.discount1 = 50.0
         self.so_line1.discount2 = 50.0
         self.so_line1.discount3 = 50.0
+        self.assertAlmostEqual(self.so_line1.discount, 87.5)
         self.assertAlmostEqual(self.so_line1.price_subtotal, 75.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 675.0)
         self.assertAlmostEqual(self.order.amount_tax, 101.25)
         # additive discount
         self.so_line2.discount3 = 50.0
+        self.assertAlmostEqual(self.so_line2.discount, 50.0)
         self.assertAlmostEqual(self.so_line2.price_subtotal, 300.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 375.0)
         self.assertAlmostEqual(self.order.amount_tax, 56.25)
         self.so_line2.discounting_type = "additive"
         self.so_line2.discount2 = 10.0
+        self.assertAlmostEqual(self.so_line2.discount, 60.0)
         self.assertAlmostEqual(self.so_line2.price_subtotal, 240.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 315.0)
         self.assertAlmostEqual(self.order.amount_tax, 47.25)
         # multiplicative discount
         self.so_line2.discount2 = 0.0
         self.so_line2.discount3 = 50.0
+        self.assertAlmostEqual(self.so_line2.discount, 50.0)
         self.assertAlmostEqual(self.so_line2.price_subtotal, 300.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 375.0)
         self.assertAlmostEqual(self.order.amount_tax, 56.25)
         self.so_line2.discounting_type = "multiplicative"
         self.so_line2.discount2 = 10.0
+        self.assertAlmostEqual(self.so_line1.discount, 60.0)
         self.assertAlmostEqual(self.so_line2.price_subtotal, 270.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 345.0)
         self.assertAlmostEqual(self.order.amount_tax, 51.75)
@@ -155,6 +166,7 @@ class TestSaleOrder(common.TransactionCase):
         self.so_line1.discount3 = 50.0
         self.so_line2.discount3 = 50.0
         self.order.action_confirm()
+        # FIXME: AFAIK this is another module messing and shouldn't be in this test
         if self.order.state == "waiting_approval":
             self.order.action_approve()
             self.assertAlmostEqual(self.order.state, "approved")
@@ -165,6 +177,9 @@ class TestSaleOrder(common.TransactionCase):
             self.so_line1.discount, invoice.invoice_line_ids[0].discount
         )
         self.assertAlmostEqual(
+            self.so_line1.discount1, invoice.invoice_line_ids[0].discount1
+        )
+        self.assertAlmostEqual(
             self.so_line1.discount2, invoice.invoice_line_ids[0].discount2
         )
         self.assertAlmostEqual(
@@ -172,6 +187,9 @@ class TestSaleOrder(common.TransactionCase):
         )
         self.assertAlmostEqual(
             self.so_line1.price_subtotal, invoice.invoice_line_ids[0].price_subtotal
+        )
+        self.assertAlmostEqual(
+            self.so_line2.discount, invoice.invoice_line_ids[1].discount
         )
         self.assertAlmostEqual(
             self.so_line2.discount3, invoice.invoice_line_ids[1].discount3
@@ -184,7 +202,7 @@ class TestSaleOrder(common.TransactionCase):
     def test_05_round_globally(self):
         """Tests on multiple lines when 'round_globally' is active"""
         self.env.user.company_id.tax_calculation_rounding_method = "round_globally"
-        self.so_line1.discount = 50.0
+        self.so_line1.discount1 = 50.0
         self.so_line1.discount2 = 50.0
         self.so_line1.discount3 = 50.0
         self.assertEqual(self.so_line1.price_subtotal, 75.0)
@@ -197,11 +215,11 @@ class TestSaleOrder(common.TransactionCase):
 
     def test_06_discount_0(self):
         self.so_line1.discounting_type = "additive"
-        self.so_line1.discount = 0.0
+        self.so_line1.discount1 = 0.0
         self.so_line1.discount2 = 0.0
         self.so_line1.discount3 = 0.0
         self.so_line2.discounting_type = "additive"
-        self.so_line2.discount = 0.0
+        self.so_line2.discount1 = 0.0
         self.so_line2.discount2 = 0.0
         self.so_line2.discount3 = 0.0
         self.assertAlmostEqual(self.so_line1.price_subtotal, 600.0)
