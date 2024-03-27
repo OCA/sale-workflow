@@ -1,0 +1,23 @@
+<odoo>
+    <!-- Adds price_category_id in form view -->
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <div name="standard_price_uom" position="after">
+                <field name="price_category_id" />
+            </div>
+        </field>
+    </record>
+
+    <!-- Adds price_category_id in search view -->
+    <record id="product_template_search_view" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view" />
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                <field name="price_category_id" />
+            </field>
+        </field>
+    </record>
+</odoo>
