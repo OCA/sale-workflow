@@ -29,11 +29,7 @@ class SaleOrder(models.Model):
     )
     def _compute_invoice_amount(self):
         for rec in self:
-            if (
-                rec.state != "cancel"
-                and rec.invoice_ids
-                and rec.invoice_status != "invoiced"
-            ):
+            if rec.state != "cancel" and rec.invoice_ids:
                 rec.invoiced_amount = 0.0
                 for invoice in rec.invoice_ids:
                     if invoice.state != "cancel":
@@ -46,10 +42,21 @@ class SaleOrder(models.Model):
                             )
                         else:
                             rec.invoiced_amount += invoice.amount_total
-                rec.uninvoiced_amount = max(0, rec.amount_total - rec.invoiced_amount)
-            elif rec.invoice_status == "invoiced":
-                rec.invoiced_amount = rec.amount_total
-                rec.uninvoiced_amount = 0.0
+                # Uninvoiced amount could not be equal to total - invoiced amount.
+                # For example if the amount invoiced does not match with the price unit.
+                rec.order_line._get_invoice_qty()
+                rec.uninvoiced_amount = max(
+                    0,
+                    sum(
+                        [
+                            (line.product_uom_qty - line.qty_invoiced)
+                            * (line.price_total / line.product_uom_qty)
+                            for line in rec.order_line.filtered(
+                                lambda sl: sl.product_uom_qty > 0
+                            )
+                        ]
+                    ),
+                )
             else:
                 rec.invoiced_amount = 0.0
                 if rec.state in ["draft", "sent", "cancel"]:

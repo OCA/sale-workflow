@@ -1,6 +1,7 @@
 # Copyright (C) 2021 ForgeFlow S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
+from odoo import fields
 from odoo.tests import common
 
 
@@ -86,32 +87,40 @@ class TestSaleOrderInvoiceAmount(common.SavepointCase):
             0.0,
             "Invoiced Amount should be 0.0",
         )
-        context_payment = {
-            "active_ids": [self.sale_order_1.id],
-            "active_id": self.sale_order_1.id,
-        }
-        payment = (
-            self.env["sale.advance.payment.inv"]
-            .with_context(context_payment)
-            .create({"advance_payment_method": "fixed", "fixed_amount": 100})
+        self.sale_order_1.action_confirm()
+        aml1 = self.order_line_1._prepare_invoice_line()
+        aml2 = self.order_line_2._prepare_invoice_line()
+        test_invoice = self.env["account.move"].create(
+            [
+                {
+                    "move_type": "out_invoice",
+                    "invoice_date": fields.Date.from_string("2024-01-01"),
+                    "date": fields.Date.from_string("2024-01-01"),
+                    "partner_id": self.res_partner_1.id,
+                    "invoice_line_ids": [aml1, aml2],
+                }
+            ]
         )
-
-        payment.create_invoices()
+        test_invoice.action_post()
         self.assertEqual(
             self.sale_order_1.invoiced_amount,
-            100.0,
-            "Invoiced Amount should be 100",
+            242.0,
+            "Invoiced Amount should be 242",
         )
         self.assertEqual(
             self.sale_order_1.uninvoiced_amount,
-            263.0,
-            "Uninvoiced Amount should be 263",
+            121.0,
+            "Uninvoiced Amount should be 121, as the lines keep uninvoiced.",
         )
-
-        self.sale_order_1.action_confirm()
+        test_invoice.button_cancel()
         self.sale_order_1._create_invoices(final=True)
         self.assertEqual(
             self.sale_order_1.invoiced_amount,
             363.0,
-            "Invoiced Amount should be calculated",
+            "Invoiced Amount should be calculated.",
+        )
+        self.assertEqual(
+            self.sale_order_1.uninvoiced_amount,
+            0.0,
+            "Uninvoiced Amount should be calculated.",
         )
