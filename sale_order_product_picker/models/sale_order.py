@@ -1,13 +1,12 @@
 # Copyright 2023 Tecnativa - Sergio Teruel
 # Copyright 2023 Tecnativa - Carlos Dauden
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
-
 from ast import literal_eval
 from datetime import timedelta
 
 from odoo import api, fields, models
 from odoo.osv import expression
-from odoo.tools import float_compare
+from odoo.tools import float_compare, ormcache
 
 
 class SaleOrder(models.Model):
@@ -57,8 +56,22 @@ class SaleOrder(models.Model):
         )
         return [(f.id, f.name) for f in product_filters]
 
+    @ormcache()
+    def _get_partner_picker_field(self):
+        # HACK: To avoid installation error when get default value to be used in a
+        # depends of a computed field
+        if "sale_order_product_picker" in self.env.registry._init_modules and self.env[
+            "ir.default"
+        ].get("sale.order", "use_delivery_address"):
+            return "partner_shipping_id"
+        else:
+            return "partner_id"
+
     def _get_picker_trigger_search_fields(self):
         return [
+            self._get_partner_picker_field(),
+            "warehouse_id",
+            "picker_order",
             "picker_origin_data",
             "picker_filter",
             "picker_only_available",
@@ -83,13 +96,7 @@ class SaleOrder(models.Model):
             ("company_id", "=", self.company_id.id),
         ]
         if self.picker_only_available:
-            available_field = (
-                self.env["ir.config_parameter"]
-                .sudo()
-                .get_param(
-                    "sale_order_product_picker.product_available_field", "qty_available"
-                )
-            )
+            available_field = self.env["sale.order.picker"]._get_qty_available_field()
             domain = expression.AND([domain, [(available_field, ">", 0.0)]])
         if product_filter.domain:
             domain = expression.AND([domain, literal_eval(product_filter.domain)])
@@ -117,11 +124,21 @@ class SaleOrder(models.Model):
     # TODO: Invalidate cache on product write if next line is uncommented
     # @ormcache("self.partner_id", "self.picker_filter", "self.product_name_search")
     def _get_picker_product_ids(self):
+        # [2:] to avoid partner and picker_order fields
         if not self.partner_id or not any(
-            self[f_name] for f_name in self._get_picker_trigger_search_fields()
+            self[f_name] for f_name in self._get_picker_trigger_search_fields()[2:]
         ):
             self.picker_ids = False
             return None
+        available_field = self.env["sale.order.picker"]._get_qty_available_field()
+        self = self.with_context(
+            warehouse=self.warehouse_id.id,
+            to_date=available_field == "virtual_available"
+            and self.env["sale.order.picker"]._get_virtual_available_to_date(
+                self.commitment_date
+            )
+            or None,
+        )
         Product = self.env["product.product"]
         domain = self._get_picker_product_domain()
         order = self.picker_order or None
@@ -142,16 +159,18 @@ class SaleOrder(models.Model):
             lambda sol: sol.product_id.id == picker_data["product_id"][0]
         )
 
-    @api.depends(
-        lambda s: ["partner_id", "picker_order"] + s._get_picker_trigger_search_fields()
-    )
+    @api.depends(lambda s: s._get_picker_trigger_search_fields())
     def _compute_picker_ids(self):
         for order in self:
             product_ids = order._get_picker_product_ids()
             if product_ids is None:
+                order.picker_ids = False
                 continue
             picker_data_list = getattr(
-                order,
+                # Force no display archived records due we are in a computed method.
+                # See: https://github.com/odoo/odoo/blob/
+                # b1f9b7167979aa3a1910fd2ab09507eb26bd1f79/odoo/models.py#L6028
+                order.with_context(active_test=True),
                 "_get_product_picker_data_{}".format(
                     order.picker_origin_data or "products"
                 ),
@@ -178,16 +197,12 @@ class SaleOrder(models.Model):
             "partner_shipping_id" if self.use_delivery_address else "partner_id"
         )
         # Search with sudo for get sale order from other commercials users
-        other_sales = (
-            self.env["sale.order"]
-            # .sudo()
-            .search(
-                [
-                    ("company_id", "=", self.company_id.id),
-                    (sale_order_partner_field, "child_of", partner.id),
-                    ("date_order", ">=", start),
-                ]
-            )
+        other_sales = self.env["sale.order"].search(
+            [
+                ("company_id", "=", self.company_id.id),
+                (sale_order_partner_field, "child_of", partner.id),
+                ("date_order", ">=", start),
+            ]
         )
         domain = [
             ("order_id", "in", (other_sales - self).ids),
@@ -201,13 +216,17 @@ class SaleOrder(models.Model):
         @param group_line: Dictionary returned by the read_group operation.
         @param so_lines: Optional sales order line
         """
+        discounts = set(so_lines.filtered("discount").mapped("discount"))
         vals = {
             "order_id": self.id,
+            "sale_line_id": so_lines[:1].id,
             "product_id": group_line["product_id"][0],
             "is_in_order": bool(so_lines),
             "product_uom_qty": sum(so_lines.mapped("product_uom_qty")),
             "qty_delivered": group_line.get("qty_delivered", 0),
             "times_delivered": group_line.get("__count", 0),
+            "discount": discounts.pop() if len(discounts) == 1 else 0,
+            "multiple_discounts": not len(discounts) <= 1,
         }
         return vals
 
@@ -260,6 +279,7 @@ class SaleOrderLine(models.Model):
     def _compute_is_different_price(self):
         digits = self.env["decimal.precision"].precision_get("Product Price")
         for line in self:
-            line.is_different_price = bool(
+            line.is_different_price = (
                 float_compare(line.price_unit, line.list_price, precision_digits=digits)
+                == -1
             )
