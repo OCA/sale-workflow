@@ -342,14 +342,14 @@ msgid "Rule Type"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: model:ir.model,name:sale_promotion_rule.model_sale_order_add_coupon
-#: model_terms:ir.ui.view,arch_db:sale_promotion_rule.sale_order_add_coupon_form_view
-msgid "Sale Order Add Coupon"
+#: model:ir.model,name:sale_promotion_rule.model_sale_order
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_promotion_rule
-#: model:ir.model,name:sale_promotion_rule.model_sale_order
-msgid "Sales Order"
+#: model:ir.model,name:sale_promotion_rule.model_sale_order_add_coupon
+#: model_terms:ir.ui.view,arch_db:sale_promotion_rule.sale_order_add_coupon_form_view
+msgid "Sale Order Add Coupon"
 msgstr ""
 
 #. module: sale_promotion_rule
