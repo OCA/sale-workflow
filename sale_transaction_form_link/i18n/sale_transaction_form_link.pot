@@ -35,7 +35,7 @@ msgstr ""
 
 #. module: sale_transaction_form_link
 #: model:ir.model,name:sale_transaction_form_link.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_transaction_form_link
