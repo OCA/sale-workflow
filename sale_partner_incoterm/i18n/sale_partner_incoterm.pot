@@ -56,7 +56,7 @@ msgstr ""
 
 #. module: sale_partner_incoterm
 #: model:ir.model,name:sale_partner_incoterm.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_partner_incoterm
