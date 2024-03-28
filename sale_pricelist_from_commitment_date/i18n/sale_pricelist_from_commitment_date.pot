@@ -49,7 +49,7 @@ msgstr ""
 
 #. module: sale_pricelist_from_commitment_date
 #: model:ir.model,name:sale_pricelist_from_commitment_date.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_pricelist_from_commitment_date
