@@ -93,5 +93,5 @@ msgstr ""
 
 #. module: sale_partner_approval
 #: model:ir.model,name:sale_partner_approval.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
