@@ -47,5 +47,5 @@ msgstr ""
 
 #. module: sale_order_archive
 #: model:ir.model,name:sale_order_archive.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
