@@ -232,7 +232,7 @@ msgstr ""
 
 #. module: sale_advance_payment
 #: model:ir.model,name:sale_advance_payment.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_advance_payment
