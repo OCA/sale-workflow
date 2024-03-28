@@ -72,6 +72,11 @@ msgid "New Analytic Account"
 msgstr ""
 
 #. module: sale_order_change_analytic_account
+#: model:ir.model,name:sale_order_change_analytic_account.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_order_change_analytic_account
 #: model:ir.model.fields,field_description:sale_order_change_analytic_account.field_sale_order_change_analytic__sale_id
 msgid "Sale order"
 msgstr ""
@@ -79,11 +84,6 @@ msgstr ""
 #. module: sale_order_change_analytic_account
 #: model:ir.model,name:sale_order_change_analytic_account.model_sale_order_change_analytic
 msgid "Sale order change analytic account"
-msgstr ""
-
-#. module: sale_order_change_analytic_account
-#: model:ir.model,name:sale_order_change_analytic_account.model_sale_order
-msgid "Sales Order"
 msgstr ""
 
 #. module: sale_order_change_analytic_account
