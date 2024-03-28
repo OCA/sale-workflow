@@ -30,5 +30,5 @@ msgstr ""
 
 #. module: sale_partner_version
 #: model:ir.model,name:sale_partner_version.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
