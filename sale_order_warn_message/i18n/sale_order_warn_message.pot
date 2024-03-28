@@ -36,11 +36,11 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_order_warn_message
-#: model:ir.model.fields,field_description:sale_order_warn_message.field_sale_order__sale_warn_msg
-msgid "Sale Warn Msg"
+#: model:ir.model,name:sale_order_warn_message.model_sale_order
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_order_warn_message
-#: model:ir.model,name:sale_order_warn_message.model_sale_order
-msgid "Sales Order"
+#: model:ir.model.fields,field_description:sale_order_warn_message.field_sale_order__sale_warn_msg
+msgid "Sale Warn Msg"
 msgstr ""
