@@ -1,0 +1,1 @@
+You need at least to manage 2 different warehouses.
