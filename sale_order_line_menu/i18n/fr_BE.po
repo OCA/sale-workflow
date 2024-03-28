@@ -1,0 +1,115 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_menu
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr_BE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+
+#. module: sale_order_line_menu
+#: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__analytic_account_id
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Analytic Account"
+msgstr ""
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Cancelled"
+msgstr ""
+
+#. module: sale_order_line_menu
+#: model:ir.model.fields,help:sale_order_line_menu.field_sale_order_line__date_order
+msgid ""
+"Creation date of draft/sent orders,\n"
+"Confirmation date of confirmed orders."
+msgstr ""
+
+#. module: sale_order_line_menu
+#: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__date_order
+msgid "Date"
+msgstr ""
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Fully Invoiced"
+msgstr ""
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Invoice Status"
+msgstr ""
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Locked"
+msgstr ""
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Nothing to Invoice"
+msgstr ""
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Order Date"
+msgstr ""
+
+#. module: sale_order_line_menu
+#: model:ir.actions.act_window,name:sale_order_line_menu.action_orders_lines
+#: model:ir.ui.menu,name:sale_order_line_menu.sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sale_order_line_pivot
+msgid "Order Lines"
+msgstr ""
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_tree
+msgid "Price Subtotal"
+msgstr ""
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_tree
+msgid "Price Tax"
+msgstr ""
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_tree
+msgid "Price Total"
+msgstr ""
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Quotation"
+msgstr ""
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Quotation Sent"
+msgstr ""
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_line_menu
+#: model:ir.model,name:sale_order_line_menu.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "To Invoice"
+msgstr ""
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Upselling Opportunity"
+msgstr ""
