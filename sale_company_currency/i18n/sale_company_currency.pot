@@ -34,13 +34,13 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_company_currency
-#: model:ir.model.fields,help:sale_company_currency.field_sale_order__amount_total_curr
-msgid "Sale Order Amount in the company Currency"
+#: model:ir.model,name:sale_company_currency.model_sale_order
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_company_currency
-#: model:ir.model,name:sale_company_currency.model_sale_order
-msgid "Sales Order"
+#: model:ir.model.fields,help:sale_company_currency.field_sale_order__amount_total_curr
+msgid "Sale Order Amount in the company Currency"
 msgstr ""
 
 #. module: sale_company_currency
