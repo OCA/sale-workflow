@@ -35,7 +35,7 @@ msgstr ""
 
 #. module: sale_probability_amount
 #: model:ir.model,name:sale_probability_amount.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_probability_amount
