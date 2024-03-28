@@ -30,5 +30,5 @@ msgstr ""
 
 #. module: sale_promotion_rule_display_discount_amount
 #: model:ir.model,name:sale_promotion_rule_display_discount_amount.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
