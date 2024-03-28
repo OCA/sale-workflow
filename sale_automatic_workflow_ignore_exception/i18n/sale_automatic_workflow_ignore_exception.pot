@@ -40,13 +40,13 @@ msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_automatic_workflow_ignore_exception
-#: model:ir.model,name:sale_automatic_workflow_ignore_exception.model_sale_workflow_process
-msgid "Sale Workflow Process"
+#: model:ir.model,name:sale_automatic_workflow_ignore_exception.model_sale_order
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_automatic_workflow_ignore_exception
-#: model:ir.model,name:sale_automatic_workflow_ignore_exception.model_sale_order
-msgid "Sales Order"
+#: model:ir.model,name:sale_automatic_workflow_ignore_exception.model_sale_workflow_process
+msgid "Sale Workflow Process"
 msgstr ""
 
 #. module: sale_automatic_workflow_ignore_exception
