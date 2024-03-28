@@ -55,7 +55,7 @@ msgstr ""
 
 #. module: sale_order_priority
 #: model:ir.model,name:sale_order_priority.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_order_priority
