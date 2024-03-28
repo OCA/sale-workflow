@@ -72,7 +72,7 @@ msgstr ""
 
 #. module: sale_order_general_discount_triple
 #: model:ir.model,name:sale_order_general_discount_triple.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_order_general_discount_triple
