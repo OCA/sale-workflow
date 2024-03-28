@@ -40,7 +40,7 @@ msgstr ""
 
 #. module: sale_order_invoice_amount
 #: model:ir.model,name:sale_order_invoice_amount.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_order_invoice_amount
