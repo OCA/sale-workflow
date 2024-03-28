@@ -41,7 +41,7 @@ msgstr ""
 
 #. module: sale_stock_line_sequence
 #: model:ir.model,name:sale_stock_line_sequence.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_stock_line_sequence
