@@ -30,5 +30,5 @@ msgstr ""
 
 #. module: sale_order_product_assortment_quick
 #: model:ir.model,name:sale_order_product_assortment_quick.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
