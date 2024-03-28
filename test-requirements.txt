@@ -1,0 +1,1 @@
+odoo-addon-sale_automatic_workflow @ git+https://github.com/OCA/sale-workflow.git@refs/pull/2826/head#subdirectory=sale_automatic_workflow
