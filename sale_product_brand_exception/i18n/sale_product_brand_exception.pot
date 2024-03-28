@@ -52,13 +52,13 @@ msgid "Sale"
 msgstr ""
 
 #. module: sale_product_brand_exception
-#: model:ir.model.fields,field_description:sale_product_brand_exception.field_product_brand__sale_order_mixed
-msgid "Sale Order Mixed"
+#: model:ir.model,name:sale_product_brand_exception.model_sale_order
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_product_brand_exception
-#: model:ir.model,name:sale_product_brand_exception.model_sale_order
-msgid "Sales Order"
+#: model:ir.model.fields,field_description:sale_product_brand_exception.field_product_brand__sale_order_mixed
+msgid "Sale Order Mixed"
 msgstr ""
 
 #. module: sale_product_brand_exception
