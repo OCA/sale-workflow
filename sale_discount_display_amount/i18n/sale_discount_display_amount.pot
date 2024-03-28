@@ -76,7 +76,7 @@ msgstr ""
 
 #. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_discount_display_amount
