@@ -67,7 +67,7 @@ msgstr ""
 
 #. module: sale_commitment_date_mandatory
 #: model:ir.model,name:sale_commitment_date_mandatory.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_commitment_date_mandatory
