@@ -53,7 +53,7 @@ msgstr ""
 
 #. module: sale_product_seasonality
 #: model:ir.model,name:sale_product_seasonality.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_product_seasonality
