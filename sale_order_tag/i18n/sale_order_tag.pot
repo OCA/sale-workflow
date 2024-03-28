@@ -78,6 +78,11 @@ msgid "Name"
 msgstr ""
 
 #. module: sale_order_tag
+#: model:ir.model,name:sale_order_tag.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_order_tag
 #: model:ir.model,name:sale_order_tag.model_sale_order_tag
 msgid "Sale Order Tag"
 msgstr ""
@@ -87,11 +92,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order__so_tag_ids
 #: model_terms:ir.ui.view,arch_db:sale_order_tag.sale_order_tag_form_view
 msgid "Sale Order Tags"
-msgstr ""
-
-#. module: sale_order_tag
-#: model:ir.model,name:sale_order_tag.model_sale_order
-msgid "Sales Order"
 msgstr ""
 
 #. module: sale_order_tag
