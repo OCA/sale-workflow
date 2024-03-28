@@ -77,14 +77,14 @@ msgid "Multiplicative"
 msgstr ""
 
 #. module: sale_triple_discount
-#: code:addons/sale_triple_discount/models/sale_order_line.py:0
-#, python-format
-msgid "Sale order line %s has unknown discounting type %s"
+#: model:ir.model,name:sale_triple_discount.model_sale_order
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_triple_discount
-#: model:ir.model,name:sale_triple_discount.model_sale_order
-msgid "Sales Order"
+#: code:addons/sale_triple_discount/models/sale_order_line.py:0
+#, python-format
+msgid "Sale order line %s has unknown discounting type %s"
 msgstr ""
 
 #. module: sale_triple_discount
