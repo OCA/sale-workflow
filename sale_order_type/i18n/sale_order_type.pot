@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_type
+#: model:ir.model,name:sale_order_type.model_account_move
+msgid "Account Move"
+msgstr ""
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__active
 msgid "Active"
 msgstr ""
@@ -111,11 +116,6 @@ msgid "Invoices Statistics"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model,name:sale_order_type.model_account_move
-msgid "Journal Entry"
-msgstr ""
-
-#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_report____last_update
 #: model:ir.model.fields,field_description:sale_order_type.field_account_move____last_update
 #: model:ir.model.fields,field_description:sale_order_type.field_res_partner____last_update
@@ -181,6 +181,11 @@ msgid "Route"
 msgstr ""
 
 #. module: sale_order_type
+#: model:ir.model,name:sale_order_type.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_report__sale_type_id
 #: model:ir.model.fields,field_description:sale_order_type.field_res_partner__sale_type
 #: model:ir.model.fields,field_description:sale_order_type.field_res_users__sale_type
@@ -204,11 +209,6 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_report
 msgid "Sales Analysis Report"
-msgstr ""
-
-#. module: sale_order_type
-#: model:ir.model,name:sale_order_type.model_sale_order
-msgid "Sales Order"
 msgstr ""
 
 #. module: sale_order_type
