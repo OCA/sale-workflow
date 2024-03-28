@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="sale_order_view_form_display_discount" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='tax_totals']" position="after">
+                    <field
+                        name="display_discount_with_tax"
+                        invisible="1"
+                        position="attributes"
+                    >
+                    </field>
+                    <field
+                        name="price_subtotal_no_discount"
+                        invisible="display_discount_with_tax == True"
+                        position="attributes"
+                    >
+                    </field>
+                    <field
+                        name="discount_subtotal"
+                        invisible="display_discount_with_tax == True"
+                        position="attributes"
+                    >
+                    </field>
+                    <field
+                        name="price_total_no_discount"
+                        invisible="display_discount_with_tax == False"
+                        position="attributes"
+                    >
+                    </field>
+                    <field
+                        name="discount_total"
+                        invisible="display_discount_with_tax == False"
+                        position="attributes"
+                    >
+                    </field>
+                </xpath>
+            </data>
+        </field>
+    </record>
+</odoo>
