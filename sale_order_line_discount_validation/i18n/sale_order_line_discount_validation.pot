@@ -80,13 +80,13 @@ msgid "Refuse"
 msgstr ""
 
 #. module: sale_order_line_discount_validation
-#: model:ir.model,name:sale_order_line_discount_validation.model_report_sale_report_saleorder
-msgid "Sale Order Report"
+#: model:ir.model,name:sale_order_line_discount_validation.model_sale_order
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_order_line_discount_validation
-#: model:ir.model,name:sale_order_line_discount_validation.model_sale_order
-msgid "Sales Order"
+#: model:ir.model,name:sale_order_line_discount_validation.model_report_sale_report_saleorder
+msgid "Sale Order Report"
 msgstr ""
 
 #. module: sale_order_line_discount_validation
