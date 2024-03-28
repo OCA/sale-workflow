@@ -287,6 +287,11 @@ msgid "Related Invoices"
 msgstr ""
 
 #. module: sale_invoice_plan
+#: model:ir.model,name:sale_invoice_plan.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_invoice_plan
 #: model:ir.model,name:sale_invoice_plan.model_sale_advance_payment_inv
 msgid "Sales Advance Payment Invoice"
 msgstr ""
@@ -298,7 +303,6 @@ msgid "Sales Invoice Plan"
 msgstr ""
 
 #. module: sale_invoice_plan
-#: model:ir.model,name:sale_invoice_plan.model_sale_order
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__sale_id
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
 msgid "Sales Order"
