@@ -6,22 +6,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-27 14:06+0000\n"
-"PO-Revision-Date: 2022-06-27 16:07+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 3.0.1\n"
 
 #. module: sale_order_pricelist_tax
 #: code:addons/sale_order_pricelist_tax/models/product_pricelist.py:0
 #, python-format
 msgid " (tax include)"
-msgstr " (taxe incluse)"
+msgstr ""
 
 #. module: sale_order_pricelist_tax
 #: model:ir.model,name:sale_order_pricelist_tax.model_account_move
@@ -38,7 +34,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_pricelist_tax.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_order_pricelist_tax.field_sale_order_line__display_name
 msgid "Display Name"
-msgstr "Nom affiché"
+msgstr ""
 
 #. module: sale_order_pricelist_tax
 #: model:ir.model.fields,field_description:sale_order_pricelist_tax.field_account_tax__equivalent_tax_exc_id
@@ -52,15 +48,15 @@ msgstr ""
 
 #. module: sale_order_pricelist_tax
 #: code:addons/sale_order_pricelist_tax/models/account_tax.py:0
-#, fuzzy, python-format
+#, python-format
 msgid "Equivalent tax exclude for '%s' is missing"
-msgstr "Prix équivalent avec taxe exclue pour  '%s' est manquant"
+msgstr ""
 
 #. module: sale_order_pricelist_tax
 #: code:addons/sale_order_pricelist_tax/models/account_tax.py:0
-#, fuzzy, python-format
+#, python-format
 msgid "Equivalent tax include for '%s' is missing"
-msgstr "Prix équivalent avec taxe exclue pour  '%s' est manquant"
+msgstr ""
 
 #. module: sale_order_pricelist_tax
 #: model:ir.model.fields.selection,name:sale_order_pricelist_tax.selection__account_move__price_tax_state__exception
@@ -79,7 +75,7 @@ msgstr ""
 #. module: sale_order_pricelist_tax
 #: model:ir.model,name:sale_order_pricelist_tax.model_account_fiscal_position
 msgid "Fiscal Position"
-msgstr "Position fiscale"
+msgstr ""
 
 #. module: sale_order_pricelist_tax
 #: model:ir.model.fields,field_description:sale_order_pricelist_tax.field_account_fiscal_position__id
@@ -99,8 +95,6 @@ msgid ""
 "If checked, prices of the list are taken account tax include.\n"
 "We can only update this setting if there is no price item."
 msgstr ""
-"Si activé, les prix de la liste sont considérés comme taxe incluse.\n"
-"Le changement est possible s'il n'y a pas encore de prix renseigné."
 
 #. module: sale_order_pricelist_tax
 #: model:ir.model.fields.selection,name:sale_order_pricelist_tax.selection__account_move__price_tax_state__include
@@ -115,8 +109,6 @@ msgstr ""
 msgid ""
 "Invoice lines must have the same kind of taxes (price include or exclude)."
 msgstr ""
-"Les lignes de facture doivent avoir le même type de taxe (prix inclus ou "
-"prix exclus)."
 
 #. module: sale_order_pricelist_tax
 #: model_terms:ir.ui.view,arch_db:sale_order_pricelist_tax.account_move_view_form
@@ -125,9 +117,6 @@ msgid ""
 "                     <br/> - Either price include tax\n"
 "                    <br/> - Either price exclude tax"
 msgstr ""
-"Les lignes de facture doivent avoir le même type de taxe:\n"
-"                     <br/> -Soit Prix Inclus\n"
-"                    <br/> - Soit Prix Exclus"
 
 #. module: sale_order_pricelist_tax
 #: model:ir.model.fields,field_description:sale_order_pricelist_tax.field_account_fiscal_position____last_update
@@ -139,13 +128,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_pricelist_tax.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_order_pricelist_tax.field_sale_order_line____last_update
 msgid "Last Modified on"
-msgstr "Dernière modification le"
+msgstr ""
 
 #. module: sale_order_pricelist_tax
 #: code:addons/sale_order_pricelist_tax/models/product_pricelist.py:0
 #, python-format
 msgid ""
-"Only price items with 'Based on' field set to 'Public Price' are supported.\n"
+"Only price items with 'Based on' field set to 'Public Price' are "
+"supported.\n"
 msgstr ""
 
 #. module: sale_order_pricelist_tax
@@ -156,7 +146,7 @@ msgstr ""
 #. module: sale_order_pricelist_tax
 #: model:ir.model.fields,field_description:sale_order_pricelist_tax.field_product_pricelist__price_include_taxes
 msgid "Price include taxes"
-msgstr "Prix avec taxes incluses"
+msgstr ""
 
 #. module: sale_order_pricelist_tax
 #: model:ir.model.fields,field_description:sale_order_pricelist_tax.field_account_bank_statement_line__price_tax_state
@@ -170,7 +160,7 @@ msgstr ""
 #. module: sale_order_pricelist_tax
 #: model:ir.model,name:sale_order_pricelist_tax.model_product_pricelist
 msgid "Pricelist"
-msgstr "Liste de prix"
+msgstr ""
 
 #. module: sale_order_pricelist_tax
 #: model:product.pricelist,name:sale_order_pricelist_tax.ht_pricelist
@@ -185,7 +175,7 @@ msgstr ""
 #. module: sale_order_pricelist_tax
 #: model:ir.model,name:sale_order_pricelist_tax.model_product_product
 msgid "Product"
-msgstr "Article"
+msgstr ""
 
 #. module: sale_order_pricelist_tax
 #: model:ir.model,name:sale_order_pricelist_tax.model_sale_order
@@ -196,10 +186,9 @@ msgstr ""
 #: code:addons/sale_order_pricelist_tax/models/sale_order.py:0
 #, python-format
 msgid ""
-"Sale Order lines must have the same kind of taxes (price include or exclude)."
+"Sale Order lines must have the same kind of taxes (price include or "
+"exclude)."
 msgstr ""
-"Les lignes de commande doivent avoir le même type de taxe (prix inclus ou "
-"prix exclus)."
 
 #. module: sale_order_pricelist_tax
 #: model_terms:ir.ui.view,arch_db:sale_order_pricelist_tax.view_order_form
@@ -208,19 +197,16 @@ msgid ""
 "                     <br/> - Either price include tax\n"
 "                    <br/> - Either price exclude tax"
 msgstr ""
-"Les lignes de commande doivent avoir le même type de taxe:\n"
-"                     <br/> -Soit Prix Inclus\n"
-"                    <br/> - Soit Prix Exclus"
 
 #. module: sale_order_pricelist_tax
 #: model:ir.model,name:sale_order_pricelist_tax.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Ligne de bons de commande"
+msgstr ""
 
 #. module: sale_order_pricelist_tax
 #: model:ir.model,name:sale_order_pricelist_tax.model_account_tax
 msgid "Tax"
-msgstr "Taxe"
+msgstr ""
 
 #. module: sale_order_pricelist_tax
 #: code:addons/sale_order_pricelist_tax/models/sale_order.py:0
@@ -239,8 +225,3 @@ msgstr ""
 #: model:product.template,name:sale_order_pricelist_tax.ak_product_product_template
 msgid "ak product"
 msgstr ""
-
-#~ msgid "Tax product '%s' is price exclude. You must switch to include ones."
-#~ msgstr ""
-#~ "Le prix du produit '%s' est avec une taxe exclue. Vous devez prendre un "
-#~ "prix en taxe inclue."
