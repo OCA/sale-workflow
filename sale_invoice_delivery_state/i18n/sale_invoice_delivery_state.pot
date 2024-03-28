@@ -62,5 +62,5 @@ msgstr ""
 
 #. module: sale_invoice_delivery_state
 #: model:ir.model,name:sale_invoice_delivery_state.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
