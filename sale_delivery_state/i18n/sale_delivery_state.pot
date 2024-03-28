@@ -93,7 +93,7 @@ msgstr ""
 
 #. module: sale_delivery_state
 #: model:ir.model,name:sale_delivery_state.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_delivery_state
