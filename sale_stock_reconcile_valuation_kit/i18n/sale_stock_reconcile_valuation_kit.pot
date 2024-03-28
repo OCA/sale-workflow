@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_stock_reconcile_valuation_kit
+#: model:ir.model,name:sale_stock_reconcile_valuation_kit.model_account_move
+msgid "Account Move"
+msgstr ""
+
+#. module: sale_stock_reconcile_valuation_kit
 #: model:ir.model.fields,field_description:sale_stock_reconcile_valuation_kit.field_account_move__display_name
 msgid "Display Name"
 msgstr ""
@@ -21,11 +26,6 @@ msgstr ""
 #. module: sale_stock_reconcile_valuation_kit
 #: model:ir.model.fields,field_description:sale_stock_reconcile_valuation_kit.field_account_move__id
 msgid "ID"
-msgstr ""
-
-#. module: sale_stock_reconcile_valuation_kit
-#: model:ir.model,name:sale_stock_reconcile_valuation_kit.model_account_move
-msgid "Journal Entry"
 msgstr ""
 
 #. module: sale_stock_reconcile_valuation_kit
