@@ -40,5 +40,5 @@ msgstr ""
 
 #. module: sale_partner_shipping_invoice_domain
 #: model:ir.model,name:sale_partner_shipping_invoice_domain.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
