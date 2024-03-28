@@ -97,6 +97,7 @@ msgid "Resolve differences with the sales order"
 msgstr ""
 
 #. module: sale_purchase_requisition
+#: model:ir.model,name:sale_purchase_requisition.model_sale_order
 #: model:ir.model.fields,field_description:sale_purchase_requisition.field_purchase_requisition__sale_id
 msgid "Sale Order"
 msgstr ""
@@ -119,11 +120,6 @@ msgstr ""
 #. module: sale_purchase_requisition
 #: model:ir.model.fields,help:sale_purchase_requisition.field_purchase_requisition__sale_id
 msgid "Sale order related to this purchase requisition."
-msgstr ""
-
-#. module: sale_purchase_requisition
-#: model:ir.model,name:sale_purchase_requisition.model_sale_order
-msgid "Sales Order"
 msgstr ""
 
 #. module: sale_purchase_requisition
