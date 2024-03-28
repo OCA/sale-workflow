@@ -223,13 +223,13 @@ msgid "Sale Lines to Deliver"
 msgstr ""
 
 #. module: sale_manual_delivery
-#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__order_line_id
-msgid "Sale Order Line"
+#: model:ir.model,name:sale_manual_delivery.model_sale_order
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_manual_delivery
-#: model:ir.model,name:sale_manual_delivery.model_sale_order
-msgid "Sales Order"
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__order_line_id
+msgid "Sale Order Line"
 msgstr ""
 
 #. module: sale_manual_delivery
