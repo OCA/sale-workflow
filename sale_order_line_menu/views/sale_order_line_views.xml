@@ -15,7 +15,7 @@
                 <field name="invoice_status" optional="hide" />
             </xpath>
             <xpath expr="//field[@name='name']" position="after">
-                <field name="account_analytic_id" optional="hide" />
+                <field name="analytic_account_id" optional="hide" />
             </xpath>
             <xpath expr="//field[@name='order_partner_id']" position="after">
                 <field name="product_id" />
@@ -149,7 +149,7 @@
                 <filter
                     name="groupby_account_analytic"
                     string="Analytic Account"
-                    context="{'group_by' : 'account_analytic_id'}"
+                    context="{'group_by' : 'analytic_account_id'}"
                 />
                 <filter
                     name="groupby_date_order"

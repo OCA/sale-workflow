@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: sale_order_line_menu
-#: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__account_analytic_id
+#: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__analytic_account_id
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
 msgid "Analytic Account"
 msgstr "Kostenstelle"
