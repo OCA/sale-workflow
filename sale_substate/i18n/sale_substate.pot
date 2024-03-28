@@ -113,6 +113,11 @@ msgid "Sale"
 msgstr ""
 
 #. module: sale_substate
+#: model:ir.model,name:sale_substate.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_substate
 #: model:ir.model.fields.selection,name:sale_substate.selection__base_substate_type__model__sale_order
 msgid "Sale order"
 msgstr ""
@@ -120,11 +125,6 @@ msgstr ""
 #. module: sale_substate
 #: model:base.substate.type,name:sale_substate.base_substate_type_sale
 msgid "Sale order Substate"
-msgstr ""
-
-#. module: sale_substate
-#: model:ir.model,name:sale_substate.model_sale_order
-msgid "Sales Order"
 msgstr ""
 
 #. module: sale_substate
