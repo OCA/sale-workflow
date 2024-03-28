@@ -83,7 +83,7 @@ msgstr ""
 
 #. module: sale_tier_validation
 #: model:ir.model,name:sale_tier_validation.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_tier_validation
