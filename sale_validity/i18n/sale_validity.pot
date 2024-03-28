@@ -78,7 +78,7 @@ msgstr ""
 
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_sale_order
-msgid "Sales Order"
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_validity
