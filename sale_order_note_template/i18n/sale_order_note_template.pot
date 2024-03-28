@@ -68,13 +68,13 @@ msgid "Note"
 msgstr ""
 
 #. module: sale_order_note_template
-#: model:ir.model,name:sale_order_note_template.model_sale_terms_template
-msgid "Sale terms template"
+#: model:ir.model,name:sale_order_note_template.model_sale_order
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_order_note_template
-#: model:ir.model,name:sale_order_note_template.model_sale_order
-msgid "Sales Order"
+#: model:ir.model,name:sale_order_note_template.model_sale_terms_template
+msgid "Sale terms template"
 msgstr ""
 
 #. module: sale_order_note_template
