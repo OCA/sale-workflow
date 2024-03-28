@@ -60,6 +60,11 @@ msgid "Return Request"
 msgstr ""
 
 #. module: sale_stock_return_request
+#: model:ir.model,name:sale_stock_return_request.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_stock_return_request
 #: model:ir.actions.act_window,name:sale_stock_return_request.action_sale_stock_return_request_tree
 msgid "Sale Return Requests"
 msgstr ""
@@ -67,11 +72,6 @@ msgstr ""
 #. module: sale_stock_return_request
 #: model_terms:ir.ui.view,arch_db:sale_stock_return_request.view_stock_return_request_form
 msgid "Sales"
-msgstr ""
-
-#. module: sale_stock_return_request
-#: model:ir.model,name:sale_stock_return_request.model_sale_order
-msgid "Sales Order"
 msgstr ""
 
 #. module: sale_stock_return_request
