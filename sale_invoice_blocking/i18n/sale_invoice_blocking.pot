@@ -77,13 +77,13 @@ msgid "Reason"
 msgstr ""
 
 #. module: sale_invoice_blocking
-#: model:ir.model,name:sale_invoice_blocking.model_invoice_blocking_reason
-msgid "Sale invoice blocking reason"
+#: model:ir.model,name:sale_invoice_blocking.model_sale_order
+msgid "Sale Order"
 msgstr ""
 
 #. module: sale_invoice_blocking
-#: model:ir.model,name:sale_invoice_blocking.model_sale_order
-msgid "Sales Order"
+#: model:ir.model,name:sale_invoice_blocking.model_invoice_blocking_reason
+msgid "Sale invoice blocking reason"
 msgstr ""
 
 #. module: sale_invoice_blocking
