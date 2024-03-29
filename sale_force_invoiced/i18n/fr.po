@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_force_invoiced
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-31 04:21+0000\n"
+"PO-Revision-Date: 2023-11-02 11:37+0000\n"
+"Last-Translator: Alexis de Lattre <alexis@via.ecp.fr>\n"
+"Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_force_invoiced
+#: model:ir.model.fields,field_description:sale_force_invoiced.field_sale_order__force_invoiced
+msgid "Force Invoiced"
+msgstr "Forcer le statut à 'Entièrement facturé'"
+
+#. module: sale_force_invoiced
+#: model:ir.model,name:sale_force_invoiced.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: sale_force_invoiced
+#: model:ir.model.fields,help:sale_force_invoiced.field_sale_order__force_invoiced
+msgid ""
+"When you set this field, the sales order will be considered as fully "
+"invoiced, even when there may be ordered or delivered quantities pending to "
+"invoice."
+msgstr ""
+"Lorsque vous activez cette option, le statut de la commande client basculera "
+"à 'Entièrement facturée' même s'il reste des quantités commandées ou livrées "
+"à facturer."
+
+#~ msgid "Force invoiced"
+#~ msgstr "Facturation forcée"
