@@ -8,7 +8,7 @@ class ProductProduct(models.Model):
     _inherit = "product.product"
 
     sale_lines_count = fields.Integer(
-        compute="_compute_sale_lines_count", string="Sold"
+        compute="_compute_sale_lines_count", string="Sales"
     )
 
     def _compute_sale_lines_count(self):

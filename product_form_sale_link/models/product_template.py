@@ -11,7 +11,7 @@ _logger = logging.getLogger(__name__)
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    sale_lines_count = fields.Float(compute="_compute_sale_lines_count", string="Sold")
+    sale_lines_count = fields.Float(compute="_compute_sale_lines_count", string="Sales")
 
     @api.depends("product_variant_ids.sale_lines_count")
     def _compute_sale_lines_count(self):

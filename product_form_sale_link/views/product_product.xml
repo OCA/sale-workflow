@@ -14,9 +14,9 @@
                     type="action"
                     icon="fa-list"
                     groups="sales_team.group_sale_salesman"
-                    attrs="{'invisible': [('sale_ok', '=', False)]}"
+                    invisible="not sale_ok"
                 >
-                    <field string="Sales" name="sale_lines_count" widget="statinfo" />
+                    <field name="sale_lines_count" widget="statinfo" />
                 </button>
             </button>
         </field>
