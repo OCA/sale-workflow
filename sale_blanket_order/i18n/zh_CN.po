@@ -1,0 +1,1025 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_blanket_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: ryan <ouyang.em@gmail.com>\n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid ""
+"\n"
+"                    You cannot change the type of a sale order line.\n"
+"                    Instead you should delete the current line and create a new line\n"
+"                    of the proper type.\n"
+"                    "
+msgstr ""
+"\n"
+"                    您不能更改销售订单行的类型。\n"
+"                    相反，您应该删除当前行并创建一个新的适当类型的行。"
+
+#. module: sale_blanket_order
+#: model:ir.actions.report,print_report_name:sale_blanket_order.report_blanket_order
+msgid "'Blanket Order - %s' % object.name"
+msgstr "'总销售订单 - %s' % object.name"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
+msgid "<span>Blanket Order # </span>"
+msgstr "<span>总销售订单 # </span>"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
+msgid "<strong class=\"mr16\">Subtotal</strong>"
+msgstr "<strong class=\"mr16\">小计</strong>"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
+msgid "<strong>Currency:</strong>"
+msgstr "<strong>货币：</strong>"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
+msgid "<strong>Salesperson:</strong>"
+msgstr "<strong>销售人员：</strong>"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
+msgid "<strong>Subtotal</strong>"
+msgstr "<strong>小计</strong>"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
+msgid "<strong>Total</strong>"
+msgstr "<strong>总计</strong>"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
+msgid "<strong>Validity Date:</strong>"
+msgstr "<strong>有效日期：</strong>"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
+msgid "<strong>Your Reference:</strong>"
+msgstr "<strong>您的参考：</strong>"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_needaction
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_needaction
+msgid "Action Needed"
+msgstr "需要采取行动"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_ids
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_ids
+msgid "Activities"
+msgstr "活动"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_exception_decoration
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "活动异常装饰"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_state
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_state
+msgid "Activity State"
+msgstr "活动状态"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_type_icon
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "活动类型图标"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+msgid "Add a note"
+msgstr "添加一个备注"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+msgid "Add a product"
+msgstr "添加产品"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+msgid "Add a section"
+msgstr "添加一个分区"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
+msgid "Amount"
+msgstr "数量"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
+#, python-format
+msgid "An order can't be empty"
+msgstr "订单不能为空"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__analytic_distribution
+msgid "Analytic"
+msgstr "分析的"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__analytic_account_id
+msgid "Analytic Account"
+msgstr "分析账户"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__analytic_distribution_search
+msgid "Analytic Distribution Search"
+msgstr "分析分布搜索"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__analytic_precision
+msgid "Analytic Precision"
+msgstr "分析精准"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_attachment_count
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_attachment_count
+msgid "Attachment Count"
+msgstr "附件数量"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__blanket_line_id
+msgid "Blanket Line"
+msgstr "总销售单行"
+
+#. module: sale_blanket_order
+#: model:ir.actions.report,name:sale_blanket_order.report_blanket_order
+#: model:ir.model,name:sale_blanket_order.model_sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard__blanket_order_id
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+msgid "Blanket Order"
+msgstr "总销售订单"
+
+#. module: sale_blanket_order
+#: model:ir.model,name:sale_blanket_order.model_sale_blanket_order_line
+msgid "Blanket Order Line"
+msgstr "总订单行"
+
+#. module: sale_blanket_order
+#: model:ir.actions.act_window,name:sale_blanket_order.act_open_sale_blanket_order_lines_view_tree
+#: model:ir.ui.menu,name:sale_blanket_order.menu_sale_blanket_order_line
+msgid "Blanket Order Lines"
+msgstr "总订单行"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_order_line__blanket_order_line
+msgid "Blanket Order line"
+msgstr "总订单行"
+
+#. module: sale_blanket_order
+#: model:ir.actions.act_window,name:sale_blanket_order.act_open_blanket_order_view
+#: model:ir.ui.menu,name:sale_blanket_order.menu_blanket_order_config
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_config_settings_form_view
+msgid "Blanket Orders"
+msgstr "总订单"
+
+#. module: sale_blanket_order
+#: model:ir.model,name:sale_blanket_order.model_sale_blanket_order_wizard
+msgid "Blanket order wizard"
+msgstr "总订单向导"
+
+#. module: sale_blanket_order
+#: model:ir.model,name:sale_blanket_order.model_sale_blanket_order_wizard_line
+msgid "Blanket order wizard line"
+msgstr "总订单向导行"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
+#, python-format
+msgid "Can not create Sale Order from Blanket Order lines with different currencies"
+msgstr "无法从具有不同货币的总订单行创建销售订单"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_create_sale_order
+msgid "Cancel"
+msgstr "取消"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/models/sale_orders.py:0
+#, python-format
+msgid "Cannot confirm order %s as one of the lines refers to a blanket order that has no remaining quantity."
+msgstr "无法确认订单 %s，因为其中一行涉及到一个总订单，该订单没有剩余数量。"
+
+#. module: sale_blanket_order
+#: model_terms:ir.actions.act_window,help:sale_blanket_order.act_open_blanket_order_view
+msgid "Click to create a blanket order that can be converted into a sale order."
+msgstr "点击创建一个可转换为销售订单的总订单。"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__company_id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__company_id
+msgid "Company"
+msgstr "公司"
+
+#. module: sale_blanket_order
+#: model:ir.model,name:sale_blanket_order.model_res_config_settings
+msgid "Config Settings"
+msgstr "配置设置"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+msgid "Confirm"
+msgstr "确认"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__confirmed
+msgid "Confirmed"
+msgstr "已确认"
+
+#. module: sale_blanket_order
+#: model:ir.actions.act_window,name:sale_blanket_order.action_create_sale_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_create_sale_order
+msgid "Create Sale Order"
+msgstr "创建销售订单"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_create_sale_order
+msgid "Create and View Order"
+msgstr "创建和查看订单"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__create_uid
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__create_uid
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard__create_uid
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__create_uid
+msgid "Created by"
+msgstr "创建者"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__create_date
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__create_date
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard__create_date
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__create_date
+msgid "Created on"
+msgstr "创建于"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__currency_id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__currency_id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__currency_id
+msgid "Currency"
+msgstr "货币"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__partner_id
+msgid "Customer"
+msgstr "客户"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__client_order_ref
+msgid "Customer Reference"
+msgstr "客户参考"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid "Date Scheduled"
+msgstr "预定日期"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_search
+msgid "Delivered Qty"
+msgstr "交付数量"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__delivered_uom_qty
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__delivered_uom_qty
+msgid "Delivered quantity"
+msgstr "交付数量"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__name
+msgid "Description"
+msgstr "描述"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__group_blanket_disable_adding_lines
+msgid "Disable adding more lines to SOs"
+msgstr "禁止向销售订单添加更多行"
+
+#. module: sale_blanket_order
+#: model:res.groups,name:sale_blanket_order.blanket_orders_disable_adding_lines
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_config_settings_form_view
+msgid "Disable adding more lines to SOs from Blanket Orders"
+msgstr "禁止从总订单向销售订单添加更多行"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__display_name
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__display_name
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard__display_name
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__display_type
+msgid "Display Type"
+msgstr "显示类型"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__done
+msgid "Done"
+msgstr "已完成"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__draft
+msgid "Draft"
+msgstr "起草"
+
+#. module: sale_blanket_order
+#: model:ir.actions.server,name:sale_blanket_order.expired_blanket_orders_cron_ir_actions_server
+#: model:ir.cron,cron_name:sale_blanket_order.expired_blanket_orders_cron
+msgid "Expire Blanket Orders"
+msgstr "到期的总订单"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__expired
+msgid "Expired"
+msgstr "已过期"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__fiscal_position_id
+msgid "Fiscal Position"
+msgstr "财政状况"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_follower_ids
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_follower_ids
+msgid "Followers"
+msgstr "追随者"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_partner_ids
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "追随者（合作伙伴）"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__activity_type_icon
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Font awesome 图标，例如 fa-tasks"
+
+#. module: sale_blanket_order
+#: model:ir.model.constraint,message:sale_blanket_order.constraint_sale_blanket_order_line_non_accountable_null_fields
+msgid "Forbidden values on non-accountable sale order line"
+msgstr "非可核算销售订单行上的禁止数值"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__has_message
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__has_message
+msgid "Has Message"
+msgstr "已收到消息"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard__id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_exception_icon
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_exception_icon
+msgid "Icon"
+msgstr "图标"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__activity_exception_icon
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "用图标表示异常活动。"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_needaction
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "如果选中，请注意新消息。"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_has_error
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "如果已勾选，请注意一些消息存在投递错误。"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_search
+msgid "Invoiced Qty"
+msgstr "开票数量"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__invoiced_uom_qty
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__invoiced_uom_qty
+msgid "Invoiced quantity"
+msgstr "已开票数量"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+msgid "Invoicing"
+msgstr "开具发票"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_is_follower
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_is_follower
+msgid "Is Follower"
+msgstr "跟随者"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order____last_update
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line____last_update
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard____last_update
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line____last_update
+msgid "Last Modified on"
+msgstr "最后修改于"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__write_uid
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__write_uid
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard__write_uid
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__write_uid
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__write_date
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__write_date
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard__write_date
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__write_date
+msgid "Last Updated on"
+msgstr "最后更新于"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard__line_ids
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+msgid "Lines"
+msgstr "行"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_main_attachment_id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "主要附件"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_has_error
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_has_error
+msgid "Message Delivery error"
+msgstr "消息传送错误"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_ids
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_ids
+msgid "Messages"
+msgstr "消息"
+
+#. module: sale_blanket_order
+#: model:ir.model.constraint,message:sale_blanket_order.constraint_sale_blanket_order_line_accountable_required_fields
+msgid "Missing required fields on accountable sale order line."
+msgstr "销售订单行上缺少必填字段。"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid "Must have some lines"
+msgstr "必须有一些行"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__my_activity_date_deadline
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "我的活动截止日期"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__name
+msgid "Name"
+msgstr "姓名"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_calendar_event_id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "下一个活动日历事件"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_date_deadline
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "下一个活动截止日期"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_summary
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_summary
+msgid "Next Activity Summary"
+msgstr "下一个活动总结"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_type_id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_type_id
+msgid "Next Activity Type"
+msgstr "下一个活动类型"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__note
+#: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order_line__display_type__line_note
+msgid "Note"
+msgstr "注意"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_needaction_counter
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_needaction_counter
+msgid "Number of Actions"
+msgstr "动作数量"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_has_error_counter
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_has_error_counter
+msgid "Number of errors"
+msgstr "错误数量"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_needaction_counter
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "需要采取行动的消息数量"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_has_error_counter
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "交付错误的消息数量"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__open
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_search
+msgid "Open"
+msgstr "打开"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__order_id
+msgid "Order"
+msgstr "订单"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+msgid "Order Lines"
+msgstr "订单行"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__line_ids
+msgid "Order lines"
+msgstr "订单行"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_search
+msgid "Ordered Qty"
+msgstr "订购数量"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__ordered_uom_qty
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__ordered_uom_qty
+msgid "Ordered quantity"
+msgstr "订购数量"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_order__blanket_order_id
+msgid "Origin blanket order"
+msgstr "原始总订单"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_tree
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_search
+msgid "Original Qty"
+msgstr "原始数量"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__original_uom_qty
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__original_uom_qty
+msgid "Original quantity"
+msgstr "原始数量"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+msgid "Other Information"
+msgstr "其他信息"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__partner_id
+msgid "Partner"
+msgstr "伙伴"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid "Partner is mandatory"
+msgstr "合作伙伴是必需的"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__payment_term_id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__payment_term_id
+msgid "Payment Terms"
+msgstr "付款条款"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__price_unit
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__price_unit
+msgid "Price"
+msgstr "价格"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid "Price must be greater than zero"
+msgstr "价格必须大于零"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__pricelist_id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__pricelist_id
+msgid "Pricelist"
+msgstr "价格表"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__product_id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__product_id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__product_id
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
+msgid "Product"
+msgstr "产品"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard__sale_order_id
+msgid "Purchase Order"
+msgstr "采购订单"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid "Quantity must be greater than zero"
+msgstr "数量必须大于零"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__qty
+msgid "Quantity to Order"
+msgstr "订购数量"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_search
+msgid "Remaining Qty"
+msgstr "剩余数量"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__remaining_uom_qty
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__remaining_uom_qty
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__remaining_uom_qty
+msgid "Remaining quantity"
+msgstr "剩余数量"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__remaining_qty
+msgid "Remaining quantity in base UoM"
+msgstr "基本计量单位中的剩余数量"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__user_id
+msgid "Responsible"
+msgstr "负责"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_user_id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_user_id
+msgid "Responsible User"
+msgstr "负责的用户"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
+#, python-format
+msgid "Sale Blanket Order %s is not open"
+msgstr "总销售订单 %s 未打开"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
+msgid "Sale Blanket Order Line"
+msgstr "销售总订单行"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__line_count
+msgid "Sale Blanket Order Line count"
+msgstr "销售总订单行数"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__sale_count
+msgid "Sale Count"
+msgstr "销售数量"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
+msgid "Sale Order Lines"
+msgstr "销售订单行"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+msgid "Sale Orders"
+msgstr "销售订单"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__sale_lines
+msgid "Sale order lines"
+msgstr "销售订单行"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+msgid "Sales Information"
+msgstr "销售信息"
+
+#. module: sale_blanket_order
+#: model:ir.model,name:sale_blanket_order.model_sale_order
+msgid "Sales Order"
+msgstr "销售订单"
+
+#. module: sale_blanket_order
+#: model:ir.model,name:sale_blanket_order.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "销售订单行"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
+#, python-format
+msgid "Sales Orders"
+msgstr "销售订单"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__team_id
+msgid "Sales Team"
+msgstr "销售团队"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__user_id
+msgid "Salesperson"
+msgstr "销售员"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__date_schedule
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__date_schedule
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
+msgid "Scheduled Date"
+msgstr "预定日期"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_search
+msgid "Search Sale Blanket Order Line"
+msgstr "搜索销售总订单行"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order_line__display_type__line_section
+msgid "Section"
+msgstr "部分"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__sequence
+msgid "Sequence"
+msgstr "序列"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+msgid "Setup default terms and conditions in your company settings."
+msgstr "在公司设置中设置默认条款和条件。"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__state
+msgid "State"
+msgstr "状态"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__activity_state
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"根据活动状态\n"
+"逾期：截止日期已过\n"
+"今天：活动日期为今天\n"
+"计划中：未来活动。"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__price_subtotal
+msgid "Subtotal"
+msgstr "小计"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__price_tax
+msgid "Tax"
+msgstr "税"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__amount_tax
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__taxes_id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__taxes_id
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
+msgid "Taxes"
+msgstr "税收"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__display_type
+msgid "Technical field for UX purpose."
+msgstr "技术领域用于用户体验目的。"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+msgid "Terms and Conditions"
+msgstr "条款和条件"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/models/sale_orders.py:0
+#, python-format
+msgid "The currency of the blanket order must match with that of the sale order."
+msgstr "总订单的货币必须与销售订单的货币相匹配。"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/models/sale_orders.py:0
+#, python-format
+msgid "The customer must be equal to the blanket order lines customer"
+msgstr "客户必须等于总订单行的客户"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/models/sale_orders.py:0
+#, python-format
+msgid "The product in the blanket order and in the sales order must match"
+msgstr "总销售订单和销售订单中的产品必须匹配。"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
+#, python-format
+msgid "The sale has already been completed."
+msgstr "销售已经完成。"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
+msgid "To Draft"
+msgstr "起草"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__amount_total
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__price_total
+msgid "Total"
+msgstr "总计"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__activity_exception_decoration
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "记录中异常活动的类型。"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
+msgid "Unit Price"
+msgstr "单价"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__product_uom
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__product_uom
+msgid "Unit of Measure"
+msgstr "度量单位"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__amount_untaxed
+msgid "Untaxed Amount"
+msgstr "未税金额"
+
+#. module: sale_blanket_order
+#: model_terms:ir.actions.act_window,help:sale_blanket_order.act_open_blanket_order_view
+msgid ""
+"Use this menu to search within your blanket orders. For each blanket order,\n"
+"                you can track the related discussion with the customer, control\n"
+"                the products delivered and control the vendor bills."
+msgstr "使用此菜单在您的整体订单中进行搜索。对于每个整体订单，您可以跟踪与客户的相关讨论，控制已交付的产品以及控制供应商账单。"
+
+#. module: sale_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
+msgid "VAT:"
+msgstr "增值税:"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__validity_date
+msgid "Validity Date"
+msgstr "有效日期"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid "Validity date is mandatory"
+msgstr "有效日期是必填项"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid "Validity date must be in the future"
+msgstr "有效日期必须是未来日期"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__partner_id
+msgid "Vendor"
+msgstr "供应商"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__website_message_ids
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__website_message_ids
+msgid "Website Messages"
+msgstr "网站消息"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__website_message_ids
+#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__website_message_ids
+msgid "Website communication history"
+msgstr "网站通信历史"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__wizard_id
+msgid "Wizard"
+msgstr "向导"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid "You can not delete a blanket order with opened sale orders! Try to cancel them before."
+msgstr "您无法删除具有已打开销售订单的总订单！请尝试先取消它们。"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid "You can not delete an open blanket or with active sale orders! Try to cancel it before."
+msgstr "您无法删除一个有未完成销售订单或活动销售订单的开放账户！请尝试在此之前取消它。"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
+#, python-format
+msgid "You can't create a sale order from an expired blanket order!"
+msgstr "您无法从已过期的总订单创建销售订单！"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
+#, python-format
+msgid "You can't order more than the remaining quantities"
+msgstr "您不能订购超过剩余数量的产品"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
+#, python-format
+msgid "You have to select lines from the same company."
+msgstr "您必须选择来自同一公司的行。"
+
+#. module: sale_blanket_order
+#. odoo-python
+#: code:addons/sale_blanket_order/models/blanket_orders.py:0
+#, python-format
+msgid "remaining"
+msgstr "剩余"
