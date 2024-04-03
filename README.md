@@ -23,6 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [sale_fixed_discount](sale_fixed_discount/) | 17.0.1.0.0 |  | Allows to apply fixed amount discounts in sales orders.
 [sale_force_invoiced](sale_force_invoiced/) | 17.0.1.0.0 |  | Allows to force the invoice status of the sales order to Invoiced
+[sale_order_archive](sale_order_archive/) | 17.0.1.0.0 |  | Archive Sale Orders
 [sale_order_type](sale_order_type/) | 17.0.1.0.0 |  | Sale Order Type
 [sale_product_set](sale_product_set/) | 17.0.1.0.0 |  | Sale product set
 [sale_start_end_dates](sale_start_end_dates/) | 17.0.1.0.0 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Adds start date and end date on sale order lines
