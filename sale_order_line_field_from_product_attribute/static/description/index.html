@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -391,7 +390,11 @@ useful to make easier reporting and data analysys on these attributes.</p>
 <ol class="arabic simple">
 <li>Add a custom text field to Sales Order Line</li>
 <li>Create an Attributes with Variants Creation Mode set to “Never”</li>
-<li>In the Attribute, set the “Store In Field” with the custem text field created</li>
+<li>In the Attribute, set the “Store In Field” with the custom text field created</li>
+<li>Optionally, on the Attribute Values, set a specific “Store In Field Value”
+to use instead of the actual Attribute Value name.
+In particular this can be used to set Boolean values,
+where “0” or “False” sets a falsy value.</li>
 </ol>
 </div>
 <div class="section" id="usage">

@@ -12,17 +12,22 @@ class SaleOrderLine(models.Model):
             for sol in self:
                 sol_pav = sol.product_no_variant_attribute_value_ids
                 sol_pav_to_store = sol_pav.filtered("attribute_id.store_in_field")
-                sol_pav_custom = sol.product_custom_attribute_value_ids
+                sol_pav_custom_values = sol.product_custom_attribute_value_ids
                 pav_vals = {}
                 for pav in sol_pav_to_store:
-                    field_name = pav.attribute_id.store_in_field.name
+
+                    sol_pav_custom_value = sol_pav_custom_values.filtered(
+                        lambda x: x.custom_product_template_attribute_value_id == pav
+                    )
                     value = (
-                        sol_pav_custom.filtered(
-                            lambda x: x.custom_product_template_attribute_value_id
-                            == pav
-                        ).custom_value
+                        sol_pav_custom_value.custom_value
+                        or pav.product_attribute_value_id.store_in_field_value
                         or pav.name
                     )
+                    field_name = pav.attribute_id.store_in_field.name
+                    # Support boolean fields
+                    if type(sol._fields[field_name]).type == "boolean":
+                        value = not (value.lower() in ["false", "0"])
                     pav_vals[field_name] = value
                 if pav_vals:
                     super(SaleOrderLine, sol).write(pav_vals)
