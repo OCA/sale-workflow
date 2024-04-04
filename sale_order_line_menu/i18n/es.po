@@ -37,11 +37,6 @@ msgstr ""
 "Fecha de confirmación de pedidos confirmados."
 
 #. module: sale_order_line_menu
-#: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__date_order
-msgid "Date"
-msgstr "Fecha"
-
-#. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
 msgid "Fully Invoiced"
 msgstr "Totalmente Facturado"
@@ -62,6 +57,7 @@ msgid "Nothing to Invoice"
 msgstr "Nada para Facturar"
 
 #. module: sale_order_line_menu
+#: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__date_order
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
 msgid "Order Date"
 msgstr "Fecha del Pedido"
@@ -117,3 +113,6 @@ msgstr "Por Facturar"
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
 msgid "Upselling Opportunity"
 msgstr "Oportunidad de venta adicional"
+
+#~ msgid "Date"
+#~ msgstr "Fecha"

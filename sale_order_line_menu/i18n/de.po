@@ -37,11 +37,6 @@ msgstr ""
 "Bestätigungsdatum bestätigter Bestellungen."
 
 #. module: sale_order_line_menu
-#: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__date_order
-msgid "Date"
-msgstr "Datum"
-
-#. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
 msgid "Fully Invoiced"
 msgstr "Vollständig berechnet"
@@ -62,6 +57,7 @@ msgid "Nothing to Invoice"
 msgstr "Nichts zu berechnen"
 
 #. module: sale_order_line_menu
+#: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__date_order
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
 msgid "Order Date"
 msgstr "Bestelldatum"
@@ -117,3 +113,6 @@ msgstr "Zu berechnen"
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
 msgid "Upselling Opportunity"
 msgstr "Upselling-Möglichkeit"
+
+#~ msgid "Date"
+#~ msgstr "Datum"
