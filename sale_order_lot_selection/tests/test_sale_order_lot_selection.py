@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import odoo.tests.common as test_common
+from odoo.exceptions import UserError
 
 
 class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
@@ -324,3 +325,36 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.assertEqual(self.order4.state, "sale")
         # products are reserved
         self.assertEqual(self.order4.picking_ids[0].state, "assigned")
+
+    def test_allow_to_change_lot_on_confirmed_so(self):
+        company = self.env.ref("base.main_company")
+        company.allow_to_change_lot_on_confirmed_so = True
+        self.sale.action_confirm()
+        new_lot = self.env["stock.lot"].create(
+            {
+                "name": "new_lot",
+                "product_id": self.prd_cable.id,
+                "company_id": company.id,
+            }
+        )
+        line = self.sale.order_line[0]
+        line.lot_id = new_lot
+        self.assertEqual(line.move_ids.restrict_lot_id, new_lot)
+
+    def test_not_allow_to_change_lot_on_confirmed_so(self):
+        company = self.env.ref("base.main_company")
+        company.allow_to_change_lot_on_confirmed_so = False
+        self.sale.action_confirm()
+        new_lot = self.env["stock.lot"].create(
+            {
+                "name": "new_lot 2",
+                "product_id": self.prd_cable.id,
+                "company_id": company.id,
+            }
+        )
+        line = self.sale.order_line[0]
+        with self.assertRaises(UserError) as m:
+            line.lot_id = new_lot
+        self.assertEqual(
+            m.exception.args[0], "You can't change the lot on confirmed sale order."
+        )
