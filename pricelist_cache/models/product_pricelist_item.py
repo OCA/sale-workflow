@@ -3,7 +3,9 @@
 
 from collections import defaultdict
 
-from odoo import fields, models
+from odoo import fields, models, tools
+
+PRODUCT_BATCH = 1000
 
 
 class PricelistItem(models.Model):
@@ -75,6 +77,7 @@ class PricelistItem(models.Model):
         # Update cache
         cache_object = self.env["product.pricelist.cache"]
         for pricelist_id, product_ids in pricelist_products.items():
-            cache_object.with_delay().update_product_pricelist_cache(
-                product_ids=product_ids, pricelist_ids=[pricelist_id]
-            )
+            for product_chunk_ids in tools.misc.split_every(PRODUCT_BATCH, product_ids):
+                cache_object.with_delay().update_product_pricelist_cache(
+                    product_ids=product_chunk_ids, pricelist_ids=[pricelist_id]
+                )

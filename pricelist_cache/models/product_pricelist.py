@@ -3,7 +3,9 @@
 
 from datetime import date
 
-from odoo import api, fields, models
+from odoo import api, fields, models, tools
+
+from .product_pricelist_item import PRODUCT_BATCH
 
 
 class Pricelist(models.Model):
@@ -59,13 +61,18 @@ class Pricelist(models.Model):
         res = super().create(vals_list)
         for record in res:
             if record._is_factor_pricelist() or record._is_global_pricelist():
-                product_ids_to_cache = None
+                product_ids_to_cache = self.env["product.product"].search([]).ids
             else:
                 product_ids_to_cache = record.item_ids._get_pricelist_products()
-            cache_model = self.env["product.pricelist.cache"].with_delay()
-            cache_model.update_product_pricelist_cache(
-                product_ids=product_ids_to_cache, pricelist_ids=record.ids
-            )
+
+            for product_chunk_ids in tools.misc.split_every(
+                PRODUCT_BATCH, product_ids_to_cache
+            ):
+                self.env[
+                    "product.pricelist.cache"
+                ].with_delay().update_product_pricelist_cache(
+                    product_ids=product_chunk_ids, pricelist_ids=record.ids
+                )
         return res
 
     def _get_product_prices(self, product_ids):
