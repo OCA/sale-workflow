@@ -61,7 +61,7 @@ class Pricelist(models.Model):
             if record._is_factor_pricelist() or record._is_global_pricelist():
                 product_ids_to_cache = None
             else:
-                product_ids_to_cache = record.item_ids.mapped("product_id").ids
+                product_ids_to_cache = record.item_ids._get_pricelist_products()
             cache_model = self.env["product.pricelist.cache"].with_delay()
             cache_model.update_product_pricelist_cache(
                 product_ids=product_ids_to_cache, pricelist_ids=record.ids
