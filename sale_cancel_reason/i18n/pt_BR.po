@@ -21,6 +21,11 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: sale_cancel_reason
+#: model:ir.model,name:sale_cancel_reason.model_sale_mass_cancel_orders
+msgid "Cancel multiple quotations"
+msgstr ""
+
+#. module: sale_cancel_reason
 #: model_terms:ir.ui.view,arch_db:sale_cancel_reason.view_order_form
 msgid "Cancellation reason:"
 msgstr "Motivo do cancelamento:"
@@ -60,11 +65,6 @@ msgid "Just for Quotation"
 msgstr "Apenas para cotação"
 
 #. module: sale_cancel_reason
-#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason____last_update
-msgid "Last Modified on"
-msgstr "Última atualização em"
-
-#. module: sale_cancel_reason
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__write_uid
 msgid "Last Updated by"
 msgstr "Última atualização por"
@@ -80,6 +80,7 @@ msgid "Other Service Provider selected"
 msgstr "Outro prestador de serviços selecionado"
 
 #. module: sale_cancel_reason
+#: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_mass_cancel_orders__reason_id
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel__reason_id
 #: model:ir.model.fields,field_description:sale_cancel_reason.field_sale_order_cancel_reason__name
 msgid "Reason"
@@ -116,6 +117,9 @@ msgstr "Pedido de venda cancelado"
 #: model:sale.order.cancel.reason,name:sale_cancel_reason.cancel_reason_no_service_needed
 msgid "Service no longer needed"
 msgstr "Serviço não é mais necessário"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última atualização em"
 
 #, fuzzy
 #~| msgid "Sales Order"
