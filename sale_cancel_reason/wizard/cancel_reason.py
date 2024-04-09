@@ -16,4 +16,4 @@ class SaleOrderCancel(models.TransientModel):
 
     def action_cancel(self):
         self.order_id.cancel_reason_id = self.reason_id
-        return super(SaleOrderCancel, self).action_cancel()
+        return super().action_cancel()
