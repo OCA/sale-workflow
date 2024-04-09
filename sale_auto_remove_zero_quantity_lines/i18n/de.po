@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-01-23 08:30+0000\n"
-"PO-Revision-Date: 2024-01-23 08:30+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2024-04-09 22:38+0000\n"
+"Last-Translator: jappi00 <jappi2000@ewetel.net>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_auto_remove_zero_quantity_lines
 #: model:ir.model.fields,help:sale_auto_remove_zero_quantity_lines.field_res_config_settings__sale_auto_remove_zero_quantity_lines
@@ -32,22 +33,22 @@ msgstr "Automatische Entfernung von Nullmengen-Linien"
 #. module: sale_auto_remove_zero_quantity_lines
 #: model:ir.model,name:sale_auto_remove_zero_quantity_lines.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Unternehmen"
 
 #. module: sale_auto_remove_zero_quantity_lines
 #: model:ir.model,name:sale_auto_remove_zero_quantity_lines.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Konfigurationseinstellungen"
 
 #. module: sale_auto_remove_zero_quantity_lines
 #: model:ir.model.fields,field_description:sale_auto_remove_zero_quantity_lines.field_res_company__sale_auto_remove_zero_quantity_lines
 msgid "Sale Auto Remove Zero Quantity Lines"
-msgstr ""
+msgstr "Automatisches entfernen von Nullmengenzeilen im Verkauf"
 
 #. module: sale_auto_remove_zero_quantity_lines
 #: model:ir.model,name:sale_auto_remove_zero_quantity_lines.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Verkaufsaufträge"
 
 #. module: sale_auto_remove_zero_quantity_lines
 #. odoo-python
