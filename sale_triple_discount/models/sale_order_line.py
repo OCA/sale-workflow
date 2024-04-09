@@ -58,7 +58,9 @@ class SaleOrderLine(models.Model):
         final_discount = 1
         for discount in discounts:
             final_discount *= discount
-        return 100 - final_discount * 100
+        result = 100 - final_discount * 100
+        dp = self.env.ref("product.decimal_discount").precision_get("Discount")
+        return round(result, dp)
 
     def _discount_fields(self):
         return ["discount", "discount2", "discount3"]
