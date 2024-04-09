@@ -10,13 +10,13 @@
                     <label
                         for="cancel_reason_id"
                         string="Cancellation reason:"
-                        attrs="{'invisible': [('state', '!=', 'cancel')]}"
+                        invisible="state != 'cancel'"
                     />
                     <field
                         name="cancel_reason_id"
                         class="oe_inline"
                         options='{"no_open": True}'
-                        attrs="{'invisible': [('state', '!=', 'cancel')]}"
+                        invisible="state != 'cancel'"
                     />
                 </p>
             </xpath>
