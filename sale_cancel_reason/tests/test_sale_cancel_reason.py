@@ -13,7 +13,7 @@ class TestSaleCancelReason(TransactionCase):
         cls.reason = CancelReason.create({"name": "Canceled for tests"})
         cls.partner = cls.env.ref("base.res_partner_2")
         cls.product = cls.env.ref("product.product_product_7")
-        cls.sale_order = SaleOrder.create(
+        cls.sale_order_1 = SaleOrder.create(
             {
                 "partner_id": cls.partner.id,
                 "order_line": [
@@ -21,6 +21,8 @@ class TestSaleCancelReason(TransactionCase):
                 ],
             }
         )
+        cls.sale_order_2 = cls.sale_order_1.copy()
+        cls.sale_orders = cls.sale_order_1 + cls.sale_order_2
 
     def test_sale_order_cancel_reason(self):
         """
@@ -29,12 +31,27 @@ class TestSaleCancelReason(TransactionCase):
         """
         SaleOrderCancel = self.env["sale.order.cancel"]
         wizard = SaleOrderCancel.create(
-            {"reason_id": self.reason.id, "order_id": self.sale_order.id}
+            {"reason_id": self.reason.id, "order_id": self.sale_order_1.id}
         )
         wizard.with_context(
-            active_model="sale.order", active_ids=self.sale_order.id
+            active_model="sale.order", active_ids=self.sale_order_1.id
         ).action_cancel()
         self.assertEqual(
-            self.sale_order.state, "cancel", "the sale order should be canceled"
+            self.sale_order_1.state, "cancel", "the sale order should be canceled"
         )
-        self.assertEqual(self.sale_order.cancel_reason_id.id, self.reason.id)
+        self.assertEqual(self.sale_order_1.cancel_reason_id.id, self.reason.id)
+
+    def test_sale_order_cancel_reason_mass_cancel(self):
+        MassCancelOrders = self.env["sale.mass.cancel.orders"]
+        wizard = MassCancelOrders.with_context(
+            active_model="sale.order", active_ids=self.sale_orders.ids
+        ).create({"reason_id": self.reason.id})
+        wizard.action_mass_cancel()
+
+        self.assertRecordValues(
+            self.sale_orders,
+            [
+                {"cancel_reason_id": self.reason.id},
+                {"cancel_reason_id": self.reason.id},
+            ],
+        )
