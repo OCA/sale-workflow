@@ -152,6 +152,10 @@
                     </group>
                     <group>
                         <group>
+                            <field
+                                name="calendar_event_profile_id"
+                                widget="selection"
+                            />
                             <field name="calendar_issue_type_id" widget="selection" />
                             <field name="comment" />
                         </group>
@@ -258,26 +262,38 @@
                 <field name="partner_city" />
                 <field name="partner_mobile" />
                 <field name="partner_contact_name" />
+                <field name="sanitized_partner_mobile" />
+                <field name="location_url" />
                 <field name="calendar_issue_type_id" />
                 <field name="currency_id" />
                 <field name="comment" />
+                <field name="profile_icon" />
                 <templates>
                     <t t-name="kanban-box">
                         <div
                             t-attf-class="oe_kanban_card oe_kanban_card_full_width oe_kanban_global_click"
                         >
-                            <div class="row">
-                                <div class="col-sm-2 text-center">
+                            <div class="row align-items-center">
+                                <div class="col col-lg-2 col-xl-2 pr-0 text-center">
                                     <div class="row" title="Clock">
-                                        <i class="col fa fa-clock-o fa-4x" />
-                                    </div>
-                                    <div class="row">
-                                        <strong class="col"><span><t
-                                                    t-esc="record.calendar_event_date.value"
-                                                /></span></strong>
+                                        <div class="col text-center">
+                                            <i class="fa fa-clock-o fa-2x" />
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
+                                            <span
+                                                class="font-weight-bold"
+                                                t-esc="record.calendar_event_date.value"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <i
+                                                t-if="record.profile_icon.value"
+                                                t-att-class="'fa ' + record.profile_icon.value"
+                                            />
                                             <field
                                                 name="state"
                                                 widget="label_selection"
@@ -286,13 +302,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-5">
+                                <div class="col col-lg-4 col-xl-4 pr-0">
                                     <div class="row font-weight-bold">
                                         <div
                                             class="col-1 text-center p-0"
                                             title="Partner"
                                         >
-                                            <i class="fa fa-user fa-2x" />
+                                            <i class="fa fa-user fa-fw" />
                                         </div>
                                         <div class="col">
                                             <field name="partner_ref" />  <field
@@ -305,27 +321,38 @@
                                             class="col-1 text-center p-0"
                                             title="Commercial name"
                                         >
-                                            <i class="fa fa-home fa-2x" />
+                                            <i class="fa fa-home fa-fw" />
                                         </div>
                                         <div class="col">
                                             <field name="partner_commercial_name" />
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div
-                                            class="col-1 text-center p-0"
-                                            title="Street"
-                                        >
-                                            <i class="fa fa-map-marker fa-2x" />
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div
+                                                    class="col-1 text-center p-0"
+                                                    title="Street"
+                                                >
+                                                    <i class="fa fa-map-marker fa-fw" />
+                                                </div>
+                                                <div class="col-11">
+                                                    <field name="partner_street" />
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-5">
-                                            <field name="partner_street" />
-                                        </div>
-                                        <div class="col-1 text-center p-0" title="City">
-                                            <i class="fa fa-building-o fa-2x" />
-                                        </div>
-                                        <div class="col-5">
-                                            <field name="partner_city" />
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div
+                                                    class="col-1 text-center p-0"
+                                                    title="City"
+                                                >
+                                                    <i class="fa fa-building-o fa-fw" />
+                                                </div>
+                                                <div class="col-11">
+                                                    <field name="partner_city" />
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -333,7 +360,7 @@
                                             class="col-1 text-center p-0"
                                             title="Mobile"
                                         >
-                                            <i class="fa fa-phone fa-2x" />
+                                            <i class="fa fa-phone fa-fw" />
                                         </div>
                                         <div class="col">
                                             <t t-if="record.partner_mobile.value">
@@ -348,27 +375,29 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-5 mb-3">
-                                    <div class="row mt16 h-100">
-                                        <div class="col">
+                                <div
+                                    class="col col-sm-12 col-md-12 col-lg-6 col-xl-6 mt-xs-3"
+                                >
+                                    <div class="row mt-2 h-100 px-md-3">
+                                        <div class="col p-1">
                                             <button
                                                 class="btn btn-primary w-100 h-80"
                                                 title="Info"
                                             >
                                                 <i
-                                                    t-attf-class="fa fa-info fa-2x #{record.comment.raw_value ? 'text-warning' : ''}"
+                                                    t-attf-class="fa fa-info fa-fw fa-2x #{record.comment.raw_value ? 'text-warning' : ''}"
                                                 />
                                                 <div>Info</div>
                                             </button>
                                         </div>
-                                        <div class="col">
+                                        <div class="col p-1">
                                             <button
                                                 class="btn btn-primary w-100 h-80"
                                                 name="action_open_sale_order"
                                                 type="object"
                                                 title="Order"
                                             >
-                                                <i class="fa fa-dollar fa-2x" />
+                                                <i class="fa fa-dollar fa-fw fa-2x" />
                                                 <div>Order</div>
                                             </button>
                                             <div
@@ -383,7 +412,7 @@
                                                 />
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col p-1">
                                             <button
                                                 class="btn btn-primary w-100 h-80"
                                                 name="action_open_invoices"
@@ -391,12 +420,12 @@
                                                 title="Invoices"
                                             >
                                                 <i
-                                                    class="fa fa-pencil-square-o fa-2x"
+                                                    class="fa fa-pencil-square-o fa-fw fa-2x"
                                                 />
                                                 <div class="o_stat_text">Invoices</div>
                                             </button>
                                         </div>
-                                        <div class="col">
+                                        <div class="col p-1">
                                             <button
                                                 class="btn btn-primary w-100 h-80"
                                                 name="action_open_unpaid_invoice"
@@ -404,7 +433,7 @@
                                                 title="Due"
                                             >
                                                 <i
-                                                    class="fa fa-pencil-square-o fa-2x"
+                                                    class="fa fa-pencil-square-o fa-fw fa-2x"
                                                 />
                                                 <div class="o_stat_text">Due</div>
                                             </button>
@@ -420,7 +449,41 @@
                                                 />
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div
+                                            t-if="record.sanitized_partner_mobile.value"
+                                            class="col p-1"
+                                        >
+                                            <a
+                                                role="button"
+                                                t-att-href="'https://wa.me/' + record.sanitized_partner_mobile.value"
+                                                class="btn btn-primary w-100 h-80 text-white"
+                                                title="Whatsapp"
+                                                target="_blank"
+                                                aria-label="Whatsapp"
+                                            >
+                                                <i class="fa fa-whatsapp fa-fw fa-2x" />
+                                                <div class="o_stat_text">Whatsapp</div>
+                                            </a>
+                                        </div>
+                                        <div
+                                            t-if="record.location_url.value"
+                                            class="col p-1"
+                                        >
+                                            <a
+                                                role="button"
+                                                t-att-href="'https://www.google.com/maps/search/?api=1&amp;query=' + record.location_url.value"
+                                                class="btn btn-primary w-100 h-80"
+                                                title="Location"
+                                                target="_blank"
+                                                aria-label="Location"
+                                            >
+                                                <i
+                                                    class="fa fa fa-map-marker fa-fw fa-2x"
+                                                />
+                                                <div class="o_stat_text">Location</div>
+                                            </a>
+                                        </div>
+                                        <div class="col p-1">
                                             <button
                                                 t-attf-class="btn w-100 h-80 #{record.calendar_issue_type_id.raw_value ? 'btn-danger' : 'btn-primary'}"
                                                 name="action_open_issue"
@@ -428,13 +491,12 @@
                                                 title="Issue"
                                             >
                                                 <i
-                                                    class="fa fa-exclamation-triangle fa-2x"
+                                                    class="fa fa-exclamation-triangle fa-fw fa-2x"
                                                 />
                                                 <div class="o_stat_text">Issue</div>
                                             </button>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>

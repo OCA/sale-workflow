@@ -77,7 +77,7 @@
             <field name="user_id" position="after">
                 <label for="target_partner_id" string="Sale planner partner" />
                 <field name="target_partner_id" nolabel="1" />
-
+                <field name="calendar_event_profile_id" />
             </field>
             <field name="recurrence_id" position="after">
                 <group attrs="{'invisible': [('recurrency', '=', False)]}">

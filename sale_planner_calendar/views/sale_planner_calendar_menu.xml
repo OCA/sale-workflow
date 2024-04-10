@@ -78,6 +78,12 @@
         sequence="20"
     />
     <menuitem
+        id="menu_sale_planner_calendar_event_profile"
+        parent="menu_calendar_event_configuration_root"
+        action="action_sale_planner_calendar_event_profile"
+        sequence="30"
+    />
+    <menuitem
         id="menu_sale_planner_calendar_wizard"
         parent="menu_calendar_event_configuration_root"
         action="sale_planner_calendar_wizard_action"
