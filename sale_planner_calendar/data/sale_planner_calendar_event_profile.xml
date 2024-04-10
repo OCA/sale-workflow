@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="event_profile_face_to_face" model="sale.planner.calendar.event.profile">
+        <field name="name">Face-to-Face</field>
+        <field name="icon">fa-car</field>
+    </record>
+    <record id="event_profile_telephone" model="sale.planner.calendar.event.profile">
+        <field name="name">Telephone</field>
+        <field name="icon">fa-phone</field>
+    </record>
+    <record id="event_profile_message" model="sale.planner.calendar.event.profile">
+        <field name="name">Message</field>
+        <field name="icon">fa-envelope</field>
+    </record>
+</odoo>

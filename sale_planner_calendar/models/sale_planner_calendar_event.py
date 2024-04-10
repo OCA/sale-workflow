@@ -1,6 +1,8 @@
 # Copyright 2021 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+import re
+
 from odoo import api, fields, models
 from odoo.tools.safe_eval import safe_eval
 
@@ -45,6 +47,9 @@ class SalePlannerCalendarEvent(models.Model):
     calendar_issue_type_id = fields.Many2one(
         comodel_name="sale.planner.calendar.issue.type", ondelete="restrict"
     )
+    calendar_event_profile_id = fields.Many2one(
+        comodel_name="sale.planner.calendar.event.profile"
+    )
     comment = fields.Text()
     sale_order_subtotal = fields.Monetary(
         compute="_compute_sale_order_subtotal", currency_field="currency_id"
@@ -73,6 +78,9 @@ class SalePlannerCalendarEvent(models.Model):
     partner_mobile = fields.Char(compute="_compute_contact")
     partner_contact_name = fields.Char(compute="_compute_contact")
     partner_city = fields.Char(related="partner_id.city")
+    sanitized_partner_mobile = fields.Char(compute="_compute_sanitized_partner_mobile")
+    location_url = fields.Char(compute="_compute_location_url")
+    profile_icon = fields.Char(related="calendar_event_profile_id.icon")
 
     @api.depends("sale_ids.amount_untaxed")
     def _compute_sale_order_subtotal(self):
@@ -130,6 +138,30 @@ class SalePlannerCalendarEvent(models.Model):
             )
             rec.partner_contact_name = contact.name
 
+    def _compute_sanitized_partner_mobile(self):
+        self.sanitized_partner_mobile = False
+        for rec in self.filtered("partner_mobile"):
+            rec.sanitized_partner_mobile = re.sub(r"\W+", "", rec.partner_mobile)
+
+    def _compute_location_url(self):
+        # The url is built to access the location from a google link. This will be done
+        # taking into account the location of the calendar event associated with the calendar
+        # planner event. If this location is not defined, the client's coordinates will
+        # be taken into account if they are defined, otherwise the client's address
+        # will be taken into account.
+        self.location_url = False
+        for rec in self:
+            event_location = rec.calendar_event_id.location
+            partner_latitude = str(rec.partner_id.partner_latitude).replace(",", ".")
+            partner_longitude = str(rec.partner_id.partner_longitude).replace(",", ".")
+            partner_location = f"{rec.partner_city}+{rec.partner_street}"
+            if event_location:
+                self.location_url = event_location.replace(" ", "+")
+            elif partner_latitude != "0.0" or partner_longitude != "0.0":
+                self.location_url = f"{partner_latitude}%2C{partner_longitude}"
+            elif partner_location:
+                self.location_url = partner_location.replace(" ", "+")
+
     def action_open_sale_order(self, new_order=False):
         """
         Search or Create an event planner  linked to sale order
@@ -176,7 +208,6 @@ class SalePlannerCalendarEvent(models.Model):
         action = self.env["ir.actions.act_window"]._for_xml_id(
             "sale_payment_sheet.action_invoice_sale_payment_sheet"
         )
-
         ctx = safe_eval(action["context"])
         ctx.update(
             {
