@@ -5,6 +5,7 @@ from odoo.exceptions import UserError
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
+    lot_id_readonly = fields.Boolean(compute="_compute_lot_id_readonly")
     lot_id = fields.Many2one(
         "stock.lot",
         "Lot",
@@ -25,6 +26,17 @@ class SaleOrderLine(models.Model):
         for sol in self:
             if sol.product_id != sol.lot_id.product_id:
                 sol.lot_id = False
+
+    @api.depends("state", "company_id.allow_to_change_lot_on_confirmed_so")
+    def _compute_lot_id_readonly(self):
+        for line in self:
+            company = line.company_id or self.env.company
+            # line.ids checks whether it's a new record not yet saved
+            line.lot_id_readonly = (
+                line.ids
+                and line.state in ["sale", "done", "cancel"]
+                and not company.allow_to_change_lot_on_confirmed_so
+            )
 
     def write(self, vals):
         res = super().write(vals)
