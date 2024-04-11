@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-20 09:25+0000\n"
-"PO-Revision-Date: 2023-11-26 18:33+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"PO-Revision-Date: 2024-04-10 10:55+0000\n"
+"Last-Translator: \"Pedro M. Baeza\" <pedro.baeza@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -179,7 +179,7 @@ msgstr "A mano"
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__order_id
 #: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
 msgid "Order"
-msgstr "Pedido"
+msgstr "Orden"
 
 #. module: sale_order_product_picker
 #: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
@@ -195,7 +195,7 @@ msgstr "Catálogo"
 #. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order__picker_order
 msgid "Picker Order"
-msgstr "Orden de recogida"
+msgstr "Orden en el picker"
 
 #. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order__picker_origin_data
@@ -257,7 +257,7 @@ msgstr "Pedido de venta"
 #. module: sale_order_product_picker
 #: model:ir.model,name:sale_order_product_picker.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Línea de Orden de Venta"
+msgstr "Línea de pedido de venta"
 
 #. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_line__list_price
