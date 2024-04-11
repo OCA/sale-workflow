@@ -24,6 +24,7 @@
         "views/stock_move_views.xml",
         "views/stock_picking_views.xml",
         "reports/report_deliveryslip.xml",
+        "reports/report_picking_operations.xml",
     ],
     "pre_init_hook": "pre_init_hook",
     "maintainers": ["rafaelbn", "yajo"],
