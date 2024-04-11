@@ -11,3 +11,7 @@ class ResConfigSettings(models.TransientModel):
         "Display Elaboration notes on Delivery Slips",
         implied_group="sale_elaboration.group_elaboration_note_on_delivery_slip",
     )
+    group_elaboration_note_on_picking_operations = fields.Boolean(
+        "Display Elaboration notes on Picking Operations",
+        implied_group="sale_elaboration.group_elaboration_note_on_picking_operations",
+    )

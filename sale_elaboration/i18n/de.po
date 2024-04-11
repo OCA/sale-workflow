@@ -19,12 +19,9 @@ msgstr ""
 
 #. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.report_delivery_document
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.report_picking
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.stock_report_delivery_has_serial_move_line
 msgid "<strong>Elab.</strong>"
-msgstr ""
-
-#. module: sale_elaboration
-#: model_terms:ir.ui.view,arch_db:sale_elaboration.report_delivery_document
-msgid "<strong>Elaboration</strong>"
 msgstr ""
 
 #. module: sale_elaboration
@@ -85,6 +82,11 @@ msgid "Display Elaboration notes on Delivery Slips"
 msgstr ""
 
 #. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_res_config_settings__group_elaboration_note_on_picking_operations
+msgid "Display Elaboration notes on Picking Operations"
+msgstr ""
+
+#. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__display_name
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__display_name
 msgid "Display Name"
@@ -119,6 +121,11 @@ msgstr ""
 #. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.res_config_settings_view
 msgid "Elaboration notes will appear on the delivery slip"
+msgstr ""
+
+#. module: sale_elaboration
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.res_config_settings_view
+msgid "Elaboration notes will appear on the picking operations report"
 msgstr ""
 
 #. module: sale_elaboration
@@ -166,6 +173,11 @@ msgstr ""
 #. module: sale_elaboration
 #: model:res.groups,name:sale_elaboration.group_elaboration_note_on_delivery_slip
 msgid "Include elaboration notes on delivery slip"
+msgstr ""
+
+#. module: sale_elaboration
+#: model:res.groups,name:sale_elaboration.group_elaboration_note_on_picking_operations
+msgid "Include elaboration notes on picking operations"
 msgstr ""
 
 #. module: sale_elaboration
