@@ -7,30 +7,31 @@ from odoo.tests import tagged
 
 @tagged("post_install", "-at_install")
 class TestSaleOrderLineDescriptionChange(common.TransactionCase):
-    def setUp(self):
-        super(TestSaleOrderLineDescriptionChange, self).setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
 
         # Create models
-        self.sale_order_model = self.env["sale.order"]
-        self.sale_order_line_model = self.env["sale.order.line"]
-        self.partner_model = self.env["res.partner"]
-        self.product_model = self.env["product.product"]
-        self.user_model = self.env["res.users"].with_context(
+        cls.sale_order_model = cls.env["sale.order"]
+        cls.sale_order_line_model = cls.env["sale.order.line"]
+        cls.partner_model = cls.env["res.partner"]
+        cls.product_model = cls.env["product.product"]
+        cls.user_model = cls.env["res.users"].with_context(
             no_reset_password=True, mail_create_nosubscribe=True
         )
 
         # Create two different users
-        self.group_only_sale_description = self.env.ref(
+        cls.group_only_sale_description = cls.env.ref(
             "sale_order_line_description.group_use_product_description_per_so_line"
         )
-        self.user_1 = self._create_user("TestUser1")
-        self.user_2 = self._create_user("TestUser2", self.group_only_sale_description)
+        cls.user_1 = cls._create_user(cls, "TestUser1")
+        cls.user_2 = cls._create_user(cls, "TestUser2", cls.group_only_sale_description)
 
         # Create the sale order
-        self.partner = self.partner_model.create({"name": "Test partner"})
-        self.sale_order = self.sale_order_model.create({"partner_id": self.partner.id})
+        cls.partner = cls.partner_model.create({"name": "Test partner"})
+        cls.sale_order = cls.sale_order_model.create({"partner_id": cls.partner.id})
 
-        self.product = self.product_model.create(
+        cls.product = cls.product_model.create(
             {
                 "name": "Test product",
                 "description_sale": "Sale description for test product",
@@ -57,6 +58,7 @@ class TestSaleOrderLineDescriptionChange(common.TransactionCase):
         sale_order_line = self.sale_order_line_model.with_user(self.user_1).create(
             line_values.copy()
         )
+        sale_order_line._onchange_product_id_warning()
         self.assertEqual(
             sale_order_line.name,
             "\n".join([self.product.name, self.product.description_sale]),
@@ -68,6 +70,7 @@ class TestSaleOrderLineDescriptionChange(common.TransactionCase):
         sale_order_line = self.sale_order_line_model.with_user(self.user_2).create(
             line_values.copy()
         )
+        sale_order_line._onchange_product_id_warning()
         self.assertEqual(
             sale_order_line.name,
             self.product.description_sale,
