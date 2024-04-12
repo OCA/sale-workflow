@@ -15,12 +15,8 @@ msgstr ""
 
 #. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.report_delivery_document
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.stock_report_delivery_has_serial_move_line
 msgid "<strong>Elab.</strong>"
-msgstr ""
-
-#. module: sale_elaboration
-#: model_terms:ir.ui.view,arch_db:sale_elaboration.report_delivery_document
-msgid "<strong>Elaboration</strong>"
 msgstr ""
 
 #. module: sale_elaboration
