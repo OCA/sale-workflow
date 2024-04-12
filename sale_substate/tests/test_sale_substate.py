@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestBaseSubstate(TransactionCase):
     def setUp(self):
-        super(TestBaseSubstate, self).setUp()
+        super().setUp()
         self.substate_test_sale = self.env["sale.order"]
         self.substate_test_sale_line = self.env["sale.order.line"]
 
