@@ -11,7 +11,7 @@
                     string="Pay sale advanced"
                     type="action"
                     groups="account.group_account_invoice"
-                    attrs="{'invisible': [('state', 'in', ['done','cancel'])]}"
+                    invisible="state in ('done','cancel')"
                 />
             </button>
             <notebook position="inside">

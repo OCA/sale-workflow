@@ -66,7 +66,8 @@ class AccountVoucherWizard(models.TransientModel):
                 ):
                     raise exceptions.ValidationError(
                         _(
-                            "Inbound amount of advance is greater than residual amount on sale"
+                            "Inbound amount of advance is "
+                            "greater than residual amount on sale"
                         )
                     )
             else:
