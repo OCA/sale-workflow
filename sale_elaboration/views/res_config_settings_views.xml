@@ -19,6 +19,20 @@
                         </div>
                     </div>
                 </div>
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    id="group_elaboration_note_on_picking_operations"
+                >
+                    <div class="o_setting_left_pane">
+                        <field name="group_elaboration_note_on_picking_operations" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="group_elaboration_note_on_picking_operations" />
+                        <div class="text-muted">
+                            Elaboration notes will appear on the picking operations report
+                        </div>
+                    </div>
+                </div>
             </xpath>
         </field>
     </record>
