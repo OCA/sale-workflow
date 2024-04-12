@@ -19,13 +19,9 @@ msgstr ""
 
 #. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.report_delivery_document
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.stock_report_delivery_has_serial_move_line
 msgid "<strong>Elab.</strong>"
 msgstr "<strong>elab.</strong>"
-
-#. module: sale_elaboration
-#: model_terms:ir.ui.view,arch_db:sale_elaboration.report_delivery_document
-msgid "<strong>Elaboration</strong>"
-msgstr "<strong>Elaboración</strong>"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__active
@@ -305,6 +301,9 @@ msgstr "Regla de Inventario"
 #: model:ir.model,name:sale_elaboration.model_stock_picking
 msgid "Transfer"
 msgstr "Albarán"
+
+#~ msgid "<strong>Elaboration</strong>"
+#~ msgstr "<strong>Elaboración</strong>"
 
 #~ msgid "Product Template"
 #~ msgstr "Plantilla de producto"
