@@ -19,6 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_force_invoiced
+#: model:res.groups,name:sale_force_invoiced.group_force_invoiced
+msgid "Enable Force Invoiced"
+msgstr ""
+
+#. module: sale_force_invoiced
 #: model:ir.model.fields,field_description:sale_force_invoiced.field_sale_order__force_invoiced
 msgid "Force Invoiced"
 msgstr ""
