@@ -53,3 +53,33 @@ msgstr "Importe total del envío"
 #: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__shipping_amount_untaxed
 msgid "Shipping Amount Untaxed"
 msgstr "Importe sin impuestos del envío"
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,help:sale_shipping_info_helper.field_sale_order__item_amount_tax
+msgid "Tax portion of the item amount"
+msgstr ""
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,help:sale_shipping_info_helper.field_sale_order__shipping_amount_tax
+msgid "Tax portion of the shipping amount"
+msgstr ""
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,help:sale_shipping_info_helper.field_sale_order__item_amount_total
+msgid "Total amount for items excluding shipping"
+msgstr ""
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,help:sale_shipping_info_helper.field_sale_order__shipping_amount_total
+msgid "Total shipping amount including taxes"
+msgstr ""
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,help:sale_shipping_info_helper.field_sale_order__item_amount_untaxed
+msgid "Untaxed portion of the item amount"
+msgstr ""
+
+#. module: sale_shipping_info_helper
+#: model:ir.model.fields,help:sale_shipping_info_helper.field_sale_order__shipping_amount_untaxed
+msgid "Untaxed portion of the shipping amount"
+msgstr ""
