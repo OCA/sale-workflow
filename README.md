@@ -42,7 +42,7 @@ addon | version | maintainers | summary
 [sale_exception](sale_exception/) | 16.0.1.3.0 |  | Custom exceptions on sale order
 [sale_exception_holidays_public](sale_exception_holidays_public/) | 16.0.1.0.1 | [![jbaudoux](https://github.com/jbaudoux.png?size=30px)](https://github.com/jbaudoux) | Raise a sale exception if there is a commitment_date on the SO and this date is a public holidays for the shipping partner address
 [sale_fixed_discount](sale_fixed_discount/) | 16.0.1.0.1 |  | Allows to apply fixed amount discounts in sales orders.
-[sale_force_invoiced](sale_force_invoiced/) | 16.0.1.0.0 |  | Allows to force the invoice status of the sales order to Invoiced
+[sale_force_invoiced](sale_force_invoiced/) | 16.0.2.0.0 |  | Allows to force the invoice status of the sales order to Invoiced
 [sale_invoice_frequency](sale_invoice_frequency/) | 16.0.1.2.1 | [![Shide](https://github.com/Shide.png?size=30px)](https://github.com/Shide) [![yajo](https://github.com/yajo.png?size=30px)](https://github.com/yajo) [![EmilioPascual](https://github.com/EmilioPascual.png?size=30px)](https://github.com/EmilioPascual) | Define the invoice frequency for customers
 [sale_last_price_info](sale_last_price_info/) | 16.0.1.0.0 |  | Product Last Price Info - Sale
 [sale_loyalty_exclude](sale_loyalty_exclude/) | 16.0.1.0.0 |  | Exclude products from sale loyalty program
