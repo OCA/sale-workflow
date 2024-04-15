@@ -4,12 +4,15 @@
 {
     "name": "Sale Force Invoiced",
     "summary": "Allows to force the invoice status of the sales order to Invoiced",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "category": "sale",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/sale-workflow",
-    "depends": ["sale"],
-    "data": ["view/sale_order.xml"],
+    "depends": ["sale", "sales_team"],
+    "data": [
+        "security/security.xml",
+        "view/sale_order.xml",
+    ],
     "installable": True,
 }

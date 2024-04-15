@@ -8,7 +8,7 @@
             <group name="sale_info" position="inside">
                 <field
                     name="force_invoiced"
-                    groups="sales_team.group_sale_manager"
+                    groups="sale_force_invoiced.group_force_invoiced"
                     widget="boolean_toggle"
                     attrs="{'invisible': [('state', 'not in', ('sale', 'done'))]}"
                 />
