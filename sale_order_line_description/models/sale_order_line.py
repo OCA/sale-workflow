@@ -8,8 +8,8 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     @api.onchange("product_id")
-    def _onchange_product_id_warning(self):
-        res = super()._onchange_product_id_warning()
+    def _compute_name(self):
+        res = super()._compute_name()
         if not self.product_id:  # pragma: no cover
             return res
         if (

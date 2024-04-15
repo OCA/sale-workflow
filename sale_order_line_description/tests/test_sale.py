@@ -58,7 +58,7 @@ class TestSaleOrderLineDescriptionChange(common.TransactionCase):
         sale_order_line = self.sale_order_line_model.with_user(self.user_1).create(
             line_values.copy()
         )
-        sale_order_line._onchange_product_id_warning()
+
         self.assertEqual(
             sale_order_line.name,
             "\n".join([self.product.name, self.product.description_sale]),
@@ -70,7 +70,7 @@ class TestSaleOrderLineDescriptionChange(common.TransactionCase):
         sale_order_line = self.sale_order_line_model.with_user(self.user_2).create(
             line_values.copy()
         )
-        sale_order_line._onchange_product_id_warning()
+
         self.assertEqual(
             sale_order_line.name,
             self.product.description_sale,
