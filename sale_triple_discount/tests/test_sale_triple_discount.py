@@ -57,6 +57,7 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line1.price_subtotal, 300.0)
         self.assertAlmostEqual(self.so_line2.price_subtotal, 150.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 450.0)
+        self.assertAlmostEqual(self.order.amount_undiscounted, 1200.0)
         self.assertAlmostEqual(self.order.amount_tax, 67.5)
         # Mix taxed and untaxed:
         self.so_line1.tax_id = False
@@ -72,16 +73,19 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line1.price_subtotal, 75.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 75.0)
         self.assertAlmostEqual(self.order.amount_tax, 11.25)
+        self.assertAlmostEqual(self.order.amount_undiscounted, 600.0)
         # Unset first discount:
         self.so_line1.discount = 0.0
         self.assertAlmostEqual(self.so_line1.price_subtotal, 150.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 150.0)
         self.assertAlmostEqual(self.order.amount_tax, 22.5)
+        self.assertAlmostEqual(self.order.amount_undiscounted, 600.0)
         # Set a charge instead:
         self.so_line1.discount2 = -50.0
         self.assertAlmostEqual(self.so_line1.price_subtotal, 450.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 450.0)
         self.assertAlmostEqual(self.order.amount_tax, 67.5)
+        self.assertAlmostEqual(self.order.amount_undiscounted, 600.0)
         # sale tax total json (multiplicative)
         json_vals = json.loads(self.order.tax_totals_json)
         self.assertAlmostEqual(
@@ -96,6 +100,7 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line1.price_subtotal, 420.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 420.0)
         self.assertAlmostEqual(self.order.amount_tax, 63.0)
+        self.assertAlmostEqual(self.order.amount_undiscounted, 600.0)
         # sale tax total json (additive)
         json_vals = json.loads(self.order.tax_totals_json)
         self.assertAlmostEqual(
@@ -109,6 +114,7 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line1.price_subtotal, 0.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 0.0)
         self.assertAlmostEqual(self.order.amount_tax, 0.0)
+        self.assertAlmostEqual(self.order.amount_undiscounted, 600.0)
         # set discount_type to multiplicative
         self.so_line1.discount = 50.0
         self.so_line1.discount2 = 50.0
@@ -117,6 +123,7 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line1.price_subtotal, 75.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 75.0)
         self.assertAlmostEqual(self.order.amount_tax, 11.25)
+        self.assertAlmostEqual(self.order.amount_undiscounted, 600.0)
 
     def test_03_sale_order_complex_triple_discount(self):
         """Tests on multiple lines"""
@@ -126,6 +133,7 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line1.price_subtotal, 75.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 675.0)
         self.assertAlmostEqual(self.order.amount_tax, 101.25)
+        self.assertAlmostEqual(self.order.amount_undiscounted, 1200.0)
         # additive discount
         self.so_line2.discount3 = 50.0
         self.assertAlmostEqual(self.so_line2.price_subtotal, 300.0)
@@ -136,6 +144,7 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line2.price_subtotal, 240.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 315.0)
         self.assertAlmostEqual(self.order.amount_tax, 47.25)
+        self.assertAlmostEqual(self.order.amount_undiscounted, 1200.0)
         # multiplicative discount
         self.so_line2.discount2 = 0.0
         self.so_line2.discount3 = 50.0
@@ -147,6 +156,7 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line2.price_subtotal, 270.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 345.0)
         self.assertAlmostEqual(self.order.amount_tax, 51.75)
+        self.assertAlmostEqual(self.order.amount_undiscounted, 1200.0)
 
     def test_04_sale_order_triple_discount_invoicing(self):
         """When a confirmed order is invoiced, the resultant invoice
@@ -195,6 +205,7 @@ class TestSaleOrder(common.TransactionCase):
         self.assertEqual(self.so_line2.price_subtotal, 300.0)
         self.assertEqual(self.order.amount_untaxed, 375.0)
         self.assertEqual(self.order.amount_tax, 56.25)
+        self.assertAlmostEqual(self.order.amount_undiscounted, 1200.0)
 
     def test_06_discount_0(self):
         self.so_line1.discounting_type = "additive"
@@ -209,3 +220,4 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line2.price_subtotal, 600.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 1200.0)
         self.assertAlmostEqual(self.order.amount_tax, 180.0)
+        self.assertAlmostEqual(self.order.amount_undiscounted, 1200.0)
