@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_move_weight_kanban_view" model="ir.ui.view">
+        <field name="inherit_id" ref="stock_weighing.view_move_weight_kanban_view" />
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <field name="date" position="after">
+                <field name="elaboration_note" />
+            </field>
+            <xpath expr="//div[@name='weight_card_footer']" position="inside">
+                <span
+                    t-if="record.elaboration_note.raw_value"
+                    class="badge o_elaboration_note"
+                >
+                    <i class="fa fa-cutlery mr-1" title="Elaboration note" />
+                    <em>
+                        <t t-out="record.elaboration_note.raw_value" />
+                    </em>
+                </span>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_move_search" model="ir.ui.view">
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock_weighing.view_move_search" />
+        <field name="arch" type="xml">
+            <filter name="date_today" position="before">
+                <filter
+                    string="Elaborated"
+                    name="elaborations"
+                    domain="['|', ('elaboration_note', '!=', ''), ('elaboration_ids', '!=', False)]"
+                    context="{'shown_in_panel': {'icon': 'fa-cutlery'}}"
+                />
+                <filter
+                    string="Not elaborated"
+                    name="not_elaborations"
+                    domain="[('elaboration_ids', '=', False), '|', ('elaboration_note', '=', ''), ('elaboration_note', '=', False)]"
+                    context="{'shown_in_panel': {'icon': 'fa-cutlery'}}"
+                />
+                <separator />
+            </filter>
+        </field>
+    </record>
+</odoo>
