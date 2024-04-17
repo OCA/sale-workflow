@@ -45,7 +45,7 @@
     <record id="action_invoice_sale_payment_sheet" model="ir.actions.act_window">
         <field name="name">Invoices</field>
         <field name="res_model">account.move</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
         <field name="view_id" ref="sale_payment_sheet.view_invoice_tree" />
         <field name="domain">[
             ('state', '=', 'posted'),
