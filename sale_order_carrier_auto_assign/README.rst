@@ -28,7 +28,9 @@ Sale Order Carrier Auto Assign
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module assigns automatically delivery carrier on sale order confirmation.
+This module assigns automatically delivery carrier on sale order creation or confirmation.
+
+You may also have a look at the module delivery_auto_refresh in delivery-carrier repository.
 
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
@@ -45,7 +47,10 @@ Configuration
 
 To enable sale order carrier auto assign:
 
-#. Go to *Settings > Sales > Carrier Auto Assign*.
+#. Go to *Settings > Sales > Shipping*.
+
+* Enable on creation: only the carrier will be set.
+* Enable on confirmation: the carrier and delivery line will be set.
 
 Bug Tracker
 ===========
@@ -64,6 +69,7 @@ Authors
 ~~~~~~~
 
 * Camptocamp
+* BCIM
 
 Contributors
 ~~~~~~~~~~~~
@@ -73,6 +79,7 @@ Contributors
 * Phuc (Tran Thanh) <phuc@trobz.com>
 * Telmo Santos <telmo.santos@camptocamp.com>
 * Tris Doan <tridm@trobz.com>
+* Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 
 
 Maintainers

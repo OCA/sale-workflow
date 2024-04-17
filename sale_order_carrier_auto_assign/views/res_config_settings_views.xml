@@ -8,12 +8,21 @@
             <xpath expr="//div[@name='shipping_setting_container']" position="inside">
                 <div class="col-12 col-lg-6 o_setting_box" id="carrier_auto_assign">
                     <div class="o_setting_left_pane">
-                        <field name="carrier_auto_assign" />
+                        <field name="carrier_auto_assign_on_create" />
                     </div>
                     <div class="o_setting_right_pane">
-                        <label for="carrier_auto_assign" string="Carrier auto assign" />
+                        <label for="carrier_auto_assign_on_create" />
                         <div class="text-muted">
-                            Assigns automatically delivery carrier on sale order confirmation.
+                            On the sales quotation, add the shipping method on creation.
+                        </div>
+                    </div>
+                    <div class="o_setting_left_pane">
+                        <field name="carrier_auto_assign_on_confirm" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="carrier_auto_assign_on_confirm" />
+                        <div class="text-muted">
+                            On the sales quotation, add the shipping method and cost line at confirmation.
                         </div>
                     </div>
                 </div>

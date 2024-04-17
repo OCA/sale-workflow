@@ -369,7 +369,8 @@ ul.auto-toc {
 !! source digest: sha256:b5f0ff98a101634f6d21500615b789f2e2cbd6d305d896b93dd77cb31461dec0
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/sale-workflow/tree/16.0/sale_order_carrier_auto_assign"><img alt="OCA/sale-workflow" src="https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_order_carrier_auto_assign"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module assigns automatically delivery carrier on sale order confirmation.</p>
+<p>This module assigns automatically delivery carrier on sale order creation or confirmation.</p>
+<p>You may also have a look at the module delivery_auto_refresh in delivery-carrier repository.</p>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
 <p class="last">This is an alpha version, the data model and design can change at any time without warning.
@@ -393,8 +394,12 @@ Only for development or testing purpose, do not use in production.
 <h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
 <p>To enable sale order carrier auto assign:</p>
 <ol class="arabic simple">
-<li>Go to <em>Settings &gt; Sales &gt; Carrier Auto Assign</em>.</li>
+<li>Go to <em>Settings &gt; Sales &gt; Shipping</em>.</li>
 </ol>
+<ul class="simple">
+<li>Enable on creation: only the carrier will be set.</li>
+<li>Enable on confirmation: the carrier and delivery line will be set.</li>
+</ul>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h1>
@@ -410,6 +415,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <h2><a class="toc-backref" href="#toc-entry-4">Authors</a></h2>
 <ul class="simple">
 <li>Camptocamp</li>
+<li>BCIM</li>
 </ul>
 </div>
 <div class="section" id="contributors">
@@ -420,6 +426,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li>Phuc (Tran Thanh) &lt;<a class="reference external" href="mailto:phuc&#64;trobz.com">phuc&#64;trobz.com</a>&gt;</li>
 <li>Telmo Santos &lt;<a class="reference external" href="mailto:telmo.santos&#64;camptocamp.com">telmo.santos&#64;camptocamp.com</a>&gt;</li>
 <li>Tris Doan &lt;<a class="reference external" href="mailto:tridm&#64;trobz.com">tridm&#64;trobz.com</a>&gt;</li>
+<li>Jacques-Etienne Baudoux (BCIM) &lt;<a class="reference external" href="mailto:je&#64;bcim.be">je&#64;bcim.be</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
