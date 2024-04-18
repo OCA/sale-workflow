@@ -35,7 +35,7 @@
                 groups="sale_elaboration.group_elaboration_note_on_delivery_slip"
                 t-if="move.picking_code != 'incoming' and move.elaboration_note"
             >
-                <strong>Elab.</strong>
+                <i class="fa fa-comment-o " />
                 <span t-field="move.elaboration_note" />
             </div>
         </xpath>
@@ -51,7 +51,7 @@
                 groups="sale_elaboration.group_elaboration_note_on_delivery_slip"
                 t-if="move_line.picking_code != 'incoming' and move_line.elaboration_note"
             >
-                <strong>Elab.</strong>
+                <i class="fa fa-comment-o" />
                 <span t-field="move_line.elaboration_note" />
             </div>
         </xpath>
