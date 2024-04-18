@@ -18,13 +18,6 @@ msgstr ""
 "X-Generator: Poedit 2.3\n"
 
 #. module: sale_elaboration
-#: model_terms:ir.ui.view,arch_db:sale_elaboration.report_delivery_document
-#: model_terms:ir.ui.view,arch_db:sale_elaboration.report_picking
-#: model_terms:ir.ui.view,arch_db:sale_elaboration.stock_report_delivery_has_serial_move_line
-msgid "<strong>Elab.</strong>"
-msgstr ""
-
-#. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__active
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__active
 msgid "Active"

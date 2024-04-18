@@ -9,7 +9,7 @@
                 groups="sale_elaboration.group_elaboration_note_on_picking_operations"
                 t-if="ml.picking_code != 'incoming' and ml.elaboration_note"
             >
-                <strong>Elab.</strong>
+                <i class="fa fa-comment-o" />
                 <span t-field="ml.elaboration_note" />
             </div>
         </xpath>
