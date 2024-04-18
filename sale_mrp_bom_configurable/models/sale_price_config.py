@@ -1,9 +1,13 @@
 from odoo import api, fields, models
-from odoo.exceptions import UserError
+
+from odoo.addons.mrp_bom_configurable.models.mrp_bom_line import check_domain
 
 
 class SalePriceConfig(models.Model):
     _name = "sale.price.config"
+    _description = (
+        "Configuration to compute the price of a product depending on an input config"
+    )
 
     product_id = fields.Many2one(comodel_name="product.template", string="Product")
 
@@ -15,14 +19,21 @@ class SalePriceConfig(models.Model):
         price = 0
 
         for rec in self:
-            for line in rec.sale_price_config_line_ids:
-                price += line._get_price(input_line)
+            for i, line in enumerate(rec.sale_price_config_line_ids):
+                if check_domain(
+                    line.domain,
+                    input_line._get_input_line_values(),
+                    f"line {i}",
+                    f"config {self.product_id.name}",
+                ):
+                    price += line._get_price(input_line)
 
         return price
 
 
 class SalePriceConfigLine(models.Model):
     _name = "sale.price.config.line"
+    _description = "Component of sale price config"
 
     sale_price_config_id = fields.Many2one(comodel_name="sale.price.config")
     company_id = fields.Many2one(
@@ -83,14 +94,16 @@ class SalePriceConfigLine(models.Model):
                 lines = input_line.create_bom_line_data()
                 res_id = self.included_product_or_category
                 for line in lines:
-                    if res_id._name == "product.category" and line["product_tmpl_id"].categ_id.id == res_id.id:
-                        return (
-                            line["product_tmpl_id"].list_price * line["product_qty"]
-                        )
-                    if res_id._name == "product.template" and line["product_tmpl_id"].id == res_id.id:
-                        return (
-                            line["product_tmpl_id"].list_price * line["product_qty"]
-                        )
+                    if (
+                        res_id._name == "product.category"
+                        and line["product_tmpl_id"].categ_id.id == res_id.id
+                    ):
+                        return line["product_tmpl_id"].list_price * line["product_qty"]
+                    if (
+                        res_id._name == "product.template"
+                        and line["product_tmpl_id"].id == res_id.id
+                    ):
+                        return line["product_tmpl_id"].list_price * line["product_qty"]
                 return 0.0
             case "factor":
                 factor = input_line[self.target_field.name]
