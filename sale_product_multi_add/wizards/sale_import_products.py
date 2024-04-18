@@ -1,4 +1,5 @@
 # Copyright 2016 Cédric Pigeon, ACSONE SA/NV (<http://acsone.eu>)
+# Copyright 2024 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -49,6 +50,7 @@ class SaleImportProducts(models.TransientModel):
 
     def select_products(self):
         so_obj = self.env["sale.order"]
+        vals_list = []
         for wizard in self:
             sale = so_obj.browse(self.env.context.get("active_id", False))
 
@@ -56,7 +58,9 @@ class SaleImportProducts(models.TransientModel):
                 for item in wizard.items:
                     vals = self._get_line_values(sale, item)
                     if vals:
-                        self.env["sale.order.line"].create(vals)
+                        vals_list.append(vals)
+        if vals_list:
+            self.env["sale.order.line"].create(vals_list)
 
         return {"type": "ir.actions.act_window_close"}
 
