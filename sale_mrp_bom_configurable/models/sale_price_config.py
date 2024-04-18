@@ -34,7 +34,11 @@ class SalePriceConfig(models.Model):
 class SalePriceConfigLine(models.Model):
     _name = "sale.price.config.line"
     _description = "Component of sale price config"
+    _order = "sequence,id"
 
+    sequence = fields.Integer(
+        default=10, help="Gives the sequence order when displaying a list of records."
+    )
     sale_price_config_id = fields.Many2one(comodel_name="sale.price.config")
     company_id = fields.Many2one(
         "res.company",

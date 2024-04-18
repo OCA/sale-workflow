@@ -14,7 +14,8 @@
                         <page name="Lines">
                             <field name="sale_price_config_line_ids">
                                 <tree editable="bottom">
-                                    <field name="line_type" />
+                                    <field name="sequence" widget="handle" />
+                                    <field name="line_type" required="true" />
                                     <field
                                         name="domain"
                                         widget="domain"
@@ -27,15 +28,15 @@
                                     <field
                                         name="target_field"
                                         domain="target_field_domain"
-                                        attrs="{'invisible': [('line_type', '!=', 'factor')]}"
+                                        attrs="{'invisible': [('line_type', '!=', 'factor')], 'required': [('line_type', '=', 'factor')]}"
                                     />
                                     <field
                                         name="amount"
-                                        attrs="{'invisible': [('line_type', '=', 'include_product_or_category')]}"
+                                        attrs="{'invisible': [('line_type', '=', 'include_product_or_category')], 'required': [('line_type', '!=', 'include_product_or_category')]}"
                                     />
                                     <field
                                         name="included_product_or_category"
-                                        attrs="{'invisible': [('line_type', '!=', 'include_product_or_category')]}"
+                                        attrs="{'invisible': [('line_type', '!=', 'include_product_or_category')],'required': [('line_type', '=', 'include_product_or_category')] }"
                                     />
                                 </tree>
                             </field>
