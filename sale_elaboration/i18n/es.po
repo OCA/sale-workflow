@@ -18,13 +18,6 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: sale_elaboration
-#: model_terms:ir.ui.view,arch_db:sale_elaboration.report_delivery_document
-#: model_terms:ir.ui.view,arch_db:sale_elaboration.report_picking
-#: model_terms:ir.ui.view,arch_db:sale_elaboration.stock_report_delivery_has_serial_move_line
-msgid "<strong>Elab.</strong>"
-msgstr "<strong>elab.</strong>"
-
-#. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__active
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__active
 msgid "Active"
@@ -317,6 +310,9 @@ msgstr "Regla de Inventario"
 #: model:ir.model,name:sale_elaboration.model_stock_picking
 msgid "Transfer"
 msgstr "Albarán"
+
+#~ msgid "<strong>Elab.</strong>"
+#~ msgstr "<strong>elab.</strong>"
 
 #~ msgid "<strong>Elaboration</strong>"
 #~ msgstr "<strong>Elaboración</strong>"
