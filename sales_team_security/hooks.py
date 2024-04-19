@@ -2,15 +2,15 @@
 # Copyright 2020 - Iván Todorovich
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo import SUPERUSER_ID, api
+from odoo import api
 
 
-def post_init_hook(cr, registry):
+def post_init_hook(env):
     """At installation time, propagate the parent sales team to the children
     contacts that have this field empty, as it's supposed that the intention
     is to have the same.
     """
-    cr.execute(
+    env.cr.execute(
         """UPDATE res_partner
         SET team_id=parent.team_id
         FROM res_partner AS parent
@@ -20,10 +20,9 @@ def post_init_hook(cr, registry):
     )
 
 
-def uninstall_hook(cr, registry):  # pragma: no cover
+def uninstall_hook(env):  # pragma: no cover
     """At uninstall, revert changes made to record rules"""
     with api.Environment.manage():
-        env = api.Environment(cr, SUPERUSER_ID, {})
         env.ref("sales_team.group_sale_salesman_all_leads").write(
             {
                 "implied_ids": [
@@ -32,15 +31,13 @@ def uninstall_hook(cr, registry):  # pragma: no cover
             }
         )
     # At installation time, we need to sync followers
-    with api.Environment.manage():
-        env = api.Environment(cr, SUPERUSER_ID, {})
-        partners = env["res.partner"].search(
-            [
-                ("parent_id", "=", False),
-                ("is_company", "=", True),
-                "|",
-                ("user_id", "!=", False),
-                ("child_ids.user_id", "!=", False),
-            ]
-        )
-        partners._add_followers_from_salesmans()
+    partners = env["res.partner"].search(
+        [
+            ("parent_id", "=", False),
+            ("is_company", "=", True),
+            "|",
+            ("user_id", "!=", False),
+            ("child_ids.user_id", "!=", False),
+        ]
+    )
+    partners._add_followers_from_salesmans()
