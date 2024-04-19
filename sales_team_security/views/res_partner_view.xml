@@ -6,8 +6,8 @@
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='child_ids']/form" position="inside">
-                <field name="user_id" invisible="1" />
-                <field name="team_id" invisible="1" />
+                <field name="user_id" column_invisible="1" />
+                <field name="team_id" column_invisible="1" />
             </xpath>
         </field>
     </record>

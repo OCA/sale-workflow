@@ -43,7 +43,7 @@ class TestSalesTeamSecurity(TestCommon):
         contact = self.env["res.partner"].create(
             {"name": "Test contact", "parent_id": self.partner.id, "team_id": False}
         )
-        post_init_hook(self.env.cr, self.env.registry)
+        post_init_hook(self.env)
         contact.env.invalidate_all()
         self.assertEqual(contact.team_id, self.partner.team_id)
 
