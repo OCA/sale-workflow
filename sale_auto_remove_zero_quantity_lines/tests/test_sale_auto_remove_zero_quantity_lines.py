@@ -50,9 +50,25 @@ class TestSaleAutoRemoveZeroQuantityLines(TransactionCase):
                             "display_type": "line_note",
                         },
                     ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "     ",
+                            "display_type": "line_note",
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "     ",
+                            "display_type": "line_section",
+                        },
+                    ),
                 ],
                 "pricelist_id": self.env.ref("product.list0").id,
             }
         )
         so.action_confirm()
-        self.assertEqual(len(so.order_line), 2)
+        self.assertEqual(len(so.order_line), 3)
