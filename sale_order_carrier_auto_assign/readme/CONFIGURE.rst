@@ -1,3 +1,3 @@
-To enable sale order carrier auto assign:
+#. Go to *Settings > Sales > Shipping*.
 
-#. Go to *Settings > Sales > Carrier Auto Assign*.
+* Enable on confirmation: the carrier and delivery line will be set.
