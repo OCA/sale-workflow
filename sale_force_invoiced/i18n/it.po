@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-31 04:21+0000\n"
-"PO-Revision-Date: 2023-12-22 14:38+0000\n"
+"PO-Revision-Date: 2024-04-19 09:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -22,7 +22,7 @@ msgstr ""
 #. module: sale_force_invoiced
 #: model:res.groups,name:sale_force_invoiced.group_force_invoiced
 msgid "Enable Force Invoiced"
-msgstr ""
+msgstr "Abilita forzatura fattura"
 
 #. module: sale_force_invoiced
 #: model:ir.model.fields,field_description:sale_force_invoiced.field_sale_order__force_invoiced
@@ -32,7 +32,7 @@ msgstr "Forza a fatturato"
 #. module: sale_force_invoiced
 #: model:ir.model,name:sale_force_invoiced.model_sale_advance_payment_inv
 msgid "Sales Advance Payment Invoice"
-msgstr ""
+msgstr "Fattura di vendita con pagamento anticipato"
 
 #. module: sale_force_invoiced
 #: model:ir.model,name:sale_force_invoiced.model_sale_order
@@ -47,6 +47,8 @@ msgid ""
 "The order %(name)s is forced as invoiced. You should first remove this flag "
 "to create a new invoice."
 msgstr ""
+"L'ordine %(name)s è forzato a fatturato. Bisogna rimuovere questa "
+"impostazione prima di creare una nuova fattura."
 
 #. module: sale_force_invoiced
 #: model:ir.model.fields,help:sale_force_invoiced.field_sale_order__force_invoiced
