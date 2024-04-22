@@ -15,10 +15,10 @@ class AccountPayment(models.Model):
         res = super(AccountPayment, self)._compute_partner_bank_id()
         for payment in self:
             if (
-                partner_bank_by_pay.get(payment.id, False) 
-                and partner_bank_by_pay.get(payment.id) 
+                partner_bank_by_pay.get(payment.id, False)
+                and partner_bank_by_pay.get(payment.id)
                 in payment.available_partner_bank_ids
             ):
                 payment.partner_bank_id = partner_bank_by_pay.get(payment.id)
-                
+
         return res
