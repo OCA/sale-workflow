@@ -14,7 +14,9 @@ class SaleOrder(models.Model):
 
     @api.onchange("commitment_date")
     def _onchange_commitment_date(self):
-        """Update empty commitment date order lines with commitment date from sale order"""
+        """
+        Update empty commitment date order lines with commitment date from sale order
+        """
         result = super()._onchange_commitment_date() or {}
         if "warning" not in result:
             for line in self.order_line:
