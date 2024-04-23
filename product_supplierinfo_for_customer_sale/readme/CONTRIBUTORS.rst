@@ -8,3 +8,5 @@
 * Lois Rilo <lois.rilo@forgeflow.com>
 * Juany Davila <juany.davila@forgeflow.com>
 * Carlos Reyes <carlos@studio73.es>
+* Ooops404 <https://www.ooops404.com>
+  * Eduard Brahas <eduardbrhas@outlook.it>
