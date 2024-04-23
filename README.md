@@ -95,7 +95,7 @@ addon | version | maintainers | summary
 [sale_order_line_price_history](sale_order_line_price_history/) | 14.0.1.0.0 |  | Sale order line price history
 [sale_order_line_sequence](sale_order_line_sequence/) | 14.0.2.0.0 |  | Propagates SO line sequence to invoices and stock picking.
 [sale_order_lot_generator](sale_order_lot_generator/) | 14.0.1.0.2 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) [![mourad-ehm](https://github.com/mourad-ehm.png?size=30px)](https://github.com/mourad-ehm) [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Sale Order Lot Generator
-[sale_order_lot_selection](sale_order_lot_selection/) | 14.0.1.1.0 | [![bodedra](https://github.com/bodedra.png?size=30px)](https://github.com/bodedra) | Sale Order Lot Selection
+[sale_order_lot_selection](sale_order_lot_selection/) | 14.0.1.1.1 | [![bodedra](https://github.com/bodedra.png?size=30px)](https://github.com/bodedra) | Sale Order Lot Selection
 [sale_order_lot_selection_by_quant](sale_order_lot_selection_by_quant/) | 14.0.1.0.1 | [![aleuffre](https://github.com/aleuffre.png?size=30px)](https://github.com/aleuffre) | Sale Order Lot Selection By Quant
 [sale_order_mass_action](sale_order_mass_action/) | 14.0.1.0.0 |  | Allows to easy mass operations on sale orders.
 [sale_order_note_template](sale_order_note_template/) | 14.0.1.0.0 |  | Add sale orders terms and conditions template that can be used to quickly fullfill sale order terms and conditions
