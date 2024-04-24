@@ -268,7 +268,7 @@ class TestSaleProductPackagingContainerDeposit(Common):
         box_line = self.sale_order.order_line.filtered(
             lambda ol: ol.product_id == self.box
         )
-        (box_line | pallet_line).invalidate_cache()
+        (box_line | pallet_line).invalidate_recordset()
         self.assertEqual(pallet_line.qty_delivered, 0)
         self.assertEqual(box_line.qty_delivered, 5)
 
