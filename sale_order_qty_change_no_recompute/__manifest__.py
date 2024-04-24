@@ -3,7 +3,7 @@
 {
     "name": "Sale Order Qty change no recompute",
     "summary": "Prevent recompute if only quantity has changed in sale order line",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Sale Workflow",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
