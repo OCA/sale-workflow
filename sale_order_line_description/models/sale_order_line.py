@@ -7,7 +7,7 @@ from odoo import api, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.onchange("product_id")
+    @api.depends("product_id")
     def _compute_name(self):
         res = super()._compute_name()
         if not self.product_id:  # pragma: no cover
