@@ -12,7 +12,7 @@
             <field name="note" position="after">
                 <field
                     name="customer_note"
-                    attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                    readonly="state in ['done', 'cancel']"
                     placeholder="Comments that will be printed in the delivery slip"
                 />
             </field>
