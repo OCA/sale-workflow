@@ -21,7 +21,7 @@ class TestSaleStockCancelRestriction(TransactionCase):
         cls.sale_order = so_form.save()
         cls.sale_order.action_confirm()
         cls.picking = cls.sale_order.picking_ids
-        cls.picking.move_ids.quantity_done = 2
+        cls.picking.move_ids.quantity = 2
 
     def test_cancel_sale_order_restrict(self):
         """Validates the picking and do the assertRaises cancelling the
