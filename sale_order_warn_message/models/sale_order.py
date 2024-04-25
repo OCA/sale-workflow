@@ -5,7 +5,6 @@ from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
-
     _inherit = "sale.order"
 
     sale_warn_msg = fields.Text(compute="_compute_sale_warn_msg")
