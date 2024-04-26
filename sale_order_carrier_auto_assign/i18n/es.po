@@ -28,11 +28,6 @@ msgid "Carrier Auto Assign"
 msgstr ""
 
 #. module: sale_order_carrier_auto_assign
-#: model_terms:ir.ui.view,arch_db:sale_order_carrier_auto_assign.res_config_settings_view_form_sale
-msgid "Carrier auto assign"
-msgstr ""
-
-#. module: sale_order_carrier_auto_assign
 #: model:ir.model,name:sale_order_carrier_auto_assign.model_res_company
 msgid "Companies"
 msgstr ""
