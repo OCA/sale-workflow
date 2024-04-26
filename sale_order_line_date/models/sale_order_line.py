@@ -19,7 +19,7 @@ class SaleOrderLine(models.Model):
     def _prepare_procurement_values(self, group_id=False):
         vals = super()._prepare_procurement_values(group_id)
         # has ensure_one already
-        if self.commitment_date:
+        if self.commitment_date and not self.move_ids:
             vals.update(
                 {
                     "date_planned": self.commitment_date
