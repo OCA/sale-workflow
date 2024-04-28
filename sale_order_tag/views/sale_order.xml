@@ -9,7 +9,17 @@
         <field name="field_parent">child_ids</field>
         <field name="arch" type="xml">
             <field name="partner_id" position="before">
-                <field name="so_tag_ids" widget="many2many_tags" />
+                <field name="so_tag_ids" widget="many2many_tags" optional="hide" />
+            </field>
+        </field>
+    </record>
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="name">sale.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="before">
+                <field name="so_tag_ids" widget="many2many_tags" optional="hide" />
             </field>
         </field>
     </record>
