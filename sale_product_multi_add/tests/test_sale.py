@@ -1,11 +1,11 @@
-# © 2016  Cédric Pigeon, Acsone SA/NV (http://www.acsone.eu)
+# © 2016-2024  Cédric Pigeon, Acsone SA/NV (http://www.acsone.eu)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import odoo.tests.common as common
 
 
 class TestSale(common.TransactionCase):
     def setUp(self):
-        super(TestSale, self).setUp()
+        super().setUp()
 
         self.product_9 = self.env.ref("product.product_product_9")
         self.product_11 = self.env.ref("product.product_product_11")

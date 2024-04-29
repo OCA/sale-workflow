@@ -28,8 +28,8 @@ Sale Product Multi Add
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module extends the functionality of sale module and allow you to
-import multiple products into your current sale order.
+This module extends the functionality of the Sales module by allowing
+you to import multiple products into your current Sale Order.
 
 **Table of contents**
 
@@ -39,13 +39,14 @@ import multiple products into your current sale order.
 Usage
 =====
 
-This module add a button on sale order to import several products on
-your current sale order. A wizard opens and allows the user to search
-and select products.
+This module adds a button on a Sale Order to import several products on
+your current sale order. To use this module create a Sale Order and
+click the button to open a wizard where you can add multiple products
+and set the quantities.
 
 |Sale Product Multi Add|
 
-.. |Sale Product Multi Add| image:: https://raw.githubusercontent.com/sale_product_multi_add/static/src/description/sale_product_multi_add.png
+.. |Sale Product Multi Add| image:: https://raw.githubusercontent.com/sale_product_multi_add/static/description/sale_product_multi_add.png
 
 Bug Tracker
 ===========
@@ -76,6 +77,7 @@ Contributors
    -  Jonathan Oscategui Taza <info@pesol.es>
 
 -  Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
+-  Anaïs López <anais.lopez@forgeflow.com>
 
 Maintainers
 -----------
