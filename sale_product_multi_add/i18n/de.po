@@ -28,6 +28,11 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 #. module: sale_product_multi_add
+#: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
+msgid "Confirm"
+msgstr ""
+
+#. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__create_uid
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__create_uid
 msgid "Created by"
@@ -60,12 +65,6 @@ msgstr "Produkte importieren"
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__items
 msgid "Items"
 msgstr ""
-
-#. module: sale_product_multi_add
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products____last_update
-#: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items____last_update
-msgid "Last Modified on"
-msgstr "Zuletzt geändert am"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__write_uid
@@ -107,11 +106,6 @@ msgid "Sale Import Products Items"
 msgstr ""
 
 #. module: sale_product_multi_add
-#: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
-msgid "Select"
-msgstr "Auswählen"
-
-#. module: sale_product_multi_add
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
 msgid "Set quantities"
 msgstr ""
@@ -126,3 +120,9 @@ msgstr "Assistent"
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
 msgid "or"
 msgstr "oder"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Zuletzt geändert am"
+
+#~ msgid "Select"
+#~ msgstr "Auswählen"

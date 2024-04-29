@@ -33,7 +33,7 @@
                 <footer>
                 <button
                         name="select_products"
-                        string="Select"
+                        string="Confirm"
                         type="object"
                         class="oe_highlight"
                     />
