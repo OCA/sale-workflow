@@ -1,0 +1,85 @@
+<odoo>
+
+    <record id="mrp_production_form_inherit_approval" model="ir.ui.view">
+        <field name="name">mrp.production.approval.inherit</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath
+                expr="//sheet/group/group/field[@name='product_id']"
+                position="replace"
+            >
+                <label
+                    for="product_id"
+                    readonly="state != 'draft'"
+                />
+                <div>
+                    <field
+                        name="product_id"
+                        context="{'default_type': 'product'}"
+                        readonly="state != 'draft'"
+                        class="oe_inline"
+                    />
+                    <button
+                        style="margin-left: 25px;"
+                        class="fa fa-exclamation-triangle"
+                        invisible="mo_exceptions or state in ('done','cancel')"
+                        title="A product on this Manufacturing Order has been marked as not allowed."
+                    />
+
+                </div>
+                <field invisible="1" name="mo_exceptions" />
+                <field invisible="1" name="mo_line_exceptions" />
+            </xpath>
+            <xpath
+                expr="//notebook/page/field/tree/field[@name='product_id']"
+                position="after"
+            >
+                <button
+                    invisible="approved_mrp_component_ok or not product_id"
+                    class="fa fa-exclamation-triangle"
+                    title="A product on this Manufacturing Order has been marked as not allowed."
+                />
+                <field invisible="1" name="approved_mrp_component_ok" />
+            </xpath>
+            <div name="button_box" position="after">
+                <div
+                    invisible="state in ('done', 'cancel') or (not mo_line_exceptions and (mo_exceptions and not bom_mo_exception))"
+                    class="alert alert-warning text-center"
+                    role="alert"
+                >Exception: A product on this Order is in a status which needs to be fixed before moving forward.</div>
+            </div>
+            <xpath
+                expr="//sheet/group/group/div[@name='bom_div']/field[@name='bom_id']"
+                position="replace"
+            >
+                    <field
+                        name="bom_id"
+                        context="{'default_product_tmpl_id': product_tmpl_id}"
+                        readonly="state != 'draft'"
+                    />
+                    <button
+                        style="margin-left: 25px;"
+                        class="fa fa-exclamation-triangle"
+                        invisible="not bom_mo_exception or state in ('done', 'cancel')"
+                        title="A product on this BoM has been marked as not allowed."
+                    />
+                    <field name="bom_mo_exception" invisible="1" />
+            </xpath>
+            <xpath expr="//sheet/group/group/label[@name='bom_label']" position="attributes">
+                <attribute name="readonly">[('state', '!=', 'draft')]</attribute>
+            </xpath>
+            <xpath
+                expr="//notebook/page[@name='miscellaneous']/group/group/field[@name='picking_type_id']"
+                position="after"
+            >
+                <field
+                    name="override_mo_exception"
+                    groups="sales_team.group_sale_manager"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
