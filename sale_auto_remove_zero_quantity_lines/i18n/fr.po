@@ -54,7 +54,13 @@ msgstr ""
 #: code:addons/sale_auto_remove_zero_quantity_lines/models/sale_order.py:0
 #, python-format
 msgid ""
-"Some sale order lines with zero quantities were removed upon confirmation."
+"Some lines with zero quantities or empty notes were removed upon "
+"confirmation."
 msgstr ""
-"Certaines lignes d'ordre de vente avec des quantités nulles ont été "
-"supprimées lors de la confirmation."
+
+#, python-format
+#~ msgid ""
+#~ "Some sale order lines with zero quantities were removed upon confirmation."
+#~ msgstr ""
+#~ "Certaines lignes d'ordre de vente avec des quantités nulles ont été "
+#~ "supprimées lors de la confirmation."
