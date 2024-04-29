@@ -1,2 +1,2 @@
-This module extends the functionality of sale module and allow you to
-import multiple products into your current sale order.
+This module extends the functionality of the Sales module by allowing you to
+import multiple products into your current Sale Order.

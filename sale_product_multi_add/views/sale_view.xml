@@ -14,7 +14,7 @@
                     icon="fa-plus-circle"
                     Help="Select Products to Import"
                     type="action"
-                    attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"
+                    invisible="state not in ['draft', 'sent']"
                 />
             </field>
             <field name="order_line" position="attributes">
