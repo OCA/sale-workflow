@@ -1,0 +1,9 @@
+<odoo>
+
+    <record id="menu_stock_product_state" model="ir.ui.menu">
+        <field name="name">Product States</field>
+        <field name="action" ref="product_state.action_product_state" />
+        <field name="parent_id" ref="stock.menu_product_in_config_stock" />
+    </record>
+
+</odoo>
