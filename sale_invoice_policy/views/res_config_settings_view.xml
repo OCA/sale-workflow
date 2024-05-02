@@ -6,18 +6,6 @@
         <field name="inherit_id" ref="sale.res_config_settings_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//div[@id='sales_settings_invoicing_policy']" position="after">
-                <label
-                    for="sale_default_invoice_policy"
-                    string="Default Sale Order Invoice Policy"
-                    invisible="1"
-                />
-                <div invisible="1">
-                    <field
-                        name="sale_default_invoice_policy"
-                        class="oe_inline"
-                        invisible="1"
-                    />
-                </div>
                 <div
                     class="col-12 col-lg-6 o_setting_box"
                     id="sale_invoice_policy_setting"
