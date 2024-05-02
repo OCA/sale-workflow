@@ -10,6 +10,7 @@ class SaleOrder(models.Model):
     invoice_blocking_reason_id = fields.Many2one(
         "invoice.blocking.reason",
         string="Blocking for invoicing",
+        states={"cancel": [("readonly", True)]},
     )
 
     @api.depends("invoice_blocking_reason_id", "state", "order_line.invoice_status")
