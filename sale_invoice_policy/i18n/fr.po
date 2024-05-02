@@ -23,23 +23,6 @@ msgid "Config Settings"
 msgstr "Paramètres de configuration"
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_product__default_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_template__default_invoice_policy
-msgid "Default Invoicing Policy"
-msgstr "Politique de facturation par défaut"
-
-#. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_default_invoice_policy
-msgid "Default Sale Invoice Policy"
-msgstr "Politique de facturation des ventes par défaut"
-
-#. module: sale_invoice_policy
-#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
-msgid "Default Sale Order Invoice Policy"
-msgstr "Politique de facturation par défaut des ventes"
-
-#. module: sale_invoice_policy
-#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__product_template__default_invoice_policy__delivery
 #: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__delivery
 msgid "Delivered quantities"
 msgstr "Quantités Livrées"
@@ -60,14 +43,6 @@ msgid "Invoice Policy required in Sale Orders"
 msgstr "Politique de facturation requise dans les commandes de vente"
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_product__invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_template__invoice_policy
-msgid "Invoicing Policy"
-msgstr "Politique de facturation"
-
-#. module: sale_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_product_product__default_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_product_template__default_invoice_policy
 #: model:ir.model.fields,help:sale_invoice_policy.field_sale_order__invoice_policy
 msgid ""
 "Ordered Quantity: Invoice based on the quantity the customer ordered.\n"
@@ -80,27 +55,9 @@ msgstr ""
 "livré (temps passé dans le cas de prestations)."
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_product_product__invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_product_template__invoice_policy
-msgid ""
-"Ordered Quantity: Invoice quantities ordered by the customer.\n"
-"Delivered Quantity: Invoice quantities delivered to the customer."
-msgstr ""
-"Quantités commandées : facturation basée sur les quantités commandées par le "
-"client.\n"
-"Quantités livrées : facturation basée sur les quantités que le fournisseur a "
-"livré (temps passé dans le cas de prestations)."
-
-#. module: sale_invoice_policy
-#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__product_template__default_invoice_policy__order
 #: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__order
 msgid "Ordered quantities"
 msgstr "Quantités Commandées"
-
-#. module: sale_invoice_policy
-#: model:ir.model,name:sale_invoice_policy.model_product_template
-msgid "Product"
-msgstr ""
 
 #. module: sale_invoice_policy
 #: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
@@ -126,6 +83,27 @@ msgstr "Ligne de bon de commande"
 #: model:ir.model.fields,help:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
 msgid "This makes Invoice Policy required on Sale Orders"
 msgstr "La politique de facturation est requise sur les bons de commandes"
+
+#~ msgid "Default Invoicing Policy"
+#~ msgstr "Politique de facturation par défaut"
+
+#~ msgid "Default Sale Invoice Policy"
+#~ msgstr "Politique de facturation des ventes par défaut"
+
+#~ msgid "Default Sale Order Invoice Policy"
+#~ msgstr "Politique de facturation par défaut des ventes"
+
+#~ msgid "Invoicing Policy"
+#~ msgstr "Politique de facturation"
+
+#~ msgid ""
+#~ "Ordered Quantity: Invoice quantities ordered by the customer.\n"
+#~ "Delivered Quantity: Invoice quantities delivered to the customer."
+#~ msgstr ""
+#~ "Quantités commandées : facturation basée sur les quantités commandées par "
+#~ "le client.\n"
+#~ "Quantités livrées : facturation basée sur les quantités que le "
+#~ "fournisseur a livré (temps passé dans le cas de prestations)."
 
 #~ msgid "Product Template"
 #~ msgstr "Modèle de produit"
