@@ -22,23 +22,6 @@ msgid "Config Settings"
 msgstr "Configuració"
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_product__default_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_template__default_invoice_policy
-msgid "Default Invoicing Policy"
-msgstr "Política de Facturació"
-
-#. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_default_invoice_policy
-msgid "Default Sale Invoice Policy"
-msgstr "Política de Facturació"
-
-#. module: sale_invoice_policy
-#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
-msgid "Default Sale Order Invoice Policy"
-msgstr "Política de Facturació"
-
-#. module: sale_invoice_policy
-#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__product_template__default_invoice_policy__delivery
 #: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__delivery
 msgid "Delivered quantities"
 msgstr "Quantitats entregades"
@@ -59,14 +42,6 @@ msgid "Invoice Policy required in Sale Orders"
 msgstr "Política de Facturació"
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_product__invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_template__invoice_policy
-msgid "Invoicing Policy"
-msgstr "Política de Facturació"
-
-#. module: sale_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_product_product__default_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_product_template__default_invoice_policy
 #: model:ir.model.fields,help:sale_invoice_policy.field_sale_order__invoice_policy
 msgid ""
 "Ordered Quantity: Invoice based on the quantity the customer ordered.\n"
@@ -78,26 +53,9 @@ msgstr ""
 "proveïdor ( temps o entregues)."
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_product_product__invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_product_template__invoice_policy
-msgid ""
-"Ordered Quantity: Invoice quantities ordered by the customer.\n"
-"Delivered Quantity: Invoice quantities delivered to the customer."
-msgstr ""
-"Quantitat demanada: Factura basada en la quantitat demanada pel client.\n"
-"Quantitat entregada: Facturada en funció de la quantitat entregada pel "
-"proveïdor ( temps o entregues)."
-
-#. module: sale_invoice_policy
-#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__product_template__default_invoice_policy__order
 #: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__order
 msgid "Ordered quantities"
 msgstr "Quantitats Demanades"
-
-#. module: sale_invoice_policy
-#: model:ir.model,name:sale_invoice_policy.model_product_template
-msgid "Product"
-msgstr ""
 
 #. module: sale_invoice_policy
 #: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
@@ -123,6 +81,26 @@ msgstr "Línia de comanda de venda"
 #: model:ir.model.fields,help:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
 msgid "This makes Invoice Policy required on Sale Orders"
 msgstr "La política de facturació és necessària a les comandes de venda"
+
+#~ msgid "Default Invoicing Policy"
+#~ msgstr "Política de Facturació"
+
+#~ msgid "Default Sale Invoice Policy"
+#~ msgstr "Política de Facturació"
+
+#~ msgid "Default Sale Order Invoice Policy"
+#~ msgstr "Política de Facturació"
+
+#~ msgid "Invoicing Policy"
+#~ msgstr "Política de Facturació"
+
+#~ msgid ""
+#~ "Ordered Quantity: Invoice quantities ordered by the customer.\n"
+#~ "Delivered Quantity: Invoice quantities delivered to the customer."
+#~ msgstr ""
+#~ "Quantitat demanada: Factura basada en la quantitat demanada pel client.\n"
+#~ "Quantitat entregada: Facturada en funció de la quantitat entregada pel "
+#~ "proveïdor ( temps o entregues)."
 
 #~ msgid "Product Template"
 #~ msgstr "Plantilla del Producte"
