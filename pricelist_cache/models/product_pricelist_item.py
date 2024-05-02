@@ -46,7 +46,7 @@ class PricelistItem(models.Model):
         pricelist_products = defaultdict(list)
         for item in self:
             pricelist_products[item.pricelist_id.id].extend(
-                item._get_pricelist_products()
+                item._get_pricelist_product_ids()
             )
         return pricelist_products
 

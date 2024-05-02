@@ -63,7 +63,7 @@ class Pricelist(models.Model):
             if record._is_factor_pricelist() or record._is_global_pricelist():
                 product_ids_to_cache = self.env["product.product"].search([]).ids
             else:
-                product_ids_to_cache = record.item_ids._get_pricelist_products()
+                product_ids_to_cache = record.item_ids._get_pricelist_product_ids()
 
             for product_chunk_ids in tools.misc.split_every(
                 PRODUCT_BATCH, product_ids_to_cache

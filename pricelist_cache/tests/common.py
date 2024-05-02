@@ -11,36 +11,42 @@ LIST_PRICES_MAPPING = {
         {"id": 18, "price": 79.0},
         {"id": 19, "price": 100.0},
         {"id": 20, "price": 47.0},
+        {"id": 39, "price": 750.0},
     ],
     "pricelist_cache.list1": [
         {"id": 17, "price": 75.0},
         {"id": 18, "price": 79.0},
         {"id": 19, "price": 100.0},
         {"id": 20, "price": 47.0},
+        {"id": 39, "price": 750.0},
     ],
     "pricelist_cache.list2": [
         {"id": 17, "price": 50.0},
         {"id": 18, "price": 79.0},
         {"id": 19, "price": 100.0},
         {"id": 20, "price": 47.0},
+        {"id": 39, "price": 750.0},
     ],
     "pricelist_cache.list3": [
         {"id": 17, "price": 25.0},
         {"id": 18, "price": 79.0},
         {"id": 19, "price": 100.0},
         {"id": 20, "price": 47.0},
+        {"id": 39, "price": 750.0},
     ],
     "pricelist_cache.list4": [
         {"id": 17, "price": 15.0},
         {"id": 18, "price": 50.0},
         {"id": 19, "price": 100.0},
         {"id": 20, "price": 47.0},
+        {"id": 39, "price": 1000.0},
     ],
     "pricelist_cache.list5": [
         {"id": 17, "price": 45.0},
         {"id": 18, "price": 99.0},
         {"id": 19, "price": 120.0},
         {"id": 20, "price": 67.0},
+        {"id": 39, "price": 770.0},
     ],
 }
 
@@ -88,7 +94,7 @@ class TestPricelistCacheCommon(SavepointCase):
             )
         )
         # Odoo does not seems to register hooks by itself when tests are run
-        # the following line registers them explicitely
+        # the following line registers them explicitly
         cls.env["base.automation"]._register_hook()
         cls.cache_model = cls.env["product.pricelist.cache"]
         # root pricelists
@@ -120,9 +126,19 @@ class TestPricelistCacheCommon(SavepointCase):
         cls.p8 = cls.env.ref("product.product_product_8")
         # P9 not in any pricelist
         cls.p9 = cls.env.ref("product.product_product_9")
+        cls.p10 = cls.env["product.product"].search(
+            [
+                (
+                    "product_tmpl_id",
+                    "=",
+                    cls.env.ref("pricelist_cache.product_template").id,
+                )
+            ]
+        )
+
         # TODO ugly
         cls.products = cls.env["product.product"].browse(
-            [cls.p6.id, cls.p7.id, cls.p8.id, cls.p9.id]
+            [cls.p6.id, cls.p7.id, cls.p8.id, cls.p9.id, cls.p10.id]
         )
         cls.pricelist_items = cls.env["product.pricelist.item"]
         cls.pricelist_items |= cls.list0.item_ids

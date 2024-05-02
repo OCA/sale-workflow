@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
 
+
+    <record id="product_template" model="product.template">
+        <field name="name">Test template)</field>
+        <field name="categ_id" ref="product.product_category_5" />
+        <field name="standard_price">500.0</field>
+        <field name="list_price">750.0</field>
+        <field name="type">consu</field>
+        <field name="weight">0.01</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+    </record>
+
     <!--root pricelist 0-->
 
     <record id="list0" model="product.pricelist">
@@ -120,6 +132,14 @@
         <field name="pricelist_id" ref="list4" />
         <field name="product_id" ref="product.product_product_7" />
         <field name="fixed_price">50</field>
+    </record>
+
+    <record id="item14" model="product.pricelist.item">
+        <field name="base">list_price</field>
+        <field name="applied_on">1_product</field>
+        <field name="pricelist_id" ref="list4" />
+        <field name="product_tmpl_id" ref="product_template" />
+        <field name="fixed_price">1000</field>
     </record>
 
     <!-- factor pricelist 5, based on pricelist 3-->
