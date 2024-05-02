@@ -27,18 +27,14 @@ class PricelistItem(models.Model):
         """Returns whether any of the item records in recordset is based on dates."""
         return any(bool(record.date_start or record.date_end) for record in self)
 
-    def _get_pricelist_products(self):
-        products = []
+    def _get_pricelist_product_ids(self):
+        product_ids = []
         for rec in self:
             if rec.product_tmpl_id.id:
-                products = (
-                    self.env["product.product"]
-                    .search([("product_tmpl_id", "=", rec.product_tmpl_id.id)])
-                    .ids
-                )
+                product_ids = rec.product_tmpl_id.product_variant_ids.ids
             else:
-                products = rec.product_id.ids
-        return products
+                product_ids = rec.product_id.ids
+        return product_ids
 
     def _get_pricelist_products_group(self):
         """Returns a mapping of products grouped by pricelist.
