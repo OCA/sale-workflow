@@ -5,7 +5,7 @@
         inherit_id="sale.report_saleorder_document"
     >
         <xpath expr="//t[@t-call='account.document_tax_totals']" position="after">
-            <tr groups="product.group_discount_per_so_line">
+            <tr t-if="doc.discount_total" groups="product.group_discount_per_so_line">
                 <td name="td_discount_total_label"><span>Total Discount</span></td>
                 <td name="td_discount_total" class="text-right">
                     <span t-field="doc.discount_total" />
