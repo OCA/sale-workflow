@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
 "PO-Revision-Date: 2024-02-18 12:37+0000\n"
 "Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
-"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/"
-"23907/nl_NL/)\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/"
+"teams/23907/nl_NL/)\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -247,6 +247,21 @@ msgstr "Verkoopteam"
 msgid ""
 "Scheduler that will play automatically the validation of invoices, "
 "pickings..."
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__send_invoice
+msgid "Send Invoice"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__send_invoice_filter_id
+msgid "Send Invoice Filter"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__send_invoice_filter_domain
+msgid "Send Invoice Filter Domain"
 msgstr ""
 
 #. module: sale_automatic_workflow
