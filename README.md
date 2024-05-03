@@ -28,7 +28,7 @@ addon | version | maintainers | summary
 [product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 16.0.1.0.0 |  | Loads in every sale order line the customer code defined in the product
 [sale_advance_payment](sale_advance_payment/) | 16.0.1.0.0 |  | Allow to add advance payments on sales and then use them on invoices
 [sale_auto_remove_zero_quantity_lines](sale_auto_remove_zero_quantity_lines/) | 16.0.1.1.0 |  | On sale confirmation remove lines with zero quantities
-[sale_automatic_workflow](sale_automatic_workflow/) | 16.0.1.0.2 |  | Sale Automatic Workflow
+[sale_automatic_workflow](sale_automatic_workflow/) | 16.0.1.1.0 |  | Sale Automatic Workflow
 [sale_automatic_workflow_job](sale_automatic_workflow_job/) | 16.0.1.0.0 |  | Execute sale automatic workflows in queue jobs
 [sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 16.0.1.0.0 |  | Sale Automatic Workflow - Payment Mode
 [sale_blanket_order](sale_blanket_order/) | 16.0.1.0.0 |  | Blanket Orders
