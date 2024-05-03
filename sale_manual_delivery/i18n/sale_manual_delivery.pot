@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -105,12 +105,6 @@ msgstr ""
 msgid ""
 "If enabled, the deliveries are not created at SO confirmation. You need to "
 "use the Create Delivery button in order to reserve and ship the goods."
-msgstr ""
-
-#. module: sale_manual_delivery
-#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery____last_update
-#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_manual_delivery
