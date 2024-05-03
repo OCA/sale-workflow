@@ -115,12 +115,6 @@ msgstr ""
 "utilizar el botón Crear entrega para reservar y enviar la mercancía."
 
 #. module: sale_manual_delivery
-#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery____last_update
-#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
-
-#. module: sale_manual_delivery
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__write_uid
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__write_uid
 msgid "Last Updated by"
@@ -294,6 +288,9 @@ msgid ""
 msgstr ""
 "Solo puede cambiar a / desde la entrega manual en un presupuesto, no en un "
 "pedido confirmado"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación el"
 
 #~ msgid "Create Picking"
 #~ msgstr "Crear picking"

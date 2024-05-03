@@ -114,12 +114,6 @@ msgstr ""
 "merce."
 
 #. module: sale_manual_delivery
-#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery____last_update
-#: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: sale_manual_delivery
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__write_uid
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__write_uid
 msgid "Last Updated by"
@@ -291,8 +285,10 @@ msgstr ""
 #: code:addons/sale_manual_delivery/models/sale_order.py:0
 #, python-format
 msgid ""
-"You can only change to/from manual delivery in a quote, not a confirmed "
-"order"
+"You can only change to/from manual delivery in a quote, not a confirmed order"
 msgstr ""
 "È possibile abilitare/disabilitare consegna manuale solo in un preventivo, "
 "non un ordine già confermato"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
