@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    "name": "sale_automatic_workflow_stock_location_route",
+    "name": "Sale Automatic Workflow Stock Location Route",
     "summary": """
         Allows to set a specific route on sale order lines at confirmation time.""",
     "version": "14.0.1.0.0",
