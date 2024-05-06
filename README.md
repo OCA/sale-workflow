@@ -59,7 +59,7 @@ addon | version | maintainers | summary
 [sale_force_invoiced](sale_force_invoiced/) | 14.0.1.1.2 |  | Allows to force the invoice status of the sales order to Invoiced
 [sale_global_discount](sale_global_discount/) | 14.0.1.1.1 |  | Sale Global Discount
 [sale_invoice_auto_deliver](sale_invoice_auto_deliver/) | 14.0.1.0.1 |  | Sale Invoice Automatic Deliver
-[sale_invoice_blocking](sale_invoice_blocking/) | 14.0.1.0.0 |  | Allow you to block the creation of invoices from a sale order.
+[sale_invoice_blocking](sale_invoice_blocking/) | 14.0.1.0.1 |  | Allow you to block the creation of invoices from a sale order.
 [sale_invoice_delivery_state](sale_invoice_delivery_state/) | 14.0.1.0.1 |  | Sale Invoice Delivery State
 [sale_invoice_no_mail](sale_invoice_no_mail/) | 14.0.1.0.1 |  | Sale Invoice No Mail
 [sale_invoice_plan](sale_invoice_plan/) | 14.0.1.0.5 | [![kittiu](https://github.com/kittiu.png?size=30px)](https://github.com/kittiu) | Add to sales order, ability to manage future invoice plan
@@ -91,11 +91,11 @@ addon | version | maintainers | summary
 [sale_order_line_input](sale_order_line_input/) | 14.0.1.0.0 |  | Search, create or modify directly sale order lines
 [sale_order_line_menu](sale_order_line_menu/) | 14.0.1.0.0 |  | Adds a Sale Order Lines Menu
 [sale_order_line_note](sale_order_line_note/) | 14.0.1.0.0 |  | Note on sale order line
-[sale_order_line_packaging_qty](sale_order_line_packaging_qty/) | 14.0.1.1.0 |  | Define quantities according to product packaging on sale order lines
+[sale_order_line_packaging_qty](sale_order_line_packaging_qty/) | 14.0.1.1.1 |  | Define quantities according to product packaging on sale order lines
 [sale_order_line_price_history](sale_order_line_price_history/) | 14.0.1.0.0 |  | Sale order line price history
 [sale_order_line_sequence](sale_order_line_sequence/) | 14.0.2.0.0 |  | Propagates SO line sequence to invoices and stock picking.
 [sale_order_lot_generator](sale_order_lot_generator/) | 14.0.1.0.2 | [![florian-dacosta](https://github.com/florian-dacosta.png?size=30px)](https://github.com/florian-dacosta) [![mourad-ehm](https://github.com/mourad-ehm.png?size=30px)](https://github.com/mourad-ehm) [![bealdav](https://github.com/bealdav.png?size=30px)](https://github.com/bealdav) | Sale Order Lot Generator
-[sale_order_lot_selection](sale_order_lot_selection/) | 14.0.1.1.0 | [![bodedra](https://github.com/bodedra.png?size=30px)](https://github.com/bodedra) | Sale Order Lot Selection
+[sale_order_lot_selection](sale_order_lot_selection/) | 14.0.1.1.1 | [![bodedra](https://github.com/bodedra.png?size=30px)](https://github.com/bodedra) | Sale Order Lot Selection
 [sale_order_lot_selection_by_quant](sale_order_lot_selection_by_quant/) | 14.0.1.0.1 | [![aleuffre](https://github.com/aleuffre.png?size=30px)](https://github.com/aleuffre) | Sale Order Lot Selection By Quant
 [sale_order_mass_action](sale_order_mass_action/) | 14.0.1.0.0 |  | Allows to easy mass operations on sale orders.
 [sale_order_note_template](sale_order_note_template/) | 14.0.1.0.0 |  | Add sale orders terms and conditions template that can be used to quickly fullfill sale order terms and conditions
@@ -108,7 +108,7 @@ addon | version | maintainers | summary
 [sale_order_report_without_price](sale_order_report_without_price/) | 14.0.1.0.1 |  | Allow you to generate quotation and order reports without price.
 [sale_order_revision](sale_order_revision/) | 14.0.1.1.1 |  | Keep track of revised quotations
 [sale_order_secondary_unit](sale_order_secondary_unit/) | 14.0.1.0.1 |  | Sale product in a secondary unit
-[sale_order_tag](sale_order_tag/) | 14.0.1.0.1 | [![patrickrwilson](https://github.com/patrickrwilson.png?size=30px)](https://github.com/patrickrwilson) | Adds Tags to Sales Orders.
+[sale_order_tag](sale_order_tag/) | 14.0.1.0.2 | [![patrickrwilson](https://github.com/patrickrwilson.png?size=30px)](https://github.com/patrickrwilson) | Adds Tags to Sales Orders.
 [sale_order_type](sale_order_type/) | 14.0.3.2.0 |  | Sale Order Type
 [sale_order_warn_message](sale_order_warn_message/) | 14.0.1.1.0 |  | Add a popup warning on sale to ensure warning is populated
 [sale_partner_approval](sale_partner_approval/) | 14.0.2.0.0 | [![dreispt](https://github.com/dreispt.png?size=30px)](https://github.com/dreispt) | Control Partners that can be used in Sales Orders
@@ -125,7 +125,7 @@ addon | version | maintainers | summary
 [sale_product_brand_exception](sale_product_brand_exception/) | 14.0.1.0.0 |  | Define rules for sale order and brands
 [sale_product_category_menu](sale_product_category_menu/) | 14.0.1.0.1 |  | Shows 'Product Categories' menu item in Sales
 [sale_product_multi_add](sale_product_multi_add/) | 14.0.1.0.2 |  | Sale Product Multi Add
-[sale_product_rating_verified](sale_product_rating_verified/) | 14.0.1.0.1 |  | Verify if a user has previously bought a product
+[sale_product_rating_verified](sale_product_rating_verified/) | 14.0.1.0.2 |  | Verify if a user has previously bought a product
 [sale_product_seasonality](sale_product_seasonality/) | 14.0.1.2.0 |  | Integrates rules for products' seasonal availability with sales
 [sale_product_set](sale_product_set/) | 14.0.1.5.5 |  | Sale product set
 [sale_product_set_packaging_qty](sale_product_set_packaging_qty/) | 14.0.1.1.0 |  | Manage packaging and quantities on product set lines
@@ -141,7 +141,7 @@ addon | version | maintainers | summary
 [sale_quotation_number](sale_quotation_number/) | 14.0.2.0.1 |  | Different sequence for sale quotations
 [sale_quotation_template_product_multi_add](sale_quotation_template_product_multi_add/) | 14.0.1.0.1 |  | Feature to add multiple products to quotation template
 [sale_rental](sale_rental/) | 14.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Manage Rental of Products
-[sale_restricted_qty](sale_restricted_qty/) | 14.0.1.1.2 | [![ashishhirapara](https://github.com/ashishhirapara.png?size=30px)](https://github.com/ashishhirapara) | Sale order min quantity
+[sale_restricted_qty](sale_restricted_qty/) | 14.0.1.1.3 | [![alexey-pelykh](https://github.com/alexey-pelykh.png?size=30px)](https://github.com/alexey-pelykh) | Sale order min quantity
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 14.0.1.0.0 |  | Add shipping amounts on sale order
 [sale_start_end_dates](sale_start_end_dates/) | 14.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Adds start date and end date on sale order lines
 [sale_stock_delivery_address](sale_stock_delivery_address/) | 14.0.1.0.3 |  | Sale Stock Delivery Address
@@ -155,7 +155,7 @@ addon | version | maintainers | summary
 [sale_substate](sale_substate/) | 14.0.1.0.0 |  | Sale Sub State
 [sale_tier_validation](sale_tier_validation/) | 14.0.1.1.0 |  | Extends the functionality of Sale Orders to support a tier validation process.
 [sale_transaction_form_link](sale_transaction_form_link/) | 14.0.1.0.0 | [![rousseldenis](https://github.com/rousseldenis.png?size=30px)](https://github.com/rousseldenis) | Allows to display a link to payment transactions on Sale Order form view.
-[sale_triple_discount](sale_triple_discount/) | 14.0.1.0.0 |  | Manage triple discount on sale order lines
+[sale_triple_discount](sale_triple_discount/) | 14.0.2.0.0 |  | Manage triple discount on sale order lines
 [sale_validity](sale_validity/) | 14.0.1.0.2 |  | Set a default validity delay on quotations
 [sale_wishlist](sale_wishlist/) | 14.0.1.0.2 |  | Handle sale wishlist for partners
 [sales_team_security](sales_team_security/) | 14.0.2.0.1 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) [![ivantodorovich](https://github.com/ivantodorovich.png?size=30px)](https://github.com/ivantodorovich) | New group for seeing only sales channel's documents

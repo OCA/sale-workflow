@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-03-12 01:52+0000\n"
-"PO-Revision-Date: 2022-06-24 10:05+0000\n"
+"PO-Revision-Date: 2024-03-29 13:34+0000\n"
 "Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -17,48 +17,48 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_partner_incoterm
 #: model:ir.model,name:sale_partner_incoterm.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: sale_partner_incoterm
 #: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_partner__sale_incoterm_address_id
 #: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_users__sale_incoterm_address_id
 msgid "Default Sale Incoterm Address"
-msgstr ""
+msgstr "Indirizzo incoterm vendita predefinito"
 
 #. module: sale_partner_incoterm
 #: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_partner__sale_incoterm_id
 #: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_users__sale_incoterm_id
 #: model_terms:ir.ui.view,arch_db:sale_partner_incoterm.view_partner_property_form
 msgid "Default Sales Incoterm"
-msgstr ""
+msgstr "Incoterm predefinito per vendite"
 
 #. module: sale_partner_incoterm
 #: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_partner_incoterm.field_sale_order__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: sale_partner_incoterm
 #: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_partner__id
 #: model:ir.model.fields,field_description:sale_partner_incoterm.field_sale_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_partner_incoterm
 #: model:ir.model.fields,field_description:sale_partner_incoterm.field_sale_order__incoterm_address_id
 msgid "Incoterm Address"
-msgstr ""
+msgstr "Indirizzo Incoterm"
 
 #. module: sale_partner_incoterm
 #: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_partner____last_update
 #: model:ir.model.fields,field_description:sale_partner_incoterm.field_sale_order____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_partner_incoterm
 #: model:ir.model,name:sale_partner_incoterm.model_sale_order
@@ -70,6 +70,7 @@ msgstr "Ordine di vendita"
 #: model:ir.model.fields,help:sale_partner_incoterm.field_res_users__sale_incoterm_id
 msgid "The default incoterm for new sales orders for this customer."
 msgstr ""
+"Indica l'Incoterm predefinito per i nuovi ordini di vendita a questo cliente."
 
 #~ msgid "Partner"
 #~ msgstr "Partner"

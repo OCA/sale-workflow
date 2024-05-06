@@ -1,0 +1,50 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_supplierinfo_for_customer_sale_blanket_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-04-18 11:36+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: product_supplierinfo_for_customer_sale_blanket_order
+#: model:ir.model,name:product_supplierinfo_for_customer_sale_blanket_order.model_sale_blanket_order_line
+msgid "Blanket Order Line"
+msgstr "Línea de Pedido Global"
+
+#. module: product_supplierinfo_for_customer_sale_blanket_order
+#: model:ir.model,name:product_supplierinfo_for_customer_sale_blanket_order.model_sale_blanket_order_wizard
+msgid "Blanket order wizard"
+msgstr "Asistente pedido general"
+
+#. module: product_supplierinfo_for_customer_sale_blanket_order
+#: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale_blanket_order.field_sale_blanket_order_line__product_customer_reference
+msgid "Customer Reference"
+msgstr "Referencia del cliente"
+
+#. module: product_supplierinfo_for_customer_sale_blanket_order
+#: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale_blanket_order.field_sale_blanket_order_line__display_name
+#: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale_blanket_order.field_sale_blanket_order_wizard__display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: product_supplierinfo_for_customer_sale_blanket_order
+#: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale_blanket_order.field_sale_blanket_order_line__id
+#: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale_blanket_order.field_sale_blanket_order_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: product_supplierinfo_for_customer_sale_blanket_order
+#: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale_blanket_order.field_sale_blanket_order_line____last_update
+#: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale_blanket_order.field_sale_blanket_order_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última Modificación el"

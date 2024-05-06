@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-26 20:34+0000\n"
+"PO-Revision-Date: 2024-04-18 11:36+0000\n"
 "Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. module: pricelist_cache
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__applied_on
 msgid "Apply On"
-msgstr ""
+msgstr "Aplicar Sobre"
 
 #. module: pricelist_cache
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__display_cache_line_ids
@@ -34,7 +34,7 @@ msgstr "Cancelar"
 #. module: pricelist_cache
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__company_id
 msgid "Company"
-msgstr ""
+msgstr "Companía"
 
 #. module: pricelist_cache
 #: model:ir.model,name:pricelist_cache.model_res_partner
@@ -76,7 +76,7 @@ msgstr "Mostrar Lista de Precios"
 #. module: pricelist_cache
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__date_end
 msgid "End Date"
-msgstr ""
+msgstr "Fecha Final"
 
 #. module: pricelist_cache
 #: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__date_end
@@ -84,6 +84,9 @@ msgid ""
 "Ending datetime for the pricelist item validation\n"
 "The displayed value depends on the timezone set in your preferences."
 msgstr ""
+"Fecha y hora de finalización de la validación del artículo de la lista de "
+"precios\n"
+"El valor mostrado depende de la zona horaria configurada en sus preferencias."
 
 #. module: pricelist_cache
 #: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__min_quantity
@@ -92,6 +95,9 @@ msgid ""
 "the minimum quantity specified in this field.\n"
 "Expressed in the default unit of measure of the product."
 msgstr ""
+"Para que se aplique la regla, la cantidad comprada / vendida debe ser mayor "
+"o igual a la cantidad mínima especificada en este campo.\n"
+"Expresado en la unidad de medida predeterminada del producto."
 
 #. module: pricelist_cache
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist__id
@@ -140,7 +146,7 @@ msgstr "Última Actualización el"
 #. module: pricelist_cache
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__min_quantity
 msgid "Min. Quantity"
-msgstr ""
+msgstr "Cantidad Mín"
 
 #. module: pricelist_cache
 #: model_terms:ir.ui.view,arch_db:pricelist_cache.product_pricelist_cache_wizard_view_form
@@ -150,7 +156,7 @@ msgstr "Abrir"
 #. module: pricelist_cache
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__base_pricelist_id
 msgid "Other Pricelist"
-msgstr ""
+msgstr "Otras Listas de Precios"
 
 #. module: pricelist_cache
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist__parent_pricelist_ids
@@ -227,7 +233,7 @@ msgstr "Se ha Omitido la Actualización de la Caché de Listas de Precios"
 #. module: pricelist_cache
 #: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__applied_on
 msgid "Pricelist Item applicable on selected option"
-msgstr ""
+msgstr "Elemento de tarifa aplicable en la opción seleccionada"
 
 #. module: pricelist_cache
 #: model:ir.model,name:pricelist_cache.model_product_pricelist_item
@@ -256,7 +262,7 @@ msgstr "Producto"
 #. module: pricelist_cache
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__categ_id
 msgid "Product Category"
-msgstr ""
+msgstr "Categoría de Producto"
 
 #. module: pricelist_cache
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__product_id
@@ -277,6 +283,9 @@ msgid ""
 "Specify a product category if this rule only applies to products belonging "
 "to this category or its children categories. Keep empty otherwise."
 msgstr ""
+"Especifique una categoría de producto si esta regla solo se aplica a los "
+"productos que pertenecen a esta categoría o sus categorías secundarias. "
+"Mantener vacío de lo contrario."
 
 #. module: pricelist_cache
 #: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__product_id
@@ -284,6 +293,8 @@ msgid ""
 "Specify a product if this rule only applies to one product. Keep empty "
 "otherwise."
 msgstr ""
+"Especifique un producto si esta regla solo se aplica a un producto. Mantener "
+"vacío de lo contrario."
 
 #. module: pricelist_cache
 #: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__product_tmpl_id
@@ -291,11 +302,13 @@ msgid ""
 "Specify a template if this rule only applies to one product template. Keep "
 "empty otherwise."
 msgstr ""
+"Especifique una plantilla si esta regla solo se aplica a una plantilla de "
+"producto. Mantener vacío de lo contrario."
 
 #. module: pricelist_cache
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__date_start
 msgid "Start Date"
-msgstr ""
+msgstr "Fecha de Comienzo"
 
 #. module: pricelist_cache
 #: model:ir.model.fields,help:pricelist_cache.field_product_pricelist_item__date_start
@@ -303,6 +316,8 @@ msgid ""
 "Starting datetime for the pricelist item validation\n"
 "The displayed value depends on the timezone set in your preferences."
 msgstr ""
+"Fecha y hora de inicio de la validación de la lista de precios.\n"
+"El valor mostrado depende de la zona horaria configurada en sus preferencias."
 
 #. module: pricelist_cache
 #: model:base.automation,name:pricelist_cache.automation_update_product_pricelist_cache

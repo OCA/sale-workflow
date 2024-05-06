@@ -19,6 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_order_lot_selection
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__allowed_lot_ids
+msgid "Allowed Lot"
+msgstr ""
+
+#. module: sale_order_lot_selection
 #: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__display_name
 msgid "Display Name"
 msgstr ""
