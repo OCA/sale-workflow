@@ -27,6 +27,5 @@ def _fill_in_related_sale_line(env):
 
 
 def post_init_hook(cr, registry):
-    with api.Environment.manage():
-        env = api.Environment(cr, SUPERUSER_ID, {})
-        _fill_in_related_sale_line(env)
+    env = api.Environment(cr, SUPERUSER_ID, {})
+    _fill_in_related_sale_line(env)
