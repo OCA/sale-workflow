@@ -6,12 +6,12 @@
     "summary": """
         Allow to reflect confirmed sale lines quantity amendments
         to procurements""",
-    "version": "14.0.1.0.0",
+    "version": "15.0.1.0.0",
     "license": "AGPL-3",
     "category": "Sales",
     "development_status": "Production/Stable",
     "maintainers": ["rousseldenis"],
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
-    "depends": ["sale", "sale_stock", "sale_order_line_chained_move"],
+    "depends": ["sale_order_line_chained_move"],
 }

@@ -4,7 +4,7 @@
 from odoo.tests import common
 
 
-class TestSaleProcurementAmendment(common.SavepointCase):
+class TestSaleProcurementAmendment(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -345,6 +345,10 @@ class TestSaleProcurementAmendment(common.SavepointCase):
         self.assertFalse(
             self.sale_line_2.pickings_in_progress,
         )
+        # At this point everything's reserved, so nothing needs to be procured
+        # Adding this line to_be_procured=False case is obtained and, thus,
+        # covered by tests
+        self.assertFalse(any(self.order.order_line.mapped("to_be_procured")))
 
         self.order.picking_ids.with_context(cancel_backorder=True)._action_done()
         self.assertFalse(
