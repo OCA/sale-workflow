@@ -3,7 +3,7 @@
 
 
     <record id="product_template" model="product.template">
-        <field name="name">Test template)</field>
+        <field name="name">Test template</field>
         <field name="categ_id" ref="product.product_category_5" />
         <field name="standard_price">500.0</field>
         <field name="list_price">750.0</field>
