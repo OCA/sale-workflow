@@ -3,30 +3,30 @@
 
 from functools import wraps
 
-from odoo.tests import SavepointCase
+from odoo.tests.common import TransactionCase
 
 LIST_PRICES_MAPPING = {
     "pricelist_cache.list0": [
         {"id": 17, "price": 100.0},
-        {"id": 18, "price": 79.0},
+        {"id": 18, "price": 15.8},
         {"id": 19, "price": 100.0},
         {"id": 20, "price": 47.0},
     ],
     "pricelist_cache.list1": [
         {"id": 17, "price": 75.0},
-        {"id": 18, "price": 79.0},
+        {"id": 18, "price": 15.8},
         {"id": 19, "price": 100.0},
         {"id": 20, "price": 47.0},
     ],
     "pricelist_cache.list2": [
         {"id": 17, "price": 50.0},
-        {"id": 18, "price": 79.0},
+        {"id": 18, "price": 15.8},
         {"id": 19, "price": 100.0},
         {"id": 20, "price": 47.0},
     ],
     "pricelist_cache.list3": [
         {"id": 17, "price": 25.0},
-        {"id": 18, "price": 79.0},
+        {"id": 18, "price": 15.8},
         {"id": 19, "price": 100.0},
         {"id": 20, "price": 47.0},
     ],
@@ -38,7 +38,7 @@ LIST_PRICES_MAPPING = {
     ],
     "pricelist_cache.list5": [
         {"id": 17, "price": 45.0},
-        {"id": 18, "price": 99.0},
+        {"id": 18, "price": 35.8},
         {"id": 19, "price": 120.0},
         {"id": 20, "price": 67.0},
     ],
@@ -62,7 +62,7 @@ def check_duplicates(func):
     return wrapper
 
 
-class TestPricelistCacheCommon(SavepointCase):
+class TestPricelistCacheCommon(TransactionCase):
     @classmethod
     def setUpClassBaseCache(cls):
         cls.cache_model.cron_reset_pricelist_cache()
