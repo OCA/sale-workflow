@@ -5,7 +5,7 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     lot_id = fields.Many2one(
-        "stock.lot",
+        "stock.production.lot",
         "Lot",
         copy=False,
         compute="_compute_lot_id",
