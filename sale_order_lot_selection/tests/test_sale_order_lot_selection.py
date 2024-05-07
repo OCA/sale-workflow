@@ -25,7 +25,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.customer_location = self.env.ref("stock.stock_location_customers")
         self.stock_location = self.env.ref("stock.stock_location_stock")
         self.product_model = self.env["product.product"]
-        self.lot_model = self.env["stock.lot"]
+        self.lot_model = self.env["stock.production.lot"]
         self.lot_cable = self.env.ref("sale_order_lot_selection.lot_cable")
         self.sale = self.env.ref("sale_order_lot_selection.sale1")
 
@@ -36,7 +36,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         # We should not be able to reserve if some stock is available but with another
         # lot
         self._inventory_products(self.prd_cable, self.lot_cable, 1)
-        other_lot = self.env["stock.lot"].create(
+        other_lot = self.env["stock.production.lot"].create(
             {
                 "name": "test2",
                 "product_id": self.prd_cable.id,
@@ -47,10 +47,10 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.sale.action_confirm()
         self.sale.picking_ids.action_assign()
         # one of 2 moves should be reserved
-        available_move = self.sale.picking_ids.move_ids.filtered(
+        available_move = self.sale.picking_ids.move_lines.filtered(
             lambda m: m.state == "assigned"
         )
-        unavailable_move = self.sale.picking_ids.move_ids.filtered(
+        unavailable_move = self.sale.picking_ids.move_lines.filtered(
             lambda m: m.state == "confirmed"
         )
         self.assertEqual(len(available_move), 1)
@@ -155,10 +155,10 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
                 "location_dest_id": self.stock_location.id,
             }
         )
-        for move in picking_in.move_ids:
+        for move in picking_in.move_lines:
             self.assertEqual(move.state, "draft", "Wrong state of move line.")
         picking_in.action_confirm()
-        for move in picking_in.move_ids:
+        for move in picking_in.move_lines:
             self.assertEqual(move.state, "assigned", "Wrong state of move line.")
         lot10 = False
         lot11 = False
