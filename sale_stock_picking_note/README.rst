@@ -86,6 +86,9 @@ Contributors
 -  Emilio Pascual (`Moduon <https://www.moduon.team/>`__)
 -  Rafael Blasco (`Moduon <https://www.moduon.team/>`__)
 -  Gelo Joga (`Moduon <https://www.moduon.team/>`__)
+-  `Binhex Systems Solutions <https://binhex.cloud/>`__:
+
+   -  Deriman Alonso <d.alonso@binhex.cloud>
 
 Maintainers
 -----------
