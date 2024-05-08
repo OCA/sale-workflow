@@ -10,7 +10,8 @@
                 <field name="invoice_policy_required" invisible="1" />
                 <field
                     name="invoice_policy"
-                    attrs="{'required': [('invoice_policy_required', '=', True)]}"
+                    required="invoice_policy_required"
+                    readonly="state not in ('draft', 'sent')"
                 />
             </field>
         </field>

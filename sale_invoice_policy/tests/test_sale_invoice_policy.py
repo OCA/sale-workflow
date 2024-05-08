@@ -93,8 +93,6 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         self.assertEqual(so_line.qty_to_invoice, 0)
         self.assertEqual(so_line.invoice_status, "no")
 
-        for mv in picking.move_line_ids:
-            mv.qty_done = mv.reserved_uom_qty
         picking.button_validate()
         self.assertEqual(picking.state, "done")
 
