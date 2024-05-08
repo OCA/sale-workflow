@@ -55,9 +55,9 @@
     <menuitem
         id="sale_order_line_tag_action_menu"
         name="Sales Order Line Tags"
-        parent="sale.menu_sale_config"
+        parent="sale.menu_sales_config"
         action="sale_order_line_tag_action"
-        sequence="25"
+        sequence="20"
     />
 
 </odoo>
