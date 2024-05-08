@@ -82,7 +82,7 @@ msgstr "Comanda de venda"
 #: model:ir.model.fields,help:sale_stock_picking_note.field_res_partner__picking_customer_note
 #: model:ir.model.fields,help:sale_stock_picking_note.field_res_users__picking_customer_note
 msgid ""
-"The notes will be added to the sales order and pickings and will be printed "
+"The notes will be added to the sales order andpickings and will be printed "
 "on the delivery slip."
 msgstr ""
 
@@ -90,7 +90,7 @@ msgstr ""
 #: model:ir.model.fields,help:sale_stock_picking_note.field_res_partner__picking_note
 #: model:ir.model.fields,help:sale_stock_picking_note.field_res_users__picking_note
 msgid ""
-"The notes will be added to the sales order and pickings but will not be "
+"The notes will be added to the sales order andpickings but will not be "
 "printed on the delivery slip."
 msgstr ""
 
