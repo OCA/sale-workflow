@@ -1,0 +1,9 @@
+- Tecnativa \<<https://www.tecnativa.com>\>
+  - Carlos Dauden
+  - David Vidal
+  - João Marques
+  - Víctor Martínez
+- Sudhir Arya \<<sudhir@erpharbor.com>\>
+- Emilio Pascual ([Moduon](https://www.moduon.team/))
+- Rafael Blasco ([Moduon](https://www.moduon.team/))
+- Gelo Joga ([Moduon](https://www.moduon.team/))
