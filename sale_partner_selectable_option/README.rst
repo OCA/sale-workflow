@@ -83,6 +83,10 @@ Contributors
    -  Pedro M. Baeza
    -  César A. Sánchez <cesar.sanchez@tecnativa.com>
 
+-  `Binhex Systems Solutions <https://binhex.cloud/>`__:
+
+   -  Deriman Alonso <d.alonso@binhex.cloud>
+
 Maintainers
 -----------
 
