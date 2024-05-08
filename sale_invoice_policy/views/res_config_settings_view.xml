@@ -5,25 +5,14 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="sale.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <xpath expr="//div[@id='sales_settings_invoicing_policy']" position="after">
-                <div
-                    class="col-12 col-lg-6 o_setting_box"
+            <setting id="sales_settings_invoicing_policy" position="after">
+                <setting
                     id="sale_invoice_policy_setting"
+                    help="Invoice Policy required in Sale Orders"
                 >
-                    <div class="o_setting_left_pane">
-                        <field name="sale_invoice_policy_required" />
-                    </div>
-                    <div class="o_setting_right_pane">
-                        <label
-                            string="Sale Invoice Policy"
-                            for="sale_invoice_policy_required"
-                        />
-                        <div class="text-muted" id="sale_invoice_policy_required">
-                            Invoice Policy required in Sale Orders
-                        </div>
-                    </div>
-                </div>
-            </xpath>
+                    <field name="sale_invoice_policy_required" />
+                </setting>
+            </setting>
         </field>
     </record>
 </odoo>

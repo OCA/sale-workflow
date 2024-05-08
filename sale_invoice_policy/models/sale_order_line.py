@@ -16,9 +16,9 @@ class SaleOrderLine(models.Model):
     )
     def _compute_qty_to_invoice(self):
         other_lines = self.filtered(
-            lambda l: l.product_id.type == "service"
-            or not l.order_id.invoice_policy
-            or not l.order_id.invoice_policy_required
+            lambda line: line.product_id.type == "service"
+            or not line.order_id.invoice_policy
+            or not line.order_id.invoice_policy_required
         )
         super(SaleOrderLine, other_lines)._compute_qty_to_invoice()
         for line in self - other_lines:
@@ -31,11 +31,11 @@ class SaleOrderLine(models.Model):
 
     @api.depends(
         "state",
-        "price_reduce",
         "product_id",
         "untaxed_amount_invoiced",
         "qty_delivered",
         "product_uom_qty",
+        "price_unit",
         "order_id.invoice_policy",
     )
     def _compute_untaxed_amount_to_invoice(self):
@@ -67,7 +67,7 @@ class SaleOrderLine(models.Model):
                     partner=line.order_id.partner_shipping_id,
                 )["total_excluded"]
             inv_lines = line._get_invoice_lines()
-            if any(inv_lines.mapped(lambda l: l.discount != line.discount)):
+            if any(inv_lines.mapped(lambda _l, sol=line: _l.discount != sol.discount)):
                 amount = 0
                 for inv_line in inv_lines:
                     if (

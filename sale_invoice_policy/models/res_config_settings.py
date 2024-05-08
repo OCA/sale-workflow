@@ -15,7 +15,7 @@ class ResConfigSettings(models.TransientModel):
     def get_values(self):
         res = super().get_values()
         res.update(
-            sale_invoice_policy_required=self.env["ir.default"].get(
+            sale_invoice_policy_required=self.env["ir.default"]._get(
                 "res.config.settings", "sale_invoice_policy_required"
             )
         )
