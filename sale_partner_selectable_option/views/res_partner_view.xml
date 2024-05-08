@@ -20,7 +20,7 @@
                 expr="//button[@name='action_view_sale_order']"
                 position="attributes"
             >
-                <attribute name="attrs">{'invisible': [('sale_selectable', '=', False)]}
+                <attribute name="invisible">not sale_selectable
                 </attribute>
             </xpath>
         </field>
