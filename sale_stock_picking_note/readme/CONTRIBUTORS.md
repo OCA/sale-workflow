@@ -7,3 +7,5 @@
 - Emilio Pascual ([Moduon](https://www.moduon.team/))
 - Rafael Blasco ([Moduon](https://www.moduon.team/))
 - Gelo Joga ([Moduon](https://www.moduon.team/))
+- [Binhex Systems Solutions](https://binhex.cloud/):
+  - Deriman Alonso \<<d.alonso@binhex.cloud>\>
