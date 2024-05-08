@@ -23,15 +23,5 @@ class SaleOrderLineCancel(models.TransientModel):
 
     def cancel_remaining_qty(self):
         line = self._get_sale_order_line()
-        if not line.can_cancel_remaining_qty:
-            return False
-        cancel_moves = self._get_moves_to_cancel(line)
-        line._check_moves_to_cancel(cancel_moves)
-        cancel_moves._action_cancel()
-        line.order_id.message_post(
-            body=_(
-                "<b>%(product)s</b>: The order line has been canceled",
-                product=line.product_id.display_name,
-            )
-        )
+        line.cancel_remaining_qty()
         return True
