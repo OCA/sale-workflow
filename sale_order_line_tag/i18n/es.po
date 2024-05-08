@@ -37,11 +37,6 @@ msgid "ID"
 msgstr "ID"
 
 #. module: sale_order_line_tag
-#: model:ir.model.fields,field_description:sale_order_line_tag.field_sale_order_line_tag____last_update
-msgid "Last Modified on"
-msgstr "última modificación el"
-
-#. module: sale_order_line_tag
 #: model:ir.model.fields,field_description:sale_order_line_tag.field_sale_order_line_tag__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
@@ -76,3 +71,6 @@ msgstr "Etiquetas de Línea de Pedido de Ventas"
 #: model:ir.model.fields,field_description:sale_order_line_tag.field_sale_order_line__tag_ids
 msgid "Tags"
 msgstr "Etiquetas"
+
+#~ msgid "Last Modified on"
+#~ msgstr "última modificación el"
