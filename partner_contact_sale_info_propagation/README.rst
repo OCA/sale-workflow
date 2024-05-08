@@ -17,28 +17,29 @@ Partner contact sale info propagation
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/partner_contact_sale_info_propagation
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/partner_contact_sale_info_propagation
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-partner_contact_sale_info_propagation
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-partner_contact_sale_info_propagation
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module propagates Salesperson and Sales Channel from Company to Contacts
+This module propagates Salesperson and Sales Channel from Company to
+Contacts
 
-* Put the *Salesperson* or *Sales Channel* of the parent company when the
-  contact doesn't have a *Salesperson* or *Sales Channel* and this parent
-  company is assigned.
-* When the company changes the *Salesperson*, it fills with the same
-  *Salesperson* all the contacts that don't have any or have the previous
-  *Salesperson* of the parent company.
-* When the company changes the *Sales Channel*, it fills with the same
-  *Sales Channel* all the contacts that don't have any or have the previous
-  *Sales Channel* of the parent company.
+-  Put the *Salesperson* or *Sales Channel* of the parent company when
+   the contact doesn't have a *Salesperson* or *Sales Channel* and this
+   parent company is assigned.
+-  When the company changes the *Salesperson*, it fills with the same
+   *Salesperson* all the contacts that don't have any or have the
+   previous *Salesperson* of the parent company.
+-  When the company changes the *Sales Channel*, it fills with the same
+   *Sales Channel* all the contacts that don't have any or have the
+   previous *Sales Channel* of the parent company.
 
 **Table of contents**
 
@@ -50,11 +51,13 @@ Usage
 
 To use this module, if *Contacts* module is installed:
 
-#. Go to *Contacts -> Contacts* and create a new contact with Company radio
-   button checked and a Salesperson selected in *Sales & Purchases* tab
-#. Edit this record and add a new contact child in *Contacts & Addresses* tab
-#. Go to *Contacts -> Contacts* and open the company created
-   (contact type company) and its contact child and you will see they have the
+1. Go to *Contacts -> Contacts* and create a new contact with Company
+   radio button checked and a Salesperson selected in *Sales &
+   Purchases* tab
+2. Edit this record and add a new contact child in *Contacts &
+   Addresses* tab
+3. Go to *Contacts -> Contacts* and open the company created (contact
+   type company) and its contact child and you will see they have the
    same *Salesperson*
 
 Bug Tracker
@@ -63,7 +66,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20partner_contact_sale_info_propagation%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20partner_contact_sale_info_propagation%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -71,21 +74,21 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Ernesto Tejeda
-  * Pedro M. Baeza
-  * César A. Sánchez
+   -  Ernesto Tejeda
+   -  Pedro M. Baeza
+   -  César A. Sánchez
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -97,6 +100,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/partner_contact_sale_info_propagation>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/partner_contact_sale_info_propagation>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
