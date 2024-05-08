@@ -3,18 +3,18 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo.exceptions import AccessError, ValidationError
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests.common import Form, TransactionCase
 
 
-class TestQuickSale(SavepointCase):
+class TestQuickSale(TransactionCase):
     @classmethod
     def _setUpBasicSaleOrder(cls):
         cls.so = cls.env["sale.order"].create({"partner_id": cls.partner.id})
         with Form(cls.so, "sale.view_order_form") as so_form:
             so_form.partner_id = cls.partner
         ctx = {"parent_id": cls.so.id, "parent_model": "sale.order"}
-        cls.product_1 = cls.product_1.with_context(ctx)
-        cls.product_2 = cls.product_2.with_context(ctx)
+        cls.product_1 = cls.product_1.with_context(**ctx)
+        cls.product_2 = cls.product_2.with_context(**ctx)
         cls.product_1.qty_to_process = 5.0
         cls.product_2.qty_to_process = 6.0
 
@@ -57,8 +57,8 @@ class TestQuickSale(SavepointCase):
         with Form(so, "sale.view_order_form") as so_form:
             so_form.partner_id = self.partner
         ctx = {"parent_id": so.id, "parent_model": "sale.order"}
-        self.product_1 = self.product_1.with_context(ctx)
-        self.product_2 = self.product_2.with_context(ctx)
+        self.product_1 = self.product_1.with_context(**ctx)
+        self.product_2 = self.product_2.with_context(**ctx)
         self.product_1.write({"qty_to_process": 5.0, "quick_uom_id": self.uom_unit.id})
         self.product_2.write({"qty_to_process": 6.0, "quick_uom_id": self.uom_dozen.id})
 
@@ -164,7 +164,7 @@ class TestQuickSale(SavepointCase):
             product.with_user(self.user).write(
                 {"qty_to_process": 5.0, "quick_uom_id": self.uom_unit.id}
             )
-        product_in_quick_edit = product.with_context(ctx).with_user(self.user)
+        product_in_quick_edit = product.with_context(**ctx).with_user(self.user)
         product_in_quick_edit.write(
             {"qty_to_process": 5.0, "quick_uom_id": self.uom_unit.id}
         )

@@ -4,7 +4,7 @@
 
 {
     "name": "Quick Sale order",
-    "version": "14.0.1.0.4",
+    "version": "15.0.1.0.0",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",

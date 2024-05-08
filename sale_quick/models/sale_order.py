@@ -50,9 +50,8 @@ class SaleOrder(models.Model):
             raise ValidationError(
                 _(
                     "Must have only 1 line per product for mass addition, but "
-                    "there are %s lines for the product %s"
-                    % (nr_lines, product.display_name),
-                )
+                    "there are {nr_lines} lines for the product {product_name}"
+                ).format(nr_lines=nr_lines, product_name=product.display_name)
             )
         return result
 
