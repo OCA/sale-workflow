@@ -60,6 +60,25 @@ class TestSaleOrderLineCancel(TestSaleOrderLineCancelBase):
             active_id=self.sale.order_line.id, active_model="sale.order.line"
         ).cancel_remaining_qty()
 
+    def test_cancel_move_kit(self):
+        """when all remaining moves are canceled product_qty_canceled increased"""
+        self.assertTrue(self.sale.order_line.can_cancel_remaining_qty)
+        move = self.sale.picking_ids.move_ids
+        self.assertEqual(move.sale_line_id, self.sale.order_line)
+        # simulate a kit with a second move linked to the sale SO line
+        move2 = move.copy()
+        move2._action_confirm()
+        self.assertEqual(move2.sale_line_id, self.sale.order_line)
+        move._action_cancel()
+        self.assertEqual(self.sale.order_line.product_qty_canceled, 0)
+        move2._action_cancel()
+        self.assertEqual(self.sale.order_line.product_qty_canceled, 10)
+        self.assertEqual(self.sale.order_line.product_qty_remains_to_deliver, 0)
+        self.assertFalse(self.sale.order_line.can_cancel_remaining_qty)
+        self.wiz.with_context(
+            active_id=self.sale.order_line.id, active_model="sale.order.line"
+        ).cancel_remaining_qty()
+
     def test_reset_to_draft(self):
         ship = self.sale.picking_ids
         ship.action_assign()
