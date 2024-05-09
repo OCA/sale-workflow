@@ -22,23 +22,6 @@ msgid "Config Settings"
 msgstr "Opciones de configuración"
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_product__default_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_template__default_invoice_policy
-msgid "Default Invoicing Policy"
-msgstr "Política de facturación por defecto"
-
-#. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_default_invoice_policy
-msgid "Default Sale Invoice Policy"
-msgstr "Política de facturación por defecto para ventas"
-
-#. module: sale_invoice_policy
-#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
-msgid "Default Sale Order Invoice Policy"
-msgstr "Política de facturación por defecto en pedidos de venta"
-
-#. module: sale_invoice_policy
-#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__product_template__default_invoice_policy__delivery
 #: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__delivery
 msgid "Delivered quantities"
 msgstr "Cantidades entregadas"
@@ -59,14 +42,6 @@ msgid "Invoice Policy required in Sale Orders"
 msgstr "Política de facturación requerida en pedidos de venta"
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_product__invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_product_template__invoice_policy
-msgid "Invoicing Policy"
-msgstr "Política de facturación"
-
-#. module: sale_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_product_product__default_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_product_template__default_invoice_policy
 #: model:ir.model.fields,help:sale_invoice_policy.field_sale_order__invoice_policy
 msgid ""
 "Ordered Quantity: Invoice based on the quantity the customer ordered.\n"
@@ -78,25 +53,9 @@ msgstr ""
 "proveedor (tiempo o entregas)."
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_product_product__invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_product_template__invoice_policy
-msgid ""
-"Ordered Quantity: Invoice quantities ordered by the customer.\n"
-"Delivered Quantity: Invoice quantities delivered to the customer."
-msgstr ""
-"Cantidad pedida: facturar cantidades pedidas por el cliente.\n"
-"Cantidad entregada: facturar cantidades entregadas al cliente."
-
-#. module: sale_invoice_policy
-#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__product_template__default_invoice_policy__order
 #: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__order
 msgid "Ordered quantities"
 msgstr "Cantidades pedidas"
-
-#. module: sale_invoice_policy
-#: model:ir.model,name:sale_invoice_policy.model_product_template
-msgid "Product"
-msgstr "Producto"
 
 #. module: sale_invoice_policy
 #: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
@@ -122,3 +81,25 @@ msgstr "Línea de pedido de venta"
 #: model:ir.model.fields,help:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
 msgid "This makes Invoice Policy required on Sale Orders"
 msgstr "Hace que la política de facturación sea requerida en pedidos de venta"
+
+#~ msgid "Default Invoicing Policy"
+#~ msgstr "Política de facturación por defecto"
+
+#~ msgid "Default Sale Invoice Policy"
+#~ msgstr "Política de facturación por defecto para ventas"
+
+#~ msgid "Default Sale Order Invoice Policy"
+#~ msgstr "Política de facturación por defecto en pedidos de venta"
+
+#~ msgid "Invoicing Policy"
+#~ msgstr "Política de facturación"
+
+#~ msgid ""
+#~ "Ordered Quantity: Invoice quantities ordered by the customer.\n"
+#~ "Delivered Quantity: Invoice quantities delivered to the customer."
+#~ msgstr ""
+#~ "Cantidad pedida: facturar cantidades pedidas por el cliente.\n"
+#~ "Cantidad entregada: facturar cantidades entregadas al cliente."
+
+#~ msgid "Product"
+#~ msgstr "Producto"

@@ -1,0 +1,72 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_pricelist_technical
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-01-25 10:35+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_pricelist_technical
+#: model:ir.model.fields,help:sale_pricelist_technical.field_product_pricelist__is_technical
+msgid ""
+"Check this box if you want to prevent users from using this pricelist on "
+"orders or in customer forms. This is useful for pricelists that are created "
+"only to compute other pricelists."
+msgstr ""
+"Selezionare questa opzione se si vuole evitare che gli utenti utilizzino il "
+"listino negli ordini o nei moduli cliente. Questo è utile per listini che "
+"sono creati solo per calcolare altri listini."
+
+#. module: sale_pricelist_technical
+#: model:ir.model,name:sale_pricelist_technical.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: sale_pricelist_technical
+#: model:ir.model.fields,help:sale_pricelist_technical.field_sale_order__pricelist_id
+msgid "If you change the pricelist, only newly added lines will be affected."
+msgstr ""
+"Se si modifica il listino, solo le nuove righe aggiunte verranno interessate."
+
+#. module: sale_pricelist_technical
+#: model:ir.model.fields,field_description:sale_pricelist_technical.field_product_pricelist__is_technical
+msgid "Is Technical"
+msgstr "È tenico"
+
+#. module: sale_pricelist_technical
+#: model:ir.model,name:sale_pricelist_technical.model_product_pricelist
+#: model:ir.model.fields,field_description:sale_pricelist_technical.field_res_partner__property_product_pricelist
+#: model:ir.model.fields,field_description:sale_pricelist_technical.field_res_users__property_product_pricelist
+#: model:ir.model.fields,field_description:sale_pricelist_technical.field_sale_order__pricelist_id
+msgid "Pricelist"
+msgstr "Listino prezzi"
+
+#. module: sale_pricelist_technical
+#: model:ir.model,name:sale_pricelist_technical.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: sale_pricelist_technical
+#: model:product.pricelist,name:sale_pricelist_technical.technical_pricelist
+msgid "Technical Pricelist"
+msgstr "Listino prezzi tecnico"
+
+#. module: sale_pricelist_technical
+#: model:ir.model.fields,help:sale_pricelist_technical.field_res_partner__property_product_pricelist
+#: model:ir.model.fields,help:sale_pricelist_technical.field_res_users__property_product_pricelist
+msgid ""
+"This pricelist will be used, instead of the default one, for sales to the "
+"current partner"
+msgstr ""
+"Questo listino verrà utilizzato, al posto di quello predefinito, per le "
+"vendite al partner corrente"

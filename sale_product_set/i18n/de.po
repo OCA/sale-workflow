@@ -61,17 +61,17 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__create_uid
+#: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__create_uid
 msgid "Created by"
 msgstr "Erstellt von"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__create_date
+#: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__create_date
 msgid "Created on"
 msgstr "Erstellt am"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__partner_id
+#: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__partner_id
 msgid "Customer"
 msgstr "Kunde"
 
@@ -81,12 +81,12 @@ msgid "Discount (%)"
 msgstr "Rabatt (%)"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__display_name
+#: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__display_name
 msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: sale_product_set
-#: model:ir.model.fields,help:sale_product_set.field_product_set_add__skip_existing_products
+#: model:ir.model.fields,help:sale_product_set.field_sale_product_set_wizard__skip_existing_products
 msgid ""
 "Enable this to not add new lines for products already included in SO lines."
 msgstr ""
@@ -94,27 +94,27 @@ msgstr ""
 "enthalten sind, nicht neu hinzugefügt."
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__id
+#: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add____last_update
+#: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard____last_update
 msgid "Last Modified on"
 msgstr "Zuletzt geändert am"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__write_uid
+#: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__write_uid
 msgid "Last Updated by"
 msgstr "Zuletzt aktualisiert von"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__write_date
+#: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__write_date
 msgid "Last Updated on"
 msgstr "Zuletzt aktualisiert am"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__product_set_id
+#: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__product_set_id
 #: model:ir.ui.menu,name:sale_product_set.menu_product_set_config
 msgid "Product set"
 msgstr "Produktset"
@@ -126,33 +126,33 @@ msgid "Product set line"
 msgstr "Produktset-Position"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__product_set_line_ids
+#: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__product_set_line_ids
 msgid "Product set lines"
 msgstr "Produktset-Positionen"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__quantity
+#: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__quantity
 msgid "Quantity"
 msgstr "Menge"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__order_id
+#: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__order_id
 msgid "Sale Order"
 msgstr "Verkaufsauftrag"
 
 #. module: sale_product_set
-#: model:ir.model.fields,field_description:sale_product_set.field_product_set_add__skip_existing_products
+#: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__skip_existing_products
 msgid "Skip Existing Products"
 msgstr "Existierende Produkte überspringen"
 
 #. module: sale_product_set
-#: model:ir.model,name:sale_product_set.model_product_set_add
+#: model:ir.model,name:sale_product_set.model_sale_product_set_wizard
 msgid "Wizard model to add product set into a quotation"
 msgstr "Assistent zum Hinzufügen eines Produktsets zu einem Angebot"
 
 #. module: sale_product_set
 #. odoo-python
-#: code:addons/sale_product_set/wizard/product_set_add.py:0
+#: code:addons/sale_product_set/wizard/sale_product_set_wizard.py:0
 #, python-format
 msgid "You can use a sale order assigned only to following partner(s): {}"
 msgstr ""

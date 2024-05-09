@@ -204,3 +204,21 @@ class TestSaleException(TransactionCase):
         so_except_confirm.action_confirm()
         self.assertFalse(sale_order.ignore_exception)
         self.assertTrue(sale_order.state == "draft")
+
+    def test_exception_no_validation_for_unlock(self):
+        partner = self.env.ref("base.res_partner_1")
+        partner.zip = False
+        sale_order = self._create_sale_order(
+            partner=partner, product=self.env.ref("product.product_product_6")
+        )
+        sale_order.action_confirm()
+        self.assertEqual(sale_order.state, "sale")
+        exception = self.env.ref("sale_exception.excep_no_zip")
+        exception.active = True
+        sale_order.action_done()
+        self.assertEqual(sale_order.state, "done")
+        # Just reverting the state to 'sale' would trigger an error.
+        with self.assertRaises(ValidationError):
+            sale_order.write({"state": "sale"})
+        sale_order.action_unlock()
+        self.assertEqual(sale_order.state, "sale")

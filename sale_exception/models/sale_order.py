@@ -65,3 +65,8 @@ class SaleOrder(models.Model):
     @api.model
     def _get_popup_action(self):
         return self.env.ref("sale_exception.action_sale_exception_confirm")
+
+    def action_unlock(self):
+        return super(
+            SaleOrder, self.with_context(check_exception=False)
+        ).action_unlock()

@@ -204,6 +204,42 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <label
+                                    for="send_invoice"
+                                    class="col-lg-7 o_light_label"
+                                />
+                                <field name="send_invoice" nolabel="1" />
+                            </div>
+                            <div class="col-sm-8">
+                                <label
+                                    for="send_invoice_filter_id"
+                                    attrs="{'required':[('send_invoice','=',True)], 'invisible':[('send_invoice','!=',True)]}"
+                                />
+                                <div
+                                    attrs="{'required':[('send_invoice','=',True)], 'invisible':[('send_invoice','!=',True)]}"
+                                >
+                                    <field
+                                        name="send_invoice_filter_domain"
+                                        widget="domain"
+                                        attrs="{'invisible': [('send_invoice_filter_id', '=', False)]}"
+                                        options="{'model': 'account.move'}"
+                                    />
+                                    <div class="oe_edit_only oe_inline">
+                                        Set selection based on a search filter:
+                                        <field
+                                            name="send_invoice_filter_id"
+                                            domain="[('model_id', '=', 'account.move')]"
+                                            class="oe_inline"
+                                            context="{'default_model_id': 'account.move', 'default_active': False, 'active_test': False}"
+                                            can_create="true"
+                                            can_write="true"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label
                                     for="register_payment"
                                     class="col-lg-7 o_light_label"
                                 />

@@ -147,13 +147,10 @@ msgstr ""
 "Establezca un motivo para bloquear por defecto las entregas en los pedidos "
 "de venta de este cliente."
 
-#. module: sale_stock_picking_blocking
-#. odoo-python
-#: code:addons/sale_stock_picking_blocking/models/sale_order.py:0
 #, python-format
-msgid "You cannot block a sale order with \"auto_done_setting\" active."
-msgstr ""
-"No se puede bloquear un pedido de venta con \"auto_done_setting\" activo."
+#~ msgid "You cannot block a sale order with \"auto_done_setting\" active."
+#~ msgstr ""
+#~ "No se puede bloquear un pedido de venta con \"auto_done_setting\" activo."
 
 #, fuzzy
 #~| msgid "Sale Orders"

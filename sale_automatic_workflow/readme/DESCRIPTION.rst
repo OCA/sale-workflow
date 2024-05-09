@@ -15,6 +15,7 @@ A workflow can:
   * Send order confirmation mail (only when order confirmed)
   * Create an invoice
   * Validate the invoice
+  * Send the invoice via e-mail
   * Confirm the picking
 
 This module is used by Magentoerpconnect and Prestashoperpconnect.

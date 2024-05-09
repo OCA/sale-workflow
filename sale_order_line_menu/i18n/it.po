@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-13 12:34+0000\n"
+"PO-Revision-Date: 2024-02-16 16:39+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -81,7 +81,7 @@ msgstr "Subtotale prezzo"
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_tree
 msgid "Price Tax"
-msgstr "Valorizzare tassa"
+msgstr "Valorizzare imposta"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_tree

@@ -1,7 +1,6 @@
 # Copyright 2019 Eficent Business and IT Consulting Services S.L.
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-from odoo.exceptions import ValidationError
 from odoo.tests import Form, common
 
 
@@ -49,20 +48,6 @@ class TestSaleDeliveryBlock(common.TransactionCase):
             "product_uom_qty": 1.0,
         }
         cls.sale_order_line = cls.sol_model.with_user(cls.user_test).create(sol_dict)
-
-    def test_check_auto_done(self):
-        # Set active auto done configuration
-        config = self.env["res.config.settings"].create(
-            {"group_auto_done_setting": True}
-        )
-        config.execute()
-        block_reason = self.block_model.with_user(self.user_test).create(
-            {"name": "Test Block."}
-        )
-        so = self.sale_order
-        # Check settings constraints
-        with self.assertRaises(ValidationError):
-            so.write({"delivery_block_id": block_reason.id})
 
     def _picking_comp(self, so):
         """count created pickings"""

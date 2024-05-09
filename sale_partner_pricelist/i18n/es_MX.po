@@ -1,0 +1,102 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_partner_pricelist
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-10 11:19+0000\n"
+"PO-Revision-Date: 2023-09-10 05:28-0600\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_MX\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.3.2\n"
+
+#. module: sale_partner_pricelist
+#: model:ir.model.fields,field_description:sale_partner_pricelist.field_res_partner__allowed_pricelist_ids
+#: model:ir.model.fields,field_description:sale_partner_pricelist.field_res_users__allowed_pricelist_ids
+msgid "Allowed Pricelists"
+msgstr "Listas de precios permitidas"
+
+#. module: sale_partner_pricelist
+#: model:ir.model,name:sale_partner_pricelist.model_res_company
+msgid "Companies"
+msgstr "Empresas"
+
+#. module: sale_partner_pricelist
+#: model:ir.model,name:sale_partner_pricelist.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: sale_partner_pricelist
+#: model:ir.model,name:sale_partner_pricelist.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: sale_partner_pricelist
+#: model:ir.model.fields,help:sale_partner_pricelist.field_res_partner__allowed_pricelist_ids
+#: model:ir.model.fields,help:sale_partner_pricelist.field_res_users__allowed_pricelist_ids
+msgid ""
+"If set, you can only use the selected pricelists for this partner in the "
+"sale order."
+msgstr ""
+"Si está configurado, solo puede usar las listas de precios seleccionadas "
+"para este cliente en la orden de venta."
+
+#. module: sale_partner_pricelist
+#: model:ir.model.fields,field_description:sale_partner_pricelist.field_sale_order__partner_allowed_pricelist_ids
+msgid "Partner Allowed Pricelist"
+msgstr "Lista de precios permitidos por cliente"
+
+#. module: sale_partner_pricelist
+#: model:ir.model,name:sale_partner_pricelist.model_sale_order
+msgid "Sales Order"
+msgstr "Orden de venta"
+
+#. module: sale_partner_pricelist
+#: model:ir.model.fields,help:sale_partner_pricelist.field_sale_order__partner_allowed_pricelist_ids
+msgid ""
+"Technical field used to show the allowed pricelists for the partner if the "
+"partner don't have allowed pricelists it shows all the pricelists."
+msgstr ""
+"Campo técnico utilizado para mostrar las listas de precios permitidas para "
+"el cliente, si el cliente no tiene listas de precios permitidas, muestra "
+"todas las listas de precios."
+
+#. module: sale_partner_pricelist
+#. odoo-python
+#: code:addons/sale_partner_pricelist/models/sale_order.py:0
+#, python-format
+msgid "The selected Pricelist is not allowed for this Partner."
+msgstr "La lista de precios seleccionada no está permitida para este cliente."
+
+#. module: sale_partner_pricelist
+#. odoo-python
+#: code:addons/sale_partner_pricelist/models/res_partner.py:0
+#, python-format
+msgid ""
+"The selected Pricelist is not allowed for this Partner. Please select one of "
+"the allowed pricelists."
+msgstr ""
+"La lista de precios seleccionada no está permitida para este cliente. Por "
+"favor seleccione una de las listas de precios permitidas."
+
+#. module: sale_partner_pricelist
+#: model:ir.model.fields,field_description:sale_partner_pricelist.field_res_company__use_partner_pricelist
+#: model:ir.model.fields,field_description:sale_partner_pricelist.field_res_config_settings__use_partner_pricelist
+msgid "Use Partner Pricelist"
+msgstr "Utilice la lista de precios de clientes"
+
+#. module: sale_partner_pricelist
+#: model_terms:ir.ui.view,arch_db:sale_partner_pricelist.res_config_settings_view_form
+msgid ""
+"When enabled. You can only select a pricelist that is allowed for the "
+"customer."
+msgstr ""
+"Cuando está habilitado. Sólo puede seleccionar una lista de precios "
+"permitida para el cliente."

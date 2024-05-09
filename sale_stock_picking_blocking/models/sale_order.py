@@ -2,8 +2,7 @@
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
-from odoo.exceptions import ValidationError
+from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -17,14 +16,6 @@ class SaleOrder(models.Model):
         store=True,
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
     )
-
-    @api.constrains("delivery_block_id")
-    def _check_not_auto_done(self):
-        auto_done = self.user_has_groups("sale.group_auto_done_setting")
-        if auto_done and any(so.delivery_block_id for so in self):
-            raise ValidationError(
-                _('You cannot block a sale order with "auto_done_setting" ' "active.")
-            )
 
     @api.depends("partner_id")
     def _compute_delivery_block_id(self):

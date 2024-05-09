@@ -130,7 +130,11 @@ msgid "Order Reference"
 msgstr "订单参考"
 
 #. module: sale_order_line_price_history
+#. odoo-javascript
+#: code:addons/sale_order_line_price_history/static/src/xml/sale_line_price_history_widget.xml:0
+#: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
 #: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.view_order_form
+#, python-format
 msgid "Price History"
 msgstr ""
 
@@ -157,6 +161,7 @@ msgstr "销售历史"
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__sale_order_line_id
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_line_id
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__target_sale_order_line_id
 msgid "Sale order line"
 msgstr "销售订单行"
 
@@ -176,9 +181,16 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_order_line_price_history
-#: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
-msgid "Set price"
-msgstr "设定价格"
+#. odoo-javascript
+#: code:addons/sale_order_line_price_history/static/src/xml/set_price_to_line_widget.xml:0
+#, python-format
+msgid "Set Historic Price"
+msgstr ""
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__order_state
+msgid "Status"
+msgstr ""
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__price_unit
@@ -189,6 +201,9 @@ msgstr "单价"
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__history_sale_order_line_id
 msgid "history sale order line"
 msgstr "历史销售订单行"
+
+#~ msgid "Set price"
+#~ msgstr "设定价格"
 
 #~ msgid "Include quotations"
 #~ msgstr "包括报价单"

@@ -3,7 +3,7 @@
     "name": "Sale Exception Public Holidays",
     "summary": """Raise a sale exception if there is a commitment_date on
     the SO and this date is a public holidays for the shipping partner address""",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "category": "Generic Modules/Sale",
     "author": "Camptocamp, BCIM, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",

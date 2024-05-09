@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2018 Tecnativa - Sergio Teruel
+     Copyright 2024 Moduon Team S.L. <info@moduon.team>
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <template
@@ -19,7 +20,7 @@
         >
             <attribute
                 name="t-value"
-                add="or (o.move_ids.sale_line_id.elaboration_ids)"
+                add="or (o.move_ids.filtered('elaboration_note'))"
                 separator=" "
             />
             <attribute
@@ -28,22 +29,15 @@
                 separator=", "
             />
         </xpath>
-        <xpath expr="//th[@name='th_sm_quantity']" position="after">
-            <th name="th_sm_elaboration">
-                <strong>Elab.</strong>
-            </th>
-        </xpath>
-        <xpath expr="//span[@t-field='move.quantity_done']/.." position="after">
-            <td>
-                <span
-                    t-esc="', '.join(move.sale_line_id.elaboration_ids.mapped('code'))"
-                />
-            </td>
-        </xpath>
-        <xpath expr="//th[@name='th_sml_quantity']" position="after">
-            <th name="th_sml_elaboration">
-                <strong>Elaboration</strong>
-            </th>
+        <xpath expr="//p[span[@t-field='move.description_picking']]" position="after">
+            <div
+                class="fst-italic"
+                groups="sale_elaboration.group_elaboration_note_on_delivery_slip"
+                t-if="move.picking_code != 'incoming' and move.elaboration_note"
+            >
+                <i class="fa fa-comment-o " />
+                <span t-field="move.elaboration_note" />
+            </div>
         </xpath>
     </template>
 
@@ -51,12 +45,15 @@
         id="stock_report_delivery_has_serial_move_line"
         inherit_id="stock.stock_report_delivery_has_serial_move_line"
     >
-        <xpath expr="//td[@name='move_line_lot_qty_done']" position="after">
-            <td>
-                <span
-                    t-esc="', '.join(move_line.move_id.sale_line_id.elaboration_ids.mapped('code'))"
-                />
-            </td>
+        <xpath expr="//span[@t-field='move_line.product_id']" position="after">
+            <div
+                class="fst-italic"
+                groups="sale_elaboration.group_elaboration_note_on_delivery_slip"
+                t-if="move_line.picking_code != 'incoming' and move_line.elaboration_note"
+            >
+                <i class="fa fa-comment-o" />
+                <span t-field="move_line.elaboration_note" />
+            </div>
         </xpath>
     </template>
 </odoo>

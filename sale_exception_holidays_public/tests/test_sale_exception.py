@@ -20,11 +20,9 @@ class TestSaleException(TransactionCase):
         cls.holiday_model.search([]).unlink()
 
         # Create holidays
-        today = fields.Date.today()
-        this_year = today.year
-        holiday_date = today + timedelta(days=10)
+        holiday_date = fields.Date.today() + timedelta(days=10)
         holiday_1 = cls.holiday_model.create(
-            {"year": this_year, "country_id": cls.env.ref("base.sl").id}
+            {"year": holiday_date.year, "country_id": cls.env.ref("base.sl").id}
         )
         cls.holiday_model_line.create(
             {"name": "holiday 5", "date": holiday_date, "year_id": holiday_1.id}

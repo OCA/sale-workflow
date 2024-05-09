@@ -3,6 +3,7 @@
 from freezegun import freeze_time
 
 from odoo.fields import Command
+from odoo.tests import tagged
 from odoo.tests.common import Form
 
 from odoo.addons.sale_order_product_recommendation.tests import (
@@ -10,6 +11,7 @@ from odoo.addons.sale_order_product_recommendation.tests import (
 )
 
 
+@tagged("post_install", "-at_install")
 @freeze_time("2021-10-02 15:30:00", tick=True)
 class PackagingRecommendationCase(test_recommendation_common.RecommendationCase):
     @classmethod
@@ -121,10 +123,10 @@ class PackagingRecommendationCase(test_recommendation_common.RecommendationCase)
             line.product_packaging_id = self.prod_1_dozen
             self.assertEqual(line.product_packaging_qty, 1)
             self.assertEqual(line.units_included, 12)
-            line.product_packaging_qty = 10
+            line.product_packaging_qty = 9
             self.assertEqual(line.product_packaging_id, self.prod_1_dozen)
-            self.assertEqual(line.product_packaging_qty, 10)
-            self.assertEqual(line.units_included, 120)
+            self.assertEqual(line.product_packaging_qty, 9)
+            self.assertEqual(line.units_included, 108)
         # After saving, the SO has the expected values
         wiz = wiz_f.save()
         wiz.action_accept()
@@ -146,8 +148,8 @@ class PackagingRecommendationCase(test_recommendation_common.RecommendationCase)
                 {
                     "product_id": self.prod_1.id,
                     "product_packaging_id": self.prod_1_dozen.id,
-                    "product_packaging_qty": 10,
-                    "product_uom_qty": 120,
+                    "product_packaging_qty": 9,
+                    "product_uom_qty": 108,
                 },
             ],
         )
@@ -168,10 +170,10 @@ class PackagingRecommendationCase(test_recommendation_common.RecommendationCase)
             self.assertEqual(line.product_packaging_id, self.prod_1_dozen)
             self.assertEqual(line.product_packaging_qty, 1)
             self.assertEqual(line.units_included, 12)
-            line.product_packaging_qty = 10
+            line.product_packaging_qty = 9
             self.assertEqual(line.product_packaging_id, self.prod_1_dozen)
-            self.assertEqual(line.product_packaging_qty, 10)
-            self.assertEqual(line.units_included, 120)
+            self.assertEqual(line.product_packaging_qty, 9)
+            self.assertEqual(line.units_included, 108)
         wiz = wiz_f.save()
         wiz.action_accept()
         self.assertRecordValues(
@@ -180,8 +182,8 @@ class PackagingRecommendationCase(test_recommendation_common.RecommendationCase)
                 {
                     "product_id": self.prod_1.id,
                     "product_packaging_id": self.prod_1_dozen.id,
-                    "product_packaging_qty": 10,
-                    "product_uom_qty": 120,
+                    "product_packaging_qty": 9,
+                    "product_uom_qty": 108,
                 },
             ],
         )

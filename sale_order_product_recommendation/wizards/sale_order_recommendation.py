@@ -2,13 +2,12 @@
 # Copyright 2018 Carlos Dauden <carlos.dauden@tecnativa.com>
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 import logging
 from datetime import datetime, timedelta
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 from odoo.osv import expression
-from odoo.tests import Form
 from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
@@ -40,7 +39,6 @@ class SaleOrderRecommendation(models.TransientModel):
         required=True,
         help="The less, the faster they will be found.",
     )
-    last_compute = fields.Char()
     # Get default value from config settings
     sale_recommendation_price_origin = fields.Selection(
         [("pricelist", "Pricelist"), ("last_sale_price", "Last sale price")],
@@ -48,6 +46,17 @@ class SaleOrderRecommendation(models.TransientModel):
         default="pricelist",
     )
     use_delivery_address = fields.Boolean(string="Use delivery address")
+    recommendations_order = fields.Selection(
+        [
+            ("times_delivered desc", "Times delivered"),
+            ("units_delivered desc", "Units delivered"),
+            ("product_categ_complete_name asc", "Product category"),
+            ("product_default_code asc", "Product code"),
+            ("product_name asc", "Product name"),
+        ],
+        required=True,
+        default="times_delivered desc",
+    )
 
     @api.model
     def _default_order_id(self):
@@ -111,21 +120,23 @@ class SaleOrderRecommendation(models.TransientModel):
             vals["sale_line_id"] = so_line.id
         return vals
 
-    @api.onchange("order_id", "months", "line_amount", "use_delivery_address")
-    def _remove_recommendations(self):
+    def _reopen_wizard(self):
+        """Tell the client to close the wizard and open it again."""
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": self._name,
+            "res_id": self.id,
+            "view_mode": "form",
+            "target": "new",
+        }
+
+    def action_reset(self):
         """Empty the list of recommendations."""
         self.line_ids = False
+        return self._reopen_wizard()
 
     def generate_recommendations(self):
         """Generate lines according to context sale order."""
-        last_compute = "{}-{}-{}-{}".format(
-            self.id, self.months, self.line_amount, self.use_delivery_address
-        )
-        # Avoid execute onchange as times as fields in api.onchange
-        # ORM must control this?
-        if self.last_compute == last_compute:
-            return
-        self.last_compute = last_compute
         # Search delivered products in previous months
         # Search with sudo for get sale order from other commercials users
         found_lines = (
@@ -174,23 +185,31 @@ class SaleOrderRecommendation(models.TransientModel):
             i += 1
             if i >= self.line_amount:
                 break
+        # Sort recommendations by user choice
+        order_field, order_dir = map(str.lower, self.recommendations_order.split())
+        # Priority order (which can have an str value "0" or "1") must always
+        # default to DESC, no matter the order_dir; so we inverse it if it's ASC
+        priority_multiplier = 1 if order_dir == "desc" else -1
         self.line_ids = recommendation_lines.sorted(
-            key=lambda x: x.times_delivered, reverse=True
+            key=lambda line: (
+                "" if line[order_field] is False else line[order_field],
+                int(line.product_id.priority) * priority_multiplier,
+            ),
+            reverse=order_dir == "desc",
         )
+        if not self.line_ids:
+            raise UserError(
+                _("Nothing found! Modify your criteria or fill the order manually.")
+            )
         # Reopen wizard
-        return {
-            "type": "ir.actions.act_window",
-            "res_model": self._name,
-            "res_id": self.id,
-            "view_mode": "form",
-            "target": "new",
-        }
+        return self._reopen_wizard()
 
     def action_accept(self):
         """Propagate recommendations to sale order."""
         sequence = max(self.order_id.mapped("order_line.sequence") or [0])
-        order_form = Form(self.order_id.sudo())
         to_remove = []
+        sale_order_line_obj = self.env["sale.order.line"].sudo()
+        new_line_vals = []
         force_zero_units_included = self.env.user.company_id.force_zero_units_included
         for wiz_line in self.line_ids:
             if (
@@ -200,31 +219,50 @@ class SaleOrderRecommendation(models.TransientModel):
             ):
                 continue
             if wiz_line.sale_line_id:
-                index = self.order_id.order_line.ids.index(wiz_line.sale_line_id.id)
                 if wiz_line.units_included or force_zero_units_included:
-                    with order_form.order_line.edit(index) as line_form:
-                        wiz_line._prepare_update_so_line(line_form)
+                    wiz_line.sale_line_id.update(
+                        wiz_line._prepare_update_so_line_vals()
+                    )
                 else:
-                    to_remove.append(index)
+                    to_remove.append(wiz_line.sale_line_id.id)
             else:
                 sequence += 1
-                with order_form.order_line.new() as line_form:
-                    wiz_line._prepare_new_so_line(line_form, sequence)
+                vals = wiz_line._prepare_new_so_line_vals(sequence)
+                new_line_vals.append(vals)
         # Remove at the end and in reverse order for not having problems
         to_remove.reverse()
-        for index in to_remove:
-            order_form.order_line.remove(index)
-        order_form.save()
+        sale_order_line_obj.browse(to_remove).unlink()
+        if new_line_vals:
+            sale_order_line_obj.create(new_line_vals)
 
 
 class SaleOrderRecommendationLine(models.TransientModel):
     _name = "sale.order.recommendation.line"
     _description = "Recommended product for current sale order"
-    _order = "id"
+    _order = "product_priority desc, id"
 
     currency_id = fields.Many2one(related="product_id.currency_id")
     partner_id = fields.Many2one(related="wizard_id.order_id.partner_id")
     product_id = fields.Many2one("product.product", string="Product")
+    product_name = fields.Char(
+        name="Product name", related="product_id.name", readonly=True, store=True
+    )
+    product_categ_complete_name = fields.Char(
+        string="Product category",
+        related="product_id.categ_id.complete_name",
+        readonly=True,
+        store=True,
+    )
+    product_default_code = fields.Char(
+        related="product_id.default_code", readonly=True, store=True
+    )
+    product_priority = fields.Selection(
+        related="product_id.priority", store=True, readonly=False
+    )
+    product_uom_readonly = fields.Boolean(related="sale_line_id.product_uom_readonly")
+    product_uom_category_id = fields.Many2one(
+        related="product_id.uom_id.category_id", depends=["product_id"]
+    )
     price_unit = fields.Monetary(compute="_compute_price_unit")
     pricelist_id = fields.Many2one(related="wizard_id.order_id.pricelist_id")
     times_delivered = fields.Integer(readonly=True)
@@ -238,7 +276,19 @@ class SaleOrderRecommendationLine(models.TransientModel):
         readonly=True,
     )
     sale_line_id = fields.Many2one(comodel_name="sale.order.line")
-    sale_uom_id = fields.Many2one(related="sale_line_id.product_uom")
+    sale_uom_id = fields.Many2one(
+        comodel_name="uom.uom",
+        string="Unit of Measure",
+        compute="_compute_sale_uom_id",
+        store=True,
+        readonly=False,
+        domain="[('category_id', '=', product_uom_category_id)]",
+    )
+
+    @api.depends("sale_line_id", "product_id")
+    def _compute_sale_uom_id(self):
+        for line in self:
+            line.sale_uom_id = line.sale_line_id.product_uom or line.product_id.uom_id
 
     @api.depends(
         "partner_id",
@@ -260,17 +310,24 @@ class SaleOrderRecommendationLine(models.TransientModel):
             else:
                 line.price_unit = line._get_last_sale_price_product()
 
-    def _prepare_update_so_line(self, line_form):
-        """So we can extend SO update"""
-        line_form.product_uom_qty = self.units_included
+    def _prepare_update_so_line_vals(self):
+        vals = {"product_uom_qty": self.units_included}
+        if not self.product_uom_readonly:
+            vals["product_uom"] = self.sale_uom_id.id
+        return vals
 
-    def _prepare_new_so_line(self, line_form, sequence):
-        """So we can extend SO create"""
-        line_form.product_id = self.product_id
-        line_form.sequence = sequence
-        line_form.product_uom_qty = self.units_included
+    def _prepare_new_so_line_vals(self, sequence):
+        vals = {
+            "product_id": self.product_id.id,
+            "sequence": sequence,
+            "product_uom_qty": self.units_included,
+            "order_id": self.wizard_id.order_id.id,
+        }
+        if not self.product_uom_readonly:
+            vals["product_uom"] = self.sale_uom_id.id
         if self.wizard_id.sale_recommendation_price_origin == "last_sale_price":
-            line_form.price_unit = self.price_unit
+            vals["price_unit"] = self.price_unit
+        return vals
 
     def _get_last_sale_price_product(self):
         """

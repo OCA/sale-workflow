@@ -38,21 +38,24 @@ class SaleOrderRecommendationLine(models.TransientModel):
     _name = "sale.order.recommendation.line"
     _inherit = ["sale.order.recommendation.line", "product.elaboration.mixin"]
 
-    def _prepare_elaborations_line_form(self, line_form):
-        """Transfer elaborations to a sale order line form."""
-        line_form.elaboration_ids.clear()
-        for elaboration in self.elaboration_ids:
-            line_form.elaboration_ids.add(elaboration)
-        line_form.elaboration_note = self.elaboration_note
-
-    def _prepare_new_so_line(self, line_form, sequence):
+    def _prepare_new_so_line_vals(self, sequence):
         """Transfer elaborations to a new sale order line."""
-        result = super()._prepare_new_so_line(line_form, sequence)
-        self._prepare_elaborations_line_form(line_form)
-        return result
+        res = super()._prepare_new_so_line_vals(sequence)
+        res.update(
+            {
+                "elaboration_ids": [fields.Command.set(self.elaboration_ids.ids)],
+                "elaboration_note": self.elaboration_note,
+            }
+        )
+        return res
 
-    def _prepare_update_so_line(self, line_form):
+    def _prepare_update_so_line_vals(self):
         """Transfer elaborations to an existing sale order line."""
-        result = super()._prepare_update_so_line(line_form)
-        self._prepare_elaborations_line_form(line_form)
-        return result
+        res = super()._prepare_update_so_line_vals()
+        res.update(
+            {
+                "elaboration_ids": [fields.Command.set(self.elaboration_ids.ids)],
+                "elaboration_note": self.elaboration_note,
+            }
+        )
+        return res

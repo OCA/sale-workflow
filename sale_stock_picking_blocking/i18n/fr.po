@@ -146,14 +146,11 @@ msgstr ""
 "Renseigner une raison pour bloquer par défaut les livraisons pour ces "
 "commandes de vente clients."
 
-#. module: sale_stock_picking_blocking
-#. odoo-python
-#: code:addons/sale_stock_picking_blocking/models/sale_order.py:0
 #, python-format
-msgid "You cannot block a sale order with \"auto_done_setting\" active."
-msgstr ""
-"Vous ne pouvez pas bloquer une commande de vente avec \"auto_done_setting\" "
-"actif."
+#~ msgid "You cannot block a sale order with \"auto_done_setting\" active."
+#~ msgstr ""
+#~ "Vous ne pouvez pas bloquer une commande de vente avec \"auto_done_setting"
+#~ "\" actif."
 
 #~ msgid "Sale Order"
 #~ msgstr "Bons de commande"

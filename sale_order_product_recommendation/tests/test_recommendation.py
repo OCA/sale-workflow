@@ -6,6 +6,7 @@
 from freezegun import freeze_time
 
 from odoo.exceptions import UserError
+from odoo.tests.common import Form
 
 from .test_recommendation_common import RecommendationCase
 
@@ -53,6 +54,127 @@ class RecommendationCaseTests(RecommendationCase):
         wizard.generate_recommendations()
         self.assertEqual(len(wizard.line_ids), 2)
 
+    def test_recommendations_ordered_by_category(self):
+        wiz_f = Form(
+            self.env["sale.order.recommendation"].with_context(active_id=self.new_so.id)
+        )
+        wiz_f.recommendations_order = "product_categ_complete_name asc"
+        wizard = wiz_f.save()
+        wizard.generate_recommendations()
+        # Prod 3 is 1st because its category is named "A"
+        self.assertRecordValues(
+            wizard.line_ids,
+            [
+                {
+                    "product_id": self.prod_3.id,
+                    "product_categ_complete_name": "A",
+                    "times_delivered": 1,
+                    "units_delivered": 100,
+                    "units_included": 0,
+                },
+                {
+                    "product_id": self.prod_2.id,
+                    "product_categ_complete_name": "B",
+                    "times_delivered": 2,
+                    "units_delivered": 100,
+                    "units_included": 0,
+                },
+                {
+                    "product_id": self.prod_1.id,
+                    "product_categ_complete_name": "B",
+                    "times_delivered": 1,
+                    "units_delivered": 25,
+                    "units_included": 0,
+                },
+            ],
+        )
+
+    def test_recommendations_ordered_by_code(self):
+        wiz_f = Form(
+            self.env["sale.order.recommendation"].with_context(active_id=self.new_so.id)
+        )
+        wiz_f.recommendations_order = "product_default_code asc"
+        wizard = wiz_f.save()
+        wizard.generate_recommendations()
+        # Prod 3 is 1st because its code is "A"
+        self.assertRecordValues(
+            wizard.line_ids,
+            [
+                {
+                    "product_id": self.prod_2.id,
+                    "product_default_code": False,
+                    "times_delivered": 2,
+                    "units_delivered": 100,
+                    "units_included": 0,
+                    "sale_uom_id": self.prod_2.uom_id.id,
+                },
+                {
+                    "product_id": self.prod_1.id,
+                    "product_default_code": False,
+                    "times_delivered": 1,
+                    "units_delivered": 25,
+                    "units_included": 0,
+                    "sale_uom_id": self.prod_1.uom_id.id,
+                },
+                {
+                    "product_id": self.prod_3.id,
+                    "product_default_code": "TEST-PROD-3",
+                    "times_delivered": 1,
+                    "units_delivered": 100,
+                    "units_included": 0,
+                    "sale_uom_id": self.prod_3.uom_id.id,
+                },
+            ],
+        )
+
+    def test_change_uom(self):
+        """Change UoM and units included."""
+        unit, dozen = map(
+            self.browse_ref, ["uom.product_uom_unit", "uom.product_uom_dozen"]
+        )
+        # Salesperson needs uom access
+        self.env.user.groups_id |= self.env.ref("uom.group_uom")
+        # Add 2 dozens of product 2
+        wizard = self.wizard()
+        with Form(wizard) as wizard_f:
+            with wizard_f.line_ids.edit(0) as line_f:
+                self.assertEqual(line_f.product_id, self.prod_2)
+                self.assertEqual(line_f.sale_uom_id, unit)
+                line_f.sale_uom_id = dozen
+                line_f.units_included = 2
+        wizard.action_accept()
+        # Check it's properly added
+        self.assertRecordValues(
+            self.new_so.order_line,
+            [
+                {
+                    "product_id": self.prod_2.id,
+                    "product_uom": dozen.id,
+                    "product_uom_qty": 2,
+                }
+            ],
+        )
+        # Use a new wizard to change product 2 to 10 units
+        wizard = self.wizard()
+        with Form(wizard) as wizard_f:
+            with wizard_f.line_ids.edit(0) as line_f:
+                self.assertEqual(line_f.product_id, self.prod_2)
+                self.assertEqual(line_f.sale_uom_id, dozen)
+                line_f.sale_uom_id = unit
+                line_f.units_included = 10
+        wizard.action_accept()
+        # Check it's properly changed
+        self.assertRecordValues(
+            self.new_so.order_line,
+            [
+                {
+                    "product_id": self.prod_2.id,
+                    "product_uom": unit.id,
+                    "product_uom_qty": 10,
+                }
+            ],
+        )
+
     def test_recommendations_archived_product(self):
         self.env["sale.order"].create(
             {
@@ -75,6 +197,7 @@ class RecommendationCaseTests(RecommendationCase):
         wizard.action_accept()
         self.assertEqual(len(self.new_so.order_line), 1)
         self.assertEqual(self.new_so.order_line.product_id, self.prod_1)
+        self.assertEqual(self.new_so.order_line.product_uom, self.prod_1.uom_id)
         self.assertEqual(self.new_so.order_line.product_uom_qty, qty)
         # No we confirm the SO
         self.new_so.action_confirm()
@@ -96,7 +219,7 @@ class RecommendationCaseTests(RecommendationCase):
             )
         )
         adv_wiz.with_context(open_invoices=True).create_invoices()
-        self.new_so.invoice_ids.action_post()
+        self.new_so.invoice_ids.with_user(self.user_invoice).action_post()
         # Open the wizard and add more product qty
         wizard = self.wizard()
         wiz_line = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
@@ -208,7 +331,7 @@ class RecommendationCaseTests(RecommendationCase):
         self.assertIn("service", wizard.line_ids.mapped("product_id.type"))
 
         # Add extended domain to exclude services
-        self.settings = self.env["res.config.settings"].create({})
+        self.settings = self.env["res.config.settings"].sudo().create({})
         self.settings.sale_line_recommendation_domain = (
             "[('product_id.type', '!=', 'service')]"
         )
@@ -220,3 +343,9 @@ class RecommendationCaseTests(RecommendationCase):
         )
         wizard.generate_recommendations()
         self.assertNotIn("service", wizard.line_ids.mapped("product_id.type"))
+
+    def test_no_recommendations_found(self):
+        new_partner = self.partner.copy()
+        self.new_so.partner_id = new_partner
+        with self.assertRaisesRegex(UserError, "Nothing found!"):
+            self.wizard()

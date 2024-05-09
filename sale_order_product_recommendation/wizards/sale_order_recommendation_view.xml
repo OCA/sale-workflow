@@ -10,12 +10,17 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <group>
-                        <field name="order_id" invisible="1" />
-                        <field name="months" widget="numeric_step" />
-                        <field name="line_amount" widget="numeric_step" />
-                        <field name="sale_recommendation_price_origin" />
-                        <field name="use_delivery_address" />
+                    <group attrs="{'invisible': [('line_ids', '!=', [])]}">
+                        <group>
+                            <field name="order_id" invisible="1" />
+                            <field name="months" widget="numeric_step" />
+                            <field name="line_amount" widget="numeric_step" />
+                        </group>
+                        <group>
+                            <field name="sale_recommendation_price_origin" />
+                            <field name="use_delivery_address" />
+                            <field name="recommendations_order" />
+                        </group>
                     </group>
                     <group col="2">
                         <field
@@ -26,17 +31,37 @@
                             attrs="{'invisible': [('line_ids', '=', [])]}"
                         >
                             <tree create="0" delete="0" editable="top">
+                                <field
+                                    name="product_priority"
+                                    widget="priority"
+                                    optional="show"
+                                    nolabel="1"
+                                />
                                 <field name="currency_id" invisible="1" />
                                 <field name="sale_line_id" invisible="1" />
-                                <field name="product_id" readonly="1" force_save="1" />
-                                <field name="price_unit" />
-                                <field name="times_delivered" />
-                                <field name="units_delivered" />
+                                <field
+                                    name="product_categ_complete_name"
+                                    optional="show"
+                                />
+                                <field
+                                    name="product_id"
+                                    readonly="1"
+                                    force_save="1"
+                                    optional="hide"
+                                />
+                                <field name="product_default_code" optional="show" />
+                                <field name="product_name" optional="show" />
+                                <field name="price_unit" optional="show" />
+                                <field name="times_delivered" optional="show" />
+                                <field name="units_delivered" optional="show" />
                                 <field name="units_included" widget="numeric_step" />
+                                <field name="product_uom_category_id" invisible="1" />
+                                <field name="product_uom_readonly" invisible="1" />
                                 <field
                                     name="sale_uom_id"
                                     optional="show"
                                     groups="uom.group_uom"
+                                    attrs="{'readonly': [('product_uom_readonly', '=', True)]}"
                                 />
                             </tree>
                             <kanban
@@ -57,19 +82,34 @@
                                 <templates>
                                     <t t-name="kanban-box">
                                         <div class="oe_kanban_global_click">
-                                            <div class="o_kanban_image">
+                                            <div class="o_kanban_image me-1">
                                                 <img
                                                     t-att-src="kanban_image('product.product', 'image_128', record.product_id.raw_value)"
                                                     alt="Product"
+                                                    class="o_image_64_contain"
                                                 />
                                             </div>
                                             <div class="oe_kanban_details">
-                                                <div><field name="product_id" /></div>
+                                                <div class="o_kanban_record_top mb-0">
+                                                    <div
+                                                        class="o_kanban_record_headings"
+                                                    >
+                                                        <field
+                                                            name="product_id"
+                                                            class="o_kanban_record_title"
+                                                        />
+                                                    </div>
+                                                    <field
+                                                        class="w-auto mb-0"
+                                                        name="product_priority"
+                                                        widget="priority"
+                                                    />
+                                                </div>
                                                 <div>Price: <field
                                                         name="price_unit"
                                                         widget="monetary"
                                                         options="{'currency_field': 'currency_id', 'field_digits': True}"
-                                                        class="mt-0 mb-0"
+                                                        class="oe_inline mt-0 mb-0"
                                                     /></div>
                                                 <div>Delivered: <field
                                                         name="times_delivered"
@@ -123,6 +163,13 @@
                         type="object"
                         string="Accept"
                         class="oe_highlight"
+                    />
+                    <button
+                        attrs="{'invisible': [('line_ids', '=', [])]}"
+                        confirm="You will lose any changes you have made. Are you sure?"
+                        name="action_reset"
+                        string="Change criteria"
+                        type="object"
                     />
                     <button special="cancel" string="Cancel" />
                 </footer>

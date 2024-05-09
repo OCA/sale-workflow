@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.from.blanket.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="currency_id" position="after">
+                <field name="blanket_order_id" invisible="1" />
+            </field>
+            <xpath
+                expr="//field[@name='order_line']//tree/field[@name='product_id']"
+                position="after"
+            >
+                <field
+                    name="blanket_order_line"
+                    context="{'from_sale_order': True}"
+                    attrs="{'column_invisible': [('parent.blanket_order_id', '=', False)]}"
+                />
+            </xpath>
+            <xpath expr="//field[@name='order_line']" position="attributes">
+                <attribute name="context">{'from_sale_order': True}</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_order_form_disable_adding_lines" model="ir.ui.view">
+        <field name="name">sale.order.from.blanket.form - disable adding lines</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']//tree" position="attributes">
+                <t groups="sale_blanket_order.blanket_orders_disable_adding_lines">
+                    <attribute name="create">blanket_order_id==False</attribute>
+                </t>
+            </xpath>
+        </field>
+    </record>
+</odoo>

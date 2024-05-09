@@ -1,0 +1,75 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_invoicing_picking_filter
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-01-05 13:53+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_order_invoicing_picking_filter
+#: model_terms:ir.ui.view,arch_db:sale_order_invoicing_picking_filter.sale_order_invoiceing_picking_filter_invoice_wizard
+msgid ""
+"<span attrs=\"{'invisible': [('there_are_service_product', '=', False)]}\">\n"
+"                        There are any non-invoiced service products among the selected pickings\n"
+"                    </span>"
+msgstr ""
+"<span attrs=\"{'invisible': [('there_are_service_product', '=', False)]}\">\n"
+"                        Ci sono dei prodtti servizio non fatturati tra i "
+"prelievi selezionati\n"
+"                    </span>"
+
+#. module: sale_order_invoicing_picking_filter
+#: model:ir.model.fields,help:sale_order_invoicing_picking_filter.field_sale_advance_payment_inv__inv_service_products
+msgid "If selected and there is a service type product, it will be invoiced."
+msgstr ""
+"Se selezionata e ci sono dei prodotti di tipo servizio, verrà fatturata."
+
+#. module: sale_order_invoicing_picking_filter
+#: model:ir.model.fields,field_description:sale_order_invoicing_picking_filter.field_sale_advance_payment_inv__inv_service_products
+msgid "Invoice Service Products"
+msgstr "Fattura prodotti servizio"
+
+#. module: sale_order_invoicing_picking_filter
+#: model:ir.model.fields,field_description:sale_order_invoicing_picking_filter.field_stock_picking__invoiced
+msgid "Invoiced"
+msgstr "Fatturato"
+
+#. module: sale_order_invoicing_picking_filter
+#: model:ir.model.fields,field_description:sale_order_invoicing_picking_filter.field_sale_advance_payment_inv__stock_picking_ids
+msgid "Pickings"
+msgstr "Prelievi"
+
+#. module: sale_order_invoicing_picking_filter
+#: model:ir.model,name:sale_order_invoicing_picking_filter.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr "Fattura di vendita con pagamento anticipato"
+
+#. module: sale_order_invoicing_picking_filter
+#: model:ir.model,name:sale_order_invoicing_picking_filter.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: sale_order_invoicing_picking_filter
+#: model:ir.model,name:sale_order_invoicing_picking_filter.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Riga ordine di vendita"
+
+#. module: sale_order_invoicing_picking_filter
+#: model:ir.model.fields,field_description:sale_order_invoicing_picking_filter.field_sale_advance_payment_inv__there_are_service_product
+msgid "There are a Service Product"
+msgstr "C'è un prodotto servizio"
+
+#. module: sale_order_invoicing_picking_filter
+#: model:ir.model,name:sale_order_invoicing_picking_filter.model_stock_picking
+msgid "Transfer"
+msgstr "Trasferimento"
