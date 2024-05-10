@@ -10,6 +10,8 @@
             name="inherit_id"
             ref="sale_order_product_recommendation.sale_order_recommendation_view_form"
         />
+        <!-- Compatibility with sale_order_product_recommendation_packaging_default -->
+        <field name="priority">30</field>
         <field name="arch" type="xml">
             <xpath
                 expr="//field[@name='line_ids']/tree/field[@name='units_included']"
