@@ -103,7 +103,7 @@ addon | version | maintainers | summary
 [sale_stock_line_sequence](sale_stock_line_sequence/) | 16.0.1.0.0 |  | Glue Module for Sale Order Line Sequence and Stock Picking Line Sequence
 [sale_stock_picking_blocking](sale_stock_picking_blocking/) | 16.0.1.0.1 |  | Allow you to block the creation of deliveries from a sale order.
 [sale_stock_picking_note](sale_stock_picking_note/) | 16.0.1.1.1 | [![carlosdauden](https://github.com/carlosdauden.png?size=30px)](https://github.com/carlosdauden) [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) [![chienandalu](https://github.com/chienandalu.png?size=30px)](https://github.com/chienandalu) [![EmilioPascual](https://github.com/EmilioPascual.png?size=30px)](https://github.com/EmilioPascual) | Add picking note in sale and purchase order
-[sale_stock_product_recommendation](sale_stock_product_recommendation/) | 16.0.1.0.0 | [![yajo](https://github.com/yajo.png?size=30px)](https://github.com/yajo) [![rafaelbn](https://github.com/rafaelbn.png?size=30px)](https://github.com/rafaelbn) | Display stock info when recommending products to sell
+[sale_stock_product_recommendation](sale_stock_product_recommendation/) | 16.0.1.0.1 | [![yajo](https://github.com/yajo.png?size=30px)](https://github.com/yajo) [![rafaelbn](https://github.com/rafaelbn.png?size=30px)](https://github.com/rafaelbn) | Display stock info when recommending products to sell
 [sale_substate](sale_substate/) | 16.0.1.0.0 |  | Sale Sub State
 [sale_tier_validation](sale_tier_validation/) | 16.0.1.0.4 |  | Extends the functionality of Sale Orders to support a tier validation process.
 [sale_triple_discount](sale_triple_discount/) | 16.0.1.0.1 |  | Manage triple discount on sale order lines
