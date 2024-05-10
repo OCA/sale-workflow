@@ -4,7 +4,7 @@
 {
     "name": "Sale Order Product Recommendation Stock",
     "summary": "Display stock info when recommending products to sell",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "development_status": "Alpha",
     "category": "Sales/Sales",
     "website": "https://github.com/OCA/sale-workflow",
