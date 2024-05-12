@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -56,12 +56,8 @@ msgid "Display Customer Prices"
 msgstr ""
 
 #. module: pricelist_cache
-#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist__display_name
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__display_name
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__display_name
-#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__display_name
-#: model:ir.model.fields,field_description:pricelist_cache.field_product_product__display_name
-#: model:ir.model.fields,field_description:pricelist_cache.field_res_partner__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -90,12 +86,8 @@ msgid ""
 msgstr ""
 
 #. module: pricelist_cache
-#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist__id
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__id
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__id
-#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__id
-#: model:ir.model.fields,field_description:pricelist_cache.field_product_product__id
-#: model:ir.model.fields,field_description:pricelist_cache.field_res_partner__id
 msgid "ID"
 msgstr ""
 
@@ -112,12 +104,8 @@ msgid "Is Pricelist Cache Computed"
 msgstr ""
 
 #. module: pricelist_cache
-#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist____last_update
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache____last_update
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard____last_update
-#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item____last_update
-#: model:ir.model.fields,field_description:pricelist_cache.field_product_product____last_update
-#: model:ir.model.fields,field_description:pricelist_cache.field_res_partner____last_update
 msgid "Last Modified on"
 msgstr ""
 
