@@ -1,6 +1,8 @@
 # Copyright 2013-2017 Agile Business Group sagl
 #     (<http://www.agilebg.com>)
 # Copyright 2021 ForgeFlow S.L. (https://www.forgeflow.com)
+# Copyright 2024 Tecnativa - Víctor Martínez
+# Copyright 2024 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -25,38 +27,40 @@ class SaleOrderLine(models.Model):
                 code = ""
             line.product_customer_code = code
 
+    def _update_description(self):
+        """Add the customer code in the description when applicable.
+
+        This also takes from context the possible customerinfo already searched in
+        product_id_change for avoiding duplicated searches.
+        """
+        if "customerinfo" in self.env.context:
+            customerinfo = self.env.context["customerinfo"]
+        else:
+            customerinfo = self.product_id._select_customerinfo(
+                partner=self.order_partner_id
+            )
+        if customerinfo.product_code:
+            # Avoid to put the standard internal reference
+            self = self.with_context(display_default_code=False)
+        res = super()._update_description()
+        if customerinfo.product_code:
+            self.name = f"[{customerinfo.product_code}] {self.name}"
+        return res
+
     @api.onchange("product_id")
     def product_id_change(self):
-        result = super(SaleOrderLine, self).product_id_change()
-        for line in self.filtered(
-            lambda sol: sol.product_id.product_tmpl_id.customer_ids
-            and sol.order_id.pricelist_id.item_ids
-        ):
-            product = line.product_id
-            items = self.env["product.pricelist.item"].search(
-                [
-                    ("pricelist_id", "=", line.order_id.pricelist_id.id),
-                    ("compute_price", "=", "formula"),
-                    ("base", "=", "partner"),
-                    "|",
-                    ("applied_on", "=", "3_global"),
-                    "|",
-                    "&",
-                    ("categ_id", "=", product.categ_id.id),
-                    ("applied_on", "=", "2_product_category"),
-                    "|",
-                    "&",
-                    ("product_tmpl_id", "=", product.product_tmpl_id.id),
-                    ("applied_on", "=", "1_product"),
-                    "&",
-                    ("product_id", "=", product.id),
-                    ("applied_on", "=", "0_product_variant"),
-                ]
-            )
-            if items:
-                supplierinfo = line.product_id._select_customerinfo(
+        """Inject the customerinfo in the context for not repeating the search in
+        _update_description + assign the mininum quantity if set.
+        """
+        for line in self:
+            customerinfo = self.env["product.customerinfo"]
+            if line.product_id:
+                customerinfo = line.product_id._select_customerinfo(
                     partner=line.order_partner_id
                 )
-                if supplierinfo and supplierinfo.min_qty:
-                    line.product_uom_qty = supplierinfo.min_qty
-        return result
+            super(
+                SaleOrderLine, line.with_context(customerinfo=customerinfo)
+            ).product_id_change()
+            if customerinfo and customerinfo.min_qty:
+                line.product_uom_qty = customerinfo.min_qty
+        return {}
