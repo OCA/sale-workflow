@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-02 18:13+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2024-05-13 07:39+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. module: sale_discount_display_amount
 #: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.sale_discount_display_amount_document
 msgid "<span>Total Discount</span>"
-msgstr ""
+msgstr "<span>Sconto totale</span>"
 
 #. module: sale_discount_display_amount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
