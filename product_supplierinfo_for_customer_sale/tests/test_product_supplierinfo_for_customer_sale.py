@@ -1,12 +1,14 @@
 # Copyright 2017 ForgeFlow S.L.
 #   (http://www.forgeflow.com)
+# Copyright 2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
 
 class TestProductSupplierinfoForCustomerSale(TransactionCase):
     def setUp(self):
-        super(TestProductSupplierinfoForCustomerSale, self).setUp()
+        super().setUp()
         self.supplierinfo_model = self.env["product.supplierinfo"]
         self.customerinfo_model = self.env["product.customerinfo"]
         self.pricelist_item_model = self.env["product.pricelist.item"]
@@ -79,13 +81,14 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
         )
 
     def test_product_supplierinfo_for_customer_sale(self):
-        so = self.env["sale.order"].create(
-            {"partner_id": self.customer.id, "pricelist_id": self.pricelist.id}
-        )
-        line = self.env["sale.order.line"].create(
-            {"product_id": self.product.id, "order_id": so.id}
-        )
-        line.product_id_change()
+        order_form = Form(self.env["sale.order"])
+        order_form.partner_id = self.customer
+        order_form.pricelist_id = self.pricelist
+        with order_form.order_line.new() as line_form:
+            line_form.product_id = self.product
+        order = order_form.save()
+        line = order.order_line
+        self.assertIn("00001", order.order_line.name)
         self.assertEqual(
             line.product_customer_code,
             self.customerinfo.product_code,
@@ -98,13 +101,13 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
         )
 
     def test_product_supplierinfo_for_customer_sale_variant(self):
-        so = self.env["sale.order"].create(
-            {"partner_id": self.customer.id, "pricelist_id": self.pricelist.id}
-        )
-        line = self.env["sale.order.line"].create(
-            {"product_id": self.product_variant_1.id, "order_id": so.id}
-        )
-        line.product_id_change()
+        order_form = Form(self.env["sale.order"])
+        order_form.partner_id = self.customer
+        order_form.pricelist_id = self.pricelist
+        with order_form.order_line.new() as line_form:
+            line_form.product_id = self.product_variant_1
+        order = order_form.save()
+        line = order.order_line
         self.assertEqual(
             line.product_customer_code,
             self.customerinfo.product_code,
@@ -115,32 +118,26 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
         customerinfo = self._create_partnerinfo(
             "customer", self.customer, self.product_variant_2
         )
-        so = self.env["sale.order"].create(
-            {"partner_id": self.customer.id, "pricelist_id": self.pricelist.id}
-        )
-        line = self.env["sale.order.line"].create(
-            {"product_id": self.product_variant_2.id, "order_id": so.id}
-        )
-        line.product_id_change()
+        order_form = Form(self.env["sale.order"])
+        order_form.partner_id = self.customer
+        order_form.pricelist_id = self.pricelist
+        with order_form.order_line.new() as line_form:
+            line_form.product_id = self.product_variant_2
+        order = order_form.save()
+        line = order.order_line
         self.assertEqual(
             line.product_customer_code,
             customerinfo.product_code,
             "Error: Customer product code was not passed to sale order line",
         )
         # Test with product without variants
-        so2 = self.env["sale.order"].create(
-            {
-                "partner_id": self.customer.id,
-                "pricelist_id": self.pricelist_template.id,
-            }
-        )
-        line2 = self.env["sale.order.line"].create(
-            {
-                "product_id": self.product_template.product_variant_ids.id,
-                "order_id": so2.id,
-            }
-        )
-        line2.product_id_change()
+        order_form = Form(self.env["sale.order"])
+        order_form.partner_id = self.customer
+        order_form.pricelist_id = self.pricelist_template
+        with order_form.order_line.new() as line_form:
+            line_form.product_id = self.product_template.product_variant_ids[0]
+        order2 = order_form.save()
+        line2 = order2.order_line
         self.assertEqual(
             line2.product_customer_code,
             customerinfo.product_code,
@@ -151,13 +148,13 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
         customerinfo = self._create_partnerinfo(
             "customer", self.customer, self.product_variant_2, empty_variant=True
         )
-        so = self.env["sale.order"].create(
-            {"partner_id": self.customer.id, "pricelist_id": self.pricelist.id}
-        )
-        line = self.env["sale.order.line"].create(
-            {"product_id": self.product_variant_2.id, "order_id": so.id}
-        )
-        line.product_id_change()
+        order_form = Form(self.env["sale.order"])
+        order_form.partner_id = self.customer
+        order_form.pricelist_id = self.pricelist
+        with order_form.order_line.new() as line_form:
+            line_form.product_id = self.product_variant_2
+        order = order_form.save()
+        line = order.order_line
         self.assertEqual(
             line.product_customer_code,
             customerinfo.product_code,
