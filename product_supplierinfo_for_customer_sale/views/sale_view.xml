@@ -22,4 +22,89 @@
             </xpath>
         </field>
     </record>
+
+    <record id="product_customerinfo_tree_view" model="ir.ui.view">
+        <field name="name">product.customerinfo.tree.view</field>
+        <field name="model">product.customerinfo</field>
+        <field
+            name="inherit_id"
+            ref="product_supplierinfo_for_customer.product_customerinfo_tree_view"
+        />
+        <field name="mode">primary</field>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="product_tmpl_id" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_customerinfo_form_view" model="ir.ui.view">
+        <field name="name">product.customerinfo.form.view</field>
+        <field name="model">product.customerinfo</field>
+        <field
+            name="inherit_id"
+            ref="product_supplierinfo_for_customer.product_customerinfo_form_view"
+        />
+        <field name="mode">primary</field>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_id']" position="before">
+                <field name="product_tmpl_id" required="1" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_customerinfo_view_search" model="ir.ui.view">
+        <field name="name">product.customerinfo.view.search</field>
+        <field name="model">product.customerinfo</field>
+        <field name="arch" type="xml">
+            <search string="Products">
+                <field name="name" />
+                <field name="product_tmpl_id" />
+                <field name="product_id" />
+                <field name="product_code" />
+                <field name="product_name" />
+                <group expand="1" string="Group By">
+                    <filter
+                        string="Customer"
+                        name="customer"
+                        context="{'group_by':'name'}"
+                    />
+                    <filter
+                        string="Product template"
+                        name="productmpl"
+                        context="{'group_by':'product_tmpl_id'}"
+                    />
+                    <filter
+                        string="Product variant"
+                        name="productvar"
+                        context="{'group_by':'product_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_product_customerinfo" model="ir.actions.act_window">
+        <field name="name">Products Customer info</field>
+        <field name="res_model">product.customerinfo</field>
+        <field name="view_mode">tree,form</field>
+        <field
+            name="view_ids"
+            eval="[
+            (5,0,0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('product_supplierinfo_for_customer_sale.product_customerinfo_tree_view')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('product_supplierinfo_for_customer_sale.product_customerinfo_form_view')})]"
+        />
+        <field name="help">This action displays products with customer info set.</field>
+    </record>
+
+    <menuitem
+        id="menu_product_customerinfo"
+        name="Product Customer info"
+        parent="sale.product_menu_catalog"
+        action="action_product_customerinfo"
+    />
+
 </odoo>
