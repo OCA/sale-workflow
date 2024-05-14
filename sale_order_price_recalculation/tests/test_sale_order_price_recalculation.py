@@ -8,7 +8,7 @@ from odoo.tests import common
 
 class TestSaleOrderPriceRecalculation(common.TransactionCase):
     def setUp(self):
-        super(TestSaleOrderPriceRecalculation, self).setUp()
+        super().setUp()
         # Enable group_discount_per_so_line for admin user
         group = self.env.ref("product.group_discount_per_so_line")
         group.users = [(4, self.env.user.id)]
