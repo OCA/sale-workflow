@@ -17,25 +17,26 @@ Price recalculation in sales orders
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_order_price_recalculation
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_order_price_recalculation
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_order_price_recalculation
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_order_price_recalculation
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module add 2 buttons on sale orders (below sale order lines) that:
 
-* Recalculates the prices of the order lines that contain a product in them.
-* Reset product descriptions from current product information.
+-  Recalculates the prices of the order lines that contain a product in
+   them.
+-  Reset product descriptions from current product information.
 
-It is launched manually as a button to get the user decide if he/she wants to
-recalculate prices when pricelist is changed or after duplicating a sale order
-to update or not sales information.
+It is launched manually as a button to get the user decide if he/she
+wants to recalculate prices when pricelist is changed or after
+duplicating a sale order to update or not sales information.
 
 **Table of contents**
 
@@ -45,26 +46,29 @@ to update or not sales information.
 Installation
 ============
 
-You need to install sale_management module for accessing the needed menus.
+You need to install sale_management module for accessing the needed
+menus.
 
 Usage
 =====
 
 Inside a sale order, you can click on "Recalculate prices" to launch a
-recalculation of all the prices of the lines, losing previous custom prices.
+recalculation of all the prices of the lines, losing previous custom
+prices.
 
-The second "Reset descriptions" will get descriptions from products, losing
-custom descriptions.
+The second "Reset descriptions" will get descriptions from products,
+losing custom descriptions.
 
-.. image:: https://raw.githubusercontent.com/sale_order_price_recalculation/static/description/sale_order_price_recalculation.png
-    :alt: Sale order price recalculation
+|Sale order price recalculation|
+
+.. |Sale order price recalculation| image:: https://raw.githubusercontent.com/sale_order_price_recalculation/static/description/sale_order_price_recalculation.png
 
 Known issues / Roadmap
 ======================
 
-* In a sale order with lot of lines, the recalculation may slow down, because
-  sale general data (amount untaxed, amount taxed...) are recalculated for
-  each line.
+-  In a sale order with lot of lines, the recalculation may slow down,
+   because sale general data (amount untaxed, amount taxed...) are
+   recalculated for each line.
 
 Bug Tracker
 ===========
@@ -72,7 +76,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_price_recalculation%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_price_recalculation%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -80,26 +84,27 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * AvanzOSC
 * Grupo Vermon
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Carlos Sánchez Cifuentes <csanchez@grupovermon.com>
-* Pedro M. Baeza <pedro.baeza@tecnativa.com>
-* Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
-* Pierre Verkest <pverkest@anybox.fr>
-* Vicent Cubells <vicent.cubells@tecnativa.com>
-* David Vidal <david.vidal@tecnativa.com>
-* Duc, Dao Dong <duc.dd@komit-consulting.com> (https://komit-consulting.com)
-* Raf Ven <raf.ven@dynapps.be>
+-  Carlos Sánchez Cifuentes <csanchez@grupovermon.com>
+-  Pedro M. Baeza <pedro.baeza@tecnativa.com>
+-  Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
+-  Pierre Verkest <pverkest@anybox.fr>
+-  Vicent Cubells <vicent.cubells@tecnativa.com>
+-  David Vidal <david.vidal@tecnativa.com>
+-  Duc, Dao Dong <duc.dd@komit-consulting.com>
+   (https://komit-consulting.com)
+-  Raf Ven <raf.ven@dynapps.be>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -111,6 +116,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_order_price_recalculation>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_order_price_recalculation>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
