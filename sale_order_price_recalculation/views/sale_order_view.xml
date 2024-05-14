@@ -12,7 +12,7 @@
                     string="Recalculate prices"
                     Help="Apply the current pricelist"
                     type="object"
-                    attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"
+                    invisible="state not in ('draft', 'sent')"
                 />
                 <button
                     name="action_update_names"
@@ -20,7 +20,7 @@
                     string="Reset descriptions"
                     Help="Erase custom descriptions of all lines"
                     type="object"
-                    attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"
+                    invisible="state not in ('draft', 'sent')"
                 />
             </field>
         </field>
