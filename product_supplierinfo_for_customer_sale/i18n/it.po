@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: OpenERP Server 7.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-01-15 14:31+0000\n"
-"PO-Revision-Date: 2024-01-29 17:37+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2024-05-15 10:38+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: \n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -21,12 +21,12 @@ msgstr ""
 #. module: product_supplierinfo_for_customer_sale
 #: model_terms:ir.ui.view,arch_db:product_supplierinfo_for_customer_sale.product_customerinfo_view_search
 msgid "Customer"
-msgstr ""
+msgstr "Cliente"
 
 #. module: product_supplierinfo_for_customer_sale
 #: model:ir.model,name:product_supplierinfo_for_customer_sale.model_product_customerinfo
 msgid "Customer Pricelist"
-msgstr ""
+msgstr "Listino prezzi cliente"
 
 #. module: product_supplierinfo_for_customer_sale
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale.field_product_customerinfo__display_name
@@ -37,7 +37,7 @@ msgstr "Nome visualizzato"
 #. module: product_supplierinfo_for_customer_sale
 #: model_terms:ir.ui.view,arch_db:product_supplierinfo_for_customer_sale.product_customerinfo_view_search
 msgid "Group By"
-msgstr ""
+msgstr "Raggruppa per"
 
 #. module: product_supplierinfo_for_customer_sale
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale.field_product_customerinfo__id
@@ -50,6 +50,8 @@ msgstr "ID"
 msgid ""
 "If not set, the vendor price will apply to all variants of this product."
 msgstr ""
+"Se non è impostato, il prezzo fornitore si applicherà a tutte le varianti di "
+"questo prodotto."
 
 #. module: product_supplierinfo_for_customer_sale
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale.field_product_customerinfo____last_update
@@ -65,32 +67,32 @@ msgstr "Codice prodotto cliente"
 #. module: product_supplierinfo_for_customer_sale
 #: model:ir.ui.menu,name:product_supplierinfo_for_customer_sale.menu_product_customerinfo
 msgid "Product Customer info"
-msgstr ""
+msgstr "Info prodotto cliente"
 
 #. module: product_supplierinfo_for_customer_sale
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale.field_product_customerinfo__product_id
 msgid "Product Variant"
-msgstr ""
+msgstr "Variante prodotto"
 
 #. module: product_supplierinfo_for_customer_sale
 #: model_terms:ir.ui.view,arch_db:product_supplierinfo_for_customer_sale.product_customerinfo_view_search
 msgid "Product template"
-msgstr ""
+msgstr "Modello prodotto"
 
 #. module: product_supplierinfo_for_customer_sale
 #: model_terms:ir.ui.view,arch_db:product_supplierinfo_for_customer_sale.product_customerinfo_view_search
 msgid "Product variant"
-msgstr ""
+msgstr "Variante prodotto"
 
 #. module: product_supplierinfo_for_customer_sale
 #: model_terms:ir.ui.view,arch_db:product_supplierinfo_for_customer_sale.product_customerinfo_view_search
 msgid "Products"
-msgstr ""
+msgstr "Prodotti"
 
 #. module: product_supplierinfo_for_customer_sale
 #: model:ir.actions.act_window,name:product_supplierinfo_for_customer_sale.action_product_customerinfo
 msgid "Products Customer info"
-msgstr ""
+msgstr "Info prodotti cliente"
 
 #. module: product_supplierinfo_for_customer_sale
 #: model:ir.model,name:product_supplierinfo_for_customer_sale.model_sale_order_line
@@ -100,7 +102,7 @@ msgstr "Riga ordine di vendita"
 #. module: product_supplierinfo_for_customer_sale
 #: model_terms:ir.actions.act_window,help:product_supplierinfo_for_customer_sale.action_product_customerinfo
 msgid "This action displays products with customer info set."
-msgstr ""
+msgstr "Questa azione mostra i prodotti con info cliente impostate."
 
 #~ msgid ""
 #~ "Check this box if this contact is a customer. It can be selected in sales "
