@@ -33,7 +33,7 @@ class SaleOrderLine(models.Model):
                     rec.product_qty_remains_to_deliver, 0, precision_digits=precision
                 )
                 == 1
-                and rec.state == "done"
+                and rec.state in ("sale", "done")
                 and rec.move_ids
             )
 
@@ -48,3 +48,6 @@ class SaleOrderLine(models.Model):
                 line.product_uom_qty - line.qty_delivered - line.product_qty_canceled
             )
             line.product_qty_remains_to_deliver = remaining_to_deliver
+
+    def _check_moves_to_cancel(self, moves):
+        """override this method to add checks before cancel"""
