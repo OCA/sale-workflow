@@ -203,8 +203,16 @@ class SalePlannerCalendarSummary(models.Model):
 
     def action_process(self):
         calendar_event_domain = [
-            ("start", ">=", self.date.strftime("%Y-%m-%d 00:00:00")),
-            ("start", "<=", self.date.strftime("%Y-%m-%d 23:59:59")),
+            (
+                "start",
+                ">=",
+                self._get_datetime_from_date_tz_hour(self.date, "00:00:00"),
+            ),
+            (
+                "start",
+                "<=",
+                self._get_datetime_from_date_tz_hour(self.date, "23:59:59"),
+            ),
             ("user_id", "=", self.user_id.id),
             ("target_partner_id", "!=", False),
         ]
@@ -213,8 +221,16 @@ class SalePlannerCalendarSummary(models.Model):
         calendar_events = self.env["calendar.event"].search(calendar_event_domain)
 
         event_planner_domain = [
-            ("calendar_event_date", ">=", self.date.strftime("%Y-%m-%d 00:00:00")),
-            ("calendar_event_date", "<=", self.date.strftime("%Y-%m-%d 23:59:59")),
+            (
+                "calendar_event_date",
+                ">=",
+                self._get_datetime_from_date_tz_hour(self.date, "00:00:00"),
+            ),
+            (
+                "calendar_event_date",
+                "<=",
+                self._get_datetime_from_date_tz_hour(self.date, "23:59:59"),
+            ),
             ("user_id", "=", self.user_id.id),
             "|",
             ("calendar_summary_id", "=", False),
@@ -267,7 +283,10 @@ class SalePlannerCalendarSummary(models.Model):
         Compute date in UTC format
         :return: Datetime in UTC format
         """
-        hour_str = str(timedelta(hours=hour_float)).zfill(8)
+        if isinstance(hour_float, str):
+            hour_str = hour_float
+        else:
+            hour_str = str(timedelta(hours=hour_float)).zfill(8)
         date_str = "{} {}".format(fields.Date.to_string(date), hour_str)
         date_time = fields.Datetime.to_datetime(date_str)
         user_tz = pytz.timezone(self.env.user.tz)
