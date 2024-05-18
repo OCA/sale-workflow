@@ -82,6 +82,7 @@ setuptools.setup(
         'odoo-addon-sale_product_packaging_container_deposit>=16.0dev,<16.1dev',
         'odoo-addon-sale_product_set>=16.0dev,<16.1dev',
         'odoo-addon-sale_quotation_number>=16.0dev,<16.1dev',
+        'odoo-addon-sale_restricted_qty>=16.0dev,<16.1dev',
         'odoo-addon-sale_shipping_info_helper>=16.0dev,<16.1dev',
         'odoo-addon-sale_sourced_by_line>=16.0dev,<16.1dev',
         'odoo-addon-sale_start_end_dates>=16.0dev,<16.1dev',

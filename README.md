@@ -95,6 +95,7 @@ addon | version | maintainers | summary
 [sale_product_packaging_container_deposit](sale_product_packaging_container_deposit/) | 16.0.1.1.1 |  | Sale Product Packaging Container Deposit
 [sale_product_set](sale_product_set/) | 16.0.3.0.0 |  | Sale product set
 [sale_quotation_number](sale_quotation_number/) | 16.0.1.0.2 |  | Different sequence for sale quotations
+[sale_restricted_qty](sale_restricted_qty/) | 16.0.1.0.0 | [![ashishhirapara](https://github.com/ashishhirapara.png?size=30px)](https://github.com/ashishhirapara) | Sale order min quantity
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 16.0.1.0.0 |  | Add shipping amounts on sale order
 [sale_sourced_by_line](sale_sourced_by_line/) | 16.0.1.0.0 |  | Multiple warehouse source locations for Sale order
 [sale_start_end_dates](sale_start_end_dates/) | 16.0.1.0.1 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Adds start date and end date on sale order lines
