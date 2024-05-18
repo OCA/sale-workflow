@@ -78,6 +78,7 @@ setuptools.setup(
         'odoo-addon-sale_partner_selectable_option>=15.0dev,<15.1dev',
         'odoo-addon-sale_payment_sheet>=15.0dev,<15.1dev',
         'odoo-addon-sale_planner_calendar>=15.0dev,<15.1dev',
+        'odoo-addon-sale_procurement_group_by_commitment_date>=15.0dev,<15.1dev',
         'odoo-addon-sale_procurement_group_by_line>=15.0dev,<15.1dev',
         'odoo-addon-sale_product_category_menu>=15.0dev,<15.1dev',
         'odoo-addon-sale_product_multi_add>=15.0dev,<15.1dev',
