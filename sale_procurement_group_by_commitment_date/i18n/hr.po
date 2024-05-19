@@ -20,12 +20,10 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: sale_procurement_group_by_commitment_date
-#: model:ir.model,name:sale_procurement_group_by_commitment_date.model_sale_order
-#, fuzzy
-msgid "Sale Order"
-msgstr "Prodajni nalog"
-
-#. module: sale_procurement_group_by_commitment_date
 #: model:ir.model,name:sale_procurement_group_by_commitment_date.model_sale_order_line
 msgid "Sales Order Line"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Sale Order"
+#~ msgstr "Prodajni nalog"
