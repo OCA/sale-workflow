@@ -20,12 +20,10 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: sale_procurement_group_by_commitment_date
-#: model:ir.model,name:sale_procurement_group_by_commitment_date.model_sale_order
-#, fuzzy
-msgid "Sale Order"
-msgstr "Ordini vendita"
-
-#. module: sale_procurement_group_by_commitment_date
 #: model:ir.model,name:sale_procurement_group_by_commitment_date.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Riga ordine di vendita"
+
+#, fuzzy
+#~ msgid "Sale Order"
+#~ msgstr "Ordini vendita"
