@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_restrict_cancel_existing_invoice
+# 	* sale_order_restrict_cancel_existing_invoice
 #
 msgid ""
 msgstr ""
@@ -17,9 +17,9 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_order_restrict_cancel_existing_invoice
-#: model:ir.model.fields,field_description:sale_order_restrict_cancel_existing_invoice.field_sale_order_confirmed_invoice_ids
-msgid "Confirmed invoice ids"
-msgstr "ID de factura confirmados"
+#: model:ir.model.fields,field_description:sale_order_restrict_cancel_existing_invoice.field_sale_order__confirmed_invoice_ids
+msgid "Confirmed Invoice"
+msgstr ""
 
 #. module: sale_order_restrict_cancel_existing_invoice
 #: model:ir.model,name:sale_order_restrict_cancel_existing_invoice.model_sale_order
@@ -27,14 +27,17 @@ msgid "Sales Order"
 msgstr "Órdenes de venta"
 
 #. module: sale_order_restrict_cancel_existing_invoice
-#: model:ir.model.fields,help:sale_order_restrict_cancel_existing_invoice.field_sale_order_confirmed_invoice_ids
+#: model:ir.model.fields,help:sale_order_restrict_cancel_existing_invoice.field_sale_order__confirmed_invoice_ids
 msgid "Technical field in order to retrieve confirmed invoices"
 msgstr "Campo técnico para recuperar facturas confirmadas"
 
 #. module: sale_order_restrict_cancel_existing_invoice
-#: code:addons/sale_order_restrict_cancel_existing_invoice/models/sale_order.py:37
+#: code:addons/sale_order_restrict_cancel_existing_invoice/models/sale_order.py:0
 #, python-format
 msgid "You cannot cancel a Sale Order for which a confirmed invoice exists!"
 msgstr ""
 "¡No puede cancelar una orden de venta para la que existe una factura "
 "confirmada!"
+
+#~ msgid "Confirmed invoice ids"
+#~ msgstr "ID de factura confirmados"
