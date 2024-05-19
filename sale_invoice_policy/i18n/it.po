@@ -58,11 +58,6 @@ msgid "Ordered quantities"
 msgstr "Quantità ordinate"
 
 #. module: sale_invoice_policy
-#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
-msgid "Sale Invoice Policy"
-msgstr "Plitica fatturazione vendite"
-
-#. module: sale_invoice_policy
 #: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
 msgid "Sale Invoice Policy Required"
 msgstr "Richiesta politica fatturazione vendite"
@@ -82,6 +77,9 @@ msgstr "Riga ordine di vendita"
 msgid "This makes Invoice Policy required on Sale Orders"
 msgstr ""
 "Questo rende obbligatoria la politica di fatturazione negli ordini di vendita"
+
+#~ msgid "Sale Invoice Policy"
+#~ msgstr "Plitica fatturazione vendite"
 
 #~ msgid "Default Invoicing Policy"
 #~ msgstr "Politica fatturazione predefinita"
