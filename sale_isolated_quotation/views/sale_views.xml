@@ -12,22 +12,19 @@
                 >not context.get('order_sequence', False)</attribute>
             </xpath>
             <xpath expr="/form/header" position="after">
-                <header
-                    name="quotation"
-                    attrs="{'invisible': [('order_sequence','=',True)]}"
-                >
+                <header name="quotation" invisible="order_sequence == True">
                     <button
                         name="action_convert_to_order"
-                        states="draft,sent"
                         class="oe_highlight"
                         type="object"
                         string="Convert to Order"
+                        invisible="state not in ['draft', 'sent']"
                     />
                     <button
                         name="action_cancel"
-                        states="draft,sent"
                         type="object"
                         string="Cancel"
+                        invisible="state not in ['draft', 'sent']"
                     />
                     <field
                         name="quotation_state"
@@ -41,12 +38,12 @@
                 <field name="order_sequence" invisible="1" />
                 <field
                     name="quote_id"
-                    attrs="{'invisible': [('order_sequence','=',False)]}"
+                    invisible="order_sequence == False"
                     context="{'order_sequence': False}"
                 />
                 <field
                     name="order_id"
-                    attrs="{'invisible': [('order_sequence','=',True)]}"
+                    invisible="order_sequence == True"
                     context="{'order_sequence': True}"
                 />
             </field>

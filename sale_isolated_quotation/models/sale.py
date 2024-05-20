@@ -54,7 +54,7 @@ class SaleOrder(models.Model):
         order = self.copy(self._prepare_order_from_quotation())
         self.order_id = order.id  # Reference from this quotation to order
         if self.state == "draft":
-            self.action_done()
+            self.action_lock()
         return self.open_duplicated_sale_order()
 
     @api.model
