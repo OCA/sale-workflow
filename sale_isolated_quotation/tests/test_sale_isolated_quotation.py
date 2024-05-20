@@ -44,7 +44,7 @@ class TestSaleIsolatedQuotation(TransactionCase):
             dom = ast.literal_eval(action.domain or "{}")
             self.assertTrue("order_sequence" in ctx)
             self.assertTrue("default_order_sequence" in ctx)
-            self.assertTrue("order_sequence" in map(lambda l: l[0], dom))
+            self.assertTrue("order_sequence" in map(lambda x: x[0], dom))
         # Uninstall this module
         uninstall_hook(self.cr, self.registry)
         # Check context and domain in action after uninstall this module
