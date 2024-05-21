@@ -1,5 +1,5 @@
-# Copyright 2019 Eficent Business and IT Consulting Services S.L.
-#   (http://www.eficent.com)
+# Copyright 2024 ForgeFlow S.L.
+#   (http://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
@@ -25,11 +25,17 @@ class SaleOrder(models.Model):
                 _('You cannot block a sale order with "auto_done_setting" ' "active.")
             )
 
-    @api.depends("partner_id")
+    @api.depends("partner_id", "payment_term_id")
     def _compute_delivery_block_id(self):
-        """Add the 'Default Delivery Block Reason' if set in the partner."""
+        """Add the 'Default Delivery Block Reason' if set in the partner
+        or in the payment term."""
         for so in self:
-            so.delivery_block_id = so.partner_id.default_delivery_block or False
+            if so.partner_id.default_delivery_block:
+                so.delivery_block_id = so.partner_id.default_delivery_block
+            else:
+                so.delivery_block_id = (
+                    so.payment_term_id.default_delivery_block_reason_id or False
+                )
 
     def action_remove_delivery_block(self):
         """Remove the delivery block and create procurements as usual."""
@@ -46,4 +52,11 @@ class SaleOrder(models.Model):
         for so in new_so:
             if so.partner_id.default_delivery_block and not so.delivery_block_id:
                 so.delivery_block_id = so.partner_id.default_delivery_block
+            elif (
+                so.payment_term_id.default_delivery_block_reason_id
+                and not so.delivery_block_id
+            ):
+                so.delivery_block_id = (
+                    so.payment_term_id.default_delivery_block_reason_id
+                )
         return new_so
