@@ -50,6 +50,7 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: sale_stock_picking_blocking
+#: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_account_payment_term__default_delivery_block_reason_id
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_res_partner__default_delivery_block
 #: model:ir.model.fields,field_description:sale_stock_picking_blocking.field_res_users__default_delivery_block
 msgid "Default Delivery Block Reason"
@@ -97,6 +98,11 @@ msgid "Name"
 msgstr "Nombre"
 
 #. module: sale_stock_picking_blocking
+#: model:ir.model,name:sale_stock_picking_blocking.model_account_payment_term
+msgid "Payment Terms"
+msgstr ""
+
+#. module: sale_stock_picking_blocking
 #: model_terms:ir.ui.view,arch_db:sale_stock_picking_blocking.view_order_form
 msgid "Release Delivery Block"
 msgstr ""
@@ -132,6 +138,13 @@ msgstr "Línea de pedido de venta"
 #: model:ir.model.fields,help:sale_stock_picking_blocking.field_res_users__default_delivery_block
 msgid ""
 "Set a reason to block by default the deliveries in this customer sales "
+"orders."
+msgstr ""
+
+#. module: sale_stock_picking_blocking
+#: model:ir.model.fields,help:sale_stock_picking_blocking.field_account_payment_term__default_delivery_block_reason_id
+msgid ""
+"Set a reason to block by default the deliveries in this payment term sales "
 "orders."
 msgstr ""
 
