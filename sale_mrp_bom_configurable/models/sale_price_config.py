@@ -49,8 +49,8 @@ class SalePriceConfigLine(models.Model):
 
     line_type = fields.Selection(
         selection=[
-            ("base", "Base"),
-            ("factor", "Multiply"),
+            ("base", "Fixed amount"),
+            ("factor", "Multiply amount by field value"),
             ("include_product_or_category", "Include product or category"),
         ],
         string="Type",

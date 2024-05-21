@@ -1,6 +1,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 {
-    "name": "MRP Bom Configurable",
+    "name": "Sale MRP Bom Configurable",
     "summary": "Skip components lines in bom according to conditions",
     "version": "16.0.1.0.0",
     "category": "Manufacture",
@@ -16,5 +16,10 @@
         "views/sale_price_config.xml",
         "security/ir.model.access.csv",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "sale_mrp_bom_configurable/static/src/view_controller.esm.js",
+        ],
+    },
     "installable": True,
 }
