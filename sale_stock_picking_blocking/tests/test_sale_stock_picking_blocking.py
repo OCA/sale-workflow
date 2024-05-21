@@ -1,5 +1,5 @@
-# Copyright 2019 Eficent Business and IT Consulting Services S.L.
-#   (http://www.eficent.com)
+# Copyright 2024 ForgeFlow S.L.
+#   (http://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo.exceptions import ValidationError
 from odoo.tests import Form, common
@@ -92,7 +92,7 @@ class TestSaleDeliveryBlock(common.TransactionCase):
         pick = self._picking_comp(so)
         self.assertNotEqual(pick, 0, "A delivery should have been made")
 
-    def test_default_delivery_block(self):
+    def test_default_delivery_block_partner(self):
         block_reason = self.block_model.with_user(self.user_test).create(
             {"name": "Test Block."}
         )
@@ -104,6 +104,28 @@ class TestSaleDeliveryBlock(common.TransactionCase):
         )
         so_form = Form(self.env["sale.order"])
         so_form.partner_id = partner_block
+        so = so_form.save()
+        self.assertEqual(so.delivery_block_id, block_reason)
+        self.assertEqual(so.copy().delivery_block_id, block_reason)
+
+    def test_default_delivery_block_payment_term(self):
+        block_reason = self.block_model.with_user(self.user_test).create(
+            {"name": "Test Block."}
+        )
+        partner_block = self.env["res.partner"].create(
+            {
+                "name": "Foo",
+            }
+        )
+        payment_term_block = self.env["account.payment.term"].create(
+            {
+                "name": "Foo",
+                "default_delivery_block_reason_id": block_reason.id,
+            }
+        )
+        so_form = Form(self.env["sale.order"])
+        so_form.partner_id = partner_block
+        so_form.payment_term_id = payment_term_block
         so = so_form.save()
         self.assertEqual(so.delivery_block_id, block_reason)
         self.assertEqual(so.copy().delivery_block_id, block_reason)
