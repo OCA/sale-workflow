@@ -112,9 +112,13 @@ class SaleOrder(models.Model):
                     product=line.product_id,
                     partner=line.order_id.partner_shipping_id,
                 )
-                amount_discounted_tax += sum(
-                    t.get("amount", 0.0) for t in discounted_tax.get("taxes", [])
-                )
+                for tax in discounted_tax.get("taxes", []):
+                    if line.tax_id.browse(tax["id"]).amount_type == "fixed":
+                        amount_discounted_tax += (
+                            tax.get("amount", 0.0) * line.product_uom_qty
+                        )
+                        continue
+                    amount_discounted_tax += tax.get("amount", 0.0)
             order.update(
                 {
                     "amount_untaxed_before_global_discounts": (

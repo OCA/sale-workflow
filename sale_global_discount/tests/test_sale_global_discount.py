@@ -228,3 +228,40 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         self.assertAlmostEqual(line.price_subtotal, 135)
         self.assertAlmostEqual(self.sale.amount_untaxed_before_global_discounts, 234.99)
         self.assertAlmostEqual(self.sale.amount_untaxed, 187.99)
+
+    def test_07_discount_line_with_fixed_taxes(self):
+        # Create a fixed tax and apply on lines
+        fixed_tax = self.safe_copy(self.company_data["default_tax_sale"])
+        fixed_tax.write(
+            {
+                "amount": 5.0,
+                "amount_type": "fixed",
+            }
+        )
+        lines = self.sale.order_line
+        lines.tax_id = [(6, 0, (fixed_tax + self.tax_1 + self.tax_2).ids)]
+        # Based on test_01
+        # 299.99 + (5 * 2) + (5 * 3)
+        self.assertAlmostEqual(self.sale.amount_total, 324.99)
+        # Based on test_01
+        # 60 + (5 * 2) + (5 * 3)
+        self.assertAlmostEqual(self.sale.amount_tax, 75)
+        self.assertAlmostEqual(
+            self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
+        )
+        self.assertAlmostEqual(self.sale.amount_untaxed, 249.99)
+        # Apply a single 20% global discount
+        self.sale.global_discount_ids = self.global_discount_1
+        # Discount is computed over the base and global taxes are computed
+        # according to it line by line with the core method
+        self.assertAlmostEqual(self.sale.amount_global_discount, 50)
+        # Based on test_01
+        # 40 + (5 * 2) + (5 * 3)
+        self.assertAlmostEqual(self.sale.amount_tax, 65.0)
+        self.assertAlmostEqual(self.sale.amount_untaxed_before_global_discounts, 249.99)
+        self.assertAlmostEqual(self.sale.amount_untaxed, 199.99)
+        self.assertAlmostEqual(self.sale.amount_total_before_global_discounts, 324.99)
+        self.assertAlmostEqual(self.sale.amount_total, 264.99)
+        self.assertAlmostEqual(
+            self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
+        )
