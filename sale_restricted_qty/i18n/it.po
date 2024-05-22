@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-06-20 14:09+0000\n"
+"PO-Revision-Date: 2024-05-22 16:36+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -305,21 +305,21 @@ msgstr "Prodotto"
 #: code:addons/sale_restricted_qty/models/sale.py:0
 #, python-format
 msgid "Product \"%(product)s\": Min Quantity %(min_qty)s."
-msgstr ""
+msgstr "Prodotto \"%(product)s\": quantità min. %(min_qty)s."
 
 #. module: sale_restricted_qty
 #. odoo-python
 #: code:addons/sale_restricted_qty/models/sale.py:0
 #, python-format
 msgid "Product \"%(product)s\": max Quantity %(max_qty)s."
-msgstr ""
+msgstr "Prodotto \"%(product)s\": quantità mas. %(max_qty)s."
 
 #. module: sale_restricted_qty
 #. odoo-python
 #: code:addons/sale_restricted_qty/models/sale.py:0
 #, python-format
 msgid "Product \"%(product)s\": multiple Quantity %(multiple_qty)s."
-msgstr ""
+msgstr "Prodotto \"%(product)s\": quantità multipla %(multiple_qty)s."
 
 #. module: sale_restricted_qty
 #: model:ir.model,name:sale_restricted_qty.model_product_category
@@ -334,7 +334,7 @@ msgstr "Mixin Limite di Quantità Prodotto"
 #. module: sale_restricted_qty
 #: model:ir.model,name:sale_restricted_qty.model_product_product
 msgid "Product Variant"
-msgstr ""
+msgstr "Variante prodotto"
 
 #. module: sale_restricted_qty
 #: model:ir.model.fields,field_description:sale_restricted_qty.field_sale_order_line__is_qty_less_min_qty
