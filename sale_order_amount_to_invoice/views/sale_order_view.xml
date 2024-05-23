@@ -16,7 +16,7 @@
                     optional="hide"
                 />
             </xpath>
-            <xpath expr="//field[@name='amount_total']" position="after">
+            <xpath expr="//field[@name='tax_totals_json']" position="after">
                 <field
                     name="untaxed_amount_to_invoice"
                     string="To Invoice"

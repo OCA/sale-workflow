@@ -3,3 +3,5 @@
   - Dessan Hemrayev
 - [Ooops404](https://www.ooops404.com/)
   - Eduard Brahas <eduardbrhas@outlook.it>
+- [Grupo Isonor](https://www.grupoisonor.es/)
+  - Toñi Romero <antoniaromero@grupoisonor.es>
