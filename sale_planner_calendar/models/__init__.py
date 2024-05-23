@@ -6,6 +6,7 @@ from . import res_config_settings
 from . import res_partner
 from . import sale_order
 from . import sale_payment_sheet
+from . import sale_planner_calendar_event_profile
 from . import sale_planner_calendar_event
 from . import sale_planner_calendar_issue_type
 from . import sale_planner_calendar_summary

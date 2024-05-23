@@ -18,16 +18,18 @@
         "data/sale_planner_calendar_action_server.xml",
         "data/sale_planner_calendar_cron.xml",
         "data/sale_planner_calendar_data.xml",
+        "data/sale_planner_calendar_event_profile.xml",
         "views/calendar_event_type_view.xml",
         "views/calendar_view.xml",
         "views/res_config_settings_views.xml",
         "views/res_partner_view.xml",
+        "views/sale_planner_calendar_event_profile_view.xml",
         "views/sale_planner_calendar_event_view.xml",
         "views/sale_planner_calendar_issue_type_view.xml",
         "views/sale_planner_calendar_summary_view.xml",
         "wizard/sale_planner_calendar_reassign.xml",
         "wizard/sale_planner_calendar_wizard.xml",
-        # # Menu position fixed
+        # Menu position fixed
         "views/sale_planner_calendar_menu.xml",
     ],
     "assets": {

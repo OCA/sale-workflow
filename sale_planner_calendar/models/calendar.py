@@ -19,6 +19,9 @@ class CalendarEvent(models.Model):
         string="Sale planner partner",
         help="Is the partner used in planner",
     )
+    calendar_event_profile_id = fields.Many2one(
+        comodel_name="sale.planner.calendar.event.profile"
+    )
     currency_id = fields.Many2one(
         comodel_name="res.currency", related="target_partner_id.currency_id"
     )
@@ -122,6 +125,7 @@ class CalendarEvent(models.Model):
                 "user_id": self.user_id.id,
                 "calendar_event_date": self.start,
                 "calendar_event_id": self.id,
+                "calendar_event_profile_id": self.calendar_event_profile_id.id,
             }
         )
 
