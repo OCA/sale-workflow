@@ -25,7 +25,9 @@ class SaleOrderLine(models.Model):
     def _compute_visible_sequence(self):
         for so in self.mapped("order_id"):
             sequence = 1
-            order_lines = so.order_line.filtered(lambda l: not l.display_type)
-            for line in sorted(order_lines, key=lambda l: l.sequence):
+            order_lines = so.order_line.filtered(
+                lambda order_line: not order_line.display_type
+            )
+            for line in sorted(order_lines, key=lambda order_line: order_line.sequence):
                 line.visible_sequence = sequence
                 sequence += 1
