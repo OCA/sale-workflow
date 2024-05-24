@@ -53,6 +53,36 @@ class TestSaleOrder(common.TransactionCase):
         """Tests with single discount"""
         self.so_line1.discount1 = 50.0
         self.so_line2.discount1 = 75.0
+        self.assertAlmostEqual(self.so_line1.discount, 50.0)
+        self.assertAlmostEqual(self.so_line2.discount, 75.0)
+        self.assertAlmostEqual(self.so_line1.price_subtotal, 300.0)
+        self.assertAlmostEqual(self.so_line2.price_subtotal, 150.0)
+        self.assertAlmostEqual(self.order.amount_untaxed, 450.0)
+        self.assertAlmostEqual(self.order.amount_tax, 67.5)
+        # Mix taxed and untaxed:
+        self.so_line1.tax_id = False
+        self.assertAlmostEqual(self.order.amount_tax, 22.5)
+
+    def test_01_2_sale_order_classic_discount(self):
+        """Tests with single discount"""
+        self.so_line1.discount2 = 50.0
+        self.so_line2.discount2 = 75.0
+        self.assertAlmostEqual(self.so_line1.discount, 50.0)
+        self.assertAlmostEqual(self.so_line2.discount, 75.0)
+        self.assertAlmostEqual(self.so_line1.price_subtotal, 300.0)
+        self.assertAlmostEqual(self.so_line2.price_subtotal, 150.0)
+        self.assertAlmostEqual(self.order.amount_untaxed, 450.0)
+        self.assertAlmostEqual(self.order.amount_tax, 67.5)
+        # Mix taxed and untaxed:
+        self.so_line1.tax_id = False
+        self.assertAlmostEqual(self.order.amount_tax, 22.5)
+
+    def test_01_3_sale_order_classic_discount(self):
+        """Tests with single discount"""
+        self.so_line1.discount3 = 50.0
+        self.so_line2.discount3 = 75.0
+        self.assertAlmostEqual(self.so_line1.discount, 50.0)
+        self.assertAlmostEqual(self.so_line2.discount, 75.0)
         self.assertAlmostEqual(self.so_line1.price_subtotal, 300.0)
         self.assertAlmostEqual(self.so_line2.price_subtotal, 150.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 450.0)
