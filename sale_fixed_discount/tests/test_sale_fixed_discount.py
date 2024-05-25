@@ -93,7 +93,9 @@ class TestSaleFixedDiscount(TransactionCase):
                     line.discount = 5.0
 
     def test_03_fixed_discount_invoice(self):
-        """Test discount_fixed value propagation to account.move"""
+        """Test discount_fixed value propagation to account.move.
+        Case of editing order line by using UI.
+        """
         with Form(self.sale) as sale_order:
             with sale_order.order_line.edit(0) as line:
                 line.discount_fixed = 20.0
@@ -102,6 +104,10 @@ class TestSaleFixedDiscount(TransactionCase):
         self.sale._create_invoices()
 
         self.assertEqual(self.sale.invoice_ids.invoice_line_ids.discount_fixed, 20.0)
+        self.assertEqual(self.sale.invoice_ids.invoice_line_ids.discount, 10.0)
+
+        self.assertEqual(self.sale.invoice_ids.tax_totals["amount_untaxed"], 180.0)
+        self.assertEqual(self.sale.invoice_ids.tax_totals["amount_total"], 207.0)
 
     def test_04_fixed_discount_without_price(self):
         with Form(self.sale) as sale_order:
@@ -112,3 +118,18 @@ class TestSaleFixedDiscount(TransactionCase):
                 self.assertEqual(line.discount, 0.0)
                 self.assertEqual(line.price_subtotal, 0.0)
         self.assertEqual(self.sale.amount_total, 0.0)
+
+    def test_05_fixed_discount_invoice(self):
+        """Test discount_fixed value propagation to account.move.
+        Case of editing order line without using UI (onchange would be not triggered).
+        """
+        self.sale.order_line.discount_fixed = 20.0
+
+        self.sale.action_confirm()
+        self.sale._create_invoices()
+
+        self.assertEqual(self.sale.invoice_ids.invoice_line_ids.discount_fixed, 20.0)
+        self.assertEqual(self.sale.invoice_ids.invoice_line_ids.discount, 10.0)
+
+        self.assertEqual(self.sale.invoice_ids.tax_totals["amount_untaxed"], 180.0)
+        self.assertEqual(self.sale.invoice_ids.tax_totals["amount_total"], 207.0)
