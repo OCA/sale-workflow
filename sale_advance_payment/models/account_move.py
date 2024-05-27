@@ -9,7 +9,7 @@ class AccountMove(models.Model):
 
     def action_post(self):
         # Automatic reconciliation of payment when invoice confirmed.
-        res = super(AccountMove, self).action_post()
+        res = super().action_post()
         sale_order = self.mapped("line_ids.sale_line_ids.order_id")
         if sale_order and self.invoice_outstanding_credits_debits_widget is not False:
             json_invoice_outstanding_data = (
