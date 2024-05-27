@@ -20,7 +20,11 @@
                         <field name="journal_currency_id" string="Currency" />
                         <field name="payment_ref" />
                         <field name="date" />
-                        <field name="amount_total" string="Order Due Amount" />
+                        <field
+                            name="amount_total"
+                            string="Order Due Amount"
+                            readonly="True"
+                        />
                     </group>
                     <separator string="Operation" colspan="4" />
                     <group colspan="4" col="4">
@@ -29,6 +33,7 @@
                         <field
                             name="currency_amount"
                             string="Amount in Order Currency"
+                            readonly="True"
                         />
                     </group>
                 </group>

@@ -9,16 +9,17 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     account_payment_ids = fields.One2many(
-        "account.payment", "sale_id", string="Pay sale advanced", readonly=True
+        comodel_name="account.payment",
+        inverse_name="sale_id",
+        string="Pay sale advanced",
     )
     amount_residual = fields.Float(
-        "Residual amount",
-        readonly=True,
+        string="Residual amount",
         compute="_compute_advance_payment",
         store=True,
     )
     payment_line_ids = fields.Many2many(
-        "account.move.line",
+        comodel_name="account.move.line",
         string="Payment move lines",
         compute="_compute_advance_payment",
         store=True,
@@ -30,7 +31,6 @@ class SaleOrder(models.Model):
             ("partial", "Partially Paid"),
         ],
         store=True,
-        readonly=True,
         copy=False,
         tracking=True,
         compute="_compute_advance_payment",
