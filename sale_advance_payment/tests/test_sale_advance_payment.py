@@ -90,12 +90,12 @@ class TestSaleAdvancePayment(common.TransactionCase):
             ]
         )
         if cls.currency_rate:
-            cls.currency_rate.write({"rate": 1.20})
+            cls.currency_rate.write({"inverse_company_rate": 1.20})
         else:
             cls.currency_rate = cls.env["res.currency.rate"].create(
                 {
-                    "rate": 1.20,
-                    "currency_id": cls.currency_usd.id,
+                    "inverse_company_rate": 1.20,
+                    "currency_id": cls.currency_euro.id,
                     "name": fields.Date.today(),
                 }
             )
@@ -253,16 +253,12 @@ class TestSaleAdvancePayment(common.TransactionCase):
                 )
             )
             advance_payment_5.make_advance_payment()
-
-        # Confirm Sale Order
-        self.sale_order_1.action_confirm()
-
         # Create Invoice
         invoice = self.sale_order_1._create_invoices()
         invoice.action_post()
 
         # Compare payments
-        rate = self.currency_rate.rate
+        rate = self.currency_rate.inverse_company_rate
         payment_list = [100 * rate, 200, 250 * rate, 400]
         payments = invoice.invoice_outstanding_credits_debits_widget
         result = [d["amount"] for d in payments["content"]]

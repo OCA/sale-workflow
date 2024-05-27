@@ -25,14 +25,17 @@ class AccountVoucherWizard(models.TransientModel):
         readonly=False,
         compute="_compute_get_journal_currency",
     )
-    currency_id = fields.Many2one("res.currency", "Currency", readonly=True)
-    amount_total = fields.Monetary(readonly=True)
+    currency_id = fields.Many2one("res.currency", "Currency")
+    amount_total = fields.Monetary()
     amount_advance = fields.Monetary(
         "Amount advanced", required=True, currency_field="journal_currency_id"
     )
     date = fields.Date(required=True, default=fields.Date.context_today)
     currency_amount = fields.Monetary(
-        "Curr. amount", readonly=True, currency_field="currency_id"
+        "Curr. amount",
+        currency_field="currency_id",
+        compute="_compute_currency_amount",
+        store=True,
     )
     payment_ref = fields.Char("Ref.")
     payment_type = fields.Selection(
@@ -54,7 +57,6 @@ class AccountVoucherWizard(models.TransientModel):
         if self.amount_advance <= 0:
             raise exceptions.ValidationError(_("Amount of advance must be positive."))
         if self.env.context.get("active_id", False):
-            self.onchange_date()
             if self.payment_type == "inbound":
                 if (
                     float_compare(
@@ -66,7 +68,8 @@ class AccountVoucherWizard(models.TransientModel):
                 ):
                     raise exceptions.ValidationError(
                         _(
-                            "Inbound amount of advance is greater than residual amount on sale"
+                            "Inbound amount of advance is greater than residual "
+                            "amount on sale"
                         )
                     )
             else:
@@ -99,24 +102,26 @@ class AccountVoucherWizard(models.TransientModel):
                 {
                     "order_id": sale.id,
                     "amount_total": sale.amount_residual,
-                    "currency_id": sale.pricelist_id.currency_id.id,
+                    "currency_id": sale.pricelist_id.currency_id.id
+                    or sale.currency_id.id,
                 }
             )
 
         return res
 
-    @api.onchange("journal_id", "date", "amount_advance")
-    def onchange_date(self):
-        if self.journal_currency_id != self.currency_id:
-            amount_advance = self.journal_currency_id._convert(
-                self.amount_advance,
-                self.currency_id,
-                self.order_id.company_id,
-                self.date or fields.Date.today(),
-            )
-        else:
-            amount_advance = self.amount_advance
-        self.currency_amount = amount_advance
+    @api.depends("journal_id", "date", "amount_advance")
+    def _compute_currency_amount(self):
+        for wzd in self:
+            if wzd.journal_currency_id != wzd.currency_id:
+                amount_advance = wzd.journal_currency_id._convert(
+                    wzd.amount_advance,
+                    wzd.currency_id,
+                    wzd.order_id.company_id,
+                    wzd.date or fields.Date.today(),
+                )
+            else:
+                amount_advance = wzd.amount_advance
+            wzd.currency_amount = amount_advance
 
     def _prepare_payment_vals(self, sale):
         partner_id = sale.partner_invoice_id.commercial_partner_id.id
