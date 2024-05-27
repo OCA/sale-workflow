@@ -96,7 +96,7 @@ Contributors
 -  Phuc (Tran Thanh) <phuc@trobz.com>
 -  Manuel Regidor <manuel.regidor@sygel.es>
 -  `Tecnativa <https://www.tecnativa.com>`__:
-
+-   Jupical Technologies <https://www.jupical.io>
    -  Pilar Vargas
 
 -  Nils Coenen <nils.coenen@nico-solutions.de>
