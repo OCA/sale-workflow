@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Product Supplierinfo for Customer Sale",
-    "version": "15.0.1.2.1",
+    "version": "15.0.1.2.2",
     "summary": "Loads in every sale order line the customer code defined "
     "in the product",
     "author": "Agile Business Group,Vauxoo,Odoo Community Association (OCA)",
