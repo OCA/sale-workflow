@@ -33,12 +33,11 @@ class SaleOrderLine(models.Model):
         This also takes from context the possible customerinfo already searched in
         product_id_change for avoiding duplicated searches.
         """
-        if "customerinfo" in self.env.context:
-            customerinfo = self.env.context["customerinfo"]
-        else:
-            customerinfo = self.product_id._select_customerinfo(
-                partner=self.order_partner_id
-            )
+        # We need to repeat the search here, as passing the value by context or any
+        # other trick makes the ORM to do ugly things in "onchange" mode
+        customerinfo = self.product_id._select_customerinfo(
+            partner=self.order_partner_id
+        )
         if customerinfo.product_code:
             # Avoid to put the standard internal reference
             self = self.with_context(display_default_code=False)
@@ -52,15 +51,12 @@ class SaleOrderLine(models.Model):
         """Inject the customerinfo in the context for not repeating the search in
         _update_description + assign the mininum quantity if set.
         """
+        res = super()._onchange_product_id_warning()
         for line in self:
-            customerinfo = self.env["product.customerinfo"]
             if line.product_id:
                 customerinfo = line.product_id._select_customerinfo(
                     partner=line.order_partner_id
                 )
-            super(
-                SaleOrderLine, line.with_context(customerinfo=customerinfo)
-            )._onchange_product_id_warning()
-            if customerinfo and customerinfo.min_qty:
-                line.product_uom_qty = customerinfo.min_qty
-        return {}
+                if customerinfo.min_qty:
+                    line.product_uom_qty = customerinfo.min_qty
+        return res
