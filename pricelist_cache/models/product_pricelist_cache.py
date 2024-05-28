@@ -146,17 +146,14 @@ class PricelistCache(models.Model):
             # Otherwise, prices are fetched from parent pricelist
             # and only products in items have to be updated
             else:
-                product_item_ids = pricelist.item_ids.filtered(
-                    lambda i: i.product_id.id in product_ids
-                )
-                product_ids_to_update = product_item_ids.mapped("product_id").ids
-                template_items = pricelist.item_ids.filtered(
-                    lambda i: i.product_tmpl_id.product_variant_ids
-                )
-                if template_items:
-                    variants_ids = template_items.product_tmpl_id.product_variant_ids
-                    if any([True for id in variants_ids.ids if id in product_ids]):
-                        product_ids_to_update.extend(variants_ids.ids)
+                for item_id in pricelist.item_ids:
+                    if item_id.product_id.id in product_ids:
+                        product_ids_to_update.append(item_id.product_id.id)
+
+                    variants_ids = item_id.product_tmpl_id.product_variant_ids
+                    if variants_ids:
+                        if any([True for id in variants_ids.ids if id in product_ids]):
+                            product_ids_to_update.extend(variants_ids.ids)
         else:
             # No parent (for instance public pricelist), then update everything
             product_ids_to_update = product_ids
