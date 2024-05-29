@@ -5,51 +5,6 @@ from functools import wraps
 
 from odoo.tests import SavepointCase
 
-LIST_PRICES_MAPPING = {
-    "pricelist_cache.list0": [
-        {"id": 17, "price": 100.0},
-        {"id": 18, "price": 79.0},
-        {"id": 19, "price": 100.0},
-        {"id": 20, "price": 47.0},
-        {"id": 39, "price": 750.0},
-    ],
-    "pricelist_cache.list1": [
-        {"id": 17, "price": 75.0},
-        {"id": 18, "price": 79.0},
-        {"id": 19, "price": 100.0},
-        {"id": 20, "price": 47.0},
-        {"id": 39, "price": 750.0},
-    ],
-    "pricelist_cache.list2": [
-        {"id": 17, "price": 50.0},
-        {"id": 18, "price": 79.0},
-        {"id": 19, "price": 100.0},
-        {"id": 20, "price": 47.0},
-        {"id": 39, "price": 750.0},
-    ],
-    "pricelist_cache.list3": [
-        {"id": 17, "price": 25.0},
-        {"id": 18, "price": 79.0},
-        {"id": 19, "price": 100.0},
-        {"id": 20, "price": 47.0},
-        {"id": 39, "price": 750.0},
-    ],
-    "pricelist_cache.list4": [
-        {"id": 17, "price": 15.0},
-        {"id": 18, "price": 50.0},
-        {"id": 19, "price": 100.0},
-        {"id": 20, "price": 47.0},
-        {"id": 39, "price": 1000.0},
-    ],
-    "pricelist_cache.list5": [
-        {"id": 17, "price": 45.0},
-        {"id": 18, "price": 99.0},
-        {"id": 19, "price": 120.0},
-        {"id": 20, "price": 67.0},
-        {"id": 39, "price": 770.0},
-    ],
-}
-
 
 def check_duplicates(func):
     @wraps(func)
@@ -149,6 +104,62 @@ class TestPricelistCacheCommon(SavepointCase):
         cls.set_currency()
         cls.setUpClassBaseCache()
         cls.partner = cls.env.ref("base.res_partner_12")
+
+    def _get_expected_result(self):
+        product_variant = self.env["product.product"].search(
+            [
+                (
+                    "product_tmpl_id",
+                    "=",
+                    self.env.ref("pricelist_cache.product_template").id,
+                )
+            ]
+        )
+        LIST_PRICES_MAPPING = {
+            "pricelist_cache.list0": [
+                {"id": 17, "price": 100.0},
+                {"id": 18, "price": 79.0},
+                {"id": 19, "price": 100.0},
+                {"id": 20, "price": 47.0},
+                {"id": product_variant.id, "price": 750.0},
+            ],
+            "pricelist_cache.list1": [
+                {"id": 17, "price": 75.0},
+                {"id": 18, "price": 79.0},
+                {"id": 19, "price": 100.0},
+                {"id": 20, "price": 47.0},
+                {"id": product_variant.id, "price": 750.0},
+            ],
+            "pricelist_cache.list2": [
+                {"id": 17, "price": 50.0},
+                {"id": 18, "price": 79.0},
+                {"id": 19, "price": 100.0},
+                {"id": 20, "price": 47.0},
+                {"id": product_variant.id, "price": 750.0},
+            ],
+            "pricelist_cache.list3": [
+                {"id": 17, "price": 25.0},
+                {"id": 18, "price": 79.0},
+                {"id": 19, "price": 100.0},
+                {"id": 20, "price": 47.0},
+                {"id": product_variant.id, "price": 750.0},
+            ],
+            "pricelist_cache.list4": [
+                {"id": 17, "price": 15.0},
+                {"id": 18, "price": 50.0},
+                {"id": 19, "price": 100.0},
+                {"id": 20, "price": 47.0},
+                {"id": product_variant.id, "price": 1000.0},
+            ],
+            "pricelist_cache.list5": [
+                {"id": 17, "price": 45.0},
+                {"id": 18, "price": 99.0},
+                {"id": 19, "price": 120.0},
+                {"id": 20, "price": 67.0},
+                {"id": product_variant.id, "price": 770.0},
+            ],
+        }
+        return LIST_PRICES_MAPPING
 
     def _flush_cache(self):
         self.cache_model.flush_pricelist_cache()
