@@ -1,5 +1,5 @@
 odoo.define("sale_planner_calendar.basic_controller", function (require) {
-    "use strict";
+
     var BasicController = require("web.BasicController");
     var Dialog = require("web.Dialog");
     var core = require("web.core");

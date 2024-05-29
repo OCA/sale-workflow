@@ -1,7 +1,7 @@
 odoo.define(
     "sale_planner_calendar.sale_planner_calendar_event_sales",
     function (require) {
-        "use strict";
+
         var ListController = require("web.ListController");
         var ListView = require("web.ListView");
 
