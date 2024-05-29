@@ -4,41 +4,78 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-07-09 15:48+0000\n"
-"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
-"Language-Team: none\n"
+"POT-Creation-Date: 2024-02-22 09:19+0000\n"
+"PO-Revision-Date: 2024-02-22 09:19+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"Plural-Forms: \n"
 
 #. module: sale_discount_display_amount
-#: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.sale_discount_display_amount_document
-msgid "<span>Total Discount</span>"
+#: model:ir.model.fields,help:sale_discount_display_amount.field_res_config_settings__display_discount_with_tax
+#: model:ir.model.fields,help:sale_discount_display_amount.field_sale_order__display_discount_with_tax
+msgid "Check this field to show the Discount with TAX"
+msgstr "Aktivieren Sie dieses Feld, um den Rabatt mit Steuern anzuzeigen."
+
+#. module: sale_discount_display_amount
+#: model:ir.model,name:sale_discount_display_amount.model_res_company
+msgid "Companies"
+msgstr "Unternehmen"
+
+#. module: sale_discount_display_amount
+#: model:ir.model,name:sale_discount_display_amount.model_res_config_settings
+msgid "Config Settings"
 msgstr ""
 
 #. module: sale_discount_display_amount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_subtotal
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__discount_subtotal
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__discount_total
 msgid "Discount Subtotal"
+msgstr "Rabatt-Nettobetrag"
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
+msgid "Discount total"
 msgstr "Rabatt-Bruttobetrag"
+
+#. module: sale_discount_display_amount
+#: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.res_config_settings_view_form
+msgid ""
+"OFF = Shows the Discount without TAX<br/>ON = Shows the Discount with TAX"
+msgstr ""
+"OFF = Zeigt den Rabatt ohne Steuer<br/>ON = Zeigt den Rabatt mit Steuer"
 
 #. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_sale_order
 msgid "Sales Order"
-msgstr "Verkaufsauftrag"
+msgstr "Kundenauftrag"
 
 #. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Auftragsposition"
+msgstr "Kundenauftragszeile"
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_company__display_discount_with_tax
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_config_settings__display_discount_with_tax
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__display_discount_with_tax
+msgid "Show the Discount with TAX"
+msgstr "Den Rabatt mit Steuer anzeigen"
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_subtotal_no_discount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_subtotal_no_discount
+msgid "Subtotal Without Discount"
+msgstr "Nettobetrag ohne Rabatt"
 
 #. module: sale_discount_display_amount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_total_no_discount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_total_no_discount
-msgid "Subtotal Without Discount"
+msgid "Total Without Discount"
 msgstr "Bruttobetrag ohne Rabatt"

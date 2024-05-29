@@ -4,42 +4,78 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 10.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2018-10-10 12:38+0000\n"
-"Last-Translator: Cédric Pigeon (ACSONE) <cedric.pigeon@acsone.eu>\n"
-"Language-Team: none\n"
+"POT-Creation-Date: 2024-02-22 09:19+0000\n"
+"PO-Revision-Date: 2024-02-22 09:19+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.1.1\n"
+"Plural-Forms: \n"
 
 #. module: sale_discount_display_amount
-#: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.sale_discount_display_amount_document
-msgid "<span>Total Discount</span>"
+#: model:ir.model.fields,help:sale_discount_display_amount.field_res_config_settings__display_discount_with_tax
+#: model:ir.model.fields,help:sale_discount_display_amount.field_sale_order__display_discount_with_tax
+msgid "Check this field to show the Discount with TAX"
+msgstr "Cochez ce champ pour afficher la remise avec TAXE"
+
+#. module: sale_discount_display_amount
+#: model:ir.model,name:sale_discount_display_amount.model_res_company
+msgid "Companies"
+msgstr "Entreprises"
+
+#. module: sale_discount_display_amount
+#: model:ir.model,name:sale_discount_display_amount.model_res_config_settings
+msgid "Config Settings"
 msgstr ""
 
 #. module: sale_discount_display_amount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_subtotal
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__discount_subtotal
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__discount_total
 msgid "Discount Subtotal"
-msgstr "Montant de la remise"
+msgstr "Sous-total des remises"
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
+msgid "Discount total"
+msgstr "Total des remises"
+
+#. module: sale_discount_display_amount
+#: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.res_config_settings_view_form
+msgid ""
+"OFF = Shows the Discount without TAX<br/>ON = Shows the Discount with TAX"
+msgstr ""
+"OFF = Affiche la remise sans TAXE<br/>ON = Affiche la remise avec TAXE"
 
 #. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_sale_order
-#, fuzzy
 msgid "Sales Order"
-msgstr "Bons de commande"
+msgstr ""
 
 #. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Lignes de bon de commande"
+msgstr "Commande de vente"
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_company__display_discount_with_tax
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_config_settings__display_discount_with_tax
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__display_discount_with_tax
+msgid "Show the Discount with TAX"
+msgstr "Afficher la remise avec la TAXE"
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_subtotal_no_discount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_subtotal_no_discount
+msgid "Subtotal Without Discount"
+msgstr "Sous-total sans remise"
 
 #. module: sale_discount_display_amount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_total_no_discount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_total_no_discount
-msgid "Subtotal Without Discount"
-msgstr "Sous-total sans la remise"
+msgid "Total Without Discount"
+msgstr "Total sans remise"

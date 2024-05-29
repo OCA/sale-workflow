@@ -4,28 +4,52 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-01-26 00:06+0000\n"
-"Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
-"Language-Team: none\n"
+"POT-Creation-Date: 2024-02-22 09:19+0000\n"
+"PO-Revision-Date: 2024-02-22 09:19+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"Plural-Forms: \n"
 
 #. module: sale_discount_display_amount
-#: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.sale_discount_display_amount_document
-msgid "<span>Total Discount</span>"
+#: model:ir.model.fields,help:sale_discount_display_amount.field_res_config_settings__display_discount_with_tax
+#: model:ir.model.fields,help:sale_discount_display_amount.field_sale_order__display_discount_with_tax
+msgid "Check this field to show the Discount with TAX"
+msgstr "Vink dit veld aan om de Korting met BTW weer te geven"
+
+#. module: sale_discount_display_amount
+#: model:ir.model,name:sale_discount_display_amount.model_res_company
+msgid "Companies"
+msgstr "Bedrijven"
+
+#. module: sale_discount_display_amount
+#: model:ir.model,name:sale_discount_display_amount.model_res_config_settings
+msgid "Config Settings"
 msgstr ""
 
 #. module: sale_discount_display_amount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_subtotal
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__discount_subtotal
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__discount_total
 msgid "Discount Subtotal"
 msgstr "Subtotaal Korting"
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
+msgid "Discount total"
+msgstr "Totaal Korting"
+
+#. module: sale_discount_display_amount
+#: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.res_config_settings_view_form
+msgid ""
+"OFF = Shows the Discount without TAX<br/>ON = Shows the Discount with TAX"
+msgstr ""
+"OFF = toont de korting zonder BTW<br/>ON = toont de korting met BTW"
 
 #. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_sale_order
@@ -35,19 +59,23 @@ msgstr "Verkooporder"
 #. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Verkooporder regel"
+msgstr "Verkooporderlijn"
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_company__display_discount_with_tax
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_config_settings__display_discount_with_tax
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__display_discount_with_tax
+msgid "Show the Discount with TAX"
+msgstr "Toon de korting met BTW"
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_subtotal_no_discount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_subtotal_no_discount
+msgid "Subtotal Without Discount"
+msgstr "Subtotaal zonder korting"
 
 #. module: sale_discount_display_amount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_total_no_discount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_total_no_discount
-msgid "Subtotal Without Discount"
-msgstr "Subtotaal zonder korting"
-
-#~ msgid "Display Name"
-#~ msgstr "Weergavenaam"
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "Last Modified on"
-#~ msgstr "Laatst bijgewerkt op"
+msgid "Total Without Discount"
+msgstr "Totaal zonder korting"
