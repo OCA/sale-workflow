@@ -6,15 +6,12 @@
     "summary": """
         This addon intends to display the amount of the discount computed on
         sale_order_line and sale_order level""",
-    "version": "16.0.1.1.0",
+    "version": "17.0.1.0.0",
     "license": "AGPL-3",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale_management"],
-    "data": [
-        "views/sale_view.xml",
-        "report/sale_report_template.xml",
-    ],
+    "data": ["views/sale_view.xml", "views/res_config_settings_views.xml"],
     "pre_init_hook": "pre_init_hook",
     "post_init_hook": "post_init_hook",
 }
