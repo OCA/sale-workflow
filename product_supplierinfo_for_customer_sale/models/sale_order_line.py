@@ -1,6 +1,8 @@
 # Copyright 2013-2017 Agile Business Group sagl
 #     (<http://www.agilebg.com>)
 # Copyright 2021 ForgeFlow S.L. (https://www.forgeflow.com)
+# Copyright 2024 Tecnativa - Víctor Martínez
+# Copyright 2024 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -25,38 +27,32 @@ class SaleOrderLine(models.Model):
                 code = ""
             line.product_customer_code = code
 
+    def _compute_name(self):
+        """We need to override the method with product_id is set so that the product
+        code is not added and add custom code of customerinfo."""
+        empty_lines = self.filtered(lambda x: not x.product_id)
+        super(SaleOrderLine, empty_lines)._compute_name()
+        for item in self - empty_lines:
+            customerinfo = item.product_id._select_customerinfo(
+                partner=item.order_partner_id
+            )
+            if customerinfo.product_code:
+                # Avoid to put the standard internal reference
+                item = item.with_context(display_default_code=False)
+            super(SaleOrderLine, item)._compute_name()
+            if customerinfo.product_code:
+                item.name = f"[{customerinfo.product_code}] {item.name}"
+        return
+
     @api.onchange("product_id")
     def _onchange_product_id_warning(self):
-        result = super(SaleOrderLine, self)._onchange_product_id_warning()
-        for line in self.filtered(
-            lambda sol: sol.product_id.product_tmpl_id.customer_ids
-            and sol.order_id.pricelist_id.item_ids
-        ):
-            product = line.product_id
-            items = self.env["product.pricelist.item"].search(
-                [
-                    ("pricelist_id", "=", line.order_id.pricelist_id.id),
-                    ("compute_price", "=", "formula"),
-                    ("base", "=", "partner"),
-                    "|",
-                    ("applied_on", "=", "3_global"),
-                    "|",
-                    "&",
-                    ("categ_id", "=", product.categ_id.id),
-                    ("applied_on", "=", "2_product_category"),
-                    "|",
-                    "&",
-                    ("product_tmpl_id", "=", product.product_tmpl_id.id),
-                    ("applied_on", "=", "1_product"),
-                    "&",
-                    ("product_id", "=", product.id),
-                    ("applied_on", "=", "0_product_variant"),
-                ]
-            )
-            if items:
-                supplierinfo = line.product_id._select_customerinfo(
+        """Assign the mininum quantity if set."""
+        res = super()._onchange_product_id_warning()
+        for line in self:
+            if line.product_id:
+                customerinfo = line.product_id._select_customerinfo(
                     partner=line.order_partner_id
                 )
-                if supplierinfo and supplierinfo.min_qty:
-                    line.product_uom_qty = supplierinfo.min_qty
-        return result
+                if customerinfo.min_qty:
+                    line.product_uom_qty = customerinfo.min_qty
+        return res
