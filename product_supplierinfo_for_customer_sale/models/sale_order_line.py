@@ -27,30 +27,26 @@ class SaleOrderLine(models.Model):
                 code = ""
             line.product_customer_code = code
 
-    def _update_description(self):
-        """Add the customer code in the description when applicable.
-
-        This also takes from context the possible customerinfo already searched in
-        product_id_change for avoiding duplicated searches.
-        """
-        # We need to repeat the search here, as passing the value by context or any
-        # other trick makes the ORM to do ugly things in "onchange" mode
-        customerinfo = self.product_id._select_customerinfo(
-            partner=self.order_partner_id
-        )
-        if customerinfo.product_code:
-            # Avoid to put the standard internal reference
-            self = self.with_context(display_default_code=False)
-        res = super()._update_description()
-        if customerinfo.product_code:
-            self.name = f"[{customerinfo.product_code}] {self.name}"
-        return res
+    def _compute_name(self):
+        """We need to override the method with product_id is set so that the product
+        code is not added and add custom code of customerinfo."""
+        empty_lines = self.filtered(lambda x: not x.product_id)
+        super(SaleOrderLine, empty_lines)._compute_name()
+        for item in self - empty_lines:
+            customerinfo = item.product_id._select_customerinfo(
+                partner=item.order_partner_id
+            )
+            if customerinfo.product_code:
+                # Avoid to put the standard internal reference
+                item = item.with_context(display_default_code=False)
+            super(SaleOrderLine, item)._compute_name()
+            if customerinfo.product_code:
+                item.name = f"[{customerinfo.product_code}] {item.name}"
+        return
 
     @api.onchange("product_id")
     def _onchange_product_id_warning(self):
-        """Inject the customerinfo in the context for not repeating the search in
-        _update_description + assign the mininum quantity if set.
-        """
+        """Assign the mininum quantity if set."""
         res = super()._onchange_product_id_warning()
         for line in self:
             if line.product_id:
