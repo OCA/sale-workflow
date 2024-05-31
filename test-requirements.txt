@@ -1,1 +1,2 @@
 odoo_test_helper
+odoo16-addon-account-invoice-triple-discount @ git+https://github.com/OCA/account-invoicing@refs/pull/1638/head#subdirectory=setup/account_invoice_triple_discount
