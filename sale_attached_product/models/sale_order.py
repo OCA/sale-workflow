@@ -101,7 +101,7 @@ class SaleOrder(models.Model):
                 line.attached_line_ids.update({"product_uom_qty": line.product_uom_qty})
                 # Trigger possible pricelist changes
                 for attached_line in line.attached_line_ids:
-                    attached_line.product_uom_change()
+                    attached_line._compute_price_unit()
             attached_products = line._get_attached_products()
             # Create missing products, for example in the case of a deleted attached
             # line.
