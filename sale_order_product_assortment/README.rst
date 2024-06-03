@@ -54,11 +54,6 @@ Usage
 #. Select one of the partners defined on product_assortment.
 #. Add products defined on the product assortment.
 
-Known issues / Roadmap
-======================
-
-* Allow to use the domain field of the product_assortment for filter the allowed products of any partner.
-
 Bug Tracker
 ===========
 
