@@ -14,19 +14,12 @@ class ProductElaborationMixin(models.AbstractModel):
     )
     elaboration_note = fields.Char(
         store=True,
-        compute="_compute_elaboration_note",
-        readonly=False,
     )
     is_elaboration = fields.Boolean(
         store=True,
         compute="_compute_is_elaboration",
         readonly=False,
     )
-
-    @api.depends("elaboration_ids")
-    def _compute_elaboration_note(self):
-        for line in self:
-            line.elaboration_note = ", ".join(line.elaboration_ids.mapped("name"))
 
     @api.depends("product_id")
     def _compute_is_elaboration(self):

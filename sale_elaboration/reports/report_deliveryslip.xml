@@ -20,7 +20,7 @@
         >
             <attribute
                 name="t-value"
-                add="or (o.move_ids.filtered('elaboration_note'))"
+                add="or (o.move_ids.filtered('elaboration_ids') | o.move_ids.filtered('elaboration_note'))"
                 separator=" "
             />
             <attribute
@@ -30,14 +30,12 @@
             />
         </xpath>
         <xpath expr="//p[span[@t-field='move.description_picking']]" position="after">
-            <div
-                class="fst-italic"
-                groups="sale_elaboration.group_elaboration_note_on_delivery_slip"
-                t-if="move.picking_code != 'incoming' and move.elaboration_note"
+            <t
+                t-if="move.picking_code != 'incoming'"
+                t-call="sale_elaboration.elaboration_notes"
             >
-                <i class="fa fa-comment-o " />
-                <span t-field="move.elaboration_note" />
-            </div>
+                <t t-set="record" t-value="move" />
+            </t>
         </xpath>
     </template>
 
@@ -46,14 +44,12 @@
         inherit_id="stock.stock_report_delivery_has_serial_move_line"
     >
         <xpath expr="//span[@t-field='move_line.product_id']" position="after">
-            <div
-                class="fst-italic"
-                groups="sale_elaboration.group_elaboration_note_on_delivery_slip"
-                t-if="move_line.picking_code != 'incoming' and move_line.elaboration_note"
+            <t
+                t-if="move.picking_code != 'incoming'"
+                t-call="sale_elaboration.elaboration_notes"
             >
-                <i class="fa fa-comment-o" />
-                <span t-field="move_line.elaboration_note" />
-            </div>
+                <t t-set="record" t-value="move" />
+            </t>
         </xpath>
     </template>
 </odoo>

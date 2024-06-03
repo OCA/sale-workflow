@@ -86,9 +86,10 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
         elaboration = self.Elaboration.name_search("AA")
         self.assertEqual(len(elaboration), 1)
 
-    def test_sale_elaboration_change(self):
+    def test_sale_elaboration_doesnt_change(self):
+        self.order.order_line.elaboration_note = "Some details"
         self.order.order_line.elaboration_ids = self.elaboration_b
-        self.assertEqual(self.order.order_line.elaboration_note, "Elaboration B")
+        self.assertEqual(self.order.order_line.elaboration_note, "Some details")
 
     def test_sale_elaboration(self):
         self.order.action_confirm()
