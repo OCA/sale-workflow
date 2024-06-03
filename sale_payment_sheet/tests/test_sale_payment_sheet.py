@@ -16,6 +16,8 @@ class TestSaleInvoicePayment(TransactionCase):
         super().setUpClass()
         # Remove time zone from user to avoid to time local representation
         cls.env.user.partner_id.tz = False
+        # Archive all reconciliation models to avoid them interfering with the tests
+        cls.env["account.reconcile.model"].search([]).active = False
         account_group = cls.env.ref("account.group_account_user")
         cls.env.user.write({"groups_id": [(4, account_group.id)]})
         no_one_group = cls.env.ref("base.group_no_one")
