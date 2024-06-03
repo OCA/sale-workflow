@@ -56,7 +56,7 @@ addon | version | maintainers | summary
 [sale_order_currency_rate](sale_order_currency_rate/) | 16.0.1.0.0 |  | Currency Rate in Sale Order
 [sale_order_general_discount](sale_order_general_discount/) | 16.0.1.1.0 |  | General discount per sale order
 [sale_order_general_discount_triple](sale_order_general_discount_triple/) | 16.0.2.0.1 | [![ashishhirapara](https://github.com/ashishhirapara.png?size=30px)](https://github.com/ashishhirapara) | General discount per sale order with triple
-[sale_order_invoice_amount](sale_order_invoice_amount/) | 16.0.1.0.0 |  | Display the invoiced and uninvoiced total in the sale order
+[sale_order_invoice_amount](sale_order_invoice_amount/) | 16.0.1.0.1 |  | Display the invoiced and uninvoiced total in the sale order
 [sale_order_invoicing_finished_task](sale_order_invoicing_finished_task/) | 16.0.1.0.1 |  | Control invoice order lines if their related task has been set to invoiceable
 [sale_order_invoicing_picking_filter](sale_order_invoicing_picking_filter/) | 16.0.1.0.0 |  | Create invoices from sale orders based on the products in pickings.
 [sale_order_line_date](sale_order_line_date/) | 16.0.1.1.0 |  | Adds a commitment date to each sale order line.
