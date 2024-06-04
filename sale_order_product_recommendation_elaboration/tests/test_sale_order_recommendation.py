@@ -59,7 +59,7 @@ class RecommendationCaseTests(test_recommendation_common.RecommendationCase):
         )
         wiz_line.ensure_one()
         self.assertEqual(wiz_line.elaboration_ids, self.elab_1 | self.elab_2)
-        self.assertEqual(wiz_line.elaboration_note, "Elaboration 1, Elaboration 2")
+        self.assertFalse(wiz_line.elaboration_note)
         wiz_line.elaboration_note = "Elaborations 1 and 2"
         # Include 1 of those
         wiz_line.units_included = 1
@@ -87,7 +87,7 @@ class RecommendationCaseTests(test_recommendation_common.RecommendationCase):
             )
         ]
         self.assertEqual(len(self.new_so.order_line), 1)
-        self.assertEqual(self.new_so.order_line.elaboration_note, "Elaboration 2")
+        self.assertFalse(self.new_so.order_line.elaboration_note)
         self.new_so.order_line.elaboration_note = "custom"
         wiz = self.wizard()
         wiz_line = wiz.line_ids.filtered_domain([("product_id", "=", self.prod_2.id)])
