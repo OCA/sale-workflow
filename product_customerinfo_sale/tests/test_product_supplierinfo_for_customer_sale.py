@@ -41,6 +41,7 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
         self.pricelist_template = self._create_pricelist(
             "Test Pricelist Template", self.product_template.product_variant_ids[:1]
         )
+        self.env.user.groups_id |= self.env.ref("product.group_product_pricelist")
 
     def _create_customer(self, name):
         return self.env["res.partner"].create(
