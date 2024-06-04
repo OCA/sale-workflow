@@ -7,7 +7,7 @@
         "Include elaborations when generating or accepting sale order "
         "product recommendations"
     ),
-    "version": "16.0.2.0.0",
+    "version": "16.0.2.0.1",
     "development_status": "Alpha",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
