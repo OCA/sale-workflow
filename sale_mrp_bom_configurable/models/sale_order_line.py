@@ -29,14 +29,19 @@ class SaleOrderLine(models.Model):
     allowed_product_id = fields.Char(
         compute="_compute_allowed_product_id", store=True, precompute=True
     )
-    should_filter_product = fields.Boolean(compute="_compute_should_filter_product")
+    should_not_filter_product = fields.Boolean(compute="_compute_should_filter_product")
 
     should_compute_price = fields.Boolean(
         compute="_compute_should_compute_price", store=True, precompute=True
     )
+    is_normal_product = fields.Boolean(default=False)
 
     def _compute_should_compute_price(self):
-        "_compute_should_compute_price must be overriden.  It should set should_compute_price to True and depend on all relevant field in input_line"
+        return (
+            "_compute_should_compute_price must be overriden."
+            + "It should set should_compute_price to True and "
+            + "depend on all relevant field in input_line"
+        )
 
     @api.model
     def _get_default_product_template_id(self):
@@ -52,7 +57,7 @@ class SaleOrderLine(models.Model):
         compute="_compute_product_template_id",
         inverse="_inverse_product_template_id",
         store=True,
-        precompute=False,
+        precompute=True,
     )
 
     @api.model
@@ -68,16 +73,18 @@ class SaleOrderLine(models.Model):
         default=_get_default_product_id,
     )
 
-    @api.depends("input_config_id")
+    @api.depends("input_config_id", "product_id")
     def _compute_product_template_id(self):
-        if self.env.context.get("configurable_quotation", False):
-            for rec in self:
+        for rec in self:
+            if (
+                self.env.context.get("configurable_quotation", False)
+                and not rec.is_normal_product
+            ):
                 rec.product_template_id = (
                     rec.order_id.input_config_id.bom_id.product_tmpl_id
                 )
-        else:
-            for rec in self:
-                rec.product_template_id = rec.product_template_id
+            else:
+                rec.product_template_id = rec.product_id.product_tmpl_id
 
     def _inverse_product_template_id(self):
         pass
@@ -91,9 +98,10 @@ class SaleOrderLine(models.Model):
         res = super().create(vals_list)
 
         for rec in res:
-            vals = rec._prepare_default_input_line_vals()
-            input_line = self.env["input.line"].create(vals)
-            rec.input_line_ids = [(4, input_line.id, 0)]
+            if not rec.is_normal_product:
+                vals = rec._prepare_default_input_line_vals()
+                input_line = self.env["input.line"].create(vals)
+                rec.input_line_ids = [(4, input_line.id, 0)]
 
         return res
 
@@ -109,21 +117,26 @@ class SaleOrderLine(models.Model):
     @api.depends("input_line_id")
     def _compute_bom_id(self):
         for rec in self:
-            rec.bom_id = rec.input_line_id.bom_id
+            if not rec.is_normal_product:
+                rec.bom_id = rec.input_line_id.bom_id
+            else:
+                rec.bom_id = False
 
     @api.depends("input_config_id")
     def _compute_allowed_product_id(self):
         for rec in self:
-            if rec.input_config_id:
+            if rec.input_config_id and not rec.is_normal_product:
                 product_id = rec.input_config_id.bom_id.product_tmpl_id
                 rec.allowed_product_id = product_id.id
             else:
                 rec.allowed_product_id = "-1"
 
-    @api.depends("input_config_id")
+    @api.depends("input_config_id", "is_normal_product")
     def _compute_should_filter_product(self):
         for rec in self:
-            rec.should_filter_product = not bool(rec.input_config_id)
+            rec.should_not_filter_product = (not bool(rec.input_config_id)) or (
+                rec.is_normal_product
+            )
 
     @api.depends("should_compute_price")
     def _compute_price_unit(self):
@@ -145,4 +158,21 @@ class SaleOrderLine(models.Model):
             "view_mode": "form",
             "target": "new",
             "res_id": self.input_line_id.id,
+        }
+
+    def action_run_copy_data_wizard(self):
+        wizard_id = self.env["wizard.copy.input.line.data"].create(
+            {
+                "input_line_id": self.input_line_id.id,
+                "input_config_id": self.input_line_id.config_id.id,
+            }
+        )
+
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Copy input line data",
+            "res_model": "wizard.copy.input.line.data",
+            "view_mode": "form",
+            "target": "new",
+            "res_id": wizard_id.id,
         }

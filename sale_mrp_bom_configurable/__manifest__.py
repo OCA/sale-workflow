@@ -14,6 +14,7 @@
     "data": [
         "views/sale_order.xml",
         "views/sale_price_config.xml",
+        "wizard/wizard_copy_input_line_data.xml",
         "security/ir.model.access.csv",
     ],
     "assets": {

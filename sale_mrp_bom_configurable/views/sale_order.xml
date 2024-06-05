@@ -43,7 +43,7 @@
                 position="before"
             >
             <field name="allowed_product_id" invisible="1" />
-            <field name="should_filter_product" invisible="1" />
+            <field name="should_not_filter_product" invisible="1" />
         </xpath>
         <xpath
                 expr="//page[@name='order_lines']//tree/field[@name='product_template_id']"
@@ -51,7 +51,7 @@
             >
             <attribute
                     name="domain"
-                >['|', ('sale_ok', '=', should_filter_product), ('id', '=', allowed_product_id)]</attribute>
+                >['|', ('sale_ok', '=', should_not_filter_product), ('id', '=', allowed_product_id)]</attribute>
         </xpath>
         <xpath expr="//field[@name='order_line']" position="attributes">
             <attribute name="context">{'input_config_id': input_config_id}</attribute>
@@ -60,16 +60,23 @@
                 expr="//page[@name='order_lines']//tree/field[@name='product_template_id']"
                 position="after"
             >
-            <field name="input_config_id" invisible="1" />
-            <field name="input_line_id" invisible="1" />
-            <field name="input_line_id_name" />
             <button
                     name="action_show_input_line"
-                    class="fa fa-eye"
+                    class="fa fa-gear"
                     type="object"
                     title="Info"
                     attrs="{'invisible': [('input_line_id', '=', False)]}"
                 />
+            <button
+                    name="action_run_copy_data_wizard"
+                    class="fa fa-paste"
+                    type="object"
+                    title="Info"
+                    attrs="{'invisible': [('input_line_id', '=', False)]}"
+                />
+            <field name="input_config_id" invisible="1" />
+            <field name="input_line_id" invisible="1" />
+            <field name="input_line_id_name" />
         </xpath>
     </field>
 </record>

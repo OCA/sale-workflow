@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 sale_price_config_base,Base sale price config,model_sale_price_config,base.group_user,1,1,1,1
 sale_price_config_line_base,Base sale price config lin,model_sale_price_config_line,base.group_user,1,1,1,1
+wizard_copy_input_line_data,Base wizard copy input line,model_wizard_copy_input_line_data,base.group_user,1,1,1,1
+wizard_copy_input_line_data_line,Base wizard copy input line data line,model_wizard_copy_input_line_data_line,base.group_user,1,1,1,1
