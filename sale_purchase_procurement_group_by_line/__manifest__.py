@@ -5,7 +5,7 @@
     "name": "Sale Purchase Procurement Group by Line",
     "summary": "Glue module between 'MTO Sale <-> Purchase'"
     " and 'Sale Procurement Group by Line'",
-    "version": "15.0.1.0.0",
+    "version": "16.0.1.0.0",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "category": "Hidden",
     "license": "AGPL-3",
