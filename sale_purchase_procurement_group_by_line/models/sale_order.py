@@ -15,7 +15,7 @@ class SaleOrder(models.Model):
     # method, and update the way purchases are retrieved from sales.
 
     @api.depends(
-        "order_line.procurement_group_id.stock_move_ids.created_purchase_line_id.order_id",  # noqa: B950
+        "order_line.procurement_group_id.stock_move_ids.created_purchase_line_ids.order_id",  # noqa: B950
         "order_line.procurement_group_id.stock_move_ids.move_orig_ids.purchase_line_id.order_id",  # noqa: B950
     )
     def _compute_purchase_order_count(self):
@@ -24,6 +24,10 @@ class SaleOrder(models.Model):
     def _get_purchase_orders(self):
         return (
             super()._get_purchase_orders()
-            | self.order_line.procurement_group_id.stock_move_ids.created_purchase_line_id.order_id  # noqa: B950
-            | self.order_line.procurement_group_id.stock_move_ids.move_orig_ids.purchase_line_id.order_id  # noqa: B950
+            | (
+                self.order_line.procurement_group_id.stock_move_ids.created_purchase_line_ids.order_id
+            )
+            | (
+                self.order_line.procurement_group_id.stock_move_ids.move_orig_ids.purchase_line_id.order_id
+            )
         )
