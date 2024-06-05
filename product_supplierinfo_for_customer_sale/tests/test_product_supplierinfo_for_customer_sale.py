@@ -7,49 +7,52 @@ from odoo.tests.common import TransactionCase
 
 
 class TestProductSupplierinfoForCustomerSale(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.supplierinfo_model = self.env["product.supplierinfo"]
-        self.customerinfo_model = self.env["product.customerinfo"]
-        self.pricelist_item_model = self.env["product.pricelist.item"]
-        self.pricelist_model = self.env["product.pricelist"]
-        self.customer = self._create_customer("customer1")
-        self.product = self.env.ref("product.product_product_4")
-        self.product_variant_1 = self.env.ref("product.product_product_4b")
-        self.product_variant_2 = self.env.ref("product.product_product_4c")
-        self.customerinfo = self._create_partnerinfo(
-            "customer", self.customer, self.product
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.supplierinfo_model = cls.env["product.supplierinfo"]
+        cls.customerinfo_model = cls.env["product.customerinfo"]
+        cls.pricelist_item_model = cls.env["product.pricelist.item"]
+        cls.pricelist_model = cls.env["product.pricelist"]
+        cls.customer = cls._create_customer("customer1")
+        cls.product = cls.env.ref("product.product_product_4")
+        cls.product_variant_1 = cls.env.ref("product.product_product_4b")
+        cls.product_variant_2 = cls.env.ref("product.product_product_4c")
+        cls.customerinfo = cls._create_partnerinfo(
+            "customer", cls.customer, cls.product
         )
-        self.pricelist = self._create_pricelist("Test Pricelist", self.product)
-        self.pricelist_item = self._create_pricelist_item(
-            "Test Pricelist Item", self.pricelist, self.product
+        cls.pricelist = cls._create_pricelist("Test Pricelist", cls.product)
+        cls.pricelist_item = cls._create_pricelist_item(
+            "Test Pricelist Item", cls.pricelist, cls.product
         )
-        self.company = self.env.ref("base.main_company")
-        self._create_partnerinfo("customer", self.customer, self.product_variant_1)
-        self._create_partnerinfo(
-            "customer", self.customer, self.product_variant_2, empty_variant=True
+        cls.company = cls.env.ref("base.main_company")
+        cls._create_partnerinfo("customer", cls.customer, cls.product_variant_1)
+        cls._create_partnerinfo(
+            "customer", cls.customer, cls.product_variant_2, empty_variant=True
         )
-        self.product_template = self.env["product.template"].create(
+        cls.product_template = cls.env["product.template"].create(
             {"name": "product wo variants"}
         )
-        self._create_partnerinfo(
+        cls._create_partnerinfo(
             "customer",
-            self.customer,
-            self.product_template.product_variant_ids[:1],
+            cls.customer,
+            cls.product_template.product_variant_ids[:1],
             empty_variant=True,
         )
-        self.pricelist_template = self._create_pricelist(
-            "Test Pricelist Template", self.product_template.product_variant_ids[:1]
+        cls.pricelist_template = cls._create_pricelist(
+            "Test Pricelist Template", cls.product_template.product_variant_ids[:1]
         )
-        self.env.user.groups_id |= self.env.ref("product.group_product_pricelist")
+        cls.env.user.groups_id |= cls.env.ref("product.group_product_pricelist")
 
-    def _create_customer(self, name):
-        return self.env["res.partner"].create(
+    @classmethod
+    def _create_customer(cls, name):
+        return cls.env["res.partner"].create(
             {"name": name, "email": "example@yourcompany.com", "phone": 123456}
         )
 
+    @classmethod
     def _create_partnerinfo(
-        self, supplierinfo_type, partner, product, empty_variant=False
+        cls, supplierinfo_type, partner, product, empty_variant=False
     ):
         vals = {
             "partner_id": partner.id,
@@ -62,15 +65,17 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
         if empty_variant:
             vals.pop("product_id", None)
             vals["product_tmpl_id"] = product.product_tmpl_id.id
-        return self.env["product." + supplierinfo_type + "info"].create(vals)
+        return cls.env["product." + supplierinfo_type + "info"].create(vals)
 
-    def _create_pricelist(self, name, product):
-        return self.pricelist_model.create(
-            {"name": name, "currency_id": self.env.ref("base.USD").id}
+    @classmethod
+    def _create_pricelist(cls, name, product):
+        return cls.pricelist_model.create(
+            {"name": name, "currency_id": cls.env.ref("base.USD").id}
         )
 
-    def _create_pricelist_item(self, name, pricelist, product):
-        return self.pricelist_item_model.create(
+    @classmethod
+    def _create_pricelist_item(cls, name, pricelist, product):
+        return cls.pricelist_item_model.create(
             {
                 "name": name,
                 "pricelist_id": pricelist.id,
