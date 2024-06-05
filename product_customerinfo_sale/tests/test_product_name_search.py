@@ -10,22 +10,23 @@ class TestProductNameSearch(TransactionCase):
     - Test product name_search
     """
 
-    def setUp(self):
-        super(TestProductNameSearch, self).setUp()
-        self.supplier = self.env.ref("base.res_partner_1")
-        self.customer = self.env.ref("base.res_partner_2")
-        self.product = (
-            self.env["product.product"]
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.supplier = cls.env.ref("base.res_partner_1")
+        cls.customer = cls.env.ref("base.res_partner_2")
+        cls.product = (
+            cls.env["product.product"]
             .create({"name": "Name_product", "default_code": "code_product"})
-            .with_context(**{"partner_id": self.customer.id})
+            .with_context(**{"partner_id": cls.customer.id})
         )
-        self.supplierinfo = self.env["product.supplierinfo"]
-        self.customerinfo = self.env["product.customerinfo"]
-        self.customerinfo_dict = {
+        cls.supplierinfo = cls.env["product.supplierinfo"]
+        cls.customerinfo = cls.env["product.customerinfo"]
+        cls.customerinfo_dict = {
             "product_code": "code_test",
             "product_name": "Name_test",
-            "partner_id": self.customer.id,
-            "product_tmpl_id": self.product.product_tmpl_id.id,
+            "partner_id": cls.customer.id,
+            "product_tmpl_id": cls.product.product_tmpl_id.id,
         }
 
     def test_10_find_product_customer_code(self):
