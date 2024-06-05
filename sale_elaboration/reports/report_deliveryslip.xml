@@ -45,10 +45,10 @@
     >
         <xpath expr="//span[@t-field='move_line.product_id']" position="after">
             <t
-                t-if="move.picking_code != 'incoming'"
+                t-if="move_line.picking_code != 'incoming'"
                 t-call="sale_elaboration.elaboration_notes"
             >
-                <t t-set="record" t-value="move" />
+                <t t-set="record" t-value="move_line.move_id" />
             </t>
         </xpath>
     </template>
