@@ -66,9 +66,7 @@ class SaleOrderLine(models.Model):
     @api.depends("elaboration_ids")
     def _compute_route_id(self):
         for line in self:
-            route_id = line.get_elaboration_stock_route()
-            if route_id:
-                line.route_id = route_id
+            line.route_id = line.get_elaboration_stock_route()
 
     @api.depends("elaboration_ids", "order_id.pricelist_id")
     def _compute_elaboration_price_unit(self):
