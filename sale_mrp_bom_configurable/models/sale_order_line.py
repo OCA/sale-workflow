@@ -29,7 +29,10 @@ class SaleOrderLine(models.Model):
     allowed_product_id = fields.Char(
         compute="_compute_allowed_product_id", store=True, precompute=True
     )
-    should_not_filter_product = fields.Boolean(compute="_compute_should_filter_product")
+    should_not_filter_product = fields.Boolean(
+        compute="_compute_should_not_filter_product"
+    )
+    should_filter_product = fields.Boolean()
 
     should_compute_price = fields.Boolean(
         compute="_compute_should_compute_price", store=True, precompute=True
@@ -73,16 +76,14 @@ class SaleOrderLine(models.Model):
         default=_get_default_product_id,
     )
 
-    @api.depends("input_config_id", "product_id")
+    @api.depends("product_id", "order_id.bom_id")
     def _compute_product_template_id(self):
         for rec in self:
             if (
                 self.env.context.get("configurable_quotation", False)
                 and not rec.is_static_product
             ):
-                rec.product_template_id = (
-                    rec.order_id.input_config_id.bom_id.product_tmpl_id
-                )
+                rec.product_template_id = rec.order_id.bom_id.product_tmpl_id
             else:
                 rec.product_template_id = rec.product_id.product_tmpl_id
 
@@ -114,11 +115,11 @@ class SaleOrderLine(models.Model):
             else:
                 rec.input_line_id = False
 
-    @api.depends("input_line_id")
+    @api.depends("order_id.bom_id")
     def _compute_bom_id(self):
         for rec in self:
             if not rec.is_static_product:
-                rec.bom_id = rec.input_line_id.bom_id
+                rec.bom_id = rec.order_id.bom_id
             else:
                 rec.bom_id = False
 
@@ -132,7 +133,7 @@ class SaleOrderLine(models.Model):
                 rec.allowed_product_id = "-1"
 
     @api.depends("input_config_id", "is_static_product")
-    def _compute_should_filter_product(self):
+    def _compute_should_not_filter_product(self):
         for rec in self:
             rec.should_not_filter_product = (not bool(rec.input_config_id)) or (
                 rec.is_static_product
