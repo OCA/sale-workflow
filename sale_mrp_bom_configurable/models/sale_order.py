@@ -34,6 +34,15 @@ class SaleOrder(models.Model):
         readonly=False,
     )
 
+    order_line_count = fields.Integer(
+        string="Order lines count", compute="_compute_order_line_count"
+    )
+
+    @api.depends("order_line")
+    def _compute_order_line_count(self):
+        for rec in self:
+            rec.order_line_count = len(rec.order_line)
+
     @api.depends("input_config_ids")
     def _compute_input_config_id(self):
         for rec in self:
@@ -49,3 +58,16 @@ class SaleOrder(models.Model):
             if rec.input_config_id:
                 rec.input_config_id_name = f"config {rec.name}"
         return res
+
+    def show_lines(self):
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Lines",
+            "view_mode": "tree",
+            "res_model": "sale.order.line",
+            "view_id": self.env.ref(
+                "sale_mrp_bom_configurable.sale_order_line_tree_multi_edit"
+            ).id,
+            "domain": [("order_id", "=", self.id), ("is_static_product", "=", False)],
+        }

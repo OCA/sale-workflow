@@ -40,7 +40,8 @@ class WizardCopyInputLineData(models.TransientModel):
 
 class WizardCopyInputLineDataLine(models.TransientModel):
     _name = "wizard.copy.input.line.data.line"
+    _description = "Wizard copy line"
 
     wizard_id = fields.Many2one(comodel_name="wizard.copy.input.line.data")
-    field_name = fields.Char(String="Field name")
-    should_copy = fields.Boolean(String="Copy")
+    field_name = fields.Char(string="Field name")
+    should_copy = fields.Boolean(string="Copy")

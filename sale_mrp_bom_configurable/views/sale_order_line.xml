@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<record id="sale_order_line_tree_multi_edit" model="ir.ui.view">
+    <field name="model">sale.order.line</field>
+    <field name="name">sale.order.line.tree.multi.edit</field>
+    <field name="inherit_id" ref="sale.view_order_line_tree" />
+    <field name="mode">primary</field>
+    <field name="priority">30</field>
+    <field name="arch" type="xml">
+        <xpath expr="//tree" position="attributes">
+            <attribute name="multi_edit">1</attribute>
+            <attribute name="edit">true</attribute>
+            <attribute name="default_order">create_date</attribute>
+        </xpath>
+        <field name="order_id" position="before">
+            <field name="product_uom_category_id" invisible="1" />
+            <field name="input_line_id_name" />
+        </field>
+        <field name="order_id" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </field>
+        <field name="order_partner_id" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </field>
+        <field name="salesman_id" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </field>
+        <field name="product_uom_qty" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </field>
+        <field name="qty_delivered" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </field>
+        <field name="qty_invoiced" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </field>
+        <field name="qty_to_invoice" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </field>
+        <field name="product_uom" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </field>
+        <field name="route_id" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </field>
+        <field name="name" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </field>
+    </field>
+</record>
+</odoo>

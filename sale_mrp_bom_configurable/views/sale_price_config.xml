@@ -16,6 +16,13 @@
                                 <tree editable="bottom">
                                     <field name="sequence" widget="handle" />
                                     <field name="line_type" required="true" />
+                                    <button
+                                        name="open_matrix_wizard"
+                                        class="fa fa-gear"
+                                        type="object"
+                                        title="Info"
+                                        attrs="{'invisible': [('line_type', '!=', 'matrix')]}"
+                                    />
                                     <field
                                         name="domain"
                                         widget="domain"
@@ -33,6 +40,7 @@
                                     <field
                                         name="amount"
                                         attrs="{'invisible': [('line_type', '=', 'include_product_or_category')], 'required': [('line_type', '!=', 'include_product_or_category')]}"
+                                        digits="[12,4]"
                                     />
                                     <field
                                         name="included_product_or_category"

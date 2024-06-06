@@ -28,6 +28,17 @@
     <field name="inherit_id" ref="sale.view_order_form" />
     <field name="mode">primary</field>
     <field name="arch" type="xml">
+        <div name="button_box" position="inside">
+            <button
+                    class="oe_stat_button"
+                    type="object"
+                    name="show_lines"
+                    icon="fa-list"
+                >
+                <field string="Lines" name="order_line_count" widget="statinfo" />
+            </button>
+        </div>
+
         <group name="sale_header" position="inside">
             <group name="input_config_selection">
                 <field name="input_config_id" invisible="1" />
@@ -38,10 +49,14 @@
                     />
             </group>
         </group>
+        <xpath expr="//page[@name='order_lines']//tree" position="attributes">
+            <attribute name="default_order">create_date</attribute>
+        </xpath>
         <xpath
                 expr="//page[@name='order_lines']//tree/field[@name='product_template_id']"
                 position="before"
             >
+            <field name="create_date" invisible="1" />
             <field name="allowed_product_id" invisible="1" />
             <field name="should_not_filter_product" invisible="1" />
         </xpath>

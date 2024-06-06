@@ -34,7 +34,7 @@ class SaleOrderLine(models.Model):
     should_compute_price = fields.Boolean(
         compute="_compute_should_compute_price", store=True, precompute=True
     )
-    is_normal_product = fields.Boolean(default=False)
+    is_static_product = fields.Boolean(default=False)
 
     def _compute_should_compute_price(self):
         return (
@@ -78,7 +78,7 @@ class SaleOrderLine(models.Model):
         for rec in self:
             if (
                 self.env.context.get("configurable_quotation", False)
-                and not rec.is_normal_product
+                and not rec.is_static_product
             ):
                 rec.product_template_id = (
                     rec.order_id.input_config_id.bom_id.product_tmpl_id
@@ -98,7 +98,7 @@ class SaleOrderLine(models.Model):
         res = super().create(vals_list)
 
         for rec in res:
-            if not rec.is_normal_product:
+            if not rec.is_static_product:
                 vals = rec._prepare_default_input_line_vals()
                 input_line = self.env["input.line"].create(vals)
                 rec.input_line_ids = [(4, input_line.id, 0)]
@@ -117,7 +117,7 @@ class SaleOrderLine(models.Model):
     @api.depends("input_line_id")
     def _compute_bom_id(self):
         for rec in self:
-            if not rec.is_normal_product:
+            if not rec.is_static_product:
                 rec.bom_id = rec.input_line_id.bom_id
             else:
                 rec.bom_id = False
@@ -125,17 +125,17 @@ class SaleOrderLine(models.Model):
     @api.depends("input_config_id")
     def _compute_allowed_product_id(self):
         for rec in self:
-            if rec.input_config_id and not rec.is_normal_product:
+            if rec.input_config_id and not rec.is_static_product:
                 product_id = rec.input_config_id.bom_id.product_tmpl_id
                 rec.allowed_product_id = product_id.id
             else:
                 rec.allowed_product_id = "-1"
 
-    @api.depends("input_config_id", "is_normal_product")
+    @api.depends("input_config_id", "is_static_product")
     def _compute_should_filter_product(self):
         for rec in self:
             rec.should_not_filter_product = (not bool(rec.input_config_id)) or (
-                rec.is_normal_product
+                rec.is_static_product
             )
 
     @api.depends("should_compute_price")

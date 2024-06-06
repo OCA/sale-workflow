@@ -52,10 +52,14 @@ class SalePriceConfigLine(models.Model):
             ("base", "Fixed amount"),
             ("factor", "Multiply amount by field value"),
             ("include_product_or_category", "Include product or category"),
+            ("matrix", "Matrice"),
         ],
         string="Type",
         required=True,
     )
+    horizontal_value = fields.Many2one(comodel_name="ir.model.fields", string="Horiz")
+    vertical_value = fields.Many2one(comodel_name="ir.model.fields", string="Vert")
+    matrix_values = fields.Text()
 
     target_field = fields.Many2one(comodel_name="ir.model.fields", string="Field")
     target_field_domain = fields.Binary(
@@ -69,7 +73,7 @@ class SalePriceConfigLine(models.Model):
 
     domain = fields.Char()
 
-    amount = fields.Monetary(currency_field="currency_id")
+    amount = fields.Float(digits=(12, 4))
 
     currency_id = fields.Many2one(
         related="company_id.currency_id", string="Company Currency", store=True
@@ -112,3 +116,43 @@ class SalePriceConfigLine(models.Model):
             case "factor":
                 factor = input_line[self.target_field.name]
                 return factor * self.amount
+            case "matrix":
+                horiz_target = input_line[self.horizontal_value.name]
+                vert_target = input_line[self.vertical_value.name]
+                lines = self.matrix_values.split("\n")
+                matrix_data = []
+                for line in lines:
+                    matrix_data.append(line.split(";"))
+
+                horiz_values = matrix_data[0][1:]
+                vert_values = []
+
+                for line in matrix_data[1:]:
+                    vert_values.append(line[0])
+
+                horiz_index = 1
+                while int(horiz_values[horiz_index - 1]) < horiz_target:
+                    horiz_index += 1
+
+                vert_index = 1
+                while int(horiz_values[vert_index - 1]) < vert_target:
+                    vert_index += 1
+                return float(matrix_data[vert_index][horiz_index])
+
+    def open_matrix_wizard(self):
+        wizard_id = self.env["wizard.price.config.matrix"].create(
+            {
+                "price_config_line_id": self.id,
+                "horizontal_value": self.horizontal_value.id,
+                "vertical_value": self.vertical_value.id,
+                "matrix": self.matrix_values,
+            }
+        )
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Add price matrix",
+            "res_model": "wizard.price.config.matrix",
+            "view_mode": "form",
+            "target": "new",
+            "res_id": wizard_id.id,
+        }
