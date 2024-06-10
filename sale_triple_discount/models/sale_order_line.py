@@ -13,12 +13,21 @@ class SaleOrderLine(models.Model):
 
     discount = fields.Float(
         string="Total discount",
+        store=True,
+        compute="_compute_discount_consolidated",
+        compute_sudo=True,
+        precompute=True,
         readonly=True,
     )
     discount1 = fields.Float(
         string="Disc. 1 (%)",
         digits="Discount",
+        store=True,
         default=0.0,
+        compute="_compute_discount",
+        compute_sudo=True,
+        precompute=True,
+        readonly=False,
     )
     discount2 = fields.Float(
         string="Disc. 2 (%)",
@@ -75,18 +84,46 @@ class SaleOrderLine(models.Model):
     def _discount_fields(self):
         return ["discount1", "discount2", "discount3"]
 
-    # pylint: disable=W8110
-    @api.depends("discount1", "discount2", "discount3", "discounting_type")
+    # Copy of Odoo function to change field being assigned from discount to discount1
+    @api.depends('product_id', 'product_uom', 'product_uom_qty')
     def _compute_discount(self):
-        super()._compute_discount()
         for line in self:
-            # Reset discount if not done in super
+            if not line.product_id or line.display_type:
+                line.discount1 = 0.0
+
             if not (
                 line.order_id.pricelist_id
-                and line.order_id.pricelist_id.discount_policy == "without_discount"
+                and line.order_id.pricelist_id.discount_policy == 'without_discount'
             ):
-                line.discount = 0.0
-            line.discount += line._get_final_discount()
+                continue
+
+            line.discount1 = 0.0
+
+            if not line.pricelist_item_id:
+                # No pricelist rule was found for the product
+                # therefore, the pricelist didn't apply any discount/change
+                # to the existing sales price.
+                continue
+
+            line.discount1 = line._calc_discount_from_pricelist()
+        
+    def _calc_discount_from_pricelist(self):
+        self.ensure_one()
+        line = self.with_company(self.company_id)
+        pricelist_price = self._get_pricelist_price()
+        base_price = self._get_pricelist_price_before_discount()
+
+        if base_price != 0:  # Avoid division by zero
+            discount = (base_price - pricelist_price) / base_price * 100
+            if (discount > 0 and base_price > 0) or (discount < 0 and base_price < 0):
+                # only show negative discounts if price is negative
+                # otherwise it's a surcharge which shouldn't be shown to the customer
+                self.discount = discount
+
+    @api.depends("discount1", "discount2", "discount3", "discounting_type")
+    def _compute_discount_consolidated(self):
+        for line in self:
+            line.discount = line._get_final_discount()
 
     _sql_constraints = [
         (
