@@ -18,13 +18,13 @@ msgstr ""
 
 #. module: sale_fixed_discount
 #: model_terms:ir.ui.view,arch_db:sale_fixed_discount.report_saleorder_document
-msgid "(or"
-msgstr "(o"
+msgid "<span class=\"text-nowrap\"> %)</span>"
+msgstr ""
 
 #. module: sale_fixed_discount
 #: model_terms:ir.ui.view,arch_db:sale_fixed_discount.report_saleorder_document
-msgid "<span>Disc. %</span>"
-msgstr "<span>Sconto %</span>"
+msgid "<span class=\"text-nowrap\"> (or</span>"
+msgstr ""
 
 #. module: sale_fixed_discount
 #: model_terms:ir.ui.view,arch_db:sale_fixed_discount.sale_order_portal_content
@@ -61,3 +61,9 @@ msgid ""
 msgstr ""
 "Lo sconto fisso %(fixed)s non corrisponde allo sconto calcolato %(discount)s "
 "%%. Correggere uno degli sconti."
+
+#~ msgid "(or"
+#~ msgstr "(o"
+
+#~ msgid "<span>Disc. %</span>"
+#~ msgstr "<span>Sconto %</span>"
