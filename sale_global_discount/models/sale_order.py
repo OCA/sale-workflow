@@ -94,48 +94,49 @@ class SaleOrder(models.Model):
         res = super()._compute_amounts()
         for order in self:
             order._check_global_discounts_sanity()
-            amount_untaxed_before_global_discounts = order.amount_untaxed
-            amount_total_before_global_discounts = order.amount_total
+            vals = {
+                "amount_untaxed_before_global_discounts": order.amount_untaxed,
+                "amount_total_before_global_discounts": order.amount_total,
+            }
             discounts = order.global_discount_ids.mapped("discount")
-            amount_discounted_untaxed = amount_discounted_tax = 0
-            for line in order.order_line:
-                discounted_subtotal = line.price_subtotal
-                if not line.product_id.bypass_global_discount:
-                    discounted_subtotal = self.get_discounted_global(
-                        line.price_subtotal, discounts.copy()
-                    )
-                amount_discounted_untaxed += discounted_subtotal
-                discounted_tax = line.tax_id.compute_all(
-                    discounted_subtotal,
-                    line.order_id.currency_id,
-                    1.0,
-                    product=line.product_id,
-                    partner=line.order_id.partner_shipping_id,
-                )
-                for tax in discounted_tax.get("taxes", []):
-                    if line.tax_id.browse(tax["id"]).amount_type == "fixed":
-                        amount_discounted_tax += (
-                            tax.get("amount", 0.0) * line.product_uom_qty
+            if discounts:
+                amount_discounted_untaxed = amount_discounted_tax = 0
+                order_lines = order.order_line.filtered(lambda x: not x.display_type)
+                for line in order_lines:
+                    discounted_subtotal = line.price_subtotal
+                    if not line.product_id.bypass_global_discount:
+                        discounted_subtotal = self.get_discounted_global(
+                            line.price_subtotal, discounts.copy()
                         )
-                        continue
-                    amount_discounted_tax += tax.get("amount", 0.0)
-            order.update(
-                {
-                    "amount_untaxed_before_global_discounts": (
-                        amount_untaxed_before_global_discounts
-                    ),
-                    "amount_total_before_global_discounts": (
-                        amount_total_before_global_discounts
-                    ),
-                    "amount_global_discount": (
-                        amount_untaxed_before_global_discounts
-                        - amount_discounted_untaxed
-                    ),
-                    "amount_untaxed": amount_discounted_untaxed,
-                    "amount_tax": amount_discounted_tax,
-                    "amount_total": (amount_discounted_untaxed + amount_discounted_tax),
-                }
-            )
+                    amount_discounted_untaxed += discounted_subtotal
+                    discounted_tax = line.tax_id.compute_all(
+                        discounted_subtotal,
+                        line.order_id.currency_id,
+                        1.0,
+                        product=line.product_id,
+                        partner=line.order_id.partner_shipping_id,
+                    )
+                    for tax in discounted_tax.get("taxes", []):
+                        if line.tax_id.browse(tax["id"]).amount_type == "fixed":
+                            amount_discounted_tax += (
+                                tax.get("amount", 0.0) * line.product_uom_qty
+                            )
+                            continue
+                        amount_discounted_tax += tax.get("amount", 0.0)
+                vals.update(
+                    {
+                        "amount_global_discount": (
+                            vals["amount_untaxed_before_global_discounts"]
+                            - amount_discounted_untaxed
+                        ),
+                        "amount_untaxed": amount_discounted_untaxed,
+                        "amount_tax": amount_discounted_tax,
+                        "amount_total": (
+                            amount_discounted_untaxed + amount_discounted_tax
+                        ),
+                    }
+                )
+            order.update(vals)
         return res
 
     def _compute_tax_totals(self):
