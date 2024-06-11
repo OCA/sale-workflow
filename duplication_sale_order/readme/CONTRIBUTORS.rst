@@ -1,2 +1,2 @@
-* Sylvain LE GAL (https://fosstodon.org/@legalsylvain)
+* Sylvain LE GAL
 * Quentin DUPONT

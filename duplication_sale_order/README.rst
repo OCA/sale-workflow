@@ -28,17 +28,13 @@ Sale Order - Duplication
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module provide a wizard to duplicate a given Sale order.
+This module provides a wizard that facilitates the duplication of sales with a
+certain recurrence.
 
-User define:
+User defines a begin date and recurrence (week, monthly) and the wizard creates
+draft quotations with the dates selected in the wizard
 
-* a begin date
-* a frequency (week, monthly)
-* the duplication duration.
-
-And it creates draft quotations.
-
-This wizard is useful for users who regularly sell the same products,
+It's useful for users who regularly sell the same products to the same customer,
 such as bakers who receive the same orders from shops every week.
 
 **Table of contents**
@@ -56,6 +52,10 @@ To use this module, you need to
 * Select any sale order and click on 'Action' / 'Duplication Wizard'
 
 .. figure:: https://raw.githubusercontent.com/OCA/sale-workflow/16.0/duplication_sale_order/static/description/sale_order_duplication_wizard_form.png
+
+And wizard creates quotations
+
+.. figure:: https://raw.githubusercontent.com/OCA/sale-workflow/16.0/duplication_sale_order/static/description/quotations_created_with_wizard.png
 
 Bug Tracker
 ===========
@@ -78,7 +78,7 @@ Authors
 Contributors
 ~~~~~~~~~~~~
 
-* Sylvain LE GAL (https://fosstodon.org/@legalsylvain)
+* Sylvain LE GAL
 * Quentin DUPONT
 
 Maintainers

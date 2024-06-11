@@ -1,12 +1,8 @@
-This module provide a wizard to duplicate a given Sale order.
+This module provides a wizard that facilitates the duplication of sales with a
+certain recurrence.
 
-User define:
+User defines a begin date and recurrence (week, monthly) and the wizard creates
+draft quotations with the dates selected in the wizard
 
-* a begin date
-* a frequency (week, monthly)
-* the duplication duration.
-
-And it creates draft quotations.
-
-This wizard is useful for users who regularly sell the same products,
+It's useful for users who regularly sell the same products to the same customer,
 such as bakers who receive the same orders from shops every week.

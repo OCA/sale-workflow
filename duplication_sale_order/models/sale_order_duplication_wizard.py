@@ -106,9 +106,10 @@ class SaleOrderDuplicationWizard(models.TransientModel):
 
     def duplicate_open_button(self):
         order_ids = self._duplicate()
-        result = self.env.ref("sale.action_quotations").read()[0]
-        result["domain"] = "[('id', 'in', [" + ",".join(map(str, order_ids)) + "])]"
-        return result
+        action_name = "sale.action_quotations"
+        action = self.env["ir.actions.act_window"]._for_xml_id(action_name)
+        action["domain"] = "[('id', 'in', [" + ",".join(map(str, order_ids)) + "])]"
+        return action
 
     def _duplicate(self):
         self.ensure_one()
