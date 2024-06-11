@@ -13,12 +13,14 @@ class TestSaleOrderQtyChange(TransactionCase):
         cls.product_2 = cls.env["product.product"].create(
             {"name": "Test Product 2", "list_price": 30.00, "taxes_id": False}
         )
-        pricelist = cls.env["product.pricelist"].create({"name": "Test pricelist"})
+        cls.partner = cls.env["res.partner"].create({"name": "Test partner"})
+        cls.partner.property_product_pricelist = cls.env["product.pricelist"].create(
+            {"name": "Test pricelist"}
+        )
         sale_form = Form(
             cls.env["sale.order"].with_context(prevent_onchange_quantity=True)
         )
-        sale_form.partner_id = cls.env.ref("base.res_partner_12")
-        sale_form.pricelist_id = pricelist
+        sale_form.partner_id = cls.partner
         with sale_form.order_line.new() as cls.line_form:
             cls.line_form.product_id = cls.product_1
             cls.line_form.product_uom_qty = 1
