@@ -265,3 +265,37 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         self.assertAlmostEqual(
             self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
         )
+
+    def test_08_global_discount_w_included_tax(self):
+        """
+        In case tax is configured as included-in-price,
+        amount_tax should be calculated based on discounted amount
+        """
+        self.tax_1.price_include = True
+        sale_form = Form(self.env["sale.order"])
+        sale_form.partner_id = self.partner_1
+        with sale_form.order_line.new() as order_line:
+            order_line.product_id = self.product_1
+            order_line.tax_id.clear()
+            order_line.tax_id.add(self.tax_1)
+            order_line.product_uom_qty = 2
+            order_line.price_unit = 75
+        test_sale = sale_form.save()
+        self.assertAlmostEqual(test_sale.amount_untaxed, 130.43)
+        self.assertAlmostEqual(test_sale.amount_tax, 19.57)
+        self.assertAlmostEqual(test_sale.amount_total, 150)
+        self.assertAlmostEqual(
+            self.get_taxes_widget_total_tax(test_sale), test_sale.amount_tax
+        )
+        # Apply a single 20% global discount
+        test_sale.global_discount_ids = self.global_discount_1
+        self.assertAlmostEqual(test_sale.amount_untaxed_before_global_discounts, 130.43)
+        self.assertAlmostEqual(test_sale.amount_total_before_global_discounts, 150)
+        self.assertAlmostEqual(test_sale.amount_global_discount, 26.09)
+        self.assertAlmostEqual(test_sale.amount_untaxed, 104.34)
+        # amount_tax is calculated based on discounted amount
+        self.assertAlmostEqual(test_sale.amount_tax, 15.65)
+        self.assertAlmostEqual(test_sale.amount_total, 119.99)
+        self.assertAlmostEqual(
+            self.get_taxes_widget_total_tax(test_sale), test_sale.amount_tax
+        )
