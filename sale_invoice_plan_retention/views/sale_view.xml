@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form_invoice_plan" model="ir.ui.view">
+        <field name="name">view.order.form.invoice.plan</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_invoice_plan.view_order_form_invoice_plan" />
+        <field name="arch" type="xml">
+            <field name="invoice_plan_ids" position="before">
+                <div
+                    class="oe_right"
+                    attrs="{'invisible': [('invoice_plan_ids', '=', [])]}"
+                    groups="account_invoice_payment_retention.group_payment_retention"
+                >
+                    <label for="payment_retention" />
+                    <field name="payment_retention" class="oe_inline" />
+                    <label
+                        for="payment_retention"
+                        string="="
+                        attrs="{'invisible': [('payment_retention', '=', False)]}"
+                        class="oe_inline"
+                    />
+                    <field name="amount_retention" class="oe_inline" />
+                </div>
+            </field>
+        </field>
+    </record>
+</odoo>
