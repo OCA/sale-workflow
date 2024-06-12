@@ -9,55 +9,56 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-13 01:19+0000\n"
-"PO-Revision-Date: 2017-05-13 01:19+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2024-06-12 09:36+0000\n"
+"Last-Translator: jakobkrabbe <jakob@syscare.se>\n"
 "Language-Team: Swedish (https://www.transifex.com/oca/teams/23907/sv/)\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 msgid "Add a line"
-msgstr ""
+msgstr "Lägg till en rad"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 msgid "Add a note"
-msgstr ""
+msgstr "Lägg till en anteckning"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 msgid "Add a section"
-msgstr ""
+msgstr "Lägg till en sektion"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 #: model_terms:ir.ui.view,arch_db:sale_product_set.view_order_stock_form
 msgid "Add set"
-msgstr ""
+msgstr "Lägg till set"
 
 #. module: sale_product_set
 #: model:ir.actions.act_window,name:sale_product_set.act_open_wizard_product_set_add_from_order
 msgid "Add set in sale order"
-msgstr ""
+msgstr "Lägg till set i försäljningsorder"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 msgid "Add set in sale order line"
-msgstr ""
+msgstr "Lägg till uppsättning i försäljningsorderrad"
 
 #. module: sale_product_set
 #: model:ir.actions.act_window,name:sale_product_set.act_open_wizard_product_set_add_from_set
 msgid "Add set to sale order"
-msgstr ""
+msgstr "Lägg till set i försäljningsorder"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__create_uid
@@ -72,23 +73,25 @@ msgstr "Skapad den"
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__partner_id
 msgid "Customer"
-msgstr ""
+msgstr "Kund"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__discount
 msgid "Discount (%)"
-msgstr ""
+msgstr "Rabatt (%)"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__display_name
 msgid "Display Name"
-msgstr "Visa namn"
+msgstr "Visningsnamn"
 
 #. module: sale_product_set
 #: model:ir.model.fields,help:sale_product_set.field_sale_product_set_wizard__skip_existing_products
 msgid ""
 "Enable this to not add new lines for products already included in SO lines."
 msgstr ""
+"Aktivera detta för att inte lägga till nya rader för produkter som redan "
+"ingår i SO-rader."
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__id
@@ -109,38 +112,38 @@ msgstr "Senast uppdaterad"
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__product_set_id
 #: model:ir.ui.menu,name:sale_product_set.menu_product_set_config
 msgid "Product set"
-msgstr ""
+msgstr "Produktuppsättning"
 
 #. module: sale_product_set
 #: model:ir.model,name:sale_product_set.model_product_set_line
 #: model:ir.ui.menu,name:sale_product_set.menu_product_set_line_config
 msgid "Product set line"
-msgstr ""
+msgstr "Produktuppsättning"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__product_set_line_ids
 msgid "Product set lines"
-msgstr ""
+msgstr "Produktlinjer"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__quantity
 msgid "Quantity"
-msgstr ""
+msgstr "Kvantitet"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__order_id
 msgid "Sale Order"
-msgstr ""
+msgstr "Försäljningsorder"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__skip_existing_products
 msgid "Skip Existing Products"
-msgstr ""
+msgstr "Hoppa över befintliga produkter"
 
 #. module: sale_product_set
 #: model:ir.model,name:sale_product_set.model_sale_product_set_wizard
 msgid "Wizard model to add product set into a quotation"
-msgstr ""
+msgstr "Wizard-modell för att lägga till produktuppsättning i en offert"
 
 #. module: sale_product_set
 #. odoo-python
@@ -148,6 +151,8 @@ msgstr ""
 #, python-format
 msgid "You can use a sale order assigned only to following partner(s): {}"
 msgstr ""
+"Du kan använda en försäljningsorder som endast tilldelats följande partner: "
+"{}"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Senast redigerad"
