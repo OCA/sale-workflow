@@ -50,8 +50,8 @@ msgstr "Clase Mixta para la venta de productos adjuntos"
 
 #. module: sale_attached_product
 #: model:ir.model,name:sale_attached_product.model_product_template
-msgid "Product Template"
-msgstr "Plantilla del Producto"
+msgid "Product"
+msgstr ""
 
 #. module: sale_attached_product
 #: model:ir.model,name:sale_attached_product.model_sale_order
@@ -73,3 +73,6 @@ msgstr ""
 "Similares a los productos opcionales, aunque se añaden automáticamente al "
 "pedido de venta y se eliminan opcionalmente cuando desaparece el producto "
 "principal."
+
+#~ msgid "Product Template"
+#~ msgstr "Plantilla del Producto"
