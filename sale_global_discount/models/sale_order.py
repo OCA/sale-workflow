@@ -115,6 +115,8 @@ class SaleOrder(models.Model):
                         1.0,
                         product=line.product_id,
                         partner=line.order_id.partner_shipping_id,
+                        # By default, handle_price_include=True. In case of apply discount
+                        handle_price_include=False
                     )
                     for tax in discounted_tax.get("taxes", []):
                         if line.tax_id.browse(tax["id"]).amount_type == "fixed":
