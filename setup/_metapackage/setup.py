@@ -14,6 +14,7 @@ setuptools.setup(
         'odoo-addon-product_form_sale_link>=16.0dev,<16.1dev',
         'odoo-addon-product_supplierinfo_for_customer_sale>=16.0dev,<16.1dev',
         'odoo-addon-sale_advance_payment>=16.0dev,<16.1dev',
+        'odoo-addon-sale_attached_product>=16.0dev,<16.1dev',
         'odoo-addon-sale_auto_remove_zero_quantity_lines>=16.0dev,<16.1dev',
         'odoo-addon-sale_automatic_workflow>=16.0dev,<16.1dev',
         'odoo-addon-sale_automatic_workflow_job>=16.0dev,<16.1dev',
