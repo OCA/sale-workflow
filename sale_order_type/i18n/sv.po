@@ -9,45 +9,46 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-20 22:37+0000\n"
-"PO-Revision-Date: 2018-01-27 03:53+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2024-06-12 09:36+0000\n"
+"Last-Translator: jakobkrabbe <jakob@syscare.se>\n"
 "Language-Team: Swedish (https://www.transifex.com/oca/teams/23907/sv/)\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__active
 msgid "Active"
-msgstr ""
+msgstr "Aktiv"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order__analytic_account_id
 msgid "Analytic Account"
-msgstr ""
+msgstr "Objektkonto"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_account_id
 msgid "Analytic account"
-msgstr ""
+msgstr "Objektkonto"
 
 #. module: sale_order_type
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
 msgid "Archived"
-msgstr ""
+msgstr "Arkiverad"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__journal_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Billing Journal"
-msgstr ""
+msgstr "Faktureringsjournal"
 
 #. module: sale_order_type
 #: model_terms:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
 msgid "Click to set a new type for sale order."
-msgstr ""
+msgstr "Klicka för att ange en ny typ av försäljningsorder."
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__company_id
@@ -57,7 +58,7 @@ msgstr "Bolag"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__create_uid
@@ -72,7 +73,7 @@ msgstr "Skapad den"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_currency
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__description
@@ -88,7 +89,7 @@ msgstr "Visa namn"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__sequence_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Entry Sequence"
-msgstr ""
+msgstr "Inmatningssekvens"
 
 #. module: sale_order_type
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
@@ -107,13 +108,16 @@ msgid ""
 "based on the greatest product lead time. Otherwise, it will be based on the "
 "shortest."
 msgstr ""
+"Om du levererar alla produkter på en gång kommer leveransordern att "
+"schemaläggas baserat på den längsta produktledtiden. I annat fall kommer den "
+"att baseras på den kortaste."
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order__incoterm
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__incoterm_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Incoterm"
-msgstr ""
+msgstr "Incoterm"
 
 #. module: sale_order_type
 #: model:ir.model.fields,help:sale_order_type.field_sale_order__incoterm
@@ -121,16 +125,18 @@ msgid ""
 "International Commercial Terms are a series of predefined commercial terms "
 "used in international transactions."
 msgstr ""
+"International Commercial Terms är en serie fördefinierade kommersiella "
+"termer som används i internationella transaktioner."
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_account_invoice_report
 msgid "Invoices Statistics"
-msgstr ""
+msgstr "Statistik över fakturor"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Journalanteckning"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__write_uid
@@ -152,39 +158,39 @@ msgstr "Namn"
 #: code:addons/sale_order_type/models/sale.py:0
 #, python-format
 msgid "New"
-msgstr ""
+msgstr "Nya"
 
 #. module: sale_order_type
 #: model:sale.order.type,name:sale_order_type.normal_sale_type
 msgid "Normal Order"
-msgstr ""
+msgstr "Normal ordning"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__payment_term_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Payment Term"
-msgstr ""
+msgstr "Betalningstid"
 
 #. module: sale_order_type
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Price List"
-msgstr ""
+msgstr "Prislista"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__pricelist_id
 msgid "Pricelist"
-msgstr ""
+msgstr "Prislista"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__quotation_validity_days
 msgid "Quotation Validity (Days)"
-msgstr ""
+msgstr "Kvotens giltighetstid (dagar)"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_line__route_id
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__route_id
 msgid "Route"
-msgstr ""
+msgstr "Vägbeskrivning"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_report__sale_type_id
@@ -193,47 +199,47 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_order_type.view_account_invoice_report_search
 #: model_terms:ir.ui.view,arch_db:sale_order_type.view_order_product_search
 msgid "Sale Order Type"
-msgstr ""
+msgstr "Försäljning Ordertyp"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_bank_statement_line__sale_type_id
 #: model:ir.model.fields,field_description:sale_order_type.field_account_move__sale_type_id
 #: model:ir.model.fields,field_description:sale_order_type.field_account_payment__sale_type_id
 msgid "Sale Type"
-msgstr ""
+msgstr "Typ av försäljning"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_advance_payment_inv
 msgid "Sales Advance Payment Invoice"
-msgstr ""
+msgstr "Faktura för förskottsbetalning av försäljning"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_report
 msgid "Sales Analysis Report"
-msgstr ""
+msgstr "Rapport om försäljningsanalys"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Försäljningsorder"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Försäljningsorderlinje"
 
 #. module: sale_order_type
 #: model:ir.actions.act_window,name:sale_order_type.sot_sale_order_type_action
 #: model:ir.ui.menu,name:sale_order_type.sot_sale_order_type_menu
 msgid "Sales Order Types"
-msgstr ""
+msgstr "Typer av försäljningsorder"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order__picking_policy
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__picking_policy
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Shipping Policy"
-msgstr ""
+msgstr "Fraktpolicy"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order__type_id
@@ -247,13 +253,13 @@ msgstr "Typ"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order_type
 msgid "Type of sale order"
-msgstr ""
+msgstr "Typ av försäljningsorder"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__warehouse_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
-msgstr ""
+msgstr "Lagerlokal"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Senast redigerad"
