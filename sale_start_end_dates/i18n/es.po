@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-17 02:40+0000\n"
-"PO-Revision-Date: 2023-10-10 20:36+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"PO-Revision-Date: 2024-06-12 21:39+0000\n"
+"Last-Translator: pablo-flinq <pablo@flinq-ingenieria.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -22,12 +22,12 @@ msgstr ""
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order__default_end_date
 msgid "Default End Date"
-msgstr "Fecha de fin por defecto"
+msgstr "Fecha final por defecto"
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order__default_start_date
 msgid "Default Start Date"
-msgstr "Fecha de inicio por defecto"
+msgstr "Fecha inicial por defecto"
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale_order.py:0
@@ -36,13 +36,13 @@ msgid ""
 "Default Start Date ({start_date}) should be before or be the same as Default "
 "End Date ({end_date}) for sale order '{name}'."
 msgstr ""
-"Default Start Date ({start_date}) debe ser anterior o igual a Default End "
-"Date ({end_date}) para el pedido de venta '{name}'."
+"Fecha inicial por defecto ({start_date}) debe ser anterior o igual a fecha "
+"final por defecto ({end_date}) para el pedido de venta '{name}'."
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__end_date
 msgid "End Date"
-msgstr "fecha final"
+msgstr "Fecha Final"
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,help:sale_start_end_dates.field_sale_order_line__must_have_dates
@@ -103,7 +103,7 @@ msgstr "Línea de pedido de venta"
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__start_date
 msgid "Start Date"
-msgstr "fecha de inicio"
+msgstr "Fecha de inicio"
 
 #. module: sale_start_end_dates
 #: code:addons/sale_start_end_dates/models/sale_order.py:0
