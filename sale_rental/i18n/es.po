@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-08 00:50+0000\n"
-"PO-Revision-Date: 2024-05-14 14:59+0000\n"
+"PO-Revision-Date: 2024-06-12 21:40+0000\n"
 "Last-Translator: pablo-flinq <pablo@flinq-ingenieria.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
@@ -274,7 +274,7 @@ msgid ""
 msgstr ""
 "En la línea de pedido de venta con el producto '%(product)s' la Cantidad de "
 "Producto (%(qty)s) debe ser el número de días (%(days)s) multiplicado por la "
-"Cantidad de Alquiler (%(rental_qty)s)."
+"cantidad de artículos alquilados(%(rental_qty)s)."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:0
@@ -286,8 +286,8 @@ msgid ""
 msgstr ""
 "En la línea de pedido de venta con servicio de alquiler %(product)s, está "
 "intentando ampliar un alquiler con una cantidad de alquiler %(qty)s que es "
-"diferente de la cantidad del alquiler original %(original_qty)s. Esto no es "
-"posible."
+"diferente de la cantidad de artículos alquilados original %(original_qty)s. "
+"Esto no es posible."
 
 #. module: sale_rental
 #: model:ir.model.fields.selection,name:sale_rental.selection__sale_rental__state__ordered
