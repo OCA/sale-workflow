@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_split_strategy_view_form" model="ir.ui.view">
+        <field name="name">sale.order.split.strategy.view.form</field>
+        <field name="model">sale.order.split.strategy</field>
+        <field name="arch" type="xml">
+            <form string="Split Strategy">
+                <sheet>
+                    <div class="oe_title">
+                        <div class="oe_edit_only">
+                            <label for="name" />
+                        </div>
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="line_filter_id" />
+                            <field name="copy_sections" />
+                            <field name="copy_notes" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_order_split_strategy_view_tree" model="ir.ui.view">
+        <field name="name">sale.order.split.strategy.view.tree</field>
+        <field name="model">sale.order.split.strategy</field>
+        <field name="arch" type="xml">
+            <tree string="Split Strategies">
+                <field name="sequence" widget="handle" />
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="sale_order_split_strategy_action" model="ir.actions.act_window">
+        <field name="name">Split Strategies</field>
+        <field name="res_model">sale.order.split.strategy</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+        name="Split Strategies"
+        id="sale_order_split_strategy_menu"
+        parent="sale.menu_sales_config"
+        action="sale_order_split_strategy_action"
+        sequence="30"
+    />
+</odoo>
