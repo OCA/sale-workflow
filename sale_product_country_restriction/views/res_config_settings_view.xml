@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sales_config" model="ir.ui.view">
+        <field name="name">sale settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='pricing_setting_container']" position="after">
+                <h2>Country Restrictions</h2>
+                <div
+                    class="row mt16 o_settings_container"
+                    id="product_sequence_general_settings"
+                >
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="enable_sale_country_restriction" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label
+                                for="enable_sale_country_restriction"
+                                string="Enable country restriction"
+                            />
+                            <span
+                                class="fa fa-lg fa-building-o"
+                                title="Values set here are company-specific."
+                                role="img"
+                                aria-label="Values set here are company-specific."
+                                groups="base.group_multi_company"
+                            />
+                            <div class="text-muted">
+                                Check this if you want to trigger country restrictions
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+
+                        <div class="o_setting_left_pane" />
+                        <div
+                            class="o_setting_right_pane"
+                            attrs="{'invisible': [('enable_sale_country_restriction', '=', False)]}"
+                        >
+                            <span
+                                class="o_form_label"
+                            >Default Customer Country Restriction</span>
+                            <span
+                                class="fa fa-lg fa-building-o"
+                                title="Values set here are company-specific."
+                                role="img"
+                                aria-label="Values set here are company-specific."
+                                groups="base.group_multi_company"
+                            />
+
+                            <div class="text-muted">
+                                This is the default Country Restriction set on partner when creating
+                                it.
+                            </div>
+                            <div class="text-muted">
+                                <field name="country_restriction_id" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+
+                        <div class="o_setting_left_pane" />
+                        <div
+                            class="o_setting_right_pane"
+                            attrs="{'invisible': [('enable_sale_country_restriction', '=', False)]}"
+                        >
+                            <span
+                                class="o_form_label"
+                            >Strategy for country restriction</span>
+                            <div class="text-muted">
+                                Choose here how your country rules apply. [Authorize]: Authorize all
+                                products but those for which strategy apply. [Restrict]: Restrict
+                                all products but
+                                those for which strategy
+                            </div>
+                            <span
+                                class="fa fa-lg fa-building-o"
+                                title="Values set here are company-specific."
+                                role="img"
+                                aria-label="Values set here are company-specific."
+                                groups="base.group_multi_company"
+                            />
+
+                            <div class="text-muted">
+                                <field name="country_restriction_strategy" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
