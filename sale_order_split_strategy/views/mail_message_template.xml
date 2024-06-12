@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="split_from">
+        <t>
+            <div>
+                This sale order was created after splitting lines from <a
+                    href="#"
+                    data-oe-model="sale.order"
+                    t-att-data-oe-id="from_order.id"
+                ><t t-esc="from_order.display_name" /></a> using <t
+                    t-esc="from_order.split_strategy_id.name"
+                /> strategy.
+            </div>
+        </t>
+    </template>
+    <template id="split_to">
+        <t>
+            <div>
+                This sale order had some of its lines split to <a
+                    href="#"
+                    data-oe-model="sale.order"
+                    t-att-data-oe-id="to_order.id"
+                ><t t-esc="to_order.display_name" /></a> using <t
+                    t-esc="from_order.split_strategy_id.name"
+                /> strategy.
+            </div>
+        </t>
+    </template>
+</odoo>
