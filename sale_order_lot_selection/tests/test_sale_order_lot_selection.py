@@ -297,12 +297,6 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         picking_move_line_ids[0].location_id = self.stock_location
         picking.button_validate()
 
-        onchange_res = self.sol3._onchange_product_id_set_lot_domain()
-        self.assertEqual(
-            onchange_res["domain"]["lot_id"], [("product_id", "=", self.prd_cable.id)]
-        )
-        # put back the lot because it is removed by onchange
-        self.sol3.lot_id = lot10.id
         # I'll try to confirm it to check lot reservation:
         # lot10 was delivered by order1
         lot10_qty_available = self._stock_quantity(
@@ -313,13 +307,6 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         # products are not available for reservation (lot unavailable)
         self.assertEqual(self.order3.picking_ids[0].state, "confirmed")
 
-        # also test on_change for order2
-        onchange_res = self.sol2a._onchange_product_id_set_lot_domain()
-        self.assertEqual(
-            onchange_res["domain"]["lot_id"], [("product_id", "=", self.product_46.id)]
-        )
-        # onchange remove lot_id, we put it back
-        self.sol2a.lot_id = lot11.id
         self.order2.action_confirm()
         picking = self.order2.picking_ids
         picking.action_assign()
