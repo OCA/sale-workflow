@@ -5,7 +5,7 @@
     "name": "Sale Invoice No Mail",
     "version": "13.0.1.0.1",
     "category": "Sales Management",
-    "author": "Camptocamp SA," "Odoo Community Association (OCA)",
+    "author": "Camptocamp," "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
     "depends": ["sale"],

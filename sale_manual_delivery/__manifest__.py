@@ -3,7 +3,7 @@
 {
     "name": "Sale Manual Delivery",
     "category": "Sale",
-    "author": "Camptocamp SA, Odoo Community Association (OCA)",
+    "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "version": "13.0.1.1.1",
     "website": "https://github.com/OCA/sale-workflow",
