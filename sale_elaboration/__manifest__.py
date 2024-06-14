@@ -28,5 +28,5 @@
         "reports/report_picking_operations.xml",
     ],
     "pre_init_hook": "pre_init_hook",
-    "maintainers": ["rafaelbn", "yajo"],
+    "maintainers": ["CarlosRoca13", "rafaelbn", "sergio-teruel", "yajo"],
 }
