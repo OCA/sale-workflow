@@ -16,8 +16,14 @@ class SaleOrderBlockWizard(models.TransientModel):
         string="Allowed to confirm",
         compute="_compute_confirmation_allowed",
     )
-    has_packagings = fields.Boolean(
-        compute="_compute_has_packagings",
+    is_uom_adjustable = fields.Boolean(
+        compute="_compute_is_adjustable",
+        store=True,
+        readonly=True,
+        compute_sudo=True,
+    )
+    is_packaging_adjustable = fields.Boolean(
+        compute="_compute_is_adjustable",
         store=True,
         readonly=True,
         compute_sudo=True,
@@ -32,12 +38,19 @@ class SaleOrderBlockWizard(models.TransientModel):
             in self.sale_line_block_ids.company_id.sale_line_block_allowed_groups.users
         )
 
-    @api.depends("sale_line_block_ids.product_packaging_id")
-    def _compute_has_packagings(self):
-        """Compute if the sale lines have packagings."""
+    @api.depends(
+        "sale_line_block_ids.product_packaging_allowed_max_qty",
+        "sale_line_block_ids.product_uom_allowed_max_qty",
+    )
+    def _compute_is_adjustable(self):
+        """Compute if the sale lines are adjustable."""
         for record in self:
-            record.has_packagings = bool(
-                record.mapped("sale_line_block_ids.product_packaging_id")
+            lines = record.mapped("sale_line_block_ids")
+            record.is_packaging_adjustable = bool(
+                lines.filtered(lambda l: l.product_packaging_allowed_max_qty > 0.0)
+            )
+            record.is_uom_adjustable = bool(
+                lines.filtered(lambda l: l.product_uom_allowed_max_qty > 0.0)
             )
 
     def confirm(self):
