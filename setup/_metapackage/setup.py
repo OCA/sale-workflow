@@ -20,6 +20,7 @@ setuptools.setup(
         'odoo-addon-sale_automatic_workflow_job>=16.0dev,<16.1dev',
         'odoo-addon-sale_automatic_workflow_payment_mode>=16.0dev,<16.1dev',
         'odoo-addon-sale_blanket_order>=16.0dev,<16.1dev',
+        'odoo-addon-sale_block_no_stock>=16.0dev,<16.1dev',
         'odoo-addon-sale_cancel_reason>=16.0dev,<16.1dev',
         'odoo-addon-sale_commercial_partner>=16.0dev,<16.1dev',
         'odoo-addon-sale_company_currency>=16.0dev,<16.1dev',
