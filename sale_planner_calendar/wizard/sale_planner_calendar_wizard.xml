@@ -40,15 +40,13 @@
 
                         </tree>
                     </field>
-                    <footer>
-                        <button
-                            name="apply"
-                            string="OK"
-                            class="btn-primary"
-                            type="object"
-                        />
-                        <button string="Cancel" class="btn-default" special="cancel" />
-                    </footer>
+                    <button
+                        name="apply"
+                        string="OK"
+                        class="btn-primary"
+                        type="object"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
                 </sheet>
             </form>
         </field>
