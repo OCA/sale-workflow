@@ -137,7 +137,9 @@
                             />
                         </group>
                     </group>
-                    <group string="Totals" col="1">
+                    <group string="Totals">
+                    </group>
+                    <div name="Totals">
                         <div class="row">
                             <div class="col" />
                             <div class="col h5">Total</div>
@@ -186,7 +188,7 @@
                             <div class="col" />
                             <div class="col" />
                         </div>
-                    </group>
+                    </div>
                     <group string="Comment">
                         <field name="comment" nolabel="1" />
                     </group>
@@ -203,23 +205,24 @@
         <field name="name">sale.planner.calendar.event.kanban</field>
         <field name="model">sale.planner.calendar.summary</field>
         <field name="arch" type="xml">
-            <kanban class="o_kanban_mobile" default_order="date">
+            <kanban
+                class="o_kanban_mobile o_sale_planner_calendar_kanban"
+                default_order="date"
+            >
                 <field name="state" />
                 <field name="user_id" />
                 <field name="date" />
                 <field name="sale_ids" />
                 <templates>
                     <t t-name="kanban-box">
-                        <div
-                            t-attf-class="oe_kanban_card oe_kanban_card_full_width oe_kanban_global_click"
-                        >
+                        <div t-attf-class="oe_kanban_card w-100 oe_kanban_global_click">
                             <div class="row mb4">
                                 <div class="col-6">
                                     <strong><span><t
                                                 t-esc="record.date.value"
                                             /></span></strong>
                                 </div>
-                                <div class="col-6 text-right">
+                                <div class="col-6 text-end">
                                     <field
                                         name="state"
                                         widget="label_selection"
@@ -234,7 +237,7 @@
                                         /></span>
                                 </div>
                                 <div class="col-6">
-                                    <div class="float-right">
+                                    <div class="float-end">
                                         <button
                                             class="btn btn-primary"
                                             string="New order"

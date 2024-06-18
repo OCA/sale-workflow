@@ -59,58 +59,56 @@
                         <group>
                             <field name="new_user_id" />
                         </group>
-                        <group col="1">
-                            <div>
-                                <button
-                                    class="oe_link"
-                                    name="select_all_lines"
-                                    type="object"
-                                    string="Select all lines"
-                                />
-                                <button
-                                    class="oe_link"
-                                    name="unselect_all_lines"
-                                    type="object"
-                                    string="Unselect all lines"
-                                />
-                                <button
-                                    class="oe_link ml32"
-                                    name="action_assign_new_salesperson"
-                                    type="object"
-                                    string="Assign new commercial to selected lines"
-                                />
-                            </div>
-                            <field name="line_ids" nolabel="1">
-                                <tree
-                                    editable="top"
-                                    create="false"
-                                    decoration-info="new_user_id"
-                                >
-                                    <field name="selected" widget="boolean_toggle" />
-                                    <field name="calendar_event_id" optional="show" />
-                                    <field name="partner_id" />
-                                    <field name="event_user_id" optional="hide" />
-                                    <field name="partner_user_id" optional="hide" />
-                                    <field name="event_start" optional="hide" />
-                                    <field name="until" optional="hide" />
-                                    <field name="new_user_id" />
-                                </tree>
-                            </field>
-                        </group>
+                        <div>
+                            <button
+                                class="oe_link"
+                                name="select_all_lines"
+                                type="object"
+                                string="Select all lines"
+                            />
+                            <button
+                                class="oe_link"
+                                name="unselect_all_lines"
+                                type="object"
+                                string="Unselect all lines"
+                            />
+                            <button
+                                class="oe_link ml32"
+                                name="action_assign_new_salesperson"
+                                type="object"
+                                string="Assign new commercial to selected lines"
+                            />
+                        </div>
+                        <field name="line_ids" nolabel="1">
+                            <tree
+                                editable="top"
+                                create="false"
+                                decoration-info="new_user_id"
+                            >
+                                <field name="selected" widget="boolean_toggle" />
+                                <field name="calendar_event_id" optional="show" />
+                                <field name="partner_id" />
+                                <field name="event_user_id" optional="hide" />
+                                <field name="partner_user_id" optional="hide" />
+                                <field name="event_start" optional="hide" />
+                                <field name="until" optional="hide" />
+                                <field name="new_user_id" />
+                            </tree>
+                        </field>
                     </group>
-                <footer>
-                    <p class="text-muted">
-                        The changes will be applied to event records with new commercial user filled.
-                    </p>
-                    <button
+                    <div>
+                        <p class="text-muted">
+                            The changes will be applied to event records with new commercial user filled.
+                        </p>
+                        <button
                             name="apply"
                             string="Apply changes"
                             class="btn-primary"
                             type="object"
                         />
-                    or
-                    <button string="Cancel" class="oe_link" special="cancel" />
-                </footer>
+
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </div>
                 </sheet>
             </form>
         </field>

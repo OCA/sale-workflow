@@ -126,7 +126,7 @@
                                                 t-esc="record.start.value"
                                             /></span></strong>
                                 </div>
-                                <div class="col-4 text-right">
+                                <div class="col-4 text-end">
                                     <field name="categ_ids" widget="many2many_tags" />
                                 </div>
                             </div>
@@ -135,7 +135,7 @@
                                     <field name="target_partner_id" />
                                 </div>
                                 <div class="col-4">
-                                    <div class="float-right">
+                                    <div class="float-end">
                                         <div t-if="record.target_partner_mobile.value">
                                             <span title="Mobile">
                                                 <i class="fa fa-phone" />

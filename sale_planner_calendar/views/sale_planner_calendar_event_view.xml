@@ -67,70 +67,66 @@
         <field name="arch" type="xml">
             <form string="Sale planner calendar event">
                 <sheet>
-                    <div class="oe_button_box" name="button_box">
-                        <div class="pull-left">
-                            <button
-                                string="Done"
-                                class="oe_stat_button"
-                                name="action_done"
-                                type="object"
-                                attrs="{'invisible':[('state', 'not in', ['pending'])]}"
-                                icon="fa-check"
-                            >
-                            </button>
-                            <button
-                                class="oe_stat_button"
-                                name="action_cancel"
-                                string="Cancel"
-                                type="object"
-                                attrs="{'invisible':[('state', 'in', ['cancel', 'done'])]}"
-                                icon="fa-close"
-                            />
-                            <button
-                                string="Pending"
-                                class="oe_stat_button"
-                                name="action_pending"
-                                type="object"
-                                attrs="{'invisible':[('state', 'in', ['pending'])]}"
-                                icon="fa-pencil-square-o"
-                            />
-                        </div>
-                        <div class="oe_right">
-                            <button
-                                class="oe_stat_button"
-                                name="action_open_sale_order"
-                                type="object"
-                                icon="fa-dollar"
-                            >
-                                <div class="o_form_field o_stat_info">
-                                    <span class="o_stat_value">
-                                        <field
-                                            name="sale_order_subtotal"
-                                            widget="monetary"
-                                            options="{'currency_field': 'currency_id'}"
-                                        />
-                                    </span>
-                                    <span class="o_stat_text">Sales</span>
-                                </div>
-                            </button>
-                            <button
-                                class="oe_stat_button"
-                                name="action_open_unpaid_invoice"
-                                type="object"
-                                icon="fa-pencil-square-o"
-                            >
-                                <div class="o_form_field o_stat_info">
-                                    <span class="o_stat_value">
-                                        <field
-                                            name="invoice_amount_residual"
-                                            widget="monetary"
-                                            options="{'currency_field': 'currency_id'}"
-                                        />
-                                    </span>
-                                    <span class="o_stat_text">Invoices</span>
-                                </div>
-                            </button>
-                    </div>
+                    <div class="oe_button_box d-flex" name="button_box">
+                        <button
+                            string="Done"
+                            class="oe_stat_button"
+                            name="action_done"
+                            type="object"
+                            attrs="{'invisible':[('state', 'not in', ['pending'])]}"
+                            icon="fa-check"
+                        >
+                        </button>
+                        <button
+                            class="oe_stat_button border-end"
+                            name="action_cancel"
+                            string="Cancel"
+                            type="object"
+                            attrs="{'invisible':[('state', 'in', ['cancel', 'done'])]}"
+                            icon="fa-close"
+                        />
+                        <button
+                            string="Pending"
+                            class="oe_stat_button border-end"
+                            name="action_pending"
+                            type="object"
+                            attrs="{'invisible':[('state', 'in', ['pending'])]}"
+                            icon="fa-pencil-square-o"
+                        />
+                        <button
+                            class="oe_stat_button ms-auto"
+                            name="action_open_sale_order"
+                            type="object"
+                            icon="fa-dollar"
+                        >
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_value">
+                                    <field
+                                        name="sale_order_subtotal"
+                                        widget="monetary"
+                                        options="{'currency_field': 'currency_id'}"
+                                    />
+                                </span>
+                                <span class="o_stat_text">Sales</span>
+                            </div>
+                        </button>
+                        <button
+                            class="oe_stat_button"
+                            name="action_open_unpaid_invoice"
+                            type="object"
+                            icon="fa-pencil-square-o"
+                        >
+                            <div class="o_form_field o_stat_info">
+                                <span class="o_stat_value">
+                                    <field
+                                        name="invoice_amount_residual"
+                                        widget="monetary"
+                                        options="{'currency_field': 'currency_id'}"
+                                    />
+                                </span>
+                                <span class="o_stat_text">Invoices</span>
+                            </div>
+                        </button>
                     </div>
                     <group>
                         <group>
@@ -244,7 +240,7 @@
         <field name="model">sale.planner.calendar.event</field>
         <field name="arch" type="xml">
             <kanban
-                class="o_kanban_mobile"
+                class="o_kanban_mobile o_sale_planner_calendar_kanban"
                 default_order="calendar_event_date"
                 js_class="sale_planner_calendar_event_kanban"
             >
@@ -270,11 +266,9 @@
                 <field name="profile_icon" />
                 <templates>
                     <t t-name="kanban-box">
-                        <div
-                            t-attf-class="oe_kanban_card oe_kanban_card_full_width oe_kanban_global_click"
-                        >
+                        <div t-attf-class="oe_kanban_card w-100 oe_kanban_global_click">
                             <div class="row align-items-center">
-                                <div class="col col-lg-2 col-xl-2 pr-0 text-center">
+                                <div class="col col-lg-2 col-xl-2 pe-0 text-center">
                                     <div class="row" title="Clock">
                                         <div class="col text-center">
                                             <i class="fa fa-clock-o fa-2x" />
@@ -283,7 +277,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <span
-                                                class="font-weight-bold"
+                                                class="fw-bold"
                                                 t-esc="record.calendar_event_date.value"
                                             />
                                         </div>
@@ -292,7 +286,7 @@
                                         <div class="col">
                                             <i
                                                 t-if="record.profile_icon.value"
-                                                t-att-class="'fa ' + record.profile_icon.value"
+                                                t-att-class="'me-1 fa ' + record.profile_icon.value"
                                             />
                                             <field
                                                 name="state"
@@ -302,8 +296,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col col-lg-4 col-xl-4 pr-0">
-                                    <div class="row font-weight-bold">
+                                <div class="col col-lg-4 col-xl-4 pe-0">
+                                    <div class="row fw-bold">
                                         <div
                                             class="col-1 text-center p-0"
                                             title="Partner"
@@ -439,7 +433,7 @@
                                             </button>
                                             <div
                                                 t-if="record.invoice_amount_residual.raw_value "
-                                                class="text-center mt4 text-danger font-weight-bold"
+                                                class="text-center mt4 text-danger fw-bold"
                                             >
                                                 <field
                                                     class="text-center"

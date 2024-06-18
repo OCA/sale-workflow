@@ -46,22 +46,6 @@ class CalendarEvent(models.Model):
         compute="_compute_is_base_recurrent_event", store=True
     )
 
-    def _apply_recurrence_values(self, values, future=True):
-        """Method to apply recurrence when 'create_recurrence_new_user' key is set on
-        the context.
-        """
-        if not self.env.context.get("create_recurrence_new_user") or not future:
-            return super()._apply_recurrence_values(values, future=future)
-        to_update = self.env["calendar.recurrence"]
-        for event in self:
-            to_update |= event.recurrence_id._split_from(event, values)
-        self.with_context(create_recurrence_new_user=False).write(
-            {"recurrency": True, "follow_recurrence": True}
-        )
-        return to_update.with_context(
-            create_recurrence_new_user=False
-        )._apply_recurrence()
-
     @api.depends("recurrence_id", "recurrence_id.calendar_event_ids")
     def _compute_is_base_recurrent_event(self):
         for record in self:

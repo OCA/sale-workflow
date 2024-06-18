@@ -108,6 +108,25 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
                 continue
             old_event = line.calendar_event_id
             recurrence_events = old_event.recurrence_id.calendar_event_ids
+            if self.new_end:
+                new_base_event_end = recurrence_events.filtered(
+                    lambda ce: ce.start.date() >= self.new_end
+                ).sorted("start")[:1]
+                partner_ids = (
+                    new_base_event_end.partner_ids
+                    + line.event_user_id.partner_id
+                    - line.new_user_id.partner_id
+                ).ids
+                new_base_event_end.write(
+                    {
+                        "recurrence_update": "future_events",
+                        "user_id": line.event_user_id.id,
+                        "partner_ids": [
+                            (6, False, partner_ids),
+                        ],
+                        "is_dynamic_end_date": old_event.is_dynamic_end_date,
+                    }
+                )
             new_base_event_start = recurrence_events.filtered(
                 lambda ce: ce.start.date() >= self.new_start
             ).sorted("start")[:1]
@@ -116,7 +135,7 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
                 - line.event_user_id.partner_id
                 + line.new_user_id.partner_id
             ).ids
-            new_base_event_start.with_context(create_recurrence_new_user=True).write(
+            new_base_event_start.write(
                 {
                     "recurrence_update": "future_events",
                     "user_id": line.new_user_id.id,
@@ -131,25 +150,7 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
                     "unsubscribe_date": self.new_end,
                 }
             )
-            if self.new_end:
-                new_base_event_end = recurrence_events.filtered(
-                    lambda ce: ce.start.date() >= self.new_end
-                ).sorted("start")[:1]
-                partner_ids = (
-                    new_base_event_end.partner_ids
-                    + line.event_user_id.partner_id
-                    - line.new_user_id.partner_id
-                ).ids
-                new_base_event_end.with_context(create_recurrence_new_user=True).write(
-                    {
-                        "recurrence_update": "future_events",
-                        "user_id": line.event_user_id.id,
-                        "partner_ids": [
-                            (6, False, partner_ids),
-                        ],
-                        "is_dynamic_end_date": old_event.is_dynamic_end_date,
-                    }
-                )
+
             old_event_vals = {
                 "recurrence_update": "all_events",
                 "is_dynamic_end_date": False,
