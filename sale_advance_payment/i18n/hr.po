@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-06-18 17:38+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>\n"
 "Language-Team: none\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -14,6 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_advance_payment
 #: model:ir.model,name:sale_advance_payment.model_account_voucher_wizard
@@ -24,152 +26,152 @@ msgstr ""
 #: model:ir.actions.act_window,name:sale_advance_payment.action_view_account_voucher_wizard
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Advance Payment"
-msgstr ""
+msgstr "Avansno plaćanje"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_sale_order__advance_payment_status
 msgid "Advance Payment Status"
-msgstr ""
+msgstr "Status avansnog plaćanja"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__amount_total
 msgid "Amount Total"
-msgstr ""
+msgstr "Ukupni iznos"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__amount_advance
 msgid "Amount advanced"
-msgstr ""
+msgstr "Iznos avansa"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Amount in Order Currency"
-msgstr ""
+msgstr "Iznos u valuti naloga"
 
 #. module: sale_advance_payment
 #. odoo-python
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
 #, python-format
 msgid "Amount of advance must be positive."
-msgstr ""
+msgstr "Iznos avansa mora biti pozitivan."
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Otkaži"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Kreirao"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Kreirano"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__currency_amount
 msgid "Curr. amount"
-msgstr ""
+msgstr "Iznos u valuti"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__currency_id
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__date
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__inbound
 msgid "Inbound"
-msgstr ""
+msgstr "Ulazno"
 
 #. module: sale_advance_payment
 #. odoo-python
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
 #, python-format
 msgid "Inbound amount of advance is greater than residual amount on sale"
-msgstr ""
+msgstr "Ulazni iznos avansa je veći od dospjelog iznosa prodaje"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__journal_id
 msgid "Journal"
-msgstr ""
+msgstr "Dnevnik"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__journal_currency_id
 msgid "Journal Currency"
-msgstr ""
+msgstr "Valuta dnevnika"
 
 #. module: sale_advance_payment
 #: model:ir.model,name:sale_advance_payment.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Zapis dnevnika"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Zadnje modificirano"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnje ažurirao"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnje ažurirano"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Make advance payment"
-msgstr ""
+msgstr "Napravi avansno plaćanje"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__sale_order__advance_payment_status__not_paid
 msgid "Not Paid"
-msgstr ""
+msgstr "Nije plaćeno"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Operation"
-msgstr ""
+msgstr "Operacija"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__order_id
 msgid "Order"
-msgstr ""
+msgstr "Ponuda"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Order Currency"
-msgstr ""
+msgstr "Valuta ponude"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Order Due Amount"
-msgstr ""
+msgstr "Dospjeli iznos ponude"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__outbound
 msgid "Outbound"
-msgstr ""
+msgstr "Izlazno"
 
 #. module: sale_advance_payment
 #. odoo-python
