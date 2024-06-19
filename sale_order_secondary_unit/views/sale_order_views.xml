@@ -156,6 +156,7 @@
                 <field
                     name="secondary_uom_qty"
                     attrs="{'readonly': [('parent.state', 'in', ('done', 'cancel'))]}"
+                    optional="show"
                 />
                 <field
                     name="secondary_uom_id"
@@ -164,6 +165,7 @@
                                          ('product_id', '=', False)]"
                     options="{'no_create': True}"
                     attrs="{'readonly': [('product_uom_readonly', '=', True)], 'required': [('secondary_uom_qty', '!=', 0.0)]}"
+                    optional="show"
                 />
 >>>>>>> 331900273 ([MIG] migrate sale_order_secondary_unit from 12.0 to 13.0)
             </xpath>
