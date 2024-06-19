@@ -19,11 +19,13 @@
                     name="secondary_uom_id"
                     domain="[('product_tmpl_id', '=', product_tmpl_id)]"
                     attrs="{'readonly': [('product_uom_readonly', '=', True)]}"
+                    optional="show"
                 />
                 <field
                     name="secondary_uom_qty"
                     attrs="{'invisible': [('secondary_uom_id', '=', False)]}"
                     widget="numeric_step"
+                    optional="show"
                 />
             </xpath>
             <xpath
