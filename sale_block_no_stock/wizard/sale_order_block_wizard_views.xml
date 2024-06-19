@@ -6,7 +6,8 @@
         <field name="arch" type="xml">
             <form string="Sale Order Block">
                 <field name="confirmation_allowed" invisible="1" />
-                <field name="has_packagings" invisible="1" />
+                <field name="is_uom_adjustable" invisible="1" />
+                <field name="is_packaging_adjustable" invisible="1" />
                 <p class="text-muted">
                     This order cannot be confirmed because it contains products that are not in stock. Please manage the following products before confirming the order.
                 </p>
@@ -16,7 +17,7 @@
                 >
                     <field name="sale_line_block_ids" nolabel="1" colspan="2">
                         <tree
-                            decoration-danger="product_uom_allowed_max_qty &lt; 0.0"
+                            decoration-danger="product_uom_allowed_max_qty &lt;= 0.0"
                             create="false"
                             edit="false"
                             no_open="true"
@@ -56,22 +57,30 @@
                         string="Adjust UoM Quantity"
                         type="object"
                         class="btn-primary"
-                        attrs="{'invisible': ['|', ('has_packagings', '=', True), ('sale_line_block_ids', '=', [])]}"
+                        attrs="{'invisible': ['|', ('is_uom_adjustable', '=', False), '|', ('is_packaging_adjustable', '=', True), ('sale_line_block_ids', '=', [])]}"
                     />
                     <button
                         name="action_adjust_packaging_quantity"
                         string="Adjust Packaging Quantity"
                         type="object"
                         class="btn-primary"
-                        attrs="{'invisible': ['|', ('has_packagings', '=', False), ('sale_line_block_ids', '=', [])]}"
+                        attrs="{'invisible': ['|', ('is_packaging_adjustable', '=', False), ('sale_line_block_ids', '=', [])]}"
                         groups="product.group_stock_packaging"
                     />
                     <button
                         name="action_move_to_new_order"
                         string="Move to New Order"
                         type="object"
+                        class="btn-primary"
+                        attrs="{'invisible': ['|', ('is_uom_adjustable', '=', True), ('sale_line_block_ids', '=', [])]}"
+                        confirm="You are going to move pending lines to a new order"
+                    />
+                    <button
+                        name="action_move_to_new_order"
+                        string="Move to New Order"
+                        type="object"
                         class="btn-secondary"
-                        attrs="{'invisible': [('sale_line_block_ids', '=', [])]}"
+                        attrs="{'invisible': ['|', ('is_uom_adjustable', '=', False), ('sale_line_block_ids', '=', [])]}"
                         confirm="You are going to move pending lines to a new order"
                     />
                     <button
