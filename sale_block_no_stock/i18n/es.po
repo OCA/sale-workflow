@@ -125,14 +125,19 @@ msgid "Groups allowed to bypass the block"
 msgstr "Grupos autorizados a saltarse el bloqueo"
 
 #. module: sale_block_no_stock
-#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard__has_packagings
-msgid "Has Packagings"
-msgstr ""
-
-#. module: sale_block_no_stock
 #: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard__id
 #: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__id
 msgid "ID"
+msgstr ""
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard__is_packaging_adjustable
+msgid "Is Packaging Adjustable"
+msgstr ""
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard__is_uom_adjustable
+msgid "Is Uom Adjustable"
 msgstr ""
 
 #. module: sale_block_no_stock
