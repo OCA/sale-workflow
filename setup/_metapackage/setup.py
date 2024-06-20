@@ -50,6 +50,7 @@ setuptools.setup(
         'odoo-addon-sale_order_invoicing_picking_filter>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_line_date>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_line_delivery_state>=16.0dev,<16.1dev',
+        'odoo-addon-sale_order_line_effective_date>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_line_field_from_product_attribute>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_line_input>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_line_menu>=16.0dev,<16.1dev',
