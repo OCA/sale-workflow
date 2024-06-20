@@ -361,7 +361,9 @@ according to the strategy
 
     def _apply_rule_to_order_lines(self, lines):
         self.ensure_one()
-        lines = lines.filtered(lambda l, r=self: r._is_promotion_valid_for_line(l))
+        lines = lines.filtered(
+            lambda line, r=self: r._is_promotion_valid_for_line(line)
+        )
         if self.promo_type == "discount":
             self._apply_discount_to_order_lines(lines)
         else:

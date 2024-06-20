@@ -4,7 +4,7 @@
 {
     "name": "Sale Promotion Rule",
     "summary": "Module to manage promotion rule on sale order",
-    "version": "14.0.1.0.1",
+    "version": "17.0.1.0.0",
     "development_status": "Beta",
     "category": "Sale",
     "website": "https://github.com/OCA/sale-workflow",

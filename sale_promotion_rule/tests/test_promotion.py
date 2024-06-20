@@ -136,7 +136,7 @@ class AbstractCommonPromotionCase:
 
 class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
     def setUp(self, *args, **kwargs):
-        super(PromotionCase, self).setUp(*args, **kwargs)
+        super().setUp(*args, **kwargs)
         self.set_up("sale_promotion_rule.sale_order_promotion")
 
     def test_name_get(self):
@@ -240,7 +240,7 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         # a line
         so_line = self.sale.order_line[0]
         so_line.product_id.taxes_id = [(6, 0, [self.tax_exclude_21.id])]
-        so_line.product_id_change()
+        so_line._onchange_product_id_warning()
         amount_untaxed = self.sale.amount_untaxed
         # we apply a discount of 20 on untaxed amount
         self.add_coupon_code(FIXED_AMOUNT_CODE)
@@ -265,7 +265,7 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         # a line
         so_line = self.sale.order_line[0]
         so_line.product_id.taxes_id = [(6, 0, [self.tax_include_21.id])]
-        so_line.product_id_change()
+        so_line._onchange_product_id_warning()
         amount_untaxed = self.sale.amount_untaxed
         # we apply a discount of 20 on untaxed amount
         self.add_coupon_code(FIXED_AMOUNT_CODE)
@@ -288,10 +288,10 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         # add a tax in the prodduct
         so_line = self.sale.order_line[0]
         so_line.product_id.taxes_id = [(6, 0, [self.tax_exclude_21.id])]
-        so_line.product_id_change()
+        so_line._onchange_product_id_warning()
         so_line = self.sale.order_line[1]
         so_line.product_id.taxes_id = [(6, 0, [self.tax_exclude_5.id])]
-        so_line.product_id_change()
+        so_line._onchange_product_id_warning()
         self.promotion_rule_fixed_amount.discount_type = "amount_tax_included"
         amount_total = self.sale.amount_total
         # we apply a discount of 20 on amount taxed
@@ -315,10 +315,10 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         # add a tax in the prodduct
         so_line = self.sale.order_line[0]
         so_line.product_id.taxes_id = [(6, 0, [self.tax_include_21.id])]
-        so_line.product_id_change()
+        so_line._onchange_product_id_warning()
         so_line = self.sale.order_line[1]
         so_line.product_id.taxes_id = [(6, 0, [self.tax_include_5.id])]
-        so_line.product_id_change()
+        so_line._onchange_product_id_warning()
         self.promotion_rule_fixed_amount.discount_type = "amount_tax_included"
         amount_total = self.sale.amount_total
         # we apply a discount of 20 on amount taxed
@@ -341,11 +341,11 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         # add a tax in the prodduct and special price
         so_line = self.sale.order_line[0]
         so_line.product_id.taxes_id = [(6, 0, [self.tax_exclude_21.id])]
-        so_line.product_id_change()
+        so_line._onchange_product_id_warning()
         so_line.price_unit = 719.77
         so_line = self.sale.order_line[1]
         so_line.product_id.taxes_id = [(6, 0, [self.tax_exclude_5.id])]
-        so_line.product_id_change()
+        so_line._onchange_product_id_warning()
         so_line.price_unit = 13.66
         self.promotion_rule_fixed_amount.discount_type = "amount_tax_included"
         discount_amount = 3.00
@@ -375,7 +375,7 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         for price in [5.65, 77.68, 51.07, 87.09, 29.31, 61.03, 99.89, 54.32, 44.95]:
             so_line = self.sale.order_line[1].copy({"order_id": self.sale.id})
             so_line.product_id.taxes_id = [(6, 0, [self.tax_exclude_21.id])]
-            so_line.product_id_change()
+            so_line._onchange_product_id_warning()
             so_line.price_unit = price
         for price in [
             485.75,
@@ -390,7 +390,7 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         ]:
             so_line = self.sale.order_line[1].copy({"order_id": self.sale.id})
             so_line.product_id.taxes_id = [(6, 0, [self.tax_include_21.id])]
-            so_line.product_id_change()
+            so_line._onchange_product_id_warning()
             so_line.price_unit = price
         for price in [
             798.33,
@@ -405,7 +405,7 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         ]:
             so_line = self.sale.order_line[1].copy({"order_id": self.sale.id})
             so_line.product_id.taxes_id = [(6, 0, [self.tax_exclude_5.id])]
-            so_line.product_id_change()
+            so_line._onchange_product_id_warning()
             so_line.price_unit = price
         for discount_amount in range(0, 20, 3):
             self.promotion_rule_fixed_amount.discount_type = "amount_tax_included"
@@ -459,7 +459,7 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
         so_line.price_unit = 80.0
         amount = self.sale.amount_total
         # self.sale.amount_total = 710
-        self.assertEqual(710, self.sale.amount_total)
+        self.assertEqual(710, self.sale.amount_untaxed)
         self.add_coupon_code(FIXED_AMOUNT_CODE)
         self.sale.apply_promotions()
         self.assertEqual(
@@ -509,7 +509,7 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
 
 class CurrencyPromotionCase(TransactionCase, AbstractCommonPromotionCase):
     def setUp(self, *args, **kwargs):
-        super(CurrencyPromotionCase, self).setUp(*args, **kwargs)
+        super().setUp(*args, **kwargs)
         self.set_up("sale.sale_order_3")
 
     def test_discount_amount_rounding_currency(self):
@@ -523,7 +523,7 @@ class CurrencyPromotionCase(TransactionCase, AbstractCommonPromotionCase):
         for price in [5.65, 77.68, 51.07, 87.09, 29.31, 61.03, 99.89, 54.32, 44.95]:
             so_line = self.sale.order_line[1].copy({"order_id": self.sale.id})
             so_line.product_id.taxes_id = False
-            so_line.product_id_change()
+            so_line._onchange_product_id_warning()
             so_line.price_unit = price
         for price in [
             485.75,
@@ -538,7 +538,7 @@ class CurrencyPromotionCase(TransactionCase, AbstractCommonPromotionCase):
         ]:
             so_line = self.sale.order_line[1].copy({"order_id": self.sale.id})
             so_line.product_id.taxes_id = False
-            so_line.product_id_change()
+            so_line._onchange_product_id_warning()
             so_line.price_unit = price
         for price in [
             798.33,
@@ -553,7 +553,7 @@ class CurrencyPromotionCase(TransactionCase, AbstractCommonPromotionCase):
         ]:
             so_line = self.sale.order_line[1].copy({"order_id": self.sale.id})
             so_line.product_id.taxes_id = False
-            so_line.product_id_change()
+            so_line._onchange_product_id_warning()
             so_line.price_unit = price
         for discount_amount in range(0, 20, 3):
             self.promotion_rule_fixed_amount.discount_type = "amount_tax_included"

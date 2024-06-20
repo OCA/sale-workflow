@@ -27,21 +27,21 @@
                     />
                     <button
                         name="apply_promotions"
-                        states="draft,sent"
+                        invisible="state not in ('draft', 'sent')"
                         string="(Apply discount)"
                         type="object"
                         class="oe_edit_only oe_link"
                     />
                     <button
                         name="%(sale_order_add_coupon_act_window)d"
-                        states="draft,sent"
+                        invisible="state not in ('draft', 'sent')"
                         string="(Add coupon)"
                         type="action"
                         class="oe_edit_only oe_link"
                     />
                     <button
                         name="clear_promotions"
-                        attrs="{'invisible': [('has_promotion_rules', '=', False)]}"
+                        invisible="not has_promotion_rules"
                         string="(Remove discount)"
                         type="object"
                         class="oe_edit_only oe_link"

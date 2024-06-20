@@ -5,7 +5,6 @@
         <field name="partner_invoice_id" ref="base.res_partner_4" />
         <field name="partner_shipping_id" ref="base.res_partner_4" />
         <field name="user_id" ref="base.user_admin" />
-        <field name="pricelist_id" ref="product.list0" />
         <field name="team_id" ref="sales_team.team_sales_department" />
         <field name="campaign_id" ref="utm.utm_campaign_email_campaign_products" />
         <field name="medium_id" ref="utm.utm_medium_email" />
