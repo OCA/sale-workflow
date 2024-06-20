@@ -5,7 +5,6 @@ from odoo import fields, models
 
 
 class SaleOrderAddCoupon(models.TransientModel):
-
     _name = "sale.order.add.coupon"
     _description = "Sale Order Add Coupon"
 

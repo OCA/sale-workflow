@@ -272,7 +272,7 @@ according to the strategy
         res = []
         for record in self:
             if record.rule_type == "coupon":
-                res.append((record.id, "{} ({})".format(record.name, record.code)))
+                res.append((record.id, f"{record.name} ({record.code})"))
             elif record.rule_type == "auto":
                 res.append((record.id, "{} ({})".format(record.name, _("Automatic"))))
             else:

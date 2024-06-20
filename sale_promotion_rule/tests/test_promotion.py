@@ -13,7 +13,7 @@ VALID_COUPON_CODE = "ELDONGHUT"
 FIXED_AMOUNT_CODE = "FIXEDAMOUNT"
 
 
-class AbstractCommonPromotionCase(object):
+class AbstractCommonPromotionCase:
     def _get_promotion_rule_coupon_values(self):
         return {
             "name": "Best Promo",
@@ -366,7 +366,7 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
                 ),
                 precision_digits=self.price_precision_digits,
             ),
-            "{} != {}".format(new_amount, discount_amount),
+            f"{new_amount} != {discount_amount}",
         )
 
     def test_discount_amount_rounding_2(self):
@@ -427,7 +427,7 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
                     price,
                     precision_digits=self.price_precision_digits,
                 ),
-                "{} != {}".format(new_amount, price),
+                f"{new_amount} != {price}",
             )
             self.sale.clear_promotions()
 
@@ -480,7 +480,7 @@ class PromotionCase(TransactionCase, AbstractCommonPromotionCase):
                 ),
                 precision_digits=self.price_precision_digits,
             ),
-            "{} != {}".format(amount_discount, so_line.discount),
+            f"{amount_discount} != {so_line.discount}",
         )
         self.assertFalse(so_line.coupon_promotion_rule_id)
 
@@ -575,6 +575,6 @@ class CurrencyPromotionCase(TransactionCase, AbstractCommonPromotionCase):
                     price,
                     precision_digits=self.price_precision_digits,
                 ),
-                "{} != {}".format(new_amount, price),
+                f"{new_amount} != {price}",
             )
             self.sale.clear_promotions()
