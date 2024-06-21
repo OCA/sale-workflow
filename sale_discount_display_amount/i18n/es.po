@@ -17,10 +17,57 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: sale_discount_display_amount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__discount_total
+#: model:ir.model.fields,help:sale_discount_display_amount.field_res_config_settings__display_discount_with_tax
+#: model:ir.model.fields,help:sale_discount_display_amount.field_sale_order__display_discount_with_tax
+msgid "Check this field to show the Discount with TAX"
+msgstr ""
+
+#. module: sale_discount_display_amount
+#: model:ir.model,name:sale_discount_display_amount.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_discount_display_amount
+#: model:ir.model,name:sale_discount_display_amount.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_subtotal
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__discount_subtotal
 msgid "Discount Subtotal"
 msgstr "Descuento total"
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__discount_total
+msgid "Discount Total"
+msgstr ""
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_company__display_discount_with_tax
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_config_settings__display_discount_with_tax
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__display_discount_with_tax
+msgid "Display Discount With Tax"
+msgstr ""
+
+#. module: sale_discount_display_amount
+#: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.res_config_settings_view_form
+msgid ""
+"OFF = Shows the Discount without TAX<br/>ON = Shows the Discount with TAX"
+msgstr ""
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_subtotal_no_discount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_subtotal_no_discount
+msgid "Price Subtotal No Discount"
+msgstr ""
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_total_no_discount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_total_no_discount
+msgid "Price Total No Discount"
+msgstr ""
 
 #. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_sale_order
@@ -32,8 +79,5 @@ msgstr "Órdenes de venta"
 msgid "Sales Order Line"
 msgstr "Línea pedido de venta"
 
-#. module: sale_discount_display_amount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_total_no_discount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_total_no_discount
-msgid "Subtotal Without Discount"
-msgstr "Total Sin Descuento"
+#~ msgid "Subtotal Without Discount"
+#~ msgstr "Total Sin Descuento"

@@ -35,21 +35,39 @@ msgstr ""
 #. module: sale_discount_display_amount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_subtotal
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__discount_subtotal
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__discount_total
 msgid "Discount Subtotal"
 msgstr "Subtotaal Korting"
 
 #. module: sale_discount_display_amount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
-msgid "Discount total"
-msgstr "Totaal Korting"
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__discount_total
+msgid "Discount Total"
+msgstr ""
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_company__display_discount_with_tax
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_config_settings__display_discount_with_tax
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__display_discount_with_tax
+msgid "Display Discount With Tax"
+msgstr ""
 
 #. module: sale_discount_display_amount
 #: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.res_config_settings_view_form
 msgid ""
 "OFF = Shows the Discount without TAX<br/>ON = Shows the Discount with TAX"
+msgstr "OFF = toont de korting zonder BTW<br/>ON = toont de korting met BTW"
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_subtotal_no_discount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_subtotal_no_discount
+msgid "Price Subtotal No Discount"
 msgstr ""
-"OFF = toont de korting zonder BTW<br/>ON = toont de korting met BTW"
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_total_no_discount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_total_no_discount
+msgid "Price Total No Discount"
+msgstr ""
 
 #. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_sale_order
@@ -61,21 +79,14 @@ msgstr "Verkooporder"
 msgid "Sales Order Line"
 msgstr "Verkooporderlijn"
 
-#. module: sale_discount_display_amount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_company__display_discount_with_tax
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_config_settings__display_discount_with_tax
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__display_discount_with_tax
-msgid "Show the Discount with TAX"
-msgstr "Toon de korting met BTW"
+#~ msgid "Discount total"
+#~ msgstr "Totaal Korting"
 
-#. module: sale_discount_display_amount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_subtotal_no_discount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_subtotal_no_discount
-msgid "Subtotal Without Discount"
-msgstr "Subtotaal zonder korting"
+#~ msgid "Show the Discount with TAX"
+#~ msgstr "Toon de korting met BTW"
 
-#. module: sale_discount_display_amount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_total_no_discount
-#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_total_no_discount
-msgid "Total Without Discount"
-msgstr "Totaal zonder korting"
+#~ msgid "Subtotal Without Discount"
+#~ msgstr "Subtotaal zonder korting"
+
+#~ msgid "Total Without Discount"
+#~ msgstr "Totaal zonder korting"
