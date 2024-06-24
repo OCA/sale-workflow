@@ -17,20 +17,22 @@ Sale Validity Auto-Cancel
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/14.0/sale_validity_auto_cancel
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_validity_auto_cancel
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-14-0/sale-workflow-14-0-sale_validity_auto_cancel
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_validity_auto_cancel
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=14.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds a scheduled action that automatically cancels quotations after their expiration date.
+This module adds a scheduled action that automatically cancels
+quotations after their expiration date.
 
-A company setting can be modified to decide how many days after the expiration date the quotations are automatically cancelled.
+A company setting can be modified to decide how many days after the
+expiration date the quotations are automatically cancelled.
 
 **Table of contents**
 
@@ -40,13 +42,16 @@ A company setting can be modified to decide how many days after the expiration d
 Configuration
 =============
 
-Go to the menu *Sale > Configuration > Settings*, in the section *Quotations & Sales*, set the *Auto-cancel expired quotations after* in days.
+Go to the menu *Sale > Configuration > Settings*, in the section
+*Quotations & Sales*, set the *Auto-cancel expired quotations after* in
+days.
 
 Usage
 =====
 
-By default, the scheduled action *Cancel Expired Quotations* is not enabled in order to
-first configure the setting parameter for the number of days.
+By default, the scheduled action *Cancel Expired Quotations* is not
+enabled in order to first configure the setting parameter for the number
+of days.
 
 Once enabled, the scheduled action will run automatically once a day.
 
@@ -56,7 +61,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_validity_auto_cancel%0Aversion:%2014.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_validity_auto_cancel%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -64,17 +69,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * ForgeFlow
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Jordi Masvidal <jordi.masvidal@forgeflow.com>
+-  Jordi Masvidal <jordi.masvidal@forgeflow.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -94,6 +99,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-JordiMForgeFlow| 
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/14.0/sale_validity_auto_cancel>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_validity_auto_cancel>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
