@@ -37,6 +37,7 @@ addon | version | maintainers | summary
 [sale_order_carrier_auto_assign](sale_order_carrier_auto_assign/) | 17.0.1.0.0 |  | Auto assign delivery carrier on sale order confirmation
 [sale_order_line_menu](sale_order_line_menu/) | 17.0.1.0.0 |  | Adds a Sale Order Lines Menu
 [sale_order_line_sequence](sale_order_line_sequence/) | 17.0.1.0.0 |  | Propagates SO line sequence to invoices and stock picking.
+[sale_order_line_tag](sale_order_line_tag/) | 17.0.1.0.0 | [![smaciaosi](https://github.com/smaciaosi.png?size=30px)](https://github.com/smaciaosi) [![dreispt](https://github.com/dreispt.png?size=30px)](https://github.com/dreispt) [![ckolobow](https://github.com/ckolobow.png?size=30px)](https://github.com/ckolobow) | Add tags to classify sales order line reasons
 [sale_order_price_recalculation](sale_order_price_recalculation/) | 17.0.1.0.0 |  | Recalculate prices / Reset descriptions on sale order lines
 [sale_order_qty_change_no_recompute](sale_order_qty_change_no_recompute/) | 17.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Prevent recompute if only quantity has changed in sale order line
 [sale_order_revision](sale_order_revision/) | 17.0.1.0.0 |  | Keep track of revised quotations
