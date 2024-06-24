@@ -34,8 +34,7 @@ class SaleOrder(models.Model):
 
     def action_view_revisions(self):
         self.ensure_one()
-        action = self.env.ref("sale.action_orders")
-        result = action.read()[0]
+        result = self.env["ir.actions.act_window"]._for_xml_id("sale.action_orders")
         result["domain"] = ["|", ("active", "=", False), ("active", "=", True)]
         result["context"] = {
             "active_test": 0,
