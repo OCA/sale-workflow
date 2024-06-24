@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-09-02 18:13+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2024-06-24 13:40+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -20,17 +20,17 @@ msgstr ""
 #: model:ir.model.fields,help:sale_discount_display_amount.field_res_config_settings__display_discount_with_tax
 #: model:ir.model.fields,help:sale_discount_display_amount.field_sale_order__display_discount_with_tax
 msgid "Check this field to show the Discount with TAX"
-msgstr ""
+msgstr "Selezionare questo campo per visualizzare lo sconto con l'imposta"
 
 #. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: sale_discount_display_amount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_subtotal
@@ -42,32 +42,32 @@ msgstr "Subtotale sconto"
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__discount_total
 msgid "Discount Total"
-msgstr ""
+msgstr "Totale sconto"
 
 #. module: sale_discount_display_amount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_company__display_discount_with_tax
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_res_config_settings__display_discount_with_tax
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__display_discount_with_tax
 msgid "Display Discount With Tax"
-msgstr ""
+msgstr "Visualizza sconto con imposta"
 
 #. module: sale_discount_display_amount
 #: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.res_config_settings_view_form
 msgid ""
 "OFF = Shows the Discount without TAX<br/>ON = Shows the Discount with TAX"
-msgstr ""
+msgstr "OFF = mostra sconto senza imposta<br/>ON = mostra sconto on imposta"
 
 #. module: sale_discount_display_amount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_subtotal_no_discount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_subtotal_no_discount
 msgid "Price Subtotal No Discount"
-msgstr ""
+msgstr "Subtotale prezzo senza sconto"
 
 #. module: sale_discount_display_amount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_total_no_discount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_total_no_discount
 msgid "Price Total No Discount"
-msgstr ""
+msgstr "Totale prezzo senza sconto"
 
 #. module: sale_discount_display_amount
 #: model:ir.model,name:sale_discount_display_amount.model_sale_order
