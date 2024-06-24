@@ -87,6 +87,10 @@ Contributors
    -  Pedro M. Baeza
    -  César A. Sánchez
 
+-  `Binhex Systems Solutions <https://binhex.cloud/>`__:
+
+   -  Deriman Alonso <d.alonso@binhex.cloud>
+
 Maintainers
 -----------
 

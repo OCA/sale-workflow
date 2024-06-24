@@ -24,14 +24,16 @@ class ResPartner(models.Model):
             return super().write(vals)
         for record in self:
             if "user_id" in vals:
-                childs = record.mapped("child_ids").filtered(
-                    lambda r: not r.user_id or r.user_id == record.user_id
+                childs = record.child_ids.filtered(
+                    lambda r, record=record: not r.user_id
+                    or r.user_id == record.user_id
                 )
                 if childs:
                     childs.write({"user_id": vals["user_id"]})
             if "team_id" in vals:
-                childs = record.mapped("child_ids").filtered(
-                    lambda r: not r.team_id or r.team_id == record.team_id
+                childs = record.child_ids.filtered(
+                    lambda r, record=record: not r.team_id
+                    or r.team_id == record.team_id
                 )
                 if childs:
                     childs.write({"team_id": vals["team_id"]})
@@ -49,18 +51,18 @@ class ResPartner(models.Model):
                     vals.update(team_id=self.browse(vals["parent_id"]).team_id.id)
         return super().create(vals_list)
 
-    @api.onchange("parent_id")
-    def onchange_parent_id(self):
+    @api.depends("parent_id")
+    def _compute_user_id(self):
         """Change Salesperson or Sales Channel if the parent company changes
         and there's no Salesperson or Sales Channel defined yet"""
-        res = super().onchange_parent_id()
-        if self.parent_id and self.parent_id != self:
-            parent = self.parent_id
-            if not self.user_id:
-                res.setdefault("value", {}).update(user_id=parent.user_id)
-            if not self.team_id:
-                res.setdefault("value", {}).update(team_id=parent.team_id)
-        return res
+        for partner in self.filtered(
+            lambda partner: not partner.user_id
+            and partner.company_type == "person"
+            and partner.parent_id.user_id
+        ):
+            partner.user_id = partner.parent_id.user_id
+
+            partner.team_id = partner.parent_id.team_id
 
     @api.model
     def get_view(self, view_id=None, view_type="form", **options):
