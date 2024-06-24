@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-31 04:21+0000\n"
-"PO-Revision-Date: 2023-12-12 14:34+0000\n"
+"PO-Revision-Date: 2024-06-24 13:40+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -105,7 +105,7 @@ msgstr "Nome"
 #. module: sale_stock_picking_blocking
 #: model:ir.model,name:sale_stock_picking_blocking.model_account_payment_term
 msgid "Payment Terms"
-msgstr ""
+msgstr "Termini di pagamento"
 
 #. module: sale_stock_picking_blocking
 #: model_terms:ir.ui.view,arch_db:sale_stock_picking_blocking.view_order_form
@@ -154,6 +154,8 @@ msgid ""
 "Set a reason to block by default the deliveries in this payment term sales "
 "orders."
 msgstr ""
+"Impostare un motivo per bloccare in modo predefinito le consegne per gli "
+"ordini di vendita con questi termini di pagamento."
 
 #. module: sale_stock_picking_blocking
 #. odoo-python
