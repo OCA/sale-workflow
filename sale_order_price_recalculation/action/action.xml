@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="recalculate_prices_act_serv" model="ir.actions.server">
+        <field name="name">Recalculate Prices</field>
+        <field name="model_id" ref="model_sale_order" />
+        <field name="binding_model_id" ref="model_sale_order" />
+        <field name="state">code</field>
+        <!-- We already have a button, then no need to also add action on form view -->
+        <field name="binding_view_types">list</field>
+        <field name="code">records._recalculate_prices()</field>
+    </record>
+
+</odoo>
