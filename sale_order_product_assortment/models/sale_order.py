@@ -68,6 +68,12 @@ class SaleOrder(models.Model):
                 product_domain = expression.AND(
                     [whitelist_product_domain, blacklist_product_domain]
                 )
+
+                if self.env["ir.filters"].apply_black_list_product_domain:
+                    product_domain = expression.AND(
+                        [product_domain, blacklist_product_domain]
+                    )
+
             if product_domain:
                 self.allowed_product_ids = self.env["product.product"].search(
                     product_domain
