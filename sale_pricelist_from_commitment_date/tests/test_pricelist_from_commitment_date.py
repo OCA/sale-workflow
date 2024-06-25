@@ -109,7 +109,8 @@ class PricelistFromCommitmentDate(TransactionCase):
         sale.date_order = "2020-03-08"
         # No change with changing order date
         self.assertEqual(order_line.price_unit, 30)
-        # Remove commitment date, will match on date_order
+        # Disable price based on delivery date, will match on date_order
+        sale.pricelist_id.price_based_on_delivery_date = False
         sale.commitment_date = False
         self.assertEqual(order_line.price_unit, 10)
         # Remove the order date, will match on default price

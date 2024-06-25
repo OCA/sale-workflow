@@ -5,29 +5,32 @@ from odoo import api, models
 
 
 class SaleOrderLine(models.Model):
-
     _inherit = "sale.order.line"
 
     @api.depends(
-        "product_id", "product_uom", "product_uom_qty", "order_id.commitment_date"
+        "product_id",
+        "product_uom",
+        "product_uom_qty",
+        "order_id.commitment_date",
+        "order_id.pricelist_id.price_based_on_delivery_date",
     )
     def _compute_price_unit(self):
         for line in self:
-            date = self.env.context.get(
-                "force_pricelist_date", line.order_id.commitment_date
-            )
+            date = line.order_id._get_pricelist_date()
             line = line.with_context(force_pricelist_date=date)
             super(SaleOrderLine, line)._compute_price_unit()
         return True
 
     @api.depends(
-        "product_id", "product_uom", "product_uom_qty", "order_id.commitment_date"
+        "product_id",
+        "product_uom",
+        "product_uom_qty",
+        "order_id.commitment_date",
+        "order_id.pricelist_id.price_based_on_delivery_date",
     )
     def _compute_pricelist_item_id(self):
         for line in self:
-            date = self.env.context.get(
-                "force_pricelist_date", line.order_id.commitment_date
-            )
+            date = line.order_id._get_pricelist_date()
             line = line.with_context(force_pricelist_date=date)
             super(SaleOrderLine, line)._compute_pricelist_item_id()
         return True
