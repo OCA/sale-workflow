@@ -100,6 +100,7 @@ addon | version | maintainers | summary
 [sale_product_set_layout](sale_product_set_layout/) | 15.0.1.0.1 |  | This module allows to add sections with product sets
 [sale_purchase_procurement_group_by_line](sale_purchase_procurement_group_by_line/) | 15.0.1.0.0 |  | Glue module between 'MTO Sale <-> Purchase' and 'Sale Procurement Group by Line'
 [sale_quotation_number](sale_quotation_number/) | 15.0.2.1.0 |  | Different sequence for sale quotations
+[sale_readonly_security](sale_readonly_security/) | 15.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Sale Readonly Security
 [sale_rental](sale_rental/) | 15.0.1.0.2 | [![alexis-via](https://github.com/alexis-via.png?size=30px)](https://github.com/alexis-via) | Manage Rental of Products
 [sale_resource_booking](sale_resource_booking/) | 15.0.1.0.1 | [![Yajo](https://github.com/Yajo.png?size=30px)](https://github.com/Yajo) | Link resource bookings with sales
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 15.0.1.0.0 |  | Add shipping amounts on sale order
