@@ -102,7 +102,7 @@ class SaleOrderLine(models.Model):
         this method is called multiple times.
         Updating the cache provides consistency through re-computations."""
         prev_values = dict()
-        self.invalidate_cache(fnames=self._discount_fields(), ids=self.ids)
+        self._invalidate_cache(fnames=self._discount_fields(), ids=self.ids)
         for line in self:
             prev_values[line] = {
                 fname: line[fname] for fname in self._discount_fields()
@@ -118,7 +118,7 @@ class SaleOrderLine(models.Model):
     def triple_discount_postprocess(self, prev_values):
         """Restore the discounts of the lines in the dictionary prev_values.
         Updating the cache provides consistency through re-computations."""
-        self.invalidate_cache(
+        self._invalidate_cache(
             fnames=self._discount_fields(),
             ids=[line.id for line in list(prev_values.keys())],
         )
