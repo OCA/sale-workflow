@@ -1,5 +1,10 @@
-class TestStockSourcingAddress(TransactionCase):
+# Copyright 2020-22 ForgeFlow S.L.
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from odoo.tests import TransactionCase
+
+
+class TestStockSourcingAddress(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super(TestStockSourcingAddress, cls).setUpClass()
