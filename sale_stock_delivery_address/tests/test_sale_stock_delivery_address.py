@@ -7,7 +7,7 @@ from odoo.tests import TransactionCase
 class TestStockSourcingAddress(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestStockSourcingAddress, cls).setUpClass()
+        super().setUpClass()
         cls.partner_model = cls.env["res.partner"]
         cls.product_model = cls.env["product.product"]
         cls.warehouse_model = cls.env["stock.warehouse"]

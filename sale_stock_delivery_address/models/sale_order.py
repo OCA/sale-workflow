@@ -9,7 +9,7 @@ class SaleOrder(models.Model):
 
     @api.model
     def _prepare_procurement_group_by_line(self, line):
-        vals = super(SaleOrder, self)._prepare_procurement_group_by_line(line)
+        vals = super()._prepare_procurement_group_by_line(line)
         if line._get_procurement_group_key()[0] == 16 and line.dest_address_id:
             name_extension = (
                 line.dest_address_id.name or line.dest_address_id.contact_address
