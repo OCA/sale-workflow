@@ -41,7 +41,7 @@ class WizardPriceConfigMatrix(models.TransientModel):
             self.price_config_line_id.matrix_values = csv_string
 
         if "vertical_value" in vals:
-            self.price_config_line_id.horizontal_value = vals["vertical_value"]
+            self.price_config_line_id.vertical_value = vals["vertical_value"]
         if "horizontal_value" in vals:
-            self.price_config_line_id.vertical_value = vals["horizontal_value"]
+            self.price_config_line_id.horizontal_value = vals["horizontal_value"]
         return res

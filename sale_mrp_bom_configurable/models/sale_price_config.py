@@ -131,11 +131,11 @@ class SalePriceConfigLine(models.Model):
                     vert_values.append(line[0])
 
                 horiz_index = 1
-                while int(horiz_values[horiz_index - 1]) < horiz_target:
+                while float(horiz_values[horiz_index - 1]) < horiz_target:
                     horiz_index += 1
 
                 vert_index = 1
-                while int(horiz_values[vert_index - 1]) < vert_target:
+                while float(horiz_values[vert_index - 1]) < vert_target:
                     vert_index += 1
                 return float(matrix_data[vert_index][horiz_index])
 
