@@ -20,7 +20,7 @@ class SaleOrderLine(models.Model):
         preference the criteria has.
         """
         priority = 15
-        key = super(SaleOrderLine, self)._get_procurement_group_key()
+        key = super()._get_procurement_group_key()
         # Check priority
         if key[0] >= priority:
             return key

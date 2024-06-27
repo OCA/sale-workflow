@@ -36,4 +36,4 @@ class ProcurementGroup(models.Model):
                 )
             else:
                 new_procs.append(procurement)
-        return super(ProcurementGroup, self).run(new_procs, raise_user_error)
+        return super().run(new_procs, raise_user_error)
