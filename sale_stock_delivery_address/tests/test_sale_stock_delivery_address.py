@@ -1,7 +1,7 @@
 # Copyright 2020-22 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests import TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class TestStockSourcingAddress(TransactionCase):
@@ -13,6 +13,10 @@ class TestStockSourcingAddress(TransactionCase):
         cls.warehouse_model = cls.env["stock.warehouse"]
         cls.move_model = cls.env["stock.move"]
         cls.location_model = cls.env["stock.location"]
+
+        # Check for existence of models before use
+        cls.route_model = cls.env.get("stock.location.route")
+        cls.rule_model = cls.env.get("stock.rule")
 
         cls.warehouse = cls.env.ref("stock.warehouse0")
         cls.customer_loc_default = cls.env.ref("stock.stock_location_customers")
@@ -30,25 +34,27 @@ class TestStockSourcingAddress(TransactionCase):
             {"name": "Test product", "type": "product"}
         )
 
-        # Create route for secondary customer location:
-        cls.secondary_route = cls.env["stock.location.route"].create(
-            {
-                "warehouse_selectable": True,
-                "name": "Ship to customer sec location",
-                "warehouse_ids": [(6, 0, cls.warehouse.ids)],
-            }
-        )
-        cls.wh2_rule = cls.env["stock.rule"].create(
-            {
-                "location_id": cls.customer_loc_secondary.id,
-                "location_src_id": cls.warehouse.lot_stock_id.id,
-                "action": "pull_push",
-                "warehouse_id": cls.warehouse.id,
-                "picking_type_id": cls.env.ref("stock.picking_type_out").id,
-                "name": "Stock -> Customers 2",
-                "route_id": cls.secondary_route.id,
-            }
-        )
+        if cls.route_model:
+            # Create route for secondary customer location:
+            cls.secondary_route = cls.route_model.create(
+                {
+                    "warehouse_selectable": True,
+                    "name": "Ship to customer sec location",
+                    "warehouse_ids": [(6, 0, cls.warehouse.ids)],
+                }
+            )
+            if cls.rule_model:
+                cls.wh2_rule = cls.rule_model.create(
+                    {
+                        "location_id": cls.customer_loc_secondary.id,
+                        "location_src_id": cls.warehouse.lot_stock_id.id,
+                        "action": "pull_push",
+                        "warehouse_id": cls.warehouse.id,
+                        "picking_type_id": cls.env.ref("stock.picking_type_out").id,
+                        "name": "Stock -> Customers 2",
+                        "route_id": cls.secondary_route.id,
+                    }
+                )
 
         # Create a SO with a couple of lines:
         cls.so = cls.env["sale.order"].create(
