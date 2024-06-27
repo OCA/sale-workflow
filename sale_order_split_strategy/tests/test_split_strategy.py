@@ -51,6 +51,41 @@ class TestSplitStrategy(SavepointCase):
                 line_form.product_id = product
                 line_form.product_uom_qty = 1
         return order_form.save()
+    
+    def _set_sequences_and_sections(self, order):
+        for seq, line in enumerate(order.order_line, 1):
+            line.sequence = seq * 10
+        # First section includes only consumable
+        first_section = order.order_line.create(
+            {
+                "order_id": order.id,
+                "display_type": "line_section",
+                "name": "First line",
+                "sequence": 5,
+            }
+        )
+        # Middle section includes both consumable + service
+        middle_section = order.order_line.create(
+            {
+                "order_id": order.id,
+                "display_type": "line_section",
+                "name": "Middle lines",
+                "sequence": 15,
+            }
+        )
+        # Last section includes only service
+        last_section = order.order_line.create(
+            {
+                "order_id": order.id,
+                "display_type": "line_section",
+                "name": "Last line",
+                "sequence": 35,
+            }
+        )
+        order_lines = order.order_line.sorted()
+        self.assertEqual(order_lines[0], first_section)
+        self.assertEqual(order_lines[2], middle_section)
+        self.assertEqual(order_lines[5], last_section)
 
     def test_split_product_type(self):
         order = self._create_order()
@@ -74,38 +109,56 @@ class TestSplitStrategy(SavepointCase):
 
     def test_split_product_type_copy_sections(self):
         order = self._create_order()
-        for seq, line in enumerate(order.order_line, 1):
-            line.sequence = seq * 10
-        first_section = order.order_line.create(
-            {
-                "order_id": order.id,
-                "display_type": "line_section",
-                "name": "First line",
-                "sequence": 5,
-            }
-        )
-        middle_section = order.order_line.create(
-            {
-                "order_id": order.id,
-                "display_type": "line_section",
-                "name": "Middle lines",
-                "sequence": 15,
-            }
-        )
-        last_section = order.order_line.create(
-            {
-                "order_id": order.id,
-                "display_type": "line_section",
-                "name": "Last line",
-                "sequence": 35,
-            }
-        )
+        self._set_sequences_and_sections(order)
         order_lines = order.order_line.sorted()
-        self.assertEqual(order_lines[0], first_section)
-        self.assertEqual(order_lines[2], middle_section)
-        self.assertEqual(order_lines[5], last_section)
         self.product_type_not_service_strategy.copy_sections = True
         order.split_strategy_id = self.product_type_not_service_strategy
         new_order = order.action_split()
+        # As new order includes only consu product, it must include first + middle sections
         self.assertEqual(len(new_order.order_line), 4)
+        self.assertIn("First line", new_order.order_line.mapped("name"))
+        self.assertIn("Middle lines", new_order.order_line.mapped("name"))
+        self.assertNotIn("Last line", new_order.order_line.mapped("name"))
+        # As new order includes only service product, it must include middle + last sections
         self.assertEqual(len(order.order_line), 4)
+        self.assertNotIn("First line", order.order_line.mapped("name"))
+        self.assertIn("Middle lines", order.order_line.mapped("name"))
+        self.assertIn("Last line", order.order_line.mapped("name"))
+
+    def test_split_product_type_not_copy_sections(self):
+        order = self._create_order()
+        self._set_sequences_and_sections(order)
+        self.assertFalse(self.product_type_not_service_strategy.copy_sections)
+        order.split_strategy_id = self.product_type_not_service_strategy
+        new_order = order.action_split()
+        # New order does not have any section
+        self.assertEqual(len(new_order.order_line), 2)
+        self.assertNotIn("line_section", new_order.order_line.mapped("display_type"))
+        # Old order keeps all the sections
+        self.assertEqual(len(order.order_line), 5)
+        self.assertIn("First line", order.order_line.mapped("name"))
+        self.assertIn("Middle lines", order.order_line.mapped("name"))
+        self.assertIn("Last line", order.order_line.mapped("name"))
+
+    def test_split_product_type_not_copy_sections_remove_empty(self):
+        order = self._create_order()
+        self._set_sequences_and_sections(order)
+        # Add extra empty section at the end
+        order.order_line.create(
+            {
+                "order_id": order.id,
+                "display_type": "line_section",
+                "name": "Empty section",
+                "sequence": 999,
+            }
+        )
+        self.assertFalse(self.product_type_not_service_strategy.copy_sections)
+        self.product_type_not_service_strategy.remove_empty_sections_after_split = True
+        order.split_strategy_id = self.product_type_not_service_strategy
+        new_order = order.action_split()
+        # Old order has empty sections removed
+        self.assertEqual(len(order.order_line), 4)
+        self.assertNotIn("First line", order.order_line.mapped("name"))
+        self.assertIn("Middle lines", order.order_line.mapped("name"))
+        self.assertIn("Last line", order.order_line.mapped("name"))
+        self.assertNotIn("Empty section", order.order_line.mapped("name"))

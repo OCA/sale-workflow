@@ -18,6 +18,7 @@ class SaleOrderSplitStrategy(models.Model):
         required=True,
     )
     copy_sections = fields.Boolean()
+    remove_empty_sections_after_split = fields.Boolean()
     copy_notes = fields.Boolean()
 
     def _select_lines_to_split(self, orders):

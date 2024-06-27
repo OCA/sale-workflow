@@ -63,7 +63,7 @@ class SaleOrder(models.Model):
 
     def _has_only_lines_to_split(self, lines_to_split):
         self.ensure_one()
-        return self.order_line.filtered(lambda l: not l.is_delivery) == lines_to_split
+        return self.order_line.filtered(lambda l: not l._is_delivery()) == lines_to_split
 
     def _split_lines(self, sections_dict, lines_to_split, target_order):
         self.ensure_one()
@@ -146,6 +146,12 @@ class SaleOrder(models.Model):
 
     def _postprocess_split_from(self):
         self.ensure_one()
+        # Remove empty sections
+        if not self.split_strategy_id.copy_sections and self.split_strategy_id.remove_empty_sections_after_split:
+            sections_dict = self._get_lines_grouped_by_sections()
+            section_ids_to_unlink = [section_id for section_id, line_ids in sections_dict.items() if len(line_ids) == 1 and section_id == line_ids[0]]
+            section_lines = self.env["sale.order.line"].browse(section_ids_to_unlink)
+            section_lines.unlink()
 
     def _postprocess_split_to(self, origin_order):
         self.ensure_one()
