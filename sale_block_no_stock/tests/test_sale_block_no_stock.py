@@ -239,6 +239,15 @@ class TestSaleBlockNoStock(TransactionCase):
         # No Block: 1 Unit in stock
         self.sale.with_user(self.saleblock_user.id).action_confirm()
         self.assertNotEqual(self.sale.state, "draft")
+        # Check messages
+        self.assertTrue(
+            any(
+                [
+                    "adjusted from" in body
+                    for body in self.sale.message_ids.mapped("body")
+                ]
+            )
+        )
 
     def test_sale_adjust_packaging_quantity(self):
         """Test Wizard Adjusting Packaging Quantity."""
@@ -261,6 +270,15 @@ class TestSaleBlockNoStock(TransactionCase):
         # No Block: 1 Unit (2 Packagings) in stock
         self.sale.with_user(self.saleblock_user.id).action_confirm()
         self.assertNotEqual(self.sale.state, "draft")
+        # Check messages
+        self.assertTrue(
+            any(
+                [
+                    "adjusted from" in body
+                    for body in self.sale.message_ids.mapped("body")
+                ]
+            )
+        )
 
     def test_sale_move_to_new_order(self):
         """Test Wizard Moving to New Order."""
@@ -278,3 +296,20 @@ class TestSaleBlockNoStock(TransactionCase):
         new_orders = wizard.action_move_to_new_order()
         self.assertEqual(len(self.sale.order_line), 0)
         self.assertEqual(len(new_orders.order_line), 1)
+        # Check messages
+        self.assertTrue(
+            any(
+                [
+                    "This sales order has created" in body
+                    for body in self.sale.message_ids.mapped("body")
+                ]
+            )
+        )
+        self.assertTrue(
+            any(
+                [
+                    "This sales order has been modified from" in body
+                    for body in new_orders.message_ids.mapped("body")
+                ]
+            )
+        )
