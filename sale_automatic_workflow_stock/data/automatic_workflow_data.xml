@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo noupdate="1">
+    <!-- Filters -->
+    <record id="automatic_workflow_picking_filter" model="ir.filters">
+        <field name="name">Automatic Workflow Picking Filter</field>
+        <field name="model_id">stock.picking</field>
+        <field
+            name="domain"
+        >[('state', 'in', ['draft', 'confirmed', 'assigned'])]</field>
+        <field name="user_id" ref="base.user_root" />
+    </record>
+    <!-- Processes -->
+    <record
+        id="sale_automatic_workflow.automatic_validation"
+        model="sale.workflow.process"
+    >
+        <field name="picking_policy">one</field>
+        <field name="validate_picking" eval="0" />
+        <field name="picking_filter_id" eval="automatic_workflow_picking_filter" />
+    </record>
+    <record
+        id="sale_automatic_workflow.manual_validation"
+        model="sale.workflow.process"
+    >
+        <field name="picking_policy">one</field>
+        <field name="validate_picking" eval="0" />
+        <field name="picking_filter_id" eval="automatic_workflow_picking_filter" />
+    </record>
+</odoo>
