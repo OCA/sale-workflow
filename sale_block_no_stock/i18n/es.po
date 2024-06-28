@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-03 14:16+0000\n"
-"PO-Revision-Date: 2024-06-03 16:22+0200\n"
+"POT-Creation-Date: 2024-06-28 09:31+0000\n"
+"PO-Revision-Date: 2024-06-28 11:32+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -23,8 +23,8 @@ msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Los valores configurados aquí "
-"son específicos de la empresa.\" groups=\"base.group_multi_company\"/>"
+"<span class=\"fa fa-lg fa-building-o\" title=\"Los valores configurados "
+"aquí son específicos de la empresa.\" groups=\"base.group_multi_company\"/>"
 
 #. module: sale_block_no_stock
 #: model_terms:ir.ui.view,arch_db:sale_block_no_stock.sale_order_block_wizard_view
@@ -63,7 +63,8 @@ msgstr "Bloqueo de ventas por falta de stock"
 #, python-format
 msgid "Cannot launch wizard from sale orders from different companies."
 msgstr ""
-"No se puede abrir el asistente para Pedidos de Venta de diferentes compañías."
+"No se puede abrir el asistente para Pedidos de Venta de diferentes "
+"compañías."
 
 #. module: sale_block_no_stock
 #: model_terms:ir.ui.view,arch_db:sale_block_no_stock.sale_order_block_wizard_view
@@ -133,12 +134,12 @@ msgstr ""
 #. module: sale_block_no_stock
 #: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard__is_packaging_adjustable
 msgid "Is Packaging Adjustable"
-msgstr ""
+msgstr "Es ajustable por Paquetes"
 
 #. module: sale_block_no_stock
 #: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard__is_uom_adjustable
 msgid "Is Uom Adjustable"
-msgstr ""
+msgstr "Es ajustable por UdM"
 
 #. module: sale_block_no_stock
 #: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard____last_update
@@ -189,6 +190,17 @@ msgstr "Envase"
 #: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__product_id
 msgid "Product"
 msgstr "Producto"
+
+#. module: sale_block_no_stock
+#. odoo-python
+#: code:addons/sale_block_no_stock/wizard/sale_order_block_wizard.py:0
+#, python-format
+msgid ""
+"Product <b>%(product)s</b> adjusted from <b>%(init_qty)s</b> %(uom)s to "
+"<b>%(final_qty)s</b> %(uom)s."
+msgstr ""
+"Producto <b>%(product)s</b> ajustado de <b>%(init_qty)s</b> %(uom)s a "
+"<b>%(final_qty)s</b> %(uom)s."
 
 #. module: sale_block_no_stock
 #: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__product_packaging_qty
@@ -244,8 +256,8 @@ msgstr "Pedido de venta"
 #: model:ir.model.fields,help:sale_block_no_stock.field_res_company__sale_line_block_allowed_groups
 #: model:ir.model.fields,help:sale_block_no_stock.field_res_config_settings__sale_line_block_allowed_groups
 msgid ""
-"These groups will be able to bypass the block on the Sale Order Lines if the "
-"quantity is not enough"
+"These groups will be able to bypass the block on the Sale Order Lines if "
+"the quantity is not enough"
 msgstr ""
 "Estos grupos podrán evitar el bloqueo en las Líneas de Orden de Venta si la "
 "cantidad no es suficiente"
@@ -267,8 +279,8 @@ msgid ""
 "stock. Please manage the following products before confirming the order."
 msgstr ""
 "Este pedido no puede ser confirmado porque contiene productos que no están "
-"en stock. Por favor, gestiona los siguientes productos antes de confirmar el "
-"pedido."
+"en stock. Por favor, gestiona los siguientes productos antes de confirmar "
+"el pedido."
 
 #. module: sale_block_no_stock
 #: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__product_uom
@@ -300,14 +312,4 @@ msgstr "No tienes permitido confirmar estos pedidos."
 #. module: sale_block_no_stock
 #: model_terms:ir.ui.view,arch_db:sale_block_no_stock.sale_order_block_wizard_view
 msgid "or"
-msgstr ""
-
-#~ msgid ""
-#~ "You are going to adjust Qty. (Pkg.) to Max. Qty. (Pkg.). Only lines with "
-#~ "Packagings will be modified"
-#~ msgstr ""
-#~ "Vas a ajustar Cant. (Env.) a la Cant. Máx. (Env.). Sólo las líneas con "
-#~ "Envases serán modificadas"
-
-#~ msgid "You are going to adjust Qty. (UoM) to Max. Qty. (UoM)"
-#~ msgstr "Vas a ajustar Cant. (UdM.) a la Cant. Máx. (UdM.)"
+msgstr "o"
