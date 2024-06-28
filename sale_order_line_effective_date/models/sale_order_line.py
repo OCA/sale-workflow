@@ -19,6 +19,13 @@ class SaleOrderLine(models.Model):
         compute_sudo=True,
         help="Completion date of the last delivery order.",
     )
+    order_commitment_date = fields.Datetime(
+        related="order_id.commitment_date",
+        string="Commitment Date",
+        store=True,
+        readonly=True,
+        help="Commitment Date set on the Order",
+    )
 
     @api.depends("move_ids.date")
     def _compute_effective_dates(self):

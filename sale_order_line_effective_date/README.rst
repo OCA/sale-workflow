@@ -29,7 +29,8 @@ Sale Order Line Effective Dates
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module extends the functionality of sale stock and adds "Effective
-date" and "Last Effective date" fields in sale order line.
+date", "Last Effective date" and "Order Commitment Date" fields in sale
+order line.
 
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
@@ -44,8 +45,8 @@ date" and "Last Effective date" fields in sale order line.
 Installation
 ============
 
-To see field "Effective date" and "Last Effective date" you can install
-*sale_order_line_menu*
+To see field "Effective date", "Last Effective date" and "Order
+Commitment Date" you can install *sale_order_line_menu*
 
 Usage
 =====
@@ -53,11 +54,13 @@ Usage
 To use this module, you need to:
 
 1. Go to Sales > Orders > Quotation.
-2. Create a new quotation with 2 units of a storable product.
+2. Create a new quotation with 2 units of a storable product and set
+   Commitment Date.
 3. Confirm quotation.
 4. Click on Delivery Smart Button.
 5. Deliver 1 unit, validate and create backorder.
 6. Deliver the last unit from the backorder.
+7. Check Effective and Commitment Date fields on Sale Order Lines.
 
 Bug Tracker
 ===========
