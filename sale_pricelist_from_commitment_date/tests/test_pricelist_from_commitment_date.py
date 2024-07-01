@@ -42,6 +42,7 @@ class PricelistFromCommitmentDate(TransactionCase):
                 "active": True,
                 "currency_id": cls.env.ref("base.USD").id,
                 "company_id": cls.env.user.company_id.id,
+                "price_based_on_delivery_date": True,
             }
         )
 
