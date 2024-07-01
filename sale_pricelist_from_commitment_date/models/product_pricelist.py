@@ -7,7 +7,7 @@ from odoo import fields, models
 class ProductPricelist(models.Model):
     _inherit = "product.pricelist"
 
-    price_based_on_delivery_date = fields.Boolean(default=True)
+    price_based_on_delivery_date = fields.Boolean()
 
     def _get_product_rule(self, product, quantity, uom=None, date=False, **kwargs):
         force_pricelist_date = self.env.context.get("force_pricelist_date")
