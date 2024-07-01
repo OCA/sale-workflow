@@ -46,6 +46,9 @@ extra option to confirm the Order with errors will appear on the Wizard.
 This module only can block lines with product type 'product' (storable
 products).
 
+Internal notes will be posted on sales when adjusting quantities or
+moving to another orders.
+
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
    Only for development or testing purpose, do not use in production.

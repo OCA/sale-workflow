@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-28 09:31+0000\n"
+"PO-Revision-Date: 2024-06-28 09:31+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -181,6 +183,15 @@ msgstr ""
 #. module: sale_block_no_stock
 #: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__product_id
 msgid "Product"
+msgstr ""
+
+#. module: sale_block_no_stock
+#. odoo-python
+#: code:addons/sale_block_no_stock/wizard/sale_order_block_wizard.py:0
+#, python-format
+msgid ""
+"Product <b>%(product)s</b> adjusted from <b>%(init_qty)s</b> %(uom)s to "
+"<b>%(final_qty)s</b> %(uom)s."
 msgstr ""
 
 #. module: sale_block_no_stock

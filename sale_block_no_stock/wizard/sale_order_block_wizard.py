@@ -228,15 +228,43 @@ class SaleOrderBlockWizardLine(models.TransientModel):
                 subtype_id=mt_note_id,
                 author_id=partner_id,
             )
+            order.message_post_with_view(
+                "mail_message_destiny_link_template.message_destiny_link",
+                values={"self": order, "destiny": new_order, "edit": False},
+                subtype_id=mt_note_id,
+                author_id=partner_id,
+            )
             for record in records:
                 record.sale_line_id.write({"order_id": new_order.id})
             new_orders |= new_order
         return new_orders
 
+    @api.model
+    def _get_adjusted_message(self, product, init_qty, final_qty, uom):
+        return _(
+            "Product <b>%(product)s</b> adjusted "
+            "from <b>%(init_qty)s</b> %(uom)s to <b>%(final_qty)s</b> %(uom)s."
+        ) % {
+            "product": product,
+            "init_qty": init_qty,
+            "final_qty": final_qty,
+            "uom": uom,
+        }
+
     def _action_adjust_uom_quantity(self):
         """Adjust the quantity of the sale lines to the maximum allowed by the UoM."""
+        mt_note_id = self.env.ref("mail.mt_note").id
         adjustable_records = self._get_adjustable_records()
         for record in adjustable_records:
+            record.sale_line_id.order_id.message_post(
+                body=self._get_adjusted_message(
+                    product=record.product_id.display_name,
+                    init_qty=record.product_uom_qty,
+                    final_qty=record.product_uom_allowed_max_qty,
+                    uom=record.product_uom.name,
+                ),
+                subtype_id=mt_note_id,
+            )
             record.sale_line_id.product_uom_qty = record.product_uom_allowed_max_qty
         if not self - adjustable_records:
             return
@@ -244,8 +272,18 @@ class SaleOrderBlockWizardLine(models.TransientModel):
 
     def _action_adjust_packaging_quantity(self):
         """Adjust the quantity of the sale lines to the maximum allowed by the packaging."""
+        mt_note_id = self.env.ref("mail.mt_note").id
         adjustable_records = self._get_adjustable_records(packaging=True)
         for record in adjustable_records:
+            record.sale_line_id.order_id.message_post(
+                body=self._get_adjusted_message(
+                    product=record.product_id.display_name,
+                    init_qty=record.product_packaging_qty,
+                    final_qty=record.product_packaging_allowed_max_qty,
+                    uom=record.product_packaging_id.display_name,
+                ),
+                subtype_id=mt_note_id,
+            )
             record.sale_line_id.product_packaging_qty = (
                 record.product_packaging_allowed_max_qty
             )

@@ -13,9 +13,7 @@
     "license": "LGPL-3",
     "application": False,
     "installable": True,
-    "depends": [
-        "sale_stock",
-    ],
+    "depends": ["sale_stock", "mail_message_destiny_link_template"],
     "data": [
         "security/ir.model.access.csv",
         "views/res_config_settings_views.xml",
