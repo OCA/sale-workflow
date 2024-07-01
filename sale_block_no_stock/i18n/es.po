@@ -23,8 +23,8 @@ msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Los valores configurados "
-"aquí son específicos de la empresa.\" groups=\"base.group_multi_company\"/>"
+"<span class=\"fa fa-lg fa-building-o\" title=\"Los valores configurados aquí "
+"son específicos de la empresa.\" groups=\"base.group_multi_company\"/>"
 
 #. module: sale_block_no_stock
 #: model_terms:ir.ui.view,arch_db:sale_block_no_stock.sale_order_block_wizard_view
@@ -63,8 +63,7 @@ msgstr "Bloqueo de ventas por falta de stock"
 #, python-format
 msgid "Cannot launch wizard from sale orders from different companies."
 msgstr ""
-"No se puede abrir el asistente para Pedidos de Venta de diferentes "
-"compañías."
+"No se puede abrir el asistente para Pedidos de Venta de diferentes compañías."
 
 #. module: sale_block_no_stock
 #: model_terms:ir.ui.view,arch_db:sale_block_no_stock.sale_order_block_wizard_view
@@ -196,11 +195,11 @@ msgstr "Producto"
 #: code:addons/sale_block_no_stock/wizard/sale_order_block_wizard.py:0
 #, python-format
 msgid ""
-"Product <b>%(product)s</b> adjusted from <b>%(init_qty)s</b> %(uom)s to "
-"<b>%(final_qty)s</b> %(uom)s."
+"Product <b>%(product)s</b> adjusted from <b>%(init_qty)s</b> %(uom)s to <b>"
+"%(final_qty)s</b> %(uom)s."
 msgstr ""
-"Producto <b>%(product)s</b> ajustado de <b>%(init_qty)s</b> %(uom)s a "
-"<b>%(final_qty)s</b> %(uom)s."
+"Producto <b>%(product)s</b> ajustado de <b>%(init_qty)s</b> %(uom)s a <b>"
+"%(final_qty)s</b> %(uom)s."
 
 #. module: sale_block_no_stock
 #: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__product_packaging_qty
@@ -256,8 +255,8 @@ msgstr "Pedido de venta"
 #: model:ir.model.fields,help:sale_block_no_stock.field_res_company__sale_line_block_allowed_groups
 #: model:ir.model.fields,help:sale_block_no_stock.field_res_config_settings__sale_line_block_allowed_groups
 msgid ""
-"These groups will be able to bypass the block on the Sale Order Lines if "
-"the quantity is not enough"
+"These groups will be able to bypass the block on the Sale Order Lines if the "
+"quantity is not enough"
 msgstr ""
 "Estos grupos podrán evitar el bloqueo en las Líneas de Orden de Venta si la "
 "cantidad no es suficiente"
@@ -279,8 +278,8 @@ msgid ""
 "stock. Please manage the following products before confirming the order."
 msgstr ""
 "Este pedido no puede ser confirmado porque contiene productos que no están "
-"en stock. Por favor, gestiona los siguientes productos antes de confirmar "
-"el pedido."
+"en stock. Por favor, gestiona los siguientes productos antes de confirmar el "
+"pedido."
 
 #. module: sale_block_no_stock
 #: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__product_uom
