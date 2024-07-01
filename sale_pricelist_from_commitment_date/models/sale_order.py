@@ -10,7 +10,7 @@ class SaleOrder(models.Model):
     def _get_pricelist_date(self):
         if self.env.context.get("force_pricelist_date"):
             return self.env.context["force_pricelist_date"]
-        if self.pricelist_id.price_based_on_delivery_date and self.commitment_date:
-            return self.commitment_date
+        if self.pricelist_id.price_based_on_delivery_date:
+            return self.commitment_date or self.expected_date
         else:
             return False
