@@ -43,3 +43,8 @@ in server timezone
 Installation of this module sets *sale_planner_calendar.action_open_sale_order*
 system parameter as **sale_order_product_picker.action_open_picker_views** to show
 new picker view from sale calendar planner.
+
+When the +1 button is used, the changes are added to a processing queue. By default, 
+this queue is processed after one second, but this can be changed by using the system 
+parameter **sale_order_product_picker.delay** and setting the number of seconds to 
+wait before writing the lines.

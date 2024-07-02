@@ -260,6 +260,7 @@
                             <field name="product_id" />
                             <field name="sale_line_id" />
                             <field name="is_in_order" />
+                            <field name="to_process" />
                             <field name="product_uom_qty" />
                             <field name="qty_available" />
                             <field name="price_unit" />
@@ -269,6 +270,7 @@
                             <field name="multiple_discounts" />
                             <field name="uom_id" />
                             <field name="compute_price_unit" />
+                            <field name="unit_factor" />
                             <templates>
                                 <t t-name="kanban-box">
                                     <div class="oe_kanban_card oe_kanban_global_click">
@@ -290,8 +292,19 @@
                                                     <div class="row">
                                                         <div class="col">
                                                             <strong
-                                                                t-out="record.product_id.value"
-                                                                t-attf-class="#{record.is_in_order.raw_value ? 'text-success' : ''}"
+                                                                t-if="record.to_process.raw_value"
+                                                                t-esc="record.product_id.value"
+                                                                class="text-info"
+                                                                id="picker_processing"
+                                                            />
+                                                            <strong
+                                                                t-elif="record.is_in_order.raw_value"
+                                                                t-esc="record.product_id.value"
+                                                                class="text-success"
+                                                            />
+                                                            <strong
+                                                                t-else=""
+                                                                t-esc="record.product_id.value"
                                                             />
                                                         </div>
                                                     </div>

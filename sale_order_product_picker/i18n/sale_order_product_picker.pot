@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-22 12:42+0000\n"
-"PO-Revision-Date: 2024-03-22 12:42+0000\n"
+"POT-Creation-Date: 2024-07-02 12:21+0000\n"
+"PO-Revision-Date: 2024-07-02 12:21+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -321,8 +321,23 @@ msgid "Search product"
 msgstr ""
 
 #. module: sale_order_product_picker
+#: model:ir.model,name:sale_order_product_picker.model_ir_config_parameter
+msgid "System Parameter"
+msgstr ""
+
+#. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__times_delivered
 msgid "Times Delivered"
+msgstr ""
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__to_process
+msgid "To Process"
+msgstr ""
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__unit_factor
+msgid "Unit Factor"
 msgstr ""
 
 #. module: sale_order_product_picker
@@ -348,6 +363,13 @@ msgstr ""
 #. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__warehouse_id
 msgid "Warehouse"
+msgstr ""
+
+#. module: sale_order_product_picker
+#. odoo-javascript
+#: code:addons/sale_order_product_picker/static/src/form/form_controller.esm.js:0
+#, python-format
+msgid "You must wait for the picker lines to be written"
 msgstr ""
 
 #. module: sale_order_product_picker

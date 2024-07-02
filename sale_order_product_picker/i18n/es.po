@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 09:25+0000\n"
-"PO-Revision-Date: 2024-04-10 10:55+0000\n"
+"POT-Creation-Date: 2024-07-02 12:21+0000\n"
+"PO-Revision-Date: 2024-07-02 14:24+0200\n"
 "Last-Translator: \"Pedro M. Baeza\" <pedro.baeza@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. module: sale_order_product_picker
 #: model_terms:ir.ui.view,arch_db:sale_order_product_picker.view_order_form
@@ -339,9 +339,24 @@ msgid "Search product"
 msgstr "Buscar producto"
 
 #. module: sale_order_product_picker
+#: model:ir.model,name:sale_order_product_picker.model_ir_config_parameter
+msgid "System Parameter"
+msgstr "Parámetro del sistema"
+
+#. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__times_delivered
 msgid "Times Delivered"
 msgstr "Veces entregado"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__to_process
+msgid "To Process"
+msgstr "A procesar"
+
+#. module: sale_order_product_picker
+#: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__unit_factor
+msgid "Unit Factor"
+msgstr "Factor de la unidad"
 
 #. module: sale_order_product_picker
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__unit_name
@@ -367,6 +382,13 @@ msgstr "Usar dirección de entrega"
 #: model:ir.model.fields,field_description:sale_order_product_picker.field_sale_order_picker__warehouse_id
 msgid "Warehouse"
 msgstr "Almacén"
+
+#. module: sale_order_product_picker
+#. odoo-javascript
+#: code:addons/sale_order_product_picker/static/src/form/form_controller.esm.js:0
+#, python-format
+msgid "You must wait for the picker lines to be written"
+msgstr "Debes esperar a que las lineas del catálogo estén escritas"
 
 #. module: sale_order_product_picker
 #: model:ir.model,name:sale_order_product_picker.model_sale_order_picker

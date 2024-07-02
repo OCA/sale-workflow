@@ -16,6 +16,7 @@ class SaleOrderPicker(models.Model):
     product_image = fields.Image(related="product_id.image_256")
     sale_line_id = fields.Many2one(comodel_name="sale.order.line")
     is_in_order = fields.Boolean()
+    to_process = fields.Boolean()
     product_uom_qty = fields.Float(string="Quantity", digits="Product Unit of Measure")
     uom_id = fields.Many2one(comodel_name="uom.uom", related="product_id.uom_id")
     unit_name = fields.Char(compute="_compute_unit_name")
@@ -50,6 +51,7 @@ class SaleOrderPicker(models.Model):
         ondelete="restrict",
     )
     compute_price_unit = fields.Boolean(store=False)
+    unit_factor = fields.Float(compute="_compute_unit_factor")
 
     @api.depends("product_id", "warehouse_id")
     def _compute_warehouse_id(self):
@@ -321,3 +323,12 @@ class SaleOrderPicker(models.Model):
                 line.unit_name = line.product_id.sale_secondary_uom_id.display_name
             else:
                 line.unit_name = line.product_id.uom_id.name
+
+    @api.depends("product_id")
+    def _compute_unit_factor(self):
+        secondary_unit_installed = "sale_secondary_uom_id" in self.product_id._fields
+        for line in self:
+            if secondary_unit_installed and line.product_id.sale_secondary_uom_id:
+                line.unit_factor = line.product_id.sale_secondary_uom_id.factor
+            else:
+                line.unit_factor = 1
