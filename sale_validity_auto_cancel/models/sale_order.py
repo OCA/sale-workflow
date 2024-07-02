@@ -24,7 +24,10 @@ class SaleOrder(models.Model):
             )
             expired_states = self._get_expired_order_states()
             orders = self.env["sale.order"].search(
-                [("state", "in", expired_states), ("validity_date", "<", threshold)]
+                [
+                    ("state", "in", expired_states),
+                    ("validity_date", "<", threshold),
+                ]
             )
             for order in orders:
                 try:
