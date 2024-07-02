@@ -41,3 +41,10 @@ class TestSaleValidityAutoCancel(TransactionCase):
         self.assertEqual(so.state, "draft")
         so.cron_sale_validity_auto_cancel()
         self.assertEqual(so.state, "cancel")
+
+    def test_sale_validity_auto_cancel_keep_so(self):
+        self.partner.write({"auto_cancel_expired_so": False})
+        so = self.create_so()
+        self.assertEqual(so.state, "draft")
+        so.cron_sale_validity_auto_cancel()
+        self.assertEqual(so.state, "draft")

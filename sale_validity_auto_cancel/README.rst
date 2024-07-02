@@ -72,6 +72,7 @@ Authors
 -------
 
 * ForgeFlow
+* OERP Canada
 
 Contributors
 ------------
