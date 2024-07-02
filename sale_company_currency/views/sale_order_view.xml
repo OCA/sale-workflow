@@ -8,6 +8,22 @@
             <field name="amount_total" position="after">
                 <field name='company_currency_id' invisible="1" />
                 <field
+                    name="amount_untaxed_curr"
+                    sum="Total"
+                    string="Total Untaxed (Company Currency)"
+                    widget="monetary"
+                    options="{'currency_field': 'company_currency_id'}"
+                    optional="hide"
+                />
+                <field
+                    name="amount_tax_curr"
+                    sum="Total"
+                    string="Total Tax (Company Currency)"
+                    widget="monetary"
+                    options="{'currency_field': 'company_currency_id'}"
+                    optional="hide"
+                />
+                <field
                     name="amount_total_curr"
                     sum="Total"
                     string="Total (Company Currency)"
@@ -26,6 +42,18 @@
             <field name="tax_totals" position="after">
                 <field name='company_currency_id' invisible="1" />
                 <field
+                    name="amount_untaxed_curr"
+                    string="Total Untaxed (Company Currency)"
+                    widget="monetary"
+                    options="{'currency_field': 'company_currency_id'}"
+                />
+                <field
+                    name="amount_tax_curr"
+                    string="Total Tax (Company Currency)"
+                    widget="monetary"
+                    options="{'currency_field': 'company_currency_id'}"
+                />
+                <field
                     name="amount_total_curr"
                     string="Total (Company Currency)"
                     widget="monetary"
@@ -41,6 +69,22 @@
         <field name="arch" type="xml">
             <field name="amount_total" position="after">
                 <field name='company_currency_id' invisible="1" />
+                <field
+                    name="amount_untaxed_curr"
+                    sum="Total"
+                    string="Total Untaxed (Company Currency)"
+                    widget="monetary"
+                    options="{'currency_field': 'company_currency_id'}"
+                    optional="hide"
+                />
+                <field
+                    name="amount_tax_curr"
+                    sum="Total"
+                    string="Total Tax (Company Currency)"
+                    widget="monetary"
+                    options="{'currency_field': 'company_currency_id'}"
+                    optional="hide"
+                />
                 <field
                     name="amount_total_curr"
                     sum="Total"
