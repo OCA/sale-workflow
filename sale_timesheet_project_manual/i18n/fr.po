@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_timesheet_project_manual
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-16 07:18+0000\n"
+"PO-Revision-Date: 2023-06-16 07:18+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_timesheet_project_manual
+#: model:ir.model.fields,field_description:sale_timesheet_project_manual.field_sale_order__action_project_manual_allowed
+msgid "Action Project Manual Allowed"
+msgstr "Action Project Manual Allowed"
+
+#. module: sale_timesheet_project_manual
+#: model_terms:ir.ui.view,arch_db:sale_timesheet_project_manual.sale_order_form_view
+msgid "Generate Project/Task"
+msgstr "Générer Projet/Tâche"
+
+#. module: sale_timesheet_project_manual
+#: model:ir.model,name:sale_timesheet_project_manual.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_timesheet_project_manual
+#. odoo-python
+#: code:addons/sale_timesheet_project_manual/models/sale_order.py:0
+#, python-format
+msgid ""
+"You can anticipate the project creation only for draft quotations which "
+"contain service with timesheet generation. (SO: %s)"
+msgstr ""
+"Vous pouvez anticiper la création d'un projet seulement pour les devis "
+"brouillons qui contiennent un service générant des feuilles de temps. (SO: "
+"%s)"
