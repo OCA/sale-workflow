@@ -77,6 +77,9 @@ Contributors
 ------------
 
 -  Jordi Masvidal <jordi.masvidal@forgeflow.com>
+-  `OERP Canada <https://www.oerp.ca/>`__:
+
+   -  Foram Darji <fd@oerp.ca>
 
 Maintainers
 -----------
