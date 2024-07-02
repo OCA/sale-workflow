@@ -1,4 +1,5 @@
 # Copyright 2023 ForgeFlow S.L.
+# Copyright 2024 OERP Canada <https://www.oerp.ca>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 import logging
 
@@ -11,6 +12,10 @@ _logger = logging.getLogger(__name__)
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
+
+    auto_cancel_expired_so = fields.Boolean(
+        related="partner_id.auto_cancel_expired_so", string="Auto Cancel"
+    )
 
     def _get_expired_order_states(self):
         # Can be inherited to exclude/include order states
@@ -27,6 +32,7 @@ class SaleOrder(models.Model):
                 [
                     ("state", "in", expired_states),
                     ("validity_date", "<", threshold),
+                    ("auto_cancel_expired_so", "=", True),
                 ]
             )
             for order in orders:
