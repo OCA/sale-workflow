@@ -51,7 +51,7 @@ class TestSplitStrategy(SavepointCase):
                 line_form.product_id = product
                 line_form.product_uom_qty = 1
         return order_form.save()
-    
+
     def _set_sequences_and_sections(self, order):
         for seq, line in enumerate(order.order_line, 1):
             line.sequence = seq * 10
@@ -110,7 +110,7 @@ class TestSplitStrategy(SavepointCase):
     def test_split_product_type_copy_sections(self):
         order = self._create_order()
         self._set_sequences_and_sections(order)
-        order_lines = order.order_line.sorted()
+        order.order_line.sorted()
         self.product_type_not_service_strategy.copy_sections = True
         order.split_strategy_id = self.product_type_not_service_strategy
         new_order = order.action_split()
@@ -155,7 +155,7 @@ class TestSplitStrategy(SavepointCase):
         self.assertFalse(self.product_type_not_service_strategy.copy_sections)
         self.product_type_not_service_strategy.remove_empty_sections_after_split = True
         order.split_strategy_id = self.product_type_not_service_strategy
-        new_order = order.action_split()
+        order.action_split()
         # Old order has empty sections removed
         self.assertEqual(len(order.order_line), 4)
         self.assertNotIn("First line", order.order_line.mapped("name"))

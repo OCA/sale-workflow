@@ -18,7 +18,10 @@
                         <group>
                             <field name="line_filter_id" />
                             <field name="copy_sections" />
-                            <field name="remove_empty_sections_after_split" attrs="{'invisible': [('copy_sections', '=', False)]}" />
+                            <field
+                                name="remove_empty_sections_after_split"
+                                attrs="{'invisible': [('copy_sections', '=', False)]}"
+                            />
                             <field name="copy_notes" />
                         </group>
                     </group>

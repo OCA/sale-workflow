@@ -24,7 +24,11 @@ class SaleOrderSplitStrategy(models.Model):
     def _select_lines_to_split(self, orders):
         self.ensure_one()
         domain = self._get_lines_to_split_domain(orders)
-        return self.env["sale.order.line"].search(domain).filtered(lambda li: not li._is_delivery())
+        return (
+            self.env["sale.order.line"]
+            .search(domain)
+            .filtered(lambda li: not li._is_delivery())
+        )
 
     def _get_lines_to_split_domain(self, orders):
         domain = safe_eval(self.line_filter_id.domain)
