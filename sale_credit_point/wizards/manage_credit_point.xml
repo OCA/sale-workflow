@@ -38,7 +38,7 @@
   <record id="action_add_credit_point" model="ir.actions.act_window">
       <field name="name">Update Credit Point</field>
       <field name="binding_model_id" ref="base.model_res_partner" />
-      <field name="binding_view_types">form</field>
+      <field name="binding_view_types">list,form</field>
       <field name="res_model">wiz.manage.credit.point</field>
       <field name="view_mode">form</field>
       <field name="view_id" ref="wiz_manage_credit_point" />

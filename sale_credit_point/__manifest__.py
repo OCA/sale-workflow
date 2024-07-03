@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Credit Points",
-    "version": "15.0.1.0.2",
+    "version": "15.0.1.1.0",
     "category": "Sales",
     "license": "AGPL-3",
     "author": "Camptocamp, Odoo Community Association (OCA)",
