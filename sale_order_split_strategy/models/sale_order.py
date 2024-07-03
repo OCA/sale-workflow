@@ -122,7 +122,12 @@ class SaleOrder(models.Model):
     def _prepare_order_split_copy_defaults(self):
         """Hook to customize values used on new sale order from split"""
         self.ensure_one()
-        return {"order_line": False}
+        return {
+            "order_line": False,
+            "client_order_ref": self.client_order_ref,
+            "reference": self.reference,
+            "commitment_date": self.commitment_date,
+        }
 
     def _prepare_order_split_line_move_defaults(self):
         """Hook to customize values used on new sale order line from split"""
