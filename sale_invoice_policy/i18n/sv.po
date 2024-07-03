@@ -1,0 +1,124 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_invoice_policy
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e-20240607\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-03 19:32+0000\n"
+"PO-Revision-Date: 2024-07-03 21:33+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#. module: sale_invoice_policy
+#. odoo-python
+#: code:addons/sale_invoice_policy/models/res_partner.py:0
+#, python-format
+msgid "%d partners have been updated with the default invoice policy (%s)."
+msgstr "%d-partners har uppdaterats med standardfakturapolicyn (%s)."
+
+#. module: sale_invoice_policy
+#: model:ir.model,name:sale_invoice_policy.model_res_config_settings
+msgid "Config Settings"
+msgstr "Inställningar"
+
+#. module: sale_invoice_policy
+#: model:ir.model,name:sale_invoice_policy.model_res_partner
+msgid "Contact"
+msgstr "Kontakt"
+
+#. module: sale_invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_partner__default_invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_users__default_invoice_policy
+msgid "Default Invoicing Policy"
+msgstr "Standardfaktureringspolicy"
+
+#. module: sale_invoice_policy
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__res_partner__default_invoice_policy__delivery
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__delivery
+msgid "Delivered quantities"
+msgstr "Levererade kvantiteter"
+
+#. module: sale_invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order__invoice_policy
+msgid "Invoice Policy"
+msgstr "Fakturapolicy"
+
+#. module: sale_invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order__invoice_policy_required
+msgid "Invoice Policy Required"
+msgstr "Fakturapolicy krävs"
+
+#. module: sale_invoice_policy
+#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
+msgid "Invoice Policy required in Sale Orders"
+msgstr "Fakturapolicy krävs i försäljningsorder"
+
+#. module: sale_invoice_policy
+#: model:ir.model.fields,help:sale_invoice_policy.field_sale_order__invoice_policy
+msgid ""
+"Ordered Quantity: Invoice based on the quantity the customer ordered.\n"
+"Delivered Quantity: Invoiced based on the quantity the vendor delivered (time or deliveries)."
+msgstr ""
+"Beställd Kvantitet: Fakturera baserat på den kvantitet kunden beställt\n"
+"Levererad Kvantitet: Faktureras baserat på den kvantitet leverantören levererat (tid eller leveranser)."
+
+#. module: sale_invoice_policy
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__res_partner__default_invoice_policy__order
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__order
+msgid "Ordered quantities"
+msgstr "Beställda kvantiteter"
+
+#. module: sale_invoice_policy
+#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
+msgid "Sale Invoice Policy"
+msgstr "Försäljningsfaktureringspolicy"
+
+#. module: sale_invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
+msgid "Sale Invoice Policy Required"
+msgstr "Krav på försäljningsfaktureringspolicy"
+
+#. module: sale_invoice_policy
+#: model:ir.model,name:sale_invoice_policy.model_sale_order
+msgid "Sales Order"
+msgstr "Order"
+
+#. module: sale_invoice_policy
+#: model:ir.model,name:sale_invoice_policy.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Orderrad"
+
+#. module: sale_invoice_policy
+#: model:ir.actions.server,name:sale_invoice_policy.action_set_default_invoice_policy
+msgid "Set Default Invoice Policy"
+msgstr "Ange standardfaktureringspolicy"
+
+#. module: sale_invoice_policy
+#. odoo-python
+#: code:addons/sale_invoice_policy/models/res_config_settings.py:0
+#: model:ir.model.fields,help:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
+#, python-format
+msgid "This makes Invoice Policy required on Sale Orders"
+msgstr "Detta gör faktureringspolicy obligatorisk för försäljningsorder"
+
+#. module: sale_invoice_policy
+#: model:ir.model.fields,help:sale_invoice_policy.field_res_partner__default_invoice_policy
+#: model:ir.model.fields,help:sale_invoice_policy.field_res_users__default_invoice_policy
+msgid "This will be the default invoicing policy for this partner when creating new sales orders."
+msgstr ""
+"Detta kommer att vara standardfaktureringspolicyn för denna partner när nya försäljningsorder skapas."
+
+#. module: sale_invoice_policy
+#. odoo-python
+#: code:addons/sale_invoice_policy/models/res_partner.py:0
+#, python-format
+msgid "Update Complete"
+msgstr "Uppdateringen har slutförts"

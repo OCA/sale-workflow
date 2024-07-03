@@ -10,9 +10,10 @@
     "category": "Sales Management",
     "version": "16.0.2.0.0",
     "license": "AGPL-3",
-    "depends": ["sale_stock"],
+    "depends": ["base","sale_stock","sale","account"],
     "data": [
         "views/res_config_settings_view.xml",
         "views/sale_view.xml",
+        "views/res_partner_views.xml",
     ],
 }
