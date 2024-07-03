@@ -13,7 +13,7 @@ class SaleOrderLine(models.Model):
         "product_uom",
         "product_uom_qty",
         "order_id.commitment_date",
-        "order_id.pricelist_id.price_based_on_delivery_date",
+        "order_id.pricelist_id",
     )
     def _compute_price_unit(self):
         for order, lines in groupby(self, key=lambda line: line.order_id):
@@ -29,7 +29,7 @@ class SaleOrderLine(models.Model):
         "product_uom",
         "product_uom_qty",
         "order_id.commitment_date",
-        "order_id.pricelist_id.price_based_on_delivery_date",
+        "order_id.pricelist_id",
     )
     def _compute_pricelist_item_id(self):
         for order, lines in groupby(self, key=lambda line: line.order_id):
