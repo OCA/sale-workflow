@@ -2,3 +2,4 @@
 - [Tecnativa](https://www.tecnativa.com):
   - Sergio Teruel
 - Tharathip Chaweewongphan \<<tharathipc@ecosoft.co.th>\>
+- Eduardo de Miguel \<<info@moduon.team>\>

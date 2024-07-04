@@ -31,6 +31,9 @@ Sale Tier Validation
 This module extends the functionality of Sale Orders to support a tier
 validation process.
 
+Also adds *Skip Sale Tier Validations* security group to allow users
+skip validation process only for Sale Tiers.
+
 **Table of contents**
 
 .. contents::
@@ -103,6 +106,7 @@ Contributors
    -  Sergio Teruel
 
 -  Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
+-  Eduardo de Miguel <info@moduon.team>
 
 Maintainers
 -----------

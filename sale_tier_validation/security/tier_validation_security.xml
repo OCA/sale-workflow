@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="0">
+    <!-- Allows the user to skip Sale Tier Validations -->
+    <record id="skip_sale_validations_group" model="res.groups">
+        <field name="name">Skip Sale Tier Validations</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+</odoo>

@@ -1,7 +1,8 @@
 # Copyright 2019 Open Source Integrators
+# Copyright 2024 Moduon Team
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import models
+from odoo import api, models
 
 
 class SaleOrder(models.Model):
@@ -20,3 +21,10 @@ class SaleOrder(models.Model):
 
     def _get_rejected_notification_subtype(self):
         return "sale_tier_validation.sale_order_tier_validation_rejected"
+
+    @api.model
+    def _user_can_skip_validation(self):
+        res = super()._user_can_skip_validation()
+        return res or self.env.user.has_group(
+            "sale_tier_validation.skip_sale_validations_group"
+        )

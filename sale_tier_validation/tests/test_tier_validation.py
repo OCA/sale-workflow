@@ -1,7 +1,7 @@
 # Copyright 2020 Sergio Teruel <sergio.teruel@tecnativa.com>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 from odoo.exceptions import ValidationError
-from odoo.tests import common, tagged
+from odoo.tests import Form, common, tagged
 
 
 @tagged("post_install", "-at_install")
@@ -46,8 +46,8 @@ class TestSaleTierValidation(common.TransactionCase):
             "sale.order", self.tier_def_obj._get_tier_validation_model_names()
         )
 
-    def test_validation_sale_order(self):
-        so = self.env["sale.order"].create(
+    def _create_sale_order(self):
+        return self.env["sale.order"].create(
             {
                 "partner_id": self.customer.id,
                 "order_line": [
@@ -66,10 +66,39 @@ class TestSaleTierValidation(common.TransactionCase):
                 "pricelist_id": self.customer.property_product_pricelist.id,
             }
         )
+
+    def test_validation_sale_order(self):
+        so = self._create_sale_order()
         with self.assertRaises(ValidationError):
             so.action_confirm()
         so.order_line.price_unit = 45
         so.request_validation()
+        so.with_user(self.test_user_1).validate_tier()
+        so.action_confirm()
+        self.assertEqual(so.state, "sale")
+
+    def test_user_can_skip_validations(self):
+        so = self._create_sale_order()
+        with self.assertRaises(ValidationError):
+            so.action_confirm()
+        so.request_validation()
+        so_user_1 = so.with_user(self.test_user_1)
+        so_user_1.invalidate_model()
+        # Cannot edit order under validation
+        self.assertFalse(so_user_1._user_can_skip_validation())
+        with self.assertRaises(AssertionError):
+            with Form(so_user_1) as f_so:
+                f_so.origin = "test"
+
+        # Add skip group
+        skip_group = self.env.ref("sale_tier_validation.skip_sale_validations_group")
+        self.test_user_1.write({"groups_id": [(4, skip_group.id)]})
+        so_user_1_skip = so.with_user(self.test_user_1)
+        # Can edit the price under validation
+        self.assertTrue(so_user_1_skip._user_can_skip_validation())
+        with Form(so_user_1_skip) as f_so:
+            f_so.origin = "test"
+        so.invalidate_model()
         so.with_user(self.test_user_1).validate_tier()
         so.action_confirm()
         self.assertEqual(so.state, "sale")
