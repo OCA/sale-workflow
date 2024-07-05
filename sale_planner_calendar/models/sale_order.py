@@ -28,7 +28,7 @@ class SaleOrder(models.Model):
                 limit=1,
             )
             if delivery_event:
-                order.commitment_date = delivery_event.start_datetime
+                order.commitment_date = delivery_event.start
         return super()._action_confirm()
 
     def _prepare_calendar_event_planner(self):
