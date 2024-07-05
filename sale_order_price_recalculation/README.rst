@@ -37,6 +37,8 @@ It is launched manually as a button to get the user decide if he/she wants to
 recalculate prices when pricelist is changed or after duplicating a sale order
 to update or not sales information.
 
+It also adds an action to update prices on several sale orders.
+
 **Table of contents**
 
 .. contents::
@@ -58,6 +60,8 @@ custom descriptions.
 
 .. image:: https://raw.githubusercontent.com/sale_order_price_recalculation/static/description/sale_order_price_recalculation.png
     :alt: Sale order price recalculation
+
+You may also select several orders to recompute prices at once.
 
 Known issues / Roadmap
 ======================
@@ -97,6 +101,7 @@ Contributors
 * David Vidal <david.vidal@tecnativa.com>
 * Duc, Dao Dong <duc.dd@komit-consulting.com> (https://komit-consulting.com)
 * Raf Ven <raf.ven@dynapps.be>
+* David Béal <david.beal@akretion.com>
 
 Maintainers
 ~~~~~~~~~~~
