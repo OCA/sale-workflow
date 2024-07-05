@@ -1,0 +1,1 @@
+odoo14-addon-product_next_reception_date @ git+https://github.com/OCA/product-attribute/pull/1712/head#subdirectory=setup/product_next_reception_date
