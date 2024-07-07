@@ -19,8 +19,10 @@ msgstr ""
 
 #. module: sale_global_discount
 #: model_terms:ir.ui.view,arch_db:sale_global_discount.report_saleorder_document
-msgid "<strong>Global Discounts</strong><br/>"
-msgstr "<strong>Descuentos Globales</strong><br/>"
+msgid ""
+"<strong>Global Discounts</strong>\n"
+"                        <br/>"
+msgstr ""
 
 #. module: sale_global_discount
 #: model_terms:ir.ui.view,arch_db:sale_global_discount.report_saleorder_document
@@ -38,7 +40,8 @@ msgid "Amount Untaxed Before Discounts"
 msgstr "Base Imponible sin Descuentos"
 
 #. module: sale_global_discount
-#: code:addons/sale_global_discount/models/sale_order.py:74
+#. odoo-python
+#: code:addons/sale_global_discount/models/sale_order.py:0
 #, python-format
 msgid "Incompatible taxes found for global discounts."
 msgstr "Se han encontrado impuestos incompatibles para descuentos globales."
@@ -56,8 +59,18 @@ msgstr "Venta Descuentos Globales (solo lectura)"
 
 #. module: sale_global_discount
 #: model:ir.model,name:sale_global_discount.model_sale_order
-msgid "Sale Order"
-msgstr "Pedido de venta"
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_global_discount
+#: model:ir.model,name:sale_global_discount.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_global_discount
+#: model:ir.model,name:sale_global_discount.model_account_tax
+msgid "Tax"
+msgstr ""
 
 #. module: sale_global_discount
 #: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__amount_global_discount
@@ -65,10 +78,17 @@ msgid "Total Global Discounts"
 msgstr "Total Descuentos Globales"
 
 #. module: sale_global_discount
-#: code:addons/sale_global_discount/models/sale_order.py:67
+#. odoo-python
+#: code:addons/sale_global_discount/models/sale_order.py:0
 #, python-format
 msgid "With global discounts, taxes in lines are required."
 msgstr "Con descuentos globales, se requieren impuestos en líneas."
+
+#~ msgid "<strong>Global Discounts</strong><br/>"
+#~ msgstr "<strong>Descuentos Globales</strong><br/>"
+
+#~ msgid "Sale Order"
+#~ msgstr "Pedido de venta"
 
 #~ msgid "Quotation"
 #~ msgstr "Presupuesto"
