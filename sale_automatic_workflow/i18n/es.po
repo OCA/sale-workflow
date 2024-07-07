@@ -35,7 +35,6 @@ msgstr "Flujo automático"
 
 #. module: sale_automatic_workflow
 #: model:ir.actions.server,name:sale_automatic_workflow.ir_cron_automatic_workflow_job_ir_actions_server
-#: model:ir.cron,cron_name:sale_automatic_workflow.ir_cron_automatic_workflow_job
 msgid "Automatic Workflow Job"
 msgstr "Trabajo de flujo de trabajo automático"
 
@@ -52,11 +51,6 @@ msgid ""
 msgstr ""
 "Sea cuidadoso si guarda el pedido con este ajuste: puede auto-confirmarse "
 "incluso aunque lo esté editando."
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__validate_picking
-msgid "Confirm and Transfer Picking"
-msgstr "Confirmar y transferir albarán"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__create_invoice
@@ -84,16 +78,6 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__create_date
 msgid "Created on"
 msgstr "Creado el"
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__sale_workflow_process__picking_policy__one
-msgid "Deliver all products at once"
-msgstr "Enviar todos los productos a la vez"
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__sale_workflow_process__picking_policy__direct
-msgid "Deliver each product when available"
-msgstr "Enviar cada producto cuando esté disponible"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__display_name
@@ -151,12 +135,6 @@ msgid "Journal Entry"
 msgstr "Entrada diaria"
 
 #. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job____last_update
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
-
-#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__write_uid
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__write_uid
 msgid "Last Updated by"
@@ -189,16 +167,6 @@ msgid "Order Filter Domain"
 msgstr "Dominio del filtro de pedido"
 
 #. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_filter_id
-msgid "Picking Filter"
-msgstr "Filtro de albarán"
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_filter_domain
-msgid "Picking Filter Domain"
-msgstr "Dominio del filtro de albarán"
-
-#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__register_payment
 msgid "Register Payment"
 msgstr "Registrar pago"
@@ -228,7 +196,6 @@ msgstr "Dominio del filtro para bloqueo de pedidos"
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_bank_statement_line__workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move__workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_payment__workflow_process_id
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_picking__workflow_process_id
 msgid "Sale Workflow Process"
 msgstr "Proceso del flujo de venta"
 
@@ -270,21 +237,6 @@ msgstr "Establezca el diario por defecto a usar en las facturas"
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
 msgid "Set selection based on a search filter:"
 msgstr "Establecer selección basada en un filtro de búsqueda:"
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_policy
-msgid "Shipping Policy"
-msgstr "Política de envío"
-
-#. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_stock_move
-msgid "Stock Move"
-msgstr "Movimiento de existencia"
-
-#. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_stock_picking
-msgid "Transfer"
-msgstr "Transferir"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__validate_invoice
@@ -338,6 +290,33 @@ msgstr "Opciones del flujo"
 #, python-format
 msgid "Workflow Warning"
 msgstr "Aviso del flujo"
+
+#~ msgid "Confirm and Transfer Picking"
+#~ msgstr "Confirmar y transferir albarán"
+
+#~ msgid "Deliver all products at once"
+#~ msgstr "Enviar todos los productos a la vez"
+
+#~ msgid "Deliver each product when available"
+#~ msgstr "Enviar cada producto cuando esté disponible"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
+
+#~ msgid "Picking Filter"
+#~ msgstr "Filtro de albarán"
+
+#~ msgid "Picking Filter Domain"
+#~ msgstr "Dominio del filtro de albarán"
+
+#~ msgid "Shipping Policy"
+#~ msgstr "Política de envío"
+
+#~ msgid "Stock Move"
+#~ msgstr "Movimiento de existencia"
+
+#~ msgid "Transfer"
+#~ msgstr "Transferir"
 
 #~ msgid "Automatic Workflow Create Invoice Filter"
 #~ msgstr "Filtro de flujo automático de creación de factura"

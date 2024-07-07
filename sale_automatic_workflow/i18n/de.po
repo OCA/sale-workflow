@@ -36,7 +36,6 @@ msgstr "Automatischer Workflow"
 
 #. module: sale_automatic_workflow
 #: model:ir.actions.server,name:sale_automatic_workflow.ir_cron_automatic_workflow_job_ir_actions_server
-#: model:ir.cron,cron_name:sale_automatic_workflow.ir_cron_automatic_workflow_job
 msgid "Automatic Workflow Job"
 msgstr "Automatischer Workflow-Job"
 
@@ -53,11 +52,6 @@ msgid ""
 msgstr ""
 "Seien Sie vorsichtig, wenn Sie einen Auftrag mit dieser Einstellung "
 "speichern, kann dieser bereits beim Bearbeiten auto-bestätigt werden."
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__validate_picking
-msgid "Confirm and Transfer Picking"
-msgstr "Kommissionierung bestätigen und übertragen"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__create_invoice
@@ -85,16 +79,6 @@ msgstr "Angelegt durch"
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__create_date
 msgid "Created on"
 msgstr "Angelegt am"
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__sale_workflow_process__picking_policy__one
-msgid "Deliver all products at once"
-msgstr "Alle Produkte auf einmal liefern"
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__sale_workflow_process__picking_policy__direct
-msgid "Deliver each product when available"
-msgstr "Jedes Produkt bei Verfügbarkeit liefern"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__display_name
@@ -151,12 +135,6 @@ msgid "Journal Entry"
 msgstr "Journaleintrag"
 
 #. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job____last_update
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process____last_update
-msgid "Last Modified on"
-msgstr "Zuletzt geändert am"
-
-#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__write_uid
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__write_uid
 msgid "Last Updated by"
@@ -189,16 +167,6 @@ msgid "Order Filter Domain"
 msgstr "Verkaufsauftrag Filter"
 
 #. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_filter_id
-msgid "Picking Filter"
-msgstr "Kommissionsfilter"
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_filter_domain
-msgid "Picking Filter Domain"
-msgstr ""
-
-#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__register_payment
 msgid "Register Payment"
 msgstr ""
@@ -228,7 +196,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_bank_statement_line__workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move__workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_payment__workflow_process_id
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_picking__workflow_process_id
 msgid "Sale Workflow Process"
 msgstr "Verkaufs-Workflow"
 
@@ -269,21 +236,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
 msgid "Set selection based on a search filter:"
 msgstr "Setze Auswahl gemäß Suchfilter:"
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_policy
-msgid "Shipping Policy"
-msgstr "Lieferbedingung"
-
-#. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_stock_move
-msgid "Stock Move"
-msgstr "Lagerbuchung"
-
-#. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_stock_picking
-msgid "Transfer"
-msgstr ""
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__validate_invoice
@@ -334,6 +286,27 @@ msgstr "Workflow-Optionen"
 #, python-format
 msgid "Workflow Warning"
 msgstr "Workflowhinweis"
+
+#~ msgid "Confirm and Transfer Picking"
+#~ msgstr "Kommissionierung bestätigen und übertragen"
+
+#~ msgid "Deliver all products at once"
+#~ msgstr "Alle Produkte auf einmal liefern"
+
+#~ msgid "Deliver each product when available"
+#~ msgstr "Jedes Produkt bei Verfügbarkeit liefern"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Zuletzt geändert am"
+
+#~ msgid "Picking Filter"
+#~ msgstr "Kommissionsfilter"
+
+#~ msgid "Shipping Policy"
+#~ msgstr "Lieferbedingung"
+
+#~ msgid "Stock Move"
+#~ msgstr "Lagerbuchung"
 
 #~ msgid "Invoice"
 #~ msgstr "Rechnung"
