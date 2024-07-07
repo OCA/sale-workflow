@@ -36,7 +36,6 @@ msgstr "自动化工作流"
 
 #. module: sale_automatic_workflow
 #: model:ir.actions.server,name:sale_automatic_workflow.ir_cron_automatic_workflow_job_ir_actions_server
-#: model:ir.cron,cron_name:sale_automatic_workflow.ir_cron_automatic_workflow_job
 msgid "Automatic Workflow Job"
 msgstr "自动化工作流作业"
 
@@ -51,11 +50,6 @@ msgid ""
 "Be careful, if you save the order with this setting, it could be auto-"
 "confirmed, even if you are editing it."
 msgstr "请注意，如果您使用此设置保存订单，即使您正在编辑它，也可以自动确认。"
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__validate_picking
-msgid "Confirm and Transfer Picking"
-msgstr "确认并转移拣货"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__create_invoice
@@ -83,16 +77,6 @@ msgstr "创建者"
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__create_date
 msgid "Created on"
 msgstr "创建时间"
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__sale_workflow_process__picking_policy__one
-msgid "Deliver all products at once"
-msgstr "一次交付所有产品"
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__sale_workflow_process__picking_policy__direct
-msgid "Deliver each product when available"
-msgstr "交付每个可用的产品"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__display_name
@@ -146,12 +130,6 @@ msgid "Journal Entry"
 msgstr ""
 
 #. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job____last_update
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process____last_update
-msgid "Last Modified on"
-msgstr "最后修改时间"
-
-#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__write_uid
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__write_uid
 msgid "Last Updated by"
@@ -184,16 +162,6 @@ msgid "Order Filter Domain"
 msgstr "订单筛选域"
 
 #. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_filter_id
-msgid "Picking Filter"
-msgstr "拣货筛选器"
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_filter_domain
-msgid "Picking Filter Domain"
-msgstr "拣货筛选域"
-
-#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__register_payment
 msgid "Register Payment"
 msgstr ""
@@ -223,7 +191,6 @@ msgstr "销售完成筛选域"
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_bank_statement_line__workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move__workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_payment__workflow_process_id
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_stock_picking__workflow_process_id
 msgid "Sale Workflow Process"
 msgstr "销售工作流程"
 
@@ -264,21 +231,6 @@ msgstr "将默认日记帐设置为在发票上使用"
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
 msgid "Set selection based on a search filter:"
 msgstr "根据搜索筛选器设置选择："
-
-#. module: sale_automatic_workflow
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__picking_policy
-msgid "Shipping Policy"
-msgstr "交货策略"
-
-#. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_stock_move
-msgid "Stock Move"
-msgstr "库存移动"
-
-#. module: sale_automatic_workflow
-#: model:ir.model,name:sale_automatic_workflow.model_stock_picking
-msgid "Transfer"
-msgstr "调拨"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__validate_invoice
@@ -328,6 +280,33 @@ msgstr "工作流程选项"
 #, python-format
 msgid "Workflow Warning"
 msgstr "工作流程警告"
+
+#~ msgid "Confirm and Transfer Picking"
+#~ msgstr "确认并转移拣货"
+
+#~ msgid "Deliver all products at once"
+#~ msgstr "一次交付所有产品"
+
+#~ msgid "Deliver each product when available"
+#~ msgstr "交付每个可用的产品"
+
+#~ msgid "Last Modified on"
+#~ msgstr "最后修改时间"
+
+#~ msgid "Picking Filter"
+#~ msgstr "拣货筛选器"
+
+#~ msgid "Picking Filter Domain"
+#~ msgstr "拣货筛选域"
+
+#~ msgid "Shipping Policy"
+#~ msgstr "交货策略"
+
+#~ msgid "Stock Move"
+#~ msgstr "库存移动"
+
+#~ msgid "Transfer"
+#~ msgstr "调拨"
 
 #~ msgid "Automatic Workflow Create Invoice Filter"
 #~ msgstr "自动化工作流创建发票筛选器"
