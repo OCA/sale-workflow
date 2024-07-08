@@ -6,27 +6,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-01-04 02:41+0000\n"
-"Last-Translator: Bole <bole@dajmi5.com>\n"
+"PO-Revision-Date: 2024-07-08 15:58+0000\n"
+"Last-Translator: uvid-gordana <gordana@uvid.hr>\n"
 "Language-Team: none\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.1\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: sale_order_line_menu
 #: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__account_analytic_id
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
 msgid "Analytic Account"
-msgstr ""
+msgstr "Konto analitike"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
 msgid "Cancelled"
-msgstr ""
+msgstr "Otkazano"
 
 #. module: sale_order_line_menu
 #: model:ir.model.fields,help:sale_order_line_menu.field_sale_order_line__date_order
@@ -43,22 +43,22 @@ msgstr ""
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
 msgid "Fully Invoiced"
-msgstr ""
+msgstr "U potpunosti izdan račun"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
 msgid "Invoice Status"
-msgstr ""
+msgstr "Stanje računa"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
 msgid "Locked"
-msgstr ""
+msgstr "Zaključano"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
 msgid "Nothing to Invoice"
-msgstr ""
+msgstr "Ništa za izdavanje računa"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
@@ -69,6 +69,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:sale_order_line_menu.action_orders_lines
 #: model:ir.ui.menu,name:sale_order_line_menu.sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sale_order_line_pivot
+#, fuzzy
 msgid "Order Lines"
 msgstr "Stavke ponuda"
 
@@ -85,17 +86,17 @@ msgstr ""
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_tree
 msgid "Price Total"
-msgstr ""
+msgstr "Ukupni iznos"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
 msgid "Quotation"
-msgstr ""
+msgstr "Ponuda"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
 msgid "Quotation Sent"
-msgstr ""
+msgstr "Ponuda poslana"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
@@ -110,9 +111,9 @@ msgstr ""
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
 msgid "To Invoice"
-msgstr ""
+msgstr "Za izdavanje"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
 msgid "Upselling Opportunity"
-msgstr ""
+msgstr "Prilika za sugestivno proširenje ponude"
