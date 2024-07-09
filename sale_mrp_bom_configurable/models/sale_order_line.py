@@ -12,7 +12,6 @@ class SaleOrderLine(models.Model):
         comodel_name="input.line",
         string="Input lines",
         inverse_name="order_line_id",
-        ondelete="cascade"
     )
 
     input_line_id = fields.Many2one(
