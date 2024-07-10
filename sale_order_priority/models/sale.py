@@ -22,7 +22,6 @@ class SaleOrder(models.Model):
         store=True,
         index=True,
         tracking=True,
-        states={"done": [("readonly", True)], "cancel": [("readonly", True)]},
         help="Priority for this sale order. "
         "Setting manually a value here would set it as priority "
         "for all the order lines",
@@ -37,7 +36,9 @@ class SaleOrder(models.Model):
     def _inverse_priority(self):
         for order in self:
             priority = order.priority
-            for line in order.order_line.filtered(lambda x: x.priority != priority):
+            for line in order.order_line.filtered(
+                lambda x, pr=priority: x.priority != pr
+            ):
                 line.priority = priority
 
     def action_confirm(self):
