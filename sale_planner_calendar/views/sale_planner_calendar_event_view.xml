@@ -458,6 +458,8 @@
                                                 t-att-href="'https://wa.me/' + record.sanitized_partner_mobile.value"
                                                 class="btn btn-primary w-100 h-80 text-white"
                                                 title="Whatsapp"
+                                                target="_blank"
+                                                aria-label="Whatsapp"
                                             >
                                                 <i class="fa fa-whatsapp fa-fw fa-2x" />
                                                 <div class="o_stat_text">Whatsapp</div>
@@ -472,6 +474,8 @@
                                                 t-att-href="'https://www.google.com/maps/search/?api=1&amp;query=' + record.location_url.value"
                                                 class="btn btn-primary w-100 h-80"
                                                 title="Location"
+                                                target="_blank"
+                                                aria-label="Location"
                                             >
                                                 <i
                                                     class="fa fa fa-map-marker fa-fw fa-2x"
