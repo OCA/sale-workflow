@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-14 17:30+0000\n"
-"PO-Revision-Date: 2024-03-12 09:36+0000\n"
+"PO-Revision-Date: 2024-06-12 16:38+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -19,13 +19,13 @@ msgstr ""
 
 #. module: sale_fixed_discount
 #: model_terms:ir.ui.view,arch_db:sale_fixed_discount.report_saleorder_document
-msgid "(or"
-msgstr "(o"
+msgid "<span class=\"text-nowrap\"> %)</span>"
+msgstr "<span class=\"text-nowrap\"> %)</span>"
 
 #. module: sale_fixed_discount
 #: model_terms:ir.ui.view,arch_db:sale_fixed_discount.report_saleorder_document
-msgid "<span>Disc. %</span>"
-msgstr "<span>Sconto %</span>"
+msgid "<span class=\"text-nowrap\"> (or</span>"
+msgstr "<span class=\"text-nowrap\"> (o</span>"
 
 #. module: sale_fixed_discount
 #: model_terms:ir.ui.view,arch_db:sale_fixed_discount.sale_order_portal_content
@@ -62,6 +62,12 @@ msgid ""
 msgstr ""
 "Lo sconto fisso %(fixed)s non corrisponde allo sconto calcolato %(discount)s "
 "%%. Correggere uno degli sconti."
+
+#~ msgid "(or"
+#~ msgstr "(o"
+
+#~ msgid "<span>Disc. %</span>"
+#~ msgstr "<span>Sconto %</span>"
 
 #, python-format
 #~ msgid ""
