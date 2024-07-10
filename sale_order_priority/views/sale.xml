@@ -8,7 +8,7 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <group name="sales_person" position="inside">
-                <field name="priority" />
+                <field name="priority" readonly="state == 'cancel' or locked" />
             </group>
             <xpath
                 expr="//field[@name='order_line']//form//field[@name='price_unit']"
