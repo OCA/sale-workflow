@@ -32,7 +32,6 @@ class SaleOrder(models.Model):
                     [product_domain, ir_filter._get_eval_domain()]
                 )
             if product_domain:
-                self.allowed_product_ids = self.env["product.product"].search(
-                    product_domain
-                )
+                products = self.env["product.product"].search(product_domain)
+                self.allowed_product_ids = products
                 self.has_allowed_products = True
