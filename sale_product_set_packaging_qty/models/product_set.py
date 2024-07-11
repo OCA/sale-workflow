@@ -17,7 +17,12 @@ class ProductSetLine(models.Model):
         digits="Product Unit of Measure",
     )
 
-    @api.depends("quantity", "product_packaging_id", "product_packaging_id.qty")
+    @api.depends(
+        "quantity",
+        "product_packaging_id",
+        "product_packaging_id.qty",
+        "product_id.packaging_ids",
+    )
     def _compute_product_packaging_qty(self):
         for line in self:
             uom_rounding = line.product_id.uom_id.rounding
@@ -31,6 +36,7 @@ class ProductSetLine(models.Model):
                 line.product_packaging_qty = 0
                 continue
             line.product_packaging_qty = line.quantity / line.product_packaging_id.qty
+            line.update(line._prepare_product_packaging_qty_values())
 
     def _inverse_product_packaging_qty(self):
         for line in self:
