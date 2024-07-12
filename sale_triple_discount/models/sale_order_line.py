@@ -118,7 +118,7 @@ class SaleOrderLine(models.Model):
             if (discount > 0 and base_price > 0) or (discount < 0 and base_price < 0):
                 # only show negative discounts if price is negative
                 # otherwise it's a surcharge which shouldn't be shown to the customer
-                self.discount = discount
+                return discount
 
     @api.depends("discount1", "discount2", "discount3", "discounting_type")
     def _compute_discount_consolidated(self):
