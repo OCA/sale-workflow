@@ -30,6 +30,11 @@ msgid "Disc.%"
 msgstr "Desc.%"
 
 #. module: sale_order_line_input
+#: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__force_company_id
+msgid "Forced company"
+msgstr ""
+
+#. module: sale_order_line_input
 #: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__pricelist_id
 msgid "If you change the pricelist, only newly added lines will be affected."
 msgstr ""
@@ -63,6 +68,11 @@ msgstr "Sin factura asociada"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
+msgid "Open order"
+msgstr ""
+
+#. module: sale_order_line_input
+#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Order"
 msgstr "Pedido"
 
@@ -70,16 +80,6 @@ msgstr "Pedido"
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 msgid "Order State"
 msgstr "Estado Pedido"
-
-#. module: sale_order_line_input
-#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
-msgid "Ordered"
-msgstr "Pedido"
-
-#. module: sale_order_line_input
-#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
-msgid "Ordered Qty"
-msgstr "Ctdad pedida"
 
 #. module: sale_order_line_input
 #: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__pricelist_id
@@ -103,12 +103,23 @@ msgid "Sales Orders Lines"
 msgstr "Líneas de pedidos"
 
 #. module: sale_order_line_input
-#: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
-msgid "To Invoice"
-msgstr "A facturar"
+#: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__force_company_id
+msgid ""
+"Technical field to force company or get it from env user if order don't "
+"exist."
+msgstr ""
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "UoM"
 msgstr "UdM"
+
+#~ msgid "Ordered"
+#~ msgstr "Pedido"
+
+#~ msgid "Ordered Qty"
+#~ msgstr "Ctdad pedida"
+
+#~ msgid "To Invoice"
+#~ msgstr "A facturar"
