@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <!-- Copyright 2018 Tecnativa - Carlos Dauden
      Copyright 2023 Tecnativa - Carolina Fernandez
+     Copyright 2024 Tecnativa - Juan José Seguí
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="view_sales_order_line_input_tree" model="ir.ui.view">
@@ -9,20 +10,20 @@
         <field name="priority">20</field>
         <field name="arch" type="xml">
             <tree
-                decoration-info="invoice_status=='to invoice'"
-                decoration-warning="state=='draft'"
-                decoration-muted="state=='cancel'"
-                decoration-success="state=='done'"
+                decoration-info="invoice_status == 'to invoice'"
+                decoration-warning="state == 'draft'"
+                decoration-muted="state == 'cancel'"
+                decoration-success="invoice_status == 'invoiced'"
                 editable="top"
                 create="true"
             >
             <!-- We do not display the type because we don't want the user to be bothered with
                 that information if he has no section or note. -->
-                <field name="display_type" invisible="1" />
+                <field name="display_type" column_invisible="1" />
                 <field
                     name="force_company_id"
                     optional="hide"
-                    attrs="{'readonly': [('order_id', '!=', False)]}"
+                    readonly="order_id"
                     options="{'no_create': True}"
                 />
                 <field
@@ -30,8 +31,8 @@
                     string="Order"
                     required="0"
                     placeholder="New"
-                    domain="[('state', 'not in', ('done', 'cancel')), ('company_id', '=', company_id)]"
-                    attrs="{'readonly': [('order_id', '!=', False)]}"
+                    readonly="order_id"
+                    domain="[('state', '!=', 'cancel'),('company_id', '=', company_id)]"
                     force_save="1"
                     options='{"no_open": True, "no_create": True}'
                 />
@@ -47,18 +48,16 @@
                     context="{'res_partner_search_mode': 'customer', 'default_is_company': True, 'default_customer_rank': 1}"
                     options='{"always_reload": True}'
                     required="1"
-                    attrs="{'readonly': [('order_partner_id', '!=', False), ('order_id', '!=', False)]}"
+                    readonly="order_partner_id and order_id"
                 />
                 <field name="write_date" widget="date" optional="hide" />
-                <field name="product_uom_category_id" invisible="1" />
-                <field name="product_type" invisible="1" />
-                <field name="product_updatable" invisible="1" />
+                <field name="product_uom_category_id" column_invisible="1" />
+                <field name="product_type" column_invisible="1" />
+                <field name="product_updatable" column_invisible="1" />
                 <field
                     name="product_id"
-                    attrs="{
-                        'readonly': [('product_updatable', '=', False)],
-                        'required': [('display_type', '=', False)],
-                    }"
+                    readonly="not product_updatable"
+                    required="not display_type"
                     force_save="1"
                     context="{
                         'partner_id': order_partner_id,
@@ -78,11 +77,9 @@
                 <field
                     name="product_template_id"
                     string="Product"
-                    invisible="1"
-                    attrs="{
-                        'readonly': [('product_updatable', '=', False)],
-                        'required': [('display_type', '=', False)],
-                    }"
+                    column_invisible="1"
+                    readonly="not product_updatable"
+                    required="not display_type"
                     context="{
                         'partner_id': order_partner_id,
                         'quantity': product_uom_qty,
@@ -123,32 +120,28 @@
                     decoration-info="(not display_type and invoice_status == 'to invoice')"
                     decoration-bf="(not display_type and invoice_status == 'to invoice')"
                     string="Delivered"
-                    attrs="{
-                        'column_invisible': [('state', 'not in', ['sale', 'done'])],
-                        'readonly': [('qty_delivered_method', '!=', 'manual')]
-                    }"
+                    invisible="state != 'sale'"
+                    readonly="qty_delivered_method != 'manual'"
                     optional="show"
                 />
-                <field name="qty_delivered_method" invisible="1" />
+                <field name="qty_delivered_method" column_invisible="1" />
                 <field
                     name="qty_invoiced"
                     decoration-info="(not display_type and invoice_status == 'to invoice')"
                     decoration-bf="(not display_type and invoice_status == 'to invoice')"
+                    invisible="state != 'sale'"
                     string="Invoiced"
-                    attrs="{'column_invisible': [('state', 'not in', ['sale', 'done'])]}"
                     optional="show"
                 />
-                <field name="qty_to_invoice" invisible="1" />
-                <field name="product_uom_readonly" invisible="1" />
-                <field name="product_uom" invisible="1" groups="!uom.group_uom" />
+                <field name="qty_to_invoice" column_invisible="1" />
+                <field name="product_uom_readonly" column_invisible="1" />
+                <field name="product_uom" column_invisible="1" />
                 <field
                     name="product_uom"
                     force_save="1"
                     string="UoM"
-                    attrs="{
-                        'readonly': [('product_uom_readonly', '=', True)],
-                        'required': [('display_type', '=', False)],
-                    }"
+                    readonly="product_uom_readonly"
+                    required="not display_type"
                     context="{'company_id': company_id}"
                     groups="uom.group_uom"
                     options='{"no_open": True}'
@@ -157,32 +150,29 @@
                 <field
                     name="customer_lead"
                     optional="hide"
-                    attrs="{'readonly': [('state', 'not in', ['draft', 'sent', 'sale'])]}"
+                    readonly="state not in ('draft', 'sent', 'sale')"
                 />
                 <field
                     name="product_packaging_qty"
-                    attrs="{'invisible': ['|', ('product_id', '=', False), ('product_packaging_id', '=', False)]}"
+                    invisible="not product_id or not product_packaging_id"
                     groups="product.group_stock_packaging"
                     optional="show"
                 />
                 <field
                     name="product_packaging_id"
-                    attrs="{'invisible': [('product_id', '=', False)]}"
+                    invisible="not product_id"
                     context="{'default_product_id': product_id, 'tree_view_ref':'product.product_packaging_tree_view', 'form_view_ref':'product.product_packaging_form_view'}"
                     groups="product.group_stock_packaging"
                     optional="show"
                 />
-                <field
-                    name="price_unit"
-                    attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"
-                />
+                <field name="price_unit" readonly="qty_invoiced &gt; 0" />
                 <field
                     name="tax_id"
                     widget="many2many_tags"
                     options="{'no_create': True}"
                     domain="[('type_tax_use','=','sale'),('company_id','=',company_id)]"
                     context="{'active_test': True}"
-                    attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"
+                    readonly="qty_invoiced &gt; 0"
                     optional="show"
                 />
                 <field
@@ -191,25 +181,25 @@
                     groups="product.group_discount_per_so_line"
                     optional="show"
                 />
-                <field name="is_downpayment" invisible="1" />
+                <field name="is_downpayment" column_invisible="1" />
+                <field name="tax_calculation_rounding_method" column_invisible="1" />
                 <field
                     name="price_subtotal"
                     widget="monetary"
-                    groups="account.group_show_line_subtotals_tax_excluded"
-                    attrs="{'invisible': [('is_downpayment', '=', True)]}"
+                    invisible="is_downpayment"
                 />
                 <field
                     name="price_total"
                     widget="monetary"
-                    groups="account.group_show_line_subtotals_tax_included"
-                    attrs="{'invisible': [('is_downpayment', '=', True)]}"
+                    invisible="is_downpayment and tax_calculation_rounding_method == 'round_globally'"
+                    optional="hide"
                 />
-                <field name="state" invisible="1" />
-                <field name="invoice_status" invisible="1" />
-                <field name="currency_id" invisible="1" />
-                <field name="price_tax" invisible="1" />
-                <field name="company_id" invisible="1" />
-                <field name="pricelist_id" invisible="1" />
+                <field name="state" column_invisible="1" />
+                <field name="invoice_status" column_invisible="1" />
+                <field name="currency_id" column_invisible="1" />
+                <field name="price_tax" column_invisible="1" />
+                <field name="company_id" column_invisible="1" />
+                <field name="pricelist_id" column_invisible="1" />
             </tree>
         </field>
     </record>
