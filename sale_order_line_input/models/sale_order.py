@@ -24,6 +24,15 @@ class SaleOrderLine(models.Model):
         for line in self:
             line.force_company_id = line.order_id.company_id or self.env.company
 
+    def _compute_name(self):
+        # A NewId is needed to set the product for the parent method to set
+        # the language correctly. Empty id leads to error in ‘_get_lang’.
+        for line in self:
+            if not line.order_id and line.product_id:
+                SaleOrder = self.env["sale.order"]
+                line.order_id = SaleOrder.new({})
+        return super()._compute_name()
+
     @api.onchange("force_company_id")
     def _onchange_force_company_id(self):
         """Assign company_id because is used in domains as partner,

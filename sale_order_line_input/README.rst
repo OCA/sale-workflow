@@ -73,6 +73,8 @@ Contributors
 
    -  Carlos Dauden
    -  Carolina Fernandez
+   -  Juan José Seguí
+   -  Pilar Vargas
 
 Maintainers
 -----------
