@@ -1,0 +1,46 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_force_invoiced_quantity
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_force_invoiced_quantity
+#: model_terms:ir.ui.view,arch_db:sale_force_invoiced_quantity.view_order_form
+msgid "Force Invoiced"
+msgstr ""
+
+#. module: sale_force_invoiced_quantity
+#: model:ir.model.fields,field_description:sale_force_invoiced_quantity.field_sale_order_line__force_invoiced_quantity
+msgid "Force Invoiced Quantity"
+msgstr ""
+
+#. module: sale_force_invoiced_quantity
+#: model:product.template,name:sale_force_invoiced_quantity.demo_product_sale_force_invoiced_qty_1_product_template
+msgid "Sale Force Invoiced qty product 1"
+msgstr ""
+
+#. module: sale_force_invoiced_quantity
+#: model:product.template,name:sale_force_invoiced_quantity.demo_product_sale_force_invoiced_qty_2_product_template
+msgid "Sale Force Invoiced qty product 2"
+msgstr ""
+
+#. module: sale_force_invoiced_quantity
+#: model:ir.model,name:sale_force_invoiced_quantity.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_force_invoiced_quantity
+#: model:ir.model.fields,help:sale_force_invoiced_quantity.field_sale_order_line__force_invoiced_quantity
+msgid ""
+"This amount will be deducted from quantity to invoice.\n"
+"quantity to invoice = delivered - invoiced - force invoiced"
+msgstr ""
