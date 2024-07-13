@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="priority" eval="99" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='qty_invoiced']"
+                position="after"
+            >
+                <field
+                    name="force_invoiced_quantity"
+                    string="Force Invoiced"
+                    optional="show"
+                    attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
