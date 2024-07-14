@@ -34,7 +34,7 @@ class AutomaticWorkflowJob(models.Model):
         if not self.env["sale.order"].search_count(
             [("id", "=", sale.id)] + domain_filter
         ):
-            return "{} {} job bypassed".format(sale.display_name, sale)
+            return f"{sale.display_name} {sale} job bypassed"
         else:
             ctx = {
                 "active_ids": sale.ids,
@@ -51,4 +51,4 @@ class AutomaticWorkflowJob(models.Model):
                     "amount_advance": sale.amount_residual,
                 }
             ).make_advance_payment()
-            return "{} {} advance payment successfully".format(sale.display_name, sale)
+            return f"{sale.display_name} {sale} advance payment successfully"
