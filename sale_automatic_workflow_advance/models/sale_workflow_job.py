@@ -17,9 +17,7 @@ class AutomaticWorkflowJob(models.Model):
                 safe_eval(sale_workflow.advance_payment_filter_id.domain)
                 + workflow_domain
             )
-        return super(AutomaticWorkflowJob, self).run_with_workflow(
-            sale_workflow=sale_workflow
-        )
+        return super().run_with_workflow(sale_workflow=sale_workflow)
 
     @api.model
     def _automated_advance_payment_create(self, order_filter):
@@ -48,7 +46,9 @@ class AutomaticWorkflowJob(models.Model):
             self.env["account.voucher.wizard"].with_context(**ctx).create(
                 {
                     "journal_id": journal.id,
+                    "payment_type": "inbound",
                     "amount_advance": sale.amount_residual,
+                    "order_id": sale.id,
                 }
             ).make_advance_payment()
             return f"{sale.display_name} {sale} advance payment successfully"
