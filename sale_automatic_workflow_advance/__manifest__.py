@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Automatic Workflow Advance",
-    "version": "15.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Sales Management",
     "license": "AGPL-3",
     "author": "Open Source Integrators, Odoo Community Association (OCA)",

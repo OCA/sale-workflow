@@ -8,41 +8,54 @@
             ref="sale_automatic_workflow.sale_workflow_process_view_form"
         />
         <field name="arch" type="xml">
-            <field name="validate_picking" position="before">
-                <field name="automated_advance_payment_create" />
-                    <label
-                    for="advance_payment_filter_id"
-                    attrs="{'required':[('automated_advance_payment_create','=',True)], 'invisible':[('automated_advance_payment_create','!=',True)]}"
-                />
-                    <div
-                    attrs="{'required':[('automated_advance_payment_create','=',True)], 'invisible':[('automated_advance_payment_create','!=',True)]}"
-                >
-                        <field
-                        name="advance_payment_filter_domain"
-                        widget="domain"
-                        attrs="{'invisible': [('advance_payment_filter_id', '=', False)]}"
-                        options="{'model': 'sale.order'}"
-                    />
-                        <div class="oe_edit_only oe_inline">
-                            Set selection based on a search filter:
-
-                            <field
-                            name="advance_payment_filter_id"
-                            domain="[('model_id', '=', 'sale.order')]"
-                            class="oe_inline"
-                            context="{'default_model_id': 'sale.order', 'default_active': False, 'active_test': False}"
-                            can_create="true"
-                            can_write="true"
+            <xpath expr="//div[@name='workflow_options']" position="inside">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label
+                            for="automated_advance_payment_create"
+                            class="col-lg-7 o_light_label"
                         />
-                        </div>
+                        <field name="automated_advance_payment_create" nolabel="1" />
                     </div>
-                <field
-                    name="bank_journal_id"
-                    options="{'no_open': True, 'no_create': True}"
-                    attrs="{'required':[('automated_advance_payment_create','=',True)], 'invisible':[('automated_advance_payment_create','!=',True)]}"
-                />
-                <newline />
-            </field>
+                    <div class="col-sm-8">
+                        <label
+                            for="advance_payment_filter_id"
+                            required="automated_advance_payment_create"
+                            invisible="not automated_advance_payment_create"
+                        />
+                        <div
+                            required="automated_advance_payment_create"
+                            invisible="not automated_advance_payment_create"
+                        >
+                            <field
+                                name="advance_payment_filter_domain"
+                                widget="domain"
+                                invisible="not advance_payment_filter_id"
+                                options="{'model': 'sale.order'}"
+                            />
+                            <div
+                                class="oe_edit_only oe_inline"
+                            > Set selection based on a search
+                                filter: <field
+                                    name="advance_payment_filter_id"
+                                    domain="[('model_id', '=', 'sale.order')]"
+                                    class="oe_inline"
+                                    context="{'default_model_id': 'sale.order', 'default_active': False, 'active_test': False}"
+                                    can_create="true"
+                                    can_write="true"
+                                />
+                            </div>
+                        </div>
+                        <field name="company_id" invisible="1" />
+                        <field
+                            name="bank_journal_id"
+                            options="{'no_open': True, 'no_create': True}"
+                            required="automated_advance_payment_create"
+                            invisible="not automated_advance_payment_create"
+                        />
+                    </div>
+                </div>
+            </xpath>
         </field>
     </record>
 
