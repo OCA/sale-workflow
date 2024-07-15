@@ -12,12 +12,20 @@ class SaleOrderLine(models.Model):
         pricelist_discount = self._get_discount_field_position("pricelist_discount")
         general_discount = self._get_discount_field_position("general_discount")
         if "discount" not in [pricelist_discount, general_discount]:
-            self.update({"discount": 0.0})
+            for line in self:
+                if line._check_is_reward_line():
+                    continue
+                line.update({"discount": 0.0})
             return
         for line in self:
+            if line._check_is_reward_line():
+                continue
             if pricelist_discount == "discount":
                 line.update({"discount": line._get_pricelist_discount()})
-            elif general_discount == "discount":
+            elif (
+                general_discount == "discount"
+                and not line.product_id.bypass_general_discount
+            ):
                 line.update({"discount": line.order_id.general_discount})
         return
 
@@ -26,12 +34,20 @@ class SaleOrderLine(models.Model):
         pricelist_discount = self._get_discount_field_position("pricelist_discount")
         general_discount = self._get_discount_field_position("general_discount")
         if "discount2" not in [pricelist_discount, general_discount]:
-            self.update({"discount2": 0.0})
+            for line in self:
+                if line._check_is_reward_line():
+                    continue
+                line.update({"discount2": 0.0})
             return
         for line in self:
+            if line._check_is_reward_line():
+                continue
             if pricelist_discount == "discount2":
                 line.update({"discount2": line._get_pricelist_discount()})
-            elif general_discount == "discount2":
+            elif (
+                general_discount == "discount2"
+                and not line.product_id.bypass_general_discount
+            ):
                 line.update({"discount2": line.order_id.general_discount})
 
     @api.depends("product_id", "product_uom", "product_uom_qty")
@@ -39,13 +55,27 @@ class SaleOrderLine(models.Model):
         pricelist_discount = self._get_discount_field_position("pricelist_discount")
         general_discount = self._get_discount_field_position("general_discount")
         if "discount3" not in [pricelist_discount, general_discount]:
-            self.update({"discount3": 0.0})
+            for line in self:
+                if line._check_is_reward_line():
+                    continue
+                line.update({"discount3": 0.0})
             return
         for line in self:
+            if line._check_is_reward_line():
+                continue
             if pricelist_discount == "discount3":
                 line.update({"discount3": line._get_pricelist_discount()})
-            elif general_discount == "discount3":
+            elif (
+                general_discount == "discount3"
+                and not line.product_id.bypass_general_discount
+            ):
                 line.update({"discount3": line.order_id.general_discount})
+
+    def _check_is_reward_line(self):
+        self.ensure_one()
+        if "is_reward_line" not in self._fields:
+            return False
+        return self.is_reward_line
 
     def _get_pricelist_discount(self):
         if not self.product_id or self.display_type:
@@ -61,7 +91,7 @@ class SaleOrderLine(models.Model):
         pricelist_price = self._get_pricelist_price()
         base_price = self._get_pricelist_price_before_discount()
         if base_price != 0:
-            discount = (base_price - pricelist_price) / base_price * 100
+            discount = ((base_price - pricelist_price) / base_price) * 100
             if (discount > 0 and base_price > 0) or (discount < 0 and base_price < 0):
                 return discount
         return 0.0
