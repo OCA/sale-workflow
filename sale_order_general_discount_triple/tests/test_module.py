@@ -34,11 +34,16 @@ class TestModule(TransactionCase):
         setting_form.save().set_values()
 
     def test_action_result(self):
-        sale_form = Form(self.env["sale.order"])
-        sale_form.partner_id = self.partner
-        sale_form.pricelist_id = self.pricelist
+        sale_order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "pricelist_id": self.pricelist.id,
+            }
+        )
+        sale_form = Form(sale_order)
         with sale_form.order_line.new() as line:
             line.product_id = self.product
         sale = sale_form.save()
-        self.assertEqual(sale.order_line.discount2, 10)
-        self.assertEqual(sale.order_line.discount, 20)
+        for line in sale.order_line:
+            self.assertEqual(line.discount2, 10)
+            self.assertEqual(line.discount, 20)
