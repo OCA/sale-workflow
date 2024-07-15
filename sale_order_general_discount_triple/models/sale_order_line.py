@@ -70,7 +70,5 @@ class SaleOrderLine(models.Model):
         return (
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param(
-                "sale_order_general_discount_triple.{}".format(field_name), "discount"
-            )
+            .get_param(f"sale_order_general_discount_triple.{field_name}", "discount")
         )

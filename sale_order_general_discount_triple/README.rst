@@ -17,18 +17,23 @@ Sale Order General Discount Triple
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_order_general_discount_triple
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_order_general_discount_triple
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_order_general_discount_triple
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_order_general_discount_triple
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-A bridge between Sale Order General Discount(https://github.com/OCA/sale-workflow/tree/14.0/sale_order_general_discoun) and Sale Triple Discount(https://github.com/OCA/sale-workflow/tree/14.0/sale_triple_discount) module to set the general discount on any of the 3 discount field on sale order lines.
+A bridge between Sale Order General
+Discount(https://github.com/OCA/sale-workflow/tree/14.0/sale_order_general_discoun)
+and Sale Triple
+Discount(https://github.com/OCA/sale-workflow/tree/14.0/sale_triple_discount)
+module to set the general discount on any of the 3 discount field on
+sale order lines.
 
 **Table of contents**
 
@@ -40,27 +45,32 @@ Usage
 
 To use features of this module, you need to:
 
-#. Go to Settings > General Settings > Pricing
-#. Under pricing section, select your prefered Discount type from 'General Discount' field and
-   the same for 'Pricelist Discount'.
-#. Option 'No apply' will disable functionality, so this kind of discount type won't be applied on lines.
-#. The selected global discount type among the 3 discounts will be automatically parsed on sale order line while using 'Discount %' text field.
-#. If pricelist has a discount, it will be applied on the selected pricelist discount.
-#. If 'General Discount' and 'Pricelist Discount' have the same discount field, 'General Discount' will be applied.
+1. Go to Settings > General Settings > Pricing
+2. Under pricing section, select your prefered Discount type from
+   'General Discount' field and the same for 'Pricelist Discount'.
+3. Option 'No apply' will disable functionality, so this kind of
+   discount type won't be applied on lines.
+4. The selected global discount type among the 3 discounts will be
+   automatically parsed on sale order line while using 'Discount %' text
+   field.
+5. If pricelist has a discount, it will be applied on the selected
+   pricelist discount.
+6. If 'General Discount' and 'Pricelist Discount' have the same discount
+   field, 'General Discount' will be applied.
 
 Issues
-======
+------
 
-If you want to use pricelist discount its recomended, in order to avoid conflicts with other modules, to put it in
-first discount field.
+If you want to use pricelist discount its recomended, in order to avoid
+conflicts with other modules, to put it in first discount field.
 
 Changelog
 =========
 
 14.0.1.0.0
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------
 
-* Initial release
+-  Initial release
 
 Bug Tracker
 ===========
@@ -68,7 +78,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_general_discount_triple%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_general_discount_triple%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -76,20 +86,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Ashish Hirpara
 * Ooops
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Ooops <https://www.ooops404.com>`_:
+-  `Ooops <https://www.ooops404.com>`__:
 
-  * Ashish Hirpara
+   -  Ashish Hirpara
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -109,6 +119,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-ashishhirapara| 
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_order_general_discount_triple>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_order_general_discount_triple>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
