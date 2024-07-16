@@ -75,10 +75,9 @@ class TestSaleStockOrderSecondaryUnit(TransactionCase):
                         },
                     )
                 ],
-                "pricelist_id": cls.env.ref("product.list0").id,
             }
         )
-        so.onchange_partner_id()
+        so._onchange_partner_id_warning()
         cls.order = cls.env["sale.order"].create(so._convert_to_write(so._cache))
 
     def test_stock_move_line_secondary_unit(self):
