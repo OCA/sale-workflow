@@ -1,0 +1,41 @@
+<odoo>
+
+    <!-- Demo Sequences -->
+
+    <record id="seq_sale_order_individual" model="ir.sequence">
+        <field name="name">Sale Order (Individual)</field>
+        <field name="padding" eval="5" />
+        <field name="prefix">SOI</field>
+    </record>
+
+    <record id="seq_sale_order_company" model="ir.sequence">
+        <field name="name">Sale Order (Company)</field>
+        <field name="padding" eval="5" />
+        <field name="prefix">SOC</field>
+    </record>
+
+    <!-- Demo Options-->
+
+    <record id="seq_sale_option_1" model="ir.sequence.option.line">
+        <field name="base_id" ref="sale_order_sequence_option.sale_sequence_option" />
+        <field name="name">Sale Order (Individual)</field>
+        <field name="filter_domain">[("partner_id.company_type", "=", "person")]</field>
+        <field
+            name="sequence_id"
+            ref="sale_order_sequence_option.seq_sale_order_individual"
+        />
+    </record>
+
+    <record id="seq_sale_option_2" model="ir.sequence.option.line">
+        <field name="base_id" ref="sale_order_sequence_option.sale_sequence_option" />
+        <field name="name">Sale Order (Company)</field>
+        <field
+            name="filter_domain"
+        >[("partner_id.company_type", "=", "company")]</field>
+        <field
+            name="sequence_id"
+            ref="sale_order_sequence_option.seq_sale_order_company"
+        />
+    </record>
+
+</odoo>
