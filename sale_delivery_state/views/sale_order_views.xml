@@ -6,20 +6,17 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="state" position="before">
-                <!-- states and attrs[invisible] must be combined with an extra & -->
                 <button
                     name="action_force_delivery_state"
                     type="object"
                     string="Force delivery done"
-                    states="done"
-                    attrs="{'invisible': ['|', '|', ('force_delivery_state', '=', True), ('delivery_state', '=', 'done')]}"
+                    attrs="{'invisible': [('state', '!=', 'done'), '|', ('force_delivery_state', '=', True), ('delivery_state', '=', 'done')]}"
                 />
                 <button
                     name="action_unforce_delivery_state"
                     type="object"
                     string="Unforce delivery done"
-                    states="done"
-                    attrs="{'invisible': ['|', ('force_delivery_state', '=', False)]}"
+                    attrs="{'invisible': [('state', '!=', 'done'), ('force_delivery_state', '=', False)]}"
                 />
             </field>
             <field name='date_order' position="after">
