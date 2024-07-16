@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    # Copyright 2021 Camptocamp SA
+    # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+
+    <menuitem
+        id="sale_seasonal_config"
+        name="Product seasonal config"
+        sequence="100"
+        parent="sale.product_menu_catalog"
+        action="product_seasonality.seasonal_config_act_window"
+    />
+
+    <menuitem
+        id="sale_seasonal_config_line"
+        name="Product seasonal config lines"
+        sequence="110"
+        parent="sale.product_menu_catalog"
+        action="product_seasonality.seasonal_config_line_act_window"
+    />
+
+</odoo>
