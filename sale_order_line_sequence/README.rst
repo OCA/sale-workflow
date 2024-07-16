@@ -28,8 +28,8 @@ Sale Order Line Sequence
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Displays the sequence of Sale order line and helps to maintain the order.
-The line sequence number is also displayed in sale order reports.
+Displays the sequence of Sale order line and helps to maintain the
+order. The line sequence number is also displayed in sale order reports.
 
 **Table of contents**
 
@@ -50,28 +50,29 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * ForgeFlow
 * Serpent CS
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* ForgeFlow S.L. <contact@forgeflow.com>
-* Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
-* Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
+-  ForgeFlow S.L. <contact@forgeflow.com>
+-  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+-  Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
 
 Other credits
-~~~~~~~~~~~~~
+-------------
 
 Images
-------
+~~~~~~
 
-* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
+-  Odoo Community Association:
+   `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`__.
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
