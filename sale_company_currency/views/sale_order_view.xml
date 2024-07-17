@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="sale.view_order_tree" />
         <field name="arch" type="xml">
             <field name="amount_total" position="after">
-                <field name='company_currency_id' invisible="1" />
+                <field name='company_currency_id' column_invisible="1" />
                 <field
                     name="amount_total_curr"
                     sum="Total"
@@ -40,7 +40,7 @@
         <field name="inherit_id" ref="sale.view_quotation_tree" />
         <field name="arch" type="xml">
             <field name="amount_total" position="after">
-                <field name='company_currency_id' invisible="1" />
+                <field name='company_currency_id' column_invisible="1" />
                 <field
                     name="amount_total_curr"
                     sum="Total"
