@@ -36,6 +36,7 @@ setuptools.setup(
         'odoo13-addon-sale_cutoff_time_delivery',
         'odoo13-addon-sale_delivery_state',
         'odoo13-addon-sale_discount_display_amount',
+        'odoo13-addon-sale_down_payment_wizard_taxes',
         'odoo13-addon-sale_elaboration',
         'odoo13-addon-sale_exception',
         'odoo13-addon-sale_fixed_discount',
