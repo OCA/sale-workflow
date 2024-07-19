@@ -5,7 +5,7 @@
     "category": "Sale",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "version": "12.0.2.0.2",
+    "version": "12.0.2.0.3",
     "website": "https://github.com/OCA/sale-workflow",
     "summary": "Create manually your deliveries",
     "depends": [

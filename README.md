@@ -55,9 +55,9 @@ addon | version | maintainers | summary
 [sale_invoice_policy](sale_invoice_policy/) | 12.0.1.0.0 |  | Sales Management: let the user choose the invoice policy on the order
 [sale_isolated_quotation](sale_isolated_quotation/) | 12.0.1.1.0 |  | Sale Isolated Quotation
 [sale_last_price_info](sale_last_price_info/) | 12.0.2.0.0 |  | Product Last Price Info - Sale
-[sale_manual_delivery](sale_manual_delivery/) | 12.0.2.0.2 |  | Create manually your deliveries
+[sale_manual_delivery](sale_manual_delivery/) | 12.0.2.0.3 |  | Create manually your deliveries
 [sale_merge_draft_invoice](sale_merge_draft_invoice/) | 12.0.1.0.1 |  | Sale Merge Draft Invoice
-[sale_milestone_profile_invoicing](sale_milestone_profile_invoicing/) | 12.0.1.0.1 |  | Inform on delivered and invoiced work by sale order line.
+[sale_milestone_profile_invoicing](sale_milestone_profile_invoicing/) | 12.0.1.0.2 |  | Inform on delivered and invoiced work by sale order line.
 [sale_mrp_bom](sale_mrp_bom/) | 12.0.1.0.1 |  | Allows define a BOM in the sales lines.
 [sale_mrp_link](sale_mrp_link/) | 12.0.1.0.1 |  | Show manufacturing orders generated from sales order
 [sale_order_action_invoice_create_hook](sale_order_action_invoice_create_hook/) | 12.0.1.0.3 |  | Add more flexibility in the grouping parameters for the creation of invoices
@@ -116,7 +116,7 @@ addon | version | maintainers | summary
 [sale_tier_validation](sale_tier_validation/) | 12.0.1.0.0 |  | Extends the functionality of Sale Orders to support a tier validation process.
 [sale_triple_discount](sale_triple_discount/) | 12.0.1.2.0 |  | Manage triple discount on sale order lines
 [sale_validity](sale_validity/) | 12.0.1.0.0 |  | Set a default validity delay on quotations
-[sale_wishlist](sale_wishlist/) | 12.0.1.0.0 |  | Handle sale wishlist for partners
+[sale_wishlist](sale_wishlist/) | 12.0.1.0.1 |  | Handle sale wishlist for partners
 [sales_team_security](sales_team_security/) | 12.0.4.0.0 | [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | New group for seeing only sales channel's documents
 
 [//]: # (end addons)
