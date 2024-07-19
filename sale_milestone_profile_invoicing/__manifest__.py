@@ -3,7 +3,7 @@
     'summary': """Inform on delivered and invoiced work by sale order line.""",
     'version': '12.0.1.0.1',
     'license': 'AGPL-3',
-    'author': 'Camptocamp SA, Odoo Community Association (OCA)',
+    'author': 'Camptocamp, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/sale-workflow',
     'depends': [
         'sale',
