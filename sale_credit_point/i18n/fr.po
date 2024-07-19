@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-31 13:56+0000\n"
-"PO-Revision-Date: 2018-05-31 15:59+0200\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2024-07-19 17:58+0000\n"
+"Last-Translator: PaoloYam <pyammoun@student.42lausanne.ch>\n"
 "Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: sale_credit_point
 #: code:addons/sale_credit_point/wizards/manage_credit_point.py:0
@@ -76,7 +76,7 @@ msgstr "Devise pour le crédit de point"
 #. module: sale_credit_point
 #: model:ir.actions.act_window,name:sale_credit_point.credit_point_history_action
 msgid "Credit Points History"
-msgstr "Credit Points History"
+msgstr "Historique de points crédits"
 
 #. module: sale_credit_point
 #: model:ir.ui.menu,name:sale_credit_point.menu_credit_point_history
