@@ -210,7 +210,9 @@ class SaleOrderRecommendationLine(models.TransientModel):
         readonly=True,
     )
     sale_line_id = fields.Many2one(comodel_name="sale.order.line")
-    sale_uom_id = fields.Many2one(related="sale_line_id.product_uom")
+    sale_uom_id = fields.Many2one(
+        compute="_compute_sale_uom_id", comodel_name="uom.uom", store=True
+    )
 
     @api.depends(
         "partner_id",
@@ -279,3 +281,11 @@ class SaleOrderRecommendationLine(models.TransientModel):
             .with_context(prefetch_fields=False)
         )
         return so_line.price_unit or 0.0
+
+    @api.depends("sale_line_id", "product_id")
+    def _compute_sale_uom_id(self):
+        for record in self:
+            if record.sale_line_id:
+                record.sale_uom_id = record.sale_line_id.product_uom
+            else:
+                record.sale_uom_id = record.product_id.uom_id
