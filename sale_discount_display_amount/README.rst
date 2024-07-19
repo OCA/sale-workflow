@@ -28,11 +28,12 @@ Sale Discount Display Amount
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-In standard Odoo only display the rate of the discount applied, never the
-amount. It could be great to be able to tell the customer how much he spares.
-This is the goal of this addons, it will show on a sale
-order the total without the discount and the value of the discount.
-You can choose if you want the discount on the Total with or the Total without TAX.
+In standard Odoo only display the rate of the discount applied, never
+the amount. It could be great to be able to tell the customer how much
+he spares. This is the goal of this addons, it will show on a sale order
+the total without the discount and the value of the discount. You can
+choose if you want the discount on the Total with or the Total without
+TAX.
 
 **Table of contents**
 
@@ -44,17 +45,19 @@ Configuration
 
 To configure this module, you need to:
 
-#. Go to Sales/Settings and check "Allow discounts on sales order lines"
-#. Go to Sales/Settings and check or uncheck "Show the Discount with TAX" depending on your needs
+1. Go to Sales/Settings and check "Allow discounts on sales order lines"
+2. Go to Sales/Settings and check or uncheck "Show the Discount with
+   TAX" depending on your needs
 
 Usage
 =====
 
 To use this module, you need to:
 
-#. Go on a sale order
-#. Set a discount on a line
-#. The value of the discount is dislayed in the total section as well as the total without it.
+1. Go on a sale order
+2. Set a discount on a line
+3. The value of the discount is dislayed in the total section as well as
+   the total without it.
 
 Bug Tracker
 ===========
@@ -70,25 +73,24 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * ACSONE SA/NV
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Cédric Pigeon <cedric.pigeon@acsone.eu>
-* Abraham Anes <abrahamanes@gmail.com>
-* Chafique Delli <chafique.delli@akretion.com>
-* Ruchir Shukla <ruchir@bizzappdev.com>
-* Manuel Regidor <manuel.regidor@sygel.es>
+-  Cédric Pigeon <cedric.pigeon@acsone.eu>
+-  Abraham Anes <abrahamanes@gmail.com>
+-  Chafique Delli <chafique.delli@akretion.com>
+-  Ruchir Shukla <ruchir@bizzappdev.com>
+-  Manuel Regidor <manuel.regidor@sygel.es>
+-  `Pesol <https://www.pesol.es>`__:
 
-* `Pesol <https://www.pesol.es>`__:
-
-  * Jonathan Oscategui Taza <info@pesol.es>
+   -  Jonathan Oscategui Taza <info@pesol.es>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
