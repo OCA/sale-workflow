@@ -24,17 +24,17 @@
                 <button
                     name="toggle_invoiceable"
                     type="object"
-                    attrs="{'invisible': [('invoicing_finished_task','=', False)]}"
+                    invisible="not 'invoicing_finished_task'"
                     class="oe_stat_button"
                     icon="fa-file"
                 >
                     <span
                         class="text-success"
-                        attrs="{'invisible': [('invoiceable', '=', False)]}"
+                        invisible="not invoiceable"
                     >Invoiceable</span>
                     <span
                         class="text-danger"
-                        attrs="{'invisible': [('invoiceable', '!=', False)]}"
+                        invisible="invoiceable"
                     >Not Invoiceable</span>
                 </button>
             </div>

@@ -138,7 +138,7 @@ class TestInvoicefinishedTask(TransactionCase):
         # Click on toggle_invoiceable method after the so is invoiced
         with self.assertRaises(ValidationError):
             task.toggle_invoiceable()
-        self.sale_order.action_done()
+        self.sale_order.action_lock()
         with self.assertRaises(ValidationError):
             task.write({"sale_line_id": self.sale_order_policy_delivery.order_line.id})
         # Try to create a task and link it to so line
@@ -178,7 +178,7 @@ class TestInvoicefinishedTask(TransactionCase):
         task = self.env["project.task"].create(
             {
                 "name": "Other Task",
-                "manager_id": self.manager.id,
+                "partner_id": self.manager.id,
                 "user_ids": [(4, self.manager.id)],
                 "project_id": self.project.id,
                 "sale_line_id": self.sale_order.order_line.id,
