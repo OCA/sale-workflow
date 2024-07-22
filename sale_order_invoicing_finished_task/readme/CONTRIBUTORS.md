@@ -8,4 +8,5 @@
   - César A. Sánchez
   - Luis D. Lafaurie
   - Yadier A. De Quesada
+  - Juan José Seguí
 - <nikulchaudhary2112@gmail.com>

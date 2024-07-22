@@ -56,12 +56,13 @@ class ProjectTask(models.Model):
             sale_lines |= self.env["sale.order.line"].browse(sale_line_id)
         for sale_line in sale_lines:
             if (
-                sale_line.state in ("done", "cancel")
+                sale_line.state == "cancel"
                 or sale_line.invoice_status == "invoiced"
+                or sale_line.order_id.locked
             ):
                 raise ValidationError(
                     _(
                         "You cannot create/modify a task related with a "
-                        "invoiced, done or cancel sale order line "
+                        "invoiced, locked or cancel sale order line "
                     )
                 )
