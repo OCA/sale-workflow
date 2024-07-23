@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-07-23 16:58+0000\n"
+"Last-Translator: Ricardoalso <ricardo.almeidasoares@camptocamp.com>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: sale_order_line_delivery_state
 #: model:ir.model.fields,help:sale_order_line_delivery_state.field_sale_order_line__force_delivery_state
@@ -20,17 +22,19 @@ msgid ""
 "Allow to enforce done state of delivery, for instance if some quantities "
 "were cancelled"
 msgstr ""
+"Permet d'appliquer l'état d'avancement de la livraison, par exemple si "
+"certaines quantités ont été annulées"
 
 #. module: sale_order_line_delivery_state
 #: model:ir.model.fields,field_description:sale_order_line_delivery_state.field_sale_order_line__delivery_state
 #: model_terms:ir.ui.view,arch_db:sale_order_line_delivery_state.view_order_form
 msgid "Delivery State"
-msgstr ""
+msgstr "État de livraison"
 
 #. module: sale_order_line_delivery_state
 #: model:ir.model.fields.selection,name:sale_order_line_delivery_state.selection__sale_order_line__delivery_state__done
 msgid "Done"
-msgstr ""
+msgstr "Terminé"
 
 #. module: sale_order_line_delivery_state
 #: model:ir.model.fields,field_description:sale_order_line_delivery_state.field_sale_order_line__force_delivery_state
