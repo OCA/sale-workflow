@@ -125,11 +125,6 @@ msgid "Journal Entry"
 msgstr "Entrada diaria"
 
 #. module: sale_advance_payment
-#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard____last_update
-msgid "Last Modified on"
-msgstr "modificado por última vez el"
-
-#. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
@@ -254,3 +249,6 @@ msgid ""
 msgstr ""
 "El importe a anticipar debe ser siempre positivo. Utilice el tipo de pago "
 "para indicar si se trata de un pago entrante o saliente."
+
+#~ msgid "Last Modified on"
+#~ msgstr "modificado por última vez el"
