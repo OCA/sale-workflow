@@ -124,11 +124,6 @@ msgid "Journal Entry"
 msgstr "Zapis dnevnika"
 
 #. module: sale_advance_payment
-#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard____last_update
-msgid "Last Modified on"
-msgstr "Zadnje modificirano"
-
-#. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__write_uid
 msgid "Last Updated by"
 msgstr "Zadnje ažurirao"
@@ -249,3 +244,6 @@ msgid ""
 "The amount to advance must always be positive. Please use the payment type "
 "to indicate if this is an inbound or an outbound payment."
 msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "Zadnje modificirano"

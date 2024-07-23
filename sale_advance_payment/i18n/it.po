@@ -124,11 +124,6 @@ msgid "Journal Entry"
 msgstr "Registrazione contabile"
 
 #. module: sale_advance_payment
-#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__write_uid
 msgid "Last Updated by"
 msgstr "Ultimo aggiornamento di"
@@ -253,3 +248,6 @@ msgid ""
 msgstr ""
 "L'importo da anticipare deve essere sempre positivo. Utilizzare il tipo di "
 "pagamento per indicare se si tratta di un pagamento in entrata o in uscita."
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
