@@ -32,7 +32,7 @@ class SaleOrderLine(models.Model):
     def write(self, vals):
         res = super().write(vals)
         moves_to_upd = set()
-        if "commitment_date" in vals:
+        if "commitment_date" in vals and vals["commitment_date"]:
             for move in self.move_ids:
                 if move.state not in ["cancel", "done"]:
                     moves_to_upd.add(move.id)
