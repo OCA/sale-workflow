@@ -123,11 +123,6 @@ msgid "Journal Entry"
 msgstr ""
 
 #. module: sale_advance_payment
-#: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
-
-#. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__write_uid
 msgid "Last Updated by"
 msgstr "Dernière modification par"
@@ -248,6 +243,9 @@ msgid ""
 "The amount to advance must always be positive. Please use the payment type "
 "to indicate if this is an inbound or an outbound payment."
 msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "Dernière modification le"
 
 #, python-format
 #~ msgid "Amount of advance is greater than residual amount on sale"
