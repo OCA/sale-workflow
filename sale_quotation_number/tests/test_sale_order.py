@@ -79,7 +79,7 @@ class TestSaleOrder(TransactionCase):
 
     def test_error_confirmation_sequence(self):
         order = self.sale_order_model.create(
-            {"partner_id": self.env.ref("base.res_partner_1").id, "state": "done"}
+            {"partner_id": self.env.ref("base.res_partner_1").id, "state": "sale"}
         )
         # An exception is forced
         sequence_id = self.env["ir.sequence"].search(
