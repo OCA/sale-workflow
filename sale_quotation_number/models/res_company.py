@@ -21,4 +21,7 @@ class ResCompany(models.Model):
 class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
-    keep_name_so = fields.Boolean(related="company_id.keep_name_so", readonly=False)
+    keep_name_so = fields.Boolean(
+        related="company_id.keep_name_so",
+        readonly=False,
+    )
