@@ -17,62 +17,69 @@ Sale Quotation Numeration
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_quotation_number
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_quotation_number
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_quotation_number
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_quotation_number
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-* Sale Quotation:
+-  Sale Quotation:
 
-  * Sale process in draft stage just informing prices and element of communication.
+   -  Sale process in draft stage just informing prices and element of
+      communication.
 
-* Sale Order:
+-  Sale Order:
 
-  * Sale process confirmed, the customer already have a compromise with us in terms of pay an invoice and receive our product or service.
+   -  Sale process confirmed, the customer already have a compromise
+      with us in terms of pay an invoice and receive our product or
+      service.
 
-Originally Odoo manage only 1 sequence for this 2 documents, then the sales order won and lost manage the same sequence losing
-almost all lost quotations in terms of sequences, making so difficult understand with a quick view if we are good or bad in terms of
-logistic and sale process already confirmed.
-
+Originally Odoo manage only 1 sequence for this 2 documents, then the
+sales order won and lost manage the same sequence losing almost all lost
+quotations in terms of sequences, making so difficult understand with a
+quick view if we are good or bad in terms of logistic and sale process
+already confirmed.
 
 **Technical Explanation**
 
 When you create a quotation, it is numbered using the 'sale.quotation'
-sequence.  When you confirm a quotation, its orginal number is saved in the
-'origin' field and the sale order gets a new number, retrieving it from
-'sale.order' sequence.
+sequence. When you confirm a quotation, its orginal number is saved in
+the 'origin' field and the sale order gets a new number, retrieving it
+from 'sale.order' sequence.
 
-* With Odoo Base:
+-  With Odoo Base:
 
-    Sale Quotation 1 Number = SO001
+      Sale Quotation 1 Number = SO001
 
-    Sale Quotation 2 Number = SO002
+      Sale Quotation 2 Number = SO002
 
-    Sale Quotation 3 Number = SO003
+      Sale Quotation 3 Number = SO003
 
-    Sale Quotation 4 Number = SO004
+      Sale Quotation 4 Number = SO004
 
-* With Odoo + This Module:
+-  With Odoo + This Module:
 
-    Sale Quotation 1 Number = SQ001
+      Sale Quotation 1 Number = SQ001
 
-    Sale Quotation 2 Number = SQ002
+      Sale Quotation 2 Number = SQ002
 
-    Sale Quotation 3 Number = SQ003
+      Sale Quotation 3 Number = SQ003
 
-    Sale Quotation 4 Number = SQ004
+      Sale Quotation 4 Number = SQ004
 
-    Sale Quotation 2 Confirmed = Number for Sale Order SO001 from Sale Quotation SQ002
+      Sale Quotation 2 Confirmed = Number for Sale Order SO001 from Sale
+      Quotation SQ002
 
-    Sale Quotation 1 Confirmed = Number for Sale Order SO002 from Sale Quotation SQ001
+      Sale Quotation 1 Confirmed = Number for Sale Order SO002 from Sale
+      Quotation SQ001
 
-    Sale Quotation 4 Confirmed = Number for Sale Order SO003 from Sale Quotation SQ004
+      Sale Quotation 4 Confirmed = Number for Sale Order SO003 from Sale
+      Quotation SQ004
 
 **Table of contents**
 
@@ -82,7 +89,8 @@ sequence.  When you confirm a quotation, its orginal number is saved in the
 Configuration
 =============
 
-To configure this module you need to go to Sales -> Configuration and uncheck 'Use same enumeration for quotations and sale orders'.
+To configure this module you need to go to Sales -> Configuration and
+uncheck 'Use same enumeration for quotations and sale orders'.
 
 Bug Tracker
 ===========
@@ -90,7 +98,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_quotation_number%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_quotation_number%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -98,31 +106,32 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Elico Corp
 * Agile Business Group
 * Qubiq
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Andy Lu <andy.lu@elico-corp.com>
-* Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-* Valentin Vinagre Urteaga <valentin.vinagre@qubiq.es>
-* Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
-* Manuel Regidor <manuel.regidor@sygel.es>
-* Vishnu Vanneri <vanneri.odoodev@gmail.com>
-* Ruchir Shukla <ruchir@bizzappdev.com>
-* Dhara Solanki <dhara.solanki@initos.com>
+-  Andy Lu <andy.lu@elico-corp.com>
+-  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Valentin Vinagre Urteaga <valentin.vinagre@qubiq.es>
+-  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+-  Manuel Regidor <manuel.regidor@sygel.es>
+-  Vishnu Vanneri <vanneri.odoodev@gmail.com>
+-  Ruchir Shukla <ruchir@bizzappdev.com>
+-  Dhara Solanki <dhara.solanki@initos.com>
 
 Other credits
-~~~~~~~~~~~~~
+-------------
 
-* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
+-  Odoo Community Association:
+   `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`__.
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -134,6 +143,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_quotation_number>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_quotation_number>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
