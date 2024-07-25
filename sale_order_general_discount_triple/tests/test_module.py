@@ -29,7 +29,7 @@ class TestModule(TransactionCase):
         )
         setting_form = Form(cls.env["res.config.settings"])
         setting_form.general_discount = "discount2"
-        setting_form.pricelist_discount = "discount"
+        setting_form.pricelist_discount = "discount1"
         setting_form.group_discount_per_so_line = True
         setting_form.save().set_values()
 
@@ -41,4 +41,4 @@ class TestModule(TransactionCase):
             line.product_id = self.product
         sale = sale_form.save()
         self.assertEqual(sale.order_line.discount2, 10)
-        self.assertEqual(sale.order_line.discount, 20)
+        self.assertEqual(sale.order_line.discount1, 20)
