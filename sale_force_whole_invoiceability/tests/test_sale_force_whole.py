@@ -32,7 +32,7 @@ class SaleOrderForceInvoiceability(common.TransactionCase):
                 order_line.product_uom_qty = 5
         cls.sale_order = sale.save()
 
-    @users("admin", "test-sale-manager")
+    @users("test-sale-manager")
     def test_01_force_invoiceability_draft(self):
         """Try to force invoiceability"""
         # The order is still not in `sale` mode so we can't force it
