@@ -3,9 +3,15 @@
 # Copyright 2017 Tecnativa - David Vidal
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+import logging
+import pkg_resources
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.modules.module import get_manifest
+
+
+_logger = logging.getLogger(__name__)
 
 
 class SaleOrderLine(models.Model):
@@ -161,3 +167,10 @@ class SaleOrderLine(models.Model):
         else:
             res.update({"discount1": self.discount})
         return res
+
+    def _register_hook(self):
+        account_invoice_triple_discount_manifest = get_manifest("account_invoice_triple_discount")
+        if not pkg_resources.parse_version(
+            account_invoice_triple_discount_manifest["version"]
+        ) >= pkg_resources.parse_version("16.0.2.0.0"):
+            _logger.error("Module sale_triple_discount requires module account_invoice_triple_discount >= 16.0.2.0.0")
