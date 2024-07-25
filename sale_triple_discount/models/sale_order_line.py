@@ -85,7 +85,7 @@ class SaleOrderLine(models.Model):
         return ["discount1", "discount2", "discount3"]
 
     # Copy of Odoo function to change field being assigned from discount to discount1
-    @api.depends('product_id', 'product_uom', 'product_uom_qty')
+    @api.depends("product_id", "product_uom", "product_uom_qty")
     def _compute_discount(self):
         for line in self:
             if not line.product_id or line.display_type:
@@ -93,7 +93,7 @@ class SaleOrderLine(models.Model):
 
             if not (
                 line.order_id.pricelist_id
-                and line.order_id.pricelist_id.discount_policy == 'without_discount'
+                and line.order_id.pricelist_id.discount_policy == "without_discount"
             ):
                 continue
 
@@ -106,10 +106,10 @@ class SaleOrderLine(models.Model):
                 continue
 
             line.discount1 = line._calc_discount_from_pricelist()
-        
+
     def _calc_discount_from_pricelist(self):
         self.ensure_one()
-        line = self.with_company(self.company_id)
+        self = self.with_company(self.company_id)
         pricelist_price = self._get_pricelist_price()
         base_price = self._get_pricelist_price_before_discount()
 
