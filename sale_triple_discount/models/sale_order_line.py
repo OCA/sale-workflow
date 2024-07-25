@@ -149,6 +149,7 @@ class SaleOrderLine(models.Model):
         more discount fields to the invoice lines
         """
         res = super()._prepare_invoice_line(**kwargs)
+        res.pop("discount", None)
         if self.discounting_type == "multiplicative":
             res.update(
                 {
