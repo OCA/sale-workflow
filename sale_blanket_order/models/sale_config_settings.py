@@ -5,7 +5,6 @@ from odoo import fields, models
 
 
 class SaleConfigSettings(models.TransientModel):
-
     _inherit = "res.config.settings"
 
     group_blanket_disable_adding_lines = fields.Boolean(
