@@ -607,7 +607,7 @@ class BlanketOrderLine(models.Model):
             ):
                 self.price_unit = self._get_display_price(self.product_id)
             if self.product_id.code:
-                name = "[{}] {}".format(name, self.product_id.code)
+                name = f"[{name}] {self.product_id.code}"
             if self.product_id.description_sale:
                 name += "\n" + self.product_id.description_sale
             self.name = name
