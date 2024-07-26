@@ -28,7 +28,8 @@ Sale Order Line Tag
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows the user to tag sales order lines in order to classify them.
+This module allows the user to tag sales order lines in order to
+classify them.
 
 **Table of contents**
 
@@ -49,17 +50,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Open Source Integrators
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Samuel Macias <smacias@opensourceintegrators.com>
+-  Samuel Macias <smacias@opensourceintegrators.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
