@@ -1,6 +1,8 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
+
 from odoo.exceptions import ValidationError
+from odoo.tests.common import Form
 
 from .common import Common
 
@@ -43,3 +45,18 @@ class TestPackagingTypeCanBeSold(Common):
         # Changing the can_be_sold on the packaging_type does not update the packaging
         self.packaging_type_cannot_be_sold.can_be_sold = True
         self.assertEqual(self.packaging_cannot_be_sold.can_be_sold, False)
+
+
+class TestPackagingForm(Common):
+    def test_packaging_can_be_sold_default_product_form(self):
+        pkg_type_cannot_be_sold = self.packaging_type_cannot_be_sold.copy()
+        pkg_type_can_be_sold = self.packaging_type_pl.copy()
+        with Form(
+            self.env["product.packaging"],
+            view="product_packaging_type.view_product_packaging_add_type_form",
+        ) as pkg:
+            pkg.packaging_type_id = pkg_type_can_be_sold
+            self.assertTrue(pkg.can_be_sold)
+            pkg.packaging_type_id = pkg_type_cannot_be_sold
+            self.assertFalse(pkg.can_be_sold)
+            pkg.product_id = self.product

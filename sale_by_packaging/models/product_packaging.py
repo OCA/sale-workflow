@@ -26,6 +26,14 @@ class ProductPackaging(models.Model):
         for record in self:
             record.can_be_sold = record.packaging_type_id.can_be_sold
 
+    # This shouldn't be required due to the compute method.
+    # However, we experienced some cases where nested form inside the product
+    # form fails to update the flag without this onchange.
+    @api.onchange("packaging_type_id")
+    def _onchange_packaging_type(self):
+        for record in self:
+            record.can_be_sold = record.packaging_type_id.can_be_sold
+
     def write(self, vals):
         if "active" in vals and vals["active"] is False:
             vals["can_be_sold"] = False
