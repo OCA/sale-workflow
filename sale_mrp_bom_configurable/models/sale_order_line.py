@@ -101,7 +101,11 @@ class SaleOrderLine(models.Model):
         for rec in res:
             if not rec.is_static_product:
                 vals = rec._prepare_default_input_line_vals()
-                input_line = self.env["input.line"].with_context({"active_id": rec.input_config_id.id}).create(vals)
+                input_line = (
+                    self.env["input.line"]
+                    .with_context(active_id=rec.input_config_id.id)
+                    .create(vals)
+                )
                 rec.input_line_ids = [(4, input_line.id, 0)]
 
         return res

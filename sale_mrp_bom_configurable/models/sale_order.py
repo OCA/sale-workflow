@@ -6,7 +6,10 @@ class SaleOrder(models.Model):
 
     @api.model
     def _get_default_input_config(self):
-        if self.env.context.get("configurable_quotation") and len(self.input_config_ids) == 0:
+        if (
+            self.env.context.get("configurable_quotation")
+            and len(self.input_config_ids) == 0
+        ):
             input_config = self.env["input.config"].create({})
             return [(4, input_config.id, 0)]
         return []

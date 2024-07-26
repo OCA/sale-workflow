@@ -1,4 +1,5 @@
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 from odoo.addons.mrp_bom_configurable.models.mrp_bom_line import check_domain
 
@@ -93,7 +94,7 @@ class SalePriceConfigLine(models.Model):
                 )
             ]
 
-    def _get_price(self, input_line):
+    def _get_price(self, input_line, override_size=False):
         self.ensure_one()
         match self.line_type:
             case "base":
@@ -131,12 +132,30 @@ class SalePriceConfigLine(models.Model):
                     vert_values.append(line[0])
 
                 horiz_index = 1
-                while float(horiz_values[horiz_index - 1]) < horiz_target:
-                    horiz_index += 1
+                try:
+                    while float(horiz_values[horiz_index - 1]) < horiz_target:
+                        horiz_index += 1
+                except IndexError:
+                    if not override_size:
+                        raise ValidationError(
+                            f"le store est trop grand ({self.horizontal_value.name}:"
+                            f"{horiz_target} max: {horiz_values[-1]} )"
+                        ) from None
+                    else:
+                        horiz_index = len(horiz_values) - 1
 
                 vert_index = 1
-                while float(horiz_values[vert_index - 1]) < vert_target:
-                    vert_index += 1
+                try:
+                    while float(vert_values[vert_index - 1]) < vert_target:
+                        vert_index += 1
+                except IndexError:
+                    if not override_size:
+                        raise ValidationError(
+                            f"Le store est trop grand ({self.vertical_value.name}:"
+                            f"{vert_target} max: {vert_values[-1]} )"
+                        ) from None
+                    else:
+                        vert_index = len(vert_values) - 1
                 return float(matrix_data[vert_index][horiz_index])
 
     def open_matrix_wizard(self):
