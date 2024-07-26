@@ -3,7 +3,7 @@
 {
     "name": "Sale Order Type Quotation Number",
     "summary": "Use quotation sequence depending on sale type",
-    "version": "15.0.1.1.0",
+    "version": "15.0.1.2.0",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Sygel, Odoo Community Association (OCA)",
