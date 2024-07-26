@@ -1,15 +1,14 @@
 # Copyright 2018 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
+from odoo import api, fields, models, _
 
 
 class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
     sale_invoice_policy_required = fields.Boolean(
-        help="This makes Invoice Policy required on Sale Orders"
-    )
+        help=_("This makes Invoice Policy required on Sale Orders"))
 
     @api.model
     def get_values(self):
