@@ -99,7 +99,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
         blanket_order.line_ids[0].sudo().onchange_product()
         blanket_order.pricelist_id.discount_policy = "with_discount"
         blanket_order.line_ids[0].sudo().onchange_product()
-        blanket_order.line_ids[0].sudo()._get_display_price(self.product)
+        blanket_order.line_ids[0].sudo()._get_display_price()
 
         self.assertEqual(blanket_order.state, "draft")
 
@@ -390,10 +390,10 @@ class TestSaleBlanketOrders(common.TransactionCase):
         wizard1 = self.blanket_order_wiz_obj.with_context(
             active_id=blanket_order.id, active_model="sale.blanket.order"
         ).create({})
-        wizard1.line_ids.filtered(lambda l: l.product_id == self.product).write(
+        wizard1.line_ids.filtered(lambda line: line.product_id == self.product).write(
             {"qty": 10.0}
         )
-        wizard1.line_ids.filtered(lambda l: l.product_id == self.product2).write(
+        wizard1.line_ids.filtered(lambda line: line.product_id == self.product2).write(
             {"qty": 10.0}
         )
         wizard1.sudo().create_sale_order()
@@ -401,10 +401,10 @@ class TestSaleBlanketOrders(common.TransactionCase):
         wizard2 = self.blanket_order_wiz_obj.with_context(
             active_id=blanket_order.id, active_model="sale.blanket.order"
         ).create({})
-        wizard2.line_ids.filtered(lambda l: l.product_id == self.product).write(
+        wizard2.line_ids.filtered(lambda line: line.product_id == self.product).write(
             {"qty": 20.0}
         )
-        wizard2.line_ids.filtered(lambda l: l.product_id == self.product2).write(
+        wizard2.line_ids.filtered(lambda line: line.product_id == self.product2).write(
             {"qty": 0}
         )
         wizard2.sudo().create_sale_order()
@@ -412,7 +412,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
         wizard3 = self.blanket_order_wiz_obj.with_context(
             active_id=blanket_order.id, active_model="sale.blanket.order"
         ).create({})
-        wizard3.line_ids.filtered(lambda l: l.product_id == self.product2).write(
+        wizard3.line_ids.filtered(lambda line: line.product_id == self.product2).write(
             {"qty": 10.0}
         )
         wizard3.sudo().create_sale_order()
