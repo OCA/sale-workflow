@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -128,13 +128,13 @@ msgid "An order can't be empty"
 msgstr ""
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__analytic_distribution
-msgid "Analytic"
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__analytic_account_id
+msgid "Analytic Account"
 msgstr ""
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__analytic_account_id
-msgid "Analytic Account"
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__analytic_distribution
+msgid "Analytic Distribution"
 msgstr ""
 
 #. module: sale_blanket_order
@@ -353,7 +353,6 @@ msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.actions.server,name:sale_blanket_order.expired_blanket_orders_cron_ir_actions_server
-#: model:ir.cron,cron_name:sale_blanket_order.expired_blanket_orders_cron
 msgid "Expire Blanket Orders"
 msgstr ""
 
@@ -451,14 +450,6 @@ msgid "Is Follower"
 msgstr ""
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order____last_update
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line____last_update
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard____last_update
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__write_uid
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__write_uid
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard__write_uid
@@ -478,12 +469,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard__line_ids
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
 msgid "Lines"
-msgstr ""
-
-#. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_main_attachment_id
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_main_attachment_id
-msgid "Main Attachment"
 msgstr ""
 
 #. module: sale_blanket_order
@@ -519,12 +504,6 @@ msgstr ""
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__name
 msgid "Name"
-msgstr ""
-
-#. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_calendar_event_id
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_calendar_event_id
-msgid "Next Activity Calendar Event"
 msgstr ""
 
 #. module: sale_blanket_order
@@ -669,6 +648,11 @@ msgid "Pricelist"
 msgstr ""
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__pricelist_item_id
+msgid "Pricelist Item"
+msgstr ""
+
+#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__product_id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__product_id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__product_id
@@ -691,6 +675,12 @@ msgstr ""
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__qty
 msgid "Quantity to Order"
+msgstr ""
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__rating_ids
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__rating_ids
+msgid "Ratings"
 msgstr ""
 
 #. module: sale_blanket_order
