@@ -61,14 +61,14 @@ class SaleOrderLine(models.Model):
         assigned_bo_line = False
         date_planned = date.today()
         date_delta = timedelta(days=365)
-        for line in bo_lines.filtered(lambda l: l.date_schedule):
+        for line in bo_lines.filtered(lambda bo_line: bo_line.date_schedule):
             date_schedule = line.date_schedule
             if date_schedule and abs(date_schedule - date_planned) < date_delta:
                 assigned_bo_line = line
                 date_delta = abs(date_schedule - date_planned)
         if assigned_bo_line:
             return assigned_bo_line
-        non_date_bo_lines = bo_lines.filtered(lambda l: not l.date_schedule)
+        non_date_bo_lines = bo_lines.filtered(lambda bo_line: not bo_line.date_schedule)
         if non_date_bo_lines:
             return non_date_bo_lines[0]
 

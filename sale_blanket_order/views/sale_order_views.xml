@@ -15,7 +15,7 @@
                 <field
                     name="blanket_order_line"
                     context="{'from_sale_order': True}"
-                    attrs="{'column_invisible': [('parent.blanket_order_id', '=', False)]}"
+                    column_invisible="not parent.blanket_order_id"
                 />
             </xpath>
             <xpath expr="//field[@name='order_line']" position="attributes">

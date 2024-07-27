@@ -79,7 +79,8 @@ class BlanketOrderWizard(models.TransientModel):
                 },
             )
             for bol in bo_lines.filtered(
-                lambda l: not l.display_type and l.remaining_uom_qty != 0.0
+                lambda bo_line: not bo_line.display_type
+                and bo_line.remaining_uom_qty != 0.0
             )
         ]
         return lines
@@ -137,7 +138,7 @@ class BlanketOrderWizard(models.TransientModel):
         pricelist_id = 0
         user_id = 0
         payment_term_id = 0
-        for line in self.line_ids.filtered(lambda l: l.qty != 0.0):
+        for line in self.line_ids.filtered(lambda line: line.qty != 0.0):
             if line.qty > line.remaining_uom_qty:
                 raise UserError(_("You can't order more than the remaining quantities"))
             vals = self._prepare_so_line_vals(line)

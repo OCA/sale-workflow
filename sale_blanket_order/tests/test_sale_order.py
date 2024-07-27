@@ -145,7 +145,6 @@ class TestSaleOrder(common.TransactionCase):
             }
         )
         so_line = so.order_line[0]
-        so_line.with_context(from_sale_order=True).name_get()
         so_line.onchange_product_id()
         self.assertEqual(so_line._get_eligible_bo_lines(), bo_lines)
         bo_line_assigned = self.blanket_order_line_obj.search(
@@ -180,11 +179,10 @@ class TestSaleOrder(common.TransactionCase):
             }
         )
         so_line = so.order_line[0]
-        so_line.with_context(from_sale_order=True).name_get()
         so_line.onchange_product_id()
         self.assertEqual(
             so_line._get_eligible_bo_lines(),
-            bo_lines.filtered(lambda l: l.product_id == self.product),
+            bo_lines.filtered(lambda bo_line: bo_line.product_id == self.product),
         )
         bo_line_assigned = self.blanket_order_line_obj.search(
             [
