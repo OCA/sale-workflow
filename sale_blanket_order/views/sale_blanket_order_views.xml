@@ -37,25 +37,25 @@
                         string="Create Sale Order"
                         type="action"
                         class="btn-primary"
-                        attrs="{'invisible': [('state', '!=', 'open')]}"
+                        invisible="state != 'open'"
                     />
                     <button
                         name="set_to_draft"
-                        states="expired,done"
+                        invisible="state not in ['expired', 'done']"
                         string="To Draft"
                         class="btn-secondary"
                         type="object"
                     />
                     <button
                         name="action_cancel"
-                        states="open"
+                        invisible="state != 'open'"
                         string="Cancel"
                         class="btn-secondary"
                         type="object"
                     />
                     <button
                         name="action_confirm"
-                        states="draft"
+                        invisible="state != 'draft'"
                         string="Confirm"
                         class="btn-primary o_sale_confirm"
                         type="object"
@@ -84,7 +84,7 @@
                             type="object"
                             name="action_view_sale_blanket_order_line"
                             class="oe_stat_button"
-                            attrs="{'invisible':[('line_count', '=', 0)]}"
+                            invisible="not line_count"
                             icon="fa-list"
                         >
                             <field name="line_count" widget="statinfo" string="Lines" />
@@ -100,7 +100,7 @@
                             <field
                                 name="partner_id"
                                 context="{'res_partner_search_mode': 'customer', 'show_address': 1}"
-                                attrs="{'required': [('state', '=', 'draft')]}"
+                                required="state == 'draft'"
                                 options="{&quot;always_reload&quot;: True}"
                             />
                             <field name="payment_term_id" />
@@ -112,17 +112,14 @@
                                 options="{'no_create': True}"
                             />
                             <field name="company_id" invisible="1" />
-                            <field
-                                name="validity_date"
-                                attrs="{'required': [('state', '=', 'draft')]}"
-                            />
+                            <field name="validity_date" required="state == 'draft'" />
                         </group>
                     </group>
                     <notebook>
                         <page string="Order Lines" name="order_lines">
                             <field
                                 name="line_ids"
-                                attrs="{'readonly': [('state', 'in', ('open','done','expired'))]}"
+                                readonly="state in ['open', 'done', 'expired']"
                                 widget="section_and_note_one2many"
                             >
                                 <tree editable="bottom">
@@ -142,14 +139,15 @@
                                             context="{'default_display_type': 'line_note'}"
                                         />
                                     </control>
-                                    <field name="display_type" invisible="1" />
+                                    <field
+                                        name="display_type"
+                                        column_invisible="True"
+                                    />
                                     <field name="sequence" widget="handle" />
                                     <field
                                         name="product_id"
-                                        attrs="{
-                                            'required': [('display_type', '=', False)],
-                                            'invisible': [('display_type', '=', True)],
-                                        }"
+                                        required="not display_type"
+                                        invisible="display_type"
                                         context="{
                                             'fld': 'product_id',
                                             'partner_id': parent.partner_id,
@@ -181,14 +179,12 @@
                                             'quantity': original_uom_qty,
                                             'company_id': parent.company_id
                                         }"
-                                        attrs="{
-                                            'required': [('display_type', '=', False)],
-                                            'invisible': [('display_type', '=', True)],
-                                        }"
+                                        required="not display_type"
+                                        invisible="display_type"
                                     />
                                     <field
                                         name="product_uom"
-                                        invisible="1"
+                                        column_invisible="True"
                                         groups="!uom.group_uom"
                                     />
                                     <field
@@ -198,10 +194,8 @@
                                     />
                                     <field
                                         name="price_unit"
-                                        attrs="{
-                                            'required': [('display_type', '=', False)],
-                                            'invisible': [('display_type', '=', True)],
-                                        }"
+                                        required="not display_type"
+                                        invisible="display_type"
                                     />
                                     <field name="date_schedule" />
                                     <field name="ordered_uom_qty" optional="hide" />
@@ -214,17 +208,13 @@
                                         domain="[('type_tax_use','=','sale')]"
                                         context="{'default_type_tax_use': 'sale'}"
                                         options="{'no_create': True}"
-                                        attrs="{
-                                            'required': [('display_type', '=', False)],
-                                            'invisible': [('display_type', '=', True)],
-                                        }"
+                                        required="not display_type"
+                                        invisible="display_type"
                                     />
                                     <field
                                         name="price_subtotal"
                                         widget="monetary"
-                                        attrs="{
-                                            'invisible': [('display_type', '=', True)],
-                                        }"
+                                        invisible="display_type"
                                     />
                                     <field name="company_id" invisible="1" />
                                 </tree>
@@ -266,7 +256,7 @@
                                 <group string="Sales Information" name="sales_person">
                                     <field
                                         name="pricelist_id"
-                                        attrs="{'required': [('state', '=', 'draft')]}"
+                                        required="state == 'draft'"
                                     />
                                     <field name="user_id" />
                                     <field
@@ -284,7 +274,7 @@
                                     <t groups="base.group_multi_company">
                                         <field
                                             name="analytic_account_id"
-                                            attrs="{'readonly': [('sale_count','!=',0),('state','!=','draft')]}"
+                                            readonly="sale_count != 0 and state != 'draft'"
                                             groups="analytic.group_analytic_accounting"
                                             force_save="1"
                                         />

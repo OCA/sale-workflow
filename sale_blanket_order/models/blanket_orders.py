@@ -6,8 +6,6 @@ from odoo.exceptions import UserError
 from odoo.tools import float_is_zero
 from odoo.tools.misc import format_date
 
-from odoo.addons.sale.models.sale_order import READONLY_FIELD_STATES
-
 
 class BlanketOrder(models.Model):
     _name = "sale.blanket.order"
@@ -44,7 +42,6 @@ class BlanketOrder(models.Model):
     partner_id = fields.Many2one(
         "res.partner",
         string="Partner",
-        states=READONLY_FIELD_STATES,
     )
     line_ids = fields.One2many(
         "sale.blanket.order.line", "order_id", string="Order lines", copy=True
@@ -63,7 +60,6 @@ class BlanketOrder(models.Model):
         "product.pricelist",
         string="Pricelist",
         required=True,
-        states=READONLY_FIELD_STATES,
     )
     currency_id = fields.Many2one("res.currency", related="pricelist_id.currency_id")
     analytic_account_id = fields.Many2one(
@@ -71,13 +67,11 @@ class BlanketOrder(models.Model):
         string="Analytic Account",
         copy=False,
         check_company=True,
-        states=READONLY_FIELD_STATES,
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
     )
     payment_term_id = fields.Many2one(
         "account.payment.term",
         string="Payment Terms",
-        states=READONLY_FIELD_STATES,
     )
     confirmed = fields.Boolean(copy=False)
     state = fields.Selection(
@@ -91,26 +85,21 @@ class BlanketOrder(models.Model):
         store=True,
         copy=False,
     )
-    validity_date = fields.Date(
-        states=READONLY_FIELD_STATES,
-    )
+    validity_date = fields.Date()
     client_order_ref = fields.Char(
         string="Customer Reference",
         copy=False,
-        states=READONLY_FIELD_STATES,
     )
-    note = fields.Text(default=_default_note, states=READONLY_FIELD_STATES)
+    note = fields.Text(default=_default_note)
     user_id = fields.Many2one(
         "res.users",
         string="Salesperson",
-        states=READONLY_FIELD_STATES,
     )
     team_id = fields.Many2one(
         "crm.team",
         string="Sales Team",
         change_default=True,
         default=lambda self: self.env["crm.team"]._get_default_team_id(),
-        states=READONLY_FIELD_STATES,
     )
     company_id = fields.Many2one(
         comodel_name="res.company",
@@ -198,7 +187,7 @@ class BlanketOrder(models.Model):
                 order.state = "expired"
             elif float_is_zero(
                 sum(
-                    order.line_ids.filtered(lambda l: not l.display_type).mapped(
+                    order.line_ids.filtered(lambda line: not line.display_type).mapped(
                         "remaining_uom_qty"
                     )
                 ),
@@ -483,23 +472,29 @@ class BlanketOrderLine(models.Model):
         default=False,
         help="Technical field for UX purpose.",
     )
+    pricelist_item_id = fields.Many2one(
+        comodel_name="product.pricelist.item", compute="_compute_pricelist_item_id"
+    )
 
-    def name_get(self):
-        result = []
+    @api.depends(
+        "order_id.name", "date_schedule", "remaining_uom_qty", "product_uom.name"
+    )
+    @api.depends_context("from_sale_order")
+    def _compute_display_name(self):
         if self.env.context.get("from_sale_order"):
             for record in self:
-                res = "[%s]" % record.order_id.name
+                name = "[%s]" % record.order_id.name
                 if record.date_schedule:
                     formatted_date = format_date(record.env, record.date_schedule)
-                    res += " - {}: {}".format(_("Date Scheduled"), formatted_date)
-                res += " ({}: {} {})".format(
+                    name += " - {}: {}".format(_("Date Scheduled"), formatted_date)
+                name += " ({}: {} {})".format(
                     _("remaining"),
                     record.remaining_uom_qty,
                     record.product_uom.name,
                 )
-                result.append((record.id, res))
-            return result
-        return super().name_get()
+                record.display_name = name
+        else:
+            return super()._compute_display_name()
 
     def _get_real_price_currency(self, product, rule_id, qty, uom, pricelist_id):
         """Retrieve the price before applying the pricelist
@@ -563,35 +558,43 @@ class BlanketOrderLine(models.Model):
 
         return product[field_name] * uom_factor * cur_factor, currency_id.id
 
-    def _get_display_price(self, product):
+    def _get_display_price(self):
         # Copied and adapted from the sale module
         self.ensure_one()
-        pricelist = self.order_id.pricelist_id
-        partner = self.order_id.partner_id
+        self.product_id.ensure_one()
+
+        pricelist_price = self.pricelist_item_id._compute_price(
+            product=self.product_id,
+            quantity=self.original_uom_qty or 1.0,
+            uom=self.product_uom,
+            date=fields.Date.today(),
+            currency=self.currency_id,
+        )
+
         if self.order_id.pricelist_id.discount_policy == "with_discount":
-            return product.with_context(pricelist=pricelist.id).lst_price
-        final_price, rule_id = pricelist._get_product_price_rule(
-            self.product_id, self.original_uom_qty or 1.0, self.product_uom
-        )
-        context_partner = dict(
-            self.env.context, partner_id=partner.id, date=fields.Date.today()
-        )
-        base_price, currency_id = self.with_context(
-            **context_partner
-        )._get_real_price_currency(
-            self.product_id,
-            rule_id,
-            self.original_uom_qty,
-            self.product_uom,
-            pricelist.id,
-        )
-        if currency_id != pricelist.currency_id.id:
-            currency = self.env["res.currency"].browse(currency_id)
-            base_price = currency.with_context(**context_partner).compute(
-                base_price, pricelist.currency_id
-            )
+            return pricelist_price
+
+        if not self.pricelist_item_id:
+            # No pricelist rule found => no discount from pricelist
+            return pricelist_price
+
+        base_price = self._get_pricelist_price_before_discount()
+
         # negative discounts (= surcharge) are included in the display price
-        return max(base_price, final_price)
+        return max(base_price, pricelist_price)
+
+    def _get_pricelist_price_before_discount(self):
+        # Copied and adapted from the sale module
+        self.ensure_one()
+        self.product_id.ensure_one()
+
+        return self.pricelist_item_id._compute_price_before_discount(
+            product=self.product_id,
+            quantity=self.product_uom_qty or 1.0,
+            uom=self.product_uom,
+            date=fields.Date.today(),
+            currency=self.currency_id,
+        )
 
     @api.onchange("product_id", "original_uom_qty")
     def onchange_product(self):
@@ -605,7 +608,7 @@ class BlanketOrderLine(models.Model):
             if self.order_id.partner_id and float_is_zero(
                 self.price_unit, precision_digits=precision
             ):
-                self.price_unit = self._get_display_price(self.product_id)
+                self.price_unit = self._get_display_price()
             if self.product_id.code:
                 name = f"[{name}] {self.product_id.code}"
             if self.product_id.description_sale:
@@ -655,6 +658,24 @@ class BlanketOrderLine(models.Model):
             line.remaining_qty = line.product_uom._compute_quantity(
                 line.remaining_uom_qty, line.product_id.uom_id
             )
+
+    @api.depends("product_id", "product_uom", "original_uom_qty")
+    def _compute_pricelist_item_id(self):
+        # Copied and adapted from the sale module
+        for line in self:
+            if (
+                not line.product_id
+                or line.display_type
+                or not line.order_id.pricelist_id
+            ):
+                line.pricelist_item_id = False
+            else:
+                line.pricelist_item_id = line.order_id.pricelist_id._get_product_rule(
+                    line.product_id,
+                    quantity=line.original_uom_qty or 1.0,
+                    uom=line.product_uom,
+                    date=fields.Date.today(),
+                )
 
     def _validate(self):
         try:
@@ -716,4 +737,4 @@ class BlanketOrderLine(models.Model):
                     """
                 )
             )
-        return super(BlanketOrderLine, self).write(values)
+        return super().write(values)
