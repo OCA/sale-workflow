@@ -15,6 +15,13 @@ class SaleOrderLine(models.Model):
         help="Fixed amount discount.",
     )
 
+    @api.model
+    def create(self, vals):
+        record = super(SaleOrderLine, self).create(vals)    
+        if 'discount_fixed' in vals:
+            record._onchange_discount_fixed()
+        return record
+
     @api.constrains("discount_fixed", "discount")
     def _check_discounts(self):
         """Check that the fixed discount and the discount percentage are consistent."""
