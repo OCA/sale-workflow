@@ -23,6 +23,7 @@ msgid "Force Invoice Policy"
 msgstr "Forzar Política de Facturación"
 
 #. module: sale_force_whole_invoiceability
+#. odoo-python
 #: code:addons/sale_force_whole_invoiceability/models/sale_order.py:0
 #, python-format
 msgid "Only Sales Managers are allowed to force the lines to invoice"
@@ -36,6 +37,7 @@ msgid "Sales Order"
 msgstr "Órdenes de venta"
 
 #. module: sale_force_whole_invoiceability
+#. odoo-python
 #: code:addons/sale_force_whole_invoiceability/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -45,6 +47,7 @@ msgstr ""
 "una vez"
 
 #. module: sale_force_whole_invoiceability
+#. odoo-python
 #: code:addons/sale_force_whole_invoiceability/models/sale_order.py:0
 #, python-format
 msgid "You can't perform this action over a sale order in this state"
