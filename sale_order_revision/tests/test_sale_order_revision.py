@@ -1,9 +1,12 @@
 # Copyright 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 # Copyright 2016 Serpent Consulting Services Pvt. Ltd.
 # Copyright 2018 Dreambits Technologies Pvt. Ltd. (<http://dreambits.in>)
+# Copyright 2023 Simone Rubino - TAKOBI
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from odoo.exceptions import UserError
 from odoo.tests import common
+from odoo.tools.safe_eval import safe_eval
 
 
 class TestSaleOrderRevision(common.SavepointCase):
@@ -85,3 +88,47 @@ class TestSaleOrderRevision(common.SavepointCase):
         sale_order_3 = sale_order_2.copy()
         # Check the 'Order Reference' of the copied Sale Order
         self.assertEqual(sale_order_3.name, sale_order_3.unrevisioned_name)
+
+    def _create_new_revision(self, sale_order):
+        """Create and return a new Revision of `sale_order`."""
+        action = self._revision_sale_order(sale_order)
+        model_name = action["res_model"]
+        domain = safe_eval(action["domain"])
+        revision = self.env[model_name].search(domain)
+        return revision
+
+    def _check_order_confirmation_failure(self, order):
+        """Confirming `sale_order` fails because it has a new Revision."""
+        # Arrange
+        order.action_draft()
+        # pre-condition
+        revision = order.current_revision_id
+        self.assertTrue(revision)
+
+        # Act
+        with self.assertRaises(UserError) as ue, self.env.cr.savepoint():
+            order.action_confirm()
+
+        # Assert
+        exc_message = ue.exception.args[0]
+        self.assertIn(order.display_name, exc_message)
+        self.assertIn(revision.display_name, exc_message)
+        self.assertNotEqual(order.state, "sale")
+
+    def test_confirm_old_revision(self):
+        """Only the latest Revision can be confirmed."""
+        # Arrange
+        sale_order = self._create_sale_order()
+        revision_1 = self._create_new_revision(sale_order)
+        revision_2 = self._create_new_revision(revision_1)
+        # pre-condition
+        self.assertEqual(sale_order.current_revision_id, revision_2)
+        self.assertEqual(revision_1.current_revision_id, revision_2)
+
+        # Act
+        self._check_order_confirmation_failure(sale_order)
+        self._check_order_confirmation_failure(revision_1)
+        revision_2.action_confirm()
+
+        # Assert
+        self.assertEqual(revision_2.state, "sale")
