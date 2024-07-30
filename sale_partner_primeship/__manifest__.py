@@ -1,4 +1,5 @@
 # Copyright 2021 Akretion - Florian Mounier
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Sale Partner Primeship",
     "summary": """Allow you to manage time limited prime memberships
@@ -16,5 +17,5 @@
         "security/sale_partner_primeship.xml",
         "data/ir_cron.xml",
     ],
-    "license": "LGPL-3",
+    "license": "AGPL-3",
 }

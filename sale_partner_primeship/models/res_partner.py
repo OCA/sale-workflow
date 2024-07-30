@@ -1,3 +1,7 @@
+# Copyright 2021 Akretion France (http://www.akretion.com/)
+# Copyright 2023 Akretion France (http://www.akretion.com/)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
 from odoo import api, fields, models
 
 
@@ -10,8 +14,13 @@ class ResPartner(models.Model):
         required=True,
     )
 
+    # store True allow to filter on active_primeship.
+    # There is a cron job to set it to False when the customer has no active
+    # primeship anymore.
     active_primeship = fields.Boolean(
-        string="Active Primeship", compute="_compute_active_primeship", store=True
+        string="Active Primeship",
+        compute="_compute_active_primeship",
+        store=True,
     )
     primeship_count = fields.Integer(
         string="Primeships Count", compute="_compute_primeship_count"
