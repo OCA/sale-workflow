@@ -19,6 +19,9 @@
                     groups_id="[(4, ref('sales_team.group_sale_salesman'), 0)]"
                 />
             </header>
+            <group name="settings" position="inside">
+                <field name="product_attribute_value_ids" widget="many2many_tags" />
+            </group>
         </field>
     </record>
 </data>

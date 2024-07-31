@@ -4,6 +4,8 @@
 from contextlib import suppress
 from datetime import datetime
 
+from odoo import fields
+
 from odoo.tests.common import Form, TransactionCase
 
 from odoo.addons.resource_booking.tests.common import create_test_data
@@ -139,3 +141,45 @@ class SaleResourceBookingsCase(TransactionCase):
         # Confirming order, the booking is confirmed too
         order.action_confirm()
         self.assertEqual(booking.state, "confirmed")
+
+    def test_product_variant_booking_type(self):
+        Command = fields.Command
+        pa1 = self.env["product.attribute"].create({"name": "Attribute 1"})
+        pa2 = self.env["product.attribute"].create({"name": "Attribute 2"})
+        pav1a = self.env["product.attribute.value"].create(
+            {"attribute_id": pa1.id, "name": "1A"}
+        )
+        pav1b = self.env["product.attribute.value"].create(
+            {"attribute_id": pa1.id, "name": "1B"}
+        )
+        pav2a = self.env["product.attribute.value"].create(
+            {"attribute_id": pa2.id, "name": "2A"}
+        )
+        rbt = self.env["resource.booking.type"].create(
+            {
+                "name": "1A and 2A",
+                "product_attribute_value_ids": [Command.set([pav1a.id, pav2a.id])],
+            }
+        )
+        pt = self.env["product.template"].create(
+            {
+                "name": "Test Product",
+                "attribute_line_ids": [
+                    Command.create(
+                        {
+                            "attribute_id": pa1.id,
+                            "value_ids": [Command.set([pav1a.id, pav1b.id])],
+                        }
+                    ),
+                    Command.create(
+                        {"attribute_id": pa2.id, "value_ids": [Command.set([pav2a.id])]}
+                    ),
+                ],
+            }
+        )
+        # Test product with and without booking type
+        pp_pav_field = "product_template_attribute_value_ids.product_attribute_value_id"
+        pp1a = self.env["product.product"].search([(pp_pav_field, "in", pav1a.ids)])
+        self.assertEqual(pp1a.resource_booking_type_id.id, rbt.id)
+        pp1b = self.env["product.product"].search([(pp_pav_field, "in", pav1b.ids)])
+        self.assertEqual(pp1b.resource_booking_type_id.id, False)

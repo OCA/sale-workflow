@@ -8,13 +8,9 @@
         <field name="arch" type="xml">
             <field name="html_color" position="after">
                 <field
-                    name="resource_booking_type_id"
+                    name="resource_booking_type_ids"
                     groups="resource_booking.group_user"
-                />
-                <field
-                    name="resource_booking_type_combination_rel_id"
-                    attrs="{'invisible': [('resource_booking_type_id', '=', False)]}"
-                    groups="resource_booking.group_user"
+                    widget="many2many_tags"
                 />
             </field>
         </field>

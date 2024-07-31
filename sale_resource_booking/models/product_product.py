@@ -1,6 +1,6 @@
 import logging
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -65,42 +65,22 @@ class ProductProduct(models.Model):
             action["context"]["default_partner_ids"] = [self.partner_id.id]
         return action
 
-    def create(self, vals_list):
-        products = super().create(vals_list)
-        products.env.cr.commit()
-
-        # When a product has exactly one attribute,
-        # then the product will inherit from product.attribute.value:
-        # - resource_booking_type_id
-        # - resource_booking_type_combination_rel_id
-        for product in products:
-            _type = {
-                ptav.product_attribute_value_id.resource_booking_type_id
-                for ptav in product.product_template_attribute_value_ids
-            }
-            if _type and len(_type) == 1:
-                product.resource_booking_type_id = _type.pop().id
-                _logger.debug(
-                    "product.resource_booking_type_id: {}".format(
-                        product.resource_booking_type_id
+    @api.constrains("product_template_attribute_value_ids")
+    def _set_resource_booking_type_id(self):
+        for product in self:
+            # Booking Type
+            v = product.product_template_attribute_value_ids.product_attribute_value_id
+            if v:
+                booking_type = (
+                    self.env["resource.booking.type"]
+                    .search([("product_attribute_value_ids", "in", v.ids)])
+                    .filtered(
+                        lambda t: len(t.product_attribute_value_ids) == len(v.ids)
+                        and set(t.product_attribute_value_ids.ids) == set(v.ids)
                     )
                 )
-            type_combination_rel = {
-                ptav.product_attribute_value_id.resource_booking_type_combination_rel_id
-                for ptav in product.product_template_attribute_value_ids
-            }
-            if type_combination_rel and len(type_combination_rel) == 1:
-                product.resource_booking_type_combination_rel_id = (
-                    type_combination_rel.pop().id
-                )
-                _logger.debug(
-                    "p.resource_booking_type_combination_rel_id: {}".format(
-                        product.resource_booking_type_combination_rel_id
-                    )
-                )
-            product.flush_recordset()
-            product.invalidate_recordset()
-        return products
+                if booking_type and len(booking_type) == 1:
+                    product.resource_booking_type_id = booking_type.id
 
     def _is_module_installed(self, module_name):
         module = self.env["ir.module.module"].search([("name", "=", module_name)])
