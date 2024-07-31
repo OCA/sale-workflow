@@ -9,7 +9,7 @@
                         <tree editable="bottom">
                             <field name="available_product_ids" invisible="True" />
                             <field
-                                name="available_attribute_value_ids"
+                                name="available_attribute_value_domain"
                                 invisible="True"
                             />
                             <field
@@ -20,7 +20,8 @@
                                 name="attribute_value_ids"
                                 widget="many2many_tags"
                                 options="{'no_quick_create': True, 'no_create_edit':True}"
-                                attrs="{'invisible': ['|', ('available_attribute_value_ids', '=', []), ('product_id', '!=', False), ('attribute_value_ids', '=', [])]}"
+                                attrs="{'invisible': [('product_id', '!=', False), ('attribute_value_ids', '=', [])]}"
+                                domain="available_attribute_value_domain"
                             />
                             <field
                                 name="warehouse_id"
