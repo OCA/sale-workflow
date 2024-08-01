@@ -212,6 +212,7 @@
                                         groups="analytic.group_analytic_accounting"
                                         force_save="1"
                                     />
+                                    <field name="fiscal_position_id" />
                                 </group>
                             </group>
                         </page>
