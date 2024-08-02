@@ -4,3 +4,4 @@
 - Bhavesh Odedra \<<bodedra@opensourceintegrators.com>\>
 - François Honoré \<<francois.honore@acsone.eu>\>
 - Florian da Costa \<<florian.dacosta@akretion.com>\>
+- Sander Lienaerts \<<sander.lienaerts@codeforward.nl>\>

@@ -1,11 +1,12 @@
 # © 2015 Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import odoo.tests.common as test_common
+from odoo.tests import TransactionCase
 
 
-class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
-    def setUp(self):
+class TestSaleOrderLotSelection(TransactionCase):
+    @classmethod
+    def setUpClass(cls):
         """
         Set up a sale order a particular lot.
 
@@ -16,26 +17,26 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         I confirm it, transfer the delivery order and check lots on picking
 
         """
-        super(TestSaleOrderLotSelection, self).setUp()
-        self.prd_cable = self.env.ref("stock.product_cable_management_box")
-        self.prd_cable.tracking = "lot"
-        self.product_46 = self.env.ref("product.product_product_13")
-        self.product_12 = self.env.ref("product.product_product_12")
-        self.supplier_location = self.env.ref("stock.stock_location_suppliers")
-        self.customer_location = self.env.ref("stock.stock_location_customers")
-        self.stock_location = self.env.ref("stock.stock_location_stock")
-        self.product_model = self.env["product.product"]
-        self.lot_model = self.env["stock.lot"]
-        self.lot_cable = self.env.ref("sale_order_lot_selection.lot_cable")
-        self.sale = self.env.ref("sale_order_lot_selection.sale1")
+        super().setUpClass()
+        cls.prd_cable = cls.env.ref("stock.product_cable_management_box")
+        cls.prd_cable.tracking = "lot"
+        cls.product_46 = cls.env.ref("product.product_product_13")
+        cls.product_12 = cls.env.ref("product.product_product_12")
+        cls.supplier_location = cls.env.ref("stock.stock_location_suppliers")
+        cls.customer_location = cls.env.ref("stock.stock_location_customers")
+        cls.stock_location = cls.env.ref("stock.stock_location_stock")
+        cls.product_model = cls.env["product.product"]
+        cls.lot_model = cls.env["stock.lot"]
+        cls.lot_cable = cls.env.ref("sale_order_lot_selection.lot_cable_demo")
+        cls.sale = cls.env.ref("sale_order_lot_selection.sale_order_demo")
 
-    def _stock_quantity(self, product, lot, location):
+    def _retrieve_stock_quantity(self, product, lot, location):
         return product.with_context(lot_id=lot.id, location=location.id).qty_available
 
     def test_00_stock_available_wrong_lot(self):
         # We should not be able to reserve if some stock is available but with another
         # lot
-        self._inventory_products(self.prd_cable, self.lot_cable, 1)
+        self._update_stock_quantity(self.prd_cable, self.lot_cable, 1)
         other_lot = self.env["stock.lot"].create(
             {
                 "name": "test2",
@@ -43,7 +44,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
                 "company_id": self.env.ref("base.main_company").id,
             }
         )
-        self._inventory_products(self.prd_cable, other_lot, 1)
+        self._update_stock_quantity(self.prd_cable, other_lot, 1)
         self.sale.action_confirm()
         self.sale.picking_ids.action_assign()
         # one of 2 moves should be reserved
@@ -56,23 +57,17 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.assertEqual(len(available_move), 1)
         self.assertEqual(len(unavailable_move), 1)
 
-    def _inventory_products(self, product, lot, qty):
-        quant = self.env["stock.quant"].create(
-            {
-                "product_id": product.id,
-                "location_id": self.stock_location.id,
-                "lot_id": lot.id,
-                "inventory_quantity": qty,
-            }
+    def _update_stock_quantity(self, product, lot, qty):
+        self.env["stock.quant"]._update_available_quantity(
+            product, self.stock_location, lot_id=lot, quantity=qty
         )
-        quant.action_apply_inventory()
 
     def test_01_several_lines_with_same_lot(self):
         """You may want split your order in several lines
         even if lot/product are the same
         use cases: price is different or any shipping information
         """
-        self._inventory_products(self.prd_cable, self.lot_cable, 10)
+        self._update_stock_quantity(self.prd_cable, self.lot_cable, 10)
         self.sale.action_confirm()
 
     def test_02_sale_order_lot_selection(self):
@@ -163,55 +158,55 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         lot10 = False
         lot11 = False
         lot12 = False
-        for ops in picking_in.move_ids_without_package:
-            if ops.product_id == self.prd_cable:
+        for move in picking_in.move_ids_without_package:
+            if move.product_id == self.prd_cable:
                 lot10 = self.lot_model.create(
                     {
                         "name": "0000010",
                         "product_id": self.prd_cable.id,
-                        "product_qty": ops.product_qty,
+                        "product_qty": move.product_qty,
                         "company_id": self.env.company.id,
                     }
                 )
-                ops.move_line_ids.write(
-                    {"lot_id": lot10.id, "qty_done": ops.product_qty}
+                move.move_line_ids.write(
+                    {"lot_id": lot10.id, "quantity": move.product_qty}
                 )
-            if ops.product_id == self.product_46:
+            if move.product_id == self.product_46:
                 lot11 = self.lot_model.create(
                     {
                         "name": "0000011",
                         "product_id": self.product_46.id,
-                        "product_qty": ops.product_qty,
+                        "product_qty": move.product_qty,
                         "company_id": self.env.company.id,
                     }
                 )
-                ops.move_line_ids.write(
-                    {"lot_id": lot11.id, "qty_done": ops.product_qty}
+                move.move_line_ids.write(
+                    {"lot_id": lot11.id, "quantity": move.product_qty}
                 )
-            if ops.product_id == self.product_12:
+            if move.product_id == self.product_12:
                 lot12 = self.lot_model.create(
                     {
                         "name": "0000012",
                         "product_id": self.product_12.id,
-                        "product_qty": ops.product_qty,
+                        "product_qty": move.product_qty,
                         "company_id": self.env.company.id,
                     }
                 )
-                ops.move_line_ids.write(
-                    {"lot_id": lot12.id, "qty_done": ops.product_qty}
+                move.move_line_ids.write(
+                    {"lot_id": lot12.id, "quantity": move.product_qty}
                 )
-        picking_in._action_done()
+        picking_in.button_validate()
 
         # check quantities
-        lot10_qty_available = self._stock_quantity(
+        lot10_qty_available = self._retrieve_stock_quantity(
             self.prd_cable, lot10, self.stock_location
         )
         self.assertEqual(lot10_qty_available, 1)
-        lot11_qty_available = self._stock_quantity(
+        lot11_qty_available = self._retrieve_stock_quantity(
             self.product_46, lot11, self.stock_location
         )
         self.assertEqual(lot11_qty_available, 2)
-        lot12_qty_available = self._stock_quantity(
+        lot12_qty_available = self._retrieve_stock_quantity(
             self.product_12, lot12, self.stock_location
         )
         self.assertEqual(lot12_qty_available, 1)
@@ -280,7 +275,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         picking = self.order1.picking_ids
 
         picking_move_line_ids = picking.move_ids_without_package[0].move_line_ids
-        picking_move_line_ids[0].qty_done = 1
+        picking_move_line_ids[0].quantity = 1
         picking_move_line_ids[0].location_id = self.stock_location
         picking.button_validate()
 
@@ -288,7 +283,7 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.sol3.lot_id = lot10.id
         # I'll try to confirm it to check lot reservation:
         # lot10 was delivered by order1
-        lot10_qty_available = self._stock_quantity(
+        lot10_qty_available = self._retrieve_stock_quantity(
             self.prd_cable, lot10, self.stock_location
         )
         self.order3.action_confirm()
@@ -302,19 +297,19 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         picking = self.order2.picking_ids
         picking.action_assign()
 
-        picking.move_ids_without_package.mapped("move_line_ids").write({"qty_done": 1})
+        picking.move_ids_without_package.mapped("move_line_ids").write({"quantity": 1})
         picking.button_validate()
 
         # check quantities
-        lot10_qty_available = self._stock_quantity(
+        lot10_qty_available = self._retrieve_stock_quantity(
             self.prd_cable, lot10, self.stock_location
         )
         self.assertEqual(lot10_qty_available, 0)
-        lot11_qty_available = self._stock_quantity(
+        lot11_qty_available = self._retrieve_stock_quantity(
             self.product_46, lot11, self.stock_location
         )
         self.assertEqual(lot11_qty_available, 1)
-        lot12_qty_available = self._stock_quantity(
+        lot12_qty_available = self._retrieve_stock_quantity(
             self.product_12, lot12, self.stock_location
         )
         self.assertEqual(lot12_qty_available, 0)
