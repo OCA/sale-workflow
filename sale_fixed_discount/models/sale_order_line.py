@@ -78,9 +78,12 @@ class SaleOrderLine(models.Model):
 
         return super()._convert_to_tax_base_line_dict()
 
-    @api.onchange("discount_fixed", "price_unit")
-    def _onchange_discount_fixed(self):
-        self.discount = self._get_discount_from_fixed_discount()
+    @api.depends("discount_fixed", "price_unit")
+    def _compute_discount(self):
+        lines_with_discount_fixed = self.filtered(lambda sol: sol.discount_fixed)
+        for line in lines_with_discount_fixed:
+            line.discount = line._get_discount_from_fixed_discount()
+        return super(SaleOrderLine, self - lines_with_discount_fixed)
 
     def _get_discount_from_fixed_discount(self):
         """Calculate the discount percentage from the fixed discount amount."""
@@ -88,7 +91,11 @@ class SaleOrderLine(models.Model):
         if not self.discount_fixed:
             return 0.0
 
-        return self.discount_fixed / self.price_unit * 100
+        return (
+            (self.price_unit != 0)
+            and ((self.discount_fixed) / self.price_unit) * 100
+            or 0.00
+        )
 
     def _prepare_invoice_line(self, **optional_values):
         res = super()._prepare_invoice_line(**optional_values)

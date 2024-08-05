@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
+  Copyright (C) 2016 Sodexis <dev@sodexis.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+    <record id="sale_workflow_process_view_form_inherit" model="ir.ui.view">
+        <field name="name">sale.workflow.process.form.stock</field>
+        <field name="model">sale.workflow.process</field>
+        <field
+            name="inherit_id"
+            ref="sale_automatic_workflow.sale_workflow_process_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='sale_order_confirm']" position="inside">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label for="picking_policy" class="col-lg-4 o_light_label" />
+                        <span>
+                            <field name="picking_policy" />
+                        </span>
+                    </div>
+                </div>
+            </xpath>
+            <xpath expr="//div[@name='workflow_options']" position="inside">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="validate_picking" class="col-lg-7 o_light_label" />
+                        <field name="validate_picking" nolabel="1" />
+                    </div>
+                    <div class="col-sm-8">
+                        <label
+                            for="picking_filter_id"
+                            required="validate_picking"
+                            invisible="not validate_picking"
+                        />
+                        <div
+                            required="validate_picking"
+                            invisible="not validate_picking"
+                        >
+                            <field
+                                name="picking_filter_domain"
+                                widget="domain"
+                                invisible="not picking_filter_id"
+                                options="{'model': 'stock.picking'}"
+                            />
+                            <div
+                                class="oe_edit_only oe_inline"
+                            > Set selection based on a search
+                                filter: <field
+                                    name="picking_filter_id"
+                                    domain="[('model_id', '=', 'stock.picking')]"
+                                    class="oe_inline"
+                                    context="{'default_model_id': 'stock.picking', 'default_active': False, 'active_test': False}"
+                                    can_create="true"
+                                    can_write="true"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_workflow_process_view_tree_inherit" model="ir.ui.view">
+        <field name="name">sale.workflow.process.tree.stock</field>
+        <field name="model">sale.workflow.process</field>
+        <field
+            name="inherit_id"
+            ref="sale_automatic_workflow.sale_workflow_process_view_tree"
+        />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="picking_policy" />
+            </field>
+            <field name="validate_order" position="after">
+                <field name="validate_picking" />
+            </field>
+        </field>
+    </record>
+</odoo>

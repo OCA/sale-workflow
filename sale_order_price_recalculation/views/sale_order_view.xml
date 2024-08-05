@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form - Add recompute buttons</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <button
+                    name="action_update_prices"
+                    class="ml-2 btn btn-default"
+                    string="Recalculate prices"
+                    Help="Apply the current pricelist"
+                    type="object"
+                    invisible="state not in ('draft', 'sent')"
+                />
+                <button
+                    name="action_update_names"
+                    class="ml-2 btn btn-default"
+                    string="Reset descriptions"
+                    Help="Erase custom descriptions of all lines"
+                    type="object"
+                    invisible="state not in ('draft', 'sent')"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

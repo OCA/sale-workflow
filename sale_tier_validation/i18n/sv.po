@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-11-24 12:20+0000\n"
-"Last-Translator: Simon S <simon.stromberg@vertel.se>\n"
+"PO-Revision-Date: 2024-06-12 09:36+0000\n"
+"Last-Translator: jakobkrabbe <jakob@syscare.se>\n"
 "Language-Team: none\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 4.17\n"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__can_review
@@ -29,12 +29,13 @@ msgstr "Har kommentar"
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__hide_reviews
 msgid "Hide Reviews"
-msgstr ""
+msgstr "Dölj recensioner"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,help:sale_tier_validation.field_sale_order__has_comment
 msgid "If set, Allow the reviewer to leave a comment on the review."
 msgstr ""
+"Om inställd, Tillåt granskaren att lämna en kommentar till granskningen."
 
 #. module: sale_tier_validation
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
@@ -64,7 +65,7 @@ msgstr "Nekad"
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__rejected_message
 msgid "Rejected Message"
-msgstr ""
+msgstr "Avvisat meddelande"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__reviewer_ids
@@ -74,7 +75,7 @@ msgstr "Granskare"
 #. module: sale_tier_validation
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
 msgid "SOs validated and ready to be confirmed"
-msgstr "Försäljningsordrar validerade och redo att bekräftas"
+msgstr "Försäljningsordrar bekräftade och redo att bekräftas"
 
 #. module: sale_tier_validation
 #: model:ir.model,name:sale_tier_validation.model_sale_order
@@ -90,24 +91,24 @@ msgstr "Attestdefinition"
 #: model:mail.message.subtype,name:sale_tier_validation.crm_team_tier_validation_accepted
 #: model:mail.message.subtype,name:sale_tier_validation.sale_order_tier_validation_accepted
 msgid "Tier Validation Accepted Notification"
-msgstr ""
+msgstr "Meddelande om accepterad validering av nivå"
 
 #. module: sale_tier_validation
 #: model:mail.message.subtype,name:sale_tier_validation.crm_team_tier_validation_rejected
 #: model:mail.message.subtype,name:sale_tier_validation.sale_order_tier_validation_rejected
 msgid "Tier Validation Rejected Notification"
-msgstr ""
+msgstr "Nivåvalidering Avvisat meddelande"
 
 #. module: sale_tier_validation
 #: model:mail.message.subtype,name:sale_tier_validation.crm_team_tier_validation_requested
 #: model:mail.message.subtype,name:sale_tier_validation.sale_order_tier_validation_requested
 msgid "Tier Validation Requested"
-msgstr ""
+msgstr "Nivåvalidering begärd"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__to_validate_message
 msgid "To Validate Message"
-msgstr ""
+msgstr "För att validera meddelandet"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validated
@@ -118,12 +119,12 @@ msgstr "Validerad"
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validated_message
 msgid "Validated Message"
-msgstr ""
+msgstr "Validerat meddelande"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__validation_status
 msgid "Validation Status"
-msgstr ""
+msgstr "Status för validering"
 
 #. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__review_ids
