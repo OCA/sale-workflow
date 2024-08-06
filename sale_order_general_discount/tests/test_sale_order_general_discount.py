@@ -29,7 +29,7 @@ class TestSaleOrderLineInput(TransactionCase):
             {
                 "name": "test product without general discount",
                 "type": "service",
-                "general_discount_apply": False,
+                "bypass_general_discount": True,
             }
         )
         cls.order = cls.env["sale.order"].create(
@@ -158,15 +158,15 @@ class TestSaleOrderLineInput(TransactionCase):
         self.assertEqual(self.order.order_line[1].discount, 0)
 
     def test_product_template(self):
-        self.assertTrue(self.product.product_tmpl_id.general_discount_apply)
-        self.assertFalse(self.product2.product_tmpl_id.general_discount_apply)
-        self.product2.product_tmpl_id.general_discount_apply = True
-        self.assertTrue(self.product2.general_discount_apply)
+        self.assertFalse(self.product.product_tmpl_id.bypass_general_discount)
+        self.assertTrue(self.product2.product_tmpl_id.bypass_general_discount)
+        self.product.product_tmpl_id.bypass_general_discount = True
+        self.assertTrue(self.product.bypass_general_discount)
 
-    def test_search_product_template_per_general_discount_apply(self):
+    def test_search_product_template_per_bypass_general_discount(self):
         self.assertEqual(
             self.env["product.template"]
-            .search([("general_discount_apply", "=", 0)])
+            .search([("bypass_general_discount", "=", True)])
             .id,
             self.product2.product_tmpl_id.id,
         )
