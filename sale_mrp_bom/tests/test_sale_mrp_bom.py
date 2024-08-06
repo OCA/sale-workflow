@@ -6,20 +6,27 @@ from odoo.tests.common import TransactionCase
 
 
 class TestSaleMrpLink(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.partner = self.env.ref("base.res_partner_2")
-        self.warehouse = self.env.ref("stock.warehouse0")
-        route_manufacture = self.warehouse.manufacture_pull_id.route_id.id
-        route_mto = self.warehouse.mto_pull_id.route_id.id
-        self.product_a = self._create_product(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partner = cls.env.ref("base.res_partner_2")
+        cls.warehouse = cls.env.ref("stock.warehouse0")
+        route_manufacture = cls.warehouse.manufacture_pull_id.route_id.id
+        route_mto = cls.warehouse.mto_pull_id.route_id.id
+        cls.product_a = cls._create_product(
             "Product A", route_ids=[(6, 0, [route_manufacture, route_mto])]
         )
-        self.product_b = self._create_product(
+        cls.product_b = cls._create_product(
             "Product B", route_ids=[(6, 0, [route_manufacture, route_mto])]
         )
-        self.component_a = self._create_product("Component A", route_ids=[])
-        self.component_b = self._create_product("Component B", route_ids=[])
+        cls.component_a = cls._create_product("Component A", route_ids=[])
+        cls.component_b = cls._create_product("Component B", route_ids=[])
+
+    @classmethod
+    def _create_product(cls, name, route_ids):
+        return cls.env["product.product"].create(
+            {"name": name, "type": "product", "route_ids": route_ids}
+        )
 
     def _prepare_bom_lines(self):
         # Create BOMs
@@ -60,11 +67,6 @@ class TestSaleMrpLink(TransactionCase):
             {"bom_id": bom.id, "product_id": product.id, "product_qty": qty}
         )
 
-    def _create_product(self, name, route_ids):
-        return self.env["product.product"].create(
-            {"name": name, "type": "product", "route_ids": route_ids}
-        )
-
     def _create_sale_order(self, partner, client_ref):
         return self.env["sale.order"].create(
             {"partner_id": partner.id, "client_order_ref": client_ref}
@@ -82,11 +84,12 @@ class TestSaleMrpLink(TransactionCase):
         )
 
     def test_define_bom_in_sale_line(self):
-        """Check manufactured order is created with BOM definied in Sale."""
-        so, bom_a, bom_b = self._prepare_so()
+        """Check manufactured order is created with BOM defined in Sale."""
+        previous_mos = self.env["mrp.production"].search([])
+        _so, _bom_a, _bom_b = self._prepare_so()
 
         # Check manufacture order
-        mos = self.env["mrp.production"].search([("origin", "=", so.name)])
+        mos = self.env["mrp.production"].search([]) - previous_mos
         for mo in mos:
             self.assertEqual(mo.bom_id, self.boms.get(mo.product_id.id))
 
