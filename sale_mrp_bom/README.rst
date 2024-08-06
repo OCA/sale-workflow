@@ -17,43 +17,58 @@ Sale MRP BOM
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_mrp_bom
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_mrp_bom
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_mrp_bom
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_mrp_bom
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This modules allows to specify a Bill Of Materials directly inside a sale order line. It is specially useful to select alternative manufacturing and sub-contracting routings.
+This modules allows to specify a Bill Of Materials directly inside a
+sale order line. It is specially useful to select alternative
+manufacturing and sub-contracting routings.
 
 **Table of contents**
 
 .. contents::
    :local:
 
+Installation
+============
+
+
+
 Configuration
 =============
 
-To be able to select a specific Bill of Materials in a sale order, the user needs the special permission: "Allows to define a BOM on sale order lines".
+To be able to select a specific Bill of Materials in a sale order, the
+user needs the special permission: "Allows to define a BOM on sale order
+lines".
 
 Usage
 =====
 
-When adding a new sale order line, you can eventually select a specific Bill Of Materials.
+When adding a new sale order line, you can eventually select a specific
+Bill Of Materials.
 
-.. figure:: https://raw.githubusercontent.com/OCA/sale-workflow/16.0/sale_mrp_bom/static/description/sale_order_1.png
-    :alt: Adding a specific BOM
-    :width: 600 px
+|image1|
 
-When confirming the sale order, if the routing is manufacturing then the production order will be using the specified Bill Of Materials.
+When confirming the sale order, if the routing is manufacturing then the
+production order will be using the specified Bill Of Materials.
 
-.. figure:: https://raw.githubusercontent.com/OCA/sale-workflow/16.0/sale_mrp_bom/static/description/manufacturing_order_1.png
-    :alt: Manufacturing order using specific BOM defined in Sale Order Line
-    :width: 600 px
+|image2|
+
+.. |image1| image:: https://raw.githubusercontent.com/OCA/sale-workflow/17.0/sale_mrp_bom/static/description/sale_order_1.png
+.. |image2| image:: https://raw.githubusercontent.com/OCA/sale-workflow/17.0/sale_mrp_bom/static/description/manufacturing_order_1.png
+
+Known issues / Roadmap
+======================
+
+
 
 Bug Tracker
 ===========
@@ -61,7 +76,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_mrp_bom%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_mrp_bom%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -69,26 +84,27 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Akretion
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Renato Lima <renato.lima@akretion.com.br>
+-  Renato Lima <renato.lima@akretion.com.br>
 
 Trobz:
 
-* Hai Lang <hailn@trobz.com>
+-  Hai Lang <hailn@trobz.com>
 
 Other credits
-~~~~~~~~~~~~~
+-------------
 
-The migration of this module from 12.0 to 14.0 was financially supported by Camptocamp.
+The migration of this module from 12.0 to 14.0 was financially supported
+by Camptocamp.
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -100,6 +116,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_mrp_bom>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_mrp_bom>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
