@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="seasonality_spring" model="seasonality">
+        <field name="name">Spring season</field>
+        <field name="granularity">year</field>
+    </record>
+    <record id="seasonality_fall" model="seasonality">
+        <field name="name">Fall season</field>
+        <field name="granularity">year</field>
+    </record>
+    <record id="campaign_spring_2023" model="utm.campaign">
+        <field name="name">Spring 2023</field>
+        <field name="seasonality_id" ref="seasonality_spring" />
+        <field name="start_date">2023-03-21</field>
+        <field name="end_date">2023-06-21</field>
+    </record>
+    <record id="campaign_spring_2024" model="utm.campaign">
+        <field name="name">Spring 2024</field>
+        <field name="seasonality_id" ref="seasonality_spring" />
+        <field name="start_date">2024-03-21</field>
+        <field name="end_date">2024-06-21</field>
+    </record>
+    <record id="campaign_fall_2023" model="utm.campaign">
+        <field name="name">Fall 2023</field>
+        <field name="seasonality_id" ref="seasonality_fall" />
+        <field name="start_date">2023-03-21</field>
+        <field name="end_date">2023-06-21</field>
+    </record>
+    <record id="campaign_fall_2024" model="utm.campaign">
+        <field name="name">Fall 2024</field>
+        <field name="seasonality_id" ref="seasonality_fall" />
+        <field name="start_date">2024-03-21</field>
+        <field name="end_date">2024-06-21</field>
+    </record>
+    <record id="sale.sale_order_1" model="sale.order">
+        <field name="campaign_id" ref="campaign_spring_2024" />
+    </record>
+    <record id="sale.sale_order_2" model="sale.order">
+        <field name="campaign_id" ref="campaign_fall_2024" />
+    </record>
+    <record id="sale.sale_order_3" model="sale.order">
+        <field name="campaign_id" ref="campaign_spring_2024" />
+    </record>
+    <record id="sale.sale_order_4" model="sale.order">
+        <field name="campaign_id" ref="campaign_fall_2024" />
+    </record>
+</odoo>
