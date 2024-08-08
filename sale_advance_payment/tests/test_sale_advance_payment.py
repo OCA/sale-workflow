@@ -5,10 +5,13 @@ import json
 
 from odoo import fields
 from odoo.exceptions import ValidationError
-from odoo.tests import common
+from odoo.tests import tagged
+
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
-class TestSaleAdvancePayment(common.TransactionCase):
+@tagged("post_install", "-at_install")
+class TestSaleAdvancePayment(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -323,18 +326,54 @@ class TestSaleAdvancePayment(common.TransactionCase):
         self.assertEqual(self.sale_order_1.amount_residual, 2200)
 
     def test_03_residual_amount_big_pre_payment(self):
+        self.product_1.invoice_policy = "delivery"
+        self.product_2.invoice_policy = "delivery"
+        self.product_3.invoice_policy = "delivery"
+        sale_order_3 = self.env["sale.order"].create(
+            {"partner_id": self.res_partner_1.id}
+        )
+        order_line_1 = self.env["sale.order.line"].create(
+            {
+                "order_id": sale_order_3.id,
+                "product_id": self.product_1.id,
+                "product_uom": self.product_1.uom_id.id,
+                "product_uom_qty": 10.0,
+                "price_unit": 100.0,
+                "tax_id": self.tax,
+            }
+        )
+        order_line_2 = self.env["sale.order.line"].create(
+            {
+                "order_id": sale_order_3.id,
+                "product_id": self.product_2.id,
+                "product_uom": self.product_2.uom_id.id,
+                "product_uom_qty": 25.0,
+                "price_unit": 40.0,
+                "tax_id": self.tax,
+            }
+        )
+        order_line_3 = self.env["sale.order.line"].create(
+            {
+                "order_id": sale_order_3.id,
+                "product_id": self.product_3.id,
+                "product_uom": self.product_3.uom_id.id,
+                "product_uom_qty": 20.0,
+                "price_unit": 50.0,
+                "tax_id": self.tax,
+            }
+        )
         self.assertEqual(
-            self.sale_order_1.amount_residual,
+            sale_order_3.amount_residual,
             3600,
         )
         self.assertEqual(
-            self.sale_order_1.amount_residual,
-            self.sale_order_1.amount_total,
+            sale_order_3.amount_residual,
+            sale_order_3.amount_total,
         )
         # Create Advance Payment 1 - EUR - bank
         context_payment = {
-            "active_ids": [self.sale_order_1.id],
-            "active_id": self.sale_order_1.id,
+            "active_ids": [sale_order_3.id],
+            "active_id": sale_order_3.id,
         }
         # Create Advance Payment 2 - USD - cash
         advance_payment_2 = (
@@ -345,35 +384,81 @@ class TestSaleAdvancePayment(common.TransactionCase):
                     "journal_id": self.journal_usd_cash.id,
                     "payment_type": "inbound",
                     "amount_advance": 2000,
-                    "order_id": self.sale_order_1.id,
+                    "order_id": sale_order_3.id,
                 }
             )
         )
         advance_payment_2.make_advance_payment()
-        pre_payment = self.sale_order_1.account_payment_ids
+        pre_payment = sale_order_3.account_payment_ids
         self.assertEqual(len(pre_payment), 1)
-        self.assertEqual(self.sale_order_1.amount_residual, 1600)
+        self.assertEqual(sale_order_3.amount_residual, 1600)
         # generate a partial invoice, reconcile with pre payment, check amount residual.
-        self.sale_order_1.action_confirm()
-        self.assertEqual(self.sale_order_1.invoice_status, "to invoice")
+        sale_order_3.action_confirm()
+        self.assertEqual(sale_order_3.invoice_status, "no")
         # Adjust invoice_policy method to then do a partial invoice with a total amount
         # smaller than the pre-payment.
-        self.product_1.invoice_policy = "delivery"
-        self.order_line_1.qty_delivered = 10.0
-        self.assertEqual(self.order_line_1.qty_to_invoice, 10.0)
-        self.product_2.invoice_policy = "delivery"
-        self.order_line_2.qty_delivered = 0.0
-        self.assertEqual(self.order_line_2.qty_to_invoice, 0.0)
-        self.product_3.invoice_policy = "delivery"
-        self.order_line_3.qty_delivered = 0.0
-        self.assertEqual(self.order_line_3.qty_to_invoice, 0.0)
-        self.sale_order_1._create_invoices()
-        self.assertEqual(self.sale_order_1.invoice_status, "no")
-        self.assertEqual(self.sale_order_1.amount_residual, 1600)
-        invoice = self.sale_order_1.invoice_ids
-        invoice.invoice_date = fields.Date.today()
+        order_line_1.qty_delivered = 10.0
+        self.assertEqual(order_line_1.qty_to_invoice, 10.0)
+        order_line_2.qty_delivered = 0.0
+        self.assertEqual(order_line_2.qty_to_invoice, 0.0)
+        order_line_3.qty_delivered = 0.0
+        self.assertEqual(order_line_3.qty_to_invoice, 0.0)
+        sale_order_3._create_invoices()
+        invoice = sale_order_3.invoice_ids
         invoice.action_post()
+        self.assertEqual(sale_order_3.invoice_status, "no")
+        self.assertEqual(sale_order_3.amount_residual, 1600)
         self.assertEqual(invoice.amount_total, 1200)
         self.assertEqual(invoice.amount_residual, 0.0)
-        self.assertEqual(self.sale_order_1.amount_residual, 1600)
+        self.assertEqual(sale_order_3.amount_residual, 1600)
         self.assertEqual(invoice.amount_residual, 0)
+
+    def test_04_residual_amount_with_credit_note(self):
+        PaymentRegister = self.env["account.payment.register"]
+        payment_register_vals = {
+            "amount": 3600.0,
+            "group_payment": True,
+            "payment_difference_handling": "open",
+        }
+
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            3600,
+        )
+        # Confirm Sale Order
+        self.sale_order_1.action_confirm()
+
+        # Create Invoice
+        invoice = self.sale_order_1._create_invoices()
+        invoice.action_post()
+        self.assertEqual(invoice.amount_residual, 3600)
+
+        # Pay invoice in full
+        PaymentRegister.with_context(
+            active_model="account.move", active_ids=invoice.ids
+        ).create(payment_register_vals)._create_payments()
+        self.assertEqual(self.sale_order_1.amount_residual, 0)
+
+        # Reverse paid invoice
+        move_reversal = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=invoice.ids)
+            .create(
+                {
+                    "date": fields.Date.today(),
+                    "reason": "client wanted refund",
+                    "refund_method": "refund",
+                    "journal_id": invoice.journal_id.id,
+                }
+            )
+        )
+        reversal = move_reversal.reverse_moves()
+        reverse_move = self.env["account.move"].browse(reversal["res_id"])
+        reverse_move.action_post()
+
+        # Pay reverse invoice in full
+        PaymentRegister.with_context(
+            active_model="account.move", active_ids=reverse_move.ids
+        ).create(payment_register_vals)._create_payments()
+        self.assertEqual(reverse_move.amount_residual, 0)
+        self.assertEqual(self.sale_order_1.amount_residual, 0)
