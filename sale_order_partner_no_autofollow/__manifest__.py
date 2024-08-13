@@ -6,7 +6,7 @@
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sale",
     "depends": ["sale"],
-    "maintainers": ["dessanhemrayev", "CetmixGitDrone"],
+    "maintainers": [],
     "data": ["views/res_config_settings.xml"],
     "license": "AGPL-3",
     "installable": True,
