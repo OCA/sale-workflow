@@ -20,7 +20,7 @@
                             <label for="partner_disable_autofollow" />
                             <div
                                 class="text-muted"
-                            >Customer will not be added as follower automatically</div>
+                            >Customer will not be added as follower automatically on sale orders</div>
                         </div>
                     </div>
                 </div>
