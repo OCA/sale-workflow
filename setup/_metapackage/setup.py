@@ -60,6 +60,7 @@ setuptools.setup(
         'odoo-addon-sale_order_line_remove>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_line_sequence>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_lot_selection>=15.0dev,<15.1dev',
+        'odoo-addon-sale_order_partner_no_autofollow>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_partner_restrict>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_price_recalculation>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_priority>=15.0dev,<15.1dev',
