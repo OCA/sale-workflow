@@ -14,6 +14,9 @@ class SaleOrder(models.Model):
         domain="[('discount_scope', '=', 'sale'), "
         "('account_id', '!=', False), '|', "
         "('company_id', '=', company_id), ('company_id', '=', False)]",
+        compute="_compute_global_discount_ids",
+        store=True,
+        readonly=False,
     )
     # HACK: Looks like UI doesn't behave well with Many2many fields and
     # negative groups when the same field is shown. In this case, we want to
@@ -68,7 +71,7 @@ class SaleOrder(models.Model):
             return True
         taxes_keys = {}
         for line in self.order_line.filtered(
-            lambda l: not l.display_type and l.product_id
+            lambda _line: not _line.display_type and _line.product_id
         ):
             if not line.tax_id:
                 raise exceptions.UserError(
@@ -139,16 +142,18 @@ class SaleOrder(models.Model):
             SaleOrder, self.with_context(from_tax_calculation=True)
         )._compute_tax_totals()
 
-    @api.onchange("partner_id")
-    def onchange_partner_id_set_gbl_disc(self):
-        self.global_discount_ids = (
-            self.partner_id.customer_global_discount_ids.filtered(
-                lambda d: d.company_id == self.company_id
+    @api.depends("partner_id", "company_id")
+    def _compute_global_discount_ids(self):
+        for order in self:
+            commercial = order.partner_id.commercial_partner_id
+            order.global_discount_ids = (
+                order.partner_id.customer_global_discount_ids.filtered(
+                    lambda d: d.company_id == order.company_id
+                )
+                or commercial.customer_global_discount_ids.filtered(
+                    lambda d: d.company_id == order.company_id
+                )
             )
-            or self.partner_id.commercial_partner_id.customer_global_discount_ids.filtered(
-                lambda d: d.company_id == self.company_id
-            )
-        )
 
     def _prepare_invoice(self):
         invoice_vals = super()._prepare_invoice()

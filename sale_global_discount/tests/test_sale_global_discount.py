@@ -52,7 +52,9 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
                 "account_id": cls.account.id,
             }
         )
-        cls.pricelist = cls.env.ref("product.list0")
+        cls.pricelist = cls.env["product.pricelist"].create(
+            {"name": "Public Pricelist", "sequence": 1}
+        )
         cls.partner_1 = cls.env["res.partner"].create(
             {"name": "Mr. Odoo", "property_product_pricelist": cls.pricelist.id}
         )
