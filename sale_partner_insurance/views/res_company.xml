@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="res_company_view_form">
+        <field name="name">res.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form" />
+        <field name="arch" type="xml">
+            <field name="website" position="after">
+                <field name="sale_insurance" />
+                <field name="insurance_product" />
+            </field>
+        </field>
+    </record>
+</odoo>
