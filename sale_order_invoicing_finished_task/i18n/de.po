@@ -21,10 +21,10 @@ msgstr ""
 #. module: sale_order_invoicing_finished_task
 #: model_terms:ir.ui.view,arch_db:sale_order_invoicing_finished_task.edit_project_task_track
 msgid ""
-"<span class=\"text-success\" attrs=\"{'invisible': [('invoiceable', '=', "
-"False)]}\">Invoiceable</span>\n"
-"                    <span class=\"text-danger\" attrs=\"{'invisible': "
-"[('invoiceable', '!=', False)]}\">Not Invoiceable</span>"
+"<span class=\"text-success\" invisible=\"not invoiceable\">Invoiceable</"
+"span>\n"
+"                    <span class=\"text-danger\" "
+"invisible=\"invoiceable\">Not Invoiceable</span>"
 msgstr ""
 
 #. module: sale_order_invoicing_finished_task
@@ -82,8 +82,8 @@ msgstr ""
 #: code:addons/sale_order_invoicing_finished_task/models/project.py:0
 #, python-format
 msgid ""
-"You cannot create/modify a task related with a invoiced, done or cancel sale "
-"order line "
+"You cannot create/modify a task related with a invoiced, locked or cancel "
+"sale order line "
 msgstr ""
 
 #, fuzzy
