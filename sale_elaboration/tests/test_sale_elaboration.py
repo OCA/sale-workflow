@@ -93,7 +93,7 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
 
     def test_sale_elaboration(self):
         self.order.action_confirm()
-        self.order.picking_ids.move_ids.quantity_done = 10.0
+        self.order.picking_ids.move_ids.product_uom_qty = 10.0
         self.order.picking_ids._action_done()
         elaboration_lines = self.order.order_line.filtered("is_elaboration")
         self.assertEqual(len(elaboration_lines), 1)
@@ -110,7 +110,7 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
             }
         )
         self.order.action_confirm()
-        self.order.picking_ids.move_ids.quantity_done = 10.0
+        self.order.picking_ids.move_ids.product_uom_qty = 10.0
         self.order.picking_ids._action_done()
         elaboration_lines = self.order.order_line.filtered("is_elaboration")
         self.assertEqual(len(elaboration_lines), 1)
@@ -162,9 +162,9 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
         self.order.action_confirm()
         move_ids = self.order.picking_ids.move_ids
         move_line_a = move_ids.filtered(lambda r: r.product_id == self.product)
-        move_line_a.quantity_done = 10.0
+        move_line_a.product_uom_qty = 10.0
         move_line_b = move_ids.filtered(lambda r: r.product_id == product2)
-        move_line_b.quantity_done = 1.0
+        move_line_b.product_uom_qty = 1.0
         self.order.picking_ids._action_done()
         elaboration_lines = self.order.order_line.filtered("is_elaboration")
         self.assertEqual(len(elaboration_lines), 2)

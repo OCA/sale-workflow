@@ -5,3 +5,5 @@
   - Ernesto Tejeda
 - Eduardo de Miguel ([Moduon](https://www.moduon.team/))
 - Jairo Llopis ([Moduon](https://www.moduon.team/))
+- [APSL-Nagarro](https://apsl.tech):
+  - Antoni Marroig \<<amarroig@apsl.net>\>

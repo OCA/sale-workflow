@@ -94,6 +94,9 @@ Contributors
 
 -  Eduardo de Miguel (`Moduon <https://www.moduon.team/>`__)
 -  Jairo Llopis (`Moduon <https://www.moduon.team/>`__)
+-  `APSL-Nagarro <https://apsl.tech>`__:
+
+   -  Antoni Marroig <amarroig@apsl.net>
 
 Maintainers
 -----------

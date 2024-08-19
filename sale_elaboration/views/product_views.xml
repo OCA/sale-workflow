@@ -7,10 +7,7 @@
         <field name="inherit_id" ref="product.product_template_only_form_view" />
         <field name="arch" type="xml">
             <field name='default_code' position="after">
-                <field
-                    name="is_elaboration"
-                    attrs="{'invisible': [('type', '!=', 'service')]}"
-                />
+                <field name="is_elaboration" invisible="type != 'service'" />
             </field>
         </field>
     </record>
@@ -23,7 +20,7 @@
                 <group name="elboration" string="Elaborations">
                     <field
                         name="elaboration_profile_id"
-                        attrs="{'invisible':[('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"
+                        invisible="product_variant_count > 1 and not is_product_variant"
                     />
                 </group>
             </xpath>

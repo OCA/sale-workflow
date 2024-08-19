@@ -14,18 +14,18 @@
                     <field
                         name="elaboration_ids"
                         widget="many2many_tags"
-                        attrs="{'readonly': ['|', ('product_updatable', '=', False), ('parent.state', 'in', ('done', 'cancel'))]}"
+                        readonly="not product_updatable or parent.state in ['done', 'cancel']"
                         domain="elaboration_profile_id and [('profile_ids', 'in', [elaboration_profile_id])] or []"
                     />
                     <field
                         name="elaboration_note"
-                        attrs="{'readonly': ['|', ('product_updatable', '=', False), ('parent.state', 'in', ('done', 'cancel'))]}"
+                        readonly="not product_updatable or parent.state in ['done', 'cancel']"
                     />
                     <field
                         name="elaboration_price_unit"
                         readonly="1"
                         widget="monetary"
-                        attrs="{'invisible': [('elaboration_ids', '=', [])]}"
+                        invisible="not elaboration_ids"
                     />
                 </group>
             </xpath>
@@ -33,17 +33,17 @@
                 expr="//field[@name='order_line']/tree//field[@name='price_unit']"
                 position="after"
             >
-                <field name="elaboration_profile_id" invisible="1" />
+                <field name="elaboration_profile_id" column_invisible="1" />
                 <field
                     name="elaboration_ids"
                     widget="many2many_tags"
-                    attrs="{'readonly': ['|', ('product_updatable', '=', False), ('parent.state', 'in', ('done', 'cancel'))]}"
+                    readonly="not product_updatable or parent.state in ['done', 'cancel']"
                     domain="elaboration_profile_id and [('profile_ids', 'in', [elaboration_profile_id])] or []"
                     optional="show"
                 />
                 <field
                     name="elaboration_note"
-                    attrs="{'readonly': ['|', ('product_updatable', '=', False), ('parent.state', 'in', ('done', 'cancel'))]}"
+                    readonly="not product_updatable or parent.state in ['done', 'cancel']"
                     optional="show"
                 />
                 <field
