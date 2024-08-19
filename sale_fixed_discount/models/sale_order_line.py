@@ -15,7 +15,7 @@ class SaleOrderLine(models.Model):
         help="Fixed amount discount.",
     )
 
-    @api.model
+    @api.model_create_multi
     def create(self, vals):
         record = super(SaleOrderLine, self).create(vals)    
         if 'discount_fixed' in vals:
