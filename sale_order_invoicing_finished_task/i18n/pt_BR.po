@@ -1,0 +1,101 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_invoicing_finished_task
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2023-11-14 14:36+0000\n"
+"Last-Translator: Adriano Prado <adrianojprado@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_order_invoicing_finished_task
+#: model_terms:ir.ui.view,arch_db:sale_order_invoicing_finished_task.edit_project_task_track
+msgid ""
+"<span class=\"text-success\" attrs=\"{'invisible': [('invoiceable', '=', "
+"False)]}\">Invoiceable</span>\n"
+"                    <span class=\"text-danger\" attrs=\"{'invisible': "
+"[('invoiceable', '!=', False)]}\">Not Invoiceable</span>"
+msgstr ""
+"<span class=\"text-success\" attrs=\"{'invisible': [('invoiceable', '=', "
+"False)]}\">Faturável</span>\n"
+"                     <span class=\"text-danger\" attrs=\"{'invisible': [("
+"'invoiceable', '!=', False)]}\">Não faturável</span>"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
+#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_template__invoicing_finished_task
+#: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_project_task__invoicing_finished_task
+msgid "Invoice the order lines only when the task is set to invoiceable"
+msgstr ""
+"Faturar as linhas do pedido somente quando a tarefa estiver definida como "
+"faturável"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task__invoiceable
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task_type__invoiceable
+msgid "Invoiceable"
+msgstr "Faturável"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_template__invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task__invoicing_finished_task
+msgid "Invoicing control by task"
+msgstr "Controle de faturamento por tarefa"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model,name:sale_order_invoicing_finished_task.model_product_template
+msgid "Product"
+msgstr "Produto"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de Venda"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Linha Pedido de Venda"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model,name:sale_order_invoicing_finished_task.model_project_task
+msgid "Task"
+msgstr "Tarefa"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model,name:sale_order_invoicing_finished_task.model_project_task_type
+msgid "Task Stage"
+msgstr "Estágio da Tarefa"
+
+#. module: sale_order_invoicing_finished_task
+#: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_sale_order_line__task_ids
+msgid "Tasks"
+msgstr "Tarefas"
+
+#. module: sale_order_invoicing_finished_task
+#. odoo-python
+#: code:addons/sale_order_invoicing_finished_task/models/project.py:0
+#, python-format
+msgid ""
+"You cannot create/modify a task related with a invoiced, done or cancel sale "
+"order line "
+msgstr ""
+"Você não pode criar/modificar uma tarefa relacionada a um item do pedido de "
+"venda faturada, concluída ou cancelada "
+
+#, fuzzy
+#~ msgid "Sale Order"
+#~ msgstr "Pedido de Venda"
