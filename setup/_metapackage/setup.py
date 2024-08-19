@@ -60,6 +60,7 @@ setuptools.setup(
         'odoo-addon-sale_order_line_tag>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_lot_generator>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_lot_selection>=16.0dev,<16.1dev',
+        'odoo-addon-sale_order_partner_no_autofollow>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_price_recalculation>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_product_assortment>=16.0dev,<16.1dev',
         'odoo-addon-sale_order_product_availability_inline>=16.0dev,<16.1dev',
