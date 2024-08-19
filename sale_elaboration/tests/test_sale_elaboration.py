@@ -124,7 +124,7 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
             ]
         )
         self.order.order_line.filtered(
-            lambda l: l.product_id == self.product_elaboration_B
+            lambda x: x.product_id == self.product_elaboration_B
         ).is_elaboration = False
         self.order.action_confirm()
         invoice = self.order._create_invoices()
@@ -138,11 +138,11 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
         )
         self.assertEqual(
             inv_line_elaboration.name,
-            "{} - {}".format(self.order.name, so_line_elaboration.name),
+            f"{self.order.name} - {so_line_elaboration.name}",
         )
         self.assertNotEqual(
             inv_line_no_elaboration.name,
-            "{} - {}".format(self.order.name, so_line_no_elaboration.name),
+            f"{self.order.name} - {so_line_no_elaboration.name}",
         )
 
     def test_sale_elaboration_change_product(self):

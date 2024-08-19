@@ -17,24 +17,25 @@ Sale Elaboration
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_elaboration
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_elaboration
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_elaboration
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_elaboration
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module extends the functionality of sales orders to allow to set an
-elaboration on lines that will add an extra order line with an elaboration
-product linked to it when the delivery order is validated.
+elaboration on lines that will add an extra order line with an
+elaboration product linked to it when the delivery order is validated.
 
-An **elaboration** is a process that needs to be done over the product, usually
-on picking/handling phase. It doesn't modify too much the product for needing
-an specific product, but it adds a surcharge on the final price.
+An **elaboration** is a process that needs to be done over the product,
+usually on picking/handling phase. It doesn't modify too much the
+product for needing an specific product, but it adds a surcharge on the
+final price.
 
 **Table of contents**
 
@@ -46,22 +47,22 @@ Configuration
 
 To configure this module you need to:
 
-#. Go to *Sale > Configuration > Products > Sale Elaboration*.
-#. Create a new record.
-#. Set a product linked to the elaboration.
-#. Also you can select a route to procure this elaboration.
+1. Go to *Sale > Configuration > Products > Sale Elaboration*.
+2. Create a new record.
+3. Set a product linked to the elaboration.
+4. Also you can select a route to procure this elaboration.
 
 Usage
 =====
 
-#. Go to *Sale > Quotations*.
-#. Create a sales order.
-#. Add a new line.
-#. Select an elaboration in the line.
-#. Confirm the sales order.
-#. Go to the picking created by this sales order and validate it.
-#. Go back to the sales order. A new line is created with the product linked to
-   the elaboration.
+1. Go to *Sale > Quotations*.
+2. Create a sales order.
+3. Add a new line.
+4. Select an elaboration in the line.
+5. Confirm the sales order.
+6. Go to the picking created by this sales order and validate it.
+7. Go back to the sales order. A new line is created with the product
+   linked to the elaboration.
 
 Bug Tracker
 ===========
@@ -69,7 +70,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_elaboration%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_elaboration%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -77,25 +78,25 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Sergio Teruel
-  * Pedro M. Baeza
-  * Carlos Roca
-  * Ernesto Tejeda
+   -  Sergio Teruel
+   -  Pedro M. Baeza
+   -  Carlos Roca
+   -  Ernesto Tejeda
 
-* Eduardo de Miguel (`Moduon <https://www.moduon.team/>`__)
-* Jairo Llopis (`Moduon <https://www.moduon.team/>`__)
+-  Eduardo de Miguel (`Moduon <https://www.moduon.team/>`__)
+-  Jairo Llopis (`Moduon <https://www.moduon.team/>`__)
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -124,6 +125,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-CarlosRoca13| |maintainer-rafaelbn| |maintainer-sergio-teruel| |maintainer-yajo| 
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_elaboration>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_elaboration>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
