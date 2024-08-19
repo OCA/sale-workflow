@@ -39,6 +39,7 @@ addon | version | maintainers | summary
 [sale_manual_delivery](sale_manual_delivery/) | 17.0.1.0.0 |  | Create manually your deliveries
 [sale_order_archive](sale_order_archive/) | 17.0.1.0.0 |  | Archive Sale Orders
 [sale_order_carrier_auto_assign](sale_order_carrier_auto_assign/) | 17.0.1.0.0 |  | Auto assign delivery carrier on sale order confirmation
+[sale_order_invoicing_finished_task](sale_order_invoicing_finished_task/) | 17.0.1.0.0 |  | Control invoice order lines if their related task has been set to invoiceable
 [sale_order_line_date](sale_order_line_date/) | 17.0.1.0.0 |  | Adds a commitment date to each sale order line.
 [sale_order_line_menu](sale_order_line_menu/) | 17.0.1.0.0 |  | Adds a Sale Order Lines Menu
 [sale_order_line_sequence](sale_order_line_sequence/) | 17.0.1.0.1 |  | Propagates SO line sequence to invoices and stock picking.
