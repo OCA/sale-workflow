@@ -5,18 +5,19 @@ import odoo.tests.common as test_common
 
 
 class TestSaleOrderLotGenerator(test_common.SingleTransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.prd_flipover = self.env.ref("product.product_product_20")
-        self.prd_desk = self.env.ref("product.product_product_22")
-        self.prd_acoustic = self.env.ref("product.product_product_25")
-        self.prd_flipover.write(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.prd_flipover = cls.env.ref("product.product_product_20")
+        cls.prd_desk = cls.env.ref("product.product_product_22")
+        cls.prd_acoustic = cls.env.ref("product.product_product_25")
+        cls.prd_flipover.write(
             {"tracking": "lot", "type": "product", "auto_generate_prodlot": True}
         )
-        self.prd_desk.write(
+        cls.prd_desk.write(
             {"tracking": "lot", "type": "product", "auto_generate_prodlot": True}
         )
-        self.prd_acoustic.write(
+        cls.prd_acoustic.write(
             {"tracking": "lot", "type": "product", "auto_generate_prodlot": True}
         )
 
