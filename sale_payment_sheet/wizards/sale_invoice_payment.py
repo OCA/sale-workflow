@@ -49,7 +49,7 @@ class SaleInvoicePaymentWiz(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
-        res = super(SaleInvoicePaymentWiz, self).default_get(fields_list)
+        res = super().default_get(fields_list)
         invoice_ids = self.env.context.get("invoice_ids")
         res["journal_id"] = self.env.user.commercial_journal_ids[:1].id
         if (

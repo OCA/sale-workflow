@@ -17,20 +17,22 @@ Sale payment sheet
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_payment_sheet
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_payment_sheet
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_payment_sheet
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_payment_sheet
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows salesmen to register payments in a new document called payment sheet, accessible only with the sales permission.
-This sheet includes the paid amount, and an optional reference to which invoice(s) is(are) being paid.
-This payment sheet will generate a bank statement when confirmed.
+This module allows salesmen to register payments in a new document
+called payment sheet, accessible only with the sales permission. This
+sheet includes the paid amount, and an optional reference to which
+invoice(s) is(are) being paid. This payment sheet will generate a bank
+statement when confirmed.
 
 **Table of contents**
 
@@ -42,8 +44,8 @@ Configuration
 
 To configure this module, you need to:
 
-#. Go to Settings > User and Companies > Users
-#. Select the allowed journals to register payments
+1. Go to Settings > User and Companies > Users
+2. Select the allowed journals to register payments
 
 Usage
 =====
@@ -52,24 +54,24 @@ To use this module, you need to:
 
 Create manual payment sheet:
 
-#. Go to Sales > Orders > Payments.
-#. Create new payment sheet.
+1. Go to Sales > Orders > Payments.
+2. Create new payment sheet.
 
 You can pay invoices directly, to do this:
 
-#. Go to Sales > Orders > Invoices.
-#. Select some invoices to pay.
-#. Click on Action > Sale invoice payment.
-#. A wizard will be displayed and select journal and put amount that you want
-   to pay.
+1. Go to Sales > Orders > Invoices.
+2. Select some invoices to pay.
+3. Click on Action > Sale invoice payment.
+4. A wizard will be displayed and select journal and put amount that you
+   want to pay.
 
 Payment one invoice:
 
-#. Go to Sales > Orders > Invoices.
-#. Enter to invoice form.
-#. Click "register payment".
-#. A wizard will be displayed and select journal and put amount that you want
-   to pay.
+1. Go to Sales > Orders > Invoices.
+2. Enter to invoice form.
+3. Click "register payment".
+4. A wizard will be displayed and select journal and put amount that you
+   want to pay.
 
 Bug Tracker
 ===========
@@ -77,7 +79,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_payment_sheet%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_payment_sheet%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -85,22 +87,22 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com/>`__:
+-  `Tecnativa <https://www.tecnativa.com/>`__:
 
-  * Carlos Dauden
-  * Sergio Teruel
-  * César A. Sánchez
-  * Carolina Fernandez
+   -  Carlos Dauden
+   -  Sergio Teruel
+   -  César A. Sánchez
+   -  Carolina Fernandez
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -120,6 +122,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-sergio-teruel| 
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_payment_sheet>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_payment_sheet>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
