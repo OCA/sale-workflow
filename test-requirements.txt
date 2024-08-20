@@ -1,1 +1,2 @@
 odoo_test_helper
+odoo-addon-sale_order_lot_selection @ git+https://github.com/OCA/sale-workflow.git@refs/pull/3259/head#subdirectory=sale_order_lot_selection
