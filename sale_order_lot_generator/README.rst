@@ -68,12 +68,16 @@ Authors
 Contributors
 ------------
 
-Akretion:
+-  Akretion:
 
--  Valentin Chemiere
--  Florian da Costa <florian.dacosta@akretion.com>
--  Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
--  David BEAL <david.beal@akretion.com>
+   -  Valentin Chemiere
+   -  Florian da Costa <florian.dacosta@akretion.com>
+   -  Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
+   -  David BEAL <david.beal@akretion.com>
+
+-  `APSL-Nagarro <https://apsl.tech>`__:
+
+   -  Antoni Marroig <amarroig@apsl.net>
 
 Maintainers
 -----------
