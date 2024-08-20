@@ -16,21 +16,16 @@ class SalePaymentSheet(models.Model):
 
     name = fields.Char(
         string="Reference",
-        states={"open": [("readonly", False)]},
         copy=False,
         compute="_compute_name",
-        readonly=True,
         store=True,
     )
     reference = fields.Char(
         string="External Reference",
-        states={"open": [("readonly", False)]},
         copy=False,
-        readonly=True,
     )
     date = fields.Date(
         required=True,
-        states={"confirm": [("readonly", True)]},
         index=True,
         copy=False,
         default=fields.Date.context_today,
@@ -39,7 +34,6 @@ class SalePaymentSheet(models.Model):
         [("open", "New"), ("confirm", "Validated")],
         string="Status",
         required=True,
-        readonly=True,
         copy=False,
         default="open",
     )
@@ -50,7 +44,6 @@ class SalePaymentSheet(models.Model):
         "account.journal",
         string="Journal",
         required=True,
-        states={"confirm": [("readonly", True)]},
         default=lambda self: self._default_journal(),
     )
     commercial_journal_ids = fields.Many2many(related="user_id.commercial_journal_ids")
@@ -59,13 +52,11 @@ class SalePaymentSheet(models.Model):
         related="journal_id.company_id",
         string="Company",
         store=True,
-        readonly=True,
     )
     line_ids = fields.One2many(
         "sale.payment.sheet.line",
         "sheet_id",
         string="Sheet lines",
-        states={"confirm": [("readonly", True)]},
         copy=True,
     )
     user_id = fields.Many2one(
@@ -78,7 +69,7 @@ class SalePaymentSheet(models.Model):
         comodel_name="account.bank.statement", string="Bank statement"
     )
     amount_total = fields.Monetary(
-        string="Total", store=True, readonly=True, compute="_compute_amount_total"
+        string="Total", store=True, compute="_compute_amount_total"
     )
     group_lines = fields.Selection(
         selection=[("ref", "Reference")], string="Group statement lines by"
@@ -112,13 +103,13 @@ class SalePaymentSheet(models.Model):
                 sheet.user_id.name,
             )
 
-    def unlink(self):
+    @api.ondelete(at_uninstall=False)
+    def unlink_except_open(self):
         for sheet in self:
             if sheet.state != "open":
                 raise UserError(
                     _("You can not delete a sheet if has related journal items.")
                 )
-        return super().unlink()
 
     @api.model
     def _statement_line_key(self, line):
@@ -169,8 +160,10 @@ class SalePaymentSheet(models.Model):
                 statement_line = BankStatementLine.create(vals)
                 payment_sheet_line_ids.statement_line_id = statement_line
             sheet.message_post(
-                body=_("Sheet %s confirmed, bank statement were created.")
-                % (statement.name,)
+                body=_(
+                    "Sheet %(statement_name)s confirmed, bank statement were created.",
+                    statement_name=statement.name,
+                )
             )
             sheet.write({"state": "confirm", "statement_id": statement.id})
 
@@ -228,7 +221,6 @@ class SalePaymentSheetLine(models.Model):
         string="Journal's Currency",
         related="sheet_id.currency_id",
         help="Utility field to express amount currency",
-        readonly=True,
     )
     partner_id = fields.Many2one("res.partner", string="Partner")
     ref = fields.Char(string="Reference")
@@ -243,9 +235,8 @@ class SalePaymentSheetLine(models.Model):
         related="sheet_id.company_id",
         string="Company",
         store=True,
-        readonly=True,
     )
-    state = fields.Selection(related="sheet_id.state", string="Status", readonly=True)
+    state = fields.Selection(related="sheet_id.state", string="Status")
     invoice_id = fields.Many2one(
         comodel_name="account.move", string="Invoice", index=True
     )
@@ -302,6 +293,9 @@ class SalePaymentSheetLine(models.Model):
 
     @api.constrains("invoice_id", "amount")
     def _check_invoice(self):
+        all_payment_lines = self.search(
+            [("invoice_id", "in", self.invoice_id.ids), ("sheet_id.state", "=", "open")]
+        )
         for line in self:
             # Allow to enter sheet line with an amount of 0,
             if line.journal_currency_id.is_zero(line.amount):
@@ -309,11 +303,9 @@ class SalePaymentSheetLine(models.Model):
                     _("The amount of a cash transaction cannot be 0.")
                 )
             # Do not allow to enter a invoice totally payed more than one time
-            payment_lines = self.search(
-                [
-                    ("invoice_id", "=", line.invoice_id.id),
-                    ("sheet_id.state", "=", "open"),
-                ]
+            payment_lines = all_payment_lines.filtered(
+                lambda payment_line, line=line: line.invoice_id.id
+                == payment_line.invoice_id.id
             )
             amount_payed = sum(payment_lines.mapped("amount"))
             if (
@@ -330,18 +322,16 @@ class SalePaymentSheetLine(models.Model):
                         " or the amount payed is greather than residual invoice amount."
                         "\n Invoice: %(invoice_name)s\n Amount payed: "
                         "%(amount_payed)s\n  Payment sheets:"
-                        " %(payment_lines_name)s"
+                        " %(payment_lines_name)s",
+                        invoice_name=line.invoice_id.name,
+                        amount_payed=amount_payed,
+                        payment_lines_name=payment_lines.mapped("sheet_id.name"),
                     )
-                    % {
-                        "invoice_name": line.invoice_id.name,
-                        "amount_payed": amount_payed,
-                        "payment_lines_name": payment_lines.mapped("sheet_id.name"),
-                    }
                 )
 
-    def unlink(self):
+    @api.ondelete(at_uninstall=False)
+    def unlink_except_statement_line(self):
         if self.filtered("statement_line_id"):
             raise UserError(
                 _("You can not delete payment lines if have related statement lines.")
             )
-        return super().unlink()

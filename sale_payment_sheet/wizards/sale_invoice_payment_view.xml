@@ -19,14 +19,14 @@
                 </group>
                     <field name="wiz_line_ids" nolabel="1" colspan="2">
                         <tree editable="bottom" create="0">
-                            <field name="state" invisible="1" />
+                            <field name="state" column_invisible="1" />
                             <field name="is_selected" widget="boolean_toggle" />
                             <field name="invoice_id" />
                             <field name="invoice_date" />
                             <field name="amount_total" />
                             <field name="amount_residual" />
                             <field name="invoice_date_due" />
-                            <field name="currency_id" invisible="1" />
+                            <field name="currency_id" column_invisible="1" />
                         </tree>
                     </field>
                 <footer>

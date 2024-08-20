@@ -10,7 +10,7 @@
                 <field name="journal_id" />
                 <field name="amount_total" />
                 <field name="company_id" groups="base.group_multi_company" />
-                <field name="currency_id" invisible="1" />
+                <field name="currency_id" column_invisible="1" />
                 <field name="state" />
             </tree>
         </field>
@@ -54,13 +54,13 @@
                 <header>
                     <button
                         name="button_confirm_sheet"
-                        states="open"
+                        invisible="state != 'open'"
                         string="Confirm sheet"
                         type="object"
                     />
                     <button
                         name="button_reopen"
-                        states="confirm"
+                        invisible="state != 'confirm'"
                         string="Reset to New"
                         type="object"
                     />
@@ -68,6 +68,7 @@
                         name="state"
                         widget="statusbar"
                         statusbar_visible="open,confirm"
+                        readonly="1"
                     />
                 </header>
                 <sheet>
@@ -79,13 +80,13 @@
                             type="object"
                             icon="fa-bars"
                             groups="account.group_account_user"
-                            states="confirm"
+                            invisible="state != 'confirm'"
                         />
                     </div>
                     <div class="oe_title oe_inline">
                         <label for="name" class="oe_edit_only" />
                         <h1>
-                            <field name="name" />
+                            <field name="name" readonly="state != 'open'" />
                         </h1>
                     </div>
                     <group>
@@ -95,15 +96,18 @@
                                 name="journal_id"
                                 widget="selection"
                                 domain="[('id', 'in', commercial_journal_ids)]"
+                                readonly="state == 'confirm'"
                             />
                             <field
                                 name="date"
                                 options="{'datepicker': {'warn_future': true}}"
+                                readonly="state == 'confirm'"
                             />
                             <field
                                 name='company_id'
                                 options="{'no_create': True}"
                                 groups="base.group_multi_company"
+                                readonly="1"
                             />
                             <field name="group_lines" />
                             <field name="currency_id" invisible="1" />
@@ -112,7 +116,11 @@
                     </group>
                     <notebook>
                         <page string="Transactions" name="payment_lines">
-                            <field name="line_ids" context="{'date':date}">
+                            <field
+                                name="line_ids"
+                                context="{'date':date}"
+                                readonly="state == 'confirm'"
+                            >
                                 <tree
                                     editable="bottom"
                                     decoration-danger="amount &lt; 0.0"
@@ -133,8 +141,16 @@
                                     <field name="transaction_type" optional="show" />
                                     <field name="note" optional="hidden" />
                                     <field name="amount" sum="Total" />
-                                    <field name="journal_currency_id" invisible="1" />
-                                    <field name="state" invisible="1" />
+                                    <field
+                                        name="journal_currency_id"
+                                        column_invisible="1"
+                                        readonly="1"
+                                    />
+                                    <field
+                                        name="state"
+                                        column_invisible="1"
+                                        readonly="1"
+                                    />
                                 </tree>
                             </field>
                         </page>

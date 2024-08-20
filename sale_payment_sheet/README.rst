@@ -101,6 +101,10 @@ Contributors
    -  César A. Sánchez
    -  Carolina Fernandez
 
+-  `APSL-Nagarro <https://apsl.tech>`__:
+
+   -  Antoni Marroig <amarroig@apsl.net>
+
 Maintainers
 -----------
 

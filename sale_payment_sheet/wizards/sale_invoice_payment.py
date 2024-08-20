@@ -152,7 +152,7 @@ class SaleInvoicePaymentLineWiz(models.TransientModel):
     _name = "sale.invoice.payment.line.wiz"
     _description = "Sale invoice payment lines wizard"
 
-    wiz_id = fields.Many2one("sale.invoice.payment.wiz")
+    wiz_id = fields.Many2one("sale.invoice.payment.wiz", ondelete="cascade")
     is_selected = fields.Boolean(default=True)
     invoice_id = fields.Many2one("account.move")
     invoice_date = fields.Date(related="invoice_id.invoice_date")
