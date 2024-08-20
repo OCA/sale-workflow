@@ -1,0 +1,50 @@
+<odoo>
+
+    <record
+        id="view_blanket_order_search_sale_blanket_order_tier_validation"
+        model="ir.ui.view"
+    >
+        <field name="name">sale.blanket.order.job.tier.validation.inherit.search</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_search" />
+        <field name="arch" type="xml">
+            <filter name="remaining_uom_qty" position="after">
+                <separator />
+                <filter
+                    name="needs_review"
+                    string="Needs my Review"
+                    domain="[('reviewer_ids','in',uid), ('state', 'not in', ['done', 'cancel','to approve'])]"
+                    help="My blanket order to review"
+                />
+                <filter
+                    name="tier_validated"
+                    string="Validated"
+                    domain="[('validated', '=', True)]"
+                    help="Blanket order validated and ready to be confirmed"
+                />
+            </filter>
+        </field>
+    </record>
+
+    <record
+        id="view_blanket_order_tree_sale_blanket_order_tier_validation"
+        model="ir.ui.view"
+    >
+        <field name="name">sale.blanket.order.tier.validation.inherit.tree</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_tree" />
+        <field name="arch" type="xml">
+            <tree position="inside">
+                <field
+                    name="validation_status"
+                    widget="badge"
+                    optional="hide"
+                    decoration-info="validation_status == 'pending'"
+                    decoration-danger="validation_status == 'rejected'"
+                    decoration-success="validation_status == 'validated'"
+                />
+            </tree>
+        </field>
+    </record>
+
+</odoo>
