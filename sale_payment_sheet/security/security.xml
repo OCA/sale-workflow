@@ -1,10 +1,8 @@
-<odoo>
+<odoo noupdate="1">
     <record id="sale_payment_sheet_multi_company" model="ir.rule">
         <field name="name">Sale payment sheet multi-company</field>
         <field name="model_id" ref="sale_payment_sheet.model_sale_payment_sheet" />
-        <field
-            name="domain_force"
-        >['|',('company_id','=',False),('company_id','in',company_ids)]</field>
+        <field name="domain_force">[('company_id', 'in', company_ids + [False])]</field>
         <field name="perm_read" eval="1" />
         <field name="perm_create" eval="1" />
         <field name="perm_write" eval="1" />

@@ -38,7 +38,7 @@
                     groups="base.group_multi_company"
                     optional="show"
                 />
-                <field name="currency_id" invisible="1" />
+                <field name="currency_id" column_invisible="1" />
             </tree>
         </field>
     </record>

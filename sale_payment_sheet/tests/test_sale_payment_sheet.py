@@ -6,11 +6,13 @@
 from freezegun import freeze_time
 
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests import Form, TransactionCase
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @freeze_time("2021-01-01 09:30:00")
-class TestSaleInvoicePayment(TransactionCase):
+class TestSaleInvoicePayment(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

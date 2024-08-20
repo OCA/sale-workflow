@@ -3,3 +3,5 @@
   - Sergio Teruel
   - César A. Sánchez
   - Carolina Fernandez
+- [APSL-Nagarro](https://apsl.tech):
+  - Antoni Marroig \<<amarroig@apsl.net>\>
