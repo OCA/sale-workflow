@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="sale_config_settings_form_view">
+        <field name="name">res.config.settings.form (in sale_blanket_order)</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <block name="quotation_order_setting_container" position="after">
+                <block title="Blanket Orders" name="blanket_orders_setting_container">
+                    <setting
+                        id="group_blanket_disable_adding_lines"
+                        title="Disable adding more lines to SOs from Blanket Orders"
+                        help="Disable adding more lines to SOs from Blanket Orders"
+                    >
+                        <field name="group_blanket_disable_adding_lines" />
+                    </setting>
+                </block>
+            </block>
+        </field>
+    </record>
+</odoo>
