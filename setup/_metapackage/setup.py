@@ -32,6 +32,7 @@ setuptools.setup(
         'odoo-addon-sale_exception_holidays_public>=16.0dev,<16.1dev',
         'odoo-addon-sale_fixed_discount>=16.0dev,<16.1dev',
         'odoo-addon-sale_force_invoiced>=16.0dev,<16.1dev',
+        'odoo-addon-sale_force_invoiced_quantity>=16.0dev,<16.1dev',
         'odoo-addon-sale_global_discount>=16.0dev,<16.1dev',
         'odoo-addon-sale_invoice_frequency>=16.0dev,<16.1dev',
         'odoo-addon-sale_invoice_policy>=16.0dev,<16.1dev',
