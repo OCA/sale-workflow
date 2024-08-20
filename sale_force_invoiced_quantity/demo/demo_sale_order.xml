@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="so_sale_force_invoiced_qty_1" model="sale.order">
+        <field name="partner_id" ref="base.partner_admin" />
+        <field name="user_id" ref="base.user_admin" />
+    </record>
+
+    <record id="sol_sale_force_invoiced_qty_1_1" model="sale.order.line">
+        <field name="order_id" ref="so_sale_force_invoiced_qty_1" />
+        <field name="product_id" ref="demo_product_sale_force_invoiced_qty_1" />
+        <field name="product_uom_qty">5</field>
+        <field name="force_invoiced_quantity">3</field>
+        <field name="price_unit">295.00</field>
+    </record>
+
+    <record id="sol_sale_force_invoiced_qty_1_2" model="sale.order.line">
+        <field name="order_id" ref="so_sale_force_invoiced_qty_1" />
+        <field name="product_id" ref="demo_product_sale_force_invoiced_qty_2" />
+        <field name="product_uom_qty">5</field>
+        <field name="force_invoiced_quantity">0</field>
+        <field name="price_unit">145.00</field>
+    </record>
+
+</odoo>
