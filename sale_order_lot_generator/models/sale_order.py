@@ -11,7 +11,7 @@ class SaleOrder(models.Model):
         # when a new line is added to confirmed sale order
         # get the max index_lot from the other lines
         index_lot = 0
-        lot_ids = self.order_line.filtered(lambda l: l.lot_id).mapped("lot_id")
+        lot_ids = self.order_line.filtered(lambda x: x.lot_id).mapped("lot_id")
         for lot in lot_ids:
             lot_name = lot.name
             index_str = lot_name.replace(self.name + "-", "")
