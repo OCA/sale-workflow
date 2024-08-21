@@ -4,9 +4,12 @@
 from odoo import fields, models
 
 
-class ResPartner(models.Model):
-    _inherit = "res.partner"
+class ResConfigSettings(models.Model):
+    _inherit = "res.config.settings"
 
     coefficient_sale_insurance = fields.Float(
-        help="coefficient which will be multiplied to the total sum of SO"
+        related="company_id.coefficient_sale_insurance", readonly=False
+    )
+    insurance_product = fields.Many2one(
+        related="company_id.insurance_product", readonly=False
     )

@@ -1,2 +1,2 @@
-This module add an insurance on partner and company, add automatically a line on sale order and
-recalculate the sale by adding insurance
+This module add an insurance line on sale orders depending of a coefficient defined on partners or globally at the company level.
+The insurance line price = coefficient * total sale order amount. 

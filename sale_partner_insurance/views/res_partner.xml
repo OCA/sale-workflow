@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="base.view_partner_form" />
         <field name="arch" type="xml">
             <group name="sale" position="inside">
-                <field name="sale_insurance" />
+                <field name="coefficient_sale_insurance" />
             </group>
         </field>
     </record>

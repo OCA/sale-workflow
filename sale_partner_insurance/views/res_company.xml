@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="base.view_company_form" />
         <field name="arch" type="xml">
             <field name="website" position="after">
-                <field name="sale_insurance" />
+                <field name="coefficient_sale_insurance" />
                 <field name="insurance_product" />
             </field>
         </field>

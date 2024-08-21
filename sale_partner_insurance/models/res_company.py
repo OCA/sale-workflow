@@ -7,5 +7,7 @@ from odoo import fields, models
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-    sale_insurance = fields.Float()
+    coefficient_sale_insurance = fields.Float(
+        help="coefficient which will be multiplied to the total sum of SO"
+    )
     insurance_product = fields.Many2one("product.product")

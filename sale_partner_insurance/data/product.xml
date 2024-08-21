@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="default_insurance_product" model="product.template">
+        <field name="name">Insurance</field>
+        <field name="type">service</field>
+        <field name="sale_ok">True</field>
+    </record>
+</odoo>
