@@ -136,3 +136,75 @@ class TestSaleDelivery(TransactionCase):
             format_date(self.env, self.date_sooner.date()),
             self.so_line1.procurement_group_id.name,
         )
+
+    def test_security_lead_time_same_dates(self):
+        same_date = self.dt1 + datetime.timedelta(hours=1)
+        self.so_line2.commitment_date = same_date
+        self.so.company_id.security_lead = 2
+        security_date = self.date_sooner - datetime.timedelta(days=2)
+        self.assertEqual(
+            len(self.so.picking_ids),
+            0,
+            "There must not be pickings for the SO when draft",
+        )
+        self.so.action_confirm()
+        self.assertEqual(
+            len(self.so.picking_ids),
+            1,
+            "There must be only one picking for the SO when confirmed",
+        )
+        self.assertEqual(
+            self.so.picking_ids.scheduled_date,
+            security_date,
+            "The picking must be planned at the expected date (with security lead time)",
+        )
+        self.assertEqual(
+            self.so_line1.procurement_group_id,
+            self.so_line2.procurement_group_id,
+            "The procurement group must be the same",
+        )
+        self.assertIn(
+            format_date(self.env, security_date.date()),
+            self.so_line1.procurement_group_id.name,
+        )
+
+    def test_security_lead_time_multiple_dates(self):
+        self.so_line2.commitment_date = self.dt2
+        self.so.company_id.security_lead = 3
+        security_date_sooner = self.date_sooner - datetime.timedelta(days=3)
+        security_date_later = self.date_later - datetime.timedelta(days=3)
+        self.assertEqual(
+            len(self.so.picking_ids),
+            0,
+            "There must not be pickings for the SO when draft",
+        )
+        self.so.action_confirm()
+        self.assertEqual(
+            len(self.so.picking_ids),
+            2,
+            "There must be 2 pickings for the SO when confirmed",
+        )
+        sorted_pickings = self.so.picking_ids.sorted(lambda x: x.scheduled_date)
+        self.assertEqual(
+            sorted_pickings[0].scheduled_date,
+            security_date_sooner,
+            "The first picking must be planned at the soonest date (with security lead time)",
+        )
+        self.assertEqual(
+            sorted_pickings[1].scheduled_date,
+            security_date_later,
+            "The second picking must be planned at the latest date (with security lead time)",
+        )
+        self.assertNotEqual(
+            self.so_line1.procurement_group_id,
+            self.so_line2.procurement_group_id,
+            "The procurement group must be different",
+        )
+        self.assertIn(
+            format_date(self.env, security_date_sooner.date()),
+            self.so_line1.procurement_group_id.name,
+        )
+        self.assertIn(
+            format_date(self.env, security_date_later.date()),
+            self.so_line2.procurement_group_id.name,
+        )
