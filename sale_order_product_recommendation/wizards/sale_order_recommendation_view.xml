@@ -10,7 +10,7 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <group attrs="{'invisible': [('line_ids', '!=', [])]}">
+                    <group invisible="line_ids">
                         <group>
                             <field name="order_id" invisible="1" />
                             <field name="months" widget="numeric_step" />
@@ -28,7 +28,7 @@
                             nolabel="1"
                             mode="tree,kanban"
                             colspan="2"
-                            attrs="{'invisible': [('line_ids', '=', [])]}"
+                            invisible="not line_ids"
                         >
                             <tree create="0" delete="0" editable="top">
                                 <field
@@ -37,8 +37,8 @@
                                     optional="show"
                                     nolabel="1"
                                 />
-                                <field name="currency_id" invisible="1" />
-                                <field name="sale_line_id" invisible="1" />
+                                <field name="currency_id" column_invisible="1" />
+                                <field name="sale_line_id" column_invisible="1" />
                                 <field
                                     name="product_categ_complete_name"
                                     optional="show"
@@ -55,13 +55,19 @@
                                 <field name="times_delivered" optional="show" />
                                 <field name="units_delivered" optional="show" />
                                 <field name="units_included" widget="numeric_step" />
-                                <field name="product_uom_category_id" invisible="1" />
-                                <field name="product_uom_readonly" invisible="1" />
+                                <field
+                                    name="product_uom_category_id"
+                                    column_invisible="1"
+                                />
+                                <field
+                                    name="product_uom_readonly"
+                                    column_invisible="1"
+                                />
                                 <field
                                     name="sale_uom_id"
                                     optional="show"
                                     groups="uom.group_uom"
-                                    attrs="{'readonly': [('product_uom_readonly', '=', True)]}"
+                                    readonly="product_uom_readonly"
                                 />
                             </tree>
                             <kanban
@@ -150,7 +156,7 @@
                 </sheet>
                 <footer>
                     <button
-                        attrs="{'invisible': [('line_ids', '!=', [])]}"
+                        invisible="line_ids"
                         class="btn-primary"
                         icon="fa-refresh"
                         name="generate_recommendations"
@@ -158,14 +164,14 @@
                         type="object"
                     />
                     <button
-                        attrs="{'invisible': [('line_ids', '=', [])]}"
+                        invisible="not line_ids"
                         name="action_accept"
                         type="object"
                         string="Accept"
                         class="oe_highlight"
                     />
                     <button
-                        attrs="{'invisible': [('line_ids', '=', [])]}"
+                        invisible="not line_ids"
                         confirm="You will lose any changes you have made. Are you sure?"
                         name="action_reset"
                         string="Change criteria"
