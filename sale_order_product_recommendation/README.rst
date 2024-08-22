@@ -17,26 +17,26 @@ Sale Order Product Recommendation
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_order_product_recommendation
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_order_product_recommendation
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_order_product_recommendation
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_order_product_recommendation
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module adds a recommended products wizard to current sale order.
 
-It is based on recent delivered products, and allows the salesman to quickly
-know the most sold products for current customer, which results in an easy to
-use hint to improve sale.
+It is based on recent delivered products, and allows the salesman to
+quickly know the most sold products for current customer, which results
+in an easy to use hint to improve sale.
 
-If you want a better mobile usability, the module is ready to use with the
-'web_widget_numeric_step' module. Just install it and you will get a better
-numeric input experience.
+If you want a better mobile usability, the module is ready to use with
+the 'web_widget_numeric_step' module. Just install it and you will get a
+better numeric input experience.
 
 **Table of contents**
 
@@ -48,50 +48,58 @@ Configuration
 
 To configure this module you need to:
 
-In sale order product recommendation you can display the product price unit
-from list price or from last sale order price. To set the default value follow
-the next steps
+In sale order product recommendation you can display the product price
+unit from list price or from last sale order price. To set the default
+value follow the next steps
 
-#. Go to *Sales > Configuration > Settings > Sale order recommendations*.
-#. Assign the desired value to *Product recommendation price origin* field.
-#. Press *Save* button to store the change.
+1. Go to *Sales > Configuration > Settings > Sale order
+   recommendations*.
+2. Assign the desired value to *Product recommendation price origin*
+   field.
+3. Press *Save* button to store the change.
 
-In sale order product recommendation you can compute the recommendations using the
-Delivery Address instead of the Customer. To set this option by default follow
-the next steps
+In sale order product recommendation you can compute the recommendations
+using the Delivery Address instead of the Customer. To set this option
+by default follow the next steps
 
-#. Go to *Sales > Configuration > Settings > Sale order recommendations*.
-#. Assign the desired value to *Use delivery address* field.
-#. Press *Save* button to store the change.
+1. Go to *Sales > Configuration > Settings > Sale order
+   recommendations*.
+2. Assign the desired value to *Use delivery address* field.
+3. Press *Save* button to store the change.
 
 You can define other default values like as:
 
-* Months backwards to generate recommendations.
-* Number of recommendations to display.
+-  Months backwards to generate recommendations.
+-  Number of recommendations to display.
 
-You can force the addition of all the products recommended in the sale order. 
-You can then edit the desired quantities directly in the sale order. 
+You can force the addition of all the products recommended in the sale
+order. You can then edit the desired quantities directly in the sale
+order.
 
-#. Go to *Sales > Configuration > Settings > Sale order recommendations*.
-#. Select *Force zero units included*
+1. Go to *Sales > Configuration > Settings > Sale order
+   recommendations*.
+2. Select *Force zero units included*
 
-You can add a filter domain to exclude or include additional recommended products.
+You can add a filter domain to exclude or include additional recommended
+products.
 
-#. Go to *Sales > Configuration > Settings > Sale order recommendations*.
-#. Add a filter in section *Sale order product recommendation domain* Example: ``[("product_type", "!=" "service")]``
+1. Go to *Sales > Configuration > Settings > Sale order
+   recommendations*.
+2. Add a filter in section *Sale order product recommendation domain*
+   Example: ``[("product_type", "!=" "service")]``
 
 Usage
 =====
 
 To use this module, you need to:
 
-#. Create a new sale order.
-#. Assign its customer.
-#. Press *Recommended Products* button.
-#. Configure the recommendations parameters.
-#. Press *Get recommendations* button.
-#. Add products into the opened wizard.
-#. Press *Accept*.
+1. Create a new sale order.
+2. Assign its customer.
+3. Press *Recommended Products* button.
+4. Configure the recommendations parameters.
+5. Press *Get recommendations* button.
+6. Add products into the opened wizard.
+7. Press *Accept*.
 
 Bug Tracker
 ===========
@@ -99,7 +107,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_product_recommendation%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_product_recommendation%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -107,39 +115,39 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Jairo Llopis
-  * David Vidal
-  * Alexandre Díaz
-  * Pedro M. Baeza
-  * Sergio Teruel
-  * Carlos Roca
-  * Víctor Martínez
+   -  Jairo Llopis
+   -  David Vidal
+   -  Alexandre Díaz
+   -  Pedro M. Baeza
+   -  Sergio Teruel
+   -  Carlos Roca
+   -  Víctor Martínez
 
-* `Camptocamp SA <https://www.camptocamp.com>`_:
+-  `Camptocamp SA <https://www.camptocamp.com>`__:
 
-  * Telmo Santos
+   -  Telmo Santos
 
-* `Moduon <https://www.moduon.team>`_:
+-  `Moduon <https://www.moduon.team>`__:
 
-  * Rafael Blasco
-  * Gelo Joga
-  * Jairo Llopis
+   -  Rafael Blasco
+   -  Gelo Joga
+   -  Jairo Llopis
 
-* `Trobz <https://www.trobz.com>`_:
+-  `Trobz <https://www.trobz.com>`__:
 
-  * Tris Doan
+   -  Tris Doan
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -165,6 +173,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-sergio-teruel| |maintainer-rafaelbn| |maintainer-yajo| 
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_order_product_recommendation>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_order_product_recommendation>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
