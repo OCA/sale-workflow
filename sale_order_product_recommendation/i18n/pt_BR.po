@@ -1,0 +1,444 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_product_recommendation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-28 21:18+0000\n"
+"PO-Revision-Date: 2024-05-29 19:38+0000\n"
+"Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
+"translation.odoo-community.org>\n"
+"Language-Team: \n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid ""
+"<span class=\"o_form_label\">Add recommended with zero units included</span>"
+msgstr ""
+"<span class=\"o_form_label\">Adicionar recomendado com zero unidades "
+"incluídas</span>"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid "<span class=\"o_form_label\">Default Number of recommendations</span>"
+msgstr "<span class=\"o_form_label\">Número padrão de recomendações</span>"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid ""
+"<span class=\"o_form_label\">Default months backwards to generate "
+"recommendations</span>"
+msgstr ""
+"<span class=\"o_form_label\">Meses anteriores padrão para gerar "
+"recomendações</span>"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid "<span class=\"o_form_label\">Product recommendation price origin</span>"
+msgstr ""
+"<span class=\"o_form_label\">Origem do preço recomendado do produto</span>"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid ""
+"<span class=\"o_form_label\">Sale order product recommendation domain</span>"
+msgstr ""
+"<span class=\"o_form_label\">Domínio de recomendação de produtos para "
+"pedidos de venda</span>"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid "<span class=\"o_form_label\">Use delivery address</span>"
+msgstr "<span class=\"o_form_label\">Usar endereço de entrega</span>"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
+msgid "<span>To be included: </span>"
+msgstr "<span>Para ser incluído: </span>"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
+msgid "Accept"
+msgstr "Aceitar"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,help:sale_order_product_recommendation.field_res_config_settings__force_zero_units_included
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid "Add recomented products in so even if units included is zero."
+msgstr ""
+"Adicione produtos recomendados mesmo que as unidades incluídas sejam zero."
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_uom_category_id
+msgid "Category"
+msgstr "Categoria"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
+msgid "Change criteria"
+msgstr "Alterar critérios"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model,name:sale_order_product_recommendation.model_res_company
+msgid "Companies"
+msgstr "Empresas"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model,name:sale_order_product_recommendation.model_res_config_settings
+msgid "Config Settings"
+msgstr "Configurações"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation__months
+msgid "Consider these months backwards to generate recommendations."
+msgstr "Considere esses meses retroativos para gerar recomendações."
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation_line__product_uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
+"A conversão entre Unidades de Medida só poderá ocorrer se pertencerem à "
+"mesma categoria. A conversão será feita com base nos índices."
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__create_uid
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__create_date
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__currency_id
+msgid "Currency"
+msgstr "Moeda"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__partner_id
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_config_settings__default_line_amount
+msgid "Default sale number of recommendations"
+msgstr "Número de recomendações de venda padrão"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_config_settings__default_months
+msgid "Default sale recommendation months"
+msgstr "Meses de recomendação de venda padrão"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
+msgid "Delivered:"
+msgstr "Entregue:"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__display_name
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__display_name
+msgid "Display Name"
+msgstr "Nome Exibição"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid "Domain applied on sale orders lines to recommend products for sales"
+msgstr ""
+"Domínio aplicado em linhas de pedidos de venda para recomendar produtos para "
+"vendas"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,help:sale_order_product_recommendation.field_res_config_settings__sale_line_recommendation_domain
+msgid "Domain applied to find SO lines to propose as recommended products."
+msgstr ""
+"Domínio aplicado para encontrar linhas PV para propor como produtos "
+"recomendados."
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_priority
+msgid "Favorite"
+msgstr "Favorito"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_company__force_zero_units_included
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_config_settings__force_zero_units_included
+msgid "Force Zero Units Included"
+msgstr "Força Zero Unidades Incluídas"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
+msgid "Get recommendations"
+msgstr "Obtenha recomendações"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__id
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid ""
+"If this is selected, it will take care by default on\n"
+"                                Delivery Address instead of customer on sale "
+"orders\n"
+"                                recommendation"
+msgstr ""
+"Se esta opção for selecionada, cuidado por padrão a recomendação no\n"
+"                                 Endereço de entrega em vez do cliente no\n"
+"                                 pedidos de venda"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation_line__pricelist_id
+msgid "If you change the pricelist, only newly added lines will be affected."
+msgstr ""
+"Se você alterar a lista de preços, apenas as linhas recém-adicionadas serão "
+"afetadas."
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_default_code
+msgid "Internal Reference"
+msgstr "Referência interna"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation____last_update
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line____last_update
+msgid "Last Modified on"
+msgstr "Última modificação em"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__write_uid
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__write_uid
+msgid "Last Updated by"
+msgstr "Última atualização por"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__write_date
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__write_date
+msgid "Last Updated on"
+msgstr "Última atualização em"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__res_config_settings__default_sale_recommendation_price_origin__last_sale_price
+#: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__sale_recommendation_price_origin__last_sale_price
+msgid "Last sale price"
+msgstr "Último Preço de Venda"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__months
+msgid "Months"
+msgstr "Meses"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_name
+msgid "Name"
+msgstr "Nome"
+
+#. module: sale_order_product_recommendation
+#. odoo-python
+#: code:addons/sale_order_product_recommendation/wizards/sale_order_recommendation.py:0
+#, python-format
+msgid "Nothing found! Modify your criteria or fill the order manually."
+msgstr ""
+"Nada encontrado! Modifique seus critérios ou preencha o pedido manualmente."
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__line_amount
+msgid "Number of recommendations"
+msgstr "Número de recomendações"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__price_unit
+msgid "Price Unit"
+msgstr "Preço Unitário"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_config_settings__default_sale_recommendation_price_origin
+msgid "Price origin"
+msgstr "Origem do preço"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
+msgid "Price:"
+msgstr "Preço:"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__pricelist_id
+#: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__res_config_settings__default_sale_recommendation_price_origin__pricelist
+#: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__sale_recommendation_price_origin__pricelist
+msgid "Pricelist"
+msgstr "Lista de Preço"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_id
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
+msgid "Product"
+msgstr "Produto"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_uom_readonly
+msgid "Product Uom Readonly"
+msgstr "Uom do produto somente leitura"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_categ_complete_name
+#: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__product_categ_complete_name_asc
+msgid "Product category"
+msgstr "Categoria de Produto"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__product_default_code_asc
+msgid "Product code"
+msgstr "Código de Produto"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__product_name_asc
+msgid "Product name"
+msgstr "Nome de Produto"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__sale_recommendation_price_origin
+msgid "Product price origin"
+msgstr "Origem do preço do produto"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__line_ids
+msgid "Products"
+msgstr "Produtos"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__recommendations_order
+msgid "Recommendations Order"
+msgstr "Ordem de recomendações"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.view_order_form
+msgid "Recommended Products"
+msgstr "Produtos Recomendados"
+
+#. module: sale_order_product_recommendation
+#: model:ir.actions.act_window,name:sale_order_product_recommendation.sale_order_recommendation_action
+msgid "Recommended Products for this Customer"
+msgstr "Produtos Recomendados para este Cliente"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model,name:sale_order_product_recommendation.model_sale_order_recommendation_line
+msgid "Recommended product for current sale order"
+msgstr "Produto recomendado para o pedido de venda atual"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model,name:sale_order_product_recommendation.model_sale_order_recommendation
+msgid "Recommended products for current sale order"
+msgstr "Produtos recomendados para o pedido de venda atual"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__sale_line_id
+msgid "Sale Line"
+msgstr "Item de Venda"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_company__sale_line_recommendation_domain
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_config_settings__sale_line_recommendation_domain
+msgid "Sale Line Recommendation Domain"
+msgstr "Domínio de Recomendação da Linha de Venda"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__order_id
+msgid "Sale Order"
+msgstr "Pedido de Venda"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid "Sale order recommendations"
+msgstr "Recomendações de pedidos de venda"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid ""
+"Select the origin for display product price in sale orders recommendation"
+msgstr ""
+"Selecione a origem para exibir o preço do produto na recomendação de pedidos "
+"de venda"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation__line_amount
+msgid "The less, the faster they will be found."
+msgstr "Quanto menos, mais rápido eles serão encontrados."
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__times_delivered
+msgid "Times Delivered"
+msgstr "Tempos de Entregas"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__times_delivered_desc
+msgid "Times delivered"
+msgstr "Tempos de entregas"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__sale_uom_id
+msgid "Unit of Measure"
+msgstr "Unidade de Medida"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__units_delivered
+msgid "Units Delivered"
+msgstr "Unidades Entregues"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__units_included
+msgid "Units Included"
+msgstr "Unidades Incluídas"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__units_delivered_desc
+msgid "Units delivered"
+msgstr "Unidades Entregues"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_config_settings__default_use_delivery_address
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__use_delivery_address
+msgid "Use delivery address"
+msgstr "Usar Endereço Entrega"
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__wizard_id
+msgid "Wizard"
+msgstr "Assistente"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
+msgid "You will lose any changes you have made. Are you sure?"
+msgstr "Você perderá todas as alterações feitas. Tem certeza?"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
+msgid "times -"
+msgstr "vezes -"
+
+#~ msgid "Sales Order Line"
+#~ msgstr "Item do pedido de vendas"
+
+#~ msgid "Product Category"
+#~ msgstr "Categoria de Produto"
+
+#~ msgid "Last Compute"
+#~ msgstr "Última Computação"
