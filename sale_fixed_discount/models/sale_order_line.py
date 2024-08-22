@@ -16,11 +16,12 @@ class SaleOrderLine(models.Model):
     )
 
     @api.model_create_multi
-    def create(self, vals):
-        record = super(SaleOrderLine, self).create(vals)    
-        if 'discount_fixed' in vals:
-            record._onchange_discount_fixed()
-        return record
+    def create(self, vals_list):
+        records = super().create(vals_list)
+        for vals in records:
+            if 'discount_fixed' in vals:
+                vals._onchange_discount_fixed()
+        return records
 
     @api.constrains("discount_fixed", "discount")
     def _check_discounts(self):
