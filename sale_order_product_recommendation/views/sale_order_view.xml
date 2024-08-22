@@ -10,7 +10,7 @@
             <xpath expr="//form//header//button[@name='action_draft']" position="after">
                 <button
                     name="%(sale_order_recommendation_action)d"
-                    states="draft,sent,sale"
+                    invisible="locked or state == 'cancel'"
                     string="Recommended Products"
                     type="action"
                 />

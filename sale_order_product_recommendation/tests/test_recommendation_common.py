@@ -73,7 +73,8 @@ class RecommendationCase(TransactionCase):
         cls.order1 = cls.env["sale.order"].create(
             {
                 "partner_id": cls.partner.id,
-                "state": "done",
+                "state": "sale",
+                "locked": "True",
                 "date_order": "2021-05-05",
                 "order_line": [
                     (
@@ -119,7 +120,8 @@ class RecommendationCase(TransactionCase):
             {
                 "partner_id": cls.partner.id,
                 "partner_shipping_id": cls.partner_delivery.id,
-                "state": "done",
+                "state": "sale",
+                "locked": "True",
                 "date_order": "2021-05-03",
                 "order_line": [
                     (

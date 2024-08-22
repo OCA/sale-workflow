@@ -5,94 +5,61 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="sale.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//div[@id='sale_config_online_confirmation_sign']/.."
-                position="after"
-            >
-                <h2>Sale order recommendations</h2>
-                <div
-                    class="row mt16 o_settings_container"
+            <xpath expr="//setting[@id='order_default_values']/.." position="after">
+                <block
+                    title="Sale order recommendations"
                     id="sale_order_recommendation"
                 >
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_left_pane" />
-                        <div class="o_setting_right_pane">
-                            <span
-                                class="o_form_label"
-                            >Product recommendation price origin</span>
-                            <div class="text-muted">
-                                Select the origin for display product price in sale orders recommendation
-                            </div>
+                    <setting
+                        string="Product recommendation price origin"
+                        help="Select the origin for display product price in sale orders recommendation"
+                    >
                             <div class="text-muted">
                                 <field
-                                    name="default_sale_recommendation_price_origin"
-                                />
+                                name="default_sale_recommendation_price_origin"
+                            />
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_left_pane">
-                            <field name="default_use_delivery_address" />
-                        </div>
-                        <div class="o_setting_right_pane">
-                            <span class="o_form_label">Use delivery address</span>
-                            <div class="text-muted">
-                                If this is selected, it will take care by default on
+                    </setting>
+                    <setting
+                        string="Use delivery address"
+                        help="If this is selected, it will take care by default on
                                 Delivery Address instead of customer on sale orders
-                                recommendation
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_right_pane">
-                            <span
-                                class="o_form_label"
-                            >Default months backwards to generate recommendations</span>
+                                recommendation"
+                    >
+                            <field name="default_use_delivery_address" />
+
+                    </setting>
+                    <setting
+                        string="Default months backwards to generate recommendations"
+                        help="If this is selected, it will take care by default on
+                                Delivery Address instead of customer on sale orders
+                                recommendation"
+                    >
                             <field name="default_months" />
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_right_pane">
-                            <span
-                                class="o_form_label"
-                            >Default Number of recommendations</span>
+                    </setting>
+                    <setting string="Default Number of recommendations">
                             <field name="default_line_amount" />
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_left_pane">
+                    </setting>
+                    <setting
+                        string="Add recommended with zero units included"
+                        help="Add recomented products in so even if units included is zero."
+                    >
                             <field name="force_zero_units_included" />
-                        </div>
-                        <div class="o_setting_right_pane">
-                            <span
-                                class="o_form_label"
-                            >Add recommended with zero units included</span>
-                            <div class="text-muted">
-                                Add recomented products in so even if units included is zero.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-12 o_setting_box">
-                        <div class="o_setting_left_pane" />
-                        <div class="o_setting_right_pane">
-                            <span
-                                class="o_form_label"
-                            >Sale order product recommendation domain</span>
-                            <div class="text-muted">
-                                Domain applied on sale orders lines to recommend products for sales
-                            </div>
+                    </setting>
+                    <setting
+                        string="Sale order product recommendation domain"
+                        help="Domain applied on sale orders lines to recommend products for sales"
+                    >
                             <div class="text-muted">
                                 <field
-                                    name="sale_line_recommendation_domain"
-                                    widget="domain"
-                                    options="{'model': 'sale.order.line'}"
-                                />
+                                name="sale_line_recommendation_domain"
+                                widget="domain"
+                                options="{'model': 'sale.order.line'}"
+                            />
                             </div>
-                        </div>
-                    </div>
-                </div>
+                    </setting>
+                </block>
             </xpath>
         </field>
     </record>
-
 </odoo>
