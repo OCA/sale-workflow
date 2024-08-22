@@ -629,12 +629,12 @@ class BlanketOrderLine(models.Model):
             if self.env.uid == SUPERUSER_ID:
                 company_id = self.env.company.id
                 self.taxes_id = fpos.map_tax(
-                    self.product_id.supplier_taxes_id.filtered(
+                    self.product_id.taxes_id.filtered(
                         lambda r: r.company_id.id == company_id
                     )
                 )
             else:
-                self.taxes_id = fpos.map_tax(self.product_id.supplier_taxes_id)
+                self.taxes_id = fpos.map_tax(self.product_id.taxes_id)
 
     @api.depends(
         "sale_lines.order_id.state",
