@@ -16,16 +16,17 @@ _logger = logging.getLogger(__name__)
 
 @tagged("post_install", "-at_install", "mail_composer")
 class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
-    def setUp(self):
-        super().setUp()
-        self.env = self.env(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env = cls.env(
             context=dict(
-                self.env.context,
+                cls.env.context,
                 tracking_disable=True,
                 # Compatibility with sale_automatic_workflow_job: even if
                 # the module is installed, ensure we don't delay a job.
                 # Thus, we test the usual flow.
-                _job_force_sync=True,
+                queue_job__no_delay=True,
             )
         )
 
