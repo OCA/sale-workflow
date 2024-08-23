@@ -1,9 +1,10 @@
 # Copyright 2014 Camptocamp SA (author: Guewen Baconnier)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 import logging
 from datetime import timedelta
 from unittest import mock
+
+from freezegun import freeze_time
 
 from odoo import fields
 from odoo.tests import tagged
@@ -56,6 +57,7 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         sale._onchange_workflow_process_id()
         self.assertEqual(sale.picking_policy, "direct")
 
+    @freeze_time("2024-08-11 12:00:00")
     def test_date_invoice_from_sale_order(self):
         workflow = self.create_full_automatic()
         # date_order on sale.order is date + time
