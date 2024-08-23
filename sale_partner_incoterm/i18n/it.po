@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_partner_incoterm
+#
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-03-12 01:52+0000\n"
+"PO-Revision-Date: 2023-12-01 15:35+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
+"language/it/)\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_partner_incoterm
+#: model:ir.model,name:sale_partner_incoterm.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: sale_partner_incoterm
+#: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_partner__sale_incoterm_address_id
+#: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_users__sale_incoterm_address_id
+msgid "Default Sale Incoterm Address"
+msgstr "Indirizzo incoterm vendita predefinito"
+
+#. module: sale_partner_incoterm
+#: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_partner__sale_incoterm_id
+#: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_users__sale_incoterm_id
+#: model_terms:ir.ui.view,arch_db:sale_partner_incoterm.view_partner_property_form
+msgid "Default Sales Incoterm"
+msgstr "Incoterm predefinito per vendite"
+
+#. module: sale_partner_incoterm
+#: model:ir.model.fields,field_description:sale_partner_incoterm.field_sale_order__incoterm_address_id
+msgid "Incoterm Address"
+msgstr "Indirizzo Incoterm"
+
+#. module: sale_partner_incoterm
+#: model:ir.model,name:sale_partner_incoterm.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: sale_partner_incoterm
+#: model:ir.model.fields,help:sale_partner_incoterm.field_res_partner__sale_incoterm_id
+#: model:ir.model.fields,help:sale_partner_incoterm.field_res_users__sale_incoterm_id
+msgid "The default incoterm for new sales orders for this customer."
+msgstr ""
+"Indica l'Incoterm predefinito per i nuovi ordini di vendita a questo cliente."
+
+#~ msgid "Partner"
+#~ msgstr "Partner"
