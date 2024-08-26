@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_confirm_partial_wizard,access_sale_order_confirm_partial_wizard,model_sale_order_confirm_partial,sales_team.group_sale_salesman,1,1,1,1
+access_sale_order_confirm_partial_line,access_sale_order_confirm_partial_line,model_sale_order_confirm_partial_line,sales_team.group_sale_salesman,1,1,1,1
