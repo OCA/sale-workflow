@@ -8,10 +8,11 @@
     "license": "AGPL-3",
     "author": "Akretion,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
-    "depends": ["stock", "sale"],
+    "depends": ["stock", "sale_commercial_partner"],
     "data": [
         "data/product.xml",
         "views/res_company.xml",
+        "views/res_config_settings.xml",
         "views/res_partner.xml",
         "views/sale_order.xml",
     ],

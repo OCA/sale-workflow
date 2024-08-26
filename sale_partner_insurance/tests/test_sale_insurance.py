@@ -16,7 +16,7 @@ class TestForceReservation(TransactionCase):
             }
         )
         self.company_id = self.env.ref("base.main_company")
-        self.company_id.sale_insurance = 0.02
+        self.company_id.coefficient_sale_insurance = 0.02
         self.company_id.insurance_product = self.insurance_product.id
         self.partner_id = self.env.ref("base.res_partner_2")
         self.product_id = self.env.ref("sale.product_product_4f")
@@ -49,6 +49,14 @@ class TestForceReservation(TransactionCase):
         sale_order.order_line[0].product_uom_qty = 5
         self.assertEqual(sale_order.order_line[1].price_unit, 75)
         self.assertEqual(sale_order.amount_untaxed, 3825)
+
+    def test_sale_partner_insurance_change_amount(self):
+        self.partner_id.company_id = self.company_id
+        sale_order = self._create_sale_order()
+        sale_order.action_confirm()
+        sale_order.order_line[0].price_unit = 500
+        self.assertEqual(sale_order.order_line[1].price_unit, 10)
+        self.assertEqual(sale_order.amount_untaxed, 510)
 
     def test_cancel_sale_order(self):
         self.partner_id.company_id = self.company_id

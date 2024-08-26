@@ -4,7 +4,7 @@
 from odoo import fields, models
 
 
-class ResConfigSettings(models.Model):
+class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
     coefficient_sale_insurance = fields.Float(

@@ -9,7 +9,7 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         for record in self:
-            partner_insurance = record.partner_id.coefficient_sale_insurance
+            partner_insurance = record.commercial_partner_id.coefficient_sale_insurance
             coefficient_sale_insurance = (
                 partner_insurance
                 if partner_insurance
@@ -60,8 +60,10 @@ class SaleOrderLine(models.Model):
     def write(self, vals):
         res = super().write(vals)
         for record in self:
-            insurance_product = record.order_id.company_id.insurance_product
-            partner_insurance = record.order_id.partner_id.coefficient_sale_insurance
+            insurance_product = record.company_id.insurance_product
+            partner_insurance = (
+                record.order_id.commercial_partner_id.coefficient_sale_insurance
+            )
             coefficient_sale_insurance = (
                 partner_insurance
                 if partner_insurance
@@ -76,7 +78,7 @@ class SaleOrderLine(models.Model):
                     subtotal = sum(
                         order_line_ids.filtered(
                             lambda r: r.product_id != insurance_product
-                        ).mapped("price_total")
+                        ).mapped("price_subtotal")
                     )
                     insurance_line.price_unit = subtotal * coefficient_sale_insurance
         return res
