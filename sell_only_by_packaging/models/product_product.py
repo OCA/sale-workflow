@@ -52,9 +52,20 @@ class ProductProduct(models.Model):
                 and float_compare(
                     qty / q,
                     float_round(qty / q, precision_rounding=1.0),
-                    precision_rounding=0.001,
+                    precision_rounding=uom.rounding,
                 )
                 != 0
             ):
-                qty = qty - (qty % q) + q
+                forced_qty = qty - (qty % q) + q
+                # Support negative rounding
+                if (
+                    float_compare(
+                        qty,
+                        0.0,
+                        precision_rounding=uom.rounding,
+                    )
+                    < 0
+                ):
+                    forced_qty -= q
+                return forced_qty
         return qty
