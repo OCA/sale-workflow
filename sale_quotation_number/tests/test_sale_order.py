@@ -106,3 +106,9 @@ class TestSaleOrder(TransactionCase):
         next_name = sequence_id.get_next_char(sequence_id.number_next_actual)
         self.order_company1.action_confirm()
         self.assertEqual(next_name, self.order_company1.name)
+
+    def test_create_with_specific_name(self):
+        order = self.sale_order_model.create(
+            {"name": "CustomName", "partner_id": self.env.ref("base.res_partner_1").id}
+        )
+        self.assertEqual(order.name, "CustomName")
