@@ -3,7 +3,7 @@
 
 {
     "name": "Currency Rate in Sale Order",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Jarsa, Odoo Community Association (OCA)",

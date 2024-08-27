@@ -69,6 +69,11 @@ Contributors
 
 -  Oscar Reyes <oscar.reyes@jarsa.com>
 
+-  `Sodexis <https://www.sodexis.com>`__
+
+   -  SodexisTeam <dev@sodexis.com>
+   -  Sakthivel <sakthivel@sodexis.com>
+
 Maintainers
 -----------
 

@@ -8,11 +8,11 @@
             <xpath expr="//field[@name='currency_id']" position="after">
                 <field
                     name="currency_rate"
-                    attrs="{'invisible': [('sale_show_currency_rate', 'in', ['no', 'inverse'])]}"
+                    invisible="sale_show_currency_rate in ['no', 'inverse']"
                 />
                 <field
                     name="inverse_currency_rate"
-                    attrs="{'invisible': [('sale_show_currency_rate', 'in', ['no', 'normal'])]}"
+                    invisible="sale_show_currency_rate in ['no', 'normal']"
                 />
                 <field name="sale_show_currency_rate" invisible="1" />
             </xpath>
