@@ -64,4 +64,5 @@ class TestForceReservation(TransactionCase):
         sale_order.action_confirm()
         self.assertEqual(len(sale_order.order_line), 2)
         sale_order.action_cancel()
+        self.assertEqual(sale_order.state, "cancel")
         self.assertEqual(len(sale_order.order_line), 1)

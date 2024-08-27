@@ -29,7 +29,7 @@ Sale Partner Insurance
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module add an insurance line on sale orders depending of a coefficient defined on partners or globally at the company level.
-The insurance line price = coefficient * total sale order amount. 
+The insurance line price = coefficient * total sale order untaxed amount. 
 
 **Table of contents**
 
