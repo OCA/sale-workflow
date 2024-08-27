@@ -13,15 +13,23 @@ class SaleOrder(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            if self.is_using_quotation_number(vals):
-                company_id = vals.get("company_id", self.env.company.id)
-                sequence = (
-                    self.with_company(company_id)
-                    .env["ir.sequence"]
-                    .next_by_code("sale.quotation")
-                )
-                vals["name"] = sequence or "/"
+            # Check if it's a revision copy and maintain the original name
+            if "name" not in vals or not self._is_revision(vals["name"]):
+                if self.is_using_quotation_number(vals):
+                    company_id = vals.get("company_id", self.env.company.id)
+                    sequence = (
+                        self.with_company(company_id)
+                        .env["ir.sequence"]
+                        .next_by_code("sale.quotation")
+                    )
+                    vals["name"] = sequence or "/"
         return super().create(vals_list)
+
+    def _is_revision(self, name):
+        parts = name.rsplit("-", 1)
+        if len(parts) == 2 and parts[1].isdigit():
+            return True
+        return False
 
     @api.model
     def is_using_quotation_number(self, vals):
