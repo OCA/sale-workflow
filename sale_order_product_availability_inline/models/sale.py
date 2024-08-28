@@ -11,4 +11,4 @@ class SaleOrderLine(models.Model):
     def _compute_name(self):
         if self.env.context.get("so_product_stock_inline"):
             self = self.with_context(so_product_stock_inline=False)
-        return super(SaleOrderLine, self)._compute_name()
+        return super()._compute_name()
