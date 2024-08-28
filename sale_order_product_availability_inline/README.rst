@@ -17,20 +17,21 @@ Sale Order Product Availability Inline
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_order_product_availability_inline
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_order_product_availability_inline
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_order_product_availability_inline
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_order_product_availability_inline
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module extends the functionality of 'Sales and Warehouse Management'
-to show you the stock availability (Free To Use Quantity) of each product
-as part of its name in the product drop-down widget on sales order lines.
+This module extends the functionality of 'Sales and Warehouse
+Management' to show you the stock availability (Free To Use Quantity) of
+each product as part of its name in the product drop-down widget on
+sales order lines.
 
 **Table of contents**
 
@@ -42,12 +43,12 @@ Usage
 
 To use this module, you need to:
 
-#. Go to *Sales > Orders > Orders* and choose an existing sales order or
+1. Go to *Sales > Orders > Orders* and choose an existing sales order or
    create a new one.
-#. Click on 'Add a product' under 'Order Lines' tab, then click on 'Product'
-   field to deploy products list.
-#. You will see stock availability (Free To Use Quantity) of each product as
-   part of their name.
+2. Click on 'Add a product' under 'Order Lines' tab, then click on
+   'Product' field to deploy products list.
+3. You will see stock availability (Free To Use Quantity) of each
+   product as part of their name.
 
 Bug Tracker
 ===========
@@ -55,7 +56,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_product_availability_inline%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_product_availability_inline%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -63,26 +64,26 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Ernesto Tejeda
-  * Pedro M. Baeza
-  * César A. Sánchez
-  * Luis D. Lafaurie
+   -  Ernesto Tejeda
+   -  Pedro M. Baeza
+   -  César A. Sánchez
+   -  Luis D. Lafaurie
 
-* `Pesol <https://www.pesol.es>`__:
+-  `Pesol <https://www.pesol.es>`__:
 
-  * Jonathan Oscategui Taza <info@pesol.es>
+   -  Jonathan Oscategui Taza <info@pesol.es>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -102,6 +103,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-ernestotejeda| 
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_order_product_availability_inline>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_order_product_availability_inline>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
