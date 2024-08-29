@@ -63,6 +63,9 @@ class TestSaleBlanketOrders(common.TransactionCase):
 
         cls.yesterday = date.today() - timedelta(days=1)
         cls.tomorrow = date.today() + timedelta(days=1)
+        cls.analytic_distribution = {
+            str(cls.env.ref("analytic.analytic_internal").id): 100,
+        }
 
     def test_01_create_blanket_order(self):
         """We create a blanket order and check constrains to confirm BO"""
@@ -142,6 +145,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
                         0,
                         0,
                         {
+                            "analytic_distribution": self.analytic_distribution,
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
                             "original_uom_qty": 20.0,
@@ -177,6 +181,12 @@ class TestSaleBlanketOrders(common.TransactionCase):
         sos = self.so_obj.browse(domain_ids)
         for so in sos:
             self.assertEqual(so.origin, blanket_order.name)
+
+        # Analytic distribution is propagated to the sale line
+        self.assertEqual(
+            sos[0].order_line.filtered("product_id").analytic_distribution,
+            self.analytic_distribution,
+        )
 
     def test_03_create_sale_orders_from_blanket_order_line(self):
         """We create a blanket order and create two sale orders
