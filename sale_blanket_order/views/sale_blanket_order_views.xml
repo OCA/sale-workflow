@@ -205,8 +205,8 @@
                                     <field
                                         name="taxes_id"
                                         widget="many2many_tags"
-                                        domain="[('type_tax_use','=','sale')]"
-                                        context="{'default_type_tax_use': 'sale'}"
+                                        domain="[('type_tax_use', '=', 'sale'), ('company_id', 'parent_of', parent.company_id)]"
+                                        context="{'search_view_ref': 'account.account_tax_view_search'}"
                                         options="{'no_create': True}"
                                         required="not display_type"
                                         invisible="display_type"
