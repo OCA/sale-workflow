@@ -7,3 +7,4 @@
 - Dhara Solanki \<<dhara.solanki@initos.com>\>
 - Ruchir Shukla \<<ruchir@bizzappdev.com>\>
 - Eduardo de Miguel ([Moduon](https://www.moduon.team/))
+- Sodexis Team \<<dev@sodexis.com>\>

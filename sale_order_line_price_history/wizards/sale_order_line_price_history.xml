@@ -56,10 +56,10 @@
                             </form>
                             <tree decoration-info="order_state in ('draft', 'sent')">
                                 <field name="order_id" />
-                                <field name="order_state" invisible="1" />
+                                <field name="order_state" column_invisible="1" />
                                 <field
                                     name="partner_id"
-                                    attrs="{'column_invisible': [('parent.partner_id', '!=', False)]}"
+                                    column_invisible="parent.partner_id != False"
                                 />
                                 <field name="sale_order_date_order" />
                                 <field name="product_uom_qty" />
