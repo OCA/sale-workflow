@@ -66,6 +66,7 @@ class BlanketOrderWizard(models.TransientModel):
         lines = [
             fields.Command.create(
                 {
+                    "analytic_distribution": bol.analytic_distribution,
                     "blanket_line_id": bol.id,
                     "date_schedule": bol.date_schedule,
                     "qty": bol.remaining_uom_qty,
@@ -95,6 +96,7 @@ class BlanketOrderWizard(models.TransientModel):
 
     def _prepare_so_line_vals(self, line):
         return {
+            "analytic_distribution": line.analytic_distribution,
             "product_id": line.product_id.id,
             "name": line.product_id.name,
             "product_uom": line.product_uom.id,
@@ -191,11 +193,13 @@ class BlanketOrderWizard(models.TransientModel):
 
 
 class BlanketOrderWizardLine(models.TransientModel):
+    _inherit = "analytic.mixin"
     _name = "sale.blanket.order.wizard.line"
     _description = "Blanket order wizard line"
 
     wizard_id = fields.Many2one("sale.blanket.order.wizard")
     blanket_line_id = fields.Many2one("sale.blanket.order.line")
+    analytic_distribution = fields.Json(related="blanket_line_id.analytic_distribution")
     product_id = fields.Many2one(
         "product.product", related="blanket_line_id.product_id", string="Product"
     )
