@@ -13,7 +13,7 @@
                 expr="//field[@name='order_line']/tree/field[@name='price_unit']"
                 position="after"
             >
-                <field name="order_partner_id" invisible="1" />
+                <field name="order_partner_id" column_invisible="1" />
                 <field
                     name="id"
                     string=" "
