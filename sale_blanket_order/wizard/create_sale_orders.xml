@@ -20,6 +20,16 @@
                             <field name="remaining_uom_qty" />
                             <field name="product_uom" groups="uom.group_uom" />
                             <field name="qty" />
+                            <field
+                                name="analytic_distribution"
+                                widget="analytic_distribution"
+                                optional="hide"
+                                groups="analytic.group_analytic_accounting"
+                                options="{
+                                         'product_field': 'product_id',
+                                         'business_domain': 'sale_order'
+                                         }"
+                            />
                         </tree>
                     </field>
                 </group>
