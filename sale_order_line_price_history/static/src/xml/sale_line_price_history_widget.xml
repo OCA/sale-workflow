@@ -2,7 +2,7 @@
 <!-- Copyright 2021 Tecnativa - David Vidal
      Copyright 2024 Moduon Team S.L. <info@moduon.team>
      License AGLP-3.0 or later (https://www.gnu.org/licenses/agpl.html). -->
-<templates>
+<templates xml:space="preserve">
     <t t-name="sale_order_line_price_history.price_history_widget" owl="1">
         <div>
             <a
