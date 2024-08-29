@@ -1,26 +1,19 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.addons.sale.tests.common import TestSaleCommonBase
+from odoo.tests import tagged
+
+from odoo.addons.sale.tests.common import TestSaleCommon
 
 
-class TestSaleStock(TestSaleCommonBase):
+@tagged("-at_install", "post_install")
+class TestSaleStock(TestSaleCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.company = cls.env["res.company"].create(
-            {
-                "name": "Test Company",
-                "currency_id": cls.env.ref("base.EUR").id,
-            }
-        )
-
-        cls.company_data = cls.setup_sale_configuration_for_company(cls.company)
-
         cls.partner = cls.env["res.partner"].create(
             {
                 "name": "partner1",
-                "company_id": False,
             }
         )
 
