@@ -30,6 +30,7 @@ class TestSaleStock(TestSaleCommonBase):
             {
                 "partner_id": self.partner.id,
                 "priority": sale_order_priority,
+                "company_id": self.company.id,
                 "order_line": [
                     (
                         0,
