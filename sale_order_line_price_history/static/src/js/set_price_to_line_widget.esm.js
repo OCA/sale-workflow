@@ -1,5 +1,5 @@
 /** @odoo-module **/
-const {Component} = owl;
+import {Component} from "@odoo/owl";
 import {registry} from "@web/core/registry";
 import {standardFieldProps} from "@web/views/fields/standard_field_props";
 import {useService} from "@web/core/utils/hooks";
@@ -26,4 +26,6 @@ SetPriceToLineWidget.template =
 SetPriceToLineWidget.props = standardFieldProps;
 
 // Add the field to the correct category
-registry.category("fields").add("set_price_to_line_widget", SetPriceToLineWidget);
+registry
+    .category("fields")
+    .add("set_price_to_line_widget", {component: SetPriceToLineWidget});
