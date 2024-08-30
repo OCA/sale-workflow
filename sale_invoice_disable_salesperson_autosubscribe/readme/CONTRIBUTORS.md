@@ -1,0 +1,3 @@
+- Harald Panten \<<harald.panten@sygel.es>\>
+- Valentín Vinagre \<<valentin.vinagre@sygel.es>\>
+- Roger Sans \<<roger.sans@sygel.es>\>
