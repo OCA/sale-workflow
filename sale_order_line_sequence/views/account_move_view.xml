@@ -12,7 +12,7 @@
             >
                 <field
                     name="related_so_sequence"
-                    attrs="{'column_invisible': [('parent.move_type', '!=', 'out_invoice')]}"
+                    column_invisible="parent.move_type != 'out_invoice'"
                 />
             </xpath>
         </field>
