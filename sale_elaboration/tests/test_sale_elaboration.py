@@ -95,7 +95,11 @@ class TestSaleElaboration(TransactionCase):
         self.assertEqual(len(elaboration), 1)
 
     def test_sale_elaboration_change(self):
-        self.order.order_line.elaboration_ids = self.elaboration_b
+        order_form = Form(self.order)
+        with order_form.order_line.edit(0) as line:
+            line.elaboration_ids.clear()
+            line.elaboration_ids.add(self.elaboration_b)
+        order_form.save()
         self.assertEqual(self.order.order_line.elaboration_note, "Elaboration B")
 
     def test_sale_elaboration(self):
