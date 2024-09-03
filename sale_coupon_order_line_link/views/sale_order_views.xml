@@ -61,23 +61,20 @@
                 expr="//field[@name='order_line']/tree/field[@name='price_unit']"
                 position="after"
             >
-                <field name="coupon_program_id" readonly="True" optional="hide" />
+                <field name="coupon_program_id" readonly="True"/>
                 <field
                     name="reward_line_ids"
                     readonly="True"
-                    optional="hide"
                     widget="many2many_tags"
                 />
                 <field
                     name="reward_generated_line_ids"
                     readonly="True"
-                    optional="hide"
                     widget="many2many_tags"
                 />
                 <field
                     name="reward_origin_generated_line_ids"
                     readonly="True"
-                    optional="hide"
                     widget="many2many_tags"
                 />
             </xpath>
@@ -88,23 +85,20 @@
         <field name="inherit_id" ref="sale.view_order_line_tree" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="coupon_program_id" readonly="True" optional="hide" />
+                <field name="coupon_program_id" readonly="True"/>
                 <field
                     name="reward_line_ids"
                     readonly="True"
-                    optional="hide"
                     widget="many2many_tags"
                 />
                 <field
                     name="reward_generated_line_ids"
                     readonly="True"
-                    optional="hide"
                     widget="many2many_tags"
                 />
                 <field
                     name="reward_origin_generated_line_ids"
                     readonly="True"
-                    optional="hide"
                     widget="many2many_tags"
                 />
             </field>

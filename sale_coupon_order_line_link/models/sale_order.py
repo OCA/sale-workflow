@@ -132,7 +132,7 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     coupon_program_id = fields.Many2one(
-        comodel_name="coupon.program",
+        comodel_name="sale.coupon.program",
         ondelete="restrict",
         string="Coupon Program",
     )

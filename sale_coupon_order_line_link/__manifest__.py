@@ -4,10 +4,10 @@
     "name": "Link coupons to order lines",
     "summary": "Adds a link between coupons and their generated order lines for easing "
     "tracking",
-    "version": "14.0.1.0.2",
+    "version": "12.0.1.0.0",
     "development_status": "Production/Stable",
     "category": "Sale",
-    "website": "https://github.com/OCA/sale-promotion",
+    "website": "https://github.com/OCA/sale-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "maintainers": ["chienandalu"],
     "license": "AGPL-3",
