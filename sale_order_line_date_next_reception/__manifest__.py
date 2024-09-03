@@ -13,7 +13,10 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["sale", "purchase", "stock"],
+    "depends": [
+        "sale",
+        "product_next_reception_date",
+    ],
     "data": [
         "views/sale_order_view.xml",
     ],
