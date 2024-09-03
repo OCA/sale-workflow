@@ -3,9 +3,9 @@
 
 {
     "name": "Sale Coupon Partner",
-    "version": "14.0.1.0.0",
+    "version": "12.0.1.0.0",
     "author": "Tecnativa, Odoo Community Association (OCA)",
-    "website": "https://github.com/OCA/sale-promotion",
+    "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
     "category": "Marketing",
     "depends": ["sale_coupon_order_line_link"],
