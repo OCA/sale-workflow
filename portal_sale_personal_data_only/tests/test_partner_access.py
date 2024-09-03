@@ -4,11 +4,11 @@
 
 from odoo.tests.common import Form, tagged
 
-from odoo.addons.account.tests.common import TestAccountReconciliationCommon
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
 @tagged("post_install", "-at_install")
-class TestPartnerAccess(TestAccountReconciliationCommon):
+class TestPartnerAccess(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
