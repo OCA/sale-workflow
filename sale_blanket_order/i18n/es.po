@@ -358,6 +358,11 @@ msgid "Display Type"
 msgstr "Mostrar Tipo"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__distribution_analytic_account_ids
+msgid "Distribution Analytic Account"
+msgstr ""
+
+#. module: sale_blanket_order
 #: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__done
 msgid "Done"
 msgstr "Hecho"
@@ -521,6 +526,12 @@ msgstr "Fecha Límite de Mi Actividad"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__name
 msgid "Name"
 msgstr "Nombre"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_calendar_event_id
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__activity_calendar_event_id
+msgid "Next Activity Calendar Event"
+msgstr "Próximo Evento del Calendario de Actividades"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__activity_date_deadline
@@ -1056,9 +1067,6 @@ msgstr "restante"
 
 #~ msgid "Main Attachment"
 #~ msgstr "Adjunto principal"
-
-#~ msgid "Next Activity Calendar Event"
-#~ msgstr "Próximo Evento del Calendario de Actividades"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Número de mensajes que requieren una acción"
