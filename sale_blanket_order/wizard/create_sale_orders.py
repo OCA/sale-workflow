@@ -64,9 +64,7 @@ class BlanketOrderWizard(models.TransientModel):
         self._check_valid_blanket_order_line(bo_lines)
 
         lines = [
-            (
-                0,
-                0,
+            fields.Command.create(
                 {
                     "analytic_distribution": bol.analytic_distribution,
                     "blanket_line_id": bol.id,
@@ -111,7 +109,7 @@ class BlanketOrderWizard(models.TransientModel):
             "price_unit": line.blanket_line_id.price_unit,
             "blanket_order_line": line.blanket_line_id.id,
             "product_uom_qty": line.qty,
-            "tax_id": [(6, 0, line.taxes_id.ids)],
+            "tax_id": [fields.Command.set(line.taxes_id.ids)],
         }
 
     def _prepare_so_vals(
