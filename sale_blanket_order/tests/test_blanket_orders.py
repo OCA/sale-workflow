@@ -73,9 +73,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
                 "payment_term_id": self.payment_term.id,
                 "pricelist_id": self.sale_pricelist.id,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
@@ -83,9 +81,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
                             "price_unit": 0.0,  # will be updated later
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "name": "My section",
                             "display_type": "line_section",
@@ -125,9 +121,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
                 "payment_term_id": self.payment_term.id,
                 "pricelist_id": self.sale_pricelist.id,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "product_id": False,
                             "product_uom": False,
@@ -135,9 +129,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
                             "display_type": "line_section",
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
@@ -185,9 +177,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
                 "payment_term_id": self.payment_term.id,
                 "pricelist_id": self.sale_pricelist.id,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
@@ -195,9 +185,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
                             "price_unit": 30.0,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "product_id": self.product2.id,
                             "product_uom": self.product2.uom_id.id,
@@ -236,9 +224,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
                 "pricelist_id": self.sale_pricelist.id,
                 "currency_id": self.sale_pricelist.currency_id.id,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
@@ -246,9 +232,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
                             "price_unit": 30.0,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "product_id": self.product2.id,
                             "product_uom": self.product2.uom_id.id,
@@ -270,9 +254,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
                 "payment_term_id": self.payment_term.id,
                 "pricelist_id": self.sale_pricelist.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
@@ -280,9 +262,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
                             "price_unit": 30.0,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "product_id": self.product2.id,
                             "product_uom": self.product2.uom_id.id,
@@ -307,9 +287,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
                 "payment_term_id": self.payment_term.id,
                 "pricelist_id": self.sale_pricelist.id,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom": self.uom_dozen.id,
@@ -329,9 +307,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
                 "payment_term_id": self.payment_term.id,
                 "pricelist_id": self.sale_pricelist.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
@@ -358,9 +334,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
                 "payment_term_id": self.payment_term.id,
                 "pricelist_id": self.sale_pricelist.id,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
@@ -368,9 +342,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
                             "price_unit": 30.0,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "product_id": self.product2.id,
                             "product_uom": self.product2.uom_id.id,
