@@ -208,7 +208,6 @@
                                         domain="[('type_tax_use','=','sale')]"
                                         context="{'default_type_tax_use': 'sale'}"
                                         options="{'no_create': True}"
-                                        required="not display_type"
                                         invisible="display_type"
                                     />
                                     <field
