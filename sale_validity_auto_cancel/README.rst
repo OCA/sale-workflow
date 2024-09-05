@@ -17,19 +17,26 @@ Sale Validity Auto-Cancel
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_validity_auto_cancel
+    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_validity_auto_cancel
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_validity_auto_cancel
+    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_validity_auto_cancel
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module adds a scheduled action that automatically cancels
 quotations after their expiration date.
+
+Added starting from v16: A checkbox has been added in the contact form
+under the Sales&Purchase tab. This checkbox is selected by default and
+controls whether quotations related to that contact will be
+automatically canceled. If unchecked, the scheduled action will not
+cancel quotations for that specific contact, allowing more control over
+the auto-cancellation process on a per-contact basis.
 
 A company setting can be modified to decide how many days after the
 expiration date the quotations are automatically cancelled.
@@ -42,18 +49,34 @@ expiration date the quotations are automatically cancelled.
 Configuration
 =============
 
-Go to the menu *Sale > Configuration > Settings*, in the section
-*Quotations & Sales*, set the *Auto-cancel expired quotations after* in
-days.
+1. Go to the menu *Sales > Configuration > Settings*.
+
+2. In the *Quotations & Sales* section, set the *Auto-cancel expired
+   quotations after X days* parameter to define how many days after the
+   expiration date the quotations will be canceled automatically.
+
+3. Additionally, open the contact form for any customer and under the
+   *Sales&Purchase* tab, you will see the checkbox *Auto-cancel
+   Quotations*. This checkbox is checked by default, meaning the system
+   will automatically cancel expired quotations for this contact. You
+   can uncheck it if you do not want the scheduled action to cancel
+   quotations for that specific contact.
 
 Usage
 =====
 
-By default, the scheduled action *Cancel Expired Quotations* is not
-enabled in order to first configure the setting parameter for the number
-of days.
+-  By default, the scheduled action "Cancel Expired Quotations" is not
+   enabled to allow initial configuration of the auto-cancel period in
+   days.
 
-Once enabled, the scheduled action will run automatically once a day.
+-  Once enabled, the scheduled action will run automatically once a day,
+   canceling expired quotations based on the defined expiration period.
+
+-  For each contact, the Auto-cancel Quotations checkbox under the
+   Sales&Purchase tab controls whether that contact’s quotations will be
+   auto-canceled. If checked, the quotations will be canceled after
+   expiration. If unchecked, the scheduled action will skip those
+   quotations.
 
 Bug Tracker
 ===========
@@ -61,7 +84,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_validity_auto_cancel%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_validity_auto_cancel%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -81,6 +104,8 @@ Contributors
 -  `OERP Canada <https://www.oerp.ca/>`__:
 
    -  Foram Darji <fd@oerp.ca>
+
+-  Roger Sans <roger.sans@sygel.com>
 
 Maintainers
 -----------
@@ -103,6 +128,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-JordiMForgeFlow| 
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_validity_auto_cancel>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_validity_auto_cancel>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

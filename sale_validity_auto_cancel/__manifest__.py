@@ -4,7 +4,7 @@
 
 {
     "name": "Sale Validity Auto-Cancel",
-    "version": "17.0.1.0.0",
+    "version": "16.0.1.0.0",
     "category": "Sales",
     "license": "LGPL-3",
     "summary": "Automatically cancel quotations after validity period.",
