@@ -82,6 +82,10 @@ Contributors
 
    -  Jonathan Oscategui Taza <info@pesol.es>
 
+-  `Sodexis <https://www.sodexis.com>`__:
+
+   -  SodexisTeam <dev@sodexis.com>
+
 Maintainers
 -----------
 
