@@ -4,10 +4,6 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    input_config_id = fields.Many2one(
-        comodel_name="input.config", related="order_id.input_config_id"
-    )
-
     input_line_ids = fields.One2many(
         comodel_name="input.line",
         string="Input lines",
@@ -22,22 +18,20 @@ class SaleOrderLine(models.Model):
         precompute=True,
     )
 
-    input_line_id_name = fields.Char(related="input_line_id.name", readonly=False)
+    input_line_id_name = fields.Char(
+        related="input_line_id.name", readonly=False, store=True
+    )
     input_line_domain = fields.Char()
-
-    bom_id = fields.Many2one(compute="_compute_bom_id")
-    allowed_product_id = fields.Char(
-        compute="_compute_allowed_product_id", store=True, precompute=True
-    )
-    should_not_filter_product = fields.Boolean(
-        compute="_compute_should_not_filter_product"
-    )
-    should_filter_product = fields.Boolean()
 
     should_compute_price = fields.Boolean(
         compute="_compute_should_compute_price", store=True, precompute=True
     )
-    is_static_product = fields.Boolean(default=False)
+    is_static_product = fields.Boolean(compute="_compute_is_static_product", store=True)
+
+    @api.depends("product_template_id", "input_line_id")
+    def _compute_is_static_product(self):
+        for rec in self:
+            rec.is_static_product = not bool(rec.input_line_id)
 
     def _compute_should_compute_price(self):
         return (
@@ -46,52 +40,8 @@ class SaleOrderLine(models.Model):
             + "depend on all relevant field in input_line"
         )
 
-    @api.model
-    def _get_default_product_template_id(self):
-        input_config_id = self.env["input.config"].browse(
-            self.env.context.get("input_config_id")
-        )
-        if input_config_id:
-            return input_config_id.bom_id.product_tmpl_id
-        return False
-
-    product_template_id = fields.Many2one(
-        default=_get_default_product_template_id,
-        compute="_compute_product_template_id",
-        inverse="_inverse_product_template_id",
-        store=True,
-        precompute=True,
-    )
-
-    @api.model
-    def _get_default_product_id(self):
-        input_config_id = self.env["input.config"].browse(
-            self.env.context.get("input_config_id")
-        )
-        if input_config_id:
-            return input_config_id.bom_id.product_tmpl_id.product_variant_id
-        return False
-
-    product_id = fields.Many2one(
-        default=_get_default_product_id,
-    )
-
-    @api.depends("product_id", "order_id.bom_id")
-    def _compute_product_template_id(self):
-        for rec in self:
-            if (
-                self.env.context.get("configurable_quotation", False)
-                and not rec.is_static_product
-            ):
-                rec.product_template_id = rec.order_id.bom_id.product_tmpl_id
-            else:
-                rec.product_template_id = rec.product_id.product_tmpl_id
-
-    def _inverse_product_template_id(self):
-        pass
-
     def _prepare_default_input_line_vals(self):
-        vals = {"config_id": self.input_config_id.id, "name": "A1"}
+        vals = {"name": "A1"}
         return vals
 
     @api.model_create_multi
@@ -99,11 +49,43 @@ class SaleOrderLine(models.Model):
         res = super().create(vals_list)
 
         for rec in res:
-            if not rec.is_static_product:
+            template_boms = rec.product_template_id.bom_ids
+            is_static = True
+            template_variable_bom = False
+            # sale_order_line product_template_id is not static
+            # if the product template has a only one bom and that bom
+            # is variable
+            if (
+                len(template_boms) == 1
+                and template_boms[0].configuration_type == "variable"
+            ):
+                is_static = False
+                template_variable_bom = template_boms[0]
+
+            if not is_static:
+                # Search if sale_order already has the config_id for this
+                # product template
+                input_config_filtered = list(
+                    filter(
+                        lambda x: x.bom_id.id == template_variable_bom.id,
+                        rec.order_id.input_config_ids,
+                    )
+                )
+                input_config = False
+                if len(input_config_filtered) == 0:
+                    # create a new input_config
+                    input_config = self.env["input.config"].create(
+                        {"bom_id": template_variable_bom.id}
+                    )
+                    rec.order_id.input_config_ids = [(4, input_config.id, 0)]
+                else:
+                    input_config = input_config_filtered[0]
+
                 vals = rec._prepare_default_input_line_vals()
+                vals["config_id"] = input_config.id
                 input_line = (
                     self.env["input.line"]
-                    .with_context(active_id=rec.input_config_id.id)
+                    .with_context(active_id=input_config.id)
                     .create(vals)
                 )
                 rec.input_line_ids = [(4, input_line.id, 0)]
@@ -115,33 +97,8 @@ class SaleOrderLine(models.Model):
         for rec in self:
             if len(rec.input_line_ids) > 0:
                 rec.input_line_id = rec.input_line_ids[0]
-                rec.input_line_id.config_id = self.input_config_id
             else:
                 rec.input_line_id = False
-
-    @api.depends("order_id.bom_id")
-    def _compute_bom_id(self):
-        for rec in self:
-            if not rec.is_static_product:
-                rec.bom_id = rec.order_id.bom_id
-            else:
-                rec.bom_id = False
-
-    @api.depends("input_config_id")
-    def _compute_allowed_product_id(self):
-        for rec in self:
-            if rec.input_config_id and not rec.is_static_product:
-                product_id = rec.input_config_id.bom_id.product_tmpl_id
-                rec.allowed_product_id = product_id.id
-            else:
-                rec.allowed_product_id = "-1"
-
-    @api.depends("input_config_id", "is_static_product")
-    def _compute_should_not_filter_product(self):
-        for rec in self:
-            rec.should_not_filter_product = (not bool(rec.input_config_id)) or (
-                rec.is_static_product
-            )
 
     @api.depends("should_compute_price")
     def _compute_price_unit(self):
