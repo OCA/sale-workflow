@@ -7,20 +7,20 @@ from odoo import models
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    def name_get(self):
+    def _compute_display_name(self):
+        res = super()._compute_display_name()
         if self.env.context.get("so_product_stock_inline"):
-            res = super().name_get()
             self = self.with_context(warehouse=self.env.context.get("warehouse"))
             availability = {r.id: [r.free_qty, r.uom_id.display_name] for r in self}
             precision = self.env["decimal.precision"].precision_get(
                 "Product Unit of Measure"
             )
-            new_res = []
-            for _i in res:
+            for record in self:
                 name = "{} ({:.{}f} {})".format(
-                    _i[1], availability[_i[0]][0], precision, availability[_i[0]][1]
+                    record.display_name,
+                    availability[record.id][0],
+                    precision,
+                    availability[record.id][1],
                 )
-                new_res.append((_i[0], name))
-            return new_res
-        else:
-            return super().name_get()
+                record.display_name = name
+        return res

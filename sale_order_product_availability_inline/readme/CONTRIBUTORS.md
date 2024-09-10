@@ -5,3 +5,5 @@
   - Luis D. Lafaurie
 - [Pesol](https://www.pesol.es):
   - Jonathan Oscategui Taza \<<info@pesol.es>\>
+- [Sodexis](https://www.sodexis.com):
+  - SodexisTeam \<<dev@sodexis.com>\>
