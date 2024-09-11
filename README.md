@@ -26,7 +26,7 @@ addon | version | maintainers | summary
 [portal_sale_personal_data_only](portal_sale_personal_data_only/) | 15.0.1.0.0 |  | Portal Sale Personal Data Only
 [pricelist_cache](pricelist_cache/) | 15.0.1.4.1 |  | Provide a new model to cache price lists and update it, to make it easier to retrieve them.
 [product_form_sale_link](product_form_sale_link/) | 15.0.1.0.1 |  | Adds a button on product forms to access Sale Lines
-[product_supplierinfo_for_customer_elaboration](product_supplierinfo_for_customer_elaboration/) | 15.0.2.0.2 |  | Allows to define default elaborations and elaboration notes on product customerinfos
+[product_supplierinfo_for_customer_elaboration](product_supplierinfo_for_customer_elaboration/) | 15.0.2.1.0 |  | Allows to define default elaborations and elaboration notes on product customerinfos
 [product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 15.0.1.2.2 |  | Loads in every sale order line the customer code defined in the product
 [sale_advance_payment](sale_advance_payment/) | 15.0.1.0.3 |  | Allow to add advance payments on sales and then use them on invoices
 [sale_attached_product](sale_attached_product/) | 15.0.1.0.0 | [![chienandalu](https://github.com/chienandalu.png?size=30px)](https://github.com/chienandalu) | Define products that will be added automatically when adding another in a sales order
@@ -41,7 +41,7 @@ addon | version | maintainers | summary
 [sale_delivery_split_date](sale_delivery_split_date/) | 15.0.1.0.0 |  | Sale Deliveries split by date
 [sale_delivery_state](sale_delivery_state/) | 15.0.2.0.0 |  | Show the delivery state on the sale order
 [sale_discount_display_amount](sale_discount_display_amount/) | 15.0.1.1.0 |  | This addon intends to display the amount of the discount computed on sale_order_line and sale_order level
-[sale_elaboration](sale_elaboration/) | 15.0.3.4.0 | [![CarlosRoca13](https://github.com/CarlosRoca13.png?size=30px)](https://github.com/CarlosRoca13) [![sergio-teruel](https://github.com/sergio-teruel.png?size=30px)](https://github.com/sergio-teruel) | Set an elaboration for any sale line
+[sale_elaboration](sale_elaboration/) | 15.0.3.5.0 | [![CarlosRoca13](https://github.com/CarlosRoca13.png?size=30px)](https://github.com/CarlosRoca13) [![sergio-teruel](https://github.com/sergio-teruel.png?size=30px)](https://github.com/sergio-teruel) | Set an elaboration for any sale line
 [sale_exception](sale_exception/) | 15.0.1.0.1 |  | Custom exceptions on sale order
 [sale_fixed_discount](sale_fixed_discount/) | 15.0.1.0.0 |  | Allows to apply fixed amount discounts in sales orders.
 [sale_force_invoiced](sale_force_invoiced/) | 15.0.1.0.0 |  | Allows to force the invoice status of the sales order to Invoiced
