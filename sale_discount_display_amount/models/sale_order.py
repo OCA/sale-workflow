@@ -8,31 +8,29 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     display_discount_with_tax = fields.Boolean(
-        name="Show the Discount with TAX",
+        string="Show the Discount with TAX",
         help="Check this field to show the Discount with TAX",
         related="company_id.display_discount_with_tax",
     )
     discount_total = fields.Monetary(
         compute="_compute_discount_total",
-        name="Discount total",
         currency_field="currency_id",
         store=True,
     )
     discount_subtotal = fields.Monetary(
         compute="_compute_discount_total",
-        name="Discount Subtotal",
         currency_field="currency_id",
         store=True,
     )
     price_subtotal_no_discount = fields.Monetary(
         compute="_compute_discount_total",
-        name="Subtotal Without Discount",
+        string="Subtotal Without Discount",
         currency_field="currency_id",
         store=True,
     )
     price_total_no_discount = fields.Monetary(
         compute="_compute_discount_total",
-        name="Total Without Discount",
+        string="Total Without Discount",
         currency_field="currency_id",
         store=True,
     )
