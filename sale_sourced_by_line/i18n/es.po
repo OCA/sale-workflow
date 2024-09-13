@@ -21,13 +21,25 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: sale_sourced_by_line
-#: model:ir.model.fields,help:sale_sourced_by_line.field_sale_order_line_warehouse_id
+#: model:ir.model.fields,field_description:sale_sourced_by_line.field_sale_order__warehouse_id
+msgid "Default Warehouse"
+msgstr ""
+
+#. module: sale_sourced_by_line
+#: model:ir.model.fields,help:sale_sourced_by_line.field_sale_order_line__warehouse_id
 msgid ""
 "If a source warehouse is selected, it will be used to define the route. "
 "Otherwise, it will get the warehouse of the sale order"
 msgstr ""
 "Si se selecciona un almacén de origen, se utilizará para definir la ruta. De "
 "lo contrario, obtendrá el almacén de la orden de venta"
+
+#. module: sale_sourced_by_line
+#: model:ir.model.fields,help:sale_sourced_by_line.field_sale_order__warehouse_id
+msgid ""
+"If no source warehouse is selected on line, this warehouse is used as "
+"default. "
+msgstr ""
 
 #. module: sale_sourced_by_line
 #: model:ir.model,name:sale_sourced_by_line.model_sale_order
@@ -40,6 +52,6 @@ msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
 
 #. module: sale_sourced_by_line
-#: model:ir.model.fields,field_description:sale_sourced_by_line.field_sale_order_line_warehouse_id
+#: model:ir.model.fields,field_description:sale_sourced_by_line.field_sale_order_line__warehouse_id
 msgid "Source Warehouse"
 msgstr "Almacén de Origen"
