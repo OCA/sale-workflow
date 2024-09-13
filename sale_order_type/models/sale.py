@@ -147,6 +147,13 @@ class SaleOrder(models.Model):
             res["sale_type_id"] = self.type_id.id
         return res
 
+    def copy_data(self, default=None):
+        vals_list = super().copy_data(default)
+        if self.type_id.analytic_account_id:
+            for vals in vals_list:
+                vals["analytic_account_id"] = self.type_id.analytic_account_id.id
+        return vals_list
+
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"

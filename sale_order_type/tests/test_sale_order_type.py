@@ -57,6 +57,14 @@ class TestSaleOrderType(common.TransactionCase):
         self.immediate_payment = self.env.ref("account.account_payment_term_immediate")
         self.sale_pricelist = self.env.ref("product.list0")
         self.free_carrier = self.env.ref("account.incoterm_FCA")
+        self.analytic_account = self.env["account.analytic.account"].create(
+            {
+                "name": "Test AA",
+                "code": "TESTSALE_REINVOICE",
+                "company_id": self.partner_child_1.company_id.id,
+                "partner_id": self.partner_child_1.id,
+            }
+        )
         self.sale_type = self.sale_type_model.create(
             {
                 "name": "Test Sale Order Type",
@@ -68,6 +76,7 @@ class TestSaleOrderType(common.TransactionCase):
                 "pricelist_id": self.sale_pricelist.id,
                 "incoterm_id": self.free_carrier.id,
                 "quotation_validity_days": 10,
+                "analytic_account_id": self.analytic_account.id,
             }
         )
         self.sale_type_quot = self.sale_type_model.create(
@@ -265,3 +274,15 @@ class TestSaleOrderType(common.TransactionCase):
         name = order.name
         order.type_id = self.sale_type_sequence_default
         self.assertEqual(name, order.name, "The sequence shouldn't change!")
+
+    def test_sale_copy_function(self):
+        """
+        Test when duplicating the sale order the account analytic account is set.
+        """
+        order = self.create_sale_order()
+        order.onchange_partner_id()
+        order.onchange_type_id()
+        new_order = order.copy()
+        self.assertEqual(
+            new_order.analytic_account_id.id, order.type_id.analytic_account_id.id
+        )
