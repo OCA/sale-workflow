@@ -114,6 +114,7 @@ Contributors
 * Sergio Teruel <sergio.teruel@tecnativa.com>
 * Lois Rilo <lois.rilo@forgeflow.com>
 * Juany Davila <juany.davila@forgeflow.com>
+* Italo Lopes <italo.lopes@camptocamp.com>
 
 Maintainers
 ~~~~~~~~~~~

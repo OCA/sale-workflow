@@ -35,12 +35,14 @@ class SaleOrderLine(models.Model):
         """
         # We need to repeat the search here, as passing the value by context or any
         # other trick makes the ORM to do ugly things in "onchange" mode
-        customerinfo = self.product_id._select_customerinfo(
-            partner=self.order_partner_id
-        )
-        if customerinfo.product_code:
-            # Avoid to put the standard internal reference
-            self = self.with_context(display_default_code=False)
+        customerinfo = self.env["product.customerinfo"]
+        if self.product_id:
+            customerinfo = self.product_id._select_customerinfo(
+                partner=self.order_partner_id
+            )
+            if customerinfo.product_code:
+                # Avoid to put the standard internal reference
+                self = self.with_context(display_default_code=False)
         res = super()._update_description()
         if customerinfo.product_code:
             self.name = f"[{customerinfo.product_code}] {self.name}"
