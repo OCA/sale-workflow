@@ -21,12 +21,12 @@ class SaleOrder(models.Model):
 
     @api.depends("invoice_status", "invoice_ids.state")
     def _compute_invoice_status_validated(self):
-        # Same as invoice status, execpt it is not invoiced unless there is no invoice
+        # Same as invoice status, except it is not invoiced unless there is no invoice
         # in draft
         for order in self:
             if order.invoice_status in ("no", "to invoice"):
                 order.invoice_status_validated = order.invoice_status
-            elif order.invoice_status in ("no", "upselling"):
+            elif order.invoice_status == "upselling":
                 order.invoice_status_validated = "no"
             else:
                 if not any(inv.state == "draft" for inv in order.invoice_ids):
