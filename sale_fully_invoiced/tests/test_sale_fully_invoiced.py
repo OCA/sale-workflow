@@ -47,15 +47,11 @@ class TestSaleFullyDelivered(common.TransactionCase):
     def test_01_sale_order_delivered_not_invoiced(self):
         """If not invoiced it should not be auto closed"""
         self.so.action_confirm()
-        picking = self.so.picking_ids
-        picking.button_validate()
         self.assertEqual(self.so.invoice_status_validated, "to invoice")
 
     def test_02_sale_order_delivered_invoiced_not_posted(self):
         """If the invoice is not posted is the same thing"""
         self.so.action_confirm()
-        picking = self.so.picking_ids
-        picking.button_validate()
         self.so._create_invoices()
         self.assertEqual(self.so.invoice_status_validated, "to invoice")
 
@@ -64,8 +60,6 @@ class TestSaleFullyDelivered(common.TransactionCase):
         If invoiced and validated then it should close the SO
         """
         self.so.action_confirm()
-        picking = self.so.picking_ids
-        picking.button_validate()
         self.so._create_invoices()
         self.so.invoice_ids._post()
         self.assertEqual(self.so.invoice_status_validated, "invoiced")
