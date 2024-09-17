@@ -6,7 +6,7 @@
         Provide a new model to cache price lists and update it,
         to make it easier to retrieve them.
     """,
-    "version": "14.0.1.4.1",
+    "version": "14.0.1.5.0",
     "category": "Hidden",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
@@ -20,7 +20,6 @@
     "website": "https://github.com/OCA/sale-workflow",
     "data": [
         "security/ir.model.access.csv",
-        "data/base_automation.xml",
         "data/ir_cron.xml",
         "data/ir_filters_data.xml",
         "data/queue_job.xml",

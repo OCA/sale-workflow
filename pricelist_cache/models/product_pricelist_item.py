@@ -61,3 +61,8 @@ class PricelistItem(models.Model):
             cache_object.with_delay().update_product_pricelist_cache(
                 product_ids=product_ids, pricelist_ids=[pricelist_id]
             )
+
+    def create(self, vals):
+        res = super().create(vals)
+        res.update_product_pricelist_cache()
+        return res
