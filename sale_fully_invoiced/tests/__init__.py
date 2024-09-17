@@ -1,1 +1,1 @@
-from . import test_sale_fully_delivered
+from . import test_sale_fully_invoiced
