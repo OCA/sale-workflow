@@ -18,8 +18,8 @@ msgstr ""
 
 #. module: sale_validity_auto_cancel
 #: model_terms:ir.ui.view,arch_db:sale_validity_auto_cancel.res_config_settings_view_form
-msgid "<span> days</span>"
-msgstr "<span> giorni</span>"
+msgid "<span style=\"margin-left: 5px;\">Days</span>"
+msgstr ""
 
 #. module: sale_validity_auto_cancel
 #: model:ir.model.fields,field_description:sale_validity_auto_cancel.field_sale_order__auto_cancel_expired_so
@@ -40,6 +40,7 @@ msgstr "Auto annulla preventivi scaduti dopo (giorni)"
 
 #. module: sale_validity_auto_cancel
 #: model:ir.actions.server,name:sale_validity_auto_cancel.cron_sale_validity_auto_cancel_ir_actions_server
+#: model:ir.cron,cron_name:sale_validity_auto_cancel.cron_sale_validity_auto_cancel
 msgid "Cancel Expired Quotations"
 msgstr "Annulla preventivi scaduti"
 
@@ -101,3 +102,6 @@ msgid ""
 msgstr ""
 "Il valore del campo 'Auto annulla preventivi scaduti dopo' deve essere "
 "positivo o 0."
+
+#~ msgid "<span> days</span>"
+#~ msgstr "<span> giorni</span>"
