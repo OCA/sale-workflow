@@ -12,6 +12,7 @@ setuptools.setup(
         'odoo-addon-partner_sale_pivot>=16.0dev,<16.1dev',
         'odoo-addon-portal_sale_personal_data_only>=16.0dev,<16.1dev',
         'odoo-addon-product_form_sale_link>=16.0dev,<16.1dev',
+        'odoo-addon-product_price_category>=16.0dev,<16.1dev',
         'odoo-addon-product_supplierinfo_for_customer_sale>=16.0dev,<16.1dev',
         'odoo-addon-sale_advance_payment>=16.0dev,<16.1dev',
         'odoo-addon-sale_attached_product>=16.0dev,<16.1dev',
