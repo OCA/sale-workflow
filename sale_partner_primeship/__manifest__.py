@@ -6,6 +6,7 @@
     and prime membership activation products.""",
     "version": "14.0.1.0.0",
     "author": "Akretion, Odoo Community Association (OCA)",
+    "maintainers": ["nayatec", "paradoxxxzero"],
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
     "depends": ["sale", "account_invoice_start_end_dates"],
