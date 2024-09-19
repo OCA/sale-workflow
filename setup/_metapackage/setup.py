@@ -99,6 +99,7 @@ setuptools.setup(
         'odoo-addon-sale_stock_cancel_restriction>=16.0dev,<16.1dev',
         'odoo-addon-sale_stock_delivery_state>=16.0dev,<16.1dev',
         'odoo-addon-sale_stock_line_sequence>=16.0dev,<16.1dev',
+        'odoo-addon-sale_stock_partner_warehouse>=16.0dev,<16.1dev',
         'odoo-addon-sale_stock_picking_blocking>=16.0dev,<16.1dev',
         'odoo-addon-sale_stock_picking_note>=16.0dev,<16.1dev',
         'odoo-addon-sale_stock_product_recommendation>=16.0dev,<16.1dev',
