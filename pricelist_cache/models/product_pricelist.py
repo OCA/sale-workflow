@@ -141,15 +141,20 @@ class Pricelist(models.Model):
         globally, and based on another pricelist
         """
         self.ensure_one()
+        today = str(date.today())
+        self.flush()
         query = """
             SELECT base_pricelist_id
             FROM product_pricelist_item
             WHERE applied_on = '3_global'
+            AND active = TRUE
             AND base = 'pricelist'
             AND base_pricelist_id IS NOT NULL
             AND pricelist_id = %(pricelist_id)s
+            AND (date_end IS NULL OR date_end >= %(today)s)
+            AND (date_start IS NULL OR date_start <= %(today)s)
         """
-        self.env.cr.execute(query, {"pricelist_id": self.id})
+        self.env.cr.execute(query, {"pricelist_id": self.id, "today": today})
         return self.browse([row[0] for row in self.env.cr.fetchall()])
 
     def _is_factor_pricelist(self):

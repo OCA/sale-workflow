@@ -36,3 +36,17 @@ class TestPricelistCacheModels(TestPricelistCacheCommon):
         list5_parents_tree = list5._get_parent_list_tree()
         expected_list5_tree = expected_list3_tree | list5
         self.assertEqual(list5_parents_tree, expected_list5_tree)
+
+    def test_get_parent_pricelists(self):
+        # test that list2 finds the parent pricelist list1
+        self.assertEqual(self.list2._get_parent_pricelists(), self.list1)
+        # test that list1 is not returned when item is expired
+        item = self.list2.item_ids.filtered(
+            lambda item: (
+                item.applied_on == "3_global"
+                and item.base == "pricelist"
+                and item.base_pricelist_id
+            )
+        )
+        item.write({"date_end": "2021-03-14"})
+        self.assertFalse(self.list2._get_parent_pricelists())
