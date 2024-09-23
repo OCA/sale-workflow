@@ -6,7 +6,7 @@ class ResConfigSettings(models.TransientModel):
 
     general_discount = fields.Selection(
         [
-            ("discount", "Discount"),
+            ("discount1", "Discount 1"),
             ("discount2", "Discount 2"),
             ("discount3", "Discount 3"),
         ],
@@ -15,7 +15,7 @@ class ResConfigSettings(models.TransientModel):
     )
     pricelist_discount = fields.Selection(
         [
-            ("discount", "Discount"),
+            ("discount1", "Discount 1"),
             ("discount2", "Discount 2"),
             ("discount3", "Discount 3"),
         ],
