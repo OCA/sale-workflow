@@ -22,6 +22,9 @@ class SaleOrderLine(models.Model):
     @api.depends("product_id", "product_uom_qty", "product_uom")
     def _compute_product_packaging_id(self):
         """Set a default packaging for sales if possible."""
+        if not self.env.context.get("apply_default_packaging", True):
+            return super()._compute_product_packaging_id()
+
         for line in self:
             if line.product_id != line.product_packaging_id.product_id:
                 line.product_packaging_id = line._get_default_packaging(line.product_id)
