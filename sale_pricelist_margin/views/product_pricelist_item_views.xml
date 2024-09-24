@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+    <record id="product_pricelist_item_margin_form_view" model="ir.ui.view">
+        <field name="name">product.pricelist.item.margin.form</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
+        <field name="arch" type="xml">
+            <label for="price_discount" position="before">
+                <field
+                    name="discount_type"
+                    attrs="{'invisible':[('compute_price', '!=', 'formula')]}"
+                />
+                <label
+                    for="sale_margin"
+                    string="Sale Margin"
+                    attrs="{'invisible':['|', ('compute_price', '!=', 'formula'), ('discount_type', '!=', 'sale_margin')]}"
+                />
+            </label>
+
+            <label for="price_discount" position="attributes">
+                <attribute name="attrs">{
+                    'invisible': ['|', ('compute_price', '!=', 'formula'), ('discount_type', '!=', 'discount')]}
+                </attribute>
+            </label>
+
+            <field name="price_discount" position="attributes">
+                <attribute name="attrs">{
+                    'invisible': [('discount_type', '!=', 'discount')]}
+                </attribute>
+            </field>
+            <field name="price_discount" position="after">
+                <field
+                    name="sale_margin"
+                    attrs="{'invisible':[('discount_type', '!=', 'sale_margin')]}"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
