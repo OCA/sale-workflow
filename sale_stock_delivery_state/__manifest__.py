@@ -5,7 +5,7 @@
 {
     "name": "Sale Stock Delivery State",
     "summary": "Change the way to compute the delivery state",
-    "version": "16.0.1.0.1",
+    "version": "17.0.1.0.0",
     "development_status": "Alpha",
     "category": "Uncategorized",
     "website": "https://github.com/OCA/sale-workflow",
