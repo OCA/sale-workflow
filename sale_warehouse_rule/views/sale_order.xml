@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright (C) 2024 Akretion (<http://www.akretion.com>).
+     @author Kévin Roche <kevin.roche@akretion.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="sale_order_view_form">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <sheet position="before">
+                <div
+                    class="alert alert-danger alert-dismissable"
+                    role="alert"
+                    style="margin-bottom:0px;"
+                    attrs="{'invisible':[('warehouse_rule_need_change','=', False)]}"
+                >
+                    <field name="warehouse_rule_need_change" />
+                </div>
+                <div
+                    class="alert alert-info alert-dismissable"
+                    role="alert"
+                    style="margin-bottom:0px;"
+                    attrs="{'invisible':[('warehouse_rule_info','=', False)]}"
+                >
+                    <field name="warehouse_rule_info" />
+                </div>
+            </sheet>
+        </field>
+    </record>
+</odoo>

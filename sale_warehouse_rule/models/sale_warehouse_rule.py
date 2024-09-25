@@ -9,6 +9,7 @@ class SaleWarehouseRule(models.Model):
     _name = "sale.warehouse.rule"
     _inherit = "attribute.value.dependant.mixin"
     _description = "Sale Warehouse Rule"
+    _order = "applied_on"
 
     warehouse_id = fields.Many2one(comodel_name="stock.warehouse", string="Warehouse")
     company_id = fields.Many2one(
@@ -16,6 +17,26 @@ class SaleWarehouseRule(models.Model):
         string="Company",
         default=lambda self: self.env.company,
     )
+    applied_on = fields.Selection(
+        selection=[
+            ("0_product", "Product"),
+            ("1_attribute", "Attribute"),
+            ("2_template", "Template"),
+        ],
+        string="Applied on",
+        compute="_compute_applied_on",
+        store=True,
+    )
+
+    @api.depends("product_id", "attribute_value_ids")
+    def _compute_applied_on(self):
+        for rule in self:
+            if rule.product_id:
+                rule.applied_on = "0_product"
+            elif rule.attribute_value_ids:
+                rule.applied_on = "1_attribute"
+            else:
+                rule.applied_on = "2_template"
 
     @api.constrains("product_id", "attribute_value_ids", "warehouse_id")
     def _check_warehouse_rule_uniqueness(self):

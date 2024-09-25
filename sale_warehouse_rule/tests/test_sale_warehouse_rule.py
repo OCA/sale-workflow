@@ -51,12 +51,23 @@ class TestSaleWarehouseRule(SavepointCase):
                 line_form.product_id = product
         return order_form.save()
 
+    def test_rule_applied_on(self):
+        self.assertEqual(self.warehouse_rule0.applied_on, "2_template")
+        self.assertEqual(self.warehouse_rule1.applied_on, "0_product")
+        self.warehouse_rule0.write(
+            {
+                "attribute_value_ids": [
+                    (6, 0, self.product_11b.product_template_attribute_value_ids.ids)
+                ]
+            }
+        )
+        self.assertEqual(self.warehouse_rule0.applied_on, "1_attribute")
+
     def test_sale_line_warehouse_from_product_template_warehouse_rule(self):
-        self.warehouse_rule0.write({"product_id": self.product_11b.id})
         sale = self._create_sale_order(self.partner, self.product_11 + self.product_10)
         sale.action_confirm()
-        self.assertEqual(self.product_11.variant_warehouse_id, self.warehouse1)
         self.assertEqual(self.product_10.variant_warehouse_id, self.warehouse0)
+        self.assertEqual(self.product_11.variant_warehouse_id, self.warehouse1)
         self.assertEqual(len(sale.picking_ids), 2)
         order_line_product_11 = sale.order_line.filtered(
             lambda l: l.product_id == self.product_11
@@ -66,6 +77,8 @@ class TestSaleWarehouseRule(SavepointCase):
         )
         self.assertEqual(order_line_product_11.move_ids.warehouse_id, self.warehouse1)
         self.assertEqual(order_line_product_10.move_ids.warehouse_id, self.warehouse0)
+        self.assertTrue(sale.warehouse_rule_info)
+        self.assertFalse(sale.warehouse_rule_need_change)
 
     def test_sale_line_warehouse_from_product_warehouse_rule(self):
         self.warehouse_rule0.write({"product_id": self.product_11b.id})
@@ -79,6 +92,8 @@ class TestSaleWarehouseRule(SavepointCase):
         )
         self.assertEqual(order_line_product_11.move_ids.warehouse_id, self.warehouse1)
         self.assertEqual(order_line_product_11b.move_ids.warehouse_id, self.warehouse0)
+        self.assertTrue(sale.warehouse_rule_info)
+        self.assertFalse(sale.warehouse_rule_need_change)
 
     def test_sale_line_warehouse_from_attribute_values_warehouse_rule(self):
         ptav_product_11 = self.product_11.product_template_attribute_value_ids
@@ -108,6 +123,23 @@ class TestSaleWarehouseRule(SavepointCase):
         )
         self.assertEqual(order_line_product_11.move_ids.warehouse_id, self.warehouse0)
         self.assertEqual(order_line_product_11b.move_ids.warehouse_id, self.warehouse1)
+        self.assertTrue(sale.warehouse_rule_info)
+        self.assertFalse(sale.warehouse_rule_need_change)
+
+    def test_warehouse_rule_need_change(self):
+        sale = self._create_sale_order(self.partner, self.product_11b + self.product_10)
+        self.assertFalse(sale.warehouse_rule_need_change)
+        sale.warehouse_id = self.warehouse1
+        self.assertTrue(sale.warehouse_rule_need_change)
+        sale.action_confirm()
+        self.assertFalse(sale.warehouse_rule_need_change)
+        self.assertEqual(self.product_11b.variant_warehouse_id, sale.warehouse_id)
+
+    def test_warehouse_rule_need_change_with_some_no_rule_lines(self):
+        product_new = self.env.ref("product.product_product_12")
+        sale = self._create_sale_order(self.partner, product_new + self.product_11)
+        self.assertTrue(sale.warehouse_rule_info)
+        self.assertFalse(sale.warehouse_rule_need_change)
 
     def test_check_warehouse_rule_uniqueness_variant(self):
         with self.assertRaises(ValidationError) as m:

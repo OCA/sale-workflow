@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-31 13:17+0000\n"
-"PO-Revision-Date: 2024-07-31 15:22+0200\n"
+"POT-Creation-Date: 2024-09-18 11:14+0000\n"
+"PO-Revision-Date: 2024-09-18 13:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -15,7 +15,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.4.3\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. module: sale_warehouse_rule
+#: code:addons/sale_warehouse_rule/models/sale_warehouse_rule.py:0
+#, python-format
+msgid "A rule with the same attributes already exists."
+msgstr ""
+"Une règle d'entrepôt avec la même valeur de caractéristique existe déjà."
+
+#. module: sale_warehouse_rule
+#: code:addons/sale_warehouse_rule/models/sale_warehouse_rule.py:0
+#, python-format
+msgid "A rule with the same product already exists."
+msgstr "Une règle d'entrepôt existe déjà pour ce variant."
 
 #. module: sale_warehouse_rule
 #: model:ir.model.fields,field_description:sale_warehouse_rule.field_sale_warehouse_rule__attribute_value_ids
@@ -50,6 +63,7 @@ msgstr ""
 #. module: sale_warehouse_rule
 #: model:ir.model.fields,field_description:sale_warehouse_rule.field_product_product__display_name
 #: model:ir.model.fields,field_description:sale_warehouse_rule.field_product_template__display_name
+#: model:ir.model.fields,field_description:sale_warehouse_rule.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_warehouse_rule.field_sale_order_line__display_name
 #: model:ir.model.fields,field_description:sale_warehouse_rule.field_sale_warehouse_rule__display_name
 msgid "Display Name"
@@ -58,6 +72,7 @@ msgstr "Nom affiché"
 #. module: sale_warehouse_rule
 #: model:ir.model.fields,field_description:sale_warehouse_rule.field_product_product__id
 #: model:ir.model.fields,field_description:sale_warehouse_rule.field_product_template__id
+#: model:ir.model.fields,field_description:sale_warehouse_rule.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_warehouse_rule.field_sale_order_line__id
 #: model:ir.model.fields,field_description:sale_warehouse_rule.field_sale_warehouse_rule__id
 msgid "ID"
@@ -66,6 +81,7 @@ msgstr "Identifiant"
 #. module: sale_warehouse_rule
 #: model:ir.model.fields,field_description:sale_warehouse_rule.field_product_product____last_update
 #: model:ir.model.fields,field_description:sale_warehouse_rule.field_product_template____last_update
+#: model:ir.model.fields,field_description:sale_warehouse_rule.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_warehouse_rule.field_sale_order_line____last_update
 #: model:ir.model.fields,field_description:sale_warehouse_rule.field_sale_warehouse_rule____last_update
 msgid "Last Modified on"
@@ -95,9 +111,13 @@ msgstr "Modèle d'article"
 
 #. module: sale_warehouse_rule
 #: model:ir.model.fields,field_description:sale_warehouse_rule.field_product_product__variant_warehouse_id
-#: model:ir.model.fields,field_description:sale_warehouse_rule.field_shopinvader_variant__variant_warehouse_id
 msgid "Product Warehouse"
 msgstr ""
+
+#. module: sale_warehouse_rule
+#: model:ir.model,name:sale_warehouse_rule.model_sale_order
+msgid "Sale Order"
+msgstr "Commande client"
 
 #. module: sale_warehouse_rule
 #: model:ir.model,name:sale_warehouse_rule.model_sale_warehouse_rule
@@ -107,7 +127,7 @@ msgstr "Règle d'Entrepôt pour vente"
 #. module: sale_warehouse_rule
 #: model:ir.model,name:sale_warehouse_rule.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Ligne de commande client"
+msgstr "Ligne de bon de commande"
 
 #. module: sale_warehouse_rule
 #: model_terms:ir.ui.view,arch_db:sale_warehouse_rule.product_normal_form_view
@@ -115,15 +135,45 @@ msgid "Shipping Warehouse"
 msgstr "Entrepôt de livraison"
 
 #. module: sale_warehouse_rule
+#: code:addons/sale_warehouse_rule/models/sale_order.py:0
+#, python-format
+msgid ""
+"The delivery will be sent from %s, you can change the warehouse or it will "
+"be done at the order confirmation."
+msgstr ""
+"La livraison va se faire depuis %s, vous pouvez changer l'entrepôt ou le "
+"changement se fera automatiquement à la confirmation de la commande."
+
+#. module: sale_warehouse_rule
+#: code:addons/sale_warehouse_rule/models/sale_order.py:0
+#, python-format
+msgid "The delivery will be sent from multiple warehouses: , "
+msgstr "La livraison va se faire depuis plusieurs entrepôts: , "
+
+#. module: sale_warehouse_rule
 #: model:ir.model.fields,field_description:sale_warehouse_rule.field_sale_warehouse_rule__warehouse_id
 msgid "Warehouse"
 msgstr "Entrepôts"
 
 #. module: sale_warehouse_rule
+#: model:ir.model.fields,field_description:sale_warehouse_rule.field_sale_order__warehouse_rule_info
+msgid "Warehouse Rule Info"
+msgstr ""
+
+#. module: sale_warehouse_rule
+#: model:ir.model.fields,field_description:sale_warehouse_rule.field_sale_order__warehouse_rule_need_change
+msgid "Warehouse Rule Need Change"
+msgstr ""
+
+#. module: sale_warehouse_rule
 #: model:ir.model.fields,field_description:sale_warehouse_rule.field_product_product__warehouse_rule_ids
 #: model:ir.model.fields,field_description:sale_warehouse_rule.field_product_template__warehouse_rule_ids
-#: model:ir.model.fields,field_description:sale_warehouse_rule.field_shopinvader_product__warehouse_rule_ids
-#: model:ir.model.fields,field_description:sale_warehouse_rule.field_shopinvader_variant__warehouse_rule_ids
 #: model_terms:ir.ui.view,arch_db:sale_warehouse_rule.product_template_form_view
 msgid "Warehouse Rules"
 msgstr "Règles d'Entrepôts"
+
+#. module: sale_warehouse_rule
+#: code:addons/sale_warehouse_rule/models/sale_warehouse_rule.py:0
+#, python-format
+msgid "Warehouse rules must be unique by template."
+msgstr ""
