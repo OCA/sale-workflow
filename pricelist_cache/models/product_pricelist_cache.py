@@ -103,7 +103,7 @@ class PricelistCache(models.Model):
 
         Args:
             - pricelist: a product.pricelist record
-            - product_prices: A dictionnary,
+            - product_prices: A dictionary,
               with product.product id as keys, and prices as values
         """
         product_ids = list(product_prices.keys())

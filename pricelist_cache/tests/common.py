@@ -157,3 +157,9 @@ class TestPricelistCacheCommon(SavepointCase):
 
     def assert_cache_not_computed(self, lists):
         self.assertFalse(any(lists.mapped("is_pricelist_cache_computed")))
+
+    def assert_price_equal(self, pricelist, product, expected_price):
+        self.cache_model.cron_reset_pricelist_cache()
+        self.cache_model.invalidate_cache(["price"])
+        prices = self.cache_model.get_cached_prices_for_pricelist(pricelist, product)
+        self.assertEqual(prices.price, expected_price)
