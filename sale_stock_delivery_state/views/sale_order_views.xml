@@ -25,7 +25,7 @@
                 decoration-info="delivery_status == 'pending'"
                 position="attributes"
             >
-                <attribute name="invisible">1</attribute>
+                <attribute name="column_invisible">1</attribute>
             </field>
         </field>
     </record>
