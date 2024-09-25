@@ -21,9 +21,6 @@ class TestSaleOrderSecondaryUnit(TransactionCase):
         cls.product_uom_kg = cls.env.ref("uom.product_uom_kgm")
         cls.product_uom_gram = cls.env.ref("uom.product_uom_gram")
         cls.product_uom_unit = cls.env.ref("uom.product_uom_unit")
-        cls.price_list = cls.env["product.pricelist"].create(
-            {"name": "price list for test"}
-        )
         cls.product = cls.env["product.product"].create(
             {
                 "name": "test",
@@ -54,7 +51,6 @@ class TestSaleOrderSecondaryUnit(TransactionCase):
         cls.partner = cls.env["res.partner"].create({"name": "test - partner"})
         with Form(cls.env["sale.order"]) as order_form:
             order_form.partner_id = cls.partner
-            order_form.pricelist_id = cls.price_list
             with order_form.order_line.new() as line_form:
                 line_form.product_id = cls.product
                 line_form.product_uom_qty = 1
@@ -75,7 +71,7 @@ class TestSaleOrderSecondaryUnit(TransactionCase):
         self.assertEqual(self.order.order_line.secondary_uom_qty, 7.0)
 
     def test_default_secondary_unit(self):
-        self.order.order_line.product_id_change()
+        self.order.order_line._onchange_product_id_warning()
         self.assertEqual(self.order.order_line.secondary_uom_id, self.secondary_unit)
 
     def test_onchange_order_product_uom(self):
