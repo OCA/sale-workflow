@@ -46,4 +46,16 @@
         <field name="code">failed=self.product_id.sale_line_warn == "warning"</field>
         <field name="active" eval="False" />
     </record>
+    <record id="exception_product_sale_price_warning" model="exception.rule">
+        <field name="name">Sale price warning</field>
+        <field
+            name="description"
+        >The product price unit is lower than display price</field>
+        <field name="sequence">40</field>
+        <field name="model">sale.order.line</field>
+        <field
+            name="code"
+        >failed=self.price_unit &lt; self._get_display_price(self.product_id)</field>
+        <field name="active" eval="False" />
+    </record>
 </odoo>
