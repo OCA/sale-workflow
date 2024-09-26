@@ -69,7 +69,6 @@ class TestSaleBlanketOrdersTierValidation(common.TransactionCase):
                 "model_id": cls.eco_model.id,
                 "review_type": "individual",
                 "reviewer_id": cls.test_user_1.id,
-                "definition_domain": "[('state', '=', 'draft')]",
             }
         )
 
@@ -105,6 +104,7 @@ class TestSaleBlanketOrdersTierValidation(common.TransactionCase):
             }
         )
         self.assertEqual(blanket_order.state, "draft")
+        blanket_order.flush_recordset()
 
         # Request tier validation
         blanket_order.request_validation()
@@ -112,6 +112,7 @@ class TestSaleBlanketOrdersTierValidation(common.TransactionCase):
         # Changing to new stage would cause a validation error
         with self.assertRaises(ValidationError):
             blanket_order.action_confirm()
+            blanket_order.flush_recordset()
 
         # Validate the tier validation request
         blanket_order.with_user(self.test_user_1).validate_tier()

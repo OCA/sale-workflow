@@ -1,1 +1,2 @@
 odoo_test_helper
+git+https://github.com/stefanrijnhart/server-ux@17.0-imp-base_tier_validation-computed_state_field#subdirectory=base_tier_validation
