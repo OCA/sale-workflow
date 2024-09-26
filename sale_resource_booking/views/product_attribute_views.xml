@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="product_attribute_view_form" model="ir.ui.view">
+        <field name="name">product.attribute.view.form.inherit</field>
+        <field name="model">product.attribute</field>
+        <field name="inherit_id" ref="product.product_attribute_view_form" />
+        <field name="arch" type="xml">
+            <field name="html_color" position="after">
+                <field
+                    name="resource_booking_type_ids"
+                    groups="resource_booking.group_user"
+                    widget="many2many_tags"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
