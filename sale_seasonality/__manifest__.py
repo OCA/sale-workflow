@@ -12,6 +12,7 @@
     "data": [
         "views/seasonality.xml",
         "views/utm_campaign.xml",
+        "views/product.xml",
         "security/campaign_seasonality.xml",
         "reports/sale_report.xml",
     ],

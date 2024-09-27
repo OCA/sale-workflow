@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="product_normal_form_view" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <field name="seasonality_ids" position="after">
+                <field name="next_campaign_ids" domain="['|', ('end_date', '=', False), ('end_date', '&lt;', context_today().strftime('%Y-%m-%d'))]" widget="many2many_tags" />
+            </field>
+        </field>
+    </record>
+
+    <record id="product_product_tree_view" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view" />
+        <field name="arch" type="xml">
+            <field name="active" position="after">
+                <field name="next_campaign_ids" widget="many2many_tags" optional="hide"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
