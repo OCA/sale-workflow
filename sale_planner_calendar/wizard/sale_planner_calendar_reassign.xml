@@ -87,6 +87,10 @@
                             >
                                 <field name="selected" widget="boolean_toggle" />
                                 <field name="calendar_event_id" optional="show" />
+                                <field
+                                    name="calendar_event_profile_id"
+                                    optional="show"
+                                />
                                 <field name="partner_id" />
                                 <field name="event_user_id" optional="hide" />
                                 <field name="partner_user_id" optional="hide" />
