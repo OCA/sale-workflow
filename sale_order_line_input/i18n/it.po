@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-25 15:34+0000\n"
+"PO-Revision-Date: 2024-09-27 08:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
@@ -29,7 +29,7 @@ msgstr "Sconto (%)"
 #. module: sale_order_line_input
 #: model:ir.model.fields,field_description:sale_order_line_input.field_sale_order_line__force_company_id
 msgid "Forced company"
-msgstr ""
+msgstr "Azienda forzata"
 
 #. module: sale_order_line_input
 #: model:ir.model.fields,help:sale_order_line_input.field_sale_order_line__pricelist_id
@@ -65,7 +65,7 @@ msgstr "Non Collegato a Fattura"
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "Open order"
-msgstr ""
+msgstr "Apri ordine"
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
@@ -104,6 +104,8 @@ msgid ""
 "Technical field to force company or get it from env user if order don't "
 "exist."
 msgstr ""
+"Campo tecnico per forzare l'azienda o per ricavarla dall'ambiente utente se "
+"l'ordine non esiste."
 
 #. module: sale_order_line_input
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_filter
