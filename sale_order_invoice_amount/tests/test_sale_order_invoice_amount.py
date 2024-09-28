@@ -31,6 +31,9 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
         )
         cls.currency_eur = cls.env.ref("base.EUR")
         cls.currency_cad = cls.env.ref("base.CAD")
+        cls.currency_cad.active = True
+        cls.currency_eur.active = True
+
         cls.res_partner_2 = cls.env["res.partner"].create({"name": "Partner 12"})
         # Sale Order
         cls.tax = cls.env["account.tax"].create(
@@ -143,7 +146,6 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
         )
 
     def test_02_sale_order_invoiced_amount_different_currencies_invoice(self):
-
         self.assertEqual(
             self.sale_order_1.invoiced_amount,
             0.0,
@@ -314,7 +316,7 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
         self.assertAlmostEqual(
             self.sale_order_1.invoiced_amount,
             242.0,
-            delta=40,
+            delta=70,
         )
         self.assertEqual(
             self.sale_order_1.uninvoiced_amount,

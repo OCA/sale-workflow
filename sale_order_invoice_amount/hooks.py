@@ -1,5 +1,5 @@
-def _add_new_columns(cr):
-    cr.execute(
+def _add_new_columns(env):
+    env.cr.execute(
         """
 ALTER TABLE
     sale_order
@@ -11,8 +11,8 @@ ADD COLUMN IF NOT EXISTS
     )
 
 
-def _update_amounts_for_cancel_invoices(cr):
-    cr.execute(
+def _update_amounts_for_cancel_invoices(env):
+    env.cr.execute(
         """
 UPDATE
     sale_order
@@ -25,8 +25,8 @@ WHERE
     )
 
 
-def _update_amounts_for_non_cancel_invoices(cr):
-    cr.execute(
+def _update_amounts_for_non_cancel_invoices(env):
+    env.cr.execute(
         """
 WITH amt AS(
     SELECT
@@ -46,7 +46,8 @@ WITH amt AS(
             sale_order.id AS sale_order_id,
             sale_order.amount_total AS amount_total,
             account_move.id AS account_move_id,
-            account_move.amount_total_in_currency_signed as amount_total_in_currency_signed
+            account_move.amount_total_in_currency_signed
+            as amount_total_in_currency_signed
         FROM
             sale_order
         LEFT JOIN sale_order_line
@@ -78,14 +79,14 @@ WHERE sale_order.id = amt.sale_order_id
     )
 
 
-def _update_amounts(cr):
-    _update_amounts_for_cancel_invoices(cr)
-    _update_amounts_for_non_cancel_invoices(cr)
+def _update_amounts(env):
+    _update_amounts_for_cancel_invoices(env)
+    _update_amounts_for_non_cancel_invoices(env)
 
 
-def pre_init_hook(cr):
+def pre_init_hook(env):
     """
     Add columns to avoid Memory error on an existing Odoo instance with lots of data
     """
-    _add_new_columns(cr)
-    _update_amounts(cr)
+    _add_new_columns(env)
+    _update_amounts(env)
