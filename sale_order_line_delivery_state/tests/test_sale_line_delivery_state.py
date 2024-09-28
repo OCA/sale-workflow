@@ -14,7 +14,7 @@ class TestSaleLineDeliveryState(TransactionCase):
         # Base data
         partner = cls.env.ref("base.res_partner_2")
         product = cls.env.ref("product.product_product_25")
-        pricelist = cls.env.ref("product.list0")
+        pricelist = cls.env["product.pricelist"].create({"name": "Test Pricelist"})
         cls.uom = cls.env.ref("uom.product_uom_unit")
         # Create delivery product
         cls.delivery_cost = cls.env["product.product"].create(
@@ -106,6 +106,12 @@ class TestSaleLineDeliveryState(TransactionCase):
             self.order.order_line[0].force_delivery_state = True
             self.assertEqual(self.order.order_line[0].delivery_state, "done")
             self.assertEqual(self.order.order_line[1].delivery_state, "no")
+            self.order.order_line[0].action_force_delivery_state()
+            # Assert the delivery state is set to done
+            self.assertEqual(self.order.order_line[0].delivery_state, "done")
+            self.order.order_line[0].action_unforce_delivery_state()
+            # Assert the delivery state is back to partially
+            self.assertEqual(self.order.order_line[0].delivery_state, "partially")
 
     def test_delivery_done_delivery_cost(self):
         self._add_delivery_cost_line()

@@ -15,10 +15,7 @@ class SaleOrderLine(models.Model):
             ("partially", "Partially processed"),
             ("done", "Done"),
         ],
-        # Compute method have a different name then the field because
-        # the method _compute_delivery_state already exist to compute
-        # the field delivery_set in odoo delivery module
-        compute="_compute_sale_line_delivery_state",
+        compute="_compute_delivery_state",
         store=True,
     )
 
@@ -60,7 +57,7 @@ class SaleOrderLine(models.Model):
         return not float_is_zero(self.qty_delivered, precision_digits=precision)
 
     @api.depends("qty_delivered", "state", "force_delivery_state")
-    def _compute_sale_line_delivery_state(self):
+    def _compute_delivery_state(self):
         """
         If `delivery` module is installed, lines with delivery costs are marked
         as 'No delivery'.

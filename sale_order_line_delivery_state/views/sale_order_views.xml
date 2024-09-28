@@ -18,14 +18,14 @@
                         type="object"
                         string="Force delivery done"
                         states="done"
-                        attrs="{'invisible': ['|', ('force_delivery_state', '=', True), ('delivery_state', '=', 'done')]}"
+                        invisible="force_delivery_state or state == 'done'"
                     />
                     <button
                         name="action_unforce_delivery_state"
                         type="object"
                         string="Unforce delivery done"
                         states="done"
-                        attrs="{'invisible': [('force_delivery_state', '=', False)]}"
+                        invisible="not force_delivery_state"
                     />
                 </div>
             </xpath>
