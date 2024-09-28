@@ -1,11 +1,12 @@
 # Copyright 2023 Moduon Team S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 from odoo import fields
-from odoo.tests.common import Form
+from odoo.tests.common import Form, tagged
 
 from odoo.addons.product.tests.common import ProductCommon
 
 
+@tagged("post_install", "-at_install")
 class SalePackagingDefaultCase(ProductCommon):
     @classmethod
     def setUpClass(cls):

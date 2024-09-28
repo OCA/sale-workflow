@@ -3,7 +3,7 @@
 
 {
     "name": "Default packaging for sales",
-    "version": "16.0.2.2.0",
+    "version": "17.0.1.0.0",
     "summary": "Simplify using products default packaging for sales",
     "development_status": "Alpha",
     "category": "Sales",
