@@ -197,7 +197,10 @@ class TestSalePlannerCalendar(TransactionCase):
         event = self.planned_events[0]
         self.assertTrue(event.user_id in self.commercial_users)
         self.assertEqual(event.rrule_type, "weekly")
-        self.assertEqual(event.location, event.target_partner_id._display_address())
+        self.assertEqual(
+            event.location,
+            event.target_partner_id._display_address(True).replace("\n", " "),
+        )
 
     def test_planner_calendar_wizard(self):
         wiz_form = Form(self.env["sale.planner.calendar.wizard"])
