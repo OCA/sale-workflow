@@ -15,7 +15,6 @@ class SaleOrder(models.Model):
         for sale in self:
             sale.production_count = len(sale.production_ids)
 
-    @api.multi
     def action_view_production(self):
         action = self.env.ref("mrp.mrp_production_action").read()[0]
         if self.production_count > 1:
