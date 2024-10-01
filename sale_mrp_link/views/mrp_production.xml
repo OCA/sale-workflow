@@ -1,26 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2018 Alex Comba - Agile Business Group 
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018 Alex Comba - Agile Business Group
      Copyright 2016-2018 Akretion
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
-
 <odoo>
 
     <record id="mrp_production_form_view" model="ir.ui.view">
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='origin']" position="after">
-                <field name="sale_order_id" readonly="1"/>
+                <field name="sale_order_id" readonly="1" />
             </xpath>
         </field>
     </record>
 
     <record id="view_mrp_production_filter" model="ir.ui.view">
         <field name="model">mrp.production</field>
-        <field name="inherit_id" ref="mrp.view_mrp_production_filter"/>
+        <field name="inherit_id" ref="mrp.view_mrp_production_filter" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='product_id']" position="after">
-                <field name="sale_order_id"/>
+                <field name="sale_order_id" />
             </xpath>
         </field>
     </record>
