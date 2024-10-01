@@ -53,6 +53,7 @@ class SaleOrder(models.Model):
                         * (line.price_total / line.product_uom_qty)
                         for line in rec.order_line.filtered(
                             lambda sl: sl.product_uom_qty > 0
+                            and sl.product_uom_qty > sl.qty_invoiced
                         )
                     ),
                 )
