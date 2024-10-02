@@ -3,7 +3,7 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo noupdate="1">
     <record id="transaction_sale_6" model="payment.transaction">
-        <field name="acquirer_id" ref="payment.payment_acquirer_odoo_by_adyen" />
+        <field name="provider_id" ref="payment.payment_provider_adyen" />
         <field name="amount">750.0</field>
         <field name="partner_id" ref="base.res_partner_18" />
         <field name="state">draft</field>
