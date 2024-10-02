@@ -105,6 +105,7 @@ setuptools.setup(
         'odoo-addon-sale_stock_product_recommendation>=16.0dev,<16.1dev',
         'odoo-addon-sale_substate>=16.0dev,<16.1dev',
         'odoo-addon-sale_tier_validation>=16.0dev,<16.1dev',
+        'odoo-addon-sale_transaction_form_link>=16.0dev,<16.1dev',
         'odoo-addon-sale_triple_discount>=16.0dev,<16.1dev',
         'odoo-addon-sale_validity_auto_cancel>=16.0dev,<16.1dev',
         'odoo-addon-sale_wishlist>=16.0dev,<16.1dev',
