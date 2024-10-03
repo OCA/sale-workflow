@@ -30,3 +30,4 @@ msgstr "Ordine di vendita"
 #: model_terms:ir.ui.view,arch_db:sale_transaction_form_link.sale_order_form_view
 msgid "Transactions"
 msgstr "Transazioni"
+
