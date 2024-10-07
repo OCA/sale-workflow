@@ -4,7 +4,7 @@ from odoo.tests import Form, TransactionCase, tagged
 
 
 @tagged("post_install", "-at_install")
-class TestSaleOrderSecondaryUnit(TransactionCase):
+class TestSaleOrder(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
