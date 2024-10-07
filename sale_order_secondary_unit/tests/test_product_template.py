@@ -8,70 +8,123 @@ class TestProductTemplate(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.secondary_uom_1 = cls.env['product.secondary.unit'].create(
-            {'name': 'Unit 1'})
-        cls.secondary_uom_2 = cls.env['product.secondary.unit'].create(
-            {'name': 'Unit 2'})
-        cls.secondary_uom_3 = cls.env['product.secondary.unit'].create(
-            {'name': 'Unit 3'})
-        cls.product_template_1 = cls.env['product.template'].create({
-            'name': 'Test Product',
-            'product_variant_ids': [(0, 0,
-                                     {'name': 'Test Variant',
-                                      'sale_secondary_uom_id':
-                                          cls.secondary_uom_1.id})]
-        })
-        cls.product_template_2 = cls.env['product.template'].create({
-            'name': 'Test Product',
-            'product_variant_ids': [
-                (0, 0, {'name': 'Test Variant 1',
-                        'sale_secondary_uom_id': cls.secondary_uom_1.id}),
-                (0, 0, {'name': 'Test Variant 2',
-                        'sale_secondary_uom_id': cls.secondary_uom_2.id})
+        cls.product_uom_unit = cls.env.ref("uom.product_uom_unit")
+        cls.product_attribute_model = cls.env["product.attribute"]
+        cls.product_attribute_value_model = cls.env["product.attribute.value"]
+        # Create product attributes
+        cls.color_attribute = cls.product_attribute_model.create(
+            {"name": "Color", "create_variant": "always"}
+        )
+        cls.color_values = cls.product_attribute_value_model.create(
+            [
+                {"name": "Red", "attribute_id": cls.color_attribute.id},
+                {"name": "Blue", "attribute_id": cls.color_attribute.id},
+                {"name": "Green", "attribute_id": cls.color_attribute.id},
             ]
-        })
-        cls.product_template_3 = cls.env['product.template'].create({
-            'name': 'Test Product',
-            'product_variant_ids': [(0, 0, {'name': 'Test Variant'})]
-        })
-        cls.product_template_4 = cls.env['product.template'].create({
-            'name': 'Test Product',
-            'product_variant_ids': [
-                (0, 0, {'name': 'Test Variant 1',
-                        'sale_secondary_uom_id': cls.secondary_uom_1.id}),
-                (0, 0, {'name': 'Test Variant 2',
-                        'sale_secondary_uom_id': cls.secondary_uom_1.id})
+        )
+        cls.size_attribute = cls.product_attribute_model.create(
+            {"name": "Size", "create_variant": "always"}
+        )
+        cls.size_values = cls.product_attribute_value_model.create(
+            [
+                {"name": "S", "attribute_id": cls.size_attribute.id},
+                {"name": "M", "attribute_id": cls.size_attribute.id},
+                {"name": "L", "attribute_id": cls.size_attribute.id},
             ]
-        })
+        )
 
-    def create_sets_sale_secondary_uom_id_for_single_variant(self):
-        self.assertEqual(
-            self.product_template_1.sale_secondary_uom_id.name, 'Unit 1')
+        # Create product template
+        cls.product_template_1 = cls.env["product.template"].create(
+            {
+                "name": "Test Product 1",
+            }
+        )
+        # Create product variants
+        cls.product_template_2 = cls.env["product.template"].create(
+            {
+                "name": "Test Product 2",
+                "attribute_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "attribute_id": cls.color_attribute.id,
+                            "value_ids": [(6, 0, cls.color_values.ids)],
+                        },
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "attribute_id": cls.size_attribute.id,
+                            "value_ids": [(6, 0, cls.size_values.ids)],
+                        },
+                    ),
+                ],
+            }
+        )
+        # Create secondary units
+        cls.secondary_uom_1 = cls.env["product.secondary.unit"].create(
+            {
+                "name": "Unit 1",
+                "uom_id": cls.product_uom_unit.id,
+                "factor": 1,
+                "product_tmpl_id": cls.product_template_1.id,
+            }
+        )
+        cls.secondary_uom_2 = cls.env["product.secondary.unit"].create(
+            {
+                "name": "Unit 2",
+                "uom_id": cls.product_uom_unit.id,
+                "factor": 1,
+                "product_tmpl_id": cls.product_template_1.id,
+            }
+        )
+        cls.secondary_uom_3 = cls.env["product.secondary.unit"].create(
+            {
+                "name": "Unit 3",
+                "uom_id": cls.product_uom_unit.id,
+                "factor": 1,
+                "product_tmpl_id": cls.product_template_2.id,
+            }
+        )
+        cls.secondary_uom_4 = cls.env["product.secondary.unit"].create(
+            {
+                "name": "Unit 4",
+                "uom_id": cls.product_uom_unit.id,
+                "factor": 1,
+                "product_tmpl_id": cls.product_template_2.id,
+            }
+        )
 
-    def create_does_not_set_sale_secondary_uom_id_for_multiple_variants(self):
+    def test_create_sets_sale_secondary_uom_id_for_single_variant(self):
+        product_variant_ids = self.product_template_1.product_variant_ids
+        product_variant_ids.sale_secondary_uom_id = self.secondary_uom_1
+        self.assertEqual(self.product_template_1.sale_secondary_uom_id.name, "Unit 1")
+
+    def test_create_not_sale_secondary_uom_id_for_variants_and_warns(self):
+        product_variant_ids = self.product_template_2.product_variant_ids
+        product_variant_ids[0].sale_secondary_uom_id = self.secondary_uom_3
+        product_variant_ids[1].sale_secondary_uom_id = self.secondary_uom_4
         self.assertFalse(self.product_template_2.sale_secondary_uom_id)
 
-    def create_sets_sale_secondary_uom_id_for_multiple_variants_with_same_uom(
-            self):
-        self.assertEqual(
-            self.product_template_4.sale_secondary_uom_id.name, 'Unit 1')
-
-    def inverse_sale_secondary_uom_id_updates_variants_correctly(self):
-        self.product_template_3.sale_secondary_uom_id = self.secondary_uom_3
-        self.product_template_3._inverse_sale_secondary_uom_id()
-        self.assertEqual(
-            self.product_template_3.product_variant_ids.sale_secondary_uom_id,
-            self.secondary_uom_3)
-
-    def onchange_sale_secondary_uom_id_warns_on_distinct_uoms(self):
         warning = self.product_template_2.onchange_sale_secondary_uom_id()
-        self.assertIn('warning', warning)
-        self.assertIn('Product variants have distinct sale secondary uom',
-                      warning['warning']['message'])
+        self.assertIn("warning", warning)
+        self.assertIn(
+            "Product variants have distinct sale secondary uom",
+            warning["warning"]["message"],
+        )
 
-    def create_sets_sale_secondary_uom_id_for_variant_with_no_uom(self):
-        product_template = self.env['product.template'].create({
-            'name': 'Test Product',
-            'product_variant_ids': [(0, 0, {'name': 'Test Variant'})]
-        })
-        self.assertFalse(product_template.sale_secondary_uom_id)
+    def test_create_sale_secondary_uom_id_multiple_variants_same_uom(self):
+        product_variant_ids = self.product_template_2.product_variant_ids
+        product_variant_ids[0].sale_secondary_uom_id = self.secondary_uom_3
+        product_variant_ids[1].sale_secondary_uom_id = self.secondary_uom_3
+        self.assertEqual(self.product_template_2.sale_secondary_uom_id.name, "Unit 3")
+
+    def test_inverse_sale_secondary_uom_id_updates_variants_correctly(self):
+        self.product_template_1.sale_secondary_uom_id = self.secondary_uom_2
+        self.product_template_1._inverse_sale_secondary_uom_id()
+        self.assertEqual(
+            self.product_template_1.product_variant_ids.sale_secondary_uom_id,
+            self.product_template_1.sale_secondary_uom_id,
+        )
