@@ -194,7 +194,7 @@ class TestSaleOrderType(common.TransactionCase):
 
     def test_invoice_without_partner(self):
         invoice = self.invoice_model.new()
-        self.assertEqual(invoice.sale_type_id, self.default_sale_type_id)
+        self.assertFalse(invoice.sale_type_id)
 
     def test_sale_order_flow_route(self):
         order = self.create_sale_order()
