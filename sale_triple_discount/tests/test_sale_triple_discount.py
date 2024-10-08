@@ -103,15 +103,21 @@ class TestSaleOrder(common.SavepointCase):
         self.assertAlmostEqual(self.so_line1.price_subtotal, 75.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 675.0)
         self.assertAlmostEqual(self.order.amount_tax, 101.25)
+        self.order._amount_by_group()
+        self.assertAlmostEqual(self.order.amount_by_group[0][1], 101.25)
         self.so_line2.discount3 = 50.0
         self.assertAlmostEqual(self.so_line2.price_subtotal, 300.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 375.0)
         self.assertAlmostEqual(self.order.amount_tax, 56.25)
+        self.order._amount_by_group()
+        self.assertAlmostEqual(self.order.amount_by_group[0][1], 56.25)
         self.so_line2.discounting_type = "additive"
         self.so_line2.discount2 = 10.0
         self.assertAlmostEqual(self.so_line2.price_subtotal, 240.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 315.0)
         self.assertAlmostEqual(self.order.amount_tax, 47.25)
+        self.order._amount_by_group()
+        self.assertAlmostEqual(self.order.amount_by_group[0][1], 47.25)
 
     def test_04_sale_order_triple_discount_invoicing(self):
         """When a confirmed order is invoiced, the resultant invoice
