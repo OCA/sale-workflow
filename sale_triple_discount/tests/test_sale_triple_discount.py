@@ -209,3 +209,27 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line2.price_subtotal, 600.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 1200.0)
         self.assertAlmostEqual(self.order.amount_tax, 180.0)
+
+    def test_untaxed_amount_to_invoice_computed_with_all_discounts(self):
+        """Tests that the untaxed amount to invoice is computed correctly when
+        all discounts are applied (discount, discount2, discount3)"""
+        self.assertEqual(self.so_line1.untaxed_amount_to_invoice, 0)
+        self.assertEqual(self.so_line2.untaxed_amount_to_invoice, 0)
+
+        self.order.action_confirm()
+
+        self.assertEqual(self.so_line1.untaxed_amount_to_invoice, 600)
+        self.assertEqual(self.so_line2.untaxed_amount_to_invoice, 600)
+
+        sale_order_copy = self.order.copy()
+        sale_order_copy.order_line[0].discount = 50
+        sale_order_copy.order_line[0].discount2 = 50
+        sale_order_copy.order_line[0].discount3 = 50
+        sale_order_copy.order_line[1].discount = 50
+        sale_order_copy.order_line[1].discount2 = 10
+        sale_order_copy.order_line[1].discount3 = 0
+
+        sale_order_copy.action_confirm()
+
+        self.assertEqual(sale_order_copy.order_line[0].untaxed_amount_to_invoice, 75)
+        self.assertEqual(sale_order_copy.order_line[1].untaxed_amount_to_invoice, 270)
