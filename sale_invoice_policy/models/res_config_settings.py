@@ -24,7 +24,7 @@ class ResConfigSettings(models.TransientModel):
     def set_values(self):
         super().set_values()
         ir_default_obj = self.env["ir.default"]
-        if self.env["res.users"].has_group("base.group_erp_manager"):
+        if self.env.user.has_group("base.group_erp_manager"):
             ir_default_obj = ir_default_obj.sudo()
             ir_default_obj.set(
                 "res.config.settings",
