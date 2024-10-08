@@ -57,6 +57,9 @@ odoo.define("sale_planner_calendar.basic_controller", function (require) {
                 const recurrenceUpdate = await this._askRecurrenceUpdatePolicy();
                 if (recurrenceUpdate !== "self_only") {
                     await this._launchMassDeletion(records, recurrenceUpdate);
+                    if (this.controlPanelProps.view.arch.tag === "form") {
+                        return this.trigger_up("history_back");
+                    }
                     return this.reload();
                 }
                 this.confirmOnDelete = false;
