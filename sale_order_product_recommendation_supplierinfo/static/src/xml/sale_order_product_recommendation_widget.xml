@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Tecnativa - David Vidal
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html). -->
+<templates>
+    <div t-name="sale_order_product_recommendation.add_sale_line_widget">
+        <div>
+            <a tabindex="0" class="fa fa-cart-plus text-dark add_sale_line" />
+        </div>
+    </div>
+</templates>
