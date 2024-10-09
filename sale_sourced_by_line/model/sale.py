@@ -13,7 +13,6 @@ class SaleOrder(models.Model):
     warehouse_id = fields.Many2one(
         "stock.warehouse",
         string="Default Warehouse",
-        readonly=True,
         help="If no source warehouse is selected on line, "
         "this warehouse is used as default. ",
     )
@@ -25,7 +24,6 @@ class SaleOrderLine(models.Model):
     warehouse_id = fields.Many2one(
         "stock.warehouse",
         "Source Warehouse",
-        readonly=True,
         related="",
         help="If a source warehouse is selected, "
         "it will be used to define the route. "
