@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2022 Camptocamp (https://www.camptocamp.com)
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <field name="scheduled_date" position="after">
+                <field name="block_delivery" invisible="1" />
+                <field name="sale_state" invisible="1" />
+            </field>
+            <xpath expr="//button[@name='button_validate'][1]" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': ['|','&amp;',('sale_state', 'in', ('done', 'sale')), ('block_delivery', '=', True), '|', ('state', 'in', ('waiting','confirmed')), ('show_validate', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_validate'][2]" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'invisible': ['|','&amp;',('sale_state', 'in', ('done', 'sale')), ('block_delivery', '=', True), '|', ('state', 'not in', ('waiting', 'confirmed')), ('show_validate', '=', False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
