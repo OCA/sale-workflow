@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_sale_payment_sheet">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <div class="header">
+                        <div class="row">
+                            <div class="col-10">
+                                <h3>sale payment sheet Summary</h3>
+                            </div>
+                            <div class="col-2 text-right">
+                                <ul class="list-inline">
+                                    <span>Page: </span>
+                                    <li class="list-inline-item">
+                                        <span class="page" />
+                                    </li>
+                                    <li class="list-inline-item">/</li>
+                                    <li class="list-inline-item">
+                                        <span class="topage" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <t t-foreach="docs" t-as="doc">
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <h4>
+                                    <span>Sheet: </span>
+                                    <span t-field="doc.name" />
+                                </h4>
+                            </div>
+                        </div>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Partner</th>
+                                    <th>Invoice</th>
+                                    <th class="text-right">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="total_sheet" t-value="0.0" />
+                                <t t-foreach="doc.line_ids" t-as="line">
+                                    <tr>
+                                        <td>
+                                            <span t-field="line.date" />
+                                        </td>
+                                        <td>
+                                            <span t-field="line.name" />
+                                        </td>
+                                        <td>
+                                            <span t-field="line.partner_id" />
+                                        </td>
+                                        <td>
+                                            <span t-field="line.invoice_id" />
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-field="line.amount" />
+                                        </td>
+                                    </tr>
+                                    <t
+                                        t-set="total_sheet"
+                                        t-value="total_sheet + line.amount"
+                                    />
+                                </t>
+                                <tr style="padding:0px;">
+                                    <td class="text-right" colspan="4">
+                                        <span>Total: </span>
+                                    </td>
+                                    <td class="text-right">
+                                        <strong>
+                                            <span
+                                                t-esc="total_sheet"
+                                                t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id, 'precision': currency_precision}"
+                                            />
+                                        </strong>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p style="page-break-before:always;"> </p>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
