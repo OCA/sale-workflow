@@ -6,7 +6,7 @@
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
     "depends": ["sale_stock", "stock_restrict_lot"],
-    "data": ["view/sale_view.xml"],
+    "data": ["view/sale_view.xml", "view/res_config_settings_views.xml"],
     "demo": ["demo/sale_demo.xml"],
     "maintainers": ["bodedra"],
     "installable": True,
