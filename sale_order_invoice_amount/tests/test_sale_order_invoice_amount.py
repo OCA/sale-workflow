@@ -376,3 +376,44 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             0.0,
             "Uninvoiced Amount should be calculated.",
         )
+
+    def test_04_sale_order_invoiced_amount_negative(self):
+        self.assertEqual(
+            self.sale_order_1.invoiced_amount,
+            0.0,
+            "Invoiced Amount should be 0.0",
+        )
+
+        self.sale_order_1.action_confirm()
+        aml1 = self.order_line_1._prepare_invoice_line()
+        aml1["quantity"] = 20.0
+        aml2 = self.order_line_2._prepare_invoice_line()
+        test_invoice = self.env["account.move"].create(
+            [
+                {
+                    "move_type": "out_invoice",
+                    "invoice_date": fields.Date.from_string("2024-01-01"),
+                    "date": fields.Date.from_string("2024-01-01"),
+                    "partner_id": self.res_partner_1.id,
+                    "invoice_line_ids": [
+                        (
+                            0,
+                            0,
+                            aml1,
+                        ),
+                        (
+                            0,
+                            0,
+                            aml2,
+                        ),
+                    ],
+                }
+            ]
+        )
+        test_invoice.action_post()
+        self.assertEqual(
+            self.sale_order_1.uninvoiced_amount,
+            121.0,
+            "Uninvoiced Amount should be 121, as we invoiced more than required in one line, "
+            "but we have not invoices sale order line 3.",
+        )
