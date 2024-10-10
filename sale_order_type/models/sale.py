@@ -26,9 +26,6 @@ class SaleOrder(models.Model):
         compute="_compute_picking_policy", store=True, readonly=False
     )
     incoterm = fields.Many2one(compute="_compute_incoterm", store=True, readonly=False)
-    analytic_account_id = fields.Many2one(
-        compute="_compute_analytic_account_id", store=True, readonly=False
-    )
 
     @api.model
     def _default_type_id(self):
@@ -125,17 +122,6 @@ class SaleOrder(models.Model):
             order_type = order.type_id
             if order_type.incoterm_id:
                 order.incoterm = order_type.incoterm_id
-        return res
-
-    @api.depends("type_id")
-    def _compute_analytic_account_id(self):
-        res = None
-        if hasattr(super(), "_compute_analytic_account_id"):
-            res = super()._compute_analytic_account_id()
-        for order in self.filtered("type_id"):
-            order_type = order.type_id
-            if order_type.analytic_account_id:
-                order.analytic_account_id = order_type.analytic_account_id
         return res
 
     @api.depends("type_id")
