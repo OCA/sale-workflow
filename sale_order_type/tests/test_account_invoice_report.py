@@ -7,9 +7,10 @@ from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 @tagged("post_install", "-at_install")
 class TestAccountInvoiceReport(AccountTestInvoicingCommon):
     @classmethod
-    def setUpClass(cls, chart_template_ref=None):
-        super().setUpClass(chart_template_ref=chart_template_ref)
+    def setUpClass(cls):
+        super().setUpClass()
 
+        cls.other_currency = cls.setup_other_currency("ARS")
         cls.sale_order_types = cls.env["sale.order.type"].create(
             [
                 {
@@ -27,7 +28,7 @@ class TestAccountInvoiceReport(AccountTestInvoicingCommon):
                 "partner_id": cls.partner_a.id,
                 "invoice_date": fields.Date.from_string("2021-01-01"),
                 "sale_type_id": cls.sale_order_types[0].id,  # Normal Order
-                "currency_id": cls.currency_data["currency"].id,
+                "currency_id": cls.other_currency.id,
                 "invoice_line_ids": [
                     (
                         0,
