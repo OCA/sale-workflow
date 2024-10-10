@@ -27,7 +27,10 @@ class SaleOrder(models.Model):
     )
     incoterm = fields.Many2one(compute="_compute_incoterm", store=True, readonly=False)
     analytic_account_id = fields.Many2one(
-        compute="_compute_analytic_account_id", store=True, readonly=False
+        "account.analytic.account",
+        compute="_compute_analytic_account_id",
+        store=True,
+        readonly=False,
     )
 
     @api.model

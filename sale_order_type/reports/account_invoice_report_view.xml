@@ -1,5 +1,4 @@
 <odoo>
-
     <record id="view_account_invoice_report_search" model="ir.ui.view">
         <field name="inherit_id" ref="account.view_account_invoice_report_search" />
         <field name="model">account.invoice.report</field>
@@ -13,5 +12,4 @@
             </filter>
         </field>
     </record>
-
 </odoo>

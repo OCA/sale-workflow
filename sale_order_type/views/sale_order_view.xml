@@ -18,7 +18,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_sales_order_filter" />
         <field name="arch" type="xml">
-            <field name="analytic_account_id" position="after">
+            <field name="order_line" position="after">
                 <field name="type_id" />
             </field>
             <filter name="order_month" position="after">
