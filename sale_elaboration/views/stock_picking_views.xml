@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Tecnativa - Sergio Teruel
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='move_ids_without_package']/tree/field[@name='product_uom']"
+                position="after"
+            >
+                <field name="show_operations" invisible="1" readonly="1" />
+                <field
+                    name="elaboration_ids"
+                    widget="many2many_tags"
+                    options="{'no_create': True}"
+                    readonly="not is_initial_demand_editable or show_operations and is_locked and not is_initial_demand_editable"
+                    optional="show"
+                />
+                <field
+                    name="elaboration_note"
+                    readonly="not is_initial_demand_editable or show_operations and is_locked and not is_initial_demand_editable"
+                    optional="show"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

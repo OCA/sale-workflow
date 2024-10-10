@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Moduon Team S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<data>
+    <template id="report_picking" inherit_id="stock.report_picking">
+        <xpath expr="//td[span[@t-field='ml.product_id.display_name']]">
+            <div
+                class="fst-italic"
+                groups="sale_elaboration.group_elaboration_note_on_picking_operations"
+                t-if="ml.picking_code != 'incoming' and ml.elaboration_note"
+            >
+                <i class="fa fa-comment-o" />
+                <span t-field="ml.elaboration_note" />
+            </div>
+        </xpath>
+    </template>
+</data>

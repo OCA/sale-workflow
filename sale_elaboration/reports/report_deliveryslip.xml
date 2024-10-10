@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018 Tecnativa - Sergio Teruel
+     Copyright 2024 Moduon Team S.L. <info@moduon.team>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <template
+        id="report_delivery_document"
+        inherit_id="stock.report_delivery_document"
+        priority="20"
+    >
+        <!--
+        Force to print lines from sml instead of aggregate data to display
+        elaboration notes.
+        Odoo has a bad design to do aggregate lines, see here
+        https://github.com/odoo/odoo/blob/15.0/addons/stock/models/stock_move_line.py#L738
+        -->
+        <xpath
+            expr="//t[@t-value=&quot;o.move_line_ids.mapped(&apos;lot_id&apos;)&quot;]"
+            position="attributes"
+        >
+            <attribute
+                name="t-value"
+                add="or (o.move_ids.filtered('elaboration_ids') | o.move_ids.filtered('elaboration_note'))"
+                separator=" "
+            />
+            <attribute
+                name="groups"
+                add="sale_elaboration.group_elaboration_note_on_delivery_slip"
+                separator=", "
+            />
+        </xpath>
+        <xpath expr="//p[span[@t-field='move.description_picking']]" position="after">
+            <t
+                t-if="move.picking_code != 'incoming'"
+                t-call="sale_elaboration.elaboration_notes"
+            >
+                <t t-set="record" t-value="move" />
+            </t>
+        </xpath>
+    </template>
+
+    <template
+        id="stock_report_delivery_has_serial_move_line"
+        inherit_id="stock.stock_report_delivery_has_serial_move_line"
+    >
+        <xpath expr="//span[@t-field='move_line.product_id']" position="after">
+            <t
+                t-if="move_line.picking_code != 'incoming'"
+                t-call="sale_elaboration.elaboration_notes"
+            >
+                <t t-set="record" t-value="move_line.move_id" />
+            </t>
+        </xpath>
+    </template>
+</odoo>
