@@ -9,7 +9,6 @@
         <xpath expr="//tree" position="attributes">
             <attribute name="multi_edit">1</attribute>
             <attribute name="edit">true</attribute>
-            <attribute name="default_order">create_date</attribute>
         </xpath>
         <field name="order_id" position="before">
             <field name="company_id" invisible="1" />

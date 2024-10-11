@@ -106,13 +106,23 @@ class SalePriceConfigLine(models.Model):
                 for line in lines:
                     if res_id._name == "product.category" and line[
                         "product_tmpl_id"
-                    ].filtered_domain(["|", ("categ_id", "child_of", res_id.id), ("categ_id", "=", res_id.id)]):
-                        price += line["product_tmpl_id"].list_price * line["product_qty"]
+                    ].filtered_domain(
+                        [
+                            "|",
+                            ("categ_id", "child_of", res_id.id),
+                            ("categ_id", "=", res_id.id),
+                        ]
+                    ):
+                        price += (
+                            line["product_tmpl_id"].list_price * line["product_qty"]
+                        )
                     if (
                         res_id._name == "product.template"
                         and line["product_tmpl_id"].id == res_id.id
                     ):
-                        price += line["product_tmpl_id"].list_price * line["product_qty"]
+                        price += (
+                            line["product_tmpl_id"].list_price * line["product_qty"]
+                        )
                 return price
             case "factor":
                 factor = input_line[self.target_field.name]

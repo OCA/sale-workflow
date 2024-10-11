@@ -16,16 +16,6 @@
                 <field string="Lines" name="order_line_count" widget="statinfo" />
             </button>
         </div>
-
-        <xpath expr="//page[@name='order_lines']//tree" position="attributes">
-            <attribute name="default_order">create_date</attribute>
-        </xpath>
-        <xpath
-                expr="//page[@name='order_lines']//tree/field[@name='product_template_id']"
-                position="before"
-            >
-            <field name="create_date" invisible="1" />
-        </xpath>
         <xpath
                 expr="//page[@name='order_lines']//tree/field[@name='product_template_id']"
                 position="after"
