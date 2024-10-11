@@ -1,4 +1,5 @@
 from odoo import api, fields, models
+from odoo.fields import Command
 
 
 class SaleOrderLine(models.Model):
@@ -24,9 +25,22 @@ class SaleOrderLine(models.Model):
     input_line_domain = fields.Char()
 
     should_compute_price = fields.Boolean(
-        compute="_compute_should_compute_price", store=True, precompute=True
+        compute="_compute_should_compute_price",
+        store=True,
+        precompute=True,
+        default=False,
     )
     is_static_product = fields.Boolean(compute="_compute_is_static_product", store=True)
+
+    def copy_data(self, default=None):
+        if default is None:
+            default = {}
+        if "input_line_ids" not in default:
+            default["input_line_ids"] = [
+                Command.create(input_line.copy_data()[0])
+                for input_line in self.input_line_ids
+            ]
+        return super().copy_data(default)
 
     @api.depends("product_template_id", "input_line_id")
     def _compute_is_static_product(self):
@@ -103,12 +117,13 @@ class SaleOrderLine(models.Model):
     @api.depends("should_compute_price")
     def _compute_price_unit(self):
         for rec in self:
-            rec = rec.with_context(
-                price_config=rec.product_id.product_tmpl_id._find_price_config(),
-                input_line=rec.input_line_id,
-            )
+            if not rec.is_static_product and rec.should_compute_price:
+                rec = rec.with_context(
+                    price_config=rec.product_id.product_tmpl_id._find_price_config(),
+                    input_line=rec.input_line_id,
+                )
+                rec.should_compute_price = False
             super(SaleOrderLine, rec)._compute_price_unit()
-            rec.should_compute_price = False
         return True
 
     def action_show_input_line(self):
