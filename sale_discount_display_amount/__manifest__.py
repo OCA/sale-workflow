@@ -12,7 +12,7 @@
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale_management"],
     "data": [
-        "views/res_config_settings_view.xml",
+        "views/res_config_settings_views.xml",
         "views/sale_view.xml",
         "report/sale_report_template.xml",
     ],
