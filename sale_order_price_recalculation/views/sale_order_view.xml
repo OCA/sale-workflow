@@ -7,14 +7,6 @@
         <field name="arch" type="xml">
             <field name="state" position="before">
                 <button
-                    name="action_update_prices"
-                    class="ml-2 btn btn-default"
-                    string="Recalculate prices"
-                    Help="Apply the current pricelist"
-                    type="object"
-                    attrs="{'invisible':[('state','not in', ['draft', 'sent'])]}"
-                />
-                <button
                     name="action_update_names"
                     class="ml-2 btn btn-default"
                     string="Reset descriptions"
