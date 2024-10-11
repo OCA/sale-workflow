@@ -30,7 +30,7 @@ class TestStockSourcingAddress(TransactionCase):
         )
 
         # Create route for secondary customer location:
-        self.secondary_route = self.env["stock.location.route"].create(
+        self.secondary_route = self.env["stock.route"].create(
             {
                 "warehouse_selectable": True,
                 "name": "Ship to customer sec location",
@@ -39,7 +39,7 @@ class TestStockSourcingAddress(TransactionCase):
         )
         self.wh2_rule = self.env["stock.rule"].create(
             {
-                "location_id": self.customer_loc_secondary.id,
+                "location_dest_id": self.customer_loc_secondary.id,
                 "location_src_id": self.warehouse.lot_stock_id.id,
                 "action": "pull_push",
                 "warehouse_id": self.warehouse.id,
