@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<record id="view_order_form_configurable" model="ir.ui.view">
+    <field name="name">sale.order.form.configurable</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form" />
+    <field name="mode">extension</field>
+    <field name="arch" type="xml">
+        <div name="button_box" position="inside">
+            <button
+                    class="oe_stat_button"
+                    type="object"
+                    name="show_lines"
+                    icon="fa-list"
+                >
+                <field string="Lines" name="order_line_count" widget="statinfo" />
+            </button>
+        </div>
+        <xpath
+                expr="//page[@name='order_lines']//tree/field[@name='product_template_id']"
+                position="after"
+            >
+            <button
+                    name="action_show_input_line"
+                    class="fa fa-gear"
+                    type="object"
+                    title="Info"
+                    attrs="{'invisible': [('input_line_id', '=', False)]}"
+                />
+            <button
+                    name="action_run_copy_data_wizard"
+                    class="fa fa-paste"
+                    type="object"
+                    title="Info"
+                    attrs="{'invisible': [('input_line_id', '=', False)]}"
+                />
+            <field name="input_line_id" invisible="1" />
+            <field name="input_line_id_name" />
+        </xpath>
+    </field>
+</record>
+</odoo>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_price_config_form_view" model="ir.ui.view">
+        <field name="model">sale.price.config</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="product_id" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="Lines">
+                            <field name="sale_price_config_line_ids">
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle" />
+                                    <field name="line_type" required="true" />
+                                    <button
+                                        name="open_matrix_wizard"
+                                        class="fa fa-gear"
+                                        type="object"
+                                        title="Info"
+                                        attrs="{'invisible': [('line_type', '!=', 'matrix')]}"
+                                    />
+                                    <field
+                                        name="domain"
+                                        widget="domain"
+                                        options="{'model': 'input.line'}"
+                                    />
+                                    <field
+                                        name="target_field_domain"
+                                        invisible="True"
+                                    />
+                                    <field
+                                        name="target_field"
+                                        domain="target_field_domain"
+                                        attrs="{'invisible': [('line_type', '!=', 'factor')], 'required': [('line_type', '=', 'factor')]}"
+                                    />
+                                    <field
+                                        name="amount"
+                                        attrs="{'invisible': [('line_type', '=', 'include_product_or_category')], 'required': [('line_type', '!=', 'include_product_or_category')]}"
+                                        digits="[12,4]"
+                                    />
+                                    <field
+                                        name="included_product_or_category"
+                                        attrs="{'invisible': [('line_type', '!=', 'include_product_or_category')],'required': [('line_type', '=', 'include_product_or_category')] }"
+                                    />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="sale_price_config_tree_view" model="ir.ui.view">
+        <field name="model">sale.price.config</field>
+        <field name="arch" type="xml">
+            <tree create="True">
+                <field name="product_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="action_sale_price_config_settings" model="ir.actions.act_window">
+        <field name="name">Sale price config settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.price.config</field>
+        <field name="view_id" ref="sale_price_config_tree_view" />
+        <field name="view_mode">tree,form</field>
+        <field name="target">inline</field>
+    </record>
+    <menuitem
+        id="menu_sale_price_config"
+        parent="sale.menu_sale_config"
+        sequence="25"
+        action="action_sale_price_config_settings"
+    />
+</odoo>

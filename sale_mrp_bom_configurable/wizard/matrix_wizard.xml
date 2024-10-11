@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<record id="matrix_wizard_form" model="ir.ui.view">
+    <field name="model">wizard.price.config.matrix</field>
+    <field name="name">wizard.price.config.matrix.form</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <h2>Price matrix</h2>
+                <group>
+                    <field name="target_field_domain" invisible="1" />
+                    <group>
+                        <field name="vertical_value" domain="target_field_domain" />
+                    </group>
+                    <group>
+                        <field name="horizontal_value" domain="target_field_domain" />
+                    </group>
+                    <field name="matrix" />
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+</odoo>
