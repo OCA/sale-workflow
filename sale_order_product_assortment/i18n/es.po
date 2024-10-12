@@ -24,7 +24,6 @@ msgstr "Producto Permitido"
 
 #. module: sale_order_product_assortment
 #: model:ir.model.fields,field_description:sale_order_product_assortment.field_sale_order__display_name
-#: model:ir.model.fields,field_description:sale_order_product_assortment.field_sale_order_line__display_name
 msgid "Display Name"
 msgstr "Mostrar Nombre"
 
@@ -35,35 +34,18 @@ msgstr "Tiene Productos Permitidos"
 
 #. module: sale_order_product_assortment
 #: model:ir.model.fields,field_description:sale_order_product_assortment.field_sale_order__id
-#: model:ir.model.fields,field_description:sale_order_product_assortment.field_sale_order_line__id
 msgid "ID"
 msgstr "ID"
 
 #. module: sale_order_product_assortment
 #: model:ir.model.fields,field_description:sale_order_product_assortment.field_sale_order____last_update
-#: model:ir.model.fields,field_description:sale_order_product_assortment.field_sale_order_line____last_update
 msgid "Last Modified on"
 msgstr "Última Modificación el"
-
-#. module: sale_order_product_assortment
-#: model_terms:ir.ui.view,arch_db:sale_order_product_assortment.view_order_form
-msgid "Product"
-msgstr "Producto"
-
-#. module: sale_order_product_assortment
-#: model:ir.model.fields,field_description:sale_order_product_assortment.field_sale_order_line__product_allowed_id
-msgid "Product with allowed list"
-msgstr "Producto con lista permitida"
 
 #. module: sale_order_product_assortment
 #: model:ir.model,name:sale_order_product_assortment.model_sale_order
 msgid "Sales Order"
 msgstr "Orden de Venta"
-
-#. module: sale_order_product_assortment
-#: model:ir.model,name:sale_order_product_assortment.model_sale_order_line
-msgid "Sales Order Line"
-msgstr "Línea de pedido de venta"
 
 #. module: sale_order_product_assortment
 #: code:addons/sale_order_product_assortment/models/sale_order.py:0
@@ -75,6 +57,15 @@ msgstr ""
 "Este SO contiene uno o más productos que no están permitidos para el socio "
 "%s:\n"
 "- %s"
+
+#~ msgid "Product"
+#~ msgstr "Producto"
+
+#~ msgid "Product with allowed list"
+#~ msgstr "Producto con lista permitida"
+
+#~ msgid "Sales Order Line"
+#~ msgstr "Línea de pedido de venta"
 
 #~ msgid "Blacklisted Products"
 #~ msgstr "Productos en lista negra"

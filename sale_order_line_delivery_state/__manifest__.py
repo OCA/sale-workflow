@@ -4,13 +4,16 @@
 {
     "name": "Sale Order Line Delivery State",
     "summary": "Show the delivery state on the sale order line",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.1.0",
     "category": "Product",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
     "depends": ["sale"],
-    "data": ["views/sale_order_views.xml"],
+    "data": [
+        "views/sale_order_views.xml",
+        "views/sale_order_line_views.xml",
+    ],
     "demo": [],
 }

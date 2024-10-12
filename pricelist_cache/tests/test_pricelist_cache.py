@@ -497,3 +497,24 @@ class TestPricelistCache(TestPricelistCacheCommon):
         self.cache_model.cron_reset_pricelist_cache()
         new_max_cache_id = max(self.cache_model.search([]).ids)
         self.assertEqual(new_max_cache_id, old_max_cache_id)
+
+    @freeze_time("2021-03-15")
+    def test_pricelist_price_item_expiry(self):
+        current_prices = self.cache_model.get_cached_prices_for_pricelist(
+            self.list1, self.p6
+        )
+        self.assert_price_equal(self.list1, self.p6, current_prices.price)
+        # expire the product specific pricelist item
+        item = self.env["product.pricelist.item"].search(
+            [
+                ("product_id", "=", self.p6.id),
+                ("pricelist_id", "=", self.list1.id),
+            ]
+        )
+        item.write({"date_end": "2021-03-14"})
+        self.assert_price_equal(self.list1, self.p6, 100)
+        # next expire all of the pricelist items
+        items = self.list1.item_ids
+        items.write({"date_end": "2021-03-14"})
+        # expecting the product list price when all pricelist items are expired
+        self.assert_price_equal(self.list1, self.p6, self.p6.list_price)

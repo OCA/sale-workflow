@@ -14,6 +14,16 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_by_packaging
+#: model:ir.model.fields,field_description:sale_by_packaging.field_product_packaging__active
+msgid "Active"
+msgstr ""
+
+#. module: sale_by_packaging
+#: model_terms:ir.ui.view,arch_db:sale_by_packaging.product_packaging_form_view_inherit
+msgid "Archived"
+msgstr ""
+
+#. module: sale_by_packaging
 #: model:ir.model.fields,field_description:sale_by_packaging.field_product_packaging__can_be_sold
 #: model:ir.model.fields,field_description:sale_by_packaging.field_product_packaging_type__can_be_sold
 msgid "Can be sold"
@@ -78,6 +88,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_by_packaging.field_product_product__sell_only_by_packaging
 #: model:ir.model.fields,field_description:sale_by_packaging.field_product_template__sell_only_by_packaging
 msgid "Only sell by packaging"
+msgstr ""
+
+#. module: sale_by_packaging
+#: model:ir.model.fields,field_description:sale_by_packaging.field_sale_order_line__product_packaging
+msgid "Package"
 msgstr ""
 
 #. module: sale_by_packaging

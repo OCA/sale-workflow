@@ -144,6 +144,7 @@ setuptools.setup(
         'odoo14-addon-sale_transaction_form_link',
         'odoo14-addon-sale_triple_discount',
         'odoo14-addon-sale_validity',
+        'odoo14-addon-sale_validity_auto_cancel',
         'odoo14-addon-sale_wishlist',
         'odoo14-addon-sales_team_security',
         'odoo14-addon-sales_team_security_crm',

@@ -4,7 +4,7 @@
 {
     "name": "Sale Order Product Assortment",
     "summary": "Module that allows to use the assortments on sale orders",
-    "version": "14.0.1.0.1",
+    "version": "14.0.2.0.0",
     "development_status": "Beta",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
@@ -12,6 +12,6 @@
     "maintainers": ["CarlosRoca13"],
     "license": "AGPL-3",
     "installable": True,
-    "depends": ["sale", "product_assortment"],
+    "depends": ["sale", "product_assortment", "base_view_inheritance_extension"],
     "data": ["views/sale_order_view.xml"],
 }

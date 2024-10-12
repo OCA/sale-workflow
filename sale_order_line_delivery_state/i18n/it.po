@@ -56,6 +56,11 @@ msgid "Force delivery state"
 msgstr "Forza lo stato della consegna"
 
 #. module: sale_order_line_delivery_state
+#: model_terms:ir.ui.view,arch_db:sale_order_line_delivery_state.view_order_line_search
+msgid "Goods Not Delivered"
+msgstr ""
+
+#. module: sale_order_line_delivery_state
 #: model:ir.model.fields,field_description:sale_order_line_delivery_state.field_sale_order_line__id
 msgid "ID"
 msgstr "ID"
