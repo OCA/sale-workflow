@@ -28,14 +28,6 @@ class SaleWorkflowProcess(models.Model):
         return self.env["ir.filters"].browse()
 
     name = fields.Char(required=True)
-    picking_policy = fields.Selection(
-        selection=[
-            ("direct", "Deliver each product when available"),
-            ("one", "Deliver all products at once"),
-        ],
-        string="Shipping Policy",
-        default="direct",
-    )
     validate_order = fields.Boolean()
     send_order_confirmation_mail = fields.Boolean(
         help="When checked, after order confirmation, a confirmation email will be "

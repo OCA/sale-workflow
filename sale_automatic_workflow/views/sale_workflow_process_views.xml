@@ -171,15 +171,17 @@
                             <div class="col-sm-8">
                                 <label
                                     for="send_invoice_filter_id"
-                                    attrs="{'required':[('send_invoice','=',True)], 'invisible':[('send_invoice','!=',True)]}"
+                                    required="send_invoice"
+                                    invisible="not send_invoice"
                                 />
                                 <div
-                                    attrs="{'required':[('send_invoice','=',True)], 'invisible':[('send_invoice','!=',True)]}"
+                                    required="send_invoice"
+                                    invisible="not send_invoice"
                                 >
                                     <field
                                         name="send_invoice_filter_domain"
                                         widget="domain"
-                                        attrs="{'invisible': [('send_invoice_filter_id', '=', False)]}"
+                                        invisible="not send_invoice_filter_id"
                                         options="{'model': 'account.move'}"
                                     />
                                     <div class="oe_edit_only oe_inline">
