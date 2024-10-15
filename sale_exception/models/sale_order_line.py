@@ -4,6 +4,7 @@
 import html
 
 from odoo import api, fields, models
+from odoo.fields import Command
 
 
 class SaleOrderLine(models.Model):
@@ -37,12 +38,11 @@ class SaleOrderLine(models.Model):
                 rec.exceptions_summary = False
 
     def _get_exception_summary(self):
-        return "<ul>%s</ul>" % "".join(
-            [
-                f"<li>{html.escape(e.name)}: <i>{html.escape(e.description)}</i></li>"
-                for e in self.exception_ids
-            ]
+        items = "".join(
+            f"<li>{html.escape(e.name)}: <i>{html.escape(e.description)}</i></li>"
+            for e in self.exception_ids
         )
+        return f"<ul>{items}</ul>"
 
     def _get_main_records(self):
         return self.mapped("order_id")
@@ -56,6 +56,6 @@ class SaleOrderLine(models.Model):
         # Thanks to the new flush of odoo 13.0, queries will be optimized
         # together at the end even if we update the exception_ids many times.
         # On previous versions, this could be unoptimized.
-        (self - records).exception_ids = [(3, rule.id)]
-        records.exception_ids = [(4, rule.id)]
+        (self - records).exception_ids = [Command.unlink(rule.id)]
+        records.exception_ids = [Command.link(rule.id)]
         return records.mapped("order_id")

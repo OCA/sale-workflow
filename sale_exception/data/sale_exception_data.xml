@@ -7,8 +7,6 @@
         <field name="user_id" ref="base.user_root" />
         <field name="interval_number">20</field>
         <field name="interval_type">minutes</field>
-        <field name="numbercall">-1</field>
-        <field eval="False" name="doall" />
         <field name="model_id" ref="sale.model_sale_order" />
         <field name="state">code</field>
         <field name="code">model.test_all_draft_orders()</field>
