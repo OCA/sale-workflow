@@ -42,6 +42,13 @@ class SaleOrder(models.Model):
                                 invoice.company_id,
                                 invoice.invoice_date or fields.Date.today(),
                             )
+                        elif (
+                            invoice.currency_id == rec.currency_id
+                            and invoice.currency_id != invoice.company_currency_id
+                        ):
+                            rec.invoiced_amount += (
+                                invoice.amount_total_in_currency_signed
+                            )
                         else:
                             rec.invoiced_amount += invoice.amount_total_signed
                 # Uninvoiced amount could not be equal to total - invoiced amount.
