@@ -8,10 +8,10 @@
             <form string="Blocked in draft due to exceptions">
                 <group>
                     <field name="exception_ids" nolabel="1" colspan="2">
-                        <tree>
+                        <list>
                             <field name="name" />
                             <field name="description" />
-                        </tree>
+                        </list>
                     </field>
                     <newline />
                     <field name="ignore" groups='sales_team.group_sale_manager' />
