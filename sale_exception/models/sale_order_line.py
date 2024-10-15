@@ -37,12 +37,11 @@ class SaleOrderLine(models.Model):
                 rec.exceptions_summary = False
 
     def _get_exception_summary(self):
-        return "<ul>%s</ul>" % "".join(
-            [
-                f"<li>{html.escape(e.name)}: <i>{html.escape(e.description)}</i></li>"
-                for e in self.exception_ids
-            ]
+        items = "".join(
+            f"<li>{html.escape(e.name)}: <i>{html.escape(e.description)}</i></li>"
+            for e in self.exception_ids
         )
+        return f"<ul>{items}</ul>"
 
     def _get_main_records(self):
         return self.mapped("order_id")

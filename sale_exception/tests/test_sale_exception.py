@@ -133,7 +133,7 @@ class TestSaleException(TransactionCase):
         # Simulation the opening of the wizard sale_exception_confirm and
         # set ignore_exception to True
         so_except_confirm = self.sale_exception_confirm.with_context(
-            **{"active_id": so1.id, "active_ids": [so1.id], "active_model": so1._name}
+            **{"id": so1.id, "ids": [so1.id], "active_model": so1._name}
         ).create({"ignore": True})
         so_except_confirm.action_confirm()
         self.assertTrue(so1.ignore_exception)
@@ -200,8 +200,8 @@ class TestSaleException(TransactionCase):
         sale_order.action_confirm()
         so_except_confirm = self.sale_exception_confirm.with_context(
             **{
-                "active_id": sale_order.id,
-                "active_ids": [sale_order.id],
+                "id": sale_order.id,
+                "ids": [sale_order.id],
                 "exception_ids": [exception.id],
                 "active_model": sale_order._name,
             }

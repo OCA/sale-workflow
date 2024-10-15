@@ -4,8 +4,8 @@
     <record id="action_sale_test_tree" model="ir.actions.act_window">
         <field name="name">Sale Exception Rules</field>
         <field name="res_model">exception.rule</field>
-        <field name="view_mode">tree,form</field>
-        <field name="view_id" ref="base_exception.view_exception_rule_tree" />
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="base_exception.view_exception_rule_list" />
         <field
             name="domain"
         >[('model', 'in', ['sale.order', 'sale.order.line'])]</field>
@@ -64,10 +64,10 @@
                     <field name="exceptions_summary" />
                 </div>
             </xpath>
-            <xpath expr="//field[@name='order_line']/tree" position="inside">
+            <xpath expr="//field[@name='order_line']/list" position="inside">
                 <field name="is_exception_danger" column_invisible="1" />
             </xpath>
-            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+            <xpath expr="//field[@name='order_line']/list" position="attributes">
                 <attribute name="decoration-danger">is_exception_danger</attribute>
             </xpath>
         </field>
