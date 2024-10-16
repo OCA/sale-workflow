@@ -263,3 +263,39 @@ class TestSaleOrderType(common.TransactionCase):
     def test_res_partner_copy_data(self):
         new_partner = self.partner.copy()
         self.assertEqual(self.partner.sale_type, new_partner.sale_type)
+
+    def test_avoid_bank_recomputation(self):
+        first_bank_account = (
+            self.env["res.partner.bank"]
+            .search([], limit=1)
+            .copy({"partner_id": self.partner.id})
+        )
+        second_bank_account = first_bank_account.copy(
+            {
+                "acc_number": first_bank_account.acc_number.replace("1", "2"),
+                "sequence": first_bank_account.sequence + 10,
+            }
+        )
+        inv_form = Form(
+            self.env["account.move"].with_context(default_move_type="in_invoice")
+        )
+        inv_form.partner_id = self.partner
+        inv_form.invoice_date = fields.Date.today()
+        with inv_form.invoice_line_ids.new() as inv_line:
+            inv_line.product_id = self.product
+            inv_line.quantity = 1.0
+            inv_line.price_unit = 10.0
+        vendor_bill = inv_form.save()
+        vendor_bill.partner_bank_id = second_bank_account
+        vendor_bill.action_post()
+        register_payment_action = vendor_bill.action_register_payment()
+        register_payment_wiz_form = Form(
+            self.env[register_payment_action["res_model"]].with_context(
+                **register_payment_action["context"]
+            )
+        )
+        self.assertEqual(register_payment_wiz_form.partner_bank_id, second_bank_account)
+        register_payment_wiz = register_payment_wiz_form.save()
+        payment_action = register_payment_wiz.action_create_payments()
+        payment = self.env[payment_action["res_model"]].browse(payment_action["res_id"])
+        self.assertEqual(payment.partner_bank_id, second_bank_account)

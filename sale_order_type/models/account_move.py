@@ -48,6 +48,11 @@ class AccountMove(models.Model):
                 )
                 if sale_type:
                     record.sale_type_id = sale_type
+            # Add manually field to compute, as using api.depends on its compute function would
+            #  trigger unwanted recomputation of partner_bank_id on vendor bills
+            self.env.add_to_compute(
+                self.env["account.move"]._fields["journal_id"], record
+            )
 
     @api.depends("sale_type_id")
     def _compute_invoice_payment_term_id(self):
@@ -56,9 +61,8 @@ class AccountMove(models.Model):
             move.invoice_payment_term_id = move.sale_type_id.payment_term_id
         return res
 
-    @api.depends("sale_type_id")
-    def _compute_journal_id(self):
-        res = super()._compute_journal_id()
-        for move in self.filtered("sale_type_id.journal_id"):
-            move.journal_id = move.sale_type_id.journal_id
-        return res
+    def _search_default_journal(self):
+        sale_type_journal = self.sale_type_id.journal_id
+        if sale_type_journal:
+            return sale_type_journal
+        return super()._search_default_journal()
