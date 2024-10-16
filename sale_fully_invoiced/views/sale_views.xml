@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_form_filter_invoice_status_validated" model="ir.ui.view">
+        <field name="name">sale.order.form.filter.invoice_status_validated</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="invoice_status_validated" invisible="1" />
+            </field>
+        </field>
+    </record>
+    <record
+        id="fully_invoice_delivered_filters_view_fully_invoice_validated_search"
+        model="ir.ui.view"
+    >
+        <field name="name">fully_invoice_delivered_filters</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <filter name="my_sale_orders_filter" position="after">
+                <filter
+                    name="fully_invoice_validated"
+                    string="Fully Invoiced and Validated"
+                    domain="[('invoice_status_validated', '=', 'invoiced')]"
+                    help="Sale orders that are Fully Invoiced and with all invoices validated"
+                />
+            </filter>
+        </field>
+    </record>
+
+</odoo>
