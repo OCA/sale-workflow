@@ -19,7 +19,7 @@ msgstr ""
 #. module: sale_loyalty_exclude
 #: model:ir.model.fields,field_description:sale_loyalty_exclude.field_loyalty_reward__discount_product_ids
 msgid "Discounted Products"
-msgstr ""
+msgstr "Productos con descuento"
 
 #. module: sale_loyalty_exclude
 #: model_terms:ir.ui.view,arch_db:sale_loyalty_exclude.product_template_form_view
@@ -35,7 +35,7 @@ msgstr "Excluir producto en programas de descuento"
 #. module: sale_loyalty_exclude
 #: model:ir.model,name:sale_loyalty_exclude.model_loyalty_reward
 msgid "Loyalty Reward"
-msgstr ""
+msgstr "Recompensa de fidelidad"
 
 #. module: sale_loyalty_exclude
 #: model:ir.model,name:sale_loyalty_exclude.model_product_template
@@ -45,7 +45,14 @@ msgstr "Producto"
 #. module: sale_loyalty_exclude
 #: model:ir.model,name:sale_loyalty_exclude.model_sale_order
 msgid "Sales Order"
-msgstr "Pedidos de venta"
+msgstr "Pedido de venta"
+
+#. module: sale_loyalty_exclude
+#. odoo-python
+#: code:addons/sale_loyalty_exclude/models/sale_order.py:0
+#, python-format
+msgid "This code is invalid."
+msgstr "Este código no es válido."
 
 #. module: sale_loyalty_exclude
 #: model:ir.model.fields,help:sale_loyalty_exclude.field_product_product__loyalty_exclude
