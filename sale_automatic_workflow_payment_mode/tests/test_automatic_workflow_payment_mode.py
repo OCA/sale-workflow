@@ -25,7 +25,7 @@ class TestAutomaticWorkflowPaymentMode(TestCommon, TestAutomaticWorkflowMixin):
         )
 
     def setUp(self):
-        super(TestAutomaticWorkflowPaymentMode, self).setUp()
+        super().setUp()
         Method_get_payment_method_information = (
             AccountPaymentMethod._get_payment_method_information
         )
