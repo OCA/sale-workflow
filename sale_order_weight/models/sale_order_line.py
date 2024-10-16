@@ -15,10 +15,12 @@ class SaleOrderLine(models.Model):
     total_ordered_weight = fields.Float(
         compute='_compute_total_ordered_weight',
         string='Total Ordered Weight',
+        store=True
     )
     total_delivered_weight = fields.Float(
         compute='_compute_total_delivered_weight',
         string='Total Delivered Weight',
+        store=True
     )
 
     @api.onchange('product_id')

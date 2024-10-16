@@ -1,0 +1,53 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * sale_order_weight
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-28 22:17+0000\n"
+"PO-Revision-Date: 2023-11-28 22:17+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_weight
+#: model_terms:ir.ui.view,arch_db:sale_order_weight.view_order_form_inherit
+msgid "Recalculate weight"
+msgstr "Recalculer le poids"
+
+#. module: sale_order_weight
+#: model:ir.model,name:sale_order_weight.model_sale_order
+msgid "Sale Order"
+msgstr "Bon de commande"
+
+#. module: sale_order_weight
+#: model:ir.model,name:sale_order_weight.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de bons de commande"
+
+#. module: sale_order_weight
+#: model:ir.model.fields,field_description:sale_order_weight.field_sale_order__total_delivered_weight
+#: model:ir.model.fields,field_description:sale_order_weight.field_sale_order_line__total_delivered_weight
+#: model_terms:ir.ui.view,arch_db:sale_order_weight.quotation_weight_view_form
+#: model_terms:ir.ui.view,arch_db:sale_order_weight.sale_order_weight_view_form
+msgid "Total Delivered Weight"
+msgstr "Poids livré"
+
+#. module: sale_order_weight
+#: model:ir.model.fields,field_description:sale_order_weight.field_sale_order__total_ordered_weight
+#: model:ir.model.fields,field_description:sale_order_weight.field_sale_order_line__total_ordered_weight
+#: model_terms:ir.ui.view,arch_db:sale_order_weight.quotation_weight_view_form
+#: model_terms:ir.ui.view,arch_db:sale_order_weight.sale_order_weight_view_form
+msgid "Total Ordered Weight"
+msgstr "Poids commandé"
+
+#. module: sale_order_weight
+#: model:ir.model.fields,field_description:sale_order_weight.field_sale_order_line__unit_weight
+msgid "Unit Weight"
+msgstr "Poids unitaire"
+
