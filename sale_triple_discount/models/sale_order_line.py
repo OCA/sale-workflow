@@ -4,6 +4,8 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from contextlib import contextmanager
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
@@ -66,9 +68,8 @@ class SaleOrderLine(models.Model):
 
     @api.depends("discount2", "discount3", "discounting_type")
     def _compute_amount(self):
-        prev_values = self.triple_discount_preprocess()
-        res = super()._compute_amount()
-        self.triple_discount_postprocess(prev_values)
+        with self._aggregated_discount() as lines:
+            res = super(SaleOrderLine, lines)._compute_amount()
         return res
 
     _sql_constraints = [
@@ -93,37 +94,40 @@ class SaleOrderLine(models.Model):
         res.update({"discount2": self.discount2, "discount3": self.discount3})
         return res
 
-    def triple_discount_preprocess(self):
-        """Prepare data for post processing.
-
-        Save the values of the discounts in a dictionary,
-        to be restored in postprocess.
-        Resetting every discount except the main one to 0.0 avoids issues if
-        this method is called multiple times.
-        Updating the cache provides consistency through re-computations."""
-        prev_values = dict()
-        self.invalidate_recordset(self._discount_fields())
-        for line in self:
-            prev_values[line] = {
-                fname: line[fname] for fname in self._discount_fields()
-            }
-
-            vals = {fname: 0 for fname in self._discount_fields()}
-            vals["discount"] = line._get_final_discount()
-
-            line._cache.update(vals)
-        return prev_values
-
-    @api.model
-    def triple_discount_postprocess(self, prev_values):
-        """Restore the discounts of the lines in the dictionary prev_values.
-        Updating the cache provides consistency through re-computations."""
-        self.invalidate_recordset(self._discount_fields())
-        for line, prev_vals_dict in list(prev_values.items()):
-            line.update(prev_vals_dict)
+    @contextmanager
+    def _aggregated_discount(self):
+        """A context manager to temporarily change the discount value on the
+        records and restore it after the context is exited. It temporarily
+        changes the discount value to the aggregated discount value so that
+        methods that depend on the discount value will use the aggregated
+        discount value instead of the original one.
+        """
+        discount_field = self._fields["discount"]
+        # Protect discount field from triggering recompute of totals. We don't want
+        # to invalidate the cache to avoid to flush the records to the database.
+        # This is safe because we are going to restore the original value at the end
+        # of the method.
+        with self.env.protecting([discount_field], self):
+            old_values = {}
+            for line in self:
+                old_values[line.id] = line.discount
+                aggregated_discount = line._get_final_discount()
+                line.update({"discount": aggregated_discount})
+            yield self.with_context(discount_is_aggregated=True)
+            for line in self:
+                if line.id not in old_values:
+                    continue
+                line.with_context(
+                    restoring_triple_discount=True,
+                ).update({"discount": old_values[line.id]})
 
     def _convert_to_tax_base_line_dict(self):
         self.ensure_one()
+        discount = (
+            self.discount
+            if self.env.context.get("discount_is_aggregated")
+            else self._get_final_discount()
+        )
         return self.env["account.tax"]._convert_to_tax_base_line_dict(
             self,
             partner=self.order_id.partner_id,
@@ -132,6 +136,6 @@ class SaleOrderLine(models.Model):
             taxes=self.tax_id,
             price_unit=self.price_unit,
             quantity=self.product_uom_qty,
-            discount=self._get_final_discount(),
+            discount=discount,
             price_subtotal=self.price_subtotal,
         )
