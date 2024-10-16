@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 KMWW
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="sale_order_form_view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Properties">
+                    <div colspan="8">
+                        <field
+                            name="properties"
+                            nolabel="1"
+                            columns="2"
+                            hideKanbanOption="1"
+                        />
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+
+
+</odoo>
