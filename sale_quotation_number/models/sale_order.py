@@ -43,8 +43,11 @@ class SaleOrder(models.Model):
         return super().copy(default)
 
     def action_confirm(self):
+        sequence = self.env["ir.sequence"].search(
+            [("code", "=", "sale.quotation")], limit=1
+        )
         for order in self:
-            if self.name[:2] != "SQ":
+            if sequence and self.name[: len(sequence.prefix)] != sequence.prefix:
                 continue
             if order.state not in ("draft", "sent") or order.company_id.keep_name_so:
                 continue
