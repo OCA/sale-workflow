@@ -26,14 +26,39 @@ patch(X2ManyField.prototype, "sale_order_product_picker.X2ManyField", {
             (this.field.relation === "sale.order.line" &&
                 "picker_ids" in this.props.record.model.root.data)
         ) {
-            const lineList = this.props.record.model.root.data.order_line;
+            var lineList = this.props.record.model.root.data.order_line;
             const {saveRecord, updateRecord, removeRecord} = useX2ManyCrud(
                 () => lineList,
                 false
             );
+            const getPriceDiscount = async (object) => {
+                const productRecords = lineList.records.filter(
+                    (r) => r.data.product_id[0] === object.data.product_id[0]
+                );
+                if (productRecords.length < 1) {
+                    return [0, 0, 0, true];
+                }
+                const discounts = new Set();
+                const prices = new Set();
+                for (var record of productRecords) {
+                    discounts.add(record.data.discount);
+                    prices.add(record.data.price_reduce);
+                }
+                const disc_size = discounts.size;
+                var disc = 0;
+                var price = 0;
+                if (disc_size == 1) {
+                    [disc] = discounts;
+                }
+                if (prices.size === 1) {
+                    [price] = prices;
+                }
+                return [disc, price, disc_size];
+            };
             const newSaveRecord = async (object) => {
                 // Function used when creating a new record.
                 const res = await saveRecord(object);
+                const price_discount = await getPriceDiscount(object);
                 const picker_record = this.props.record.data.picker_ids.records.filter(
                     (pickRecord) =>
                         JSON.stringify(pickRecord.data.product_id) ===
@@ -45,16 +70,24 @@ patch(X2ManyField.prototype, "sale_order_product_picker.X2ManyField", {
                             picker_record.data.product_uom_qty +
                             object.data.product_uom_qty,
                         is_in_order: true,
+                        discount: price_discount[0],
+                        multiple_discounts: price_discount[2] > 1,
+                        line_price_reduce: price_discount[1],
                     });
                 }
                 return res;
             };
-            const newUpdateRecord = (record) => {
+            const newUpdateRecord = async (record) => {
                 // Function used when updating a record.
-                const res = updateRecord(record);
+                // Need to redefine lineList to avoid search on outdated list.
+                // If it isn't done when saving the order and trying to edit
+                // the created line an error is thrown.
+                lineList = this.props.record.model.root.data.order_line;
                 const last_qty = lineList.records.filter(
                     (r) => r.__bm_handle__ === record.__bm_handle__
                 )[0].data.product_uom_qty;
+                const res = await updateRecord(record);
+                const price_discount = await getPriceDiscount(record);
                 const picker_record = this.props.record.data.picker_ids.records.filter(
                     (pickRecord) =>
                         JSON.stringify(pickRecord.data.product_id) ===
@@ -67,28 +100,44 @@ patch(X2ManyField.prototype, "sale_order_product_picker.X2ManyField", {
                         is_in_order: Boolean(
                             picker_record.data.product_uom_qty + diff_qty
                         ),
+                        discount: price_discount[0],
+                        multiple_discounts: price_discount[2] > 1,
+                        line_price_reduce: price_discount[1],
                     });
                 }
                 return res;
             };
-            const newRemoveRecord = (record) => {
+            const newRemoveRecord = async (record) => {
                 // Function used when removing a record.
-                const res = removeRecord(record);
+                // Need to redefine lineList to avoid search on outdated list.
+                // If it isn't done when saving the order and trying to remove
+                // the created line an error is thrown.
+                lineList = this.props.record.model.root.data.order_line;
                 const last_qty = lineList.records.filter(
                     (r) => r.__bm_handle__ === record.__bm_handle__
                 )[0].data.product_uom_qty;
+                const res = await removeRecord(record);
+                const price_discount = await getPriceDiscount(record);
                 const picker_record = this.props.record.data.picker_ids.records.filter(
                     (pickRecord) =>
                         JSON.stringify(pickRecord.data.product_id) ===
                         JSON.stringify(record.data.product_id)
                 )[0];
                 if (picker_record) {
-                    picker_record.update({
+                    var vals = {
                         product_uom_qty: picker_record.data.product_uom_qty - last_qty,
                         is_in_order: Boolean(
                             picker_record.data.product_uom_qty - last_qty
                         ),
-                    });
+                        discount: price_discount[0],
+                        multiple_discounts: price_discount[2] > 1,
+                        line_price_reduce: price_discount[1],
+                    };
+                    if (price_discount[3]) {
+                        vals.compute_price_unit = price_discount[3];
+                        vals.sale_line_id = false;
+                    }
+                    picker_record.update(vals);
                 }
                 return res;
             };
