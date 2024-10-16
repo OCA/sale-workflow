@@ -31,13 +31,17 @@ class SaleOrderLine(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        moves_to_upd = set()
         if "commitment_date" in vals:
-            for move in self.move_ids:
-                if move.state not in ["cancel", "done"]:
-                    moves_to_upd.add(move.id)
-        if moves_to_upd:
-            self.env["stock.move"].browse(moves_to_upd).write(
-                {"date_deadline": vals.get("commitment_date")}
-            )
+            if vals.get("commitment_date"):
+                self.move_ids.filtered(
+                    lambda sm: sm.state not in ["cancel", "done"]
+                ).write({"date_deadline": vals.get("commitment_date")})
+            else:
+                for line in self:
+                    date_deadline = (
+                        line.order_id.commitment_date or line._expected_date()
+                    )
+                    line.move_ids.filtered(
+                        lambda sm: sm.state not in ["cancel", "done"]
+                    ).write({"date_deadline": date_deadline})
         return res
