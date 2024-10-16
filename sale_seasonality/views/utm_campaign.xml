@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Akretion
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="utm_campaign_form_view">
+        <field name="name">utm.campaign.form (in product_campaign_seasonality)</field>
+        <field name="model">utm.campaign</field>
+        <field name="inherit_id" ref="utm.utm_campaign_view_form" />
+        <field name="arch" type="xml">
+            <field name="tag_ids" position="after">
+                <field name="seasonality_id" />
+                <field name="start_date" />
+                <field name="end_date" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="utm_campaign_search_view">
+        <field name="name">utm.campaign.search (in product_campaign_seasonality)</field>
+        <field name="model">utm.campaign</field>
+        <field name="inherit_id" ref="utm.view_utm_campaign_view_search" />
+        <field name="arch" type="xml">
+            <field name="tag_ids" position="after">
+                <field name="seasonality_id" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="utm_campaign_tree_view">
+        <field name="name">utm.campaign.tree (in product_campaign_seasonality)</field>
+        <field name="model">utm.campaign</field>
+        <field name="inherit_id" ref="utm.utm_campaign_view_tree" />
+        <field name="arch" type="xml">
+            <field name="stage_id" position="after">
+                <field name="seasonality_id" />
+                <field name="start_date" optional="hide" />
+                <field name="end_date" optional="hide" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

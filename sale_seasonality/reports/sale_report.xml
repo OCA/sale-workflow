@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_order_product_search" model="ir.ui.view">
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale.view_order_product_search" />
+        <field name="priority" eval="50" />
+        <field name="arch" type="xml">
+            <filter name="company" position="after">
+                <filter
+                    string="Seasonality"
+                    name="seasonality_id"
+                    context="{'group_by':'seasonality_id'}"
+                />
+                <filter
+                    string="Campaign"
+                    name="campaign_id"
+                    context="{'group_by':'campaign_id'}"
+                />
+            </filter>
+        </field>
+    </record>
+
+</odoo>
