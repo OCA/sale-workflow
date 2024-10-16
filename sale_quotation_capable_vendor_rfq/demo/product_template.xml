@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo noupdate="0">
+    <record model="product.template" id="product_a">
+        <field name="name">Product A</field>
+        <field name="categ_id" ref="product.product_category_all" />
+        <field name="list_price">100</field>
+        <field name="standard_price">50</field>
+    </record>
+    <record model="product.template" id="product_b">
+        <field name="name">Product B</field>
+        <field name="categ_id" ref="product.product_category_all" />
+        <field name="list_price">120</field>
+        <field name="standard_price">70</field>
+    </record>
+</odoo>
