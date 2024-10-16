@@ -85,7 +85,7 @@ addon | version | maintainers | summary
 [sale_order_tag](sale_order_tag/) | 12.0.1.0.0 | [![patrickrwilson](https://github.com/patrickrwilson.png?size=30px)](https://github.com/patrickrwilson) | Adds Tags to Sales Orders.
 [sale_order_transmit_method](sale_order_transmit_method/) | 12.0.1.0.0 |  | Set transmit method (email, post, portal, ...) in sale order and propagate it to invoices
 [sale_order_type](sale_order_type/) | 12.0.1.3.0 |  | Sale Order Type
-[sale_order_weight](sale_order_weight/) | 12.0.1.0.2 |  | Sale Order Weight
+[sale_order_weight](sale_order_weight/) | 12.0.1.1.0 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Sale Order Weight
 [sale_partner_incoterm](sale_partner_incoterm/) | 12.0.1.0.1 |  | Set the customer preferred incoterm on each sales order
 [sale_pricelist_technical](sale_pricelist_technical/) | 12.0.1.0.1 | [![legalsylvain](https://github.com/legalsylvain.png?size=30px)](https://github.com/legalsylvain) | Prevent some pricelists from being selected on order and customer forms
 [sale_procurement_group_by_commitment_date](sale_procurement_group_by_commitment_date/) | 12.0.1.0.0 |  | Groups pickings based on commitment date of order line
