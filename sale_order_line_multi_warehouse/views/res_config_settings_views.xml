@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Manuel Regidor <manuel.regidor@sygel.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record
+        id="so_line_multi_warehouse_res_config_settings_view_form"
+        model="ir.ui.view"
+    >
+        <field name="name">so.line.multi.warehouse.res.config.settings.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="stock.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='warehouse_setting_container']" position="inside">
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_left_pane">
+                        <field name="allow_sale_multi_warehouse" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="allow_sale_multi_warehouse" />
+                        <div class="text-muted">
+                            Sale Order Lines can be split into multiple pickings, depending on the selected warehouse.
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

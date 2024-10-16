@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Manuel Regidor <manuel.regidor@sygel.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="so_multi_warehouse_change_wizard_view" model="ir.ui.view">
+        <field name="name">so.multi.warehouse.change.wizard.view</field>
+        <field name="model">so.multi.warehouse.change.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="sale_order_id" invisible="1" />
+                    <field name="current_warehouse_id" />
+                    <field
+                        name="new_warehouse_id"
+                        options="{'no_create': True, 'no_open': True}"
+                    />
+                </group>
+                <div
+                    attrs="{'invisible': ['|', ('so_multi_warehouse_change_line_ids', '!=', []), ('new_warehouse_id', '=', False)]}"
+                >
+                    <p style="color: blue;">
+                        No incompatibility found in sale order lines warehouse assignments with the warehouse selected in the "New Warehouse" field. It is totally safe to proceed as no changes in sale order lines warehouse assignments warehouses will be applied.
+                    </p>
+                </div>
+                <div
+                    attrs="{'invisible': ['|', ('so_multi_warehouse_change_line_ids', '=', []), ('new_warehouse_id', '=', False)]}"
+                >
+                    <p style="color: red;">
+                        The following warehouse distribution lines have incompatible warehouses with the new one. If the warehouse is changed, these lines' warehouses will be updated to the new warehouse.
+                    </p>
+                </div>
+                <group
+                    attrs="{'invisible': [('so_multi_warehouse_change_line_ids', '=', [])]}"
+                >
+                    <field
+                        name="so_multi_warehouse_change_line_ids"
+                        string="Incompatibilities"
+                    >
+                        <tree>
+                            <field name="product_id" />
+                            <field name="product_uom_qty" />
+                            <field name="product_uom_id" />
+                            <field name="warehouse_id" />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button
+                        string="Change Warehouse"
+                        name="change_warehouse"
+                        type="object"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('new_warehouse_id', '=', False)]}"
+                        confirm="Are you sure? Some warehouse distribution lines' warehouses might be updated."
+                    />
+                    <button special="cancel" class="btn-default" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
