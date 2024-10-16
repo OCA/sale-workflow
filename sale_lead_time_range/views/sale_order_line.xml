@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sale_order_line_inherited_form" model="ir.ui.view">
+        <field name="name">sale.order.line.inherited.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']//form//label[@for='customer_lead']"
+                position="attributes"
+            >
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//form//div[@name='lead']"
+                position="attributes"
+            >
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//form//div[@name='lead']"
+                position="after"
+            >
+                <label for="customer_lead_range_value" />
+                <div name="lead_range">
+                    <field
+                        name="customer_lead_range_value"
+                        readonly="0"
+                        class="oe_inline"
+                    />
+                    <field
+                        name="customer_lead_range_type"
+                        class="oe_inline"
+                        required="True"
+                    />
+                </div>
+            </xpath>
+            <xpath expr="//tree//field[@name='customer_lead']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//tree//field[@name='customer_lead']" position="after">
+                <field name="customer_lead_range_value" optional="hide" />
+                <field name="customer_lead_range_type" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

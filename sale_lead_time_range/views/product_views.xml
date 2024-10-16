@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_product_template_inherit">
+        <field name="name">product.template.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[field[@name='sale_delay']]" position="attributes">
+                <attribute name="attrs">{'invisible': True}</attribute>
+            </xpath>
+              <xpath expr="//label[@for='sale_delay']" position="attributes">
+                <attribute name='invisible'>True</attribute>
+            </xpath>
+             <xpath expr="//group[@name='group_lots_and_weight']" position="inside">
+                 <label
+                    for="sale_delay_range_value"
+                    attrs="{'invisible': [('sale_ok', '=', False)]}"
+                />
+                <div attrs="{'invisible': [('sale_ok', '=', False)]}">
+                    <field
+                        name="sale_delay_range_value"
+                        readonly="0"
+                        class="oe_inline"
+                    />&amp;nbsp;
+                    <field
+                        name="sale_delay_range_type"
+                        class="oe_inline"
+                        required="True"
+                    />
+                </div>
+             </xpath>
+        </field>
+    </record>
+</odoo>
