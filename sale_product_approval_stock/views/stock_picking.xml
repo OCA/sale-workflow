@@ -1,0 +1,36 @@
+<odoo>
+    <record id="view_picking_form_inherit_stock" model="ir.ui.view">
+        <field name="name">stock.picking.form.state.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='operations']/field[@name='move_ids_without_package']/tree/field[@name='product_id']"
+                position="after"
+            >
+                <button
+                    attrs="{'invisible':['|', ('do_line_exceptions','=',True),'|',('product_id','=',False),('pick_state','in',('done','cancel'))]}"
+                    class="fa fa-exclamation-triangle"
+                    title="A product on this Delivery Order has been marked as not allowed."
+                />
+                <field invisible="1" name="do_line_exceptions" />
+                <field invisible="1" name="pick_state" />
+            </xpath>
+            <div name="button_box" position="after">
+                <field name="do_exceptions" invisible="1" />
+                <div
+                    attrs="{'invisible':['|',('do_exceptions','=',False),('state','in',('done','cancel'))]}"
+                    class="alert alert-warning text-center"
+                    role="alert"
+                >Exception: A product on this Delivery Order is in a status which needs to be fixed before moving forward.</div>
+            </div>
+            <field name="move_type" position="after">
+                <field
+                    name="override_exception"
+                    groups="sales_team.group_sale_manager"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
