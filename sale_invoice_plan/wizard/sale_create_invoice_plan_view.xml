@@ -1,0 +1,45 @@
+<odoo>
+    <record id="view_sale_create_invoice_plan" model="ir.ui.view">
+        <field name="name">Create Invoice Plan</field>
+        <field name="model">sale.create.invoice.plan</field>
+        <field name="arch" type="xml">
+            <form string="Create Invoice Plan">
+                <p class="oe_grey">
+                    This wizard help you quickly create invoice plan.
+                </p>
+                <group>
+                    <group>
+                        <field name="num_installment" />
+                        <field name="installment_date" />
+                    </group>
+                    <group>
+                        <field name="advance" />
+                        <label for="interval" />
+                        <div>
+                            <field name="interval" class="oe_inline" />
+                            <field name="interval_type" class="oe_inline" />
+                        </div>
+                    </group>
+                </group>
+                <footer>
+                    <button
+                        name="sale_create_invoice_plan"
+                        string="Create Invoice Plan"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="action_sale_create_invoice_plan" model="ir.actions.act_window">
+        <field name="name">Create Invoice Plan</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.create.invoice.plan</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <!-- <field name="binding_model_id" ref="sale.model_sale_order" /> -->
+    </record>
+</odoo>
