@@ -1,0 +1,2 @@
+This is a technical module which means it's designed to be used as a part of custom solutions.
+You need to add your price as **custom_base_price**​ kwargs key when calling **_get_product_price** function of the **product.pricelist** ​model.
