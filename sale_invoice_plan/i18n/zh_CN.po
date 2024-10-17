@@ -1,0 +1,455 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_invoice_plan
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-21 07:27+0000\n"
+"PO-Revision-Date: 2019-09-01 10:10+0000\n"
+"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"Language-Team: none\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_invoice_plan__invoice_type__advance
+msgid "Advance"
+msgstr "预付款"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__advance
+msgid "Advance on 1st Invoice"
+msgstr "第一张发票预付款"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__amount
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_tree
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_tree_readonly
+msgid "Amount"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__amount_invoiced
+#, fuzzy
+msgid "Amount Invoiced"
+msgstr "下一张发票"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__analytic_account_id
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Analytic Account"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
+msgid "Are you sure to remove this invoice plan?"
+msgstr "您确定要删除此发票计划吗？"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_order__invoice_plan_process
+msgid "At least one invoice plan line pending to create invoice"
+msgstr "至少有一个待创建发票的发票计划行"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_create_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
+msgid "Cancel"
+msgstr "取消"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
+msgid "Create All Remaining Invoices"
+msgstr "创建所有剩余发票"
+
+#. module: sale_invoice_plan
+#: model:ir.actions.act_window,name:sale_invoice_plan.action_sale_create_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_create_invoice_plan
+msgid "Create Invoice Plan"
+msgstr "创建发票计划"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
+msgid "Create Invoice by Plan"
+msgstr "按计划创建发票"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
+msgid "Create Next Inovice"
+msgstr "创建下一个发票"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__create_uid
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__create_uid
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__create_uid
+msgid "Created by"
+msgstr "创建者"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__create_date
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__create_date
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__create_date
+msgid "Created on"
+msgstr "创建时间"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__partner_id
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Customer"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_create_invoice_plan__interval_type__day
+msgid "Day"
+msgstr "天"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__display_name
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__display_name
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/tests/test_sale_invoice_plan.py:0
+#, python-format
+msgid "Down payment"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model,name:sale_invoice_plan.model_sale_create_invoice_plan
+msgid "Fillig invoice planning criteria"
+msgstr "填写发票计划标准"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Group By"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__id
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__id
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__invoiced
+msgid "If this line already invoiced"
+msgstr "如果此行已开具发票"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__to_invoice
+msgid "If this line is ready to create new invoice"
+msgstr "如果此行已准备好创建新发票"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_ids
+msgid "Inovice Plan"
+msgstr "发票计划"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__installment
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_invoice_plan__invoice_type__installment
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Installment"
+msgstr "分期付款"
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
+#, python-format
+msgid ""
+"Installment %s: already used and not allowed to delete.\n"
+"Please discard changes."
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__installment_date
+msgid "Installment Date"
+msgstr "分期付款日期"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__interval
+msgid "Interval"
+msgstr "间隔"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__interval_type
+msgid "Interval Type"
+msgstr "间隔类型"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoiced
+msgid "Invoice Created"
+msgstr "发票已创建"
+
+#. module: sale_invoice_plan
+#: model:ir.actions.act_window,name:sale_invoice_plan.action_view_sale_make_planned_invoice
+msgid "Invoice Order"
+msgstr "发票订单"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
+msgid "Invoice Plan"
+msgstr "发票计划"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_process
+msgid "Invoice Plan In Process"
+msgstr "发票计划正在处理中"
+
+#. module: sale_invoice_plan
+#: model:ir.model,name:sale_invoice_plan.model_sale_invoice_plan
+msgid "Invoice Planning Detail"
+msgstr "发票计划明细"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
+msgid "Invoice Sales Order"
+msgstr "发票销售订单"
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/models/sale.py:0
+#, python-format
+msgid "Invoice plan total percentage must not exceed 100%"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoice_move_ids
+msgid "Invoices"
+msgstr "发票"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_make_planned_invoice
+msgid ""
+"Invoices will be created in draft for this installment\n"
+"                        so that you can review them before validation."
+msgstr ""
+"将为此分期付款创建草稿发票\n"
+"                       这样您就可以在验证之前查看它们。"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__last
+msgid "Last Installment"
+msgstr "最后一期"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan____last_update
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan____last_update
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice____last_update
+msgid "Last Modified on"
+msgstr "最后修改时间"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__write_uid
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__write_uid
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__write_uid
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__write_date
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__write_date
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__write_date
+msgid "Last Updated on"
+msgstr "最后更新时间"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__last
+msgid "Last installment will create invoice use remaining amount"
+msgstr "最后一期创建发票将使用剩余金额"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_create_invoice_plan__interval_type__month
+msgid "Month"
+msgstr "月"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__to_invoice
+msgid "Next Invoice"
+msgstr "下一张发票"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__no_edit
+msgid "No Edit"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/tests/test_sale_invoice_plan.py:0
+#, python-format
+msgid "No installment raises following error : %s"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
+#, python-format
+msgid "No matched order line for invoice line"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/wizard/sale_create_invoice_plan.py:0
+#, python-format
+msgid "Number Installment must greater than 1"
+msgstr "分期付款必须大于1"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__num_installment
+msgid "Number of Installment"
+msgstr "分期付款"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__percent
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_total_percent
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_tree_readonly
+msgid "Percent"
+msgstr "百分比"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__plan_date
+msgid "Plan Date"
+msgstr "计划日期"
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
+#, fuzzy, python-format
+msgid ""
+"Plan quantity: %(plan_qty)s, exceed invoiceable quantity: "
+"%(invoiceable_qty)s\n"
+"Product should be delivered before invoice"
+msgstr ""
+"计划数量：%(plan_qty)s，超过可发票数量：%(invoiceable_qty)s\n"
+"产品应在发票前交付"
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/models/sale.py:0
+#, python-format
+msgid "Please fill percentage for all invoice plan lines"
+msgstr "请填写所有发票计划行的百分比"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Quotations"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_form
+msgid "Related Invoices"
+msgstr "相关发票"
+
+#. module: sale_invoice_plan
+#: model:ir.model,name:sale_invoice_plan.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr "销售预付款发票"
+
+#. module: sale_invoice_plan
+#: model:ir.actions.act_window,name:sale_invoice_plan.action_sale_invoice_plan
+#: model:ir.ui.menu,name:sale_invoice_plan.menu_sale_invoice_plan
+#, fuzzy
+msgid "Sales Invoice Plan"
+msgstr "使用发票计划"
+
+#. module: sale_invoice_plan
+#: model:ir.model,name:sale_invoice_plan.model_sale_order
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__sale_id
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Sales Order"
+msgstr "销售订单"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+#, fuzzy
+msgid "Sales Orders"
+msgstr "销售订单"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+#, fuzzy
+msgid "Search Sales Invoice Plan Lines"
+msgstr "创建发票计划"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__state
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Status"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__analytic_account_id
+msgid "The analytic account related to a sales order."
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__amount
+#, fuzzy
+msgid "This amount will be used to calculate the percent"
+msgstr "该百分比将用于计算新数量"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__percent
+msgid "This percent will be used to calculate new quantity"
+msgstr "该百分比将用于计算新数量"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.actions.act_window,help:sale_invoice_plan.action_sale_invoice_plan
+msgid "This view show all available invoice plan line for reporting purposes"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_create_invoice_plan
+msgid "This wizard help you quickly create invoice plan."
+msgstr "该向导可帮助您快速创建发票计划。"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_total_amount
+msgid "Total Amount"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__invoice_type
+msgid "Type"
+msgstr "类型"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__use_invoice_plan
+msgid "Use Invoice Plan"
+msgstr "使用发票计划"
+
+#. module: sale_invoice_plan
+#: code:addons/sale_invoice_plan/models/sale.py:0
+#, python-format
+msgid "Use Invoice Plan selected, but no plan created"
+msgstr "选中“使用发票计划”，但未创建任何计划"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.actions.act_window,help:sale_invoice_plan.action_sale_invoice_plan
+#, fuzzy
+msgid "View sales invoice plan lines"
+msgstr "请填写所有发票计划行的百分比"
+
+#. module: sale_invoice_plan
+#: model:ir.model,name:sale_invoice_plan.model_sale_make_planned_invoice
+msgid "Wizard when create invoice by plan"
+msgstr "按计划创建发票时的向导"
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_create_invoice_plan__interval_type__year
+msgid "Year"
+msgstr "年"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
+msgid "⇒ Create Invoice Plan"
+msgstr "⇒ 创建发票计划"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
+msgid "⇒ Remove Invoice Plan"
+msgstr "⇒ 删除发票计划"
+
+#~ msgid "Sale Order"
+#~ msgstr "销售订单"
