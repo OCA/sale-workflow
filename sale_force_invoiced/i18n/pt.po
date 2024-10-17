@@ -35,6 +35,11 @@ msgid "Sales Order"
 msgstr "Encomenda de Venda"
 
 #. module: sale_force_invoiced
+#: model:ir.model,name:sale_force_invoiced.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_force_invoiced
 #: model:ir.model.fields,help:sale_force_invoiced.field_sale_order__force_invoiced
 msgid ""
 "When you set this field, the sales order will be considered as fully "
