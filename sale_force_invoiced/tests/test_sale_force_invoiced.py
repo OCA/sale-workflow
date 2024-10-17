@@ -74,6 +74,12 @@ class TestSaleForceInvoiced(TransactionCase):
         self.assertEqual(
             so.invoice_status, "invoiced", "The invoice status should be Invoiced"
         )
+        self.assertEqual(
+            sol1.invoice_status, "invoiced", "The SOL invoice status should be Invoiced"
+        )
+        self.assertEqual(
+            sol2.invoice_status, "invoiced", "The SOL invoice status should be Invoiced"
+        )
 
         so.force_invoiced = False
         self.assertEqual(
