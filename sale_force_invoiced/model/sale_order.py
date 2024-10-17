@@ -23,3 +23,15 @@ class SaleOrder(models.Model):
             {"invoice_status": "invoiced"}
         )
         return res
+
+
+class SaleOrderLine(models.Model):
+    _inherit = "sale.order.line"
+
+    @api.depends("order_id.force_invoiced")
+    def _compute_invoice_status(self):
+        res = super()._compute_invoice_status()
+        self.filtered(
+            lambda sol: sol.order_id.force_invoiced
+        ).invoice_status = "invoiced"
+        return res
