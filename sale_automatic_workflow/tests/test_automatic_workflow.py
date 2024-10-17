@@ -207,7 +207,6 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         self.run_job()
         self.assertTrue(sale.invoice_ids)
         invoice = sale.invoice_ids
-        invoice.payment_mode_id = False
         self.assertEqual(invoice.state, "posted")
         payment_id = self.env["automatic.workflow.job"]._register_payment_invoice(
             invoice
