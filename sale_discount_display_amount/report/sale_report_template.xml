@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="sale_discount_display_amount_document"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath expr="//div[@id='total']//table" position="inside">
+            <t groups="product.group_discount_per_so_line" t-if="doc.discount_total">
+                <t
+                    t-set="is_discount"
+                    t-value="doc.company_id.report_total_without_discount and doc.price_total_no_discount != doc.amount_total"
+                />
+                <tr class="border-black" t-if="is_discount">
+                    <td name="td_total_without_discount_label">
+                        <strong>Total Without Discount</strong>
+                    </td>
+                     <td name="td_total_without_discount" class="text-end">
+                        <span t-field="doc.price_total_no_discount" />
+                    </td>
+                </tr>
+
+                <tr t-attf-class="{{ 'border-black' if not is_discount else '' }}">
+                    <td name="td_discount_total_label">
+                        <strong>Discount</strong>
+                    </td>
+                     <td name="td_discount_total" class="text-end">
+                        <span t-field="doc.discount_total" />
+                    </td>
+                </tr>
+            </t>
+        </xpath>
+    </template>
+</odoo>
