@@ -12,6 +12,7 @@
     <field name="sequence">100</field>
     <field name="warehouse_selectable" eval="True" />
     <field name="product_selectable" eval="False" />
+    <field name="company_id" ref="base.main_company" />
 </record>
 
 <record id="route_warehouse0_sell_rented_product" model="stock.location.route">
