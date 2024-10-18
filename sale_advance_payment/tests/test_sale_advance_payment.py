@@ -328,6 +328,10 @@ class TestSaleAdvancePayment(common.SavepointCase):
         self.sale_order_1.invalidate_cache()
         self.assertEqual(self.sale_order_1.amount_residual, 2200)
 
+        # Canceling the invoice
+        invoice.button_cancel()
+        self.assertEqual(self.sale_order_1.amount_residual, 3600)
+
     def test_03_residual_amount_big_pre_payment(self):
         self.assertEqual(
             self.sale_order_1.amount_residual,
