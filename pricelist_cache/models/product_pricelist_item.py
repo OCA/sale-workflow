@@ -3,7 +3,9 @@
 
 from collections import defaultdict
 
-from odoo import fields, models
+from odoo import fields, models, tools
+
+PRODUCT_BATCH = 1000
 
 
 class PricelistItem(models.Model):
@@ -25,6 +27,15 @@ class PricelistItem(models.Model):
         """Returns whether any of the item records in recordset is based on dates."""
         return any(bool(record.date_start or record.date_end) for record in self)
 
+    def _get_pricelist_product_ids(self):
+        product_ids = []
+        for rec in self:
+            if rec.product_tmpl_id.id:
+                product_ids = rec.product_tmpl_id.product_variant_ids.ids
+            else:
+                product_ids = rec.product_id.ids
+        return product_ids
+
     def _get_pricelist_products_group(self):
         """Returns a mapping of products grouped by pricelist.
 
@@ -34,7 +45,9 @@ class PricelistItem(models.Model):
         """
         pricelist_products = defaultdict(list)
         for item in self:
-            pricelist_products[item.pricelist_id.id].append(item.product_id.id)
+            pricelist_products[item.pricelist_id.id].extend(
+                item._get_pricelist_product_ids()
+            )
         return pricelist_products
 
     def update_product_pricelist_cache(self):
@@ -42,7 +55,9 @@ class PricelistItem(models.Model):
         on variants or based on dates, then updates the cache.
         """
         # Filter items applied on variants
-        items = self.filtered(lambda i: i.applied_on == "0_product_variant")
+        items = self.filtered(
+            lambda i: i.applied_on in ["0_product_variant", "1_product"]
+        )
         # Filter items based on dates
         item_ids_to_update = []
         for item in items:
@@ -58,6 +73,7 @@ class PricelistItem(models.Model):
         # Update cache
         cache_object = self.env["product.pricelist.cache"]
         for pricelist_id, product_ids in pricelist_products.items():
-            cache_object.with_delay().update_product_pricelist_cache(
-                product_ids=product_ids, pricelist_ids=[pricelist_id]
-            )
+            for product_chunk_ids in tools.misc.split_every(PRODUCT_BATCH, product_ids):
+                cache_object.with_delay().update_product_pricelist_cache(
+                    product_ids=product_chunk_ids, pricelist_ids=[pricelist_id]
+                )
