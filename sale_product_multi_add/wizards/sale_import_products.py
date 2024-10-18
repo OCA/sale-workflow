@@ -48,7 +48,10 @@ class SaleImportProducts(models.TransientModel):
             }
         )
         line_values = sale_line._convert_to_write(sale_line._cache)
-        line_values = sol_obj.play_onchanges(line_values, [])
+        line_values = sol_obj.play_onchanges(
+            line_values,
+            ["product_id", "price_unit", "product_uom", "product_uom_qty", "tax_id"],
+        )
         return line_values
 
     def select_products(self):
