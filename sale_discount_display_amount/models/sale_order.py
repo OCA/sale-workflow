@@ -9,6 +9,12 @@ class SaleOrder(models.Model):
 
     discount_total = fields.Monetary(
         compute="_compute_discount_total",
+        string="Discount total",
+        currency_field="currency_id",
+        store=True,
+    )
+    discount_subtotal = fields.Monetary(
+        compute="_compute_discount_total",
         string="Discount Subtotal",
         currency_field="currency_id",
         store=True,
@@ -38,6 +44,7 @@ class SaleOrder(models.Model):
     def _compute_discount_total(self):
         for order in self:
             discount_total = sum(order.order_line.mapped("discount_total"))
+            discount_subtotal = sum(order.order_line.mapped("discount_subtotal"))
             price_subtotal_no_discount = sum(
                 order.order_line.mapped("price_subtotal_no_discount")
             )
@@ -47,6 +54,7 @@ class SaleOrder(models.Model):
             order.update(
                 {
                     "discount_total": discount_total,
+                    "discount_subtotal": discount_subtotal,
                     "price_subtotal_no_discount": price_subtotal_no_discount,
                     "price_total_no_discount": price_total_no_discount,
                 }
