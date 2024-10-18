@@ -1,0 +1,85 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* sale_require_po_doc
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_require_po_doc
+#: model:ir.model.fields,help:sale_require_po_doc.field_res_partner__customer_need_po
+#: model:ir.model.fields,help:sale_require_po_doc.field_res_users__customer_need_po
+#: model:ir.model.fields,help:sale_require_po_doc.field_sale_order__customer_need_po
+msgid "A PO number will be required on the Sales Order field for Customer Reference"
+msgstr ""
+
+#. module: sale_require_po_doc
+#: model:ir.model,name:sale_require_po_doc.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sale_require_po_doc
+#: model:ir.model.fields,field_description:sale_require_po_doc.field_res_partner__customer_need_po
+#: model:ir.model.fields,field_description:sale_require_po_doc.field_res_users__customer_need_po
+#: model:ir.model.fields,field_description:sale_require_po_doc.field_sale_order__customer_need_po
+msgid "Customer Requires PO"
+msgstr ""
+
+#. module: sale_require_po_doc
+#: model:ir.model.fields,help:sale_require_po_doc.field_res_partner__sale_doc
+#: model:ir.model.fields,help:sale_require_po_doc.field_res_users__sale_doc
+#: model:ir.model.fields,help:sale_require_po_doc.field_sale_order__sale_doc
+msgid "Details of the sales documentation required for this customer. Sales documentation notes field will be required on Sales Orders This is complementary to requiring a PO number, and can be used with or without that setting."
+msgstr ""
+
+#. module: sale_require_po_doc
+#: selection:sale.order,sale_document_option:0
+msgid "Documentation required obtained and archived"
+msgstr ""
+
+#. module: sale_require_po_doc
+#: selection:sale.order,sale_document_option:0
+msgid "No documentation needed for this Sale"
+msgstr ""
+
+#. module: sale_require_po_doc
+#: model:ir.model.fields,field_description:sale_require_po_doc.field_sale_order__sale_document_option
+msgid "Sale Documentation"
+msgstr ""
+
+#. module: sale_require_po_doc
+#: model:ir.model.fields,field_description:sale_require_po_doc.field_sale_order__sale_document_note
+msgid "Sale Documentation Notes"
+msgstr ""
+
+#. module: sale_require_po_doc
+#: model:ir.model,name:sale_require_po_doc.model_sale_order
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_require_po_doc
+#: model:ir.model.fields,field_description:sale_require_po_doc.field_res_partner__sale_doc
+#: model:ir.model.fields,field_description:sale_require_po_doc.field_res_users__sale_doc
+#: model:ir.model.fields,field_description:sale_require_po_doc.field_sale_order__sale_doc
+msgid "Sales Require Documentation"
+msgstr ""
+
+#. module: sale_require_po_doc
+#: code:addons/sale_require_po_doc/models/sale_order.py:32
+#, python-format
+msgid "You can not confirm sale order without                         Customer reference."
+msgstr ""
+
+#. module: sale_require_po_doc
+#: code:addons/sale_require_po_doc/models/sale_order.py:36
+#, python-format
+msgid "You can not confirm sale order without                         Sale Documentation."
+msgstr ""
+
