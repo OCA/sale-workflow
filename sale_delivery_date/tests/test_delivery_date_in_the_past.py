@@ -85,28 +85,49 @@ class TestDeliveryDateInThePast(SavepointCase):
         with freeze_time("2021-10-15"):
             order = self._create_order(partner=self.customer_partner)
         with freeze_time("2021-10-25"):
+            # according to docs/graph
+            # order confirmation date = 2021-10-25 00:00:00
+            # odoo_date_deadline = order_date + sol.customer_lead = 2021-10-26 00:00:00
+            # date_order = odoo_date_deadline - sol.customer_lead = 2021-10-25 00:00:00
+            # earliest_work_start = 2021-10-25 09:00:00 (cutoff applied)
+            # earliest_work_start = 2021-10-25 09:00:00 (next calendar attendance)
+            # earliest_expedition_date = earliest_work_start + workload = 2021-10-25 17:00:00
+            # earliest_delivery_date = earliest_expedition_date + security_lead = 2021-10-26
+            # final_delivery_date = earliest_delivery_date + customer delivery preference
+            #                     = 2021-10-26
             order.action_confirm()
             picking = order.picking_ids
-            self.assertEqual(str(order.expected_date.date()), "2021-10-25")
-            self.assertEqual(str(picking.scheduled_date.date()), "2021-10-24")
+            self.assertEqual(str(order.expected_date.date()), "2021-10-26")
+            self.assertEqual(str(picking.date.date()), "2021-10-25")
             self.assertEqual(picking.expected_delivery_date, order.expected_date)
 
     def test_delivery_date_as_late_scheduled_date(self):
         """Scheduled date should be used if both commitment_date and
         expected date are in the past, and if the picking is not done.
         """
+        # confirm_date = 2021-10-15 00:00:00
+        # with cutoff = 2021-10-15 08:00:00
+        # working day = 2021-10-15 08:00:00
+        # expedition_date = 2021-10-15 17:00:00
+        # earliest delivery date = 2021-10-16 17:00:00
+        # best_delivery_date : 2021-10-16 00:00:00 (no window)
+        # ====
+        # latest_expedition_date : 2021-10-16 17:00:00
+        # best_expedition_date : 2021-10-16 17:00:00
+        # latest_prepartion_date : 2021-10-15 08:00:00
         with freeze_time("2021-10-15"):
             order = self._create_order(partner=self.customer_partner)
             order.action_confirm()
         picking = order.picking_ids
-        self.assertEqual(str(picking.scheduled_date.date()), "2021-10-14")
+        # Delivery date is kept as is, if no window is defined on the customer.
+        self.assertEqual(str(picking.date_deadline), "2021-10-16 00:00:00")
         with freeze_time("2021-10-25"):
             # picking is handled late, order.commitment_date and
             # order.expected_date are outdated.
-            # expected_delivery_date is scheduled_date + security_lead
+            # expected_delivery_date is postponed from now (as the expedition date)
+            # with respect to customer's time window.
             td_security_lead = timedelta(days=picking.company_id.security_lead)
-            expected_datetime = picking.scheduled_date + td_security_lead
-            self.assertEqual(picking.expected_delivery_date, expected_datetime)
+            self.assertEqual(str(picking.expected_delivery_date), "2021-10-26 00:00:00")
 
     def test_delivery_date_as_date_done(self):
         """Date done should be used if both commitment_date and
