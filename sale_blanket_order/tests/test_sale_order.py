@@ -52,9 +52,7 @@ class TestSaleOrder(common.TransactionCase):
                 "payment_term_id": self.payment_term.id,
                 "pricelist_id": self.sale_pricelist.id,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
@@ -65,9 +63,7 @@ class TestSaleOrder(common.TransactionCase):
                             "price_unit": 30.0,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
@@ -92,9 +88,7 @@ class TestSaleOrder(common.TransactionCase):
                 "payment_term_id": self.payment_term.id,
                 "pricelist_id": self.sale_pricelist.id,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "product_id": self.product.id,
                             "product_uom": self.product.uom_id.id,
@@ -102,9 +96,7 @@ class TestSaleOrder(common.TransactionCase):
                             "price_unit": 30.0,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "product_id": self.product_2.id,
                             "product_uom": self.product.uom_id.id,
@@ -130,9 +122,7 @@ class TestSaleOrder(common.TransactionCase):
             {
                 "partner_id": self.partner.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "name": self.product.name,
                             "product_id": self.product.id,
@@ -164,9 +154,7 @@ class TestSaleOrder(common.TransactionCase):
             {
                 "partner_id": self.partner.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    fields.Command.create(
                         {
                             "name": self.product.name,
                             "product_id": self.product.id,
