@@ -1,0 +1,67 @@
+<odoo>
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='inventory']" position="after">
+                <page string="Warehouse Rules" name="warehouse_rule_ids">
+                    <field name="warehouse_rule_ids" mode="tree">
+                        <tree editable="bottom">
+                            <field name="available_product_ids" invisible="True" />
+                            <field
+                                name="available_attribute_value_domain"
+                                invisible="True"
+                            />
+                            <field
+                                name="product_id"
+                                attrs="{'invisible': [('attribute_value_ids', '!=', []), ('product_id', '=', False)]}"
+                            />
+                            <field
+                                name="attribute_value_ids"
+                                widget="many2many_tags"
+                                options="{'no_quick_create': True, 'no_create_edit':True}"
+                                attrs="{'invisible': [('product_id', '!=', False), ('attribute_value_ids', '=', [])]}"
+                                domain="available_attribute_value_domain"
+                            />
+                            <field
+                                name="warehouse_id"
+                                options="{'no_quick_create': True, 'no_create_edit':True}"
+                                required="True"
+                            />
+                            <field
+                                name="company_id"
+                                readonly="True"
+                                groups="base.group_multi_company"
+                            />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_normal_form_view" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//notebook/page[@name='warehouse_rule_ids']"
+                position="attributes"
+            >
+                 <attribute name="attrs">{'invisible': True}</attribute>
+            </xpath>
+            <xpath expr="//notebook/page[@name='inventory']" position="inside">
+                <group
+                    string="Shipping Warehouse"
+                    name="warehouse"
+                    attrs="{'invisible': [('type', 'in', ['service', 'digital'])]}"
+                >
+                    <label for="variant_warehouse_id" />
+                    <div>
+                        <field name="variant_warehouse_id" />
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
