@@ -33,9 +33,9 @@ class StockWarehouse(models.Model):
         domain="[('usage', '=', 'internal'), ('company_id', '=', company_id)]",
     )
     rental_allowed = fields.Boolean()
-    rental_route_id = fields.Many2one("stock.location.route", string="Rental Route")
+    rental_route_id = fields.Many2one("stock.route", string="Rental Route")
     sell_rented_product_route_id = fields.Many2one(
-        "stock.location.route", string="Sell Rented Product Route"
+        "stock.route", string="Sell Rented Product Route"
     )
 
     @api.onchange("rental_allowed")
@@ -49,7 +49,7 @@ class StockWarehouse(models.Model):
 
     def _get_rental_push_pull_rules(self):
         self.ensure_one()
-        route_obj = self.env["stock.location.route"]
+        route_obj = self.env["stock.route"]
         try:
             rental_route = self.env.ref("sale_rental.route_warehouse0_rental")
         except Exception:
@@ -87,7 +87,7 @@ class StockWarehouse(models.Model):
                 self.rental_in_location_id, self.rental_out_location_id, ""
             ),
             "location_src_id": self.rental_in_location_id.id,
-            "location_id": self.rental_out_location_id.id,
+            "location_dest_id": self.rental_out_location_id.id,
             "route_id": rental_route.id,
             "action": "pull",
             "picking_type_id": self.out_type_id.id,
@@ -99,7 +99,7 @@ class StockWarehouse(models.Model):
                 self.rental_out_location_id, self.rental_in_location_id, ""
             ),
             "location_src_id": self.rental_out_location_id.id,
-            "location_id": self.rental_in_location_id.id,
+            "location_dest_id": self.rental_in_location_id.id,
             "route_id": rental_route.id,
             "action": "push",
             "picking_type_id": self.in_type_id.id,
@@ -112,7 +112,7 @@ class StockWarehouse(models.Model):
                 self.rental_out_location_id, customer_loc, ""
             ),
             "location_src_id": self.rental_out_location_id.id,
-            "location_id": customer_loc.id,
+            "location_dest_id": customer_loc.id,
             "route_id": sell_rented_product_route.id,
             "action": "pull",
             "picking_type_id": self.out_type_id.id,
