@@ -1,0 +1,1 @@
+Activation is automatic.
