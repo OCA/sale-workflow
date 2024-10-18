@@ -15,6 +15,7 @@ setuptools.setup(
         'odoo14-addon-product_supplierinfo_for_customer_elaboration',
         'odoo14-addon-product_supplierinfo_for_customer_sale',
         'odoo14-addon-product_supplierinfo_for_customer_sale_blanket_order',
+        'odoo14-addon-product_supplierinfo_for_customer_sale_quick',
         'odoo14-addon-sale_advance_payment',
         'odoo14-addon-sale_amount_payment_link',
         'odoo14-addon-sale_automatic_workflow',
