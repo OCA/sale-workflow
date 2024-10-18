@@ -1,0 +1,94 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_partner_insurance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-08-21 11:35+0000\n"
+"PO-Revision-Date: 2024-08-21 11:35+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_partner_insurance
+#: model:ir.model.fields,field_description:sale_partner_insurance.field_res_company__coefficient_sale_insurance
+#: model:ir.model.fields,field_description:sale_partner_insurance.field_res_partner__coefficient_sale_insurance
+#: model:ir.model.fields,field_description:sale_partner_insurance.field_res_users__coefficient_sale_insurance
+msgid "Coefficient Sale Insurance"
+msgstr "Coefficient d'assurande sur la vente"
+
+#. module: sale_partner_insurance
+#: model:ir.model,name:sale_partner_insurance.model_res_company
+msgid "Companies"
+msgstr "Sociétés"
+
+#. module: sale_partner_insurance
+#: model:ir.model,name:sale_partner_insurance.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sale_partner_insurance
+#: model:ir.model.fields,field_description:sale_partner_insurance.field_res_company__display_name
+#: model:ir.model.fields,field_description:sale_partner_insurance.field_res_partner__display_name
+#: model:ir.model.fields,field_description:sale_partner_insurance.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_partner_insurance.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: sale_partner_insurance
+#: model:ir.model.fields,field_description:sale_partner_insurance.field_res_company__id
+#: model:ir.model.fields,field_description:sale_partner_insurance.field_res_partner__id
+#: model:ir.model.fields,field_description:sale_partner_insurance.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_partner_insurance.field_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_partner_insurance
+#: model:product.template,name:sale_partner_insurance.default_insurance_product
+msgid "Insurance"
+msgstr "Assurance"
+
+#. module: sale_partner_insurance
+#: model:ir.model.fields,field_description:sale_partner_insurance.field_sale_order_line__insurance_line
+msgid "Insurance Line"
+msgstr "Ligne d'assurance"
+
+#. module: sale_partner_insurance
+#: model:ir.model.fields,field_description:sale_partner_insurance.field_res_company__insurance_product
+msgid "Insurance Product"
+msgstr "Assurance produit"
+
+#. module: sale_partner_insurance
+#: model:ir.model.fields,field_description:sale_partner_insurance.field_res_company____last_update
+#: model:ir.model.fields,field_description:sale_partner_insurance.field_res_partner____last_update
+#: model:ir.model.fields,field_description:sale_partner_insurance.field_sale_order____last_update
+#: model:ir.model.fields,field_description:sale_partner_insurance.field_sale_order_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_partner_insurance
+#: model:ir.model,name:sale_partner_insurance.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: sale_partner_insurance
+#: model:ir.model,name:sale_partner_insurance.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de bon de commande"
+
+#. module: sale_partner_insurance
+#: model:product.template,uom_name:sale_partner_insurance.default_insurance_product
+msgid "Units"
+msgstr "Unités"
+
+#. module: sale_partner_insurance
+#: model:ir.model.fields,help:sale_partner_insurance.field_res_company__coefficient_sale_insurance
+#: model:ir.model.fields,help:sale_partner_insurance.field_res_partner__coefficient_sale_insurance
+#: model:ir.model.fields,help:sale_partner_insurance.field_res_users__coefficient_sale_insurance
+msgid "coefficient which will be multiplied to the total sum of SO"
+msgstr "coefficient qui sera multiplié à la somme totale de SO"
