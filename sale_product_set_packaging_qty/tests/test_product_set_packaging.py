@@ -39,3 +39,24 @@ class TestProductSetPackaging(common.SavepointCase):
         self.packaging.qty = 0
         with self.assertRaises(exceptions.UserError):
             line.product_packaging_qty = 10
+
+    def test_packaging_qty_update(self):
+        line = self.line
+        line.product_packaging_id = self.packaging
+
+        # set packaging qty and check product.set.line quantity is correctly updated
+        line.product_packaging_qty = 2
+        self.assertEqual(self.packaging.qty, 10)
+        # qty on line is 20: 2 packages of 10 units each
+        self.assertEqual(line.quantity, 20)
+
+        # change qty on packaging and check product.set.line quantity is correctly updated
+        self.packaging.qty = 5
+        self.line.product_packaging_qty = 2
+
+        self.assertEqual(self.packaging.qty, 5)
+        self.assertEqual(line.product_id.packaging_ids.qty, 5)
+        self.assertEqual(line.product_id.product_tmpl_id.packaging_ids.qty, 5)
+
+        # qty on line is 10: 2 packages of 5 units each
+        self.assertEqual(line.quantity, 10)
