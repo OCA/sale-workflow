@@ -1,0 +1,2 @@
+- Quentin Groulard \<<quentin.groulard@acsone.eu>\>
+- Kevin Khao <kevin.khao@gmail.com>
