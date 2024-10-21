@@ -80,6 +80,7 @@ class TestAutomaticWorkflowMixin(object):
                 "create_invoice": True,
                 "validate_invoice": True,
                 "invoice_date_is_order_date": True,
+                "register_payment": True,
             }
         )
         if override:

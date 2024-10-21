@@ -158,3 +158,19 @@ class TestAutoWorkflowJob(TestCommon, TestAutomaticWorkflowMixin):
             self.assertEqual(job.state, "pending")
             self.sale.unlink()
             trap.perform_enqueued_jobs()
+
+    def test_register_invoice_payment(self):
+        workflow = self.create_full_automatic()
+        self.sale = self.create_sale_order(workflow)
+        self.sale.action_confirm()
+        self.sale.picking_ids.state = "done"
+        self.sale._create_invoices()
+        self.sale.invoice_ids.action_post()
+        invoice = self.sale.invoice_ids
+
+        with mock_with_delay() as (delayable_cls, delayable):
+            self.run_job()  # run automatic workflow cron
+            args = (invoice,)
+            self.assert_job_delayed(
+                delayable_cls, delayable, "_register_payment_invoice", args
+            )
