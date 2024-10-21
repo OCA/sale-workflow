@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form_inherit_sale_order_delivered_value" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="amount_untaxed" position="before">
+                <field name="display_delivered_value" invisible="1" />
+                <field
+                    name="amount_delivered_untaxed"
+                    widget='monetary'
+                    options="{'currency_field': 'currency_id'}"
+                    class="text-info"
+                    attrs="{'invisible': [('display_delivered_value', '=', False)]}"
+                />
+                <field
+                    name="amount_delivered_tax"
+                    widget='monetary'
+                    options="{'currency_field': 'currency_id'}"
+                    class="text-info"
+                    attrs="{'invisible': [('display_delivered_value', '=', False)]}"
+                />
+                <div
+                    class="oe_subtotal_footer_separator oe_inline o_td_label"
+                    attrs="{'invisible': [('display_delivered_value', '=', False)]}"
+                >
+                    <label for="amount_delivered_total" />
+                </div>
+                <field
+                    name="amount_delivered_total"
+                    nolabel="1"
+                    class="oe_subtotal_footer_separator mb-4 text-info"
+                    widget='monetary'
+                    options="{'currency_field': 'currency_id'}"
+                    attrs="{'invisible': [('display_delivered_value', '=', False)]}"
+                />
+
+                <field
+                    name="amount_undelivered_untaxed"
+                    widget='monetary'
+                    options="{'currency_field': 'currency_id'}"
+                    class="text-info"
+                    attrs="{'invisible': [('display_delivered_value', '=', False)]}"
+                />
+                <field
+                    name="amount_undelivered_tax"
+                    widget='monetary'
+                    options="{'currency_field': 'currency_id'}"
+                    class="text-info"
+                    attrs="{'invisible': [('display_delivered_value', '=', False)]}"
+                />
+                <div
+                    class="oe_subtotal_footer_separator oe_inline o_td_label"
+                    attrs="{'invisible': [('display_delivered_value', '=', False)]}"
+                >
+                    <label for="amount_undelivered_total" />
+                </div>
+                <field
+                    name="amount_undelivered_total"
+                    nolabel="1"
+                    class="oe_subtotal_footer_separator mb-4 text-info"
+                    widget='monetary'
+                    options="{'currency_field': 'currency_id'}"
+                    attrs="{'invisible': [('display_delivered_value', '=', False)]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
