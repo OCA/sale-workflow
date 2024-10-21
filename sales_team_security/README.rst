@@ -121,6 +121,10 @@ Contributors
 
    -  Jonathan Oscategui Taza <info@pesol.es>
 
+-  `Dynapps <https://www.dynapps.eu>`__:
+
+   -  Bert Van Groenendael <bert.vangroenendael@dynapps.eu>
+
 Maintainers
 -----------
 

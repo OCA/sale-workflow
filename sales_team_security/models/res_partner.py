@@ -12,7 +12,13 @@ class ResPartner(models.Model):
 
     # add indexes for better performance on record rules
     user_id = fields.Many2one(index=True)
-    team_id = fields.Many2one(index=True)
+    team_id = fields.Many2one(
+        string="Sales Team",
+        related="user_id.sale_team_id",
+        store=True,
+        readonly=False,
+        index=True,
+    )
 
     @api.model
     def get_view(self, view_id=None, view_type="form", **options):
