@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!-- VIEWS -->
 
     <record id="sale_blanket_order_line_tree" model="ir.ui.view">
@@ -178,5 +177,4 @@
         sequence="21"
         parent="sale.sale_order_menu"
     />
-
 </odoo>
