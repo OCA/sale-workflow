@@ -1,16 +1,20 @@
 # Copyright 2014 Camptocamp SA (author: Guewen Baconnier)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+import logging
 from datetime import timedelta
 from unittest import mock
 
 from odoo import fields
 from odoo.tests import tagged
+from odoo.tools.safe_eval import safe_eval
 
 from .common import TestAutomaticWorkflowMixin, TestCommon
 
+_logger = logging.getLogger(__name__)
 
-@tagged("post_install", "-at_install")
+
+@tagged("post_install", "-at_install", "mail_composer")
 class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
     def setUp(self):
         super().setUp()
@@ -152,3 +156,67 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
                 lambda x: x.subtype_id == self.env.ref("mail.mt_comment")
             )
         )
+
+    def test_automatic_invoice_send_mail(self):
+        workflow = self.create_full_automatic()
+        workflow.send_invoice = False
+        sale = self.create_sale_order(workflow)
+        sale.user_id = self.user.id
+        sale._onchange_workflow_process_id()
+        self.run_job()
+        invoice = sale.invoice_ids
+        invoice.message_subscribe(partner_ids=[invoice.partner_id.id])
+        invoice.company_id.invoice_is_email = True
+        previous_message_ids = invoice.message_ids
+        workflow.send_invoice = True
+        sale._onchange_workflow_process_id()
+        self.run_job()
+
+        new_messages = self.env["mail.message"].search(
+            [
+                ("id", "in", invoice.message_ids.ids),
+                ("id", "not in", previous_message_ids.ids),
+            ]
+        )
+
+        self.assertTrue(
+            new_messages.filtered(
+                lambda x: x.subtype_id == self.env.ref("mail.mt_comment")
+            )
+        )
+
+    def test_job_bypassing(self):
+        workflow = self.create_full_automatic()
+        workflow_job = self.env["automatic.workflow.job"]
+        sale = self.create_sale_order(workflow)
+        sale._onchange_workflow_process_id()
+
+        create_invoice_filter = [
+            ("state", "in", ["sale", "done"]),
+            ("invoice_status", "=", "to invoice"),
+            ("workflow_process_id", "=", sale.workflow_process_id.id),
+        ]
+        order_filter = safe_eval(workflow.order_filter_id.domain)
+        validate_invoice_filter = safe_eval(workflow.validate_invoice_filter_id.domain)
+        send_invoice_filter = safe_eval(workflow.send_invoice_filter_id.domain)
+
+        # Trigger everything, then check if sale and invoice jobs are bypassed
+        self.run_job()
+
+        invoice = sale.invoice_ids
+
+        res_so_validate = workflow_job._do_validate_sale_order(sale, order_filter)
+        # TODO send confirmation bypassing is not working yet, needs fix
+        workflow_job._do_send_order_confirmation_mail(sale)
+        res_create_invoice = workflow_job._do_create_invoice(
+            sale, create_invoice_filter
+        )
+        res_validate_invoice = workflow_job._do_validate_invoice(
+            invoice, validate_invoice_filter
+        )
+        res_send_invoice = workflow_job._do_send_invoice(invoice, send_invoice_filter)
+
+        self.assertIn("job bypassed", res_so_validate)
+        self.assertIn("job bypassed", res_create_invoice)
+        self.assertIn("job bypassed", res_validate_invoice)
+        self.assertIn("job bypassed", res_send_invoice)

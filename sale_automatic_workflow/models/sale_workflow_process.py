@@ -45,6 +45,15 @@ class SaleWorkflowProcess(models.Model):
         string="Validate Invoice Filter Domain",
         related="validate_invoice_filter_id.domain",
     )
+    send_invoice = fields.Boolean()
+    send_invoice_filter_domain = fields.Text(
+        string="Send Invoice Filter Domain",
+        related="send_invoice_filter_id.domain",
+    )
+    validate_picking = fields.Boolean(string="Confirm and Transfer Picking")
+    picking_filter_domain = fields.Text(
+        string="Picking Filter Domain", related="picking_filter_id.domain"
+    )
     invoice_date_is_order_date = fields.Boolean(
         string="Force Invoice Date",
         help="When checked, the invoice date will be " "the same than the order's date",
@@ -79,6 +88,13 @@ class SaleWorkflowProcess(models.Model):
             "sale_automatic_workflow.automatic_workflow_order_filter"
         ),
     )
+    picking_filter_id = fields.Many2one(
+        "ir.filters",
+        string="Picking Filter",
+        default=lambda self: self._default_filter(
+            "sale_automatic_workflow.automatic_workflow_picking_filter"
+        ),
+    )
     create_invoice_filter_id = fields.Many2one(
         "ir.filters",
         string="Create Invoice Filter",
@@ -91,6 +107,13 @@ class SaleWorkflowProcess(models.Model):
         string="Validate Invoice Filter",
         default=lambda self: self._default_filter(
             "sale_automatic_workflow." "automatic_workflow_validate_invoice_filter"
+        ),
+    )
+    send_invoice_filter_id = fields.Many2one(
+        "ir.filters",
+        string="Send Invoice Filter",
+        default=lambda self: self._default_filter(
+            "sale_automatic_workflow." "automatic_workflow_send_invoice_filter"
         ),
     )
     sale_done_filter_id = fields.Many2one(

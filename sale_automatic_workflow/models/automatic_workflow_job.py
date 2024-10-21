@@ -112,14 +112,43 @@ class AutomaticWorkflowJob(models.Model):
                     invoice.with_company(invoice.company_id), validate_invoice_filter
                 )
 
+    def _do_send_invoice(self, invoice, domain_filter):
+        """Validate an invoice, filter ensure no duplication"""
+        if not self.env["account.move"].search_count(
+            [("id", "=", invoice.id)] + domain_filter
+        ):
+            return f"{invoice.display_name} {invoice} job bypassed"
+
+        move_template = self.env.ref("account.email_template_edi_invoice")
+        invoice_send_wizard = (
+            self.env["account.move.send"]
+            .with_context(active_model="account.move", active_ids=invoice.ids)
+            .create({"checkbox_download": False, "mail_template_id": move_template.id})
+        )
+
+        invoice_send_wizard.action_send_and_print(force_synchronous=True)
+
+        return f"{invoice.display_name} {invoice} sent invoice successfully"
+
+    @api.model
+    def _send_invoices(self, send_invoice_filter):
+        move_obj = self.env["account.move"]
+        invoices = move_obj.search(send_invoice_filter)
+        _logger.debug("Invoices to send: %s", invoices.ids)
+        for invoice in invoices:
+            with savepoint(self.env.cr):
+                self._do_send_invoice(
+                    invoice.with_company(invoice.company_id), send_invoice_filter
+                )
+
     def _do_sale_done(self, sale, domain_filter):
-        """Lock a sales order, filter ensure no duplication"""
+        """Set a sales order to done, filter ensure no duplication"""
         if not self.env["sale.order"].search_count(
             [("id", "=", sale.id)] + domain_filter
         ):
             return f"{sale.display_name} {sale} job bypassed"
-        sale.action_lock()
-        return f"{sale.display_name} {sale} locked successfully"
+        sale.action_done()
+        return f"{sale.display_name} {sale} set done successfully"
 
     @api.model
     def _sale_done(self, sale_done_filter):
@@ -193,6 +222,10 @@ class AutomaticWorkflowJob(models.Model):
             self._validate_invoices(
                 safe_eval(sale_workflow.validate_invoice_filter_id.domain)
                 + workflow_domain
+            )
+        if sale_workflow.send_invoice:
+            self._send_invoices(
+                safe_eval(sale_workflow.send_invoice_filter_id.domain) + workflow_domain
             )
         if sale_workflow.sale_done:
             self._sale_done(
