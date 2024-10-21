@@ -6,54 +6,56 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2024-10-21 10:06+0000\n"
+"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: product_supplierinfo_for_customer_sale_quick
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale_quick.field_product_product__display_name
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale_quick.field_sale_order__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: product_supplierinfo_for_customer_sale_quick
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale_quick.field_product_product__id
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale_quick.field_sale_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: product_supplierinfo_for_customer_sale_quick
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale_quick.field_product_product____last_update
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale_quick.field_sale_order____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: product_supplierinfo_for_customer_sale_quick
 #: model:ir.model,name:product_supplierinfo_for_customer_sale_quick.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: product_supplierinfo_for_customer_sale_quick
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale_quick.field_product_product__product_customer_code
 msgid "Product Customer Code"
-msgstr ""
+msgstr "Codice prodotto cliente"
 
 #. module: product_supplierinfo_for_customer_sale_quick
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale_quick.field_product_product__product_customer_name
 msgid "Product Customer Name"
-msgstr ""
+msgstr "Nome prodotto cliente"
 
 #. module: product_supplierinfo_for_customer_sale_quick
 #: code:addons/product_supplierinfo_for_customer_sale_quick/models/sale_order.py:0
 #, python-format
 msgid "Product Variants"
-msgstr ""
+msgstr "Varianti prodotto"
 
 #. module: product_supplierinfo_for_customer_sale_quick
 #: model:ir.model,name:product_supplierinfo_for_customer_sale_quick.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
