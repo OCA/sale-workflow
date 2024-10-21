@@ -209,14 +209,14 @@ class TestPricelistCache(TestPricelistCacheCommon):
         cache_model = self.cache_model
         # list0 cache
         l0_cache = cache_model.get_cached_prices_for_pricelist(self.list0, products)
-        self.assertEqual(len(l0_cache), 4)
+        self.assertEqual(len(l0_cache), 5)
         l0_p6_cache = l0_cache.filtered(lambda c: c.product_id == self.p6)
         self.assertEqual(l0_p6_cache.price, 100.0)
         l0_p8_cache = l0_cache.filtered(lambda c: c.product_id == self.p8)
         self.assertEqual(l0_p6_cache.price, 100.0)
         # list1 cache
         l1_cache = cache_model.get_cached_prices_for_pricelist(self.list1, products)
-        self.assertEqual(len(l1_cache), 4)
+        self.assertEqual(len(l1_cache), 5)
         l1_p6_cache = l1_cache.filtered(lambda c: c.product_id == self.p6)
         self.assertEqual(l1_p6_cache.price, 75.0)
         # p8 price should have been fetched from list0 cache.
@@ -224,7 +224,7 @@ class TestPricelistCache(TestPricelistCacheCommon):
         self.assertEqual(l0_p8_cache, l1_p8_cache)
         # list2 cache
         l2_cache = cache_model.get_cached_prices_for_pricelist(self.list2, products)
-        self.assertEqual(len(l2_cache), 4)
+        self.assertEqual(len(l2_cache), 5)
         l2_p6_cache = l2_cache.filtered(lambda c: c.product_id == self.p6)
         self.assertEqual(l2_p6_cache.price, 50.0)
         # p8 price should have been fetched from list0 cache.
@@ -232,7 +232,7 @@ class TestPricelistCache(TestPricelistCacheCommon):
         self.assertEqual(l0_p8_cache, l2_p8_cache)
         # list3 cache
         l3_cache = cache_model.get_cached_prices_for_pricelist(self.list3, products)
-        self.assertEqual(len(l3_cache), 4)
+        self.assertEqual(len(l3_cache), 5)
         l3_p6_cache = l3_cache.filtered(lambda c: c.product_id == self.p6)
         self.assertEqual(l3_p6_cache.price, 25.0)
         # p8 price should have been fetched from list0 cache.
@@ -240,11 +240,13 @@ class TestPricelistCache(TestPricelistCacheCommon):
         self.assertEqual(l0_p8_cache, l3_p8_cache)
         # list4 cache
         l4_cache = cache_model.get_cached_prices_for_pricelist(self.list4, products)
-        self.assertEqual(len(l4_cache), 4)
+        self.assertEqual(len(l4_cache), 5)
         l4_p6_cache = l4_cache.filtered(lambda c: c.product_id == self.p6)
         self.assertEqual(l4_p6_cache.price, 15.0)
         l4_p7_cache = l4_cache.filtered(lambda c: c.product_id == self.p7)
         self.assertEqual(l4_p7_cache.price, 50.0)
+        l4_p10_cache = l4_cache.filtered(lambda c: c.product_id == self.p10)
+        self.assertEqual(l4_p10_cache.price, 1000.0)
         # p8 price should have been fetched from list0 cache.
         l4_p8_cache = l4_cache.filtered(lambda c: c.product_id == self.p8)
         self.assertEqual(l0_p8_cache, l4_p8_cache)

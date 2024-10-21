@@ -5,14 +5,14 @@ from freezegun import freeze_time
 
 from odoo.exceptions import UserError
 
-from .common import LIST_PRICES_MAPPING, TestPricelistCacheCommon
+from .common import TestPricelistCacheCommon
 
 
 @freeze_time("2021-03-15")
 class TestPricelistCache(TestPricelistCacheCommon):
     def test_partner_pricelists(self):
         partner = self.partner
-        for pricelist_xmlid, expected_result in LIST_PRICES_MAPPING.items():
+        for pricelist_xmlid, expected_result in self._get_expected_result.items():
             partner.property_product_pricelist = self.env.ref(pricelist_xmlid)
             price_list = partner._pricelist_cache_get_prices()
             # for test purposes, only test products referenced in demo data
