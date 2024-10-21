@@ -14,7 +14,8 @@
                 <div
                     class="alert alert-danger text-center o_form_header"
                     role="alert"
-                    attrs="{'invisible': [('validation_blocked_by_so', '=', False)]}"
+                    invisible="not validation_blocked_by_so"
+                    groups="stock.group_stock_user"
                 >
                     <div
                     >Warning: The validation of this picking is prevented by sale order <field
