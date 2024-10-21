@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_partner_delivery_zone_form" model="ir.ui.view">
+        <field name="name">partner.delivery.zone.form</field>
+        <field name="model">partner.delivery.zone</field>
+        <field
+            name="inherit_id"
+            ref="partner_delivery_zone.view_partner_delivery_zone_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//group[field[@name='name']]" position="after">
+                <group string="Delivery preferences">
+                    <group>
+                        <field name="delivery_time_preference" />
+                        <div
+                            attrs="{'invisible': [('delivery_time_preference', '!=', 'time_windows')]}"
+                            colspan="2"
+                        >
+                            <label for="delivery_time_window_ids" />
+                            <field name="delivery_time_window_ids">
+                                <tree editable="bottom">
+                                    <field
+                                        name="time_window_start"
+                                        widget="float_time"
+                                    />
+                                    <field name="time_window_end" widget="float_time" />
+                                    <field
+                                        name="time_window_weekday_ids"
+                                        widget="many2many_tags"
+                                    />
+                                </tree>
+                            </field>
+                        </div>
+                    </group>
+                    <group>
+                        <field name="order_delivery_cutoff_preference" />
+                        <field
+                            name="cutoff_time"
+                            attrs="{'invisible': [('order_delivery_cutoff_preference', '!=', 'partner_cutoff')]}"
+                            widget="float_time"
+                        />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
