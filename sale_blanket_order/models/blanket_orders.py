@@ -483,7 +483,7 @@ class BlanketOrderLine(models.Model):
     def _compute_display_name(self):
         if self.env.context.get("from_sale_order"):
             for record in self:
-                name = "[%s]" % record.order_id.name
+                name = f"[{record.order_id.name}]"
                 if record.date_schedule:
                     formatted_date = format_date(record.env, record.date_schedule)
                     name += " - {}: {}".format(_("Date Scheduled"), formatted_date)

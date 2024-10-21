@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="report_blanket_order" model="ir.actions.report">
         <field name="name">Blanket Order</field>
         <field name="model">sale.blanket.order</field>
@@ -14,5 +13,4 @@
         />
         <field name="binding_type">report</field>
     </record>
-
 </odoo>

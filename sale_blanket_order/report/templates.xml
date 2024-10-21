@@ -4,7 +4,7 @@
         <t t-call="web.external_layout">
             <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" />
             <div class="page">
-                <div class="oe_structure" />
+                <div id="oe_structure_div_01" class="oe_structure" />
                 <div class="row">
                     <div class="col-xs-6">
                         <div
@@ -12,8 +12,8 @@
                             t-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": True, "phone_icons": True}'
                         />
                         <p t-if="doc.partner_id.vat">VAT: <span
-                                t-field="doc.partner_id.vat"
-                            /></p>
+                            t-field="doc.partner_id.vat"
+                        /></p>
                     </div>
                 </div>
                 <h2>
@@ -118,52 +118,49 @@
                     </tbody>
                 </table>
                 <div class="clearfix">
-                <div class="row">
-                <div
+                    <div class="row">
+                        <div
                             t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto"
                         >
-
-
-                        <table class="table table-sm">
-                            <tr class="border-black">
-                                <td>
-                                    <strong>Subtotal</strong>
-                                </td>
-                                <td class="text-end">
-                                    <span
+                            <table class="table table-sm">
+                                <tr class="border-black">
+                                    <td>
+                                        <strong>Subtotal</strong>
+                                    </td>
+                                    <td class="text-end">
+                                        <span
                                             t-field="doc.amount_untaxed"
                                             t-options='{"widget": "monetary", "display_currency": doc.currency_id}'
                                         />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Taxes</td>
-                                <td class="text-end">
-                                    <span
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Taxes</td>
+                                    <td class="text-end">
+                                        <span
                                             t-field="doc.amount_tax"
                                             t-options='{"widget": "monetary", "display_currency": doc.currency_id}'
                                         />
-                                </td>
-                            </tr>
-                            <tr class="border-black">
-                                <td>
-                                    <strong>Total</strong>
-                                </td>
-                                <td class="text-end">
-                                    <span
+                                    </td>
+                                </tr>
+                                <tr class="border-black">
+                                    <td>
+                                        <strong>Total</strong>
+                                    </td>
+                                    <td class="text-end">
+                                        <span
                                             t-field="doc.amount_total"
                                             t-options='{"widget": "monetary", "display_currency": doc.currency_id}'
                                         />
-                                </td>
-                            </tr>
-                        </table>
-
-                </div>
-                </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
 
                 <p t-field="doc.note" />
-                <div class="oe_structure" />
+                <div id="oe_structure_div_02" class="oe_structure" />
             </div>
         </t>
     </template>
