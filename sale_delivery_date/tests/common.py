@@ -70,37 +70,43 @@ class Common(SavepointCase):
     @classmethod
     def setUpClassCalendar(cls):
         name = "40 Hours"
-        attendances = [(9, 17, i) for i in range(5)]
-        cls.calendar = cls.env["resource.calendar"].create(
-            {
-                "name": name,
-                "attendance_ids": [
+        [(9, 17, i) for i in range(5)]
+        cls.calendar = cls.env["resource.calendar"].create({"name": name})
+        weekday_numbers = tuple(range(5))
+        time_ranges = [(9.0, 17.0)]
+        cls._set_calendar_attendances(cls.calendar, weekday_numbers, time_ranges)
+
+    @classmethod
+    def _get_attendance_values(cls, weekday_numbers, time_ranges):
+        values = [(5, 0, 0)]
+        for weekday_number in weekday_numbers:
+            for hour_from, hour_to in time_ranges:
+                values.append(
                     (
                         0,
                         0,
                         {
-                            "name": "%s_%d" % (name, index),
-                            "hour_from": att[0],
-                            "hour_to": att[1],
-                            "dayofweek": str(att[2]),
+                            "name": f"{weekday_number}_{hour_from}_{hour_to}",
+                            "hour_from": hour_from,
+                            "hour_to": hour_to,
+                            "dayofweek": str(weekday_number),
                         },
                     )
-                    for index, att in enumerate(attendances)
-                ],
-            }
-        )
+                )
+        return values
+
+    @classmethod
+    def _set_calendar_attendances(cls, calendar, weekday_numbers, time_ranges):
+        values = cls._get_attendance_values(weekday_numbers, time_ranges)
+        calendar.attendance_ids = values
 
     @classmethod
     def setUpClassWarehouse(cls):
         cls.warehouse = cls.env.ref("stock.warehouse0")
-        cls.warehouse.write(
-            {
-                "apply_cutoff": True,
-                "cutoff_time": WAREHOUSE_CUTOFF_TIME,
-                "tz": TZ,
-                "calendar_id": cls.calendar,
-            }
-        )
+        cls.warehouse.apply_cutoff = True
+        cls.warehouse.cutoff_time = WAREHOUSE_CUTOFF_TIME
+        cls.warehouse.tz = TZ
+        cls.warehouse.calendar2_id = cls.calendar
 
     @classmethod
     def setUpClassProduct(cls):
@@ -147,8 +153,10 @@ class Common(SavepointCase):
         choose_delivery_carrier.button_confirm()
 
     @classmethod
-    def _set_partner_time_window_to_friday(cls, partner):
-        weekday_friday = cls.env.ref("base_time_window.time_weekday_friday")
+    def _set_partner_time_window(cls, partner, weekday_numbers, date_ranges):
+        weekdays = cls.env["time.weekday"].search(
+            [("name", "in", [str(i) for i in weekday_numbers])]
+        )
         partner.write(
             {
                 "delivery_time_preference": "time_windows",
@@ -158,11 +166,34 @@ class Common(SavepointCase):
                         0,
                         {
                             "tz": TZ,
-                            "time_window_start": 8,
-                            "time_window_end": 18,
-                            "time_window_weekday_ids": [(6, 0, weekday_friday.ids)],
+                            "time_window_start": start,
+                            "time_window_end": end,
+                            "time_window_weekday_ids": [(6, 0, weekdays.ids)],
                         },
-                    )
+                    ) for start, end in date_ranges
                 ],
             }
+        )
+
+    @classmethod
+    def _set_partner_time_window_working_days(cls, partner):
+        partner.write(
+            {
+                "delivery_time_preference": "workdays",
+                "delivery_time_window_ids": [(5, 0, 0)],
+            }
+        )
+
+    @classmethod
+    def _add_calendar_leaves(cls, calendar, leave_dates=()):
+        return cls.env["resource.calendar.leaves"].create(
+            [
+                {
+                    "name": f"leave {date}",
+                    "date_from": f"{date} 00:00:00",
+                    "date_to": f"{date} 23:59:59",
+                    "calendar_id": calendar.id,
+                }
+                for date in leave_dates
+            ]
         )

@@ -191,6 +191,10 @@ class TestSaleDeliveryWindow(SavepointCase):
                 picking_3.scheduled_date,
                 fields.Datetime.to_datetime("2020-03-29 08:00:00"),
             )
+            self.assertEqual(
+                picking_3.date_deadline,
+                fields.Datetime.to_datetime("2020-04-02 08:00:00"),
+            )
 
     @freeze_time("2020-03-24 01:00:00")  # Tuesday
     def test_prepare_procurement_values_commitment(self):

@@ -2,9 +2,13 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 from datetime import datetime, timedelta
 
-from odoo import _, fields, models
+from pytz import timezone, utc
+
+from odoo import _, fields, models, tools
 from odoo.exceptions import UserError
 from odoo.tools.date_utils import date_range
+
+from odoo.addons.partner_tz.tools import tz_utils
 
 
 class ResPartner(models.Model):
@@ -39,14 +43,16 @@ class ResPartner(models.Model):
                                (Leave empty to use 7 days or 1 week)
         :return: Datetime object
         """
-        self.ensure_one()
         if not from_date:
             from_date = datetime.now()
+        if not self:
+            return from_date
         if self.is_in_delivery_window(from_date):
             return from_date
         if timedelta_days is None:
             timedelta_days = 7
         if self.delivery_time_preference == "workdays":
+            # TODO tz
             datetime_windows = self.get_next_workdays_datetime(
                 from_date, from_date + timedelta(days=timedelta_days)
             )
@@ -69,8 +75,27 @@ class ResPartner(models.Model):
         :param to_datetime: Datetime object
         :return: List of Datetime objects
         """
-        dates = date_range(from_datetime, to_datetime, timedelta(days=1))
-        return [date for date in dates if date.weekday() < 5]
+        # Converting input dates as customer's tz here, as weekday might change
+        # during the conversion
+        tz_string = self.tz or self.env.company.partner_id.tz or "UTC"
+        tz = timezone(tz_string)
+        from_datetime_utc = utc.localize(from_datetime)
+        from_datetime_tz = from_datetime_utc.astimezone(tz)
+        to_datetime_utc = utc.localize(to_datetime)
+        to_datetime_tz = to_datetime_utc.astimezone(tz)
+        dates = date_range(from_datetime_tz, to_datetime_tz, timedelta(days=1))
+        return [
+            # returns naive utc datetimes
+            date.astimezone(utc).replace(tzinfo=None)
+            for date in dates
+            if date.weekday() < 5
+        ]
+
+    @tools.ormcache("weekday_number")
+    def _get_weekday(self, weekday_number):
+        return self.env["time.weekday"].search(
+            [("name", "=", weekday_number)], limit=1
+        )
 
     def get_next_windows_start_datetime(self, from_datetime, to_datetime):
         """Get all delivery windows start time.
@@ -79,17 +104,26 @@ class ResPartner(models.Model):
 
         Note result can include a start datetime that is before from_datetime
         on the from_datetime weekday
+        Note 2 time windows are in the context of customer's tz.
+        We have to localize from_date, to_datetime first, and return a naive
+        UTC datetime.
 
         :param from_datetime: Datetime object
         :param to_datetime: Datetime object
         :return: List of Datetime objects
         """
         res = list()
-        for this_datetime in date_range(from_datetime, to_datetime, timedelta(days=1)):
+        tz_string = self.tz or self.env.company.partner_id.tz or "UTC"
+        tz = timezone(tz_string)
+        from_datetime_utc = utc.localize(from_datetime)
+        from_datetime_tz = from_datetime_utc.astimezone(tz)
+        to_datetime_utc = utc.localize(to_datetime)
+        to_datetime_tz = to_datetime_utc.astimezone(tz)
+        for this_datetime in date_range(
+            from_datetime_tz, to_datetime_tz, timedelta(days=1)
+        ):
             this_weekday_number = this_datetime.weekday()
-            this_weekday = self.env["time.weekday"].search(
-                [("name", "=", this_weekday_number)], limit=1
-            )
+            this_weekday = self._get_weekday(this_weekday_number)
             # Sort by start time to ensure the window we'll find will be the first
             # one for the weekday
             this_weekday_windows = self.delivery_time_window_ids.filtered(
@@ -99,5 +133,11 @@ class ResPartner(models.Model):
                 this_weekday_start_datetime = datetime.combine(
                     this_datetime, win.get_time_window_start_time()
                 )
-                res.append(this_weekday_start_datetime)
+                # this_weekday_start_datetime is a naive datetime in the context
+                # of customer's tz.
+                # Convert is to UTC, then make it naive
+                weekday_start_utc_naive = tz_utils.tz_to_utc_naive_datetime(
+                    tz, this_weekday_start_datetime
+                )
+                res.append(weekday_start_utc_naive)
         return res

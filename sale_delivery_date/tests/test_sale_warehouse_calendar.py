@@ -76,7 +76,7 @@ class TestSaleOrderDates(SavepointCase):
             {
                 "cutoff_time": CUTOFF_TIME,
                 "apply_cutoff": True,
-                "calendar_id": cls.calendar,
+                "calendar2_id": cls.calendar,
             }
         )
 
@@ -135,15 +135,59 @@ class TestSaleOrderDates(SavepointCase):
         # - preparation is postponned to TUESDAY by sale_warehouse_calendar
         # - delivery should be done on NEXT_WEDNESDAY
         order = self._create_order(customer_lead=3)
+        # (Pdb++) order.order_line._get_delays()
+        # (3.0, 1.0, 2.0)
+        # (Pdb++) datetime.now()
+        # FakeDatetime(2021, 8, 13, 7, 0)
+        # (Pdb++) order.get_cutoff_time()
+        # {'hour': 8, 'minute': 0, 'tz': False}
+        # (Pdb++) order.partner_shipping_id.delivery_time_preference
+        # 'workdays'
+        # WH calendar, monday to friday, from 08:00 to 16:00
+        # - date order: 2021-08-13 07:00:00
+        # - with cutoff: 2021-08-13 08:00:00
+        # - to working day: 2021-08-13 08:00:00
+        # - apply workload: 2021-08-17 16:00:00 (2 days delay converted to 3 days)
+        # - apply security lead: 2021-08-18 16:00:00
+        # - apply delivery window: 2021-08-18 00:00:00
+        # delivery_date = 2021-08-18 00:00:00
+        # - deduct security_lead: 2021-08-16 00:00:00
+        # - apply time.max(): 2021-08-16 23:59:59
+        # - end of last attendance: 2021-08-16 16:00:00
+        # - deduct workload: 2021-08-13 08:00:00
+        # - with cutoff: 2021-08-13 08:00:00
+        # preparation_date 2021-08-13 08:00:00
         order.action_confirm()
-        self.assertEqual(str(order.expected_date.date()), NEXT_WEDNESDAY)
+        self.assertEqual(str(order.expected_date), "2021-08-18 00:00:00")
         picking = order.picking_ids
-        self.assertEqual(str(picking.scheduled_date.date()), NEXT_TUESDAY)
+        self.assertEqual(str(picking.scheduled_date), "2021-08-13 08:00:00")
 
     @freeze_time(SATURDAY_BEFORE_CUTOFF)
     def test_confirm_before_cutoff_weekend_3_days_preparation(self):
         order = self._create_order(customer_lead=3)
+        # (Pdb++) order.order_line._get_delays()
+        # (3.0, 1.0, 2.0)
+        # (Pdb++) datetime.now()
+        # FakeDatetime(2021, 8, 14, 7, 0)
+        # (Pdb++) order.get_cutoff_time()
+        # {'hour': 8, 'minute': 0, 'tz': False}
+        # (Pdb++) order.partner_shipping_id.delivery_time_preference
+        # 'workdays'
+        # WH calendar, monday to friday, from 08:00 to 16:00
+        # - date order: 2021-08-14 07:00:00
+        # - with cutoff: 2021-08-14 08:00:00
+        # - to working day: 2021-08-16 08:00:00
+        # - apply workload: 2021-08-18 16:00:00 (2 days delay converted to 3 days)
+        # - apply security lead: 2021-08-19 16:00:00
+        # - apply delivery window: 2021-08-19 00:00:00
+        # delivery_date = 2021-08-19 00:00:00
+        # - deduct security_lead: 2021-08-18 00:00:00
+        # - apply time.max(): 2021-08-18 23:59:59
+        # - end of last attendance: 2021-08-18 16:00:00
+        # - deduct workload: 2021-08-15 08:00:00
+        # - with cutoff: 2021-08-15 08:00:00
+        # preparation_date 2021-08-15 08:00:00
         order.action_confirm()
-        self.assertEqual(str(order.expected_date.date()), NEXT_THURSDAY)
+        self.assertEqual(str(order.expected_date), "2021-08-19 00:00:00")
         picking = order.picking_ids
-        self.assertEqual(str(picking.scheduled_date.date()), NEXT_WEDNESDAY)
+        self.assertEqual(str(picking.scheduled_date), "2021-08-16 08:00:00")
