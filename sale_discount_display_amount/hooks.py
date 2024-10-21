@@ -12,9 +12,11 @@ COLUMNS = (
     ("sale_order", "price_subtotal_no_discount"),
     ("sale_order", "price_total_no_discount"),
     ("sale_order", "discount_total"),
+    ("sale_order", "discount_subtotal"),
     ("sale_order_line", "price_subtotal_no_discount"),
     ("sale_order_line", "price_total_no_discount"),
     ("sale_order_line", "discount_total"),
+    ("sale_order_line", "discount_subtotal"),
 )
 
 
