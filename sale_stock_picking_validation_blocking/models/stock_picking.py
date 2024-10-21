@@ -6,7 +6,6 @@ from odoo.exceptions import ValidationError
 
 
 class StockPicking(models.Model):
-
     _inherit = "stock.picking"
 
     validation_blocked_by_so = fields.Boolean(
