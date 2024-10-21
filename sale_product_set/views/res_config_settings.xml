@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_config_settings_inherit_view" model="ir.ui.view">
+        <field name="name">res.config.settings.inherit.view</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='sale_management']" position="inside">
+                <h2>Product Sets</h2>
+                <div class="row mt16 o_settings_container" id="product_set_container">
+                    <div class="col-12 col-lg-6 o_setting_box" id="product_set_archive">
+                        <div class="o_setting_left_pane">
+                            <field name="archive_partner_product_sets" />
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="archive_partner_product_sets" />
+                            <div class="text-muted">
+                                Archive/unarchive product sets related to partners together with partner
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

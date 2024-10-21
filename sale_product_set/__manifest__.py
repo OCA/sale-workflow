@@ -17,6 +17,7 @@
         "views/product_set_line.xml",
         "wizard/product_set_add.xml",
         "views/sale_order.xml",
+        "views/res_config_settings.xml",
     ],
     "demo": ["demo/product_set.xml", "demo/product_set_line.xml"],
     "installable": True,
