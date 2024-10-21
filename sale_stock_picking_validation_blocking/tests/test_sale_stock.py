@@ -6,11 +6,12 @@ from odoo.tests.common import TransactionCase
 
 
 class TestSaleStock(TransactionCase):
-    def setUp(self):
-        super(TestSaleStock, self).setUp()
-        partner = self.env.ref("base.res_partner_1")
-        product = self.env.ref("product.product_delivery_01")
-        self.sale_order = self.env["sale.order"].create(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        partner = cls.env.ref("base.res_partner_1")
+        product = cls.env.ref("product.product_delivery_01")
+        cls.sale_order = cls.env["sale.order"].create(
             {
                 "partner_id": partner.id,
                 "order_line": [
@@ -29,13 +30,15 @@ class TestSaleStock(TransactionCase):
         )
 
     def test_sale_stock_picking_validation_blocked(self):
+        self.assertTrue(self.sale_order.hide_button_picking_validation_blocked)
         self.sale_order.action_confirm()
+        self.assertFalse(self.sale_order.hide_button_picking_validation_blocked)
         picking = self.sale_order.picking_ids
-        picking.move_lines.write({"quantity_done": 1})
+        picking.move_ids.write({"quantity": 1})
+        self.assertFalse(self.sale_order.picking_validation_blocked)
         self.sale_order.action_block_picking_validation()
-        self.assertFalse(picking.show_validate)
+        self.assertTrue(self.sale_order.picking_validation_blocked)
         with self.assertRaises(ValidationError):
             picking.button_validate()
         self.sale_order.action_unblock_picking_validation()
-        self.assertTrue(picking.show_validate)
         picking.button_validate()
