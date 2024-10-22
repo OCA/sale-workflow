@@ -1,0 +1,75 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_merge_draft_invoice
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-02 10:22+0000\n"
+"PO-Revision-Date: 2019-09-01 10:10+0000\n"
+"Last-Translator: 黎伟杰 <674416404@qq.com>\n"
+"Language-Team: Chinese (China) (https://www.transifex.com/oca/teams/23907/"
+"zh_CN/)\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 3.8\n"
+
+#. module: sale_merge_draft_invoice
+#: code:addons/sale_merge_draft_invoice/wizard/sale_make_invoice_advance.py:18
+#: model:ir.model.fields,help:sale_merge_draft_invoice.field_sale_advance_payment_inv__merge_draft_invoice
+#, python-format
+msgid ""
+"Activate this option in order to merge the resulting invoice with existing "
+"draft invoices or deactivate it if you wish a separate invoice for this sale "
+"order."
+msgstr "激活此选项以将生成的发票与现有草稿发票合并，或者如果您希望为此销售订单单独开具发票，则将其停用。"
+
+#. module: sale_merge_draft_invoice
+#: model:res.groups,name:sale_merge_draft_invoice.group_sale_merge_draft_invoice
+msgid "Change sale to invoice merge proposal"
+msgstr "将销售更改为发票合并建议"
+
+#. module: sale_merge_draft_invoice
+#: model:ir.model,name:sale_merge_draft_invoice.model_res_company
+msgid "Companies"
+msgstr "公司"
+
+#. module: sale_merge_draft_invoice
+#: model:ir.model,name:sale_merge_draft_invoice.model_res_config_settings
+msgid "Config Settings"
+msgstr "配置设置"
+
+#. module: sale_merge_draft_invoice
+#: model:ir.model.fields,field_description:sale_merge_draft_invoice.field_res_company__sale_merge_draft_invoice
+#: model:ir.model.fields,field_description:sale_merge_draft_invoice.field_res_config_settings__sale_merge_draft_invoice
+msgid "Invoices"
+msgstr "发票"
+
+#. module: sale_merge_draft_invoice
+#: model_terms:ir.ui.view,arch_db:sale_merge_draft_invoice.res_config_settings_view_form
+msgid "Merge new invoices with existing draft ones"
+msgstr "将新发票与现有草稿合并"
+
+#. module: sale_merge_draft_invoice
+#: model:ir.model.fields,field_description:sale_merge_draft_invoice.field_sale_advance_payment_inv__merge_draft_invoice
+msgid "Merge with draft invoices"
+msgstr "合并草稿发票"
+
+#. module: sale_merge_draft_invoice
+#: model:ir.model,name:sale_merge_draft_invoice.model_sale_order
+msgid "Sale Order"
+msgstr "销售订单"
+
+#. module: sale_merge_draft_invoice
+#: model:ir.model,name:sale_merge_draft_invoice.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr "销售预付款发票"
+
+#~ msgid "Quotation"
+#~ msgstr "Quotation"
