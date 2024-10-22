@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <!-- System Parameter for default sale_selectable -->
+    <record id="param_deafault_sale_selectable" model="ir.config_parameter">
+        <field name="key">sale_partner_selectable_option.default_sale_selectable</field>
+        <field name="value">1</field> <!-- Default is True -->
+    </record>
+</odoo>
