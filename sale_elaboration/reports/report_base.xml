@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Moduon Team S.L. <info@moduon.team>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<data>
+    <!-- Reusable template for printing elaborations and notes -->
+    <template id="elaboration_notes">
+        <div
+            class="fst-italic"
+            groups="sale_elaboration.group_elaboration_note_on_delivery_slip"
+            t-if="record.elaboration_ids or record.elaboration_note"
+        >
+            <i class="fa fa-comment-o " />
+            <span t-field="record.elaboration_ids" /><t
+                t-if="record.elaboration_ids and record.elaboration_note"
+            >.</t>
+            <span t-field="record.elaboration_note" />
+        </div>
+    </template>
+</data>
