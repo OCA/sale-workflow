@@ -21,6 +21,9 @@ class ManualDelivery(models.TransientModel):
             "quantity": sale_line.qty_to_procure,
         }
 
+    def _is_candidate_line(self, line):
+        return line.qty_to_procure and line.product_id.type != "service"
+
     @api.model
     def default_get(self, fields):
         res = super().default_get(fields)
@@ -44,7 +47,7 @@ class ManualDelivery(models.TransientModel):
             res["line_ids"] = [
                 (0, 0, self._prepare_lines_default_values(line),)
                 for line in sale_lines
-                if line.qty_to_procure and line.product_id.type != "service"
+                if self._is_candidate_line(line)
             ]
         return res
 
