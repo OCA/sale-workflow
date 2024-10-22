@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_sales_order_line_tree_subtotal">
+            <field name="name">sale.order.line.tree.subtotal</field>
+            <field name="model">sale.order.line</field>
+            <field name="inherit_id" ref="sale.view_order_line_tree" />
+            <field name="arch" type="xml">
+                <field name="price_subtotal" position="before">
+                    <field name="qty_to_deliver" optional="hide" />
+                    <field name="subtotal_to_deliver" optional="show" />
+                    <field name="subtotal_delivered" optional="hide" />
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
