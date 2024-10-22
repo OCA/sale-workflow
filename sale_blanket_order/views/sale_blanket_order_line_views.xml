@@ -3,10 +3,10 @@
     <!-- VIEWS -->
 
     <record id="sale_blanket_order_line_tree" model="ir.ui.view">
-        <field name="name">sale.blanket.order.line.tree</field>
+        <field name="name">sale.blanket.order.line.list</field>
         <field name="model">sale.blanket.order.line</field>
         <field name="arch" type="xml">
-            <tree create="false">
+            <list create="false">
                 <field name="sequence" widget="handle" />
                 <field name="name" invisible="1" />
                 <field name="order_id" />
@@ -27,7 +27,7 @@
                 <field name="delivered_uom_qty" />
                 <field name="remaining_uom_qty" />
                 <field name="company_id" invisible="1" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -127,7 +127,7 @@
                         <page name="sale_lines" string="Sale Order Lines">
                             <field
                                 name="sale_lines"
-                                mode="tree"
+                                mode="list"
                                 readonly="1"
                                 domain="[('product_id', '=', product_id)]"
                             />
@@ -164,7 +164,7 @@
         <field name="name">Blanket Order Lines</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.blanket.order.line</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="sale_blanket_order_line_search" />
     </record>
 

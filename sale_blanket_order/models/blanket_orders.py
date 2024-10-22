@@ -62,13 +62,6 @@ class BlanketOrder(models.Model):
         required=True,
     )
     currency_id = fields.Many2one("res.currency", related="pricelist_id.currency_id")
-    analytic_account_id = fields.Many2one(
-        comodel_name="account.analytic.account",
-        string="Analytic Account",
-        copy=False,
-        check_company=True,
-        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
-    )
     payment_term_id = fields.Many2one(
         "account.payment.term",
         string="Payment Terms",
@@ -236,8 +229,8 @@ class BlanketOrder(models.Model):
 
         if self.partner_id.user_id:
             values["user_id"] = self.partner_id.user_id.id
-        if self.partner_id.team_id:
-            values["team_id"] = self.partner_id.team_id.id
+        if self.partner_id.user_id.sale_team_id:
+            values["team_id"] = self.partner_id.user_id.sale_team_id.id
         self.update(values)
 
     def unlink(self):
@@ -570,9 +563,6 @@ class BlanketOrderLine(models.Model):
             date=fields.Date.today(),
             currency=self.currency_id,
         )
-
-        if self.order_id.pricelist_id.discount_policy == "with_discount":
-            return pricelist_price
 
         if not self.pricelist_item_id:
             # No pricelist rule found => no discount from pricelist
