@@ -15,7 +15,7 @@ export class SalePlannerCalendarEventKanbanController extends KanbanController {
         console.log(this);
         const calendar_summary_id = this.props.context.default_calendar_summary_id;
         const action = await this.orm.call(
-            "sale.planner.calendar.event",
+            "calendar.event",
             "action_open_sale_order",
             [false, {new_order: true}],
             {context: {calendar_summary_id: calendar_summary_id || false}}

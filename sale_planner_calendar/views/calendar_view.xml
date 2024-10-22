@@ -43,7 +43,7 @@
             'choose_unlink_method': True,
         }</field>
         <field name="domain">[('recurrency', '=', True),
-            ("is_base_recurrent_event", "=", True), '|', ('recurrence_id.until', '>=', datetime.date.today().strftime("%Y-%m-%d")), ('recurrence_id.until', '=', False)]</field>
+            ("is_base_recurrent_event", "=", True), ('target_partner_id', '!=', False), '|', ('recurrence_id.until', '>=', datetime.date.today().strftime("%Y-%m-%d")), ('recurrence_id.until', '=', False)]</field>
     </record>
 
     <record id="view_calendar_event_search" model="ir.ui.view">
@@ -114,12 +114,9 @@
                 <field name="start" />
                 <field name="start_date" />
                 <field name="target_partner_mobile" />
-                <field name="sale_planner_calendar_event_id" />
                 <templates>
                     <t t-name="kanban-box">
-                        <div
-                            t-attf-class="oe_kanban_card oe_kanban_global_click #{record.sale_planner_calendar_event_id.raw_value ? 'bg-light' : ''}"
-                        >
+                        <div class="oe_kanban_card oe_kanban_global_click">
                             <div class="row mb4">
                                 <div class="col-8">
                                     <strong><span><t
@@ -181,6 +178,8 @@
             'search_default_start_today': 1,
             'choose_unlink_method': True,
         }</field>
-        <field name="domain">[('user_id', '=', uid)]</field>
+        <field
+            name="domain"
+        >[('user_id', '=', uid), ('target_partner_id', '!=', False)]</field>
     </record>
 </odoo>

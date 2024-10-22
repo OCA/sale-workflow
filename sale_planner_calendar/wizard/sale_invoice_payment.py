@@ -8,9 +8,7 @@ from odoo import fields, models
 class SaleInvoicePaymentWiz(models.TransientModel):
     _inherit = "sale.invoice.payment.wiz"
 
-    sale_planner_calendar_event_id = fields.Many2one(
-        comodel_name="sale.planner.calendar.event"
-    )
+    sale_planner_calendar_event_id = fields.Many2one(comodel_name="calendar.event")
 
     def _prepare_sheet_line_values(self, invoice, amount_pay):
         values = super()._prepare_sheet_line_values(invoice, amount_pay)

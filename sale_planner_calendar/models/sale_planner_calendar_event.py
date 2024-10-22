@@ -7,35 +7,18 @@ from odoo import api, fields, models
 from odoo.tools.safe_eval import safe_eval
 
 
-class SalePlannerCalendarEvent(models.Model):
-    _name = "sale.planner.calendar.event"
-    _description = "Sale planner calendar event"
+class CalendarEvent(models.Model):
+    _inherit = "calendar.event"
 
-    name = fields.Char(string="Subject")
-    company_id = fields.Many2one(
-        comodel_name="res.company", default=lambda self: self.env.company.id
-    )
-    currency_id = fields.Many2one(
+    sale_planner_currency_id = fields.Many2one(
         comodel_name="res.currency",
-        related="partner_id.currency_id",
+        related="target_partner_id.currency_id",
     )
-    date = fields.Datetime(default=fields.Datetime.now)
-    calendar_event_id = fields.Many2one(
-        comodel_name="calendar.event",
-    )
-    calendar_event_date = fields.Datetime(index=True)
-    user_id = fields.Many2one(
-        comodel_name="res.users",
-        default=lambda self: self.env.user.id,
-        index=True,
-        domain="[('share','=',False)]",
-    )
-    partner_id = fields.Many2one(comodel_name="res.partner", index=True)
     sale_ids = fields.One2many(
         comodel_name="sale.order",
         inverse_name="sale_planner_calendar_event_id",
     )
-    state = fields.Selection(
+    sale_planner_state = fields.Selection(
         [
             ("pending", "Pending"),
             ("done", "Done"),
@@ -52,32 +35,35 @@ class SalePlannerCalendarEvent(models.Model):
     )
     comment = fields.Text()
     sale_order_subtotal = fields.Monetary(
-        compute="_compute_sale_order_subtotal", currency_field="currency_id"
+        compute="_compute_sale_order_subtotal",
+        currency_field="sale_planner_currency_id",
     )
     calendar_summary_id = fields.Many2one(
         comodel_name="sale.planner.calendar.summary",
+        copy=False,
     )
     invoice_amount_residual = fields.Monetary(
         string="Invoice amount due",
         compute="_compute_invoice_amount_residual",
         compute_sudo=True,
+        currency_field="sale_planner_currency_id",
     )
-    off_planning = fields.Boolean()
+    off_planning = fields.Boolean(copy=False)
     payment_sheet_line_ids = fields.One2many(
         comodel_name="sale.payment.sheet.line",
         inverse_name="sale_planner_calendar_event_id",
     )
     # Helper fields to kanban views
-    partner_ref = fields.Char(related="partner_id.ref")
+    partner_ref = fields.Char(related="target_partner_id.ref")
     partner_name = fields.Char(compute="_compute_partner_name")
     partner_commercial_name = fields.Char(
         string="Commercial partner name",
-        related="partner_id.commercial_partner_id.name",
+        related="target_partner_id.commercial_partner_id.name",
     )
-    partner_street = fields.Char(related="partner_id.street")
+    partner_street = fields.Char(related="target_partner_id.street")
     partner_mobile = fields.Char(compute="_compute_contact")
     partner_contact_name = fields.Char(compute="_compute_contact")
-    partner_city = fields.Char(related="partner_id.city")
+    partner_city = fields.Char(related="target_partner_id.city")
     sanitized_partner_mobile = fields.Char(compute="_compute_sanitized_partner_mobile")
     location_url = fields.Char(compute="_compute_location_url")
     profile_icon = fields.Char(related="calendar_event_profile_id.icon")
@@ -96,7 +82,7 @@ class SalePlannerCalendarEvent(models.Model):
                 (
                     "partner_id",
                     "in",
-                    self.mapped("partner_id.commercial_partner_id").ids,
+                    self.mapped("target_partner_id.commercial_partner_id").ids,
                 ),
             ],
             ["amount_residual_signed"],
@@ -105,7 +91,7 @@ class SalePlannerCalendarEvent(models.Model):
         invoice_dic = {g["partner_id"][0]: g["amount_residual_signed"] for g in groups}
         for rec in self:
             amount_residual = invoice_dic.get(
-                rec.partner_id.commercial_partner_id.id, 0.0
+                rec.target_partner_id.commercial_partner_id.id, 0.0
             )
             rec.invoice_amount_residual = amount_residual - sum(
                 rec.payment_sheet_line_ids.filtered(
@@ -125,16 +111,18 @@ class SalePlannerCalendarEvent(models.Model):
         for event in self:
             # If more flexibility is needed use event.mapped(field_name)[0]
             event.partner_name = (
-                event.partner_id[field_name]
-                or event.partner_id.name
-                or event.partner_id.commercial_partner_id.name
+                event.target_partner_id[field_name]
+                or event.target_partner_id.name
+                or event.target_partner_id.commercial_partner_id.name
             )
 
     def _compute_contact(self):
         for rec in self:
-            contact = rec.partner_id.child_ids.filtered("is_sale_planner_contact")[:1]
+            contact = rec.target_partner_id.child_ids.filtered(
+                "is_sale_planner_contact"
+            )[:1]
             rec.partner_mobile = (contact.mobile or contact.phone) or (
-                rec.partner_id.mobile or rec.partner_id.phone
+                rec.target_partner_id.mobile or rec.target_partner_id.phone
             )
             rec.partner_contact_name = contact.name
 
@@ -151,9 +139,13 @@ class SalePlannerCalendarEvent(models.Model):
         # will be taken into account.
         self.location_url = False
         for rec in self:
-            event_location = rec.calendar_event_id.location
-            partner_latitude = str(rec.partner_id.partner_latitude).replace(",", ".")
-            partner_longitude = str(rec.partner_id.partner_longitude).replace(",", ".")
+            event_location = rec.location
+            partner_latitude = str(rec.target_partner_id.partner_latitude).replace(
+                ",", "."
+            )
+            partner_longitude = str(rec.target_partner_id.partner_longitude).replace(
+                ",", "."
+            )
             partner_location = f"{rec.partner_city}+{rec.partner_street}"
             if event_location:
                 self.location_url = event_location.replace(" ", "+")
@@ -187,14 +179,14 @@ class SalePlannerCalendarEvent(models.Model):
             .get_param("sale_planner_calendar.create_so_to_commercial_partner", "False")
         )
         partner = (
-            self.partner_id
+            self.target_partner_id
             if create_so_to_commercial_partner == "False"
-            else self.partner_id.commercial_partner_id
+            else self.target_partner_id.commercial_partner_id
         )
         action["context"] = {
             "default_sale_planner_calendar_event_id": self.id,
             "default_partner_id": partner.id,
-            "default_partner_shipping_id": self.partner_id.id,
+            "default_partner_shipping_id": self.target_partner_id.id,
             "default_user_id": self.user_id.id,
         }
         if len(self.sale_ids) > 1:
@@ -211,13 +203,13 @@ class SalePlannerCalendarEvent(models.Model):
         ctx = safe_eval(action["context"])
         ctx.update(
             {
-                "default_partner_id": self.partner_id.id,
+                "default_partner_id": self.target_partner_id.id,
             }
         )
         action["context"] = ctx
         domain = safe_eval(action["domain"])
         domain.append(
-            ("partner_id", "=", self.partner_id.commercial_partner_id.id),
+            ("partner_id", "=", self.target_partner_id.commercial_partner_id.id),
         )
         action["domain"] = domain
         return action
@@ -226,7 +218,7 @@ class SalePlannerCalendarEvent(models.Model):
         domain = [
             ("state", "=", "posted"),
             ("move_type", "in", ["out_invoice", "out_refund"]),
-            ("partner_id", "=", self.partner_id.commercial_partner_id.id),
+            ("partner_id", "=", self.target_partner_id.commercial_partner_id.id),
             ("payment_state", "!=", "paid"),
         ]
         unpaid_invoices = self.env["account.move"].search(domain)
@@ -238,7 +230,7 @@ class SalePlannerCalendarEvent(models.Model):
             {
                 "invoice_ids": unpaid_invoices.ids,
                 "default_sale_planner_calendar_event_id": self.id,
-                "default_partner_id": self.partner_id.id,
+                "default_partner_id": self.target_partner_id.id,
             }
         )
         action["context"] = ctx
@@ -247,8 +239,8 @@ class SalePlannerCalendarEvent(models.Model):
     def action_done(self):
         self.write(
             {
-                "state": "done",
-                "date": fields.Datetime.now(),
+                "sale_planner_state": "done",
+                # "date": fields.Datetime.now(),
                 # "comment": 'Done',
             }
         )
@@ -256,18 +248,18 @@ class SalePlannerCalendarEvent(models.Model):
     def action_cancel(self):
         self.write(
             {
-                "state": "cancel",
+                "sale_planner_state": "cancel",
                 "comment": "Not done",
-                "date": fields.Datetime.now(),
+                # "date": fields.Datetime.now(),
             }
         )
 
     def action_pending(self):
         self.write(
             {
-                "state": "pending",
+                "sale_planner_state": "pending",
                 "comment": False,
-                "date": self.calendar_event_date,
+                # "date": self.calendar_event_date,
             }
         )
 

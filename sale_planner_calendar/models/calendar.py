@@ -22,18 +22,8 @@ class CalendarEvent(models.Model):
     calendar_event_profile_id = fields.Many2one(
         comodel_name="sale.planner.calendar.event.profile"
     )
-    currency_id = fields.Many2one(
-        comodel_name="res.currency", related="target_partner_id.currency_id"
-    )
     hour = fields.Float(compute="_compute_hour", inverse="_inverse_hour")
     target_partner_mobile = fields.Char(related="target_partner_id.mobile")
-    sale_planner_calendar_event_id = fields.Many2one(
-        comodel_name="sale.planner.calendar.event",
-        compute="_compute_sale_planner_calendar_event_id",
-    )
-    event_planner_state = fields.Char(
-        compute="_compute_sale_planner_calendar_event_id",
-    )
     # When arrive this date we will unsubscribe user from partner documents
     unsubscribe_date = fields.Date()
     is_dynamic_end_date = fields.Boolean(copy=False)
@@ -59,25 +49,6 @@ class CalendarEvent(models.Model):
             date = rec._get_hour_tz_offset()
             rec.hour = date.hour + date.minute / 60
 
-    @api.depends("start", "target_partner_id", "user_id")
-    def _compute_sale_planner_calendar_event_id(self):
-        # TODO: Adjust order or use [:1] or [-1:] when know model order
-        domain = [
-            ("calendar_event_date", "in", self.mapped("start")),
-            ("partner_id", "in", self.mapped("target_partner_id").ids),
-            ("user_id", "=", self.user_id.id),
-        ]
-        events = self.env["sale.planner.calendar.event"].search(domain)
-        for rec in self:
-            rec.sale_planner_calendar_event_id = events.filtered(
-                lambda r: (
-                    r.calendar_event_date == fields.Datetime.to_datetime(rec.start)
-                    and r.partner_id == rec.target_partner_id
-                    and r.user_id == rec.user_id
-                )
-            )[:1]
-            rec.event_planner_state = rec.sale_planner_calendar_event_id.state
-
     def _get_hour_tz_offset(self):
         timezone = self._context.get("tz") or self.env.user.partner_id.tz or "UTC"
         self_tz = self.with_context(tz=timezone)
@@ -102,13 +73,12 @@ class CalendarEvent(models.Model):
             )
 
     def _create_event_planner(self):
-        return self.env["sale.planner.calendar.event"].create(
+        return self.env["calendar.event"].create(
             {
                 "name": self.name,
                 "partner_id": self.target_partner_id.id,
                 "user_id": self.user_id.id,
-                "calendar_event_date": self.start,
-                "calendar_event_id": self.id,
+                "start": self.start,
                 "calendar_event_profile_id": self.calendar_event_profile_id.id,
             }
         )
