@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Add quotation's header which in minimum compare to order's -->
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">view.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="/form/header" position="attributes">
+                <attribute
+                    name="invisible"
+                >not context.get('order_sequence', False)</attribute>
+            </xpath>
+            <xpath expr="/form/header" position="after">
+                <header
+                    name="quotation"
+                    attrs="{'invisible': [('order_sequence','=',True)]}"
+                >
+                    <button
+                        name="action_convert_to_order"
+                        states="draft,sent"
+                        class="oe_highlight"
+                        type="object"
+                        string="Convert to Order"
+                    />
+                    <button
+                        name="action_cancel"
+                        states="draft,sent"
+                        type="object"
+                        string="Cancel"
+                    />
+                    <field
+                        name="quotation_state"
+                        widget="statusbar"
+                        statusbar_visible="draft,done"
+                        invisible="context.get('order_sequence', False)"
+                    />
+                </header>
+            </xpath>
+            <field name="partner_shipping_id" position="after">
+                <field name="order_sequence" invisible="1" />
+                <field
+                    name="quote_id"
+                    attrs="{'invisible': [('order_sequence','=',False)]}"
+                    context="{'order_sequence': False}"
+                />
+                <field
+                    name="order_id"
+                    attrs="{'invisible': [('order_sequence','=',True)]}"
+                    context="{'order_sequence': True}"
+                />
+            </field>
+            <xpath
+                expr="/form/sheet/notebook/page/field[@name='order_line']"
+                position="attributes"
+            >
+                <attribute name="context">{'order_sequence': order_sequence}</attribute>
+            </xpath>
+        </field>
+    </record>
+    <!-- Assign order_sequence to context -->
+    <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+        <field
+            name="context"
+        >{'default_order_sequence': False, 'order_sequence': False}</field>
+        <field name="domain">[('order_sequence', '=', False)]</field>
+    </record>
+    <record id="sale.action_orders" model="ir.actions.act_window">
+        <field
+            name="context"
+        >{'default_order_sequence': True, 'order_sequence': True}</field>
+        <field name="domain">[('order_sequence', '=', True)]</field>
+    </record>
+    <record id="res_config_settings_view_form_quotation_number" model="ir.ui.view">
+        <field name="name">Quotation number configuration</field>
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="sale_quotation_number.res_config_settings_view_form_quotation_number"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='keep_name_so']/../.." position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
