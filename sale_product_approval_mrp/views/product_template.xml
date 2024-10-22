@@ -1,0 +1,40 @@
+<odoo>
+    <record id="product_template_form_view_inherit_mrp" model="ir.ui.view">
+        <field name="name">product_template_form_view_inherit_mrp</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <div name="options" position="inside">
+                <div>
+                    <field name="mrp_ok" />
+                    <label for="mrp_ok" />
+                </div>
+                <div>
+                    <field name="mrp_component_ok" />
+                    <label for="mrp_component_ok" />
+                </div>
+                <div>
+                    <field name="bom_ok" />
+                    <label for="bom_ok" />
+                </div>
+            </div>
+            <group name="candidate_fields" position="inside">
+                <group>
+                    <separator string="Manufacturing" />
+                    <field
+                        name="candidate_manufacture"
+                        attrs="{'readonly': [('can_edit_candidate', '=', False)]}"
+                    />
+                    <field
+                        name="candidate_component_manufacture"
+                        attrs="{'readonly': [('can_edit_candidate', '=', False)]}"
+                    />
+                    <field
+                        name="candidate_bom"
+                        attrs="{'readonly': [('can_edit_candidate', '=', False)]}"
+                    />
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
