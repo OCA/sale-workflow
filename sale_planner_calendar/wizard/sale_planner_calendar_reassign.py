@@ -62,6 +62,7 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
             ("recurrency", "=", True),
             ("recurrence_id.until", ">", self.new_start or fields.Date.today()),
             ("is_base_recurrent_event", "=", True),
+            ("target_partner_id", "!=", False),
         ]
         if self.user_id:
             domain.append(("user_id", "=", self.user_id.id))

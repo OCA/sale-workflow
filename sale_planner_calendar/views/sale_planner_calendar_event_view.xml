@@ -3,12 +3,13 @@
 
     <record id="view_sale_planner_calendar_search" model="ir.ui.view">
         <field name="name">sale.planner.calendar.event</field>
-        <field name="model">sale.planner.calendar.event</field>
+        <field name="model">calendar.event</field>
+        <field name="priority">40</field>
         <field name="arch" type="xml">
             <search string="Search sale planner calendar events">
-                <field name="partner_id" />
+                <field name="target_partner_id" />
                 <separator />
-                <field name="state" />
+                <field name="sale_planner_state" />
                 <filter
                     string="My events"
                     name="my_event_planner"
@@ -18,23 +19,23 @@
                 <filter
                     string="Pending"
                     name="state_pending"
-                    domain="[('state','=', 'pending')]"
+                    domain="[('sale_planner_state','=', 'pending')]"
                 />
                 <filter
                     string="Done"
                     name="state_done"
-                    domain="[('state','=', 'done')]"
+                    domain="[('sale_planner_state','=', 'done')]"
                 />
                 <separator />
                 <filter
                     string="Today"
                     name="start_today"
-                    domain="[('date','&gt;=', time.strftime('%%Y-%%m-%%d 00:00:00')),('date','&lt;',(datetime.date.today() + datetime.timedelta(days=1)).strftime('%%Y-%%m-%%d 00:00:00'))]"
+                    domain="[('start','&gt;=', time.strftime('%%Y-%%m-%%d 00:00:00')),('start','&lt;',(datetime.date.today() + datetime.timedelta(days=1)).strftime('%%Y-%%m-%%d 00:00:00'))]"
                 />
                 <filter
                     string="Tomorrow"
                     name="start_tomorrow"
-                    domain="[('date','&gt;', time.strftime('%%Y-%%m-%%d 23:59:59')),('date','&lt;',(datetime.date.today() + datetime.timedelta(days=2)).strftime('%%Y-%%m-%%d 00:00:00'))]"
+                    domain="[('start','&gt;', time.strftime('%%Y-%%m-%%d 23:59:59')),('start','&lt;',(datetime.date.today() + datetime.timedelta(days=2)).strftime('%%Y-%%m-%%d 00:00:00'))]"
                 />
                 <separator />
             </search>
@@ -43,27 +44,23 @@
 
     <record id="view_sale_planner_calendar_tree" model="ir.ui.view">
         <field name="name">sale.planner.calendar.event.tree</field>
-        <field name="model">sale.planner.calendar.event</field>
+        <field name="model">calendar.event</field>
         <field name="arch" type="xml">
             <tree js_class="sale_planner_calendar_event_tree">
-                <field name="date" optional="show" />
+                <field name="start" optional="show" />
                 <field name="user_id" optional="show" />
-                <field name="partner_id" optional="show" />
+                <field name="target_partner_id" optional="show" />
                 <field name="name" optional="show" />
-                <field
-                    name="sale_order_subtotal"
-                    widget="monetary"
-                    options="{'currency_field': 'currency_id'}"
-                    optional="show"
-                />
-                <field name="state" optional="show" />
+                <field name="sale_order_subtotal" optional="show" />
+                <field name="sale_planner_state" optional="show" />
+                <field name="sale_planner_currency_id" invisible="1" />
             </tree>
         </field>
     </record>
 
     <record id="view_sale_planner_calendar_form" model="ir.ui.view">
         <field name="name">sale.planner.calendar.event.form</field>
-        <field name="model">sale.planner.calendar.event</field>
+        <field name="model">calendar.event</field>
         <field name="arch" type="xml">
             <form string="Sale planner calendar event">
                 <sheet>
@@ -73,7 +70,7 @@
                             class="oe_stat_button"
                             name="action_done"
                             type="object"
-                            attrs="{'invisible':[('state', 'not in', ['pending'])]}"
+                            attrs="{'invisible':[('sale_planner_state', 'not in', ['pending'])]}"
                             icon="fa-check"
                         >
                         </button>
@@ -82,7 +79,7 @@
                             name="action_cancel"
                             string="Cancel"
                             type="object"
-                            attrs="{'invisible':[('state', 'in', ['cancel', 'done'])]}"
+                            attrs="{'invisible':[('sale_planner_state', 'in', ['cancel', 'done'])]}"
                             icon="fa-close"
                         />
                         <button
@@ -90,7 +87,7 @@
                             class="oe_stat_button border-end"
                             name="action_pending"
                             type="object"
-                            attrs="{'invisible':[('state', 'in', ['pending'])]}"
+                            attrs="{'invisible':[('sale_planner_state', 'in', ['pending'])]}"
                             icon="fa-pencil-square-o"
                         />
                         <button
@@ -101,11 +98,7 @@
                         >
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_value">
-                                    <field
-                                        name="sale_order_subtotal"
-                                        widget="monetary"
-                                        options="{'currency_field': 'currency_id'}"
-                                    />
+                                    <field name="sale_order_subtotal" />
                                 </span>
                                 <span class="o_stat_text">Sales</span>
                             </div>
@@ -118,11 +111,7 @@
                         >
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_value">
-                                    <field
-                                        name="invoice_amount_residual"
-                                        widget="monetary"
-                                        options="{'currency_field': 'currency_id'}"
-                                    />
+                                    <field name="invoice_amount_residual" />
                                 </span>
                                 <span class="o_stat_text">Invoices</span>
                             </div>
@@ -131,18 +120,13 @@
                     <group>
                         <group>
                             <field name="name" />
-                            <field name="partner_id" />
-                            <field name="date" />
-                            <field name="calendar_event_date" />
+                            <field name="target_partner_id" />
+                            <field name="start" />
                             <field name="user_id" />
-                            <field name="currency_id" invisible="1" />
+                            <field name="sale_planner_currency_id" invisible="1" />
                         </group>
                         <group>
-                            <field name="state" />
-                            <field
-                                name="company_id"
-                                groups="base.group_multi_company"
-                            />
+                            <field name="sale_planner_state" />
                             <field name="sale_order_subtotal" />
                         </group>
                     </group>
@@ -155,9 +139,6 @@
                             <field name="calendar_issue_type_id" widget="selection" />
                             <field name="comment" />
                         </group>
-                        <group string="Event schedule">
-                            <field name="calendar_event_id" readonly="1" />
-                        </group>
                     </group>
                 </sheet>
             </form>
@@ -166,13 +147,13 @@
 
     <record id="view_sale_planner_calendar_issue_form" model="ir.ui.view">
         <field name="name">sale.planner.calendar.issue.form</field>
-        <field name="model">sale.planner.calendar.event</field>
+        <field name="model">calendar.event</field>
         <field name="priority" eval="999" />
         <field name="arch" type="xml">
             <form string="Sale planner calendar event">
                 <sheet>
                     <group>
-                        <field name="partner_id" readonly="1" />
+                        <field name="target_partner_id" readonly="1" />
                     </group>
                     <group>
                         <field name="calendar_issue_type_id" widget="selection_badge" />
@@ -200,22 +181,22 @@
 
     <record id="view_sale_planner_calendar_issue_tree" model="ir.ui.view">
         <field name="name">sale.planner.calendar.issue.tree</field>
-        <field name="model">sale.planner.calendar.event</field>
+        <field name="model">calendar.event</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="date" optional="show" />
+                <field name="start" optional="show" />
                 <field name="user_id" optional="show" />
-                <field name="partner_id" optional="show" />
+                <field name="target_partner_id" optional="show" />
                 <field name="calendar_issue_type_id" />
                 <field name="comment" />
-                <field name="state" optional="show" />
+                <field name="sale_planner_state" optional="show" />
             </tree>
         </field>
     </record>
 
     <record id="action_sale_planner_calendar_issue" model="ir.actions.act_window">
         <field name="name">Sale planner calendar issue</field>
-        <field name="res_model">sale.planner.calendar.event</field>
+        <field name="res_model">calendar.event</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
         <field
@@ -225,7 +206,7 @@
 
     <record id="action_sale_planner_calendar_issue_tree" model="ir.actions.act_window">
         <field name="name">Sale planner calendar issue</field>
-        <field name="res_model">sale.planner.calendar.event</field>
+        <field name="res_model">calendar.event</field>
         <field name="view_mode">tree,form</field>
         <field
             name="context"
@@ -237,19 +218,18 @@
 
     <record id="view_sale_planner_calendar_kanban" model="ir.ui.view">
         <field name="name">sale.planner.calendar.event.kanban</field>
-        <field name="model">sale.planner.calendar.event</field>
+        <field name="model">calendar.event</field>
         <field name="arch" type="xml">
             <kanban
                 class="o_kanban_mobile o_sale_planner_calendar_kanban"
-                default_order="calendar_event_date"
+                default_order="start"
                 js_class="sale_planner_calendar_event_kanban"
             >
                 <field name="name" />
-                <field name="partner_id" />
-                <field name="state" />
+                <field name="target_partner_id" />
+                <field name="sale_planner_state" />
                 <field name="user_id" />
-                <field name="date" />
-                <field name="calendar_event_date" />
+                <field name="start" />
                 <field name="sale_ids" />
                 <field name="partner_ref" />
                 <field name="partner_name" />
@@ -261,7 +241,7 @@
                 <field name="sanitized_partner_mobile" />
                 <field name="location_url" />
                 <field name="calendar_issue_type_id" />
-                <field name="currency_id" />
+                <field name="sale_planner_currency_id" />
                 <field name="comment" />
                 <field name="profile_icon" />
                 <templates>
@@ -276,10 +256,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <span
-                                                class="fw-bold"
-                                                t-esc="record.calendar_event_date.value"
-                                            />
+                                            <field name="start" class="fw-bold" />
                                         </div>
                                     </div>
                                     <div class="row">
@@ -289,7 +266,7 @@
                                                 t-att-class="'me-1 fa ' + record.profile_icon.value"
                                             />
                                             <field
-                                                name="state"
+                                                name="sale_planner_state"
                                                 widget="label_selection"
                                                 options="{'classes': {'pending': 'info', 'cancel': 'danger', 'done': 'success'}}"
                                             />
@@ -401,8 +378,6 @@
                                                 <field
                                                     class="text-center"
                                                     name="sale_order_subtotal"
-                                                    widget="monetary"
-                                                    options="{'currency_field': 'currency_id'}"
                                                 />
                                             </div>
                                         </div>
@@ -438,8 +413,6 @@
                                                 <field
                                                     class="text-center"
                                                     name="invoice_amount_residual"
-                                                    widget="monetary"
-                                                    options="{'currency_field': 'currency_id'}"
                                                 />
                                             </div>
                                         </div>
@@ -502,10 +475,21 @@
 
     <record id="action_sale_planner_calendar_event" model="ir.actions.act_window">
         <field name="name">Sale planner calendar events</field>
-        <field name="res_model">sale.planner.calendar.event</field>
+        <field name="res_model">calendar.event</field>
         <field name="view_mode">tree,form,kanban</field>
+        <field
+            name="search_view_id"
+            ref="sale_planner_calendar.view_sale_planner_calendar_search"
+        />
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('view_sale_planner_calendar_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('view_sale_planner_calendar_form')})]"
+        />
         <field
             name="context"
         >{'search_default_start_today': 1, 'search_default_my_event_planner': 1}</field>
+        <field name="domain">[('target_partner_id', '!=', False)]</field>
     </record>
 </odoo>

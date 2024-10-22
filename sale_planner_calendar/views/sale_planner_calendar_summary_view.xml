@@ -43,12 +43,7 @@
                 <field name="date" optional="show" />
                 <field name="user_id" optional="show" />
                 <field name="event_type_id" optional="show" />
-                <field
-                    name="sale_order_subtotal"
-                    widget="monetary"
-                    options="{'currency_field': 'currency_id'}"
-                    optional="show"
-                />
+                <field name="sale_order_subtotal" optional="show" />
                 <field name="state" optional="show" />
             </tree>
         </field>
@@ -61,14 +56,6 @@
             <form string="Sale planner calendar summary">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button
-                            string="Process"
-                            class="oe_stat_button"
-                            name="action_process"
-                            type="object"
-                            attrs="{'invisible':[('state', 'not in', ['pending'])]}"
-                            icon="fa-pencil-square-o"
-                        />
                         <button
                             class="oe_stat_button"
                             name="action_event_planner"
@@ -84,11 +71,7 @@
                         >
                             <div class="o_form_field o_stat_info">
                                 <span class="o_stat_value">
-                                    <field
-                                        name="sale_order_subtotal"
-                                        widget="monetary"
-                                        options="{'currency_field': 'currency_id'}"
-                                    />
+                                    <field name="sale_order_subtotal" />
                                 </span>
                                 <span class="o_stat_text">Subtotal</span>
                             </div>

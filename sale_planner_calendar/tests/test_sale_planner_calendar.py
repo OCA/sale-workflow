@@ -34,7 +34,7 @@ class TestSalePlannerCalendar(TransactionCase):
         cls.AccountInvoiceLine = cls.env["account.move.line"]
         cls.AccountJournal = cls.env["account.journal"]
         cls.SaleOrder = cls.env["sale.order"]
-        cls.SalePlannerCalendarEvent = cls.env["sale.planner.calendar.event"]
+        cls.SalePlannerCalendarEvent = cls.env["calendar.event"]
 
         account_group = cls.env.ref("account.group_account_user")
         cls.env.user.write({"groups_id": [(4, account_group.id)]})
@@ -170,7 +170,7 @@ class TestSalePlannerCalendar(TransactionCase):
             self.SaleOrder.with_context(
                 default_user_id=event_planner_id.user_id.id,
                 default_sale_planner_calendar_event_id=event_planner_id.id,
-                default_partner_id=event_planner_id.partner_id.id,
+                default_partner_id=event_planner_id.target_partner_id.id,
             )
         )
         with so_form.order_line.new() as line_form:
@@ -229,7 +229,7 @@ class TestSalePlannerCalendar(TransactionCase):
         self.assertEqual(summary.sale_order_count, 2)
         self.assertEqual(summary.sale_order_subtotal, 200)
         # Create a new invoice from planner event
-        self.invoice1 = self._create_invoice(event_planner_id.partner_id)
+        self.invoice1 = self._create_invoice(event_planner_id.target_partner_id)
         self.invoice1.action_post()
         self.assertEqual(event_planner_id.invoice_amount_residual, 100)
         # Set event to done state
@@ -358,15 +358,9 @@ class TestSalePlannerCalendar(TransactionCase):
         """User can setup a system parameter to create sale order from a event planner
         for a event planner partner or commercial partner
         """
-        calendar_event = self.planned_events.filtered(
+        sale_planned_event = self.planned_events.filtered(
             lambda p: p.target_partner_id == self.partner_3
         )[:1]
-        sale_planned_event = self.SalePlannerCalendarEvent.create(
-            {
-                "partner_id": self.partner_3.id,
-                "calendar_event_id": calendar_event.id,
-            }
-        )
         so_action = sale_planned_event.action_open_sale_order()
         self.assertEqual(so_action["context"]["default_partner_id"], self.partner_3.id)
         # Set parameter to create sale order to commercial partner
