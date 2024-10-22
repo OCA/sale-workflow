@@ -24,7 +24,9 @@ class TestDiscountDisplay(TransactionCase):
         first_line = so.order_line[0]
         first_line.discount = 10
 
+        self.assertAlmostEqual(first_line.price_subtotal_no_discount, 30.75)
         self.assertAlmostEqual(first_line.price_total_no_discount, 35.36)
         self.assertAlmostEqual(first_line.discount_total, 3.53)
-        self.assertAlmostEqual(so.discount_total, 3.53)
+        self.assertAlmostEqual(so.price_subtotal_no_discount, 30.75)
         self.assertAlmostEqual(so.price_total_no_discount, 35.36)
+        self.assertAlmostEqual(so.discount_total, 3.53)
