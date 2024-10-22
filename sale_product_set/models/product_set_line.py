@@ -5,6 +5,7 @@ from odoo import fields, models
 
 
 class ProductSetLine(models.Model):
+
     _inherit = "product.set.line"
 
     discount = fields.Float(string="Discount (%)", digits="Discount", default=0.0)
@@ -15,8 +16,8 @@ class ProductSetLine(models.Model):
             "order_id": order.id,
             "product_id": self.product_id.id,
             "product_uom_qty": self.quantity * quantity,
-            "product_uom": self.product_id.uom_id.id,
+            "product_uom": self.product_id and self.product_id and self.product_id.uom_id and self.product_id.uom_id.id or False,
             "sequence": max_sequence + self.sequence,
             "discount": self.discount,
-            "company_id": self.company_id.id,
+            "company_id": self.company_id and self.company_id.id or False,
         }
