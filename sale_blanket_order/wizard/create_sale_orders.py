@@ -129,7 +129,6 @@ class BlanketOrderWizard(models.TransientModel):
             "pricelist_id": pricelist_id,
             "payment_term_id": payment_term_id,
             "order_line": order_lines_by_customer[customer],
-            "analytic_account_id": self.blanket_order_id.analytic_account_id.id,
         }
 
     def create_sale_order(self):
@@ -191,7 +190,7 @@ class BlanketOrderWizard(models.TransientModel):
             "domain": [("id", "in", res)],
             "name": _("Sales Orders"),
             "view_type": "form",
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "res_model": "sale.order",
             "context": {"from_sale_order": True},
             "type": "ir.actions.act_window",

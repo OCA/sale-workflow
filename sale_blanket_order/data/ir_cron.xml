@@ -10,8 +10,6 @@
             name="nextcall"
             eval="(DateTime.now() + relativedelta(hour=00, minute=1, second=0)).strftime('%Y-%m-%d %H:%M:%S')"
         />
-        <field name="numbercall">-1</field>
-        <field name="doall" eval="False" />
         <field name="model_id" ref="model_sale_blanket_order" />
         <field name="state">code</field>
         <field name="code">model.expire_orders()</field>

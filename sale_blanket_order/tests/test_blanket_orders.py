@@ -95,9 +95,6 @@ class TestSaleBlanketOrders(common.TransactionCase):
             }
         )
         blanket_order.sudo().onchange_partner_id()
-        blanket_order.pricelist_id.discount_policy = "without_discount"
-        blanket_order.line_ids[0].sudo().onchange_product()
-        blanket_order.pricelist_id.discount_policy = "with_discount"
         blanket_order.line_ids[0].sudo().onchange_product()
         blanket_order.line_ids[0].sudo()._get_display_price()
 

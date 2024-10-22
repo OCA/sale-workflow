@@ -3,10 +3,10 @@
     <!-- VIEWS -->
 
     <record id="view_blanket_order_tree" model="ir.ui.view">
-        <field name="name">sale.blanket.order.tree</field>
+        <field name="name">sale.blanket.order.list</field>
         <field name="model">sale.blanket.order</field>
         <field name="arch" type="xml">
-            <tree
+            <list
                 decoration-info="state == 'draft'"
                 decoration-muted="state == 'expired'"
             >
@@ -21,7 +21,7 @@
                     optional="show"
                     readonly="1"
                 />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -121,7 +121,7 @@
                                 readonly="state in ['open', 'done', 'expired']"
                                 widget="section_and_note_one2many"
                             >
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <control>
                                         <create
                                             name="add_product_control"
@@ -215,7 +215,7 @@
                                         invisible="display_type"
                                     />
                                     <field name="company_id" invisible="1" />
-                                </tree>
+                                </list>
                             </field>
                             <group class="oe_subtotal_footer oe_right">
                                 <field
@@ -268,25 +268,11 @@
                                         groups="base.group_multi_company"
                                     />
                                 </group>
-                                <group name="invoicing" string="Invoicing">
-                                    <t groups="base.group_multi_company">
-                                        <field
-                                            name="analytic_account_id"
-                                            readonly="sale_count != 0 and state != 'draft'"
-                                            groups="analytic.group_analytic_accounting"
-                                            force_save="1"
-                                        />
-                                    </t>
-                                </group>
                             </group>
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" />
-                    <field name="activity_ids" />
-                    <field name="message_ids" />
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
@@ -342,7 +328,7 @@
         <field name="name">Blanket Orders</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.blanket.order</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="search_view_id" ref="view_blanket_order_search" />
         <field name="domain">[]</field>
         <field name="context">{}</field>

@@ -7,7 +7,7 @@
             <form string="Create Sale Order">
                 <group>
                     <field name="line_ids" nolabel="1" colspan="2">
-                        <tree create="false" editable="bottom">
+                        <list create="false" editable="bottom">
                             <field
                                 name="blanket_line_id"
                                 force_save="1"
@@ -20,7 +20,7 @@
                             <field name="remaining_uom_qty" />
                             <field name="product_uom" groups="uom.group_uom" />
                             <field name="qty" />
-                        </tree>
+                        </list>
                     </field>
                 </group>
                 <footer>
