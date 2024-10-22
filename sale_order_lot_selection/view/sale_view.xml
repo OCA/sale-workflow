@@ -8,9 +8,11 @@
                 expr="//field[@name='order_line']/tree/field[@name='product_template_id']"
                 position="after"
             >
+                <field name="lot_id_readonly" invisible="1" />
                 <field
                     name="lot_id"
                     domain="[('product_id','=', product_id)]"
+                    attrs="{'readonly': [('lot_id_readonly', '=', True)]}"
                     context="{'default_product_id': product_id}"
                     groups="stock.group_production_lot"
                 />
@@ -19,9 +21,11 @@
                 expr="//field[@name='order_line']/form/group/group/field[@name='product_id']"
                 position="after"
             >
+                <field name="lot_id_readonly" invisible="1" />
                 <field
                     name="lot_id"
                     domain="[('product_id','=', product_id)]"
+                    attrs="{'readonly': [('lot_id_readonly', '=', True)]}"
                     context="{'default_product_id': product_id}"
                     groups="stock.group_production_lot"
                 />
