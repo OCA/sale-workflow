@@ -1,0 +1,21 @@
+<odoo>
+    <record id="view_partner_property_form" model="ir.ui.view">
+        <field name="name">res.partner.property.form.inherit.sale.invoice.policy</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <group name="sale" position="inside">
+                <field name="default_invoice_policy" attrs="{'invisible': [('is_company', '=', False)]}"/>
+            </group>
+        </field>
+    </record>
+    <record id="action_set_default_invoice_policy" model="ir.actions.server">
+        <field name="name">Set Default Invoice Policy</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="binding_model_id" ref="base.model_res_partner"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = model.set_default_invoice_policy()
+        </field>
+    </record>
+</odoo>

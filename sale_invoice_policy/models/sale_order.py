@@ -1,8 +1,7 @@
 # Copyright 2017 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import api, fields, models
-
+from odoo import api, fields, models, _
 
 class SaleOrder(models.Model):
 
@@ -10,7 +9,7 @@ class SaleOrder(models.Model):
 
     invoice_policy = fields.Selection(
         [("order", "Ordered quantities"), ("delivery", "Delivered quantities")],
-        readonly=True,
+        readonly=False,
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
         help="Ordered Quantity: Invoice based on the quantity the customer "
         "ordered.\n"
@@ -47,3 +46,8 @@ class SaleOrder(models.Model):
         )
         for sale in self:
             sale.invoice_policy_required = invoice_policy_required
+
+    @api.onchange('partner_id')
+    def _onchange_partner_invoice_policy(self):
+        if self.partner_id and self.partner_id.default_invoice_policy:
+            self.invoice_policy = self.partner_id.default_invoice_policy
