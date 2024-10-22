@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+     Copyright (C) 2015-Today GRAP (http://www.grap.coop)
+     @author Sylvain LE GAL (https://twitter.com/legalsylvain)
+     Copyright 2021 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_sale_order_mass_action_wizard_form" model="ir.ui.view">
+        <field name="model">sale.order.mass.action.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Mass Action on Selected Quotations and Sale Orders">
+                <group name="action_group">
+                    <field name="confirm" />
+                </group>
+                <footer>
+                    <button
+                        name="apply_button"
+                        string="Apply"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sale_order_mass_action" model="ir.actions.act_window">
+        <field name="name">Mass Action</field>
+        <field name="res_model">sale.order.mass.action.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="sale.model_sale_order" />
+    </record>
+</odoo>
