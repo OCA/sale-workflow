@@ -8,18 +8,41 @@
             ref="sale_automatic_workflow.sale_workflow_process_view_form"
         />
     <field name="arch" type="xml">
-
-        <group name="sale_order_confirm" position="before">
-          <group
-                    name="workflow_periodicity_exec"
-                    string="Workflow execution periodicity"
-                >
-            <field name="periodicity" />
-            <field name="next_execution" />
-            <field name="periodicity_check_create_date" />
-          </group>
-        </group>
-
+        <xpath expr="//div[@name='sale_order_confirm']" position="before">
+          <div class="container" name="sale_order_confirm">
+            <h3>
+                <bold>Workflow execution periodicity</bold>
+            </h3>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="periodicity" class="col-lg-4 o_light_label" />
+                    <span>
+                        <field name="periodicity" />
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label for="next_execution" class="col-lg-4 o_light_label" />
+                    <span>
+                        <field name="next_execution" />
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label
+                                for="periodicity_check_create_date"
+                                class="col-lg-4 o_light_label"
+                            />
+                    <span>
+                        <field name="periodicity_check_create_date" />
+                    </span>
+                </div>
+            </div>
+          </div>
+          <br />
+        </xpath>
     </field>
   </record>
 </odoo>
