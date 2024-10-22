@@ -21,6 +21,54 @@ class TestSaleBlanketOrders(common.TransactionCase):
             {"name": "Test Pricelist", "currency_id": cls.env.ref("base.USD").id}
         )
 
+        # Taxes
+        company_partner = cls.env["res.partner"].create(
+            {
+                "name": __name__,
+                "country_id": cls.env.company.country_id.id,
+            }
+        )
+        company2 = cls.env["res.company"].create(
+            {
+                "name": __name__,
+                "partner_id": company_partner.id,
+            },
+        )
+        cls.env.user.company_ids += company2
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context, allowed_company_ids=[cls.env.company.id, company2.id]
+            )
+        )
+        tax_group1 = cls.env["account.tax.group"].create(
+            {
+                "name": cls.env.company.name,
+                "company_id": cls.env.company.id,
+            }
+        )
+        tax_group2 = cls.env["account.tax.group"].create(
+            {
+                "name": company2.name,
+                "company_id": company2.id,
+            }
+        )
+        cls.tax1 = cls.env["account.tax"].create(
+            {
+                "name": cls.env.company.name,
+                "company_id": cls.env.company.id,
+                "amount": 10,
+                "tax_group_id": tax_group1.id,
+            }
+        )
+        cls.tax2 = cls.env["account.tax"].create(
+            {
+                "name": company2.name,
+                "company_id": company2.id,
+                "amount": 20,
+                "tax_group_id": tax_group2.id,
+            }
+        )
+
         # UoM
         cls.categ_unit = cls.env.ref("uom.product_uom_categ_unit")
         cls.uom_dozen = cls.env["uom.uom"].create(
@@ -48,6 +96,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
                 "type": "consu",
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
                 "default_code": "PROD_DEL01",
+                "taxes_id": [fields.Command.set([cls.tax1.id, cls.tax2.id])],
             }
         )
         cls.product2 = cls.env["product.product"].create(
@@ -97,6 +146,7 @@ class TestSaleBlanketOrders(common.TransactionCase):
         blanket_order.sudo().onchange_partner_id()
         blanket_order.pricelist_id.discount_policy = "without_discount"
         blanket_order.line_ids[0].sudo().onchange_product()
+        self.assertEqual(blanket_order.line_ids[0].taxes_id, self.tax1)
         blanket_order.pricelist_id.discount_policy = "with_discount"
         blanket_order.line_ids[0].sudo().onchange_product()
         blanket_order.line_ids[0].sudo()._get_display_price()
