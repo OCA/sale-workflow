@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<odoo>
+     <record id="view_quotation_tree_inherit" model="ir.ui.view">
+            <field name="name">view.quotation.tree.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="client_order_ref" readonly="1" optional="hide" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_order_tree_inherit" model="ir.ui.view">
+            <field name="name">view.order.tree.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="client_order_ref" readonly="1" optional="hide" />
+                </xpath>
+            </field>
+        </record>
+</odoo>
