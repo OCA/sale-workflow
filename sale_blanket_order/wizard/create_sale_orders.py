@@ -64,18 +64,11 @@ class BlanketOrderWizard(models.TransientModel):
         self._check_valid_blanket_order_line(bo_lines)
 
         lines = [
-            (
-                0,
-                0,
+            fields.Command.create(
                 {
                     "blanket_line_id": bol.id,
-                    "product_id": bol.product_id.id,
                     "date_schedule": bol.date_schedule,
-                    "remaining_uom_qty": bol.remaining_uom_qty,
-                    "price_unit": bol.price_unit,
-                    "product_uom": bol.product_uom,
                     "qty": bol.remaining_uom_qty,
-                    "partner_id": bol.partner_id,
                 },
             )
             for bol in bo_lines.filtered(
@@ -102,6 +95,7 @@ class BlanketOrderWizard(models.TransientModel):
 
     def _prepare_so_line_vals(self, line):
         return {
+            "analytic_distribution": line.analytic_distribution,
             "product_id": line.product_id.id,
             "name": line.product_id.name,
             "product_uom": line.product_uom.id,
@@ -109,7 +103,7 @@ class BlanketOrderWizard(models.TransientModel):
             "price_unit": line.blanket_line_id.price_unit,
             "blanket_order_line": line.blanket_line_id.id,
             "product_uom_qty": line.qty,
-            "tax_id": [(6, 0, line.taxes_id.ids)],
+            "tax_id": [fields.Command.set(line.taxes_id.ids)],
         }
 
     def _prepare_so_vals(
@@ -199,11 +193,13 @@ class BlanketOrderWizard(models.TransientModel):
 
 
 class BlanketOrderWizardLine(models.TransientModel):
+    _inherit = "analytic.mixin"
     _name = "sale.blanket.order.wizard.line"
     _description = "Blanket order wizard line"
 
     wizard_id = fields.Many2one("sale.blanket.order.wizard")
     blanket_line_id = fields.Many2one("sale.blanket.order.line")
+    analytic_distribution = fields.Json(related="blanket_line_id.analytic_distribution")
     product_id = fields.Many2one(
         "product.product", related="blanket_line_id.product_id", string="Product"
     )
