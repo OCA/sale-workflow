@@ -4,11 +4,13 @@
 # © 2020 Manuel Regidor  <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import api, models
+from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
+
+    confirmed_before = fields.Boolean(copy=False)
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -44,7 +46,7 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         for order in self:
-            if self.name[:2] != "SQ":
+            if order.confirmed_before:
                 continue
             if order.state not in ("draft", "sent") or order.company_id.keep_name_so:
                 continue
@@ -57,5 +59,5 @@ class SaleOrder(models.Model):
                 .env["ir.sequence"]
                 .next_by_code("sale.order")
             )
-            order.write({"origin": quo, "name": sequence})
+            order.write({"origin": quo, "name": sequence, "confirmed_before": True})
         return super().action_confirm()
