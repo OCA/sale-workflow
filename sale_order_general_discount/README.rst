@@ -28,12 +28,14 @@ Sale Order General Discount
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows to set a general discount in a sales order. This general
-discount is set to each line order in the standard `discount` field.
+This module allows to set a general discount in a sales order. This
+general discount is set to each line order in the standard discount
+field.
 
 You can configure:
- * a default general discount on customers
- * On each product define if general discount is applied
+
+-  a default general discount on customers
+-  On each product define if general discount is applied
 
 **Table of contents**
 
@@ -43,19 +45,19 @@ You can configure:
 Installation
 ============
 
-You need to install sale_management module for accessing the needed menus.
+You need to install sale_management module for accessing the needed
+menus.
 
 Usage
 =====
 
 To use this module, you need to:
 
-#. Create a sale order and set a discount,
-   this discount will be set in all lines.
-#. You can set a discount in a partner.
-#. On product you can define if you
-   apply general discount on sale order line
-   linked to that product
+1. Create a sale order and set a discount, this discount will be set in
+   all lines.
+2. You can set a discount in a partner.
+3. On product you can define if you apply general discount on sale order
+   line linked to that product
 
 Bug Tracker
 ===========
@@ -71,23 +73,23 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Sergio Teruel <sergio.teruel@tecnativa.com>
-  * Stefan Ungureanu <stefan.ungureanu@tecnativa.com>
+   -  Sergio Teruel <sergio.teruel@tecnativa.com>
+   -  Stefan Ungureanu <stefan.ungureanu@tecnativa.com>
 
-* Raf Ven <raf.ven@dynapps.be>
-* Sudhir Arya <sudhir@erpharbor.com>
+-  Raf Ven <raf.ven@dynapps.be>
+-  Sudhir Arya <sudhir@erpharbor.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
