@@ -61,6 +61,7 @@ msgstr "Blockerad i utkast"
 #: model:ir.actions.act_window,name:sale_exception.action_sale_exception_confirm
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
 msgid "Blocked in draft due to exceptions"
+
 msgstr "Blockerad i utkast på grund av undantag"
 
 #. module: sale_exception
