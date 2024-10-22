@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="setup_financial_year_opening_form" model="ir.ui.view">
+            <field name="name">wizard.copy.input.line.data.form</field>
+            <field name="model">wizard.copy.input.line.data</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="line_ids">
+                        <tree editable="top" create="False" delete="False">
+                            <field name="field_name" readonly="True" />
+                            <field name="should_copy" />
+                        </tree>
+                    </field>
+                </form>
+            </field>
+    </record>
+</odoo>
