@@ -9,25 +9,24 @@ class SaleOrderLine(models.Model):
 
     discount_total = fields.Monetary(
         compute="_compute_amount",
-        Name="Discount Subtotal",
+        string="Discount Subtotal",
         store=True,
         precompute=True,
     )
     discount_subtotal = fields.Monetary(
         compute="_compute_amount",
-        Name="Discount Subtotal",
         store=True,
         precompute=True,
     )
     price_subtotal_no_discount = fields.Monetary(
         compute="_compute_amount",
-        Name="Subtotal Without Discount",
+        string="Subtotal Without Discount",
         store=True,
         precompute=True,
     )
     price_total_no_discount = fields.Monetary(
         compute="_compute_amount",
-        Name="Total Without Discount",
+        string="Total Without Discount",
         store=True,
         precompute=True,
     )

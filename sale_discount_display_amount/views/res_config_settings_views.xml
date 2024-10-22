@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
-    <record id="res_config_settings_view_form" model="ir.ui.view">
+    <record
+        id="res_config_settings_view_form_display_discount_with_tax"
+        model="ir.ui.view"
+    >
         <field name="name">res.config.settings.view.form.display.discount</field>
         <field name="model">res.config.settings</field>
         <field name="priority" eval="99" />
@@ -24,6 +26,28 @@
                     </div>
                 </div>
             </block>
+        </field>
+    </record>
+
+    <record
+        id="res_config_settings_view_form_report_total_without_discount"
+        model="ir.ui.view"
+    >
+        <field
+            name="name"
+        >res.config.settings.view.form.report.total.without.discount</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10" />
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <setting id="proforma_configuration" position="after">
+                <setting
+                    id="report_total_without_discount"
+                    help='Display "Total without discount" in report'
+                >
+                    <field name="report_total_without_discount" />
+                </setting>
+            </setting>
         </field>
     </record>
 </odoo>
