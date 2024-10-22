@@ -11,10 +11,11 @@ class SaleWorkflowProcess(models.Model):
         string="Run every (in seconds)",
         help="Sets a periodicity for this workflow to be executed (in seconds)",
     )
-    next_execution = fields.Datetime(readonly=True)
+    next_execution = fields.Datetime()
     periodicity_check_create_date = fields.Boolean(
         string="Enforce on creation time",
-        help="When checked only sales created before the last execution will be processed.",
+        help="When checked only sales created before the last execution "
+        "will be processed.",
     )
 
     def write(self, vals):
