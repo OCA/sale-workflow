@@ -49,7 +49,12 @@ class SaleOrder(models.Model):
         return self.env["ir.sequence"].next_by_code("sale.order")
 
     def _action_confirm(self):
+        sequence = self.env["ir.sequence"].search(
+            [("code", "=", "sale.quotation")], limit=1
+        )
         for order in self:
+            if sequence and self.name[: len(sequence.prefix)] != sequence.prefix:
+                continue
             if not (
                 order.state == "sale"
                 and order.quotation_seq_used
