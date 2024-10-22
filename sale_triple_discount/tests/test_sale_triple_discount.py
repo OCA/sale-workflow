@@ -208,3 +208,27 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line2.price_subtotal, 600.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 1200.0)
         self.assertAlmostEqual(self.order.amount_tax, 180.0)
+
+    def test_07_price_reduce_with_classic_discount(self):
+        self.so_line2.discount = 50.0
+        self.assertAlmostEqual(self.so_line2.price_unit, 60.0)
+        self.assertAlmostEqual(self.so_line2.price_reduce, 30.0)
+        self.assertAlmostEqual(self.so_line2.price_reduce_taxexcl, 30.0)
+        self.assertAlmostEqual(self.so_line2.price_reduce_taxinc, 34.5)
+        self.assertAlmostEqual(self.so_line2.price_subtotal, 300.0)
+
+    def test_07_price_reduce_with_discount2(self):
+        self.so_line2.discount2 = 50.0
+        self.assertAlmostEqual(self.so_line2.price_unit, 60.0)
+        self.assertAlmostEqual(self.so_line2.price_reduce, 30.0)
+        self.assertAlmostEqual(self.so_line2.price_reduce_taxexcl, 30.0)
+        self.assertAlmostEqual(self.so_line2.price_reduce_taxinc, 34.5)
+        self.assertAlmostEqual(self.so_line2.price_subtotal, 300.0)
+
+    def test_07_price_reduce_with_discount3(self):
+        self.so_line2.discount3 = 50.0
+        self.assertAlmostEqual(self.so_line2.price_unit, 60.0)
+        self.assertAlmostEqual(self.so_line2.price_reduce, 30.0)
+        self.assertAlmostEqual(self.so_line2.price_reduce_taxexcl, 30.0)
+        self.assertAlmostEqual(self.so_line2.price_reduce_taxinc, 34.5)
+        self.assertAlmostEqual(self.so_line2.price_subtotal, 300.0)
