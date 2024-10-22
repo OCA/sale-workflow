@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Tecnativa - Jairo Llopis
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<data>
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">Display resource booking info in product form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <group name='sale' position='inside'>
+                <group
+                    name="booking"
+                    string="Resource Bookings"
+                    groups_id="[(4, ref('resource_booking.group_user'), 0)]"
+                >
+                    <field
+                        name="resource_booking_type_id"
+                        attrs="{'readonly': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"
+                    />
+                    <field
+                        name="resource_booking_type_combination_rel_id"
+                        attrs="{'invisible': [('resource_booking_type_id', '=', False)]}"
+                    />
+                </group>
+            </group>
+        </field>
+    </record>
+    <record id="product_template_search_view" model="ir.ui.view">
+        <field name="name">product.template.search.inherit.sale.resource.booking</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view" />
+        <field name="arch" type="xml">
+            <search position="inside">
+                <filter
+                    string="Booking Type"
+                    name="resource_booking_type"
+                    domain="[('product_variant_ids.resource_booking_type_id', 'not in', [False, None])]"
+                    groups="resource_booking.group_user"
+                />
+            </search>
+        </field>
+    </record>
+</data>
