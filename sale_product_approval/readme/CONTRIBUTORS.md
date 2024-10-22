@@ -1,0 +1,5 @@
+- [Open Source Integrators](https://opensourceintegrators.com).
+  - Chandresh Thakkar \<<cthakkar@opensourceintegrators.com>\>
+  - Daniel Reis \<<dreis@opensourceintegrators.com>\>
+  - Patrick Wilson \<<pwilson@opensourceintegrators.com>\>
+  - Hardik Suthar \<<hsuthar@opensourceintegrators.com>\>

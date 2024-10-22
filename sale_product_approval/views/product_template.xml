@@ -1,0 +1,61 @@
+<odoo>
+
+    <record id="product_template_form_view_inherit" model="ir.ui.view">
+        <field name="name">product_template_form_view_inherit</field>
+        <field name="model">product.template</field>
+        <field name="priority">100</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='options']/span" position="after">
+                <span class="d-inline-block">
+                    <field name="sale_ok_confirm" />
+                    <label for="sale_ok_confirm" />
+                </span>
+            </xpath>
+            <xpath expr="//div[@name='options']/span[3]" position="replace">
+                <div>
+                    <span class="d-inline-block">
+                        <field name="purchase_ok" />
+                        <label for="purchase_ok" />
+                    </span>
+                </div>
+            </xpath>
+            <page name="inventory" position="after">
+                <page name="states" string="State Configuration">
+                    <group name="candidate_fields">
+                        <group string="Sales">
+                            <field name="can_edit_candidate" invisible="1" />
+                            <field
+                                name="candidate_sale"
+                                readonly="not can_edit_candidate"
+                            />
+                            <field
+                                name="candidate_sale_confirm"
+                                readonly="not can_edit_candidate"
+                            />
+                        </group>
+                    </group>
+                </page>
+            </page>
+            <page name="sales" position="attributes">
+                <attribute name="invisible">not candidate_sale</attribute>
+            </page>
+        </field>
+    </record>
+
+    <record id="product_template_search_view_inherit" model="ir.ui.view">
+       <field name="name">product_template_search_view_inherit</field>
+       <field name="model">product.template</field>
+       <field name="inherit_id" ref="product.product_template_search_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field
+                    name="default_code"
+                    string="Internal Reference"
+                    filter_domain="[('default_code', 'ilike', self)]"
+                />
+            </xpath>
+       </field>
+    </record>
+
+</odoo>
