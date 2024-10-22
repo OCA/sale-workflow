@@ -1,0 +1,1 @@
+Check the configuration manual of the producty_optional_product_quantity. module for details.

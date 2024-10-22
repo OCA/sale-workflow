@@ -1,0 +1,1 @@
+Add a product that has optional products to quotation. Optional product quantities will be updated accordingly.
