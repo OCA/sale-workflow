@@ -8,6 +8,18 @@
             <field name="partner_id" position="after">
                 <field name="current_revision_id" invisible="1" />
             </field>
+            <filter name="my_sale_orders_filter" position="after">
+                <filter
+                    name="filter_active"
+                    string="Active"
+                    domain="[('active', '=', True)]"
+                />
+                <filter
+                    name="filter_archived"
+                    string="Archived"
+                    domain="[('active', '=', False)]"
+                />
+            </filter>
         </field>
     </record>
     <record id="view_order_form" model="ir.ui.view">
@@ -24,6 +36,15 @@
                     type="object"
                 />
             </xpath>
+            <div name="button_box" position="after">
+                <field name="active" invisible="1" />
+                <widget
+                    name="web_ribbon"
+                    title="Archived"
+                    bg_color="bg-danger"
+                    attrs="{'invisible': [('active', '=', True)]}"
+                />
+            </div>
             <xpath expr="//button[@name='action_view_invoice']" position="after">
                 <button
                     name="action_view_revisions"
