@@ -1,0 +1,28 @@
+<odoo>
+    <record id="product_state_form_view_inherit" model="ir.ui.view">
+        <field name="name">product_state_form_view_inherit</field>
+        <field name="model">product.state</field>
+        <field name="inherit_id" ref="product_state.view_product_state_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/div[2]" position="after">
+                <separator
+                    string="Options"
+                    groups="sale_product_approval.group_product_administrator"
+                />
+                <div
+                    name="options"
+                    groups="sale_product_approval.group_product_administrator"
+                >
+                    <div>
+                        <field name="approved_sale" />
+                        <label for="approved_sale" />
+                    </div>
+                    <div>
+                        <field name="approved_sale_confirm" />
+                        <label for="approved_sale_confirm" />
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
