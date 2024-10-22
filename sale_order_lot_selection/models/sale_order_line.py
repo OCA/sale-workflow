@@ -6,7 +6,7 @@ class SaleOrderLine(models.Model):
 
     lot_id = fields.Many2one(
         "stock.lot",
-        "Lot",
+        "Restrict Lot/Serial Number",
         copy=False,
         compute="_compute_lot_id",
         store=True,
