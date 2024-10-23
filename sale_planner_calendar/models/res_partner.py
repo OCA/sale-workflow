@@ -22,7 +22,8 @@ class ResPartner(models.Model):
         action["context"] = {
             "default_target_partner_id": self.id,
             "default_categ_ids": [(4, categ.id)],
-            "default_location": self._display_address(),
+            # Passing True omits the partner name, ensuring precise calculation of GPS location.
+            "default_location": self._display_address(True).replace("\n", " "),
             "default_duration": categ.duration,
             "default_name": categ.name,
             "default_start": fields.Datetime.now(),
