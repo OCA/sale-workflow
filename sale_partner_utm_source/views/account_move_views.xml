@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_invoice_tree_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.tree.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="(//field[@name='invoice_partner_display_name'])[2]"
+                position="after"
+            >
+                <field name="source_id" string="UTM Source" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_invoice_filter_inherit" model="ir.ui.view">
+        <field name="name">account.move.search.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='journal_id']" position="after">
+                <field name="source_id" />
+                <filter
+                    name="utm.source"
+                    string="UTM Source"
+                    context="{'group_by': 'source_id'}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

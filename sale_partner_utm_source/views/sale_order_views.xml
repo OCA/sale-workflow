@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_quotation_tree_inherit" model="ir.ui.view">
+        <field name="name">quotation.tree.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="source_id" string="UTM Source" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_tree_inherit" model="ir.ui.view">
+        <field name="name">sale.order.tree.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="source_id" string="UTM Source" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_order_filter_inherit" model="ir.ui.view">
+        <field name="name">sale.order.search.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='team_id']" position="after">
+                <field name="source_id" />
+                <filter
+                    name="utm.source"
+                    string="UTM Source"
+                    context="{'group_by': 'source_id'}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+     <menuitem
+        id="menu_sales_sources"
+        name="UTM Sources"
+        parent="sale.menu_sale_config"
+        action="utm.utm_source_action"
+        sequence="10"
+    />
+</odoo>
