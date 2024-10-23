@@ -1,0 +1,1 @@
+This module allows to select which sale order lines you would like to confirm. It also can create a new quotation in the "Cancel" state with all the unconfirmed lines from the original quotation in case you need to keep that information.
