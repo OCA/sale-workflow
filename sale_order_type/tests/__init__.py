@@ -3,3 +3,4 @@
 from . import test_account_invoice_report
 from . import test_sale_order_report
 from . import test_sale_order_type
+from . import test_account_payment
