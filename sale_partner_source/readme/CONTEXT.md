@@ -1,0 +1,1 @@
+Odoo does not natively provide the ability to track the origin of customers through a Source field. This module addresses that by allowing each Partner to have a Source assigned. The Source is automatically copied to the Quotation when it is created
