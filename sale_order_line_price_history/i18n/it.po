@@ -1,0 +1,209 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_price_history
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-03-29 00:53+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_order_line_price_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
+msgid "Close"
+msgstr "Chiudi"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__create_uid
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__create_date
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_date_order
+msgid ""
+"Creation date of draft/sent orders,\n"
+"Confirmation date of confirmed orders."
+msgstr ""
+"Data di creazione degli ordini in bozza/spediti,\n"
+"data di conferma degli ordini confermati."
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line__order_partner_id
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__partner_id
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__partner_id
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__discount
+msgid "Discount (%)"
+msgstr "Sconto (%)"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__display_name
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__history_id
+msgid "History"
+msgstr "Cronologia"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__line_ids
+msgid "History lines"
+msgstr "Righe storico"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__id
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
+msgid "Include Quotations"
+msgstr "Includi preventivi"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_commercial_partner
+msgid "Include commercial entity"
+msgstr "Includi entità commerciale"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history__include_commercial_partner
+msgid "Include commercial entity and its contacts in the sale history"
+msgstr ""
+"Includi entità commerciali e i suoi contatti nello storico delle vendite"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
+msgid "Include quotations lines in the sale history"
+msgstr "Includi preventivi nello storico delle vendite"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history____last_update
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__write_uid
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__write_date
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: sale_order_line_price_history
+#. odoo-python
+#: code:addons/sale_order_line_price_history/wizards/sale_order_line_price_history.py:0
+#, python-format
+msgid "Not found historical sale order line for this action!"
+msgstr "Non è presente uno storico riga ordine di vendita per questa azione!"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_date_order
+msgid "Order Date"
+msgstr "Data ordine"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__order_id
+msgid "Order Reference"
+msgstr "Riferimento ordine"
+
+#. module: sale_order_line_price_history
+#. odoo-javascript
+#: code:addons/sale_order_line_price_history/static/src/xml/sale_line_price_history_widget.xml:0
+#: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
+#: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.view_order_form
+#, python-format
+msgid "Price History"
+msgstr "Storico prezzo"
+
+#. module: sale_order_line_price_history
+#: model:ir.actions.act_window,name:sale_order_line_price_history.sale_order_line_price_history_action
+msgid "Price history per customer"
+msgstr "Storico prezzo per cliente"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__product_id
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__product_uom_qty
+msgid "Quantity"
+msgstr "Quantità"
+
+#. module: sale_order_line_price_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
+msgid "Sale history"
+msgstr "Storico vendite"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__sale_order_line_id
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_line_id
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__target_sale_order_line_id
+msgid "Sale order line"
+msgstr "Riga ordine di vendita"
+
+#. module: sale_order_line_price_history
+#: model:ir.model,name:sale_order_line_price_history.model_sale_order_line_price_history
+msgid "Sale order line price history"
+msgstr "Storico prezzo riga ordine di vendita"
+
+#. module: sale_order_line_price_history
+#: model:ir.model,name:sale_order_line_price_history.model_sale_order_line_price_history_line
+msgid "Sale order line price history line"
+msgstr "Riga storico prezzo riga ordine di vendita"
+
+#. module: sale_order_line_price_history
+#: model:ir.model,name:sale_order_line_price_history.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Riga ordine di vendita"
+
+#. module: sale_order_line_price_history
+#. odoo-javascript
+#: code:addons/sale_order_line_price_history/static/src/xml/set_price_to_line_widget.xml:0
+#, python-format
+msgid "Set Historic Price"
+msgstr "Imposta prezzo storico"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__order_state
+msgid "Status"
+msgstr "Stato"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__price_unit
+msgid "Unit Price"
+msgstr "Prezzo unitario"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__history_sale_order_line_id
+msgid "history sale order line"
+msgstr "Storico riga ordine di vendita"
+
+#~ msgid "Set price"
+#~ msgstr "Impostare prezzo"
