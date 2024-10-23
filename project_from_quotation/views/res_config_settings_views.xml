@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record
+        id="res_config_settings_view_form_inherit_project_from_quotation"
+        model="ir.ui.view"
+    >
+        <field
+            name="name"
+        >res.config.settings.view.form.inherit.project.from.quotation</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <div name="quotation_order_setting_container" position="inside">
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    id="project_from_quotation_setting"
+                >
+                    <div class="o_setting_left_pane">
+                        <field name="group_project_from_quotation" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="group_project_from_quotation" />
+                        <div class="text-muted">
+                            Create projects and tasks from your quotations.
+                        </div>
+                        <div
+                            class="content-group"
+                            attrs="{'invisible': [('group_project_from_quotation', '=', False)]}"
+                        >
+                            <div class="mt16">
+                                <label
+                                    for="quotation_template_project_id"
+                                    class="o_light_label"
+                                />
+                                <field
+                                    name="quotation_template_project_id"
+                                    class="oe_inline"
+                                />
+                            </div>
+                            <div class="mt16">
+                                <label
+                                    for="quotation_template_task_id"
+                                    class="o_light_label"
+                                />
+                                <field
+                                    name="quotation_template_task_id"
+                                    class="oe_inline"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,1 @@
+Sometimes you need to perform some activities before confirming a quotation.  Eg you need to do some technical research in order to calculate sales price for the items being sold.
