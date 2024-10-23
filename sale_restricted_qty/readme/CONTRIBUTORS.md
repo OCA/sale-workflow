@@ -1,0 +1,5 @@
+- Mourad EL HADJ MIMOUN \<<mourad.elhadj.mimoune@akretion.com>\>
+- [Ooops](https://www.ooops404.com/):
+  - Ashish Hirpara \<<https://ashish-hirpara.com>\>
+- [CorporateHub](https://corporatehub.eu/)
+  - Alexey Pelykh \<<alexey.pelykh@corphub.eu>\>
