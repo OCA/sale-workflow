@@ -145,19 +145,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt8">
-                                <div class="col-4">
-                                    <button
-                                        class="btn btn-secondary "
-                                        string="Planner event"
-                                        name="action_create_event_planner"
-                                        type="object"
-                                    >
-                                        <i class="fa fa-pencil-square-o" />
-                                        <span>Event</span>
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                     </t>
                 </templates>
@@ -168,12 +155,16 @@
     <record id="action_calendar_event" model="ir.actions.act_window">
         <field name="name">My Calendar</field>
         <field name="res_model">calendar.event</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">calendar,tree,kanban,form</field>
         <field name="help" type="html">
           <p class="o_view_nocontent_smiling_face">
             Schedule a new calendar event
           </p>
         </field>
+        <field
+            name="search_view_id"
+            ref="sale_planner_calendar.view_calendar_event_search"
+        />
         <field name="context">{
             'search_default_start_today': 1,
             'choose_unlink_method': True,

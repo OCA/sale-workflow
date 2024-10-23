@@ -7,7 +7,16 @@
         <field name="priority">40</field>
         <field name="arch" type="xml">
             <search string="Search sale planner calendar events">
+                <field
+                    name="name"
+                    string="Meeting"
+                    filter_domain="[('name', 'ilike', self)]"
+                />
                 <field name="target_partner_id" />
+                <field name="user_id" />
+                <field name="categ_ids" />
+                <field name="partner_ids" />
+                <field name="description" />
                 <separator />
                 <field name="sale_planner_state" />
                 <filter
@@ -38,6 +47,26 @@
                     domain="[('start','&gt;', time.strftime('%%Y-%%m-%%d 23:59:59')),('start','&lt;',(datetime.date.today() + datetime.timedelta(days=2)).strftime('%%Y-%%m-%%d 00:00:00'))]"
                 />
                 <separator />
+                <group expand="0" string="Group By">
+                    <filter
+                        string="Responsible"
+                        name="responsible"
+                        domain="[]"
+                        context="{'group_by': 'user_id'}"
+                    />
+                    <filter
+                        string="Sale planner partner"
+                        name="group_by_target_partner"
+                        domain="[]"
+                        context="{'group_by': 'target_partner_id'}"
+                    />
+                    <filter
+                        string="Tags"
+                        name="group_by_tags"
+                        domain="[]"
+                        context="{'group_by': 'categ_ids'}"
+                    />
+                </group>
             </search>
         </field>
     </record>
@@ -51,6 +80,7 @@
                 <field name="user_id" optional="show" />
                 <field name="target_partner_id" optional="show" />
                 <field name="name" optional="show" />
+                <field name="categ_ids" widget="many2many_tags" optional="hide" />
                 <field name="sale_order_subtotal" optional="show" />
                 <field name="sale_planner_state" optional="show" />
                 <field name="sale_planner_currency_id" invisible="1" />
@@ -124,13 +154,9 @@
                             <field name="start" />
                             <field name="user_id" />
                             <field name="sale_planner_currency_id" invisible="1" />
+                            <field name="sale_planner_state" invisible="1" />
+                            <field name="sale_order_subtotal" invisible="1" />
                         </group>
-                        <group>
-                            <field name="sale_planner_state" />
-                            <field name="sale_order_subtotal" />
-                        </group>
-                    </group>
-                    <group>
                         <group>
                             <field
                                 name="calendar_event_profile_id"
@@ -141,6 +167,10 @@
                         </group>
                     </group>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="message_ids" />
+                </div>
             </form>
         </field>
     </record>
@@ -482,14 +512,12 @@
             ref="sale_planner_calendar.view_sale_planner_calendar_search"
         />
         <field
-            name="view_ids"
-            eval="[(5, 0, 0),
-            (0, 0, {'view_mode': 'tree', 'view_id': ref('view_sale_planner_calendar_tree')}),
-            (0, 0, {'view_mode': 'form', 'view_id': ref('view_sale_planner_calendar_form')})]"
-        />
-        <field
             name="context"
-        >{'search_default_start_today': 1, 'search_default_my_event_planner': 1}</field>
+        >{'search_default_start_today': 1, 'search_default_my_event_planner': 1,
+          'tree_view_ref':'sale_planner_calendar.view_sale_planner_calendar_tree',
+          'form_view_ref':'sale_planner_calendar.view_sale_planner_calendar_form',
+          'kanban_view_ref':'sale_planner_calendar.view_sale_planner_calendar_kanban'
+          }</field>
         <field name="domain">[('target_partner_id', '!=', False)]</field>
     </record>
 </odoo>

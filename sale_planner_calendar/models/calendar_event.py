@@ -10,8 +10,6 @@ from dateutil.relativedelta import relativedelta
 from odoo import api, fields, models
 from odoo.tools.safe_eval import safe_eval
 
-# from odoo.addons.calendar.models.calendar import calendar_id2real_id
-
 
 class CalendarEvent(models.Model):
     _inherit = "calendar.event"
@@ -50,6 +48,7 @@ class CalendarEvent(models.Model):
         ],
         default="pending",
         readonly=True,
+        tracking=True,
     )
     calendar_issue_type_id = fields.Many2one(
         comodel_name="sale.planner.calendar.issue.type", ondelete="restrict"
@@ -77,7 +76,7 @@ class CalendarEvent(models.Model):
         comodel_name="sale.payment.sheet.line",
         inverse_name="sale_planner_calendar_event_id",
     )
-    # Helper fields to kanban views
+    # Helper fields for kanban views
     partner_ref = fields.Char(related="target_partner_id.ref")
     partner_name = fields.Char(compute="_compute_partner_name")
     partner_commercial_name = fields.Char(
@@ -110,32 +109,31 @@ class CalendarEvent(models.Model):
         for rec in self:
             rec.sale_order_subtotal = sum(rec.mapped("sale_ids.amount_untaxed"))
 
-    # @api.depends("target_partner_id")
+    @api.depends("target_partner_id")
     def _compute_invoice_amount_residual(self):
-        groups = self.env["account.move"].read_group(
-            [
+        partner_ids = self.mapped("target_partner_id.commercial_partner_id").ids
+        groups = self.env["account.move"]._read_group(
+            domain=[
                 ("state", "=", "posted"),
                 ("payment_state", "!=", "paid"),
-                (
-                    "partner_id",
-                    "in",
-                    self.mapped("target_partner_id.commercial_partner_id").ids,
-                ),
+                ("partner_id", "in", partner_ids),
             ],
-            ["amount_residual_signed"],
-            ["partner_id"],
+            fields=["amount_residual_signed"],
+            groupby=["partner_id"],
         )
         invoice_dic = {g["partner_id"][0]: g["amount_residual_signed"] for g in groups}
         for rec in self:
             amount_residual = invoice_dic.get(
                 rec.target_partner_id.commercial_partner_id.id, 0.0
             )
-            rec.invoice_amount_residual = amount_residual - sum(
+            payment_amount = sum(
                 rec.payment_sheet_line_ids.filtered(
                     lambda p: p.sheet_id.state == "open"
                 ).mapped("amount")
             )
+            rec.invoice_amount_residual = amount_residual - payment_amount
 
+    @api.depends("target_partner_id")
     def _compute_partner_name(self):
         field_name = (
             self.env["ir.config_parameter"]
@@ -153,6 +151,7 @@ class CalendarEvent(models.Model):
                 or event.target_partner_id.commercial_partner_id.name
             )
 
+    @api.depends("target_partner_id")
     def _compute_contact(self):
         for rec in self:
             contact = rec.target_partner_id.child_ids.filtered(
@@ -163,11 +162,13 @@ class CalendarEvent(models.Model):
             )
             rec.partner_contact_name = contact.name
 
+    @api.depends("partner_mobile")
     def _compute_sanitized_partner_mobile(self):
         self.sanitized_partner_mobile = False
         for rec in self.filtered("partner_mobile"):
             rec.sanitized_partner_mobile = re.sub(r"\W+", "", rec.partner_mobile)
 
+    @api.depends("target_partner_id")
     def _compute_location_url(self):
         # The url is built to access the location from a google link. This will be done
         # taking into account the location of the calendar event associated with the calendar
@@ -175,23 +176,22 @@ class CalendarEvent(models.Model):
         # be taken into account if they are defined, otherwise the client's address
         # will be taken into account.
         self.location_url = False
-        for rec in self:
-            event_location = rec.location
-            partner_latitude = str(rec.target_partner_id.partner_latitude).replace(
+        for event in self:
+            event_location = event.location
+            partner_latitude = str(event.target_partner_id.partner_latitude).replace(
                 ",", "."
             )
-            partner_longitude = str(rec.target_partner_id.partner_longitude).replace(
+            partner_longitude = str(event.target_partner_id.partner_longitude).replace(
                 ",", "."
             )
-            partner_location = f"{rec.partner_city}+{rec.partner_street}"
+            partner_location = f"{event.partner_city}+{event.partner_street}"
             if event_location:
-                self.location_url = event_location.replace(" ", "+")
+                event.location_url = event_location.replace(" ", "+")
             elif partner_latitude != "0.0" or partner_longitude != "0.0":
-                self.location_url = f"{partner_latitude}%2C{partner_longitude}"
+                event.location_url = f"{partner_latitude}%2C{partner_longitude}"
             elif partner_location:
-                self.location_url = partner_location.replace(" ", "+")
+                event.location_url = partner_location.replace(" ", "+")
 
-    # Inverse methods
     def _inverse_hour(self):
         for rec in self:
             duration = rec.duration
@@ -233,16 +233,13 @@ class CalendarEvent(models.Model):
                 }
             }
 
-    def action_create_sale_order(self):
-        """
-        Search or Create an event planner  linked to sale order
-        """
-        planner_event = self.get_planner_calendar_event()
-        return planner_event.action_open_sale_order()
-
-    def action_create_event_planner(self):
-        planner_event = self.get_planner_calendar_event()
-        return planner_event.get_formview_action()
+    @api.onchange("categ_ids")
+    def _onchange_categ_ids(self):
+        if not self.name and self.categ_ids:
+            self.name = self.categ_ids[:1].name
+        # Clean name if is equal to stored categ name and this categ is removed
+        elif not self.categ_ids and self.name == self._origin.categ_ids[:1].name:
+            self.name = False
 
     def action_open_sale_order(self, new_order=False):
         """
@@ -330,8 +327,6 @@ class CalendarEvent(models.Model):
         self.write(
             {
                 "sale_planner_state": "done",
-                # "date": fields.Datetime.now(),
-                # "comment": 'Done',
             }
         )
 
@@ -340,7 +335,6 @@ class CalendarEvent(models.Model):
             {
                 "sale_planner_state": "cancel",
                 "comment": "Not done",
-                # "date": fields.Datetime.now(),
             }
         )
 
@@ -349,7 +343,6 @@ class CalendarEvent(models.Model):
             {
                 "sale_planner_state": "pending",
                 "comment": False,
-                # "date": self.calendar_event_date,
             }
         )
 
@@ -368,20 +361,6 @@ class CalendarEvent(models.Model):
         self_tz = self.with_context(tz=timezone)
         date = fields.Datetime.context_timestamp(self_tz, self.start)
         return date
-
-    def _create_event_planner(self):
-        return self.env["calendar.event"].create(
-            {
-                "name": self.name,
-                "partner_id": self.target_partner_id.id,
-                "user_id": self.user_id.id,
-                "start": self.start,
-                "calendar_event_profile_id": self.calendar_event_profile_id.id,
-            }
-        )
-
-    def get_planner_calendar_event(self):
-        return self.sale_planner_calendar_event_id or self._create_event_planner()
 
     def get_week_days_count(self):
         days = ["mo", "tu", "we", "th", "fr", "sa"]
