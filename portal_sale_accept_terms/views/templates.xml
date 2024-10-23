@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ Copyright 2024 Simone Rubino - Aion Tech
+  ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+  -->
+<odoo>
+    <template
+        id="sale_order_portal_template"
+        inherit_id="sale.sale_order_portal_template"
+        name="Add accept terms to Sales Order Portal Template"
+    >
+        <xpath
+            expr="(//div[@id='modalaccept']//main[@id='sign-dialog'])[1]//ul"
+            position="after"
+        >
+            <div t-if="sale_order.portal_accept_terms" class="form-check">
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="portal_accept_terms"
+                />
+                <label class="form-check-label" for="portal_accept_terms">
+                    <span t-field="sale_order.portal_accept_terms" />
+                </label>
+            </div>
+        </xpath>
+        <xpath
+            expr="(//div[@id='modalaccept']//main[@id='sign-dialog'])[2]//ul"
+            position="after"
+        >
+            <div t-if="sale_order.portal_accept_terms" class="form-check">
+                <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="portal_accept_terms"
+                />
+                <label class="form-check-label" for="portal_accept_terms">
+                    <span t-field="sale_order.portal_accept_terms" />
+                </label>
+            </div>
+        </xpath>
+    </template>
+</odoo>
