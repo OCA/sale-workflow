@@ -28,6 +28,7 @@
                                 widget="many2many_tags"
                                 optional="hide"
                                 readonly="1"
+                                options="{'color_field': 'color'}"
                             />
                             <field name="start" optional="hide" readonly="1" />
                             <field name="stop" optional="hide" readonly="1" />

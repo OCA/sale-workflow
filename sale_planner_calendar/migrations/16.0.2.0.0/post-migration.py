@@ -61,15 +61,26 @@ def _payment_sheet_to_calendar_event(env):
     )
 
 
-def _remove_selection_field_values(env):
-    sql = """
-        DELETE FROM ir_model_fields_selection
-        WHERE field_id IN
-            (SELECT id
-                FROM ir_model_fields
-                WHERE ttype='selection' AND model='sale.planner.calendar.event')
-    """
-    openupgrade.logged_query(env.cr, sql)
+def _profiles_to_calendar_event_type(env):
+    openupgrade.logged_query(
+        env.cr,
+        """
+        INSERT INTO calendar_event_type (name, icon, old_sale_planner_profile_id)
+            SELECT name, icon, id FROM sale_planner_calendar_event_profile
+    """,
+    )
+
+    # Update event linked to profiles
+    openupgrade.logged_query(
+        env.cr,
+        """
+        INSERT INTO meeting_category_rel (event_id, type_id)
+            SELECT ce.id, cet.id
+            FROM calendar_event ce
+                JOIN calendar_event_type cet
+                    ON cet.old_sale_planner_profile_id = ce.calendar_event_profile_id
+    """,
+    )
 
 
 @openupgrade.migrate()
@@ -77,4 +88,4 @@ def migrate(env, version):
     _sale_planner_calendar_event_to_calendar_event(env)
     _sale_order_to_calendar_event(env)
     _payment_sheet_to_calendar_event(env)
-    # _remove_selection_field_values(env)
+    _profiles_to_calendar_event_type(env)

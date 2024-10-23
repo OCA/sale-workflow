@@ -53,9 +53,6 @@ class CalendarEvent(models.Model):
     calendar_issue_type_id = fields.Many2one(
         comodel_name="sale.planner.calendar.issue.type", ondelete="restrict"
     )
-    calendar_event_profile_id = fields.Many2one(
-        comodel_name="sale.planner.calendar.event.profile"
-    )
     comment = fields.Text()
     sale_order_subtotal = fields.Monetary(
         compute="_compute_sale_order_subtotal",
@@ -89,7 +86,7 @@ class CalendarEvent(models.Model):
     partner_city = fields.Char(related="target_partner_id.city")
     sanitized_partner_mobile = fields.Char(compute="_compute_sanitized_partner_mobile")
     location_url = fields.Char(compute="_compute_location_url")
-    profile_icon = fields.Char(related="calendar_event_profile_id.icon")
+    profile_icon = fields.Char(related="categ_ids.icon")
 
     @api.depends("recurrence_id", "recurrence_id.calendar_event_ids")
     def _compute_is_base_recurrent_event(self):
