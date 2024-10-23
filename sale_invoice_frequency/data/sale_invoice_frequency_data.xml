@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Moduon Team S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<data>
+    <record id="sale_invoice_frequency_daily" model="sale.invoice.frequency">
+        <field name="name">Daily</field>
+    </record>
+    <record id="sale_invoice_frequency_weekly" model="sale.invoice.frequency">
+        <field name="name">Weekly</field>
+    </record>
+    <record id="sale_invoice_frequency_biweekly" model="sale.invoice.frequency">
+        <field name="name">Biweekly</field>
+    </record>
+    <record id="sale_invoice_frequency_monthly" model="sale.invoice.frequency">
+        <field name="name">Monthly</field>
+    </record>
+    <record id="sale_invoice_frequency_quarterly" model="sale.invoice.frequency">
+        <field name="name">Quarterly</field>
+    </record>
+    <record id="sale_invoice_frequency_biannual" model="sale.invoice.frequency">
+        <field name="name">Biannual</field>
+    </record>
+    <record id="sale_invoice_frequency_annual" model="sale.invoice.frequency">
+        <field name="name">Annual</field>
+    </record>
+</data>
