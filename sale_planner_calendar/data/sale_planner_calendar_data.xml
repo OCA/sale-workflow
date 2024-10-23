@@ -3,14 +3,22 @@
     <record id="event_type_commercial_visit" model="calendar.event.type">
         <field name="name">Commercial visit</field>
         <field name="duration">0.25</field>
+        <field name="icon">fa-car</field>
     </record>
     <record id="event_type_remote_selling" model="calendar.event.type">
         <field name="name">Remote selling</field>
         <field name="duration">0.25</field>
+        <field name="icon">fa-phone</field>
     </record>
     <record id="event_type_delivery" model="calendar.event.type">
         <field name="name">Delivery</field>
         <field name="duration">0.25</field>
+        <field name="icon">fa-truck</field>
+    </record>
+    <record id="event_type_message" model="calendar.event.type">
+        <field name="name">Message</field>
+        <field name="duration">0.25</field>
+        <field name="icon">fa-envelope</field>
     </record>
 
     <!-- Event planner issue types -->

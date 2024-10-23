@@ -21,7 +21,17 @@ def _remove_selection_field_values(env):
     openupgrade.logged_query(env.cr, sql)
 
 
+def _add_event_profile_helper_column(env):
+    openupgrade.logged_query(
+        env.cr,
+        """
+        ALTER TABLE calendar_event_type
+        ADD COLUMN old_sale_planner_profile_id integer""",
+    )
+
+
 @openupgrade.migrate()
 def migrate(env, version):
     openupgrade.rename_columns(env.cr, _column_renames)
     _remove_selection_field_values(env)
+    _add_event_profile_helper_column(env)
