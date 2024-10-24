@@ -26,9 +26,6 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
 
     def test_sale_order_invoice_order(self):
         """Test invoicing based on ordered quantities"""
-        settings = self.env["res.config.settings"].create({})
-        settings.sale_invoice_policy_required = True
-        settings.execute()
         so = self.env["sale.order"].create(
             {
                 "partner_id": self.env.ref("base.res_partner_2").id,
@@ -39,8 +36,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
                 "invoice_policy": "order",
             }
         )
-        self.assertTrue(so.invoice_policy_required)
-        self.assertTrue(so.invoice_policy == "order")
+        self.assertEqual(so.invoice_policy, "order")
 
         # SO is not confirmed yet
         self.assertEqual([0.0, 0.0], so.order_line.mapped("untaxed_amount_to_invoice"))
@@ -64,9 +60,6 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
 
     def test_sale_order_invoice_deliver(self):
         """Test invoicing based on delivered quantities"""
-        settings = self.env["res.config.settings"].create({})
-        settings.sale_invoice_policy_required = True
-        settings.execute()
         self.assertEqual("order", self.product.invoice_policy)
         so = self.env["sale.order"].create(
             {
@@ -78,8 +71,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
                 ],
             }
         )
-        self.assertTrue(so.invoice_policy_required)
-        self.assertTrue(so.invoice_policy == "delivery")
+        self.assertEqual(so.invoice_policy, "delivery")
 
         # SO is not confirmed yet
         self.assertEqual([0.0, 0.0], so.order_line.mapped("untaxed_amount_to_invoice"))
@@ -125,19 +117,16 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
     def test_settings(self):
         # delivery policy is the default
         settings = self.env["res.config.settings"].create({})
-        settings.default_invoice_policy = "delivery"
-        settings.sale_invoice_policy_required = True
+        settings.sale_default_invoice_policy = "delivery"
         settings.execute()
         so = self.env["sale.order"].create(
             {"partner_id": self.env.ref("base.res_partner_2").id}
         )
         self.assertEqual(so.invoice_policy, "delivery")
-        self.assertTrue(so.invoice_policy_required)
         # order policy is the default
-        settings.default_invoice_policy = "order"
+        settings.sale_default_invoice_policy = "order"
         settings.execute()
         so = self.env["sale.order"].create(
             {"partner_id": self.env.ref("base.res_partner_2").id}
         )
         self.assertEqual(so.invoice_policy, "order")
-        self.assertTrue(so.invoice_policy_required)
