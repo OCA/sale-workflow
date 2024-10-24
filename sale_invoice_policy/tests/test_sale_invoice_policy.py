@@ -42,6 +42,9 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         self.assertTrue(so.invoice_policy_required)
         self.assertTrue(so.invoice_policy == "order")
 
+        # SO is not confirmed yet
+        self.assertEqual([0.0, 0.0], so.order_line.mapped("untaxed_amount_to_invoice"))
+
         so.action_confirm()
 
         self.assertEqual(len(so.picking_ids), 1)
@@ -64,6 +67,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         settings = self.env["res.config.settings"].create({})
         settings.sale_invoice_policy_required = True
         settings.execute()
+        self.assertEqual("order", self.product.invoice_policy)
         so = self.env["sale.order"].create(
             {
                 "partner_id": self.env.ref("base.res_partner_2").id,
@@ -77,7 +81,13 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         self.assertTrue(so.invoice_policy_required)
         self.assertTrue(so.invoice_policy == "delivery")
 
+        # SO is not confirmed yet
+        self.assertEqual([0.0, 0.0], so.order_line.mapped("untaxed_amount_to_invoice"))
+
         so.action_confirm()
+
+        # SO is not delivered
+        self.assertEqual([0.0, 0.0], so.order_line.mapped("untaxed_amount_to_invoice"))
 
         self.assertEqual(len(so.picking_ids), 1)
 
@@ -102,9 +112,15 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         self.assertEqual(so_line.qty_to_invoice, 2)
         self.assertEqual(so_line.invoice_status, "to invoice")
 
+        self.assertEqual(40.0, so_line.untaxed_amount_to_invoice)
+        # Check that product has still its original invoice policy
+        self.assertEqual("order", self.product.invoice_policy)
+
         so_line = so.order_line[1]
         self.assertEqual(so_line.qty_to_invoice, 3)
         self.assertEqual(so_line.invoice_status, "to invoice")
+
+        self.assertEqual(135.0, so_line.untaxed_amount_to_invoice)
 
     def test_settings(self):
         # delivery policy is the default
