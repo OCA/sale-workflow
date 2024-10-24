@@ -15,10 +15,11 @@ class SaleOrderLine(models.Model):
         "order_id.invoice_policy",
     )
     def _compute_qty_to_invoice(self):
+        """
+        Exclude lines that have their order invoice policy filled in
+        """
         other_lines = self.filtered(
-            lambda l: l.product_id.type == "service"
-            or not l.order_id.invoice_policy
-            or not l.order_id.invoice_policy_required
+            lambda l: l.product_id.type == "service" or not l.order_id.invoice_policy
         )
         super(SaleOrderLine, other_lines)._compute_qty_to_invoice()
         for line in self - other_lines:
