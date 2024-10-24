@@ -21,8 +21,10 @@
     ],
     "assets": {
         "web.assets_backend": [
+            "sale_order_product_picker/static/src/form/*",
             "sale_order_product_picker/static/src/kanban/*",
             "sale_order_product_picker/static/src/x2many/*",
+            "sale_order_product_picker/static/src/utils/*",
             "sale_order_product_picker/static/src/scss/picker.scss",
         ],
     },
