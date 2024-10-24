@@ -204,6 +204,9 @@ class SalePlannerCalendarReassignLineWiz(models.TransientModel):
     reassign_wiz_id = fields.Many2one(comodel_name="sale.planner.calendar.reassign.wiz")
     selected = fields.Boolean()
     calendar_event_id = fields.Many2one(comodel_name="calendar.event", readonly=True)
+    calendar_event_profile_id = fields.Many2one(
+        related="calendar_event_id.calendar_event_profile_id", readonly=True, store=True
+    )
     partner_id = fields.Many2one(comodel_name="res.partner", readonly=True)
     partner_user_id = fields.Many2one(
         string="Partner salesperson",
