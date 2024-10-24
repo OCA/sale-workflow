@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2019 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.rule" id="ir_rule_sale_promotion_rule_multi_company">
+        <field name="name">Sale promotion rule multi-company</field>
+        <field name="model_id" ref="model_sale_promotion_rule" />
+        <field
+            name="domain_force"
+        >['|', ('company_id','=',False), ('company_id','in', company_ids)]</field>
+        <field name="perm_create" eval="True" />
+        <field name="perm_read" eval="True" />
+        <field name="perm_write" eval="True" />
+        <field name="perm_unlink" eval="True" />
+    </record>
+</odoo>
