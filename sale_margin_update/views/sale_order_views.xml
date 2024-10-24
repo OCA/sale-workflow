@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_margin_sale_order_line_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='margin_percent']" position="after">
+                <button
+                    name="wizard_price_unit_by_margin"
+                    type="object"
+                    icon="fa-refresh"
+                    title="Update Margin"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="sale_margin_sale_order" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='margin']" position="after">
+                <button
+                    name="wizard_price_unit_by_margin"
+                    type="object"
+                    icon="fa-refresh"
+                    title="Update Margin"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

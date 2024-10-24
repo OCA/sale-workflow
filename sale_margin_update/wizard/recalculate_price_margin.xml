@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="recalculate_price_margin_view_form" model="ir.ui.view">
+        <field name="name">recalculate_price_margin.view.form</field>
+        <field name="model">recalculate.price.margin</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="sale_margin_percent" />
+                        <field name="line_id" invisible="1" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        name="recalculate_price_margin"
+                        string="Recalculate"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
