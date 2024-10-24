@@ -25,7 +25,7 @@ class SaleOrderLine(models.Model):
         return True
 
     @api.depends("order_id.invoice_policy")
-    def _compute_untaxed_amount_to_invoice(self):
+    def _compute_untaxed_amount_to_invoice(self) -> None:
         other_lines = self.filtered(
             lambda line: line.product_id.type == "service"
             or not line.order_id.invoice_policy
@@ -33,13 +33,18 @@ class SaleOrderLine(models.Model):
             or line.state not in ["sale", "done"]
         )
         super(SaleOrderLine, other_lines)._compute_untaxed_amount_to_invoice()
-        for line in self - other_lines:
+        saved_product_values = dict()
+        lines = self - other_lines
+        for line in lines:
             # Save product invoice policy, change it to sale order one, add context manager
             # to not trigger other computes. Then, restablish former one.
             with self.env.norecompute():
-                policy = line.product_id.invoice_policy
+                saved_product_values[line.product_id] = line.product_id.invoice_policy
                 line.product_id.invoice_policy = line.order_id.invoice_policy
+            # We should call the super() per line as each sale order can have different policy
             super(SaleOrderLine, line)._compute_untaxed_amount_to_invoice()
-            with self.env.norecompute():
-                line.product_id.invoice_policy = policy
+        with self.env.norecompute():
+            # Restore saved values
+            for product, value in saved_product_values.items():
+                product.invoice_policy = value
         return
