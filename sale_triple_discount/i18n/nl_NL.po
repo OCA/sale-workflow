@@ -1,0 +1,97 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_triple_discount
+#
+# Translators:
+# Peter Hageman <hageman.p@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-23 01:52+0000\n"
+"PO-Revision-Date: 2018-06-22 17:01+0000\n"
+"Last-Translator: Thomas Pot <t.pot@open2bizz.nl>\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/"
+"teams/23907/nl_NL/)\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.0.1\n"
+
+#. module: sale_triple_discount
+#: model_terms:ir.ui.view,arch_db:sale_triple_discount.report_saleorder_document_triple_discount
+msgid "<span>Disc. 2 (%)</span>"
+msgstr ""
+
+#. module: sale_triple_discount
+#: model_terms:ir.ui.view,arch_db:sale_triple_discount.report_saleorder_document_triple_discount
+msgid "<span>Disc. 3 (%)</span>"
+msgstr ""
+
+#. module: sale_triple_discount
+#: model:ir.model.fields.selection,name:sale_triple_discount.selection__sale_order_line__discounting_type__additive
+msgid "Additive"
+msgstr ""
+
+#. module: sale_triple_discount
+#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount2
+msgid "Disc. 2 (%)"
+msgstr "Korting 2 (%)"
+
+#. module: sale_triple_discount
+#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount3
+msgid "Disc. 3 (%)"
+msgstr "Korting 3 (%)"
+
+#. module: sale_triple_discount
+#: model:ir.model.constraint,message:sale_triple_discount.constraint_sale_order_line_discount2_limit
+msgid "Discount 2 must be lower or equal than 100%."
+msgstr ""
+
+#. module: sale_triple_discount
+#: model:ir.model.constraint,message:sale_triple_discount.constraint_sale_order_line_discount3_limit
+msgid "Discount 3 must be lower or equal than 100%."
+msgstr ""
+
+#. module: sale_triple_discount
+#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discounting_type
+msgid "Discounting Type"
+msgstr ""
+
+#. module: sale_triple_discount
+#: model:ir.model.fields.selection,name:sale_triple_discount.selection__sale_order_line__discounting_type__multiplicative
+msgid "Multiplicative"
+msgstr ""
+
+#. module: sale_triple_discount
+#. odoo-python
+#: code:addons/sale_triple_discount/models/sale_order_line.py:0
+#, python-format
+msgid "Sale order line %(name)s has unknown discounting type %(dic_type)s"
+msgstr ""
+
+#. module: sale_triple_discount
+#: model:ir.model,name:sale_triple_discount.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Verkooporderregel"
+
+#. module: sale_triple_discount
+#: model:ir.model.fields,help:sale_triple_discount.field_sale_order_line__discounting_type
+msgid ""
+"Specifies whether discounts should be additive or multiplicative.\n"
+"Additive discounts are summed first and then applied.\n"
+"Multiplicative discounts are applied sequentially.\n"
+"Multiplicative discounts are default"
+msgstr ""
+
+#~ msgid "Discount 2 must be lower than 100%."
+#~ msgstr "Korting 2 moet lager zijn dan 100%."
+
+#~ msgid "Discount 3 must be lower than 100%."
+#~ msgstr "Korting 3 moet lager zijn dan 100%."
+
+#, fuzzy
+#~ msgid "Sale Order"
+#~ msgstr "Verkooporderregel"
