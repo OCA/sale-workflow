@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record id="sale_order_form_view" model="ir.ui.view">
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form" />
+    <field name="arch" type="xml">
+      <xpath
+                expr="//field[@name='order_line']/form/group/group/div[field[@name='qty_delivered']]"
+                position="after"
+            >
+        <field name="can_cancel_remaining_qty" invisible="1" />
+        <button
+                    name="%(action_sale_order_line_cancel)d"
+                    type="action"
+                    icon="fa-ban"
+                    colspan="2"
+                    title="Cancel remaining qty"
+                    attrs="{'invisible': [('can_cancel_remaining_qty', '!=', True)]}"
+                />
+      </xpath>
+      <xpath
+                expr="//field[@name='order_line']/tree/field[@name='qty_delivered']"
+                position="after"
+            >
+        <field name="can_cancel_remaining_qty" invisible="1" />
+        <button
+                    name="%(action_sale_order_line_cancel)d"
+                    type="action"
+                    icon="fa-ban"
+                    title="Cancel remaining qty"
+                    attrs="{'invisible': [('can_cancel_remaining_qty', '!=', True)]}"
+                />
+      </xpath>
+      <xpath
+                expr="//field[@name='order_line']/tree//field[@name='qty_delivered']"
+                position="after"
+            >
+        <field name="product_qty_canceled" string="Canceled" />
+        <field name="product_qty_remains_to_deliver" string="To Deliver" />
+      </xpath>
+        <!-- show cancel button at done state as we expect auto-locking to be enabled -->
+        <xpath expr="//button[@name='action_cancel']" position="attributes">
+            <attribute
+                    name="attrs"
+                >{'invisible': ['|', ('state', 'not in', ['draft', 'sent','sale', 'done']), ('id', '=', False)]}</attribute>
+        </xpath>
+    </field>
+  </record>
+</odoo>
