@@ -7,13 +7,7 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.depends(
-        "qty_invoiced",
-        "qty_delivered",
-        "product_uom_qty",
-        "state",
-        "order_id.invoice_policy",
-    )
+    @api.depends("order_id.invoice_policy")
     def _compute_qty_to_invoice(self):
         """
         Exclude lines that have their order invoice policy filled in
@@ -30,15 +24,7 @@ class SaleOrderLine(models.Model):
                 line.qty_to_invoice = line.qty_delivered - line.qty_invoiced
         return True
 
-    @api.depends(
-        "state",
-        "price_reduce",
-        "product_id",
-        "untaxed_amount_invoiced",
-        "qty_delivered",
-        "product_uom_qty",
-        "order_id.invoice_policy",
-    )
+    @api.depends("order_id.invoice_policy")
     def _compute_untaxed_amount_to_invoice(self):
         other_lines = self.filtered(
             lambda line: line.product_id.type == "service"
