@@ -10,9 +10,20 @@
                     id="sale_invoice_policy_setting"
                     help="Invoice Policy required in Sale Orders"
                 >
-                    <field name="sale_invoice_policy_required" />
-                </setting>
-            </setting>
+                    <div class="o_setting_left_pane">
+                        <field name="sale_default_invoice_policy" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label
+                            string="Sale Invoice Policy"
+                            for="sale_default_invoice_policy"
+                        />
+                        <div class="text-muted" id="sale_default_invoice_policy">
+                            Default Invoice Policy in Sale Orders
+                        </div>
+                    </div>
+                </div>
+            </xpath>
         </field>
     </record>
 </odoo>
