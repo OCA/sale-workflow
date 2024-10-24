@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Manuel Regidor <manuel.regidor@sygel.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="so_line_multi_warehouse_view_order_form" model="ir.ui.view">
+        <field name="name">so.line.multi.warehouse.view.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group[@name='sale_header']//field[@name='company_id']"
+                position="after"
+            >
+                <field name="allow_sale_multi_warehouse" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//tree//field[@name='product_uom_qty']"
+                position="after"
+            >
+                <field name="allow_sale_multi_warehouse" invisible="1" />
+                <button
+                    name="action_show_warehouse_lines"
+                    type="object"
+                    icon="fa-sitemap"
+                    title="Warehouses"
+                    attrs="{'column_invisible': [('parent.allow_sale_multi_warehouse', '=', False)]}"
+                    width="0.1"
+                />
+                <field
+                    name="sale_order_line_warehouse_ids"
+                    widget="many2many_tags"
+                    attrs="{'column_invisible': [('parent.allow_sale_multi_warehouse', '=', False)]}"
+                />
+            </xpath>
+            <xpath expr="//field[@name='warehouse_id'][2]" position="attributes">
+                <attribute
+                    name="attrs"
+                >{'readonly':[('allow_sale_multi_warehouse', '=', True)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='warehouse_id'][2]" position="after">
+                <label
+                    for="action_open_so_multi_warehouse_change"
+                    string=""
+                    groups="stock.group_stock_multi_warehouses"
+                    attrs="{'invisible':['|', ('allow_sale_multi_warehouse', '=', False), ('state', 'in', ['sale', 'done'])]}"
+                />
+                <button
+                    type='object'
+                    class="oe_link"
+                    name="action_open_so_multi_warehouse_change"
+                    string="Change Warehouse"
+                    groups="stock.group_stock_multi_warehouses"
+                    attrs="{'invisible':['|', ('allow_sale_multi_warehouse', '=', False), ('state', 'in', ['sale', 'done'])]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
