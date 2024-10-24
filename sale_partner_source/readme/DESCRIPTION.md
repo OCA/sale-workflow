@@ -1,0 +1,1 @@
+This module provides a way to classify partners using Odoo’s native **utm.source** model. Each partner can be assigned a Source, which is added just below the partner's name on the form view. When creating a Quotation, the Source field of the partner is automatically copied to the Quotation. Users can manually adjust the Source in the Quotation if needed.
