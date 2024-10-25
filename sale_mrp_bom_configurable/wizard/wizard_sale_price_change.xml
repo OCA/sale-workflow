@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="wiz_sale_price_change" model="ir.ui.view">
+        <field name="model">wizard.sale.price.config.change</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="start_of_change" />
+                        </group>
+                        <group>
+                            <field name="percentage" widget="percentage" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="Config lines">
+                            <field
+                                name="price_config_line_ids"
+                                domain="[('sale_price_config_id.start_date', '&lt;', context_today().strftime('%Y-%m-%d 00:00:00')), '|', ('sale_price_config_id.end_date', '&gt;', context_today().strftime('%Y-%m-%d 00:00:00')), ('sale_price_config_id.end_date', '=', False)]"
+                            />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

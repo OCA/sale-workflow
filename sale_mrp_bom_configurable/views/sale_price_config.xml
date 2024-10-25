@@ -7,7 +7,11 @@
                 <sheet>
                     <group>
                         <group>
+                            <field name="start_date" />
                             <field name="product_id" />
+                        </group>
+                        <group>
+                            <field name="end_date" />
                         </group>
                     </group>
                     <notebook>
@@ -54,11 +58,56 @@
             </form>
         </field>
     </record>
+    <record id="price_config_filter" model="ir.ui.view">
+        <field name="name">sale.price.config.search</field>
+        <field name="model">sale.price.config</field>
+        <field name="arch" type="xml">
+            <search string="Search price config">
+                <filter
+                    string="Active"
+                    name="active"
+                    domain="[('start_date', '&lt;', context_today()), '|', ('end_date', '&gt;', context_today()), ('end_date', '=', False)]"
+                >
+                </filter>
+            </search>
+        </field>
+    </record>
     <record id="sale_price_config_tree_view" model="ir.ui.view">
         <field name="model">sale.price.config</field>
         <field name="arch" type="xml">
-            <tree create="True">
+            <tree create="True" js_class="sale_price_button">
                 <field name="product_id" />
+                <field name="start_date" />
+                <field name="end_date" />
+            </tree>
+        </field>
+    </record>
+    <record id="sale_price_config_line_tree_view" model="ir.ui.view">
+        <field name="model">sale.price.config.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sale_price_config_id" />
+                <field name="line_type" />
+                <field
+                    name="domain"
+                    widget="domain"
+                    options="{'model': 'input.line'}"
+                />
+                <field name="target_field_domain" invisible="True" />
+                <field
+                    name="target_field"
+                    domain="target_field_domain"
+                    attrs="{'invisible': [('line_type', '!=', 'factor')], 'required': [('line_type', '=', 'factor')]}"
+                />
+                <field
+                    name="amount"
+                    attrs="{'invisible': [('line_type', '=', 'include_product_or_category')], 'required': [('line_type', '!=', 'include_product_or_category')]}"
+                    digits="[12,4]"
+                />
+                <field
+                    name="included_product_or_category"
+                    attrs="{'invisible': [('line_type', '!=', 'include_product_or_category')],'required': [('line_type', '=', 'include_product_or_category')] }"
+                />
             </tree>
         </field>
     </record>
@@ -66,9 +115,11 @@
         <field name="name">Sale price config settings</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.price.config</field>
-        <field name="view_id" ref="sale_price_config_tree_view" />
         <field name="view_mode">tree,form</field>
-        <field name="target">inline</field>
+        <field name="search_view_id" ref="price_config_filter" />
+        <field
+            name="context"
+        >{'default_company_id': allowed_company_ids[0], 'search_default_active': True}</field>
     </record>
     <menuitem
         id="menu_sale_price_config"

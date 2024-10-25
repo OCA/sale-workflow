@@ -13,6 +13,24 @@ class WizardPriceConfigMatrix(models.TransientModel):
         related="price_config_line_id.target_field_domain"
     )
     matrix = fields.Text(string="Price matrix")
+    should_show_matrix_input = fields.Boolean()
+
+    def show_matrix_input(self):
+        self.should_show_matrix_input = True
+        return self._reopen_self()
+
+    def hide_matrix_input(self):
+        self.should_show_matrix_input = False
+        return self._reopen_self()
+
+    def _reopen_self(self):
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": self._name,
+            "res_id": self.id,
+            "view_mode": "form",
+            "target": "new",
+        }
 
     def write(self, vals):
         res = super().write(vals)

@@ -9,13 +9,36 @@
                 <h2>Price matrix</h2>
                 <group>
                     <field name="target_field_domain" invisible="1" />
+                    <field name="should_show_matrix_input" invisible="1" />
                     <group>
                         <field name="vertical_value" domain="target_field_domain" />
+                        <button
+                                name="show_matrix_input"
+                                type="object"
+                                string="Afficher champ matrice"
+                                attrs="{'invisible': [('should_show_matrix_input', '=', True)]}"
+                                colspan="2"
+                            />
+                        <button
+                                name="hide_matrix_input"
+                                type="object"
+                                string="Afficher tableau matrice"
+                                attrs="{'invisible': [('should_show_matrix_input', '=', False)]}"
+                                colspan="2"
+                            />
                     </group>
                     <group>
                         <field name="horizontal_value" domain="target_field_domain" />
                     </group>
-                    <field name="matrix" />
+                    <field
+                            name="matrix"
+                            widget="matrix_table"
+                            attrs="{'invisible': [('should_show_matrix_input', '=', True)]}"
+                        />
+                    <field
+                            name="matrix"
+                            attrs="{'invisible': [('should_show_matrix_input', '=', False)]}"
+                        />
                 </group>
             </sheet>
         </form>

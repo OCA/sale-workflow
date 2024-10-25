@@ -1,0 +1,22 @@
+.matrix-table {
+    width: 100%;
+    text-align: center;
+}
+
+.matrix-table th:first-child {
+    background: #fff;
+}
+
+.matrix-table th:not(:first-child) {
+    background: #777;
+    color: #eee;
+}
+
+.matrix-table td:first-child {
+    background: #777;
+    color: #eee;
+}
+
+.matrix-table tr:nth-child(2n + 1) {
+    background: #d5d5d5;
+}

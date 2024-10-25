@@ -11,10 +11,14 @@ class SalePriceConfig(models.Model):
     )
 
     product_id = fields.Many2one(comodel_name="product.template", string="Product")
+    display_name = fields.Char(related="product_id.name")
 
     sale_price_config_line_ids = fields.One2many(
         comodel_name="sale.price.config.line", inverse_name="sale_price_config_id"
     )
+
+    start_date = fields.Datetime(string="Start date")
+    end_date = fields.Datetime(string="End date")
 
     def _get_price(self, input_line):
         price = 0
@@ -30,6 +34,18 @@ class SalePriceConfig(models.Model):
                     price += line._get_price(input_line)
 
         return price
+
+    @api.model
+    def open_price_change_wizard(self):
+        wizard_id = self.env["wizard.sale.price.config.change"].create({})
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Price change",
+            "res_model": "wizard.sale.price.config.change",
+            "view_mode": "form",
+            "target": "new",
+            "res_id": wizard_id.id,
+        }
 
 
 class SalePriceConfigLine(models.Model):
