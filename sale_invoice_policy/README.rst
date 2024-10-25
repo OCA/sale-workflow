@@ -72,6 +72,7 @@ Contributors
 * Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
 * Alejandro Ji Cheung <alejandro.jicheung@factorlibre.com>
 * Ioan Galan <ioan@studio73.es>
+* Laurent Mignon <laurent.mignon@acsone.eu>
 
 Maintainers
 ~~~~~~~~~~~

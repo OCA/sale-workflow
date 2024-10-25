@@ -130,3 +130,39 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
             {"partner_id": self.env.ref("base.res_partner_2").id}
         )
         self.assertEqual(so.invoice_policy, "order")
+
+    def test_context_manager_exception(self):
+        """Check the exception is well managed when called with several invoice policies"""
+        self.assertEqual("order", self.product.invoice_policy)
+        so = self.env["sale.order"].create(
+            {
+                "partner_id": self.env.ref("base.res_partner_2").id,
+                "invoice_policy": "delivery",
+                "order_line": [
+                    (0, 0, {"product_id": self.product.id, "product_uom_qty": 2.0}),
+                    (0, 0, {"product_id": self.product2.id, "product_uom_qty": 3.0}),
+                ],
+            }
+        )
+
+        so2 = self.env["sale.order"].create(
+            {
+                "partner_id": self.env.ref("base.res_partner_2").id,
+                "invoice_policy": "order",
+                "order_line": [
+                    (0, 0, {"product_id": self.product.id, "product_uom_qty": 2.0}),
+                    (0, 0, {"product_id": self.product2.id, "product_uom_qty": 3.0}),
+                ],
+            }
+        )
+        lines = (so | so2).order_line
+        with self.assertRaises(Exception) as exc:
+            with self.env["sale.order.line"]._sale_invoice_policy(
+                lines
+            ):  # pragma: no cover
+                pass
+        self.assertEqual(
+            "The method _sale_invoice_policy() must be called with lines sharing "
+            "the same invoice policy",
+            exc.exception.args[0],
+        )
