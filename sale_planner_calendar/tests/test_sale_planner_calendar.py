@@ -34,7 +34,7 @@ class TestSalePlannerCalendar(TransactionCase):
         cls.AccountInvoiceLine = cls.env["account.move.line"]
         cls.AccountJournal = cls.env["account.journal"]
         cls.SaleOrder = cls.env["sale.order"]
-        cls.SalePlannerCalendarEvent = cls.env["sale.planner.calendar.event"]
+        cls.SalePlannerCalendarEvent = cls.env["calendar.event"]
 
         account_group = cls.env.ref("account.group_account_user")
         cls.env.user.write({"groups_id": [(4, account_group.id)]})
