@@ -42,7 +42,7 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
         string="New salesperson",
         domain="[('share','=',False)]",
     )
-    new_start = fields.Date(default=fields.Date.today, required=True)
+    new_start = fields.Date()
     new_end = fields.Date()
     assign_new_salesperson_to_partner = fields.Boolean()
     unsuscribe_old_salesperson = fields.Boolean()
@@ -108,6 +108,13 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
         for line in self.line_ids:
             if not line.new_user_id:
                 continue
+            if self.assign_new_salesperson_to_partner:
+                line.partner_id.with_context(
+                    skip_sale_planner_check=True
+                ).user_id = line.new_user_id
+            # If new_start is empty only update partner user_id
+            if not self.new_start:
+                continue
             old_event = line.calendar_event_id
             recurrence_events = old_event.recurrence_id.calendar_event_ids
             if self.new_end:
@@ -160,10 +167,6 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
             if self.unsuscribe_old_salesperson and not self.new_end:
                 old_event_vals["unsubscribe_date"] = self.new_start
             old_event.write(old_event_vals)
-            if self.assign_new_salesperson_to_partner:
-                line.partner_id.with_context(
-                    skip_sale_planner_check=True
-                ).user_id = line.new_user_id
             line.update_subscriptions()
         self.action_get_lines()
 
