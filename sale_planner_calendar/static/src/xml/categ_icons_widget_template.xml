@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="sale_planner_calendar.CategIconsWidget" owl="1">
+        <div class="o_categ_icons_widget">
+            <t t-foreach="iconList" t-as="categ_icon" t-key="categ_icon">
+                <i t-att-class="'me-1 fa ' + categ_icon" />
+            </t>
+        </div>
+    </t>
+</templates>

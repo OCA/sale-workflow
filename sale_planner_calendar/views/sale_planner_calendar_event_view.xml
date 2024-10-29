@@ -284,7 +284,6 @@
                 <field name="calendar_issue_type_id" />
                 <field name="sale_planner_currency_id" />
                 <field name="comment" />
-                <field name="profile_icon" />
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_card w-100 oe_kanban_global_click">
@@ -302,9 +301,9 @@
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <i
-                                                t-if="record.profile_icon.value"
-                                                t-att-class="'me-1 fa ' + record.profile_icon.value"
+                                            <field
+                                                name="categ_icons"
+                                                widget="categ_icons_widget"
                                             />
                                             <field
                                                 name="sale_planner_state"

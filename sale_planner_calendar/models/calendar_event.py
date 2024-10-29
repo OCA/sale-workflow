@@ -86,7 +86,7 @@ class CalendarEvent(models.Model):
     partner_city = fields.Char(related="target_partner_id.city")
     sanitized_partner_mobile = fields.Char(compute="_compute_sanitized_partner_mobile")
     location_url = fields.Char(compute="_compute_location_url")
-    profile_icon = fields.Char(related="categ_ids.icon")
+    categ_icons = fields.Char(compute="_compute_categ_icons")
 
     @api.depends("recurrence_id", "recurrence_id.calendar_event_ids")
     def _compute_is_base_recurrent_event(self):
@@ -188,6 +188,16 @@ class CalendarEvent(models.Model):
                 event.location_url = f"{partner_latitude}%2C{partner_longitude}"
             elif partner_location:
                 event.location_url = partner_location.replace(" ", "+")
+
+    @api.depends("categ_ids")
+    def _compute_categ_icons(self):
+        for event in self:
+            categ_icons_list = []
+            for categ in event.categ_ids.filtered("icon"):
+                # Avoid repeat same icon
+                if categ.icon not in categ_icons_list:
+                    categ_icons_list.append(categ.icon)
+            event.categ_icons = ",".join(categ_icons_list)
 
     def _inverse_hour(self):
         for rec in self:
