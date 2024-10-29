@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-09-20 12:19+0000\n"
-"Last-Translator: Rémi <remi@le-filament.com>\n"
+"PO-Revision-Date: 2024-10-29 15:06+0000\n"
+"Last-Translator: epanisset <emeric.panisset@camptocamp.com>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: sale_advance_payment
 #: model:ir.model,name:sale_advance_payment.model_account_voucher_wizard
@@ -35,7 +35,7 @@ msgstr "Statut du Paiement d'Avance"
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__amount_total
 msgid "Amount Total"
-msgstr ""
+msgstr "Montant total"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__amount_advance
@@ -83,7 +83,7 @@ msgstr "Devise"
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__date
 msgid "Date"
-msgstr ""
+msgstr "Date"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__display_name
@@ -93,12 +93,12 @@ msgstr "Nom affiché"
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__inbound
 msgid "Inbound"
-msgstr ""
+msgstr "Entrant"
 
 #. module: sale_advance_payment
 #. odoo-python
@@ -106,11 +106,12 @@ msgstr ""
 #, python-format
 msgid "Inbound amount of advance is greater than residual amount on sale"
 msgstr ""
+"Le montant de l'avance reçue est supérieur au montant résiduel de la vente"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__journal_id
 msgid "Journal"
-msgstr ""
+msgstr "Journal"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__journal_currency_id
@@ -120,7 +121,7 @@ msgstr "Devise du Journal"
 #. module: sale_advance_payment
 #: model:ir.model,name:sale_advance_payment.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Écriture comptable"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__write_uid
@@ -165,7 +166,7 @@ msgstr "Montant dû de la Commande"
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__outbound
 msgid "Outbound"
-msgstr ""
+msgstr "Sortant"
 
 #. module: sale_advance_payment
 #. odoo-python
@@ -173,6 +174,7 @@ msgstr ""
 #, python-format
 msgid "Outbound amount of advance is greater than the advanced paid amount"
 msgstr ""
+"Le montant de l'avance sortante est supérieur au montant de l'avance payée"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__sale_order__advance_payment_status__paid
@@ -198,7 +200,7 @@ msgstr "Méthode de paiement"
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__payment_type
 msgid "Payment Type"
-msgstr ""
+msgstr "Type de paiement"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_order_form
@@ -223,7 +225,7 @@ msgstr "Réf."
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_sale_order__amount_residual
 msgid "Residual amount"
-msgstr "Montant restant"
+msgstr "Montant restant dû"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_payment__sale_id
@@ -243,6 +245,8 @@ msgid ""
 "The amount to advance must always be positive. Please use the payment type "
 "to indicate if this is an inbound or an outbound payment."
 msgstr ""
+"Le montant de l'avance doit toujours être positif. Veuillez utiliser le type "
+"de paiement pour indiquer s'il s'agit d'un paiement entrant ou sortant."
 
 #~ msgid "Last Modified on"
 #~ msgstr "Dernière modification le"
