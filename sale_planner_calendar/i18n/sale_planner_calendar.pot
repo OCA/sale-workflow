@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-29 13:41+0000\n"
-"PO-Revision-Date: 2024-10-29 13:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -377,7 +375,7 @@ msgid "Forward months to create calendar events"
 msgstr ""
 
 #. module: sale_planner_calendar
-#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__fr
+#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__fri
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__fri
 msgid "Friday"
 msgstr ""
@@ -566,7 +564,7 @@ msgid "Mobile"
 msgstr ""
 
 #. module: sale_planner_calendar
-#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__mo
+#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__mon
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__mon
 msgid "Monday"
 msgstr ""
@@ -935,7 +933,7 @@ msgid "Sanitized Partner Mobile"
 msgstr ""
 
 #. module: sale_planner_calendar
-#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__sa
+#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__sat
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__sat
 msgid "Saturday"
 msgstr ""
@@ -1010,7 +1008,7 @@ msgid "Subject"
 msgstr ""
 
 #. module: sale_planner_calendar
-#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__su
+#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__sun
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__sun
 msgid "Sunday"
 msgstr ""
@@ -1050,7 +1048,7 @@ msgid ""
 msgstr ""
 
 #. module: sale_planner_calendar
-#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__th
+#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__thu
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__thu
 msgid "Thursday"
 msgstr ""
@@ -1091,7 +1089,7 @@ msgid "Totals"
 msgstr ""
 
 #. module: sale_planner_calendar
-#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__tu
+#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__tue
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__tue
 msgid "Tuesday"
 msgstr ""
@@ -1132,7 +1130,7 @@ msgid "Website communication history"
 msgstr ""
 
 #. module: sale_planner_calendar
-#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__we
+#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__wed
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__wed
 msgid "Wednesday"
 msgstr ""

@@ -19,13 +19,13 @@ class SalePlannerCalendarWizard(models.TransientModel):
     )
     week_list = fields.Selection(
         [
-            ("MON", "Monday"),
-            ("TUE", "Tuesday"),
-            ("WED", "Wednesday"),
-            ("THU", "Thursday"),
-            ("FRI", "Friday"),
-            ("SAT", "Saturday"),
-            ("SUN", "Sunday"),
+            ("mon", "Monday"),
+            ("tue", "Tuesday"),
+            ("wed", "Wednesday"),
+            ("thu", "Thursday"),
+            ("fri", "Friday"),
+            ("sat", "Saturday"),
+            ("sun", "Sunday"),
         ],
         string="Weekday",
     )
@@ -50,7 +50,7 @@ class SalePlannerCalendarWizard(models.TransientModel):
             if rec.event_type_id:
                 domain.append(("categ_ids", "in", rec.event_type_id.ids))
             if rec.week_list:
-                domain.append(("recurrence_id." + rec.week_list.lower(), "=", True))
+                domain.append(("recurrence_id." + rec.week_list, "=", True))
             rec.calendar_event_ids = (
                 self.env["calendar.event"].search(domain).sorted("hour")
             )

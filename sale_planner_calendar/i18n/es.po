@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-29 13:41+0000\n"
-"PO-Revision-Date: 2024-10-29 14:44+0100\n"
-"Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
+"POT-Creation-Date: 2024-10-30 16:12+0000\n"
+"PO-Revision-Date: 2024-10-30 17:12+0100\n"
+"Last-Translator: Sergio Teruel <sergio.teruel@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -385,7 +385,7 @@ msgid "Forward months to create calendar events"
 msgstr "Meses posteriores para crear eventos de calendario"
 
 #. module: sale_planner_calendar
-#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__fr
+#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__fri
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__fri
 msgid "Friday"
 msgstr "Viernes"
@@ -580,7 +580,7 @@ msgid "Mobile"
 msgstr "Móvil"
 
 #. module: sale_planner_calendar
-#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__mo
+#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__mon
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__mon
 msgid "Monday"
 msgstr "Lunes"
@@ -949,7 +949,7 @@ msgid "Sanitized Partner Mobile"
 msgstr "Móvil de contacto"
 
 #. module: sale_planner_calendar
-#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__sa
+#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__sat
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__sat
 msgid "Saturday"
 msgstr "Sábado"
@@ -1028,7 +1028,7 @@ msgid "Subject"
 msgstr "Asunto"
 
 #. module: sale_planner_calendar
-#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__su
+#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__sun
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__sun
 msgid "Sunday"
 msgstr "Domingo"
@@ -1071,7 +1071,7 @@ msgstr ""
 "Debes de realizar el cambio de comercial desde el asistente de reasignación"
 
 #. module: sale_planner_calendar
-#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__th
+#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__thu
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__thu
 msgid "Thursday"
 msgstr "Jueves"
@@ -1113,7 +1113,7 @@ msgid "Totals"
 msgstr "Totales"
 
 #. module: sale_planner_calendar
-#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__tu
+#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__tue
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__tue
 msgid "Tuesday"
 msgstr "Martes"
@@ -1154,7 +1154,7 @@ msgid "Website communication history"
 msgstr "Historial de comunicaciones del sitio web"
 
 #. module: sale_planner_calendar
-#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__we
+#: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__wed
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__wed
 msgid "Wednesday"
 msgstr "Miércoles"

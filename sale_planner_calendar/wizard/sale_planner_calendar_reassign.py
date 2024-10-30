@@ -22,13 +22,13 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
     )
     week_list = fields.Selection(
         [
-            ("MO", "Monday"),
-            ("TU", "Tuesday"),
-            ("WE", "Wednesday"),
-            ("TH", "Thursday"),
-            ("FR", "Friday"),
-            ("SA", "Saturday"),
-            ("SU", "Sunday"),
+            ("mon", "Monday"),
+            ("tue", "Tuesday"),
+            ("wed", "Wednesday"),
+            ("thu", "Thursday"),
+            ("fri", "Friday"),
+            ("sat", "Saturday"),
+            ("sun", "Sunday"),
         ],
         string="Weekday",
     )
@@ -73,7 +73,7 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
         if self.event_type_id:
             domain.append(("categ_ids", "in", self.event_type_id.ids))
         if self.week_list:
-            domain.append((self.week_list.lower(), "=", True))
+            domain.append((self.week_list, "=", True))
         calendar_events = self.env["calendar.event"].search(domain)
         self.line_ids = False
         for calendar_event in calendar_events:
