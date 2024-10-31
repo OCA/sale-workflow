@@ -50,22 +50,23 @@ msgid ""
 msgstr ""
 
 #. module: sale_order_secondary_unit
-#: model:ir.model,name:sale_order_secondary_unit.model_product_product
+#: model:ir.model,name:sale_order_secondary_unit.model_product_template
 msgid "Product"
 msgstr ""
 
 #. module: sale_order_secondary_unit
-#: model:ir.model,name:sale_order_secondary_unit.model_product_template
 #: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
 msgid "Product Template"
 msgstr ""
 
 #. module: sale_order_secondary_unit
+#: model:ir.model,name:sale_order_secondary_unit.model_product_product
 #: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
 msgid "Product Variant"
 msgstr ""
 
 #. module: sale_order_secondary_unit
+#. odoo-python
 #: code:addons/sale_order_secondary_unit/models/product_template.py:0
 #, python-format
 msgid ""
@@ -110,6 +111,7 @@ msgid "UoM"
 msgstr ""
 
 #. module: sale_order_secondary_unit
+#. odoo-python
 #: code:addons/sale_order_secondary_unit/models/product_template.py:0
 #, python-format
 msgid "Warning"
