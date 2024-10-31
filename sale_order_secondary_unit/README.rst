@@ -15,6 +15,7 @@ Sale Order Secondary Unit
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
    !! source digest: sha256:b6cd5a500712cd2681b14605e629fd1e3f3b710411c41958b917d87d6ed24898
 ||||||| parent of 7f4a3a380 ([IMP] sale_order_secondary_unit: Require secondary_uom_id when secondary_uom_qty is filled)
    !! source digest: sha256:61f4456857459ed3b5629b34c15869328cac813be1fd18ea0713783768d311d5
@@ -26,6 +27,11 @@ Sale Order Secondary Unit
 =======
    !! source digest: sha256:b45b7689ba054c6a06dd97d394e18a22648e8133bb9cb1bb49ae3e8025df6bd3
 >>>>>>> 05d18932b ([IMP] sale_order_secondary_unit: make the secondary unit and secondary quantity fields optional)
+||||||| parent of fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
+   !! source digest: sha256:b45b7689ba054c6a06dd97d394e18a22648e8133bb9cb1bb49ae3e8025df6bd3
+=======
+   !! source digest: sha256:3e89e2531d8e82819e39bb8ac0543465f9ea5778ca782c06108573829632400a
+>>>>>>> fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ||||||| parent of 4afac9303 (Translated using Weblate (Finnish))
 =======
@@ -246,6 +252,7 @@ Contributors
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 - Tony Gu <tony@openerp.cn>
 - Alexei Rivera <arivera@archeti.com>
 - Kevin Roche <kevin.roche@akretion.com>
@@ -294,7 +301,19 @@ Contributors
 -  Kevin Roche <kevin.roche@akretion.com>
 -  `Tecnativa <https://www.tecnativa.com>`__:
 >>>>>>> e99164da2 ([IMP] sale_order_secondary_unit: pre-commit auto fixes)
+||||||| parent of fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
+-  Tony Gu <tony@openerp.cn>
+-  Alexei Rivera <arivera@archeti.com>
+-  Kevin Roche <kevin.roche@akretion.com>
+-  `Tecnativa <https://www.tecnativa.com>`__:
+=======
+- Tony Gu <tony@openerp.cn>
+- Alexei Rivera <arivera@archeti.com>
+- Kevin Roche <kevin.roche@akretion.com>
+- `Tecnativa <https://www.tecnativa.com>`__:
+>>>>>>> fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   * Carlos Dauden
   * Sergio Teruel
@@ -312,6 +331,17 @@ Contributors
    -  Ernesto Tejeda
    -  Pedro M. Baeza
 >>>>>>> e99164da2 ([IMP] sale_order_secondary_unit: pre-commit auto fixes)
+||||||| parent of fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
+   -  Carlos Dauden
+   -  Sergio Teruel
+   -  Ernesto Tejeda
+   -  Pedro M. Baeza
+=======
+  - Carlos Dauden
+  - Sergio Teruel
+  - Ernesto Tejeda
+  - Pedro M. Baeza
+>>>>>>> fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
 
 Maintainers
 -----------

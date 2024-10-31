@@ -138,10 +138,26 @@ class SaleOrderLine(models.Model):
         compute="_compute_secondary_uom_unit_price",
     )
 
+<<<<<<< HEAD
 >>>>>>> ba4f2a6c3 (add secondary price unit)
     product_uom_qty = fields.Float(
         store=True, readonly=False, compute="_compute_product_uom_qty", copy=True
+||||||| parent of fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
+    product_uom_qty = fields.Float(
+        store=True, readonly=False, compute="_compute_product_uom_qty", copy=True
+=======
+    product_uom_qty = fields.Float(copy=True)
+
+    @api.depends(
+        "display_type",
+        "product_id",
+        "product_packaging_qty",
+        "secondary_uom_qty",
+        "secondary_uom_id",
+        "product_uom_qty",
+>>>>>>> fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
     )
+<<<<<<< HEAD
 >>>>>>> e596a34a8 (code refactor update)
 
 <<<<<<< HEAD
@@ -278,10 +294,25 @@ class SaleOrderLine(models.Model):
         )
 =======
     @api.depends("secondary_uom_qty", "secondary_uom_id", "product_uom_qty")
+||||||| parent of fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
+
+    @api.depends("secondary_uom_qty", "secondary_uom_id", "product_uom_qty")
+=======
+>>>>>>> fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
     def _compute_product_uom_qty(self):
+<<<<<<< HEAD
         self._compute_helper_target_field_qty()
 >>>>>>> e596a34a8 (code refactor update)
+||||||| parent of fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
+        self._compute_helper_target_field_qty()
+=======
+        res = super()._compute_product_uom_qty()
+        for line in self:
+            line._compute_helper_target_field_qty()
+        return res
+>>>>>>> fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     @api.depends("product_id")
     def _compute_product_uom(self):
@@ -344,10 +375,23 @@ class SaleOrderLine(models.Model):
 =======
         self._onchange_helper_product_uom_for_secondary()
 >>>>>>> d16be0e27 ([FIX] code refactor)
+||||||| parent of fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
+    @api.onchange("product_uom")
+    def onchange_product_uom_for_secondary(self):
+        self._onchange_helper_product_uom_for_secondary()
+=======
+    @api.depends("product_id")
+    def _compute_product_uom(self):
+        res = super()._compute_product_uom()
+        for line in self:
+            line._onchange_helper_product_uom_for_secondary()
+        return res
+>>>>>>> fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
 
 <<<<<<< HEAD
 <<<<<<< HEAD
     @api.onchange("product_id")
+<<<<<<< HEAD
 <<<<<<< HEAD
     def _onchange_product_id_warning(self):
         res = super()._onchange_product_id_warning()
@@ -382,11 +426,39 @@ class SaleOrderLine(models.Model):
         self.secondary_uom_id = self.product_id.sale_secondary_uom_id
         if self.product_id.sale_secondary_uom_id:
             if line_uom_qty == 1.0:
+||||||| parent of fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
+    def product_id_change(self):
+        """
+        If default sales secondary unit set on product, put on secondary
+        quantity 1 for being the default quantity. We override this method,
+        that is the one that sets by default 1 on the other quantity with that
+        purpose.
+        """
+        res = super().product_id_change()
+        line_uom_qty = self.product_uom_qty
+        self.secondary_uom_id = self.product_id.sale_secondary_uom_id
+        if self.product_id.sale_secondary_uom_id:
+            if line_uom_qty == 1.0:
+=======
+    def _onchange_product_id_warning(self):
+        res = super()._onchange_product_id_warning()
+        if self.product_id:
+            self.secondary_uom_id = self.product_id.sale_secondary_uom_id
+            if self.product_uom_qty == 1.0:
+>>>>>>> fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
                 self.secondary_uom_qty = 1.0
+<<<<<<< HEAD
                 self.onchange_product_uom_for_secondary()
             else:
                 self.product_uom_qty = line_uom_qty
 >>>>>>> 4dd71ce9b ([FIX] sale_order_secondary_unit: Fix variant grid matrix usage)
+||||||| parent of fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
+                self.onchange_product_uom_for_secondary()
+            else:
+                self.product_uom_qty = line_uom_qty
+=======
+                self._onchange_helper_product_uom_for_secondary()
+>>>>>>> fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
         return res
 
     @api.depends("secondary_uom_qty", "product_uom_qty", "price_unit")

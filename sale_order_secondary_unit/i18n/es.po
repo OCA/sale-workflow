@@ -99,6 +99,7 @@ msgstr ""
 
 #. module: sale_order_secondary_unit
 <<<<<<< HEAD
+<<<<<<< HEAD
 ||||||| parent of 2ddeab7d2 ([MIG] sale_order_secondary_unit: Migration to 14.0)
 =======
 #: model:ir.model.fields,field_description:sale_order_secondary_unit.field_product_template__display_name
@@ -127,12 +128,22 @@ msgstr "ID (Identificador)"
 #: model:ir.model,name:sale_order_secondary_unit.model_product_template
 =======
 #: model:ir.model,name:sale_order_secondary_unit.model_product_product
+||||||| parent of fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
+#: model:ir.model,name:sale_order_secondary_unit.model_product_product
+=======
+#: model:ir.model,name:sale_order_secondary_unit.model_product_template
+>>>>>>> fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
 msgid "Product"
 msgstr "Producto"
 
 #. module: sale_order_secondary_unit
+<<<<<<< HEAD
 #: model:ir.model,name:sale_order_secondary_unit.model_product_template
 >>>>>>> 02a8bb30f (sale_order_secondary_unit 15.0.2.0.0)
+||||||| parent of fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
+#: model:ir.model,name:sale_order_secondary_unit.model_product_template
+=======
+>>>>>>> fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
 #: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
 msgid "Group By"
 msgstr ""
@@ -166,6 +177,7 @@ msgstr "Plantilla de producto"
 
 #. module: sale_order_secondary_unit
 <<<<<<< HEAD
+<<<<<<< HEAD
 #: model:ir.model,name:sale_order_secondary_unit.model_product_product
 #: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
 msgid "Product Variant"
@@ -193,11 +205,16 @@ msgstr "Cantidad"
 #. module: sale_order_secondary_unit
 ||||||| parent of 8a420dee2 (sale_order_secondary_unit 15.0.1.2.0)
 =======
+||||||| parent of fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
+=======
+#: model:ir.model,name:sale_order_secondary_unit.model_product_product
+>>>>>>> fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
 #: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
 msgid "Product Variant"
 msgstr "Variante de Producto"
 
 #. module: sale_order_secondary_unit
+#. odoo-python
 #: code:addons/sale_order_secondary_unit/models/product_template.py:0
 #, python-format
 msgid ""
@@ -283,6 +300,7 @@ msgid "UoM"
 msgstr "UDM (Unidad De Medida)"
 
 #. module: sale_order_secondary_unit
+<<<<<<< HEAD
 #. odoo-python
 #: code:addons/sale_order_secondary_unit/models/product_template.py:0
 #, python-format
@@ -313,6 +331,10 @@ msgid "UoM"
 msgstr "UDM (Unidad De Medida)"
 
 #. module: sale_order_secondary_unit
+||||||| parent of fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
+=======
+#. odoo-python
+>>>>>>> fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
 #: code:addons/sale_order_secondary_unit/models/product_template.py:0
 #, python-format
 msgid "Warning"

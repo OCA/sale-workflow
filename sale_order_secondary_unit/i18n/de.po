@@ -77,17 +77,22 @@ msgid ""
 msgstr ""
 
 #. module: sale_order_secondary_unit
-#: model:ir.model,name:sale_order_secondary_unit.model_product_product
+#: model:ir.model,name:sale_order_secondary_unit.model_product_template
 msgid "Product"
 msgstr ""
 
 #. module: sale_order_secondary_unit
+<<<<<<< HEAD
 #: model:ir.model,name:sale_order_secondary_unit.model_product_template
 <<<<<<< HEAD
 msgid "Product"
 msgstr ""
 
 #. module: sale_order_secondary_unit
+||||||| parent of fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
+#: model:ir.model,name:sale_order_secondary_unit.model_product_template
+=======
+>>>>>>> fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
 #: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
 ||||||| parent of 8a420dee2 (sale_order_secondary_unit 15.0.1.2.0)
 =======
@@ -97,6 +102,7 @@ msgid "Product Template"
 msgstr ""
 
 #. module: sale_order_secondary_unit
+<<<<<<< HEAD
 <<<<<<< HEAD
 #: model:ir.model,name:sale_order_secondary_unit.model_product_product
 #: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
@@ -121,11 +127,16 @@ msgstr ""
 #. module: sale_order_secondary_unit
 ||||||| parent of 8a420dee2 (sale_order_secondary_unit 15.0.1.2.0)
 =======
+||||||| parent of fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
+=======
+#: model:ir.model,name:sale_order_secondary_unit.model_product_product
+>>>>>>> fc86c0ab6 ([MIG] sale_order_secondary_unit: Migration to 17.0)
 #: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
 msgid "Product Variant"
 msgstr ""
 
 #. module: sale_order_secondary_unit
+#. odoo-python
 #: code:addons/sale_order_secondary_unit/models/product_template.py:0
 #, python-format
 msgid ""
@@ -211,6 +222,7 @@ msgstr ""
 =======
 
 #. module: sale_order_secondary_unit
+#. odoo-python
 #: code:addons/sale_order_secondary_unit/models/product_template.py:0
 #, python-format
 msgid "Warning"
