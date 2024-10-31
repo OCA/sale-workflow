@@ -17,35 +17,37 @@ class SaleOrderLine(models.Model):
         compute="_compute_secondary_uom_unit_price",
     )
 
-    product_uom_qty = fields.Float(
-        store=True, readonly=False, compute="_compute_product_uom_qty", copy=True
+    product_uom_qty = fields.Float(copy=True)
+
+    @api.depends(
+        "display_type",
+        "product_id",
+        "product_packaging_qty",
+        "secondary_uom_qty",
+        "secondary_uom_id",
+        "product_uom_qty",
     )
-
-    @api.depends("secondary_uom_qty", "secondary_uom_id", "product_uom_qty")
     def _compute_product_uom_qty(self):
-        self._compute_helper_target_field_qty()
+        res = super()._compute_product_uom_qty()
+        for line in self:
+            line._compute_helper_target_field_qty()
+        return res
 
-    @api.onchange("product_uom")
-    def onchange_product_uom_for_secondary(self):
-        self._onchange_helper_product_uom_for_secondary()
+    @api.depends("product_id")
+    def _compute_product_uom(self):
+        res = super()._compute_product_uom()
+        for line in self:
+            line._onchange_helper_product_uom_for_secondary()
+        return res
 
     @api.onchange("product_id")
-    def product_id_change(self):
-        """
-        If default sales secondary unit set on product, put on secondary
-        quantity 1 for being the default quantity. We override this method,
-        that is the one that sets by default 1 on the other quantity with that
-        purpose.
-        """
-        res = super().product_id_change()
-        line_uom_qty = self.product_uom_qty
-        self.secondary_uom_id = self.product_id.sale_secondary_uom_id
-        if self.product_id.sale_secondary_uom_id:
-            if line_uom_qty == 1.0:
+    def _onchange_product_id_warning(self):
+        res = super()._onchange_product_id_warning()
+        if self.product_id:
+            self.secondary_uom_id = self.product_id.sale_secondary_uom_id
+            if self.product_uom_qty == 1.0:
                 self.secondary_uom_qty = 1.0
-                self.onchange_product_uom_for_secondary()
-            else:
-                self.product_uom_qty = line_uom_qty
+                self._onchange_helper_product_uom_for_secondary()
         return res
 
     @api.depends("secondary_uom_qty", "product_uom_qty", "price_unit")

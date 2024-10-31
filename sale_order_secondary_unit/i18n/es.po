@@ -54,22 +54,23 @@ msgstr ""
 "unidad de medida'"
 
 #. module: sale_order_secondary_unit
-#: model:ir.model,name:sale_order_secondary_unit.model_product_product
+#: model:ir.model,name:sale_order_secondary_unit.model_product_template
 msgid "Product"
 msgstr "Producto"
 
 #. module: sale_order_secondary_unit
-#: model:ir.model,name:sale_order_secondary_unit.model_product_template
 #: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
 msgid "Product Template"
 msgstr "Plantilla de producto"
 
 #. module: sale_order_secondary_unit
+#: model:ir.model,name:sale_order_secondary_unit.model_product_product
 #: model_terms:ir.ui.view,arch_db:sale_order_secondary_unit.product_secondary_unit_view_search
 msgid "Product Variant"
 msgstr "Variante de Producto"
 
 #. module: sale_order_secondary_unit
+#. odoo-python
 #: code:addons/sale_order_secondary_unit/models/product_template.py:0
 #, python-format
 msgid ""
@@ -118,6 +119,7 @@ msgid "UoM"
 msgstr "UDM (Unidad De Medida)"
 
 #. module: sale_order_secondary_unit
+#. odoo-python
 #: code:addons/sale_order_secondary_unit/models/product_template.py:0
 #, python-format
 msgid "Warning"
