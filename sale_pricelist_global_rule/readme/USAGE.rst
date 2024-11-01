@@ -1,0 +1,4 @@
+- Go to `Sales` -> `Orders` -> `Quotations`.
+- Create a new record and fill the required fields.
+- Choose a `Pricelist` that has a global rule configured (either by Category or Product).
+- Click the **Recompute pricelist global** button to update prices according to the specified pricelist rules.

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_sale_order_form" model="ir.ui.view">
+        <field name="name">view.sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_cancel']" position="before">
+                <button
+                    string="Recompute pricelist global"
+                    name="button_compute_pricelist_global_rule"
+                    type="object"
+                    attrs="{'invisible': ['|', '|',  ('state', 'not in', ('draft', 'sent')), ('has_pricelist_global', '=', False), ('need_recompute_pricelist_global', '=', False)]}"
+                    class="oe_highlight"
+                />
+                <button
+                    string="Recompute pricelist global"
+                    name="button_compute_pricelist_global_rule"
+                    type="object"
+                    attrs="{'invisible': ['|', '|', ('state', 'not in', ('draft', 'sent')), ('has_pricelist_global', '=', False), ('need_recompute_pricelist_global', '=', True)]}"
+                />
+                <field name="has_pricelist_global" invisible="1" />
+                <field name="need_recompute_pricelist_global" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
