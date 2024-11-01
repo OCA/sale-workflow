@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_product_pricelist_item_form" model="ir.ui.view">
+        <field name="name">view.product.pricelist.item.form</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='applied_on']" position="after">
+                <field
+                    name="global_categ_id"
+                    options="{'no_create':1}"
+                    attrs="{'invisible':[('applied_on', '!=', '5_global_product_category')], 'required':[('applied_on', '=', '5_global_product_category')]}"
+                />
+                <field
+                    name="global_product_tmpl_id"
+                    options="{'no_create':1}"
+                    attrs="{'invisible':[('applied_on', '!=', '4_global_product_template')], 'required':[('applied_on', '=', '4_global_product_template')]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
