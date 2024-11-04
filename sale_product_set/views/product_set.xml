@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="product_set.view_product_set_form" />
         <field name="arch" type="xml">
             <field name="quantity" position="after">
-                <field name="discount" groups="product.group_discount_per_so_line" />
+                <field name="discount" groups="sale.group_discount_per_so_line" />
             </field>
         </field>
     </record>
