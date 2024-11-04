@@ -2,7 +2,7 @@
 # Copyright 2016-2020 Camptocamp SA
 # @author Simone Orsi <simahawk@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 
 class SaleProductSetWizard(models.TransientModel):
@@ -50,7 +50,7 @@ class SaleProductSetWizard(models.TransientModel):
         allowed_partners = self._allowed_order_partners()
         if self.order_id.partner_id not in allowed_partners:
             raise exceptions.ValidationError(
-                _(
+                self.env._(
                     "You can use a sale order assigned "
                     "only to following partner(s): {}"
                 ).format(", ".join(allowed_partners.mapped("name")))

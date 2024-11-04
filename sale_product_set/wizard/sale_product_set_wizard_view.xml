@@ -27,13 +27,13 @@
                         widget="section_and_note_one2many"
                         domain="[('product_set_id', '=', product_set_id)]"
                     >
-                        <tree>
+                        <list>
                             <field
                                 name="product_id"
                                 options="{'no_open': True, 'no_create': True}"
                                 required="not display_type"
                             />
-                            <field name="display_type" />
+                            <field name="display_type" column_invisible="True" />
                             <field name="name" widget="section_and_note_text" />
                             <control>
                                 <create name="add_line_control" string="Add a line" />
@@ -48,7 +48,7 @@
                                     context="{'default_display_type': 'line_note'}"
                                 />
                             </control>
-                        </tree>
+                        </list>
                     </field>
                 </group>
                 <footer>
