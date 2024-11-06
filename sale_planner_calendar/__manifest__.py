@@ -34,6 +34,7 @@
         "web.assets_backend": [
             "sale_planner_calendar/static/src/xml/categ_icons_widget_template.xml",
             "sale_planner_calendar/static/src/xml/sale_planner_calendar_event_sales.xml",
+            "sale_planner_calendar/static/src/xml/activity_menu_view.xml",
             "sale_planner_calendar/static/src/scss/sale_planner_calendar.scss",
             "sale_planner_calendar/static/src/js/*.js",
         ],
