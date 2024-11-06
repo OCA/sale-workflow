@@ -59,7 +59,7 @@ class TestPartnerProspect(TransactionCase):
     def test_partner_child_check_invoice(self):
         ttype = "out_invoice"
         self.invoice_model.create(
-            {"partner_id": self.partner2.id, "type": ttype}
+            {"partner_id": self.partner2.id, "move_type": ttype}
         )._onchange_partner_id()
         self.assertFalse(self.partner1.prospect, "Partner1 is a prospect")
         self.assertFalse(self.partner2.prospect, "Partner2 is a prospect")
@@ -68,7 +68,7 @@ class TestPartnerProspect(TransactionCase):
     def test_partner_parent_check_invoice(self):
         ttype = "out_refund"
         self.invoice_model.create(
-            {"partner_id": self.partner1.id, "type": ttype}
+            {"partner_id": self.partner1.id, "move_type": ttype}
         )._onchange_partner_id()
         self.assertFalse(self.partner1.prospect, "Partner1 is a prospect")
         self.assertFalse(self.partner2.prospect, "Partner2 is a prospect")

@@ -5,6 +5,12 @@ from odoo import api, fields, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
+    prospect = fields.Boolean(
+        "Prospect",
+        compute="_compute_prospect",
+        store=True,
+    )
+
     @api.depends(
         "commercial_partner_id",
         "commercial_partner_id.sale_order_ids",
@@ -28,7 +34,5 @@ class ResPartner(models.Model):
             partner.prospect = not sale_ids.filtered(
                 lambda r: r.state not in ("draft", "sent", "cancel")
             ) and not invoice_ids.filtered(
-                lambda r: r.type in ("out_invoice", "out_refund")
+                lambda r: r.move_type in ("out_invoice", "out_refund")
             )
-
-    prospect = fields.Boolean("Prospect", compute="_compute_prospect", store=True)
