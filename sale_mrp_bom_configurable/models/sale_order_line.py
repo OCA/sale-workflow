@@ -89,7 +89,10 @@ class SaleOrderLine(models.Model):
                 if len(input_config_filtered) == 0:
                     # create a new input_config
                     input_config = self.env["input.config"].create(
-                        {"bom_id": template_variable_bom.id}
+                        {
+                            "bom_id": template_variable_bom.id,
+                            "name": f"{rec.order_id.name} - {rec.name}"
+                        }
                     )
                     rec.order_id.input_config_ids = [(4, input_config.id, 0)]
                 else:
@@ -125,6 +128,19 @@ class SaleOrderLine(models.Model):
                 rec.should_compute_price = False
             super(SaleOrderLine, rec)._compute_price_unit()
         return True
+
+    def _action_launch_stock_rule(self, previous_product_uom_qty=False):
+        res = True
+        for rec in self:
+            if rec.is_static_product:
+                res = res and super(SaleOrderLine, rec)._action_launch_stock_rule(
+                    previous_product_uom_qty
+                )
+            else:
+                res = res and super(
+                    SaleOrderLine, rec.with_context(input_line_id=rec.input_line_id.id)
+                )._action_launch_stock_rule(previous_product_uom_qty)
+        return res
 
     def action_show_input_line(self):
         self.ensure_one()
