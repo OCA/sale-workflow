@@ -16,8 +16,12 @@ class TestPricelistGlobal(TransactionCase):
         cls.Partner = cls.env["res.partner"]
         cls.SaleOrder = cls.env["sale.order"]
         cls.SaleOrderLine = cls.env["sale.order.line"]
-        cls.attr_size = cls.ProductAttribute.create({"name": "Size", "sequence": 1})
-        cls.attr_color = cls.ProductAttribute.create({"name": "Color", "sequence": 2})
+        cls.attr_size = cls.ProductAttribute.create(
+            {"name": "sale_pricelist_global_rule Size", "sequence": 1}
+        )
+        cls.attr_color = cls.ProductAttribute.create(
+            {"name": "sale_pricelist_global_rule Color", "sequence": 2}
+        )
         cls.size_m = cls.ProductAttributeValue.create(
             {
                 "name": "M",
