@@ -37,14 +37,24 @@
                 />
                 <separator />
                 <filter
+                    string="Past"
+                    name="planner_overdue"
+                    domain="[('start','&lt;=', time.strftime('%%Y-%%m-%%d 00:00:00'))]"
+                />
+                <filter
                     string="Today"
-                    name="start_today"
+                    name="planner_today"
                     domain="[('start','&gt;=', time.strftime('%%Y-%%m-%%d 00:00:00')),('start','&lt;',(datetime.date.today() + datetime.timedelta(days=1)).strftime('%%Y-%%m-%%d 00:00:00'))]"
                 />
                 <filter
                     string="Tomorrow"
-                    name="start_tomorrow"
+                    name="planner_tomorrow"
                     domain="[('start','&gt;', time.strftime('%%Y-%%m-%%d 23:59:59')),('start','&lt;',(datetime.date.today() + datetime.timedelta(days=2)).strftime('%%Y-%%m-%%d 00:00:00'))]"
+                />
+                <filter
+                    string="Future"
+                    name="planner_upcoming_all"
+                    domain="[('start','&gt;', time.strftime('%%Y-%%m-%%d 23:59:59'))]"
                 />
                 <separator />
                 <group expand="0" string="Group By">

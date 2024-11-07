@@ -24,11 +24,25 @@ registerPatch({
             this._super(...arguments);
             const data = _.extend({}, $(ev.currentTarget).data(), $(ev.target).data());
             if (data.is_planner === 1) {
+                const context = {};
+                if (data.filter === "my") {
+                    context.search_default_planner_overdue = 1;
+                    context.search_default_planner_today = 1;
+                } else {
+                    context["search_default_planner_" + data.filter] = 1;
+                }
                 this.env.services.orm
                     .call("res.users", "get_action_sale_planner_calendar_event")
                     .then((action) => {
                         action.domain = data.domain;
-                        this.env.services.action.doAction(action);
+                        const action_ctx = JSON.parse(
+                            action.context.replace(/'/g, '"')
+                        );
+                        action.context = {...action_ctx, ...context};
+                        delete action.context.search_default_my_event_planner;
+                        this.env.services.action.doAction(action, {
+                            clearBreadcrumbs: true,
+                        });
                     });
             }
         },
