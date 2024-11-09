@@ -5,7 +5,7 @@
 
 from unittest import mock
 
-from odoo.tests import TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class TestDeliveryState(TransactionCase):

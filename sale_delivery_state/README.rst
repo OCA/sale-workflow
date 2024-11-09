@@ -83,6 +83,7 @@ Contributors
 - Daniel Reis <dreis@opensourceintegrators.com>, `Open Source
   Integrators <https://opensourceintegrators.com>`__
 - Carlos Lopez <celm1990@gmail.com>
+- Virendrasinh Dabhi <veer.190.dabhi@gmail.com>
 
 Maintainers
 -----------
