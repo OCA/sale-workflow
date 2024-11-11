@@ -1,0 +1,3 @@
+- Simone Rubino \<<simone.rubino@agilebg.com>\>
+- [Aion Tech](https://aiontech.company/):
+  - Simone Rubino \<<simone.rubino@aion-tech.it>\>
