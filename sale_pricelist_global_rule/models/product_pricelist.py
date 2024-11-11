@@ -82,7 +82,7 @@ class ProductPricelist(models.Model):
             "by_template": {},
             "by_categ": {},
         }
-        for line in sale.order_line:
+        for line in sale.order_line.filtered(lambda x: not x.display_type):
             qty_in_product_uom = line.product_uom_qty
             # Final unit price is computed according to `qty` in the default `uom_id`.
             if line.product_uom != line.product_id.uom_id:
@@ -102,7 +102,7 @@ class ProductPricelist(models.Model):
             date, prod_tmpl_ids, categ_ids
         )
         results = {}
-        for line in sale.order_line:
+        for line in sale.order_line.filtered(lambda x: not x.display_type):
             product = line.product_id
             results[line.id] = 0.0
             suitable_rule = False
