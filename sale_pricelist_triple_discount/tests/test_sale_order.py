@@ -14,8 +14,10 @@ class TestSalePrices(SaleCommon):
         super().setUpClass()
         # Enable user groups to be able to set advanced fields using Form
         pricelist_groups = [
-            "product.group_discount_per_so_line",  # for product.pricelist.discount_policy
-            "product.group_sale_pricelist",  # for product.pricelist.item.compute_price
+            # for product.pricelist.discount_policy
+            "product.group_discount_per_so_line",
+            # for product.pricelist.item.compute_price
+            "product.group_sale_pricelist",
         ]
         user = cls.env.user
         for pricelist_group in pricelist_groups:
