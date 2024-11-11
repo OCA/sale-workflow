@@ -4,11 +4,11 @@
 #  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Sale Pricelist Triple Discount",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Sale",
     "author": "Agile Business Group, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow"
-    "16.0/sale_pricelist_triple_discount",
+    "17.0/sale_pricelist_triple_discount",
     "license": "AGPL-3",
     "depends": [
         "sale_triple_discount",
