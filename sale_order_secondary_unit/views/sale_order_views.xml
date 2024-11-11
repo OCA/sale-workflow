@@ -24,9 +24,9 @@
                     <field
                         name="secondary_uom_id"
                         class="oe_inline oe_no_button"
-                        domain="['|', ('product_id', '=', product_id),
+                        domain="product_id and ['|', ('product_id', '=', product_id),
                                     '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
-                                             ('product_id', '=', False)]"
+                                             ('product_id', '=', False)] or [(0, '=', 1)]"
                         options="{'no_create': True, 'no_open': True}"
                         readonly="product_uom_readonly"
                         required="secondary_uom_qty != 0.0"
@@ -46,9 +46,9 @@
 
                 <field
                     name="secondary_uom_id"
-                    domain="['|', ('product_id', '=', product_id),
+                    domain="product_id and ['|', ('product_id', '=', product_id),
                                 '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
-                                         ('product_id', '=', False)]"
+                                         ('product_id', '=', False)] or [(0, '=', 1)]"
                     options="{'no_create': True}"
                     readonly="product_uom_readonly"
                     required="secondary_uom_qty != 0.0"
