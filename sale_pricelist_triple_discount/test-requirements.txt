@@ -1,0 +1,1 @@
+odoo-addon-sale_triple_discount @ git+https://github.com/OCA/sale-workflow.git@refs/pull/3929/head#subdirectory=sale_triple_discount
