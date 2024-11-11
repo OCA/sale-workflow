@@ -26,6 +26,7 @@
                     <field
                         name="secondary_uom_id"
                         class="oe_inline oe_no_button"
+<<<<<<< HEAD
                         domain="product_id and ['|', ('product_id', '=', product_id),
                                     '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
                                              ('product_id', '=', False)] or [(0, '=', 1)]"
@@ -103,8 +104,13 @@
                         name="secondary_uom_id"
                         class="oe_inline oe_no_button"
                         domain="['|', ('product_id', '=', product_id),
+||||||| parent of b437fd03c ([FIX] sale_order_secondary_unit: Error when user try to select a secondary uom without product in sale order line)
+                        domain="['|', ('product_id', '=', product_id),
+=======
+                        domain="product_id and ['|', ('product_id', '=', product_id),
+>>>>>>> b437fd03c ([FIX] sale_order_secondary_unit: Error when user try to select a secondary uom without product in sale order line)
                                     '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
-                                             ('product_id', '=', False)]"
+                                             ('product_id', '=', False)] or [(0, '=', 1)]"
                         options="{'no_create': True, 'no_open': True}"
                         readonly="product_uom_readonly"
                         required="secondary_uom_qty != 0.0"
@@ -171,9 +177,9 @@
 
                 <field
                     name="secondary_uom_id"
-                    domain="['|', ('product_id', '=', product_id),
+                    domain="product_id and ['|', ('product_id', '=', product_id),
                                 '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
-                                         ('product_id', '=', False)]"
+                                         ('product_id', '=', False)] or [(0, '=', 1)]"
                     options="{'no_create': True}"
                     readonly="product_uom_readonly"
                     required="secondary_uom_qty != 0.0"
