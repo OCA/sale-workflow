@@ -19,7 +19,7 @@ class SaleOrder(models.Model):
             "by_template": {},
             "by_categ": {},
         }
-        for line in self.order_line.filtered("product_id"):
+        for line in self.order_line.filtered(lambda x: not x.display_type):
             qty_in_product_uom = line.product_uom_qty
             # Final unit price is computed
             # according to `qty` in the default `uom_id`.
@@ -46,7 +46,7 @@ class SaleOrder(models.Model):
                 pricelist_global_cummulative_quantity=qty_data
             )
             suitable_rule = self.env["product.pricelist.item"]
-            for line in sale.order_line:
+            for line in sale.order_line.filtered(lambda x: not x.display_type):
                 suitable_rule = pricelist._get_product_rule(
                     line.product_id,
                     quantity=line.product_uom_qty or 1.0,
@@ -67,7 +67,8 @@ class SaleOrder(models.Model):
         self.order_line.write({"discount": 0.0})
         qty_data = self._get_cummulative_quantity()
         sale_order = self.with_context(pricelist_global_cummulative_quantity=qty_data)
-        sale_order.order_line._compute_pricelist_item_id()
-        sale_order.order_line._compute_price_unit()
-        sale_order.order_line._compute_discount()
+        lines = sale_order.order_line.filtered(lambda x: not x.display_type)
+        lines._compute_pricelist_item_id()
+        lines._compute_price_unit()
+        lines._compute_discount()
         self.need_recompute_pricelist_global = False
