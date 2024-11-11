@@ -61,17 +61,15 @@ class ProductPricelist(models.Model):
         :param sale: browse_record(sale.order)
         :returns: tuple(product_template_ids , product_category_ids)
         """
-        categ_ids = {}
-        prod_tmpl_ids = {}
-        for line in sale.order_line:
-            prod_tmpl_ids[line.product_id.product_tmpl_id.id] = True
+        categ_ids = set()
+        prod_tmpl_ids = set()
+        for line in sale.order_line.filtered(lambda x: not x.display_type):
+            prod_tmpl_ids.add(line.product_id.product_tmpl_id.id)
             categ = line.product_id.categ_id
             while categ:
-                categ_ids[categ.id] = True
+                categ_ids.add(categ.id)
                 categ = categ.parent_id
-        categ_ids = list(categ_ids)
-        prod_tmpl_ids = list(prod_tmpl_ids)
-        return prod_tmpl_ids, categ_ids
+        return list(prod_tmpl_ids), list(categ_ids)
 
     def _compute_price_rule_global(self, sale):
         """Compute the price for the given sale order
