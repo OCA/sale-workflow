@@ -35,7 +35,7 @@ class SaleOrder(models.Model):
             self.pricelist_id.discount_policy == "without_discount"
             and self.env.user.has_group("product.group_discount_per_so_line")
         )
-        for line in self.order_line:
+        for line in self.order_line.filtered(lambda x: not x.display_type):
             vals_to_write = {"discount": 0.0}
             product = line.product_id.with_context(
                 lang=self.partner_id.lang,
