@@ -90,6 +90,14 @@ class CalendarEvent(models.Model):
     sanitized_partner_mobile = fields.Char(compute="_compute_sanitized_partner_mobile")
     location_url = fields.Char(compute="_compute_location_url")
     categ_icons = fields.Char(compute="_compute_categ_icons")
+    sale_planner_rating = fields.Selection(
+        [
+            ("1", "Bad"),
+            ("3", "Fair"),
+            ("5", "Good"),
+        ],
+        required=True,
+    )
 
     @api.depends("recurrence_id", "recurrence_id.calendar_event_ids")
     def _compute_is_base_recurrent_event(self):
@@ -365,6 +373,19 @@ class CalendarEvent(models.Model):
 
     def action_apply_issue(self):
         pass
+
+    def action_open_rating(self):
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "sale_planner_calendar.action_sale_planner_calendar_rating"
+        )
+        action["res_id"] = self.id
+        return action
+
+    def action_set_sale_planner_rating(self):
+        rating = self.env.context.get("rating_value")
+        if rating:
+            self.sale_planner_rating = rating
+            self.action_done()
 
     def _get_hour_tz_offset(self):
         timezone = self._context.get("tz") or self.env.user.partner_id.tz or "UTC"
