@@ -121,7 +121,7 @@ class SaleOrderLine(models.Model):
                     restoring_triple_discount=True,
                 ).update({"discount": old_values[line.id]})
 
-    def _convert_to_tax_base_line_dict(self):
+    def _convert_to_tax_base_line_dict(self, **kwargs):
         self.ensure_one()
         discount = (
             self.discount
@@ -138,4 +138,5 @@ class SaleOrderLine(models.Model):
             quantity=self.product_uom_qty,
             discount=discount,
             price_subtotal=self.price_subtotal,
+            **kwargs,
         )
