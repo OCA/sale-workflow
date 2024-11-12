@@ -17,13 +17,13 @@ Sale Triple Discount
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_triple_discount
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_triple_discount
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_triple_discount
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_triple_discount
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -40,7 +40,8 @@ Configuration
 
 To configure this module, you need to:
 
-* set **Discount on lines** group to be able to see discounts on the lines
+-  set **Discount on lines** group to be able to see discounts on the
+   lines
 
 Usage
 =====
@@ -48,34 +49,33 @@ Usage
 Create a new sale order and add discounts in any of the three discount
 fields given.
 
-For multiplicative discounts they go in order of precedence so discount 2 will
-be calculated over discount 1 and discount 3 over the result of discount 2. For
-example, let's divide by two on every discount:
+For multiplicative discounts they go in order of precedence so discount
+2 will be calculated over discount 1 and discount 3 over the result of
+discount 2. For example, let's divide by two on every discount:
 
 Unit price: 600.00 ->
 
-  - Disc. 1 = 50% -> Amount = 300.00
-  - Disc. 2 = 50% -> Amount = 150.00
-  - Disc. 3 = 50% -> Amount = 75.00
+   -  Disc. 1 = 50% -> Amount = 300.00
+   -  Disc. 2 = 50% -> Amount = 150.00
+   -  Disc. 3 = 50% -> Amount = 75.00
 
 For additive discounts they will be summed first and then applied. For
 example, let's have a three 20% discounts:
 
 Unit price: 600.00 ->
 
-  - Disc. 1, 2, 3 = 20% + 20% + 20% -> 60%
-  - Disc. final = 60% -> Amount = 240.00
-
+   -  Disc. 1, 2, 3 = 20% + 20% + 20% -> 60%
+   -  Disc. final = 60% -> Amount = 240.00
 
 You can also use negative values to make a charge instead of a discount:
 
 Unit price: 600.00 ->
 
-  - Disc. 1 = 50% -> Amount = 300.00
-  - Disc. 2 = -5% -> Amount = 315.00
+   -  Disc. 1 = 50% -> Amount = 300.00
+   -  Disc. 2 = -5% -> Amount = 315.00
 
 Module allows defining additional discount fields and applying them with
-other by adding them to the `_discount_fields` method.
+other by adding them to the \_discount_fields method.
 
 Bug Tracker
 ===========
@@ -83,7 +83,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_triple_discount%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_triple_discount%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -91,27 +91,27 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * ADHOC SA
 * Agile Business Group
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Nicolas Mac Rouillon <@nicomacr>
-* Juan José Scarafía <jjs@adhoc.com.ar>
-* Alex Comba <alex.comba@agilebg.com>
-* David Vidal <david.vidal@tecnativa.com>
-* Simone Rubino <simone.rubino@agilebg.com>
-* Jacques-Etienne Baudoux (BCIM sprl) <je@bcim.be>
-* Pimolnat Suntian <pimolnats@ecosoft.co.th>
-* Denis Leemann <denis.leemann@camptocamp.com>
-* Manuel Regidor <manuel.regidor@sygel.es>
+-  Nicolas Mac Rouillon <@nicomacr>
+-  Juan José Scarafía <jjs@adhoc.com.ar>
+-  Alex Comba <alex.comba@agilebg.com>
+-  David Vidal <david.vidal@tecnativa.com>
+-  Simone Rubino <simone.rubino@agilebg.com>
+-  Jacques-Etienne Baudoux (BCIM sprl) <je@bcim.be>
+-  Pimolnat Suntian <pimolnats@ecosoft.co.th>
+-  Denis Leemann <denis.leemann@camptocamp.com>
+-  Manuel Regidor <manuel.regidor@sygel.es>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -123,6 +123,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_triple_discount>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_triple_discount>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
