@@ -17,7 +17,6 @@ class SaleOrderLine(models.Model):
         compute="_compute_discount",
         compute_sudo=True,
         precompute=True,
-        readonly=True,
     )
     discount1 = fields.Float(
         string="Discount 1 (%)",
@@ -43,6 +42,15 @@ class SaleOrderLine(models.Model):
         + ["product_id", "product_uom", "product_uom_qty"]
     )
     def _compute_discount(self):
+        # Base Odoo just continues instead of assigning to 0 in this case
+        # but we depend on the super() value resetting to a discount unpolluted
+        # by the extra fields before taking them into account
+        for line in self:
+            if not (
+                line.order_id.pricelist_id
+                and line.order_id.pricelist_id.discount_policy == "without_discount"
+            ):
+                line.discount = 0
         res = super()._compute_discount()
         if self.env.context.get("skip_triple_discount"):
             return res
@@ -57,9 +65,12 @@ class SaleOrderLine(models.Model):
         # rather than updating itself in the create() after you save
         # Since we aren't in the actual compute, this shouldn't actually save any
         # values to .discount
-        self.with_context(skip_triple_discount=True)._compute_discount()
-        for line in self:
-            line.discount1 = line.discount
+        with self.env.protecting(
+            [self.env["sale.order.line"]._fields["discount"]], self
+        ):
+            self.with_context(skip_triple_discount=True)._compute_discount()
+            for line in self:
+                line.discount1 = line.discount
 
     def _get_final_discount(self):
         self.ensure_one()
@@ -70,12 +81,14 @@ class SaleOrderLine(models.Model):
         else:
             raise ValidationError(
                 _("Sale order line %(name)s has unknown discounting type %(dic_type)s")
-                % {"name": self.name, "disc_type": self.discounting_type}
+                % {"name": self.name, "dic_type": self.discounting_type}
             )
 
     def _additive_discount(self):
         self.ensure_one()
-        discount = sum(self[x] or 0.0 for x in self._discount_fields())
+        discount = sum(
+            self[x] or 0.0 for x in self._get_multiple_discount_field_names()
+        )
         if discount <= 0:
             return 0
         elif discount >= 100:
@@ -85,14 +98,8 @@ class SaleOrderLine(models.Model):
     def _multiplicative_discount(self):
         self.ensure_one()
         return self._get_aggregated_multiple_discounts(
-            [self[x] for x in self._discount_fields()]
+            [self[x] for x in self._get_multiple_discount_field_names()]
         )
-
-    @api.model
-    def _discount_fields(self):
-        # Kept for backwards compatibility
-        # TODO: Remove in future versions
-        return self._get_multiple_discount_field_names()
 
     def _prepare_invoice_line(self, **kwargs):
         """

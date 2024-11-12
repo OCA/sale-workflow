@@ -11,6 +11,7 @@
             >
                 <attribute name="string">Total discount</attribute>
                 <attribute name="optional">hide</attribute>
+                <attribute name="readonly">1</attribute>
             </xpath>
             <xpath
                 expr="//field[@name='order_line']//tree//field[@name='discount']"
@@ -38,6 +39,13 @@
                 />
             </xpath>
             <xpath
+                expr="//field[@name='order_line']//form//field[@name='discount']"
+                position="attributes"
+            >
+                <attribute name="string">Total discount</attribute>
+                <attribute name="readonly">1</attribute>
+            </xpath>
+            <xpath
                 expr="//field[@name='order_line']//form//div[@name='discount']"
                 position="after"
             >
@@ -61,7 +69,7 @@
                     name="discounting_type"
                     groups="product.group_discount_per_so_line"
                 >
-                    <field name="discounting_type" class="oe_inline" /> %
+                    <field name="discounting_type" class="oe_inline" />
                 </div>
             </xpath>
         </field>
