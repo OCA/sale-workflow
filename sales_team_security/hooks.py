@@ -2,8 +2,6 @@
 # Copyright 2020 - Iván Todorovich
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
-from odoo import api
-
 
 def post_init_hook(env):
     """At installation time, propagate the parent sales team to the children
@@ -22,14 +20,13 @@ def post_init_hook(env):
 
 def uninstall_hook(env):  # pragma: no cover
     """At uninstall, revert changes made to record rules"""
-    with api.Environment.manage():
-        env.ref("sales_team.group_sale_salesman_all_leads").write(
-            {
-                "implied_ids": [
-                    (6, 0, [env.ref("sales_team.group_sale_salesman").id]),
-                ],
-            }
-        )
+    env.ref("sales_team.group_sale_salesman_all_leads").write(
+        {
+            "implied_ids": [
+                (6, 0, [env.ref("sales_team.group_sale_salesman").id]),
+            ],
+        }
+    )
     # At installation time, we need to sync followers
     partners = env["res.partner"].search(
         [
