@@ -105,8 +105,8 @@ class TestSaleOrderLotSelection(TransactionCase):
         picking_out.action_assign()
         picking_out._action_done()
 
-        self.product_46.write({"tracking": "lot", "type": "product"})
-        self.product_12.write({"tracking": "lot", "type": "product"})
+        self.product_46.write({"tracking": "lot", "type": "consu"})
+        self.product_12.write({"tracking": "lot", "type": "consu"})
 
         # make products enter
         picking_in = self.env["stock.picking"].create(
