@@ -90,13 +90,13 @@ class CalendarEvent(models.Model):
     sanitized_partner_mobile = fields.Char(compute="_compute_sanitized_partner_mobile")
     location_url = fields.Char(compute="_compute_location_url")
     categ_icons = fields.Char(compute="_compute_categ_icons")
+    # Adding code \uFE0E to force monochrome emoji. Not supported with 🙁 and 🙂 emojis
     sale_planner_rating = fields.Selection(
         [
-            ("1", "Bad"),
-            ("3", "Fair"),
-            ("5", "Good"),
+            ("1", "😞\uFE0E"),
+            ("3", "😐\uFE0E"),
+            ("5", "😊\uFE0E"),
         ],
-        required=True,
     )
 
     @api.depends("recurrence_id", "recurrence_id.calendar_event_ids")
@@ -361,6 +361,7 @@ class CalendarEvent(models.Model):
             {
                 "sale_planner_state": "pending",
                 "comment": False,
+                "sale_planner_rating": False,
             }
         )
 
@@ -382,10 +383,7 @@ class CalendarEvent(models.Model):
         return action
 
     def action_set_sale_planner_rating(self):
-        rating = self.env.context.get("rating_value")
-        if rating:
-            self.sale_planner_rating = rating
-            self.action_done()
+        self.action_done()
 
     def _get_hour_tz_offset(self):
         timezone = self._context.get("tz") or self.env.user.partner_id.tz or "UTC"

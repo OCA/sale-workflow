@@ -83,6 +83,12 @@
                         domain="[]"
                         context="{'group_by':'start:day'}"
                     />
+                    <filter
+                        string="Rating"
+                        name="group_by_planner_rating"
+                        domain="[]"
+                        context="{'group_by': 'sale_planner_rating'}"
+                    />
                 </group>
             </search>
         </field>
@@ -106,6 +112,7 @@
                 />
                 <field name="sale_order_subtotal" optional="show" />
                 <field name="sale_planner_state" optional="show" />
+                <field name="sale_planner_rating" optional="hide" />
                 <field name="sale_planner_currency_id" invisible="1" />
             </tree>
         </field>
@@ -195,6 +202,12 @@
                             />
                             <field name="calendar_issue_type_id" widget="selection" />
                             <field name="comment" />
+                            <div class="display-5" colspan="2">
+                                <field
+                                    name="sale_planner_rating"
+                                    widget="selection_badge"
+                                />
+                            </div>
                         </group>
                     </group>
                 </sheet>
@@ -291,76 +304,17 @@
                     <label for="comment" />
                     <field colspan="2" name="comment" class="border" nolabel="1" />
                 </group>
-                <button
-                    name="action_set_sale_planner_rating"
-                    type="object"
-                    class="btn btn-secondary"
-                    context="{'rating_value': '1'}"
-                    attrs="{'invisible': [('sale_planner_rating', '=', '1')]}"
-                >
-                        <img
-                        alt="Poor"
-                        src="sale_planner_calendar/static/img/rating_1.png"
-                        title="Poor"
-                    />
-                    </button>
-                    <button
-                    class="btn btn-secondary border"
-                    attrs="{'invisible': [('sale_planner_rating', '!=', '1')]}"
-                >
-                        <img
-                        alt="Poor"
-                        src="sale_planner_calendar/static/img/rating_1.png"
-                        title="Poor"
-                    />
-                    </button>
-                    <button
-                    name="action_set_sale_planner_rating"
-                    type="object"
-                    class="btn btn-secondary"
-                    context="{'rating_value': '3'}"
-                    attrs="{'invisible': [('sale_planner_rating', '=', '3')]}"
-                >
-                        <img
-                        alt="Fair"
-                        src="sale_planner_calendar/static/img/rating_3.png"
-                        title="Fair"
-                    />
-                    </button>
-                    <button
-                    class="btn btn-secondary border"
-                    attrs="{'invisible': [('sale_planner_rating', '!=', '3')]}"
-                >
-                        <img
-                        alt="Fair"
-                        src="sale_planner_calendar/static/img/rating_3.png"
-                        title="Fair"
-                    />
-                    </button>
-                    <button
-                    name="action_set_sale_planner_rating"
-                    type="object"
-                    class="btn btn-secondary"
-                    context="{'rating_value': '5'}"
-                    attrs="{'invisible': [('sale_planner_rating', '=', '5')]}"
-                >
-                        <img
-                        alt="Good"
-                        src="sale_planner_calendar/static/img/rating_5.png"
-                        title="Good"
-                    />
-                    </button>
-                    <button
-                    class="btn btn-secondary border"
-                    attrs="{'invisible': [('sale_planner_rating', '!=', '5')]}"
-                >
-                        <img
-                        alt="Good"
-                        src="sale_planner_calendar/static/img/rating_5.png"
-                        title="Good"
-                    />
-                    </button>
+                <div class="display-1 text-center" colspan="2">
+                    <field name="sale_planner_rating" widget="selection_badge" />
+                </div>
                 <footer>
+                    <!-- TODO: Remove this button when click in badge closes wizard -->
+                    <button
+                        string="Accept"
+                        name="action_set_sale_planner_rating"
+                        type="object"
+                        class="oe_highlight"
+                    />
                     <button string="Cancel" class="btn-secondary" special="cancel" />
                 </footer>
             </form>
@@ -404,6 +358,7 @@
                 <field name="calendar_issue_type_id" />
                 <field name="sale_planner_currency_id" />
                 <field name="comment" />
+                <field name="sale_planner_rating" />
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_card w-100 oe_kanban_global_click">
@@ -443,6 +398,10 @@
                                                     class="badge pb-2"
                                                     t-esc="record.sale_planner_state.raw_value"
                                                 />
+                                                <span
+                                                    class="h3"
+                                                    t-esc="record.sale_planner_rating.value"
+                                                />
                                             </button>
                                         </div>
                                     </div>
@@ -458,6 +417,15 @@
                                         <div class="col">
                                             <field name="partner_ref" />  <field
                                                 name="partner_name"
+                                            />
+                                        </div>
+                                        <div
+                                            class="col-2"
+                                            t-if="record.partner_user_id and record.partner_user_id.raw_value != record.user_id.raw_value"
+                                        >
+                                            <field
+                                                name="partner_user_id"
+                                                widget="many2one_avatar_user"
                                             />
                                         </div>
                                     </div>
