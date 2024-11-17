@@ -250,14 +250,14 @@ class TestSalePlannerCalendar(TransactionCase):
         wiz_form.new_user_id = self.commercial_user_2
         record = wiz_form.save()
         record.select_all_lines()
-        record.action_assign_new_salesperson()
+        record.action_assign_new_values()
         self.assertEqual(len(record.line_ids.mapped("new_user_id")), 1)
         wiz_form.new_user_id = self.commercial_user_2
         record = wiz_form.save()
         record.line_ids = False
         record.action_get_lines()
         record.line_ids[0].selected = True
-        record.action_assign_new_salesperson()
+        record.action_assign_new_values()
         self.assertEqual(len(record.line_ids.filtered(lambda ln: ln.new_user_id)), 1)
 
     def test_reassign_wizard_apply(self):
@@ -338,7 +338,7 @@ class TestSalePlannerCalendar(TransactionCase):
             lambda ln: ln.partner_id == self.partner_1
         )
         event_planner_partner_1.selected = True
-        record.action_assign_new_salesperson()
+        record.action_assign_new_values()
         record.apply()
         # Check document permissions based on followers
         # Sale order

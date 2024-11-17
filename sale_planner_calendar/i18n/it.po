@@ -88,8 +88,8 @@ msgstr "Assegna nuovo addetto vendite al partner"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
-msgid "Assign new commercial to selected lines"
-msgstr "Assegna nuovo commerciale alle righe selezionate"
+msgid "Assign new values to selected lines"
+msgstr ""
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_attachment_count
@@ -377,6 +377,13 @@ msgid "Font awesome icon e.g. fa-tasks"
 msgstr "Icona Font Awesome es. fa-tasks"
 
 #. module: sale_planner_calendar
+#: model:ir.model.fields,help:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__new_event_categ_ids
+#: model:ir.model.fields,help:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__new_event_categ_ids
+msgid ""
+"Forces new tags for the specified period. Leave empty to keep current tags."
+msgstr ""
+
+#. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.res_config_settings_view_form
 msgid "Forward months to create calendar events"
 msgstr "Inoltra mesi per creare eventi calendario"
@@ -386,6 +393,11 @@ msgstr "Inoltra mesi per creare eventi calendario"
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__fri
 msgid "Friday"
 msgstr "Venerdì"
+
+#. module: sale_planner_calendar
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
+msgid "Future"
+msgstr ""
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
@@ -636,6 +648,12 @@ msgid "New salesperson"
 msgstr "Nuovo addetto vendite"
 
 #. module: sale_planner_calendar
+#: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__new_event_categ_ids
+#: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__new_event_categ_ids
+msgid "New tags"
+msgstr ""
+
+#. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid "New values"
 msgstr "Nuovi valori"
@@ -713,14 +731,16 @@ msgid "Partner Name"
 msgstr "Nome partner"
 
 #. module: sale_planner_calendar
-#: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__partner_user_id
-msgid "Partner User"
-msgstr "Utente partner"
-
-#. module: sale_planner_calendar
+#: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__partner_user_id
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__partner_user_id
+#: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__partner_user_id
 msgid "Partner salesperson"
 msgstr "Addetto vendite partner"
+
+#. module: sale_planner_calendar
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
+msgid "Past"
+msgstr ""
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__payment_amount
@@ -756,14 +776,18 @@ msgid "Pending"
 msgstr "In attesa"
 
 #. module: sale_planner_calendar
-#: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__event_user_id
-msgid "Planned user"
-msgstr "Utente pianificato"
-
-#. module: sale_planner_calendar
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_summary_general
 msgid "Planner"
 msgstr "Pianificatore"
+
+#. module: sale_planner_calendar
+#: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__event_user_id
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_form
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_issue_tree
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_tree
+msgid "Planner salesperson"
+msgstr ""
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__reassign_wiz_id
@@ -786,11 +810,6 @@ msgstr "Eventi ricorrenti calendario"
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__partner_ref
 msgid "Reference"
 msgstr "Riferimento"
-
-#. module: sale_planner_calendar
-#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
-msgid "Responsible"
-msgstr "Responsabile"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__sale_ids
@@ -868,8 +887,11 @@ msgid "Sale planner calendar event"
 msgstr "Evento calendario pianificatore vendite"
 
 #. module: sale_planner_calendar
+#. odoo-python
+#: code:addons/sale_planner_calendar/models/res_users.py:0
 #: model:ir.actions.act_window,name:sale_planner_calendar.action_sale_planner_calendar_event
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_event
+#, python-format
 msgid "Sale planner calendar events"
 msgstr "Eventi calendario pianificatore vendite"
 
@@ -1005,6 +1027,11 @@ msgstr ""
 "                                Impostare 00:00 per disabilitare l'avviso."
 
 #. module: sale_planner_calendar
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
+msgid "Start"
+msgstr ""
+
+#. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_calendar_event_tree_primary_only
 msgid "Start Date"
 msgstr "Data inizio"
@@ -1053,7 +1080,7 @@ msgstr ""
 "commerciale compilato."
 
 #. module: sale_planner_calendar
-#: model:ir.model.fields,help:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__partner_user_id
+#: model:ir.model.fields,help:sale_planner_calendar.field_calendar_event__partner_user_id
 msgid "The internal user in charge of this contact."
 msgstr "L'utente interno responsabile di questo contatto."
 
@@ -1137,6 +1164,7 @@ msgid "Until"
 msgstr "Fino a"
 
 #. module: sale_planner_calendar
+#: model:ir.model,name:sale_planner_calendar.model_res_users
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__user_id
 msgid "User"
 msgstr "Utente"
@@ -1167,6 +1195,18 @@ msgstr "Giorno della settimana"
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
 msgid "Whatsapp"
 msgstr "Whatsapp"
+
+#~ msgid "Assign new commercial to selected lines"
+#~ msgstr "Assegna nuovo commerciale alle righe selezionate"
+
+#~ msgid "Partner User"
+#~ msgstr "Utente partner"
+
+#~ msgid "Planned user"
+#~ msgstr "Utente pianificato"
+
+#~ msgid "Responsible"
+#~ msgstr "Responsabile"
 
 #~ msgid ""
 #~ "<i class=\"fa fa-pencil-square-o\"/>\n"

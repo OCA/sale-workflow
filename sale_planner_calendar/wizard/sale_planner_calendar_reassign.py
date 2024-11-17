@@ -10,6 +10,7 @@ from odoo import api, fields, models
 class SalePlannerCalendarReassignWiz(models.TransientModel):
     _name = "sale.planner.calendar.reassign.wiz"
     _description = "Sale planner calendar reassign wizard"
+    _rec_name = "user_id"
 
     user_id = fields.Many2one(
         comodel_name="res.users",
@@ -35,6 +36,7 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
     partner_id = fields.Many2one(comodel_name="res.partner")
     partner_user_id = fields.Many2one(
         comodel_name="res.users",
+        string="Partner salesperson",
         domain="[('share','=',False)]",
     )
     new_user_id = fields.Many2one(
@@ -49,6 +51,11 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
     line_ids = fields.One2many(
         comodel_name="sale.planner.calendar.reassign.line.wiz",
         inverse_name="reassign_wiz_id",
+    )
+    new_event_categ_ids = fields.Many2many(
+        comodel_name="calendar.event.type",
+        string="New tags",
+        help="Forces new tags for the specified period. Leave empty to keep current tags.",
     )
 
     @api.onchange(
@@ -84,16 +91,17 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
                     # "event_categ_ids": [(6, 0, calendar_event.categ_ids.ids)],
                     "event_user_id": calendar_event.user_id.id,
                     "partner_id": calendar_event.target_partner_id.id,
+                    "partner_user_id": calendar_event.partner_user_id.id,
                     "event_start": calendar_event.start,
                     "until": calendar_event.until,
                 }
             )
 
-    def action_assign_new_salesperson(self):
+    def action_assign_new_values(self):
         lines = self.line_ids.filtered("selected")
         lines.new_user_id = self.new_user_id
+        lines.new_event_categ_ids = self.new_event_categ_ids
         lines.selected = False
-        self.new_user_id = False
 
     def select_all_lines(self):
         self.line_ids.selected = True
@@ -144,21 +152,24 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
                 - line.event_user_id.partner_id
                 + line.new_user_id.partner_id
             ).ids
-            new_base_event_start.write(
-                {
-                    "recurrence_update": "future_events",
-                    "user_id": line.new_user_id.id,
-                    "partner_ids": [
-                        (6, False, partner_ids),
-                    ],
-                    # Next fields has different behavior if 'self.new_end' field has a
-                    # value
-                    "is_dynamic_end_date": False
-                    if self.new_end
-                    else old_event.is_dynamic_end_date,
-                    "unsubscribe_date": self.new_end,
-                }
-            )
+            new_base_event_vals = {
+                "recurrence_update": "future_events",
+                "user_id": line.new_user_id.id,
+                "partner_ids": [
+                    (6, False, partner_ids),
+                ],
+                # Next fields has different behavior if 'self.new_end' field has a
+                # value
+                "is_dynamic_end_date": False
+                if self.new_end
+                else old_event.is_dynamic_end_date,
+                "unsubscribe_date": self.new_end,
+            }
+            if line.new_event_categ_ids:
+                new_base_event_vals["categ_ids"] = [
+                    (6, 0, line.new_event_categ_ids.ids)
+                ]
+            new_base_event_start.write(new_base_event_vals)
 
             old_event_vals = {
                 "recurrence_update": "all_events",
@@ -214,13 +225,12 @@ class SalePlannerCalendarReassignLineWiz(models.TransientModel):
     )
     partner_id = fields.Many2one(comodel_name="res.partner", readonly=True)
     partner_user_id = fields.Many2one(
-        string="Partner salesperson",
         comodel_name="res.users",
-        related="partner_id.user_id",
+        string="Partner salesperson",
     )
     event_user_id = fields.Many2one(
         comodel_name="res.users",
-        string="Planned user",
+        string="Planner salesperson",
         readonly=True,
         domain="[('share','=',False)]",
     )
@@ -228,6 +238,12 @@ class SalePlannerCalendarReassignLineWiz(models.TransientModel):
         comodel_name="res.users",
         domain="[('share','=',False)]",
     )
+    new_event_categ_ids = fields.Many2many(
+        comodel_name="calendar.event.type",
+        string="New tags",
+        help="Forces new tags for the specified period. Leave empty to keep current tags.",
+    )
+
     event_start = fields.Datetime(readonly=True)
     until = fields.Datetime(readonly=True)
 

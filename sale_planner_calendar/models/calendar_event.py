@@ -84,6 +84,9 @@ class CalendarEvent(models.Model):
     partner_mobile = fields.Char(compute="_compute_contact")
     partner_contact_name = fields.Char(compute="_compute_contact")
     partner_city = fields.Char(related="target_partner_id.city")
+    partner_user_id = fields.Many2one(
+        related="target_partner_id.user_id", string="Partner salesperson"
+    )
     sanitized_partner_mobile = fields.Char(compute="_compute_sanitized_partner_mobile")
     location_url = fields.Char(compute="_compute_location_url")
     categ_icons = fields.Char(compute="_compute_categ_icons")

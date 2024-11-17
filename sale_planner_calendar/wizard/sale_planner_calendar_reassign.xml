@@ -57,7 +57,15 @@
                     </group>
                     <group string="Events to update" col="1">
                         <group>
-                            <field name="new_user_id" />
+                            <group>
+                                <field name="new_user_id" />
+                            </group>
+                            <group>
+                                <field
+                                    name="new_event_categ_ids"
+                                    widget="many2many_tags"
+                                />
+                            </group>
                         </group>
                         <div>
                             <button
@@ -74,9 +82,9 @@
                             />
                             <button
                                 class="oe_link ml32"
-                                name="action_assign_new_salesperson"
+                                name="action_assign_new_values"
                                 type="object"
-                                string="Assign new commercial to selected lines"
+                                string="Assign new values to selected lines"
                             />
                         </div>
                         <field name="line_ids" nolabel="1">
@@ -99,6 +107,11 @@
                                 <field name="event_start" optional="hide" />
                                 <field name="until" optional="hide" />
                                 <field name="new_user_id" />
+                                <field
+                                    name="new_event_categ_ids"
+                                    widget="many2many_tags"
+                                    optional="hide"
+                                />
                             </tree>
                         </field>
                     </group>
