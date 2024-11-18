@@ -11,15 +11,15 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         cls.sale_obj = cls.env["sale.order"]
         cls.partner = cls.env.ref("base.res_partner_2")
         cls.product = cls.product_obj.create(
-            {"name": "Test", "detailed_type": "consu", "list_price": 20.0}
+            {"name": "Test", "type": "consu", "list_price": 20.0}
         )
         cls.product2 = cls.product_obj.create(
-            {"name": "Test 2", "detailed_type": "consu", "list_price": 45.0}
+            {"name": "Test 2", "type": "consu", "list_price": 45.0}
         )
         cls.product3 = cls.product_obj.create(
             {
                 "name": "Test 3 (service)",
-                "detailed_type": "service",
+                "type": "service",
                 "list_price": 850.5,
             }
         )
@@ -96,7 +96,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         self.assertEqual(so_line.invoice_status, "no")
 
         for mv in picking.move_line_ids:
-            mv.qty_done = mv.reserved_uom_qty
+            mv.quantity = mv.quantity_product_uom
         picking.button_validate()
         self.assertEqual(picking.state, "done")
 
@@ -132,7 +132,8 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         self.assertEqual(so.invoice_policy, "order")
 
     def test_context_manager_exception(self):
-        """Check the exception is well managed when called with several invoice policies"""
+        """Check the exception is well managed when called with several
+        invoice policies"""
         self.assertEqual("order", self.product.invoice_policy)
         so = self.env["sale.order"].create(
             {

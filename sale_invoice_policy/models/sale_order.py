@@ -17,7 +17,6 @@ class SaleOrder(models.Model):
         store=True,
         readonly=False,
         required=True,
-        states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
         precompute=True,
         help="Ordered Quantity: Invoice based on the quantity the customer "
         "ordered.\n"
