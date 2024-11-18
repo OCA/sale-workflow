@@ -19,8 +19,10 @@
                         <div class="text-muted" id="sale_default_invoice_policy">
                             <div class="text-muted">
                                 <field name="sale_default_invoice_policy" />
-                                <p><span
-                                    >Choose the default policy that will be applied for new sale orders (the 'Invoicing Policy' configuration is the policy for new products).</span></p>
+                                <p>
+                                    <span
+                                    >Choose the default policy that will be applied for new sale orders (the 'Invoicing Policy' configuration is the policy for new products).</span>
+                                </p>
                             </div>
                         </div>
                     </div>
