@@ -2,15 +2,12 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from openupgradelib import openupgrade
 
-from odoo.api import SUPERUSER_ID, Environment
 
-
-def pre_init_hook(cr):
+def pre_init_hook(env):
     """
     Create the sale order invoice policy with the "product" policy (standard)
     but with a postgres query to avoid an update on all sale order records
     """
-    env = Environment(cr, SUPERUSER_ID, {})
     field_spec = [
         (
             "invoice_policy",
