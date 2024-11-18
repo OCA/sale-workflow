@@ -46,7 +46,7 @@ class SaleOrderLine(models.Model):
                         }
                     )
 
-    def _convert_to_tax_base_line_dict(self, **kwargs):
+    def _prepare_base_line_for_taxes_computation(self, **kwargs):
         """Prior to calculating the tax toals for a line, update the discount value
         used in the tax calculation to the full float value. Otherwise, we get rounding
         errors in the resulting calculated totals.
@@ -60,23 +60,22 @@ class SaleOrderLine(models.Model):
         :return: A python dictionary.
         """
         self.ensure_one()
-
         # Accurately pass along the fixed discount amount to the tax computation method.
         if self.discount_fixed:
-            return self.env["account.tax"]._convert_to_tax_base_line_dict(
+            return self.env["account.tax"]._prepare_base_line_for_taxes_computation(
                 self,
-                partner=self.order_id.partner_id,
-                currency=self.order_id.currency_id,
-                product=self.product_id,
-                taxes=self.tax_id,
-                price_unit=self.price_unit,
-                quantity=self.product_uom_qty,
-                discount=self._get_discount_from_fixed_discount(),
-                price_subtotal=self.price_subtotal,
-                **kwargs,
+                **{
+                    "tax_ids": self.tax_id,
+                    "quantity": self.product_uom_qty,
+                    "partner_id": self.order_id.partner_id,
+                    "currency_id": self.order_id.currency_id
+                    or self.order_id.company_id.currency_id,
+                    "rate": self.order_id.currency_rate,
+                    "discount": self._get_discount_from_fixed_discount(),
+                    **kwargs,
+                },
             )
-
-        return super()._convert_to_tax_base_line_dict()
+        return super()._prepare_base_line_for_taxes_computation(**kwargs)
 
     @api.depends("discount_fixed", "price_unit")
     def _compute_discount(self):

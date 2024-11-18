@@ -9,7 +9,7 @@ class TestSaleFixedDiscount(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env.user.groups_id |= cls.env.ref("product.group_discount_per_so_line")
+        cls.env.user.groups_id |= cls.env.ref("sale.group_discount_per_so_line")
         cls.partner = cls.env["res.partner"].create({"name": "Test"})
         cls.tax = cls.env["account.tax"].create(
             {
@@ -106,8 +106,8 @@ class TestSaleFixedDiscount(TransactionCase):
         self.assertEqual(self.sale.invoice_ids.invoice_line_ids.discount_fixed, 20.0)
         self.assertEqual(self.sale.invoice_ids.invoice_line_ids.discount, 10.0)
 
-        self.assertEqual(self.sale.invoice_ids.tax_totals["amount_untaxed"], 180.0)
-        self.assertEqual(self.sale.invoice_ids.tax_totals["amount_total"], 207.0)
+        self.assertEqual(self.sale.invoice_ids.tax_totals["base_amount"], 180.0)
+        self.assertEqual(self.sale.invoice_ids.tax_totals["total_amount"], 207.0)
 
     def test_04_fixed_discount_without_price(self):
         with Form(self.sale) as sale_order:
@@ -131,5 +131,5 @@ class TestSaleFixedDiscount(TransactionCase):
         self.assertEqual(self.sale.invoice_ids.invoice_line_ids.discount_fixed, 20.0)
         self.assertEqual(self.sale.invoice_ids.invoice_line_ids.discount, 10.0)
 
-        self.assertEqual(self.sale.invoice_ids.tax_totals["amount_untaxed"], 180.0)
-        self.assertEqual(self.sale.invoice_ids.tax_totals["amount_total"], 207.0)
+        self.assertEqual(self.sale.invoice_ids.tax_totals["base_amount"], 180.0)
+        self.assertEqual(self.sale.invoice_ids.tax_totals["total_amount"], 207.0)
