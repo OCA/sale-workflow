@@ -52,7 +52,9 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
                 "account_id": cls.account.id,
             }
         )
-        cls.pricelist = cls.env.ref("product.list0")
+        cls.pricelist = cls.env["product.pricelist"].create(
+            {"name": "Public Pricelist", "sequence": 1}
+        )
         cls.partner_1 = cls.env["res.partner"].create(
             {"name": "Mr. Odoo", "property_product_pricelist": cls.pricelist.id}
         )
@@ -157,7 +159,6 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         """Change the partner and his global discounts go to the invoice"""
         # (30% then 50%)
         self.sale.partner_id = self.partner_2
-        self.sale.onchange_partner_id_set_gbl_disc()
         self.assertAlmostEqual(self.sale.amount_global_discount, 162.49)
         self.assertAlmostEqual(self.sale.amount_untaxed, 87.5)
         self.assertAlmostEqual(self.sale.amount_untaxed_before_global_discounts, 249.99)
@@ -171,7 +172,6 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
     def test_03_global_sale_discounts_to_invoice(self):
         """All the discounts go to the invoice"""
         self.sale.partner_id = self.partner_2
-        self.sale.onchange_partner_id_set_gbl_disc()
         self.sale.order_line.mapped("product_id").write({"invoice_policy": "order"})
         self.sale.action_confirm()
         move = self.sale._create_invoices()
@@ -228,3 +228,14 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         self.assertAlmostEqual(line.price_subtotal, 135)
         self.assertAlmostEqual(self.sale.amount_untaxed_before_global_discounts, 234.99)
         self.assertAlmostEqual(self.sale.amount_untaxed, 187.99)
+
+    def test_07_bypass_global_discounts(self):
+        self.sale.global_discount_ids = self.global_discount_2 + self.global_discount_3
+        self.sale.order_line[0].product_id.bypass_global_discount = True
+        self.assertAlmostEqual(self.sale.amount_untaxed_before_global_discounts, 249.99)
+        self.assertAlmostEqual(self.sale.amount_untaxed, 185.00)
+        self.assertAlmostEqual(self.sale.amount_total, 222.00)
+        self.assertAlmostEqual(self.sale.amount_tax, 37.00)
+        self.assertAlmostEqual(
+            self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
+        )

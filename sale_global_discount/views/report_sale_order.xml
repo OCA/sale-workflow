@@ -22,7 +22,7 @@
                         <strong>Global Discounts</strong>
                         <br />
                         <t
-                            t-esc="'→'.join(['{:.2f}%'.format(x.discount) for x in doc.global_discount_ids])"
+                            t-out="'→'.join(['{:.2f}%'.format(x.discount) for x in doc.global_discount_ids])"
                         />
                     </td>
                     <td class="text-end">
