@@ -93,6 +93,11 @@ Contributors
 
 -  Omar Castiñeira <omar@comunitea.com>
 
+-  `Studio73 <https://www.studio73.es>`__
+
+   -  Miguel Gandia
+
+
 Maintainers
 -----------
 
