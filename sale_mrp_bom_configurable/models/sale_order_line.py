@@ -129,18 +129,13 @@ class SaleOrderLine(models.Model):
             super(SaleOrderLine, rec)._compute_price_unit()
         return True
 
-    def _action_launch_stock_rule(self, previous_product_uom_qty=False):
-        res = True
-        for rec in self:
-            if rec.is_static_product:
-                res = res and super(SaleOrderLine, rec)._action_launch_stock_rule(
-                    previous_product_uom_qty
-                )
-            else:
-                res = res and super(
-                    SaleOrderLine, rec.with_context(input_line_id=rec.input_line_id.id)
-                )._action_launch_stock_rule(previous_product_uom_qty)
-        return res
+    def _prepare_procurement_values(self, group_id=False):
+        vals = super()._prepare_procurement_values(group_id=group_id)
+        if self.lot_id:
+            if not self.is_static_product:
+                self.lot_id.input_line_id = self.input_line_id.id
+            vals["restrict_lot_id"] = self.lot_id.id
+        return vals
 
     def action_show_input_line(self):
         self.ensure_one()
