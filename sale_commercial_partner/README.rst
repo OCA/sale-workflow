@@ -45,9 +45,9 @@ Usage
 
 You can group by *Commercial Entity*:
 
--  in *Sales > Orders > Quotations*,
--  in *Sales > Orders > Orders*,
--  in *Sales > Reporting > Sales* (it is a native feature in this menu)
+- in *Sales > Orders > Quotations*,
+- in *Sales > Orders > Orders*,
+- in *Sales > Reporting > Sales* (it is a native feature in this menu)
 
 Bug Tracker
 ===========
@@ -70,13 +70,27 @@ Authors
 Contributors
 ------------
 
--  Alexis de Lattre <alexis.delattre@akretion.com>
--  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
--  Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
--  Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
--  `APSL <https://apsl.tech>`__:
+- Alexis de Lattre <alexis.delattre@akretion.com>
+- Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+- Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
+- Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
+- `APSL <https://apsl.tech>`__:
 
-   -  Antoni Marroig <amarroig@apsl.net>
+  - Antoni Marroig <amarroig@apsl.net>
+
+- `Dynapps <https://www.dynapps.eu>`__:
+
+  - Bert Van Groenendael <bert.vangroenendael@dynapps.eu>
+
+- `Trobz <https://www.trobz.com>`__:
+
+  - Nhan Tran <nhant@trobz.com>
+
+Other credits
+-------------
+
+The migration of this module from 17.0 to 18.0 was financially supported
+by Camptocamp
 
 Maintainers
 -----------
