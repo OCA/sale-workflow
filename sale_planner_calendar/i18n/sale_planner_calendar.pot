@@ -41,6 +41,11 @@ msgid "<span class=\"o_stat_text\">Subtotal</span>"
 msgstr ""
 
 #. module: sale_planner_calendar
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_rating_form
+msgid "Accept"
+msgstr ""
+
+#. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_needaction
 msgid "Action Needed"
 msgstr ""
@@ -134,6 +139,7 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_form
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_issue_form
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_rating_form
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_wizard
 msgid "Cancel"
@@ -148,6 +154,11 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__categ_icons
 msgid "Categ Icons"
+msgstr ""
+
+#. module: sale_planner_calendar
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
+msgid "Change calendar event status by adding a previous rating"
 msgstr ""
 
 #. module: sale_planner_calendar
@@ -777,6 +788,11 @@ msgid "Planner salesperson"
 msgstr ""
 
 #. module: sale_planner_calendar
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
+msgid "Rating"
+msgstr ""
+
+#. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__reassign_wiz_id
 msgid "Reassign Wiz"
 msgstr ""
@@ -846,6 +862,11 @@ msgid "Sale Planner Order Cut Hour"
 msgstr ""
 
 #. module: sale_planner_calendar
+#: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__sale_planner_rating
+msgid "Sale Planner Rating"
+msgstr ""
+
+#. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__sale_planner_state
 msgid "Sale Planner State"
 msgstr ""
@@ -870,6 +891,7 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_form
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_issue_form
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_rating_form
 msgid "Sale planner calendar event"
 msgstr ""
 
@@ -891,6 +913,11 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model:ir.model,name:sale_planner_calendar.model_sale_planner_calendar_issue_type
 msgid "Sale planner calendar issue type"
+msgstr ""
+
+#. module: sale_planner_calendar
+#: model:ir.actions.act_window,name:sale_planner_calendar.action_sale_planner_calendar_rating
+msgid "Sale planner calendar rating"
 msgstr ""
 
 #. module: sale_planner_calendar
