@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="res_config_settings_view_form_sale" model="ir.ui.view">
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="sale.res_config_settings_view_form" />
@@ -14,11 +13,9 @@
                         string="Product recommendation price origin"
                         help="Select the origin for display product price in sale orders recommendation"
                     >
-                            <div class="text-muted">
-                                <field
-                                name="default_sale_recommendation_price_origin"
-                            />
-                            </div>
+                        <div class="text-muted">
+                            <field name="default_sale_recommendation_price_origin" />
+                        </div>
                     </setting>
                     <setting
                         string="Use delivery address"
@@ -26,8 +23,7 @@
                                 Delivery Address instead of customer on sale orders
                                 recommendation"
                     >
-                            <field name="default_use_delivery_address" />
-
+                        <field name="default_use_delivery_address" />
                     </setting>
                     <setting
                         string="Default months backwards to generate recommendations"
@@ -35,28 +31,28 @@
                                 Delivery Address instead of customer on sale orders
                                 recommendation"
                     >
-                            <field name="default_months" />
+                        <field name="default_months" />
                     </setting>
                     <setting string="Default Number of recommendations">
-                            <field name="default_line_amount" />
+                        <field name="default_line_amount" />
                     </setting>
                     <setting
                         string="Add recommended with zero units included"
                         help="Add recomented products in so even if units included is zero."
                     >
-                            <field name="force_zero_units_included" />
+                        <field name="force_zero_units_included" />
                     </setting>
                     <setting
                         string="Sale order product recommendation domain"
                         help="Domain applied on sale orders lines to recommend products for sales"
                     >
-                            <div class="text-muted">
-                                <field
+                        <div class="text-muted">
+                            <field
                                 name="sale_line_recommendation_domain"
                                 widget="domain"
                                 options="{'model': 'sale.order.line'}"
                             />
-                            </div>
+                        </div>
                     </setting>
                 </block>
             </xpath>

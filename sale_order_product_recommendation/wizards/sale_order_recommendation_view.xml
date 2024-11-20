@@ -3,7 +3,6 @@
      Copyright 2020 Tecnativa - Pedro M. Baeza
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record id="sale_order_recommendation_view_form" model="ir.ui.view">
         <field name="name">Recommended Products for this Customer</field>
         <field name="model">sale.order.recommendation</field>
@@ -112,25 +111,27 @@
                                                     />
                                                 </div>
                                                 <div>Price: <field
-                                                        name="price_unit"
-                                                        widget="monetary"
-                                                        options="{'currency_field': 'currency_id', 'field_digits': True}"
-                                                        class="oe_inline mt-0 mb-0"
-                                                    /></div>
+                                                    name="price_unit"
+                                                    widget="monetary"
+                                                    options="{'currency_field': 'currency_id', 'field_digits': True}"
+                                                    class="oe_inline mt-0 mb-0"
+                                                /></div>
                                                 <div>Delivered: <field
-                                                        name="times_delivered"
-                                                    /> times - <field
-                                                        name="units_delivered"
-                                                    /> <field
-                                                        name="sale_uom_id"
-                                                    /></div>
-                                                <div><strong><span
-                                                        >To be included: </span><field
-                                                            name="units_included"
-                                                        /><span> </span><field
+                                                    name="times_delivered"
+                                                /> times - <field
+                                                    name="units_delivered"
+                                                /> <field name="sale_uom_id" /></div>
+                                                <div>
+                                                    <strong>
+                                                        <span>To be included: </span>
+                                                        <field name="units_included" />
+                                                        <span />
+                                                        <field
                                                             name="sale_uom_id"
                                                             groups="uom.group_uom"
-                                                        /></strong></div>
+                                                        />
+                                                    </strong>
+                                                </div>
                                             </div>
                                         </div>
                                     </t>
@@ -189,5 +190,4 @@
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
-
 </odoo>
