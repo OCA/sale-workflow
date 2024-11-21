@@ -91,7 +91,7 @@ class SaleOrderLine(models.Model):
                     input_config = self.env["input.config"].create(
                         {
                             "bom_id": template_variable_bom.id,
-                            "name": f"{rec.order_id.name} - {rec.name}"
+                            "name": f"{rec.order_id.name} - {rec.name}",
                         }
                     )
                     rec.order_id.input_config_ids = [(4, input_config.id, 0)]
