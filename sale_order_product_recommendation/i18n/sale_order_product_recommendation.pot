@@ -135,7 +135,7 @@ msgid "Domain applied to find SO lines to propose as recommended products."
 msgstr ""
 
 #. module: sale_order_product_recommendation
-#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_priority
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_is_favorite
 msgid "Favorite"
 msgstr ""
 

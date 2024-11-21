@@ -25,27 +25,9 @@ class SaleOrderRecommendation(models.TransientModel):
         readonly=True,
         ondelete="cascade",
     )
-    months = fields.Float(
-        default=6,
-        required=True,
-        help="Consider these months backwards to generate recommendations.",
-    )
     line_ids = fields.One2many(
         "sale.order.recommendation.line", "wizard_id", "Products"
     )
-    line_amount = fields.Integer(
-        "Number of recommendations",
-        default=15,
-        required=True,
-        help="The less, the faster they will be found.",
-    )
-    # Get default value from config settings
-    sale_recommendation_price_origin = fields.Selection(
-        [("pricelist", "Pricelist"), ("last_sale_price", "Last sale price")],
-        string="Product price origin",
-        default="pricelist",
-    )
-    use_delivery_address = fields.Boolean(string="Use delivery address")
     recommendations_order = fields.Selection(
         [
             ("times_delivered desc", "Times delivered"),
@@ -56,6 +38,24 @@ class SaleOrderRecommendation(models.TransientModel):
         ],
         required=True,
         default="times_delivered desc",
+    )
+    # Get default value from config settings
+    use_delivery_address = fields.Boolean(string="Use delivery address")
+    sale_recommendation_price_origin = fields.Selection(
+        [("pricelist", "Pricelist"), ("last_sale_price", "Last sale price")],
+        string="Product price origin",
+        default="pricelist",
+    )
+    line_amount = fields.Integer(
+        "Number of recommendations",
+        default=15,
+        required=True,
+        help="The less, the faster they will be found.",
+    )
+    months = fields.Float(
+        default=6,
+        required=True,
+        help="Consider these months backwards to generate recommendations.",
     )
 
     @api.model
@@ -193,7 +193,7 @@ class SaleOrderRecommendation(models.TransientModel):
         self.line_ids = recommendation_lines.sorted(
             key=lambda line: (
                 "" if line[order_field] is False else line[order_field],
-                int(line.product_id.priority) * priority_multiplier,
+                int(line.product_id.sequence) * priority_multiplier,
             ),
             reverse=order_dir == "desc",
         )
@@ -239,14 +239,12 @@ class SaleOrderRecommendation(models.TransientModel):
 class SaleOrderRecommendationLine(models.TransientModel):
     _name = "sale.order.recommendation.line"
     _description = "Recommended product for current sale order"
-    _order = "product_priority desc, id"
+    _order = "product_is_favorite desc, id"
 
     currency_id = fields.Many2one(related="product_id.currency_id")
     partner_id = fields.Many2one(related="wizard_id.order_id.partner_id")
-    product_id = fields.Many2one("product.product", string="Product")
-    product_name = fields.Char(
-        name="Product name", related="product_id.name", readonly=True, store=True
-    )
+    product_id = fields.Many2one("product.product")
+    product_name = fields.Char(related="product_id.name", readonly=True)
     product_categ_complete_name = fields.Char(
         string="Product category",
         related="product_id.categ_id.complete_name",
@@ -256,8 +254,8 @@ class SaleOrderRecommendationLine(models.TransientModel):
     product_default_code = fields.Char(
         related="product_id.default_code", readonly=True, store=True
     )
-    product_priority = fields.Selection(
-        related="product_id.priority", store=True, readonly=False
+    product_is_favorite = fields.Boolean(
+        related="product_id.is_favorite", store=True, readonly=False
     )
     product_uom_readonly = fields.Boolean(related="sale_line_id.product_uom_readonly")
     product_uom_category_id = fields.Many2one(
