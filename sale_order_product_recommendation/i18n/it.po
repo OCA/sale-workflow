@@ -170,7 +170,7 @@ msgstr ""
 "Dominio applicato per trovare righe OV da proporre come prodotti suggeriti."
 
 #. module: sale_order_product_recommendation
-#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_priority
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_is_favorite
 msgid "Favorite"
 msgstr "Favorito"
 
@@ -430,15 +430,3 @@ msgstr "Verranno perse tutte le modifiche fatte. Sicuri di procedere?"
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "times -"
 msgstr "numero -"
-
-#~ msgid "Sales Order Line"
-#~ msgstr "Riga ordine di vendita"
-
-#~ msgid "Complete Name"
-#~ msgstr "Nome completo"
-
-#~ msgid "Product Category"
-#~ msgstr "Categoria prodotto"
-
-#~ msgid "Last Compute"
-#~ msgstr "Ultimo calcolo"

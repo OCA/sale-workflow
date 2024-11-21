@@ -6,7 +6,7 @@
 from freezegun import freeze_time
 
 from odoo.exceptions import UserError
-from odoo.tests.common import Form
+from odoo.tests import Form
 
 from .test_recommendation_common import RecommendationCase
 

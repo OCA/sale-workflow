@@ -25,14 +25,14 @@
                         <field
                             name="line_ids"
                             nolabel="1"
-                            mode="tree,kanban"
+                            mode="list,kanban"
                             colspan="2"
                             invisible="not line_ids"
                         >
-                            <tree create="0" delete="0" editable="top">
+                            <list create="0" delete="0" editable="top">
                                 <field
-                                    name="product_priority"
-                                    widget="priority"
+                                    name="product_is_favorite"
+                                    widget="boolean_favorite"
                                     optional="show"
                                     nolabel="1"
                                 />
@@ -68,7 +68,7 @@
                                     groups="uom.group_uom"
                                     readonly="product_uom_readonly"
                                 />
-                            </tree>
+                            </list>
                             <kanban
                                 class="o_kanban_mobile"
                                 quick_create="0"
@@ -85,7 +85,7 @@
                                 <field name="units_included" />
                                 <field name="currency_id" />
                                 <templates>
-                                    <t t-name="kanban-box">
+                                    <t t-name="card">
                                         <div class="oe_kanban_global_click">
                                             <div class="o_kanban_image me-1">
                                                 <img
@@ -106,7 +106,7 @@
                                                     </div>
                                                     <field
                                                         class="w-auto mb-0"
-                                                        name="product_priority"
+                                                        name="product_is_favorite"
                                                         widget="priority"
                                                     />
                                                 </div>

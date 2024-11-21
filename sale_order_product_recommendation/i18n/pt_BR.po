@@ -173,7 +173,7 @@ msgstr ""
 "recomendados."
 
 #. module: sale_order_product_recommendation
-#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_priority
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_is_favorite
 msgid "Favorite"
 msgstr "Favorito"
 
@@ -433,12 +433,3 @@ msgstr "Você perderá todas as alterações feitas. Tem certeza?"
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "times -"
 msgstr "vezes -"
-
-#~ msgid "Sales Order Line"
-#~ msgstr "Item do pedido de vendas"
-
-#~ msgid "Product Category"
-#~ msgstr "Categoria de Produto"
-
-#~ msgid "Last Compute"
-#~ msgstr "Última Computação"

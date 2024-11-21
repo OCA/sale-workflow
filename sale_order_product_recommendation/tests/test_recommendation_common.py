@@ -45,7 +45,7 @@ class RecommendationCase(TransactionCase):
         cls.prod_1 = cls.product_obj.create(
             {
                 "name": "Test Product 1",
-                "detailed_type": "service",
+                "type": "service",
                 "list_price": 25.00,
                 "categ_id": cls.cat_b.id,
             }
@@ -53,7 +53,7 @@ class RecommendationCase(TransactionCase):
         cls.prod_2 = cls.product_obj.create(
             {
                 "name": "Test Product 2",
-                "detailed_type": "service",
+                "type": "service",
                 "list_price": 50.00,
                 "categ_id": cls.cat_b.id,
             }
@@ -61,7 +61,7 @@ class RecommendationCase(TransactionCase):
         cls.prod_3 = cls.product_obj.create(
             {
                 "name": "Test Product 3",
-                "detailed_type": "service",
+                "type": "service",
                 "list_price": 75.00,
                 "categ_id": cls.cat_a.id,
                 "default_code": "TEST-PROD-3",

@@ -4,7 +4,7 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="sale.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <xpath expr="//setting[@id='order_default_values']/.." position="after">
+            <xpath expr="//setting[@id='quotation_validity_days']/.." position="after">
                 <block
                     title="Sale order recommendations"
                     id="sale_order_recommendation"
