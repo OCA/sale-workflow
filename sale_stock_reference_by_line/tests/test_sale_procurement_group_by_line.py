@@ -36,7 +36,7 @@ class TestSaleProcurementGroupByLine(TransactionCase):
     @classmethod
     def _create_product(cls, name):
         product = cls.product_model.create(
-            {"name": name, "categ_id": cls.product_ctg.id, "type": "product"}
+            {"name": name, "categ_id": cls.product_ctg.id, "is_storable": True}
         )
         return product
 
