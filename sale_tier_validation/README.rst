@@ -103,6 +103,9 @@ Contributors
    -  Sergio Teruel
 
 -  Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
+-  `Dynapps <https://www.dynapps.eu>`__:
+
+   -  Bert Van Groenendael <bert.vangroenendael@dynapps.eu>
 
 Maintainers
 -----------

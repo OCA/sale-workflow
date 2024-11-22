@@ -2,3 +2,5 @@
 - [Tecnativa](https://www.tecnativa.com):
   - Sergio Teruel
 - Tharathip Chaweewongphan \<<tharathipc@ecosoft.co.th>\>
+- [Dynapps](https://www.dynapps.eu):
+  - Bert Van Groenendael \<<bert.vangroenendael@dynapps.eu>\>

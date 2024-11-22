@@ -6,7 +6,7 @@ from odoo.tests import common, tagged
 from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
 
 
-@tagged("post_install")
+@tagged("post_install", "-at_install")
 class TestSaleTierValidation(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
