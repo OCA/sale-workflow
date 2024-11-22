@@ -43,7 +43,7 @@ class SaleOrderLine(models.Model):
             if (
                 line.state != "sale"
                 or line.order_id.locked
-                or line.product_id.type not in ("consu", "product")
+                or line.product_id.type != "consu"
             ):
                 continue
             qty = line._get_qty_procurement(previous_product_uom_qty)
@@ -87,12 +87,16 @@ class SaleOrderLine(models.Model):
 
             line_uom = line.product_uom
             quant_uom = line.product_id.uom_id
+            origin = (
+                f"{line.order_id.name} - {line.order_id.client_order_ref}"
+                if line.order_id.client_order_ref
+                else line.order_id.name
+            )
             product_qty, procurement_uom = line_uom._adjust_uom_quantities(
                 product_qty, quant_uom
             )
-
-            procurements.append(
-                line._create_procurement(product_qty, procurement_uom, values)
+            procurements += line._create_procurements(
+                product_qty, procurement_uom, origin, values
             )
             # We store the procured quantity in the UoM of the line to avoid
             # duplicated procurements, specially for dropshipping and kits.
