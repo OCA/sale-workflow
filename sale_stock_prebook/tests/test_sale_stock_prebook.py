@@ -1,12 +1,10 @@
 # Copyright 2023 Michael Tietz (MT Software) <mtietz@mt-software.de>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests import tagged
 
 from .common import TestSaleStockPrebookCase
 
 
-@tagged("post_install", "-at_install")
 class TestStockReserveSale(TestSaleStockPrebookCase):
     def test_10_reserve_and_release(self):
         self.sale.reserve_stock()
