@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-11-20 13:06+0000\n"
+"PO-Revision-Date: 2024-11-25 11:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -48,7 +48,7 @@ msgstr "<span class=\"o_stat_text\">Subtotale</span>"
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_rating_form
 msgid "Accept"
-msgstr ""
+msgstr "Accetta"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_needaction
@@ -166,7 +166,7 @@ msgstr "Icone categoria"
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
 msgid "Change calendar event status by adding a previous rating"
-msgstr ""
+msgstr "Modifica stato evento calendario aggiungendo una valutazione precedente"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__partner_city
@@ -805,7 +805,7 @@ msgstr "Venditore pianificatore"
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
 msgid "Rating"
-msgstr ""
+msgstr "Valutazione"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__reassign_wiz_id
@@ -879,7 +879,7 @@ msgstr "Ore ridotte ordine pianificatore vendite"
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__sale_planner_rating
 msgid "Sale Planner Rating"
-msgstr ""
+msgstr "Valutazione pianificatore vendite"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__sale_planner_state
@@ -933,7 +933,7 @@ msgstr "Tipo argomento calendario vendite"
 #. module: sale_planner_calendar
 #: model:ir.actions.act_window,name:sale_planner_calendar.action_sale_planner_calendar_rating
 msgid "Sale planner calendar rating"
-msgstr ""
+msgstr "Valutazione calendario pianificatore vendite"
 
 #. module: sale_planner_calendar
 #: model:ir.model,name:sale_planner_calendar.model_sale_planner_calendar_reassign_line_wiz
