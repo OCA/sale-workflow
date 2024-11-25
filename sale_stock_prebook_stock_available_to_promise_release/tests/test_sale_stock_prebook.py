@@ -50,24 +50,24 @@ class TestStockReserveSale(PromiseReleaseCommonCase):
                     [(self.product1, 5)],
                 )
             )
-        self.assertEqual(picking1.move_lines.previous_promised_qty, 0)
-        self.assertEqual(picking1.move_lines.ordered_available_to_promise_uom_qty, 5)
-        self.assertEqual(picking2.move_lines.previous_promised_qty, 5)
-        self.assertEqual(picking2.move_lines.ordered_available_to_promise_uom_qty, 5)
-        self.assertEqual(picking3.move_lines.previous_promised_qty, 15)
-        self.assertEqual(picking3.move_lines.ordered_available_to_promise_uom_qty, 3)
-        date_priority = sale.picking_ids.move_lines.date_priority
+        self.assertEqual(picking1.move_ids.previous_promised_qty, 0)
+        self.assertEqual(picking1.move_ids.ordered_available_to_promise_uom_qty, 5)
+        self.assertEqual(picking2.move_ids.previous_promised_qty, 5)
+        self.assertEqual(picking2.move_ids.ordered_available_to_promise_uom_qty, 5)
+        self.assertEqual(picking3.move_ids.previous_promised_qty, 15)
+        self.assertEqual(picking3.move_ids.ordered_available_to_promise_uom_qty, 3)
+        date_priority = sale.picking_ids.move_ids.date_priority
         sale.action_confirm()
-        date_priority_new = sale.picking_ids.move_lines.date_priority
+        date_priority_new = sale.picking_ids.move_ids.date_priority
         self.assertEqual(date_priority, date_priority_new)
-        self.assertTrue(date_priority < picking3.move_lines.date_priority)
-        self.assertEqual(picking1.move_lines.previous_promised_qty, 0)
-        self.assertEqual(picking1.move_lines.ordered_available_to_promise_uom_qty, 5)
-        self.assertEqual(picking2.move_lines.previous_promised_qty, 5)
-        self.assertEqual(picking2.move_lines.ordered_available_to_promise_uom_qty, 5)
-        self.assertEqual(picking3.move_lines.previous_promised_qty, 15)
-        self.assertEqual(picking3.move_lines.ordered_available_to_promise_uom_qty, 3)
-        self.assertEqual(sale.picking_ids.move_lines.previous_promised_qty, 10)
+        self.assertTrue(date_priority < picking3.move_ids.date_priority)
+        self.assertEqual(picking1.move_ids.previous_promised_qty, 0)
+        self.assertEqual(picking1.move_ids.ordered_available_to_promise_uom_qty, 5)
+        self.assertEqual(picking2.move_ids.previous_promised_qty, 5)
+        self.assertEqual(picking2.move_ids.ordered_available_to_promise_uom_qty, 5)
+        self.assertEqual(picking3.move_ids.previous_promised_qty, 15)
+        self.assertEqual(picking3.move_ids.ordered_available_to_promise_uom_qty, 3)
+        self.assertEqual(sale.picking_ids.move_ids.previous_promised_qty, 10)
         self.assertEqual(
-            sale.picking_ids.move_lines.ordered_available_to_promise_uom_qty, 5
+            sale.picking_ids.move_ids.ordered_available_to_promise_uom_qty, 5
         )

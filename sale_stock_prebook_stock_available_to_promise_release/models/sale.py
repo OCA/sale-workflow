@@ -7,7 +7,7 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     def _action_confirm(self):
-        moves = self._get_reservation_pickings().move_lines
+        moves = self._get_reservation_pickings().move_ids
         if moves:
             date_priority_of_reservation = moves[0].date_priority
             self = self.with_context(
