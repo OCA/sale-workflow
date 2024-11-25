@@ -9,5 +9,5 @@ class StockMove(models.Model):
     used_for_sale_reservation = fields.Boolean(default=False)
 
     def _action_assign(self):
-        self = self.filtered(lambda m: not m.used_for_sale_reservation)
-        return super(StockMove, self)._action_assign()
+        new_self = self.filtered(lambda m: not m.used_for_sale_reservation)
+        return super(StockMove, new_self)._action_assign()
