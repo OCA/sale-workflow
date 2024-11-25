@@ -3,7 +3,7 @@
 from odoo.tests import Form, common
 
 
-class TestSaleStockPrebookCase(common.SavepointCase):
+class TestSaleStockPrebookCase(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -12,7 +12,7 @@ class TestSaleStockPrebookCase(common.SavepointCase):
         cls.partner = partner_form.save()
 
         no_prebook_stock_route_id = (
-            cls.env["stock.location.route"]
+            cls.env["stock.route"]
             .sudo()
             .create(
                 {
@@ -24,12 +24,12 @@ class TestSaleStockPrebookCase(common.SavepointCase):
         # prebook product
         product_form = Form(cls.env["product.product"])
         product_form.name = "Test Product 1"
-        product_form.type = "product"
+        product_form.detailed_type = "product"
         cls.product_1 = product_form.save()
         # non-prebook product
         product_form = Form(cls.env["product.product"])
         product_form.name = "Test Product 22"
-        product_form.type = "product"
+        product_form.detailed_type = "product"
         product_form.route_ids.add(no_prebook_stock_route_id)
         cls.product_2 = product_form.save()
 

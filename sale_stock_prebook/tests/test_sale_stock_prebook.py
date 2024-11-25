@@ -22,7 +22,7 @@ class TestStockReserveSale(TestSaleStockPrebookCase):
         self.assertEqual(
             len(self.sale.picking_ids), 1, "There should be only one picking created"
         )
-        self.assertEqual(self.sale.picking_ids.move_lines.product_id, self.product_1)
+        self.assertEqual(self.sale.picking_ids.move_ids.product_id, self.product_1)
         self.assertFalse(self.sale2.picking_ids)
         self.sale.release_reservation()
         reservation_pickings = self.sale._get_reservation_pickings()
@@ -44,8 +44,8 @@ class TestStockReserveSale(TestSaleStockPrebookCase):
 
     def test_40_action_assign(self):
         self.sale.reserve_stock()
-        self.sale.picking_ids.move_lines._action_assign()
-        self.assertEqual(self.sale.picking_ids.move_lines.state, "confirmed")
-        self.assertFalse(self.sale.picking_ids.move_lines.move_line_ids)
+        self.sale.picking_ids.move_ids._action_assign()
+        self.assertEqual(self.sale.picking_ids.move_ids.state, "confirmed")
+        self.assertFalse(self.sale.picking_ids.move_ids.move_line_ids)
         with self.assertRaises(UserError):
             self.sale.picking_ids.button_validate()
