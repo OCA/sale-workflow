@@ -2,11 +2,18 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 from odoo.tests import Form, common
 
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+
 
 class TestSaleStockPrebookCase(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context, disable_cancel_warning=True, **DISABLED_MAIL_CONTEXT
+            )
+        )
         partner_form = Form(cls.env["res.partner"])
         partner_form.name = "Test partner"
         cls.partner = partner_form.save()
