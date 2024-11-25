@@ -4,7 +4,7 @@
 {
     "name": "CRM documents permissions by teams",
     "summary": "Integrates sales_team_security with crm",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Customer Relationship Management",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Tecnativa, Iván Todorovich, Odoo Community Association (OCA)",
