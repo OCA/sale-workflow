@@ -3,3 +3,4 @@
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 * Sudhir Arya <sudhir@erpharbor.com>
 * Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
+* Heliconia Solutions Pvt. Ltd. <hello@heliconia.io>

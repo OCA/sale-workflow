@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2024-01-29 19:36+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"PO-Revision-Date: 2020-10-26 12:08+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/es/)\n"
 "Language: es\n"
@@ -17,12 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
-
-#. module: sale_validity
-#: model_terms:ir.ui.view,arch_db:sale_validity.res_config_settings_view_form_sale_order_validity
-msgid "<span class=\"o_form_label\" style=\"margin-left: 5px;\">Days</span>"
-msgstr "<span class=\"o_form_label\" style=\"margin-left: 5px;\">Días</span>"
+"X-Generator: Weblate 3.10\n"
 
 #. module: sale_validity
 #: model_terms:ir.ui.view,arch_db:sale_validity.res_config_settings_view_form_sale_order_validity
@@ -60,36 +55,20 @@ msgid "Config Settings"
 msgstr "Config Ajustes"
 
 #. module: sale_validity
+#: model_terms:ir.ui.view,arch_db:sale_validity.res_config_settings_view_form_sale_order_validity
+msgid "Days"
+msgstr "Días"
+
+#. module: sale_validity
 #: model:ir.model.fields,field_description:sale_validity.field_res_company__default_sale_order_validity_days
 #: model:ir.model.fields,field_description:sale_validity.field_res_config_settings__sale_order_default_validity_days
 msgid "Default Validity of Sale Orders"
 msgstr "Duración de la validez predeterminada de los pedidos de venta"
 
 #. module: sale_validity
-#: model:ir.model.fields,field_description:sale_validity.field_res_company__display_name
-#: model:ir.model.fields,field_description:sale_validity.field_res_config_settings__display_name
-#: model:ir.model.fields,field_description:sale_validity.field_sale_order__display_name
-msgid "Display Name"
-msgstr "Mostrar Nombre"
-
-#. module: sale_validity
 #: model:ir.model.fields,field_description:sale_validity.field_sale_order__validity_date
 msgid "Expiration"
 msgstr "Expiración"
-
-#. module: sale_validity
-#: model:ir.model.fields,field_description:sale_validity.field_res_company__id
-#: model:ir.model.fields,field_description:sale_validity.field_res_config_settings__id
-#: model:ir.model.fields,field_description:sale_validity.field_sale_order__id
-msgid "ID"
-msgstr "ID"
-
-#. module: sale_validity
-#: model:ir.model.fields,field_description:sale_validity.field_res_company____last_update
-#: model:ir.model.fields,field_description:sale_validity.field_res_config_settings____last_update
-#: model:ir.model.fields,field_description:sale_validity.field_sale_order____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación el"
 
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_sale_order
@@ -104,9 +83,6 @@ msgid ""
 msgstr ""
 "El valor del campo 'Duración de la validez predeterminada de los pedidos de "
 "venta' debe ser positivo o 0."
-
-#~ msgid "Days"
-#~ msgstr "Días"
 
 #~ msgid "Validity"
 #~ msgstr "Validez"
