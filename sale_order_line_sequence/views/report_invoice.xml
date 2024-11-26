@@ -14,11 +14,11 @@
         </xpath>
         <!--complicated expr to be compatible with other modules-->
         <xpath expr="//table/tbody//span[1]/.." position="before">
-             <td
+            <td
                 t-if="(o.move_type == 'out_invoice' or o.move_type == 'out_refund') and line.related_so_sequence"
             >
                 <span t-field="line.related_so_sequence" />
-             </td>
+            </td>
         </xpath>
     </template>
 </odoo>
