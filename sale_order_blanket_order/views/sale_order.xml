@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="sale_order_form_view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_view_invoice']" position="before">
+                <button
+                    type="object"
+                    name="action_view_call_off_orders"
+                    class="oe_stat_button"
+                    icon="fa-truck"
+                    attrs="{'invisible': [('call_off_order_count', '=', 0)]}"
+                    groups="stock.group_stock_user"
+                >
+                    <field
+                        name="call_off_order_count"
+                        widget="statinfo"
+                        string="Call-offs"
+                    />
+                </button>
+
+            </xpath>
+            <field name="partner_id" position="before">
+                <field name="order_type" />
+            </field>
+            <field name="partner_shipping_id" position="after">
+                <field name="blanket_order_id_domain" invisible="1" />
+                <field
+                    name="blanket_order_id"
+                    attrs="{'invisible': [('order_type', '!=', 'call_off')], 'required': [('order_type', '=', 'call_off')]}"
+                    domain="blanket_order_id_domain"
+                />
+            </field>
+            <field name="validity_date" position="after">
+                <label
+                    for="blanket_validity_start_date"
+                    string="Validity period"
+                    attrs="{'invisible': [('order_type', '!=', 'blanket')]}"
+                />
+                <div attrs="{'invisible': [('order_type', '!=', 'blanket')]}">
+                    <div name="date_edit_only" class="o_row oe_edit_only">
+                        <field
+                            name="blanket_validity_start_date"
+                            class='oe_inline'
+                            attrs="{'required':[('order_type', '=', 'blanket')]}"
+                        />
+                        <i
+                            class="fa fa-long-arrow-right mx-2"
+                            aria-label="Arrow icon"
+                            title="Arrow"
+                        />
+                        <field
+                            name="blanket_validity_end_date"
+                            class='oe_inline'
+                            attrs="{'required':[('order_type', '=', 'blanket')]}"
+                        />
+                    </div>
+                    <div name="date_read_only" class="o_row oe_read_only">
+                        <span>From <field
+                                name="blanket_validity_start_date"
+                                class='oe_inline'
+                            /></span>
+                        <span>To <field
+                                name="blanket_validity_end_date"
+                                class='oe_inline'
+                            /></span>
+                    </div>
+                </div>
+                <field
+                    name="blanket_reservation_strategy"
+                    attrs="{'invisible': [('order_type', '!=', 'blanket')]}"
+                />
+                <field
+                    name="blanket_eol_strategy"
+                    attrs="{'invisible': [('order_type', '!=', 'blanket')]}"
+                />
+            </field>
+            <xpath
+                expr="//page[@name='order_lines']//form//div[@name='ordered_qty']"
+                position="after"
+            >
+                <field name="order_type" invisible="1" />
+                <field
+                    name="call_off_remaining_qty"
+                    attrs="{'invisible': [('order_type', '!=', 'blanket')]}"
+                    readonly="1"
+                />
+            </xpath>
+            <xpath
+                expr="//page[@name='order_lines']//form//div[@name='invoice_lines']"
+                position="after"
+            >
+                <div
+                    name="picking_moves"
+                    attrs="{'invisible': ['|', ('display_type', '!=', False), ('order_type', '!=', 'call_off')]}"
+                >
+                    <label for="blanket_move_ids">Picking moves</label>
+                    <field name="blanket_move_ids" />
+                </div>
+                 <div
+                    name="call_off_lines"
+                    attrs="{'invisible': ['|', ('display_type', '!=', False), ('order_type', '!=', 'blanket')]}"
+                >
+                    <label for="call_off_line_ids">Call-off lines</label>
+                    <field name="call_off_line_ids" />
+                </div>
+            </xpath>
+            <xpath
+                expr="//page[@name='order_lines']//tree//field[@name='product_uom_qty']"
+                position="after"
+            >
+                <field name="order_type" invisible="1" />
+                <field
+                    name="call_off_remaining_qty"
+                    string="To Call-off"
+                    invisible="context.get('invisible_call_off_remaining_qty', True)"
+                    readonly="1"
+                    optional="show"
+                />
+            </xpath>
+
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale_order_search_view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <filter name="my_sale_orders_filter" position="after">
+                <filter
+                    name="normal_orders"
+                    string="Normal Orders"
+                    domain="[('order_type', '=', 'normal')]"
+                />
+                <filter
+                    name="blanket_orders"
+                    string="Blanket Orders"
+                    domain="[('order_type', '=', 'blanket')]"
+                />
+                <filter
+                    name="call_off_orders"
+                    string="Call Off Orders"
+                    domain="[('order_type', '=', 'call_off')]"
+                />
+                <filter
+                    name="current_blanket_orders"
+                    string="Current Blanket Orders"
+                    domain="[('order_type', '=', 'blanket'), ('blanket_validity_end_date', '&gt;=', context_today()), ('blanket_validity_start_date', '&lt;=', context_today())]"
+                />
+            </filter>
+            <!-- Add group by-->
+            <filter name="order_month" position="after">
+                <filter
+                    name="order_type"
+                    string="Order Type"
+                    context="{'group_by': 'order_type'}"
+                />
+            </filter>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale_order_tree_view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="order_type" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="quotation_tree_view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="order_type" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="blanket_tree_view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="mode">primary</field>
+        <field name="arch" type="xml">
+            <field name="date_order" position="after">
+                <field name="blanket_validity_start_date" optional="show" />
+                <field name="blanket_validity_end_date" optional="show" />
+            </field>
+        </field>
+    </record>
+
+    <record id="action_blankets" model="ir.actions.act_window">
+        <field name="name">Blanket Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+        <field name="search_view_id" ref="sale.view_sales_order_filter" />
+        <field
+            name="context"
+        >{'search_default_blanket_orders': 1, 'default_order_type': 'blanket', 'invisible_call_off_remaining_qty': 0}</field>
+    </record>
+
+    <record id="sale_order_action_view_blanket_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="blanket_tree_view" />
+        <field name="act_window_id" ref="action_blankets" />
+    </record>
+
+    <record
+        id="sale_order_action_view_blanket_kanban"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="2" />
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="sale.view_sale_order_kanban" />
+        <field name="act_window_id" ref="action_blankets" />
+    </record>
+
+    <record id="sale_order_action_view_blanket_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="3" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="sale.view_order_form" />
+        <field name="act_window_id" ref="action_blankets" />
+    </record>
+
+    <record
+        id="sale_order_action_view_blanket_calendar"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="4" />
+        <field name="view_mode">calendar</field>
+        <field name="view_id" ref="sale.view_sale_order_calendar" />
+        <field name="act_window_id" ref="action_blankets" />
+    </record>
+
+    <record
+        id="sale_order_action_view_blanket_pivot"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="5" />
+        <field name="view_mode">pivot</field>
+        <field name="view_id" ref="sale.view_sale_order_pivot" />
+        <field name="act_window_id" ref="action_blankets" />
+    </record>
+
+    <record
+        id="sale_order_action_view_blanket_graph"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="6" />
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="sale.view_sale_order_graph" />
+        <field name="act_window_id" ref="action_blankets" />
+    </record>
+
+    <record id="action_calloffs" model="ir.actions.act_window">
+        <field name="name">Call-off Orders</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+        <field name="search_view_id" ref="sale.view_sales_order_filter" />
+        <field
+            name="context"
+        >{'search_default_call_off_orders': 1, 'default_order_type': 'call_off'}</field>
+    </record>
+
+    <record id="sale_order_action_view_calloff_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1" />
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="sale.view_order_tree" />
+        <field name="act_window_id" ref="action_calloffs" />
+    </record>
+
+    <record
+        id="sale_order_action_view_calloff_kanban"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="2" />
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="sale.view_sale_order_kanban" />
+        <field name="act_window_id" ref="action_calloffs" />
+    </record>
+
+    <record id="sale_order_action_view_calloff_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="3" />
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="sale.view_order_form" />
+        <field name="act_window_id" ref="action_calloffs" />
+    </record>
+
+    <record
+        id="sale_order_action_view_calloff_calendar"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="4" />
+        <field name="view_mode">calendar</field>
+        <field name="view_id" ref="sale.view_sale_order_calendar" />
+        <field name="act_window_id" ref="action_calloffs" />
+    </record>
+
+    <record
+        id="sale_order_action_view_calloff_pivot"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="5" />
+        <field name="view_mode">pivot</field>
+        <field name="view_id" ref="sale.view_sale_order_pivot" />
+        <field name="act_window_id" ref="action_calloffs" />
+    </record>
+
+    <record
+        id="sale_order_action_view_calloff_graph"
+        model="ir.actions.act_window.view"
+    >
+        <field name="sequence" eval="6" />
+        <field name="view_mode">graph</field>
+        <field name="view_id" ref="sale.view_sale_order_graph" />
+        <field name="act_window_id" ref="action_calloffs" />
+    </record>
+
+    <record model="ir.ui.menu" id="blanket_order_menu">
+        <field name="name">Blanket Orders</field>
+        <field name="parent_id" ref="sale.sale_order_menu" />
+        <field name="action" ref="action_blankets" />
+        <field name="sequence" eval="22" />
+        <field name="groups_id" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
+    </record>
+
+    <record model="ir.ui.menu" id="calloff_order_menu">
+        <field name="name">Call-off Orders</field>
+        <field name="parent_id" ref="sale.sale_order_menu" />
+        <field name="action" ref="action_calloffs" />
+        <field name="sequence" eval="24" />
+        <field name="groups_id" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
+    </record>
+</odoo>

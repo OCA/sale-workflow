@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="res_config_settings_form_view">
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <!-- into quotation_order_setting_container -->
+            <div id="proforma_configuration" position="after">
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    id="sale_config_online_confirmation_pay"
+                >
+                    <div class="o_setting_left_pane">
+                        <field name="create_call_off_from_so_if_possible" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label
+                            for="create_call_off_from_so_if_possible"
+                        >Generate a call-off order from a sales order if possible when the sales order is confirmed.</label>
+                        <span
+                            class="fa fa-lg fa-building-o"
+                            title="Values set here are company-specific."
+                            groups="base.group_multi_company"
+                        />
+                        <div class="text-muted">
+                            If this option is enabled, a call-off order will be generated from a sale order if the sale order contains products
+                            that are part of an open blanket order. The call-off order will be generated with the same products and quantities as the
+                            sale order provided that the blanket order has enough available quantity. If the blanket order does not have enough available
+                            quantity, the call-off order will be generated with the available quantity and the original sale order line will be
+                            split into two lines: one line with the available quantity and one line with the remaining quantity. All the lines related to
+                            a blanket order will be moved to a new call-off order and the new call-off order will be confirmed.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

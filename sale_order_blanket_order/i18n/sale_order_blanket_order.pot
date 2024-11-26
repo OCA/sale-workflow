@@ -1,0 +1,503 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_blanket_order
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-04 15:54+0000\n"
+"PO-Revision-Date: 2024-12-04 15:54+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_form_view
+msgid ""
+"<i class=\"fa fa-long-arrow-right mx-2\" aria-label=\"Arrow icon\" "
+"title=\"Arrow\"/>"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.res_config_settings_form_view
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#, python-format
+msgid "A blanket order cannot have a blanket order."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#, python-format
+msgid "A call-off order must have a blanket order."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#, python-format
+msgid "A normal order cannot have a blanket order."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields.selection,name:sale_order_blanket_order.selection__sale_order__blanket_reservation_strategy__at_call_off
+msgid "At Call-off"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order__blanket_eol_strategy
+msgid "Blanket Eol Strategy"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order__blanket_order_id
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order_line__blanket_order_id
+#: model:ir.model.fields.selection,name:sale_order_blanket_order.selection__sale_order__order_type__blanket
+msgid "Blanket Order"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order__blanket_order_id_domain
+msgid "Blanket Order Domain"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order_line__blanket_line_id
+msgid "Blanket Order Line"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.actions.act_window,name:sale_order_blanket_order.action_blankets
+#: model:ir.ui.menu,name:sale_order_blanket_order.blanket_order_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_line_search_view
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_search_view
+msgid "Blanket Orders"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_line_search_view
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_search_view
+msgid "Call Off Orders"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_stock_move__call_off_sale_line_id
+msgid "Call Off Sale Line"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields.selection,name:sale_order_blanket_order.selection__sale_order__order_type__call_off
+msgid "Call-off Order"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order__call_off_order_count
+msgid "Call-off Order Count"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order_line__call_off_line_ids
+msgid "Call-off Order Lines"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.actions.act_window,name:sale_order_blanket_order.action_calloffs
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order__call_off_order_ids
+#: model:ir.ui.menu,name:sale_order_blanket_order.calloff_order_menu
+msgid "Call-off Orders"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_form_view
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_line_form_view
+msgid "Call-off lines"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_form_view
+msgid "Call-offs"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model,name:sale_order_blanket_order.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model,name:sale_order_blanket_order.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_res_company__create_call_off_from_so_if_possible
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_res_config_settings__create_call_off_from_so_if_possible
+msgid "Create Call-Off from SO if possible"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_search_view
+msgid "Current Blanket Orders"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields.selection,name:sale_order_blanket_order.selection__sale_order__blanket_eol_strategy__deliver
+msgid "Deliver Remaining Quantity"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_form_view
+msgid "From"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.res_config_settings_form_view
+msgid ""
+"Generate a call-off order from a sales order if possible when the sales "
+"order is confirmed."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,help:sale_order_blanket_order.field_res_company__create_call_off_from_so_if_possible
+#: model:ir.model.fields,help:sale_order_blanket_order.field_res_config_settings__create_call_off_from_so_if_possible
+msgid ""
+"If checked, when a sale order is confirmed and some lines refer to a blanket"
+" order, these lines will be automatically moved to a new call-off order."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.res_config_settings_form_view
+msgid ""
+"If this option is enabled, a call-off order will be generated from a sale order if the sale order contains products\n"
+"                            that are part of an open blanket order. The call-off order will be generated with the same products and quantities as the\n"
+"                            sale order provided that the blanket order has enough available quantity. If the blanket order does not have enough available\n"
+"                            quantity, the call-off order will be generated with the available quantity and the original sale order line will be\n"
+"                            split into two lines: one line with the available quantity and one line with the remaining quantity. All the lines related to\n"
+"                            a blanket order will be moved to a new call-off order and the new call-off order will be confirmed."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#, python-format
+msgid "Invalid reservation strategy for the blanket order %(ref)s."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_line_search_view
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_search_view
+msgid "Normal Orders"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields.selection,name:sale_order_blanket_order.selection__sale_order__order_type__normal
+msgid "Normal Sale Order"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#, python-format
+msgid "Only blanket orders can be confirmed as blanket orders."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#, python-format
+msgid "Only call-off orders can be confirmed as call-off orders."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#, python-format
+msgid "Only normal orders can be split."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order__order_type
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order_line__order_type
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_line_search_view
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_search_view
+msgid "Order Type"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_form_view
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_line_form_view
+msgid "Picking moves"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order_line__call_off_remaining_qty
+msgid "Quantity remaining for Call-off"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order__blanket_reservation_strategy
+msgid "Reservation Strategy"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model,name:sale_order_blanket_order.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model,name:sale_order_blanket_order.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__blanket_eol_strategy
+msgid ""
+"Specifies the end-of-life strategy for the blanket order. At the end of the "
+"validity period, in any case if a reserved quantity remains, the system will"
+" release the reservation. If the strategy is 'Deliver Remaining Quantity', "
+"the system will automaticaly create a delivery order for the remaining "
+"quantity."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__order_type
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order_line__order_type
+msgid "Specifies the type of sale order: Normal, Blanket, or Call-off."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__blanket_reservation_strategy
+msgid ""
+"Specifies when the stock should be reserved for the blanket order.  When the"
+" strategy is 'At Order Confirmation', the stock is reserved when the blanket"
+" order is confirmed. When the strategy is 'At Call-off', the stock is "
+"reserved when the call-off order is confirmed."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model,name:sale_order_blanket_order.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order_line__blanket_move_ids
+msgid "Stock Moves on Blanket Order"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model,name:sale_order_blanket_order.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order_line__blanket_line_id
+msgid "The blanket order line corresponding to this call-off order line."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#, python-format
+msgid "The blanket order must be confirmed before creating a call-off order."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__blanket_order_id
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order_line__blanket_order_id
+msgid "The blanket order that this call-off order is related to."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order_line__call_off_line_ids
+msgid "The call-off order lines linked to this blanket order line."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#, python-format
+msgid ""
+"The call-off order must be within the validity period of the blanket order."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__call_off_order_ids
+msgid "The call-off orders related to this blanket order."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__blanket_order_id_domain
+msgid "The domain to search for the blanket order candidates."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__blanket_validity_end_date
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order_line__blanket_validity_end_date
+msgid "The end date of the validity period for the blanket order."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#, python-format
+msgid ""
+"The line %(line)s has been created from order %(order)s. (Qty moved: "
+"%(qty_deliverable)s)"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#, python-format
+msgid "The line %(line)s has been moved from order %(order)s."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#, python-format
+msgid "The line %(line)s has been moved to a new call-off order %(call_off)s."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#, python-format
+msgid ""
+"The line %(line)s has been partially moved to a new call-off order "
+"%(call_off)s. (Qty moved: %(qty_deliverable)s)"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__call_off_order_count
+msgid "The number of call-off orders related to this blanket order."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
+#, python-format
+msgid ""
+"The price of a call-off order line must be 0.0. (Order: '%(order)s', "
+"Product: '%(product)s')"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
+#, python-format
+msgid ""
+"The product '%(product_name)s' is already part of another blanket order "
+"%(order_name)s."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
+#, python-format
+msgid ""
+"The product is not part of linked blanket order. (Product: '%(product)s', "
+"Order: '%(order)s', Blanket Order: '%(blanket_order)s')"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order_line__call_off_remaining_qty
+msgid ""
+"The quantity remaining to consume by call-off orders in case of a blanket "
+"order. This quantity is the difference between the quantity not yet "
+"delivered or part of a pending delivery and the ordered quantity."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
+#, python-format
+msgid ""
+"The quantity to procure is greater than the quantity remaining to deliver in"
+" the linked blanket order for this product. (Product: '%(product)s', Order: "
+"'%(order)s', Blanket Order: '%(blanket_order)s')"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__blanket_validity_start_date
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order_line__blanket_validity_start_date
+msgid "The start date of the validity period for the blanket order."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#, python-format
+msgid "The validity end date is required for a blanket order."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#, python-format
+msgid "The validity end date must be greater than the validity start date."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#, python-format
+msgid "The validity start date is required for a blanket order."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_form_view
+msgid "To"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_form_view
+msgid "To Call-off"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order__blanket_validity_end_date
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order_line__blanket_validity_end_date
+msgid "Validity End Date"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order__blanket_validity_start_date
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order_line__blanket_validity_start_date
+msgid "Validity Start Date"
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_form_view
+msgid "Validity period"
+msgstr ""

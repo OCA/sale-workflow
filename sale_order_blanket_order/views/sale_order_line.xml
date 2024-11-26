@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="sale_order_line_form_view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
+        <field name="arch" type="xml">
+            <field name="order_id" position="before">
+                <field name="order_type" />
+            </field>
+            <field name="product_updatable" position="after">
+                <field
+                    name="blanket_line_id"
+                    attrs="{'invisible': [('order_type', '!=', 'call_off')]}"
+                    readonly="1"
+                />
+            </field>
+            <field name="product_uom_qty" position="after">
+                <field
+                    name="call_off_remaining_qty"
+                    attrs="{'invisible': [('order_type', '!=', 'blanket')]}"
+                    readonly="1"
+                />
+            </field>
+            <xpath expr="//sheet/group[1]" position="after">
+                <group
+                    string="Picking moves"
+                    name="blanket_move_ids"
+                    attrs="{'invisible': [('order_type', '!=', 'call_off')]}"
+                >
+                    <field name="blanket_move_ids" nolabel="1" colspan="2" />
+                </group>
+                <group
+                    string="Call-off lines"
+                    name="call_off_line_ids"
+                    attrs="{'invisible': [('order_type', '!=', 'blanket')]}"
+                >
+                    <field name="call_off_line_ids" nolabel="1" colspan="2" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale_order_line_tree_view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="order_type" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="sale_order_line_search_view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
+        <field name="arch" type="xml">
+            <filter name="my_sales_order_lines" position="after">
+                <filter
+                    name="normal_orders"
+                    string="Normal Orders"
+                    domain="[('order_type', '=', 'normal')]"
+                />
+                <filter
+                    name="blanket_orders"
+                    string="Blanket Orders"
+                    domain="[('order_type', '=', 'blanket')]"
+                />
+                <filter
+                    name="call_off_orders"
+                    string="Call Off Orders"
+                    domain="[('order_type', '=', 'call_off')]"
+                />
+            </filter>
+            <!-- Add group by-->
+            <filter name="order" position="after">
+                <filter
+                    name="order_type"
+                    string="Order Type"
+                    context="{'group_by': 'order_type'}"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
