@@ -174,6 +174,10 @@ class RecommendationCaseTests(RecommendationCase):
                 }
             ],
         )
+        # Check line is not updated if no product uom qty is changed
+        # If a line is accepted without quantity modifications, nothing will be updated
+        wizard = self.wizard()
+        self.assertFalse(wizard.line_ids[0]._prepare_update_so_line_vals())
 
     def test_recommendations_archived_product(self):
         self.env["sale.order"].create(
