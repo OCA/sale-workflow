@@ -194,7 +194,6 @@ msgstr "Domaine du filtre des ventes réalisées"
 #: model:ir.model,name:sale_automatic_workflow.model_sale_workflow_process
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_bank_statement_line__workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move__workflow_process_id
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_payment__workflow_process_id
 msgid "Sale Workflow Process"
 msgstr "Flux automatique de vente"
 
@@ -282,7 +281,6 @@ msgstr "Options du flux automatique"
 #. module: sale_automatic_workflow
 #. odoo-python
 #: code:addons/sale_automatic_workflow/models/sale_order.py:0
-#, python-format
 msgid "Workflow Warning"
 msgstr "Message d'avertissement"
 

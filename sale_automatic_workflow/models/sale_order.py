@@ -3,7 +3,7 @@
 # Copyright 2016 Sodexis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.tools import float_compare
 
 
@@ -55,7 +55,7 @@ class SaleOrder(models.Model):
     def _onchange_workflow_process_id(self):
         if self.workflow_process_id.warning:
             warning = {
-                "title": _("Workflow Warning"),
+                "title": self.env._("Workflow Warning"),
                 "message": self.workflow_process_id.warning,
             }
             return {"warning": warning}

@@ -16,13 +16,21 @@ class TestCommon(TransactionCase):
 
 
 class TestAutomaticWorkflowMixin:
-    def create_sale_order(self, workflow, override=None, product_type="consu"):
+    def create_sale_order(
+        self, workflow, override=None, product_type="consu", extra_product_values=None
+    ):
         sale_obj = self.env["sale.order"]
 
         partner_values = {"name": "Imperator Caius Julius Caesar Divus"}
         partner = self.env["res.partner"].create(partner_values)
 
-        product_values = {"name": "Bread", "list_price": 5, "type": product_type}
+        extra_product_values = extra_product_values or {}
+        product_values = {
+            "name": "Bread",
+            "list_price": 5,
+            "type": product_type,
+            **extra_product_values,
+        }
         product = self.env["product.product"].create(product_values)
         self.product_uom_unit = self.env.ref("uom.product_uom_unit")
         values = {
@@ -86,36 +94,28 @@ class TestMultiCompanyCommon(AccountTestInvoicingCommon):
                 _job_force_sync=True,
             )
         )
-        cls.company_fr = cls.setup_company_data(
-            {
-                "name": "French company",
-                "currency_id": cls.env.ref("base.EUR").id,
-                "country_id": cls.env.ref("base.fr").id,
-            }
+        cls.company_fr = cls.setup_other_company(
+            name="French company",
+            currency_id=cls.env.ref("base.EUR").id,
+            country_id=cls.env.ref("base.fr").id,
         )["company"]
 
-        cls.company_ch = cls.setup_company_data(
-            {
-                "name": "Swiss company",
-                "currency_id": cls.env.ref("base.CHF").id,
-                "country_id": cls.env.ref("base.ch").id,
-            }
+        cls.company_ch = cls.setup_other_company(
+            name="Swiss company",
+            currency_id=cls.env.ref("base.CHF").id,
+            country_id=cls.env.ref("base.ch").id,
         )["company"]
 
-        cls.company_be = cls.setup_company_data(
-            {
-                "name": "Belgian company",
-                "currency_id": cls.env.ref("base.EUR").id,
-                "country_id": cls.env.ref("base.be").id,
-            }
+        cls.company_be = cls.setup_other_company(
+            name="Belgian company",
+            currency_id=cls.env.ref("base.EUR").id,
+            country_id=cls.env.ref("base.be").id,
         )["company"]
 
-        cls.company_fr_daughter = cls.setup_company_data(
-            {
-                "name": "French company daughter",
-                "currency_id": cls.env.ref("base.EUR").id,
-                "country_id": cls.env.ref("base.fr").id,
-            }
+        cls.company_fr_daughter = cls.setup_other_company(
+            name="French company daughter",
+            currency_id=cls.env.ref("base.EUR").id,
+            country_id=cls.env.ref("base.fr").id,
         )["company"]
 
         cls.env.user.company_ids |= cls.company_fr
