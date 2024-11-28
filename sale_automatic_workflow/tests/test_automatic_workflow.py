@@ -4,6 +4,8 @@
 from datetime import timedelta
 from unittest import mock
 
+from freezegun import freeze_time
+
 from odoo import fields
 from odoo.tests import tagged
 
@@ -46,6 +48,7 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         sale.workflow_process_id = workflow2.id
         self.assertEqual(sale.team_id, team_2)
 
+    @freeze_time("2025-1-1")
     def test_03_date_invoice_from_sale_order(self):
         workflow = self.create_full_automatic()
         # date_order on sale.order is date + time

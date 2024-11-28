@@ -21,11 +21,11 @@
                             <bold>Order Configuration</bold>
                         </h3>
                         <div class="row">
-                            <div class="col-sm-12">
-                                <label for="team_id" class="col-lg-4 o_light_label" />
-                                <span>
-                                    <field name="team_id" />
-                                </span>
+                            <div class="col-sm-4">
+                                <label for="team_id" class="o_light_label" />
+                            </div>
+                            <div class="col-sm-8">
+                                <field name="team_id" />
                             </div>
                         </div>
                     </div>
@@ -290,23 +290,23 @@
         </field>
     </record>
     <record id="sale_workflow_process_view_tree" model="ir.ui.view">
-        <field name="name">sale_automic_workflow.sale_workflow_process.view_tree</field>
+        <field name="name">sale_automic_workflow.sale_workflow_process.view_list</field>
         <field name="model">sale.workflow.process</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="team_id" />
                 <field name="validate_order" />
                 <field name="validate_invoice" />
                 <field name="register_payment" />
                 <field name="invoice_date_is_order_date" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="act_sale_workflow_process_form" model="ir.actions.act_window">
         <field name="name">Automatic Workflow</field>
         <field name="res_model">sale.workflow.process</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem
         id="menu_sale_workflow_parent"

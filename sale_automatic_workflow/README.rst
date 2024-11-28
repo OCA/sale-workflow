@@ -56,6 +56,15 @@ well suited for other E-Commerce connectors as well.
 .. contents::
    :local:
 
+Usage
+=====
+
+To use this module, you need to:
+
+1. Go to \*Sale > Configuration > Automatic Workflow > Automatic
+   Workflow
+2. You can create/edit/delete automatic workflow
+
 Bug Tracker
 ===========
 
@@ -92,6 +101,7 @@ Contributors
 -  Phuc Tran Thanh <phuc@trobz.com>
 -  Sander Lienaerts <sander.lienaerts@codeforward.nl>
 -  Tri Doan <tridm@trobz.com>
+-  Chau Le <chaulb@trobz.com>
 
 Other credits
 -------------

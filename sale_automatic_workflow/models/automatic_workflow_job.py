@@ -164,7 +164,7 @@ class AutomaticWorkflowJob(models.Model):
             ("account_type", "in", ("asset_receivable", "liability_payable")),
             ("reconciled", "=", False),
         ]
-        payment_lines = payment.line_ids.filtered_domain(domain)
+        payment_lines = payment.move_id.line_ids.filtered_domain(domain)
         lines = invoice.line_ids
         for account in payment_lines.account_id:
             (payment_lines + lines).filtered_domain(
