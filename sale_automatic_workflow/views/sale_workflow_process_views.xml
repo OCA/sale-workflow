@@ -61,13 +61,13 @@
                                     <div class="oe_edit_only oe_inline">
                                         Set selection based on a search filter:
                                         <field
-                                            name="order_filter_id"
-                                            domain="[('model_id', '=', 'sale.order')]"
-                                            class="oe_inline"
-                                            context="{'default_model_id': 'sale.order', 'default_active': False, 'active_test': False}"
-                                            can_create="true"
-                                            can_write="true"
-                                        />
+                                        name="order_filter_id"
+                                        domain="[('model_id', '=', 'sale.order')]"
+                                        class="oe_inline"
+                                        context="{'default_model_id': 'sale.order', 'default_active': False, 'active_test': False}"
+                                        can_create="true"
+                                        can_write="true"
+                                    />
                                     </div>
                                 </div>
                             </div>
@@ -111,13 +111,13 @@
                                     <div class="oe_edit_only oe_inline">
                                         Set selection based on a search filter:
                                         <field
-                                            name="create_invoice_filter_id"
-                                            domain="[('model_id', '=', 'sale.order')]"
-                                            class="oe_inline"
-                                            context="{'default_model_id': 'sale.order', 'default_active': False, 'active_test': False}"
-                                            can_create="true"
-                                            can_write="true"
-                                        />
+                                        name="create_invoice_filter_id"
+                                        domain="[('model_id', '=', 'sale.order')]"
+                                        class="oe_inline"
+                                        context="{'default_model_id': 'sale.order', 'default_active': False, 'active_test': False}"
+                                        can_create="true"
+                                        can_write="true"
+                                    />
                                     </div>
                                 </div>
                             </div>
@@ -149,13 +149,13 @@
                                     <div class="oe_edit_only oe_inline">
                                         Set selection based on a search filter:
                                         <field
-                                            name="validate_invoice_filter_id"
-                                            domain="[('model_id', '=', 'account.move')]"
-                                            class="oe_inline"
-                                            context="{'default_model_id': 'account.move', 'default_active': False, 'active_test': False}"
-                                            can_create="true"
-                                            can_write="true"
-                                        />
+                                        name="validate_invoice_filter_id"
+                                        domain="[('model_id', '=', 'account.move')]"
+                                        class="oe_inline"
+                                        context="{'default_model_id': 'account.move', 'default_active': False, 'active_test': False}"
+                                        can_create="true"
+                                        can_write="true"
+                                    />
                                     </div>
                                 </div>
                             </div>
@@ -187,13 +187,13 @@
                                     <div class="oe_edit_only oe_inline">
                                         Set selection based on a search filter:
                                         <field
-                                            name="payment_filter_id"
-                                            domain="[('model_id', '=', 'account.move')]"
-                                            class="oe_inline"
-                                            context="{'default_model_id': 'account.move', 'default_active': False, 'active_test': False}"
-                                            can_create="true"
-                                            can_write="true"
-                                        />
+                                        name="payment_filter_id"
+                                        domain="[('model_id', '=', 'account.move')]"
+                                        class="oe_inline"
+                                        context="{'default_model_id': 'account.move', 'default_active': False, 'active_test': False}"
+                                        can_create="true"
+                                        can_write="true"
+                                    />
                                     </div>
                                 </div>
                             </div>
@@ -219,13 +219,13 @@
                                     <div class="oe_edit_only oe_inline">
                                         Set selection based on a search filter:
                                         <field
-                                            name="sale_done_filter_id"
-                                            domain="[('model_id', '=', 'sale.order')]"
-                                            class="oe_inline"
-                                            context="{'default_model_id': 'sale.order', 'default_active': False, 'active_test': False}"
-                                            can_create="true"
-                                            can_write="true"
-                                        />
+                                        name="sale_done_filter_id"
+                                        domain="[('model_id', '=', 'sale.order')]"
+                                        class="oe_inline"
+                                        context="{'default_model_id': 'sale.order', 'default_active': False, 'active_test': False}"
+                                        can_create="true"
+                                        can_write="true"
+                                    />
                                     </div>
                                 </div>
                             </div>
