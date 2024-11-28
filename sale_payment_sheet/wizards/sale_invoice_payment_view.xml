@@ -23,8 +23,8 @@
                             <field name="is_selected" widget="boolean_toggle" />
                             <field name="invoice_id" />
                             <field name="invoice_date" />
-                            <field name="amount_total" />
-                            <field name="amount_residual" />
+                            <field name="amount_total" sum="Total" />
+                            <field name="amount_residual" sum="Amount Due" />
                             <field name="invoice_date_due" />
                             <field name="currency_id" column_invisible="1" />
                         </tree>
