@@ -21,11 +21,11 @@
                             <bold>Order Configuration</bold>
                         </h3>
                         <div class="row">
-                            <div class="col-sm-12">
-                                <label for="team_id" class="col-lg-4 o_light_label" />
-                                <span>
-                                    <field name="team_id" />
-                                </span>
+                            <div class="col-sm-4">
+                                <label for="team_id" class="o_light_label" />
+                            </div>
+                            <div class="col-sm-8">
+                                <field name="team_id" />
                             </div>
                         </div>
                     </div>
@@ -290,7 +290,7 @@
         </field>
     </record>
     <record id="sale_workflow_process_view_tree" model="ir.ui.view">
-        <field name="name">sale_automic_workflow.sale_workflow_process.view_tree</field>
+        <field name="name">sale_automic_workflow.sale_workflow_process.view_list</field>
         <field name="model">sale.workflow.process</field>
         <field name="arch" type="xml">
             <list>
