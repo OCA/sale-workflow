@@ -21,7 +21,7 @@
                         <label for="display_discount_with_tax" />
                         <div class="text-muted">
                             OFF = Shows the Discount without TAX<br
-                            />ON = Shows the Discount with TAX
+                        />ON = Shows the Discount with TAX
                         </div>
                     </div>
                 </div>

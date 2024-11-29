@@ -5,3 +5,5 @@
 - Manuel Regidor \<<manuel.regidor@sygel.es>\>
 - [Pesol](https://www.pesol.es):
   - Jonathan Oscategui Taza \<<info@pesol.es>\>
+- [Trobz](https://www.trobz.com):
+  - Nhan Tran \<<nhant@trobz.com>\>
