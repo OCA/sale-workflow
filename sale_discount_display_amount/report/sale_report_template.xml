@@ -14,7 +14,7 @@
                     <td name="td_total_without_discount_label">
                         <strong>Total Without Discount</strong>
                     </td>
-                     <td name="td_total_without_discount" class="text-end">
+                    <td name="td_total_without_discount" class="text-end">
                         <span t-field="doc.price_total_no_discount" />
                     </td>
                 </tr>
@@ -23,7 +23,7 @@
                     <td name="td_discount_total_label">
                         <strong>Discount</strong>
                     </td>
-                     <td name="td_discount_total" class="text-end">
+                    <td name="td_discount_total" class="text-end">
                         <span t-field="doc.discount_total" />
                     </td>
                 </tr>
