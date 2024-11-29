@@ -5,7 +5,7 @@
         inherit_id="sale.report_saleorder_document"
     >
         <xpath expr="//div[@id='total']//table" position="inside">
-            <t groups="product.group_discount_per_so_line" t-if="doc.discount_total">
+            <t groups="sale.group_discount_per_so_line" t-if="doc.discount_total">
                 <t
                     t-set="is_discount"
                     t-value="doc.company_id.report_total_without_discount and doc.price_total_no_discount != doc.amount_total"
