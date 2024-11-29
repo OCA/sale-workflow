@@ -5,7 +5,7 @@
         <field name="model">sale.order</field>
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']//tree//field[@name='discount']"
+                expr="//field[@name='order_line']//list//field[@name='discount']"
                 position="after"
             >
                 <field name="price_subtotal_no_discount" optional="hide" />
@@ -14,37 +14,34 @@
         </field>
     </record>
     <record id="sale_order_view_form_display_discount" model="ir.ui.view">
-        <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="model">sale.order</field>
         <field name="priority">99</field>
         <field name="arch" type="xml">
             <data>
-                <xpath expr="//field[@name='tax_totals']" position="after">
-                    <field
-                        name="display_discount_with_tax"
-                        invisible="1"
-                        position="attributes"
-                    />
-                    <field
-                        name="price_subtotal_no_discount"
-                        invisible="display_discount_with_tax == True"
-                        position="attributes"
-                    />
-                    <field
-                        name="discount_subtotal"
-                        invisible="display_discount_with_tax == True"
-                        position="attributes"
-                    />
-                    <field
-                        name="price_total_no_discount"
-                        invisible="display_discount_with_tax == False"
-                        position="attributes"
-                    />
-                    <field
-                        name="discount_total"
-                        invisible="display_discount_with_tax == False"
-                        position="attributes"
-                    />
+                <xpath expr="//group[@name='sale_total']" position="after">
+                    <group
+                        class="oe_subtotal_footer d-flex order-0 order-lg-1 flex-column gap-0 gap-sm-3"
+                        colspan="2"
+                        name="sale_discount_total"
+                    >
+                        <div class="d-flex" invisible="display_discount_with_tax">
+                            <label for="price_subtotal_no_discount" />
+                            <field name="price_subtotal_no_discount" nolabel="1" />
+                        </div>
+                        <div class="d-flex" invisible="display_discount_with_tax">
+                            <label for="discount_subtotal" />
+                            <field name="discount_subtotal" nolabel="1" />
+                        </div>
+                        <div class="d-flex" invisible="not display_discount_with_tax">
+                            <label for="price_total_no_discount" />
+                            <field name="price_total_no_discount" nolabel="1" />
+                        </div>
+                        <div class="d-flex" invisible="not display_discount_with_tax">
+                            <label for="discount_total" />
+                            <field name="discount_total" nolabel="1" />
+                        </div>
+                    </group>
                 </xpath>
             </data>
         </field>
