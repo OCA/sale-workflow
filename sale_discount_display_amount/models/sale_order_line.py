@@ -9,7 +9,6 @@ class SaleOrderLine(models.Model):
 
     discount_total = fields.Monetary(
         compute="_compute_amount",
-        string="Discount Subtotal",
         store=True,
         precompute=True,
     )
