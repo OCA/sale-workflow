@@ -4,7 +4,7 @@
 from odoo.tests import tagged
 
 from odoo.addons.queue_job.job import identity_exact
-from odoo.addons.queue_job.tests.common import mock_with_delay
+from odoo.addons.queue_job.tests.common import trap_jobs
 from odoo.addons.sale_automatic_workflow.tests.common import (
     TestAutomaticWorkflowMixin,
     TestCommon,
@@ -34,10 +34,16 @@ class TestAutoWorkflowJob(TestCommon, TestAutomaticWorkflowMixin):
         self.assertDictEqual(delay_kwargs, {})
 
     def test_validate_sale_order(self):
-        workflow = self.create_full_automatic()
+        workflow = self.create_full_automatic({"send_order_confirmation_mail": True})
         self.sale = self.create_sale_order(workflow)
-        with mock_with_delay() as (delayable_cls, delayable):
+
+        with trap_jobs() as trap:
             self.run_job()  # run automatic workflow cron
+
+            trap.assert_jobs_count(
+                1, only=self.env["automatic.workflow.job"]._do_validate_sale_order
+            )
+
             args = (
                 self.sale,
                 [
@@ -45,40 +51,67 @@ class TestAutoWorkflowJob(TestCommon, TestAutomaticWorkflowMixin):
                     ("workflow_process_id", "=", self.sale.workflow_process_id.id),
                 ],
             )
-            self.assert_job_delayed(
-                delayable_cls, delayable, "_do_validate_sale_order", args
+
+            trap.assert_enqueued_job(
+                self.env["automatic.workflow.job"]._do_validate_sale_order,
+                args=args,
+                kwargs={},
+                properties=dict(
+                    identity_key=identity_exact,
+                ),
+            )
+
+            trap.assert_jobs_count(
+                1,
+                only=self.env[
+                    "automatic.workflow.job"
+                ]._do_send_order_confirmation_mail,
             )
 
     def test_create_invoice(self):
         workflow = self.create_full_automatic()
         self.sale = self.create_sale_order(workflow)
         self.sale.action_confirm()
-        # don't care about transfers in this test
-        self.sale.picking_ids.state = "done"
-        with mock_with_delay() as (delayable_cls, delayable):
+
+        with trap_jobs() as trap:
             self.run_job()  # run automatic workflow cron
+
+            trap.assert_jobs_count(
+                1, only=self.env["automatic.workflow.job"]._do_create_invoice
+            )
+
             args = (
                 self.sale,
                 [
-                    ("state", "in", ["sale", "done"]),
+                    ("state", "=", "sale"),
                     ("invoice_status", "=", "to invoice"),
                     ("workflow_process_id", "=", self.sale.workflow_process_id.id),
                 ],
             )
-            self.assert_job_delayed(
-                delayable_cls, delayable, "_do_create_invoice", args
+
+            trap.assert_enqueued_job(
+                self.env["automatic.workflow.job"]._do_create_invoice,
+                args=args,
+                kwargs={},
+                properties=dict(
+                    identity_key=identity_exact,
+                ),
             )
 
     def test_validate_invoice(self):
         workflow = self.create_full_automatic()
         self.sale = self.create_sale_order(workflow)
         self.sale.action_confirm()
-        # don't care about transfers in this test
-        self.sale.picking_ids.state = "done"
         self.sale._create_invoices()
         invoice = self.sale.invoice_ids
-        with mock_with_delay() as (delayable_cls, delayable):
+
+        with trap_jobs() as trap:
             self.run_job()  # run automatic workflow cron
+
+            trap.assert_jobs_count(
+                1, only=self.env["automatic.workflow.job"]._do_validate_invoice
+            )
+
             args = (
                 invoice,
                 [
@@ -87,36 +120,20 @@ class TestAutoWorkflowJob(TestCommon, TestAutomaticWorkflowMixin):
                     ("workflow_process_id", "=", self.sale.workflow_process_id.id),
                 ],
             )
-            self.assert_job_delayed(
-                delayable_cls, delayable, "_do_validate_invoice", args
-            )
 
-    def test_validate_picking(self):
-        workflow = self.create_full_automatic()
-        self.sale = self.create_sale_order(workflow)
-        self.sale.action_confirm()
-        picking = self.sale.picking_ids
-        # disable invoice creation in this test
-        self.sale.workflow_process_id.create_invoice = False
-        with mock_with_delay() as (delayable_cls, delayable):
-            self.run_job()  # run automatic workflow cron
-            args = (
-                picking,
-                [
-                    ("state", "in", ["draft", "confirmed", "assigned"]),
-                    ("workflow_process_id", "=", self.sale.workflow_process_id.id),
-                ],
-            )
-            self.assert_job_delayed(
-                delayable_cls, delayable, "_do_validate_picking", args
+            trap.assert_enqueued_job(
+                self.env["automatic.workflow.job"]._do_validate_invoice,
+                args=args,
+                kwargs={},
+                properties=dict(
+                    identity_key=identity_exact,
+                ),
             )
 
     def test_sale_done(self):
         workflow = self.create_full_automatic()
         self.sale = self.create_sale_order(workflow)
         self.sale.action_confirm()
-        # don't care about transfers in this test
-        self.sale.picking_ids.state = "done"
         self.sale._create_invoices()
 
         # disable invoice validation for we don't care
@@ -125,8 +142,13 @@ class TestAutoWorkflowJob(TestCommon, TestAutomaticWorkflowMixin):
         # activate the 'sale done' workflow
         self.sale.workflow_process_id.sale_done = True
 
-        with mock_with_delay() as (delayable_cls, delayable):
+        with trap_jobs() as trap:
             self.run_job()  # run automatic workflow cron
+
+            trap.assert_jobs_count(
+                1, only=self.env["automatic.workflow.job"]._do_sale_done
+            )
+
             args = (
                 self.sale,
                 [
@@ -135,4 +157,12 @@ class TestAutoWorkflowJob(TestCommon, TestAutomaticWorkflowMixin):
                     ("workflow_process_id", "=", self.sale.workflow_process_id.id),
                 ],
             )
-            self.assert_job_delayed(delayable_cls, delayable, "_do_sale_done", args)
+
+            trap.assert_enqueued_job(
+                self.env["automatic.workflow.job"]._do_sale_done,
+                args=args,
+                kwargs={},
+                properties=dict(
+                    identity_key=identity_exact,
+                ),
+            )
