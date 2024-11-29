@@ -73,6 +73,13 @@ Contributors
 -  Guewen Baconnier <guewen.baconnier@camptocamp.com>
 -  Saran Lim. <saranl@ecosoft.co.th>
 -  Kitti U. <kittiu@ecosoft.co.th>
+-  Chau Le <chaulb@trobz.com>
+
+Other credits
+-------------
+
+The migration of this module from 16.0 to 18.0 was financially supported
+by Camptocamp.
 
 Maintainers
 -----------

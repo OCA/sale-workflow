@@ -1,6 +1,7 @@
 # Copyright 2020 Camptocamp (https://www.camptocamp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import _, models
+
+from odoo import models
 
 from odoo.addons.queue_job.job import identity_exact
 
@@ -9,20 +10,44 @@ class AutomaticWorkflowJob(models.Model):
     _inherit = "automatic.workflow.job"
 
     def _do_validate_sale_order_job_options(self, sale, domain_filter):
-        description = _("Validate sales order {}").format(sale.display_name)
+        description = self.env._("Validate sales order %s", sale.display_name)
         return {
             "description": description,
             "identity_key": identity_exact,
         }
 
+    def _do_send_order_confirmation_mail_job_options(self, sale):
+        description = self.env._("Send order %s confirmation mail", sale.display_name)
+        return {"description": description, "identity_key": identity_exact}
+
+    def _do_validate_sale_order(self, sale, domain_filter):
+        result = super()._do_validate_sale_order(sale, domain_filter)
+
+        if self.env.context.get("send_order_confirmation_mail"):
+            self.with_context(
+                auto_delay_do_validation_finished=True
+            )._do_send_order_confirmation_mail(sale)
+
+        return result
+
+    def _do_send_order_confirmation_mail(self, sale):
+        if self.env.context.get("auto_delay_do_validation_finished"):
+            return super()._do_send_order_confirmation_mail(sale)
+
     def _validate_sale_orders(self, domain_filter):
-        with_context = self.with_context(auto_delay_do_validation=True)
+        with_context = self.with_context(
+            auto_delay_do_validation=True,
+            auto_delay_do_send_mail=True,
+            auto_delay_do_validation_finished=False,
+        )
         return super(AutomaticWorkflowJob, with_context)._validate_sale_orders(
             domain_filter
         )
 
     def _do_create_invoice_job_options(self, sale, domain_filter):
-        description = _("Create invoices for sales order {}").format(sale.display_name)
+        description = self.env._(
+            "Create invoices for sales order %s", sale.display_name
+        )
         return {
             "description": description,
             "identity_key": identity_exact,
@@ -33,7 +58,7 @@ class AutomaticWorkflowJob(models.Model):
         return super(AutomaticWorkflowJob, with_context)._create_invoices(domain_filter)
 
     def _do_validate_invoice_job_options(self, invoice, domain_filter):
-        description = _("Validate invoice {}").format(invoice.display_name)
+        description = self.env._("Validate invoice %s", invoice.display_name)
         return {
             "description": description,
             "identity_key": identity_exact,
@@ -45,21 +70,8 @@ class AutomaticWorkflowJob(models.Model):
             domain_filter
         )
 
-    def _do_validate_picking_job_options(self, picking, domain_filter):
-        description = _("Validate transfer {}").format(picking.display_name)
-        return {
-            "description": description,
-            "identity_key": identity_exact,
-        }
-
-    def _validate_pickings(self, domain_filter):
-        with_context = self.with_context(auto_delay_do_validation=True)
-        return super(AutomaticWorkflowJob, with_context)._validate_pickings(
-            domain_filter
-        )
-
     def _do_sale_done_job_options(self, sale, domain_filter):
-        description = _("Mark sales order {} as done").format(sale.display_name)
+        description = self.env._("Mark sales order %s as done", sale.display_name)
         return {
             "description": description,
             "identity_key": identity_exact,
@@ -72,9 +84,9 @@ class AutomaticWorkflowJob(models.Model):
     def _register_hook(self):
         mapping = {
             "_do_validate_sale_order": "auto_delay_do_validation",
+            "_do_send_order_confirmation_mail": "auto_delay_do_send_mail",
             "_do_create_invoice": "auto_delay_do_create_invoice",
             "_do_validate_invoice": "auto_delay_do_validation",
-            "_do_validate_picking": "auto_delay_do_validation",
             "_do_sale_done": "auto_delay_do_sale_done",
         }
         for method_name, context_key in mapping.items():
