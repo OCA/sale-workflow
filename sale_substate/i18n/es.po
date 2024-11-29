@@ -186,17 +186,6 @@ msgid "Substate"
 msgstr "Subestado"
 
 #. module: sale_substate
-#. odoo-python
-#: code:addons/sale_substate/models/sale_order.py:0
-#, python-format
-msgid ""
-"The substate %(name)s is not defined for the state %(state)s but for "
-"%(target_state)s "
-msgstr ""
-"El subestado %(name)s no está definido para el estado %(state)s sino para "
-"%(target_state)s "
-
-#. module: sale_substate
 #: model:base.substate,name:sale_substate.base_substate_valid_docs
 msgid "To validate legal documents"
 msgstr "Para validar documentos legales"
@@ -211,3 +200,11 @@ msgstr "A la espera de documentos legales"
 #: model:base.substate,name:sale_substate.base_substate_won
 msgid "Won"
 msgstr "Ganado"
+
+#, python-format
+#~ msgid ""
+#~ "The substate %(name)s is not defined for the state %(state)s but for "
+#~ "%(target_state)s "
+#~ msgstr ""
+#~ "El subestado %(name)s no está definido para el estado %(state)s sino para "
+#~ "%(target_state)s "
