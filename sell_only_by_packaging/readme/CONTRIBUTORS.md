@@ -5,3 +5,4 @@
 - Hiep (Nguyen Hoang) \<<hiepnh@trobz.com>\>
 - Phuc (Tran Thanh) \<<phuc@trobz.com>\>
 - Duong (Tran Quoc) \<<duongtq@trobz.com>\>
+- Tris Doan \<<tridm@trobz.com>\>

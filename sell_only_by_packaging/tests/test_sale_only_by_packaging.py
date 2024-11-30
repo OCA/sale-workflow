@@ -1,14 +1,16 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
+import logging
+
 from odoo.exceptions import ValidationError
 from odoo.tests import Form
 from odoo.tools import mute_logger
 
-from .common import Common
+from .common import SellOnlyByPackagingCommon
 
 
-class TestSaleProductByPackagingOnly(Common):
+class TestSaleProductByPackagingOnly(SellOnlyByPackagingCommon):
     def test_write_auto_fill_packaging(self):
         order_line = self.order.order_line
         self.assertFalse(order_line.product_packaging_id)
@@ -63,7 +65,10 @@ class TestSaleProductByPackagingOnly(Common):
         # Now force the qty on the packaging
         packaging.force_sale_qty = True
         with Form(self.order) as sale_order:
-            with sale_order.order_line.edit(0) as so_line:
+            with (
+                sale_order.order_line.edit(0) as so_line,
+                self.assertLogs(level=logging.WARNING) as logs,
+            ):
                 so_line.product_packaging_id = packaging
                 so_line.product_uom_qty = 52
                 self.assertAlmostEqual(
@@ -89,6 +94,9 @@ class TestSaleProductByPackagingOnly(Common):
                 self.assertAlmostEqual(
                     so_line.product_uom_qty, 220, places=self.precision
                 )
+                # catch WARNING by _onchange_product_packaging_id
+                self.assertEqual(len(logs.records), 1)
+                self.assertEqual(logs.records[0].levelno, logging.WARNING)
 
     def test_onchange_qty_is_not_pack_multiple(self):
         """Check package when qantity is not a multiple of package quantity.

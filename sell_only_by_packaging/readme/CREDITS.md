@@ -1,4 +1,4 @@
-The development of this module has been financially supported by:
+The development and migration of this module has been financially supported by:
 
 - Camptocamp
 
