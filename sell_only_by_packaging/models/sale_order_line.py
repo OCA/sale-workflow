@@ -1,7 +1,7 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import ValidationError
 from odoo.tools import float_compare
 
@@ -27,18 +27,14 @@ class SaleOrderLine(models.Model):
                 != 0
             ):
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "Product %s can only be sold with a packaging and a "
-                        "packaging quantity."
-                    )
-                    % line.product_id.name
+                        "packaging quantity.",
+                        line.product_id.name,
+                    ),
                 )
 
     def _force_qty_with_package(self):
-        """
-
-        :return:
-        """
         self.ensure_one()
         qty = self.product_id._convert_packaging_qty(
             self.product_uom_qty, self.product_uom, packaging=self.product_packaging_id

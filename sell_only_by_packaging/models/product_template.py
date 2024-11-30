@@ -1,7 +1,7 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -41,11 +41,11 @@ class ProductTemplate(models.Model):
         for product in self:
             if product.sell_only_by_packaging and not product.sale_ok:
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "Product %s cannot be defined to be sold only by "
-                        "packaging if it cannot be sold."
-                    )
-                    % product.name
+                        "packaging if it cannot be sold.",
+                        product.name,
+                    ),
                 )
 
     @api.constrains("sell_only_by_packaging", "packaging_ids")
@@ -64,12 +64,12 @@ class ProductTemplate(models.Model):
                     )
                 ):
                     raise ValidationError(
-                        _(
+                        self.env._(
                             "Product %s cannot be defined to be sold only by "
                             "packaging if it does not have any packaging that "
-                            "can be sold defined."
-                        )
-                        % product.name
+                            "can be sold defined.",
+                            product.name,
+                        ),
                     )
 
     @api.depends("sale_ok")

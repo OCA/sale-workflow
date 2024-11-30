@@ -98,11 +98,13 @@ Contributors
 -  Hiep (Nguyen Hoang) <hiepnh@trobz.com>
 -  Phuc (Tran Thanh) <phuc@trobz.com>
 -  Duong (Tran Quoc) <duongtq@trobz.com>
+-  Tris Doan <tridm@trobz.com>
 
 Other credits
 -------------
 
-The development of this module has been financially supported by:
+The development and migration of this module has been financially
+supported by:
 
 -  Camptocamp
 
