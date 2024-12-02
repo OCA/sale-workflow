@@ -66,6 +66,13 @@ Contributors
 -  Thierry Ducrest <thierry.ducrest@camptocamp.com>
 -  Simone Orsi <simone.orsi@camptocamp.com>
 -  Henry Backman <henry.backman@camptocamp.com>
+-  Chau Le <chaulb@trobz.com>
+
+Other credits
+-------------
+
+The migration of this module from 17.0 to 18.0 was financially supported
+by Camptocamp.
 
 Maintainers
 -----------
