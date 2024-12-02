@@ -14,33 +14,32 @@
                         <bold>Workflow execution periodicity</bold>
                     </h3>
                     <div class="row">
-                        <div class="col-sm-12">
-                            <label for="periodicity" class="col-lg-4 o_light_label" />
-                            <span>
-                                <field name="periodicity" />
-                            </span>
+                        <div class="col-sm-4">
+                            <label for="periodicity" class="o_light_label" />
+                        </div>
+                        <div class="col-sm-8">
+                            <field name="periodicity" />
                         </div>
                     </div>
+
                     <div class="row">
-                        <div class="col-sm-12">
-                            <label
-                                for="next_execution"
-                                class="col-lg-4 o_light_label"
-                            />
-                            <span>
-                                <field name="next_execution" />
-                            </span>
+                        <div class="col-sm-4">
+                            <label for="next_execution" class="o_light_label" />
+                        </div>
+                        <div class="col-sm-8">
+                            <field name="next_execution" />
                         </div>
                     </div>
+
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-4">
                             <label
                                 for="periodicity_check_create_date"
-                                class="col-lg-4 o_light_label"
+                                class="o_light_label"
                             />
-                            <span>
-                                <field name="periodicity_check_create_date" />
-                            </span>
+                        </div>
+                        <div class="col-sm-8">
+                            <field name="periodicity_check_create_date" />
                         </div>
                     </div>
                 </div>
