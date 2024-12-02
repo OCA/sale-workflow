@@ -12,7 +12,7 @@ class StockPicking(models.Model):
         help="Technical field to display 'Customer Ref' column on moves.",
     )
 
-    @api.depends("move_lines.customer_ref")
+    @api.depends("move_ids.customer_ref")
     def _compute_has_customer_ref(self):
         for picking in self:
             # Break on the first move having a customer ref
@@ -24,3 +24,10 @@ class StockPicking(models.Model):
                 ),
                 False,
             )
+
+    def action_detailed_operations(self):
+        res = super().action_detailed_operations()
+        ctx = dict(res.get("context", {}))
+        ctx["has_customer_ref"] = self.has_customer_ref
+        res["context"] = ctx
+        return res

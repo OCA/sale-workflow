@@ -32,6 +32,8 @@ class StockMove(models.Model):
         self.ensure_one()
         if self.sale_line_id.customer_ref:
             return self.sale_line_id
+        if not self.move_dest_ids:
+            return self.sale_line_id.browse()
         # Search in the destination moves recursively until we find a SO line
         moves_dest = self.move_dest_ids
         move_seen_ids = set(moves_dest.ids)
@@ -58,10 +60,3 @@ class StockMove(models.Model):
         # pick+pack based on the customer reference.
         distinct_fields.append("customer_ref")
         return distinct_fields
-
-    @api.model
-    def _prepare_merge_move_sort_method(self, move):
-        move.ensure_one()
-        keys_sorted = super()._prepare_merge_move_sort_method(move)
-        keys_sorted.append(move.customer_ref)
-        return keys_sorted

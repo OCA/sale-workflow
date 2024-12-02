@@ -8,13 +8,13 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/tree/field[@name='name']"
+                expr="//field[@name='order_line']/list/field[@name='name']"
                 position="after"
             >
                 <field name="customer_ref" optional="hide" />
             </xpath>
             <xpath
-                expr="//field[@name='order_line']/form//field[@name='analytic_tag_ids']"
+                expr="//field[@name='order_line']/form//field[@name='analytic_distribution']"
                 position="after"
             >
                 <field name="customer_ref" />

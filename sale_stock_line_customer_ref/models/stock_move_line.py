@@ -9,7 +9,7 @@ from odoo import fields, models
 class StockMoveLine(models.Model):
     _inherit = "stock.move.line"
 
-    customer_ref = fields.Char(related="move_id.customer_ref", readonly=True)
+    customer_ref = fields.Char(related="move_id.customer_ref")
 
     def write(self, vals):
         # Overridden to update related result packages
@@ -20,7 +20,8 @@ class StockMoveLine(models.Model):
     @contextmanager
     def update_related_packages(self, vals):
         """Keep packages in sync."""
-        # FIXME: is not granted that all the lines involved by the pkg will be updated here.
+        # FIXME: is not granted that all the lines involved
+        #  by the pkg will be updated here.
         # We should look for all lines linked to the same picking and update them all.
         result_package_updated = "result_package_id" in vals
         if result_package_updated:

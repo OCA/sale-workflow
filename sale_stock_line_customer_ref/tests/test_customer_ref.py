@@ -1,17 +1,23 @@
 # Copyright 2022 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
-from odoo.tests.common import Form, SavepointCase
+
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleLineCustomerRef(SavepointCase):
+class TestSaleLineCustomerRef(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.wh = cls.env.ref("stock.warehouse0")
         cls.wh.delivery_steps = "pick_pack_ship"
         cls.product = cls.env.ref("product.consu_delivery_01")
-        cls.stock_loc = cls.env.ref("stock.stock_location_stock")
+        delivery_route = cls.wh.delivery_route_id
+        rule_id1 = delivery_route.rule_ids[1]
+        delivery_route.rule_ids[0].location_dest_id = rule_id1.location_src_id.id
+        delivery_route.rule_ids.write({"action": "pull"})
+        cls.stock_loc = cls.wh.lot_stock_id
         cls.order = cls._create_order()
         cls.order.action_confirm()
         cls.pkg_model = cls.env["stock.quant.package"]
@@ -46,11 +52,11 @@ class TestSaleLineCustomerRef(SavepointCase):
 
     @classmethod
     def _get_pick(cls, order):
-        return order.picking_ids.filtered(lambda x: not x.move_lines.move_orig_ids)
+        return order.picking_ids.filtered(lambda x: not x.move_ids.move_orig_ids)
 
     @classmethod
     def _get_pack(cls, order):
-        return cls._get_pick(order).move_lines.move_dest_ids.picking_id
+        return cls._get_pick(order).move_ids.move_dest_ids.picking_id
 
     def test_customer_ref(self):
         # Ship moves can't be merged anyway in std Odoo as they belong to
@@ -100,13 +106,13 @@ class TestSaleLineCustomerRef(SavepointCase):
         picking.move_line_ids[0].result_package_id = pkg1
         picking.move_line_ids[1].result_package_id = pkg2
         packages = picking.move_line_ids.result_package_id.sorted("name")
-        packages.invalidate_cache()
+        packages.invalidate_recordset()
 
         self.assertEqual(packages.mapped("customer_ref"), ["TEST_0", "TEST_1"])
         picking.move_line_ids.filtered(
             lambda x: x.result_package_id == pkg2
         ).result_package_id = False
-        packages.invalidate_cache()
+        packages.invalidate_recordset()
         self.assertEqual(packages.mapped("customer_ref"), ["TEST_0", False])
 
     def test_package_ref_concat(self):
@@ -119,9 +125,9 @@ class TestSaleLineCustomerRef(SavepointCase):
         self.pkg_model.create({"name": "TEST-REF-2"})
         picking.move_line_ids.result_package_id = pkg1
         packages = picking.move_line_ids.result_package_id.sorted("name")
-        packages.invalidate_cache()
+        packages.invalidate_recordset()
 
         self.assertEqual(packages.mapped("customer_ref"), ["TEST_0, TEST_1"])
         picking.move_line_ids.result_package_id = False
-        packages.invalidate_cache()
+        packages.invalidate_recordset()
         self.assertEqual(packages.mapped("customer_ref"), [False])
