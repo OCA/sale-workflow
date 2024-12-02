@@ -1,48 +1,51 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-  <record id="sale_workflow_process_view_form" model="ir.ui.view">
-    <field name="name">sale.order.form.automatic.delay.inherit</field>
-    <field name="model">sale.workflow.process</field>
-    <field
+    <record id="sale_workflow_process_view_form" model="ir.ui.view">
+        <field name="name">sale.order.form.automatic.delay.inherit</field>
+        <field name="model">sale.workflow.process</field>
+        <field
             name="inherit_id"
             ref="sale_automatic_workflow.sale_workflow_process_view_form"
         />
-    <field name="arch" type="xml">
-        <xpath expr="//div[@name='sale_order_confirm']" position="before">
-          <div class="container" name="sale_order_confirm">
-            <h3>
-                <bold>Workflow execution periodicity</bold>
-            </h3>
-            <div class="row">
-                <div class="col-sm-12">
-                    <label for="periodicity" class="col-lg-4 o_light_label" />
-                    <span>
-                        <field name="periodicity" />
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <label for="next_execution" class="col-lg-4 o_light_label" />
-                    <span>
-                        <field name="next_execution" />
-                    </span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <label
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='sale_order_confirm']" position="before">
+                <div class="container" name="sale_order_confirm">
+                    <h3>
+                        <bold>Workflow execution periodicity</bold>
+                    </h3>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label for="periodicity" class="col-lg-4 o_light_label" />
+                            <span>
+                                <field name="periodicity" />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label
+                                for="next_execution"
+                                class="col-lg-4 o_light_label"
+                            />
+                            <span>
+                                <field name="next_execution" />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label
                                 for="periodicity_check_create_date"
                                 class="col-lg-4 o_light_label"
                             />
-                    <span>
-                        <field name="periodicity_check_create_date" />
-                    </span>
+                            <span>
+                                <field name="periodicity_check_create_date" />
+                            </span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-          </div>
-          <br />
-        </xpath>
-    </field>
-  </record>
+                <br />
+            </xpath>
+        </field>
+    </record>
 </odoo>
