@@ -49,13 +49,13 @@
                                 class="oe_edit_only oe_inline"
                             > Set selection based on a search
                                 filter: <field
-                                    name="picking_filter_id"
-                                    domain="[('model_id', '=', 'stock.picking')]"
-                                    class="oe_inline"
-                                    context="{'default_model_id': 'stock.picking', 'default_active': False, 'active_test': False}"
-                                    can_create="true"
-                                    can_write="true"
-                                />
+                                name="picking_filter_id"
+                                domain="[('model_id', '=', 'stock.picking')]"
+                                class="oe_inline"
+                                context="{'default_model_id': 'stock.picking', 'default_active': False, 'active_test': False}"
+                                can_create="true"
+                                can_write="true"
+                            />
                             </div>
                         </div>
                     </div>
