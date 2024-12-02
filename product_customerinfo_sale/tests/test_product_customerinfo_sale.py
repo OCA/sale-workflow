@@ -3,10 +3,11 @@
 # Copyright 2024 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo.tests import Form
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestProductSupplierinfoForCustomerSale(TransactionCase):
+class TestProductCustomerInfoSale(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -86,7 +87,7 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
             }
         )
 
-    def test_product_supplierinfo_for_customer_sale(self):
+    def test_product_customerinfo(self):
         order_form = Form(self.env["sale.order"])
         order_form.partner_id = self.customer
         order_form.pricelist_id = self.pricelist
@@ -106,7 +107,7 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
             "Error: Min qty was not passed to the sale order line",
         )
 
-    def test_product_supplierinfo_for_customer_sale_variant(self):
+    def test_product_customerinfo_variant(self):
         order_form = Form(self.env["sale.order"])
         order_form.partner_id = self.customer
         order_form.pricelist_id = self.pricelist
@@ -120,7 +121,7 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
             "Error: Customer product code was not passed to sale order line",
         )
 
-    def test_product_supplierinfo_for_customer_sale_template(self):
+    def test_product_customerinfo_template(self):
         customerinfo = self._create_partnerinfo(
             "customer", self.customer, self.product_variant_2
         )
@@ -150,7 +151,7 @@ class TestProductSupplierinfoForCustomerSale(TransactionCase):
             "Error: Customer product code was not passed to sale order line",
         )
 
-    def test_product_supplierinfo_for_customer_sale_variant_wo_template(self):
+    def test_product_customerinfo_variant_wo_template(self):
         customerinfo = self._create_partnerinfo(
             "customer", self.customer, self.product_variant_2, empty_variant=True
         )
