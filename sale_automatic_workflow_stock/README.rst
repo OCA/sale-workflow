@@ -81,6 +81,13 @@ Contributors
 -  Thomas Fossoul <thomas@niboo.com>
 -  Silvija Butko <silvija@focusate.eu>
 -  Tri Doan <<tridm@trobz.com>>
+-  Chau Le <<chaulb@trobz.com>>
+
+Other credits
+-------------
+
+The migration of this module from 17.0 to 18.0 was financially supported
+by Camptocamp.
 
 Maintainers
 -----------

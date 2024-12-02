@@ -22,6 +22,17 @@ class SaleOrder(models.Model):
         depends.append("workflow_process_id")
         return depends
 
+    @api.depends("delivery_status")
+    def _compute_all_qty_delivered(self):
+        for order in self:
+            order.all_qty_delivered = order.delivery_status == "full"
+
+    @api.onchange("workflow_process_id")
+    def _onchange_workflow_process_id(self):
+        if self.workflow_process_id.picking_policy:
+            self.picking_policy = self.workflow_process_id.picking_policy
+        return super()._onchange_workflow_process_id()
+
     @api.depends(lambda self: self._depends_picking_policy())
     def _compute_picking_policy(self):
         res = None
