@@ -1,0 +1,11 @@
+[project]
+name = "odoo-addons-oca-sale-workflow"
+version = "18.0.20241202.0"
+dependencies = [
+    "odoo-addon-sale_force_invoiced==18.0.*",
+]
+classifiers=[
+    "Programming Language :: Python",
+    "Framework :: Odoo",
+    "Framework :: Odoo :: 18.0",
+]
