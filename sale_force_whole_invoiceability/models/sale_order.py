@@ -11,11 +11,15 @@ class SaleOrder(models.Model):
         """Wrapper to launch the private method from UI"""
         if not self.env.user.has_group("sales_team.group_sale_manager"):
             raise UserError(
-                self.env._("Only Sales Managers are allowed to force the lines to invoice")
+                self.env._(
+                    "Only Sales Managers are allowed to force the lines to invoice"
+                )
             )
         if self.state != "sale":
             raise UserError(
-                self.env._("You can't perform this action over a sale order in this state")
+                self.env._(
+                    "You can't perform this action over a sale order in this state"
+                )
             )
         if self.invoice_count:
             raise UserError(
