@@ -6,7 +6,7 @@
         "Allow you to add a customer reference on order lines "
         "propagaged to move operations."
     ),
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "maintainers": ["sebalix"],
     "website": "https://github.com/OCA/sale-workflow",

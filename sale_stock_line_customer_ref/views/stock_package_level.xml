@@ -7,25 +7,22 @@
         <field name="model">stock.package_level</field>
         <field name="inherit_id" ref="stock.package_level_form_view" />
         <field name="arch" type="xml">
-            <field name="picking_type_code" position="after">
-                <field name="has_customer_ref" invisible="1" />
-            </field>
             <xpath
-                expr="//field[@name='move_ids']/tree//field[@name='product_id']"
+                expr="//field[@name='move_ids']/list/field[@name='product_id']"
                 position="after"
             >
                 <field
                     name="customer_ref"
-                    attrs="{'column_invisible': [('parent.has_customer_ref', '=', False)]}"
+                    column_invisible="not parent.has_customer_ref"
                 />
             </xpath>
             <xpath
-                expr="//field[@name='move_line_ids']/tree//field[@name='product_id']"
+                expr="//field[@name='move_line_ids']/list/field[@name='product_id']"
                 position="after"
             >
                 <field
                     name="customer_ref"
-                    attrs="{'column_invisible': [('parent.has_customer_ref', '=', False)]}"
+                    column_invisible="not parent.has_customer_ref"
                 />
             </xpath>
         </field>

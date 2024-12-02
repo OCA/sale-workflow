@@ -381,7 +381,8 @@ be merged together in stock transfers.</p>
 <li><a class="reference internal" href="#credits" id="toc-entry-3">Credits</a><ul>
 <li><a class="reference internal" href="#authors" id="toc-entry-4">Authors</a></li>
 <li><a class="reference internal" href="#contributors" id="toc-entry-5">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-6">Maintainers</a></li>
+<li><a class="reference internal" href="#other-credits" id="toc-entry-6">Other credits</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-7">Maintainers</a></li>
 </ul>
 </li>
 </ul>
@@ -390,6 +391,15 @@ be merged together in stock transfers.</p>
 <h1><a class="toc-backref" href="#toc-entry-1">Usage</a></h1>
 <p>By default the customer reference field is not displayed on the sale
 order form, you have to enable it in the list of optional fields.</p>
+<p>We want the customer ref on the package because the label should be
+printed from there (like all other kind of existing labels). As we can’t
+get the right stock.move.line/stock.move easily from the package it is
+easier to store the Customer Ref. of the move/move_line on the package
+when this one is assigned to the move line. Also, a (destination)
+package could contain different products (so different moves), and these
+moves could have different Customer Ref., all of them will be concatened
+in the package =&gt; “,
+“.join(customer_ref_of_all_moves_link_to_this_package)</p>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h1>
@@ -412,10 +422,16 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <ul class="simple">
 <li>Sébastien Alix &lt;<a class="reference external" href="mailto:sebastien.alix&#64;camptocamp.com">sebastien.alix&#64;camptocamp.com</a>&gt;</li>
 <li>Simone Orsi &lt;<a class="reference external" href="mailto:simone.orsi&#64;camptocamp.com">simone.orsi&#64;camptocamp.com</a>&gt;</li>
+<li>Do Anh Duy &lt;<a class="reference external" href="mailto:duyda&#64;trobz.com">duyda&#64;trobz.com</a>&gt;</li>
 </ul>
 </div>
+<div class="section" id="other-credits">
+<h2><a class="toc-backref" href="#toc-entry-6">Other credits</a></h2>
+<p>The migration of this module from 14.0 to 18.0 was financially supported
+by Camptocamp.</p>
+</div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#toc-entry-6">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-7">Maintainers</a></h2>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
