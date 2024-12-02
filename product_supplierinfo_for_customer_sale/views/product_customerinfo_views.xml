@@ -6,7 +6,7 @@
         <field name="name">Prices for customers</field>
         <field name="res_model">product.customerinfo</field>
         <field name="context">{'visible_product_tmpl_id': False}</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem
         id="menu_product_customerinfo"
