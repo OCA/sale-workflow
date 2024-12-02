@@ -8,14 +8,23 @@ from odoo.addons.sale_automatic_workflow.tests.common import TestAutomaticWorkfl
 class TestAutomaticWorkflowStockMixin(TestAutomaticWorkflowMixin):
     """Extend to add stock related workflow."""
 
-    def create_sale_order(self, workflow, override=None, product_type="product"):
+    def create_sale_order(
+        self, workflow, override=None, product_type="consu", extra_product_values=None
+    ):
+        extra_product_values = extra_product_values or {}
+        if product_type == "consu":
+            extra_product_values["is_storable"] = True
+
         # Override to create stock operations for each product
         order = super().create_sale_order(
-            workflow, override=override, product_type=product_type
+            workflow,
+            override=override,
+            product_type=product_type,
+            extra_product_values=extra_product_values,
         )
         # Create inventory
         for line in order.order_line:
-            if line.product_id.type == "product":
+            if line.product_id.is_storable:
                 inventory = self.env["stock.quant"].create(
                     {
                         "product_id": line.product_id.id,
