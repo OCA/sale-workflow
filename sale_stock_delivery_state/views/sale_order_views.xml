@@ -13,7 +13,7 @@
     </record>
 
     <record id="view_order_tree_inherit_delivery_status" model="ir.ui.view">
-        <field name="name">sale.order.tree</field>
+        <field name="name">sale.order.list</field>
         <field
             name="inherit_id"
             ref="sale_delivery_state.view_order_tree_inherit_delivery_status"
