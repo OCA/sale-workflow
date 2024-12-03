@@ -120,13 +120,16 @@ class SaleOrderLine(models.Model):
     @api.depends("should_compute_price")
     def _compute_price_unit(self):
         for rec in self:
-            if not rec.is_static_product and rec.should_compute_price:
-                rec = rec.with_context(
-                    price_config=rec.product_id.product_tmpl_id._find_price_config(),
-                    input_line=rec.input_line_id,
-                )
-                rec.should_compute_price = False
-            super(SaleOrderLine, rec)._compute_price_unit()
+            if not rec.is_static_product:
+                if rec.should_compute_price:
+                    rec = rec.with_context(
+                        price_config=rec.product_id.product_tmpl_id._find_price_config(),
+                        input_line=rec.input_line_id,
+                    )
+                    rec.should_compute_price = False
+                    super(SaleOrderLine, rec)._compute_price_unit()
+            else:
+                super(SaleOrderLine, rec)._compute_price_unit()
         return True
 
     def _prepare_procurement_values(self, group_id=False):
