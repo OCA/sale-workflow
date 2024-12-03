@@ -90,6 +90,22 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_right_pane">
+                            <label for="sale_planner_done_on_sale_confirm" />
+                            <div class="text-muted">
+                                Set event as done when related sale order is confirmed.
+                            </div>
+                            <div class="content-group">
+                                <div class="mt16">
+                                    <field
+                                        name="sale_planner_done_on_sale_confirm"
+                                        class="o_light_label"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </field>

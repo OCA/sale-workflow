@@ -68,6 +68,11 @@ class CalendarEvent(models.Model):
         compute_sudo=True,
         currency_field="sale_planner_currency_id",
     )
+    invoice_date_due = fields.Date(
+        string="Due Date",
+        compute="_compute_invoice_amount_residual",
+        compute_sudo=True,
+    )
     off_planning = fields.Boolean(copy=False)
     payment_sheet_line_ids = fields.One2many(
         comodel_name="sale.payment.sheet.line",
@@ -126,20 +131,29 @@ class CalendarEvent(models.Model):
                 ("payment_state", "!=", "paid"),
                 ("partner_id", "in", partner_ids),
             ],
-            fields=["amount_residual_signed"],
+            fields=["amount_residual_signed", "invoice_date_due:min"],
             groupby=["partner_id"],
         )
-        invoice_dic = {g["partner_id"][0]: g["amount_residual_signed"] for g in groups}
+        invoice_dic = {
+            g["partner_id"][0]: {
+                "amount_residual_signed": g["amount_residual_signed"],
+                "invoice_date_due": g["invoice_date_due"],
+            }
+            for g in groups
+        }
         for rec in self:
-            amount_residual = invoice_dic.get(
-                rec.target_partner_id.commercial_partner_id.id, 0.0
+            partner_vals = invoice_dic.get(
+                rec.target_partner_id.commercial_partner_id.id,
+                {"amount_residual_signed": 0.0, "invoice_date_due": False},
             )
+            amount_residual = partner_vals["amount_residual_signed"]
             payment_amount = sum(
                 rec.payment_sheet_line_ids.filtered(
                     lambda p: p.sheet_id.state == "open"
                 ).mapped("amount")
             )
             rec.invoice_amount_residual = amount_residual - payment_amount
+            rec.invoice_date_due = partner_vals["invoice_date_due"]
 
     @api.depends("target_partner_id")
     def _compute_partner_name(self):

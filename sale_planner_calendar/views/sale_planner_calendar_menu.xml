@@ -46,6 +46,19 @@
         sequence="40"
     />
     <menuitem
+        id="menu_sale_planner_calendar_product_template"
+        parent="menu_sale_planner_calendar_summary_general"
+        action="sale.product_template_action"
+        sequence="50"
+    />
+    <menuitem
+        id="menu_sale_planner_calendar_product_variant"
+        parent="menu_sale_planner_calendar_summary_general"
+        action="product.product_normal_action_sell"
+        groups="product.group_product_variant"
+        sequence="50"
+    />
+    <menuitem
         id="menu_calendar_event_root"
         parent="menu_sale_planner_calendar_root"
         name="Calendar events"
