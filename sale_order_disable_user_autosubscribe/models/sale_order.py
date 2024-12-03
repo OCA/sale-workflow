@@ -13,7 +13,7 @@ class SaleOrder(models.Model):
         # This removes this follower from the auto-subscribed followers.
         # Note: We could have removed `user_id` from `updated_values` and
         # the result would have been the same.
-        # However, this method could be overriden somewhere and may use this
+        # However, this method could be overridden somewhere and may use this
         # `user_id` for some reason, which is why I update the result instead.
         res = super()._message_auto_subscribe_followers(
             updated_values, default_subtype_ids
