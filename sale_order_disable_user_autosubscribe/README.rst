@@ -66,12 +66,14 @@ Contributors
 -  `Trobz <https://trobz.com>`__:
 
    -  Nguyen Hoang Hiep <hiepnh@trobz.com>
+   -  Do Anh Duy <duyda@trobz.com>
 
 Other credits
 -------------
 
 The migration of this module from 13.0 to 14.0 was financially supported
-by Camptocamp.
+by Camptocamp. The migration of this module from 14.0 to 18.0 was
+financially supported by Camptocamp.
 
 Maintainers
 -----------
