@@ -557,6 +557,15 @@
                                                     name="invoice_amount_residual"
                                                 />
                                             </div>
+                                            <div
+                                                t-if="record.invoice_date_due.raw_value "
+                                                class="text-center"
+                                            >
+                                                <field
+                                                    class="text-center"
+                                                    name="invoice_date_due"
+                                                />
+                                            </div>
                                         </div>
                                         <div
                                             t-if="record.sanitized_partner_mobile.value"
@@ -604,6 +613,15 @@
                                                 />
                                                 <div class="o_stat_text">Issue</div>
                                             </button>
+                                            <div
+                                                t-if="record.calendar_issue_type_id.raw_value "
+                                                class="text-center mt4"
+                                            >
+                                                <field
+                                                    class="text-center"
+                                                    name="calendar_issue_type_id"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

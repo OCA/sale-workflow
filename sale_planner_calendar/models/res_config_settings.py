@@ -28,6 +28,10 @@ class ResConfigSettings(models.TransientModel):
         string="Calendar event max duration",
         config_parameter="sale_planner_calendar.max_duration",
     )
+    sale_planner_done_on_sale_confirm = fields.Boolean(
+        related="company_id.sale_planner_done_on_sale_confirm",
+        readonly=False,
+    )
 
 
 class ResCompany(models.Model):
@@ -43,3 +47,6 @@ class ResCompany(models.Model):
         string="Send invitation to attendees", default=True
     )
     sale_planner_order_cut_hour = fields.Float()
+    sale_planner_done_on_sale_confirm = fields.Boolean(
+        string="Event done when confirm sale"
+    )
