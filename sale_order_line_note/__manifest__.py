@@ -6,23 +6,17 @@
 {
     "name": "sale_order_line_note",
     "summary": "Note on sale order line",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Sale",
     "website": "https://github.com/OCA/sale-workflow",
-    "author": "Akretion,Odoo Community Association (OCA)",
+    "author": "Akretion, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "external_dependencies": {
-        "python": [],
-        "bin": [],
-    },
     "depends": [
         "sale",
     ],
     "data": [
         "views/sale_order_view.xml",
     ],
-    "demo": [],
-    "qweb": [],
 }
