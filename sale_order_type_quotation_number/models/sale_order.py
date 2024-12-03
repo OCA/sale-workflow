@@ -15,11 +15,13 @@ class SaleOrder(models.Model):
         store=True,
     )
 
-    @api.model
-    def create(self, vals):
-        orders = super(
-            SaleOrder, self.with_context(type_id=vals.get("type_id"))
-        ).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        orders = self.browse()
+        for vals in vals_list:
+            orders |= super(
+                SaleOrder, self.with_context(type_id=vals.get("type_id"))
+            ).create([vals])
         for order in orders.filtered(lambda a: a.quotation_seq_used):
             order.applied_quotation_seq_id = order.get_quotation_seq_id()
         return orders
