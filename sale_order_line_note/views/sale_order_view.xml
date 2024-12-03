@@ -3,20 +3,12 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//tree/field[@name='name']" position="after">
+            <xpath expr="//list/field[@name='name']" position="after">
                 <field name="note" optional="hide" />
             </xpath>
             <xpath expr="//form/field[@name='name']" position="after">
-                <label
-                    for="note"
-                    string="Note"
-                    attrs="{'invisible': [('display_type', '!=', False)]}"
-                />
-                <field
-                    name="note"
-                    optional="hide"
-                    attrs="{'invisible': [('display_type', '!=', False)]}"
-                />
+                <label for="note" string="Note" invisible="display_type" />
+                <field name="note" optional="hide" invisible="display_type" />
             </xpath>
         </field>
     </record>
