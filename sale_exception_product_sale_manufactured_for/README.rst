@@ -67,6 +67,7 @@ Contributors
 - `Trobz <https://trobz.com>`__:
 
   - Son Ho <sonhd@trobz.com>
+  - Nhan Tran <nhant@trobz.com>
 
 Other credits
 -------------

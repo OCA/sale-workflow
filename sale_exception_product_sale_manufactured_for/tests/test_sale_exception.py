@@ -1,14 +1,13 @@
 # Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
-from odoo.tests import SavepointCase
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleException(SavepointCase):
+class TestSaleException(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
 
         cls.exception = cls.env.ref(
             "sale_exception_product_sale_manufactured_for.exception_partner_can_order"
