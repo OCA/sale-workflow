@@ -73,6 +73,7 @@ Contributors
 - Simone Orsi <simone.orsi@camptocamp.com>
 - Son (Ho Dac) <hodacson.6491@gmail.com>
 - Phuc (Tran Thanh) <phuc@trobz.com>
+- Tuan Nguyen <tuanna@trobz.com>
 
 Other credits
 -------------
@@ -81,6 +82,9 @@ The development of this module has been financially supported by:
 
 - Camptocamp
 - Cosanum
+
+The migration of this module from 16.0 to 18.0 was financially supported
+by Camptocamp.
 
 Maintainers
 -----------

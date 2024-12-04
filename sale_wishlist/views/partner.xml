@@ -11,7 +11,7 @@
                     type="object"
                     class="oe_stat_button"
                     icon="fa-pencil"
-                    attrs="{'invisible': [('wishlists_count', '=', 0)]}"
+                    invisible="wishlists_count == 0"
                 >
                     <div class="o_field_widget o_stat_info">
                         <span class="o_stat_value">
