@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="job_function_do_validate_picking" model="queue.job.function">
+        <field
+            name="model_id"
+            ref="sale_automatic_workflow_stock.model_automatic_workflow_job"
+        />
+        <field name="method">_do_validate_picking</field>
+        <field
+            name="channel_id"
+            ref="sale_automatic_workflow_job.channel_sale_automatic_workflow"
+        />
+        <field
+            name="related_action"
+            eval='{"func_name": "_related_action_sale_automatic_workflow"}'
+        />
+    </record>
+</odoo>
