@@ -109,18 +109,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "UoM"
 msgstr "计量单位"
-
-#~ msgid "Open Sale Order"
-#~ msgstr "打开销售订单"
-
-#~ msgid "Ordered"
-#~ msgstr "已订购"
-
-#~ msgid "Ordered Qty"
-#~ msgstr "订购数量"
-
-#~ msgid "Pricelist for current sales order."
-#~ msgstr "当前销售订单的价格表。"
-
-#~ msgid "To Invoice"
-#~ msgstr "待开票"
