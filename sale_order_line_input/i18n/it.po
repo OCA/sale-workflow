@@ -112,24 +112,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "UoM"
 msgstr "UdM"
-
-#~ msgid "Display Name"
-#~ msgstr "Nome visualizzato"
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "Last Modified on"
-#~ msgstr "Ultima modifica il"
-
-#~ msgid "Open Order"
-#~ msgstr "Apri ordine"
-
-#~ msgid "Ordered"
-#~ msgstr "Ordinato"
-
-#~ msgid "Ordered Qty"
-#~ msgstr "Q.tà ordinata"
-
-#~ msgid "To Invoice"
-#~ msgstr "Da fatturare"
