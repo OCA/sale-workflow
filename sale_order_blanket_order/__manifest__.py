@@ -11,6 +11,7 @@
     "depends": [
         "sale_manual_delivery",
     ],
+    "excludes": ["sale_blanket_order"],
     "data": [
         "views/sale_order.xml",
         "views/sale_order_line.xml",
