@@ -65,6 +65,16 @@ Contributors
 
    -  Jonathan Oscategui Taza <info@pesol.es>
 
+-  Khoi (Kien Kim) <khoikk@trobz.com>
+
+Other credits
+-------------
+
+The migration of this module from 17.0 to 18.0 was financially supported
+by:
+
+-  Camptocamp
+
 Maintainers
 -----------
 
