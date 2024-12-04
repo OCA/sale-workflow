@@ -5,7 +5,6 @@ from odoo import _, fields, models
 
 
 class ResPartner(models.Model):
-
     _inherit = "res.partner"
 
     wishlists_count = fields.Integer(
