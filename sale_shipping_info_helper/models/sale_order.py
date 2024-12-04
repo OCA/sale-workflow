@@ -65,4 +65,4 @@ class SaleOrder(models.Model):
                 }
             )
             for key in ["amount_total", "amount_untaxed", "amount_tax"]:
-                record["item_%s" % key] = record[key] - record["shipping_%s" % key]
+                record[f"item_{key}"] = record[key] - record[f"shipping_{key}"]
