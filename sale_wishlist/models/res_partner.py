@@ -1,7 +1,7 @@
 # Copyright 2019 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, fields, models
+from odoo import fields, models
 
 
 class ResPartner(models.Model):
@@ -31,7 +31,7 @@ class ResPartner(models.Model):
         action = self.env["ir.actions.act_window"]._for_xml_id(xmlid)
         action.update(
             {
-                "name": _("Wishlists"),
+                "name": self.env._("Wishlists"),
                 "domain": self._wishlist_domain(),
                 "context": {
                     "default_typology": "wishlist",
