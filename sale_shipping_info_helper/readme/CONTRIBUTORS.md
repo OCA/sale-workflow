@@ -4,3 +4,4 @@
 - Simone Orsi \<<simone.orsi@camptocamp.com>\>
 - [Pesol](https://www.pesol.es):
   - Jonathan Oscategui Taza \<<info@pesol.es>\>
+- Khoi (Kien Kim) \<<khoikk@trobz.com>\>

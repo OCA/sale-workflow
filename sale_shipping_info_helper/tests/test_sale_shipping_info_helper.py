@@ -2,11 +2,11 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-from odoo.tests import Form, common
+from odoo.tests import Form, TransactionCase
 from odoo.tools import float_compare
 
 
-class TestDeliveryCost(common.TransactionCase):
+class TestDeliveryCost(TransactionCase):
     def setUp(self):
         super().setUp()
         self.tax_model = self.env["account.tax"]
