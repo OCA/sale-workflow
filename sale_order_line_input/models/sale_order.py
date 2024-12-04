@@ -17,12 +17,32 @@ class SaleOrderLine(models.Model):
         help="Technical field to force company or get it "
         "from env user if order don't exist.",
     )
+    company_price_amount = fields.Monetary(compute="_compute_company_price_amount")
+    company_price_tax_incl_excl = fields.Monetary(
+        compute="_compute_company_price_tax_incl_excl"
+    )
 
     @api.depends("order_id")
     def _compute_force_company_id(self):
         """Related company is not computed already when we click create new line"""
         for line in self:
             line.force_company_id = line.order_id.company_id or self.env.company
+
+    @api.depends("force_company_id", "price_total", "price_subtotal")
+    def _compute_company_price_amount(self):
+        for line in self:
+            if line.force_company_id.account_price_include == "tax_included":
+                line.company_price_amount = line.price_total
+            else:
+                line.company_price_amount = line.price_subtotal
+
+    @api.depends("force_company_id", "price_total", "price_subtotal")
+    def _compute_company_price_tax_incl_excl(self):
+        for line in self:
+            if line.force_company_id.account_price_include == "tax_included":
+                line.company_price_tax_incl_excl = line.price_subtotal
+            else:
+                line.company_price_tax_incl_excl = line.price_total
 
     def _compute_name(self):
         # A NewId is needed to set the product for the parent method to set
@@ -51,7 +71,3 @@ class SaleOrderLine(models.Model):
             onchange_method(new_so)
         order_vals = new_so._convert_to_write(new_so._cache)
         self.order_id = SaleOrder.create(order_vals)
-
-    def action_sale_order_form(self):
-        self.ensure_one()
-        return self.order_id.get_formview_action()
