@@ -1,6 +1,6 @@
-===================================
-Sale Product Set Packaging Quantity
-===================================
+===========================
+Sales Product Set Packaging
+===========================
 
 .. 
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -66,11 +66,13 @@ Contributors
 -  Son (Ho Dac) <hodacson.6491@gmail.com>
 -  Phuc (Tran Thanh) phuc@trobz.com
 -  Simone Orsi <simone.orsi@camptocamp.com>
+-  Tris Doan <trisdoan@trobz.com>
 
 Other credits
 -------------
 
-The development of this module has been financially supported by:
+The development and migration of this module has been financially
+supported by:
 
 -  Camptocamp
 
