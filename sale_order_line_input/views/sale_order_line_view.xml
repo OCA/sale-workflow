@@ -5,11 +5,11 @@
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="view_sales_order_line_input_tree" model="ir.ui.view">
-        <field name="name">sale.order.line.input.tree.</field>
+        <field name="name">sale.order.line.input.list.view</field>
         <field name="model">sale.order.line</field>
         <field name="priority">20</field>
         <field name="arch" type="xml">
-            <tree
+            <list
                 decoration-info="invoice_status == 'to invoice'"
                 decoration-warning="state == 'draft'"
                 decoration-muted="state == 'cancel'"
@@ -19,7 +19,6 @@
             >
                 <!-- We do not display the type because we don't want the user to be bothered with
                 that information if he has no section or note. -->
-                <field name="display_type" column_invisible="1" />
                 <field
                     name="force_company_id"
                     optional="hide"
@@ -34,14 +33,7 @@
                     readonly="order_id"
                     domain="[('state', '!=', 'cancel'),('company_id', '=', company_id)]"
                     force_save="1"
-                    options='{"no_open": True, "no_create": True}'
-                />
-                <button
-                    title="Open order"
-                    name="action_sale_order_form"
-                    type="object"
-                    icon="fa-external-link"
-                    class="oe_stat_button"
+                    options='{"no_create": True}'
                 />
                 <field
                     name="order_partner_id"
@@ -51,13 +43,12 @@
                     readonly="order_partner_id and order_id"
                 />
                 <field name="write_date" widget="date" optional="hide" />
-                <field name="product_uom_category_id" column_invisible="1" />
-                <field name="product_type" column_invisible="1" />
-                <field name="product_updatable" column_invisible="1" />
+                <!-- The product_id field does not have optional="hide" and widget="sol_product_many2one" intentionally because it is not compatible outside the sales order form view.. !-->
                 <field
                     name="product_id"
+                    string="Product Variant"
                     readonly="not product_updatable"
-                    required="not display_type"
+                    required="not display_type and not is_downpayment"
                     force_save="1"
                     context="{
                         'partner_id': order_partner_id,
@@ -66,20 +57,19 @@
                         'uom':product_uom,
                         'company_id': company_id,
                         'default_lst_price': price_unit,
-                        'default_description_sale': name
+                        'default_uom_id': product_uom,
                     }"
                     options="{
                         'no_open': True,
                     }"
-                    domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', company_id)]"
-                    widget="sol_product_many2one"
+                    domain="[('sale_ok', '=', True)]"
                 />
+                <!-- The product_template_id field has column_invisible=1 intentionally because it is not compatible outside the sales order form view. !-->
                 <field
                     name="product_template_id"
                     string="Product"
-                    column_invisible="1"
-                    readonly="not product_updatable"
-                    required="not display_type"
+                    readonly="id and not product_updatable"
+                    required="not display_type and not is_downpayment"
                     context="{
                         'partner_id': order_partner_id,
                         'quantity': product_uom_qty,
@@ -87,21 +77,24 @@
                         'uom':product_uom,
                         'company_id': company_id,
                         'default_list_price': price_unit,
-                        'default_description_sale': name
+                        'default_uom_id': product_uom,
                     }"
                     options="{
                         'no_open': True,
                     }"
-                    domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', company_id)]"
+                    optional="show"
+                    domain="[('sale_ok', '=', True)]"
                     widget="sol_product_many2one"
+                    column_invisible="True"
+                    placeholder="Type to find a product..."
                 />
-                <field name="name" widget="section_and_note_text" optional="show" />
+                <field name="name" widget="sol_text" optional="show" />
                 <field
                     name="analytic_distribution"
                     widget="analytic_distribution"
                     optional="hide"
                     groups="analytic.group_analytic_accounting"
-                    options="{'product_field': 'product_id', 'business_domain': 'sale_order'}"
+                    options="{'product_field': 'product_id', 'business_domain': 'sale_order', 'amount_field': 'price_subtotal'}"
                 />
                 <field
                     name="product_uom_qty"
@@ -114,6 +107,7 @@
                         'uom': product_uom,
                         'company_id': company_id
                     }"
+                    readonly="is_downpayment"
                 />
                 <field
                     name="qty_delivered"
@@ -121,36 +115,35 @@
                     decoration-bf="(not display_type and invoice_status == 'to invoice')"
                     string="Delivered"
                     invisible="state != 'sale'"
-                    readonly="qty_delivered_method != 'manual'"
+                    readonly="qty_delivered_method != 'manual' or is_downpayment"
                     optional="show"
                 />
-                <field name="qty_delivered_method" column_invisible="1" />
                 <field
                     name="qty_invoiced"
                     decoration-info="(not display_type and invoice_status == 'to invoice')"
                     decoration-bf="(not display_type and invoice_status == 'to invoice')"
-                    invisible="state != 'sale'"
                     string="Invoiced"
+                    invisible="state != 'sale'"
                     optional="show"
                 />
-                <field name="qty_to_invoice" column_invisible="1" />
-                <field name="product_uom_readonly" column_invisible="1" />
                 <field name="product_uom" column_invisible="1" />
                 <field
                     name="product_uom"
                     force_save="1"
                     string="UoM"
                     readonly="product_uom_readonly"
-                    required="not display_type"
+                    required="not display_type and not is_downpayment"
                     context="{'company_id': company_id}"
                     groups="uom.group_uom"
                     options='{"no_open": True}'
+                    width="60px"
                     optional="show"
                 />
                 <field
                     name="customer_lead"
                     optional="hide"
-                    readonly="state not in ('draft', 'sent', 'sale')"
+                    width="80px"
+                    readonly="state not in ['draft', 'sent', 'sale'] or is_downpayment"
                 />
                 <field
                     name="product_packaging_qty"
@@ -161,7 +154,7 @@
                 <field
                     name="product_packaging_id"
                     invisible="not product_id"
-                    context="{'default_product_id': product_id, 'tree_view_ref':'product.product_packaging_tree_view', 'form_view_ref':'product.product_packaging_form_view'}"
+                    context="{'default_product_id': product_id, 'list_view_ref':'product.product_packaging_tree_view', 'form_view_ref':'product.product_packaging_form_view'}"
                     groups="product.group_stock_packaging"
                     optional="show"
                 />
@@ -170,37 +163,33 @@
                     name="tax_id"
                     widget="many2many_tags"
                     options="{'no_create': True}"
-                    domain="[('type_tax_use','=','sale'),('company_id','=',company_id)]"
+                    domain="[('type_tax_use', '=', 'sale'), ('company_id', 'parent_of', company_id), ('country_id', '=', tax_country_id)]"
                     context="{'active_test': True}"
-                    readonly="qty_invoiced &gt; 0"
+                    readonly="qty_invoiced &gt; 0 or is_downpayment"
                     optional="show"
                 />
                 <field
                     name="discount"
                     string="Disc.%"
-                    groups="product.group_discount_per_so_line"
+                    groups="sale.group_discount_per_so_line"
+                    width="50px"
                     optional="show"
                 />
-                <field name="is_downpayment" column_invisible="1" />
-                <field name="tax_calculation_rounding_method" column_invisible="1" />
+                <!-- There are 2 "Amount" fields (price_subtotal + price_total), and they are shown according to the option defined in the company in the account_price_include field, we don't want to show always 2 columns and only 1 has the right data, therefore, the new company_price_amount field reflects the right data of each row. !-->
                 <field
-                    name="price_subtotal"
-                    widget="monetary"
+                    name="company_price_amount"
                     invisible="is_downpayment"
+                    string="Amount"
                 />
+                <!-- Optional amounts -->
+                <!-- There are 2 "similar" fields (price_total + price_subtotal), and they are shown according to the option defined in the company in the account_price_include field, we don't want to show always 2 columns and only 1 has the right data, therefore, the new company_price_tax_incl_excl field reflects the right data of each row. !-->
                 <field
-                    name="price_total"
-                    widget="monetary"
-                    invisible="is_downpayment and tax_calculation_rounding_method == 'round_globally'"
+                    name="company_price_tax_incl_excl"
                     optional="hide"
+                    invisible="is_downpayment"
+                    string="Total"
                 />
-                <field name="state" column_invisible="1" />
-                <field name="invoice_status" column_invisible="1" />
-                <field name="currency_id" column_invisible="1" />
-                <field name="price_tax" column_invisible="1" />
-                <field name="company_id" column_invisible="1" />
-                <field name="pricelist_id" column_invisible="1" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_sales_order_line_filter" model="ir.ui.view">
@@ -251,7 +240,7 @@
         <field name="name">Sales Orders Lines</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order.line</field>
-        <field name="view_mode">tree,form,pivot,graph</field>
+        <field name="view_mode">list,form,pivot,graph</field>
         <field name="view_id" ref="view_sales_order_line_input_tree" />
     </record>
     <menuitem

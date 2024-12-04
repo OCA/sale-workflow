@@ -114,12 +114,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_order_line_input.view_sales_order_line_input_tree
 msgid "UoM"
 msgstr "UdM"
-
-#~ msgid "Ordered"
-#~ msgstr "Pedido"
-
-#~ msgid "Ordered Qty"
-#~ msgstr "Ctdad pedida"
-
-#~ msgid "To Invoice"
-#~ msgstr "A facturar"
