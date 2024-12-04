@@ -50,13 +50,13 @@ class SaleOrder(models.Model):
     @api.depends("amount_total", "amount_untaxed")
     def _compute_shipping(self):
         for record in self:
-            shipping_amount_untaxed = shipping_amount_total = shipping_amount_tax = 0
-            for line in record.order_line:
-                if not line._is_delivery():
-                    continue
-                shipping_amount_untaxed += line.price_subtotal
-                shipping_amount_total += line.price_total
-                shipping_amount_tax += line.price_tax
+            # Get delivery lines
+            delivery_lines = record.order_line.filtered(lambda x: x._is_delivery())
+
+            # Compute shipping amounts
+            shipping_amount_untaxed = sum(delivery_lines.mapped("price_subtotal"))
+            shipping_amount_total = sum(delivery_lines.mapped("price_total"))
+            shipping_amount_tax = sum(delivery_lines.mapped("price_tax"))
             record.update(
                 {
                     "shipping_amount_untaxed": shipping_amount_untaxed,
