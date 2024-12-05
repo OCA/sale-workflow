@@ -4,14 +4,16 @@
     <record id="product_template_form_view" model="ir.ui.view">
         <field name="name">product.template.form.view</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="sale_by_packaging.product_template_form_view" />
+        <field
+            name="inherit_id"
+            ref="sell_only_by_packaging.product_template_form_view"
+        />
         <field name="arch" type="xml">
             <label for="sell_only_by_packaging" position="after">
-                <field name="sell_only_by_packaging_prod_set_tocheck" invisible="1" />
                 <div
                     class="alert alert-warning"
                     role="alert"
-                    attrs="{'invisible': [('sell_only_by_packaging_prod_set_tocheck', '=', False)]}"
+                    invisible="not sell_only_by_packaging_prod_set_tocheck"
                 >
                     There are product set lines associated to this product
                     which do not have a packaging associated.

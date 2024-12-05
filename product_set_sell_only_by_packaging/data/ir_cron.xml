@@ -4,7 +4,6 @@
         <field name='name'>Check sale by packaging on wishlist lines</field>
         <field name='interval_number'>30</field>
         <field name='interval_type'>minutes</field>
-        <field name="numbercall">-1</field>
         <field name="active" eval="True" />
         <field name="model_id" ref="sale_product_set.model_product_set_line" />
         <field name="state">code</field>

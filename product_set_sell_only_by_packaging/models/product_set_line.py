@@ -4,7 +4,7 @@
 import logging
 from collections import defaultdict
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 from odoo.osv import expression
 
 _logger = logging.getLogger(__name__)
@@ -13,12 +13,9 @@ _logger = logging.getLogger(__name__)
 class ProductSetLine(models.Model):
     _inherit = "product.set.line"
 
-    # Just for UI purpose
     sell_only_by_packaging = fields.Boolean(related="product_id.sell_only_by_packaging")
 
-    # The warning is because field "sell_only_by_packaging" is related,
-    # non-store, non-inherit so not writeable
-    @api.constrains("sell_only_by_packaging", "product_packaging_id")
+    @api.constrains("product_id", "product_packaging_id")
     def _check_sell_only_by_packaging(self):
         errored = self.filtered(
             lambda x: x.product_id.sell_only_by_packaging and not x.product_packaging_id
@@ -29,9 +26,10 @@ class ProductSetLine(models.Model):
             )
 
     def _check_sell_only_by_packaging_err_msg(self, lines):
-        return _(
-            "The following product(s) can be sold only by packaging: \n   %s"
-        ) % ", ".join(lines.mapped("product_id.display_name"))
+        return self.env._(
+            "The following product(s) can be sold only by packaging: \n   %s",
+            ", ".join(lines.mapped("product_id.display_name")),
+        )
 
     @api.model
     def cron_check_packaging(self):
@@ -50,7 +48,7 @@ class ProductSetLine(models.Model):
         # or have no packaging
         line_domain = expression.OR(
             [
-                [("product_packaging_id.can_be_sold", "=", False)],
+                [("product_packaging_id.sales", "=", False)],
                 [
                     ("product_packaging_id", "=", False),
                     ("product_id.sell_only_by_packaging", "=", True),
@@ -80,5 +78,5 @@ class ProductSetLine(models.Model):
 
     def _get_product_first_valid_packaging(self, product):
         return fields.first(
-            product.packaging_ids.filtered(lambda x: x.can_be_sold).sorted("qty")
+            product.packaging_ids.filtered(lambda x: x.sales).sorted("qty")
         )

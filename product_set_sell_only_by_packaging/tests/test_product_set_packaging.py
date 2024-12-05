@@ -3,15 +3,16 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
 from odoo import exceptions
-from odoo.tests import common
+
+from odoo.addons.product.tests.common import ProductCommon
 
 
-class TestProductSetPackaging(common.SavepointCase):
+class TestProductSetPackaging(ProductCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-        cls.line = cls.env.ref("sale_product_set.product_set_line_computer_3")
+        cls.line = cls.env.ref("product_set.product_set_line_computer_3")
         cls.packaging = cls.env["product.packaging"].create(
             {"name": "Box", "product_id": cls.line.product_id.id, "qty": 10}
         )
@@ -59,10 +60,10 @@ class TestProductSetPackaging(common.SavepointCase):
         )
 
     def test_cron_check_can_be_sold(self):
-        self.assertTrue(self.packaging.can_be_sold)
-        self.assertTrue(self.packaging2.can_be_sold)
+        self.assertTrue(self.packaging.sales)
+        self.assertTrue(self.packaging2.sales)
         self.assertEqual(self.line.product_packaging_id, self.packaging)
-        self.packaging.can_be_sold = False
+        self.packaging.sales = False
         self.env["product.set.line"].cron_check_packaging()
         self.assertEqual(self.line.product_packaging_id, self.packaging2)
 
