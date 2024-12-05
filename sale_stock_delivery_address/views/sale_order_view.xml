@@ -5,10 +5,10 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/tree" position="inside">
+            <xpath expr="//field[@name='order_line']/list" position="inside">
                 <field
                     name="dest_address_id"
-                    attrs="{'readonly': [('product_updatable', '=', False)]}"
+                    readonly="context.get('product_updatable')"
                 />
             </xpath>
             <xpath
@@ -17,7 +17,7 @@
             >
                 <field
                     name="dest_address_id"
-                    attrs="{'readonly': [('product_updatable', '=', False)]}"
+                    readonly="context.get('product_updatable')"
                 />
             </xpath>
         </field>
@@ -33,7 +33,7 @@
             <field name="route_id" position="after">
                 <field
                     name="dest_address_id"
-                    attrs="{'readonly': [('product_updatable', '=', False)]}"
+                    readonly="context.get('product_updatable')"
                 />
                 <field name="product_updatable" invisible="1" />
             </field>

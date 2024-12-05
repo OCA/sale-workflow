@@ -29,7 +29,7 @@ Sale Stock Delivery Address
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module allows to specify a different delivery address per sales
-order line, splitting deliveries if needed. Also you can specify
+order line, splitting deliveries if needed. Also, you can specify
 different stock locations associated to those addresses, then the sales
 order procurements will be run from this location.
 
@@ -41,7 +41,29 @@ order procurements will be run from this location.
 Usage
 =====
 
-When entering a sales order line specify a *Destination Address*.
+1. Activate the developer mode
+
+2. Add different addresses to one partner |partner_locations|
+
+3. The rules associated with those destination locations should have the
+   "Destination location origin from rule" set to True. When set to True
+   the destination location of the stock.move will be the rule.
+   Otherwise, it takes it from the picking type. |rule|
+
+4. When entering a sales order line specify a *Destination Address*.
+   |sale order destination address| The deliveries will be split with
+   two different destination locations: |Transfers|
+
+5. Specify different stock locations associated to those addresses
+   |Source Location| The sales order procurements will be run from this
+   location |Transfers 2|
+
+.. |partner_locations| image:: https://raw.githubusercontent.com/OCA/sale-workflow/18.0/sale_stock_delivery_address/static/description/partner_locations.gif
+.. |rule| image:: https://raw.githubusercontent.com/OCA/sale-workflow/18.0/sale_stock_delivery_address/static/description/img_rule.png
+.. |sale order destination address| image:: https://raw.githubusercontent.com/OCA/sale-workflow/18.0/sale_stock_delivery_address/static/description/sale_order_destination_address.gif
+.. |Transfers| image:: https://raw.githubusercontent.com/OCA/sale-workflow/18.0/sale_stock_delivery_address/static/description/img_transfers_01.png
+.. |Source Location| image:: https://raw.githubusercontent.com/OCA/sale-workflow/18.0/sale_stock_delivery_address/static/description/source_location.png
+.. |Transfers 2| image:: https://raw.githubusercontent.com/OCA/sale-workflow/18.0/sale_stock_delivery_address/static/description/img_transfers_02.png
 
 Bug Tracker
 ===========
