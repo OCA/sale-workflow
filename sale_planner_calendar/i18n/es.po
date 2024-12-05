@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-17 14:09+0000\n"
-"PO-Revision-Date: 2024-11-17 15:17+0100\n"
+"POT-Creation-Date: 2026-04-21 09:29+0000\n"
+"PO-Revision-Date: 2026-04-21 11:33+0200\n"
 "Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.9\n"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_kanban
@@ -49,7 +49,7 @@ msgstr "<span class=\"o_stat_text\">Base imponible</span>"
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_rating_form
 msgid "Accept"
-msgstr ""
+msgstr "Aceptar"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_needaction
@@ -78,6 +78,7 @@ msgid "Amount"
 msgstr "Importe"
 
 #. module: sale_planner_calendar
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_change_hour_form
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_issue_form
 msgid "Apply"
 msgstr "Aplicar"
@@ -147,6 +148,7 @@ msgid "Calendar planner"
 msgstr "Rutero"
 
 #. module: sale_planner_calendar
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_change_hour_form
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_form
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_issue_form
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_rating_form
@@ -170,6 +172,13 @@ msgstr "Iconos categorías"
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
 msgid "Change calendar event status by adding a previous rating"
 msgstr ""
+"Cambiar el estado de un evento del calendario añadiendo una valoración "
+"anterior"
+
+#. module: sale_planner_calendar
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
+msgid "Change hour"
+msgstr "Cambiar la hora"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__partner_city
@@ -302,6 +311,11 @@ msgid "Due"
 msgstr "Deuda"
 
 #. module: sale_planner_calendar
+#: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__invoice_date_due
+msgid "Due Date"
+msgstr "Fecha vencimiento"
+
+#. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event_type__duration
 msgid "Duration"
 msgstr "Duración"
@@ -340,6 +354,12 @@ msgstr "Inicio del evento"
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__event_total_count
 msgid "Event Total Count"
 msgstr "Cuenta evento total"
+
+#. module: sale_planner_calendar
+#: model:ir.model.fields,field_description:sale_planner_calendar.field_res_company__sale_planner_done_on_sale_confirm
+#: model:ir.model.fields,field_description:sale_planner_calendar.field_res_config_settings__sale_planner_done_on_sale_confirm
+msgid "Event done when confirm sale"
+msgstr "Evento completado al confirmar la venta"
 
 #. module: sale_planner_calendar
 #: model:ir.actions.server,name:sale_planner_calendar.action_sale_planner_calendar_summary_today
@@ -806,9 +826,19 @@ msgid "Planner salesperson"
 msgstr "Comercial de rutero"
 
 #. module: sale_planner_calendar
+#: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_product_variant
+msgid "Product Variants"
+msgstr "Variantes de producto"
+
+#. module: sale_planner_calendar
+#: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_product_template
+msgid "Products"
+msgstr "Productos"
+
+#. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
 msgid "Rating"
-msgstr ""
+msgstr "Valoración"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__reassign_wiz_id
@@ -882,7 +912,7 @@ msgstr "Hora de corte pedidos rutero"
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__sale_planner_rating
 msgid "Sale Planner Rating"
-msgstr ""
+msgstr "Valoración del rutero"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__sale_planner_state
@@ -907,6 +937,14 @@ msgid "Sale planner calendar Wizard"
 msgstr "Asistente de planificación"
 
 #. module: sale_planner_calendar
+#: model:ir.actions.act_window,name:sale_planner_calendar.action_sale_planner_calendar_change_hour
+#, fuzzy
+#| msgid "Sale planner calendar Wizard"
+msgid "Sale planner calendar change hour"
+msgstr "Asistente de planificación"
+
+#. module: sale_planner_calendar
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_change_hour_form
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_form
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_issue_form
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_rating_form
@@ -936,7 +974,7 @@ msgstr "Tipo incidencia rutero"
 #. module: sale_planner_calendar
 #: model:ir.actions.act_window,name:sale_planner_calendar.action_sale_planner_calendar_rating
 msgid "Sale planner calendar rating"
-msgstr ""
+msgstr "Valoración del rutero"
 
 #. module: sale_planner_calendar
 #: model:ir.model,name:sale_planner_calendar.model_sale_planner_calendar_reassign_line_wiz
@@ -1042,6 +1080,13 @@ msgid "Send invitations to attendees when a planner event is created"
 msgstr ""
 "Enviar un correo de invitación a los asistentes cuando una planificación es "
 "creada"
+
+#. module: sale_planner_calendar
+#: model_terms:ir.ui.view,arch_db:sale_planner_calendar.res_config_settings_view_form
+msgid "Set event as done when related sale order is confirmed."
+msgstr ""
+"Establecer evento a realizado cuando se confirma el pedido de venta "
+"relacionado."
 
 #. module: sale_planner_calendar
 #: model:ir.actions.server,name:sale_planner_calendar.action_set_planner_calendar_event

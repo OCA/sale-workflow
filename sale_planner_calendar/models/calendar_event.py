@@ -228,14 +228,23 @@ class CalendarEvent(models.Model):
         for rec in self:
             duration = rec.duration
             date = self._get_hour_tz_offset()
+            days_diff = 0
+            if rec.hour < 0:
+                days_diff = -1
+                rec.hour += 24
+            elif rec.hour > 23:
+                days_diff = 1
+                rec.hour -= 24
             new_time = date.replace(
                 hour=int(rec.hour), minute=int(round((rec.hour % 1) * 60))
             )
+            if days_diff:
+                new_time += timedelta(days=days_diff)
             # Force to onchange get correct value
             new_time = new_time.astimezone(pytz.utc).replace(tzinfo=None)
             rec.write(
                 {
-                    "recurrence_update": "all_events",
+                    "recurrence_update": rec.recurrence_update,
                     "start": new_time,
                     "stop": new_time + timedelta(minutes=round((duration or 0.5) * 60)),
                 }
@@ -387,6 +396,16 @@ class CalendarEvent(models.Model):
         return action
 
     def action_apply_issue(self):
+        pass
+
+    def action_open_change_hour_wiz(self):
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "sale_planner_calendar.action_sale_planner_calendar_change_hour"
+        )
+        action["res_id"] = self.id
+        return action
+
+    def action_apply_change_hour_wiz(self):
         pass
 
     def action_open_rating(self):

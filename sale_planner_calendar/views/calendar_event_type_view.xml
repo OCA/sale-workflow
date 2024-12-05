@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="calendar.view_calendar_event_type_tree" />
         <field name="arch" type="xml">
             <field name="name" position="after">
-                <field name="duration" />
+                <field name="duration" widget="float_time" />
                 <field name="icon" />
             </field>
         </field>
