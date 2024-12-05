@@ -19,10 +19,10 @@
                     If you don't take any action,
                     a cron will assign such lines to the first available packaging.
                     <button
-                        class="oe_link"
-                        type="object"
-                        name="action_view_product_set_lines_to_check"
-                    >View all lines</button>
+                    class="oe_link"
+                    type="object"
+                    name="action_view_product_set_lines_to_check"
+                >View all lines</button>
                 </div>
             </label>
         </field>
