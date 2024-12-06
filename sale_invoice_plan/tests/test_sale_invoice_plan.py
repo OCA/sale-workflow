@@ -22,22 +22,22 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
             "mail_create_nolog": True,
         }
 
-        # Create base account to simulate a chart of account
-        user_type_payable = cls.env.ref("account.data_account_type_payable")
+        # Create base account to simulate a chart of account for payable account
+        user_type_payable = cls.company_data["default_account_payable"]
         cls.account_payable = cls.env["account.account"].create(
             {
                 "code": "NC1110",
                 "name": "Test Payable Account",
-                "user_type_id": user_type_payable.id,
+                "account_type": user_type_payable.account_type,
                 "reconcile": True,
             }
         )
-        user_type_receivable = cls.env.ref("account.data_account_type_receivable")
+        # Create base account to simulate a chart of account for receivable account
         cls.account_receivable = cls.env["account.account"].create(
             {
                 "code": "NC1111",
                 "name": "Test Receivable Account",
-                "user_type_id": user_type_receivable.id,
+                "account_type": "asset_receivable",
                 "reconcile": True,
             }
         )
@@ -92,12 +92,11 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
     @classmethod
     def setUpClassicProducts(cls):
         # Create an expense journal
-        user_type_income = cls.env.ref("account.data_account_type_direct_costs")
         cls.account_income_product = cls.env["account.account"].create(
             {
-                "code": "INCOME_PROD111",
-                "name": "Icome - Test Account",
-                "user_type_id": user_type_income.id,
+                "code": "4.0.0.0.0",
+                "name": "Income - Test Account",
+                "account_type": "income",
             }
         )
         # Create category
