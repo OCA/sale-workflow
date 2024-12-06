@@ -35,5 +35,4 @@
             eval="[(4, ref('sales_team_security.group_sale_team_manager'))]"
         />
     </record>
-
 </odoo>
