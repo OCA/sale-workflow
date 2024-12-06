@@ -82,6 +82,13 @@ class SaleOrderLine(models.Model):
         # run normal delivery rule on the blanket order. This will create the
         # move on the call off order for the qty not reserved IOW the qty to
         # deliver.
+        old_state = blanket_line.state
+        if old_state == "done":
+            # Auto done -> set to confirmed to allow the stock rule to run
+            blanket_line.state = "sale"
         blanket_line.with_context(
             disable_call_off_stock_rule=True
         )._action_launch_stock_rule(previous_product_uom_qty)
+        if old_state == "done":
+            # Restore the state
+            blanket_line.state = "done"
