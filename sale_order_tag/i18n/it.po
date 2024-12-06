@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* sale_order_tag
+# 	* sale_order_tag
 #
 msgid ""
 msgstr ""
@@ -78,11 +78,6 @@ msgid "Name"
 msgstr "Nome"
 
 #. module: sale_order_tag
-#: model:ir.model,name:sale_order_tag.model_sale_order
-msgid "Sale Order"
-msgstr "Ordine di Vendita"
-
-#. module: sale_order_tag
 #: model:ir.model,name:sale_order_tag.model_sale_order_tag
 msgid "Sale Order Tag"
 msgstr "Tag Ordine"
@@ -90,9 +85,15 @@ msgstr "Tag Ordine"
 #. module: sale_order_tag
 #: model:ir.actions.act_window,name:sale_order_tag.sale_order_tag_action
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order__so_tag_ids
+#: model:ir.ui.menu,name:sale_order_tag.sale_order_tag_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_tag.sale_order_tag_form_view
 msgid "Sale Order Tags"
 msgstr "Tags Ordine"
+
+#. module: sale_order_tag
+#: model:ir.model,name:sale_order_tag.model_sale_order
+msgid "Sales Order"
+msgstr ""
 
 #. module: sale_order_tag
 #: model:ir.model.fields,field_description:sale_order_tag.field_sale_order_tag__team_ids
@@ -105,16 +106,17 @@ msgid "Sequence"
 msgstr "Sequenza"
 
 #. module: sale_order_tag
-#: sql_constraint:sale.order.tag:0
+#: model:ir.model.constraint,message:sale_order_tag.constraint_sale_order_tag_name_uniq
 msgid "Tag name already exists!"
 msgstr "Il nome tag esiste già!"
-
-#. module: sale_order_tag
-#: model:ir.ui.menu,name:sale_order_tag.sale_order_tag_menu
-msgid "Tags"
-msgstr "Tags"
 
 #. module: sale_order_tag
 #: model_terms:ir.ui.view,arch_db:sale_order_tag.sale_order_tag_view_form
 msgid "tag..."
 msgstr "tag..."
+
+#~ msgid "Sale Order"
+#~ msgstr "Ordine di Vendita"
+
+#~ msgid "Tags"
+#~ msgstr "Tags"
