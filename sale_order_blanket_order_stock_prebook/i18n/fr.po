@@ -1,0 +1,49 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_blanket_order_stock_prebook
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-05 14:49+0000\n"
+"PO-Revision-Date: 2024-12-05 14:49+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_blanket_order_stock_prebook
+#: model:ir.model.fields.selection,name:sale_order_blanket_order_stock_prebook.selection__sale_order__blanket_reservation_strategy__at_confirm
+msgid "At Order Confirmation"
+msgstr "A la confirmation de la commande-cadre"
+
+#. module: sale_order_blanket_order_stock_prebook
+#: model:ir.model.fields,field_description:sale_order_blanket_order_stock_prebook.field_sale_order__blanket_reservation_strategy
+msgid "Reservation Strategy"
+msgstr "Stratégie de réservation"
+
+#. module: sale_order_blanket_order_stock_prebook
+#: model:ir.model,name:sale_order_blanket_order_stock_prebook.model_sale_order
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: sale_order_blanket_order_stock_prebook
+#: model:ir.model,name:sale_order_blanket_order_stock_prebook.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de bons de commande"
+
+#. module: sale_order_blanket_order_stock_prebook
+#: model:ir.model.fields,help:sale_order_blanket_order_stock_prebook.field_sale_order__blanket_reservation_strategy
+msgid ""
+"Specifies when the stock should be reserved for the blanket order.  When the"
+" strategy is 'At Order Confirmation', the stock is reserved when the blanket"
+" order is confirmed. When the strategy is 'At Call-off', the stock is "
+"reserved when the call-off order is confirmed."
+msgstr ""
+"Spécifie quand le stock doit être réservé pour la commande-cadre. Lorsque la"
+" stratégie est 'A la confirmation de la commande', le stock est réservé "
+"lorsque la commande-cadre est confirmée. Lorsque la stratégie est 'A "
+"l'appel', le stock est réservé lorsque la commande d'appel est confirmée."
