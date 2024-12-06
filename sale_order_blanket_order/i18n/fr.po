@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-04 15:55+0000\n"
-"PO-Revision-Date: 2024-12-04 15:55+0000\n"
+"POT-Creation-Date: 2024-12-05 08:35+0000\n"
+"PO-Revision-Date: 2024-12-05 08:35+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -28,12 +28,11 @@ msgid ""
 "<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
 "specific.\" groups=\"base.group_multi_company\"/>"
 msgstr ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Les valeurs sont spécifique à la "
-"société.\" groups=\"base.group_multi_company\"/>"
+"<span class=\"fa fa-lg fa-building-o\" title=\"Les valeurs sont spécifique à"
+" la société.\" groups=\"base.group_multi_company\"/>"
 
 #. module: sale_order_blanket_order
 #. odoo-python
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "A blanket order cannot have a blanket order."
@@ -42,14 +41,12 @@ msgstr "A une commande-cadre ne peut pas référencer une commande-cadre."
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
-msgid "A call-off order must have a blanket order."
+msgid "A call off order must have a blanket order."
 msgstr "Une commande d'appel doit référencer une commande-cadre."
 
 #. module: sale_order_blanket_order
 #. odoo-python
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "A normal order cannot have a blanket order."
@@ -103,29 +100,33 @@ msgstr "Ligne de commande d'appel"
 
 #. module: sale_order_blanket_order
 #: model:ir.model.fields.selection,name:sale_order_blanket_order.selection__sale_order__order_type__call_off
-msgid "Call-off Order"
+msgid "Call off Order"
 msgstr "Commande d'appel"
 
 #. module: sale_order_blanket_order
 #: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order__call_off_order_count
-msgid "Call-off Order Count"
+msgid "Call off Order Count"
 msgstr "Nbr de commandes d'appel"
 
 #. module: sale_order_blanket_order
 #: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order_line__call_off_line_ids
-msgid "Call-off Order Lines"
+msgid "Call off Order Lines"
 msgstr "Linges de commande d'appel"
 
 #. module: sale_order_blanket_order
 #: model:ir.actions.act_window,name:sale_order_blanket_order.action_calloffs
 #: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order__call_off_order_ids
 #: model:ir.ui.menu,name:sale_order_blanket_order.calloff_order_menu
-msgid "Call-off Orders"
+msgid "Call off Orders"
 msgstr "Commandes d'appel"
 
 #. module: sale_order_blanket_order
-#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_form_view
 #: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_line_form_view
+msgid "Call off lines"
+msgstr "Lignes d'appel"
+
+#. module: sale_order_blanket_order
+#: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_form_view
 msgid "Call-off lines"
 msgstr "Lignes d'appel"
 
@@ -168,7 +169,7 @@ msgstr "De"
 #. module: sale_order_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.res_config_settings_form_view
 msgid ""
-"Generate a call-off order from a sales order if possible when the sales "
+"Generate a call off order from a sales order if possible when the sales "
 "order is confirmed."
 msgstr ""
 "Générer une commande d'appel à partir d'une commande client si possible "
@@ -188,12 +189,12 @@ msgstr ""
 #. module: sale_order_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.res_config_settings_form_view
 msgid ""
-"If this option is enabled, a call-off order will be generated from a sale order if the sale order contains products\n"
-"                            that are part of an open blanket order. The call-off order will be generated with the same products and quantities as the\n"
+"If this option is enabled, a call off order will be generated from a sale order if the sale order contains products\n"
+"                            that are part of an open blanket order. The call off order will be generated with the same products and quantities as the\n"
 "                            sale order provided that the blanket order has enough available quantity. If the blanket order does not have enough available\n"
-"                            quantity, the call-off order will be generated with the available quantity and the original sale order line will be\n"
+"                            quantity, the call off order will be generated with the available quantity and the original sale order line will be\n"
 "                            split into two lines: one line with the available quantity and one line with the remaining quantity. All the lines related to\n"
-"                            a blanket order will be moved to a new call-off order and the new call-off order will be confirmed."
+"                            a blanket order will be moved to a new call off order and the new call off order will be confirmed."
 msgstr ""
 "Si cette option est activée, une commande d'appel sera générée à partir d'une commande client si la commande client contient des produits\n"
 "                            qui font partie d'une commande-cadre ouverte. La commande d'appel sera générée avec les mêmes produits et quantités que la\n"
@@ -204,7 +205,6 @@ msgstr ""
 
 #. module: sale_order_blanket_order
 #. odoo-python
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "Invalid reservation strategy for the blanket order %(ref)s."
@@ -224,22 +224,23 @@ msgstr "Commande de vente normale"
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "Only blanket orders can be confirmed as blanket orders."
-msgstr "Seules les commandes-cadre peuvent être confirmées en tant que commandes-cadre."
+msgstr ""
+"Seules les commandes-cadre peuvent être confirmées en tant que commandes-"
+"cadre."
 
 #. module: sale_order_blanket_order
 #. odoo-python
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
-msgid "Only call-off orders can be confirmed as call-off orders."
-msgstr "Seules les commandes d'appel peuvent être confirmées en tant que commandes d'appel."
+msgid "Only call off orders can be confirmed as call off orders."
+msgstr ""
+"Seules les commandes d'appel peuvent être confirmées en tant que commandes "
+"d'appel."
 
 #. module: sale_order_blanket_order
 #. odoo-python
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "Only normal orders can be split."
@@ -297,8 +298,10 @@ msgstr ""
 #. module: sale_order_blanket_order
 #: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__order_type
 #: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order_line__order_type
-msgid "Specifies the type of sale order: Normal, Blanket, or Call-off."
-msgstr "Spécifie le type de commande client : Normal, Commande-cadre ou Commande d'appel."
+msgid "Specifies the type of sale order: Normal, Blanket, or Call off."
+msgstr ""
+"Spécifie le type de commande client : Normal, Commande-cadre ou Commande "
+"d'appel."
 
 #. module: sale_order_blanket_order
 #: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__blanket_reservation_strategy
@@ -306,12 +309,12 @@ msgid ""
 "Specifies when the stock should be reserved for the blanket order.  When the"
 " strategy is 'At Order Confirmation', the stock is reserved when the blanket"
 " order is confirmed. When the strategy is 'At Call-off', the stock is "
-"reserved when the call-off order is confirmed."
+"reserved when the call off order is confirmed."
 msgstr ""
 "Spécifie quand le stock doit être réservé pour la commande-cadre. Lorsque la"
 " stratégie est 'A la confirmation de la commande', le stock est réservé "
-"lorsque la commande-cadre est confirmée. Lorsque la stratégie est 'A l'appel',"
-" le stock est réservé lorsque la commande d'appel est confirmée."
+"lorsque la commande-cadre est confirmée. Lorsque la stratégie est 'A "
+"l'appel', le stock est réservé lorsque la commande d'appel est confirmée."
 
 #. module: sale_order_blanket_order
 #: model:ir.model,name:sale_order_blanket_order.model_stock_move
@@ -330,41 +333,42 @@ msgstr "Règle de stock minimum"
 
 #. module: sale_order_blanket_order
 #: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order_line__blanket_line_id
-msgid "The blanket order line corresponding to this call-off order line."
-msgstr "La ligne de commande-cadre correspondant à cette ligne de commande d'appel."
+msgid "The blanket order line corresponding to this call off order line."
+msgstr ""
+"La ligne de commande-cadre correspondant à cette ligne de commande d'appel."
 
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
-msgid "The blanket order must be confirmed before creating a call-off order."
-msgstr "La commande-cadre doit être confirmée avant de créer une commande d'appel."
+msgid "The blanket order must be confirmed before creating a call off order."
+msgstr ""
+"La commande-cadre doit être confirmée avant de créer une commande d'appel."
 
 #. module: sale_order_blanket_order
 #: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__blanket_order_id
 #: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order_line__blanket_order_id
-msgid "The blanket order that this call-off order is related to."
+msgid "The blanket order that this call off order is related to."
 msgstr "La commande-cadre à laquelle cette commande d'appel est liée."
 
 #. module: sale_order_blanket_order
 #: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order_line__call_off_line_ids
-msgid "The call-off order lines linked to this blanket order line."
+msgid "The call off order lines linked to this blanket order line."
 msgstr "Les lignes de commande d'appel liées à cette ligne de commande-cadre."
 
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid ""
-"The call-off order must be within the validity period of the blanket order."
+"The call off order must be within the validity period of the blanket order."
 msgstr ""
-"La commande d'appel doit être dans la période de validité de la commande-cadre."
+"La commande d'appel doit être dans la période de validité de la commande-"
+"cadre."
 
 #. module: sale_order_blanket_order
 #: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__call_off_order_ids
-msgid "The call-off orders related to this blanket order."
+msgid "The call off orders related to this blanket order."
 msgstr "Les commandes d'appel liées à cette commande-cadre."
 
 #. module: sale_order_blanket_order
@@ -381,18 +385,16 @@ msgstr "La date de fin de la période de validité de la commande-cadre."
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid ""
 "The line %(line)s has been created from order %(order)s. (Qty moved: "
 "%(qty_deliverable)s)"
 msgstr ""
-"La ligne %(line)s a été créée à partir de la commande %(order)s. (Qté déplacée: "
-"%(qty_deliverable)s)"
+"La ligne %(line)s a été créée à partir de la commande %(order)s. (Qté "
+"déplacée: %(qty_deliverable)s)"
 
 #. module: sale_order_blanket_order
 #. odoo-python
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "The line %(line)s has been moved from order %(order)s."
@@ -401,18 +403,18 @@ msgstr "La ligne %(line)s a été déplacée de la commande %(order)s."
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
-msgid "The line %(line)s has been moved to a new call-off order %(call_off)s."
-msgstr "La ligne %(line)s a été déplacée vers une nouvelle commande d'appel %(call_off)s."
+msgid "The line %(line)s has been moved to a new call off order %(call_off)s."
+msgstr ""
+"La ligne %(line)s a été déplacée vers une nouvelle commande d'appel "
+"%(call_off)s."
 
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid ""
-"The line %(line)s has been partially moved to a new call-off order "
+"The line %(line)s has been partially moved to a new call off order "
 "%(call_off)s. (Qty moved: %(qty_deliverable)s)"
 msgstr ""
 "La ligne %(line)s a été partiellement déplacée vers une nouvelle commande "
@@ -420,24 +422,22 @@ msgstr ""
 
 #. module: sale_order_blanket_order
 #: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__call_off_order_count
-msgid "The number of call-off orders related to this blanket order."
+msgid "The number of call off orders related to this blanket order."
 msgstr "Le nombre de commandes d'appel liées à cette commande-cadre."
 
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
 #, python-format
 msgid ""
-"The price of a call-off order line must be 0.0. (Order: '%(order)s', "
+"The price of a call off order line must be 0.0. (Order: '%(order)s', "
 "Product: '%(product)s')"
 msgstr ""
-"Le prix d'une ligne de commande d'appel doit être de 0.0. (Commande: '%(order)s', "
-"Produit: '%(product)s')"
+"Le prix d'une ligne de commande d'appel doit être de 0.0. (Commande: "
+"'%(order)s', Produit: '%(product)s')"
 
 #. module: sale_order_blanket_order
 #. odoo-python
-#: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
 #: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
 #, python-format
 msgid ""
@@ -450,29 +450,28 @@ msgstr ""
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
 #, python-format
 msgid ""
 "The product is not part of linked blanket order. (Product: '%(product)s', "
 "Order: '%(order)s', Blanket Order: '%(blanket_order)s')"
 msgstr ""
-"Le produit ne fait pas partie de la commande-cadre liée. (Produit: '%(product)s', "
-"Commande: '%(order)s', Commande-cadre: '%(blanket_order)s')"
+"Le produit ne fait pas partie de la commande-cadre liée. (Produit: "
+"'%(product)s', Commande: '%(order)s', Commande-cadre: '%(blanket_order)s')"
 
 #. module: sale_order_blanket_order
 #: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order_line__call_off_remaining_qty
 msgid ""
-"The quantity remaining to consume by call-off orders in case of a blanket "
+"The quantity remaining to consume by call off orders in case of a blanket "
 "order. This quantity is the difference between the quantity not yet "
 "delivered or part of a pending delivery and the ordered quantity."
 msgstr ""
-"La quantité restante à consommer par les commandes d'appel en cas de commande-"
-"cadre. Cette quantité est la différence entre la quantité non encore livrée "
-"ou faisant partie d'une livraison en attente et la quantité commandée."
+"La quantité restante à consommer par les commandes d'appel en cas de "
+"commande-cadre. Cette quantité est la différence entre la quantité non "
+"encore livrée ou faisant partie d'une livraison en attente et la quantité "
+"commandée."
 
 #. module: sale_order_blanket_order
 #. odoo-python
-#: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
 #: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
 #, python-format
 msgid ""
@@ -493,7 +492,6 @@ msgstr "La date de début de la période de validité de la commande-cadre."
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "The validity end date is required for a blanket order."
 msgstr "La date de fin de validité est requise pour une commande-cadre."
@@ -501,14 +499,14 @@ msgstr "La date de fin de validité est requise pour une commande-cadre."
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "The validity end date must be greater than the validity start date."
-msgstr "La date de fin de validité doit être supérieure à la date de début de validité."
+msgstr ""
+"La date de fin de validité doit être supérieure à la date de début de "
+"validité."
 
 #. module: sale_order_blanket_order
 #. odoo-python
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "The validity start date is required for a blanket order."
