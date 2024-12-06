@@ -16,6 +16,7 @@
         "views/sale_order.xml",
         "views/sale_order_line.xml",
         "views/res_config_settings.xml",
+        "data/ir_cron.xml",
     ],
     "demo": [],
     "pre_init_hook": "pre_init_hook",

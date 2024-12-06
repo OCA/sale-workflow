@@ -4,7 +4,7 @@
 from collections import defaultdict
 from datetime import datetime
 
-from odoo import _, api, fields, models
+from odoo import Command, _, api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.osv import expression
 from odoo.osv.expression import FALSE_DOMAIN
@@ -88,6 +88,32 @@ class SaleOrder(models.Model):
         "Remaining Quantity', the system will automaticaly create a delivery order "
         "for the remaining quantity.",
     )
+    blanket_need_to_be_finalized = fields.Boolean(
+        string="Need to be Finalized",
+        help="Indicates if the blanket order needs to be finalized. This field is "
+        "a technical field used to manage the end-of-life of the blanket orders. "
+        "To avoid costly operations to determine if the blanket order needs to be "
+        "finalized once the validity period is reached, the system will set this "
+        "field to True when a blanket order is confirmed. To know if a blanket "
+        "order needs to be finalized, the system will search for the blanket "
+        "orders with this field set to True and the validity period reached."
+        "Once the blanket order is finalized, the system will set this field to "
+        "False. In this way, the DB will always contain less records to search "
+        "with this field set to True.",
+        default=False,
+    )
+
+    def init(self):
+        self._cr.execute(
+            """
+            CREATE INDEX IF NOT EXISTS
+                sale_order_blanket_order_to_finalize_index
+            ON
+                sale_order (blanket_need_to_be_finalized)
+            WHERE
+                blanket_need_to_be_finalized IS TRUE;
+        """
+        )
 
     @api.constrains("order_type", "blanket_order_id")
     def _check_order_type(self):
@@ -268,6 +294,7 @@ class SaleOrder(models.Model):
             )
         for order in self:
             order.commitment_date = order.blanket_validity_start_date
+        self.blanket_need_to_be_finalized = True
         self._blanket_order_reserve_stock()
 
     def _on_call_off_order_confirm(self):
@@ -456,6 +483,7 @@ class SaleOrder(models.Model):
         """Get the default values to create a new call-off order."""
         self.ensure_one()
         vals = {
+            "partner_id": self.partner_id.id,
             "order_type": "call_off",
             "blanket_order_id": blanket_order_id.id,
             "order_line": False,
@@ -495,3 +523,58 @@ class SaleOrder(models.Model):
         return self.env["sale.order"].search(
             self._get_blanket_order_candidates_domain(), order="id"
         )
+
+    def _cron_manage_blanket_order_eol(self):
+        """Manage the end-of-life of the blanket orders."""
+        blanket_orders = self.search(
+            [
+                ("order_type", "=", "blanket"),
+                ("state", "in", ("sale", "done")),
+                ("blanket_validity_end_date", "<", fields.Date.today()),
+                ("blanket_need_to_be_finalized", "=", True),
+            ]
+        )
+        blanket_orders._blanket_order_eol()
+
+    def _blanket_order_eol(self):
+        """End-of-life process for the blanket orders."""
+        self.filtered(
+            lambda order: order.blanket_eol_strategy == "deliver"
+        )._blanket_order_deliver_remaining_qty()
+        self.write({"blanket_need_to_be_finalized": False})
+
+    def _blanket_order_deliver_remaining_qty(self):
+        """Deliver the remaining quantity for the blanket orders.
+
+        We will create a call-off order for the remaining quantity of the blanket order.
+        and confirm it.
+        """
+        for record in self:
+            order_lines = []
+            for line in record.order_line:
+                if (
+                    float_compare(
+                        line.product_uom_qty,
+                        line.qty_delivered,
+                        precision_rounding=line.product_uom.rounding,
+                    )
+                    > 0
+                ):
+                    order_lines.append(
+                        Command.create(
+                            line._prepare_call_of_vals_to_deliver_blanket_remaining_qty()
+                        )
+                    )
+            if order_lines:
+                call_off_order = self.env["sale.order"].create(
+                    record._prepare_call_of_vals_to_deliver_blanket_remaining_qty()
+                )
+                call_off_order.order_line = order_lines
+                call_off_order.action_confirm()
+
+    def _prepare_call_of_vals_to_deliver_blanket_remaining_qty(self):
+        """Prepare the values to create a call-off order for the remaining quantity."""
+        self.ensure_one()
+        vals = self._get_default_call_off_order_values(self)
+        vals["commitment_date"] = self.blanket_validity_end_date
+        return vals

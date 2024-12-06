@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record
+        forcecreate="True"
+        id="ir_cron_sale_order_blanket_order_finalizer"
+        model="ir.cron"
+    >
+        <field name="name">Finalize expired sale blanket orders</field>
+        <field eval="True" name="active" />
+        <field name="model_id" ref="sale.model_sale_order" />
+        <field name="state">code</field>
+        <field name="code">model._cron_manage_blanket_order_eol()</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False" />
+        <field
+            name="nextcall"
+            eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 01:00:00')"
+        />
+    </record>
+</odoo>

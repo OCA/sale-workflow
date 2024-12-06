@@ -588,3 +588,17 @@ class SaleOrderLine(models.Model):
         )
         wizard.line_ids.quantity = qty_to_deliver
         wizard.confirm()
+
+    def _prepare_call_of_vals_to_deliver_blanket_remaining_qty(self):
+        """Prepare the values to create a new call-off order for the remaining quantity
+        to deliver on the blanket order line.
+        """
+        self.ensure_one()
+        if self.order_type != "blanket":
+            raise ValueError("This method is only valid for blanket order lines.")
+        return {
+            "product_id": self.product_id.id,
+            "product_uom_qty": self.call_off_remaining_qty,
+            "product_uom": self.product_uom.id,
+            "product_packaging_id": self.product_packaging_id.id,
+        }

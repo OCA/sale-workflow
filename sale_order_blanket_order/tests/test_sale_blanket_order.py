@@ -1,7 +1,10 @@
 # Copyright 2024 ACSONE SA/NV
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+import freezegun
+
 from odoo import Command
 from odoo.exceptions import ValidationError
+from odoo.tests.common import RecordCapturer
 
 from .common import SaleOrderBlanketOrderCase
 
@@ -84,3 +87,23 @@ class TestSaleBlanketOrder(SaleOrderBlanketOrderCase):
             self.blanket_so.blanket_validity_start_date,
         )
         self.assertFalse(self.blanket_so.order_line.move_ids)
+
+    def test_eol(self):
+        # Confirm the blanket order with reservation at call off
+        self.assertFalse(self.blanket_so.blanket_need_to_be_finalized)
+        self.blanket_so.blanket_eol_strategy = "deliver"
+        self.blanket_so.action_confirm()
+        self.assertTrue(self.blanket_so.blanket_need_to_be_finalized)
+        self.blanket_so.flush_recordset()
+        with RecordCapturer(
+            self.so_model, self.call_off_domain
+        ) as captured, freezegun.freeze_time("2026-12-31"):
+            self.so_model._cron_manage_blanket_order_eol()
+        self.assertFalse(self.blanket_so.blanket_need_to_be_finalized)
+        self.assertEqual(len(captured.records), 1)
+        for line in self.blanket_so.order_line:
+            self.assertEqual(line.call_off_remaining_qty, 0.0)
+            call_off = line.call_off_line_ids
+            self.assertEqual(len(call_off), 1)
+            self.assertEqual(call_off.product_uom_qty, line.product_uom_qty)
+            self.assertTrue(line.move_ids)
