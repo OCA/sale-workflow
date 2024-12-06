@@ -82,61 +82,6 @@ class SaleOrderLine(models.Model):
             """
         )
 
-    @api.constrains(
-        "state",
-        "blanket_order_id",
-        "order_type",
-        "product_id",
-        "product_uom_qty",
-        "display_type",
-    )
-    def _check_call_off_order_line(self):
-        """Check the constraints for call-off order lines.
-
-        The constraints are:
-        - The product must be part of the linked blanket order.
-        - The quantity to procure must be less than or equal to the quantity
-          remaining to deliver in the linked blanket order for this product.
-        """
-        matching_dict = self._get_blanket_lines_for_call_off_lines_dict()
-        for call_of_lines, blanket_lines in matching_dict.values():
-            if not blanket_lines:
-                line = call_of_lines[0]
-                raise ValidationError(
-                    _(
-                        "The product is not part of linked blanket order. "
-                        "(Product: '%(product)s', Order: '%(order)s', "
-                        "Blanket Order: '%(blanket_order)s')",
-                        product=line.product_id.display_name,
-                        order=line.order_id.name,
-                        blanket_order=line.blanket_order_id.name,
-                    )
-                )
-
-            qty_remaining_to_procure = sum(
-                blanket_lines.mapped("call_off_remaining_qty")
-            )
-            qty_to_procure = sum(call_of_lines.mapped("qty_to_deliver"))
-            if (
-                float_compare(
-                    qty_to_procure,
-                    qty_remaining_to_procure,
-                    precision_rounding=call_of_lines[0].product_uom.rounding,
-                )
-                > 0
-            ):
-                raise ValidationError(
-                    _(
-                        "The quantity to procure is greater than the quantity "
-                        "remaining to deliver in the linked blanket order for "
-                        "this product. (Product: '%(product)s', Order: "
-                        "'%(order)s', Blanket Order: '%(blanket_order)s')",
-                        product=call_of_lines[0].product_id.display_name,
-                        order=call_of_lines[0].order_id.name,
-                        blanket_order=call_of_lines[0].blanket_order_id.name,
-                    )
-                )
-
     @api.constrains("order_type", "price_unit")
     def _check_call_off_order_line_price(self):
         price_precision = self.env["decimal.precision"].precision_get("Product Price")
@@ -282,6 +227,52 @@ class SaleOrderLine(models.Model):
             ):
                 line.call_off_remaining_qty = new_call_off_remaining_qty
 
+    def _validate_blanket_lines_for_call_off_lines_dict(self, matching_dict):
+        """Validate the matching between call-off order lines and blanket order lines.
+
+        The constraints are:
+        - The product must be part of the linked blanket order.
+        - The quantity to procure must be less than or equal to the quantity
+          remaining to deliver in the linked blanket order for this product.
+        """
+        for call_of_lines, blanket_lines in matching_dict.values():
+            if not blanket_lines:
+                line = call_of_lines[0]
+                raise ValidationError(
+                    _(
+                        "The product is not part of linked blanket order. "
+                        "(Product: '%(product)s', Order: '%(order)s', "
+                        "Blanket Order: '%(blanket_order)s')",
+                        product=line.product_id.display_name,
+                        order=line.order_id.name,
+                        blanket_order=line.blanket_order_id.name,
+                    )
+                )
+
+            qty_remaining_to_procure = sum(
+                blanket_lines.mapped("call_off_remaining_qty")
+            )
+            qty_to_procure = sum(call_of_lines.mapped("product_uom_qty"))
+            if (
+                float_compare(
+                    qty_to_procure,
+                    qty_remaining_to_procure,
+                    precision_rounding=call_of_lines[0].product_uom.rounding,
+                )
+                > 0
+            ):
+                raise ValidationError(
+                    _(
+                        "The quantity to procure is greater than the quantity "
+                        "remaining to deliver in the linked blanket order for "
+                        "this product. (Product: '%(product)s', Order: "
+                        "'%(order)s', Blanket Order: '%(blanket_order)s')",
+                        product=call_of_lines[0].product_id.display_name,
+                        order=call_of_lines[0].order_id.name,
+                        blanket_order=call_of_lines[0].blanket_order_id.name,
+                    )
+                )
+
     def _get_call_off_line_to_blanked_line_matching_fields(self):
         """Get the fields used to match call-off order lines to blanket order lines.
 
@@ -293,14 +284,21 @@ class SaleOrderLine(models.Model):
         """
         return ["product_id", "product_packaging_id", "order_partner_id"]
 
-    def _get_blanket_lines_for_call_off_lines_dict(self):
+    def _get_blanket_lines_for_call_off_lines_dict(self, validate=True):
         """Get the matching blanket order lines for the call-off order lines.
 
         see `_match_lines_to_blanket` for more details.
         """
-        call_off_lines = self.filtered(lambda l: l.order_type == "call_off")
+        call_off_lines = self.filtered(
+            lambda l: l.order_type == "call_off"
+            and not l.display_type
+            and l.state != "cancel"
+        )
         blanket_lines = self.blanket_order_id.order_line
-        return self._match_lines_to_blanket(call_off_lines, blanket_lines)
+        matching_dict = self._match_lines_to_blanket(call_off_lines, blanket_lines)
+        if validate:
+            self._validate_blanket_lines_for_call_off_lines_dict(matching_dict)
+        return matching_dict
 
     def _to_blanket_line_matching_key(self):
         """Compute the matching key for the blanket order line.

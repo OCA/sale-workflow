@@ -234,7 +234,8 @@ class SaleOrder(models.Model):
         if blanket_orders:
             blanket_orders._on_blanket_order_confirm()
 
-        call_off_orders |= orders._split_for_blanket_order()
+        orders._split_for_blanket_order()
+
         if call_off_orders:
             call_off_orders._on_call_off_order_confirm()
         return super(SaleOrder, self.with_context(from_confirm=True))._action_confirm()

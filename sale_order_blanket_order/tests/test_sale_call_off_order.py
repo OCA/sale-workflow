@@ -68,52 +68,54 @@ class TestSaleCallOffOrder(SaleOrderBlanketOrderCase):
         )
         self.assertTrue(order)
 
+    @freezegun.freeze_time("2025-02-01")
     def test_order_line_constrains(self):
         self.blanket_so.action_confirm()
+
         order = self.env["sale.order"].create(
             {
                 "order_type": "call_off",
-                "date_order": "2025-02-01",
                 "partner_id": self.partner.id,
                 "blanket_order_id": self.blanket_so.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.product_3.id,
+                            "product_uom_qty": 10.0,
+                        }
+                    ),
+                ],
             }
         )
         with self.assertRaisesRegex(
             ValidationError,
             ("The product is not part of linked blanket order"),
-        ):
-            order.write(
-                {
-                    "order_line": [
-                        Command.create(
-                            {
-                                "product_id": self.product_3.id,
-                                "product_uom_qty": 10.0,
-                            }
-                        )
-                    ]
-                }
-            )
+        ), self.env.cr.savepoint():
+            order.action_confirm()
 
+        order = self.env["sale.order"].create(
+            {
+                "order_type": "call_off",
+                "partner_id": self.partner.id,
+                "blanket_order_id": self.blanket_so.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.product_2.id,
+                            "product_uom_qty": 100.0,
+                        }
+                    ),
+                ],
+            }
+        )
         with self.assertRaisesRegex(
             ValidationError,
             (
                 "The quantity to procure is greater than the quantity remaining "
                 "to deliver"
             ),
-        ):
-            order.write(
-                {
-                    "order_line": [
-                        Command.create(
-                            {
-                                "product_id": self.product_2.id,
-                                "product_uom_qty": 1000.0,
-                            }
-                        )
-                    ]
-                }
-            )
+        ), self.env.cr.savepoint():
+            order.action_confirm()
 
     def test_order_line_attributes(self):
         self.blanket_so.action_confirm()
