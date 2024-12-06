@@ -174,7 +174,17 @@ class SaleOrderLine(models.Model):
         - We exclude lines with no quantity remaining to procure since a new order could
             be created with the same product to cover a new need.
         """
-        self.flush_model()
+        self.flush_model(
+            [
+                "blanket_validity_start_date",
+                "blanket_validity_end_date",
+                "order_id",
+                "order_type",
+                "product_id",
+                "product_packaging_id",
+                "order_partner_id",
+            ]
+        )
         for rec in self:
             order = rec.order_id
             if (
