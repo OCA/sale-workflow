@@ -99,17 +99,3 @@ msgstr ""
 #: model:ir.model,name:sale_stock_picking_note.model_stock_picking
 msgid "Transfer"
 msgstr "Transfert"
-
-#~ msgid ""
-#~ "The notes will be added to the sales order and pickings and will be "
-#~ "printed on the delivery slip."
-#~ msgstr ""
-#~ "Les notes seront ajoutées aux bons de commande et transferts et seront "
-#~ "imprimées sur les bons de livraison."
-
-#~ msgid ""
-#~ "The notes will be added to the sales order and pickings but will not be "
-#~ "printed on the delivery slip."
-#~ msgstr ""
-#~ "Les notes seront ajoutées aux bons de commande et transferts mais ne "
-#~ "seront pas imprimées sur les bons de livraison."
