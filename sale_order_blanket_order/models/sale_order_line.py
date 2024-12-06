@@ -462,7 +462,9 @@ class SaleOrderLine(models.Model):
         if not self.env.context.get("call_off_split_process"):
             # When splitting a call-off line, we don't want to launch the stock rule
             # since it will be done after the split process
-            call_off_lines._launch_stock_rule_on_blanket_order(previous_product_uom_qty)
+            call_off_lines._forward_stock_rule_to_blanket_order(
+                previous_product_uom_qty
+            )
         return res
 
     def _link_to_blanket_order_line(self):
@@ -529,21 +531,18 @@ class SaleOrderLine(models.Model):
                         "the blanket order line."
                     )
 
-    def _launch_stock_rule_on_blanket_order(self, previous_product_uom_qty):
+    def _forward_stock_rule_to_blanket_order(self, previous_product_uom_qty):
         for line in self:
             line = line.with_context(call_off_sale_line_id=line.id)
             blanket_order = line.blanket_order_id
             if not blanket_order:
                 raise ValueError("A call-off order must have a blanket order.")
-            if blanket_order.blanket_reservation_strategy == "at_call_off":
-                line._stock_rule_on_blanket_with_reservation_at_call_off(
-                    previous_product_uom_qty
-                )
-            else:
-                raise ValueError("Invalid blanket reservation strategy.")
+            line.blanket_line_id._launch_stock_rule_for_call_off_line(
+                line, previous_product_uom_qty
+            )
 
-    def _stock_rule_on_blanket_with_reservation_at_call_off(
-        self, previous_product_uom_qty
+    def _launch_stock_rule_for_call_off_line(
+        self, call_off_line, previous_product_uom_qty
     ):
         """In case of a blanket order with reservation at call-off, we must cancel
         the existing reservation, launch the stock rule on the blanket order lines
@@ -551,22 +550,41 @@ class SaleOrderLine(models.Model):
         quantity.
         """
         self.ensure_one()
-        qty_to_deliver = self.product_uom_qty
-        blanket_line = self.blanket_line_id
-        old_state = blanket_line.state
+        if self.order_type != "blanket":
+            raise ValueError("This method is only valid for blanket order lines.")
+        qty_to_deliver = call_off_line.product_uom_qty
+        old_state = self.state
         if old_state == "done":
             # We must unlock the line to manually deliver the quantity
-            blanket_line.state = "sale"
+            self.state = "sale"
+        self._launch_stock_rule_for_call_off_line_qty(
+            qty_to_deliver, previous_product_uom_qty
+        )
+        if old_state == "done":
+            self.state = "done"
+
+    def _launch_stock_rule_for_call_off_line_qty(
+        self, qty_to_deliver, previous_product_uom_qty
+    ):
+        """In case of a blanket order with reservation at call-off, we must cancel
+        the existing reservation, launch the stock rule on the blanket order lines
+        for the quantity to deliver and create a new reservation for the remaining
+        quantity.
+        """
+        self.ensure_one()
+        reservation_strategy = self.order_id.blanket_reservation_strategy
+        if reservation_strategy != "at_call_off":
+            raise ValueError(
+                f"Invalid blanket reservation strategy: {reservation_strategy}."
+            )
         wizard = (
             self.env["manual.delivery"]
             .with_context(
-                active_id=blanket_line.id,
+                active_id=self.id,
                 active_model="sale.order.line",
-                active_ids=blanket_line.ids,
+                active_ids=self.ids,
             )
             .create({})
         )
         wizard.line_ids.quantity = qty_to_deliver
         wizard.confirm()
-        if old_state == "done":
-            blanket_line.state = "done"

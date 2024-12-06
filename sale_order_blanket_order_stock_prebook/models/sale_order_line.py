@@ -8,21 +8,6 @@ from odoo.tools import float_compare
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    def _launch_stock_rule_on_blanket_order(self, previous_product_uom_qty):
-        other_lines = self.browse()
-        for line in self:
-            line = line.with_context(call_off_sale_line_id=line.id)
-            blanket_order = line.order_id.blanket_order_id
-            if blanket_order.blanket_reservation_strategy == "at_confirm":
-                line._stock_rule_on_blanket_with_reservation_at_confirm(
-                    previous_product_uom_qty
-                )
-            else:
-                other_lines |= line
-        return super(SaleOrderLine, other_lines)._launch_stock_rule_on_blanket_order(
-            previous_product_uom_qty
-        )
-
     def _release_reservation(self):
         """Release the reservation of the stock for the order."""
         self.move_ids.filtered(lambda m: m.used_for_sale_reservation)._action_cancel()
@@ -59,36 +44,34 @@ class SaleOrderLine(models.Model):
             self.env["procurement.group"].run(procurements)
         return procurements
 
-    def _stock_rule_on_blanket_with_reservation_at_confirm(
-        self, previous_product_uom_qty
-    ):
+    def _launch_stock_rule_for_call_off_line_qty(
+        self, qty_to_deliver, previous_product_uom_qty
+    ):  # pylint: disable=missing-return
         self.ensure_one()
-        blanket_line = self.blanket_line_id
-        blanket_line._release_reservation()
-        # Create a new reservation for the remaining quantity on the blanket order
-        # Since the call_off_remaining qty is computed from the qty consumed by
-        # the call off order and the current line is part of this qty, it
-        # represents the real remaining qty to consume and therefore the qty to
-        # reserve on the blanket order.
-        remaining_qty = blanket_line.call_off_remaining_qty
-        if (
-            float_compare(
-                remaining_qty, 0, precision_rounding=self.product_uom.rounding
-            )
-            > 0
-        ):
-            blanket_line._prebook_stock(remaining_qty)
+        reservation_strategy = self.order_id.blanket_reservation_strategy
+        if reservation_strategy == "at_confirm":
+            self._release_reservation()
+            # Create a new reservation for the remaining quantity on the blanket order
+            # Since the call_off_remaining qty is computed from the qty consumed by
+            # the call off order and the current line is part of this qty, it
+            # represents the real remaining qty to consume and therefore the qty to
+            # reserve on the blanket order.
+            remaining_qty = self.call_off_remaining_qty
+            if (
+                float_compare(
+                    remaining_qty, 0, precision_rounding=self.product_uom.rounding
+                )
+                > 0
+            ):
+                self._prebook_stock(remaining_qty)
 
-        # run normal delivery rule on the blanket order. This will create the
-        # move on the call off order for the qty not reserved IOW the qty to
-        # deliver.
-        old_state = blanket_line.state
-        if old_state == "done":
-            # Auto done -> set to confirmed to allow the stock rule to run
-            blanket_line.state = "sale"
-        blanket_line.with_context(
-            disable_call_off_stock_rule=True
-        )._action_launch_stock_rule(previous_product_uom_qty)
-        if old_state == "done":
-            # Restore the state
-            blanket_line.state = "done"
+            # run normal delivery rule on the blanket order. This will create the
+            # move on the call off order for the qty not reserved IOW the qty to
+            # deliver.
+            self.with_context(
+                disable_call_off_stock_rule=True
+            )._action_launch_stock_rule(previous_product_uom_qty)
+        else:
+            super()._launch_stock_rule_for_call_off_line_qty(
+                qty_to_deliver, previous_product_uom_qty
+            )

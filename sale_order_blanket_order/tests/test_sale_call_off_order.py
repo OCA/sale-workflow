@@ -206,7 +206,7 @@ class TestSaleCallOffOrderProcessing(SaleOrderBlanketOrderCase):
             }
         )
         order.action_confirm()
-        self.assertEqual(order.state, "sale")
+        self.assertIn(order.state, ["sale", "done"])
         self.assertRecordValues(
             order.order_line,
             [
@@ -282,7 +282,7 @@ class TestSaleCallOffOrderProcessing(SaleOrderBlanketOrderCase):
             }
         )
         order.action_confirm()
-        self.assertEqual(order.state, "sale")
+        self.assertIn(order.state, ["sale", "done"])
 
         # process the picking
         picking = order.order_line.blanket_move_ids.picking_id
@@ -308,3 +308,11 @@ class TestSaleCallOffOrderProcessing(SaleOrderBlanketOrderCase):
             order.order_line.blanket_line_id,
             blanket_lines,
         )
+
+
+@freezegun.freeze_time("2025-02-01")
+class TestSaleAutoDoneCallOffOrderProcessing(TestSaleCallOffOrderProcessing):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env.user.groups_id += cls.env.ref("sale.group_auto_done_setting")
