@@ -157,6 +157,8 @@ class SaleOrderLine(models.Model):
         "blanket_validity_start_date",
         "blanket_validity_end_date",
         "product_id",
+        "product_packaging_id",
+        "order_partner_id",
     )
     def _check_blanket_product_not_overlapping(self):
         """We check that a product is not part of multiple blanket orders
@@ -271,6 +273,14 @@ class SaleOrderLine(models.Model):
                 line.call_off_remaining_qty = new_call_off_remaining_qty
 
     def _get_call_off_line_to_blanked_line_matching_fields(self):
+        """Get the fields used to match call-off order lines to blanket order lines.
+
+        Be careful to override this method if you want to add new fields to the matching
+        key. You must most probably extend the list of fields triggering the constraint
+        `_check_blanket_product_not_overlapping` since these fields are used to check
+        that a product is not part of multiple blanket orders with overlapping validity
+        periods.
+        """
         return ["product_id", "product_packaging_id", "order_partner_id"]
 
     def _get_blanket_lines_for_call_off_lines_dict(self):
