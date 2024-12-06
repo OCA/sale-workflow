@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-04 15:54+0000\n"
-"PO-Revision-Date: 2024-12-04 15:54+0000\n"
+"POT-Creation-Date: 2024-12-05 14:42+0000\n"
+"PO-Revision-Date: 2024-12-05 14:42+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -32,14 +32,12 @@ msgstr ""
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "A blanket order cannot have a blanket order."
 msgstr ""
 
 #. module: sale_order_blanket_order
 #. odoo-python
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "A call-off order must have a blanket order."
@@ -48,9 +46,8 @@ msgstr ""
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
-msgid "A normal order cannot have a blanket order."
+msgid "An order cannot have a blanket order."
 msgstr ""
 
 #. module: sale_order_blanket_order
@@ -192,7 +189,6 @@ msgstr ""
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "Invalid reservation strategy for the blanket order %(ref)s."
 msgstr ""
@@ -204,13 +200,7 @@ msgid "Normal Orders"
 msgstr ""
 
 #. module: sale_order_blanket_order
-#: model:ir.model.fields.selection,name:sale_order_blanket_order.selection__sale_order__order_type__normal
-msgid "Normal Sale Order"
-msgstr ""
-
-#. module: sale_order_blanket_order
 #. odoo-python
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "Only blanket orders can be confirmed as blanket orders."
@@ -219,7 +209,6 @@ msgstr ""
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "Only call-off orders can be confirmed as call-off orders."
 msgstr ""
@@ -227,9 +216,13 @@ msgstr ""
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
-msgid "Only normal orders can be split."
+msgid "Only orders can be split."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields.selection,name:sale_order_blanket_order.selection__sale_order__order_type__order
+msgid "Order"
 msgstr ""
 
 #. module: sale_order_blanket_order
@@ -279,7 +272,7 @@ msgstr ""
 #. module: sale_order_blanket_order
 #: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__order_type
 #: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order_line__order_type
-msgid "Specifies the type of sale order: Normal, Blanket, or Call-off."
+msgid "Specifies the type of sale order: Order, Blanket, or Call-off."
 msgstr ""
 
 #. module: sale_order_blanket_order
@@ -314,7 +307,6 @@ msgstr ""
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "The blanket order must be confirmed before creating a call-off order."
 msgstr ""
@@ -332,7 +324,6 @@ msgstr ""
 
 #. module: sale_order_blanket_order
 #. odoo-python
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -358,7 +349,6 @@ msgstr ""
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid ""
 "The line %(line)s has been created from order %(order)s. (Qty moved: "
@@ -368,7 +358,6 @@ msgstr ""
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "The line %(line)s has been moved from order %(order)s."
 msgstr ""
@@ -376,14 +365,12 @@ msgstr ""
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "The line %(line)s has been moved to a new call-off order %(call_off)s."
 msgstr ""
 
 #. module: sale_order_blanket_order
 #. odoo-python
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -399,7 +386,6 @@ msgstr ""
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
 #, python-format
 msgid ""
 "The price of a call-off order line must be 0.0. (Order: '%(order)s', "
@@ -409,7 +395,6 @@ msgstr ""
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
 #, python-format
 msgid ""
 "The product '%(product_name)s' is already part of another blanket order "
@@ -418,7 +403,6 @@ msgstr ""
 
 #. module: sale_order_blanket_order
 #. odoo-python
-#: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
 #: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
 #, python-format
 msgid ""
@@ -437,7 +421,6 @@ msgstr ""
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
 #, python-format
 msgid ""
 "The quantity to procure is greater than the quantity remaining to deliver in"
@@ -454,7 +437,6 @@ msgstr ""
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "The validity end date is required for a blanket order."
 msgstr ""
@@ -462,14 +444,12 @@ msgstr ""
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "The validity end date must be greater than the validity start date."
 msgstr ""
 
 #. module: sale_order_blanket_order
 #. odoo-python
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "The validity start date is required for a blanket order."

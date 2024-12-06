@@ -21,13 +21,13 @@ class SaleOrder(models.Model):
 
     order_type = fields.Selection(
         [
-            ("normal", "Normal Sale Order"),
+            ("order", "Order"),
             ("blanket", "Blanket Order"),
             ("call_off", "Call-off Order"),
         ],
-        default="normal",
+        default="order",
         required=True,
-        help="Specifies the type of sale order: Normal, Blanket, or Call-off.",
+        help="Specifies the type of sale order: Order, Blanket, or Call-off.",
         states=READONLY_FIELD_STATES,
         index=True,
     )
@@ -99,8 +99,8 @@ class SaleOrder(models.Model):
                 and order.blanket_order_id.order_type != "blanket"
             ):
                 raise ValidationError(_("A call-off order must have a blanket order."))
-            if order.order_type == "normal" and order.blanket_order_id:
-                raise ValidationError(_("A normal order cannot have a blanket order."))
+            if order.order_type == "order" and order.blanket_order_id:
+                raise ValidationError(_("An order cannot have a blanket order."))
 
     @api.constrains(
         "order_type", "blanket_validity_start_date", "blanket_validity_end_date"
@@ -223,18 +223,18 @@ class SaleOrder(models.Model):
         # normally.
         blanket_orders = self.browse()
         call_off_orders = self.browse()
-        normal_orders = self.browse()
+        orders = self.browse()
         for order in self:
             if order.order_type == "blanket":
                 blanket_orders |= order
             elif order.order_type == "call_off":
                 call_off_orders |= order
             else:
-                normal_orders |= order
+                orders |= order
         if blanket_orders:
             blanket_orders._on_blanket_order_confirm()
 
-        call_off_orders |= normal_orders._split_for_blanket_order()
+        call_off_orders |= orders._split_for_blanket_order()
         if call_off_orders:
             call_off_orders._on_call_off_order_confirm()
         return super(SaleOrder, self.with_context(from_confirm=True))._action_confirm()
@@ -316,15 +316,15 @@ class SaleOrder(models.Model):
     def _split_for_blanket_order(self):
         """Split the orders for the blanket order.
 
-        This method is called for normal orders. If some order lines are related
+        This method is called for orders. If some order lines are related
         to a blanket order, it will create a call-off order for each of them and
         remove them from the original order.
 
         The method returns the call-off orders that have been created or an empty
         recordset if no call-off orders have been created.
         """
-        if any(self.filtered(lambda order: order.order_type != "normal")):
-            raise ValidationError(_("Only normal orders can be split."))
+        if any(self.filtered(lambda order: order.order_type != "order")):
+            raise ValidationError(_("Only orders can be split."))
 
         splitable_orders = self.filtered(
             lambda order: order.company_id.sudo().create_call_off_from_so_if_possible

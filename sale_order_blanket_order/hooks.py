@@ -4,18 +4,18 @@ _logger = logging.getLogger(__name__)
 
 
 def pre_init_hook(cr):
-    _logger.info("Create column order_type in sale_order with default value 'normal'")
+    _logger.info("Create column order_type in sale_order with default value 'order'")
     cr.execute(
-        "ALTER TABLE sale_order ADD COLUMN order_type varchar(255) DEFAULT 'normal'"
+        "ALTER TABLE sale_order ADD COLUMN order_type varchar(255) DEFAULT 'order'"
     )
     # drop the default value since it was only used to fill the column in existing records
     cr.execute("ALTER TABLE sale_order ALTER COLUMN order_type DROP DEFAULT")
 
     _logger.info(
-        "Create column order_type in sale_order_line with default value 'normal'"
+        "Create column order_type in sale_order_line with default value 'order'"
     )
     cr.execute(
-        "ALTER TABLE sale_order_line ADD COLUMN order_type varchar(255) DEFAULT 'normal'"
+        "ALTER TABLE sale_order_line ADD COLUMN order_type varchar(255) DEFAULT 'order'"
     )
     # drop the default value since it was only used to fill the column in existing records
     cr.execute("ALTER TABLE sale_order_line ALTER COLUMN order_type DROP DEFAULT")
