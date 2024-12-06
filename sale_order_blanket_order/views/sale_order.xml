@@ -33,6 +33,7 @@
                     name="blanket_order_id"
                     attrs="{'invisible': [('order_type', '!=', 'call_off')], 'required': [('order_type', '=', 'call_off')]}"
                     domain="blanket_order_id_domain"
+                    context="{'default_order_type': 'blanket', 'default_partner_id': partner_id, 'invisible_call_off_remaining_qty': 0}"
                 />
             </field>
             <field name="validity_date" position="after">
@@ -135,21 +136,25 @@
                     name="normal_orders"
                     string="Normal Orders"
                     domain="[('order_type', '=', 'normal')]"
+                    invisible="context.get('disable_order_type_filters', False)"
                 />
                 <filter
                     name="blanket_orders"
                     string="Blanket Orders"
                     domain="[('order_type', '=', 'blanket')]"
+                    invisible="context.get('disable_order_type_filters', False)"
                 />
                 <filter
                     name="call_off_orders"
                     string="Call Off Orders"
                     domain="[('order_type', '=', 'call_off')]"
+                    invisible="context.get('disable_order_type_filters', False)"
                 />
                 <filter
                     name="current_blanket_orders"
                     string="Current Blanket Orders"
                     domain="[('order_type', '=', 'blanket'), ('blanket_validity_end_date', '&gt;=', context_today()), ('blanket_validity_start_date', '&lt;=', context_today())]"
+                    invisible="context.get('default_order_type', False) == 'call_off'"
                 />
             </filter>
             <!-- Add group by-->
@@ -158,6 +163,7 @@
                     name="order_type"
                     string="Order Type"
                     context="{'group_by': 'order_type'}"
+                    invisible="context.get('disable_order_type_filters', False)"
                 />
             </filter>
         </field>
@@ -201,9 +207,12 @@
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
         <field name="search_view_id" ref="sale.view_sales_order_filter" />
+        <field name="domain">[
+            ('order_type', '=', 'blanket')]</field>
+
         <field
             name="context"
-        >{'search_default_blanket_orders': 1, 'default_order_type': 'blanket', 'invisible_call_off_remaining_qty': 0}</field>
+        >{'default_order_type': 'blanket', 'invisible_call_off_remaining_qty': 0, 'disable_order_type_filters': '1'}</field>
     </record>
 
     <record id="sale_order_action_view_blanket_tree" model="ir.actions.act_window.view">
@@ -266,9 +275,11 @@
         <field name="res_model">sale.order</field>
         <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
         <field name="search_view_id" ref="sale.view_sales_order_filter" />
+        <field name="domain">[
+            ('order_type', '=', 'call_off')]</field>
         <field
             name="context"
-        >{'search_default_call_off_orders': 1, 'default_order_type': 'call_off'}</field>
+        >{'default_order_type': 'call_off', 'disable_order_type_filters': '1'}</field>
     </record>
 
     <record id="sale_order_action_view_calloff_tree" model="ir.actions.act_window.view">
