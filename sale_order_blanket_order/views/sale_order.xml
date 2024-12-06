@@ -22,11 +22,14 @@
                         string="Call-offs"
                     />
                 </button>
-
             </xpath>
-            <field name="partner_id" position="before">
-                <field name="order_type" />
-            </field>
+            <xpath expr="//sheet//h1" position="before">
+                <span class="o_form_label"><field
+                        name="order_type"
+                        required="1"
+                        nolabel="1"
+                    /></span>
+            </xpath>
             <field name="partner_shipping_id" position="after">
                 <field name="blanket_order_id_domain" invisible="1" />
                 <field
