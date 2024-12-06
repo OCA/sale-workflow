@@ -25,7 +25,7 @@ class SaleOrder(models.Model):
     @api.depends("partner_id", "partner_shipping_id")
     def _compute_picking_notes(self):
         for order in self:
-            if order.state not in {"sale", "done", "cancel"}:
+            if order.state not in {"sale", "cancel"}:
                 order.picking_note = (
                     order.partner_shipping_id.picking_note
                     or order.partner_id.picking_note
