@@ -1,10 +1,12 @@
 # Copyright 2018 Tecnativa - David Vidal
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests import Form, common
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleStockPickingNote(common.TransactionCase):
+class TestSaleStockPickingNote(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -16,7 +18,7 @@ class TestSaleStockPickingNote(common.TransactionCase):
             }
         )
         cls.product = cls.env["product.product"].create(
-            {"name": "Test product", "type": "product"}
+            {"name": "Test product", "type": "consu"}
         )
 
     def test_01_sale_to_picking_note(self):
