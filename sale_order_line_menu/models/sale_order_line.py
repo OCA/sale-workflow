@@ -12,9 +12,3 @@ class SaleOrderLine(models.Model):
         store=True,
         index=True,
     )
-    analytic_account_id = fields.Many2one(
-        related="order_id.analytic_account_id",
-        readonly=True,
-        store=True,
-        index=True,
-    )
