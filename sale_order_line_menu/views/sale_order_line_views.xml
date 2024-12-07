@@ -2,7 +2,6 @@
 <!-- Copyright 2023 Moduon Team
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record id="sale_order_line_tree" model="ir.ui.view">
         <field name="name">sale.order.line.tree</field>
         <field name="model">sale.order.line</field>
@@ -87,8 +86,7 @@
         <field name="mode">primary</field>
         <field name="priority">999</field>
         <field name="arch" type="xml">
-            <xpath expr="//filter[@name='to_invoice']" position="replace">
-            </xpath>
+            <xpath expr="//filter[@name='to_invoice']" position="replace" />
             <xpath expr="//filter[@name='my_sales_order_lines']" position="after">
                 <separator />
                 <filter
@@ -183,6 +181,4 @@
         groups="sales_team.group_sale_salesman"
         sequence="21"
     />
-
-
 </odoo>
