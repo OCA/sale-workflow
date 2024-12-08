@@ -117,6 +117,7 @@ msgid "Display Name"
 msgstr "Weergavenaam"
 
 #. module: sale_invoice_plan
+#. odoo-python
 #: code:addons/sale_invoice_plan/tests/test_sale_invoice_plan.py:0
 #, python-format
 msgid "Down payment"
@@ -162,6 +163,7 @@ msgid "Installment"
 msgstr "Termijn"
 
 #. module: sale_invoice_plan
+#. odoo-python
 #: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
 #, python-format
 msgid ""
@@ -215,6 +217,7 @@ msgid "Invoice Sales Order"
 msgstr "Factureer verkooporder"
 
 #. module: sale_invoice_plan
+#. odoo-python
 #: code:addons/sale_invoice_plan/models/sale.py:0
 #, python-format
 msgid "Invoice plan total percentage must not exceed 100%"
@@ -282,18 +285,31 @@ msgid "No Edit"
 msgstr ""
 
 #. module: sale_invoice_plan
+#. odoo-python
 #: code:addons/sale_invoice_plan/tests/test_sale_invoice_plan.py:0
 #, python-format
 msgid "No installment raises following error : %s"
 msgstr ""
 
 #. module: sale_invoice_plan
+#. odoo-python
 #: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
 #, python-format
 msgid "No matched order line for invoice line"
 msgstr ""
 
 #. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Not Invoiced"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_filter
+msgid "Not Invoiced & Due"
+msgstr ""
+
+#. module: sale_invoice_plan
+#. odoo-python
 #: code:addons/sale_invoice_plan/wizard/sale_create_invoice_plan.py:0
 #, python-format
 msgid "Number Installment must greater than 1"
@@ -317,6 +333,7 @@ msgid "Plan Date"
 msgstr "Plan datum"
 
 #. module: sale_invoice_plan
+#. odoo-python
 #: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
 #, fuzzy, python-format
 msgid ""
@@ -329,6 +346,7 @@ msgstr ""
 "Product moet geleverd worden voor factuur"
 
 #. module: sale_invoice_plan
+#. odoo-python
 #: code:addons/sale_invoice_plan/models/sale.py:0
 #, python-format
 msgid "Please fill percentage for all invoice plan lines"
@@ -382,11 +400,6 @@ msgid "Status"
 msgstr ""
 
 #. module: sale_invoice_plan
-#: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__analytic_account_id
-msgid "The analytic account related to a sales order."
-msgstr ""
-
-#. module: sale_invoice_plan
 #: model:ir.model.fields,help:sale_invoice_plan.field_sale_invoice_plan__amount
 #, fuzzy
 msgid "This amount will be used to calculate the percent"
@@ -423,6 +436,7 @@ msgid "Use Invoice Plan"
 msgstr "Gebruik facturatie planning"
 
 #. module: sale_invoice_plan
+#. odoo-python
 #: code:addons/sale_invoice_plan/models/sale.py:0
 #, python-format
 msgid "Use Invoice Plan selected, but no plan created"
