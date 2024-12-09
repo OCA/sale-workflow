@@ -322,20 +322,21 @@ class SaleOrderLine(models.Model):
         The matching is done on the fields provided by the method
         `_get_call_off_line_to_blanked_line_matching_fields`.
 
-        :return: A dictionary. The keys are tuples of the matching fields. The values
-        are tuples of the call-off order lines and the matching blanket order lines. The
-        dictionary contains items for all the order lines even if no matching blanket
-        line is found.
-
+        :return: A dictionary. Where the key is the matching key and the value is a list
+        of 2 recordsets. The first element is a set of call-off order lines and the
+        second element is a set of blanket order lines that match the call-off order
+        lines (based on the matching key). All the order lines are included in the
+        result even if no matching line is found into the blanket lines
         """
-        call_off_lines_by_key = defaultdict(lambda: self.env["sale.order.line"])
+        result = defaultdict(
+            lambda: [self.env["sale.order.line"], self.env["sale.order.line"]]
+        )
         for line in order_lines:
             if line.display_type or line.state == "cancel":
                 continue
             key = line._to_blanket_line_matching_key()
-            call_off_lines_by_key[key] |= line
+            result[key][0] |= line
 
-        blanket_lines_by_key = defaultdict(lambda: self.env["sale.order.line"])
         for line in blanket_lines:
             if (
                 float_compare(
@@ -347,11 +348,9 @@ class SaleOrderLine(models.Model):
             ):
                 continue
             key = line._to_blanket_line_matching_key()
-            blanket_lines_by_key[key] |= line
-        return {
-            key: (call_off_lines_by_key[key], blanket_lines_by_key.get(key))
-            for key in call_off_lines_by_key.keys()
-        }
+            if key in result:
+                result[key][1] |= line
+        return result
 
     def _prepare_reserve_procurement_values(self, group_id=None):
         if self.order_type == "blanket":
