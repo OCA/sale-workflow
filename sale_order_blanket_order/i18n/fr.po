@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-05 14:43+0000\n"
-"PO-Revision-Date: 2024-12-05 14:43+0000\n"
+"POT-Creation-Date: 2024-12-09 08:46+0000\n"
+"PO-Revision-Date: 2024-12-09 08:46+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -158,6 +158,12 @@ msgid "Deliver Remaining Quantity"
 msgstr "Livrer les quantités restantes"
 
 #. module: sale_order_blanket_order
+#: model:ir.actions.server,name:sale_order_blanket_order.ir_cron_sale_order_blanket_order_finalizer_ir_actions_server
+#: model:ir.cron,cron_name:sale_order_blanket_order.ir_cron_sale_order_blanket_order_finalizer
+msgid "Finalize expired sale blanket orders"
+msgstr "Finaliser les commandes-cadre expirées"
+
+#. module: sale_order_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_form_view
 msgid "From"
 msgstr "De"
@@ -175,8 +181,9 @@ msgstr ""
 #: model:ir.model.fields,help:sale_order_blanket_order.field_res_company__create_call_off_from_so_if_possible
 #: model:ir.model.fields,help:sale_order_blanket_order.field_res_config_settings__create_call_off_from_so_if_possible
 msgid ""
-"If checked, when a sale order is confirmed and some lines refer to a blanket"
-" order, these lines will be automatically moved to a new call-off order."
+"If checked, when a sales order is confirmed and some lines refer to a "
+"blanket order, these lines will be automatically moved to a new call-off "
+"order."
 msgstr ""
 "Si coché, lorsqu'une commande client est confirmée et que certaines lignes "
 "référencent une commande-cadre, ces lignes seront automatiquement déplacées "
@@ -200,11 +207,41 @@ msgstr ""
 "                            une commande-cadre seront déplacées vers une nouvelle commande d'appel et la nouvelle commande d'appel sera confirmée."
 
 #. module: sale_order_blanket_order
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__blanket_need_to_be_finalized
+msgid ""
+"Indicates if the blanket order needs to be finalized. This field is a "
+"technical field used to manage the end-of-life of the blanket orders. To "
+"avoid costly operations to determine if the blanket order needs to be "
+"finalized once the validity period is reached, the system will set this "
+"field to True when a blanket order is confirmed. To know if a blanket order "
+"needs to be finalized, the system will search for the blanket orders with "
+"this field set to True and the validity period reached.Once the blanket "
+"order is finalized, the system will set this field to False. In this way, "
+"the DB will always contain less records to search with this field set to "
+"True."
+msgstr ""
+"Indique si la commande-cadre doit être finalisée. Ce champ est un champ "
+"technique utilisé pour gérer la fin de vie des commandes-cadre. Pour éviter "
+"des opérations coûteuses pour déterminer si la commande-cadre doit être "
+"finalisée une fois la période de validité atteinte, le système définira ce "
+"champ à True lorsqu'une commande-cadre est confirmée. Pour savoir si une "
+"commande-cadre doit être finalisée, le système recherchera les commandes-"
+"cadre avec ce champ défini à True et la période de validité atteinte. Une "
+"fois la commande-cadre finalisée, le système définira ce champ à False. De "
+"cette manière, la base de données contiendra toujours moins d'enregistrements"
+" à rechercher avec ce champ défini à True."
+
+#. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "Invalid reservation strategy for the blanket order %(ref)s."
 msgstr "Stratégie de réservation invalide pour la commande-cadre %(ref)s."
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order__blanket_need_to_be_finalized
+msgid "Need to be Finalized"
+msgstr "A finaliser"
 
 #. module: sale_order_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_line_search_view
@@ -226,7 +263,9 @@ msgstr ""
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "Only call-off orders can be confirmed as call-off orders."
-msgstr "Seules les commandes d'appel peuvent être confirmées en tant que commandes d'appel."
+msgstr ""
+"Seules les commandes d'appel peuvent être confirmées en tant que commandes "
+"d'appel."
 
 #. module: sale_order_blanket_order
 #. odoo-python
@@ -336,7 +375,8 @@ msgstr ""
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "The blanket order must be confirmed before creating a call-off order."
-msgstr "La commande-cadre doit être confirmée avant de créer une commande d'appel."
+msgstr ""
+"La commande-cadre doit être confirmée avant de créer une commande d'appel."
 
 #. module: sale_order_blanket_order
 #: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__blanket_order_id
@@ -397,7 +437,9 @@ msgstr "La ligne %(line)s a été déplacée de la commande %(order)s."
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "The line %(line)s has been moved to a new call-off order %(call_off)s."
-msgstr "La ligne %(line)s a été déplacée vers une nouvelle commande d'appel %(call_off)s."
+msgstr ""
+"La ligne %(line)s a été déplacée vers une nouvelle commande d'appel "
+"%(call_off)s."
 
 #. module: sale_order_blanket_order
 #. odoo-python

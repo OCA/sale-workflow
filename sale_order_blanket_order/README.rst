@@ -29,7 +29,7 @@ Sale Order Blanket Order
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module extends the functionality of Sale Order to support Blanket
-Order and Call of Order.
+Order and Call-off Order.
 
 Blanket Order
 =============
@@ -132,8 +132,8 @@ Use Cases / Context
 ===================
 
 When a company sells the same products to the same customers on a
-regular basis, it's a common business practice to create a sale
-framework that defines the terms and conditions of the sales.
+regular basis, it's a common business practice to create a blanket order
+that defines the terms and conditions of the sales.
 
 If you need a way to define:
 
@@ -142,27 +142,28 @@ If you need a way to define:
 - the delivery terms,
 
 and also secure the quantities of the products to be delivered, the sale
-framework module is the right choice.
+order blanket order module is the right choice.
 
-This module introduces 2 new kinkds of sale orders:
+This module introduces 2 new kinds of sales orders:
 
-1. Sale Blanket Order: This is a sale order that defines the terms and
-   conditions of the sales, the payment terms, the delivery terms, and
-   secures the quantities of the products to be delivered. It is used to
-   create sale orders that will be delivered in the future.
+1. Blanket Order: This is a sales order that defines the terms and
+   conditions of the sales, the price, the payment terms, the delivery
+   terms, and secures the quantities of the products to be delivered.
 
-2. Call of order: This is a sale order that is created to consume the
-   quantities of the products secured in the sale blanket order.
+2. Call of order: This is a sales order linked to a blanket order that
+   is created to trigger the delivery of quantities of the products
+   secured in the blanket order.
 
 Others modules can be used to provide the same kind of features. For
 example, the module
 (sale_blanket_order)[`https://pypi.org/project/odoo-addon-sale-blanket-order] <https://pypi.org/project/odoo-addon-sale-blanket-order]>`__
 also defines the concept of sale blanket order. The main difference
-between the two modules is that the sale framework module extends the
-sale order model to add the sale blanket order and the call of order.
-This allows to keep the benefits of all the extensions made on the sale
-order model by other modules without having to adapt them to the sale
-blanket order model (discount, invoicing; inventory process, ...).
+between the two modules is that the sale order blanket order module
+extends the sale order model to add the sale blanket order and the call
+off order. This allows to keep the benefits of all the extensions made
+on the sale order model by other modules without having to adapt them to
+the sale blanket order model (discount, invoicing; inventory process,
+...).
 
 Usage
 =====
@@ -170,7 +171,7 @@ Usage
 By default, the automatic creation of call-off orders from normal sale
 orders containing products part of a blanket order is disabled. To
 enable this feature, you need to go into the sales settings and enable
-the option "CCreate Call-Off from SO if possible".
+the option "Create Call-Off from SO if possible".
 
 Bug Tracker
 ===========

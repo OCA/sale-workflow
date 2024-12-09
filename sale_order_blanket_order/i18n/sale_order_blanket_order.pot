@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-05 14:42+0000\n"
-"PO-Revision-Date: 2024-12-05 14:42+0000\n"
+"POT-Creation-Date: 2024-12-09 08:45+0000\n"
+"PO-Revision-Date: 2024-12-09 08:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -156,6 +156,12 @@ msgid "Deliver Remaining Quantity"
 msgstr ""
 
 #. module: sale_order_blanket_order
+#: model:ir.actions.server,name:sale_order_blanket_order.ir_cron_sale_order_blanket_order_finalizer_ir_actions_server
+#: model:ir.cron,cron_name:sale_order_blanket_order.ir_cron_sale_order_blanket_order_finalizer
+msgid "Finalize expired sale blanket orders"
+msgstr ""
+
+#. module: sale_order_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_form_view
 msgid "From"
 msgstr ""
@@ -171,8 +177,9 @@ msgstr ""
 #: model:ir.model.fields,help:sale_order_blanket_order.field_res_company__create_call_off_from_so_if_possible
 #: model:ir.model.fields,help:sale_order_blanket_order.field_res_config_settings__create_call_off_from_so_if_possible
 msgid ""
-"If checked, when a sale order is confirmed and some lines refer to a blanket"
-" order, these lines will be automatically moved to a new call-off order."
+"If checked, when a sales order is confirmed and some lines refer to a "
+"blanket order, these lines will be automatically moved to a new call-off "
+"order."
 msgstr ""
 
 #. module: sale_order_blanket_order
@@ -187,10 +194,30 @@ msgid ""
 msgstr ""
 
 #. module: sale_order_blanket_order
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__blanket_need_to_be_finalized
+msgid ""
+"Indicates if the blanket order needs to be finalized. This field is a "
+"technical field used to manage the end-of-life of the blanket orders. To "
+"avoid costly operations to determine if the blanket order needs to be "
+"finalized once the validity period is reached, the system will set this "
+"field to True when a blanket order is confirmed. To know if a blanket order "
+"needs to be finalized, the system will search for the blanket orders with "
+"this field set to True and the validity period reached.Once the blanket "
+"order is finalized, the system will set this field to False. In this way, "
+"the DB will always contain less records to search with this field set to "
+"True."
+msgstr ""
+
+#. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "Invalid reservation strategy for the blanket order %(ref)s."
+msgstr ""
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order__blanket_need_to_be_finalized
+msgid "Need to be Finalized"
 msgstr ""
 
 #. module: sale_order_blanket_order
