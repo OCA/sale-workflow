@@ -473,7 +473,7 @@ class SaleOrderLine(models.Model):
         This method is called at the confirmation time of call-off orders. It will
         link each call-off line to the corresponding blanket line. If the quantity on
         the call-off line is greater than the quantity on the blanket line, the
-        call-off line will be split to ensure taht the quantity on the call-off line
+        call-off line will be split to ensure that the quantity on the call-off line
         is less than or equal to the quantity on the referenced blanket line. The split
         process is special case which only occurs when multiple lines into for a same
         product and package exists in the blanket order.
