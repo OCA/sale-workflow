@@ -1,2 +1,3 @@
 - [Camptocamp SA](https://www.camptocamp.com)
   - Silvio Gregorini \<<silvio.gregorini@camptocamp.com>\>
+- Alexei Rivera \<<arivera@archeti.com>\>
