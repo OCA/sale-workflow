@@ -1,4 +1,4 @@
-When a company sells the same products to the same customers on a regular basis, it's a common business practice to create a sale framework that defines the terms and conditions of the sales.
+When a company sells the same products to the same customers on a regular basis, it's a common business practice to create a blanket order that defines the terms and conditions of the sales.
 
 If you need a way to define:
 * the terms and conditions of the sales,
