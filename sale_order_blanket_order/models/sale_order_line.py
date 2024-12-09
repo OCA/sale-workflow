@@ -203,7 +203,7 @@ class SaleOrderLine(models.Model):
         This value is only relevant on blanket order lines. It's used to know how much
         quantity is still available to deliver by a call-off order lines.
         """
-        self.flush_model()
+        self.flush_model(["product_uom_qty", "order_type", "blanket_line_id", "state"])
         blanket_lines = self.filtered(lambda l: l.order_type == "blanket")
         res = self.read_group(
             [("blanket_line_id", "in", blanket_lines.ids), ("state", "!=", "cancel")],
@@ -322,16 +322,15 @@ class SaleOrderLine(models.Model):
         The matching is done on the fields provided by the method
         `_get_call_off_line_to_blanked_line_matching_fields`.
 
-        :return: A dictionary. The keys are tuples of the matching fields and the
-            blanket order id. The values are tuples of the call-off order lines and
-            the matching blanket order lines.
+        :return: A dictionary. The keys are tuples of the matching fields. The values
+        are tuples of the call-off order lines and the matching blanket order lines. The
+        dictionary contains items for all the order lines even if no matching blanket
+        line is found.
 
         """
         call_off_lines_by_key = defaultdict(lambda: self.env["sale.order.line"])
         for line in order_lines:
-            if line.display_type:
-                continue
-            if line.state == "cancel":
+            if line.display_type or line.state == "cancel":
                 continue
             key = line._to_blanket_line_matching_key()
             call_off_lines_by_key[key] |= line
@@ -349,7 +348,6 @@ class SaleOrderLine(models.Model):
                 continue
             key = line._to_blanket_line_matching_key()
             blanket_lines_by_key[key] |= line
-
         return {
             key: (call_off_lines_by_key[key], blanket_lines_by_key.get(key))
             for key in call_off_lines_by_key.keys()

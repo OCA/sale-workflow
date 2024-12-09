@@ -504,6 +504,7 @@ class SaleOrder(models.Model):
         validity_date = fields.Date.to_string(validity_date)
         return [
             ("partner_id", "=", self.partner_id.id),
+            ("partner_shipping_id", "=", self.partner_shipping_id.id),
             ("order_type", "=", "blanket"),
             ("state", "in", ("sale", "done")),
             ("blanket_validity_start_date", "<=", validity_date),
