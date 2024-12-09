@@ -9,7 +9,7 @@ and also secure the quantities of the products to be delivered, the sale framewo
 
 This module introduces 2 new kinkds of sale orders:
 
-1. Sale Blanket Order: This is a sale order that defines the terms and conditions of the sales, the payment terms, the delivery terms, and secures the quantities of the products to be delivered. It is used to create sale orders that will be delivered in the future.   
+1. Blanket Order: This is a sales order that defines the terms and conditions of the sales, the price, the payment terms, the delivery terms, and secures the quantities of the products to be delivered.
 
 2. Call of order: This is a sale order that is created to consume the quantities of the products secured in the sale blanket order.
 
