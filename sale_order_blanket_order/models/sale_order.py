@@ -377,7 +377,7 @@ class SaleOrder(models.Model):
         recordset if no call-off orders have been created.
         """
         if any(self.filtered(lambda order: order.order_type != "order")):
-            raise ValidationError(_("Only orders can be split."))
+            raise ValueError("Only orders can be split.")
 
         splitable_orders = self.filtered(
             lambda order: order.company_id.sudo().create_call_off_from_so_if_possible
