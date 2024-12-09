@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Manuel Regidor <manuel.regidor@sygel.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="sale_order_type_confirm_message_wizard_view" model="ir.ui.view">
+        <field name="name">sale.order.type.confirm.wizard.view</field>
+        <field name="model">sale.order.type.confirm.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="order_id" invisible="1" />
+                </group>
+                <group>
+                    <field name="message" nolabel="1" colspan="2" />
+                </group>
+                    <footer>
+                        <button
+                        name="action_confirm"
+                        class="btn-primary"
+                        string="Confirm"
+                        type="object"
+                    />
+                        <button
+                        string="Cancel"
+                        class="btn-secondary"
+                        special="cancel"
+                    />
+                    </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Manuel Regidor <manuel.regidor@sygel.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record
+        id="sale_order_type_confirm_message_sot_sale_order_type_form_view"
+        model="ir.ui.view"
+    >
+        <field name="name">sale.double.confirm.sot.sale.order.type.form.view</field>
+        <field name="model">sale.order.type</field>
+        <field name="inherit_id" ref="sale_order_type.sot_sale_order_type_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group/group" position="inside">
+                <field name="has_confirmation_message" widget="boolean_toggle" />
+                <field
+                    name="confirmation_message"
+                    invisible="not has_confirmation_message"
+                    colspan="2"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
