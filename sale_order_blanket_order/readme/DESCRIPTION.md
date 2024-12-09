@@ -1,4 +1,4 @@
-This module extends the functionality of Sale Order to support Blanket Order and Call of Order.
+This module extends the functionality of Sale Order to support Blanket Order and Call-off Order.
 
 # Blanket Order
 
