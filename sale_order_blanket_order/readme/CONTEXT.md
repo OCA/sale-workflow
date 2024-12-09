@@ -5,7 +5,7 @@ If you need a way to define:
 * the payment terms,
 * the delivery terms,
 
-and also secure the quantities of the products to be delivered, the sale framework module is the right choice.
+and also secure the quantities of the products to be delivered, the sale order blanket order module is the right choice.
 
 This module introduces 2 new kinds of sales orders:
 
