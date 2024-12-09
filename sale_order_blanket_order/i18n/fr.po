@@ -111,7 +111,7 @@ msgstr "Nbr de commandes d'appel"
 #. module: sale_order_blanket_order
 #: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order_line__call_off_line_ids
 msgid "Call-off Order Lines"
-msgstr "Linges de commande d'appel"
+msgstr "Lignes de commande d'appel"
 
 #. module: sale_order_blanket_order
 #: model:ir.actions.act_window,name:sale_order_blanket_order.action_calloffs
