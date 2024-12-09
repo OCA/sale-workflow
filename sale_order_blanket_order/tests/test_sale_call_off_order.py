@@ -9,39 +9,56 @@ from .common import SaleOrderBlanketOrderCase
 
 
 class TestSaleCallOffOrder(SaleOrderBlanketOrderCase):
-    def test_order_constrains(self):
-        # Create a call-off order
+    def test_confirm_no_blanket_id(self):
+        order = self.env["sale.order"].create(
+            {
+                "order_type": "call_off",
+                "partner_id": self.partner.id,
+            }
+        )
         with self.assertRaisesRegex(
             ValidationError, "A call-off order must have a blanket order."
         ):
-            self.env["sale.order"].create(
-                {
-                    "order_type": "call_off",
-                    "partner_id": self.partner.id,
-                }
-            )
+            order.action_confirm()
+
+    def test_confirm_blanket_id_not_blanket(self):
+        order = self.env["sale.order"].create(
+            {
+                "order_type": "call_off",
+                "partner_id": self.partner.id,
+                "blanket_order_id": self.so.id,
+            }
+        )
         with self.assertRaisesRegex(
             ValidationError, "A call-off order must have a blanket order."
         ):
-            self.env["sale.order"].create(
-                {
-                    "order_type": "call_off",
-                    "partner_id": self.partner.id,
-                    "blanket_order_id": self.so.id,
-                }
-            )
+            order.action_confirm()
+
+    def test_confirm_blanket_id_not_confirmed(self):
+        order = self.env["sale.order"].create(
+            {
+                "order_type": "call_off",
+                "partner_id": self.partner.id,
+                "blanket_order_id": self.blanket_so.id,
+            }
+        )
+
         with self.assertRaisesRegex(
             ValidationError, "The blanket order must be confirmed"
         ):
-            self.env["sale.order"].create(
-                {
-                    "order_type": "call_off",
-                    "partner_id": self.partner.id,
-                    "blanket_order_id": self.blanket_so.id,
-                }
-            )
 
+            order.action_confirm()
+
+    def test_confirm_blanket_id_validity_period(self):
         self.blanket_so.action_confirm()
+        order = self.env["sale.order"].create(
+            {
+                "order_type": "call_off",
+                "date_order": "2024-01-01",
+                "partner_id": self.partner.id,
+                "blanket_order_id": self.blanket_so.id,
+            }
+        )
         with self.assertRaisesRegex(
             ValidationError,
             (
@@ -49,15 +66,11 @@ class TestSaleCallOffOrder(SaleOrderBlanketOrderCase):
                 "validity period of the blanket order."
             ),
         ):
-            self.env["sale.order"].create(
-                {
-                    "order_type": "call_off",
-                    "date_order": "2024-01-01",
-                    "partner_id": self.partner.id,
-                    "blanket_order_id": self.blanket_so.id,
-                }
-            )
+            order.action_confirm()
 
+    @freezegun.freeze_time("2025-02-01")
+    def test_confirm_ok(self):
+        self.blanket_so.action_confirm()
         order = self.env["sale.order"].create(
             {
                 "order_type": "call_off",
@@ -66,7 +79,8 @@ class TestSaleCallOffOrder(SaleOrderBlanketOrderCase):
                 "blanket_order_id": self.blanket_so.id,
             }
         )
-        self.assertTrue(order)
+        order.action_confirm()
+        self.assertIn(order.state, ["sale", "done"])
 
     @freezegun.freeze_time("2025-02-01")
     def test_order_line_constrains(self):

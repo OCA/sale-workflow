@@ -10,50 +10,60 @@ from .common import SaleOrderBlanketOrderCase
 
 
 class TestSaleBlanketOrder(SaleOrderBlanketOrderCase):
-    def test_constrains(self):
+    def test_confirm_start_date_required(self):
+        order = self.env["sale.order"].create(
+            {
+                "order_type": "blanket",
+                "partner_id": self.partner.id,
+            }
+        )
         # Create a call-off order
         with self.assertRaisesRegex(
             ValidationError, "The validity start date is required"
         ):
-            self.env["sale.order"].create(
-                {
-                    "order_type": "blanket",
-                    "partner_id": self.partner.id,
-                }
-            )
+            order.action_confirm()
+
+    def test_confirm_end_date_required(self):
+        order = self.env["sale.order"].create(
+            {
+                "order_type": "blanket",
+                "partner_id": self.partner.id,
+                "blanket_validity_start_date": "2024-01-01",
+            }
+        )
         with self.assertRaisesRegex(
             ValidationError, "The validity end date is required"
         ):
-            self.env["sale.order"].create(
-                {
-                    "order_type": "blanket",
-                    "partner_id": self.partner.id,
-                    "blanket_validity_start_date": "2024-01-01",
-                }
-            )
+            order.action_confirm()
+
+    def test_confrim_end_date_greater_than_start_date(self):
+        order = self.env["sale.order"].create(
+            {
+                "order_type": "blanket",
+                "partner_id": self.partner.id,
+                "blanket_validity_start_date": "2024-01-02",
+                "blanket_validity_end_date": "2024-01-01",
+            }
+        )
         with self.assertRaisesRegex(
             ValidationError, "The validity end date must be greater than"
         ):
-            self.env["sale.order"].create(
-                {
-                    "order_type": "blanket",
-                    "partner_id": self.partner.id,
-                    "blanket_validity_start_date": "2024-01-02",
-                    "blanket_validity_end_date": "2024-01-01",
-                }
-            )
+            order.action_confirm()
+
+    def test_confirm_no_blanket_order(self):
+        order = self.env["sale.order"].create(
+            {
+                "order_type": "blanket",
+                "partner_id": self.partner.id,
+                "blanket_validity_start_date": "2024-01-01",
+                "blanket_validity_end_date": "2024-12-31",
+                "blanket_order_id": self.so.id,
+            }
+        )
         with self.assertRaisesRegex(
             ValidationError, "A blanket order cannot have a blanket order."
         ):
-            self.env["sale.order"].create(
-                {
-                    "order_type": "blanket",
-                    "partner_id": self.partner.id,
-                    "blanket_validity_start_date": "2024-01-01",
-                    "blanket_validity_end_date": "2024-12-31",
-                    "blanket_order_id": self.so.id,
-                }
-            )
+            order.action_confirm()
 
     def test_no_product_overlap(self):
         # Create a blanket order with a product that is already in the blanket order

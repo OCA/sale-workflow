@@ -115,9 +115,14 @@ class SaleOrder(models.Model):
         """
         )
 
-    @api.constrains("order_type", "blanket_order_id")
+    @api.constrains("order_type", "blanket_order_id", "state")
     def _check_order_type(self):
         for order in self:
+            if order.state not in ("sale", "done") and order._origin.state not in (
+                "sale",
+                "done",
+            ):
+                continue
             if order.order_type == "blanket" and order.blanket_order_id:
                 raise ValidationError(_("A blanket order cannot have a blanket order."))
             if (
@@ -129,10 +134,18 @@ class SaleOrder(models.Model):
                 raise ValidationError(_("An order cannot have a blanket order."))
 
     @api.constrains(
-        "order_type", "blanket_validity_start_date", "blanket_validity_end_date"
+        "order_type",
+        "blanket_validity_start_date",
+        "blanket_validity_end_date",
+        "state",
     )
     def _check_validity_dates(self):
         for order in self:
+            if order.state not in ("sale", "done") and order._origin.state not in (
+                "sale",
+                "done",
+            ):
+                continue
             if order.order_type == "blanket":
                 if not order.blanket_validity_start_date:
                     raise ValidationError(
@@ -150,9 +163,16 @@ class SaleOrder(models.Model):
                         )
                     )
 
-    @api.constrains("order_type", "blanket_order_id", "date_order", "commitment_date")
+    @api.constrains(
+        "order_type", "blanket_order_id", "date_order", "commitment_date", "state"
+    )
     def _check_call_of_link_to_valid_blanket(self):
         for rec in self:
+            if rec.state not in ("sale", "done") and rec._origin.state not in (
+                "sale",
+                "done",
+            ):
+                continue
             if (
                 rec.order_type != "call_off"
                 or not rec.date_order
@@ -176,9 +196,14 @@ class SaleOrder(models.Model):
                     )
                 )
 
-    @api.constrains("order_type", "blanket_order_id")
+    @api.constrains("order_type", "blanket_order_id", "state")
     def _check_blanket_order_state(self):
         for order in self:
+            if order.state not in ("sale", "done") and order._origin.state not in (
+                "sale",
+                "done",
+            ):
+                continue
             if (
                 order.order_type != "call_off"
                 or not order.blanket_order_id
