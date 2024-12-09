@@ -7,13 +7,13 @@ from odoo import Command
 from .common import SaleOrderBlanketOrderCase
 
 
-@freezegun.freeze_time("2025-02-01")
 class TestSaleCallOffOrderProcessing(SaleOrderBlanketOrderCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.blanket_so.action_confirm()
 
+    @freezegun.freeze_time("2025-02-01")
     def test_no_reservation_processing(self):
         # Create a call-off order without reservation
         order = self.env["sale.order"].create(
@@ -88,6 +88,7 @@ class TestSaleCallOffOrderProcessing(SaleOrderBlanketOrderCase):
                 10.0,
             )
 
+    @freezegun.freeze_time("2025-02-01")
     def test_no_reservation_processing_2(self):
         # In this test we create a call-off order with 1 lines
         # for product 1 where the quantity to deliver is greater
@@ -133,7 +134,6 @@ class TestSaleCallOffOrderProcessing(SaleOrderBlanketOrderCase):
         )
 
 
-@freezegun.freeze_time("2025-02-01")
 class TestSaleAutoDoneCallOffOrderProcessing(TestSaleCallOffOrderProcessing):
     @classmethod
     def setUpClass(cls):

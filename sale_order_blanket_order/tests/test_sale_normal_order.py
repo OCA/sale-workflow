@@ -9,7 +9,6 @@ from odoo.tests.common import RecordCapturer
 from .common import SaleOrderBlanketOrderCase
 
 
-@freezegun.freeze_time("2025-02-01")
 class TestSaleNormalOrder(SaleOrderBlanketOrderCase):
     @classmethod
     def setUpClass(cls):
@@ -23,6 +22,7 @@ class TestSaleNormalOrder(SaleOrderBlanketOrderCase):
             {"create_call_off_from_so_if_possible": True}
         ).execute()
 
+    @freezegun.freeze_time("2025-02-01")
     def test_normal_order(self):
         # ensure that the original sale order process
         # works as expected
@@ -43,6 +43,7 @@ class TestSaleNormalOrder(SaleOrderBlanketOrderCase):
         )
         order.action_confirm()
 
+    @freezegun.freeze_time("2025-02-01")
     def test_call_off_auto_create_mode(self):
         order = self.env["sale.order"].create(
             {
@@ -76,6 +77,7 @@ class TestSaleNormalOrder(SaleOrderBlanketOrderCase):
         self.assertEqual(new_order.order_type, "call_off")
         self.assertEqual(new_order.blanket_order_id, self.blanket_so)
 
+    @freezegun.freeze_time("2025-02-01")
     def test_call_off_auto_create(self):
         # A test where we've a SO with 2 products,
         # one of which is part of a blanket order
@@ -120,6 +122,7 @@ class TestSaleNormalOrder(SaleOrderBlanketOrderCase):
         remaining_qty = sum(blanket_lines.mapped("call_off_remaining_qty"))
         self.assertEqual(blanquet_product_qty, remaining_qty + 1)
 
+    @freezegun.freeze_time("2025-02-01")
     def test_call_off_auto_create_qty_multi_blanket_line(self):
         # A test where we've a SO with 1 product for which we have 2 blanket lines
         # The quantity of the product that is part of the normal order is less
@@ -160,6 +163,7 @@ class TestSaleNormalOrder(SaleOrderBlanketOrderCase):
         remaining_qty = sum(blanket_lines.mapped("call_off_remaining_qty"))
         self.assertEqual(blanquet_product_qty, remaining_qty + 15)
 
+    @freezegun.freeze_time("2025-02-01")
     def test_call_off_auto_create_qty_multi_blanket_line_overflow(self):
         # A test where we've a SO with 1 product for which we have 2 blanket lines
         # The quantity of the product that is part of the normal order is greater
