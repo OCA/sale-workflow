@@ -7,7 +7,7 @@ If you need a way to define:
 
 and also secure the quantities of the products to be delivered, the sale framework module is the right choice.
 
-This module introduces 2 new kinkds of sale orders:
+This module introduces 2 new kinds of sales orders:
 
 1. Blanket Order: This is a sales order that defines the terms and conditions of the sales, the price, the payment terms, the delivery terms, and secures the quantities of the products to be delivered.
 
