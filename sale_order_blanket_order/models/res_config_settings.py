@@ -11,7 +11,7 @@ class ResConfigSettings(models.TransientModel):
         related="company_id.create_call_off_from_so_if_possible",
         readonly=False,
         string="Create Call-Off from SO if possible",
-        help="If checked, when a sale order is confirmed and some lines refer to a "
+        help="If checked, when a sales order is confirmed and some lines refer to a "
         "blanket order, these lines will be automatically moved to a new call-off "
         "order.",
     )
