@@ -28,8 +28,8 @@ Sale Partner Address Restrict
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module restricts the addresses to be used in the sales order form,
-according to the partner selected.
+This module restricts the addresses to be used in the sales order form
+to only addresses of the selected customer.
 
 **Table of contents**
 
