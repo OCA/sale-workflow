@@ -3,7 +3,7 @@
 # Copyright 2022 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 class SaleOrderMassActionWizard(models.TransientModel):
@@ -24,7 +24,10 @@ class SaleOrderMassActionWizard(models.TransientModel):
     @api.model
     def _notify_success(self, sale_orders):
         order_names = "\n".join(sale_orders.mapped("name"))
-        message = "The following orders has been updated : %s" % order_names
+        message = _(
+            "The following orders has been updated : %(order_names)s",
+            order_names=order_names,
+        )
         self.env.user.notify_success(message=message)
 
     def apply_button(self):
