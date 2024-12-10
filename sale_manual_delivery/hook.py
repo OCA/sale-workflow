@@ -1,44 +1,56 @@
 def pre_init_hook(cr):
+    # Fields are not configured with decimal precision - declare them as double precision
     cr.execute(
         """
-        ALTER TABLE sale_order_line ADD COLUMN IF NOT EXISTS qty_procured numeric;
+        ALTER TABLE sale_order_line ADD COLUMN IF NOT EXISTS qty_procured
+        double precision DEFAULT 0;
         COMMENT ON COLUMN sale_order_line.qty_procured IS 'Quantity Procured';
         """
     )
     cr.execute(
         """
-        ALTER TABLE sale_order_line ADD COLUMN IF NOT EXISTS qty_to_procure numeric;
+        ALTER TABLE sale_order_line ADD COLUMN IF NOT EXISTS qty_to_procure double precision;
         COMMENT ON COLUMN sale_order_line.qty_to_procure IS 'Quantity to Procure"';
         """
     )
 
     cr.execute(
         """
-update sale_order_line as sol set qty_procured = r.qty_procured,
-qty_to_procure = sol.product_uom_qty - r.qty_procured
-from (select sol.id, sum(
-    case
-        when (
-        sl.usage = 'customer'
-        and sm.origin_returned_move_id is null
-        or (
-        sm.origin_returned_move_id is not null and sm.to_refund
-        )) then
+        UPDATE sale_order_line
+        SET qty_to_procure = product_uom_qty
+        WHERE qty_delivered_method <> 'stock_move'
+        OR (qty_delivered_method = 'stock_move'
+        AND state IN ('draft', 'sent', 'cancel', 'done'))
+    """
+    )
+
+    cr.execute(
+        """
+update sale_order_line as sol
+    set qty_procured = r.qty_procured, qty_to_procure = sol.product_uom_qty - r.qty_procured
+    from (select sol.id, sum(
+        case
+            when (
+            sl.usage = 'customer'
+            and sm.origin_returned_move_id is null
+            or (
+            sm.origin_returned_move_id is not null and sm.to_refund
+            )) then
+                ROUND(
+                    ((sm.product_uom_qty / sm_product_uom.factor) * sol_product_uom.factor),
+                    SCALE(sol_product_uom.rounding)
+                    )
+            when (
+            sl.usage != 'customer'
+            and sm.to_refund
+            ) then
             ROUND(
-                ((sm.product_uom_qty / sm_product_uom.factor) * sol_product_uom.factor),
-                SCALE(sol_product_uom.rounding)
-                )
-        when (
-        sl.usage != 'customer'
-        and sm.to_refund
-        ) then
-        ROUND(
-                ((sm.product_uom_qty / sm_product_uom.factor) * sol_product_uom.factor),
-                SCALE(sol_product_uom.rounding)
-                ) * -1
-        else 0
-    end)
- AS qty_procured
+                    ((sm.product_uom_qty / sm_product_uom.factor) * sol_product_uom.factor),
+                    SCALE(sol_product_uom.rounding)
+                    ) * -1
+            else 0
+        end)
+    AS qty_procured
 from
 sale_order_line as sol
 inner join (
@@ -50,6 +62,8 @@ inner join (
         and sol.product_id = sm.product_id
         and sm.sale_line_id = sol.id
         )
+    WHERE sol.qty_delivered_method = 'stock_move' AND sol.state = 'sale'
+
 ) as q on q.id = sol.id
 left join stock_move as sm on sm.id = q.move_id
 left join product_product as pp on pp.id = sol.product_id
@@ -60,5 +74,6 @@ LEFT JOIN uom_uom sol_product_uom ON sol.product_uom = sol_product_uom.id
 group by sol.id, sm.product_uom, sol.product_uom
 ) as r
 where r.id = sol.id
+AND sol.qty_delivered_method = 'stock_move' AND sol.state = 'sale'
     """
     )
