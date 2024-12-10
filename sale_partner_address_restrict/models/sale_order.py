@@ -18,22 +18,3 @@ class SaleOrder(models.Model):
                         " of the selected partner or the selected partner itself."
                     )
                 )
-
-    @api.onchange("partner_id")
-    def _onchange_partner_id_domain(self):
-        domain = []
-        if self.partner_id:
-            domain = [
-                ("commercial_partner_id", "=", self.partner_id.id),
-                "|",
-                ("company_id", "=", False),
-                ("company_id", "=", self.company_id.id),
-            ]
-        else:
-            domain = [
-                "|",
-                ("company_id", "=", False),
-                ("company_id", "=", self.company_id.id),
-            ]
-
-        return {"domain": {"partner_invoice_id": domain, "partner_shipping_id": domain}}
