@@ -71,6 +71,14 @@ class SaleOrder(models.Model):
             vals = {}
             if order_type.warehouse_id:
                 vals.update({"warehouse_id": order_type.warehouse_id})
+            else:
+                vals.update(
+                    {
+                        "warehouse_id": self.user_id.with_company(self.company_id.id)
+                        ._get_default_warehouse_id()
+                        .id
+                    }
+                )
             if order_type.picking_policy:
                 vals.update({"picking_policy": order_type.picking_policy})
             if order_type.payment_term_id:
@@ -98,6 +106,17 @@ class SaleOrder(models.Model):
                 line_vals.update({"route_id": order_type.route_id.id})
             if line_vals:
                 order.order_line.update(line_vals)
+
+    @api.onchange("user_id")
+    def onchange_user_id(self):
+        res = super().onchange_user_id()
+        if (
+            self.state in ["draft", "sent"]
+            and not self.user_id.property_warehouse_id
+            and self.type_id.warehouse_id
+        ):
+            self.warehouse_id = self.type_id.warehouse_id
+        return res
 
     @api.model
     def create(self, vals):
