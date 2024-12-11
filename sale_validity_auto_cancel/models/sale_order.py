@@ -24,10 +24,14 @@ class SaleOrder(models.Model):
             )
             expired_states = self._get_expired_order_states()
             orders = self.env["sale.order"].search(
-                [("state", "in", expired_states), ("validity_date", "<", threshold)]
+                [
+                    ("state", "in", expired_states),
+                    ("validity_date", "<", threshold),
+                    ("company_id", "=", company.id),
+                ]
             )
-            for order in orders:
+            for order in orders.with_context(company_id=company.id):
                 try:
-                    order.with_context(company_id=company.id).action_cancel()
+                    order.action_cancel()
                 except Exception as e:
                     _logger.error("Failed to auto-cancel %s: %s" % (order.name, str(e)))
