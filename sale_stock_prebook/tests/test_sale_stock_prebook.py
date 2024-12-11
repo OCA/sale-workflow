@@ -52,3 +52,12 @@ class TestStockReserveSale(TestSaleStockPrebookCase):
         self.sale.reserve_stock()
         with self.assertRaisesRegex(ValidationError, "You cannot set a quantity done"):
             self.sale.picking_ids.move_ids.quantity_done = 3
+
+    def test_60_prebook_dedicatd_picking_type(self):
+        self.deliver_route.rule_ids.write(
+            {"prebook_picking_type_id": self.prebook_picking_type.id}
+        )
+        self.sale.reserve_stock()
+        self.assertEqual(
+            self.sale.picking_ids.picking_type_id, self.prebook_picking_type
+        )

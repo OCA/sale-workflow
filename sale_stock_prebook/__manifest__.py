@@ -9,6 +9,7 @@
     "data": [
         "views/sale_views.xml",
         "views/stock_route_views.xml",
+        "views/stock_rule_views.xml",
     ],
     "depends": [
         "sale_stock",
