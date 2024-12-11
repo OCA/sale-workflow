@@ -118,10 +118,7 @@ class SaleOrder(models.Model):
     @api.constrains("order_type", "blanket_order_id", "state")
     def _check_order_type(self):
         for order in self:
-            if order.state not in ("sale", "done") and order._origin.state not in (
-                "sale",
-                "done",
-            ):
+            if order.state != "sale":
                 continue
             if order.order_type == "blanket" and order.blanket_order_id:
                 raise ValidationError(_("A blanket order cannot have a blanket order."))
@@ -141,10 +138,7 @@ class SaleOrder(models.Model):
     )
     def _check_validity_dates(self):
         for order in self:
-            if order.state not in ("sale", "done") and order._origin.state not in (
-                "sale",
-                "done",
-            ):
+            if order.state != "sale":
                 continue
             if order.order_type == "blanket":
                 if not order.blanket_validity_start_date:
@@ -168,10 +162,7 @@ class SaleOrder(models.Model):
     )
     def _check_call_of_link_to_valid_blanket(self):
         for rec in self:
-            if rec.state not in ("sale", "done") and rec._origin.state not in (
-                "sale",
-                "done",
-            ):
+            if rec.state != "sale":
                 continue
             if (
                 rec.order_type != "call_off"
@@ -199,10 +190,7 @@ class SaleOrder(models.Model):
     @api.constrains("order_type", "blanket_order_id", "state")
     def _check_blanket_order_state(self):
         for order in self:
-            if order.state not in ("sale", "done") and order._origin.state not in (
-                "sale",
-                "done",
-            ):
+            if order.state != "sale":
                 continue
             if (
                 order.order_type != "call_off"
@@ -317,6 +305,12 @@ class SaleOrder(models.Model):
             raise ValidationError(
                 _("Only blanket orders can be confirmed as blanket orders.")
             )
+        # trigger validation on sale order lines for constrains
+        # _validate_fields We force the validation to be done here
+        # even if it will be done later at flush time. This is to
+        # ensure that the data are correct before performing any others
+        # operations that could use the data.
+        self.order_line._check_blanket_product_not_overlapping()
         for order in self:
             order.commitment_date = order.blanket_validity_start_date
         self.blanket_need_to_be_finalized = True

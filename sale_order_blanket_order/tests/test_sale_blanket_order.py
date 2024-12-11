@@ -66,7 +66,21 @@ class TestSaleBlanketOrder(SaleOrderBlanketOrderCase):
             order.action_confirm()
 
     def test_no_product_overlap(self):
-        # Create a blanket order with a product that is already in the blanket order
+        self.blanket_so.action_confirm()
+        order = self.env["sale.order"].create(
+            {
+                "order_type": "blanket",
+                "partner_id": self.partner.id,
+                "blanket_validity_start_date": "2024-02-01",
+                "blanket_validity_end_date": "2025-01-31",
+                "order_line": [
+                    Command.create(
+                        {"product_id": self.product_1.id, "product_uom_qty": 10.0}
+                    ),
+                ],
+            }
+        )
+        # Validate a blanket order with a product that is already in the blanket order
         with self.assertRaisesRegex(
             ValidationError,
             (
@@ -74,19 +88,7 @@ class TestSaleBlanketOrder(SaleOrderBlanketOrderCase):
                 f"{self.blanket_so.name}."
             ),
         ):
-            self.env["sale.order"].create(
-                {
-                    "order_type": "blanket",
-                    "partner_id": self.partner.id,
-                    "blanket_validity_start_date": "2024-02-01",
-                    "blanket_validity_end_date": "2025-01-31",
-                    "order_line": [
-                        Command.create(
-                            {"product_id": self.product_1.id, "product_uom_qty": 10.0}
-                        ),
-                    ],
-                }
-            )
+            order.action_confirm()
 
     def test_reservation(self):
         # Confirm the blanket order with reservation at call off
