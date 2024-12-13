@@ -17,10 +17,8 @@
                     id="sale_validity_auto_cancel_days"
                     help="Quotations will be automatically cancelled after the expiration date plus the number of days specified."
                 >
-                    <field
-                        name="sale_validity_auto_cancel_days"
-                        class="oe_inline"
-                    /><span> days</span>
+                    <field name="sale_validity_auto_cancel_days" class="oe_inline" />
+                    <span> days</span>
                 </setting>
             </xpath>
         </field>
