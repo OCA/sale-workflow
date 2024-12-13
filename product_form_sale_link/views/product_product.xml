@@ -16,7 +16,7 @@
                     groups="sales_team.group_sale_salesman"
                     invisible="not sale_ok"
                 >
-                    <field name="sale_lines_count" widget="statinfo" />
+                    <field name="sale_lines_count" widget="statinfo" string="Sales" />
                 </button>
             </button>
         </field>
