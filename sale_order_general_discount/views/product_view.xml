@@ -7,7 +7,10 @@
         <field name="inherit_id" ref="product.product_normal_form_view" />
         <field name="arch" type="xml">
             <xpath expr="//group[@name='group_standard_price']" position="inside">
-                <field name="bypass_general_discount" />
+                <field
+                    name="bypass_general_discount"
+                    string="Don't apply general discount"
+                />
             </xpath>
         </field>
     </record>
@@ -20,6 +23,7 @@
             <xpath expr="//group[@name='group_standard_price']" position="inside">
                 <field
                     name="bypass_general_discount"
+                    string="Don't apply general discount"
                     invisible="product_variant_count > 1"
                 />
             </xpath>
