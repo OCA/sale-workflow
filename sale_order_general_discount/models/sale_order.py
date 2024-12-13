@@ -9,7 +9,6 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     general_discount = fields.Float(
-        string="Discount (%)",
         compute="_compute_general_discount",
         store=True,
         readonly=False,
