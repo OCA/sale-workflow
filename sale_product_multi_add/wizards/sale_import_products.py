@@ -19,7 +19,7 @@ class SaleImportProducts(models.TransientModel):
         for wizard in self:
             for product in wizard.products:
                 self.env["sale.import.products.items"].create(
-                    {"wizard_id": wizard.id, "product_id": product.id}
+                    [{"wizard_id": wizard.id, "product_id": product.id}]
                 )
         view = self.env.ref("sale_product_multi_add.view_import_product_to_sale2")
         return {
@@ -38,7 +38,6 @@ class SaleImportProducts(models.TransientModel):
         sale_line = self.env["sale.order.line"].new(
             {
                 "order_id": sale.id,
-                "name": item.product_id.name,
                 "product_id": item.product_id.id,
                 "product_uom_qty": item.quantity,
                 "product_uom": item.product_id.uom_id.id,

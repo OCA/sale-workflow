@@ -18,10 +18,7 @@
                 />
             </field>
             <field name="order_line" position="attributes">
-                <attribute
-                    translation="off"
-                    name="options"
-                >{'always_reload':true}</attribute>
+                <attribute name="options">{'always_reload':true}</attribute>
             </field>
         </field>
     </record>
