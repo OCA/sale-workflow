@@ -8,9 +8,7 @@
         <field name="name">Cancel Expired Quotations</field>
         <field name="interval_number">1</field>
         <field name="interval_type">days</field>
-        <field name="numbercall">-1</field>
         <field name="active">False</field>
-        <field name="doall" eval="False" />
         <field name="model_id" ref="model_sale_order" />
         <field name="state">code</field>
         <field name="code">model.cron_sale_validity_auto_cancel()</field>

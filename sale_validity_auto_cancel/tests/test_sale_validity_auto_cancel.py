@@ -4,11 +4,12 @@
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import fields
-from odoo.tests.common import TransactionCase
+from odoo import Command, fields
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleValidityAutoCancel(TransactionCase):
+class TestSaleValidityAutoCancel(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -23,9 +24,7 @@ class TestSaleValidityAutoCancel(TransactionCase):
             "partner_id": self.partner.id,
             "validity_date": fields.Date.today() - relativedelta(days=11),
             "order_line": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "product_id": self.product.id,
                         "product_uom_qty": 8,

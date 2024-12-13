@@ -1,3 +1,4 @@
 - Jordi Masvidal \<<jordi.masvidal@forgeflow.com>\>
 - [OERP Canada](https://www.oerp.ca/):
   - Foram Darji \<<fd@oerp.ca>\>
+- Heliconia Solutions Pvt. Ltd. \<<https://www.heliconia.io>\>
