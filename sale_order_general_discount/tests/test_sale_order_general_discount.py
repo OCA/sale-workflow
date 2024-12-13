@@ -10,76 +10,84 @@ class TestSaleOrderLineInput(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.partner = cls.env["res.partner"].create(
-            {"name": "Test", "sale_discount": 10.0}
+            [{"name": "Test", "sale_discount": 10.0}]
         )
         cls.contact = cls.env["res.partner"].create(
-            {
-                "name": "Contact Test",
-                "parent_id": cls.partner.id,
-                "type": "contact",
-            }
+            [
+                {
+                    "name": "Contact Test",
+                    "parent_id": cls.partner.id,
+                    "type": "contact",
+                }
+            ]
         )
         cls.product = cls.env["product.product"].create(
-            {"name": "test_product", "type": "service"}
+            [{"name": "test_product", "type": "service"}]
         )
         cls.pricelist = cls.env["product.pricelist"].create(
-            {"name": "Public Pricelist", "sequence": 1}
+            [{"name": "Public Pricelist", "sequence": 1}]
         )
         cls.product2 = cls.env["product.product"].create(
-            {
-                "name": "test product without general discount",
-                "type": "service",
-                "bypass_general_discount": True,
-            }
+            [
+                {
+                    "name": "test product without general discount",
+                    "type": "service",
+                    "bypass_general_discount": True,
+                }
+            ]
         )
         cls.order = cls.env["sale.order"].create(
-            {
-                "partner_id": cls.partner.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": cls.product.name,
-                            "product_id": cls.product.id,
-                            "product_uom_qty": 1,
-                            "product_uom": cls.product.uom_id.id,
-                            "price_unit": 1000.00,
-                        },
-                    ),
-                    (
-                        0,
-                        0,
-                        {
-                            "name": cls.product2.name,
-                            "product_id": cls.product2.id,
-                            "product_uom_qty": 1,
-                            "product_uom": cls.product2.uom_id.id,
-                            "price_unit": 1000.00,
-                        },
-                    ),
-                ],
-                "pricelist_id": cls.pricelist.id,
-            }
+            [
+                {
+                    "partner_id": cls.partner.id,
+                    "order_line": [
+                        (
+                            0,
+                            0,
+                            {
+                                "name": cls.product.name,
+                                "product_id": cls.product.id,
+                                "product_uom_qty": 1,
+                                "product_uom": cls.product.uom_id.id,
+                                "price_unit": 1000.00,
+                            },
+                        ),
+                        (
+                            0,
+                            0,
+                            {
+                                "name": cls.product2.name,
+                                "product_id": cls.product2.id,
+                                "product_uom_qty": 1,
+                                "product_uom": cls.product2.uom_id.id,
+                                "price_unit": 1000.00,
+                            },
+                        ),
+                    ],
+                    "pricelist_id": cls.pricelist.id,
+                }
+            ]
         )
         cls.contact_order = cls.env["sale.order"].create(
-            {
-                "partner_id": cls.contact.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": cls.product.name,
-                            "product_id": cls.product.id,
-                            "product_uom_qty": 1,
-                            "product_uom": cls.product.uom_id.id,
-                            "price_unit": 1000.00,
-                        },
-                    )
-                ],
-                "pricelist_id": cls.pricelist.id,
-            }
+            [
+                {
+                    "partner_id": cls.contact.id,
+                    "order_line": [
+                        (
+                            0,
+                            0,
+                            {
+                                "name": cls.product.name,
+                                "product_id": cls.product.id,
+                                "product_uom_qty": 1,
+                                "product_uom": cls.product.uom_id.id,
+                                "price_unit": 1000.00,
+                            },
+                        )
+                    ],
+                    "pricelist_id": cls.pricelist.id,
+                }
+            ]
         )
         cls.View = cls.env["ir.ui.view"]
 
@@ -112,18 +120,20 @@ class TestSaleOrderLineInput(TransactionCase):
         ctx = self._get_ctx_from_view(res)
         self.assertTrue("default_discount" in ctx)
         view = self.View.create(
-            {
-                "name": "test",
-                "type": "form",
-                "model": "sale.order",
-                "arch": """
+            [
+                {
+                    "name": "test",
+                    "type": "form",
+                    "model": "sale.order",
+                    "arch": """
                 <form>
                     <field name='order_line'
                         context="{'default_product_uom_qty': 3.0}">
                     </field>
                 </form>
             """,
-            }
+                }
+            ]
         )
         res = self.order.get_view(view_id=view.id, view_type="form")
         ctx = self._get_ctx_from_view(res)

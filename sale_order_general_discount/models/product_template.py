@@ -7,7 +7,6 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     bypass_general_discount = fields.Boolean(
-        string="Don't apply general discount",
         compute="_compute_bypass_general_discount",
         inverse="_inverse_bypass_general_discount",
         search="_search_bypass_general_discount",

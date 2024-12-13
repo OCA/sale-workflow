@@ -8,11 +8,15 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='tax_totals']" position="before">
-                <field
-                    name="general_discount"
-                    class="oe_subtotal_footer_separator"
-                    style="width: 4.375rem;"
-                />
+                <div class="oe_row" style="float:right;">
+                    <label for="general_discount" />
+                    <field
+                        name="general_discount"
+                        style="width: 5.5rem;"
+                        class="oe_subtotal_footer_separator mr-0"
+                        string="Discount (%)"
+                    />
+                </div>
             </xpath>
         </field>
     </record>
