@@ -12,7 +12,7 @@
             >
                 <label for="sale_discount" />
                 <div>
-                    <field name="sale_discount" class="oe_inline" /> %
+                    <field name="sale_discount" string="Discount" class="oe_inline" /> %
                 </div>
             </xpath>
         </field>
