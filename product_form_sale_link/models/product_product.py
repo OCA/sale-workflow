@@ -7,12 +7,13 @@ from odoo import fields, models
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    sale_lines_count = fields.Integer(
-        compute="_compute_sale_lines_count", string="Sales"
-    )
+    sale_lines_count = fields.Integer(compute="_compute_sale_lines_count")
 
     def _compute_sale_lines_count(self):
-        if not self.user_has_groups("sales_team.group_sale_salesman") or not self.ids:
+        if (
+            not self.env.user.has_group("sales_team.group_sale_salesman")
+            or not self.ids
+        ):
             self.sale_lines_count = 0.0
             return
         domain = [
