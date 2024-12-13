@@ -8,11 +8,11 @@
                 <field name="products" />
                 <footer>
                     <button
-                        name="create_items"
-                        string="Set quantities"
-                        type="object"
-                        class="oe_highlight"
-                    />
+                    name="create_items"
+                    string="Set quantities"
+                    type="object"
+                    class="oe_highlight"
+                />
                     or
                     <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
@@ -32,11 +32,11 @@
                 </field>
                 <footer>
                 <button
-                        name="select_products"
-                        string="Confirm"
-                        type="object"
-                        class="oe_highlight"
-                    />
+                    name="select_products"
+                    string="Confirm"
+                    type="object"
+                    class="oe_highlight"
+                />
                 or
                 <button string="Cancel" class="oe_link" special="cancel" />
             </footer>
