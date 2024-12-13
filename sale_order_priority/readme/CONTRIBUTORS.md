@@ -2,3 +2,4 @@
 - George Daramouskas \<<gdaramouskas@therp.nl>\>
 -  `360ERP <https://www.360erp.com>`:
    -  Andrea Stirpe
+- Heliconia Solutions Pvt. Ltd. \<<https://www.heliconia.io>\>

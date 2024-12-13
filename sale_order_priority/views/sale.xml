@@ -17,7 +17,7 @@
                 <field name="priority" />
             </xpath>
             <xpath
-                expr="//field[@name='order_line']//tree//field[@name='price_unit']"
+                expr="//field[@name='order_line']//list//field[@name='price_unit']"
                 position="after"
             >
                 <field name="priority" />
