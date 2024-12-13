@@ -21,7 +21,7 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/tree/field[@name='qty_to_invoice']"
+                expr="//field[@name='order_line']/list/field[@name='qty_to_invoice']"
                 position="after"
             >
                 <field
@@ -38,16 +38,16 @@
         <field name="name">sale.order.line.tag.tree</field>
         <field name="model">sale.order.line.tag</field>
         <field name="arch" type="xml">
-            <tree editable="top">
+            <list editable="top">
                 <field name="name" />
-            </tree>
+            </list>
         </field>
     </record>
 
     <record id="sale_order_line_tag_action" model="ir.actions.act_window">
         <field name="name">Sales Order Line Tags</field>
         <field name="res_model">sale.order.line.tag</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="context">{}</field>
     </record>
 
