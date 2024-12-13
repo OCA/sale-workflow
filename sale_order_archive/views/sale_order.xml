@@ -14,6 +14,11 @@
                     invisible="active"
                 />
             </xpath>
+            <xpath expr="//button[@name='action_draft']" position="attributes">
+                <attribute
+                    name="invisible"
+                >state != 'cancel' or active != True</attribute>
+            </xpath>
             <xpath expr="//sheet">
                 <field name="active" invisible="1" />
             </xpath>
