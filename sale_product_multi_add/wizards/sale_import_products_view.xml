@@ -25,10 +25,10 @@
         <field name="arch" type="xml">
             <form string="Products">
                 <field name="items">
-                    <tree create="0" editable="bottom">
+                    <list create="0" editable="bottom">
                         <field name="product_id" readonly="1" />
                         <field name="quantity" />
-                    </tree>
+                    </list>
                 </field>
                 <footer>
                 <button
