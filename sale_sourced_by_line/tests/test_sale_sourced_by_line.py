@@ -51,7 +51,7 @@ class TestSaleSourcedByLine(BaseCommon):
         self.assertEqual(
             len(so.picking_ids),
             2,
-            "2 delivery orders expected. Got %s instead" % len(so.picking_ids),
+            f"2 delivery orders expected. Got {len(so.picking_ids)} instead",
         )
         for line in so.order_line:
             self.assertEqual(
@@ -96,7 +96,7 @@ class TestSaleSourcedByLine(BaseCommon):
         self.assertEqual(
             len(so.picking_ids),
             1,
-            "1 delivery order expected. Got %s instead" % len(so.picking_ids),
+            f"1 delivery order expected. Got {len(so.picking_ids)} instead",
         )
 
     def test_sale_order_source(self):
