@@ -52,10 +52,11 @@ class SaleOrderTypology(models.Model):
         ondelete="restrict",
         check_company=True,
     )
-    analytic_account_id = fields.Many2one(
-        comodel_name="account.analytic.account",
-        string="Analytic account",
-        check_company=True,
+    project_id = fields.Many2one(
+        comodel_name="project.project",
+        domain=[("allow_billable", "=", True)],
+        string="Project",
+        help="Select to define the analytics account",
     )
     active = fields.Boolean(default=True)
     quotation_validity_days = fields.Integer(string="Quotation Validity (Days)")

@@ -27,6 +27,9 @@ class SaleOrder(models.Model):
         compute="_compute_picking_policy", store=True, readonly=False
     )
     incoterm = fields.Many2one(compute="_compute_incoterm", store=True, readonly=False)
+    project_id = fields.Many2one(
+        compute="_compute_project_id", store=True, readonly=False
+    )
 
     @api.model
     def _default_type_id(self):
@@ -124,6 +127,13 @@ class SaleOrder(models.Model):
             if order_type.incoterm_id:
                 order.incoterm = order_type.incoterm_id
         return res
+
+    @api.depends("type_id")
+    def _compute_project_id(self):
+        for order in self.filtered("type_id"):
+            order_type = order.type_id
+            if order_type.project_id:
+                order.project_id = order_type.project_id
 
     @api.depends("type_id")
     def _compute_validity_date(self):

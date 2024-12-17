@@ -18,7 +18,7 @@
     "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
-    "depends": ["sale_stock", "account", "sale_management"],
+    "depends": ["sale_stock", "account", "sale_management", "sale_project"],
     "demo": ["demo/sale_order_demo.xml"],
     "data": [
         "security/ir.model.access.csv",

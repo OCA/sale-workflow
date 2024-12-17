@@ -58,6 +58,7 @@ class TestSaleOrderType(BaseCommon):
         cls.sale_pricelist = cls.env["product.pricelist"].create(
             {"name": "Public Pricelist", "sequence": 1}
         )
+        cls.project_id = cls.env["project.project"].create({"name": "Project sample"})
         cls.free_carrier = cls.env.ref("account.incoterm_FCA")
         cls.sale_type = cls.sale_type_model.create(
             {
@@ -68,6 +69,7 @@ class TestSaleOrderType(BaseCommon):
                 "picking_policy": "one",
                 "payment_term_id": cls.immediate_payment.id,
                 "pricelist_id": cls.sale_pricelist.id,
+                "project_id": cls.project_id.id,
                 "incoterm_id": cls.free_carrier.id,
                 "quotation_validity_days": 10,
             }
@@ -81,6 +83,7 @@ class TestSaleOrderType(BaseCommon):
                 "picking_policy": "one",
                 "payment_term_id": cls.immediate_payment.id,
                 "pricelist_id": cls.sale_pricelist.id,
+                "project_id": cls.project_id.id,
                 "incoterm_id": cls.free_carrier.id,
             }
         )
@@ -127,6 +130,7 @@ class TestSaleOrderType(BaseCommon):
                 "picking_policy": "one",
                 "payment_term_id": cls.immediate_payment.id,
                 "pricelist_id": cls.sale_pricelist.id,
+                "project_id": cls.project_id.id,
                 "incoterm_id": cls.free_carrier.id,
                 "route_id": cls.sale_route.id,
             }
@@ -160,6 +164,7 @@ class TestSaleOrderType(BaseCommon):
         self.assertEqual(order.picking_policy, sale_type.picking_policy)
         self.assertEqual(order.payment_term_id, sale_type.payment_term_id)
         self.assertEqual(order.pricelist_id, sale_type.pricelist_id)
+        self.assertEqual(order.project_id, sale_type.project_id)
         self.assertEqual(order.incoterm, sale_type.incoterm_id)
         order.action_confirm()
         invoice = order._create_invoices()
