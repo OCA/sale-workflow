@@ -5,7 +5,6 @@ from odoo import fields, models
 
 
 class SaleOrderCancel(models.TransientModel):
-
     """Ask a reason for the sale order cancellation."""
 
     _inherit = "sale.order.cancel"

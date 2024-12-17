@@ -4,17 +4,17 @@
         <field name="name">Reason for the cancellation</field>
         <field name="model">sale.order.cancel</field>
         <field name="inherit_id" ref="sale.sale_order_cancel_view_form" />
-            <field name="arch" type="xml">
-                <xpath expr="//footer" position="before">
-                    <br />
-                    <p>
+        <field name="arch" type="xml">
+            <xpath expr="//footer" position="before">
+                <br />
+                <p>
                         Choose the reason for the cancellation of the
                         sale order.
                     </p>
-                    <group>
-                        <field name="reason_id" widget="selection" />
-                    </group>
-                </xpath>
-            </field>
+                <group>
+                    <field name="reason_id" widget="selection" />
+                </group>
+            </xpath>
+        </field>
     </record>
 </odoo>
