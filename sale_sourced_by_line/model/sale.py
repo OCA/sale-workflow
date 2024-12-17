@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -22,16 +22,14 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    warehouse_id = fields.Many2one(
-        "stock.warehouse",
-        "Source Warehouse",
-        readonly=True,
-        related="",
-        help="If a source warehouse is selected, "
-        "it will be used to define the route. "
-        "Otherwise, it will get the warehouse of "
-        "the sale order",
+    @api.depends(
+        "route_id", "order_id.warehouse_id", "product_packaging_id", "product_id"
     )
+    def _compute_warehouse_id(self):
+        """compute the warehouse for the lines only
+        if it has not already been set."""
+        lines = self.filtered(lambda rec: not rec.warehouse_id)
+        return super(SaleOrderLine, lines)._compute_warehouse_id()
 
     def _prepare_procurement_group_vals(self):
         vals = super()._prepare_procurement_group_vals()
