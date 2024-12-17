@@ -24,14 +24,36 @@ class SaleOrderBlanketOrderCase(BaseCommon):
         - Create a normal sale order with 2 lines.
         """
         super().setUpClass()
+        # create a flat tax
+        cls.tax_fixed = cls.env["account.tax"].create(
+            {
+                "sequence": 10,
+                "name": "Tax 10.0 (Fixed)",
+                "amount": 10.0,
+                "amount_type": "fixed",
+                "include_base_amount": True,
+            }
+        )
         cls.product_1 = cls.env["product.product"].create(
-            {"name": "Product 1", "type": "product"}
+            {
+                "name": "Product 1",
+                "type": "product",
+                "taxes_id": [Command.link(cls.tax_fixed.id)],
+            }
         )
         cls.product_2 = cls.env["product.product"].create(
-            {"name": "Product 2", "type": "product"}
+            {
+                "name": "Product 2",
+                "type": "product",
+                "taxes_id": [Command.link(cls.tax_fixed.id)],
+            }
         )
         cls.product_3 = cls.env["product.product"].create(
-            {"name": "Product 3", "type": "product"}
+            {
+                "name": "Product 3",
+                "type": "product",
+                "taxes_id": [Command.link(cls.tax_fixed.id)],
+            }
         )
         cls._set_qty_in_loc_only(cls.product_1, 1000)
         cls._set_qty_in_loc_only(cls.product_2, 2000)

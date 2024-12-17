@@ -167,6 +167,9 @@ class TestSaleCallOffOrder(SaleOrderBlanketOrderCase):
                     "forecast_expected_date": blanket_line.forecast_expected_date,
                     "free_qty_today": blanket_line.free_qty_today,
                     "qty_available_today": blanket_line.qty_available_today,
+                    "price_tax": 0.0,
+                    "price_total": 0.0,
+                    "tax_id": [],
                 }
             ],
         )

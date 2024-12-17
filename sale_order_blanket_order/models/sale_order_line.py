@@ -393,6 +393,17 @@ class SaleOrderLine(models.Model):
         res["call_off_sale_line_id"] = call_off_sale_line_id
         return res
 
+    def _compute_tax_id(self):
+        # Overload to consider the call-off order lines in the computation
+        # For these lines we don't want to apply taxes. If we don't enforce
+        # the tax_id to False, we could end up with an amount to invoice
+        # if a fixed price is set on linked taxes. All the invoicing is done
+        # on the blanket order line including the taxes.
+        call_off_lines = self.filtered(lambda l: l.order_type == "call_off")
+        other_lines = self - call_off_lines
+        call_off_lines.tax_id = False
+        return super(SaleOrderLine, other_lines)._compute_tax_id()
+
     def _compute_qty_at_date(self):
         # Overload to consider the call-off order lines in the computation
         # For these lines we take the values computed on the corresponding

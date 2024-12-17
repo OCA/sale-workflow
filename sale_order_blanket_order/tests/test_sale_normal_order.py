@@ -113,6 +113,23 @@ class TestSaleNormalOrder(SaleOrderBlanketOrderCase):
         self.assertEqual(len(order.order_line), 1)
         self.assertEqual(order.order_line.product_id, self.product_3)
         self.assertEqual(len(new_order.order_line), 1)
+        self.assertRecordValues(
+            new_order.order_line,
+            [
+                {
+                    "product_id": self.product_1.id,
+                    "product_uom_qty": 1.0,
+                    "price_unit": 0.0,
+                    "qty_to_deliver": 0.0,
+                    "qty_to_invoice": 0.0,
+                    "qty_delivered": 0.0,
+                    "price_tax": 0.0,
+                    "price_total": 0.0,
+                    "tax_id": [],
+                }
+            ],
+        )
+
         self.assertEqual(new_order.order_line.product_id, self.product_1)
         self.assertEqual(new_order.order_line.product_uom_qty, 1)
         blanket_lines = self.blanket_so.order_line.filtered(
