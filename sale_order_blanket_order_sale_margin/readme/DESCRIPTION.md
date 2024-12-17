@@ -1,0 +1,1 @@
+This module extends the functionality of the module sale_order_blanket_order and sale_margin to ensure that the margin calculation takes into account the specific case of cut off orders. In the case of a cut off order, the margin must be set to 0 since the financial impact of the order is managed on the blanket order.
