@@ -26,17 +26,17 @@
                 </page>
             </notebook>
             <field name="tax_totals" position="after">
-                <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                <div class="oe_subtotal_footer_separator o_td_label">
                     <label for="amount_residual" />
+                    <field
+                        name="amount_residual"
+                        nolabel="1"
+                        readonly="True"
+                        class="oe_inline"
+                        widget="monetary"
+                        options="{'currency_field': 'currency_id'}"
+                    />
                 </div>
-                <field
-                    name="amount_residual"
-                    nolabel="1"
-                    readonly="True"
-                    class="oe_subtotal_footer_separator"
-                    widget="monetary"
-                    options="{'currency_field': 'currency_id'}"
-                />
             </field>
             <field name="tag_ids" position="after">
                 <field name="advance_payment_status" readonly="True" />

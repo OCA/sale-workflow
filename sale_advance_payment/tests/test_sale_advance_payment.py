@@ -3,10 +3,11 @@
 
 from odoo import fields
 from odoo.exceptions import ValidationError
-from odoo.tests import common
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleAdvancePayment(common.TransactionCase):
+class TestSaleAdvancePayment(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
