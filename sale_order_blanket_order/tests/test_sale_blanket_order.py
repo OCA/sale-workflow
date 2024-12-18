@@ -182,3 +182,37 @@ class TestSaleBlanketOrder(SaleOrderBlanketOrderCase):
         ), self.env.cr.savepoint():
             # change is not allowed on finalized order
             self.blanket_so.blanket_eol_strategy = "deliver"
+
+    def test_update_qty(self):
+        self.blanket_so.action_confirm()
+        so_line_product_2 = self.blanket_so.order_line.filtered(
+            lambda l: l.product_id == self.product_2
+        )
+        self.assertEqual(so_line_product_2.product_uom_qty, 10)
+        so_line_product_2.product_uom_qty = 5
+        self.assertEqual(so_line_product_2.product_uom_qty, 5)
+        self.assertEqual(so_line_product_2.call_off_remaining_qty, 5)
+        # if we deliver 3, we should not update the qty under the remaining qty
+        order = self.env["sale.order"].create(
+            {
+                "order_type": "call_off",
+                "date_order": "2025-02-01",
+                "partner_id": self.partner.id,
+                "blanket_order_id": self.blanket_so.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.product_2.id,
+                            "product_uom_qty": 3.0,
+                        }
+                    ),
+                ],
+            }
+        )
+        with freezegun.freeze_time("2025-02-01"):
+            order.action_confirm()
+        self.assertEqual(so_line_product_2.call_off_remaining_qty, 2)
+        with self.assertRaisesRegex(
+            ValidationError, "The forecasted quantity cannot be less than the quantity"
+        ):
+            so_line_product_2.product_uom_qty = 1

@@ -33,16 +33,19 @@ class SaleOrderLine(models.Model):
             procurements = [proc]
         return procurements
 
-    def _prebook_stock_for_call_off_remaining_qty(self):
+    def _prebook_stock_for_call_off_remaining_qty(self, previous_product_uom_qty=None):
         """Prebook the stock for qty remaining to call off."""
+        previous_product_uom_qty = previous_product_uom_qty or {}
         self = self.with_context(sale_stock_prebook_stop_proc_run=True)
         procurements = []
         lines_by_order = defaultdict(self.browse)
         for line in self:
             lines_by_order[line.order_id] |= line
         for order, lines in lines_by_order.items():
-            group = order._create_reserve_procurement_group()
+            group = order._get_or_create_reserve_procurement_group()
             for line in lines:
+                if line.id in previous_product_uom_qty:
+                    line._release_reservation()
                 remaining_qty = line.call_off_remaining_qty
                 if (
                     float_compare(
@@ -69,7 +72,7 @@ class SaleOrderLine(models.Model):
             # the call off order and the current line is part of this qty, it
             # represents the real remaining qty to consume and therefore the qty to
             # reserve on the blanket order.
-            self._prebook_stock_for_call_off_remaining_qty()
+            self._prebook_stock_for_call_off_remaining_qty(previous_product_uom_qty)
 
             # run normal delivery rule on the blanket order. This will create the
             # move on the call off order for the qty not reserved IOW the qty to
@@ -81,3 +84,18 @@ class SaleOrderLine(models.Model):
             super()._launch_stock_rule_for_call_off_line_qty(
                 qty_to_deliver, previous_product_uom_qty
             )
+
+    def _action_launch_stock_rule(self, previous_product_uom_qty=None):
+        previous_product_uom_qty = previous_product_uom_qty or {}
+        lines_to_update_reservation = self.filtered(
+            lambda l: l.order_type == "blanket"
+            and l.id in previous_product_uom_qty
+            and l.order_id.blanket_reservation_strategy == "at_confirm"
+        )
+        lines_to_update_reservation._prebook_stock_for_call_off_remaining_qty(
+            previous_product_uom_qty
+        )
+        others_lines = self - lines_to_update_reservation
+        return super(SaleOrderLine, others_lines)._action_launch_stock_rule(
+            previous_product_uom_qty=previous_product_uom_qty
+        )

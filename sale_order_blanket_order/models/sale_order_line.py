@@ -206,7 +206,9 @@ class SaleOrderLine(models.Model):
                     )
                 )
 
-    @api.depends("call_off_line_ids", "order_type", "call_off_line_ids.state")
+    @api.depends(
+        "call_off_line_ids", "order_type", "call_off_line_ids.state", "product_uom_qty"
+    )
     def _compute_call_off_remaining_qty(self):
         """Compute the quantity remaining to deliver for call-off order lines.
 
@@ -620,3 +622,28 @@ class SaleOrderLine(models.Model):
             "product_uom": self.product_uom.id,
             "product_packaging_id": self.product_packaging_id.id,
         }
+
+    def _blanket_check_update_product_uom_qty(self, values):
+        if "product_uom_qty" not in values:
+            return
+        new_qty = values.get("product_uom_qty")
+        for line in self:
+            if line.order_type != "blanket" or line.state != "sale" or line.is_expense:
+                continue
+            called_qty = line.product_uom_qty - line.call_off_remaining_qty
+            if (
+                float_compare(
+                    new_qty, called_qty, precision_rounding=line.product_uom.rounding
+                )
+                < 0
+            ):
+                raise ValidationError(
+                    _(
+                        "The forecasted quantity cannot be less than the quantity "
+                        "already called by call-off orders."
+                    )
+                )
+
+    def write(self, values):
+        self._blanket_check_update_product_uom_qty(values)
+        return super(SaleOrderLine, self).write(values)

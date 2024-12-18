@@ -720,5 +720,8 @@ class SaleOrder(models.Model):
             return super().write(values)
 
     def _action_cancel(self):
-        self._blanket_order_release_call_off_remaining_qty()
+        self.filtered(
+            lambda so: so.order_type == "blanket"
+            and so.blanket_reservation_strategy == "at_call_off"
+        )._blanket_order_release_call_off_remaining_qty()
         return super()._action_cancel()

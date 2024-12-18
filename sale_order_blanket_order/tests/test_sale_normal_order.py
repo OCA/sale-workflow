@@ -233,3 +233,22 @@ class TestSaleNormalOrder(SaleOrderBlanketOrderCase):
         remaining_qty = sum(blanket_lines.mapped("call_off_remaining_qty"))
         self.assertEqual(remaining_qty, 0)
         self.assertEqual(order.order_line.product_uom_qty, 5)
+
+    def test_cancel_normal(self):
+        # ensure non regression on cancel of a normal order
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.product_3.id,
+                            "product_uom_qty": 1,
+                            "price_unit": 100,
+                        },
+                    )
+                ],
+            }
+        )
+        order.action_confirm()
+        order._action_cancel()

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 12:41+0000\n"
-"PO-Revision-Date: 2024-12-18 12:41+0000\n"
+"POT-Creation-Date: 2024-12-19 09:27+0000\n"
+"PO-Revision-Date: 2024-12-19 09:27+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -435,7 +435,9 @@ msgstr "La date de fin de la période de validité de la commande-cadre."
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "The end-of-life strategy cannot be modified on order %(order)s."
-msgstr "La stratégie de fin de vie ne peut pas être modifiée sur la commande %(order)s."
+msgstr ""
+"La stratégie de fin de vie ne peut pas être modifiée sur la commande "
+"%(order)s."
 
 #. module: sale_order_blanket_order
 #. odoo-python
@@ -514,6 +516,17 @@ msgstr ""
 "'%(product)s', Commande: '%(order)s', Commande-cadre: '%(blanket_order)s')"
 
 #. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
+#, python-format
+msgid ""
+"The forecasted quantity cannot be less than the quantity already called by "
+"call-off orders."
+msgstr ""
+"La quantité prévue ne peut pas être inférieure à la quantité déjà appelée par "
+"les commandes d'appel."
+
+#. module: sale_order_blanket_order
 #: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order_line__call_off_remaining_qty
 msgid ""
 "The quantity remaining to consume by call-off orders in case of a blanket "
@@ -543,7 +556,9 @@ msgstr ""
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
 msgid "The reservation strategy cannot be modified on order %(order)s."
-msgstr "La stratégie de réservation ne peut pas être modifiée sur la commande %(order)s."
+msgstr ""
+"La stratégie de réservation ne peut pas être modifiée sur la commande "
+"%(order)s."
 
 #. module: sale_order_blanket_order
 #: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__blanket_validity_start_date
@@ -610,5 +625,5 @@ msgid ""
 "order."
 msgstr ""
 "Lorsque cette option est activée, le système créera automatiquement des "
-"commandes d'appel lorsque une commande client est confirmée et que certaines "
-"lignes font référence à une commande-cadre."
+"commandes d'appel lorsque une commande client est confirmée et que certaines"
+" lignes font référence à une commande-cadre."

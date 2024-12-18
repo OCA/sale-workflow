@@ -41,6 +41,75 @@ class TestSaleBlanketOrder(SaleOrderBlanketOrderCase):
         moves = self._get_current_moves(self.blanket_so, only_reservation=True)
         self.assertTrue(moves)
 
+    def test_update_reservation(self):
+        self.blanket_so.action_confirm()
+        so_line_product_2 = self.blanket_so.order_line.filtered(
+            lambda l: l.product_id == self.product_2
+        )
+        moves = self._get_current_moves(
+            self.blanket_so, self.product_2, only_reservation=True
+        )
+        reserved_qty = sum(moves.mapped("product_uom_qty"))
+        self.assertEqual(reserved_qty, 10)
+        so_line_product_2.product_uom_qty = 5.0
+        moves = self._get_current_moves(
+            self.blanket_so, self.product_2, only_reservation=True
+        )
+        reserved_qty = sum(moves.mapped("product_uom_qty"))
+        self.assertEqual(reserved_qty, 5)
+
+        so_line_product_2.product_uom_qty = 15.0
+        moves = self._get_current_moves(
+            self.blanket_so, self.product_2, only_reservation=True
+        )
+        reserved_qty = sum(moves.mapped("product_uom_qty"))
+        self.assertEqual(reserved_qty, 15)
+
+    def test_update_current_reservation_with_delivered_qty(self):
+        self.blanket_so.action_confirm()
+        so_line_product_2 = self.blanket_so.order_line.filtered(
+            lambda l: l.product_id == self.product_2
+        )
+        moves = self._get_current_moves(
+            self.blanket_so, self.product_2, only_reservation=True
+        )
+        reserved_qty = sum(moves.mapped("product_uom_qty"))
+        self.assertEqual(reserved_qty, 10)
+        so_line_product_2.product_uom_qty = 5.0
+        moves = self._get_current_moves(
+            self.blanket_so, self.product_2, only_reservation=True
+        )
+        reserved_qty = sum(moves.mapped("product_uom_qty"))
+        self.assertEqual(reserved_qty, 5)
+
+        # create and process a call-off
+        with freezegun.freeze_time("2025-02-01"):
+            order = self.env["sale.order"].create(
+                {
+                    "order_type": "call_off",
+                    "partner_id": self.partner.id,
+                    "blanket_order_id": self.blanket_so.id,
+                    "order_line": [
+                        Command.create(
+                            {
+                                "product_id": self.product_2.id,
+                                "product_uom_qty": 5.0,
+                            }
+                        ),
+                    ],
+                }
+            )
+            order.action_confirm()
+        self.assertIn(order.state, ["sale", "done"])
+
+        # update the quantity of the blanket order
+        so_line_product_2.product_uom_qty = 15.0
+        moves = self._get_current_moves(
+            self.blanket_so, self.product_2, only_reservation=True
+        )
+        reserved_qty = sum(moves.mapped("product_uom_qty"))
+        self.assertEqual(reserved_qty, 10)
+
     @freezegun.freeze_time("2025-02-01")
     def test_change_reservation_mode_partially_processed(self):
         # in this test we create a call-off to partially deliver
