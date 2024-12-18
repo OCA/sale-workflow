@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2024 Akretion France (https://www.akretion.com/)
+  @author Alexis de Lattre <alexis.delattre@akretion.com>
+  License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="view_order_line_tree" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field
+                    name="start_date"
+                    required="must_have_dates"
+                    invisible="not must_have_dates"
+                    optional="show"
+                />
+                <field
+                    name="end_date"
+                    required="must_have_dates"
+                    invisible="not must_have_dates"
+                    optional="show"
+                />
+                <field
+                    name="number_of_days"
+                    required="must_have_dates"
+                    invisible="not must_have_dates"
+                    optional="hide"
+                />
+                <field name="must_have_dates" column_invisible="1" />
+            </field>
+        </field>
+    </record>
+    <record id="sale_order_line_view_form_readonly" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field
+                    name="start_date"
+                    required="must_have_dates"
+                    invisible="not must_have_dates"
+                />
+                <field
+                    name="end_date"
+                    required="must_have_dates"
+                    invisible="not must_have_dates"
+                />
+                <field
+                    name="number_of_days"
+                    required="must_have_dates"
+                    invisible="not must_have_dates"
+                />
+                <field name="must_have_dates" column_invisible="1" />
+            </field>
+        </field>
+    </record>
+</odoo>
