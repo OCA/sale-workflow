@@ -16,7 +16,7 @@ class TestSaleNormalOrder(SaleOrderBlanketOrderCase):
         cls.blanket_so.action_confirm()
 
     @classmethod
-    def _set_cut_off_auto_create_mode(cls, value):
+    def _set_call_off_auto_create_mode(cls, value):
         # Enable the auto create mode
         cls.env["res.config.settings"].create(
             {"create_call_off_from_so_if_possible": True}
@@ -66,8 +66,21 @@ class TestSaleNormalOrder(SaleOrderBlanketOrderCase):
         self.assertEqual(len(new_order), 0)
 
         # Enable the auto create mode
-        self._set_cut_off_auto_create_mode(True)
-        order.action_draft()
+        self._set_call_off_auto_create_mode(True)
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.product_1.id,
+                            "product_uom_qty": 1,
+                            "price_unit": 100,
+                        },
+                    )
+                ],
+            }
+        )
         with RecordCapturer(self.so_model, self.call_off_domain) as captured:
             order.action_confirm()
         new_order = captured.records
@@ -84,7 +97,7 @@ class TestSaleNormalOrder(SaleOrderBlanketOrderCase):
         # and the other is not
         # The quantity of the product that is part of the blanket order
         # is less than the quantity in the blanket order
-        self._set_cut_off_auto_create_mode(True)
+        self._set_call_off_auto_create_mode(True)
         order = self.env["sale.order"].create(
             {
                 "partner_id": self.partner.id,
@@ -150,7 +163,7 @@ class TestSaleNormalOrder(SaleOrderBlanketOrderCase):
         # fulfills the remaining quantity of the first blanket line.
         # product_1 is part of the blanket order with 2 lines each with a quantity
         # of 10
-        self._set_cut_off_auto_create_mode(True)
+        self._set_call_off_auto_create_mode(True)
         order = self.env["sale.order"].create(
             {
                 "partner_id": self.partner.id,
@@ -191,7 +204,7 @@ class TestSaleNormalOrder(SaleOrderBlanketOrderCase):
         # remaining quantity.
         # product_1 is part of the blanket order with 2 lines each with a quantity
         # of 10
-        self._set_cut_off_auto_create_mode(True)
+        self._set_call_off_auto_create_mode(True)
         order = self.env["sale.order"].create(
             {
                 "partner_id": self.partner.id,

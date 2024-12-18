@@ -108,6 +108,14 @@ class SaleOrder(models.Model):
         default=False,
     )
 
+    create_call_off_from_so_if_possible = fields.Boolean(
+        default=lambda self: self.env.company.create_call_off_from_so_if_possible,
+        help="When this option is enabled, the system will automatically create "
+        "call-off orders when a sales order is confirmed and some lines refer to a "
+        "blanket order.",
+        states=READONLY_FIELD_STATES,
+    )
+
     def init(self):
         self._cr.execute(
             """
@@ -435,7 +443,7 @@ class SaleOrder(models.Model):
             raise ValueError("Only orders can be split.")
 
         splitable_orders = self.filtered(
-            lambda order: order.company_id.sudo().create_call_off_from_so_if_possible
+            lambda order: order.create_call_off_from_so_if_possible
         )
         if not splitable_orders:
             return self.browse()

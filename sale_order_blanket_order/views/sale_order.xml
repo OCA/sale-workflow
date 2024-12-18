@@ -85,6 +85,13 @@
                     attrs="{'invisible': [('order_type', '!=', 'blanket')], 'readonly': [('is_blanket_eol_strategy_editable', '=', False)]}"
                 />
             </field>
+            <field name="commitment_date" position="after">
+                <field
+                    name="create_call_off_from_so_if_possible"
+                    widget="boolean_toggle"
+                    attrs="{'invisible': [('order_type', '!=', 'order')]}"
+                />
+            </field>
             <xpath
                 expr="//page[@name='order_lines']//form//div[@name='ordered_qty']"
                 position="after"
