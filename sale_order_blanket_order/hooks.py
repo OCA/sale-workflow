@@ -36,3 +36,7 @@ def pre_init_hook(cr):
     cr.execute(
         "ALTER TABLE sale_order ADD COLUMN blanket_reservation_strategy varchar(255)"
     )
+
+    cr.execute(
+        "ALTER TABLE sale_order ADD COLUMN create_call_off_from_so_if_possible BOOLEAN"
+    )

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-09 08:46+0000\n"
-"PO-Revision-Date: 2024-12-09 08:46+0000\n"
+"POT-Creation-Date: 2024-12-18 12:41+0000\n"
+"PO-Revision-Date: 2024-12-18 12:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -142,6 +142,11 @@ msgid "Config Settings"
 msgstr "Configuration"
 
 #. module: sale_order_blanket_order
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order__create_call_off_from_so_if_possible
+msgid "Create Call Off From So If Possible"
+msgstr "Créer une commande d'appel à partir si possible"
+
+#. module: sale_order_blanket_order
 #: model:ir.model.fields,field_description:sale_order_blanket_order.field_res_company__create_call_off_from_so_if_possible
 #: model:ir.model.fields,field_description:sale_order_blanket_order.field_res_config_settings__create_call_off_from_so_if_possible
 msgid "Create Call-Off from SO if possible"
@@ -228,15 +233,33 @@ msgstr ""
 "commande-cadre doit être finalisée, le système recherchera les commandes-"
 "cadre avec ce champ défini à True et la période de validité atteinte. Une "
 "fois la commande-cadre finalisée, le système définira ce champ à False. De "
-"cette manière, la base de données contiendra toujours moins d'enregistrements"
-" à rechercher avec ce champ défini à True."
+"cette manière, la base de données contiendra toujours moins "
+"d'enregistrements à rechercher avec ce champ défini à True."
 
 #. module: sale_order_blanket_order
-#. odoo-python
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#, python-format
-msgid "Invalid reservation strategy for the blanket order %(ref)s."
-msgstr "Stratégie de réservation invalide pour la commande-cadre %(ref)s."
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__is_blanket_eol_strategy_editable
+msgid ""
+"Indicates if the end-of-life strategy can be edited. By default, the end-of-"
+"life strategy can be edited while the blanket order is not finalized."
+msgstr ""
+"Indique si la stratégie de fin de vie peut être modifiée. Par défaut, la "
+"stratégie de fin de vie peut être modifiée tant que la commande-cadre n'est "
+"pas finalisée."
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__is_blanket_reservation_strategy_editable
+msgid "Indicates if the reservation strategy can be edited."
+msgstr "Indique si la stratégie de réservation peut être modifiée."
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order__is_blanket_eol_strategy_editable
+msgid "Is Blanket Eol Strategy Editable"
+msgstr "La stratégie de fin de vie de la commande-cadre est-elle modifiable"
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order__is_blanket_reservation_strategy_editable
+msgid "Is Blanket Reservation Strategy Editable"
+msgstr "La stratégie de réservation de la commande-cadre est-elle modifiable"
 
 #. module: sale_order_blanket_order
 #: model:ir.model.fields,field_description:sale_order_blanket_order.field_sale_order__blanket_need_to_be_finalized
@@ -266,13 +289,6 @@ msgid "Only call-off orders can be confirmed as call-off orders."
 msgstr ""
 "Seules les commandes d'appel peuvent être confirmées en tant que commandes "
 "d'appel."
-
-#. module: sale_order_blanket_order
-#. odoo-python
-#: code:addons/sale_order_blanket_order/models/sale_order.py:0
-#, python-format
-msgid "Only orders can be split."
-msgstr "Seules les commandes peuvent être divisées."
 
 #. module: sale_order_blanket_order
 #: model:ir.model.fields.selection,name:sale_order_blanket_order.selection__sale_order__order_type__order
@@ -418,6 +434,13 @@ msgstr "La date de fin de la période de validité de la commande-cadre."
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
 #, python-format
+msgid "The end-of-life strategy cannot be modified on order %(order)s."
+msgstr "La stratégie de fin de vie ne peut pas être modifiée sur la commande %(order)s."
+
+#. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#, python-format
 msgid ""
 "The line %(line)s has been created from order %(order)s. (Qty moved: "
 "%(qty_deliverable)s)"
@@ -516,6 +539,13 @@ msgstr ""
 "'%(order)s', Commande-cadre: '%(blanket_order)s')"
 
 #. module: sale_order_blanket_order
+#. odoo-python
+#: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#, python-format
+msgid "The reservation strategy cannot be modified on order %(order)s."
+msgstr "La stratégie de réservation ne peut pas être modifiée sur la commande %(order)s."
+
+#. module: sale_order_blanket_order
 #: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__blanket_validity_start_date
 #: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order_line__blanket_validity_start_date
 msgid "The start date of the validity period for the blanket order."
@@ -531,6 +561,7 @@ msgstr "La date de fin de validité est requise pour une commande-cadre."
 #. module: sale_order_blanket_order
 #. odoo-python
 #: code:addons/sale_order_blanket_order/models/sale_order.py:0
+#: code:addons/sale_order_blanket_order/models/sale_order_line.py:0
 #, python-format
 msgid "The validity end date must be greater than the validity start date."
 msgstr ""
@@ -570,3 +601,14 @@ msgstr "Date de début de validité"
 #: model_terms:ir.ui.view,arch_db:sale_order_blanket_order.sale_order_form_view
 msgid "Validity period"
 msgstr "Période de validité"
+
+#. module: sale_order_blanket_order
+#: model:ir.model.fields,help:sale_order_blanket_order.field_sale_order__create_call_off_from_so_if_possible
+msgid ""
+"When this option is enabled, the system will automatically create call-off "
+"orders when a sales order is confirmed and some lines refer to a blanket "
+"order."
+msgstr ""
+"Lorsque cette option est activée, le système créera automatiquement des "
+"commandes d'appel lorsque une commande client est confirmée et que certaines "
+"lignes font référence à une commande-cadre."
