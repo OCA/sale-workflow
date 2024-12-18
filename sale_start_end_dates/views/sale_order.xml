@@ -12,7 +12,7 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/form//field[@name='product_id']"
+                expr="//field[@name='order_line']/form//field[@name='product_uom_readonly']"
                 position="after"
             >
                 <field
@@ -33,7 +33,7 @@
                 <field name="must_have_dates" invisible="1" />
             </xpath>
             <xpath
-                expr="//field[@name='order_line']/tree/field[@name='name']"
+                expr="//field[@name='order_line']/list/field[@name='name']"
                 position="after"
             >
                 <field
