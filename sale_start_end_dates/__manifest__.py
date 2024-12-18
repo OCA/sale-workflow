@@ -13,6 +13,10 @@
     "maintainers": ["alexis-via"],
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["account_invoice_start_end_dates", "sale"],
-    "data": ["views/sale_order.xml"],
+    "data": [
+        "views/sale_order.xml",
+        "views/sale_order_line.xml",
+        "reports/sale_report.xml",
+    ],
     "installable": True,
 }
