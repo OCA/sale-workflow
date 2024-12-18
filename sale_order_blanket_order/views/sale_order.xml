@@ -74,9 +74,10 @@
                             /></span>
                     </div>
                 </div>
+                <field name="is_blanket_reservation_strategy_editable" invisible="1" />
                 <field
                     name="blanket_reservation_strategy"
-                    attrs="{'invisible': [('order_type', '!=', 'blanket')]}"
+                    attrs="{'invisible': [('order_type', '!=', 'blanket')], 'readonly': [('is_blanket_reservation_strategy_editable', '=', False)]}"
                 />
                 <field
                     name="blanket_eol_strategy"

@@ -93,12 +93,19 @@ class TestSaleBlanketOrder(SaleOrderBlanketOrderCase):
     def test_reservation(self):
         # Confirm the blanket order with reservation at call off
         self.blanket_so.action_confirm()
+        self.assertTrue(self.blanket_so.manual_delivery)
         self.assertEqual(self.blanket_so.state, "sale")
         self.assertEqual(
             self.blanket_so.commitment_date.date(),
             self.blanket_so.blanket_validity_start_date,
         )
         self.assertFalse(self.blanket_so.order_line.move_ids)
+
+    def test_reset_reservation_at_cancel(self):
+        self.blanket_so.action_confirm()
+        self.assertTrue(self.blanket_so.manual_delivery)
+        self.blanket_so._action_cancel()
+        self.assertFalse(self.blanket_so.manual_delivery)
 
     def test_eol(self):
         # Confirm the blanket order with reservation at call off
@@ -119,3 +126,31 @@ class TestSaleBlanketOrder(SaleOrderBlanketOrderCase):
             self.assertEqual(len(call_off), 1)
             self.assertEqual(call_off.product_uom_qty, line.product_uom_qty)
             self.assertTrue(line.move_ids)
+
+    def test_reservation_strategy_editable(self):
+        # chane is allowed in draft state
+        self.blanket_so.blanket_reservation_strategy = "fake"
+        self.blanket_so.blanket_reservation_strategy = "at_confirm"
+        self.blanket_so.action_confirm()
+        # change is allowed afetr confirmation while the blanket order
+        # is not finalized
+        self.blanket_so.blanket_reservation_strategy = "fake"
+        self.blanket_so._action_cancel()
+        with self.assertRaisesRegex(
+            ValidationError, "The reservation strategy cannot be modified"
+        ), self.env.cr.savepoint():
+            # change is not allowed on canceled order
+            self.blanket_so.blanket_reservation_strategy = "at_confirm"
+        self.blanket_so.action_draft()
+        # change is allowed in draft state
+        self.blanket_so.blanket_reservation_strategy = "at_confirm"
+        self.blanket_so.action_confirm()
+        with freezegun.freeze_time("2026-12-31"):
+            self.so_model._cron_manage_blanket_order_eol()
+
+        self.assertFalse(self.blanket_so.blanket_need_to_be_finalized)
+        with self.assertRaisesRegex(
+            ValidationError, "The reservation strategy cannot be modified"
+        ), self.env.cr.savepoint():
+            # change is not allowed on finalized order
+            self.blanket_so.blanket_reservation_strategy = "fake"

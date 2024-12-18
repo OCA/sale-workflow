@@ -12,24 +12,29 @@ class SaleOrder(models.Model):
         ondelete={"at_confirm": "cascade"},
     )
 
-    def _blanket_order_reserve_stock(self):
+    def _blanket_order_reserve_call_off_remaining_qty(self):
         """Reserve the stock for the blanket order."""
-        other_orders = self.browse()
-        to_reserve_at_confirm = self.browse()
-        for order in self:
-            if order.blanket_reservation_strategy == "at_confirm":
-                to_reserve_at_confirm |= order
-            else:
-                other_orders |= order
-        to_reserve_at_confirm._prebook_stock()
-        return super(SaleOrder, other_orders)._blanket_order_reserve_stock()
+        to_reserve, other_orders = self._split_recrodset_for_reservation_strategy(
+            "at_confirm"
+        )
+        to_reserve._prebook_stock_for_call_off_remaining_qty()
+        return super(
+            SaleOrder, other_orders
+        )._blanket_order_reserve_call_off_remaining_qty()
 
-    def _prebook_stock(self):
+    def _blanket_order_release_call_off_remaining_qty(self):
+        to_release, other_orders = self._split_recrodset_for_reservation_strategy(
+            "at_confirm"
+        )
+        to_release._release_prebooked_stock()
+        return super(
+            SaleOrder, other_orders
+        )._blanket_order_release_call_off_remaining_qty()
+
+    def _prebook_stock_for_call_off_remaining_qty(self):
         """Prebook the stock for the order."""
-        self = self.with_context(sale_stock_prebook_stop_proc_run=True)
-        procurements = []
-        for order in self:
-            group = order._create_reserve_procurement_group()
-            procurements += order.order_line._prepare_reserve_procurements(group)
-        if procurements:
-            self.env["procurement.group"].run(procurements)
+        self.order_line._prebook_stock_for_call_off_remaining_qty()
+
+    def _release_prebooked_stock(self):
+        """Release the prebooked stock for the order."""
+        self.order_line._release_reservation()

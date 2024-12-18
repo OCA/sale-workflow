@@ -1,7 +1,8 @@
 # Copyright 2024 ACSONE SA/NV
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from odoo_test_helper import FakeModelLoader
 
-from odoo import Command
+from odoo import Command, fields, models
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -113,6 +114,42 @@ class SaleOrderBlanketOrderCase(BaseCommon):
         )
         cls.so_model = cls.env["sale.order"]
         cls.call_off_domain = [("order_type", "=", "call_off")]
+
+        # create a fake model to declare another reservation strategy
+        cls.loader = FakeModelLoader(cls.env, cls.__module__)
+        cls.loader.backup_registry()
+        cls.addClassCleanup(cls.loader.restore_registry)
+
+        # pylint: disable=consider-merging-classes-inherited
+        class SO(models.Model):
+            _inherit = "sale.order"
+
+            blanket_reservation_strategy = fields.Selection(
+                selection_add=[("fake", "For tests")],
+                ondelete={"fake": "cascade"},
+            )
+
+            def _blanket_order_reserve_call_off_remaining_qty(self):
+                # we need to override since our strategy is fake
+                (
+                    _to_reserve,
+                    other_orders,
+                ) = self._split_recrodset_for_reservation_strategy("fake")
+                return super(
+                    SO, other_orders
+                )._blanket_order_reserve_call_off_remaining_qty()
+
+            def _blanket_order_release_call_off_remaining_qty(self):
+                # we need to override since our strategy is fake
+                (
+                    _to_release,
+                    other_orders,
+                ) = self._split_recrodset_for_reservation_strategy("fake")
+                return super(
+                    SO, other_orders
+                )._blanket_order_release_call_off_remaining_qty()
+
+        cls.loader.update_registry([SO])
 
     @classmethod
     def _set_qty_in_loc_only(cls, product, qty, location=None):

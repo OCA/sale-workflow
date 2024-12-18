@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from collections import defaultdict
+from contextlib import contextmanager
 from datetime import datetime
 
 from odoo import Command, _, api, fields, models
@@ -69,13 +70,16 @@ class SaleOrder(models.Model):
         string="Reservation Strategy",
         compute="_compute_blanket_reservation_strategy",
         readonly=False,
-        states=READONLY_FIELD_STATES,
         help="Specifies when the stock should be reserved for the blanket order. "
         " When the strategy is 'At Order Confirmation', the stock is reserved "
         "when the blanket order is confirmed. When the strategy is 'At Call-off', "
         "the stock is reserved when the call-off order is confirmed.",
         store=True,
         precompute=True,
+    )
+    is_blanket_reservation_strategy_editable = fields.Boolean(
+        compute="_compute_is_blanket_reservation_strategy_editable",
+        help="Indicates if the reservation strategy can be edited.",
     )
     blanket_eol_strategy = fields.Selection(
         [
@@ -244,6 +248,27 @@ class SaleOrder(models.Model):
             for order in self:
                 order.call_off_order_count = count_by_blanket_order_id.get(order.id, 0)
 
+    @api.depends("blanket_need_to_be_finalized", "state", "order_type")
+    def _compute_is_blanket_reservation_strategy_editable(self):
+        for order in self:
+            order.is_blanket_reservation_strategy_editable = (
+                order.state not in ("cancel", "sent")
+                and (order.blanket_need_to_be_finalized or order.state == "draft")
+                and order.order_type == "blanket"
+            )
+
+    def _check_blanket_reservation_strategy_editable(self, vals):
+        if "blanket_reservation_strategy" in vals:
+            for order in self:
+                if order.is_blanket_reservation_strategy_editable:
+                    continue
+                raise ValidationError(
+                    _(
+                        "The reservation strategy cannot be modified on order %(order)s.",
+                        order=order.name,
+                    )
+                )
+
     def action_view_call_off_orders(self):
         self.ensure_one()
         action = self.env["ir.actions.act_window"]._for_xml_id("sale.action_orders")
@@ -314,7 +339,7 @@ class SaleOrder(models.Model):
         for order in self:
             order.commitment_date = order.blanket_validity_start_date
         self.blanket_need_to_be_finalized = True
-        self._blanket_order_reserve_stock()
+        self._blanket_order_reserve_call_off_remaining_qty()
 
     def _on_call_off_order_confirm(self):
         """This method is called when a call-off order is confirmed.
@@ -329,35 +354,49 @@ class SaleOrder(models.Model):
             )
         self._link_lines_to_blanket_order_line()
 
-    def _blanket_order_reserve_stock(self):
-        """Reserve the stock for the blanket order."""
-        to_reserve_at_call_off = self.browse()
-        for order in self:
-            if order.blanket_reservation_strategy == "at_call_off":
-                to_reserve_at_call_off |= order
-            else:
-                raise ValidationError(
-                    _(
-                        "Invalid reservation strategy for the blanket order %(ref)s.",
-                        ref=order.name,
-                    )
-                )
-        to_reserve_at_call_off._delay_delivery()
+    def _ensure_reservation_strategy(self, strategy):
+        """Ensure the reservation strategy is the expected one."""
+        invalid_orders = self.filtered(
+            lambda order: order.blanket_reservation_strategy != strategy
+        )
+        if invalid_orders:
+            ref = ", ".join(invalid_orders.mapped("name"))
+            raise ValueError(
+                f"Invalid reservation strategy {strategy} for the blanket orders {ref}."
+            )
 
-    def _delay_delivery(self):
-        """Delay the delivery of the order.
+    def _blanket_order_reserve_call_off_remaining_qty(self):
+        """Reserve the stock for the blanket order.
 
-        By setting the manual delivery flag to True, the delivery will not be
-        created at confirmation time. The delivery process will be triggered by
-        the system when a call-off order is confirmed.
+        This method should only take care of the potentiel stock reservation
+        for the qty available to call off.
         """
+        self._ensure_reservation_strategy("at_call_off")
+
+        # By setting the manual delivery flag to True, the delivery will not be
+        # created at confirmation time. The delivery process will be triggered by
+        # the system when a call-off order is confirmed.
+        self._set_manual_delivery(True)
+
+    def _blanket_order_release_call_off_remaining_qty(self):
+        """Release the stock reservation for the blanket order.
+
+        This method should only take care of the potentiel stock reservation
+        for the qty available to call off.
+        """
+        self._ensure_reservation_strategy("at_call_off")
+        # reset the manual delivery flag to False
+        self._set_manual_delivery(False)
+
+    def _set_manual_delivery(self, value):
+        """Set manual delivery."""
         # the manual delivery can oly be set on draft orders. Unfortunatly, the
-        # state is already set to sale at this point.... We will temporarily
+        # state could be set to sale or done at this point.... We will temporarily
         # reset the state to draft to be able to set the manual delivery flag
         for order in self:
             old_state = order.state
             order.state = "draft"
-            order.manual_delivery = True
+            order.manual_delivery = value
             order.state = old_state
 
     def _split_for_blanket_order(self):
@@ -598,3 +637,57 @@ class SaleOrder(models.Model):
         vals = self._get_default_call_off_order_values(self)
         vals["commitment_date"] = self.blanket_validity_end_date
         return vals
+
+    def _split_recrodset_for_reservation_strategy(self, strategy):
+        """Split the orders for the reservation strategy.
+
+        This method will return a tuple where the first element is
+        the recordset with the expected reservation strategy and the
+        second element is the recordset without the expected reservation
+        strategy.
+        """
+        other_orders = self.browse()
+        orders_with_strategy = self.browse()
+        for order in self:
+            if order.blanket_reservation_strategy == strategy:
+                orders_with_strategy |= order
+            else:
+                other_orders |= order
+        return orders_with_strategy, other_orders
+
+    def _before_reservation_strategy_changed(self, old_value, new_value):
+        """Method called when the reservation strategy is modified."""
+        self.ensure_one()
+        self._blanket_order_release_call_off_remaining_qty()
+
+    def _after_reservation_strategy_changed(self, old_value, new_value):
+        self.ensure_one()
+        if self.state in ("sale", "done"):
+            self._blanket_order_reserve_call_off_remaining_qty()
+
+    @contextmanager
+    def _notify_reservation_strategy_changed(self, values):
+        """Notify the reservation strategy change"""
+        strategy_by_record = {}
+        new_strategy = values.get("blanket_reservation_strategy")
+        if "blanket_reservation_strategy" in values:
+            strategy_by_record = {
+                record: record.blanket_reservation_strategy
+                for record in self
+                if record.blanket_reservation_strategy != new_strategy
+            }
+            for record, old_strategy in strategy_by_record.items():
+                record._before_reservation_strategy_changed(old_strategy, new_strategy)
+        yield
+        if new_strategy:
+            for record, old_strategy in strategy_by_record.items():
+                record._after_reservation_strategy_changed(old_strategy, new_strategy)
+
+    def write(self, values):
+        self._check_blanket_reservation_strategy_editable(values)
+        with self._notify_reservation_strategy_changed(values):
+            return super().write(values)
+
+    def _action_cancel(self):
+        self._blanket_order_release_call_off_remaining_qty()
+        return super()._action_cancel()
