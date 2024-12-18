@@ -11,10 +11,7 @@ from odoo.osv import expression
 from odoo.osv.expression import FALSE_DOMAIN
 from odoo.tools import float_compare
 
-from odoo.addons.sale.models.sale_order import (
-    LOCKED_FIELD_STATES,
-    READONLY_FIELD_STATES,
-)
+from odoo.addons.sale.models.sale_order import READONLY_FIELD_STATES
 
 
 class SaleOrder(models.Model):
@@ -85,12 +82,16 @@ class SaleOrder(models.Model):
         [
             ("deliver", "Deliver Remaining Quantity"),
         ],
-        states=LOCKED_FIELD_STATES,
         help="Specifies the end-of-life strategy for the blanket order. At the end "
         "of the validity period, in any case if a reserved quantity remains, the "
         "system will release the reservation. If the strategy is 'Deliver "
         "Remaining Quantity', the system will automaticaly create a delivery order "
         "for the remaining quantity.",
+    )
+    is_blanket_eol_strategy_editable = fields.Boolean(
+        compute="_compute_is_blanket_eol_strategy_editable",
+        help="Indicates if the end-of-life strategy can be edited. By default, the "
+        "end-of-life strategy can be edited while the blanket order is not finalized.",
     )
     blanket_need_to_be_finalized = fields.Boolean(
         string="Need to be Finalized",
@@ -257,6 +258,15 @@ class SaleOrder(models.Model):
                 and order.order_type == "blanket"
             )
 
+    @api.depends("blanket_need_to_be_finalized", "state", "order_type")
+    def _compute_is_blanket_eol_strategy_editable(self):
+        for order in self:
+            order.is_blanket_eol_strategy_editable = (
+                order.state not in ("cancel", "sent")
+                and (order.blanket_need_to_be_finalized or order.state == "draft")
+                and order.order_type == "blanket"
+            )
+
     def _check_blanket_reservation_strategy_editable(self, vals):
         if "blanket_reservation_strategy" in vals:
             for order in self:
@@ -265,6 +275,18 @@ class SaleOrder(models.Model):
                 raise ValidationError(
                     _(
                         "The reservation strategy cannot be modified on order %(order)s.",
+                        order=order.name,
+                    )
+                )
+
+    def _check_blanket_eol_strategy_editable(self, vals):
+        if "blanket_eol_strategy" in vals:
+            for order in self:
+                if order.is_blanket_eol_strategy_editable:
+                    continue
+                raise ValidationError(
+                    _(
+                        "The end-of-life strategy cannot be modified on order %(order)s.",
                         order=order.name,
                     )
                 )
@@ -685,6 +707,7 @@ class SaleOrder(models.Model):
 
     def write(self, values):
         self._check_blanket_reservation_strategy_editable(values)
+        self._check_blanket_eol_strategy_editable(values)
         with self._notify_reservation_strategy_changed(values):
             return super().write(values)
 

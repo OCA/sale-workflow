@@ -128,11 +128,11 @@ class TestSaleBlanketOrder(SaleOrderBlanketOrderCase):
             self.assertTrue(line.move_ids)
 
     def test_reservation_strategy_editable(self):
-        # chane is allowed in draft state
+        # change is allowed in draft state
         self.blanket_so.blanket_reservation_strategy = "fake"
-        self.blanket_so.blanket_reservation_strategy = "at_confirm"
+        self.blanket_so.blanket_reservation_strategy = "at_call_off"
         self.blanket_so.action_confirm()
-        # change is allowed afetr confirmation while the blanket order
+        # change is allowed after confirmation while the blanket order
         # is not finalized
         self.blanket_so.blanket_reservation_strategy = "fake"
         self.blanket_so._action_cancel()
@@ -140,10 +140,10 @@ class TestSaleBlanketOrder(SaleOrderBlanketOrderCase):
             ValidationError, "The reservation strategy cannot be modified"
         ), self.env.cr.savepoint():
             # change is not allowed on canceled order
-            self.blanket_so.blanket_reservation_strategy = "at_confirm"
+            self.blanket_so.blanket_reservation_strategy = "at_call_off"
         self.blanket_so.action_draft()
         # change is allowed in draft state
-        self.blanket_so.blanket_reservation_strategy = "at_confirm"
+        self.blanket_so.blanket_reservation_strategy = "at_call_off"
         self.blanket_so.action_confirm()
         with freezegun.freeze_time("2026-12-31"):
             self.so_model._cron_manage_blanket_order_eol()
@@ -154,3 +154,31 @@ class TestSaleBlanketOrder(SaleOrderBlanketOrderCase):
         ), self.env.cr.savepoint():
             # change is not allowed on finalized order
             self.blanket_so.blanket_reservation_strategy = "fake"
+
+    def test_eol_strategy_editable(self):
+        # change is allowed in draft state
+        self.blanket_so.blanket_eol_strategy = "deliver"
+        self.blanket_so.blanket_eol_strategy = False
+        self.blanket_so.action_confirm()
+        # change is allowed after confirmation while the blanket order
+        # is not finalized
+        self.blanket_so.blanket_eol_strategy = "deliver"
+        self.blanket_so._action_cancel()
+        with self.assertRaisesRegex(
+            ValidationError, "The end-of-life strategy cannot be modified"
+        ), self.env.cr.savepoint():
+            # change is not allowed on canceled order
+            self.blanket_so.blanket_eol_strategy = False
+        self.blanket_so.action_draft()
+        # change is allowed in draft state
+        self.blanket_so.blanket_eol_strategy = False
+        self.blanket_so.action_confirm()
+        with freezegun.freeze_time("2026-12-31"):
+            self.so_model._cron_manage_blanket_order_eol()
+
+        self.assertFalse(self.blanket_so.blanket_need_to_be_finalized)
+        with self.assertRaisesRegex(
+            ValidationError, "The end-of-life strategy cannot be modified"
+        ), self.env.cr.savepoint():
+            # change is not allowed on finalized order
+            self.blanket_so.blanket_eol_strategy = "deliver"
