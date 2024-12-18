@@ -120,7 +120,7 @@ class SaleOrderLine(models.Model):
             if line.product_id.must_have_dates:
                 if not line.end_date:
                     raise ValidationError(
-                        _("Missing End Date for sale order line with " "Product '%s'.")
+                        _("Missing End Date for sale order line with Product '%s'.")
                         % (line.product_id.display_name)
                     )
                 if not line.start_date:
