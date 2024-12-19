@@ -16,7 +16,5 @@ class SaleOrder(models.Model):
 
     def _action_cancel(self):
         res = super()._action_cancel()
-        orders = self.filtered(lambda s: s.state == "cancel")
-        for line in orders.order_line:
-            line.product_qty_canceled = line.product_uom_qty - line.qty_delivered
+        self.order_line._update_qty_canceled()
         return res
