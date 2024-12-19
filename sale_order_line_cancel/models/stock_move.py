@@ -10,11 +10,8 @@ class StockMove(models.Model):
     _inherit = "stock.move"
 
     def _action_cancel(self):
-        sale_moves = self.filtered(
-            lambda m: m.sale_line_id and m.state not in ("done", "cancel")
-        )
         res = super()._action_cancel()
-        sale_lines = sale_moves.filtered(lambda m: m.state == "cancel").sale_line_id
+        sale_lines = self._get_sale_lines_to_update_qty_canceled()
         sale_lines._update_qty_canceled()
         return res
 
@@ -25,3 +22,21 @@ class StockMove(models.Model):
             # _action_cancel will not be triggered. Call it now
             self.sale_line_id._update_qty_canceled()
         return moves_todo
+
+    def _get_sale_lines_to_update_qty_canceled(self):
+        sale_lines = self.env["sale.order.line"]
+        for move in self:
+            if (
+                move.sale_line_id
+                and move._is_move_to_take_into_account_for_qty_canceled()
+            ):
+                sale_lines |= move.sale_line_id
+        return sale_lines
+
+    def _is_move_to_take_into_account_for_qty_canceled(self):
+        self.ensure_one()
+        return (
+            self.state == "cancel"
+            and self.sale_line_id
+            and self.picking_type_id.code == "outgoing"
+        )
