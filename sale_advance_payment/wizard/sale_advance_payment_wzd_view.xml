@@ -6,6 +6,7 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Advance Payment">
+                <field name="available_payment_method_line_ids" invisible="1" />
                 <group>
                     <field name="order_id" invisible="1" />
                     <group colspan="4" col="4">
@@ -14,7 +15,12 @@
                             domain="[('type','in',['bank', 'cash'])]"
                             widget="selection"
                             select="1"
+                        />
+                        <field
+                            name="payment_method_line_id"
+                            options="{'no_create': True, 'no_open': True}"
                             string="Payment Method"
+                            required="1"
                         />
                         <field name="payment_type" />
                         <field name="journal_currency_id" string="Currency" />
