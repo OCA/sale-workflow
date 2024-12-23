@@ -65,6 +65,9 @@ class TestSaleStock(TestSaleCommonBase):
             order.picking_ids,
             'No picking should be created for "manual delivery" orders',
         )
+        # Raise error when user try to modify sale order in confirmd stage.
+        with self.assertRaises(UserError):
+            order.write({"manual_delivery": False})
         # open the manual delivery wizard
         action = order.action_manual_delivery_wizard()
         self.assertEqual(action["res_model"], "manual.delivery")
