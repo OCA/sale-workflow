@@ -15,7 +15,12 @@ class SaleOrderLine(models.Model):
         help="Fixed amount discount.",
     )
 
-    @api.model_create_multi
+    @api.depends("discount_fixed", "price_unit")
+    def _compute_discount(self):
+        super()._compute_discount()
+        for line in self:
+            if line.discount_fixed:
+                line.discount = line._get_discount_from_fixed_discount()
     def create(self, vals_list):
         records = super().create(vals_list)
         for vals in records:
