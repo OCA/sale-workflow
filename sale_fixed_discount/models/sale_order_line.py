@@ -21,12 +21,6 @@ class SaleOrderLine(models.Model):
         for line in self:
             if line.discount_fixed:
                 line.discount = line._get_discount_from_fixed_discount()
-    def create(self, vals_list):
-        records = super().create(vals_list)
-        for vals in records:
-            if 'discount_fixed' in vals:
-                vals._onchange_discount_fixed()
-        return records
 
     @api.constrains("discount_fixed", "discount")
     def _check_discounts(self):
