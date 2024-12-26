@@ -13,6 +13,7 @@
     "data": [
         "wizard/sale_advance_payment_wzd_view.xml",
         "views/sale_view.xml",
+        "views/account_payment.xml",
         "security/ir.model.access.csv",
     ],
     "installable": True,
