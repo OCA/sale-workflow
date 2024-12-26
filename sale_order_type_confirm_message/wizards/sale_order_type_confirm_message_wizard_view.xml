@@ -13,19 +13,15 @@
                 <group>
                     <field name="message" nolabel="1" colspan="2" />
                 </group>
-                    <footer>
-                        <button
+                <footer>
+                    <button
                         name="action_confirm"
                         class="btn-primary"
                         string="Confirm"
                         type="object"
                     />
-                        <button
-                        string="Cancel"
-                        class="btn-secondary"
-                        special="cancel"
-                    />
-                    </footer>
+                    <button string="Cancel" class="btn-secondary" special="cancel" />
+                </footer>
             </form>
         </field>
     </record>
