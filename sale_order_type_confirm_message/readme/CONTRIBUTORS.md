@@ -2,3 +2,4 @@
 - Alberto Martínez <alberto.martinez@sygel.es>
 - Valentin Vinagre <valentin.vinagre@sygel.es>
 - Harald Panten <harald.panten@sygel.es>
+- Heliconia Solutions Pvt. Ltd <https://www.heliconia.io>

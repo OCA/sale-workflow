@@ -1,7 +1,7 @@
 # Copyright 2021 Manuel Regidor <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, models
+from odoo import models
 
 
 class SaleOrder(models.Model):
@@ -14,9 +14,8 @@ class SaleOrder(models.Model):
         ):
             return {
                 "type": "ir.actions.act_window",
-                "name": _("Confirm Order"),
+                "name": self.env._("Confirm Order"),
                 "res_model": "sale.order.type.confirm.wizard",
-                "view_type": "form",
                 "view_mode": "form",
                 "target": "new",
             }
