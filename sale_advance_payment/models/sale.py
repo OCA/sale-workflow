@@ -13,7 +13,7 @@ class SaleOrder(models.Model):
         inverse_name="sale_id",
         string="Pay sale advanced",
     )
-    amount_residual = fields.Float(
+    amount_residual = fields.Monetary(
         string="Residual amount",
         compute="_compute_advance_payment",
         store=True,
