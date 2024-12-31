@@ -61,8 +61,8 @@ class SaleOrderLine(models.Model):
                     and attr_l.attribute_id.create_variant == "no_variant"
                 ):
                     pt_attr_values |= attr_l.product_template_value_ids.filtered(
-                        lambda ptav: ptav.ptav_active
-                        and ptav.product_attribute_value_id in attr_l.value_ids
+                        lambda ptav, attr_line=attr_l: ptav.ptav_active
+                        and ptav.product_attribute_value_id in attr_line.value_ids
                     )
             record.all_product_template_attribute_value_ids = pt_attr_values
             record.all_product_attribute_value_ids = pt_attr_values.mapped(
