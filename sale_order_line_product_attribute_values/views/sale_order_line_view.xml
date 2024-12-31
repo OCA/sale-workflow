@@ -21,7 +21,7 @@
                         nolabel="1"
                         colspan="2"
                     >
-                        <tree string="Attributes" editable="bottom">
+                        <list string="Attributes" editable="bottom">
                             <field name="attribute_id" optional="hide" />
                             <field name="name" optional="hide" />
                             <field name="product_attribute_value_id" optional="show" />
@@ -29,7 +29,7 @@
                             <field name="price_extra" sum="Total" widget="monetary" />
                             <field name="html_color" optional="hide" />
                             <field name="is_custom" optional="hide" />
-                        </tree>
+                        </list>
                     </field>
                 </group>
             </xpath>
@@ -41,7 +41,7 @@
         <field name="model">sale.order.line</field>
         <field name="inherit_id" ref="sale.view_order_line_tree" />
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="inside">
+            <xpath expr="//list" position="inside">
                 <field
                     name="all_product_attribute_value_ids"
                     widget="many2many_tags"

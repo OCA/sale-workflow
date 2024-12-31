@@ -12,17 +12,16 @@ class SaleOrderLine(models.Model):
         comodel_name="product.template.attribute.value",
         relation="sale_order_line_all_product_template_attribute_value_rel",
         compute="_compute_all_product_template_attribute_value_ids",
-        help="All Product Template Attribute Values used directly or indirecly "
+        help="All Product Template Attribute Values used directly or indirectly "
         "for this line.",
         store=True,
         readonly=True,
     )
     all_product_attribute_value_ids = fields.Many2many(
-        string="Attribute Values",
         comodel_name="product.attribute.value",
         relation="sale_order_line_all_product_attribute_value_rel",
         compute="_compute_all_product_template_attribute_value_ids",
-        help="All Product Attribute Values used directly or indirecly "
+        help="All Product Attribute Values used directly or indirectly "
         "for this line.\n"
         "Contains information about increased price, html color, etc.",
         store=True,
@@ -35,7 +34,7 @@ class SaleOrderLine(models.Model):
         "product_no_variant_attribute_value_ids",
     )
     def _compute_all_product_template_attribute_value_ids(self):
-        """Compute all Product Template Attribute Values used directly or indirecly"""
+        """Compute all Product Template Attribute Values used directly or indirectly"""
         if self.env.context.get("module") == "sale_order_line_product_attribute_values":
             # Do not trigger computation when module is installed alone
             # due to the large amount of records to compute
