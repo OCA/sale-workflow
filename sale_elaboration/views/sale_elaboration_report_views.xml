@@ -9,6 +9,7 @@
         <field name="arch" type="xml">
             <tree create="false">
                 <field name="date_order" />
+                <field name="scheduled_date" />
                 <field name="order_id" />
                 <field name="salesman_id" />
                 <field name="order_partner_id" />
@@ -35,8 +36,19 @@
                 <field name="elaboration_note" />
                 <filter
                     string="Is Elaboration"
-                    domain="['|', ('elaboration_ids', '!=', False), ('elaboration_note', '!=', False)]"
+                    domain="['|', ('elaboration_ids', '!=', False), ('elaboration_note', '!=', '')]"
                     name="is_elaboration"
+                />
+                <separator />
+                <filter
+                    string="Is Prepared"
+                    domain="[('is_prepared', '=', True)]"
+                    name="is_prepared"
+                />
+                <filter
+                    string="Is Not Prepared"
+                    domain="[('is_prepared', '=', False)]"
+                    name="is_not_prepared"
                 />
                 <separator />
             </field>

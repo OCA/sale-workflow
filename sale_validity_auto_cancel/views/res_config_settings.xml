@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2023 ForgeFlow S.L.
+  Copyright 2024 OERP Canada <https://www.oerp.ca>
+  License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+-->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >res.config.settings.view.form (in sale_validity_auto_cancel)</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr='//div[@id="no_edit_order"]' position="after">
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <div class="o_setting_left_pane" />
+                    <div class="o_setting_right_pane">
+                        <label for="sale_validity_auto_cancel_days" />
+                        <div class="text-muted mt4 mb4">
+                            Quotations will be automatically cancelled after the expiration date plus the number of days specified.
+                        </div>
+                        <div class="text-muted mt4 mb4">
+                            <field name="sale_validity_auto_cancel_days" />
+                            <span style="margin-left: 5px;">Days</span>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -18,8 +18,31 @@ msgstr ""
 "SO-Revision-Date: 2019-09-02 19:23+0000\n"
 
 #. module: sale_tier_validation
+#: model_terms:ir.ui.view,arch_db:sale_tier_validation.sale_config_settings_form_view
+msgid "Block Printing of Unvalidated Quotations"
+msgstr ""
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,help:sale_tier_validation.field_res_company__sale_report_print_block
+#: model:ir.model.fields,help:sale_tier_validation.field_res_config_settings__sale_report_print_block
+#: model_terms:ir.ui.view,arch_db:sale_tier_validation.sale_config_settings_form_view
+msgid ""
+"Block the printing of the sale order report if the order is not validated."
+msgstr ""
+
+#. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__can_review
 msgid "Can Review"
+msgstr ""
+
+#. module: sale_tier_validation
+#: model:ir.model,name:sale_tier_validation.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_tier_validation
+#: model:ir.model,name:sale_tier_validation.model_res_config_settings
+msgid "Config Settings"
 msgstr ""
 
 #. module: sale_tier_validation
@@ -48,6 +71,13 @@ msgid "Next Review"
 msgstr ""
 
 #. module: sale_tier_validation
+#. odoo-python
+#: code:addons/sale_tier_validation/reports/sale_report.py:0
+#, python-format
+msgid "Quotation printing is blocked until the order is approved."
+msgstr ""
+
+#. module: sale_tier_validation
 #: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__rejected
 msgid "Rejected"
 msgstr ""
@@ -66,6 +96,17 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
 msgid "SOs validated and ready to be confirmed"
 msgstr "采购订单已验证，待确认"
+
+#. module: sale_tier_validation
+#: model:ir.model,name:sale_tier_validation.model_report_sale_report_saleorder
+msgid "Sale Order Report"
+msgstr ""
+
+#. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_res_company__sale_report_print_block
+#: model:ir.model.fields,field_description:sale_tier_validation.field_res_config_settings__sale_report_print_block
+msgid "Sale Report Print Block"
+msgstr ""
 
 #. module: sale_tier_validation
 #: model:ir.model,name:sale_tier_validation.model_sale_order

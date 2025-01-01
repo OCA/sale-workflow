@@ -18,13 +18,13 @@ msgstr ""
 
 #. module: sale_fixed_discount
 #: model_terms:ir.ui.view,arch_db:sale_fixed_discount.report_saleorder_document
-msgid "(or"
-msgstr "(o"
+msgid "<span class=\"text-nowrap\"> %)</span>"
+msgstr ""
 
 #. module: sale_fixed_discount
 #: model_terms:ir.ui.view,arch_db:sale_fixed_discount.report_saleorder_document
-msgid "<span>Disc. %</span>"
-msgstr "<span>Desc. %</span>"
+msgid "<span class=\"text-nowrap\"> (or</span>"
+msgstr ""
 
 #. module: sale_fixed_discount
 #: model_terms:ir.ui.view,arch_db:sale_fixed_discount.sale_order_portal_content
@@ -61,6 +61,12 @@ msgid ""
 msgstr ""
 "El descuento fijo %(fixed)s no coincide con el descuento calculado "
 "%(discount)s %%. Por favor, corrija uno de los descuentos."
+
+#~ msgid "(or"
+#~ msgstr "(o"
+
+#~ msgid "<span>Disc. %</span>"
+#~ msgstr "<span>Desc. %</span>"
 
 #, python-format
 #~ msgid "You can only set one type of discount per line."

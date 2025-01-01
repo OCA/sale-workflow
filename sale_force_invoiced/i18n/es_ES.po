@@ -41,6 +41,11 @@ msgid "Sales Order"
 msgstr "Pedido de venta"
 
 #. module: sale_force_invoiced
+#: model:ir.model,name:sale_force_invoiced.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_force_invoiced
 #. odoo-python
 #: code:addons/sale_force_invoiced/wizards/sale_make_invoice_advance.py:0
 #, python-format

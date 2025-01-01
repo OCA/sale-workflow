@@ -24,3 +24,14 @@ class SaleOrder(models.Model):
             lambda so: so.force_invoiced and so.state in ("sale", "done")
         ).update({"invoice_status": "invoiced"})
         return res
+
+
+class SaleOrderLine(models.Model):
+    _inherit = "sale.order.line"
+
+    @api.depends("order_id.force_invoiced")
+    def _compute_untaxed_amount_to_invoice(self):
+        force_invoiced = self.filtered(lambda x: x.order_id.force_invoiced)
+        force_invoiced.update({"untaxed_amount_to_invoice": 0.0})
+        not_forced = self - force_invoiced
+        return super(SaleOrderLine, not_forced)._compute_untaxed_amount_to_invoice()

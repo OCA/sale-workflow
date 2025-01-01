@@ -1,0 +1,15 @@
+<odoo>
+    <!-- Add price_category_id field in product.pricelist.item form -->
+    <record id="product_pricelist_item_form_view" model="ir.ui.view">
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
+        <field name="arch" type="xml">
+            <field name="applied_on" position="after">
+                <field
+                    name="price_category_id"
+                    attrs="{'invisible':[('applied_on', '!=', '2b_product_price_category')], 'required':[('applied_on', '=', '2b_product_price_category')]}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

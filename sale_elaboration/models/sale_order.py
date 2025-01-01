@@ -1,7 +1,8 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # Copyright 2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import api, fields, models
+from odoo import _, api, fields, models
+from odoo.exceptions import UserError
 
 
 def _execute_onchanges(records, field_name):
@@ -52,6 +53,11 @@ class SaleOrderLine(models.Model):
     elaboration_price_unit = fields.Float(
         "Elab. Price", compute="_compute_elaboration_price_unit", store=True
     )
+    is_prepared = fields.Boolean(
+        compute=lambda self: None,
+        search="_search_is_prepared",
+        help=("Dummy field to be able to find prepared lines"),
+    )
 
     def get_elaboration_stock_route(self):
         self.ensure_one()
@@ -82,3 +88,30 @@ class SaleOrderLine(models.Model):
         if self.is_elaboration:
             vals["name"] = "{} - {}".format(self.order_id.name, self.name)
         return vals
+
+    def _search_is_prepared(self, operator, value):
+        if operator != "=":
+            raise UserError(
+                _("Unsupported operator %s for searching on is_prepared") % (operator,)
+            )
+        moves = self.env["stock.move"].search(
+            [
+                (
+                    "state",
+                    "not in" if value else "in",
+                    [
+                        "draft",
+                        "waiting",
+                        "confirmed",
+                        "partially_available",
+                        "assigned",
+                    ],
+                ),
+                (
+                    "location_dest_id",
+                    "=",
+                    self.env.ref("stock.stock_location_customers").id,
+                ),
+            ]
+        )
+        return [("move_ids", "in", moves.ids)]

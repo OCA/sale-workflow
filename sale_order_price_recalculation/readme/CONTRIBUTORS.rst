@@ -6,3 +6,4 @@
 * David Vidal <david.vidal@tecnativa.com>
 * Duc, Dao Dong <duc.dd@komit-consulting.com> (https://komit-consulting.com)
 * Raf Ven <raf.ven@dynapps.be>
+* David Béal <david.beal@akretion.com>

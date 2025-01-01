@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-inherit="mail.ActivityMenuView" t-inherit-mode="extension">
+        <xpath
+            expr="//*[hasclass('o_ActivityMenuView_activityGroup')]"
+            position="attributes"
+        >
+            <attribute
+                name="t-att-data-is_planner"
+            >activityGroupView.activityGroup.is_planner ? 1 : 0</attribute>
+        </xpath>
+    </t>
+</templates>

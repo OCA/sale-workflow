@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="sale_planner_calendar.newSaleOrderButton" owl="1">
+        <button
+            type="button"
+            class="btn btn-secondary o_button_new_sale_order"
+            t-on-click="onClickNewSaleOrder"
+        >
+            New Quotation
+        </button>
+    </t>
+
+    <t
+        t-name="SalePlannerCalendarEventListView.buttons"
+        t-inherit="web.ListView.Buttons"
+        t-inherit-mode="primary"
+        owl="1"
+    >
+        <xpath expr="//button[hasclass('o_list_button_add')]" position="after">
+            <t t-call="sale_planner_calendar.newSaleOrderButton" />
+        </xpath>
+    </t>
+
+    <t
+        t-name="SalePlannerCalendarEventKanbanView.buttons"
+        t-inherit="web.KanbanView.Buttons"
+        t-inherit-mode="primary"
+        owl="1"
+    >
+        <xpath expr="//button[hasclass('o-kanban-button-new')]" position="after">
+            <t t-call="sale_planner_calendar.newSaleOrderButton" />
+        </xpath>
+    </t>
+</templates>

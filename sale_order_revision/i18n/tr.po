@@ -1,0 +1,72 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_revision
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-07-01 14:47+0000\n"
+"Last-Translator: Ömer KÜLAK <omer.kulak@kitayazilim.com>\n"
+"Language-Team: none\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_order_revision
+#: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__active
+msgid "Active"
+msgstr "Aktif"
+
+#. module: sale_order_revision
+#: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__current_revision_id
+msgid "Current revision"
+msgstr "Güncel versiyon"
+
+#. module: sale_order_revision
+#: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__has_old_revisions
+msgid "Has Old Revisions"
+msgstr "Eski Revizyonları Var"
+
+#. module: sale_order_revision
+#: model_terms:ir.ui.view,arch_db:sale_order_revision.view_order_form
+msgid "New Revision of Quotation"
+msgstr "Yeni Revize Oluştur"
+
+#. module: sale_order_revision
+#: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__old_revision_ids
+msgid "Old revisions"
+msgstr "Eski Revizeler"
+
+#. module: sale_order_revision
+#: model:ir.model.constraint,message:sale_order_revision.constraint_sale_order_revision_unique
+msgid "Order Reference and revision must be unique per Company."
+msgstr "Sipariş No ve Revize şirket bazlı benzersiz olmalı."
+
+#. module: sale_order_revision
+#: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__unrevisioned_name
+msgid "Original Reference"
+msgstr "Orijinal versiyon"
+
+#. module: sale_order_revision
+#: model_terms:ir.ui.view,arch_db:sale_order_revision.view_order_form
+msgid "Prev. revisions"
+msgstr "Önceki versiyonlar"
+
+#. module: sale_order_revision
+#: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__revision_count
+msgid "Previous versions count"
+msgstr "Önceki versiyon sayısı"
+
+#. module: sale_order_revision
+#: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__revision_number
+msgid "Revision"
+msgstr "Revize"
+
+#. module: sale_order_revision
+#: model:ir.model,name:sale_order_revision.model_sale_order
+msgid "Sales Order"
+msgstr "Sipariş"

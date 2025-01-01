@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--Copyright 2024 ForgeFlow S.L.-->
+    <!--(http://www.forgeflow.com)-->
+    <!--License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).-->
+    <data>
+        <record id="view_payment_term_form" model="ir.ui.view">
+            <field name="name">account.payment.term.form</field>
+            <field name="model">account.payment.term</field>
+            <field name="inherit_id" ref="account.view_payment_term_form" />
+            <field name="arch" type="xml">
+                <xpath
+                    expr="//form//sheet//field[@name='display_on_invoice']"
+                    position="attributes"
+                >
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath
+                    expr="//form//sheet//label[@for='display_on_invoice']"
+                    position="attributes"
+                >
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath
+                    expr="//form//sheet//group[field[@name='note']]"
+                    position="after"
+                >
+                    <group>
+                        <group>
+                            <field name="default_delivery_block_reason_id" />
+                        </group>
+                        <group>
+                            <field name="display_on_invoice" />
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

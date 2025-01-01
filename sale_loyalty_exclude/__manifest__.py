@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Loyalty Product Exclude",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.1.0",
     "development_status": "Beta",
     "category": "Sale",
     "summary": "Exclude products from sale loyalty program",

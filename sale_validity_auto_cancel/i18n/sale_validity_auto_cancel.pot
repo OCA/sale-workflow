@@ -1,0 +1,93 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_validity_auto_cancel
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_validity_auto_cancel
+#: model_terms:ir.ui.view,arch_db:sale_validity_auto_cancel.res_config_settings_view_form
+msgid "<span style=\"margin-left: 5px;\">Days</span>"
+msgstr ""
+
+#. module: sale_validity_auto_cancel
+#: model:ir.model.fields,field_description:sale_validity_auto_cancel.field_sale_order__auto_cancel_expired_so
+msgid "Auto Cancel"
+msgstr ""
+
+#. module: sale_validity_auto_cancel
+#: model:ir.model.fields,field_description:sale_validity_auto_cancel.field_res_partner__auto_cancel_expired_so
+#: model:ir.model.fields,field_description:sale_validity_auto_cancel.field_res_users__auto_cancel_expired_so
+msgid "Auto Cancel Expired SaleOrder"
+msgstr ""
+
+#. module: sale_validity_auto_cancel
+#: model:ir.model.fields,field_description:sale_validity_auto_cancel.field_res_company__sale_validity_auto_cancel_days
+#: model:ir.model.fields,field_description:sale_validity_auto_cancel.field_res_config_settings__sale_validity_auto_cancel_days
+msgid "Auto-cancel expired quotations after (days)"
+msgstr ""
+
+#. module: sale_validity_auto_cancel
+#: model:ir.actions.server,name:sale_validity_auto_cancel.cron_sale_validity_auto_cancel_ir_actions_server
+#: model:ir.cron,cron_name:sale_validity_auto_cancel.cron_sale_validity_auto_cancel
+msgid "Cancel Expired Quotations"
+msgstr ""
+
+#. module: sale_validity_auto_cancel
+#: model:ir.model,name:sale_validity_auto_cancel.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_validity_auto_cancel
+#: model:ir.model,name:sale_validity_auto_cancel.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_validity_auto_cancel
+#: model:ir.model,name:sale_validity_auto_cancel.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sale_validity_auto_cancel
+#: model:ir.model.fields,help:sale_validity_auto_cancel.field_res_partner__auto_cancel_expired_so
+#: model:ir.model.fields,help:sale_validity_auto_cancel.field_res_users__auto_cancel_expired_so
+#: model:ir.model.fields,help:sale_validity_auto_cancel.field_sale_order__auto_cancel_expired_so
+msgid ""
+"If unchecked, you will be able to restrict \n"
+"this contact's expired SO from being auto-canceled."
+msgstr ""
+
+#. module: sale_validity_auto_cancel
+#: model_terms:ir.ui.view,arch_db:sale_validity_auto_cancel.res_config_settings_view_form
+msgid ""
+"Quotations will be automatically cancelled after the expiration date plus "
+"the number of days specified."
+msgstr ""
+
+#. module: sale_validity_auto_cancel
+#: model:ir.model.fields,help:sale_validity_auto_cancel.field_res_company__sale_validity_auto_cancel_days
+#: model:ir.model.fields,help:sale_validity_auto_cancel.field_res_config_settings__sale_validity_auto_cancel_days
+msgid ""
+"Quotations will be cancelled after the specified number of days since the "
+"expiration date."
+msgstr ""
+
+#. module: sale_validity_auto_cancel
+#: model:ir.model,name:sale_validity_auto_cancel.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_validity_auto_cancel
+#: model:ir.model.constraint,message:sale_validity_auto_cancel.constraint_res_company_sale_validity_auto_cancel_days_positive
+msgid ""
+"The value of the field 'Auto-cancel expired quotations after' must be "
+"positive or 0."
+msgstr ""

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_sale_planner_calendar_reassign_wiz">
+        <field name="name">sale.planner.calendar.reassign.wiz</field>
+        <field name="model">sale.planner.calendar.reassign.wiz</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="Filter values">
+                            <field name="user_id" />
+                            <field name="partner_user_id" />
+                            <field name="partner_id" />
+                            <field name="event_type_id" widget="selection" />
+                            <field name="week_list" />
+                            <div />
+                            <div class="ml-auto mt16">
+                                <button
+                                    name="action_get_lines"
+                                    type="object"
+                                    string="Fill events from filter values"
+                                    icon="fa-refresh"
+                                    class="btn-light"
+                                    attrs="{'invisible': [('line_ids', '=', [])]}"
+                                />
+                                <button
+                                    name="action_get_lines"
+                                    type="object"
+                                    string="Fill events from filter values"
+                                    class="btn-primary"
+                                    icon="fa-refresh"
+                                    attrs="{'invisible': [('line_ids', '!=', [])]}"
+                                />
+                            </div>
+                        </group>
+                        <group string="New values" col="1">
+                            <group>
+                                <field name="new_start" />
+                                <field name="new_end" />
+                            </group>
+                            <p class="text-muted">
+                                If the new end field is set, in addition to creating the recurring event assigned to the new commercial,
+                                a new recurring event will be created from the end date associated with the current commercial.
+                            </p>
+                        </group>
+                        <group />
+                        <group string="Optional actions" col="1">
+                            <group>
+                                <field name="assign_new_salesperson_to_partner" />
+                                <field
+                                    name="unsuscribe_old_salesperson"
+                                    attrs="{'invisible': [('new_end', '!=', False)]}"
+                                />
+                            </group>
+                        </group>
+                    </group>
+                    <group string="Events to update" col="1">
+                        <group>
+                            <group>
+                                <field name="new_user_id" />
+                            </group>
+                            <group>
+                                <field
+                                    name="new_event_categ_ids"
+                                    widget="many2many_tags"
+                                />
+                            </group>
+                        </group>
+                        <div>
+                            <button
+                                class="oe_link"
+                                name="select_all_lines"
+                                type="object"
+                                string="Select all lines"
+                            />
+                            <button
+                                class="oe_link"
+                                name="unselect_all_lines"
+                                type="object"
+                                string="Unselect all lines"
+                            />
+                            <button
+                                class="oe_link ml32"
+                                name="action_assign_new_values"
+                                type="object"
+                                string="Assign new values to selected lines"
+                            />
+                        </div>
+                        <field name="line_ids" nolabel="1">
+                            <tree
+                                editable="top"
+                                create="false"
+                                decoration-info="new_user_id"
+                            >
+                                <field name="selected" widget="boolean_toggle" />
+                                <field name="calendar_event_id" optional="show" />
+                                <field
+                                    name="event_categ_ids"
+                                    widget="many2many_tags"
+                                    options="{'color_field': 'color'}"
+                                    optional="hide"
+                                />
+                                <field name="partner_id" />
+                                <field name="event_user_id" optional="hide" />
+                                <field name="partner_user_id" optional="hide" />
+                                <field name="event_start" optional="hide" />
+                                <field name="until" optional="hide" />
+                                <field name="new_user_id" />
+                                <field
+                                    name="new_event_categ_ids"
+                                    widget="many2many_tags"
+                                    optional="hide"
+                                />
+                            </tree>
+                        </field>
+                    </group>
+                    <div>
+                        <p class="text-muted">
+                            The changes will be applied to event records with new commercial user filled.
+                        </p>
+                        <button
+                            name="apply"
+                            string="Apply changes"
+                            class="btn-primary"
+                            type="object"
+                        />
+
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record
+        id="action_sale_planner_calendar_reassign_wiz"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Reassignment of salesperson</field>
+        <field name="res_model">sale.planner.calendar.reassign.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
+
+</odoo>

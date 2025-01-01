@@ -1,0 +1,44 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_discount_display_amount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-06-26 11:47+0000\n"
+"Last-Translator: Ömer KÜLAK <omer.kulak@kitayazilim.com>\n"
+"Language-Team: none\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_discount_display_amount
+#: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.sale_discount_display_amount_document
+msgid "<span>Total Discount</span>"
+msgstr "<span>Toplam İndirim</span>"
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__discount_total
+msgid "Discount Subtotal"
+msgstr "İndirim Ara Toplamı"
+
+#. module: sale_discount_display_amount
+#: model:ir.model,name:sale_discount_display_amount.model_sale_order
+msgid "Sales Order"
+msgstr "Sipariş"
+
+#. module: sale_discount_display_amount
+#: model:ir.model,name:sale_discount_display_amount.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Sipariş Satırı"
+
+#. module: sale_discount_display_amount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__price_total_no_discount
+#: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_total_no_discount
+msgid "Subtotal Without Discount"
+msgstr "İndirimsiz Ara Toplam"

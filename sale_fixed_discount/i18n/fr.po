@@ -18,12 +18,12 @@ msgstr ""
 
 #. module: sale_fixed_discount
 #: model_terms:ir.ui.view,arch_db:sale_fixed_discount.report_saleorder_document
-msgid "(or"
+msgid "<span class=\"text-nowrap\"> %)</span>"
 msgstr ""
 
 #. module: sale_fixed_discount
 #: model_terms:ir.ui.view,arch_db:sale_fixed_discount.report_saleorder_document
-msgid "<span>Disc. %</span>"
+msgid "<span class=\"text-nowrap\"> (or</span>"
 msgstr ""
 
 #. module: sale_fixed_discount

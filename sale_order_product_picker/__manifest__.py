@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Sale Order Product Picker",
-    "version": "16.0.1.1.1",
+    "version": "16.0.1.2.0",
     "development_status": "Beta",
     "category": "Sale",
     "website": "https://github.com/OCA/sale-workflow",
@@ -21,8 +21,10 @@
     ],
     "assets": {
         "web.assets_backend": [
+            "sale_order_product_picker/static/src/form/*",
             "sale_order_product_picker/static/src/kanban/*",
             "sale_order_product_picker/static/src/x2many/*",
+            "sale_order_product_picker/static/src/utils/*",
             "sale_order_product_picker/static/src/scss/picker.scss",
         ],
     },

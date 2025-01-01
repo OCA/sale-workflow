@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_stock_partner_warehouse
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-09-23 10:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: sale_stock_partner_warehouse
+#: model:ir.model,name:sale_stock_partner_warehouse.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: sale_stock_partner_warehouse
+#: model:ir.model.fields,field_description:sale_stock_partner_warehouse.field_sale_order__warehouse_id
+msgid "Default Warehouse"
+msgstr "Magazzino predefinito"
+
+#. module: sale_stock_partner_warehouse
+#: model:ir.model.fields,help:sale_stock_partner_warehouse.field_sale_order__warehouse_id
+msgid ""
+"If no source warehouse is selected on line, this warehouse is used as "
+"default. "
+msgstr ""
+"Ne non viene selezionato un magazzino on line, questo magazzino è utilizzato "
+"come predefinito. "
+
+#. module: sale_stock_partner_warehouse
+#: model:ir.model.fields,field_description:sale_stock_partner_warehouse.field_res_partner__sale_warehouse_id
+#: model:ir.model.fields,field_description:sale_stock_partner_warehouse.field_res_users__sale_warehouse_id
+msgid "Sale Warehouse"
+msgstr "Magazzino vendite"
+
+#. module: sale_stock_partner_warehouse
+#: model:ir.model,name:sale_stock_partner_warehouse.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"

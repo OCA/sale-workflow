@@ -1,9 +1,10 @@
 # Copyright 2014 Camptocamp SA (author: Guewen Baconnier)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-
 import logging
 from datetime import timedelta
 from unittest import mock
+
+from freezegun import freeze_time
 
 from odoo import fields
 from odoo.tests import tagged
@@ -16,16 +17,17 @@ _logger = logging.getLogger(__name__)
 
 @tagged("post_install", "-at_install", "mail_composer")
 class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
-    def setUp(self):
-        super().setUp()
-        self.env = self.env(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.env = cls.env(
             context=dict(
-                self.env.context,
+                cls.env.context,
                 tracking_disable=True,
                 # Compatibility with sale_automatic_workflow_job: even if
                 # the module is installed, ensure we don't delay a job.
                 # Thus, we test the usual flow.
-                _job_force_sync=True,
+                queue_job__no_delay=True,
             )
         )
 
@@ -55,6 +57,7 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         sale._onchange_workflow_process_id()
         self.assertEqual(sale.picking_policy, "direct")
 
+    @freeze_time("2024-08-11 12:00:00")
     def test_date_invoice_from_sale_order(self):
         workflow = self.create_full_automatic()
         # date_order on sale.order is date + time

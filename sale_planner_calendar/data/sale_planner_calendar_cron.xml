@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record
+        forcecreate="True"
+        id="sale_planner_calendar_cron_unsubscribe"
+        model="ir.cron"
+    >
+        <field name="name">Sale planner calendar: Unsubscribe documents</field>
+        <field name="model_id" ref="model_sale_planner_calendar_reassign_wiz" />
+        <field name="state">code</field>
+        <field name="code">model.cron_unsubscribe()</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="active" eval="True" />
+        <field name="doall" eval="False" />
+    </record>
+    <record forcecreate="True" id="cron_update_dynamic_final_date" model="ir.cron">
+        <field
+            name="name"
+        >Sale planner calendar: Update dynamic event final date</field>
+        <field name="model_id" ref="model_calendar_event" />
+        <field name="state">code</field>
+        <field name="code">model.cron_update_dynamic_final_date()</field>
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">months</field>
+        <field name="numbercall">-1</field>
+        <field name="active" eval="True" />
+        <field name="doall" eval="False" />
+    </record>
+</odoo>

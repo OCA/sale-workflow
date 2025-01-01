@@ -6,4 +6,5 @@ To use this module, you need to:
 #. Configure the recommendations parameters.
 #. Press *Get recommendations* button.
 #. Add products into the opened wizard.
+#. If you don't change quantities, the line will not be updated.
 #. Press *Accept*.

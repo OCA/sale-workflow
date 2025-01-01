@@ -215,7 +215,6 @@
                                         context="{'default_type_tax_use': 'sale'}"
                                         options="{'no_create': True}"
                                         attrs="{
-                                            'required': [('display_type', '=', False)],
                                             'invisible': [('display_type', '=', True)],
                                         }"
                                     />

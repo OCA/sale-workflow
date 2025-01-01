@@ -1,0 +1,124 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_price_category
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+# Bole <bole@dajmi5.com>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-28 01:48+0000\n"
+"PO-Revision-Date: 2018-02-28 01:48+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>, 2018\n"
+"Language-Team: Croatian (https://www.transifex.com/oca/teams/23907/hr/)\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_pricelist_item__applied_on
+msgid "Apply On"
+msgstr ""
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__create_uid
+msgid "Created by"
+msgstr "Kreirao"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__create_date
+msgid "Created on"
+msgstr "Datum kreiranja"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__display_name
+msgid "Display Name"
+msgstr "Naziv za prikaz"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__id
+msgid "ID"
+msgstr "ID"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category____last_update
+msgid "Last Modified on"
+msgstr "Zadnja promjena"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__write_uid
+msgid "Last Updated by"
+msgstr "Promijenio"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__write_date
+msgid "Last Updated on"
+msgstr "Vrijeme promjene"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__name
+msgid "Name"
+msgstr "Naziv"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_pricelist_item__price_category_id
+#: model:ir.model.fields,field_description:product_price_category.field_product_product__price_category_id
+#: model:ir.model.fields,field_description:product_price_category.field_product_template__price_category_id
+#: model:ir.model.fields.selection,name:product_price_category.selection__product_pricelist_item__applied_on__2b_product_price_category
+msgid "Price Category"
+msgstr "Kategorija cijena"
+
+#. module: product_price_category
+#. odoo-python
+#: code:addons/product_price_category/models/product_pricelist_item.py:0
+#, python-format
+msgid "Price Category: %s"
+msgstr "Kategorija cijena: %s"
+
+#. module: product_price_category
+#: model:ir.model,name:product_price_category.model_product_pricelist
+msgid "Pricelist"
+msgstr "Cjenik"
+
+#. module: product_price_category
+#: model:ir.model.fields,help:product_price_category.field_product_pricelist_item__applied_on
+msgid "Pricelist Item applicable on selected option"
+msgstr ""
+
+#. module: product_price_category
+#: model:ir.model,name:product_price_category.model_product_pricelist_item
+msgid "Pricelist Rule"
+msgstr ""
+
+#. module: product_price_category
+#: model:ir.model,name:product_price_category.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: product_price_category
+#: model:ir.model,name:product_price_category.model_product_price_category
+msgid "Product Price Category"
+msgstr ""
+
+#. module: product_price_category
+#: model:ir.model.fields,help:product_price_category.field_product_pricelist_item__price_category_id
+msgid ""
+"Specify a product price category if this rule only applies to one price "
+"category. Keep empty otherwise."
+msgstr ""
+"Odredite kategoriju cijena ako ovo je pravilo primjenjivo na jednu "
+"kategoriju, inače ostavite prazno."
+
+#~ msgid "Pricelist item"
+#~ msgstr "Stavka cjenika"
+
+#~ msgid "Product Template"
+#~ msgstr "Predložak proizvoda"
+
+#~ msgid "product.price.category"
+#~ msgstr "product.price.category"

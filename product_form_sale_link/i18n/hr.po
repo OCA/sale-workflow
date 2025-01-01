@@ -1,0 +1,56 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_form_sale_link
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-06-21 12:16+0000\n"
+"Last-Translator: Bole <bole@dajmi5.com>\n"
+"Language-Team: none\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: product_form_sale_link
+#: model:ir.model,name:product_form_sale_link.model_product_template
+msgid "Product"
+msgstr "Proizvod"
+
+#. module: product_form_sale_link
+#: model:ir.model,name:product_form_sale_link.model_product_product
+msgid "Product Variant"
+msgstr "Varijanta proizvoda"
+
+#. module: product_form_sale_link
+#: model_terms:ir.ui.view,arch_db:product_form_sale_link.view_sales_order_line_filter
+msgid "Quotations"
+msgstr "Ponude"
+
+#. module: product_form_sale_link
+#: model:ir.actions.act_window,name:product_form_sale_link.action_product_product_sale_list
+#: model:ir.actions.act_window,name:product_form_sale_link.action_product_template_sale_list
+msgid "Sale Order Lines"
+msgstr "Stavke prodajnih naloga"
+
+#. module: product_form_sale_link
+#: model_terms:ir.ui.view,arch_db:product_form_sale_link.product_product_form_view
+#: model_terms:ir.ui.view,arch_db:product_form_sale_link.product_template_form_view
+msgid "Sales"
+msgstr "Prodaje"
+
+#. module: product_form_sale_link
+#: model_terms:ir.ui.view,arch_db:product_form_sale_link.view_sales_order_line_filter
+msgid "Sales Orders"
+msgstr "Prodajni nalozi"
+
+#. module: product_form_sale_link
+#: model:ir.model.fields,field_description:product_form_sale_link.field_product_product__sale_lines_count
+#: model:ir.model.fields,field_description:product_form_sale_link.field_product_template__sale_lines_count
+msgid "Sold"
+msgstr "Prodano"

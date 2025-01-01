@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Moduon Team S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+    <record id="view_order_line_tree" model="ir.ui.view">
+        <field name="name">sale.order.line.view.tree.inherit</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='qty_to_invoice']" position="after">
+                <field name="effective_date" optional="hide" />
+                <field name="last_effective_date" optional="hide" />
+            </xpath>
+            <xpath expr="//tree" position="inside">
+                <field name="order_commitment_date" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+    <record id="sale_order_line_view_form_readonly" model="ir.ui.view">
+        <field name="name">sale.order.line.view.form.inherit</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_id']/.." position="inside">
+                <field name="order_commitment_date" />
+                <field name="effective_date" />
+                <field name="last_effective_date" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

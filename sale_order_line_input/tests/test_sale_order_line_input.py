@@ -29,3 +29,12 @@ class TestSaleOrderLineInput(TransactionCase):
         action_dict = line.action_sale_order_form()
         self.assertEqual(action_dict["res_id"], line.order_id.id)
         self.assertEqual(action_dict["res_model"], "sale.order")
+
+    def test_sale_order_line_compute_name(self):
+        # Ensure that when calculating the line name, the new sales order id has
+        # already been created as it is done in the order form view.
+        line_form = Form(
+            self.env["sale.order.line"],
+            view="sale_order_line_input.view_sales_order_line_input_tree",
+        )
+        line_form.product_id = self.product

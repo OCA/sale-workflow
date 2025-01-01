@@ -18,19 +18,18 @@ class SaleOrderLine(models.Model):
     @api.constrains("discount_fixed", "discount")
     def _check_discounts(self):
         """Check that the fixed discount and the discount percentage are consistent."""
+        precision = self.env["decimal.precision"].precision_get("Discount")
         for line in self:
             if line.discount_fixed and line.discount:
-                currency = line.currency_id
                 calculated_fixed_discount = float_round(
                     line._get_discount_from_fixed_discount(),
-                    precision_rounding=currency.rounding,
+                    precision_digits=precision,
                 )
-
                 if (
                     float_compare(
                         calculated_fixed_discount,
                         line.discount,
-                        precision_rounding=currency.rounding,
+                        precision_digits=precision,
                     )
                     != 0
                 ):

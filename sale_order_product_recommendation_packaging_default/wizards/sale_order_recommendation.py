@@ -97,11 +97,15 @@ class SaleOrderRecommendationLine(models.TransientModel):
     def _prepare_update_so_line_vals(self):
         """Update a sale order line with packaging info."""
         result = super()._prepare_update_so_line_vals()
-        vals = self._prepare_packaging_line_vals(result)
-        return vals
+        if not result:
+            # Nothing to update
+            return result
+        return self._prepare_packaging_line_vals(result)
 
     def _prepare_new_so_line_vals(self, sequence):
         """Prepare product packaging info for new sale order line."""
         result = super()._prepare_new_so_line_vals(sequence)
-        vals = self._prepare_packaging_line_vals(result)
-        return vals
+        if not result:
+            # Nothing to create
+            return result
+        return self._prepare_packaging_line_vals(result)

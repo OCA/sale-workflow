@@ -188,6 +188,35 @@ class PackagingRecommendationCase(test_recommendation_common.RecommendationCase)
             ],
         )
 
+    def test_preexisting_product_without_modification(self):
+        self.new_so.order_line = [
+            Command.create(
+                {
+                    "product_id": self.prod_1.id,
+                    "product_uom_qty": 12,
+                    "qty_delivered_method": "manual",
+                    "discount": 12.0,
+                }
+            )
+        ]
+        # Ensure pricelist wants to recompute discounts
+        self.new_so.sudo().pricelist_id.discount_policy = "without_discount"
+        # Do not modify anything
+        wiz = self.wizard()
+        wiz.action_accept()
+        self.assertRecordValues(
+            self.new_so.order_line,
+            [
+                {
+                    "product_id": self.prod_1.id,
+                    "product_packaging_id": self.prod_1_dozen.id,
+                    "product_packaging_qty": 1,
+                    "product_uom_qty": 12,
+                    "discount": 12.0,  # Discount is preserved
+                },
+            ],
+        )
+
     def test_no_packaging_user(self):
         self.env.user.groups_id -= self.env.ref("product.group_stock_packaging")
         wiz_f = Form(self.wizard())

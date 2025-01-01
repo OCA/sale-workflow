@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_block_wizard_view" model="ir.ui.view">
+        <field name="name">Sale Order Block</field>
+        <field name="model">sale.order.block.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Sale Order Block">
+                <field name="confirmation_allowed" invisible="1" />
+                <field name="is_uom_adjustable" invisible="1" />
+                <field name="is_packaging_adjustable" invisible="1" />
+                <p class="text-muted">
+                    This order cannot be confirmed because it contains products that are not in stock. Please manage the following products before confirming the order.
+                </p>
+                <group
+                    name="blocked_lines_group"
+                    staction_create_sale_orderring="Blocked lines"
+                >
+                    <field name="sale_line_block_ids" nolabel="1" colspan="2">
+                        <tree
+                            decoration-danger="product_uom_allowed_max_qty &lt;= 0.0"
+                            create="false"
+                            edit="false"
+                            no_open="true"
+                        >
+                            <field name="wizard_id" invisible="1" />
+                            <field name="sale_line_id" invisible="1" />
+                            <field name="company_id" invisible="1" />
+                            <field name="order_id" optional="hide" />
+                            <field name="product_id" />
+                            <field name="product_uom_qty" optional="show" />
+                            <field name="product_uom_allowed_max_qty" optional="show" />
+                            <field name="product_uom" optional="show" />
+                            <field
+                                name="product_packaging_qty"
+                                optional="show"
+                                attrs="{'invisible': [('product_packaging_id', '=', False)]}"
+                                groups="product.group_stock_packaging"
+                            />
+                            <field
+                                name="product_packaging_allowed_max_qty"
+                                optional="show"
+                                attrs="{'invisible': [('product_packaging_id', '=', False)]}"
+                                groups="product.group_stock_packaging"
+                            />
+                            <field
+                                name="product_packaging_id"
+                                optional="show"
+                                attrs="{'invisible': [('product_packaging_id', '=', False)]}"
+                                groups="product.group_stock_packaging"
+                            />
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button
+                        name="action_adjust_uom_quantity"
+                        string="Adjust UoM Quantity"
+                        type="object"
+                        class="btn-primary"
+                        attrs="{'invisible': ['|', ('is_uom_adjustable', '=', False), '|', ('is_packaging_adjustable', '=', True), ('sale_line_block_ids', '=', [])]}"
+                    />
+                    <button
+                        name="action_adjust_packaging_quantity"
+                        string="Adjust Packaging Quantity"
+                        type="object"
+                        class="btn-primary"
+                        attrs="{'invisible': ['|', ('is_packaging_adjustable', '=', False), ('sale_line_block_ids', '=', [])]}"
+                        groups="product.group_stock_packaging"
+                    />
+                    <button
+                        name="action_move_to_new_order"
+                        string="Move to New Order"
+                        type="object"
+                        class="btn-primary"
+                        attrs="{'invisible': ['|', ('is_uom_adjustable', '=', True), ('sale_line_block_ids', '=', [])]}"
+                        confirm="You are going to move pending lines to a new order"
+                    />
+                    <button
+                        name="action_move_to_new_order"
+                        string="Move to New Order"
+                        type="object"
+                        class="btn-secondary"
+                        attrs="{'invisible': ['|', ('is_uom_adjustable', '=', False), ('sale_line_block_ids', '=', [])]}"
+                        confirm="You are going to move pending lines to a new order"
+                    />
+                    <button
+                        name="confirm"
+                        string="Confirm anyway"
+                        type="object"
+                        class="btn-secondary"
+                        attrs="{'invisible': ['|', ('sale_line_block_ids', '=', []), ('confirmation_allowed', '=', False)]}"
+                        confirm="You are going to confirm the Sale Order with not solved lines"
+                    />
+                    <p class="m-2">or</p>
+                    <button string="Close" class="btn-secondary" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_order_block_wizard_action" model="ir.actions.act_window">
+        <field name="name">Sale Order Blocked to Confirm</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order.block.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
