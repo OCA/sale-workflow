@@ -371,3 +371,33 @@ class TestSaleAdvancePayment(common.TransactionCase):
         self.assertEqual(invoice.amount_residual, 0.0)
         self.assertEqual(self.sale_order_1.amount_residual, 1600)
         self.assertEqual(invoice.amount_residual, 0)
+
+    def test_04_refunds(self):
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            3600,
+        )
+        self.sale_order_1.action_confirm()
+        invoice = self.sale_order_1._create_invoices()
+        invoice.action_post()
+        self.assertEqual(invoice.amount_total, 3600)
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            3600,
+        )
+        self.env["account.move.reversal"].with_context(
+            active_model="account.move", active_ids=invoice.ids
+        ).create({"journal_id": invoice.journal_id.id}).reverse_moves()
+        self.assertEqual(len(self.sale_order_1.invoice_ids), 2)
+        invoice = self.sale_order_1.invoice_ids.filtered(lambda x: x.state == "draft")
+        invoice.action_post()
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            3600,
+        )
+        invoice = self.sale_order_1._create_invoices()
+        invoice.action_post()
+        self.assertEqual(
+            self.sale_order_1.amount_residual,
+            3600,
+        )

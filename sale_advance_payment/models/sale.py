@@ -81,7 +81,9 @@ class SaleOrder(models.Model):
             # Consider payments in related invoices.
             invoice_paid_amount = 0.0
             for inv in order.invoice_ids:
-                invoice_paid_amount += inv.amount_total - inv.amount_residual
+                invoice_paid_amount += (
+                    inv.amount_total_signed - inv.amount_residual_signed
+                )
             amount_residual = order.amount_total - advance_amount - invoice_paid_amount
             payment_state = "not_paid"
             if mls:
