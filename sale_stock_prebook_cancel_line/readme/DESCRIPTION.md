@@ -1,0 +1,1 @@
+This addon is a technical module that ensures that the computation of the cancelled quantity on a sale order line is correct even when a prebooking is involved. Cancelled prebooked quantities must not be taken into account in the computation of the cancelled quantity on the sale order line. 
