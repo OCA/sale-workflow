@@ -440,7 +440,7 @@ class SaleOrderLine(models.Model):
                 line.qty_to_deliver = 0.0
             else:
                 line.display_qty_widget = True
-                line.qty_to_deliver = self.product_uom_qty
+                line.qty_to_deliver = line.product_uom_qty
         return res
 
     def _compute_qty_delivered(self):
