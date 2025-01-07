@@ -5,4 +5,7 @@
 
   * Vicent Cubells
 
- * Rataapong Chokmasermkul <rattapongc@ecosoft.co.th>
+* Rataapong Chokmasermkul <rattapongc@ecosoft.co.th>
+* `Binhex <https://binhex.cloud/>`_:
+
+  * Mario Luis Mora <m.luis@binhex.cloud>
