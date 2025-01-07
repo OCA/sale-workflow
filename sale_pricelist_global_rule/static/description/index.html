@@ -369,23 +369,27 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:b93829a100ce8864f9f399ba2bf2c998544d9a7b00d3555405045eaebe3f4cd4
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/sale-workflow/tree/15.0/sale_pricelist_global_rule"><img alt="OCA/sale-workflow" src="https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/sale-workflow-15-0/sale-workflow-15-0-sale_pricelist_global_rule"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&amp;target_branch=15.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module allows configured pricelists to be applied to a sales order by considering cumulative quantities across all lines.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/sale-workflow/tree/17.0/sale_pricelist_global_rule"><img alt="OCA/sale-workflow" src="https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_pricelist_global_rule"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>This module allows configured pricelists to be applied to a sales order
+by considering cumulative quantities across all lines.</p>
 <p><strong>Global by Product Template</strong></p>
-<p>If a pricelist rule has a <cite>min_quantity = 15</cite>, and a sales order contains:</p>
+<p>If a pricelist rule has a min_quantity = 15, and a sales order contains:</p>
 <ul class="simple">
 <li>Line 1: Variant 1, quantity = 8</li>
 <li>Line 2: Variant 2, quantity = 8</li>
 </ul>
 <p><strong>Global by Product Category</strong></p>
-<p>Similarly, if a pricelist rule has a <cite>min_quantity = 20</cite> for products within a category, and a sales order includes:</p>
+<p>Similarly, if a pricelist rule has a min_quantity = 20 for products
+within a category, and a sales order includes:</p>
 <ul class="simple">
 <li>Line 1: Product 1, quantity = 10</li>
 <li>Line 2: Product 2, quantity = 10</li>
 </ul>
-<p>In standard Odoo, pricelist rules would not apply since no single line meets the minimum quantity.
-With this module, however, cumulative quantities across lines allow the pricelist rule to apply,
-as they meet the minimum threshold (16 in the product template example and 20 in the product category example).</p>
+<p>In standard Odoo, pricelist rules would not apply since no single line
+meets the minimum quantity. With this module, however, cumulative
+quantities across lines allow the pricelist rule to apply, as they meet
+the minimum threshold (16 in the product template example and 20 in the
+product category example).</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -404,25 +408,30 @@ as they meet the minimum threshold (16 in the product template example and 20 in
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#toc-entry-1">Configuration</a></h1>
 <ul class="simple">
-<li>Go to <cite>Sales</cite> -&gt; <cite>Products</cite> -&gt; <cite>Pricelist</cite>.</li>
-<li>Create a new Pricelist and add at least one line with the <cite>Apply On</cite> option set to <cite>Global - Product template</cite> or <cite>Global - Product category</cite></li>
+<li>Go to Sales -&gt; Products -&gt; Pricelist.</li>
+<li>Create a new Pricelist and add at least one line with the Apply On
+option set to Global - Product template or Global - Product category</li>
 <li>Choose the specific product template or category for the rule.</li>
-<li>Set the <cite>computation mode</cite> and save</li>
+<li>Set the computation mode and save</li>
 </ul>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-2">Usage</a></h1>
 <ul class="simple">
-<li>Go to <cite>Sales</cite> -&gt; <cite>Orders</cite> -&gt; <cite>Quotations</cite>.</li>
+<li>Go to Sales -&gt; Orders -&gt; Quotations.</li>
 <li>Create a new record and fill the required fields.</li>
-<li>Choose a <cite>Pricelist</cite> that has a global rule configured (either by Category or Product).</li>
-<li>Click the <strong>Recompute pricelist global</strong> button to update prices according to the specified pricelist rules.</li>
+<li>Choose a Pricelist that has a global rule configured (either by
+Category or Product).</li>
+<li>Click the <strong>Recompute pricelist global</strong> button to update prices
+according to the specified pricelist rules.</li>
 </ul>
 </div>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#toc-entry-3">Known issues / Roadmap</a></h1>
 <ul class="simple">
-<li>Implement automatic application of the pricelist whenever changes are made to order lines (such as prices, quantities, etc.) or to the pricelist itself, eliminating the need for manual button clicks.</li>
+<li>Implement automatic application of the pricelist whenever changes are
+made to order lines (such as prices, quantities, etc.) or to the
+pricelist itself, eliminating the need for manual button clicks.</li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
@@ -430,7 +439,7 @@ as they meet the minimum threshold (16 in the product template example and 20 in
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/sale-workflow/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_pricelist_global_rule%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_pricelist_global_rule%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -460,7 +469,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/sale-workflow/tree/15.0/sale_pricelist_global_rule">OCA/sale-workflow</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/sale-workflow/tree/17.0/sale_pricelist_global_rule">OCA/sale-workflow</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

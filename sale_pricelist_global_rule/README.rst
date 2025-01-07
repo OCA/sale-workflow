@@ -17,36 +17,40 @@ Sale pricelist global rule
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/15.0/sale_pricelist_global_rule
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_pricelist_global_rule
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-15-0/sale-workflow-15-0-sale_pricelist_global_rule
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_pricelist_global_rule
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows configured pricelists to be applied to a sales order by considering cumulative quantities across all lines.
+This module allows configured pricelists to be applied to a sales order
+by considering cumulative quantities across all lines.
 
 **Global by Product Template**
 
-If a pricelist rule has a `min_quantity = 15`, and a sales order contains:
+If a pricelist rule has a min_quantity = 15, and a sales order contains:
 
 - Line 1: Variant 1, quantity = 8
 - Line 2: Variant 2, quantity = 8
 
 **Global by Product Category**
 
-Similarly, if a pricelist rule has a `min_quantity = 20` for products within a category, and a sales order includes:
+Similarly, if a pricelist rule has a min_quantity = 20 for products
+within a category, and a sales order includes:
 
 - Line 1: Product 1, quantity = 10
 - Line 2: Product 2, quantity = 10
 
-In standard Odoo, pricelist rules would not apply since no single line meets the minimum quantity. 
-With this module, however, cumulative quantities across lines allow the pricelist rule to apply, 
-as they meet the minimum threshold (16 in the product template example and 20 in the product category example).
+In standard Odoo, pricelist rules would not apply since no single line
+meets the minimum quantity. With this module, however, cumulative
+quantities across lines allow the pricelist rule to apply, as they meet
+the minimum threshold (16 in the product template example and 20 in the
+product category example).
 
 **Table of contents**
 
@@ -56,23 +60,28 @@ as they meet the minimum threshold (16 in the product template example and 20 in
 Configuration
 =============
 
-- Go to `Sales` -> `Products` -> `Pricelist`.
-- Create a new Pricelist and add at least one line with the `Apply On` option set to `Global - Product template` or `Global - Product category`
+- Go to Sales -> Products -> Pricelist.
+- Create a new Pricelist and add at least one line with the Apply On
+  option set to Global - Product template or Global - Product category
 - Choose the specific product template or category for the rule.
-- Set the `computation mode` and save
+- Set the computation mode and save
 
 Usage
 =====
 
-- Go to `Sales` -> `Orders` -> `Quotations`.
+- Go to Sales -> Orders -> Quotations.
 - Create a new record and fill the required fields.
-- Choose a `Pricelist` that has a global rule configured (either by Category or Product).
-- Click the **Recompute pricelist global** button to update prices according to the specified pricelist rules.
+- Choose a Pricelist that has a global rule configured (either by
+  Category or Product).
+- Click the **Recompute pricelist global** button to update prices
+  according to the specified pricelist rules.
 
 Known issues / Roadmap
 ======================
 
-- Implement automatic application of the pricelist whenever changes are made to order lines (such as prices, quantities, etc.) or to the pricelist itself, eliminating the need for manual button clicks.
+- Implement automatic application of the pricelist whenever changes are
+  made to order lines (such as prices, quantities, etc.) or to the
+  pricelist itself, eliminating the need for manual button clicks.
 
 Bug Tracker
 ===========
@@ -80,7 +89,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_pricelist_global_rule%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_pricelist_global_rule%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -88,20 +97,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_
+- `Tecnativa <https://www.tecnativa.com>`__
 
-  * Pedro M. Baeza
-  * Carlos López
+  - Pedro M. Baeza
+  - Carlos López
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -113,6 +122,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/15.0/sale_pricelist_global_rule>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_pricelist_global_rule>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
