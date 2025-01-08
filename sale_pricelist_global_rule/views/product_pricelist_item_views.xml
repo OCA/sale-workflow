@@ -10,12 +10,14 @@
                 <field
                     name="global_categ_id"
                     options="{'no_create':1}"
-                    attrs="{'invisible':[('applied_on', '!=', '5_global_product_category')], 'required':[('applied_on', '=', '5_global_product_category')]}"
+                    invisible="applied_on != '3_2_global_product_category'"
+                    required="applied_on == '3_2_global_product_category'"
                 />
                 <field
                     name="global_product_tmpl_id"
                     options="{'no_create':1}"
-                    attrs="{'invisible':[('applied_on', '!=', '4_global_product_template')], 'required':[('applied_on', '=', '4_global_product_template')]}"
+                    invisible="applied_on != '3_1_global_product_template'"
+                    required="applied_on == '3_1_global_product_template'"
                 />
             </xpath>
         </field>

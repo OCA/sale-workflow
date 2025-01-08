@@ -11,14 +11,14 @@
                     string="Recompute pricelist global"
                     name="button_compute_pricelist_global_rule"
                     type="object"
-                    attrs="{'invisible': ['|', '|',  ('state', 'not in', ('draft', 'sent')), ('has_pricelist_global', '=', False), ('need_recompute_pricelist_global', '=', False)]}"
+                    invisible="state not in ('draft', 'sent') or not has_pricelist_global or not need_recompute_pricelist_global"
                     class="oe_highlight"
                 />
                 <button
                     string="Recompute pricelist global"
                     name="button_compute_pricelist_global_rule"
                     type="object"
-                    attrs="{'invisible': ['|', '|', ('state', 'not in', ('draft', 'sent')), ('has_pricelist_global', '=', False), ('need_recompute_pricelist_global', '=', True)]}"
+                    invisible="state not in ('draft', 'sent') or not has_pricelist_global or need_recompute_pricelist_global"
                 />
                 <field name="has_pricelist_global" invisible="1" />
                 <field name="need_recompute_pricelist_global" invisible="1" />
