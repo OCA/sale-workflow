@@ -1,6 +1,6 @@
 {
     "name": "Sale pricelist global rule",
-    "version": "15.0.1.0.3",
+    "version": "17.0.1.0.0",
     "summary": "Apply a global rule to all sale order",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "category": "Sales Management",
