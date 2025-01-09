@@ -195,7 +195,6 @@ msgstr "Dominio del filtro para bloqueo de pedidos"
 #: model:ir.model,name:sale_automatic_workflow.model_sale_workflow_process
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_bank_statement_line__workflow_process_id
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_move__workflow_process_id
-#: model:ir.model.fields,field_description:sale_automatic_workflow.field_account_payment__workflow_process_id
 msgid "Sale Workflow Process"
 msgstr "Proceso del flujo de venta"
 
@@ -287,7 +286,6 @@ msgstr "Opciones del flujo"
 #. module: sale_automatic_workflow
 #. odoo-python
 #: code:addons/sale_automatic_workflow/models/sale_order.py:0
-#, python-format
 msgid "Workflow Warning"
 msgstr "Aviso del flujo"
 
