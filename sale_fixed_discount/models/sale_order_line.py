@@ -83,7 +83,9 @@ class SaleOrderLine(models.Model):
         lines_with_discount_fixed = self.filtered(lambda sol: sol.discount_fixed)
         for line in lines_with_discount_fixed:
             line.discount = line._get_discount_from_fixed_discount()
-        return super(SaleOrderLine, self - lines_with_discount_fixed)
+        return super(
+            SaleOrderLine, self - lines_with_discount_fixed
+        )._compute_discount()
 
     def _get_discount_from_fixed_discount(self):
         """Calculate the discount percentage from the fixed discount amount."""
