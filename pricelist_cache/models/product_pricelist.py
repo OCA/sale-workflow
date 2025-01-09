@@ -50,7 +50,7 @@ class Pricelist(models.Model):
             )
             SELECT id FROM parent_pricelist;
         """
-        self.flush()
+        self.env.flush_all()
         self.env.cr.execute(query, {"pricelist_id": self.id})
         return self.search([("id", "in", [row[0] for row in self.env.cr.fetchall()])])
 
@@ -74,8 +74,7 @@ class Pricelist(models.Model):
         # between the time where records have been created / modified
         # and the time this method is executed.
         products = self.env["product.product"].search([("id", "in", product_ids)])
-        products_qty_partner = [(p, 1, False) for p in products]
-        results = self._compute_price_rule(products_qty_partner, date.today())
+        results = self._compute_price_rule(products, 1, date=date.today())
         product_prices = {prod: price[0] for prod, price in results.items()}
         return product_prices
 
@@ -97,7 +96,7 @@ class Pricelist(models.Model):
             )
             AND active = TRUE;
         """
-        self.flush()
+        self.env.flush_all()
         self.env.cr.execute(no_parent_query)
         return [row[0] for row in self.env.cr.fetchall()]
 
@@ -124,7 +123,7 @@ class Pricelist(models.Model):
             )
             AND active = TRUE;
         """
-        self.flush()
+        self.env.flush_all()
         self.env.cr.execute(factor_pricelist_query)
         return [row[0] for row in self.env.cr.fetchall()]
 

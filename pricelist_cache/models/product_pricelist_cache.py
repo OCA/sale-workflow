@@ -67,10 +67,10 @@ class PricelistCache(models.Model):
                 c.id = pricelist_cache.id;
         """
         ).format(sql.SQL("), (").join(values))
-        self.flush()
+        self.env.flush_all()
         self.env.cr.execute(query)
-        self.invalidate_cache(["price"])
-        self.recompute()
+        self.invalidate_model(["price"])
+        self.env.flush_all()
 
     def _create_cache_records(self, pricelist_id, product_ids, product_prices):
         """Create price cache records for a given pricelist, applied to a list of
@@ -95,7 +95,7 @@ class PricelistCache(models.Model):
                 VALUES ({});
             """
             ).format(sql.SQL("), (").join(values))
-            self.flush()
+            self.env.flush_all()
             self.env.cr.execute(query)
 
     def _update_pricelist_cache(self, pricelist_id, product_prices):

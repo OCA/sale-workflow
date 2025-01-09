@@ -66,7 +66,7 @@ class TestPricelistCacheCommon(TransactionCase):
     @classmethod
     def setUpClassBaseCache(cls):
         cls.cache_model.cron_reset_pricelist_cache()
-        cls.env["product.pricelist"].invalidate_cache(["is_pricelist_cache_available"])
+        cls.env["product.pricelist"].invalidate_model(["is_pricelist_cache_available"])
 
     @classmethod
     def set_currency(cls):
@@ -136,15 +136,15 @@ class TestPricelistCacheCommon(TransactionCase):
 
     def _flush_cache(self):
         self.cache_model.flush_pricelist_cache()
-        self.env["res.partner"].invalidate_cache(["is_pricelist_cache_available"])
-        self.env["product.pricelist"].invalidate_cache(["is_pricelist_cache_available"])
+        self.env["res.partner"].invalidate_model(["is_pricelist_cache_available"])
+        self.env["product.pricelist"].invalidate_model(["is_pricelist_cache_available"])
 
     def _update_cache(self, pricelist_ids=None, product_ids=None):
         self.cache_model.update_product_pricelist_cache(
             product_ids=product_ids, pricelist_ids=pricelist_ids
         )
-        self.env["res.partner"].invalidate_cache(["is_pricelist_cache_available"])
-        self.env["product.pricelist"].invalidate_cache(["is_pricelist_cache_available"])
+        self.env["res.partner"].invalidate_model(["is_pricelist_cache_available"])
+        self.env["product.pricelist"].invalidate_model(["is_pricelist_cache_available"])
 
     def assert_cache_available(self, lists):
         self.assertTrue(all(lists.mapped("is_pricelist_cache_available")))
