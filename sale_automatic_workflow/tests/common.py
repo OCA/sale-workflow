@@ -91,7 +91,7 @@ class TestMultiCompanyCommon(AccountTestInvoicingCommon):
                 # Compatibility with sale_automatic_workflow_job: even if
                 # the module is installed, ensure we don't delay a job.
                 # Thus, we test the usual flow.
-                _job_force_sync=True,
+                queue_job__no_delay=True,
             )
         )
         cls.company_fr = cls.setup_other_company(
