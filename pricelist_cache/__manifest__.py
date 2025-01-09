@@ -6,7 +6,7 @@
         Provide a new model to cache price lists and update it,
         to make it easier to retrieve them.
     """,
-    "version": "15.0.1.4.1",
+    "version": "16.0.1.0.0",
     "category": "Hidden",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
