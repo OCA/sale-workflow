@@ -143,7 +143,6 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
         )
 
     def test_02_sale_order_invoiced_amount_different_currencies_invoice(self):
-
         self.assertEqual(
             self.sale_order_1.invoiced_amount,
             0.0,
