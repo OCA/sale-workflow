@@ -1,0 +1,1 @@
+This module is a glue module between sale_order_blanket_order_stock_prebook and stock_available_to_promise_release
