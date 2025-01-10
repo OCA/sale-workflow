@@ -1,1 +1,6 @@
 odoo_test_helper
+odoo-addon-sale-stock-prebook @ git+https://github.com/OCA/sale-workflow.git@refs/pull/3481/head#subdirectory=setup/sale_stock_prebook
+odoo-addon-sale-stock-prebook-stock-available-to_promise-release @ git+https://github.com/OCA/sale-workflow.git@refs/pull/3424/head#subdirectory=setup/sale_stock_prebook_stock_available_to_promise_release
+odoo-addon-sale-order-blanket-order @ git+https://github.com/OCA/sale-workflow.git@refs/pull/3436/head#subdirectory=setup/sale_order_blanket_order
+odoo-addon-sale-order-blanket-order-stock-prebook @ git+https://github.com/OCA/sale-workflow.git@refs/pull/3436/head#subdirectory=setup/sale_order_blanket_order_stock_prebook
+odoo-addon-sale-order-product-picker @ git+https://github.com/OCA/sale-workflow.git@refs/pull/3457/head#subdirectory=setup/sale_order_product_picker
