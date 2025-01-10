@@ -46,7 +46,8 @@ WITH amt AS(
             sale_order.id AS sale_order_id,
             sale_order.amount_total AS amount_total,
             account_move.id AS account_move_id,
-            account_move.amount_total_in_currency_signed as amount_total_in_currency_signed
+            account_move.amount_total_in_currency_signed
+            as amount_total_in_currency_signed
         FROM
             sale_order
         LEFT JOIN sale_order_line
