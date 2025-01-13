@@ -9,7 +9,11 @@
         <field name="inherit_id" ref="product.product_template_form_view" />
         <field name="arch" type="xml">
             <field name="uom_id" position="after">
-                <field name="sale_secondary_uom_id" options="{'no_create': True}" groups="uom.group_uom" />
+                <field
+                    name="sale_secondary_uom_id"
+                    options="{'no_create': True}"
+                    groups="uom.group_uom"
+                />
             </field>
         </field>
     </record>
