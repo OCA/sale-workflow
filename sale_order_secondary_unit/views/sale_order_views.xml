@@ -7,7 +7,6 @@
         <field name="name">Sale Order Secondary Unit</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
-        <field name="groups" eval="[(4, ref('uom.group_uom'))]" />
         <field name="arch" type="xml">
             <xpath
                 expr="//field[@name='order_line']/form//field[@name='price_subtotal']"
@@ -21,6 +20,7 @@
                         widget="numeric_step"
                         options="{'auto_select': True}"
                         attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"
+                        groups="uom.group_uom"
                     />
                     <field
                         name="secondary_uom_id"
@@ -30,6 +30,7 @@
                                              ('product_id', '=', False)]"
                         options="{'no_create': True, 'no_open': True}"
                         attrs="{'readonly': [('product_uom_readonly', '=', True)], 'required': [('secondary_uom_qty', '!=', 0.0)]}"
+                        groups="uom.group_uom"
                     />
                 </div>
             </xpath>
@@ -41,6 +42,7 @@
                     name="secondary_uom_qty"
                     attrs="{'readonly': [('parent.state', 'in', ('done', 'cancel'))]}"
                     optional="show"
+                    groups="uom.group_uom"
                 />
                 <field
                     name="secondary_uom_id"
@@ -50,14 +52,15 @@
                     options="{'no_create': True}"
                     attrs="{'readonly': [('product_uom_readonly', '=', True)], 'required': [('secondary_uom_qty', '!=', 0.0)]}"
                     optional="show"
+                    groups="uom.group_uom"
                 />
             </xpath>
             <xpath
                 expr="//field[@name='order_line']/kanban//field[@name='company_id']"
                 position="after"
             >
-                <field name="secondary_uom_id" invisible="1" />
-                <field name="secondary_uom_qty" invisible="1" />
+                <field name="secondary_uom_id" invisible="1" groups="uom.group_uom" />
+                <field name="secondary_uom_qty" invisible="1" groups="uom.group_uom" />
             </xpath>
             <xpath
                 expr="//field[@name='order_line']/kanban//t[@t-esc='record.product_uom_qty.value']"
