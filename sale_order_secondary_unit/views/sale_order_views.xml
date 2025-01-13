@@ -62,6 +62,7 @@
                 <field name="secondary_uom_id" invisible="1" groups="uom.group_uom" />
                 <field name="secondary_uom_qty" invisible="1" groups="uom.group_uom" />
             </xpath>
+            <!-- TODO: Uncomment this when the kanban view is fixed
             <xpath
                 expr="//field[@name='order_line']/kanban//t[@t-esc='record.product_uom_qty.value']"
                 position="before"
@@ -70,7 +71,7 @@
                     <t t-esc="record.secondary_uom_qty.value" />
                     <t t-esc="record.secondary_uom_id.value" /> ->
                 </t>
-            </xpath>
+            </xpath> -->
         </field>
     </record>
 </odoo>
