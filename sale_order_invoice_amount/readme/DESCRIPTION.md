@@ -1,4 +1,2 @@
-The purpose of this module is to add two fields in the sale order model:
-
-- invoiced_amount: total invoiced amount.
-- uninvoiced_amount: total uninvoiced amount.
+This module adapts the computation of invoiced and to invoice amounts in Sales Orders.
+When the company option "Enable amount invoiced based on quantity" is activated, the values are calculated from the quantities invoiced vs ordered, instead of relying only on invoice monetary amounts.
