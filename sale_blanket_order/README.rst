@@ -53,21 +53,21 @@ section:
 Hitting the button create will open the form view in which we can
 introduce the following information:
 
--  Vendor
+- Vendor
 
--  Salesperson
+- Salesperson
 
--  Payment Terms
+- Payment Terms
 
--  Validity date
+- Validity date
 
--  Order lines:
+- Order lines:
 
-   -  Product
-   -  Accorded price
-   -  Original, Ordered, Invoiced, Received and Remaining quantities
+  - Product
+  - Accorded price
+  - Original, Ordered, Invoiced, Received and Remaining quantities
 
--  Terms and Conditions of the Blanket Order
+- Terms and Conditions of the Blanket Order
 
 |image2|
 
@@ -97,8 +97,8 @@ PO line is associated. Upon adding a new product in a newly created Sale
 Order a blanket order line will be suggested depending on the following
 factors:
 
--  Closer Validity date
--  Remaining quantity > Quantity introduced in the Sale Order line
+- Closer Validity date
+- Remaining quantity > Quantity introduced in the Sale Order line
 
 |image6|
 
@@ -130,22 +130,22 @@ Authors
 Contributors
 ------------
 
--  André Pereira <github@andreparames.com> (https://www.acsone.eu/)
+- André Pereira <github@andreparames.com> (https://www.acsone.eu/)
 
--  Adrià Gil Sorribes <adria.gil@eficent.com> (https://www.eficent.com/)
+- Adrià Gil Sorribes <adria.gil@eficent.com> (https://www.eficent.com/)
 
--  Jordi Ballester Alomar <jordi.ballester@eficent.com>
+- Jordi Ballester Alomar <jordi.ballester@eficent.com>
 
--  Alex Comba <alex.comba@agilebg.com> (https://www.agilebg.com/)
+- Alex Comba <alex.comba@agilebg.com> (https://www.agilebg.com/)
 
--  Codeforward (https://www.codeforward.nl/):
+- Codeforward (https://www.codeforward.nl/):
 
-      -  Jasper Jumelet <jasper.jumelet@codeforward.nl>
-      -  Chris Bergman <chris.bergman@codeforward.nl>
+     - Jasper Jumelet <jasper.jumelet@codeforward.nl>
+     - Chris Bergman <chris.bergman@codeforward.nl>
 
--  `Trobz <https://trobz.com>`__:
+- `Trobz <https://trobz.com>`__:
 
-      -  Nguyễn Minh Chiến <chien@trobz.com>
+     - Nguyễn Minh Chiến <chien@trobz.com>
 
 Other credits
 -------------
