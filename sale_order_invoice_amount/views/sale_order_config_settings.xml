@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018 ACSONE SA/NV
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="sale_config_settings_form_view">
+        <field name="name">res.config.settings.form - sale_order_invoice_amount</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <block name="invoicing_setting_container" position="inside">
+                    <setting
+                    name="enable_amount_invoiced_based_on_quantity"
+                    string="Amount invoiced based on quantity"
+                    title="Enable calculating amount invoiced based on quantity"
+                    help="Enable calculating amount invoiced based on quantity"
+                >
+                        <field name="enable_amount_invoiced_based_on_quantity" />
+                </setting>
+            </block>
+        </field>
+    </record>
+</odoo>
