@@ -369,11 +369,11 @@ ul.auto-toc {
 !! source digest: sha256:adda86ddd28b95f77e0604ae2d8fcc9e48351fb5567a49001111cf3c6edd5488
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/lgpl-3.0-standalone.html"><img alt="License: LGPL-3" src="https://img.shields.io/badge/licence-LGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/sale-workflow/tree/17.0/sale_order_invoice_amount"><img alt="OCA/sale-workflow" src="https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_order_invoice_amount"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>The purpose of this module is to add two fields in the sale order model:</p>
-<ul class="simple">
-<li>invoiced_amount: total invoiced amount.</li>
-<li>uninvoiced_amount: total uninvoiced amount.</li>
-</ul>
+<p>This module adapts the computation of invoiced and to invoice amounts in
+Sales Orders. When the company option “Enable amount invoiced based on
+quantity” is activated, the values are calculated from the quantities
+invoiced vs ordered, instead of relying only on invoice monetary
+amounts.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -407,6 +407,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <ul class="simple">
 <li>Mateu Griful &lt;<a class="reference external" href="mailto:mateu.griful&#64;forgeflow.com">mateu.griful&#64;forgeflow.com</a>&gt;</li>
 <li>Lois Rilo &lt;<a class="reference external" href="mailto:lois.rilo&#64;forgeflow.com">lois.rilo&#64;forgeflow.com</a>&gt;</li>
+<li>Meritxell Abellan &lt;<a class="reference external" href="mailto:meritxell.abellan&#64;forgeflow.com">meritxell.abellan&#64;forgeflow.com</a>&gt;</li>
 </ul>
 </div>
 <div class="section" id="maintainers">
