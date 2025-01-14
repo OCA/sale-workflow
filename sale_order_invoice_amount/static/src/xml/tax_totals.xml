@@ -6,29 +6,29 @@
         t-inherit-mode="extension"
     >
         <xpath expr="//table/tbody/tr[last()]" position="after">
-            <tr t-if="totals.formatted_invoiced_amount">
+            <tr t-if="totals.formatted_amount_invoiced">
                 <td class="o_td_label">
                     <label
                         class="o_form_label o_tax_total_label"
-                    >Invoiced Amount</label>
+                    >Already invoiced</label>
                 </td>
                 <td>
                     <span
                         style="white-space: nowrap;"
-                        t-esc="totals.formatted_invoiced_amount"
+                        t-esc="totals.formatted_amount_invoiced"
                     />
                 </td>
             </tr>
-            <tr t-if="totals.formatted_uninvoiced_amount">
+            <tr t-if="totals.formatted_amount_to_invoice">
                 <td class="o_td_label">
                     <label
                         class="o_form_label o_tax_total_label"
-                    >Uninvoiced Amount</label>
+                    >Amount to invoice</label>
                 </td>
                 <td>
                     <span
                         style="white-space: nowrap; "
-                        t-esc="totals.formatted_uninvoiced_amount"
+                        t-esc="totals.formatted_amount_to_invoice"
                     />
                 </td>
             </tr>

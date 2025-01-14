@@ -1,23 +1,11 @@
 # Copyright (C) 2021 ForgeFlow S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
-from odoo import api, fields, models
+from odoo import api, models
 from odoo.tools.misc import formatLang
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
-
-    invoiced_amount = fields.Monetary(
-        compute="_compute_invoice_amount",
-        store=True,
-        help="Order amount already invoiced.",
-    )
-
-    uninvoiced_amount = fields.Monetary(
-        compute="_compute_invoice_amount",
-        store=True,
-        help="Order amount to be invoiced",
-    )
 
     @api.depends(
         "state",
@@ -26,42 +14,56 @@ class SaleOrder(models.Model):
         "amount_total",
         "invoice_ids.state",
     )
-    def _compute_invoice_amount(self):
-        for rec in self:
-            if rec.state != "cancel" and rec.invoice_ids:
-                rec.invoiced_amount = 0.0
-                for invoice in rec.invoice_ids:
-                    if invoice.state != "cancel":
-                        if (
-                            invoice.currency_id != rec.currency_id
-                            and rec.currency_id != invoice.company_currency_id
-                        ):
-                            rec.invoiced_amount += invoice.currency_id._convert(
-                                invoice.amount_total_signed,
-                                rec.currency_id,
-                                invoice.company_id,
-                                invoice.invoice_date or fields.Date.today(),
-                            )
-                        else:
-                            rec.invoiced_amount += invoice.amount_total_signed
-                # Uninvoiced amount could not be equal to total - invoiced amount.
-                # For example if the amount invoiced does not match with the price unit.
-                rec.uninvoiced_amount = max(
-                    0,
-                    sum(
-                        (line.product_uom_qty - line.qty_invoiced)
-                        * (line.price_total / line.product_uom_qty)
-                        for line in rec.order_line.filtered(
-                            lambda sl: sl.product_uom_qty > 0
-                        )
-                    ),
-                )
-            else:
-                rec.invoiced_amount = 0.0
-                if rec.state in ["draft", "sent", "cancel"]:
-                    rec.uninvoiced_amount = 0.0
+    def _compute_amount_invoiced(self):
+        if not self.env.company.enable_amount_invoiced_based_on_quantity:
+            return super()._compute_amount_invoiced()
+        else:
+            zero_records = self.browse()
+            for rec in self:
+                if rec.state != "cancel" and rec.invoice_ids:
+                    total = 0.0
+                    for invoice in rec.invoice_ids:
+                        if invoice.state != "cancel":
+                            if (
+                                invoice.currency_id != rec.currency_id
+                                and rec.currency_id != invoice.company_currency_id
+                            ):
+                                invoices = rec.invoice_ids.filtered(
+                                    lambda x: x.state == "posted"
+                                )
+                                total += invoices._get_sale_order_invoiced_amount(rec)
+                            else:
+                                total += invoice.amount_total_signed
+                    rec.amount_invoiced = total
                 else:
-                    rec.uninvoiced_amount = rec.amount_total
+                    zero_records |= rec
+            if zero_records:
+                zero_records.amount_invoiced = 0.0
+
+    # Amount to invoice could not be equal to total - amount invoiced.
+    # For example if the amount invoiced does not match with the price unit.
+    @api.depends("invoice_ids.state")
+    def _compute_amount_to_invoice(self):
+        if not self.env.company.enable_amount_invoiced_based_on_quantity:
+            return super()._compute_amount_to_invoice()
+        else:
+            zero_records = self.browse()
+            for rec in self:
+                if rec.state in ["draft", "sent", "cancel"]:
+                    zero_records |= rec
+                else:
+                    rec.amount_to_invoice = max(
+                        0,
+                        sum(
+                            (line.product_uom_qty - line.qty_invoiced)
+                            * (line.price_total / line.product_uom_qty)
+                            for line in rec.order_line.filtered(
+                                lambda sl: sl.product_uom_qty > 0
+                            )
+                        ),
+                    )
+            if zero_records:
+                zero_records.amount_to_invoice = 0.0
 
     @api.depends(
         "order_line.tax_id",
@@ -80,14 +82,14 @@ class SaleOrder(models.Model):
             lang_env = order.with_context(lang=order.partner_id.lang).env
             order.tax_totals.update(
                 {
-                    "invoiced_amount": order.invoiced_amount,
-                    "formatted_invoiced_amount": formatLang(
-                        lang_env, order.invoiced_amount, currency_obj=order.currency_id
+                    "amount_invoiced": order.amount_invoiced,
+                    "formatted_amount_invoiced": formatLang(
+                        lang_env, order.amount_invoiced, currency_obj=order.currency_id
                     ),
-                    "uninvoiced_amount": order.uninvoiced_amount,
-                    "formatted_uninvoiced_amount": formatLang(
+                    "amount_to_invoice": order.amount_to_invoice,
+                    "formatted_amount_to_invoice": formatLang(
                         lang_env,
-                        order.uninvoiced_amount,
+                        order.amount_to_invoice,
                         currency_obj=order.currency_id,
                     ),
                 }

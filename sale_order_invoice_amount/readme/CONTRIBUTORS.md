@@ -1,2 +1,3 @@
 - Mateu Griful \<<mateu.griful@forgeflow.com>\>
 - Lois Rilo \<<lois.rilo@forgeflow.com>\>
+- Meritxell Abellan \<<meritxell.abellan@forgeflow.com>\>
