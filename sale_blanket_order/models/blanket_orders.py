@@ -580,7 +580,7 @@ class BlanketOrderLine(models.Model):
 
         return self.pricelist_item_id._compute_price_before_discount(
             product=self.product_id,
-            quantity=self.product_uom_qty or 1.0,
+            quantity=self.original_uom_qty or 1.0,
             uom=self.product_uom,
             date=fields.Date.today(),
             currency=self.currency_id,
