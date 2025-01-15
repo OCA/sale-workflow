@@ -34,7 +34,7 @@
                 </div>
             </xpath>
             <xpath
-                expr="//field[@name='order_line']/tree//field[@name='product_uom_qty']"
+                expr="//field[@name='order_line']/list//field[@name='product_uom_qty']"
                 position="before"
             >
                 <field
@@ -55,14 +55,14 @@
                 />
             </xpath>
             <xpath
-                expr="//field[@name='order_line']/kanban//field[@name='company_id']"
+                expr="//field[@name='order_line']/kanban//field[@name='currency_id']"
                 position="after"
             >
                 <field name="secondary_uom_id" invisible="1" />
                 <field name="secondary_uom_qty" invisible="1" />
             </xpath>
             <xpath
-                expr="//field[@name='order_line']/kanban//t[@t-out='record.product_uom_qty.value']"
+                expr="//field[@name='order_line']/kanban//field[@name='product_uom_qty']"
                 position="before"
             >
                 <t t-if="record.secondary_uom_id.value" groups="uom.group_uom">
