@@ -45,6 +45,7 @@
                        attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"/>
 =======
             <xpath
+<<<<<<< HEAD
                 expr="//field[@name='order_line']/form//field[@name='price_subtotal']"
                 position="after"
             >
@@ -127,6 +128,11 @@
 <<<<<<< HEAD
             <xpath
                 expr="//field[@name='order_line']/list//field[@name='product_uom_qty']"
+||||||| parent of 6618bd11c ([MIG] sale_order_secondary_unit: Migration to 18.0)
+                expr="//field[@name='order_line']/tree//field[@name='product_uom_qty']"
+=======
+                expr="//field[@name='order_line']/list//field[@name='product_uom_qty']"
+>>>>>>> 6618bd11c ([MIG] sale_order_secondary_unit: Migration to 18.0)
                 position="before"
             >
                 <field
@@ -147,6 +153,7 @@
                 />
             </xpath>
             <xpath
+<<<<<<< HEAD
                 expr="//field[@name='order_line']/kanban//field[@name='currency_id']"
                 position="after"
             >
@@ -204,18 +211,23 @@
             </xpath>
             <xpath
                 expr="//field[@name='order_line']/kanban//field[@name='company_id']"
+||||||| parent of 6618bd11c ([MIG] sale_order_secondary_unit: Migration to 18.0)
+                expr="//field[@name='order_line']/kanban//field[@name='company_id']"
+=======
+                expr="//field[@name='order_line']/kanban//field[@name='currency_id']"
+>>>>>>> 6618bd11c ([MIG] sale_order_secondary_unit: Migration to 18.0)
                 position="after"
             >
                 <field name="secondary_uom_id" invisible="1" />
                 <field name="secondary_uom_qty" invisible="1" />
             </xpath>
             <xpath
-                expr="//field[@name='order_line']/kanban//t[@t-out='record.product_uom_qty.value']"
+                expr="//field[@name='order_line']/kanban//field[@name='product_uom_qty']"
                 position="before"
             >
                 <t t-if="record.secondary_uom_id.value" groups="uom.group_uom">
                     <t t-esc="record.secondary_uom_qty.value" />
-                    <t t-esc="record.secondary_uom_id.value" /> ->
+                    <t t-esc="record.secondary_uom_id.value" />
                 </t>
             </xpath>
         </field>
