@@ -252,3 +252,50 @@ class TestSaleNormalOrder(SaleOrderBlanketOrderCase):
         )
         order.action_confirm()
         order._action_cancel()
+
+    @freezegun.freeze_time("2025-02-01")
+    def test_call_off_auto_create_line_attributes(self):
+        # we create an oder for more qty (1000) than the blanket order (200)
+        # and check that the line attributes into the call off order
+        self._set_call_off_auto_create_mode(True)
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.product_2.id,
+                            "product_uom_qty": 1000,
+                            "price_unit": 100,
+                        },
+                    ),
+                ],
+            }
+        )
+        with RecordCapturer(self.so_model, self.call_off_domain) as captured:
+            order.action_confirm()
+        new_order = captured.records
+        blanket_line = self.blanket_so.order_line.filtered(
+            lambda l: l.product_id == self.product_2
+        )[0]
+        self.assertRecordValues(
+            new_order.order_line,
+            [
+                {
+                    "product_uom_qty": 10.0,
+                    "price_unit": 0.0,
+                    "qty_to_deliver": 0.0,
+                    "qty_to_invoice": 0.0,
+                    "qty_delivered": 0.0,
+                    "display_qty_widget": False,
+                    "virtual_available_at_date": blanket_line.virtual_available_at_date,
+                    "scheduled_date": blanket_line.scheduled_date,
+                    "forecast_expected_date": blanket_line.forecast_expected_date,
+                    "free_qty_today": blanket_line.free_qty_today,
+                    "qty_available_today": blanket_line.qty_available_today,
+                    "price_tax": 0.0,
+                    "price_total": 0.0,
+                    "tax_id": [],
+                }
+            ],
+        )

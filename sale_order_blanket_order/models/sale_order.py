@@ -509,6 +509,8 @@ class SaleOrder(models.Model):
                             "price_unit": 0,
                         }
                     )
+                    # set the order_id again to ensure that the computed fields are recomputes
+                    new_line.order_id = call_off
                     line.product_uom_qty -= qty_deliverable
                     self._log_line_partially_moved_to_call_off(
                         new_line, line, call_off, original_order, qty_deliverable
