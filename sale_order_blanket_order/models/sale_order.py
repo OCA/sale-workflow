@@ -643,8 +643,8 @@ class SaleOrder(models.Model):
             for line in record.order_line:
                 if (
                     float_compare(
-                        line.product_uom_qty,
-                        line.qty_delivered,
+                        line.call_off_remaining_qty,
+                        0,
                         precision_rounding=line.product_uom.rounding,
                     )
                     > 0

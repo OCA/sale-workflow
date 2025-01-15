@@ -127,6 +127,59 @@ class TestSaleBlanketOrder(SaleOrderBlanketOrderCase):
             self.assertEqual(call_off.product_uom_qty, line.product_uom_qty)
             self.assertTrue(line.move_ids)
 
+    def test_eol_with_call_off_in_progress(self):
+        self.assertFalse(self.blanket_so.blanket_need_to_be_finalized)
+        self.blanket_so.blanket_eol_strategy = "deliver"
+        self.blanket_so.action_confirm()
+        self.assertTrue(self.blanket_so.blanket_need_to_be_finalized)
+        self.blanket_so.flush_recordset()
+        # we create a call-of order for part of the quantity of
+        # the product 1
+        order = self.env["sale.order"].create(
+            {
+                "order_type": "call_off",
+                "date_order": "2025-02-01",
+                "partner_id": self.partner.id,
+                "blanket_order_id": self.blanket_so.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.product_2.id,
+                            "product_uom_qty": 5.0,
+                        }
+                    ),
+                ],
+            }
+        )
+        with freezegun.freeze_time("2025-11-12"):
+            order.action_confirm()
+
+        self.assertEqual(self.blanket_so.blanket_need_to_be_finalized, True)
+        with RecordCapturer(
+            self.so_model, self.call_off_domain
+        ) as captured, freezegun.freeze_time("2026-12-31"):
+            self.so_model._cron_manage_blanket_order_eol()
+        self.assertFalse(self.blanket_so.blanket_need_to_be_finalized)
+        self.assertEqual(len(captured.records), 1)
+        new_call_off = captured.records[0]
+        for line in self.blanket_so.order_line:
+            self.assertEqual(line.call_off_remaining_qty, 0.0)
+            call_off = line.call_off_line_ids
+            if line.product_id == self.product_2:
+                # 2 call-off lines should exist
+                # one for the call-off order created in the past
+                # and one for the new call-off order created by the cron
+                self.assertEqual(len(call_off), 2)
+                self.assertEqual(call_off.order_id, order | new_call_off)
+                self.assertEqual(
+                    set(call_off.mapped("product_uom_qty")),
+                    {5, line.product_uom_qty - 5},
+                )
+            else:
+                self.assertEqual(len(call_off), 1)
+                self.assertEqual(call_off.product_uom_qty, line.product_uom_qty)
+            self.assertTrue(line.move_ids)
+
     def test_reservation_strategy_editable(self):
         # change is allowed in draft state
         self.blanket_so.blanket_reservation_strategy = "fake"
