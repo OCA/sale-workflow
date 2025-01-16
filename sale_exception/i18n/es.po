@@ -22,11 +22,11 @@ msgstr ""
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
 msgid ""
-"<strong>There are exceptions blocking the confirmation of this Sale "
-"Order:</strong>"
+"<strong>There are exceptions blocking the confirmation of this Sale Order:</"
+"strong>"
 msgstr ""
-"<strong>Hay excepciones que bloquean la confirmación de esta orden de "
-"venta:</strong>"
+"<strong>Hay excepciones que bloquean la confirmación de esta orden de venta:"
+"</strong>"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
@@ -143,11 +143,6 @@ msgid "Is Exception Danger"
 msgstr "Es Peligro de Excepción"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
-
-#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
@@ -237,7 +232,6 @@ msgstr "Línea de pedidos de venta"
 
 #. module: sale_exception
 #: model:ir.actions.server,name:sale_exception.ir_cron_test_orders_ir_actions_server
-#: model:ir.cron,cron_name:sale_exception.ir_cron_test_orders
 msgid "Test Draft Orders"
 msgstr "Comprobar excepciones en pedidos en presupuesto"
 
@@ -255,3 +249,6 @@ msgstr "El producto tiene una advertencia en su formulario"
 #: model:exception.rule,description:sale_exception.excep_no_free
 msgid "The total can't be 0"
 msgstr "El Total no puede ser 0"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
