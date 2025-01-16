@@ -22,11 +22,11 @@ msgstr ""
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
 msgid ""
-"<strong>There are exceptions blocking the confirmation of this Sale "
-"Order:</strong>"
+"<strong>There are exceptions blocking the confirmation of this Sale Order:</"
+"strong>"
 msgstr ""
-"<strong>C'è un'eccezione che blocca la conferma di questo ordine di "
-"vendita:</strong>"
+"<strong>C'è un'eccezione che blocca la conferma di questo ordine di vendita:"
+"</strong>"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
@@ -143,11 +143,6 @@ msgid "Is Exception Danger"
 msgstr "L'eccezione è pericolosa"
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__write_uid
 msgid "Last Updated by"
 msgstr "Ultimo aggiornamento di"
@@ -237,7 +232,6 @@ msgstr "Riga ordine di vendita"
 
 #. module: sale_exception
 #: model:ir.actions.server,name:sale_exception.ir_cron_test_orders_ir_actions_server
-#: model:ir.cron,cron_name:sale_exception.ir_cron_test_orders
 msgid "Test Draft Orders"
 msgstr "Test ordini bozza"
 
@@ -255,3 +249,6 @@ msgstr "Il prodotto ha un avviso nel suo modulo"
 #: model:exception.rule,description:sale_exception.excep_no_free
 msgid "The total can't be 0"
 msgstr "Il totale non può essere zero"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"

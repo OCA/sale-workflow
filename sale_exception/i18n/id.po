@@ -21,8 +21,8 @@ msgstr ""
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
 msgid ""
-"<strong>There are exceptions blocking the confirmation of this Sale "
-"Order:</strong>"
+"<strong>There are exceptions blocking the confirmation of this Sale Order:</"
+"strong>"
 msgstr ""
 
 #. module: sale_exception
@@ -136,11 +136,6 @@ msgid "Is Exception Danger"
 msgstr ""
 
 #. module: sale_exception
-#: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm____last_update
-msgid "Last Modified on"
-msgstr "Terakhir Dimodifikasi pada"
-
-#. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__write_uid
 msgid "Last Updated by"
 msgstr "Diperbaharui oleh"
@@ -230,7 +225,6 @@ msgstr ""
 
 #. module: sale_exception
 #: model:ir.actions.server,name:sale_exception.ir_cron_test_orders_ir_actions_server
-#: model:ir.cron,cron_name:sale_exception.ir_cron_test_orders
 msgid "Test Draft Orders"
 msgstr ""
 
@@ -248,3 +242,6 @@ msgstr ""
 #: model:exception.rule,description:sale_exception.excep_no_free
 msgid "The total can't be 0"
 msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "Terakhir Dimodifikasi pada"
