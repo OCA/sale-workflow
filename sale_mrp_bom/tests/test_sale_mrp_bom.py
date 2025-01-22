@@ -25,7 +25,7 @@ class TestSaleMrpLink(TransactionCase):
     @classmethod
     def _create_product(cls, name, route_ids):
         return cls.env["product.product"].create(
-            {"name": name, "type": "product", "route_ids": route_ids}
+            {"name": name, "type": "consu", "route_ids": route_ids}
         )
 
     def _prepare_bom_lines(self):
