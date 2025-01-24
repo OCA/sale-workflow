@@ -6,6 +6,7 @@ from odoo.addons.mrp_bom_configurable.models.mrp_bom_line import check_domain
 
 class SalePriceConfig(models.Model):
     _name = "sale.price.config"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _description = (
         "Configuration to compute the price of a product depending on an input config"
     )

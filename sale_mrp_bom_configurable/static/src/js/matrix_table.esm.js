@@ -13,9 +13,7 @@ function parseMatrix(matrix) {
             lines: linesAndElement.slice(-(linesAndElement.length - 1)),
         };
     }
-    else {
-        return { header: false, lines: false };
-    }
+    return {header: false, lines: false};
 }
 
 export class MatrixTableField extends Component {
@@ -24,9 +22,9 @@ export class MatrixTableField extends Component {
         this.headerElements = header;
         this.lines = lines;
         useEffect(() => {
-            const {header, lines} = parseMatrix(this.props.value);
-            this.headerElements = header;
-            this.lines = lines;
+            const {header_eff, lines_eff} = parseMatrix(this.props.value);
+            this.headerElements = header_eff;
+            this.lines = lines_eff;
         });
     }
 }

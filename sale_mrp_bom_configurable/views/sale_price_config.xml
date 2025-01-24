@@ -77,8 +77,8 @@
         <field name="arch" type="xml">
             <tree create="True" js_class="sale_price_button">
                 <field name="product_id" />
-                <field name="start_date" />
-                <field name="end_date" />
+                <field name="start_date" widget="date" />
+                <field name="end_date" widget="date" />
             </tree>
         </field>
     </record>
