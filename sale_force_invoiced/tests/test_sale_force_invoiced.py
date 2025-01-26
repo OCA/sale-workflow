@@ -40,12 +40,23 @@ class TestSaleForceInvoiced(TransactionCase):
     def test_sales_order(self):
         so = self.sale_order_model.create({"partner_id": self.customer.id})
         sol1 = self.sale_order_line_model.create(
-            {"product_id": self.service_1.id, "product_uom_qty": 1, "order_id": so.id}
+            {
+                "product_id": self.service_1.id,
+                "product_uom_qty": 1,
+                "order_id": so.id,
+                "price_unit": 1.0,
+                "tax_id": False,
+            }
         )
         sol2 = self.sale_order_line_model.create(
-            {"product_id": self.service_2.id, "product_uom_qty": 2, "order_id": so.id}
+            {
+                "product_id": self.service_2.id,
+                "product_uom_qty": 2,
+                "order_id": so.id,
+                "price_unit": 2.0,
+                "tax_id": False,
+            }
         )
-
         # confirm quotation
         so.action_confirm()
         # update quantities delivered
@@ -80,8 +91,17 @@ class TestSaleForceInvoiced(TransactionCase):
         self.assertEqual(
             sol2.invoice_status, "invoiced", "The SOL invoice status should be Invoiced"
         )
-
+        self.assertEqual(
+            so.amount_to_invoice,
+            0.0,
+            "Amount to invoice when invoice is forced should be 0",
+        )
         so.force_invoiced = False
         self.assertEqual(
             so.invoice_status, "to invoice", "The invoice status should be To Invoice"
+        )
+        self.assertEqual(
+            so.amount_to_invoice,
+            3.0,
+            "Amount to invoice when invoice is not forced should be original amount",
         )
