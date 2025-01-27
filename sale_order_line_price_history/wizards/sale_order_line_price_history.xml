@@ -46,9 +46,9 @@
                                             groups="product.group_discount_per_so_line"
                                         >
                                             <field
-                                                name="discount"
-                                                class="oe_inline"
-                                            /> %%
+                                            name="discount"
+                                            class="oe_inline"
+                                        /> %%
                                         </div>
                                     </group>
                                 </sheet>
