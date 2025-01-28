@@ -1,7 +1,6 @@
-/** @odoo-module **/
 import {Component} from "@odoo/owl";
 import {registry} from "@web/core/registry";
-import {standardFieldProps} from "@web/views/fields/standard_field_props";
+import {standardWidgetProps} from "@web/views/widgets/standard_widget_props";
 import {useService} from "@web/core/utils/hooks";
 
 export class PriceHistoryWidget extends Component {
@@ -32,12 +31,11 @@ export class PriceHistoryWidget extends Component {
 
 PriceHistoryWidget.template = "sale_order_line_price_history.price_history_widget";
 PriceHistoryWidget.props = {
-    ...standardFieldProps,
+    ...standardWidgetProps,
     // Onchange decorator returns an undefined value for the id instead of false
     value: {optional: true},
 };
 
-// Add the field to the correct category
 registry
-    .category("fields")
+    .category("view_widgets")
     .add("sale_line_price_history_widget", {component: PriceHistoryWidget});
