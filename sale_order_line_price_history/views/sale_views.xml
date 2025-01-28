@@ -10,28 +10,27 @@
         <field name="priority">999</field>
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/tree/field[@name='price_unit']"
+                expr="//field[@name='order_line']/list/field[@name='price_unit']"
                 position="after"
             >
                 <field name="order_partner_id" column_invisible="1" />
-                <field
-                    name="id"
+                <widget
+                    name="sale_line_price_history_widget"
                     string=" "
                     context="{'active_id': id, 'active_ids': [id]}"
-                    widget="sale_line_price_history_widget"
                     help="Price History"
+                    width="20"
                 />
             </xpath>
             <xpath
-                expr="//field[@name='order_line']/kanban//t[@t-out='record.price_unit.value']/.."
+                expr="//field[@name='order_line']/kanban//field[@name='price_unit']/.."
                 position="inside"
             >
                 <field name="order_partner_id" invisible="1" />
-                <field
-                    name="id"
+                <widget
+                    name="sale_line_price_history_widget"
                     string=" "
                     context="{'active_id': id, 'active_ids': [id]}"
-                    widget="sale_line_price_history_widget"
                     help="Price History"
                     class="float-start"
                     style="min-width: 1.5rem;"
