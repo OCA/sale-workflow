@@ -113,7 +113,6 @@ class SaleOrderLinePriceHistoryline(models.TransientModel):
     )
     sale_order_line_id = fields.Many2one(
         comodel_name="sale.order.line",
-        string="Sale order line",
     )
     order_id = fields.Many2one(
         related="sale_order_line_id.order_id",
