@@ -1,4 +1,3 @@
-/** @odoo-module **/
 import {Component} from "@odoo/owl";
 import {registry} from "@web/core/registry";
 import {standardFieldProps} from "@web/views/fields/standard_field_props";
@@ -11,12 +10,17 @@ export class SetPriceToLineWidget extends Component {
     }
 
     setPriceHistory() {
+        const infos = {
+            price_unit: this.props.record.data.price_unit,
+        };
+        if (this.props.record.data.discount !== undefined) {
+            // Need to check if discount is availabe to avoid errors
+            // if trying to define the value undefined
+            infos.discount = this.props.record.data.discount;
+        }
         this.actionService.doAction({
             type: "ir.actions.act_window_close",
-            infos: {
-                price_unit: this.props.record.data.price_unit,
-                discount: this.props.record.data.discount,
-            },
+            infos,
         });
     }
 }
