@@ -2,10 +2,10 @@
 #   (http://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 from odoo.exceptions import ValidationError
-from odoo.tests import Form, common
+from odoo.tests import Form, TransactionCase
 
 
-class TestSaleDeliveryBlock(common.TransactionCase):
+class TestSaleDeliveryBlock(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -28,9 +28,16 @@ class TestSaleDeliveryBlock(common.TransactionCase):
         # Create product:
         prod_dict = {
             "name": "test product",
-            "type": "product",
+            "type": "consu",
+            "categ_id": cls.env.ref("product.product_category_all").id,
+            "list_price": 100.0,
+            "standard_price": 60.0,
+            "uom_id": cls.env.ref("uom.product_uom_unit").id,
+            "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
         }
-        product = cls.env["product.product"].with_user(cls.user_test).create(prod_dict)
+        cls.product = (
+            cls.env["product.product"].with_user(cls.user_test).create(prod_dict)
+        )
         # Create Sale order:
         # TODO/TMP:
         # - we explicitely add a name to avoid
@@ -45,7 +52,7 @@ class TestSaleDeliveryBlock(common.TransactionCase):
         # Create Sale order lines:
         sol_dict = {
             "order_id": cls.sale_order.id,
-            "product_id": product.id,
+            "product_id": cls.product.id,
             "product_uom_qty": 1.0,
         }
         cls.sale_order_line = cls.sol_model.with_user(cls.user_test).create(sol_dict)

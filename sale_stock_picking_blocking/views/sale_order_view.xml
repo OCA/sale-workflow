@@ -36,7 +36,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_sales_order_filter" />
         <field name="arch" type="xml">
-            <field name="analytic_account_id" position="after">
+            <field name="team_id" position="after">
                 <field name="delivery_block_id" />
             </field>
             <filter name="my_sale_orders_filter" position="after">
