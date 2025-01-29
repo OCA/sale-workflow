@@ -17,13 +17,7 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: sale_order_line_menu
-#: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__analytic_account_id
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
-msgid "Analytic Account"
-msgstr "Conta Analítica"
-
-#. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Cancelled"
 msgstr "Cancelado"
 
@@ -37,28 +31,28 @@ msgstr ""
 "Data de confirmação dos pedidos confirmados."
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Fully Invoiced"
 msgstr "Totalmente Faturado"
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Invoice Status"
 msgstr "Situação Fatura"
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Locked"
 msgstr "Bloqueado"
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Nothing to Invoice"
 msgstr "Nada a Faturar"
 
 #. module: sale_order_line_menu
 #: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__date_order
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Order Date"
 msgstr "Data Pedido"
 
@@ -85,17 +79,17 @@ msgid "Price Total"
 msgstr "Total"
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Quotation"
 msgstr "Cotação"
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Quotation Sent"
 msgstr "Cotação Enviada"
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Sales Order"
 msgstr "Pedidos de Vendas"
 
@@ -105,14 +99,17 @@ msgid "Sales Order Line"
 msgstr "Itens Pedidos de Venda"
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "To Invoice"
 msgstr "Para Faturar"
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Upselling Opportunity"
 msgstr "Oportunidade Venda Adicional"
+
+#~ msgid "Analytic Account"
+#~ msgstr "Conta Analítica"
 
 #~ msgid "Date"
 #~ msgstr "Data"

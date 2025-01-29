@@ -17,13 +17,7 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: sale_order_line_menu
-#: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__analytic_account_id
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
-msgid "Analytic Account"
-msgstr "Kostenstelle"
-
-#. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Cancelled"
 msgstr "Abgebrochen"
 
@@ -37,28 +31,28 @@ msgstr ""
 "Bestätigungsdatum bestätigter Bestellungen."
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Fully Invoiced"
 msgstr "Vollständig berechnet"
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Invoice Status"
 msgstr "Rechnungsstatus"
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Locked"
 msgstr "Gesperrt"
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Nothing to Invoice"
 msgstr "Nichts zu berechnen"
 
 #. module: sale_order_line_menu
 #: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__date_order
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Order Date"
 msgstr "Bestelldatum"
 
@@ -85,17 +79,17 @@ msgid "Price Total"
 msgstr "Total"
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Quotation"
 msgstr "Angebot"
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Quotation Sent"
 msgstr "Angebot gesendet"
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Sales Order"
 msgstr "Verkaufsauftrag"
 
@@ -105,14 +99,17 @@ msgid "Sales Order Line"
 msgstr "Verkaufsauftraszeilen"
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "To Invoice"
 msgstr "Zu berechnen"
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Upselling Opportunity"
 msgstr "Upselling-Möglichkeit"
+
+#~ msgid "Analytic Account"
+#~ msgstr "Kostenstelle"
 
 #~ msgid "Date"
 #~ msgstr "Datum"
