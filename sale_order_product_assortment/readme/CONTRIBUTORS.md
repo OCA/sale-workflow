@@ -1,0 +1,6 @@
+- [Tecnativa](https://www.tecnativa.com):
+  - Carlos Roca
+  - Sergio Teruel
+  - Carolina Fernandez
+- [Ooops404](https://www.ooops404.com):
+  - Ilyas
