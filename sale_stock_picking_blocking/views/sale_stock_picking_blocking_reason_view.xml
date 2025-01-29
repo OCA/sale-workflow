@@ -8,10 +8,10 @@ AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).-->
         <field name="name">sale.delivery.block.reason.tree</field>
         <field name="model">sale.delivery.block.reason</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="description" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="sale_stock_picking_blocking_reason_form_view" model="ir.ui.view">
@@ -44,7 +44,7 @@ AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).-->
         <field name="name">Sale Delivery Block Reason</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.delivery.block.reason</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem
         id="menu_sale_stock_picking_blocking_reason"

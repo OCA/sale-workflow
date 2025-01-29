@@ -19,10 +19,10 @@ class SaleOrder(models.Model):
 
     @api.constrains("delivery_block_id")
     def _check_not_auto_done(self):
-        auto_done = self.user_has_groups("sale.group_auto_done_setting")
+        auto_done = self.env.user.has_group("sale.group_auto_done_setting")
         if auto_done and any(so.delivery_block_id for so in self):
             raise ValidationError(
-                _('You cannot block a sale order with "auto_done_setting" ' "active.")
+                _('You cannot block a sale order with "auto_done_setting" active.')
             )
 
     @api.depends("partner_id", "payment_term_id")
