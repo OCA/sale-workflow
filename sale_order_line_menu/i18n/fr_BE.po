@@ -15,13 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 
 #. module: sale_order_line_menu
-#: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__analytic_account_id
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
-msgid "Analytic Account"
-msgstr ""
-
-#. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Cancelled"
 msgstr ""
 
@@ -33,28 +27,28 @@ msgid ""
 msgstr ""
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Fully Invoiced"
 msgstr ""
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Invoice Status"
 msgstr ""
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Locked"
 msgstr ""
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Nothing to Invoice"
 msgstr ""
 
 #. module: sale_order_line_menu
 #: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__date_order
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Order Date"
 msgstr ""
 
@@ -81,17 +75,17 @@ msgid "Price Total"
 msgstr ""
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Quotation"
 msgstr ""
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Quotation Sent"
 msgstr ""
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Sales Order"
 msgstr ""
 
@@ -101,11 +95,11 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "To Invoice"
 msgstr ""
 
 #. module: sale_order_line_menu
-#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Upselling Opportunity"
 msgstr ""
