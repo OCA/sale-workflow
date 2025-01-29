@@ -35,3 +35,11 @@ class SaleOrder(models.Model):
                 products = self.env["product.product"].search(product_domain)
                 self.allowed_product_ids = products
                 self.has_allowed_products = True
+
+    def _get_product_catalog_domain(self):
+        domain = super()._get_product_catalog_domain()
+        if self.has_allowed_products:
+            domain = expression.AND(
+                [domain, [("id", "in", self.allowed_product_ids.ids)]]
+            )
+        return domain

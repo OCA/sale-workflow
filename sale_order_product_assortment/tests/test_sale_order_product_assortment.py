@@ -2,9 +2,12 @@
 # Copyright 2024 Tecnativa - Carolina Fernandez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from odoo.tests.common import tagged
+
 from odoo.addons.base.tests.common import BaseCommon
 
 
+@tagged("post_install", "-at_install")
 class TestProductAssortment(BaseCommon):
     @classmethod
     def setUpClass(cls):
@@ -23,7 +26,7 @@ class TestProductAssortment(BaseCommon):
             {
                 "name": "Test Assortment 1",
                 "model_id": "product.product",
-                "domain": [],
+                "domain": [("id", "=", 0)],
                 "is_assortment": True,
                 "partner_ids": [(4, self.partner_1.id)],
                 "whitelist_product_ids": [(4, product_1.id)],
@@ -40,11 +43,11 @@ class TestProductAssortment(BaseCommon):
             {
                 "name": "Test Assortment 2",
                 "model_id": "product.product",
-                "domain": [],
+                "domain": [("id", "=", 0)],
                 "is_assortment": True,
                 "partner_ids": [(4, self.partner_1.id)],
                 "blacklist_product_ids": [(4, product_2.id)],
-                "partner_domain": "[('id', '=', %s)]" % self.partner_2.id,
+                "partner_domain": f"[('id', '=', {self.partner_2.id})]",
                 "apply_black_list_product_domain": True,
                 "black_list_product_domain": [("id", "=", product_3.id)],
             }
