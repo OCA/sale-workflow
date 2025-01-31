@@ -30,6 +30,7 @@ addon | version | maintainers | summary
 [sale_order_line_menu](sale_order_line_menu/) | 18.0.1.0.0 |  | Adds a Sale Order Lines Menu
 [sale_order_type](sale_order_type/) | 18.0.1.0.0 |  | Sale Order Type
 [sale_procurement_group_by_line](sale_procurement_group_by_line/) | 18.0.1.0.0 |  | Base module for multiple procurement group by Sale order
+[sale_sourced_by_line](sale_sourced_by_line/) | 18.0.1.0.0 |  | Multiple warehouse source locations for Sale order
 
 [//]: # (end addons)
 
