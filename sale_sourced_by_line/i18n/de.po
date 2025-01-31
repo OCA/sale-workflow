@@ -25,15 +25,6 @@ msgid "Default Warehouse"
 msgstr ""
 
 #. module: sale_sourced_by_line
-#: model:ir.model.fields,help:sale_sourced_by_line.field_sale_order_line__warehouse_id
-msgid ""
-"If a source warehouse is selected, it will be used to define the route. "
-"Otherwise, it will get the warehouse of the sale order"
-msgstr ""
-"Wenn ein Ausgangslager ausgewählt wird, wird es für die Definition der Route "
-"verwendet. Andernfalls wird das Lager des Verkaufsauftrags verwendet."
-
-#. module: sale_sourced_by_line
 #: model:ir.model.fields,help:sale_sourced_by_line.field_sale_order__warehouse_id
 msgid ""
 "If no source warehouse is selected on line, this warehouse is used as "
@@ -50,7 +41,13 @@ msgstr "Verkaufsauftrag"
 msgid "Sales Order Line"
 msgstr "Auftragsposition"
 
-#. module: sale_sourced_by_line
-#: model:ir.model.fields,field_description:sale_sourced_by_line.field_sale_order_line__warehouse_id
-msgid "Source Warehouse"
-msgstr "Quelllagerhaus"
+#~ msgid ""
+#~ "If a source warehouse is selected, it will be used to define the route. "
+#~ "Otherwise, it will get the warehouse of the sale order"
+#~ msgstr ""
+#~ "Wenn ein Ausgangslager ausgewählt wird, wird es für die Definition der "
+#~ "Route verwendet. Andernfalls wird das Lager des Verkaufsauftrags "
+#~ "verwendet."
+
+#~ msgid "Source Warehouse"
+#~ msgstr "Quelllagerhaus"
