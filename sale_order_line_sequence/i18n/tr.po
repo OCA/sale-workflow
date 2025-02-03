@@ -68,7 +68,3 @@ msgstr "Satış Siparişi Hattı"
 #: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line__sequence
 msgid "Sequence"
 msgstr ""
-
-#, fuzzy
-#~ msgid "Sale Order"
-#~ msgstr "Sipariş Emri"
