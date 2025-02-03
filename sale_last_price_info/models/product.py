@@ -14,18 +14,15 @@ class ProductProduct(models.Model):
 
     def _compute_last_sale(self):
         """Get last sale price, last sale date and last customer"""
+        so_line_obj = self.env["sale.order.line"]
         for product in self:
-            line = self.env["sale.order.line"].search(
+            line = so_line_obj.search(
                 [("product_id", "=", product.id), ("state", "in", ["sale", "done"])],
                 limit=1,
                 order="date_order_sale_last_price_info desc",
             )
-            product.update(
-                {
-                    "last_sale_date": fields.Datetime.to_string(
-                        line.date_order_sale_last_price_info
-                    ),
-                    "last_sale_price": line.price_unit,
-                    "last_customer_id": line.order_id.partner_id,
-                }
+            product.last_sale_date = fields.Datetime.to_string(
+                line.date_order_sale_last_price_info
             )
+            product.last_sale_price = line.price_unit
+            product.last_customer_id = line.order_id.partner_id

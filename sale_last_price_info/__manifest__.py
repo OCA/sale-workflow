@@ -8,6 +8,13 @@
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
     "license": "AGPL-3",
+    "contributors": [
+        "Alfredo de la Fuente <alfredodelafuente@avanzosc.es>",
+        "Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>",
+        "Pedro M. Baeza <pedro.baeza@serviciosbaeza.com>",
+        "Ana Juaristi <anajuaristi@avanzosc.es>",
+        "Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>",
+    ],
     "depends": ["sale_management"],
     "data": ["views/product_view.xml"],
     "installable": True,
