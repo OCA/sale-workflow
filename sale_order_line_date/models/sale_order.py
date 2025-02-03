@@ -12,10 +12,8 @@ from odoo import api, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.onchange("commitment_date")
     def _onchange_commitment_date(self):
-        """Update empty commitment date order lines
-        with commitment date from sale order"""
+        """Set the default commitment date of existing order lines"""
         result = super()._onchange_commitment_date() or {}
         if "warning" not in result:
             for line in self.order_line:

@@ -17,6 +17,11 @@ class SaleOrderLine(models.Model):
     commitment_date = fields.Datetime("Delivery Date")
 
     def _prepare_procurement_values(self, group_id=False):
+        """Apply the line's commitment date.
+
+        Overwrite the values from `super` that are based on the order's commitment
+        date with values based on each line's individual commitment date.
+        """
         vals = super()._prepare_procurement_values(group_id)
         # has ensure_one already
         if self.commitment_date:
