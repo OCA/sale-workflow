@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="account.view_move_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='invoice_line_ids']/tree/field[@name='sequence']"
+                expr="//field[@name='invoice_line_ids']/list/field[@name='sequence']"
                 position="before"
             >
                 <field
