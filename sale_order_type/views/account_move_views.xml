@@ -11,7 +11,10 @@
                     readonly="state != 'draft'"
                 />
             </label>
-            <xpath expr="//notebook//list//field[@name='sequence']" position="before">
+            <xpath
+                expr="//notebook//page[@id='invoice_tab']//list//field[@name='sequence']"
+                position="before"
+            >
                 <field name="account_id" column_invisible="True" />
             </xpath>
         </field>
