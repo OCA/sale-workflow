@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -24,6 +24,7 @@ msgid "Sales Order"
 msgstr ""
 
 #. module: sale_readonly_security
+#. odoo-python
 #: code:addons/sale_readonly_security/models/sale_order.py:0
 #, python-format
 msgid ""

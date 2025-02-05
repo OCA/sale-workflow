@@ -1,6 +1,8 @@
 # Copyright 2024 Tecnativa - Víctor Martínez
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
+from lxml import etree
+
 from odoo import _, api, models
 from odoo.exceptions import AccessError
 from odoo.tools import config
@@ -8,6 +10,17 @@ from odoo.tools import config
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
+
+    @api.model
+    def get_view(self, view_id=None, view_type="form", **options):
+        result = super().get_view(view_id=view_id, view_type=view_type, **options)
+        group = "sale_readonly_security.group_sale_readonly_security_admin"
+        if view_type == "form" and not self.env.user.has_group(group):
+            doc = etree.XML(result["arch"])
+            for node in doc.xpath("//header"):
+                node.set("invisible", "1")
+            result["arch"] = etree.tostring(doc, encoding="unicode")
+        return result
 
     @api.model
     def check_access_rights(self, operation, raise_exception=True):

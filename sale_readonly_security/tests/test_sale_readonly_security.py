@@ -1,27 +1,22 @@
-# Copyright 2024 Tecnativa - Víctor Martínez
+# Copyright 2024-2025 Tecnativa - Víctor Martínez
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
+from lxml import etree
 
 from odoo.exceptions import AccessError
-from odoo.tests import Form, common, new_test_user
+from odoo.tests import Form, new_test_user
 from odoo.tests.common import users
 from odoo.tools import mute_logger
 
+from odoo.addons.base.tests.common import BaseCommon
 
-class TestSaleReadonlySecurity(common.TransactionCase):
+
+class TestSaleReadonlySecurity(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(
-            context=dict(
-                cls.env.context,
-                mail_create_nolog=True,
-                mail_create_nosubscribe=True,
-                mail_notrack=True,
-                no_reset_password=True,
-                tracking_disable=True,
-                test_sale_readonly_security=True,
-            )
+            context=dict(cls.env.context, test_sale_readonly_security=True)
         )
         cls.user_admin = new_test_user(
             cls.env,
@@ -52,6 +47,9 @@ class TestSaleReadonlySecurity(common.TransactionCase):
         self.order.with_user(self.env.user).unlink()
         new_order = self.env["sale.order"].create({"partner_id": self.partner.id})
         self.assertTrue(new_order.exists())
+        view = self.env["sale.order"].get_view()
+        doc = etree.XML(view["arch"])
+        self.assertNotIn("invisible", doc.xpath("//header")[0].attrib)
 
     @users("test_user_readonly")
     def test_sale_order_readonly(self):
@@ -64,6 +62,9 @@ class TestSaleReadonlySecurity(common.TransactionCase):
             self.order.with_user(self.env.user).unlink()
         with self.assertRaises(AccessError):
             self.env["sale.order"].create({"partner_id": self.partner.id})
+        view = self.env["sale.order"].get_view()
+        doc = etree.XML(view["arch"])
+        self.assertTrue(doc.xpath("//header")[0].attrib["invisible"])
 
     def test_sale_order_create_invoice(self):
         self.order.action_confirm()
