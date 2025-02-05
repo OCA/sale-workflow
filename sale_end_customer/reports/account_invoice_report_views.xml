@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_account_invoice_report_search" model="ir.ui.view">
+        <field name="inherit_id" ref="account.view_account_invoice_report_search" />
+        <field name="model">account.invoice.report</field>
+        <field name="arch" type="xml">
+            <filter name="user" position="after">
+                <filter
+                    string="End Customer"
+                    name="partner_end_customer_id"
+                    context="{'group_by':'partner_end_customer_id'}"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
