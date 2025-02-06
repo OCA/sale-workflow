@@ -1,9 +1,10 @@
 from odoo.exceptions import ValidationError
 from odoo.tests import Form
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleOrder(TransactionCase):
+class TestSaleOrder(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -17,6 +18,7 @@ class TestSaleOrder(TransactionCase):
 
         cls.partner2 = cls.env["res.partner"].create({"name": "Test Partner 2"})
         cls.partner3 = cls.env["res.partner"].create({"name": "Test Partner 3"})
+        cls.env.company.sale_partner_address_restriction = True
 
     def test_sale_order_address_domain(self):
         order_form = Form(self.env["sale.order"])
@@ -53,3 +55,13 @@ class TestSaleOrder(TransactionCase):
                     "partner_shipping_id": self.child_2.id,
                 }
             )
+
+    def test_sale_order_address_no_constraint(self):
+        self.env.company.sale_partner_address_restriction = False
+        self.env["sale.order"].create(
+            {
+                "partner_id": self.partner1.id,
+                "partner_invoice_id": self.partner2.id,
+                "partner_shipping_id": self.child_2.id,
+            }
+        )

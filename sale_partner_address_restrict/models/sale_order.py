@@ -8,9 +8,16 @@ class SaleOrder(models.Model):
     @api.constrains("partner_id", "partner_invoice_id", "partner_shipping_id")
     def _check_partner_addresses(self):
         for order in self:
-            if order.partner_id and (
-                (order.partner_invoice_id.commercial_partner_id != order.partner_id)
-                or (order.partner_shipping_id.commercial_partner_id != order.partner_id)
+            if (
+                order.company_id.sale_partner_address_restriction
+                and order.partner_id
+                and (
+                    (order.partner_invoice_id.commercial_partner_id != order.partner_id)
+                    or (
+                        order.partner_shipping_id.commercial_partner_id
+                        != order.partner_id
+                    )
+                )
             ):
                 raise ValidationError(
                     _(
