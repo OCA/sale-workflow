@@ -7,7 +7,7 @@
     " taking into account the partner selected",
     "version": "17.0.1.0.0",
     "category": "Sales",
-    "website": "https://github.com/OCA/partner-contact",
+    "website": "https://github.com/OCA/sale-workflow",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
