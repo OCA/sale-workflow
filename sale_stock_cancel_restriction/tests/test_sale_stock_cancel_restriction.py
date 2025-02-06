@@ -2,15 +2,17 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import UserError
-from odoo.tests import Form, TransactionCase
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleStockCancelRestriction(TransactionCase):
+class TestSaleStockCancelRestriction(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.product = cls.env["product.product"].create(
-            {"name": "Product test", "type": "product"}
+            {"name": "Product test", "type": "consu", "is_storable": True}
         )
         cls.partner = cls.env["res.partner"].create({"name": "Partner test"})
         so_form = Form(cls.env["sale.order"])
@@ -28,7 +30,9 @@ class TestSaleStockCancelRestriction(TransactionCase):
         order for checking that it's forbidden
         """
         self.picking.button_validate()
-        with self.assertRaises(UserError):
+        with self.assertRaisesRegex(
+            UserError, "You cannot cancel a stock move that has been set to 'Done'"
+        ):
             self.sale_order.action_cancel()
 
     def test_cancel_sale_order_ok(self):
