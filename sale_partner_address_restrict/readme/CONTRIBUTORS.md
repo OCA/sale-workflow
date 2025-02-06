@@ -1,1 +1,2 @@
 - Marina Alapont \<<marina.alapont@forgeflow.com>\>
+- Denis Roussel <denis.roussel@acsone.eu>
