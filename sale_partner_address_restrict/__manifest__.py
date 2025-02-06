@@ -12,6 +12,7 @@
     "license": "AGPL-3",
     "installable": True,
     "depends": [
+        "base_partition",
         "sale",
     ],
     "data": ["views/sale_order_view.xml", "views/res_config_settings.xml"],
