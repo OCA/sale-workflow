@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sale</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10" />
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <setting id="quotation_validity_days" position="after">
+                <setting
+                    id="sale_partner_address_restrict"
+                    help="Check this if you want to restrict the address selection to contacts of same company."
+                    title="Address restriction"
+                >
+                    <field name="sale_partner_address_restriction" />
+                </setting>
+            </setting>
+        </field>
+    </record>
+</odoo>
