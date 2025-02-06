@@ -5,7 +5,7 @@
     "name": "Sale Partner Address Restrict",
     "summary": "Restrict addresses domain in the sales order form"
     " taking into account the partner selected",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
