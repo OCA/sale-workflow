@@ -1,0 +1,38 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_readonly_security
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-02-10 11:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: sale_readonly_security
+#: model:res.groups,name:sale_readonly_security.group_sale_readonly_security_admin
+msgid "Sale orders edition"
+msgstr "Versione ordini di vendita"
+
+#. module: sale_readonly_security
+#: model:ir.model,name:sale_readonly_security.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: sale_readonly_security
+#. odoo-python
+#: code:addons/sale_readonly_security/models/sale_order.py:0
+#, python-format
+msgid ""
+"Sorry, you are not allowed to create/edit sale orders. Please contact your "
+"administrator for further information."
+msgstr ""
+"Non si è abilitati a creare/modificare gli ordini di vendita. Contattare "
+"l'amministratore per ulteriori informazioni."
