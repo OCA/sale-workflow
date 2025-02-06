@@ -18,6 +18,8 @@ class TestSaleOrder(BaseCommon):
 
         cls.partner2 = cls.env["res.partner"].create({"name": "Test Partner 2"})
         cls.partner3 = cls.env["res.partner"].create({"name": "Test Partner 3"})
+
+        cls.env.user.groups_id += cls.env.ref("account.group_delivery_invoice_address")
         cls.env.company.sale_partner_address_restriction = True
 
     def test_sale_order_address_domain(self):
@@ -45,6 +47,22 @@ class TestSaleOrder(BaseCommon):
             ]
             partners = self.env["res.partner"].search(expected_domain)
             self.assertEqual(len(partners), 1)
+
+    def test_sale_order_partner_unallowed(self):
+        order_form = Form(self.env["sale.order"])
+        order_form.partner_id = self.partner1
+        sale_order = order_form.save()
+        with self.assertRaises(ValidationError):
+            with Form(sale_order) as sale_order:
+                sale_order.partner_shipping_id = self.partner3
+
+    def test_sale_order_partner_allowed(self):
+        self.env.company.sale_partner_address_restriction = False
+        order_form = Form(self.env["sale.order"])
+        order_form.partner_id = self.partner1
+        sale_order = order_form.save()
+        with Form(sale_order) as sale_order:
+            sale_order.partner_shipping_id = self.partner3
 
     def test_sale_order_address_constraint(self):
         with self.assertRaises(ValidationError):
