@@ -1,0 +1,7 @@
+- [Tecnativa](https://www.tecnativa.com):
+  - Sergio Teruel
+  - Pedro M. Baeza
+  - David Vidal
+  - César A. Sánchez
+- [Solvos](https://www.solvos.es):
+  - David Alonso
