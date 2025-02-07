@@ -15,7 +15,7 @@
                 <button
                     name="release_reservation"
                     type="object"
-                    string="Release reservation"
+                    string="Release Reservation"
                     attrs="{'invisible': ['|', ('state', 'not in', ['draft', 'sent']), ('stock_is_reserved', '=', False)]}"
                 />
             </button>

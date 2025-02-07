@@ -1,16 +1,13 @@
 <?xml version="1.0" ?>
 <odoo>
-        <record
-        id="stock_route_view_form_inherit_prebook_dropshipment"
-        model="ir.ui.view"
-    >
-            <field name="name">stock.route.form</field>
-            <field name="inherit_id" ref="stock.stock_location_route_form_view" />
-            <field name="model">stock.route</field>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='warehouse_ids']" position="after">
-                    <field name="no_sale_stock_prebook" string="No Prebook Stock" />
-                </xpath>
-            </field>
-        </record>
-    </odoo>
+    <record id="stock_route_view_form_inherit_prebook_dropshipment" model="ir.ui.view">
+        <field name="name">stock.route.form</field>
+        <field name="inherit_id" ref="stock.stock_location_route_form_view" />
+        <field name="model">stock.route</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='warehouse_ids']" position="after">
+                <field name="no_sale_stock_prebook" string="No Prebook Stock" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

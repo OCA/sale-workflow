@@ -1,5 +1,5 @@
 ==================
-sale_stock_prebook
+Sale Stock Prebook
 ==================
 
 .. 

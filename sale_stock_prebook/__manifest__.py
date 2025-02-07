@@ -1,7 +1,7 @@
 # Copyright 2023 Michael Tietz (MT Software) <mtietz@mt-software.de>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 {
-    "name": "sale_stock_prebook",
+    "name": "Sale Stock Prebook",
     "summary": "Add process to prebook a sale order's stock before confirming it",
     "version": "16.0.1.0.0",
     "author": "MT Software, BCIM, Odoo Community Association (OCA)",

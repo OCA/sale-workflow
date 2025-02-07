@@ -7,7 +7,6 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     stock_is_reserved = fields.Boolean(
-        "Stock is reserved",
         compute="_compute_stock_is_reserved",
         store=True,
     )
