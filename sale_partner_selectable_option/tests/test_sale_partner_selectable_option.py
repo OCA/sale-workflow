@@ -2,10 +2,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from lxml import etree
 
-from odoo.tests import common
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSalePartnerSelectableOption(common.TransactionCase):
+class TestSalePartnerSelectableOption(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
