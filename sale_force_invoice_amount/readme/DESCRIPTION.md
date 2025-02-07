@@ -1,0 +1,1 @@
+Fixes the value od the fields invoice_amount and uninvoiced_amount when the force_invoiced is checked
