@@ -15,7 +15,8 @@ class TestSaleOrderProductAvailabilityInline(TransactionCase):
         cls.product = cls.obj_product.create(
             {
                 "name": "Test Product - sopai",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "default_code": "PRODSOPAI",
             }
         )
@@ -43,13 +44,13 @@ class TestSaleOrderProductAvailabilityInline(TransactionCase):
 
     def test_sale_order_product_rec_name(self):
         self.assertEqual(
-            self.product.with_context(warehouse=self.warehouse1.id).free_qty,
+            self.product.with_context(warehouse_id=self.warehouse1.id).free_qty,
             10.0,
         )
         self.env.ref("product.decimal_product_uom").write({"digits": 3})
         sale_order_form = Form(
             self.env["sale.order"].with_context(
-                warehouse=self.warehouse1.id, so_product_stock_inline=True
+                warehouse_id=self.warehouse1.id, so_product_stock_inline=True
             )
         )
         with sale_order_form.order_line.new() as line_form:
