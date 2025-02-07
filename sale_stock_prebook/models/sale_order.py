@@ -1,4 +1,5 @@
 # Copyright 2023 Michael Tietz (MT Software) <mtietz@mt-software.de>
+# Copyright 2025 ACSONE SA/NV
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 from odoo import api, fields, models
 
@@ -31,7 +32,8 @@ class SaleOrder(models.Model):
 
     def _prepare_reserve_procurement_group_values(self):
         self.ensure_one()
-        values = self.order_line[0]._prepare_procurement_group_vals()
+        line = fields.first(self.order_line)
+        values = line._prepare_procurement_group_vals()
         values["name"] = f"Reservation for {values['name']}"
         return values
 

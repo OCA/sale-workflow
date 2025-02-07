@@ -1,6 +1,7 @@
 # Copyright 2023 Michael Tietz (MT Software) <mtietz@mt-software.de>
+# Copyright 2025 ACSONE SA/NV
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests import tagged
 
 from .common import TestSaleStockPrebookCase
@@ -49,3 +50,8 @@ class TestStockReserveSale(TestSaleStockPrebookCase):
         self.assertFalse(self.sale.picking_ids.move_lines.move_line_ids)
         with self.assertRaises(UserError):
             self.sale.picking_ids.button_validate()
+
+    def test_50_process_move(self):
+        self.sale.reserve_stock()
+        with self.assertRaisesRegex(ValidationError, "You cannot set a quantity done"):
+            self.sale.picking_ids.move_lines.quantity_done = 3
