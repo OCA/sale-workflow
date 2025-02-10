@@ -78,6 +78,7 @@ Contributors
   - Pedro M. Baeza
   - David Vidal
   - César A. Sánchez
+  - Carlos Lopez
 
 - `Solvos <https://www.solvos.es>`__:
 
