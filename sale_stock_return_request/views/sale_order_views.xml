@@ -4,7 +4,6 @@
         <field name="name">sale.order.form (in sale_stock_return_request)</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
-        <field name="groups_id" eval="[(4, ref('stock.group_stock_user'))]" />
         <field name="arch" type="xml">
             <xpath expr="//button[@name='action_draft']" position="after">
                 <field name="show_create_return_request" invisible="1" />
@@ -12,7 +11,8 @@
                     name="action_create_return_request"
                     string="Create Return Request"
                     type="object"
-                    attrs="{'invisible': [('show_create_return_request', '=', False)]}"
+                    invisible="not show_create_return_request"
+                    groups="stock.group_stock_user"
                 />
             </xpath>
         </field>

@@ -1,5 +1,8 @@
 # Copyright 2019 Tecnativa - David Vidal
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+from odoo import Command
+
 from odoo.addons.stock_return_request.tests.test_stock_return_request_common import (
     StockReturnRequestCase,
 )
@@ -23,16 +26,17 @@ class SaleReturnRequestCase(StockReturnRequestCase):
                 "property_stock_customer": cls.customer_loc.id,
             }
         )
-        cls.wh1.delivery_route_id.rule_ids.location_id = cls.customer_loc.id
+        cls.wh1.delivery_route_id.rule_ids.location_dest_id = cls.customer_loc.id
+        # Force location_dest_id to be taken from the route
+        # instead of the picking type's location_dest_id
+        cls.wh1.delivery_route_id.rule_ids.location_dest_from_rule = True
         cls.so_1 = cls.env["sale.order"].create(
             {
                 "partner_id": cls.partner_customer_2.id,
                 "warehouse_id": cls.wh1.id,
                 "picking_policy": "direct",
                 "order_line": [
-                    (
-                        0,
-                        False,
+                    Command.create(
                         {
                             "product_id": cls.prod_3.id,
                             "name": cls.prod_3.name,
@@ -74,8 +78,7 @@ class SaleReturnRequestCase(StockReturnRequestCase):
                 ml.write(
                     {
                         "lot_id": cls.prod_3_lot1.id,
-                        "product_uom_qty": 0.0,
-                        "qty_done": 10.0,
+                        "quantity": 10.0,
                     }
                 )
                 ml.create(
@@ -86,9 +89,8 @@ class SaleReturnRequestCase(StockReturnRequestCase):
                         "location_dest_id": ml.location_dest_id.id,
                         "product_uom_id": ml.product_uom_id.id,
                         "product_id": cls.prod_3.id,
-                        "product_uom_qty": 0.0,
                         "lot_id": cls.prod_3_lot2.id,
-                        "qty_done": 4.0,
+                        "quantity": 4.0,
                     }
                 )
             picking.button_validate()
@@ -102,18 +104,14 @@ class SaleReturnRequestCase(StockReturnRequestCase):
                 "partner_id": self.partner_customer_2.id,
                 "to_refund": True,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.prod_3.id,
                             "lot_id": self.prod_3_lot1.id,
                             "quantity": 12.0,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.prod_3.id,
                             "lot_id": self.prod_3_lot2.id,
@@ -126,7 +124,7 @@ class SaleReturnRequestCase(StockReturnRequestCase):
         self.return_request_customer.action_confirm()
         sale_orders = self.return_request_customer.sale_order_ids
         pickings = self.return_request_customer.returned_picking_ids
-        moves = self.return_request_customer.returned_picking_ids.mapped("move_lines")
+        moves = self.return_request_customer.returned_picking_ids.mapped("move_ids")
         # For lot TSTPROD3LOT0001 we'll be returning:
         # ==> 10 units from SO01
         # ==> 2 units from SO02
@@ -161,7 +159,7 @@ class SaleReturnRequestCase(StockReturnRequestCase):
         expected_res = {
             "type": "ir.actions.act_window",
             "res_model": "sale.order",
-            "domain": "[('id', 'in', %s)]" % (sorted(sale_orders.ids)),
+            "domain": f"[('id', 'in', {sorted(sale_orders.ids)})]",
         }
         # The intention is to check if a dictionary is a subset of other.
         # As assertDictContainsSubset() is no longer supported,
@@ -175,9 +173,7 @@ class SaleReturnRequestCase(StockReturnRequestCase):
                 "partner_id": self.partner_customer_2.id,
                 "to_refund": True,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.prod_3.id,
                             "lot_id": self.prod_3_lot1.id,
@@ -208,18 +204,14 @@ class SaleReturnRequestCase(StockReturnRequestCase):
                 "to_refund": True,
                 "filter_sale_order_ids": [(4, self.so_1.id)],
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.prod_3.id,
                             "lot_id": self.prod_3_lot1.id,
                             "quantity": 3.0,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.prod_3.id,
                             "lot_id": self.prod_3_lot2.id,
