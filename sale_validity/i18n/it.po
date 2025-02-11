@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-02 17:59+0000\n"
-"PO-Revision-Date: 2025-02-11 10:06+0000\n"
+"PO-Revision-Date: 2025-02-11 17:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -22,7 +22,7 @@ msgstr ""
 #. module: sale_validity
 #: model_terms:ir.ui.view,arch_db:sale_validity.res_config_settings_view_form_sale_order_validity
 msgid "<span class=\"o_form_label\" style=\"margin-left: 5px;\">Days</span>"
-msgstr ""
+msgstr "<span class=\"o_form_label\" style=\"margin-left: 5px;\">Giorni</span>"
 
 #. module: sale_validity
 #: model_terms:ir.ui.view,arch_db:sale_validity.res_config_settings_view_form_sale_order_validity
@@ -32,6 +32,11 @@ msgid ""
 "            If the value of this field is 0, the sale orders will not have a "
 "validity date by default."
 msgstr ""
+"Per impostazione predefinita, la data di validità degli ordini di vendita "
+"sarà la data dell'ordine di vendita più il numero di giorni definiti in "
+"questo campo.\n"
+"            Se il valore di questo campo è 0, gli ordini di vendita non "
+"avranno una data di validità per impostazione predefinita."
 
 #. module: sale_validity
 #: model:ir.model.fields,help:sale_validity.field_res_company__default_sale_order_validity_days
@@ -41,22 +46,26 @@ msgid ""
 "order plus the number of days defined in this field. If the value of this "
 "field is 0, the sale orders will not have a validity date by default."
 msgstr ""
+"Per impostazione predefinita, la data di validità degli ordini di vendita "
+"sarà la data dell'ordine di vendita più il numero di giorni definiti in "
+"questo campo. Se il valore di questo campo è 0, gli ordini di vendita non "
+"avranno una data di validità per impostazione predefinita."
 
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: sale_validity
 #: model:ir.model,name:sale_validity.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: sale_validity
 #: model:ir.model.fields,field_description:sale_validity.field_res_company__default_sale_order_validity_days
 #: model:ir.model.fields,field_description:sale_validity.field_res_config_settings__sale_order_default_validity_days
 msgid "Default Validity of Sale Orders"
-msgstr ""
+msgstr "Validità predefinita per gli ordini di vendita"
 
 #. module: sale_validity
 #: model:ir.model.fields,field_description:sale_validity.field_res_company__display_name
@@ -68,7 +77,7 @@ msgstr "Nome visualizzato"
 #. module: sale_validity
 #: model:ir.model.fields,field_description:sale_validity.field_sale_order__validity_date
 msgid "Expiration"
-msgstr ""
+msgstr "Scadenza"
 
 #. module: sale_validity
 #: model:ir.model.fields,field_description:sale_validity.field_res_company__id
@@ -95,3 +104,5 @@ msgid ""
 "The value of the field 'Default Validity Duration of Sale Orders' must be "
 "positive or 0."
 msgstr ""
+"Il valore del campo 'Durata validità predefinita degli ordini di vendita' "
+"deve essere positivo o 0."
