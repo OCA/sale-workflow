@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-10 19:06+0000\n"
+"PO-Revision-Date: 2025-02-11 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -43,12 +43,12 @@ msgstr ""
 #. module: sale_order_split_strategy
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: sale_order_split_strategy
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: sale_order_split_strategy
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order__display_name
@@ -60,23 +60,23 @@ msgstr "Nome visualizzato"
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_order_split_strategy
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_order_split_strategy
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: sale_order_split_strategy
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: sale_order_split_strategy
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__line_filter_id
@@ -101,7 +101,7 @@ msgstr ""
 #. module: sale_order_split_strategy
 #: model:ir.model,name:sale_order_split_strategy.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_order_split_strategy
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__sequence
