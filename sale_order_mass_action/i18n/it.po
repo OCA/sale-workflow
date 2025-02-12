@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-11 10:06+0000\n"
+"PO-Revision-Date: 2025-02-12 17:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -19,22 +19,24 @@ msgstr ""
 #. module: sale_order_mass_action
 #: model_terms:ir.ui.view,arch_db:sale_order_mass_action.view_sale_order_mass_action_wizard_form
 msgid "Apply"
-msgstr ""
+msgstr "Applica"
 
 #. module: sale_order_mass_action
 #: model_terms:ir.ui.view,arch_db:sale_order_mass_action.view_sale_order_mass_action_wizard_form
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: sale_order_mass_action
 #: model:ir.model.fields,help:sale_order_mass_action.field_sale_order_mass_action_wizard__confirm
 msgid "Check this box if you want to confirm all the selected quotations."
 msgstr ""
+"Seleziona questa casella se si desidera confermare tutti i preventivi "
+"selezionati."
 
 #. module: sale_order_mass_action
 #: model:ir.model.fields,field_description:sale_order_mass_action.field_sale_order_mass_action_wizard__confirm
 msgid "Confirm"
-msgstr ""
+msgstr "Conferma"
 
 #. module: sale_order_mass_action
 #: model:ir.model.fields,field_description:sale_order_mass_action.field_sale_order_mass_action_wizard__create_uid
@@ -74,19 +76,19 @@ msgstr "Ultimo aggiornamento il"
 #. module: sale_order_mass_action
 #: model:ir.actions.act_window,name:sale_order_mass_action.action_sale_order_mass_action
 msgid "Mass Action"
-msgstr ""
+msgstr "Azione di massa"
 
 #. module: sale_order_mass_action
 #: model_terms:ir.ui.view,arch_db:sale_order_mass_action.view_sale_order_mass_action_wizard_form
 msgid "Mass Action on Selected Quotations and Sale Orders"
-msgstr ""
+msgstr "Azione di massa sui preventivi e ordini di vendita selezionati"
 
 #. module: sale_order_mass_action
 #: model:ir.model,name:sale_order_mass_action.model_sale_order_mass_action_wizard
 msgid "Sale Order Mass Action"
-msgstr ""
+msgstr "Azione di massa ordine di vendita"
 
 #. module: sale_order_mass_action
 #: model_terms:ir.ui.view,arch_db:sale_order_mass_action.view_sale_order_mass_action_wizard_form
 msgid "or"
-msgstr ""
+msgstr "o"
