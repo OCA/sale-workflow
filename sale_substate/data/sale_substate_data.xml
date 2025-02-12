@@ -10,10 +10,10 @@
         <field name="name">Quotation</field>
         <field name="base_substate_type_id" ref="base_substate_type_sale" />
         <field name="target_state_value">draft</field>
-        </record>
+    </record>
     <record id="target_state_value_sale" model="target.state.value">
         <field name="name">Sale</field>
         <field name="base_substate_type_id" ref="base_substate_type_sale" />
         <field name="target_state_value">sale</field>
     </record>
- </odoo>
+</odoo>
