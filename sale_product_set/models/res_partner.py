@@ -26,7 +26,8 @@ class ResPartner(models.Model):
             )
             partner_product_sets.sudo().write({"active": vals["active"]})
             _logger.debug(
-                "product.set archive state changed to <active | inactive> for partners %s",
+                "product.set archive state changed to "
+                "<active | inactive> for partners %s",
                 ",".join(str(x) for x in self.ids),
             )
         return res
