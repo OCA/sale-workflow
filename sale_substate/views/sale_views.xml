@@ -12,6 +12,7 @@
                         name="substate_id"
                         widget="statusbar"
                         options="{'clickable': '1',}"
+                        domain="[('model', '=', 'sale.order'),('target_state_value_id.target_state_value', '=', state)]"
                     />
                 </header>
             </xpath>
