@@ -50,17 +50,17 @@ Usage
 
 To use this module, you need to:
 
--  Define a *product set* as sale manager:
+- Define a *product set* as sale manager:
 
-   -  choose products
-   -  for each products, define a quantity.
-   -  for each products (if Discounts setting is active), define a
-      discount or leave default value
-   -  Sort *set* lines, this order will be the default when added into
-      the quotation
+  - choose products
+  - for each products, define a quantity.
+  - for each products (if Discounts setting is active), define a
+    discount or leave default value
+  - Sort *set* lines, this order will be the default when added into the
+    quotation
 
--  Then you can remove or update added lines as any other sale order
-   lines.
+- Then you can remove or update added lines as any other sale order
+  lines.
 
 |Sale order|
 
@@ -87,26 +87,26 @@ Authors
 Contributors
 ------------
 
--  Clovis Nzouendjou <clovis@anybox.fr>
--  Pierre Verkest <pverkest@anybox.fr>
--  Denis Leemann <denis.leemann@camptocamp.com>
--  Simone Orsi <simone.orsi@camptocamp.com>
--  Souheil Bejaoui <souheil.bejaoui@acsone.eu>
--  Adria Gil Sorribes <adria.gil@forgeflow.com>
--  Phuc (Tran Thanh) <phuc@trobz.com>
--  Manuel Regidor <manuel.regidor@sygel.es>
--  `Tecnativa <https://www.tecnativa.com>`__:
+- Clovis Nzouendjou <clovis@anybox.fr>
+- Pierre Verkest <pverkest@anybox.fr>
+- Denis Leemann <denis.leemann@camptocamp.com>
+- Simone Orsi <simone.orsi@camptocamp.com>
+- Souheil Bejaoui <souheil.bejaoui@acsone.eu>
+- Adria Gil Sorribes <adria.gil@forgeflow.com>
+- Phuc (Tran Thanh) <phuc@trobz.com>
+- Manuel Regidor <manuel.regidor@sygel.es>
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-   -  Pilar Vargas
+  - Pilar Vargas
 
--  Nils Coenen <nils.coenen@nico-solutions.de>
+- Nils Coenen <nils.coenen@nico-solutions.de>
 
 Other credits
 -------------
 
 The development of this module has been financially supported by:
 
--  Camptocamp
+- Camptocamp
 
 Maintainers
 -----------

@@ -230,8 +230,7 @@ class TestProductSet(common.TransactionCase):
         self.product_set_3.partner_id = partner_2
 
         ICPSudo = self.env["ir.config_parameter"].sudo()
-        ICPSudo.set_param(
-            "sale_product_set.archive_partner_product_sets", True)
+        ICPSudo.set_param("sale_product_set.archive_partner_product_sets", True)
 
         # partners active, product sets active
         self.assertTrue(self.product_set.active)
@@ -261,8 +260,7 @@ class TestProductSet(common.TransactionCase):
 
         # set param to False and make sure partner's active state
         # does not affect product set's active state
-        ICPSudo.set_param(
-            "sale_product_set.archive_partner_product_sets", False)
+        ICPSudo.set_param("sale_product_set.archive_partner_product_sets", False)
 
         # partner archived, product set not archived
         partner_1.write({"active": False})
