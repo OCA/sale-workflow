@@ -58,54 +58,94 @@ class SaleOrderLine(models.Model):
         vals = {"name": "A1"}
         return vals
 
+    def write(self, vals):
+        to_change = {}
+        input_line_to_delete = []
+        for rec in self:
+            if (
+                "product_template_id" in vals
+                and rec.product_template_id.id != vals["product_template_id"]
+            ):
+                to_change[rec.id] = rec.input_line_id.copy_data()[0]
+                input_line_to_delete = rec.input_line_ids.mapped("id")
+                rec.input_line_ids = [(5, 0, 0)]
+
+        res = super().write(vals)
+
+        for rec in self:
+            if rec.id in to_change:
+
+                self.env["input.line"].search(
+                    [("id", "in", input_line_to_delete)]
+                ).unlink()
+
+                template_variable_boms = rec._get_variable_bom()
+                if len(template_variable_boms) > 0:
+                    rec._create_input_line_config_from_line(
+                        template_variable_boms[0], to_change[rec.id]
+                    )
+
+        return res
+
+    def _get_variable_bom(self):
+        template_boms = self.product_template_id.bom_ids
+        template_variable_bom = False
+        # sale_order_line product_template_id is not static
+        # if the product template has a only one bom and that bom
+        # is variable
+        if (
+            len(template_boms) == 1
+            and template_boms[0].configuration_type == "variable"
+        ):
+            template_variable_bom = template_boms[0]
+            return [template_variable_bom[0]]
+
+        return []
+
+    def _create_input_line_config_from_line(
+        self, template_variable_bom, copy_vals=None
+    ):
+        self.ensure_one()
+        # Search if sale_order already has the config_id for this
+        # product template
+        input_config_filtered = list(
+            filter(
+                lambda x: x.bom_id.id == template_variable_bom.id,
+                self.order_id.input_config_ids,
+            )
+        )
+        input_config = False
+        if len(input_config_filtered) == 0:
+            # create a new input_config
+            input_config = self.env["input.config"].create(
+                {
+                    "bom_id": template_variable_bom.id,
+                    "name": f"{self.order_id.name} - {self.name}",
+                }
+            )
+            self.order_id.input_config_ids = [(4, input_config.id, 0)]
+        else:
+            input_config = input_config_filtered[0]
+
+        vals = self._prepare_default_input_line_vals()
+
+        if copy_vals:
+            vals.update(copy_vals)
+
+        vals["config_id"] = input_config.id
+        input_line = (
+            self.env["input.line"].with_context(active_id=input_config.id).create(vals)
+        )
+        self.input_line_ids = [(4, input_line.id, 0)]
+
     @api.model_create_multi
     def create(self, vals_list):
         res = super().create(vals_list)
 
         for rec in res:
-            template_boms = rec.product_template_id.bom_ids
-            is_static = True
-            template_variable_bom = False
-            # sale_order_line product_template_id is not static
-            # if the product template has a only one bom and that bom
-            # is variable
-            if (
-                len(template_boms) == 1
-                and template_boms[0].configuration_type == "variable"
-            ):
-                is_static = False
-                template_variable_bom = template_boms[0]
-
-            if not is_static:
-                # Search if sale_order already has the config_id for this
-                # product template
-                input_config_filtered = list(
-                    filter(
-                        lambda x: x.bom_id.id == template_variable_bom.id,
-                        rec.order_id.input_config_ids,
-                    )
-                )
-                input_config = False
-                if len(input_config_filtered) == 0:
-                    # create a new input_config
-                    input_config = self.env["input.config"].create(
-                        {
-                            "bom_id": template_variable_bom.id,
-                            "name": f"{rec.order_id.name} - {rec.name}",
-                        }
-                    )
-                    rec.order_id.input_config_ids = [(4, input_config.id, 0)]
-                else:
-                    input_config = input_config_filtered[0]
-
-                vals = rec._prepare_default_input_line_vals()
-                vals["config_id"] = input_config.id
-                input_line = (
-                    self.env["input.line"]
-                    .with_context(active_id=input_config.id)
-                    .create(vals)
-                )
-                rec.input_line_ids = [(4, input_line.id, 0)]
+            template_variable_boms = rec._get_variable_bom()
+            if len(template_variable_boms) > 0:
+                rec._create_input_line_config_from_line(template_variable_boms[0])
 
         return res
 
