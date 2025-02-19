@@ -26,6 +26,7 @@ class TestSaleOrder(TransactionCase):
                 "name": "test",
                 "uom_id": cls.product_uom_kg.id,
                 "uom_po_id": cls.product_uom_kg.id,
+                "list_price": 1000,
             }
         )
         # Set secondary uom on product template
@@ -54,7 +55,6 @@ class TestSaleOrder(TransactionCase):
             with order_form.order_line.new() as line_form:
                 line_form.product_id = cls.product
                 line_form.product_uom_qty = 1
-                line_form.price_unit = 1000.00
         cls.order = order_form.save()
 
     def test_onchange_secondary_uom(self):
