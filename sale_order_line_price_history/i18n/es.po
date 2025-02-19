@@ -100,12 +100,6 @@ msgid "Include quotations lines in the sale history"
 msgstr "Incluir líneas de presupuestos en el historial de ventas"
 
 #. module: sale_order_line_price_history
-#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history____last_update
-#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
-
-#. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__write_uid
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__write_uid
 msgid "Last Updated by"
@@ -120,7 +114,6 @@ msgstr "Última actualización en"
 #. module: sale_order_line_price_history
 #. odoo-python
 #: code:addons/sale_order_line_price_history/wizards/sale_order_line_price_history.py:0
-#, python-format
 msgid "Not found historical sale order line for this action!"
 msgstr ""
 "¡No se ha encontrado la línea de pedido de venta histórica para esta acción!"
@@ -140,7 +133,6 @@ msgstr "Referencia del pedido"
 #: code:addons/sale_order_line_price_history/static/src/xml/sale_line_price_history_widget.xml:0
 #: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
 #: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.view_order_form
-#, python-format
 msgid "Price History"
 msgstr "Historial de precios"
 
@@ -160,13 +152,17 @@ msgid "Quantity"
 msgstr "Cantidad"
 
 #. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_line_id
+msgid "Sale Order Line"
+msgstr ""
+
+#. module: sale_order_line_price_history
 #: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
 msgid "Sale history"
 msgstr "Historial de ventas"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__sale_order_line_id
-#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_line_id
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__target_sale_order_line_id
 msgid "Sale order line"
 msgstr "Línea de pedido de venta"
@@ -189,7 +185,6 @@ msgstr "Línea de pedido de ventas"
 #. module: sale_order_line_price_history
 #. odoo-javascript
 #: code:addons/sale_order_line_price_history/static/src/xml/set_price_to_line_widget.xml:0
-#, python-format
 msgid "Set Historic Price"
 msgstr "Establecer Precio Histórico"
 
@@ -207,3 +202,6 @@ msgstr "Precio Unitario"
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__history_sale_order_line_id
 msgid "history sale order line"
 msgstr "Línea de orden de venta del historial"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
