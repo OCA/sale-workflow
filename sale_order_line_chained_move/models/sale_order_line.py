@@ -5,7 +5,6 @@ from odoo import fields, models
 
 
 class SaleOrderLine(models.Model):
-
     _inherit = "sale.order.line"
 
     chained_move_ids = fields.One2many(
