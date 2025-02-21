@@ -43,7 +43,7 @@ class SaleOrderLine(models.Model):
     @api.onchange("product_id")
     def _onchange_product_id_warning(self):
         res = super()._onchange_product_id_warning()
-        if self.product_id:
+        if self.product_id and not self.env.context.get("skip_secondary_uom_default"):
             self.secondary_uom_id = self.product_id.sale_secondary_uom_id
             if self.product_uom_qty == 1.0:
                 self.secondary_uom_qty = 1.0
