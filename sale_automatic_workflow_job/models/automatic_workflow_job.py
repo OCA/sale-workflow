@@ -17,10 +17,10 @@ class AutomaticWorkflowJob(models.Model):
             "identity_key": identity_exact,
         }
 
-    def _validate_sale_orders(self, domain_filter):
+    def _validate_sale_orders(self, domain_filter, auto_commit=False, limit=None):
         with_context = self.with_context(auto_delay_do_validation=True)
         return super(AutomaticWorkflowJob, with_context)._validate_sale_orders(
-            domain_filter
+            domain_filter, auto_commit, limit
         )
 
     def _do_validate_sale_order(
@@ -61,9 +61,11 @@ class AutomaticWorkflowJob(models.Model):
             "identity_key": identity_exact,
         }
 
-    def _create_invoices(self, domain_filter):
+    def _create_invoices(self, domain_filter, auto_commit=False, limit=None):
         with_context = self.with_context(auto_delay_do_create_invoice=True)
-        return super(AutomaticWorkflowJob, with_context)._create_invoices(domain_filter)
+        return super(AutomaticWorkflowJob, with_context)._create_invoices(
+            domain_filter, auto_commit, limit
+        )
 
     def _do_create_invoice(self, sale, domain_filter):
         """filter ensure no duplication"""
@@ -83,10 +85,10 @@ class AutomaticWorkflowJob(models.Model):
             "identity_key": identity_exact,
         }
 
-    def _validate_invoices(self, domain_filter):
+    def _validate_invoices(self, domain_filter, auto_commit=False, limit=None):
         with_context = self.with_context(auto_delay_do_validation=True)
         return super(AutomaticWorkflowJob, with_context)._validate_invoices(
-            domain_filter
+            domain_filter, auto_commit, limit
         )
 
     def _do_validate_invoice(self, invoice, domain_filter):
@@ -109,10 +111,10 @@ class AutomaticWorkflowJob(models.Model):
             "identity_key": identity_exact,
         }
 
-    def _validate_pickings(self, domain_filter):
+    def _validate_pickings(self, domain_filter, auto_commit=False, limit=None):
         with_context = self.with_context(auto_delay_do_validation=True)
         return super(AutomaticWorkflowJob, with_context)._validate_pickings(
-            domain_filter
+            domain_filter, auto_commit, limit
         )
 
     def _do_validate_picking(self, picking, domain_filter):
@@ -135,9 +137,11 @@ class AutomaticWorkflowJob(models.Model):
             "identity_key": identity_exact,
         }
 
-    def _sale_done(self, domain_filter):
+    def _sale_done(self, domain_filter, auto_commit=False, limit=None):
         with_context = self.with_context(auto_delay_do_sale_done=True)
-        return super(AutomaticWorkflowJob, with_context)._sale_done(domain_filter)
+        return super(AutomaticWorkflowJob, with_context)._sale_done(
+            domain_filter, auto_commit, limit
+        )
 
     def _do_sale_done(self, sale, domain_filter):
         """filter ensure no duplication"""

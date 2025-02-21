@@ -179,7 +179,7 @@ class AutomaticWorkflowJob(models.Model):
             self.with_context(
                 send_order_confirmation_mail=sale_workflow.send_order_confirmation_mail
             )._validate_sale_orders(
-                safe_eval(sale_workflow.order_filter_id.domain) + workflow_domain,
+                (safe_eval(sale_workflow.order_filter_id.domain) + workflow_domain),
                 auto_commit=sale_workflow.auto_commit,
                 limit=sale_workflow.search_limit or None,
             )
