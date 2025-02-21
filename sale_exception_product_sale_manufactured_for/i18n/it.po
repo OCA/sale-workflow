@@ -6,23 +6,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-02-21 18:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: sale_exception_product_sale_manufactured_for
 #: model:exception.rule,name:sale_exception_product_sale_manufactured_for.exception_partner_can_order
 msgid "Partner can order all the items in the sale"
-msgstr ""
+msgstr "Il partner può ordinare tutti gli elementi nella vendita"
 
 #. module: sale_exception_product_sale_manufactured_for
 #: model:ir.model,name:sale_exception_product_sale_manufactured_for.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_exception_product_sale_manufactured_for
 #: model:exception.rule,description:sale_exception_product_sale_manufactured_for.exception_partner_can_order
@@ -31,3 +33,6 @@ msgid ""
 "            if he/she has a commercial entity that is listed as one of the partners\n"
 "            for which the products can be manufactured for."
 msgstr ""
+"Il partner impostato nell'ordine di vendita può ordinare solo\n"
+"            se ha un'entità commerciale elencata come uno dei partner\n"
+"            per cui i prodotti possono essere fabbricati."
