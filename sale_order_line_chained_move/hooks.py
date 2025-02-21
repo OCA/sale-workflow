@@ -1,6 +1,5 @@
 # Copyright 2021 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import SUPERUSER_ID, api
 
 
 def __find_origin_moves(moves, visited=None):
@@ -28,6 +27,5 @@ def _fill_in_related_sale_line(env):
         __fill_related(move.move_orig_ids, move.sale_line_id)
 
 
-def post_init_hook(cr, registry):
-    env = api.Environment(cr, SUPERUSER_ID, {})
+def post_init_hook(env):
     _fill_in_related_sale_line(env)

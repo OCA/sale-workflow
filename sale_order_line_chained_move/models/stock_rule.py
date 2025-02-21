@@ -9,7 +9,8 @@ class StockRule(models.Model):
     preserve_separate_so_lines = fields.Boolean(
         default=False,
         string="Preserve Separate Sale Order Lines",
-        help="Prevents Odoo's default behaviour of merging moves with the same product.",
+        help="Prevents Odoo's default behaviour of merging moves "
+        "with the same product.",
     )
 
     def _get_stock_move_values(
