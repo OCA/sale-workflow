@@ -25,6 +25,12 @@
                     domain="[('invoice_status_validated', '=', 'invoiced')]"
                     help="Sale orders that are Fully Invoiced and with all invoices validated"
                 />
+                <filter
+                    name="fully_invoice_not_validated"
+                    string="Fully Invoiced and Not Validated"
+                    domain="[('invoice_status', '=', 'invoiced'), ('invoice_status_validated', '=', 'to invoice')]"
+                    help="Sale orders that are Fully Invoiced but with some of their invoices not validated"
+                />
             </filter>
         </field>
     </record>
