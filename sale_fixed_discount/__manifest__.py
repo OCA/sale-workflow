@@ -11,6 +11,7 @@
     "application": False,
     "installable": True,
     "depends": ["sale", "account_invoice_fixed_discount"],
+    "excludes": ["sale_triple_discount"],
     "data": [
         "security/res_groups.xml",
         "reports/report_sale_order.xml",
