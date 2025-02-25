@@ -16,6 +16,7 @@
     # See setup.py as account_invoice_triple_discount last version is incompatible for now
     # Remove orverride when refactor has been done here
     "depends": ["sale_management", "account_invoice_triple_discount"],
+    "excludes": ["sale_fixed_discount"],
     "data": ["views/sale_order_report.xml", "views/sale_order_view.xml"],
     "installable": True,
     "post_load": "post_load",
