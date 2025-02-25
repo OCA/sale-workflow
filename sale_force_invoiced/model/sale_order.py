@@ -24,6 +24,14 @@ class SaleOrder(models.Model):
         )
         return res
 
+    @api.depends("force_invoiced")
+    def _compute_amount_to_invoice(self):
+        # force_invoiced causes the amount to invoice to be zero
+        res = super()._compute_amount_to_invoice()
+        for so in self.filtered("force_invoiced"):
+            so.amount_to_invoice = 0
+        return res
+
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
