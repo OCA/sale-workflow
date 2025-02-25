@@ -17,19 +17,17 @@
                         name="action_force_delivery_state"
                         type="object"
                         string="Force delivery done"
-                        states="done"
-                        attrs="{'invisible': ['|', ('force_delivery_state', '=', True), ('delivery_state', '=', 'done')]}"
+                        invisible="force_delivery_state or state != 'done' or delivery_state == 'done'"
                     />
                     <button
                         name="action_unforce_delivery_state"
                         type="object"
                         string="Unforce delivery done"
-                        states="done"
-                        attrs="{'invisible': [('force_delivery_state', '=', False)]}"
+                        invisible="not force_delivery_state or state != 'done'"
                     />
                 </div>
             </xpath>
-            <xpath expr="//field[@name='order_line']/tree" position="inside">
+            <xpath expr="//field[@name='order_line']/list" position="inside">
                 <field name="delivery_state" readonly="True" optional="hide" />
             </xpath>
         </field>
