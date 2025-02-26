@@ -105,6 +105,7 @@ Contributors
 - `Tecnativa <https://www.tecnativa.com>`__:
 
   - Sergio Teruel
+  - Carlos Lopez
 
 - Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
 - `Quartile <https://www.quartile.co>`__:

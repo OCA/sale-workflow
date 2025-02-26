@@ -10,5 +10,6 @@ class ResConfigSettings(models.TransientModel):
     sale_report_print_block = fields.Boolean(
         related="company_id.sale_report_print_block",
         readonly=False,
-        help="Block the printing of the sale order report if the order is not validated.",
+        help="Block the printing of the sale order report "
+        "if the order is not validated.",
     )

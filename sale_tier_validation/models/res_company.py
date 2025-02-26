@@ -8,5 +8,6 @@ class ResCompany(models.Model):
     _inherit = "res.company"
 
     sale_report_print_block = fields.Boolean(
-        help="Block the printing of the sale order report if the order is not validated."
+        help="Block the printing of the sale order report "
+        "if the order is not validated."
     )

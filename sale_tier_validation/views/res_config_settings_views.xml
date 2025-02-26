@@ -5,24 +5,13 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="sale.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <xpath
-                expr="//div[hasclass('row','mt16','o_settings_container')]/div[@id='proforma_configuration']"
-                position="after"
-            >
-                <div class="col-12 col-lg-6 o_setting_box" id="block_print_sale_order">
-                    <div class="o_setting_left_pane">
-                        <field name="sale_report_print_block" />
-                    </div>
-                    <div class="o_setting_right_pane">
-                        <label
-                            for="sale_report_print_block"
-                            string="Block Printing of Unvalidated Quotations"
-                        />
-                        <div class="text-muted">
-                            Block the printing of the sale order report if the order is not validated.
-                        </div>
-                    </div>
-                </div>
+            <xpath expr="//setting[@id='proforma_configuration']" position="after">
+                <setting
+                    id="block_print_sale_order"
+                    help="Block the printing of the sale order report if the order is not validated."
+                >
+                    <field name="sale_report_print_block" />
+                </setting>
             </xpath>
         </field>
     </record>
