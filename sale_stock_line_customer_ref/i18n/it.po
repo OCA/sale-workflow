@@ -6,78 +6,81 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-02-27 11:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_move__customer_ref
 #: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_move_line__customer_ref
 msgid "Customer Ref"
-msgstr ""
+msgstr "Rif. cliente"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_sale_order_line__customer_ref
 #: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_quant_package__customer_ref
 msgid "Customer Ref."
-msgstr ""
+msgstr "Rif. cliente"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model.fields,help:sale_stock_line_customer_ref.field_stock_quant_package__customer_ref
 msgid "Customer reference coming from the sale order line."
-msgstr ""
+msgstr "Riferimento cliente che viene dalla riga ordine di vendita."
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_package_level__has_customer_ref
 #: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_picking__has_customer_ref
 msgid "Has Customer Ref"
-msgstr ""
+msgstr "Ha riferimento cliente"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model,name:sale_stock_line_customer_ref.model_stock_quant_package
 msgid "Packages"
-msgstr ""
+msgstr "Colli"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model,name:sale_stock_line_customer_ref.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr ""
+msgstr "Movimenti prodotto (riga movimento di magazzino)"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_move__customer_ref_sale_line_id
 msgid "Sale Line With Customer Ref."
-msgstr ""
+msgstr "Riga vendita con rif. cliente"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model,name:sale_stock_line_customer_ref.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Riga ordine di vendita"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model,name:sale_stock_line_customer_ref.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimento di magazzino"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model,name:sale_stock_line_customer_ref.model_stock_package_level
 msgid "Stock Package Level"
-msgstr ""
+msgstr "Livello collo magazzino"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model.fields,help:sale_stock_line_customer_ref.field_stock_package_level__has_customer_ref
 msgid "Technical field to display 'Customer Ref' column in a package level."
 msgstr ""
+"Campo tecnico per visualizzare la colonna 'Rif. cliente' in un livello collo."
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model.fields,help:sale_stock_line_customer_ref.field_stock_picking__has_customer_ref
 msgid "Technical field to display 'Customer Ref' column on moves."
-msgstr ""
+msgstr "Campo tecnico per visualizzare la colonna 'Rif. cliente' nei movimenti."
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model,name:sale_stock_line_customer_ref.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Trasferimento"
