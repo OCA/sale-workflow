@@ -4,7 +4,6 @@
   ~ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
   -->
 <odoo>
-
     <record id="min_order_qty_product_product_form_view" model="ir.ui.view">
         <field name="name">product.product.form</field>
         <field name="model">product.product</field>
@@ -48,7 +47,7 @@
                             nolabel="1"
                         />
                     </group>
-                        <group name="sale_multiple_qty_gr" string="Sale Miltiple qty">
+                    <group name="sale_multiple_qty_gr" string="Sale Miltiple qty">
                         <field name="sale_multiple_qty" />
                         <label for="manual_sale_multiple_qty" class="oe_edit_only" />
                         <field

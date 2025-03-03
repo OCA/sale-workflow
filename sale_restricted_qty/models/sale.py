@@ -49,7 +49,6 @@ class SaleOrderLine(models.Model):
         "product_uom_qty", "sale_min_qty", "sale_max_qty", "sale_multiple_qty"
     )
     def check_constraint_restricted_qty(self):
-
         msg = ""
         invaild_min_lines = []
         line_to_test = self.filtered(
