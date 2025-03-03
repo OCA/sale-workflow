@@ -57,19 +57,19 @@
                      '&amp;', ('is_qty_bigger_max_qty','=', True), ('force_sale_max_qty','=', True,)]}"
                     style="background-color:red"
                 />
-           </xpath>
-           <xpath
+            </xpath>
+            <xpath
                 expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
                 position="after"
             >
-               <field name="sale_min_qty" optional="hide" />
-               <field name="is_qty_less_min_qty" invisible="1" />
-               <field name="force_sale_min_qty" invisible="1" />
-               <field name="sale_max_qty" optional="hide" />
-               <field name="is_qty_bigger_max_qty" invisible="1" />
-               <field name="force_sale_max_qty" invisible="1" />
-               <field name="is_qty_not_multiple_qty" invisible="1" />
-           </xpath>
+                <field name="sale_min_qty" optional="hide" />
+                <field name="is_qty_less_min_qty" invisible="1" />
+                <field name="force_sale_min_qty" invisible="1" />
+                <field name="sale_max_qty" optional="hide" />
+                <field name="is_qty_bigger_max_qty" invisible="1" />
+                <field name="force_sale_max_qty" invisible="1" />
+                <field name="is_qty_not_multiple_qty" invisible="1" />
+            </xpath>
 
             <xpath expr="//field[@name='order_line']/tree" position="attributes">
                 <attribute
