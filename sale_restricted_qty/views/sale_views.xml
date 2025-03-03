@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/form//field[@name='price_unit']"
+                expr="//page/field[@name='order_line']/form//field[@name='price_unit']"
                 position="after"
             >
                 <field name="sale_min_qty" />
@@ -59,19 +59,19 @@
                 />
             </xpath>
             <xpath
-                expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
+                expr="//page/field[@name='order_line']/list/field[@name='product_uom_qty']"
                 position="after"
             >
                 <field name="sale_min_qty" optional="hide" />
-                <field name="is_qty_less_min_qty" invisible="1" />
-                <field name="force_sale_min_qty" invisible="1" />
+                <field name="is_qty_less_min_qty" column_invisible="1" />
+                <field name="force_sale_min_qty" column_invisible="1" />
                 <field name="sale_max_qty" optional="hide" />
-                <field name="is_qty_bigger_max_qty" invisible="1" />
-                <field name="force_sale_max_qty" invisible="1" />
-                <field name="is_qty_not_multiple_qty" invisible="1" />
+                <field name="is_qty_bigger_max_qty" column_invisible="1" />
+                <field name="force_sale_max_qty" column_invisible="1" />
+                <field name="is_qty_not_multiple_qty" column_invisible="1" />
             </xpath>
 
-            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+            <xpath expr="//page/field[@name='order_line']/list" position="attributes">
                 <attribute
                     name="decoration-danger"
                 >is_qty_less_min_qty ==  True and force_sale_min_qty == False</attribute>

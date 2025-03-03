@@ -59,7 +59,6 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
                 {
                     "partner_id": self.partner.id,
                     "order_line": [(0, 0, line_values)],
-                    "pricelist_id": 1,
                 }
             )
         line_values["product_uom_qty"] = 12.0
@@ -92,11 +91,9 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
         self.product.manual_sale_max_qty = 10
         # Create sale order line with Qty bigger than max Qty
         with self.assertRaises(ValidationError):
-            sale_order = self.sale_order_model.create(
+            self.sale_order_model.create(
                 {"partner_id": self.partner.id, "order_line": [(0, 0, line_values)]}
             )
-            sale_values = self.refrech_sale_values(sale_order)
-            self.sale_order_model.create(sale_values)
         line_values["product_uom_qty"] = 2.0
         # Create sale order line with Qty great then max Qty
         self.sale_order = self.sale_order_model.create(
@@ -128,11 +125,9 @@ class TestSaleOrderLineMinQty(common.TransactionCase):
         self.product.manual_sale_multiple_qty = 10
         # Create sale order line with Qty not multiple Qty
         with self.assertRaises(ValidationError):
-            sale_order = self.sale_order_model.create(
+            self.sale_order_model.create(
                 {"partner_id": self.partner.id, "order_line": [(0, 0, line_values)]}
             )
-            sale_values = self.refrech_sale_values(sale_order)
-            self.sale_order_model.create(sale_values)
         line_values["product_uom_qty"] = 20
         # Create sale order line with Qty multiple Qty
         self.sale_order = self.sale_order_model.create(
