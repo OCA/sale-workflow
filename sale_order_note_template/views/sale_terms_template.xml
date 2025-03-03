@@ -17,27 +17,19 @@
         <field name="arch" type="xml">
             <form string="Terms and conditions Templates">
                 <sheet>
-                    <div class="oe_button_box" name="button_box">
-                        <button
-                            name="toggle_active"
-                            type="object"
-                            class="oe_stat_button"
-                            icon="fa-archive"
-                        >
-                            <field
-                                name="active"
-                                widget="boolean_button"
-                                options="{&quot;terminology&quot;: &quot;archive&quot;}"
-                            />
-                        </button>
-                    </div>
+                    <widget
+                        name="web_ribbon"
+                        text="Archived"
+                        bg_color="bg-danger"
+                        invisible="active"
+                    />
                     <div class="oe_title">
                         <h1>
                             <field name="name" placeholder="Name" />
                         </h1>
                     </div>
                     <notebook>
-                        <page>
+                        <page name="Terms and Conditions">
                             <field name="text" nolabel="1" />
                         </page>
                     </notebook>
@@ -65,4 +57,11 @@
         <field name="view_id" ref="view_sale_terms_template_tree" />
     </record>
 
+    <menuitem
+        id="menu_sale_terms_template"
+        name="Terms and conditions Templates"
+        parent="sale.menu_sales_config"
+        action="action_sale_terms_template"
+        sequence="10"
+    />
 </odoo>
