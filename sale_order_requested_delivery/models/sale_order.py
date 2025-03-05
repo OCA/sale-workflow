@@ -1,7 +1,7 @@
 # Copyright 2024 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -29,7 +29,7 @@ class SaleOrder(models.Model):
                 > rec.requested_delivery_period_end
             ):
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "The start of the requested delivery period cannot be after the end."
                     )
                 )
@@ -57,12 +57,16 @@ class SaleOrder(models.Model):
                     rec.requested_delivery_period_start
                     > rec.requested_delivery_period_end
                 ):
-                    rec.requested_delivery_period_display = _("INVALID PERIOD")
+                    rec.requested_delivery_period_display = self.env._("INVALID PERIOD")
                     continue
                 rec.requested_delivery_period_display = f"{start_date} - {end_date}"
             elif start_date and not end_date:
-                rec.requested_delivery_period_display = _("From %s") % start_date
+                rec.requested_delivery_period_display = (
+                    self.env._("From %s") % start_date
+                )
             elif not start_date and end_date:
-                rec.requested_delivery_period_display = _("Until %s") % end_date
+                rec.requested_delivery_period_display = (
+                    self.env._("Until %s") % end_date
+                )
             else:
-                rec.requested_delivery_period_display = _("N/A")
+                rec.requested_delivery_period_display = self.env._("N/A")

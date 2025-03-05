@@ -1,8 +1,11 @@
+# Copyright 2024 Camptocamp SA
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
+
 from odoo.exceptions import ValidationError
-from odoo.tests.common import SavepointCase
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleOrderRequestedDelivery(SavepointCase):
+class TestSaleOrderRequestedDelivery(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

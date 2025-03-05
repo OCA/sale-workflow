@@ -13,7 +13,7 @@
         <field name="requested_delivery_period_start" string="Requested Delivery start" />
         <field name="requested_delivery_period_end"  string="Requested Delivery end" />
       </xpath>
-      <xpath expr="//field[@name='order_line']/tree/field[@name='company_id']" position="after">
+      <xpath expr="//field[@name='order_line']/list/field[@name='company_id']" position="after">
         <field name="requested_delivery_period_start" optional="hide" string="Req. Delivery start" />
         <field name="requested_delivery_period_end"  optional="hide" string="Req. Delivery end" />
       </xpath>
