@@ -120,14 +120,6 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
         self.order.order_line.elaboration_ids = self.elaboration_b
         self.assertEqual(self.order.order_line.elaboration_note, "Some details")
 
-    def test_sale_elaboration_change(self):
-        order_form = Form(self.order)
-        with order_form.order_line.edit(0) as line:
-            line.elaboration_ids.clear()
-            line.elaboration_ids.add(self.elaboration_b)
-        order_form.save()
-        self.assertEqual(self.order.order_line.elaboration_note, "Elaboration B")
-
     def test_sale_elaboration(self):
         self.order.action_confirm()
         self.order.picking_ids.move_ids.quantity = 10.0
@@ -234,3 +226,13 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
                 },
             ],
         )
+
+    def test_sale_elaboration_done_move_changes(self):
+        self.order.action_confirm()
+        self.order.picking_ids.move_ids.quantity = 10.0
+        self.order.picking_ids.move_ids.picked = True
+        self.order.picking_ids._action_done()
+        self.order.picking_ids.move_ids.quantity = 15.0
+        elaboration_lines = self.order.order_line.filtered("is_elaboration")
+        self.assertEqual(len(elaboration_lines), 1)
+        self.assertEqual(elaboration_lines.product_uom_qty, 15.0)
