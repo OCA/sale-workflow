@@ -2,7 +2,6 @@
 <!-- Copyright 2018 Alex Comba - Agile Business Group
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
 <odoo>
-
     <record id="vpicktree" model="ir.ui.view">
         <field name="name">stock.picking.tree</field>
         <field name="model">stock.picking</field>
@@ -24,5 +23,4 @@
             </field>
         </field>
     </record>
-
 </odoo>
