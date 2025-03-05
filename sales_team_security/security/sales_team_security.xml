@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="group_sale_team_manager" model="res.groups">
         <field name="name">User: Team Documents Only</field>
         <field
@@ -13,5 +12,4 @@
     <record id="sales_team.group_sale_salesman_all_leads" model="res.groups">
         <field name="implied_ids" eval="[(6, 0, [ref('group_sale_team_manager')])]" />
     </record>
-
 </odoo>
