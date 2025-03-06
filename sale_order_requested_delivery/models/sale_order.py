@@ -9,11 +9,9 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     requested_delivery_period_start = fields.Datetime(
-        string="Customer Requested Delivery Start Datetime"
+        string="Requested Delivery - Start"
     )
-    requested_delivery_period_end = fields.Datetime(
-        string="Customer Requested Delivery End Datetime"
-    )
+    requested_delivery_period_end = fields.Datetime(string="Requested Delivery - End")
     requested_delivery_period_display = fields.Char(
         string="Requested Delivery Period",
         compute="_compute_requested_delivery_period_display",
