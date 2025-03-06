@@ -26,33 +26,19 @@ class IrRule(models.Model):
         """
         res = super()._compute_domain(model_name, mode=mode)
         user = self.env.user
-        group1 = "sales_team.group_sale_salesman"
-        group2 = "sales_team_security.group_sale_team_manager"
-        group3 = "sales_team.group_sale_salesman_all_leads"
+        group_my_records = "sales_team.group_sale_salesman"
+        group_all_records = "sales_team.group_sale_salesman_all_leads"
         if model_name == "res.partner" and not self.env.su:
-            if user.has_group(group1) and not user.has_group(group3):
-                extra_domain = [
+            if user.has_group(group_my_records) and not user.has_group(
+                group_all_records
+            ):
+                domain_followers = [
                     "|",
                     ("message_partner_ids", "in", user.partner_id.ids),
-                    "|",
                     ("id", "=", user.partner_id.id),
                 ]
-                if user.has_group(group2):
-                    extra_domain += [
-                        "|",
-                        ("team_id", "=", user.sale_team_id.id),
-                        ("team_id", "=", False),
-                    ]
-                else:
-                    extra_domain += [
-                        "|",
-                        ("user_id", "=", user.id),
-                        "&",
-                        ("user_id", "=", False),
-                        "|",
-                        ("team_id", "=", False),
-                        ("team_id", "=", user.sale_team_id.id),
-                    ]
+                domain_user = [("user_id", "in", [user.id, False])]
+                extra_domain = expression.OR([domain_followers, domain_user])
                 extra_domain = expression.normalize_domain(extra_domain)
                 res = expression.AND([extra_domain] + [res])
         return res

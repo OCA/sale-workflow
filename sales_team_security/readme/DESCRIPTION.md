@@ -7,9 +7,6 @@ all, independently from the assigned salesman):
 - Quotations/Sales Orders (implemented in sales_team_security_sale)
 - Leads/Opportunities (implemented in sales_team_security_crm)
 
-It also handles the propagation of the sales team from commercial
-partners to the contacts, which standard doesn't do.
-
 It also handles the sync (auto-creation and remove) of followers in
 company partners and childs of them according to salesmans. Any example
 about it: - Partner company \> Salesman: Admin - Partner company,
@@ -20,9 +17,8 @@ And finally, there are rules for partners to be restricted to the own
 ones for the group "User: Own Documents Only" for being coherent with
 the permission scheme. Someone with this permission will see:
 
-- Contacts without salesman nor team assigned.
-- Contacts without salesman assigned, but the same team.
-- Contacts with them as salesman, independently from the team.
+- Contacts without salesman assigned.
+- Contacts with them as salesman.
 - Contacts with them as follower.
 
 For keeping consistent accesses, followers of the main and
