@@ -15,5 +15,9 @@ class SaleOrderLine(models.Model):
             # set again to 0 to remove the discount on all the lines at the same
             # time
             if line.order_id.general_discount or line.order_id._origin.general_discount:
-                line.discount = line.order_id.general_discount
+                if "discount1" in self._fields:
+                    # Compatibility with sale_triple_discount module
+                    line.discount1 = line.order_id.general_discount
+                else:
+                    line.discount = line.order_id.general_discount
         return res
