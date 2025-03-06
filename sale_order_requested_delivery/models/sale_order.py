@@ -30,7 +30,8 @@ class SaleOrder(models.Model):
             ):
                 raise ValidationError(
                     self.env._(
-                        "The start of the requested delivery period cannot be after the end."
+                        "The start of the requested delivery period "
+                        "cannot be after the end."
                     )
                 )
 
