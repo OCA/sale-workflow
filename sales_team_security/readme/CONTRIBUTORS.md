@@ -2,6 +2,7 @@
   - Pedro M. Baeza
   - Víctor Martínez
   - César A. Sánchez
+  - Carlos Lopez
 - [Guadaltech](https://www.guadaltech.es):
   - Ramón Bajona
 - Iván Todorovich \<<ivan.todorovich@gmail.com>\>
