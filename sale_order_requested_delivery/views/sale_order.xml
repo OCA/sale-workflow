@@ -1,26 +1,46 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-  <record id="view_order_form" model="ir.ui.view">
-    <field name="name"> </field>
-    <field name="model">sale.order</field>
-    <field name="inherit_id" ref="sale.view_order_form" />
-    <field name="arch" type="xml">
-      <xpath expr="//field[@name='client_order_ref']" position="after">
-        <field name="requested_delivery_period_start" />
-        <field name="requested_delivery_period_end" />
-      </xpath>
-      <xpath expr="//field[@name='order_line']/form//div[@name='discount']" position="after">
-        <field name="requested_delivery_period_start" string="Requested Delivery start" />
-        <field name="requested_delivery_period_end"  string="Requested Delivery end" />
-      </xpath>
-      <xpath expr="//field[@name='order_line']/list/field[@name='company_id']" position="after">
-        <field name="requested_delivery_period_start" optional="hide" string="Req. Delivery start" />
-        <field name="requested_delivery_period_end"  optional="hide" string="Req. Delivery end" />
-      </xpath>
-    </field>
-  </record>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name" />
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='client_order_ref']" position="after">
+                <field name="requested_delivery_period_start" />
+                <field name="requested_delivery_period_end" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form//div[@name='discount']"
+                position="after"
+            >
+                <field
+                    name="requested_delivery_period_start"
+                    string="Requested Delivery start"
+                />
+                <field
+                    name="requested_delivery_period_end"
+                    string="Requested Delivery end"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/list/field[@name='company_id']"
+                position="after"
+            >
+                <field
+                    name="requested_delivery_period_start"
+                    optional="hide"
+                    string="Req. Delivery start"
+                />
+                <field
+                    name="requested_delivery_period_end"
+                    optional="hide"
+                    string="Req. Delivery end"
+                />
+            </xpath>
+        </field>
+    </record>
 
-  <record id="view_order_line_tree" model="ir.ui.view">
+    <record id="view_order_line_tree" model="ir.ui.view">
         <field name="name">sale.order.line.delivery.period.tree</field>
         <field name="model">sale.order.line</field>
         <field name="inherit_id" ref="sale.view_order_line_tree" />
