@@ -369,7 +369,7 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:0fe86137cee5ec256be570de40e7b3d8259e0c55f205979a1ec891944d359e9b
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Production/Stable" src="https://img.shields.io/badge/maturity-Production%2FStable-green.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/sale-workflow/tree/17.0/sales_team_security"><img alt="OCA/sale-workflow" src="https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sales_team_security"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Production/Stable" src="https://img.shields.io/badge/maturity-Production%2FStable-green.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/sale-workflow/tree/18.0/sales_team_security"><img alt="OCA/sale-workflow" src="https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-sales_team_security"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>This module adds a new “Sale” group called “User: Team documents”, that
 includes the proper permissions for showing only the information related
 to that user sale team (having assigned that team/channel or no team at
@@ -379,8 +379,6 @@ all, independently from the assigned salesman):</p>
 <li>Quotations/Sales Orders (implemented in sales_team_security_sale)</li>
 <li>Leads/Opportunities (implemented in sales_team_security_crm)</li>
 </ul>
-<p>It also handles the propagation of the sales team from commercial
-partners to the contacts, which standard doesn’t do.</p>
 <p>It also handles the sync (auto-creation and remove) of followers in
 company partners and childs of them according to salesmans. Any example
 about it: - Partner company &gt; Salesman: Admin - Partner company, Contact
@@ -390,9 +388,8 @@ these partners have these followers: Admin + Demo</p>
 ones for the group “User: Own Documents Only” for being coherent with
 the permission scheme. Someone with this permission will see:</p>
 <ul class="simple">
-<li>Contacts without salesman nor team assigned.</li>
-<li>Contacts without salesman assigned, but the same team.</li>
-<li>Contacts with them as salesman, independently from the team.</li>
+<li>Contacts without salesman assigned.</li>
+<li>Contacts with them as salesman.</li>
 <li>Contacts with them as follower.</li>
 </ul>
 <p>For keeping consistent accesses, followers of the main and
@@ -415,10 +412,9 @@ children contacts</p>
 </div>
 <div class="section" id="installation">
 <h1><a class="toc-backref" href="#toc-entry-1">Installation</a></h1>
-<p>At installation time, this module sets in all the contacts that have the
-sales team empty the sales team of the parent, and sync followers in
-parent contacts and invoice/shipping addresses. If you have a lot of
-contacts, this operation can take a while.</p>
+<p>At installation time, this module syncs followers in parent contacts and
+invoice/shipping addresses. If you have a lot of contacts, this
+operation can take a while.</p>
 </div>
 <div class="section" id="configuration">
 <h1><a class="toc-backref" href="#toc-entry-2">Configuration</a></h1>
@@ -431,7 +427,7 @@ contacts, this operation can take a while.</p>
 <div class="section" id="known-issues-roadmap">
 <h1><a class="toc-backref" href="#toc-entry-3">Known issues / Roadmap</a></h1>
 <ul class="simple">
-<li>This module modifies sales security groups hierarchy, so any other
+<li>This module modifies the sales security groups hierarchy, so any other
 module doing something similar might conflict with this one.</li>
 </ul>
 </div>
@@ -440,7 +436,7 @@ module doing something similar might conflict with this one.</li>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/sale-workflow/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/sale-workflow/issues/new?body=module:%20sales_team_security%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/sale-workflow/issues/new?body=module:%20sales_team_security%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -458,6 +454,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li>Pedro M. Baeza</li>
 <li>Víctor Martínez</li>
 <li>César A. Sánchez</li>
+<li>Carlos Lopez</li>
 </ul>
 </li>
 <li><a class="reference external" href="https://www.guadaltech.es">Guadaltech</a>:<ul>
@@ -482,7 +479,7 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainers</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/pedrobaeza"><img alt="pedrobaeza" src="https://github.com/pedrobaeza.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/ivantodorovich"><img alt="ivantodorovich" src="https://github.com/ivantodorovich.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/sale-workflow/tree/17.0/sales_team_security">OCA/sale-workflow</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/sale-workflow/tree/18.0/sales_team_security">OCA/sale-workflow</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>

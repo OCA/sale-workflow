@@ -17,13 +17,13 @@ Sales documents permissions by channels (teams)
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/17.0/sales_team_security
+    :target: https://github.com/OCA/sale-workflow/tree/18.0/sales_team_security
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sales_team_security
+    :target: https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-sales_team_security
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -33,12 +33,9 @@ includes the proper permissions for showing only the information related
 to that user sale team (having assigned that team/channel or no team at
 all, independently from the assigned salesman):
 
--  Contacts.
--  Quotations/Sales Orders (implemented in sales_team_security_sale)
--  Leads/Opportunities (implemented in sales_team_security_crm)
-
-It also handles the propagation of the sales team from commercial
-partners to the contacts, which standard doesn't do.
+- Contacts.
+- Quotations/Sales Orders (implemented in sales_team_security_sale)
+- Leads/Opportunities (implemented in sales_team_security_crm)
 
 It also handles the sync (auto-creation and remove) of followers in
 company partners and childs of them according to salesmans. Any example
@@ -50,10 +47,9 @@ And finally, there are rules for partners to be restricted to the own
 ones for the group "User: Own Documents Only" for being coherent with
 the permission scheme. Someone with this permission will see:
 
--  Contacts without salesman nor team assigned.
--  Contacts without salesman assigned, but the same team.
--  Contacts with them as salesman, independently from the team.
--  Contacts with them as follower.
+- Contacts without salesman assigned.
+- Contacts with them as salesman.
+- Contacts with them as follower.
 
 For keeping consistent accesses, followers of the main and
 shipping/invoice contacts are synced according the salesman of the
@@ -67,10 +63,9 @@ children contacts
 Installation
 ============
 
-At installation time, this module sets in all the contacts that have the
-sales team empty the sales team of the parent, and sync followers in
-parent contacts and invoice/shipping addresses. If you have a lot of
-contacts, this operation can take a while.
+At installation time, this module syncs followers in parent contacts and
+invoice/shipping addresses. If you have a lot of contacts, this
+operation can take a while.
 
 Configuration
 =============
@@ -82,8 +77,8 @@ Configuration
 Known issues / Roadmap
 ======================
 
--  This module modifies sales security groups hierarchy, so any other
-   module doing something similar might conflict with this one.
+- This module modifies the sales security groups hierarchy, so any other
+  module doing something similar might conflict with this one.
 
 Bug Tracker
 ===========
@@ -91,7 +86,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sales_team_security%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sales_team_security%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -106,20 +101,21 @@ Authors
 Contributors
 ------------
 
--  `Tecnativa <https://www.tecnativa.com>`__:
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-   -  Pedro M. Baeza
-   -  Víctor Martínez
-   -  César A. Sánchez
+  - Pedro M. Baeza
+  - Víctor Martínez
+  - César A. Sánchez
+  - Carlos Lopez
 
--  `Guadaltech <https://www.guadaltech.es>`__:
+- `Guadaltech <https://www.guadaltech.es>`__:
 
-   -  Ramón Bajona
+  - Ramón Bajona
 
--  Iván Todorovich <ivan.todorovich@gmail.com>
--  `Pesol <https://www.pesol.es>`__:
+- Iván Todorovich <ivan.todorovich@gmail.com>
+- `Pesol <https://www.pesol.es>`__:
 
-   -  Jonathan Oscategui Taza <info@pesol.es>
+  - Jonathan Oscategui Taza <info@pesol.es>
 
 Maintainers
 -----------
@@ -145,6 +141,6 @@ Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-pedrobaeza| |maintainer-ivantodorovich| 
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sales_team_security>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/18.0/sales_team_security>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
