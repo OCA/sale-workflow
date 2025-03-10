@@ -2,7 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import Command
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+from odoo.tests.common import TransactionCase
 
 
 class TestSale(TransactionCase):
@@ -13,7 +14,7 @@ class TestSale(TransactionCase):
         cls.env.user.write(
             {
                 "groups_id": [
-                    Command.link(cls.env.ref("product.group_sale_pricelist").id)
+                    Command.link(cls.env.ref("product.group_product_pricelist").id)
                 ]
             }
         )
@@ -136,10 +137,10 @@ class TestSale(TransactionCase):
         pricelist_form = Form(self.pricelist)
         with pricelist_form.item_ids.edit(0) as item_form:
             self.assertTrue(item_form.price_category_id)
-            item_form.applied_on = "3_global"
+            item_form.display_applied_on = "3_global"
             self.assertFalse(item_form.price_category_id)
 
     def test_name(self):
         item = self.pricelist.item_ids[0]
-        expected_name = "Price Category: %s" % item.price_category_id.display_name
+        expected_name = f"Price Category: {item.price_category_id.display_name}"
         self.assertEqual(expected_name, item.name)
