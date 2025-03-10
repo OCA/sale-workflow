@@ -8,7 +8,7 @@ from odoo.tests.common import Form, TransactionCase
 class TestSale(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestSale, cls).setUpClass()
+        super().setUpClass()
         # activate advanced pricelist
         cls.env.user.write(
             {
