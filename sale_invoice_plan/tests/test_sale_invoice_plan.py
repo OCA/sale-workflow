@@ -15,7 +15,7 @@ _logger = logging.getLogger(__name__)
 class TestSaleInvoicePlan(common.TestSaleCommon):
     @classmethod
     def setUpClass(cls):
-        super(TestSaleInvoicePlan, cls).setUpClass()
+        super().setUpClass()
         context_no_mail = {
             "no_reset_password": True,
             "mail_create_nosubscribe": True,
@@ -64,6 +64,10 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
 
         sale_obj = cls.env["sale.order"]
         # Create an SO for Service
+        usd = cls.env.ref("base.USD")
+        cls.pricelist_usd = cls.env["product.pricelist"].create(
+            {"name": "USD pricelist", "currency_id": usd.id}
+        )
         cls.so_service = sale_obj.with_user(
             cls.company_data["default_user_salesman"]
         ).create(
@@ -85,7 +89,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
                         },
                     )
                 ],
-                "pricelist_id": cls.env.ref("product.list0").id,
+                "pricelist_id": cls.pricelist_usd.id,
             }
         )
 
@@ -241,7 +245,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         with self.assertRaises(ValidationError):
             self.so_service.action_confirm()
         advance_line = self.so_service.invoice_plan_ids.filtered(
-            lambda l: l.invoice_type == "advance"
+            lambda line: line.invoice_type == "advance"
         )
         self.assertEqual(len(advance_line), 1, "No one advance line")
         # Add 10% to advance
@@ -259,7 +263,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         # Valid total quantity of invoices (exclude Advance line)
         quantity = sum(
             invoices.mapped("invoice_line_ids")
-            .filtered(lambda l: l.product_id == self.product_order)
+            .filtered(lambda line: line.product_id == self.product_order)
             .mapped("quantity")
         )
         self.assertEqual(quantity, 1, "Wrong number of total invoice quantity")
@@ -323,7 +327,8 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
                 ],
             }
         )
-        # Overall amount changed to 3080, install amount not changed, only percent changed.
+        # Overall amount changed to 3080, install amount not changed,
+        # only percent changed.
         self.assertEqual(self.so_service.amount_total, 3080.0)
         self.so_service.invoice_plan_ids._compute_amount()
         self.assertEqual(first_install.amount, 280.0)

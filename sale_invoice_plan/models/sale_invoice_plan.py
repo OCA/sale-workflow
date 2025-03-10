@@ -104,7 +104,7 @@ class SaleInvoicePlan(models.Model):
             # For last line, amount is the left over
             if rec.last:
                 installments = rec.sale_id.invoice_plan_ids.filtered(
-                    lambda l: l.invoice_type == "installment"
+                    lambda line: line.invoice_type == "installment"
                 )
                 prev_amount = sum((installments - rec).mapped("amount"))
                 rec.amount = amount_untaxed - prev_amount
@@ -117,7 +117,7 @@ class SaleInvoicePlan(models.Model):
             if rec.sale_id.amount_untaxed != 0:
                 if rec.last:
                     installments = rec.sale_id.invoice_plan_ids.filtered(
-                        lambda l: l.invoice_type == "installment"
+                        lambda line: line.invoice_type == "installment"
                     )
                     prev_percent = sum((installments - rec).mapped("percent"))
                     rec.percent = 100 - prev_percent
@@ -149,7 +149,7 @@ class SaleInvoicePlan(models.Model):
         )
         if deposit_product_id:
             lines = invoices.mapped("invoice_line_ids").filtered(
-                lambda l: l.product_id.id != int(deposit_product_id)
+                lambda line: line.product_id.id != int(deposit_product_id)
             )
             amount_invoiced = sum(lines.mapped("price_subtotal"))
         return amount_invoiced
@@ -158,7 +158,7 @@ class SaleInvoicePlan(models.Model):
     def _compute_invoiced(self):
         for rec in self:
             invoiced = rec.invoice_move_ids.filtered(
-                lambda l: l.state in ("draft", "posted")
+                lambda line: line.state in ("draft", "posted")
             )
             rec.invoiced = True if invoiced else False
             rec.amount_invoiced = (
@@ -213,7 +213,8 @@ class SaleInvoicePlan(models.Model):
         plan_qty = order_line.product_uom_qty * (percent / 100)
         return plan_qty
 
-    def unlink(self):
+    @api.ondelete(at_uninstall=False)
+    def _unlink_installments_plans(self):
         lines = self.filtered("no_edit")
         if lines:
             installments = [str(x) for x in lines.mapped("installment")]
@@ -224,4 +225,3 @@ class SaleInvoicePlan(models.Model):
                 )
                 % ", ".join(installments)
             )
-        return super().unlink()
