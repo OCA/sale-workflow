@@ -67,18 +67,21 @@ To use this module, you need to:
 
 Additional features:
 
-- You can filter the SOs requesting your review through the filter
-  *Needs my Review*.
-- User with rights to confirm the SO (validate all tiers that would be
-  generated) can directly do the operation, this is, there is no need
-  for her/him to request a validation.
+-  You can filter the SOs requesting your review through the filter
+   *Needs my Review*.
+-  User with rights to confirm the SO (validate all tiers that would be
+   generated) can directly do the operation, this is, there is no need
+   for her/him to request a validation.
 
 Known issues / Roadmap
 ======================
 
-- The sales order, when moved to the state sent, will still send the
-  email even if the validation is not approved by the corresponding
-  tier. Code to consider this particular case is not developed.
+-  The sales order, when moved to the state sent, will still send the
+   email even if the validation is not approved by the corresponding
+   tier. Code to consider this particular case is not developed.
+-  If any module modifies the invisible/readonly/required attribute of
+   the confirm sales order button, it will invalidate the expected
+   behavior.
 
 Bug Tracker
 ===========
@@ -101,15 +104,15 @@ Authors
 Contributors
 ------------
 
-- Mayank Gosai <mgosai@opensourceintegrators.com>
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  Mayank Gosai <mgosai@opensourceintegrators.com>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Sergio Teruel
+   -  Sergio Teruel
 
-- Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
-- `Quartile <https://www.quartile.co>`__:
+-  Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
+-  `Quartile <https://www.quartile.co>`__:
 
-  - Aung Ko Ko Lin
+   -  Aung Ko Ko Lin
 
 Maintainers
 -----------
