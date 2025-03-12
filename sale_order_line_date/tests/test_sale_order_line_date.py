@@ -166,3 +166,14 @@ class TestSaleOrderLineDates(TransactionCase):
         self._assert_equal_dates(
             self.sale_line1.commitment_date, self.sale_line1.move_ids.date_deadline
         )
+
+    def test_04_line_commitment_date_removal(self):
+        self.sale1.commitment_date = False
+        self.sale1.action_confirm()
+        self._assert_equal_dates(
+            self.sale_line1.commitment_date, self.sale_line1.move_ids.date_deadline
+        )
+        self.sale_line1.commitment_date = False
+        self._assert_equal_dates(
+            self.sale_line1._expected_date(), self.sale_line1.move_ids.date_deadline
+        )
