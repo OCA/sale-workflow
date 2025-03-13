@@ -11,7 +11,7 @@
                     name="force_lines_to_invoice_policy_order"
                     string="Force Invoice Policy"
                     type="object"
-                    invisible="state not in ['sale'] and invoice_count > 0"
+                    invisible="state not in ['sale'] or invoice_count > 0"
                     groups="sales_team.group_sale_manager"
                 />
             </button>
