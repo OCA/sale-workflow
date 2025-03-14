@@ -38,11 +38,7 @@ class SaleOrderLine(models.Model):
                 and rec.qty_delivered_method == "stock_move"
             )
 
-    @api.depends(
-        "product_uom_qty",
-        "qty_delivered",
-        "product_qty_canceled",
-    )
+    @api.depends("qty_to_deliver", "product_qty_canceled")
     def _compute_product_qty_remains_to_deliver(self):
         for line in self:
             qty_remaining = line.qty_to_deliver - line.product_qty_canceled
