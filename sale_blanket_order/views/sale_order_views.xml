@@ -28,10 +28,13 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']//list" position="attributes">
-                <t groups="sale_blanket_order.blanket_orders_disable_adding_lines">
-                    <attribute name="create">blanket_order_id==False</attribute>
-                </t>
+            <xpath expr="//field[@name='order_line']" position="before">
+                <field name="disable_adding_lines" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']" position="attributes">
+                <attribute
+                    name="options"
+                >{'create': [('disable_adding_lines', '=', False)]}</attribute>
             </xpath>
         </field>
     </record>
