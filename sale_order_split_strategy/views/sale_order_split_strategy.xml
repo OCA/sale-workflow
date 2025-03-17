@@ -20,7 +20,7 @@
                             <field name="copy_sections" />
                             <field
                                 name="remove_empty_sections_after_split"
-                                attrs="{'invisible': [('copy_sections', '=', False)]}"
+                                invisible="copy_sections == False"
                             />
                             <field name="copy_notes" />
                         </group>
@@ -34,17 +34,17 @@
         <field name="name">sale.order.split.strategy.view.tree</field>
         <field name="model">sale.order.split.strategy</field>
         <field name="arch" type="xml">
-            <tree string="Split Strategies">
+            <list string="Split Strategies">
                 <field name="sequence" widget="handle" />
                 <field name="name" />
-            </tree>
+            </list>
         </field>
     </record>
 
     <record id="sale_order_split_strategy_action" model="ir.actions.act_window">
         <field name="name">Split Strategies</field>
         <field name="res_model">sale.order.split.strategy</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem
         name="Split Strategies"

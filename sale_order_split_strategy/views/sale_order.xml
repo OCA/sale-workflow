@@ -8,7 +8,7 @@
             <button name="action_draft" position="after">
                 <button
                     name="action_split"
-                    attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('split_strategy_id', '=', False)]}"
+                    invisible="state != 'draft' or split_strategy_id == False"
                     type="object"
                     string="Split"
                 />
