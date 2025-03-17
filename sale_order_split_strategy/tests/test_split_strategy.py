@@ -1,9 +1,11 @@
 # Copyright 2024 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
-from odoo.tests import Form, SavepointCase
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSplitStrategy(SavepointCase):
+class TestSplitStrategy(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
