@@ -114,12 +114,14 @@ class TestSplitStrategy(SavepointCase):
         self.product_type_not_service_strategy.copy_sections = True
         order.split_strategy_id = self.product_type_not_service_strategy
         new_order = order.action_split()
-        # As new order includes only consu product, it must include first + middle sections
+        # As new order includes only consu product, it must include
+        # first + middle sections
         self.assertEqual(len(new_order.order_line), 4)
         self.assertIn("First line", new_order.order_line.mapped("name"))
         self.assertIn("Middle lines", new_order.order_line.mapped("name"))
         self.assertNotIn("Last line", new_order.order_line.mapped("name"))
-        # As new order includes only service product, it must include middle + last sections
+        # As new order includes only service product, it must include
+        # middle + last sections
         self.assertEqual(len(order.order_line), 4)
         self.assertNotIn("First line", order.order_line.mapped("name"))
         self.assertIn("Middle lines", order.order_line.mapped("name"))
