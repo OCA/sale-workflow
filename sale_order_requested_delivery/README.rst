@@ -62,6 +62,9 @@ Contributors
 ------------
 
 - Thien Vo Hong <thienvh@trobz.com>
+- Simone Orsi simone.orsi@camptocamp.com
+- Henry Backman henry.backman@camptocamp.com
+- Tomasz Walter tomasz.walter@camptocamp.com
 
 Maintainers
 -----------
