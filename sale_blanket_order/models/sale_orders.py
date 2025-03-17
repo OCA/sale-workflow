@@ -15,6 +15,9 @@ class SaleOrder(models.Model):
         string="Origin blanket order",
         related="order_line.blanket_order_line.order_id",
     )
+    disable_adding_lines = fields.Boolean(
+        compute="_compute_disable_adding_lines",
+    )
 
     @api.model
     def _check_exchausted_blanket_order_line(self):
@@ -46,6 +49,16 @@ class SaleOrder(models.Model):
                             "blanket order lines customer"
                         )
                     )
+
+    @api.depends("blanket_order_id")
+    @api.depends_context("uid")
+    def _compute_disable_adding_lines(self):
+        self.disable_adding_lines = False
+        if self.env.user.has_group(
+            "sale_blanket_order.blanket_orders_disable_adding_lines"
+        ):
+            for order in self:
+                order.disable_adding_lines = order.blanket_order_id
 
 
 class SaleOrderLine(models.Model):
