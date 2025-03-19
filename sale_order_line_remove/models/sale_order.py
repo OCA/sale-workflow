@@ -9,7 +9,7 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     def _check_line_unlink(self):
-        non_removable_lines = super(SaleOrderLine, self)._check_line_unlink()
+        non_removable_lines = super()._check_line_unlink()
         removable_lines = self.filtered(
             lambda line: line.state in ("sale", "done")
             and not line.invoice_lines
@@ -43,4 +43,4 @@ class SaleOrderLine(models.Model):
             for picking in related_pickings:
                 if not picking.move_ids_without_package:
                     picking.unlink()
-        return super(SaleOrderLine, self).unlink()
+        return super().unlink()
