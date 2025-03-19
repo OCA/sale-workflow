@@ -1,1 +1,3 @@
 odoo-test-helper
+
+odoo-addon-product-attribute-custom-value-variant @ git+https://github.com/OCA/product-attribute@refs/pull/1934/head#subdirectory=product_attribute_custom_value_variant
