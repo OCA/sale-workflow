@@ -17,7 +17,7 @@
         <field name="model">sale.order</field>
         <field name="arch" type="xml">
             <field name="invoice_status" position="after">
-                <field name="production_state" optional="hide"/>
+                <field name="production_state" optional="hide" />
             </field>
         </field>
     </record>

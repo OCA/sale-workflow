@@ -5,7 +5,7 @@
 {
     "name": "Sale production State",
     "summary": "Show the production state on the sale order",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "category": "Product",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Akretion, Odoo Community Association (OCA)",
