@@ -10,5 +10,8 @@ class ResConfigSettings(models.TransientModel):
     carrier_auto_assign = fields.Boolean(
         related="company_id.carrier_auto_assign",
         readonly=False,
-        help="Enable carrier auto assign on sale order confirmation.",
+    )
+    carrier_on_create = fields.Boolean(
+        related="company_id.carrier_on_create",
+        readonly=False,
     )
