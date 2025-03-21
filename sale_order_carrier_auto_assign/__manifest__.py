@@ -4,7 +4,7 @@
     "name": "Sale Order Carrier Auto Assign",
     "summary": "Auto assign delivery carrier on sale order confirmation",
     "version": "17.0.1.0.0",
-    "development_status": "Alpha",
+    "development_status": "Beta",
     "category": "Operations/Inventory/Delivery",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Camptocamp, Odoo Community Association (OCA)",
