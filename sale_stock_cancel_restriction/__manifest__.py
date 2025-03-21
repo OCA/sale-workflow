@@ -10,5 +10,6 @@
     "license": "AGPL-3",
     "development_status": "Production/Stable",
     "depends": ["sale_stock"],
+    "data": ["views/stock_warehouse.xml"],
     "installable": True,
 }
