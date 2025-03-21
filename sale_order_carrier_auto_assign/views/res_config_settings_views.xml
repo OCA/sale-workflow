@@ -13,6 +13,13 @@
                 >
                     <field name="carrier_auto_assign" />
                 </setting>
+                <setting
+                    id="carrier_on_create"
+                    help="Set default shipping method automatically."
+                    company_dependent="1"
+                >
+                    <field name="carrier_on_create" />
+                </setting>
             </block>
         </field>
     </record>
