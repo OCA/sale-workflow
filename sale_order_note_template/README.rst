@@ -17,41 +17,37 @@ Sale Orders Terms and conditions Templates
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_order_note_template
+    :target: https://github.com/OCA/sale-workflow/tree/18.0/sale_order_note_template
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_order_note_template
+    :target: https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-sale_order_note_template
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module add sale terms and conditions templates and change existing terms
-and conditions (`sale_order.note`) field type from `Text` to `Html`.
+This module add sale terms and conditions templates and change existing
+terms and conditions (sale_order.note) field type from Text to Html.
 
-Users will be able to select *terms and conditions template* to fulfill *terms and
-conditions* likes in mail composer users can configure their template using
-`jinja2`.
+Users will be able to select *terms and conditions template* to fulfill
+*terms and conditions* likes in mail composer users can configure their
+template using jinja2.
 
+How this module differ from `sale_comment_template <https://github.com/OCA/sale-reporting/tree/14.0/sale_comment_template>`__?
+------------------------------------------------------------------------------------------------------------------------------
 
-How this module differ from `sale_comment_template`_?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-* `base_comment_template`_ is for managing comments not terms, it would probably
-  see as mess for users to mixed terms and comments.
-
-* `sale_comment_template`_ depends on `account_comment_template`_ comments are
-  forwards to generated invoices, here we don't really display sales terms on
-  final invoices
-
-* `base_comment_template`_ at the time writing do not support template engine
-
-
-.. _base_comment_template: https://github.com/OCA/reporting-engine/tree/14.0/base_comment_template
-.. _sale_comment_template: https://github.com/OCA/sale-reporting/tree/14.0/sale_comment_template
-.. _account_comment_template: https://github.com/OCA/account-invoice-reporting/tree/14.0/account_comment_template
+- `base_comment_template <https://github.com/OCA/reporting-engine/tree/14.0/base_comment_template>`__
+  is for managing comments not terms, it would probably see as mess for
+  users to mixed terms and comments.
+- `sale_comment_template <https://github.com/OCA/sale-reporting/tree/14.0/sale_comment_template>`__
+  depends on
+  `account_comment_template <https://github.com/OCA/account-invoice-reporting/tree/14.0/account_comment_template>`__
+  comments are forwards to generated invoices, here we don't really
+  display sales terms on final invoices
+- `base_comment_template <https://github.com/OCA/reporting-engine/tree/14.0/base_comment_template>`__
+  at the time writing do not support template engine
 
 **Table of contents**
 
@@ -61,8 +57,9 @@ How this module differ from `sale_comment_template`_?
 Known issues / Roadmap
 ======================
 
-* add a post_init_hook and / or a uninstall_hook to handle correctly the conversion (Text <--> Html).
-* support qweb report templating engine
+- add a post_init_hook and / or a uninstall_hook to handle correctly the
+  conversion (Text <--> Html).
+- support qweb report templating engine
 
 Bug Tracker
 ===========
@@ -70,7 +67,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_note_template%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_note_template%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -78,12 +75,12 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Pierre Verkest
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -95,6 +92,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_order_note_template>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/18.0/sale_order_note_template>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
