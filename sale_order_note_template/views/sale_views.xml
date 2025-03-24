@@ -15,6 +15,15 @@
                     nolabel="1"
                     colspan="4"
                 />
+                <group name="terms_group" string="Terms and Conditions">
+                    <field
+                        name="terms_template_id"
+                        placeholder="Terms and conditions template"
+                        nolabel="1"
+                        colspan="4"
+                        readonly="state != 'draft'"
+                    />
+                </group>
             </xpath>
         </field>
     </record>

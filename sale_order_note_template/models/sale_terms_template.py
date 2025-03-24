@@ -40,6 +40,5 @@ class SaleTermsTemplate(models.Model):
             res_ids=[sale_order.id],
             engine="inline_template",
             add_context=add_context,
-            post_process=post_process,
         )
         return comment_texts[sale_order.id] or ""
