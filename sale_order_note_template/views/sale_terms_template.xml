@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <record model="ir.ui.view" id="view_sale_terms_template_search">
         <field name="name">sale.terms_template.search</field>
         <field name="model">sale.terms_template</field>

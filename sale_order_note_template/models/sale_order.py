@@ -5,7 +5,6 @@ from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
-
     _inherit = "sale.order"
 
     terms_template_id = fields.Many2one(
