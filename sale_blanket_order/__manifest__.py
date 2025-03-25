@@ -22,5 +22,10 @@
         "report/templates.xml",
         "report/report.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "sale_blanket_order/static/src/js/disable_add_order_line.esm.js",
+        ],
+    },
     "installable": True,
 }

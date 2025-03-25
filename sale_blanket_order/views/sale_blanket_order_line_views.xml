@@ -8,13 +8,11 @@
         <field name="arch" type="xml">
             <list create="false">
                 <field name="sequence" widget="handle" />
-                <field name="name" invisible="1" />
                 <field name="order_id" />
                 <field
                     name="product_id"
                     context="{'partner_id':parent.partner_id, 'quantity':original_uom_qty, 'company_id': company_id}"
                 />
-                <field name="product_uom" invisible="1" />
                 <field name="price_unit" />
                 <field name="date_schedule" />
                 <field
@@ -26,7 +24,6 @@
                 <field name="invoiced_uom_qty" />
                 <field name="delivered_uom_qty" />
                 <field name="remaining_uom_qty" />
-                <field name="company_id" invisible="1" />
             </list>
         </field>
     </record>
@@ -36,7 +33,7 @@
         <field name="model">sale.blanket.order.line</field>
         <field name="priority" eval="20" />
         <field name="arch" type="xml">
-            <form string="Sale Blanket Order Line" duplicate="false">
+            <form string="Sale Blanket Order Line" duplicate="false" create="false">
                 <sheet>
                     <h1>
                         <field name="order_id" />

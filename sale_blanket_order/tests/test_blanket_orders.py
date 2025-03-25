@@ -15,6 +15,11 @@ class TestSaleBlanketOrders(common.TransactionCase):
         cls.blanket_order_line_obj = cls.env["sale.blanket.order.line"]
         cls.blanket_order_wiz_obj = cls.env["sale.blanket.order.wizard"]
         cls.so_obj = cls.env["sale.order"]
+        cls.product_pricelist_item_obj = cls.env["product.pricelist.item"]
+
+        settings = cls.env["res.config.settings"].with_user(cls.env.user).create({})
+        settings.group_discount_per_so_line = True
+        settings.set_values()
 
         cls.payment_term = cls.env.ref("account.account_payment_term_immediate")
         cls.sale_pricelist = cls.env["product.pricelist"].create(
@@ -143,10 +148,22 @@ class TestSaleBlanketOrders(common.TransactionCase):
             }
         )
         blanket_order.sudo().onchange_partner_id()
-        blanket_order.pricelist_id.discount_policy = "without_discount"
+
+        pricelist_item = self.product_pricelist_item_obj.search(
+            [("pricelist_id", "=", blanket_order.pricelist_id.id)], limit=1
+        )
+        if not pricelist_item:
+            pricelist_item = self.product_pricelist_item_obj.create(
+                {
+                    "pricelist_id": blanket_order.pricelist_id.id,
+                    "fixed_price": 10.0,
+                }
+            )
+
         blanket_order.line_ids[0].sudo().onchange_product()
         self.assertEqual(blanket_order.line_ids[0].taxes_id, self.tax1)
-        blanket_order.pricelist_id.discount_policy = "with_discount"
+
+        pricelist_item.write({"compute_price": "percentage"})
         blanket_order.line_ids[0].sudo().onchange_product()
         blanket_order.line_ids[0].sudo()._get_display_price()
 

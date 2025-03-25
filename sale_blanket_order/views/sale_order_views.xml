@@ -8,16 +8,6 @@
             <field name="currency_id" position="after">
                 <field name="blanket_order_id" invisible="1" />
             </field>
-            <xpath
-                expr="//field[@name='order_line']//list/field[@name='product_id']"
-                position="after"
-            >
-                <field
-                    name="blanket_order_line"
-                    context="{'from_sale_order': True}"
-                    column_invisible="not parent.blanket_order_id"
-                />
-            </xpath>
             <xpath expr="//field[@name='order_line']" position="attributes">
                 <attribute name="context">{'from_sale_order': True}</attribute>
             </xpath>
@@ -30,11 +20,6 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='order_line']" position="before">
                 <field name="disable_adding_lines" invisible="1" />
-            </xpath>
-            <xpath expr="//field[@name='order_line']" position="attributes">
-                <attribute
-                    name="options"
-                >{'create': [('disable_adding_lines', '=', False)]}</attribute>
             </xpath>
         </field>
     </record>

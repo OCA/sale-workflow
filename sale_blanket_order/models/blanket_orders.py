@@ -1,7 +1,7 @@
 # Copyright 2018 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import float_is_zero
 from odoo.tools.misc import format_date
@@ -239,7 +239,7 @@ class BlanketOrder(models.Model):
         for order in self:
             if order.state not in ("draft", "expired") or order._check_active_orders():
                 raise UserError(
-                    _(
+                    self.env._(
                         "You can not delete an open blanket or "
                         "with active sale orders! "
                         "Try to cancel it before."
@@ -251,12 +251,12 @@ class BlanketOrder(models.Model):
         try:
             today = fields.Date.today()
             for order in self:
-                assert order.validity_date, _("Validity date is mandatory")
-                assert order.validity_date > today, _(
+                assert order.validity_date, self.env._("Validity date is mandatory")
+                assert order.validity_date > today, self.env._(
                     "Validity date must be in the future"
                 )
-                assert order.partner_id, _("Partner is mandatory")
-                assert len(order.line_ids) > 0, _("Must have some lines")
+                assert order.partner_id, self.env._("Partner is mandatory")
+                assert len(order.line_ids) > 0, self.env._("Must have some lines")
                 order.line_ids._validate()
         except AssertionError as e:
             raise UserError(e) from e
@@ -287,7 +287,7 @@ class BlanketOrder(models.Model):
         for order in self:
             if order._check_active_orders():
                 raise UserError(
-                    _(
+                    self.env._(
                         "You can not delete a blanket order with opened "
                         "sale orders! "
                         "Try to cancel them before."
@@ -481,9 +481,11 @@ class BlanketOrderLine(models.Model):
                 name = f"[{record.order_id.name}]"
                 if record.date_schedule:
                     formatted_date = format_date(record.env, record.date_schedule)
-                    name += " - {}: {}".format(_("Date Scheduled"), formatted_date)
+                    name += " - {}: {}".format(
+                        self.env._("Date Scheduled"), formatted_date
+                    )
                 name += " ({}: {} {})".format(
-                    _("remaining"),
+                    self.env._("remaining"),
                     record.remaining_uom_qty,
                     record.product_uom.name,
                 )
@@ -506,12 +508,11 @@ class BlanketOrderLine(models.Model):
         product_currency = None
         if rule_id:
             pricelist_item = PricelistItem.browse(rule_id)
-            if pricelist_item.pricelist_id.discount_policy == "without_discount":
+            if pricelist_item._show_discount():
                 while (
                     pricelist_item.base == "pricelist"
                     and pricelist_item.base_pricelist_id
-                    and pricelist_item.base_pricelist_id.discount_policy
-                    == "without_discount"
+                    and pricelist_item._show_discount()
                 ):
                     price, rule_id = pricelist_item.base_pricelist_id.with_context(
                         uom=uom.id
@@ -668,10 +669,10 @@ class BlanketOrderLine(models.Model):
             for line in self:
                 assert (
                     not line.display_type and line.price_unit > 0.0
-                ) or line.display_type, _("Price must be greater than zero")
+                ) or line.display_type, self.env._("Price must be greater than zero")
                 assert (
                     not line.display_type and line.original_uom_qty > 0.0
-                ) or line.display_type, _("Quantity must be greater than zero")
+                ) or line.display_type, self.env._("Quantity must be greater than zero")
         except AssertionError as e:
             raise UserError(e) from e
 
@@ -715,7 +716,7 @@ class BlanketOrderLine(models.Model):
             lambda line: line.display_type != values.get("display_type")
         ):
             raise UserError(
-                _(
+                self.env._(
                     """
                     You cannot change the type of a sale order line.
                     Instead you should delete the current line and create a new line
