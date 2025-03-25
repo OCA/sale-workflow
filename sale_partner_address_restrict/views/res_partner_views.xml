@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field
+            name="name"
+        >res.partner.form - sale_partner_address_restrict_dropshipping</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group/group[//field[@name='vat']]" position="inside">
+                <field
+                    name="is_dropship_address"
+                    invisible="type != 'delivery' or not parent_id"
+                />
+            </xpath>
+            <xpath
+                expr="//notebook/page[@name='contact_addresses']//form//field[@name='name']"
+                position="after"
+            >
+                <field name="is_dropship_address" invisible="type != 'delivery'" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

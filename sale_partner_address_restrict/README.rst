@@ -31,6 +31,11 @@ Sale Partner Address Restrict
 This module restricts the addresses to be used in the sales order form
 to only addresses of the selected customer.
 
+When managing dropship delivery addresses, a delivery address needs to
+be created for the buyer main contact. You can then mark the checkbox
+'Dropship Address' on the delivery address to prevent the buyer main
+contact name to be displayed as part of the delivery address name.
+
 **Table of contents**
 
 .. contents::
@@ -39,11 +44,15 @@ to only addresses of the selected customer.
 Configuration
 =============
 
-- Go to Sales > Configuration > Settings > Quotation & Orders > Sale
-  Partner Address Restriction
-- Check the box if you want to restrict available partners for Delivery
-  and Invoicing addresses to partners that belong to the selected
-  Customer.
+-  Go to Sales > Configuration > Settings > Quotation & Orders > Sale
+   Partner Address Restriction
+-  Check the box if you want to restrict available partners for Delivery
+   and Invoicing addresses to partners that belong to the selected
+   Customer.
+
+If you are managing dropship delivery addresses, you can mark the
+checkbox 'Dropship Address' in the addresses to prevent the parent
+contact name to be displayed.
 
 Bug Tracker
 ===========
@@ -66,8 +75,8 @@ Authors
 Contributors
 ------------
 
-- Marina Alapont <marina.alapont@forgeflow.com>
-- Denis Roussel denis.roussel@acsone.eu
+-  Marina Alapont <marina.alapont@forgeflow.com>
+-  Denis Roussel denis.roussel@acsone.eu
 
 Maintainers
 -----------
