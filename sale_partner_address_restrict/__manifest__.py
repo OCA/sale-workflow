@@ -15,5 +15,9 @@
         "base_partition",
         "sale",
     ],
-    "data": ["views/sale_order_view.xml", "views/res_config_settings.xml"],
+    "data": [
+        "views/sale_order_view.xml",
+        "views/res_config_settings.xml",
+        "views/res_partner_views.xml",
+    ],
 }

@@ -10,7 +10,7 @@ class TestSaleOrder(BaseCommon):
         super().setUpClass()
         cls.partner1 = cls.env["res.partner"].create({"name": "Test Partner 1"})
         cls.child_1 = cls.env["res.partner"].create(
-            {"name": "Child 1", "parent_id": cls.partner1.id}
+            {"name": "Child 1", "parent_id": cls.partner1.id, "type": "delivery"}
         )
         cls.child_2 = cls.env["res.partner"].create(
             {"name": "Child 2", "parent_id": cls.partner1.id}
@@ -83,3 +83,9 @@ class TestSaleOrder(BaseCommon):
                 "partner_shipping_id": self.child_2.id,
             }
         )
+
+    def test_dropship_delivery_address(self):
+        self.assertIn(self.partner1.name, self.child_1.display_name)
+        self.child_1.is_dropship_address = True
+        self.child_1._compute_display_name()
+        self.assertNotIn(self.partner1.name, self.child_1.display_name)
