@@ -37,4 +37,4 @@ class SaleOrder(models.Model):
                 raise ValidationError(
                     _("You can not confirm sale order without Sale Documentation.")
                 )
-        return super(SaleOrder, self).action_confirm()
+        return super().action_confirm()
