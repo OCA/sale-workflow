@@ -5,14 +5,14 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="client_order_ref" position="after">
-                <field name="customer_need_po" />
-                <field name="sale_doc" />
+                <field name="customer_need_po" readonly="1" />
+                <field name="sale_doc" readonly="1" />
                 <field
-                    attrs="{'invisible':['|', ('sale_doc', '=', False), ('sale_doc', '=', ''), ('sale_document_option', '=', False)]}"
+                    invisible="not sale_doc and not sale_document_option"
                     name="sale_document_option"
                 />
                 <field
-                    attrs="{'invisible':['|', ('sale_doc', '=', False), ('sale_doc', '=', ''), ('sale_document_option', '=', False)]}"
+                    invisible="not sale_doc and not sale_document_option"
                     name="sale_document_note"
                 />
             </field>
