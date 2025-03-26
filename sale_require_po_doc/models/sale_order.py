@@ -1,7 +1,7 @@
 # Copyright (C) 2021 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -11,12 +11,10 @@ class SaleOrder(models.Model):
     customer_need_po = fields.Boolean(
         related="partner_id.customer_need_po",
         string="Customer Requires PO",
-        readonly=True,
     )
     sale_doc = fields.Text(
         related="partner_id.sale_doc",
         string="Sales Require Documentation",
-        readonly=True,
     )
     sale_document_option = fields.Selection(
         [
@@ -31,10 +29,14 @@ class SaleOrder(models.Model):
         for order in self:
             if order.customer_need_po and not order.client_order_ref:
                 raise ValidationError(
-                    _("You can not confirm sale order without Customer reference.")
+                    self.env._(
+                        "You can not confirm sale order without Customer reference."
+                    )
                 )
             if order.sale_doc and not order.sale_document_option:
                 raise ValidationError(
-                    _("You can not confirm sale order without Sale Documentation.")
+                    self.env._(
+                        "You can not confirm sale order without Sale Documentation."
+                    )
                 )
         return super().action_confirm()
