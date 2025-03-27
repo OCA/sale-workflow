@@ -36,16 +36,62 @@ This selected lot number will be the one delivered to the Customer.
 .. contents::
    :local:
 
+Use Cases / Context
+===================
+
+Sometimes companies need to create quotations with precise lot/serial number
+specifications before confirming orders, such as used equipment with unique serial
+numbers or specific inventory lots.
+
+This is particularly important in several business scenarios:
+
+* In industries where product traceability is critical and customers need specific
+  serial numbers (electronics, automotive parts, medical devices)
+* When dealing with batches that vary in quality or characteristics, where
+  customers require products from specific production runs
+* In regulated industries where lot traceability is mandatory for compliance
+  purposes
+
+For example:
+
+* A machinery reseller needs to quote specific used equipment with known serial
+  numbers
+* An electronics distributor must sell particular serial-numbered items for
+  warranty tracking
+* A car parts supplier needs to specify exact serial numbers for rare components
+
+Configuration
+=============
+
+If you want to allow users to generate sales quotas directly from the stock.lots tree view:
+
+* Go to Inventory > Configuration > Settings
+* Under Operations section select the "Allow to generate sales quotations from stock lots" check box
+
 Usage
 =====
 
-- Create/edit a product and set traceability by 'By Lots' option.
-- Create a new lot number and assign product.
-- Update quantity for that product and assign lot number.
-- Go to Sales > Orders > Quotations.
-- Create a new quotation and add recently above configured product.
-- Select lot number and confirm it.
-- Delivery order will reserve the lot when available
+There are two ways to add Lots to a Sale Order:
+
+1. From Sale Order:
+
+   - Create/edit a product and set traceability by 'By Lots' option
+   - Create a new lot number and assign product
+   - Update quantity for that product and assign lot number
+   - Go to Sales > Orders > Quotations
+   - Create a new quotation and add recently above configured product
+   - Select lot number and confirm it
+   - Delivery order will reserve the lot when available
+
+2. From Lots/Serial Numbers:
+
+   - Go to "Sales > Products > Lots/Serial Numbers"
+   - Select Serial Numbers you would like to add to quotation
+   - Click action > Create quotation
+   - In the action wizard:
+
+     * To add to existing order: Select a Quotation/Sales order and click "Add"
+     * To create new order: Click "New" to create quotation with selected lots
 
 Known issues / Roadmap
 ======================
@@ -84,6 +130,10 @@ Contributors
 * Bhavesh Odedra <bodedra@opensourceintegrators.com>
 * François Honoré <francois.honore@acsone.eu>
 * Florian da Costa <florian.dacosta@akretion.com>
+* `Cetmix <https://cetmix.com>`_:
+
+  * George Smirnov
+  * Anatol Mikheev
 
 Maintainers
 ~~~~~~~~~~~
