@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-10 19:06+0000\n"
+"PO-Revision-Date: 2025-02-11 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. module: product_supplierinfo_for_customer_elaboration
 #: model:ir.model,name:product_supplierinfo_for_customer_elaboration.model_product_customerinfo
 msgid "Customer Pricelist"
-msgstr ""
+msgstr "Listino prezzi cliente"
 
 #. module: product_supplierinfo_for_customer_elaboration
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_elaboration.field_product_customerinfo__display_name
@@ -30,17 +30,17 @@ msgstr "Nome visualizzato"
 #. module: product_supplierinfo_for_customer_elaboration
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_elaboration.field_product_customerinfo__elaboration_id
 msgid "Elaboration"
-msgstr ""
+msgstr "Elaborazione"
 
 #. module: product_supplierinfo_for_customer_elaboration
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_elaboration.field_product_customerinfo__elaboration_note
 msgid "Elaboration Note"
-msgstr ""
+msgstr "Nota elaborazione"
 
 #. module: product_supplierinfo_for_customer_elaboration
 #: model_terms:ir.ui.view,arch_db:product_supplierinfo_for_customer_elaboration.product_customerinfo_form_view
 msgid "Elaborations"
-msgstr ""
+msgstr "Elaborazioni"
 
 #. module: product_supplierinfo_for_customer_elaboration
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_elaboration.field_product_customerinfo__id
@@ -52,9 +52,9 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_elaboration.field_product_customerinfo____last_update
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_elaboration.field_sale_order_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: product_supplierinfo_for_customer_elaboration
 #: model:ir.model,name:product_supplierinfo_for_customer_elaboration.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Riga ordine di vendita"

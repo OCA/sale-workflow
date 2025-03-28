@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2025-02-10 19:06+0000\n"
+"PO-Revision-Date: 2025-02-12 17:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -27,6 +27,10 @@ msgid ""
 "                    <span class=\"text-danger\" attrs=\"{'invisible': "
 "[('invoiceable', '!=', False)]}\">Not Invoiceable</span>"
 msgstr ""
+"<span class=\"text-success\" attrs=\"{'invisible': [('invoiceable', '=', "
+"False)]}\">Fatturabile</span>\n"
+"                    <span class=\"text-danger\" attrs=\"{'invisible': [("
+"'invoiceable', '!=', False)]}\">Non fatturabile</span>"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_template__display_name
@@ -51,20 +55,20 @@ msgstr "ID"
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_template__invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_project_task__invoicing_finished_task
 msgid "Invoice the order lines only when the task is set to invoiceable"
-msgstr ""
+msgstr "Fattura le righe ordine solo quando il lavoro è impostato a fatturabile"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task__invoiceable
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task_type__invoiceable
 msgid "Invoiceable"
-msgstr ""
+msgstr "Fatturabile"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_template__invoicing_finished_task
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task__invoicing_finished_task
 msgid "Invoicing control by task"
-msgstr ""
+msgstr "Controllo fatturazione da lavori"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_product_template____last_update
@@ -73,17 +77,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_sale_order_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Modello prodotto"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order_line
@@ -93,17 +97,17 @@ msgstr "Riga ordine di vendita"
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_project_task
 msgid "Task"
-msgstr ""
+msgstr "Lavoro"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_project_task_type
 msgid "Task Stage"
-msgstr ""
+msgstr "Fase lavoro"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_sale_order_line__task_ids
 msgid "Tasks"
-msgstr ""
+msgstr "Lavori"
 
 #. module: sale_order_invoicing_finished_task
 #: code:addons/sale_order_invoicing_finished_task/models/project.py:0
@@ -112,6 +116,8 @@ msgid ""
 "You cannot create/modify a task related with a invoiced, done or cancel sale "
 "order line "
 msgstr ""
+"Non si può creare/modificare un lavoro relativo ad una riga ordine "
+"fatturata, eseguita o annullata. "
 
 #, fuzzy
 #~ msgid "Sale Order"

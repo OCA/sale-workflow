@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-10 19:06+0000\n"
+"PO-Revision-Date: 2025-02-11 17:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -19,29 +19,33 @@ msgstr ""
 #. module: pricelist_cache_rest
 #: model_terms:ir.ui.view,arch_db:pricelist_cache_rest.res_config_settings_view_form_pricelist_cache_rest_inherit
 msgid "<b modifiers=\"{}\">Authorized Pricelist Cache API keys</b>"
-msgstr ""
+msgstr "<b modifiers=\"{}\">Chiavi API cache listino autorizzato</b>"
 
 #. module: pricelist_cache_rest
 #: model:ir.model.fields,help:pricelist_cache_rest.field_res_company__pricelist_cache_auhorize_apikey_ids
 #: model:ir.model.fields,help:pricelist_cache_rest.field_res_config_settings__pricelist_cache_auhorize_apikey_ids
 msgid "API keys that can retrieve pricelist data via REST endpoints."
 msgstr ""
+"Chiavi API che possono recuperare i dati listini attraverso gli endpoint "
+"REST."
 
 #. module: pricelist_cache_rest
 #: model:ir.model,name:pricelist_cache_rest.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: pricelist_cache_rest
 #: model:ir.model,name:pricelist_cache_rest.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: pricelist_cache_rest
 #: model_terms:ir.ui.view,arch_db:pricelist_cache_rest.res_config_settings_view_form_pricelist_cache_rest_inherit
 msgid ""
 "Defines the list of api keys authorized to retrieve prices from the api"
 msgstr ""
+"Definisce la lista delle chiavi API autorizzate a recuperare i prezzi dalle "
+"API"
 
 #. module: pricelist_cache_rest
 #: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_company__display_name
@@ -59,15 +63,15 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_company____last_update
 #: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_config_settings____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: pricelist_cache_rest
 #: model_terms:ir.ui.view,arch_db:pricelist_cache_rest.res_config_settings_view_form_pricelist_cache_rest_inherit
 msgid "Pricelist Cache API keys"
-msgstr ""
+msgstr "Chiavi API cache listino"
 
 #. module: pricelist_cache_rest
 #: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_company__pricelist_cache_auhorize_apikey_ids
 #: model:ir.model.fields,field_description:pricelist_cache_rest.field_res_config_settings__pricelist_cache_auhorize_apikey_ids
 msgid "Pricelist Cache Auhorize Apikey"
-msgstr ""
+msgstr "Autorizza chiavi API cache listinto"

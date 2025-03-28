@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-10 19:06+0000\n"
+"PO-Revision-Date: 2025-02-11 17:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -32,42 +32,42 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:product_form_sale_link.field_product_product____last_update
 #: model:ir.model.fields,field_description:product_form_sale_link.field_product_template____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: product_form_sale_link
 #: model:ir.model,name:product_form_sale_link.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: product_form_sale_link
 #: model:ir.model,name:product_form_sale_link.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Modello prodotto"
 
 #. module: product_form_sale_link
 #: model_terms:ir.ui.view,arch_db:product_form_sale_link.view_sales_order_line_filter
 msgid "Quotations"
-msgstr ""
+msgstr "Preventivi"
 
 #. module: product_form_sale_link
 #: model:ir.actions.act_window,name:product_form_sale_link.action_product_product_sale_list
 #: model:ir.actions.act_window,name:product_form_sale_link.action_product_template_sale_list
 msgid "Sale Order Lines"
-msgstr ""
+msgstr "Righe ordine di vendita"
 
 #. module: product_form_sale_link
 #: model_terms:ir.ui.view,arch_db:product_form_sale_link.product_product_form_view
 #: model_terms:ir.ui.view,arch_db:product_form_sale_link.product_template_form_view
 msgid "Sales"
-msgstr ""
+msgstr "Vendite"
 
 #. module: product_form_sale_link
 #: model_terms:ir.ui.view,arch_db:product_form_sale_link.view_sales_order_line_filter
 msgid "Sales Orders"
-msgstr ""
+msgstr "Ordini di vendita"
 
 #. module: product_form_sale_link
 #: model:ir.model.fields,field_description:product_form_sale_link.field_product_product__sale_lines_count
 #: model:ir.model.fields,field_description:product_form_sale_link.field_product_template__sale_lines_count
 msgid "Sold"
-msgstr ""
+msgstr "Venduta"

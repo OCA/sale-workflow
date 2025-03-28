@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-10 19:06+0000\n"
+"PO-Revision-Date: 2025-02-17 17:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -19,27 +19,27 @@ msgstr ""
 #. module: sale_order_change_analytic_account
 #: model:ir.model.fields,field_description:sale_order_change_analytic_account.field_sale_order_change_analytic__current_analytic_account_id
 msgid "Analytic Account"
-msgstr ""
+msgstr "Conto analitico"
 
 #. module: sale_order_change_analytic_account
 #: model_terms:ir.ui.view,arch_db:sale_order_change_analytic_account.sale_order_change_analytic_wizard_form
 msgid "Are you sure?"
-msgstr ""
+msgstr "Si è sicuri?"
 
 #. module: sale_order_change_analytic_account
 #: model_terms:ir.ui.view,arch_db:sale_order_change_analytic_account.sale_order_change_analytic_wizard_form
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: sale_order_change_analytic_account
 #: model:ir.model.fields,field_description:sale_order_change_analytic_account.field_sale_order_change_analytic__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: sale_order_change_analytic_account
 #: model:ir.model.fields,field_description:sale_order_change_analytic_account.field_sale_order_change_analytic__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: sale_order_change_analytic_account
 #: model:ir.model.fields,field_description:sale_order_change_analytic_account.field_sale_order__display_name
@@ -51,53 +51,53 @@ msgstr "Nome visualizzato"
 #: model:ir.model.fields,field_description:sale_order_change_analytic_account.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_order_change_analytic_account.field_sale_order_change_analytic__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_order_change_analytic_account
 #: model:ir.model.fields,field_description:sale_order_change_analytic_account.field_sale_order____last_update
 #: model:ir.model.fields,field_description:sale_order_change_analytic_account.field_sale_order_change_analytic____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_order_change_analytic_account
 #: model:ir.model.fields,field_description:sale_order_change_analytic_account.field_sale_order_change_analytic__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: sale_order_change_analytic_account
 #: model:ir.model.fields,field_description:sale_order_change_analytic_account.field_sale_order_change_analytic__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: sale_order_change_analytic_account
 #: model:ir.model.fields,field_description:sale_order_change_analytic_account.field_sale_order_change_analytic__new_analytic_account_id
 msgid "New Analytic Account"
-msgstr ""
+msgstr "Nuovo conto analitico"
 
 #. module: sale_order_change_analytic_account
 #: model:ir.model.fields,field_description:sale_order_change_analytic_account.field_sale_order_change_analytic__sale_id
 msgid "Sale order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_order_change_analytic_account
 #: model:ir.model,name:sale_order_change_analytic_account.model_sale_order_change_analytic
 msgid "Sale order change analytic account"
-msgstr ""
+msgstr "L'ordine di vendita modifica il conto analitico"
 
 #. module: sale_order_change_analytic_account
 #: model:ir.model,name:sale_order_change_analytic_account.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_order_change_analytic_account
 #: model:ir.model.fields,help:sale_order_change_analytic_account.field_sale_order_change_analytic__current_analytic_account_id
 msgid "The analytic account related to a sales order."
-msgstr ""
+msgstr "Il conto analitico collegato a un ordine di vendita."
 
 #. module: sale_order_change_analytic_account
 #: model_terms:ir.ui.view,arch_db:sale_order_change_analytic_account.sale_order_change_analytic_wizard_form
 msgid "Update"
-msgstr ""
+msgstr "Aggiorna"
 
 #. module: sale_order_change_analytic_account
 #: code:addons/sale_order_change_analytic_account/models/sale_order.py:0
@@ -105,9 +105,9 @@ msgstr ""
 #: model:ir.actions.server,name:sale_order_change_analytic_account.sale_order_change_analytic_wizard_action_server
 #, python-format
 msgid "Update Analytic Account"
-msgstr ""
+msgstr "Aggiorna conto analitico"
 
 #. module: sale_order_change_analytic_account
 #: model_terms:ir.ui.view,arch_db:sale_order_change_analytic_account.sale_order_change_analytic_wizard_form
 msgid "or"
-msgstr ""
+msgstr "o"

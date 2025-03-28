@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-10 19:06+0000\n"
+"PO-Revision-Date: 2025-02-11 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -23,11 +23,14 @@ msgid ""
 "         according to their invoicing policy (based on ordered or delivered "
 "quantity)."
 msgstr ""
+"Una fattura standard è creata con tutte le righe d'ordine pronte per "
+"fatturazione,          in accordo con la sua politica di fatturazione (in "
+"base alle quantità ordinate o consegnate)."
 
 #. module: sale_invoice_auto_deliver
 #: model:ir.model.fields,field_description:sale_invoice_auto_deliver.field_sale_advance_payment_inv__advance_payment_method
 msgid "Create Invoice"
-msgstr ""
+msgstr "Crea fattura"
 
 #. module: sale_invoice_auto_deliver
 #: model:ir.model.fields,field_description:sale_invoice_auto_deliver.field_sale_advance_payment_inv__display_name
@@ -44,17 +47,17 @@ msgstr "ID"
 #: model:ir.model.fields.selection,name:sale_invoice_auto_deliver.selection__sale_advance_payment_inv__advance_payment_method__all_auto
 #, python-format
 msgid "Invoice the whole sales order + Automatic Deliver"
-msgstr ""
+msgstr "Fattura l'intero ordine di vendita + consegna automatica"
 
 #. module: sale_invoice_auto_deliver
 #: model:ir.model.fields,field_description:sale_invoice_auto_deliver.field_sale_advance_payment_inv____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_invoice_auto_deliver
 #: model:ir.model,name:sale_invoice_auto_deliver.model_sale_advance_payment_inv
 msgid "Sales Advance Payment Invoice"
-msgstr ""
+msgstr "Fattura di vendita con pagamento anticipato"
 
 #. module: sale_invoice_auto_deliver
 #: code:addons/sale_invoice_auto_deliver/wizards/sale_make_invoice_advance.py:0
@@ -62,3 +65,5 @@ msgstr ""
 msgid ""
 "You cannot automatic deliver this order, some products are not available"
 msgstr ""
+"Non si può consegnare automaticamente questo ordine, alcuni prodotti non "
+"sono disponibili"

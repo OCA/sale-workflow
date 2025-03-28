@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-10 19:06+0000\n"
+"PO-Revision-Date: 2025-02-17 17:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: model:ir.cron,cron_name:sale_product_set_sale_by_packaging.cron_check_packaging
 #: model:ir.cron,name:sale_product_set_sale_by_packaging.cron_check_packaging
 msgid "Check sale by packaging on wishlist lines"
-msgstr ""
+msgstr "Controlla vendita per imballaggio nelle righe desiderate"
 
 #. module: sale_product_set_sale_by_packaging
 #: model:ir.model.fields,field_description:sale_product_set_sale_by_packaging.field_product_product__display_name
@@ -44,41 +44,43 @@ msgid ""
 "If this flag is ON, it means you have to check all product.set associated "
 "with it"
 msgstr ""
+"Se questa opzione è ON, significa che bisogna controllare tutti i "
+"product.set associati"
 
 #. module: sale_product_set_sale_by_packaging
 #: model:ir.model.fields,field_description:sale_product_set_sale_by_packaging.field_product_product____last_update
 #: model:ir.model.fields,field_description:sale_product_set_sale_by_packaging.field_product_set_line____last_update
 #: model:ir.model.fields,field_description:sale_product_set_sale_by_packaging.field_product_template____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_product_set_sale_by_packaging
 #: model:ir.model.fields,field_description:sale_product_set_sale_by_packaging.field_product_set_line__sell_only_by_packaging
 msgid "Only sell by packaging"
-msgstr ""
+msgstr "Vendi solo per imballaggio"
 
 #. module: sale_product_set_sale_by_packaging
 #: model:ir.model,name:sale_product_set_sale_by_packaging.model_product_product
 #: model_terms:ir.ui.view,arch_db:sale_product_set_sale_by_packaging.view_product_set_line_search
 msgid "Product"
-msgstr ""
+msgstr "Prodotto"
 
 #. module: sale_product_set_sale_by_packaging
 #: model:ir.model,name:sale_product_set_sale_by_packaging.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Modello prodotto"
 
 #. module: sale_product_set_sale_by_packaging
 #: model_terms:ir.ui.view,arch_db:sale_product_set_sale_by_packaging.view_product_set_line_search
 msgid "Product set"
-msgstr ""
+msgstr "Set prodotto"
 
 #. module: sale_product_set_sale_by_packaging
 #: model:ir.actions.act_window,name:sale_product_set_sale_by_packaging.act_open_product_set_line_view
 #: model:ir.model,name:sale_product_set_sale_by_packaging.model_product_set_line
 #: model_terms:ir.ui.view,arch_db:sale_product_set_sale_by_packaging.view_product_set_line_search
 msgid "Product set line"
-msgstr ""
+msgstr "Riga set prodotto"
 
 #. module: sale_product_set_sale_by_packaging
 #: model:ir.model.fields,help:sale_product_set_sale_by_packaging.field_product_set_line__sell_only_by_packaging
@@ -86,12 +88,14 @@ msgid ""
 "Restrict the usage of this product on sale order lines without packaging "
 "defined"
 msgstr ""
+"Non permettere l'uso di questo prodotto nelle righe ordine di vendita senza "
+"imballaggio definito"
 
 #. module: sale_product_set_sale_by_packaging
 #: model:ir.model.fields,field_description:sale_product_set_sale_by_packaging.field_product_product__sell_only_by_packaging_prod_set_tocheck
 #: model:ir.model.fields,field_description:sale_product_set_sale_by_packaging.field_product_template__sell_only_by_packaging_prod_set_tocheck
 msgid "Sell Only By Packaging Prod Set Tocheck"
-msgstr ""
+msgstr "Vendere solo con imballaggio prodotto impostato a controllo"
 
 #. module: sale_product_set_sale_by_packaging
 #: code:addons/sale_product_set_sale_by_packaging/models/product_set_line.py:0
@@ -100,6 +104,8 @@ msgid ""
 "The following product(s) can be sold only by packaging: \n"
 "   %s"
 msgstr ""
+"I seguenti prodotti possono essere venduti solo in confezione:\n"
+"   %s"
 
 #. module: sale_product_set_sale_by_packaging
 #: model_terms:ir.ui.view,arch_db:sale_product_set_sale_by_packaging.product_template_form_view
@@ -110,8 +116,14 @@ msgid ""
 "                    If you don't take any action,\n"
 "                    a cron will assign such lines to the first available packaging."
 msgstr ""
+"Ci sono righe di set di prodotti associate a questo prodotto\n"
+"                    che non hanno un imballaggio associato.\n"
+"                    Sarebbe meglio controllarle tutte.\n"
+"                    Se non si intraprende alcuna azione,\n"
+"                    un cron assegnerà tali linee al primo imballaggio "
+"disponibile."
 
 #. module: sale_product_set_sale_by_packaging
 #: model_terms:ir.ui.view,arch_db:sale_product_set_sale_by_packaging.product_template_form_view
 msgid "View all lines"
-msgstr ""
+msgstr "Vedi tutte le righe"

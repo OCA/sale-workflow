@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-10 19:06+0000\n"
+"PO-Revision-Date: 2025-02-12 17:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -19,13 +19,13 @@ msgstr ""
 #. module: sale_procurement_amendment
 #: model:ir.model.fields,field_description:sale_procurement_amendment.field_sale_order_line__can_amend_and_reprocure
 msgid "Can Amend And Reprocure"
-msgstr ""
+msgstr "Può modificare e riordinare"
 
 #. module: sale_procurement_amendment
 #: model:ir.model.fields,field_description:sale_procurement_amendment.field_stock_move__can_be_amended
 #: model:ir.model.fields,field_description:sale_procurement_amendment.field_stock_picking__can_be_amended
 msgid "Can Be Amended"
-msgstr ""
+msgstr "Può essere modificato"
 
 #. module: sale_procurement_amendment
 #: model:ir.model.fields,field_description:sale_procurement_amendment.field_sale_order_line__display_name
@@ -46,22 +46,22 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:sale_procurement_amendment.field_stock_move____last_update
 #: model:ir.model.fields,field_description:sale_procurement_amendment.field_stock_picking____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_procurement_amendment
 #: model:ir.model.fields,field_description:sale_procurement_amendment.field_sale_order_line__pickings_in_progress
 msgid "Pickings In Progress"
-msgstr ""
+msgstr "Prelievi in corso"
 
 #. module: sale_procurement_amendment
 #: model:ir.model,name:sale_procurement_amendment.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Riga ordine di vendita"
 
 #. module: sale_procurement_amendment
 #: model:ir.model,name:sale_procurement_amendment.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Movimento di magazzino"
 
 #. module: sale_procurement_amendment
 #: model:ir.model.fields,help:sale_procurement_amendment.field_sale_order_line__to_be_procured
@@ -69,13 +69,16 @@ msgid ""
 "Technical field that check if the whole order line quantitieshave the "
 "corresponding stock moves quantities in order to fullfilldemand."
 msgstr ""
+"Campo tecnico che verifica se le quantità dell'intera riga dell'ordine "
+"corrispondono alle quantità di movimento di magazzino per soddisfare la "
+"domanda."
 
 #. module: sale_procurement_amendment
 #: model:ir.model.fields,field_description:sale_procurement_amendment.field_sale_order_line__to_be_procured
 msgid "To Be Procured"
-msgstr ""
+msgstr "Da approvvigionare"
 
 #. module: sale_procurement_amendment
 #: model:ir.model,name:sale_procurement_amendment.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Trasferimento"

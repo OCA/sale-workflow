@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-10 19:06+0000\n"
+"PO-Revision-Date: 2025-02-11 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -67,7 +67,7 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_picking____last_update
 #: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_quant_package____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model,name:sale_stock_line_customer_ref.model_stock_quant_package
@@ -87,7 +87,7 @@ msgstr ""
 #. module: sale_stock_line_customer_ref
 #: model:ir.model,name:sale_stock_line_customer_ref.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Riga ordine di vendita"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model,name:sale_stock_line_customer_ref.model_stock_move

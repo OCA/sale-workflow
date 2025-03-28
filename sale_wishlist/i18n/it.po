@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-10 19:06+0000\n"
+"PO-Revision-Date: 2025-02-12 17:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -20,22 +20,22 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_wishlist.field_res_partner__wishlists_count
 #: model:ir.model.fields,field_description:sale_wishlist.field_res_users__wishlists_count
 msgid "# Wishlists"
-msgstr ""
+msgstr "N° lista dei desideri"
 
 #. module: sale_wishlist
 #: model_terms:ir.ui.view,arch_db:sale_wishlist.res_partner_view_form
 msgid "<span class=\"o_stat_text\">Wishlists</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Lista dei desideri</span>"
 
 #. module: sale_wishlist
 #: model:ir.model,name:sale_wishlist.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: sale_wishlist
 #: model:ir.model.fields.selection,name:sale_wishlist.selection__product_set__typology__set
 msgid "Default"
-msgstr ""
+msgstr "Predefinito"
 
 #. module: sale_wishlist
 #: model:ir.model.fields,field_description:sale_wishlist.field_product_set__display_name
@@ -53,26 +53,26 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:sale_wishlist.field_product_set____last_update
 #: model:ir.model.fields,field_description:sale_wishlist.field_res_partner____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_wishlist
 #: model:ir.model,name:sale_wishlist.model_product_set
 msgid "Product set"
-msgstr ""
+msgstr "Set prodotto"
 
 #. module: sale_wishlist
 #: model:ir.model.fields,field_description:sale_wishlist.field_product_set__typology
 #: model_terms:ir.ui.view,arch_db:sale_wishlist.view_product_set_search
 msgid "Typology"
-msgstr ""
+msgstr "Tipologia"
 
 #. module: sale_wishlist
 #: model:ir.model.fields.selection,name:sale_wishlist.selection__product_set__typology__wishlist
 msgid "Wishlist"
-msgstr ""
+msgstr "Lista dei desideri"
 
 #. module: sale_wishlist
 #: code:addons/sale_wishlist/models/res_partner.py:0
 #, python-format
 msgid "Wishlists"
-msgstr ""
+msgstr "Liste dei desideri"

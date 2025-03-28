@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-10 19:06+0000\n"
+"PO-Revision-Date: 2025-02-17 17:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -19,47 +19,47 @@ msgstr ""
 #. module: sale_order_discount_fast_change_ui
 #: model_terms:ir.ui.view,arch_db:sale_order_discount_fast_change_ui.sale_order_discount_fast_change
 msgid "Apply"
-msgstr ""
+msgstr "Applica"
 
 #. module: sale_order_discount_fast_change_ui
 #: model_terms:ir.ui.view,arch_db:sale_order_discount_fast_change_ui.sale_order_view_form
 msgid "Apply Global Discount"
-msgstr ""
+msgstr "Applica sconto globale"
 
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.model.fields.selection,name:sale_order_discount_fast_change_ui.selection__sale_order_discount_fast_change__application_policy__all
 msgid "Apply on all lines"
-msgstr ""
+msgstr "Applica a tutte le righe"
 
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.model.fields.selection,name:sale_order_discount_fast_change_ui.selection__sale_order_discount_fast_change__application_policy__not_discounted
 msgid "Apply only on not discounted lines"
-msgstr ""
+msgstr "Applica solo alle righe senza sconto"
 
 #. module: sale_order_discount_fast_change_ui
 #: model_terms:ir.ui.view,arch_db:sale_order_discount_fast_change_ui.sale_order_discount_fast_change
 msgid "Cancel"
-msgstr ""
+msgstr "Annulla"
 
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.model.fields,field_description:sale_order_discount_fast_change_ui.field_sale_order_discount_fast_change__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creato da"
 
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.model.fields,field_description:sale_order_discount_fast_change_ui.field_sale_order_discount_fast_change__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creato il"
 
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.model.fields,field_description:sale_order_discount_fast_change_ui.field_sale_order_discount_fast_change__discount
 msgid "Discount (%)"
-msgstr ""
+msgstr "Sconto (%)"
 
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.model.fields,field_description:sale_order_discount_fast_change_ui.field_sale_order_discount_fast_change__application_policy
 msgid "Discount Application Policy"
-msgstr ""
+msgstr "Politica applicazione sconto"
 
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.model.fields,field_description:sale_order_discount_fast_change_ui.field_sale_order_discount_fast_change__display_name
@@ -72,33 +72,35 @@ msgid ""
 "Enter the global discount amount to apply to all lines according to the "
 "policy"
 msgstr ""
+"Inserisci l'importo dello sconto globale da applicare a tutte le linee in "
+"base alla politica"
 
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.actions.act_window,name:sale_order_discount_fast_change_ui.sale_order_apply_global_discount
 msgid "Global Discount Amount"
-msgstr ""
+msgstr "Valore sconto globale"
 
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.model.fields,field_description:sale_order_discount_fast_change_ui.field_sale_order_discount_fast_change__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.model.fields,field_description:sale_order_discount_fast_change_ui.field_sale_order_discount_fast_change____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.model.fields,field_description:sale_order_discount_fast_change_ui.field_sale_order_discount_fast_change__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Ultimo aggiornamento di"
 
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.model.fields,field_description:sale_order_discount_fast_change_ui.field_sale_order_discount_fast_change__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Ultimo aggiornamento il"
 
 #. module: sale_order_discount_fast_change_ui
 #: model:ir.model,name:sale_order_discount_fast_change_ui.model_sale_order_discount_fast_change
 msgid "Sales Order Discount Fast Change"
-msgstr ""
+msgstr "Modifica rapida sconto ordine di vendita"

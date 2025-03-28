@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2025-02-10 19:06+0000\n"
+"PO-Revision-Date: 2025-02-11 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -32,22 +32,22 @@ msgstr "ID"
 #. module: sale_shipping_info_helper
 #: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__item_amount_tax
 msgid "Item Amount Tax"
-msgstr ""
+msgstr "Valore imposta elemento"
 
 #. module: sale_shipping_info_helper
 #: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__item_amount_total
 msgid "Item Amount Total"
-msgstr ""
+msgstr "Totale valore elemento"
 
 #. module: sale_shipping_info_helper
 #: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__item_amount_untaxed
 msgid "Item Amount Untaxed"
-msgstr ""
+msgstr "Valore elemento non tassato"
 
 #. module: sale_shipping_info_helper
 #: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_shipping_info_helper
 #: model:ir.model,name:sale_shipping_info_helper.model_sale_order
@@ -57,14 +57,14 @@ msgstr "Ordine di vendita"
 #. module: sale_shipping_info_helper
 #: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__shipping_amount_tax
 msgid "Shipping Amount Tax"
-msgstr ""
+msgstr "Valore tassa spedizione"
 
 #. module: sale_shipping_info_helper
 #: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__shipping_amount_total
 msgid "Shipping Amount Total"
-msgstr ""
+msgstr "Totale valore spedizione"
 
 #. module: sale_shipping_info_helper
 #: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__shipping_amount_untaxed
 msgid "Shipping Amount Untaxed"
-msgstr ""
+msgstr "Valore spedizione non tassato"

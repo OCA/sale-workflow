@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-05-13 01:19+0000\n"
-"PO-Revision-Date: 2025-02-10 19:06+0000\n"
+"PO-Revision-Date: 2025-02-12 17:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -37,12 +37,12 @@ msgstr "Nome visualizzato"
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,help:sale_isolated_quotation.field_sale_order__order_id
 msgid "For Quotation, this field references to its Sales Order"
-msgstr ""
+msgstr "Per il preventivo, questo campo si riferisce al suo ordine di vendita"
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,help:sale_isolated_quotation.field_sale_order__quote_id
 msgid "For Sales Order, this field references to its Quotation"
-msgstr ""
+msgstr "Per ordine di vendita, questo campo si riferisce al suo preventivo"
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order__id
@@ -52,39 +52,38 @@ msgstr "ID"
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_isolated_quotation
 #: code:addons/sale_isolated_quotation/models/sale.py:0
 #, python-format
 msgid "Only quotation can convert to order"
-msgstr ""
+msgstr "Solo il preventivo si può convertire in ordine"
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,help:sale_isolated_quotation.field_sale_order__quotation_state
 msgid "Only relative quotation states"
-msgstr ""
+msgstr "Solo gli stati del preventivo relativo"
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order__order_id
-#, fuzzy
 msgid "Order"
-msgstr "Ordini vendita"
+msgstr "Ordine"
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order__order_sequence
 msgid "Order Sequence"
-msgstr ""
+msgstr "Sequenza ordinamento"
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order__quote_id
 msgid "Quotation"
-msgstr ""
+msgstr "Preventivo"
 
 #. module: sale_isolated_quotation
 #: model:ir.model.fields,field_description:sale_isolated_quotation.field_sale_order__quotation_state
 msgid "Quotation Status"
-msgstr ""
+msgstr "Stato preventivo"
 
 #. module: sale_isolated_quotation
 #: code:addons/sale_isolated_quotation/models/sale.py:0

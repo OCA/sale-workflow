@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-10 19:06+0000\n"
+"PO-Revision-Date: 2025-02-11 17:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -19,28 +19,28 @@ msgstr ""
 #. module: sale_commitment_date_mandatory
 #: model:ir.model.fields,field_description:sale_commitment_date_mandatory.field_res_config_settings__commitment_date_required
 msgid "Commitment date mandatory"
-msgstr ""
+msgstr "Data impegno obbligatoria"
 
 #. module: sale_commitment_date_mandatory
 #: model:ir.model,name:sale_commitment_date_mandatory.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: sale_commitment_date_mandatory
 #: model:ir.model,name:sale_commitment_date_mandatory.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: sale_commitment_date_mandatory
 #: model:ir.model.fields,field_description:sale_commitment_date_mandatory.field_sale_order__commitment_date
 msgid "Delivery Date"
-msgstr ""
+msgstr "Data consegna"
 
 #. module: sale_commitment_date_mandatory
 #: model:ir.model.fields,field_description:sale_commitment_date_mandatory.field_res_company__sale_commitment_date_required
 #: model:ir.model.fields,field_description:sale_commitment_date_mandatory.field_sale_order__commitment_date_required
 msgid "Delivery commitment date mandatory"
-msgstr ""
+msgstr "Data impegno consegna obbligatoria"
 
 #. module: sale_commitment_date_mandatory
 #: model:ir.model.fields,field_description:sale_commitment_date_mandatory.field_res_company__display_name
@@ -61,17 +61,17 @@ msgstr "ID"
 #: model:ir.model.fields,field_description:sale_commitment_date_mandatory.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:sale_commitment_date_mandatory.field_sale_order____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_commitment_date_mandatory
 #: model_terms:ir.ui.view,arch_db:sale_commitment_date_mandatory.res_config_settings_view_form
 msgid "Make the Delivery commitment date mandatory on orders"
-msgstr ""
+msgstr "Imposta la data impegno consegna obbligatoria negli ordini"
 
 #. module: sale_commitment_date_mandatory
 #: model:ir.model,name:sale_commitment_date_mandatory.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_commitment_date_mandatory
 #: model:ir.model.fields,help:sale_commitment_date_mandatory.field_sale_order__commitment_date
@@ -79,3 +79,6 @@ msgid ""
 "This is the delivery date promised to the customer. If set, the delivery "
 "order will be scheduled based on this date rather than product lead times."
 msgstr ""
+"Questa è la data di consegna promessa al cliente. Se impostata, la data di "
+"consegna dell'ordine verrà programmata in base a questa data invece che ai "
+"tempi di produzione."

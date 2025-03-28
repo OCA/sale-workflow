@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-10 19:06+0000\n"
+"PO-Revision-Date: 2025-02-17 17:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -19,39 +19,39 @@ msgstr ""
 #. module: sale_order_line_discount_validation
 #: model_terms:ir.ui.view,arch_db:sale_order_line_discount_validation.sale_order_view_form_inherit_sale_order_line_discount_validation
 msgid "Approve"
-msgstr ""
+msgstr "Approva"
 
 #. module: sale_order_line_discount_validation
 #: model:ir.model.fields.selection,name:sale_order_line_discount_validation.selection__sale_order__state__approved
 msgid "Approved"
-msgstr ""
+msgstr "Approvato"
 
 #. module: sale_order_line_discount_validation
 #: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_sale_order__approver_user_id
 msgid "Approved By"
-msgstr ""
+msgstr "Approvato da"
 
 #. module: sale_order_line_discount_validation
 #: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_sale_order__approve_date
 msgid "Approved On"
-msgstr ""
+msgstr "Approvato il"
 
 #. module: sale_order_line_discount_validation
 #: model:ir.model,name:sale_order_line_discount_validation.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: sale_order_line_discount_validation
 #: model:ir.model,name:sale_order_line_discount_validation.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: sale_order_line_discount_validation
 #: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_res_company__sale_discount_limit
 #: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_res_config_settings__sale_discount_limit
 #: model_terms:ir.ui.view,arch_db:sale_order_line_discount_validation.res_config_settings_view_form_inherit_sale_order_line_discount_validation
 msgid "Discount Limit"
-msgstr ""
+msgstr "Limite sconto"
 
 #. module: sale_order_line_discount_validation
 #: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_report_sale_report_saleorder__display_name
@@ -67,7 +67,7 @@ msgstr "Nome visualizzato"
 #: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_res_config_settings__id
 #: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_sale_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_order_line_discount_validation
 #: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_report_sale_report_saleorder____last_update
@@ -75,32 +75,32 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_res_config_settings____last_update
 #: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_sale_order____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sale_order_line_discount_validation
 #: model_terms:ir.ui.view,arch_db:sale_order_line_discount_validation.sale_order_view_form_inherit_sale_order_line_discount_validation
 msgid "Refuse"
-msgstr ""
+msgstr "Rifiuta"
 
 #. module: sale_order_line_discount_validation
 #: model:ir.model,name:sale_order_line_discount_validation.model_report_sale_report_saleorder
 msgid "Sale Order Report"
-msgstr ""
+msgstr "Resoconto ordine di vendita"
 
 #. module: sale_order_line_discount_validation
 #: model:ir.model,name:sale_order_line_discount_validation.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_order_line_discount_validation
 #: model:ir.model.fields,field_description:sale_order_line_discount_validation.field_sale_order__state
 msgid "Status"
-msgstr ""
+msgstr "Stato"
 
 #. module: sale_order_line_discount_validation
 #: model:ir.model.fields.selection,name:sale_order_line_discount_validation.selection__sale_order__state__waiting_approval
 msgid "Waiting Approval"
-msgstr ""
+msgstr "In attesa di approvazione"
 
 #. module: sale_order_line_discount_validation
 #: code:addons/sale_order_line_discount_validation/report/sale_report.py:0
@@ -109,3 +109,5 @@ msgid ""
 "Your quotation has been sent for approval. You will be notified when it is "
 "approved or refused."
 msgstr ""
+"Il suo preventivo è stato inviato per l'approvazione. Sarà avvisato quando "
+"verrà approvato o rifiutato."

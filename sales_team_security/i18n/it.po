@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-10 19:06+0000\n"
+"PO-Revision-Date: 2025-02-11 10:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -40,12 +40,14 @@ msgid ""
 "If set, this Sales Team will be used for sales and assignments related to "
 "this partner"
 msgstr ""
+"Se impostato, il team di vendita viene utilizzato per vendite e assegnazioni "
+"correlate al partner"
 
 #. module: sales_team_security
 #: model:ir.model.fields,field_description:sales_team_security.field_ir_rule____last_update
 #: model:ir.model.fields,field_description:sales_team_security.field_res_partner____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Ultima modifica il"
 
 #. module: sales_team_security
 #: model:ir.model,name:sales_team_security.model_ir_rule
@@ -56,19 +58,19 @@ msgstr "Regola su record"
 #: model:ir.model.fields,field_description:sales_team_security.field_res_partner__team_id
 #: model:ir.model.fields,field_description:sales_team_security.field_res_users__team_id
 msgid "Sales Team"
-msgstr ""
+msgstr "Team di vendita"
 
 #. module: sales_team_security
 #: model:ir.model.fields,field_description:sales_team_security.field_res_partner__user_id
 #: model:ir.model.fields,field_description:sales_team_security.field_res_users__user_id
 msgid "Salesperson"
-msgstr ""
+msgstr "Addetto vendite"
 
 #. module: sales_team_security
 #: model:ir.model.fields,help:sales_team_security.field_res_partner__user_id
 #: model:ir.model.fields,help:sales_team_security.field_res_users__user_id
 msgid "The internal user in charge of this contact."
-msgstr ""
+msgstr "L'utente interno responsabile di questo contatto."
 
 #. module: sales_team_security
 #: model:res.groups,comment:sales_team_security.group_sale_team_manager
@@ -76,11 +78,12 @@ msgid ""
 "The user will have an access to the documents of the sales teams he/she "
 "belongs to."
 msgstr ""
+"L'utente avrà accesso ai documenti del team di vendita a cui appartiene."
 
 #. module: sales_team_security
 #: model:res.groups,name:sales_team_security.group_sale_team_manager
 msgid "User: Team Documents Only"
-msgstr ""
+msgstr "Utente: solo documenti del team"
 
 #~ msgid "Channel Manager"
 #~ msgstr "Team Manager"
