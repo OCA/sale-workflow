@@ -4,6 +4,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
+from unittest import skip
+
+from odoo.exceptions import ValidationError
 from odoo.tests import common
 
 
@@ -116,6 +119,10 @@ class TestSaleOrder(common.TransactionCase):
         # sale tax total (multiplicative)
         tax_totals = self.order.tax_totals
         self.assertAlmostEqual(tax_totals["tax_amount"], 67.5)
+
+    @skip
+    def test_02_sale_order_simple_triple_discount_2(self):
+        # FIXME: see https://github.com/OCA/sale-workflow/issues/3649
         # set discount_type to additive
         self.so_line1.discount1 = 10.0
         self.so_line1.discount2 = 10.0
@@ -157,7 +164,9 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.order.amount_tax, 56.25)
         self._test_invoice_discount()
 
+    @skip
     def test_03_sale_order_complex_triple_discount_2(self):
+        # FIXME: see https://github.com/OCA/sale-workflow/issues/3649
         # additive discount
         self.so_line2.discounting_type = "additive"
         self.so_line1.discount1 = 50.0
@@ -211,7 +220,9 @@ class TestSaleOrder(common.TransactionCase):
         self.assertEqual(self.order.amount_tax, 56.25)
         self._test_invoice_discount()
 
+    @skip
     def test_06_discount_0(self):
+        # FIXME: see https://github.com/OCA/sale-workflow/issues/3649
         self.so_line1.discounting_type = "additive"
         self.so_line1.discount1 = 0.0
         self.so_line1.discount2 = 0.0
@@ -241,3 +252,8 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line1.discount1, 30)
         self.assertAlmostEqual(self.so_line1.discount2, 0)
         self.assertAlmostEqual(self.so_line1.discount3, 0)
+
+    def test_discounting_type_additive_not_allowed(self):
+        # FIXME: see https://github.com/OCA/sale-workflow/issues/3649
+        with self.assertRaises(ValidationError):
+            self.so_line1.discounting_type = "additive"
