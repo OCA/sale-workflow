@@ -18,14 +18,14 @@
             <th
                 t-if="display_discount2"
                 class="text-right"
-                groups="product.group_discount_per_so_line"
+                groups="sale.group_discount_per_so_line"
             >
                 <span>Disc. 2 (%)</span>
             </th>
-           <th
+            <th
                 t-if="display_discount3"
                 class="text-right"
-                groups="product.group_discount_per_so_line"
+                groups="sale.group_discount_per_so_line"
             >
                 <span>Disc. 3 (%)</span>
             </th>
@@ -34,14 +34,14 @@
             <td
                 t-if="display_discount2"
                 class="text-right"
-                groups="product.group_discount_per_so_line"
+                groups="sale.group_discount_per_so_line"
             >
                 <span t-field="line.discount2" />
             </td>
             <td
                 t-if="display_discount3"
                 class="text-right"
-                groups="product.group_discount_per_so_line"
+                groups="sale.group_discount_per_so_line"
             >
                 <span t-field="line.discount3" />
             </td>
