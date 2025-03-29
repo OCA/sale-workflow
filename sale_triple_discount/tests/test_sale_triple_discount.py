@@ -49,10 +49,40 @@ class TestSaleOrder(common.TransactionCase):
             }
         )
 
+    def _test_invoice_discount(self):
+        self.order.action_confirm()
+        if self.order.state == "waiting_approval":
+            self.order.action_approve()
+            self.assertAlmostEqual(self.order.state, "approved")
+            self.order.action_confirm()
+        self.order._create_invoices()
+        invoice = self.order.invoice_ids[0]
+        inv_line1 = invoice.invoice_line_ids.filtered(
+            lambda i: i.product_id == self.product1
+        )
+        inv_line2 = invoice.invoice_line_ids.filtered(
+            lambda i: i.product_id == self.product2
+        )
+        self.assertTrue(inv_line1)
+        self.assertTrue(inv_line2)
+        self.assertAlmostEqual(self.so_line1.discount1, inv_line1.discount1)
+        self.assertAlmostEqual(self.so_line1.discount2, inv_line1.discount2)
+        self.assertAlmostEqual(self.so_line1.discount3, inv_line1.discount3)
+        self.assertAlmostEqual(self.so_line1.discount, inv_line1.discount)
+        self.assertAlmostEqual(self.so_line1.price_subtotal, inv_line1.price_subtotal)
+
+        self.assertAlmostEqual(self.so_line2.discount1, inv_line2.discount1)
+        self.assertAlmostEqual(self.so_line2.discount2, inv_line2.discount2)
+        self.assertAlmostEqual(self.so_line2.discount3, inv_line2.discount3)
+        self.assertAlmostEqual(self.so_line2.discount, inv_line2.discount)
+        self.assertAlmostEqual(self.so_line2.price_subtotal, inv_line2.price_subtotal)
+
+        self.assertAlmostEqual(self.order.amount_total, invoice.amount_total)
+
     def test_01_sale_order_classic_discount(self):
         """Tests with single discount"""
-        self.so_line1.discount = 50.0
-        self.so_line2.discount = 75.0
+        self.so_line1.discount1 = 50.0
+        self.so_line2.discount1 = 75.0
         self.assertAlmostEqual(self.so_line1.price_subtotal, 300.0)
         self.assertAlmostEqual(self.so_line2.price_subtotal, 150.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 450.0)
@@ -60,19 +90,21 @@ class TestSaleOrder(common.TransactionCase):
         # Mix taxed and untaxed:
         self.so_line1.tax_id = False
         self.assertAlmostEqual(self.order.amount_tax, 22.5)
+        self._test_invoice_discount()
 
     def test_02_sale_order_simple_triple_discount(self):
         """Tests on a single line"""
         self.so_line2.unlink()
         # Divide by two on every discount:
-        self.so_line1.discount = 50.0
+        self.so_line1.discount1 = 50.0
         self.so_line1.discount2 = 50.0
         self.so_line1.discount3 = 50.0
         self.assertAlmostEqual(self.so_line1.price_subtotal, 75.0)
+        self.order._compute_amounts()
         self.assertAlmostEqual(self.order.amount_untaxed, 75.0)
         self.assertAlmostEqual(self.order.amount_tax, 11.25)
         # Unset first discount:
-        self.so_line1.discount = 0.0
+        self.so_line1.discount1 = 0.0
         self.assertAlmostEqual(self.so_line1.price_subtotal, 150.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 150.0)
         self.assertAlmostEqual(self.order.amount_tax, 22.5)
@@ -83,12 +115,9 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.order.amount_tax, 67.5)
         # sale tax total (multiplicative)
         tax_totals = self.order.tax_totals
-        self.assertAlmostEqual(
-            tax_totals["groups_by_subtotal"]["Untaxed Amount"][0]["tax_group_amount"],
-            67.5,
-        )
+        self.assertAlmostEqual(tax_totals["tax_amount"], 67.5)
         # set discount_type to additive
-        self.so_line1.discount = 10.0
+        self.so_line1.discount1 = 10.0
         self.so_line1.discount2 = 10.0
         self.so_line1.discount3 = 10.0
         self.so_line1.discounting_type = "additive"
@@ -97,19 +126,16 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.order.amount_tax, 63.0)
         # sale tax total (additive)
         tax_totals = self.order.tax_totals
-        self.assertAlmostEqual(
-            tax_totals["groups_by_subtotal"]["Untaxed Amount"][0]["tax_group_amount"],
-            63.0,
-        )
+        self.assertAlmostEqual(tax_totals["tax_amount"], 63.0)
         # set discount over 100%
-        self.so_line1.discount = 30.0
+        self.so_line1.discount1 = 30.0
         self.so_line1.discount2 = 70.0
         self.so_line1.discount3 = 50.0
         self.assertAlmostEqual(self.so_line1.price_subtotal, 0.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 0.0)
         self.assertAlmostEqual(self.order.amount_tax, 0.0)
         # set discount_type to multiplicative
-        self.so_line1.discount = 50.0
+        self.so_line1.discount1 = 50.0
         self.so_line1.discount2 = 50.0
         self.so_line1.discount3 = 50.0
         self.so_line1.discounting_type = "multiplicative"
@@ -117,20 +143,26 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.order.amount_untaxed, 75.0)
         self.assertAlmostEqual(self.order.amount_tax, 11.25)
 
-    def test_03_sale_order_complex_triple_discount(self):
+    def test_03_sale_order_complex_triple_discount_1(self):
         """Tests on multiple lines"""
-        self.so_line1.discount = 50.0
+        self.so_line1.discount1 = 50.0
         self.so_line1.discount2 = 50.0
         self.so_line1.discount3 = 50.0
         self.assertAlmostEqual(self.so_line1.price_subtotal, 75.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 675.0)
         self.assertAlmostEqual(self.order.amount_tax, 101.25)
-        # additive discount
         self.so_line2.discount3 = 50.0
         self.assertAlmostEqual(self.so_line2.price_subtotal, 300.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 375.0)
         self.assertAlmostEqual(self.order.amount_tax, 56.25)
+        self._test_invoice_discount()
+
+    def test_03_sale_order_complex_triple_discount_2(self):
+        # additive discount
         self.so_line2.discounting_type = "additive"
+        self.so_line1.discount1 = 50.0
+        self.so_line1.discount2 = 50.0
+        self.so_line1.discount3 = 50.0
         self.so_line2.discount2 = 10.0
         self.assertAlmostEqual(self.so_line2.price_subtotal, 240.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 315.0)
@@ -141,50 +173,33 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line2.price_subtotal, 300.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 375.0)
         self.assertAlmostEqual(self.order.amount_tax, 56.25)
+        self._test_invoice_discount()
+
+    def test_03_sale_order_complex_triple_discount_3(self):
         self.so_line2.discounting_type = "multiplicative"
+        self.so_line1.discount1 = 50.0
+        self.so_line1.discount2 = 50.0
+        self.so_line1.discount3 = 50.0
         self.so_line2.discount2 = 10.0
+        self.so_line2.discount3 = 50.0
         self.assertAlmostEqual(self.so_line2.price_subtotal, 270.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 345.0)
         self.assertAlmostEqual(self.order.amount_tax, 51.75)
+        self._test_invoice_discount()
 
     def test_04_sale_order_triple_discount_invoicing(self):
         """When a confirmed order is invoiced, the resultant invoice
         should inherit the discounts"""
-        self.so_line1.discount = 50.0
+        self.so_line1.discount1 = 50.0
         self.so_line1.discount2 = 50.0
         self.so_line1.discount3 = 50.0
         self.so_line2.discount3 = 50.0
-        self.order.action_confirm()
-        if self.order.state == "waiting_approval":
-            self.order.action_approve()
-            self.assertAlmostEqual(self.order.state, "approved")
-            self.order.action_confirm()
-        self.order._create_invoices()
-        invoice = self.order.invoice_ids[0]
-        self.assertAlmostEqual(
-            self.so_line1.discount, invoice.invoice_line_ids[0].discount
-        )
-        self.assertAlmostEqual(
-            self.so_line1.discount2, invoice.invoice_line_ids[0].discount2
-        )
-        self.assertAlmostEqual(
-            self.so_line1.discount3, invoice.invoice_line_ids[0].discount3
-        )
-        self.assertAlmostEqual(
-            self.so_line1.price_subtotal, invoice.invoice_line_ids[0].price_subtotal
-        )
-        self.assertAlmostEqual(
-            self.so_line2.discount3, invoice.invoice_line_ids[1].discount3
-        )
-        self.assertAlmostEqual(
-            self.so_line2.price_subtotal, invoice.invoice_line_ids[1].price_subtotal
-        )
-        self.assertAlmostEqual(self.order.amount_total, invoice.amount_total)
+        self._test_invoice_discount()
 
     def test_05_round_globally(self):
         """Tests on multiple lines when 'round_globally' is active"""
         self.env.user.company_id.tax_calculation_rounding_method = "round_globally"
-        self.so_line1.discount = 50.0
+        self.so_line1.discount1 = 50.0
         self.so_line1.discount2 = 50.0
         self.so_line1.discount3 = 50.0
         self.assertEqual(self.so_line1.price_subtotal, 75.0)
@@ -194,17 +209,35 @@ class TestSaleOrder(common.TransactionCase):
         self.assertEqual(self.so_line2.price_subtotal, 300.0)
         self.assertEqual(self.order.amount_untaxed, 375.0)
         self.assertEqual(self.order.amount_tax, 56.25)
+        self._test_invoice_discount()
 
     def test_06_discount_0(self):
         self.so_line1.discounting_type = "additive"
-        self.so_line1.discount = 0.0
+        self.so_line1.discount1 = 0.0
         self.so_line1.discount2 = 0.0
         self.so_line1.discount3 = 0.0
         self.so_line2.discounting_type = "additive"
-        self.so_line2.discount = 0.0
+        self.so_line2.discount1 = 0.0
         self.so_line2.discount2 = 0.0
         self.so_line2.discount3 = 0.0
         self.assertAlmostEqual(self.so_line1.price_subtotal, 600.0)
         self.assertAlmostEqual(self.so_line2.price_subtotal, 600.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 1200.0)
         self.assertAlmostEqual(self.order.amount_tax, 180.0)
+        self._test_invoice_discount()
+
+    def test_discount_wizard(self):
+        self.so_line1.discount1 = 50.0
+        self.so_line1.discount2 = 50.0
+        self.so_line1.discount3 = 50.0
+        self.env["sale.order.discount"].create(
+            {
+                "sale_order_id": self.order.id,
+                "discount_percentage": 0.3,
+                "discount_type": "sol_discount",
+            }
+        ).action_apply_discount()
+        self.assertAlmostEqual(self.so_line1.discount, 30)
+        self.assertAlmostEqual(self.so_line1.discount1, 30)
+        self.assertAlmostEqual(self.so_line1.discount2, 0)
+        self.assertAlmostEqual(self.so_line1.discount3, 0)
