@@ -50,6 +50,17 @@ class SaleOrderLine(models.Model):
         "Multiplicative discounts are default",
     )
 
+    @api.constrains("discounting_type")
+    def _discounting_type_additive_not_allowed(self):
+        # FIXME: see https://github.com/OCA/sale-workflow/issues/3649
+        if any(rec.discounting_type == "additive" for rec in self):
+            raise ValidationError(
+                _(
+                    "Additive discount type is not fully implemented."
+                    " See https://github.com/OCA/sale-workflow/issues/3649 "
+                )
+            )
+
     def _get_final_discount(self):
         self.ensure_one()
         if self.discounting_type == "additive":
