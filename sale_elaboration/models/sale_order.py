@@ -86,7 +86,7 @@ class SaleOrderLine(models.Model):
     def _prepare_invoice_line(self, **optional_values):
         vals = super()._prepare_invoice_line(**optional_values)
         if self.is_elaboration:
-            vals["name"] = "{} - {}".format(self.order_id.name, self.name)
+            vals["name"] = f"{self.order_id.name} - {self.name}"
         return vals
 
     def _search_is_prepared(self, operator, value):
