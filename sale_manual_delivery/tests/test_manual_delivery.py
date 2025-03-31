@@ -22,6 +22,7 @@ class TestSaleStock(TestSaleCommonBase):
         cls.env["stock.quant"]._update_available_quantity(
             cls.product, cls.stock_location, 100
         )
+        cls.env.user_demo = cls.env.ref("base.user_demo")
 
     def _manual_delivery_wizard(self, records, vals=None):
         if not vals:
@@ -37,9 +38,10 @@ class TestSaleStock(TestSaleCommonBase):
 
     def test_00_sale_manual_delivery(self):
         """
-        Test SO's manual delivery
+        Test SO's manual delivery; we do it with a user without admin rights
         """
-        order = self.env["sale.order"].create(
+        model_user_order = self.env["sale.order"].with_user(self.env.user_demo)
+        order = model_user_order.create(
             {
                 "partner_id": self.partner.id,
                 "partner_invoice_id": self.partner.id,
