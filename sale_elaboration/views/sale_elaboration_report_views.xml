@@ -7,7 +7,7 @@
         <field name="name">Elaborations</field>
         <field name="model">sale.order.line</field>
         <field name="arch" type="xml">
-            <tree create="false">
+            <list create="false">
                 <field name="date_order" />
                 <field name="scheduled_date" />
                 <field name="order_id" />
@@ -18,7 +18,7 @@
                 <field name="elaboration_note" />
                 <field name="product_uom_qty" />
                 <field name="product_uom" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_sales_order_line_filter" model="ir.ui.view">
@@ -65,7 +65,7 @@
         <field name="name">Sale Elaboration Report</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.order.line</field>
-        <field name="view_mode">tree,pivot</field>
+        <field name="view_mode">list,pivot</field>
         <field name="domain">[('state', '=', 'sale')]</field>
         <field name="context">{'search_default_is_elaboration':1}</field>
         <field name="search_view_id" ref="view_sales_order_line_filter" />
