@@ -68,9 +68,9 @@
                 <t t-if="record.elaboration_ids.raw_value.length gt 0">
                     <div>
                             Elaboration price: <field
-                            name="elaboration_price_unit"
-                            widget="monetary"
-                        />
+                        name="elaboration_price_unit"
+                        widget="monetary"
+                    />
                     </div>
                 </t>
             </xpath>
@@ -81,10 +81,9 @@
                 <t t-if="record.elaboration_ids.raw_value.length gt 0">
                     <div class="row mt8">
                         <div class="col-12">
-                            <strong><field
-                                    name="elaboration_ids"
-                                    widget="many2many_tags"
-                                /></strong>
+                            <strong>
+                                <field name="elaboration_ids" widget="many2many_tags" />
+                            </strong>
                         </div>
                     </div>
                 </t>
