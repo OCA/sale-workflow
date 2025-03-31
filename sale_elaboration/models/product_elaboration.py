@@ -27,7 +27,6 @@ class Elaboration(models.Model):
         string="Routes",
         domain=[("sale_selectable", "=", True)],
         ondelete="restrict",
-        check_company=True,
     )
     profile_ids = fields.Many2many(
         comodel_name="product.elaboration.profile",
@@ -52,4 +51,4 @@ class Elaboration(models.Model):
             recs = self.search([("code", "=ilike", name)] + args, limit=limit)
         if not recs:
             recs = self.search([("name", operator, name)] + args, limit=limit)
-        return recs.name_get()
+        return [(record.id, record.display_name) for record in recs.sudo()]
