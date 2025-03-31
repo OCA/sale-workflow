@@ -33,3 +33,16 @@ class TestSaleValidityAutoCancel(TransactionCase):
         }
         so = self.env["sale.order"].create(vals)
         return so
+
+    def test_sale_validity_auto_cancel_warning(self):
+        company = self.env.ref("base.main_company")
+        company.sale_validity_auto_cancel_days = 10
+        company.sale_validity_warning_days = 5
+        so = self.create_so()
+        so.validity_date = fields.Date.today() - relativedelta(days=6)
+        self.assertEqual(
+            so.validity_date_warning_message,
+            "This Quotation will be automatically cancelled in 4 days.\n"
+            "If needed, the expiration date (found on the 'Other info' tab) "
+            "can be updated to a future date.",
+        )

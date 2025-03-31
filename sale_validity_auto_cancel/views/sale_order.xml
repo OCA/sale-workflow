@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 ForgeFlow S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="view_order_form_warning">
+        <field name="name">sale.order.form (validity_warn)</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <header position="after">
+                <field name="sale_validity_warning_enabled" invisible="1" />
+                <div
+                    class="alert alert-warning"
+                    role="alert"
+                    attrs="{'invisible': ['|', ('sale_validity_warning_enabled', '=', False), ('validity_date_warning_message', '=', False)]}"
+                    style="margin-bottom:0px;"
+                >
+                    <p>
+                        <i class="fa fa-info-circle" />
+                        &amp;nbsp;
+                        <field name="validity_date_warning_message" class="oe_inline" />
+                    </p>
+                </div>
+            </header>
+        </field>
+    </record>
+</odoo>

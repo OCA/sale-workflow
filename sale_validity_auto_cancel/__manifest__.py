@@ -10,7 +10,11 @@
     "depends": ["sale_management"],
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
-    "data": ["data/ir_cron.xml", "views/res_config_settings.xml"],
+    "data": [
+        "data/ir_cron.xml",
+        "views/res_config_settings.xml",
+        "views/sale_order.xml",
+    ],
     "installable": True,
     "maintainers": ["JordiMForgeFlow"],
 }

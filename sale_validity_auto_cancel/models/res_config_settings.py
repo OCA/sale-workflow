@@ -10,3 +10,11 @@ class ResConfigSettings(models.TransientModel):
     sale_validity_auto_cancel_days = fields.Integer(
         related="company_id.sale_validity_auto_cancel_days", readonly=False,
     )
+
+    sale_validity_warning_days = fields.Integer(
+        related="company_id.sale_validity_warning_days", readonly=False,
+    )
+
+    sale_validity_warning_enabled = fields.Boolean(
+        related="company_id.sale_validity_warning_enabled", readonly=False,
+    )
