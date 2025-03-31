@@ -37,24 +37,45 @@ usually on picking/handling phase. It doesn't modify too much the
 product for needing an specific product, but it adds a surcharge on the
 final price.
 
+If the elaboration has a defined route, selecting the elaboration, it is
+set on the order line, which will result in the generation of multiple
+delivery notes depending on the established route.
+
 **Table of contents**
 
 .. contents::
    :local:
+
+Use Cases / Context
+===================
+
+This module was created to meet the need of providing the customer with
+products that are not transformed into something new, but rather require
+a simple preparation process. Example: Scaling a fish
 
 Configuration
 =============
 
 To configure this module you need to:
 
-1. Go to *Sale > Configuration > Products > Sale Elaboration*.
+1. Go to *Sale > Configuration > Elaborations > Sale Elaboration*.
 2. Create a new record.
 3. Set a product linked to the elaboration.
-4. Also you can select a route to procure this elaboration.
+4. If you use Multi-Step Routes, you can also select a route to procure
+   this elaboration.
 5. Go to *Settings > Inventory > Traceability* and select *Display
    Elaboration notes on Delivery Slips* if you want to show elaborations
    on Delivery Slips or *Display Elaboration notes on Picking
    Operations* if you want to show elaborations on Picking Operations.
+
+You can define elaboration profiles to limit the elaborations that can
+be selected for each product.
+
+1. Go to *Sale > Configuration > Elaborations > Sale Elaboration
+   Profile*.
+2. Create a new record.
+3. Select the elaborations included to the profile.
+4. Set the elaboration to the related products.
 
 Usage
 =====
@@ -62,7 +83,9 @@ Usage
 1. Go to *Sale > Quotations*.
 2. Create a sales order.
 3. Add a new line.
-4. Select an elaboration in the line.
+4. Select an elaboration in the line. If the product has an elaboration
+   profile selected, you will just be able to select the elaborations
+   set on the profile.
 5. Confirm the sales order.
 6. Go to the picking created by this sales order and validate it.
 7. Print Delivery Slip and Picking Operations.

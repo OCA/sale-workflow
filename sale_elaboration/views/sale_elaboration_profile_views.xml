@@ -4,11 +4,11 @@
         <field name="name">product.elaboration.profile.tree.view</field>
         <field name="model">product.elaboration.profile</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
                 <field name="code" />
                 <field name="active" widget="boolean_toggle" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -22,7 +22,7 @@
                         name="web_ribbon"
                         title="Archived"
                         bg_color="bg-danger"
-                        attrs="{'invisible': [('active', '=', True)]}"
+                        invisible="active"
                     />
                     <field name="active" invisible="1" />
                     <group>
@@ -41,7 +41,7 @@
         <field name="name">Sale Elaboration Profiles</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">product.elaboration.profile</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
     <menuitem
         id="menu_sale_elaboration_root"
