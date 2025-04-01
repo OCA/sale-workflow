@@ -17,28 +17,31 @@ Pricelist Cache
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/pricelist_cache
+    :target: https://github.com/OCA/sale-workflow/tree/18.0/pricelist_cache
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-pricelist_cache
+    :target: https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-pricelist_cache
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-Provides a cron task who caches prices for all products and all pricelists.
-The goal is to be able to generate a whole catalog of prices and products for a given customer in a decent time.
+Provides a cron task who caches prices for all products and all
+pricelists. The goal is to be able to generate a whole catalog of prices
+and products for a given customer in a decent time.
 
-Everyday, the cron task will trash the previous day's cache, and rebuild it from scratch.
-It means that at any moment, the prices stored in the cache are those of the current day, and will not be recomputed before the next day.
+Everyday, the cron task will trash the previous day's cache, and rebuild
+it from scratch. It means that at any moment, the prices stored in the
+cache are those of the current day, and will not be recomputed before
+the next day.
 
 However, new prices will be cached in the following cases:
 
-* new product is created
-* new pricelist is created
-* new pricelist item is created
+- new product is created
+- new pricelist is created
+- new pricelist item is created
 
 **Table of contents**
 
@@ -48,8 +51,8 @@ However, new prices will be cached in the following cases:
 Known issues / Roadmap
 ======================
 
-* Use job dependencies.
-  If pricelist a is based on b, then job a should depend on job b.
+- Use job dependencies. If pricelist a is based on b, then job a should
+  depend on job b.
 
 Bug Tracker
 ===========
@@ -57,7 +60,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20pricelist_cache%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20pricelist_cache%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -65,31 +68,37 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Camptocamp
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Telmo Santos <telmo.santos@camptocamp.com>
-* Matthieu Méquignon <matthieu.mequignon@camptocamp.com>
-* Simone Orsi <simahawk@gmail.com>
-* Thierry Ducrest <thierry.ducrest@camptocamp.com>
-* Sébastien Alix <sebastien.alix@camptocamp.com>
-* `Trobz <https://trobz.com>`_:
-    * Hai Lang <hailn@trobz.com>
+- Telmo Santos <telmo.santos@camptocamp.com>
+
+- Matthieu Méquignon <matthieu.mequignon@camptocamp.com>
+
+- Simone Orsi <simahawk@gmail.com>
+
+- Thierry Ducrest <thierry.ducrest@camptocamp.com>
+
+- Sébastien Alix <sebastien.alix@camptocamp.com>
+
+- `Trobz <https://trobz.com>`__:
+
+  - Hai Lang <hailn@trobz.com>
 
 Other credits
-~~~~~~~~~~~~~
+-------------
 
 **Financial support**
 
-* Cosanum
-* Camptocamp R&D
+- Cosanum
+- Camptocamp R&D
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -101,6 +110,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/pricelist_cache>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/18.0/pricelist_cache>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <!--root pricelist 0-->
 
     <record id="list0" model="product.pricelist">
@@ -22,7 +21,6 @@
         <field name="product_id" ref="product.product_product_8" />
         <field name="fixed_price">100.0</field>
     </record>
-
 
     <!--child pricelist 1, based on pricelist 0-->
     <record id="list1" model="product.pricelist">
@@ -136,5 +134,4 @@
         <field name="base_pricelist_id" ref="list3" />
         <field name="price_surcharge">20</field>
     </record>
-
 </odoo>

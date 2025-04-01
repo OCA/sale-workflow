@@ -5,7 +5,6 @@ from odoo import api, fields, models
 
 
 class PricelistCacheWizard(models.TransientModel):
-
     _name = "product.pricelist.cache.wizard"
     _description = "Wizard for pricelist cache"
 
