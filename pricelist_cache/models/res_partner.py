@@ -1,7 +1,7 @@
 # Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import _, exceptions, fields, models
+from odoo import exceptions, fields, models
 
 
 class Partner(models.Model):
@@ -31,7 +31,9 @@ class Partner(models.Model):
 
     def _pricelist_cache_get_prices(self):
         if not self.is_pricelist_cache_available:
-            raise exceptions.UserError(_("Pricelist caching in progress. Retry later"))
+            raise exceptions.UserError(
+                self.env._("Pricelist caching in progress. Retry later")
+            )
         pricelist = self._pricelist_cache_get_pricelist()
         products = self._pricelist_cache_get_products()
         cache_model = self.env["product.pricelist.cache"]

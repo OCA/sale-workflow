@@ -6,7 +6,6 @@
         <field name='name'>Reset pricelist cache</field>
         <field name='interval_number'>1</field>
         <field name='interval_type'>days</field>
-        <field name="numbercall">-1</field>
         <field name="active" eval="False" />
         <field name="model_id" ref="pricelist_cache.model_product_pricelist_cache" />
         <field name="state">code</field>

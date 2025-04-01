@@ -1,10 +1,8 @@
 # Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import SUPERUSER_ID, api
 
-
-def set_default_partner_product_filter(cr, registry):
+def set_default_partner_product_filter(env):
     """This hook is here because we couldn't set the default filter
     as a default value for partners.
 
@@ -13,7 +11,6 @@ def set_default_partner_product_filter(cr, registry):
     the DB. However the XML data (and thus 'product_filter_default' filter)
     is still not created at this stage.
     """
-    env = api.Environment(cr, SUPERUSER_ID, {})
     partners_to_update = (
         env["res.partner"]
         .with_context(active_test=False)
