@@ -5,4 +5,4 @@ prices.
 The second "Reset descriptions" will get descriptions from products,
 losing custom descriptions.
 
-![Sale order price recalculation](/sale_order_price_recalculation/static/description/sale_order_price_recalculation.png)
+![Sale order price recalculation](/sale_order_price_recalculation/static/description/sale_order_price_recalculation.drawio.png)
