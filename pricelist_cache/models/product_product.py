@@ -5,7 +5,6 @@ from odoo import api, models
 
 
 class ProductProduct(models.Model):
-
     _inherit = "product.product"
 
     # This will be replaced by a new button in another PR.
