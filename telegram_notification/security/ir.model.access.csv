@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_telegram_notification_user,telegram.notification.user,model_telegram_notification,base.group_user,1,0,0,0
+access_telegram_notification_manager,telegram.notification.manager,model_telegram_notification,base.group_system,1,1,1,1
