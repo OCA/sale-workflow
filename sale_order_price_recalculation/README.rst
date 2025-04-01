@@ -28,15 +28,15 @@ Price recalculation in sales orders
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module add 2 buttons on sale orders (below sale order lines) that:
+This module adds 2 buttons on sale orders (below sale order lines) that:
 
-- Recalculates the prices of the order lines that contain a product in
-  them.
-- Reset product descriptions from current product information.
+-  Recalculates the prices of the order lines that contain a product in
+   them.
+-  Reset product descriptions from current product information.
 
-It is launched manually as a button to get the user decide if he/she
-wants to recalculate prices when pricelist is changed or after
-duplicating a sale order to update or not sales information.
+It is launched manually as a button to get the user to decide if they
+want to recalculate prices when the pricelist is changed or, after
+duplicating a sale order, wether to update sales information or not.
 
 **Table of contents**
 
@@ -59,16 +59,15 @@ prices.
 The second "Reset descriptions" will get descriptions from products,
 losing custom descriptions.
 
-|Sale order price recalculation|
-
-.. |Sale order price recalculation| image:: https://raw.githubusercontent.com/sale_order_price_recalculation/static/description/sale_order_price_recalculation.png
+.. image:: https://raw.githubusercontent.com/sale_order_price_recalculation/static/description/sale_order_price_recalculation.drawio.png
+   :alt: Sale order price recalculation
 
 Known issues / Roadmap
 ======================
 
-- In a sale order with lot of lines, the recalculation may slow down,
-  because sale general data (amount untaxed, amount taxed...) are
-  recalculated for each line.
+-  In a sale order with lot of lines, the recalculation may slow down,
+   because sale general data (amount untaxed, amount taxed...) are
+   recalculated for each line.
 
 Bug Tracker
 ===========
@@ -93,15 +92,15 @@ Authors
 Contributors
 ------------
 
-- Carlos Sánchez Cifuentes <csanchez@grupovermon.com>
-- Pedro M. Baeza <pedro.baeza@tecnativa.com>
-- Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
-- Pierre Verkest <pverkest@anybox.fr>
-- Vicent Cubells <vicent.cubells@tecnativa.com>
-- David Vidal <david.vidal@tecnativa.com>
-- Duc, Dao Dong <duc.dd@komit-consulting.com>
-  (https://komit-consulting.com)
-- Raf Ven <raf.ven@dynapps.be>
+-  Carlos Sánchez Cifuentes <csanchez@grupovermon.com>
+-  Pedro M. Baeza <pedro.baeza@tecnativa.com>
+-  Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
+-  Pierre Verkest <pverkest@anybox.fr>
+-  Vicent Cubells <vicent.cubells@tecnativa.com>
+-  David Vidal <david.vidal@tecnativa.com>
+-  Duc, Dao Dong <duc.dd@komit-consulting.com>
+   (https://komit-consulting.com)
+-  Raf Ven <raf.ven@dynapps.be>
 
 Maintainers
 -----------
