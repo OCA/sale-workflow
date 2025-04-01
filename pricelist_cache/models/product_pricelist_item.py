@@ -3,7 +3,7 @@
 
 from collections import defaultdict
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class PricelistItem(models.Model):
@@ -20,6 +20,12 @@ class PricelistItem(models.Model):
     company_id = fields.Many2one(index=True)
 
     pricelist_cache_update_skipped = fields.Boolean()
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        res = super().create(vals_list)
+        res.update_product_pricelist_cache()
+        return res
 
     def _has_date_range(self):
         """Returns whether any of the item records in recordset is based on dates."""

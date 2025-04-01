@@ -3,7 +3,7 @@
 
 from functools import wraps
 
-from odoo.tests.common import TransactionCase
+from odoo.addons.base.tests.common import BaseCommon
 
 LIST_PRICES_MAPPING = {
     "pricelist_cache.list0": [
@@ -62,7 +62,7 @@ def check_duplicates(func):
     return wrapper
 
 
-class TestPricelistCacheCommon(TransactionCase):
+class TestPricelistCacheCommon(BaseCommon):
     @classmethod
     def setUpClassBaseCache(cls):
         cls.cache_model.cron_reset_pricelist_cache()
@@ -83,13 +83,9 @@ class TestPricelistCacheCommon(TransactionCase):
         cls.env = cls.env(
             context=dict(
                 cls.env.context,
-                tracking_disable=True,
-                test_queue_job_no_delay=True,
+                queue_job__no_delay=True,
             )
         )
-        # Odoo does not seems to register hooks by itself when tests are run
-        # the following line registers them explicitely
-        cls.env["base.automation"]._register_hook()
         cls.cache_model = cls.env["product.pricelist.cache"]
         # root pricelists
         cls.list0 = cls.env.ref("pricelist_cache.list0")
@@ -103,7 +99,6 @@ class TestPricelistCacheCommon(TransactionCase):
         cls.list4 = cls.env.ref("pricelist_cache.list4")
         # factor list 5, based on list3
         cls.list5 = cls.env.ref("pricelist_cache.list5")
-        # TODO ugly
         cls.lists = cls.env["product.pricelist"].browse(
             [
                 cls.list0.id,
@@ -115,12 +110,12 @@ class TestPricelistCacheCommon(TransactionCase):
             ]
         )
         # products
+        # TODO: create products instead of using odoo demo data
         cls.p6 = cls.env.ref("product.product_product_6")
         cls.p7 = cls.env.ref("product.product_product_7")
         cls.p8 = cls.env.ref("product.product_product_8")
         # P9 not in any pricelist
         cls.p9 = cls.env.ref("product.product_product_9")
-        # TODO ugly
         cls.products = cls.env["product.product"].browse(
             [cls.p6.id, cls.p7.id, cls.p8.id, cls.p9.id]
         )

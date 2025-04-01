@@ -281,10 +281,7 @@ class TestPricelistCache(TestPricelistCacheCommon):
     def test_pricelist_methods(self):
         # test _get_root_pricelist_ids
         pricelist_model = self.env["product.pricelist"]
-        expected_root_pricelist_ids = [
-            self.list0.id,
-            self.env.ref("product.list0").id,
-        ]
+        expected_root_pricelist_ids = self.list0.ids
         # This pricelist is created when stock module is installed. No other
         # way is found yet to identify it.
         pl = pricelist_model.search([("name", "=", "Default USD pricelist")])
