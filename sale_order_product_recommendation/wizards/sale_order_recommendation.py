@@ -234,7 +234,9 @@ class SaleOrderRecommendation(models.TransientModel):
         to_remove.reverse()
         sale_order_line_obj.browse(to_remove).unlink()
         if new_line_vals:
-            sale_order_line_obj.create(new_line_vals)
+            self.order_id.write(
+                {"order_line": [(0, 0, vals) for vals in new_line_vals]}
+            )
 
 
 class SaleOrderRecommendationLine(models.TransientModel):
