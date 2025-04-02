@@ -31,6 +31,10 @@ Sale Order Split Strategy
 This module provides the possibility to define split strategies to be
 applied on sales order for splitting.
 
+This is useful (but not only) when a sales order from external sources
+(webshop, edi) includes products that need to be shipped by different
+standards (temperature/environment) and so with different carriers.
+
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
    Only for development or testing purpose, do not use in production.
@@ -41,10 +45,21 @@ applied on sales order for splitting.
 .. contents::
    :local:
 
-Configuration
-=============
+Usage
+=====
 
+To use this module you first need to create splitting strategies to
+apply on sales order.
 
+::
+
+   Sales -> Configuration -> Split Startegies
+
+The splitting is based on an ir.filter applied on sale.order.line.
+
+Then on sales order, the Split Strategy field allows to select the
+corresponding strategy. After which a button ``Split`` is available on
+the form to split an order.
 
 Bug Tracker
 ===========
