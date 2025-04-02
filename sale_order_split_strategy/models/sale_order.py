@@ -9,7 +9,10 @@ from odoo.exceptions import UserError
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    split_strategy_id = fields.Many2one("sale.order.split.strategy")
+    split_strategy_id = fields.Many2one(
+        comodel_name="sale.order.split.strategy",
+        help="The strategy that will be used to split the sales order",
+    )
 
     def action_split(self, silent_errors=False):
         orders_without_split = self.filtered(lambda o: not o.split_strategy_id)

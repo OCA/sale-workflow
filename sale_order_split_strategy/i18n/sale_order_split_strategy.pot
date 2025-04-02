@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,16 +14,16 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_split_strategy
+#. odoo-python
 #: code:addons/sale_order_split_strategy/models/sale_order.py:0
-#, python-format
 msgid ""
 "Cannot split order %(order_name)s according to its strategy because there "
 "are no matching lines"
 msgstr ""
 
 #. module: sale_order_split_strategy
+#. odoo-python
 #: code:addons/sale_order_split_strategy/models/sale_order.py:0
-#, python-format
 msgid "Cannot split orders %(order_names)s without any split strategy defined"
 msgstr ""
 
@@ -48,21 +48,13 @@ msgid "Created on"
 msgstr ""
 
 #. module: sale_order_split_strategy
-#: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__display_name
 msgid "Display Name"
 msgstr ""
 
 #. module: sale_order_split_strategy
-#: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__id
 msgid "ID"
-msgstr ""
-
-#. module: sale_order_split_strategy
-#: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order____last_update
-#: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_order_split_strategy
@@ -124,6 +116,11 @@ msgid "Split Strategy"
 msgstr ""
 
 #. module: sale_order_split_strategy
+#: model:ir.model.fields,help:sale_order_split_strategy.field_sale_order__split_strategy_id
+msgid "The strategy that will be used to split the sales order"
+msgstr ""
+
+#. module: sale_order_split_strategy
 #: model_terms:ir.ui.view,arch_db:sale_order_split_strategy.split_to
 msgid "This sale order had some of its lines split to"
 msgstr ""
@@ -134,8 +131,8 @@ msgid "This sale order was created after splitting lines from"
 msgstr ""
 
 #. module: sale_order_split_strategy
+#. odoo-python
 #: code:addons/sale_order_split_strategy/models/sale_order.py:0
-#, python-format
 msgid ""
 "This sale order was not split using strategy %(strategy)s because there "
 "would not be any lines left on this order."
