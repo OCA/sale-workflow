@@ -160,7 +160,9 @@ class SaleOrderRecommendation(models.TransientModel):
         existing_product_ids = set()
         # Always recommend all products already present in the linked SO except delivery
         # carrier products
-        for line in self.order_id.order_line.filtered(lambda ln: not ln._is_delivery()):
+        for line in self.order_id.order_line.filtered(
+            lambda ln: not (ln._is_delivery() or ln.display_type)
+        ):
             found_line = found_dict.get(
                 line.product_id.id,
                 {
