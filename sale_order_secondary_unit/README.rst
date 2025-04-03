@@ -17,6 +17,7 @@ Sale Order Secondary Unit
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
    !! source digest: sha256:b6cd5a500712cd2681b14605e629fd1e3f3b710411c41958b917d87d6ed24898
 ||||||| parent of 7f4a3a380 ([IMP] sale_order_secondary_unit: Require secondary_uom_id when secondary_uom_qty is filled)
    !! source digest: sha256:61f4456857459ed3b5629b34c15869328cac813be1fd18ea0713783768d311d5
@@ -38,6 +39,11 @@ Sale Order Secondary Unit
 =======
    !! source digest: sha256:a29ba39b523a71f8810db0e1ebfa3bc2e72be171bc3da9dfedaab16f47225d40
 >>>>>>> 9993f5b54 ([FIX] sale_order_secondary_unit: fix test)
+||||||| parent of 8c5bb9203 ([IMP-FIX] sale_order_secondary_unit: Avoid constraint violation when creating product attributes)
+   !! source digest: sha256:a29ba39b523a71f8810db0e1ebfa3bc2e72be171bc3da9dfedaab16f47225d40
+=======
+   !! source digest: sha256:0c790c32faf95829d44636ee7fff1356c900ec06adc69dded0447cc14b11872d
+>>>>>>> 8c5bb9203 ([IMP-FIX] sale_order_secondary_unit: Avoid constraint violation when creating product attributes)
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ||||||| parent of 4afac9303 (Translated using Weblate (Finnish))
 =======
