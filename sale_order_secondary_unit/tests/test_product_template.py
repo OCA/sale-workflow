@@ -13,7 +13,10 @@ class TestProductTemplate(TransactionCase):
         cls.product_attribute_value_model = cls.env["product.attribute.value"]
         # Create product attributes
         cls.color_attribute = cls.product_attribute_model.create(
-            {"name": "Color", "create_variant": "always"}
+            {
+                "name": "Test Color (sale_order_secondary_unit)",
+                "create_variant": "always",
+            }
         )
         cls.color_values = cls.product_attribute_value_model.create(
             [
