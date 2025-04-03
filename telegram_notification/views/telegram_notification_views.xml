@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_telegram_notification_form" model="ir.ui.view">
+        <field name="name">telegram.notification.form</field>
+        <field name="model">telegram.notification</field>
+        <field name="arch" type="xml">
+            <form string="Telegram Notification">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Bot Name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="token" password="True" />
+                            <field name="chat_ids" />
+                            <separator string="Enable Notifications For:" />
+                            <field name="enabled_event_sale_confirmed" />
+                            <field name="enabled_event_quotation_sent" />
+                            <field name="enabled_event_sale_canceled" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Message Templates">
+                            <group>
+                                <field name="sale_confirmed_template"
+                                    placeholder="Template for confirmed sales orders"
+                                    widget="text_markdown"
+                                    attrs="{'required': [('enabled_event_sale_confirmed', '=', True)]}" />
+                                <field name="quotation_sent_template"
+                                    placeholder="Template for sent quotations"
+                                    widget="text_markdown"
+                                    attrs="{'required': [('enabled_event_quotation_sent', '=', True)]}" />
+                                <field name="sale_canceled_template"
+                                    placeholder="Template for canceled sales orders"
+                                    widget="text_markdown"
+                                    attrs="{'required': [('enabled_event_sale_canceled', '=', True)]}" />
+                            </group>
+                            <div class="text-muted mt-3">
+                                <p>Available placeholders (use without quotes):</p>
+                                <ul>
+                                    <li>"$" + "{order.name}" - Sales order reference</li>
+                                    <li>"$" + "{order.partner_id.name}" - Customer name</li>
+                                    <li>"$" + "{order.amount_total}" - Total amount</li>
+                                    <li>"$" + "{order.currency_id.name}" - Currency</li>
+                                    <li>"$" + "{order.date_order}" - Order date</li>
+                                    <li>"$" + "{order.user_id.name}" - Salesperson</li>
+                                </ul>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="view_telegram_notification_list" model="ir.ui.view">
+        <field name="name">telegram.notification.list</field>
+        <field name="model">telegram.notification</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="enabled_event_sale_confirmed" />
+                <field name="enabled_event_quotation_sent" />
+                <field name="enabled_event_sale_canceled" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_telegram_notification" model="ir.actions.act_window">
+        <field name="name">Telegram Notifications</field>
+        <field name="res_model">telegram.notification</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Telegram notification configuration
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_telegram_notification_root" name="Telegram Notifications" sequence="1" />
+    <menuitem id="menu_telegram_notification" name="Manage Notifications"
+        parent="menu_telegram_notification_root" action="action_telegram_notification" />
+</odoo>
