@@ -1,26 +1,27 @@
-from odoo.tests.common import TransactionCase
+from odoo.tests import TransactionCase
 
 
 class TestInvoiceFrequency(TransactionCase):
-    def setUp(self):
-        super().setUp()
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         # Create an invoice frequency to use in the test
-        self.invoice_frequency = self.env.ref(
+        cls.invoice_frequency = cls.env.ref(
             "sale_invoice_frequency.sale_invoice_frequency_monthly"
         )
 
         # Create a partner with the invoice frequency
-        self.partner = self.env["res.partner"].create(
+        cls.partner = cls.env["res.partner"].create(
             {
                 "name": "Test Partner",
-                "invoice_frequency_id": self.invoice_frequency.id,
+                "invoice_frequency_id": cls.invoice_frequency.id,
             }
         )
 
         # Create a sale order
-        self.sale_order = self.env["sale.order"].create(
+        cls.sale_order = cls.env["sale.order"].create(
             {
-                "partner_id": self.partner.id,
+                "partner_id": cls.partner.id,
             }
         )
 
