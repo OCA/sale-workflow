@@ -59,28 +59,30 @@ class TestSaleMrpLink(TransactionCase):
 
     def _create_bom(self, template):
         return self.env["mrp.bom"].create(
-            {"product_tmpl_id": template.id, "type": "normal"}
+            [{"product_tmpl_id": template.id, "type": "normal"}]
         )
 
     def _create_bom_line(self, bom, product, qty):
         self.env["mrp.bom.line"].create(
-            {"bom_id": bom.id, "product_id": product.id, "product_qty": qty}
+            [{"bom_id": bom.id, "product_id": product.id, "product_qty": qty}]
         )
 
     def _create_sale_order(self, partner, client_ref):
         return self.env["sale.order"].create(
-            {"partner_id": partner.id, "client_order_ref": client_ref}
+            [{"partner_id": partner.id, "client_order_ref": client_ref}]
         )
 
     def _create_sale_order_line(self, sale_order, product, qty, price, bom):
         self.env["sale.order.line"].create(
-            {
-                "order_id": sale_order.id,
-                "product_id": product.id,
-                "price_unit": price,
-                "product_uom_qty": qty,
-                "bom_id": bom.id,
-            }
+            [
+                {
+                    "order_id": sale_order.id,
+                    "product_id": product.id,
+                    "price_unit": price,
+                    "product_uom_qty": qty,
+                    "bom_id": bom.id,
+                }
+            ]
         )
 
     def test_define_bom_in_sale_line(self):
