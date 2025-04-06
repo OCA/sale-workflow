@@ -5,7 +5,7 @@
     "author": "Odoo Community Association (OCA), Agile Business Group",
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
-    "depends": ["sale_stock", "stock_restrict_lot"],
+    "depends": ["sale_stock", "stock_restrict_lot", "mrp"],
     "data": ["views/sale_order_views.xml"],
     "demo": ["demo/sale_demo.xml"],
     "maintainers": ["bodedra"],
