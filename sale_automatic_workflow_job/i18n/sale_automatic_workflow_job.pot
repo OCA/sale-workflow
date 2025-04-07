@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,15 +16,13 @@ msgstr ""
 #. module: sale_automatic_workflow_job
 #. odoo-python
 #: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:0
-#, python-format
-msgid "Create invoices for sales order {}"
+msgid "Create invoices for sales order %s"
 msgstr ""
 
 #. module: sale_automatic_workflow_job
 #. odoo-python
 #: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:0
-#, python-format
-msgid "Mark sales order {} as done"
+msgid "Mark sales order %s as done"
 msgstr ""
 
 #. module: sale_automatic_workflow_job
@@ -35,7 +33,6 @@ msgstr ""
 #. module: sale_automatic_workflow_job
 #. odoo-python
 #: code:addons/sale_automatic_workflow_job/models/queue_job.py:0
-#, python-format
 msgid "Sale Automatic Workflow Job"
 msgstr ""
 
@@ -49,20 +46,17 @@ msgstr ""
 #. module: sale_automatic_workflow_job
 #. odoo-python
 #: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:0
-#, python-format
-msgid "Validate invoice {}"
+msgid "Send order %s confirmation mail"
 msgstr ""
 
 #. module: sale_automatic_workflow_job
 #. odoo-python
 #: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:0
-#, python-format
-msgid "Validate sales order {}"
+msgid "Validate invoice %s"
 msgstr ""
 
 #. module: sale_automatic_workflow_job
 #. odoo-python
 #: code:addons/sale_automatic_workflow_job/models/automatic_workflow_job.py:0
-#, python-format
-msgid "Validate transfer {}"
+msgid "Validate sales order %s"
 msgstr ""
