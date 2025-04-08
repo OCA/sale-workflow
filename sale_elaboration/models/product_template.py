@@ -34,7 +34,7 @@ class ProductTemplate(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         templates = super().create(vals_list)
-        # This is needed to set given values to first variant after creation
+        # This is needed to set given values to first variant after creation.
         for template, vals in zip(templates, vals_list, strict=True):
             if vals.get("elaboration_profile_id"):
                 template.write(

@@ -25,6 +25,7 @@
         "views/stock_picking_views.xml",
         "views/stock_move_views.xml",
         "reports/report_base.xml",
+        "reports/report_saleorder.xml",
         "reports/report_deliveryslip.xml",
         "reports/report_picking_operations.xml",
     ],
