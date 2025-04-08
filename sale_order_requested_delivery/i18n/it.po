@@ -1,0 +1,93 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_requested_delivery
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: sale_order_requested_delivery
+#. odoo-python
+#: code:addons/sale_order_requested_delivery/models/sale_order.py:0
+msgid "From %s"
+msgstr ""
+
+#. module: sale_order_requested_delivery
+#. odoo-python
+#: code:addons/sale_order_requested_delivery/models/sale_order.py:0
+msgid "INVALID PERIOD"
+msgstr ""
+
+#. module: sale_order_requested_delivery
+#. odoo-python
+#: code:addons/sale_order_requested_delivery/models/sale_order.py:0
+msgid "N/A"
+msgstr ""
+
+#. module: sale_order_requested_delivery
+#: model_terms:ir.ui.view,arch_db:sale_order_requested_delivery.view_order_form
+msgid "Req. Delivery end"
+msgstr ""
+
+#. module: sale_order_requested_delivery
+#: model_terms:ir.ui.view,arch_db:sale_order_requested_delivery.view_order_form
+msgid "Req. Delivery start"
+msgstr ""
+
+#. module: sale_order_requested_delivery
+#: model:ir.model.fields,field_description:sale_order_requested_delivery.field_sale_order__requested_delivery_period_end
+#: model:ir.model.fields,field_description:sale_order_requested_delivery.field_sale_order_line__requested_delivery_period_end
+msgid "Requested Delivery - End"
+msgstr ""
+
+#. module: sale_order_requested_delivery
+#: model:ir.model.fields,field_description:sale_order_requested_delivery.field_sale_order__requested_delivery_period_start
+#: model:ir.model.fields,field_description:sale_order_requested_delivery.field_sale_order_line__requested_delivery_period_start
+msgid "Requested Delivery - Start"
+msgstr ""
+
+#. module: sale_order_requested_delivery
+#: model:ir.model.fields,field_description:sale_order_requested_delivery.field_sale_order__requested_delivery_period_display
+msgid "Requested Delivery Period"
+msgstr ""
+
+#. module: sale_order_requested_delivery
+#: model_terms:ir.ui.view,arch_db:sale_order_requested_delivery.view_order_form
+msgid "Requested Delivery end"
+msgstr ""
+
+#. module: sale_order_requested_delivery
+#: model_terms:ir.ui.view,arch_db:sale_order_requested_delivery.view_order_form
+msgid "Requested Delivery start"
+msgstr ""
+
+#. module: sale_order_requested_delivery
+#: model:ir.model,name:sale_order_requested_delivery.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_requested_delivery
+#: model:ir.model,name:sale_order_requested_delivery.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_requested_delivery
+#. odoo-python
+#: code:addons/sale_order_requested_delivery/models/sale_order.py:0
+#: code:addons/sale_order_requested_delivery/models/sale_order_line.py:0
+msgid "The start of the requested delivery period cannot be after the end."
+msgstr ""
+
+#. module: sale_order_requested_delivery
+#. odoo-python
+#: code:addons/sale_order_requested_delivery/models/sale_order.py:0
+msgid "Until %s"
+msgstr ""
