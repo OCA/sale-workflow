@@ -11,19 +11,13 @@
                 expr="//field[@name='order_line']/form//label[@for='discount']"
                 position="before"
             >
-                <field
-                    name="discount_fixed"
-                    groups="product.group_discount_per_so_line"
-                />
+                <field name="discount_fixed" groups="sale.group_discount_per_so_line" />
             </xpath>
             <xpath
-                expr="//field[@name='order_line']/tree/field[@name='discount']"
+                expr="//field[@name='order_line']/list/field[@name='discount']"
                 position="before"
             >
-                <field
-                    name="discount_fixed"
-                    groups="product.group_discount_per_so_line"
-                />
+                <field name="discount_fixed" groups="sale.group_discount_per_so_line" />
             </xpath>
         </field>
     </record>
