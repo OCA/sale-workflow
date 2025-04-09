@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="account_invoice_fixed_discount.view_move_form" />
         <field name="arch" type="xml">
             <field name="discount_fixed" position="attributes">
-                <attribute name="groups">product.group_discount_per_so_line</attribute>
+                <attribute name="groups">sale.group_discount_per_so_line</attribute>
             </field>
         </field>
     </record>
