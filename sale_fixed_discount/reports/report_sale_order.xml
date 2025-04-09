@@ -24,13 +24,14 @@
 
         <span t-field="line.discount" position="before">
             <t t-if="display_discount_fixed">
-                <span class="text-nowrap" t-field="line.discount_fixed" /><span
-                    class="text-nowrap"
-                > (or</span>
+                <span class="text-nowrap" t-field="line.discount_fixed" />
+                <span class="text-nowrap"> (or</span>
             </t>
         </span>
         <span t-field="line.discount" position="after">
-            <t t-if="display_discount_fixed"><span class="text-nowrap"> %)</span></t>
+            <t t-if="display_discount_fixed">
+                <span class="text-nowrap"> %)</span>
+            </t>
         </span>
     </template>
 </odoo>
