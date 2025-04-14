@@ -111,9 +111,9 @@ class SaleOrderRecommendation(models.TransientModel):
         @param so_line: Optional sales order line
         """
         vals = {
-            "product_id": group_line["product_id"][0],
-            "times_delivered": group_line.get("product_id_count", 0),
-            "units_delivered": group_line.get("qty_delivered", 0),
+            "product_id": group_line[0].id if group_line else so_line.product_id.id,
+            "times_delivered": group_line[1] if group_line else 0.0,
+            "units_delivered": group_line[2] if group_line else 0.0,
         }
         if so_line:
             vals["units_included"] = so_line.product_uom_qty
@@ -142,29 +142,23 @@ class SaleOrderRecommendation(models.TransientModel):
         found_lines = (
             self.env["sale.order.line"]
             .sudo()
-            .read_group(
+            ._read_group(
                 self._recommendable_sale_order_lines_domain(),
-                ["product_id", "qty_delivered"],
                 ["product_id"],
+                ["__count", "qty_delivered:sum"],
+                limit=self.line_amount,
+                order="__count desc, qty_delivered:sum desc",
             )
         )
-        # Manual ordering that circumvents ORM limitations
-        found_lines = sorted(
-            found_lines,
-            key=lambda res: (res["product_id_count"], res["qty_delivered"]),
-            reverse=True,
-        )
-        found_dict = {product["product_id"][0]: product for product in found_lines}
+        found_dict = {data[0]: data for data in found_lines}
         recommendation_lines = self.env["sale.order.recommendation.line"]
         existing_product_ids = set()
         # Always recommend all products already present in the linked SO except delivery
         # carrier products
         for line in self.order_id.order_line.filtered(lambda ln: not ln._is_delivery()):
             found_line = found_dict.get(
-                line.product_id.id,
-                {
-                    "product_id": (line.product_id.id, False),
-                },
+                line.product_id,
+                False,
             )
             new_line = recommendation_lines.new(
                 self._prepare_recommendation_line_vals(found_line, line)
@@ -172,19 +166,13 @@ class SaleOrderRecommendation(models.TransientModel):
             recommendation_lines += new_line
             existing_product_ids.add(line.product_id.id)
         # Add recent SO recommendations too
-        i = 0
-        for line in found_lines:
-            if line["product_id"][0] in existing_product_ids:
+        for found_line in found_lines:
+            if found_line[0].id in existing_product_ids:
                 continue
             new_line = recommendation_lines.new(
-                self._prepare_recommendation_line_vals(line)
+                self._prepare_recommendation_line_vals(found_line)
             )
             recommendation_lines += new_line
-            # limit number of results. It has to be done here, as we need to
-            # populate all results first, for being able to select best matches
-            i += 1
-            if i >= self.line_amount:
-                break
         # Sort recommendations by user choice
         order_field, order_dir = map(str.lower, self.recommendations_order.split())
         # Priority order (which can have an str value "0" or "1") must always
