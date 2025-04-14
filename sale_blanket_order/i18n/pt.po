@@ -136,16 +136,19 @@ msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__analytic_distribution
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__analytic_distribution
 msgid "Analytic Distribution"
 msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__analytic_distribution_search
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__analytic_distribution_search
 msgid "Analytic Distribution Search"
 msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__analytic_precision
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__analytic_precision
 msgid "Analytic Precision"
 msgstr ""
 
@@ -345,6 +348,7 @@ msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__distribution_analytic_account_ids
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__distribution_analytic_account_ids
 msgid "Distribution Analytic Account"
 msgstr ""
 
