@@ -69,8 +69,8 @@ by default follow the next steps
 
 You can define other default values like as:
 
-- Months backwards to generate recommendations.
-- Number of recommendations to display.
+-  Months backwards to generate recommendations.
+-  Number of recommendations to display.
 
 You can force the addition of all the products recommended in the sale
 order. You can then edit the desired quantities directly in the sale
@@ -122,29 +122,29 @@ Authors
 Contributors
 ------------
 
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Jairo Llopis
-  - David Vidal
-  - Alexandre Díaz
-  - Pedro M. Baeza
-  - Sergio Teruel
-  - Carlos Roca
-  - Víctor Martínez
+   -  Jairo Llopis
+   -  David Vidal
+   -  Alexandre Díaz
+   -  Pedro M. Baeza
+   -  Sergio Teruel
+   -  Carlos Roca
+   -  Víctor Martínez
 
-- `Camptocamp SA <https://www.camptocamp.com>`__:
+-  `Camptocamp SA <https://www.camptocamp.com>`__:
 
-  - Telmo Santos
+   -  Telmo Santos
 
-- `Moduon <https://www.moduon.team>`__:
+-  `Moduon <https://www.moduon.team>`__:
 
-  - Rafael Blasco
-  - Gelo Joga
-  - Jairo Llopis
+   -  Rafael Blasco
+   -  Gelo Joga
+   -  Jairo Llopis
 
-- `Trobz <https://www.trobz.com>`__:
+-  `Trobz <https://www.trobz.com>`__:
 
-  - Tris Doan
+   -  Tris Doan
 
 Maintainers
 -----------
