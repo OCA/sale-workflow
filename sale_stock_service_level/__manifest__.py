@@ -4,9 +4,10 @@
 {
     "name": "Sale stock service level",
     "Summary": "Sale different service level per products.",
-    "version": "14.0.0.1.0",
+    "version": "17.0.1.0.0",
     "development_status": "Beta",
-    "author": "Pierre Verkest <pierreverkest84@gmail.com>, Odoo Community Association (OCA)",
+    "author": "Pierre Verkest <pierreverkest84@gmail.com>, "
+    "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Warehouse Management",
     "depends": [
