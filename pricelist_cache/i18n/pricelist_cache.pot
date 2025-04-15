@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -26,6 +26,11 @@ msgstr ""
 #. module: pricelist_cache
 #: model_terms:ir.ui.view,arch_db:pricelist_cache.product_pricelist_cache_wizard_view_form
 msgid "Cancel"
+msgstr ""
+
+#. module: pricelist_cache
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__categ_id
+msgid "Category"
 msgstr ""
 
 #. module: pricelist_cache
@@ -101,12 +106,6 @@ msgstr ""
 #. module: pricelist_cache
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist__is_pricelist_cache_computed
 msgid "Is Pricelist Cache Computed"
-msgstr ""
-
-#. module: pricelist_cache
-#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache____last_update
-#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: pricelist_cache
@@ -219,38 +218,25 @@ msgid "Pricelist Rule"
 msgstr ""
 
 #. module: pricelist_cache
-#: model:ir.filters,name:pricelist_cache.product_filter_default
-msgid "Pricelist cache default product filter for partner"
-msgstr ""
-
-#. module: pricelist_cache
+#. odoo-python
 #: code:addons/pricelist_cache/models/res_partner.py:0
-#, python-format
 msgid "Pricelist caching in progress. Retry later"
 msgstr ""
 
 #. module: pricelist_cache
-#: model:ir.model,name:pricelist_cache.model_product_product
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache_wizard__product_id
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__product_tmpl_id
 msgid "Product"
 msgstr ""
 
 #. module: pricelist_cache
-#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__categ_id
-msgid "Product Category"
-msgstr ""
-
-#. module: pricelist_cache
+#: model:ir.model,name:pricelist_cache.model_product_product
 #: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_cache__product_id
-#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__product_id
 msgid "Product Variant"
 msgstr ""
 
 #. module: pricelist_cache
 #: model:ir.actions.server,name:pricelist_cache.cron_reset_pricelist_cache_ir_actions_server
-#: model:ir.cron,cron_name:pricelist_cache.cron_reset_pricelist_cache
-#: model:ir.cron,name:pricelist_cache.cron_reset_pricelist_cache
 msgid "Reset pricelist cache"
 msgstr ""
 
@@ -288,9 +274,8 @@ msgid ""
 msgstr ""
 
 #. module: pricelist_cache
-#: model:base.automation,name:pricelist_cache.automation_update_product_pricelist_cache
-#: model:ir.actions.server,name:pricelist_cache.automation_update_product_pricelist_cache_ir_actions_server
-msgid "Update Product Pricelist Cache"
+#: model:ir.model.fields,field_description:pricelist_cache.field_product_pricelist_item__product_id
+msgid "Variant"
 msgstr ""
 
 #. module: pricelist_cache
