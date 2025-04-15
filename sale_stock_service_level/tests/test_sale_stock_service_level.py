@@ -46,7 +46,7 @@ class SaleOrderServiceLevelTest(TransactionCase):
         self.order.action_confirm()
         delivery = self.order.picking_ids
         self.assertEqual(
-            delivery.move_lines.service_level_id,
+            delivery.move_ids.service_level_id,
             self.service_level_sdt,
         )
 
@@ -57,5 +57,5 @@ class SaleOrderServiceLevelTest(TransactionCase):
         self.order.action_confirm()
         delivery = self.order.picking_ids
         self.assertFalse(
-            delivery.move_lines.service_level_id,
+            delivery.move_ids.service_level_id,
         )
