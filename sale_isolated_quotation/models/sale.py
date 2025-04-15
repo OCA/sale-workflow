@@ -57,7 +57,6 @@ class SaleOrder(models.Model):
             self.action_done()
         return self.open_duplicated_sale_order()
 
-    @api.model
     def open_duplicated_sale_order(self):
         return {
             "name": _("Sales Order"),

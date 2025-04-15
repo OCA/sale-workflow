@@ -31,20 +31,19 @@ def post_init_hook(cr, registry):
 
 def uninstall_hook(cr, registry):
     """Restore sale.order action, remove context value"""
-    with api.Environment.manage():
-        env = api.Environment(cr, SUPERUSER_ID, {})
-        for action_id in ACTIONS:
-            action = env.ref(action_id)
-            ctx = ast.literal_eval(action.context)
-            _cleanup_ctx(ctx)
-            dom = ast.literal_eval(action.domain or "{}")
-            dom = [x for x in dom if x[0] != "order_sequence"]
-            if action_id == "sale.action_orders":
-                dom.append(("state", "not in", ("draft", "sent", "cancel")))
-            else:
-                ctx["search_default_my_quotation"] = True
-            dom = list(set(dom))
-            action.write({"context": ctx, "domain": dom})
+    env = api.Environment(cr, SUPERUSER_ID, {})
+    for action_id in ACTIONS:
+        action = env.ref(action_id)
+        ctx = ast.literal_eval(action.context)
+        _cleanup_ctx(ctx)
+        dom = ast.literal_eval(action.domain or "{}")
+        dom = [x for x in dom if x[0] != "order_sequence"]
+        if action_id == "sale.action_orders":
+            dom.append(("state", "not in", ("draft", "sent", "cancel")))
+        else:
+            ctx["search_default_my_quotation"] = True
+        dom = list(set(dom))
+        action.write({"context": ctx, "domain": dom})
 
 
 def _cleanup_ctx(ctx):
