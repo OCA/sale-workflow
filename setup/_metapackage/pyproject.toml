@@ -1,7 +1,8 @@
 [project]
 name = "odoo-addons-oca-sale-workflow"
-version = "18.0.20250414.0"
+version = "18.0.20250415.0"
 dependencies = [
+    "odoo-addon-pricelist_cache==18.0.*",
     "odoo-addon-product_customerinfo_sale==18.0.*",
     "odoo-addon-product_set_sell_only_by_packaging==18.0.*",
     "odoo-addon-sale_automatic_workflow==18.0.*",
