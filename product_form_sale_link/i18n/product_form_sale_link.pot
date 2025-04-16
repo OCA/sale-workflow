@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -29,14 +29,20 @@ msgid "Quotations"
 msgstr ""
 
 #. module: product_form_sale_link
+#: model:ir.model.fields,field_description:product_form_sale_link.field_product_product__sale_lines_count
+#: model:ir.model.fields,field_description:product_form_sale_link.field_product_template__sale_lines_count
+msgid "Sale Lines Count"
+msgstr ""
+
+#. module: product_form_sale_link
 #: model:ir.actions.act_window,name:product_form_sale_link.action_product_product_sale_list
 #: model:ir.actions.act_window,name:product_form_sale_link.action_product_template_sale_list
 msgid "Sale Order Lines"
 msgstr ""
 
 #. module: product_form_sale_link
-#: model:ir.model.fields,field_description:product_form_sale_link.field_product_product__sale_lines_count
-#: model:ir.model.fields,field_description:product_form_sale_link.field_product_template__sale_lines_count
+#: model_terms:ir.ui.view,arch_db:product_form_sale_link.product_product_form_view
+#: model_terms:ir.ui.view,arch_db:product_form_sale_link.product_template_form_view
 msgid "Sales"
 msgstr ""
 
