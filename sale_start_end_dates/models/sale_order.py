@@ -13,10 +13,10 @@ from odoo.tools.misc import format_date
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    default_start_date = fields.Date(
+    default_start_date = fields.Datetime(
         compute="_compute_default_start_date", readonly=False, store=True
     )
-    default_end_date = fields.Date(
+    default_end_date = fields.Datetime(
         compute="_compute_default_end_date", readonly=False, store=True
     )
 
@@ -64,12 +64,12 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    start_date = fields.Date(
+    start_date = fields.Datetime(
         compute="_compute_start_date",
         store=True,
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
     )
-    end_date = fields.Date(
+    end_date = fields.Datetime(
         compute="_compute_end_date",
         store=True,
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
