@@ -213,6 +213,25 @@
             </tree>
         </field>
     </record>
+
+    <!-- A copied view to hide order_id and partner_id, which is redundant when viewing from a smart button -->
+    <record id="view_sales_order_line_input_tree_inherit" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="view_sales_order_line_input_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="js_class">sol_section_and_note</attribute>
+                </xpath>
+            <field name="order_id" position="attributes">
+                <attribute name="optional">hide</attribute>
+                </field>
+            <field name="order_partner_id" position="attributes">
+                <attribute name="optional">hide</attribute>
+                </field>
+
+            </field>
+        </record>
     <record id="view_sales_order_line_filter" model="ir.ui.view">
         <field name="model">sale.order.line</field>
         <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
