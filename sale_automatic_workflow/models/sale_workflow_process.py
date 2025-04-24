@@ -71,7 +71,15 @@ class SaleWorkflowProcess(models.Model):
         comodel_name="account.journal",
         company_dependent=True,
         string="Sales Journal",
+        domain="[('type', '=', 'sale')]",
         help="Set default journal to use on invoice",
+    )
+    property_payment_journal_id = fields.Many2one(
+        comodel_name="account.journal",
+        company_dependent=True,
+        string="Payment Journal",
+        domain="[('type', 'in', ('bank', 'cash'))]",
+        help="Set default journal to use on payment",
     )
     order_filter_id = fields.Many2one(
         "ir.filters",

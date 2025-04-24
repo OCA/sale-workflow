@@ -106,6 +106,7 @@ Contributors
 - Sander Lienaerts <sander.lienaerts@codeforward.nl>
 - Tri Doan <tridm@trobz.com>
 - Chau Le <chaulb@trobz.com>
+- Kevin Khao <kevinkhao@gmail.com>
 
 Other credits
 -------------

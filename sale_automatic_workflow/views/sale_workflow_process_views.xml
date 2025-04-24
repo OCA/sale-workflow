@@ -264,17 +264,30 @@
                                 </span>
                             </div>
                         </div>
-                        <div
-                            class="row"
-                            groups="account.group_account_invoice"
-                            domain="[('type', '=', 'sale')]"
-                        >
+                        <div class="row" groups="account.group_account_invoice">
                             <div class="col-sm-12">
                                 <label
                                     for="property_journal_id"
                                     class="col-lg-4 o_light_label"
                                 />
-                                <field name="property_journal_id" nolabel="1" />
+                                <field
+                                    name="property_journal_id"
+                                    nolabel="1"
+                                    domain="[('type', '=', 'sale')]"
+                                />
+                            </div>
+                        </div>
+                        <div class="row" groups="account.group_account_invoice">
+                            <div class="col-sm-12">
+                                <label
+                                    for="property_payment_journal_id"
+                                    class="col-lg-4 o_light_label"
+                                />
+                                <field
+                                    name="property_payment_journal_id"
+                                    nolabel="1"
+                                    domain="[('type', 'in', ('bank', 'cash', 'credit'))]"
+                                />
                             </div>
                         </div>
                         <br />
