@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-inherit="product.ProductCatalogOrderLine" t-inherit-mode="extension">
+        <xpath
+            expr="//div[hasclass('o_product_catalog_buttons')]/button[@t-on-click.stop='() => this.env.addProduct()']"
+            position="before"
+        >
+            <button
+                t-if="isInOrder() &amp;&amp; displayEdit()"
+                t-on-click.stop="() => this.env.openOrderLine()"
+                class="btn btn-light border w-100"
+            >
+                <i class="fa fa-pencil-square-o" />
+                Edit
+            </button>
+        </xpath>
+        <xpath expr="//span[@t-elif='props.readOnly']" position="after">
+            <div
+                t-elif="props.multiLine"
+                class="d-flex justify-content-end align-items-center m-2"
+            >
+                <div t-if="isInOrder()" class="w-50">
+                    <strong>Total quantity: </strong>
+                    <span t-out="quantity" />
+                </div>
+                <div
+                    class="ms-auto o_product_catalog_buttons o_product_catalog_cancel_global_click"
+                >
+                    <button
+                        t-if="isInOrder() &amp;&amp; displayEdit()"
+                        t-on-click.stop="() => this.env.openOrderLine()"
+                        class="btn btn-light border w-100"
+                    >
+                        <i class="fa fa-pencil-square-o" />
+                        Edit Lines
+                    </button>
+                </div>
+            </div>
+        </xpath>
+    </t>
+</templates>
