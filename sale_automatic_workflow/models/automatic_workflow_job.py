@@ -135,7 +135,7 @@ class AutomaticWorkflowJob(models.Model):
             and "customer"
             or "supplier"
         )
-        return {
+        res = {
             "reconciled_invoice_ids": [(6, 0, invoice.ids)],
             "amount": invoice.amount_residual,
             "partner_id": invoice.partner_id.id,
@@ -143,6 +143,12 @@ class AutomaticWorkflowJob(models.Model):
             "date": fields.Date.context_today(self),
             "currency_id": invoice.currency_id.id,
         }
+        property_payment_journal_id = (
+            invoice.workflow_process_id.property_payment_journal_id
+        )
+        if property_payment_journal_id:
+            res["journal_id"] = property_payment_journal_id.id
+        return res
 
     @api.model
     def _register_payments(self, payment_filter):

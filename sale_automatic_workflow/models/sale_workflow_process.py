@@ -73,6 +73,12 @@ class SaleWorkflowProcess(models.Model):
         string="Sales Journal",
         help="Set default journal to use on invoice",
     )
+    property_payment_journal_id = fields.Many2one(
+        comodel_name="account.journal",
+        company_dependent=True,
+        string="Payment Journal",
+        help="Set default journal to use on payment",
+    )
     order_filter_id = fields.Many2one(
         "ir.filters",
         default=lambda self: self._default_filter(
