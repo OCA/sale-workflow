@@ -7,7 +7,7 @@
         <field name="priority">99</field>
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/tree//field[@name='company_id']"
+                expr="//field[@name='order_line']/list//field[@name='company_id']"
                 position="after"
             >
                 <field
@@ -17,40 +17,49 @@
                 />
             </xpath>
             <xpath expr="//field[@name='tax_totals']" position="after">
-                <field
-                    name="untaxed_amount_to_invoice"
-                    string="To Invoice"
-                    attrs="{'invisible': [('state', '!=', 'sale')]}"
-                />
+                <div class="d-flex justify-content-between py-1">
+                    <span class="fw-bold small">Amount To Invoice:</span>
+                    <span class="fw-bold">
+                        <field
+                            name="untaxed_amount_to_invoice"
+                            readonly="1"
+                            widget="monetary"
+                            options="{'currency_field': 'currency_id'}"
+                            class="oe_inline"
+                        />
+                    </span>
+                </div>
             </xpath>
         </field>
     </record>
-    <record id="view_order_tree" model="ir.ui.view">
-        <field name="name">sale.order.tree</field>
+
+    <record id="sale_order_list_upload" model="ir.ui.view">
+        <field name="name">sale.order.list</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="inherit_id" ref="sale.sale_order_list_upload" />
         <field name="arch" type="xml">
             <field name="invoice_status" position="after">
                 <field
                     name="untaxed_amount_to_invoice"
                     string="To Invoice"
-                    attrs="{'invisible': [('state', '!=', 'sale')]}"
+                    invisible="state != 'sale'"
                     optional="hide"
                     sum="To Invoice"
                 />
             </field>
         </field>
     </record>
-    <record id="view_quotation_tree" model="ir.ui.view">
-        <field name="name">sale.order.tree</field>
+
+    <record id="view_quotation_tree_with_onboarding" model="ir.ui.view">
+        <field name="name">sale.order.list</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding" />
         <field name="arch" type="xml">
             <field name="invoice_status" position="after">
                 <field
                     name="untaxed_amount_to_invoice"
                     string="To Invoice"
-                    attrs="{'invisible': [('state', '!=', 'sale')]}"
+                    invisible="state != 'sale'"
                     optional="hide"
                     sum="To Invoice"
                 />
