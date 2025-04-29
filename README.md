@@ -52,6 +52,7 @@ addon | version | maintainers | summary
 [sale_order_report_without_price](sale_order_report_without_price/) | 18.0.1.0.0 |  | Allow you to generate quotation and order reports without price.
 [sale_order_requested_delivery](sale_order_requested_delivery/) | 18.0.1.0.0 |  | This module adds two new fields `requested_delivery_period_start` and `requested_delivery_period_end` to both the `sale.order` and `sale.order.line` models.
 [sale_order_revision](sale_order_revision/) | 18.0.1.0.0 |  | Keep track of revised quotations
+[sale_order_tag](sale_order_tag/) | 18.0.1.0.0 | [![patrickrwilson](https://github.com/patrickrwilson.png?size=30px)](https://github.com/patrickrwilson) | Adds Tags to Sales Orders.
 [sale_order_type](sale_order_type/) | 18.0.1.0.0 |  | Sale Order Type
 [sale_order_warn_message](sale_order_warn_message/) | 18.0.1.0.0 |  | Add a popup warning on sale to ensure warning is populated
 [sale_partner_address_restrict](sale_partner_address_restrict/) | 18.0.1.0.0 |  | Restrict addresses domain in the sales order form taking into account the partner selected
