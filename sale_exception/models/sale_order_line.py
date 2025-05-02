@@ -44,28 +44,8 @@ class SaleOrderLine(models.Model):
         )
         return f"<ul>{items}</ul>"
 
-    @api.depends("exception_ids", "ignore_exception")
-    def _compute_exceptions_summary(self):
-        for rec in self:
-            if rec.exception_ids and not rec.ignore_exception:
-                rec.exceptions_summary = rec._get_exception_summary()
-            else:
-                rec.exceptions_summary = False
-
-    def _get_exception_summary(self):
-        return "<ul>%s</ul>" % "".join(
-            [
-                "<li>%s: <i>%s</i></li>"
-                % tuple(map(html.escape, (e.name, e.description)))
-                for e in self.exception_ids
-            ]
-        )
-
     def _get_main_records(self):
         return self.mapped("order_id")
-
-    def _get_main_records(self):
-        return self.mapped('order_id')
 
     @api.model
     def _reverse_field(self):

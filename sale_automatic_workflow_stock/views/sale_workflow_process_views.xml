@@ -65,7 +65,7 @@
     </record>
 
     <record id="sale_workflow_process_view_tree_inherit" model="ir.ui.view">
-        <field name="name">sale.workflow.process.list.stock</field>
+        <field name="name">sale.workflow.process.tree.stock</field>
         <field name="model">sale.workflow.process</field>
         <field
             name="inherit_id"

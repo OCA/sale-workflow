@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <!--
   Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
@@ -14,7 +15,7 @@
         <field name="model_id">sale.order</field>
         <field
             name="domain"
-        >[('state', '=', 'sale'), ('invoice_status', '=' ,'to invoice')]</field>
+        >[('state','=','sale'),('invoice_status','=','to invoice')]</field>
         <field name="user_id" ref="base.user_root" />
     </record>
     <record id="automatic_workflow_validate_invoice_filter" model="ir.filters">

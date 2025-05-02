@@ -22,8 +22,6 @@ class SaleOrder(models.Model):
         store=True,
     )
 
-    # TODO: v15 -> make this module dependent on sale_delivery_state and
-    # use the code in sale_automatic_workflow_delivery_state to replace this function
     @api.depends("order_line.qty_delivered", "order_line.product_uom_qty")
     def _compute_all_qty_delivered(self):
         precision = self.env["decimal.precision"].precision_get(
@@ -35,7 +33,7 @@ class SaleOrder(models.Model):
                 or float_compare(
                     line.qty_delivered, line.product_uom_qty, precision_digits=precision
                 )
-                >= 0
+                == 0
                 for line in order.order_line
             )
 
@@ -55,14 +53,18 @@ class SaleOrder(models.Model):
 
     @api.onchange("workflow_process_id")
     def _onchange_workflow_process_id(self):
-        if self.workflow_process_id.team_id:
-            self.team_id = self.workflow_process_id.team_id.id
         if self.workflow_process_id.warning:
             warning = {
                 "title": self.env._("Workflow Warning"),
                 "message": self.workflow_process_id.warning,
             }
             return {"warning": warning}
+
+    @api.depends("partner_id", "user_id", "workflow_process_id")
+    def _compute_team_id(self):  # pylint: disable=W8110
+        super()._compute_team_id()
+        if self.workflow_process_id.team_id:
+            self.team_id = self.workflow_process_id.team_id.id
 
     def _create_invoices(self, grouped=False, final=False, date=None):
         for order in self:

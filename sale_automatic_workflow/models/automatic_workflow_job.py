@@ -56,20 +56,6 @@ class AutomaticWorkflowJob(models.Model):
         sale._send_order_confirmation_mail()
         return f"{sale.display_name} {sale} send order confirmation mail successfully"
 
-    def _do_send_order_confirmation_mail(self, sale):
-        """Send order confirmation mail, while filtering to make sure the order is
-        confirmed with _do_validate_sale_order() function"""
-        if not self.env["sale.order"].search_count(
-            [("id", "=", sale.id), ("state", "=", "sale")]
-        ):
-            return "{} {} job bypassed".format(sale.display_name, sale)
-        if sale.user_id:
-            sale = sale.with_user(sale.user_id)
-        sale._send_order_confirmation_mail()
-        return "{} {} send order confirmation mail successfully".format(
-            sale.display_name, sale
-        )
-
     @api.model
     def _validate_sale_orders(self, order_filter):
         sale_obj = self.env["sale.order"]
@@ -190,24 +176,12 @@ class AutomaticWorkflowJob(models.Model):
     def _handle_pickings(self, sale_workflow):
         pass
 
-            domain = [
-                ("account_internal_type", "in", ("receivable", "payable")),
-                ("reconciled", "=", False),
-            ]
-            payment_lines = payment.line_ids.filtered_domain(domain)
-            lines = invoice.line_ids
-            for account in payment_lines.account_id:
-                (payment_lines + lines).filtered_domain(
-                    [("account_id", "=", account.id), ("reconciled", "=", False)]
-                ).reconcile()
-
-    @api.model
-    def _handle_pickings(self, sale_workflow):
-        pass
+    def _sale_workflow_domain(self, workflow):
+        return [("workflow_process_id", "=", workflow.id)]
 
     @api.model
     def run_with_workflow(self, sale_workflow):
-        workflow_domain = [("workflow_process_id", "=", sale_workflow.id)]
+        workflow_domain = self._sale_workflow_domain(sale_workflow)
         if sale_workflow.validate_order:
             self.with_context(
                 send_order_confirmation_mail=sale_workflow.send_order_confirmation_mail
@@ -236,9 +210,14 @@ class AutomaticWorkflowJob(models.Model):
             )
 
     @api.model
+    def _workflow_process_to_run_domain(self):
+        return []
+
+    @api.model
     def run(self):
         """Must be called from ir.cron"""
         sale_workflow_process = self.env["sale.workflow.process"]
-        for sale_workflow in sale_workflow_process.search([]):
+        domain = self._workflow_process_to_run_domain()
+        for sale_workflow in sale_workflow_process.search(domain):
             self.run_with_workflow(sale_workflow)
         return True
