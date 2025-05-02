@@ -2,7 +2,7 @@
 # Copyright 2022 Moduon
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
-from odoo.tests.common import Form, tagged
+from odoo.tests import Form, tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
@@ -34,8 +34,8 @@ class TestPartnerAccess(AccountTestInvoicingCommon):
     def _create_user(self, letter):
         return self.env["res.users"].create(
             {
-                "name": "User %s" % letter,
-                "login": "user_%s" % letter,
+                "name": f"User {letter}",
+                "login": f"user_{letter}",
                 "groups_id": [(6, 0, [self.group_portal.id])],
             }
         )
