@@ -1,0 +1,47 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_automatic_workflow_payment_mode
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-05-26 14:21+0000\n"
+"PO-Revision-Date: 2017-05-26 14:21+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"Language-Team: Vietnamese (Viet Nam) (https://www.transifex.com/oca/"
+"teams/23907/vi_VN/)\n"
+"Language: vi_VN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: sale_automatic_workflow_payment_mode
+#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_account_payment_mode__workflow_process_id
+#: model:ir.model.fields,field_description:sale_automatic_workflow_payment_mode.field_sale_order__workflow_process_id
+msgid "Automatic Workflow"
+msgstr ""
+
+#. module: sale_automatic_workflow_payment_mode
+#: model:ir.model,name:sale_automatic_workflow_payment_mode.model_account_payment_mode
+msgid "Payment Modes"
+msgstr ""
+
+#. module: sale_automatic_workflow_payment_mode
+#: model:ir.model,name:sale_automatic_workflow_payment_mode.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_automatic_workflow_payment_mode
+#: model:ir.model,name:sale_automatic_workflow_payment_mode.model_automatic_workflow_job
+msgid ""
+"Scheduler that will play automatically the validation of invoices, "
+"pickings..."
+msgstr ""
+
+#, fuzzy
+#~ msgid "Sale Order"
+#~ msgstr "Đơn hàng Bán"
