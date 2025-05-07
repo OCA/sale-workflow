@@ -20,5 +20,4 @@
         <field name="force_invoiced_quantity">0</field>
         <field name="price_unit">145.00</field>
     </record>
-
 </odoo>
