@@ -12,8 +12,8 @@ class TestSaleException(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-        cls.holiday_model = cls.env["hr.holidays.public"]
-        cls.holiday_model_line = cls.env["hr.holidays.public.line"]
+        cls.holiday_model = cls.env["calendar.public.holiday"]
+        cls.holiday_model_line = cls.env["calendar.public.holiday.line"]
 
         # Remove possibly existing public holidays that would interfer.
         cls.holiday_model_line.search([]).unlink()
@@ -25,7 +25,11 @@ class TestSaleException(TransactionCase):
             {"year": holiday_date.year, "country_id": cls.env.ref("base.sl").id}
         )
         cls.holiday_model_line.create(
-            {"name": "holiday 5", "date": holiday_date, "year_id": holiday_1.id}
+            {
+                "name": "holiday 5",
+                "date": holiday_date,
+                "public_holiday_id": holiday_1.id,
+            }
         )
 
         cls.holiday_date = holiday_date
@@ -57,7 +61,6 @@ class TestSaleException(TransactionCase):
                         },
                     )
                 ],
-                "pricelist_id": self.env.ref("product.list0").id,
             }
         )
         # Update freely without error

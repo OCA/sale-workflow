@@ -12,21 +12,20 @@ class SaleOrder(models.Model):
         :return: bool
         """
         self.ensure_one()
-        res = False
         if not self.commitment_date:
-            return res
+            return False
         commitment_date = fields.Datetime.context_timestamp(
             self, self.commitment_date
         ).date()
         partner = self.partner_shipping_id or self.partner_id
         domain = [
-            ("year_id.country_id", "in", (False, partner.country_id.id)),
+            ("public_holiday_id.country_id", "in", (False, partner.country_id.id)),
             "|",
             ("state_ids", "=", False),
             ("state_ids", "=", partner.state_id.id),
             ("date", "=", commitment_date),
         ]
-        hhplo = self.env["hr.holidays.public.line"]
+        hhplo = self.env["calendar.public.holiday.line"]
         holidays_line = hhplo.search(domain, limit=1, order="id")
         return bool(holidays_line)
 
