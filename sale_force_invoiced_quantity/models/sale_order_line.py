@@ -70,7 +70,7 @@ class SaleOrderLine(models.Model):
                 inv_lines = line._get_invoice_lines()
                 if any(
                     inv_lines.mapped(
-                        lambda inv_line: inv_line.discount != line.discount
+                        lambda inv_line, line=line: inv_line.discount != line.discount
                     )
                 ):
                     amount = 0
