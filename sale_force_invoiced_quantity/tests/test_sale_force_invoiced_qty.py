@@ -21,7 +21,15 @@ class TestSaleForceInvoicedQTY(TransactionCase):
                 "name": "Tax 15",
                 "type_tax_use": "sale",
                 "amount": 20,
-                "price_include": True,
+                "price_include_override": "tax_included",
+            }
+        )
+        cls.excluded_tax = cls.env["account.tax"].create(
+            {
+                "name": "Tax 10%",
+                "amount": 10,
+                "type_tax_use": "sale",
+                "price_include_override": "tax_excluded",
             }
         )
 
@@ -50,6 +58,7 @@ class TestSaleForceInvoicedQTY(TransactionCase):
                 "product_uom_qty": 3,
                 "order_id": so.id,
                 "price_unit": 100,
+                "tax_id": [(6, 0, [])],
             }
         )
         sol2 = self.sale_order_line_obj.create(
@@ -58,6 +67,7 @@ class TestSaleForceInvoicedQTY(TransactionCase):
                 "product_uom_qty": 2,
                 "order_id": so.id,
                 "price_unit": 100,
+                "tax_id": [(6, 0, [])],
             }
         )
 
@@ -191,6 +201,60 @@ class TestSaleForceInvoicedQTY(TransactionCase):
             sol2.untaxed_amount_to_invoice,
             -41.67,
             msg="The untaxed amount to invoice should be -41.67",
+        )
+
+        so._create_invoices()
+        inv_line = sol1._get_invoice_lines()
+        inv_line.discount = 10.0
+        so.order_line._compute_untaxed_amount_to_invoice()
+        self.assertEqual(
+            so.invoice_status, "to invoice", "The invoice status should be To Invoice"
+        )
+
+    def test_sales_order_excluded_tax(self):
+        """Test forced invoiced qty with tax-excluded prices and discounts."""
+        so = self.sale_order_obj.create({"partner_id": self.customer.id})
+        sol1 = self.sale_order_line_obj.create(
+            {
+                "product_id": self.product_1.id,
+                "product_uom_qty": 3,
+                "order_id": so.id,
+                "price_unit": 100,
+                "tax_id": self.excluded_tax,
+                "discount": 15.0,
+            }
+        )
+        sol2 = self.sale_order_line_obj.create(
+            {
+                "product_id": self.product_2.id,
+                "product_uom_qty": 2,
+                "order_id": so.id,
+                "price_unit": 100,
+                "tax_id": self.excluded_tax,
+                "discount": 50.0,
+            }
+        )
+        so.action_confirm()
+        sol1.qty_delivered = 3
+        sol2.qty_delivered = 2
+        sol2.force_invoiced_quantity = 3
+        self.assertEqual(
+            sol2.qty_to_invoice, -1, msg="The quantity to invoice should be -1"
+        )
+        self.assertEqual(
+            so.invoice_status, "to invoice", "The invoice status should be To Invoice"
+        )
+
+        self.assertEqual(
+            sol1.untaxed_amount_to_invoice,
+            255.0,
+            msg="The untaxed amount to invoice should be 255.0",
+        )
+
+        self.assertEqual(
+            sol2.untaxed_amount_to_invoice,
+            -50.0,
+            msg="The untaxed amount to invoice should be -50.0",
         )
 
         so._create_invoices()

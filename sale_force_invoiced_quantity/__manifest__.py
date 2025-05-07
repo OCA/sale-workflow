@@ -4,7 +4,7 @@
 {
     "name": "Sale Force Invoiced Quantity",
     "summary": "Add manual invoice quantity in sales order lines",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "author": "Cetmix, Odoo Community Association (OCA)",
     "category": "sale",
     "license": "AGPL-3",
