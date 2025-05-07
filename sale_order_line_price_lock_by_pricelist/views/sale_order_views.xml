@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <!-- List view -->
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='price_unit']"
+                position="before"
+            >
+                <field name="price_locked" invisible="1" />
+                <field name="origin_pricelist_item_id" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='price_unit']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                    operation="attrs_domain_add"
+                    key="readonly"
+                    join_operator="OR"
+                >
+                    [('price_locked', '=', True)]
+                </attribute>
+            </xpath>
+            <!-- Form view -->
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='price_unit']"
+                position="before"
+            >
+                <field name="price_locked" invisible="1" />
+                <field name="origin_pricelist_item_id" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='price_unit']"
+                position="attributes"
+            >
+                <attribute
+                    name="attrs"
+                    operation="attrs_domain_add"
+                    key="readonly"
+                    join_operator="OR"
+                >
+                    [('price_locked', '=', True)]
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

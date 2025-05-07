@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_pricelist_view" model="ir.ui.view">
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view" />
+        <field name="arch" type="xml">
+            <group name="pricelist_discounts" position="after">
+                <group name="lock_prices" string="Lock prices">
+                    <field name="lock_product_prices_applied_on" />
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
