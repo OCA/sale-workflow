@@ -121,22 +121,23 @@ class SaleOrderLine(models.Model):
                     restoring_triple_discount=True,
                 ).update({"discount": old_values[line.id]})
 
-    def _convert_to_tax_base_line_dict(self, **kwargs):
+    def _prepare_base_line_for_taxes_computation(self, **kwargs):
         self.ensure_one()
         discount = (
             self.discount
             if self.env.context.get("discount_is_aggregated")
             else self._get_final_discount()
         )
-        return self.env["account.tax"]._convert_to_tax_base_line_dict(
+        return self.env["account.tax"]._prepare_base_line_for_taxes_computation(
             self,
-            partner=self.order_id.partner_id,
-            currency=self.order_id.currency_id,
-            product=self.product_id,
-            taxes=self.tax_id,
-            price_unit=self.price_unit,
-            quantity=self.product_uom_qty,
-            discount=discount,
-            price_subtotal=self.price_subtotal,
-            **kwargs,
+            **{
+                "tax_ids": self.tax_id,
+                "quantity": self.product_uom_qty,
+                "partner_id": self.order_id.partner_id,
+                "currency_id": self.order_id.currency_id
+                or self.order_id.company_id.currency_id,
+                "rate": self.order_id.currency_rate,
+                "discount": discount,
+                **kwargs,
+            },
         )

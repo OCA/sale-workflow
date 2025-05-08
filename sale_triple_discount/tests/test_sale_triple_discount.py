@@ -81,12 +81,6 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line1.price_subtotal, 450.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 450.0)
         self.assertAlmostEqual(self.order.amount_tax, 67.5)
-        # sale tax total (multiplicative)
-        tax_totals = self.order.tax_totals
-        self.assertAlmostEqual(
-            tax_totals["groups_by_subtotal"]["Untaxed Amount"][0]["tax_group_amount"],
-            67.5,
-        )
         # set discount_type to additive
         self.so_line1.discount = 10.0
         self.so_line1.discount2 = 10.0
@@ -95,12 +89,6 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line1.price_subtotal, 420.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 420.0)
         self.assertAlmostEqual(self.order.amount_tax, 63.0)
-        # sale tax total (additive)
-        tax_totals = self.order.tax_totals
-        self.assertAlmostEqual(
-            tax_totals["groups_by_subtotal"]["Untaxed Amount"][0]["tax_group_amount"],
-            63.0,
-        )
         # set discount over 100%
         self.so_line1.discount = 30.0
         self.so_line1.discount2 = 70.0
@@ -162,7 +150,7 @@ class TestSaleOrder(common.TransactionCase):
         self.order._create_invoices()
         invoice = self.order.invoice_ids[0]
         self.assertAlmostEqual(
-            self.so_line1.discount, invoice.invoice_line_ids[0].discount
+            self.so_line1.discount, invoice.invoice_line_ids[0].discount1
         )
         self.assertAlmostEqual(
             self.so_line1.discount2, invoice.invoice_line_ids[0].discount2
