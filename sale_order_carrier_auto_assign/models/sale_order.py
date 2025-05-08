@@ -1,4 +1,5 @@
 # Copyright 2020 Camptocamp SA
+# Copyright 2024 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import api, models
 
@@ -19,9 +20,11 @@ class SaleOrder(models.Model):
 
     def _is_auto_set_carrier_on_create(self):
         self.ensure_one()
-        if self.state not in ("draft", "sent"):
-            return False
-        return self.company_id.carrier_on_create
+        return (
+            self.state in ("draft", "sent")
+            and self.company_id.carrier_on_create
+            and not self.is_all_service
+        )
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -31,14 +34,17 @@ class SaleOrder(models.Model):
                 order._set_delivery_carrier()
         return orders
 
+    def _is_auto_set_carrier_on_confirm(self):
+        self.ensure_one()
+        return self.company_id.carrier_auto_assign and not self.is_all_service
+
     def action_confirm(self):
-        for rec in self:
-            if not rec.company_id.carrier_auto_assign:
-                continue
-            rec._set_delivery_carrier(
-                set_delivery_line=True,
-                preserve_order_carrier=False,
-            )
+        for order in self:
+            if order._is_auto_set_carrier_on_confirm():
+                order._set_delivery_carrier(
+                    set_delivery_line=True,
+                    preserve_order_carrier=True,
+                )
         return super().action_confirm()
 
     def _set_delivery_carrier(
