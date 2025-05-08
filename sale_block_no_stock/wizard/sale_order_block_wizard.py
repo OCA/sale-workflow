@@ -1,3 +1,5 @@
+from markupsafe import Markup
+
 from odoo import _, api, exceptions, fields, models
 from odoo.tools import groupby
 
@@ -47,10 +49,12 @@ class SaleOrderBlockWizard(models.TransientModel):
         for record in self:
             lines = record.mapped("sale_line_block_ids")
             record.is_packaging_adjustable = bool(
-                lines.filtered(lambda l: l.product_packaging_allowed_max_qty > 0.0)
+                lines.filtered(
+                    lambda line: line.product_packaging_allowed_max_qty > 0.0
+                )
             )
             record.is_uom_adjustable = bool(
-                lines.filtered(lambda l: l.product_uom_allowed_max_qty > 0.0)
+                lines.filtered(lambda line: line.product_uom_allowed_max_qty > 0.0)
             )
 
     def confirm(self):
@@ -67,11 +71,13 @@ class SaleOrderBlockWizard(models.TransientModel):
         return orders.with_context(skip_block_no_stock_check=True).action_confirm()
 
     def action_adjust_uom_quantity(self):
-        """Adjust the quantity of the sale lines to the maximum allowed by the UoM."""
+        """Adjust the quantity of the sale lines to the maximum allowed by the
+        UoM."""
         return self.sale_line_block_ids._action_adjust_uom_quantity()
 
     def action_adjust_packaging_quantity(self):
-        """Adjust the quantity of the sale lines to the maximum allowed by the packaging."""
+        """Adjust the quantity of the sale lines to the maximum allowed by the
+        packaging."""
         return self.sale_line_block_ids._action_adjust_packaging_quantity()
 
     def action_move_to_new_order(self):
@@ -87,7 +93,10 @@ class SaleOrderBlockWizard(models.TransientModel):
             )
             if len(companies) > 1:
                 raise exceptions.UserError(
-                    _("Cannot launch wizard from sale orders from different companies.")
+                    _(
+                        """Cannot launch wizard from sale orders
+                    from different companies."""
+                    )
                 )
 
 
@@ -164,7 +173,8 @@ class SaleOrderBlockWizardLine(models.TransientModel):
 
     @api.depends("sale_line_id", "product_uom_qty", "company_id.sale_line_field_block")
     def _compute_allowed_max_qty(self):
-        """Compute the maximum allowed quantity by UoM and Packaging of storable products."""
+        """Compute the maximum allowed quantity by UoM and Packaging of
+        storable products."""
         self.product_uom_allowed_max_qty = 0.0
         self.product_packaging_allowed_max_qty = 0.0
         for record in self:
@@ -172,7 +182,10 @@ class SaleOrderBlockWizardLine(models.TransientModel):
             if not field_to_check:
                 self.env.cr.postcommit.add(record.unlink)
                 continue
-            if record.sale_line_id.product_type != "product":
+            if (
+                record.sale_line_id.product_type != "consu"
+                and record.sale_line_id.product_id.is_storable
+            ):
                 self.env.cr.postcommit.add(record.unlink)
                 continue
             allowed_max_qty = record.sale_line_id[field_to_check.name]
@@ -202,10 +215,8 @@ class SaleOrderBlockWizardLine(models.TransientModel):
 
     def _get_reopen_action(self):
         """Return the action to reopen the wizard."""
-        action = (
-            self.env.ref("sale_block_no_stock.sale_order_block_wizard_action")
-            .sudo()
-            .read()[0]
+        action = self.env["ir.actions.actions"]._for_xml_id(
+            "sale_block_no_stock.sale_order_block_wizard_action"
         )
         action["context"] = {
             "default_sale_line_block_ids": [
@@ -222,15 +233,15 @@ class SaleOrderBlockWizardLine(models.TransientModel):
         new_orders = self.env["sale.order"].browse()
         for order, records in groupby(self, lambda r: r.order_id):
             new_order = order.copy(default={"order_line": None})
-            new_order.message_post_with_view(
+            new_order.message_post_with_source(
                 "mail.message_origin_link",
-                values={"self": new_order, "origin": order, "edit": True},
+                render_values={"self": new_order, "origin": order, "edit": True},
                 subtype_id=mt_note_id,
                 author_id=partner_id,
             )
-            order.message_post_with_view(
+            order.message_post_with_source(
                 "mail_message_destiny_link_template.message_destiny_link",
-                values={"self": order, "destiny": new_order, "edit": False},
+                render_values={"self": order, "destiny": new_order, "edit": False},
                 subtype_id=mt_note_id,
                 author_id=partner_id,
             )
@@ -241,18 +252,22 @@ class SaleOrderBlockWizardLine(models.TransientModel):
 
     @api.model
     def _get_adjusted_message(self, product, init_qty, final_qty, uom):
-        return _(
-            "Product <b>%(product)s</b> adjusted "
-            "from <b>%(init_qty)s</b> %(uom)s to <b>%(final_qty)s</b> %(uom)s."
+        message = Markup(
+            """
+            Product <b>%(product)s</b> adjusted from
+            <b>%(init_qty)s</b> %(uom)s to <b>%(final_qty)s</b> %(uom)s.
+        """
         ) % {
             "product": product,
             "init_qty": init_qty,
             "final_qty": final_qty,
             "uom": uom,
         }
+        return message
 
     def _action_adjust_uom_quantity(self):
-        """Adjust the quantity of the sale lines to the maximum allowed by the UoM."""
+        """Adjust the quantity of the sale lines to the maximum allowed by the
+        UoM."""
         mt_note_id = self.env.ref("mail.mt_note").id
         adjustable_records = self._get_adjustable_records()
         for record in adjustable_records:
@@ -271,7 +286,8 @@ class SaleOrderBlockWizardLine(models.TransientModel):
         return (self - adjustable_records)._get_reopen_action()
 
     def _action_adjust_packaging_quantity(self):
-        """Adjust the quantity of the sale lines to the maximum allowed by the packaging."""
+        """Adjust the quantity of the sale lines to the maximum allowed by the
+        packaging."""
         mt_note_id = self.env.ref("mail.mt_note").id
         adjustable_records = self._get_adjustable_records(packaging=True)
         for record in adjustable_records:
