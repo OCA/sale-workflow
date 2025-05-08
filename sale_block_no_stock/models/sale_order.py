@@ -22,16 +22,14 @@ class SaleOrder(models.Model):
 
             blocked_lines = self.env["sale.order.line"].browse()
             lines = record.order_line.filtered_domain(
-                [("product_type", "=", "product")]
+                [("product_type", "=", "consu"), ("is_storable", "=", True)]
             )
             for line in lines:
                 if line.product_uom_qty > line[field_to_check.name]:
                     blocked_lines |= line
             if blocked_lines:
-                action = (
-                    self.env.ref("sale_block_no_stock.sale_order_block_wizard_action")
-                    .sudo()
-                    .read()[0]
+                action = self.env["ir.actions.actions"]._for_xml_id(
+                    "sale_block_no_stock.sale_order_block_wizard_action"
                 )
                 action["context"] = {
                     "default_sale_line_block_ids": [

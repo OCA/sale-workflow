@@ -33,7 +33,8 @@ class TestSaleBlockNoStock(TransactionCase):
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Test Product",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "uom_id": cls.env.ref("uom.product_uom_unit").id,
             }
         )
@@ -100,7 +101,7 @@ class TestSaleBlockNoStock(TransactionCase):
                 ],
             }
         )
-        cls.in_picking.move_ids[0].quantity_done = 11.0
+        cls.in_picking.move_ids[0].quantity = 11.0
 
     def _get_wizard(self, wizard_user, wizard_action):
         """Returns a new wizard instance from the given action."""
@@ -189,6 +190,7 @@ class TestSaleBlockNoStock(TransactionCase):
         self.assertEqual(len(wizard.sale_line_block_ids), 1)
         self.assertFalse(wizard.confirmation_allowed)
         self.sale.commitment_date = "2024-01-05"
+        self.in_picking.action_assign()
         # No Block: 1 Dozen on 2024-01-05
         self.sale.with_user(self.saleblock_user.id).action_confirm()
         self.assertNotEqual(self.sale.state, "draft")
