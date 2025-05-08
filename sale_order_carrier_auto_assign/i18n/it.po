@@ -69,6 +69,3 @@ msgstr "Ordine di vendita"
 #: model_terms:ir.ui.view,arch_db:sale_order_carrier_auto_assign.res_config_settings_view_form_sale
 msgid "Set default shipping method automatically."
 msgstr "Impostare automaticamente il metodo di spedizione predefinito."
-
-#~ msgid "Carrier auto assign"
-#~ msgstr "Auto assegnazione corriere"
