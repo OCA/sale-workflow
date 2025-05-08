@@ -40,7 +40,7 @@
                     widget="badge"
                     optional="hide"
                     decoration-info="delivery_status == 'pending'"
-                    decoration-warning="delivery_status == 'partial'"
+                    decoration-warning="delivery_status in ('partial', 'started')"
                     decoration-success="delivery_status == 'full'"
                 />
             </field>
