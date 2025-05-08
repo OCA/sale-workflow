@@ -11,11 +11,6 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     delivery_status = fields.Selection(
-        [
-            ("pending", "Not Delivered"),
-            ("partial", "Partially Delivered"),
-            ("full", "Fully Delivered"),
-        ],
         # Compute method have a different name then the field because
         # the method _compute_delivery_status already exist in odoo sale_stock
         compute="_compute_oca_delivery_status",
@@ -77,6 +72,8 @@ class SaleOrder(models.Model):
                 order.delivery_status = "full"
             elif order._partially_delivered():
                 order.delivery_status = "partial"
+            elif any(p.state == "done" for p in order.picking_ids):
+                order.delivery_status = "started"
             else:
                 order.delivery_status = "pending"
 
