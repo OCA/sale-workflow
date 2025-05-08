@@ -13,8 +13,18 @@ class TestSaleOrderCarrierAutoAssignCommon(BaseCommon):
     def setUpClass(cls):
         super().setUpClass()
         cls.settings = cls.env["res.config.settings"].create({})
-        cls.product_storable = cls.env.ref("product.product_product_9")
-        cls.product_service = cls.env.ref("product.expense_product")
+        cls.product_storable = cls.env["product.product"].create(
+            {
+                "name": "Test product storable",
+                "type": "consu",
+            }
+        )
+        cls.product_service = cls.env["product.product"].create(
+            {
+                "name": "Test product service",
+                "type": "service",
+            }
+        )
         cls.delivery_local_delivery = cls.env.ref("delivery.delivery_local_delivery")
         cls.delivery_local_delivery.fixed_price = 10
         cls.delivery_local_delivery.free_over = False
@@ -55,11 +65,7 @@ class TestSaleOrderCarrierAutoAssignOnCreate(TestSaleOrderCarrierAutoAssignCommo
             {
                 "partner_id": self.partner.id,
                 "order_line": [
-                    Command.create(
-                        {
-                            "product_id": self.product_storable.id,
-                        }
-                    )
+                    Command.create({"product_id": self.product_storable.id})
                 ],
             }
         )

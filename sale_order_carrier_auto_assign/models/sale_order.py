@@ -69,15 +69,13 @@ class SaleOrder(models.Model):
                 delivery_wiz = delivery_wiz_model.create({})
             else:
                 delivery_wiz = delivery_wiz_model.new({})
-
             # Do not override carrier
             if preserve_order_carrier and order.carrier_id:
                 delivery_wiz.carrier_id = order.carrier_id
-
             if not set_delivery_line or order.is_all_service:
                 # Only set the carrier
                 if order.carrier_id != delivery_wiz.carrier_id:
                     order.carrier_id = delivery_wiz.carrier_id
             else:
-                delivery_wiz._get_shipment_rate()
+                delivery_wiz._get_delivery_rate()
                 delivery_wiz.button_confirm()
