@@ -73,5 +73,5 @@ class SaleOrder(models.Model):
                 if order.carrier_id != delivery_wiz.carrier_id:
                     order.carrier_id = delivery_wiz.carrier_id
             else:
-                delivery_wiz._get_shipment_rate()
+                delivery_wiz._get_delivery_rate()
                 delivery_wiz.button_confirm()
