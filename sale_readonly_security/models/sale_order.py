@@ -23,8 +23,8 @@ class SaleOrder(models.Model):
         return result
 
     @api.model
-    def check_access_rights(self, operation, raise_exception=True):
-        """Simulate that you do not have ACLs so that the create, edit and delete
+    def check_access(self, operation):
+        """Simulate that you do not have ACLs so that the create, edit, and delete
         buttons are not displayed.
         """
         user = self.env.user
@@ -39,17 +39,14 @@ class SaleOrder(models.Model):
             and not self.env.su
             and not user.has_group(group)
         ):
-            if raise_exception:
-                raise AccessError(
-                    _(
-                        "Sorry, you are not allowed to create/edit sale orders. "
-                        "Please contact your administrator for further information."
-                    )
+            raise AccessError(
+                _(
+                    "Sorry, you are not allowed to create/edit sale orders. "
+                    "Please contact your administrator for further information."
                 )
-            return False
-        return super().check_access_rights(
-            operation=operation, raise_exception=raise_exception
-        )
+            )
+
+        return super().check_access(operation=operation)
 
     def _create_invoices(self, grouped=False, final=False, date=None):
         """Check if the user can do it, the method does not do a write() in sale.order,
@@ -57,5 +54,5 @@ class SaleOrder(models.Model):
         Apply the following logic: If user cannot modify a sale.order, cannot create
         an invoice.
         """
-        self.env["sale.order"].check_access_rights("write")
+        self.env["sale.order"].check_access("write")
         return super()._create_invoices(grouped=grouped, final=final, date=date)
