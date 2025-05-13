@@ -25,7 +25,8 @@ class TestSaleStockOrderSecondaryUnit(TransactionCase):
         cls.product = cls.env["product.product"].create(
             {
                 "name": "test",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "uom_id": cls.product_uom_kg.id,
                 "uom_po_id": cls.product_uom_kg.id,
             }
@@ -87,5 +88,4 @@ class TestSaleStockOrderSecondaryUnit(TransactionCase):
         self.order.order_line._onchange_helper_product_uom_for_secondary()
         self.order.action_confirm()
         picking = self.order.picking_ids
-        # Second qty on sml only manage done quantities
-        self.assertEqual(picking.move_line_ids.secondary_uom_qty, 0.0)
+        self.assertEqual(picking.move_line_ids.secondary_uom_qty, 5.0)
