@@ -87,6 +87,13 @@ msgid "Sale Order Mass Action"
 msgstr ""
 
 #. module: sale_order_mass_action
+#. odoo-python
+#: code:addons/sale_order_mass_action/wizards/sale_order_mass_action_wizard.py:0
+#, python-format
+msgid "The following orders has been updated : %(order_names)s"
+msgstr ""
+
+#. module: sale_order_mass_action
 #: model_terms:ir.ui.view,arch_db:sale_order_mass_action.view_sale_order_mass_action_wizard_form
 msgid "or"
 msgstr "ou"
