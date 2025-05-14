@@ -21,6 +21,4 @@
     ],
     "auto_install": True,
     "data": ["views/sale_order_views.xml"],
-    "demo": [],
-    "post_init_hook": "post_init_hook",
 }
