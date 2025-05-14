@@ -1,10 +1,12 @@
 # Copyright 2018-2020 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo.tests import TransactionCase, tagged
+from odoo.tests import tagged
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @tagged("post_install", "-at_install")
-class TestProductTemplate(TransactionCase):
+class TestProductTemplate(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -26,7 +28,10 @@ class TestProductTemplate(TransactionCase):
             ]
         )
         cls.size_attribute = cls.product_attribute_model.create(
-            {"name": "Size", "create_variant": "always"}
+            {
+                "name": "Test Size (sale_order_secondary_unit)",
+                "create_variant": "always",
+            }
         )
         cls.size_values = cls.product_attribute_value_model.create(
             [
