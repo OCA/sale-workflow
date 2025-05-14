@@ -1,10 +1,18 @@
 <<<<<<< HEAD
 # Copyright 2018-2020 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+<<<<<<< HEAD
 from odoo import Command
 from odoo.tests import Form, tagged
 
 from odoo.addons.base.tests.common import BaseCommon
+||||||| parent of eca3594dc ([FIX]sale_order_secondary_unit: fix test conflicts when used with product_matrix)
+from odoo.tests import Form, TransactionCase, tagged
+=======
+from odoo.tests import Form, tagged
+
+from odoo.addons.base.tests.common import BaseCommon
+>>>>>>> eca3594dc ([FIX]sale_order_secondary_unit: fix test conflicts when used with product_matrix)
 
 
 @tagged("post_install", "-at_install")
