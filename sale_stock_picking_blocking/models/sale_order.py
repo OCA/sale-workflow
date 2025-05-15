@@ -46,7 +46,6 @@ class SaleOrder(models.Model):
         order_to_unblock.order_line._action_launch_stock_rule()
         return True
 
-    @api.returns("self", lambda value: value.id)
     def copy(self, default=None):
         new_so = super().copy(default=default)
         for so in new_so:
