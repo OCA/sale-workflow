@@ -62,7 +62,7 @@ class SaleOrderLine(models.Model):
         # 1) commitment date is set, compute date_planned from date_deadline
         # 2) commitment date isn't set, update date_deadline according to
         #    cutoff / calendar / delivery window, and compute date_planned
-        if self.order_id.commitment_date:
+        if self.commitment_date or self.order_id.commitment_date:
             res = self._prepare_procurement_values_commitment_date(res)
         else:
             res = self._prepare_procurement_values_no_commitment_date(res)
