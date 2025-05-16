@@ -1,5 +1,6 @@
 # Copyright 2023 ACSONE SA/NV
 # Copyright 2024 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
+# Copyright 2025 Michael Tietz (MT Software) <mtietz@mt-software.de>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import models
@@ -38,5 +39,6 @@ class StockMove(models.Model):
         return (
             self.state == "cancel"
             and self.sale_line_id
+            and self.sale_line_id.state != "draft"
             and self.picking_type_id.code == "outgoing"
         )
