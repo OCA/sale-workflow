@@ -136,3 +136,53 @@ class TestSaleDeliveryBlock(TransactionCase):
         so = so_form.save()
         self.assertEqual(so.delivery_block_id, block_reason)
         self.assertEqual(so.copy().delivery_block_id, block_reason)
+
+    def test_copy_applies_delivery_block_logic(self):
+        """Test if copy() correctly applies delivery block from partner or payment
+        term"""
+        block_reason = self.block_model.with_user(self.user_test).create(
+            {"name": "Test Block Copy"}
+        )
+        # Partner with default block reason
+        partner = self.env["res.partner"].create(
+            {
+                "name": "Copy Partner",
+                "default_delivery_block": block_reason.id,
+            }
+        )
+        # Payment term with default block reason
+        payment_term = self.env["account.payment.term"].create(
+            {
+                "name": "Copy Payment Term",
+                "default_delivery_block_reason_id": block_reason.id,
+            }
+        )
+        # Case 1: partner default_delivery_block applies
+        so = self.so_model.with_user(self.user_test).create(
+            {
+                "partner_id": partner.id,
+                "payment_term_id": payment_term.id,
+            }
+        )
+        copied_so = so.copy()
+        self.assertEqual(
+            copied_so.delivery_block_id,
+            block_reason,
+            "Delivery block should come from partner's default_delivery_block",
+        )
+
+        # Case 2: partner does NOT have block, but payment term does
+        partner.default_delivery_block = False
+        so_no_partner_block = self.so_model.with_user(self.user_test).create(
+            {
+                "partner_id": partner.id,
+                "payment_term_id": payment_term.id,
+            }
+        )
+        copied_so2 = so_no_partner_block.copy()
+        self.assertEqual(
+            copied_so2.delivery_block_id,
+            block_reason,
+            "Delivery block should come from payment term's "
+            "default_delivery_block_reason_id",
+        )
