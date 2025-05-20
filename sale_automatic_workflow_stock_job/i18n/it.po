@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-05-20 06:55+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: sale_automatic_workflow_stock_job
 #: model:ir.model,name:sale_automatic_workflow_stock_job.model_automatic_workflow_job
@@ -20,9 +22,11 @@ msgid ""
 "Scheduler that will play automatically the validation of invoices, "
 "pickings..."
 msgstr ""
+"Schedulatore che riprodurrà in automatico la validazione delle fatture, "
+"prelievi..."
 
 #. module: sale_automatic_workflow_stock_job
 #. odoo-python
 #: code:addons/sale_automatic_workflow_stock_job/models/automatic_workflow_job.py:0
 msgid "Validate transfer %s"
-msgstr ""
+msgstr "Valida trasferimento %s"
