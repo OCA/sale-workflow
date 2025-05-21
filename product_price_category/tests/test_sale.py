@@ -137,7 +137,7 @@ class TestSale(TransactionCase):
         pricelist_form = Form(self.pricelist)
         with pricelist_form.item_ids.edit(0) as item_form:
             self.assertTrue(item_form.price_category_id)
-            item_form.display_applied_on = "3_global"
+            item_form.display_applied_on = "1_product"
             self.assertFalse(item_form.price_category_id)
 
     def test_name(self):

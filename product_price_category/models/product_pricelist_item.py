@@ -28,6 +28,7 @@ class ProductPricelistItem(models.Model):
         readonly=False,
     )
 
+    @api.depends("applied_on", "categ_id", "product_tmpl_id", "product_id")
     def _compute_name(self):
         result = super()._compute_name()
         for item in self:
@@ -42,7 +43,6 @@ class ProductPricelistItem(models.Model):
         """
         for rec in self:
             if rec.display_applied_on != "2b_product_price_category":
-                rec.applied_on = "2b_product_price_category"
                 rec.price_category_id = False
 
     def _is_applicable_for(self, product, qty_in_product_uom):
@@ -52,4 +52,20 @@ class ProductPricelistItem(models.Model):
             and self.price_category_id != product.price_category_id
         ):
             return False
+        return res
+
+    @api.onchange("display_applied_on")
+    def _onchange_display_applied_on(self):
+        res = super()._onchange_display_applied_on()
+        for item in self:
+            if item.display_applied_on == "2b_product_price_category":
+                item.update(
+                    dict(
+                        product_id=None,
+                        product_tmpl_id=None,
+                        applied_on="2b_product_price_category",
+                        product_uom=None,
+                        categ_id=None,
+                    )
+                )
         return res
