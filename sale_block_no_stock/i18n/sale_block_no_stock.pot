@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,13 +12,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: sale_block_no_stock
-#: model_terms:ir.ui.view,arch_db:sale_block_no_stock.res_config_settings_view_form
-msgid ""
-"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
-"specific.\" groups=\"base.group_multi_company\"/>"
-msgstr ""
 
 #. module: sale_block_no_stock
 #: model_terms:ir.ui.view,arch_db:sale_block_no_stock.sale_order_block_wizard_view
@@ -54,8 +47,9 @@ msgstr ""
 #. module: sale_block_no_stock
 #. odoo-python
 #: code:addons/sale_block_no_stock/wizard/sale_order_block_wizard.py:0
-#, python-format
-msgid "Cannot launch wizard from sale orders from different companies."
+msgid ""
+"Cannot launch wizard from sale orders\n"
+"                    from different companies."
 msgstr ""
 
 #. module: sale_block_no_stock
@@ -134,12 +128,6 @@ msgid "Is Uom Adjustable"
 msgstr ""
 
 #. module: sale_block_no_stock
-#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard____last_update
-#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: sale_block_no_stock
 #: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard__write_uid
 #: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__write_uid
 msgid "Last Updated by"
@@ -169,7 +157,6 @@ msgstr ""
 #. module: sale_block_no_stock
 #. odoo-python
 #: code:addons/sale_block_no_stock/wizard/sale_order_block_wizard.py:0
-#, python-format
 msgid "Order confirmed with errors by %s."
 msgstr ""
 
@@ -181,15 +168,6 @@ msgstr ""
 #. module: sale_block_no_stock
 #: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__product_id
 msgid "Product"
-msgstr ""
-
-#. module: sale_block_no_stock
-#. odoo-python
-#: code:addons/sale_block_no_stock/wizard/sale_order_block_wizard.py:0
-#, python-format
-msgid ""
-"Product <b>%(product)s</b> adjusted from <b>%(init_qty)s</b> %(uom)s to "
-"<b>%(final_qty)s</b> %(uom)s."
 msgstr ""
 
 #. module: sale_block_no_stock
@@ -288,7 +266,6 @@ msgstr ""
 #. module: sale_block_no_stock
 #. odoo-python
 #: code:addons/sale_block_no_stock/wizard/sale_order_block_wizard.py:0
-#, python-format
 msgid "You are not allowed to confirm these orders."
 msgstr ""
 
