@@ -7,12 +7,11 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="account.view_partner_property_form" />
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='sale']" position="inside">
-                <field
-                    name="invoice_frequency_id"
-                    options="{'no_create': True}"
-                    groups="account.group_account_invoice"
-                />
+            <xpath
+                expr="//group[@id='invoice_send_settings']/field[@name='invoice_sending_method']"
+                position="before"
+            >
+                <field name="invoice_frequency_id" options="{'no_create': True}" />
             </xpath>
         </field>
     </record>
