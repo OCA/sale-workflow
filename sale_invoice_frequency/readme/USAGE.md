@@ -2,8 +2,7 @@ To use this module, you need to:
 
 1.  Go to *Sales/Configuration/Invoicing frequency* and create your
     custom frequencies.
-2.  Set these frequencies in the customer form *Sales and purchases*
-    tab.
+2.  Set these frequencies in the customer form *Invoicing* tab.
 3.  When a sale is created, the Invoicing frequency of the field
     `partner_id` is propagated.
 4.  An user can change Invoicing frequency on sales and customers if has

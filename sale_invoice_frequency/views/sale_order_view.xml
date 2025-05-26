@@ -17,12 +17,12 @@
         </field>
     </record>
 
-    <record id="view_order_tree" model="ir.ui.view">
+    <record id="sale_order_tree" model="ir.ui.view">
         <field name="name">sale.order.invoice.frequency.tree</field>
         <field name="model">sale.order</field>
-        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="inherit_id" ref="sale.sale_order_tree" />
         <field name="arch" type="xml">
-            <xpath expr="//tree" position="inside">
+            <xpath expr="//list" position="inside">
                 <field
                     name="invoice_frequency_id"
                     options="{'no_create': True}"
