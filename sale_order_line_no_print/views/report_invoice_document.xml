@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Moduon Team S.L.
+     License Licencia Moduon 1.0 -->
+<odoo>
+    <template
+        id="report_invoice_document"
+        inherit_id="account.report_invoice_document"
+        priority="99"
+    >
+        <xpath expr="//t[@name='account_invoice_line_accountable']" position="replace">
+            <t t-if="line.display_in_report">$0</t>
+        </xpath>
+    </template>
+</odoo>
