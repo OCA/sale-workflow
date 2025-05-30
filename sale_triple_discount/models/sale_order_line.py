@@ -131,3 +131,36 @@ class SaleOrderLine(models.Model):
             }
         )
         return res
+
+    @api.depends("discount1", "discount2", "discount3")
+    def _compute_discount(self):
+        for line in self:
+            if line.check_compute_discounts():
+                return super()._compute_discount()
+            else:
+                discount_factor = 1.0
+                for discount in [line.discount1, line.discount2, line.discount3]:
+                    discount_factor *= (100.0 - discount) / 100.0
+                line.discount = 100.0 - (discount_factor * 100.0)
+
+    @api.depends("discount")
+    def _compute_discounts(self):
+        for line in self:
+            if line.check_compute_discounts():
+                line.discount1 = line.discount
+                line.discount2 = 0.0
+                line.discount3 = 0.0
+
+    def check_compute_discounts(self):
+        self.ensure_one()
+        context = self._context
+        show_discount = self.pricelist_item_id._show_discount()
+        return (
+            (context.get("recompute_prices") and show_discount)
+            or context.get("onchange_product")
+            or context.get("website_id")
+        )
+
+    @api.onchange("product_id")
+    def _onchange_products(self):
+        self.with_context(onchange_product=True)._compute_discounts()
