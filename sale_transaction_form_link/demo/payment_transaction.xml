@@ -13,5 +13,6 @@
             eval="obj().env.ref('sale.sale_order_6').currency_id"
             model="sale.order"
         />
+        <field name="payment_method_id" ref="payment.payment_method_bank_account" />
     </record>
 </odoo>

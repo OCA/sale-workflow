@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2019 ACSONE SA/NV
+     Copyright 2025 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record model="ir.ui.view" id="sale_order_form_view">
@@ -13,7 +14,7 @@
                     type="object"
                     class="oe_stat_button"
                     icon="fa-money"
-                    attrs="{'invisible': [('payment_transaction_count', '=', 0)]}"
+                    invisible="payment_transaction_count == 0"
                 >
                     <field
                         name="payment_transaction_count"
