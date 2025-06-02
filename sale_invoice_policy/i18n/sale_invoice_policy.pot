@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,11 +14,24 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_invoice_policy
+#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
+msgid ""
+"Choose the default policy that will be applied for new sale orders (the "
+"'Invoicing Policy' configuration is the policy for new products)."
+msgstr ""
+
+#. module: sale_invoice_policy
+#: model:ir.model,name:sale_invoice_policy.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_res_config_settings
 msgid "Config Settings"
 msgstr ""
 
 #. module: sale_invoice_policy
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__res_company__sale_default_invoice_policy__delivery
 #: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__delivery
 msgid "Delivered quantities"
 msgstr ""
@@ -29,16 +42,6 @@ msgid "Invoice Policy"
 msgstr ""
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order__invoice_policy_required
-msgid "Invoice Policy Required"
-msgstr ""
-
-#. module: sale_invoice_policy
-#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
-msgid "Invoice Policy required in Sale Orders"
-msgstr ""
-
-#. module: sale_invoice_policy
 #: model:ir.model.fields,help:sale_invoice_policy.field_sale_order__invoice_policy
 msgid ""
 "Ordered Quantity: Invoice based on the quantity the customer ordered.\n"
@@ -46,18 +49,21 @@ msgid ""
 msgstr ""
 
 #. module: sale_invoice_policy
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__res_company__sale_default_invoice_policy__order
 #: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__order
 msgid "Ordered quantities"
 msgstr ""
 
 #. module: sale_invoice_policy
-#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
-msgid "Sale Invoice Policy"
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__res_company__sale_default_invoice_policy__product
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__product
+msgid "Products Invoice Policy"
 msgstr ""
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
-msgid "Sale Invoice Policy Required"
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_company__sale_default_invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_default_invoice_policy
+msgid "Sale Default Invoice Policy"
 msgstr ""
 
 #. module: sale_invoice_policy
@@ -71,6 +77,7 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
-msgid "This makes Invoice Policy required on Sale Orders"
+#: model:ir.model.fields,help:sale_invoice_policy.field_res_company__sale_default_invoice_policy
+#: model:ir.model.fields,help:sale_invoice_policy.field_res_config_settings__sale_default_invoice_policy
+msgid "This will be the default invoice policy for sale orders."
 msgstr ""
