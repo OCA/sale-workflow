@@ -1,9 +1,10 @@
 # Copyright 2024 Binhex - Zuzanna Elzbieta Szalaty Szalaty.
+# Copyright 2025 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
-from odoo.tests.common import TransactionCase
+from odoo.addons.payment.tests.common import PaymentCommon
 
 
-class TestSaleOrder(TransactionCase):
+class TestSaleOrder(PaymentCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -28,6 +29,7 @@ class TestSaleOrder(TransactionCase):
                 "partner_id": self.partner_id.id,
                 "amount": 100,
                 "currency_id": self.env.company.currency_id.id,
+                "payment_method_id": self.payment_method.id,
             }
         )
         transaction2 = self.env["payment.transaction"].create(
@@ -36,6 +38,7 @@ class TestSaleOrder(TransactionCase):
                 "partner_id": self.partner_id.id,
                 "amount": 200,
                 "currency_id": self.env.company.currency_id.id,
+                "payment_method_id": self.payment_method.id,
             }
         )
         self.sale_order.transaction_ids = [transaction1.id, transaction2.id]
@@ -48,7 +51,7 @@ class TestSaleOrder(TransactionCase):
         self.assertEqual(action["type"], "ir.actions.act_window")
         self.assertEqual(action["name"], "Payment Transactions")
         self.assertEqual(action["res_model"], "payment.transaction")
-        self.assertEqual(action["view_mode"], "tree,form")
+        self.assertEqual(action["view_mode"], "list,form")
         self.assertEqual(action["domain"], [("id", "in", [])])
 
         transaction = self.env["payment.transaction"].create(
@@ -57,6 +60,7 @@ class TestSaleOrder(TransactionCase):
                 "partner_id": self.partner_id.id,
                 "amount": 100,
                 "currency_id": self.env.company.currency_id.id,
+                "payment_method_id": self.payment_method.id,
             }
         )
         self.sale_order.transaction_ids = [transaction.id]
@@ -73,6 +77,7 @@ class TestSaleOrder(TransactionCase):
                 "partner_id": self.partner_id.id,
                 "amount": 100,
                 "currency_id": self.env.company.currency_id.id,
+                "payment_method_id": self.payment_method.id,
             }
         )
         transaction2 = self.env["payment.transaction"].create(
@@ -81,6 +86,7 @@ class TestSaleOrder(TransactionCase):
                 "partner_id": self.partner_id.id,
                 "amount": 200,
                 "currency_id": self.env.company.currency_id.id,
+                "payment_method_id": self.payment_method.id,
             }
         )
         self.sale_order.transaction_ids = [transaction1.id, transaction2.id]
@@ -88,7 +94,7 @@ class TestSaleOrder(TransactionCase):
         self.assertEqual(action["type"], "ir.actions.act_window")
         self.assertEqual(action["name"], "Payment Transactions")
         self.assertEqual(action["res_model"], "payment.transaction")
-        self.assertEqual(action["view_mode"], "tree,form")
+        self.assertEqual(action["view_mode"], "list,form")
         self.assertEqual(
             action["domain"], [("id", "in", [transaction1.id, transaction2.id])]
         )

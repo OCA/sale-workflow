@@ -1,4 +1,5 @@
 # Copyright 2020 ACSONE SA/NV
+# Copyright 2025 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
@@ -28,7 +29,7 @@ class SaleOrder(models.Model):
         else:
             action.update(
                 {
-                    "view_mode": "tree,form",
+                    "view_mode": "list,form",
                     "domain": [("id", "in", self.transaction_ids.ids)],
                 }
             )
