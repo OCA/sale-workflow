@@ -5,7 +5,6 @@ from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
-
     _inherit = "sale.order"
 
     payment_transaction_count = fields.Integer(
