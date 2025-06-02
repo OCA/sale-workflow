@@ -55,6 +55,7 @@ class TestAutomaticWorkflowMixin:
                 "create_invoice": True,
                 "validate_invoice": True,
                 "invoice_date_is_order_date": True,
+                "company_id": None,
             }
         )
         if override:

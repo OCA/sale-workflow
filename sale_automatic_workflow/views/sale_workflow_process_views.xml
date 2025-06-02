@@ -278,6 +278,16 @@
                             </div>
                         </div>
                         <br />
+                        <div class="row" groups="base.group_multi_company">
+                            <div class="col-sm-12">
+                                <label
+                                    for="company_id"
+                                    class="col-lg-4 o_light_label"
+                                />
+                                <field name="company_id" nolabel="1" />
+                            </div>
+                        </div>
+                        <br />
                         <div class="row">
                             <div class="col-sm-12">
                                 <label for="warning" />

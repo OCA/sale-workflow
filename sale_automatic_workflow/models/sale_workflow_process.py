@@ -111,3 +111,7 @@ class SaleWorkflowProcess(models.Model):
     payment_filter_domain = fields.Text(
         related="payment_filter_id.domain",
     )
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        default=lambda self: self.env.company,
+    )

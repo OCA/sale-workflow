@@ -33,7 +33,3 @@ class SaleWorkflowProcess(models.Model):
         default=_default_journal,
         check_company=True,
     )
-    company_id = fields.Many2one(
-        comodel_name="res.company",
-        default=lambda self: self.env.company,
-    )

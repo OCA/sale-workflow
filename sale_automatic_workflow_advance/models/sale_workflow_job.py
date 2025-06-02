@@ -38,7 +38,7 @@ class AutomaticWorkflowJob(models.Model):
                 "active_ids": sale.ids,
                 "default_order_id": sale.id,
                 "default_amount_total": sale.amount_residual,
-                "default_currency_id": sale.pricelist_id.currency_id.id,
+                "default_currency_id": sale.currency_id.id,
             }
             journal = (
                 sale.workflow_process_id and sale.workflow_process_id.bank_journal_id
