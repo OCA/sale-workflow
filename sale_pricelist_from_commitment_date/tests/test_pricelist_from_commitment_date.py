@@ -101,6 +101,7 @@ class PricelistFromCommitmentDate(TransactionCase):
         # Test with commitment date
         sale.commitment_date = "2020-03-08"
         self.assertEqual(order_line.price_unit, 10)
+        # test
         sale.commitment_date = "2020-03-12"
         self.assertEqual(order_line.price_unit, 20)
         # Parent price list must match
@@ -146,3 +147,16 @@ class PricelistFromCommitmentDate(TransactionCase):
                 "order_line/price_unit": "300.00",
             }
         )
+
+
+    def test_03_pricelist(self):
+        sale = self.sale
+        order_line = sale.order_line[0]
+        product = order_line.product_id
+        self.assertEqual(order_line.price_unit, product.list_price)
+        # Change pricelist have no effect as no item match
+        sale.pricelist_id = self.pricelist
+        self.assertEqual(order_line.price_unit, product.list_price)
+        # Test with commitment date
+        sale.commitment_date = "2020-03-08"
+        self.assertEqual(order_line.price_unit, 10)
