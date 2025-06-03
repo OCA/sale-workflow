@@ -9,5 +9,6 @@ class PricelistItem(models.Model):
 
     show_surcharge = fields.Boolean(
         default=False,
-        help="If enabled, when the price is computed will show the customer the surcharge.",
+        help="If enabled, when the price is computed "
+        "will show the customer the surcharge.",
     )
