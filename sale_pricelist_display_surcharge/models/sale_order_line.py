@@ -13,10 +13,7 @@ class SaleOrderLine(models.Model):
         for line in self:
             if (
                 not line.discount
-                and (
-                    line.order_id.pricelist_id
-                    and line.order_id.pricelist_id.discount_policy == "without_discount"
-                )
+                and line.order_id.pricelist_id
                 and line.pricelist_item_id
                 and line.pricelist_item_id.show_surcharge
             ):
@@ -29,10 +26,6 @@ class SaleOrderLine(models.Model):
 
     def _get_display_price(self):
         res = super()._get_display_price()
-        if (
-            self.order_id.pricelist_id.discount_policy == "without_discount"
-            and self.pricelist_item_id
-            and self.pricelist_item_id.show_surcharge
-        ):
+        if self.pricelist_item_id and self.pricelist_item_id.show_surcharge:
             return self._get_pricelist_price_before_discount()
         return res

@@ -26,7 +26,6 @@ class TestModule(common.TransactionCase):
         cls.pricelist = cls.env["product.pricelist"].create(
             {
                 "name": "pricelist",
-                "discount_policy": "without_discount",
                 "item_ids": [
                     (
                         0,

@@ -5,7 +5,7 @@
     "name": "Sale Pricelist Display Surcharge",
     "summary": """
         This module shows to the customer the surcharges if wanted.""",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "license": "AGPL-3",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "maintainer": ["DavidJForgeFlow"],
