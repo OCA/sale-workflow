@@ -26,7 +26,7 @@
         <field name="model">sale.order.line</field>
         <field
             name="code"
-        >failed=self.product_id and self.product_id.type == 'product' and self.virtual_available_at_date &lt; self.product_uom_qty</field>
+        >failed=self.product_id and self.product_id.type == 'consu' and self.product_id.is_storable and self.virtual_available_at_date &lt; self.product_uom_qty</field>
         <field name="active" eval="False" />
     </record>
     <record id="exception_partner_sale_warning" model="exception.rule">
