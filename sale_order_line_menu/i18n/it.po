@@ -31,6 +31,11 @@ msgstr ""
 "data di conferma degli ordini confermati."
 
 #. module: sale_order_line_menu
+#: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__date_order
+msgid "Date"
+msgstr "Data"
+
+#. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Fully Invoiced"
 msgstr "Completamente fatturato"
@@ -51,7 +56,6 @@ msgid "Nothing to Invoice"
 msgstr "Niente da fatturare"
 
 #. module: sale_order_line_menu
-#: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__date_order
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Order Date"
 msgstr "Data ordine"
@@ -110,6 +114,3 @@ msgstr "Opportunità vendita ulteriore"
 
 #~ msgid "Analytic Account"
 #~ msgstr "Conto analitico"
-
-#~ msgid "Date"
-#~ msgstr "Data"
