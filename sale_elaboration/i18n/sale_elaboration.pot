@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -29,6 +29,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.product_elaboration_profile_form_view
 msgid "Archived"
+msgstr ""
+
+#. module: sale_elaboration
+#: model:product.elaboration,name:sale_elaboration.product_elaboration_assembly
+msgid "Assembly"
 msgstr ""
 
 #. module: sale_elaboration
@@ -92,6 +97,7 @@ msgid "Elab. Price"
 msgstr ""
 
 #. module: sale_elaboration
+#: model:product.template,name:sale_elaboration.product_product_elaboration_product_template
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
 msgid "Elaboration"
@@ -193,12 +199,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__is_prepared
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
 msgid "Is Prepared"
-msgstr ""
-
-#. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration____last_update
-#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile____last_update
-msgid "Last Modified on"
 msgstr ""
 
 #. module: sale_elaboration
@@ -324,6 +324,5 @@ msgstr ""
 #. module: sale_elaboration
 #. odoo-python
 #: code:addons/sale_elaboration/models/sale_order.py:0
-#, python-format
 msgid "Unsupported operator %s for searching on is_prepared"
 msgstr ""
