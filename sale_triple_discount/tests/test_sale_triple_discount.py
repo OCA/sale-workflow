@@ -6,6 +6,7 @@
 
 from unittest import skip
 
+from odoo import Command
 from odoo.exceptions import ValidationError
 from odoo.tests import common
 
@@ -14,6 +15,7 @@ class TestSaleOrder(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env.user.groups_id += cls.env.ref("sale.group_discount_per_so_line")
         cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
         cls.product1 = cls.env["product.product"].create(
             {"name": "Test Product 1", "type": "service", "invoice_policy": "order"}
@@ -257,3 +259,63 @@ class TestSaleOrder(common.TransactionCase):
         # FIXME: see https://github.com/OCA/sale-workflow/issues/3649
         with self.assertRaises(ValidationError):
             self.so_line1.discounting_type = "additive"
+
+    def test_pricelist_discount_applies_to_discount1(self):
+        """
+        test that the pricelist discount is correctly applied to discount1 and standard
+        discount is correctly set
+
+        the discount is automatically recomputed when fields it depends on change,
+        in this case: product_uom_qty
+        """
+        # create apricelist with 20% discount applicable globally from quantity >= 50
+        pricelist = self.env["product.pricelist"].create(
+            {
+                "name": "Test Pricelist",
+                "item_ids": [
+                    Command.create(
+                        {
+                            "applied_on": "3_global",
+                            "compute_price": "percentage",
+                            "percent_price": 20,
+                            "min_quantity": 50,
+                        }
+                    )
+                ],
+            }
+        )
+        self.order.pricelist_id = pricelist
+        self.order.action_update_prices()
+        # initially, with quantity below 50, no discount should apply
+        self.assertAlmostEqual(self.so_line1.discount1, 0)
+        self.assertAlmostEqual(self.so_line1.discount2, 0.0)
+        self.assertAlmostEqual(self.so_line1.discount3, 0.0)
+        self.assertAlmostEqual(self.so_line1.discount, 0.0)
+        # change quantity to exceed the minimum quantity for the discount rule
+        # this triggers recomputation of discount fields via the depends mechanism.
+        self.so_line1.product_uom_qty = 51
+        self.assertAlmostEqual(self.so_line1.discount, 20.0)
+        # after changing the quantity, discount1 should be updated to 20%
+        self.assertAlmostEqual(
+            self.so_line1.discount1,
+            20.0,
+            msg="Discount1 should be set to 20% from pricelist",
+        )
+
+        self.assertAlmostEqual(self.so_line1.discount2, 0.0)
+        self.assertAlmostEqual(self.so_line1.discount3, 0.0)
+        self.assertAlmostEqual(self.so_line1.discount, 20.0)
+        # set manually the discount and see if qty change reset discount to pricelist
+        # discount
+        self.so_line1.discount1 = 10
+        self.so_line1.discount2 = 20
+        self.so_line1.discount3 = 30
+        self.assertAlmostEqual(self.so_line1.discount1, 10)
+        self.assertAlmostEqual(self.so_line1.discount2, 20)
+        self.assertAlmostEqual(self.so_line1.discount3, 30)
+        self.assertAlmostEqual(self.so_line1.discount, 49.6)
+        self.so_line1.product_uom_qty = 52
+        self.assertAlmostEqual(self.so_line1.discount1, 20)
+        self.assertAlmostEqual(self.so_line1.discount2, 0)
+        self.assertAlmostEqual(self.so_line1.discount3, 0)
+        self.assertAlmostEqual(self.so_line1.discount, 20)

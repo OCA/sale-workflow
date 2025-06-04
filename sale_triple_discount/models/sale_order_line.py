@@ -21,21 +21,34 @@ class SaleOrderLine(models.Model):
     discount = fields.Float(
         string="Total Disc (%)",
         compute="_compute_discount",
+        inverse="_inverse_discount",
         store=True,
         readonly=True,
         digits=None,
     )
     discount1 = fields.Float(
+        compute="_compute_discounts",
+        precompute=True,
+        store=True,
+        readonly=False,
         string="Disc. 1 (%)",
         digits="Discount",
         default=0.0,
     )
     discount2 = fields.Float(
+        compute="_compute_discounts",
+        precompute=True,
+        store=True,
+        readonly=False,
         string="Disc. 2 (%)",
         digits="Discount",
         default=0.0,
     )
     discount3 = fields.Float(
+        compute="_compute_discounts",
+        precompute=True,
+        store=True,
+        readonly=False,
         string="Disc. 3 (%)",
         digits="Discount",
         default=0.0,
@@ -96,8 +109,25 @@ class SaleOrderLine(models.Model):
 
     @api.depends("discount1", "discount2", "discount3", "discounting_type")
     def _compute_discount(self):
+        res = super()._compute_discount()
         for rec in self:
             rec.discount = rec._get_final_discount()
+        return res
+
+    def _inverse_discount(self):
+        for rec in self:
+            rec.update({"discount1": rec.discount, "discount2": 0, "discount3": 0})
+
+    @api.depends("discount")
+    def _compute_discounts(self):
+        # We intentionally call super to avoid triggering the full compute logic,
+        # which would recalculate 'discount' from the three discount fields
+        # At this stage, those fields may not be updated yet, and calling
+        # _compute_discount() directly would overwrite the current value
+        # calling super ensures the cache is coherent before applying the inverse
+        super()._compute_discount()
+        self._inverse_discount()
+        return True
 
     _sql_constraints = [
         (
