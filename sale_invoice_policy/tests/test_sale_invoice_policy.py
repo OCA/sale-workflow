@@ -1,4 +1,5 @@
-# © 2017 Acsone SA/NV (http://www.acsone.eu)
+# Copyright 2017 Acsone SA/NV (http://www.acsone.eu)
+# Copyright 2025 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import odoo.tests.common as common
 
@@ -167,3 +168,21 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
             "the same invoice policy",
             exc.exception.args[0],
         )
+
+    def test_force_lines_to_invoice_policy_order(self):
+        """Check when a SO is fully paid by a payment transaction and the automatic
+        invoicing is enabled, that the policy is changed on order."""
+        so = self.env["sale.order"].create(
+            {
+                "partner_id": self.env.ref("base.res_partner_2").id,
+                "order_line": [
+                    (0, 0, {"product_id": self.product.id, "product_uom_qty": 2.0}),
+                    (0, 0, {"product_id": self.product2.id, "product_uom_qty": 3.0}),
+                ],
+                "invoice_policy": "delivery",
+            }
+        )
+        so.action_confirm()
+        self.assertEqual(so.invoice_policy, "delivery")
+        so._force_lines_to_invoice_policy_order()
+        self.assertEqual(so.invoice_policy, "order")
