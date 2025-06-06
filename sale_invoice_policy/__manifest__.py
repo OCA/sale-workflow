@@ -11,6 +11,7 @@
     "version": "18.0.1.0.0",
     "license": "AGPL-3",
     "depends": ["sale_stock", "base_partition"],
+    "external_dependencies": {"python": ["openupgradelib"]},
     "data": [
         "views/res_config_settings_view.xml",
         "views/sale_view.xml",
