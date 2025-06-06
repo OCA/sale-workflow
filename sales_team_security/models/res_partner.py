@@ -3,6 +3,8 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 
+from lxml import etree
+
 from odoo import api, fields, models
 
 
@@ -11,6 +13,62 @@ class ResPartner(models.Model):
 
     # add indexes for better performance on record rules
     user_id = fields.Many2one(index=True)
+    # team_id = fields.Many2one(
+    #     "crm.team",
+    #     string="Sales Team",
+    #     compute="_compute_team_id",
+    #     precompute=True,  # avoid queries post-create
+    #     ondelete="set null",
+    #     readonly=False,
+    #     store=True,
+    #     index=True,
+    # )
+
+    @api.model
+    def get_view(self, view_id=None, view_type="form", **options):
+        """
+        Patch view to inject the default value for the team_id and user_id.
+        """
+        # FIXME: Use base_view_inheritance_extension when available
+        res = super().get_view(view_id, view_type, **options)
+        if view_type == "form":
+            eview = etree.fromstring(res["arch"])
+            xml_fields = eview.xpath("//field[@name='child_ids']")
+            if xml_fields:
+                context_str = (
+                    xml_fields[0]
+                    .get("context", "{}")
+                    .replace(
+                        "{",
+                        "{'default_user_id': user_id,",
+                        1,
+                    )
+                )
+                xml_fields[0].set("context", context_str)
+            res["arch"] = etree.tostring(eview)
+        return res
+
+    @api.onchange("parent_id")
+    def _onchange_parent_id_sales_team_security(self):
+        """If assigning a parent partner and the contact doesn't have
+        team or salesman, we put the parent's one (if any).
+        """
+        if self.parent_id and self.parent_id.user_id and not self.user_id:
+            self.user_id = self.parent_id.user_id.id
+
+    # @api.onchange("user_id")
+    # def _onchange_user_id_sales_team_security(self):
+    #     if self.user_id.sale_team_id:
+    #         self.team_id = self.user_id.sale_team_id
+
+    # @api.depends("parent_id")
+    # def _compute_team_id(self):
+    #     for partner in self.filtered(
+    #         lambda partner: not partner.team_id
+    #         and partner.company_type == "person"
+    #         and partner.parent_id.team_id
+    #     ):
+    #         partner.team_id = partner.parent_id.team_id
 
     def _remove_key_followers(self, partner):
         for record in self.mapped("commercial_partner_id"):
@@ -23,7 +81,7 @@ class ResPartner(models.Model):
     def _add_followers_from_salesmen(self):
         """Sync followers in commercial partner + delivery/invoice contacts."""
         for record in self.commercial_partner_id:
-            followers = (record.child_ids + record).user_id.partner_id
+            followers = (record.child_ids + record).mapped("user_id.partner_id")
             # Look for delivery and invoice addresses
             childrens = record.child_ids.filtered(
                 lambda x: x.type in {"invoice", "delivery"}
@@ -35,6 +93,7 @@ class ResPartner(models.Model):
         """Sync followers on contact creation."""
         records = super().create(vals_list)
         records._add_followers_from_salesmen()
+        # records._sync_team_id_to_children()
         return records
 
     def write(self, vals):
@@ -50,4 +109,14 @@ class ResPartner(models.Model):
         result = super().write(vals)
         if "user_id" in vals or vals.get("type") in {"invoice", "delivery"}:
             self._add_followers_from_salesmen()
+        # if "user_id" in vals or "team_id" in vals:
+        #     self._sync_team_id_to_children()
         return result
+
+    # def _sync_team_id_to_children(self):
+    #     for parent in self:
+    #         if parent.child_ids:
+    #             for child in parent.child_ids:
+    #                 child.team_id = parent.team_id
+    #                 if parent.user_id:
+    #                     child.user_id = parent.user_id
