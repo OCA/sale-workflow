@@ -7,3 +7,4 @@
 - Ioan Galan \<<ioan@studio73.es>\>
 - Laurent Mignon \<<laurent.mignon@acsone.eu>\>
 - Marie Lejeune \<<marie.lejeune@acsone.eu>\>
+- Jacques-Etienne Baudoux (BCIM) \<<je.bcim.be>\>
