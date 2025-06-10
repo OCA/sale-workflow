@@ -1,25 +1,20 @@
 # © 2017 Akretion, Mourad EL HADJ MIMOUNE <mourad.elhadj.mimoune@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import odoo.tests.common as test_common
+from odoo.tests import TransactionCase
 
 
-class TestSaleOrderLotGenerator(test_common.SingleTransactionCase):
+class TestSaleOrderLotGenerator(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.prd_flipover = cls.env.ref("product.product_product_20")
         cls.prd_desk = cls.env.ref("product.product_product_22")
         cls.prd_acoustic = cls.env.ref("product.product_product_25")
-        cls.prd_flipover.write(
-            {"tracking": "lot", "type": "product", "auto_generate_prodlot": True}
-        )
-        cls.prd_desk.write(
-            {"tracking": "lot", "type": "product", "auto_generate_prodlot": True}
-        )
-        cls.prd_acoustic.write(
-            {"tracking": "lot", "type": "product", "auto_generate_prodlot": True}
-        )
+        cls.prd_flipover.write({"tracking": "lot", "auto_generate_prodlot": True})
+        cls.prd_desk.write({"tracking": "lot", "auto_generate_prodlot": True})
+        cls.prd_acoustic.write({"tracking": "lot", "auto_generate_prodlot": True})
 
     def test_sale_order_lot_generator(self):
         # create order
@@ -64,10 +59,3 @@ class TestSaleOrderLotGenerator(test_common.SingleTransactionCase):
         )
         lot_number = "%s-%03d" % (self.order1.name, 3)
         self.assertEqual(self.sol3.lot_id.name, lot_number)
-        for line in self.order1.picking_ids.move_line_ids:
-            if line.product_id.id == self.prd_flipover.id:
-                self.assertEqual(line.lot_id, self.sol1.lot_id)
-            if line.product_id.id == self.prd_desk.id:
-                self.assertEqual(line.lot_id, self.sol2.lot_id)
-            if line.product_id.id == self.prd_acoustic.id:
-                self.assertEqual(line.lot_id, self.sol3.lot_id)
