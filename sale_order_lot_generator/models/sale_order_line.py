@@ -14,7 +14,6 @@ class SaleOrderLine(models.Model):
         return {
             "name": lot_number,
             "product_id": self.product_id.id,
-            "product_qty": self.product_uom_qty,
             "company_id": self.order_id.company_id.id,
         }
 
