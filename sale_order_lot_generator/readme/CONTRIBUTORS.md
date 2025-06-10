@@ -3,5 +3,6 @@
     - Florian da Costa \<<florian.dacosta@akretion.com>\>
     - Mourad EL HADJ MIMOUNE \<<mourad.elhadj.mimoune@akretion.com>\>
     - David BEAL \<<david.beal@akretion.com>\>
+    - Raphaël Reverdy \<<raphael.reverdy@akretion.com>\>
 - [APSL-Nagarro](https://apsl.tech):
   - Antoni Marroig \<<amarroig@apsl.net>\>
