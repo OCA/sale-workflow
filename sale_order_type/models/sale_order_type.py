@@ -61,11 +61,6 @@ class SaleOrderTypology(models.Model):
     quotation_validity_days = fields.Integer(string="Quotation Validity (Days)")
 
     @api.model
-    def _get_domain_sequence_id(self):
-        seq_type = self.env.ref("sale.seq_sale_order")
-        return [("code", "=", seq_type.code)]
-
-    @api.model
     def _get_selection_picking_policy(self):
         return self.env["sale.order"].fields_get(allfields=["picking_policy"])[
             "picking_policy"
