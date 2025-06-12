@@ -1,0 +1,1 @@
+This module preserves the discount set on a sales order line, even if values on that line are changed (for example, a product attribute or the quantity).
