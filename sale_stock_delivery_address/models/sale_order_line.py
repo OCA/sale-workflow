@@ -22,11 +22,10 @@ class SaleOrderLine(models.Model):
         priority = 15
         key = super()._get_procurement_group_key()
         # Check priority
-        if key[0] >= priority:
-            return key
-        if self.dest_address_id:
-            return priority, self.dest_address_id
-        return priority, key
+        if key[0] < priority:
+            if self.dest_address_id:
+                return (priority, self.dest_address_id)
+        return key
 
     def _prepare_procurement_group_vals(self):
         vals = super()._prepare_procurement_group_vals()
