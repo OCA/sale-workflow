@@ -86,7 +86,7 @@ Authors
 Contributors
 ------------
 
--  Lois Rilo <lois.rilo@forgeflow.com>
+- Lois Rilo <lois.rilo@forgeflow.com>
 
 Maintainers
 -----------
