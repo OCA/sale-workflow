@@ -30,7 +30,8 @@ class SaleOrderLine(models.Model):
     # thereby influencing the 'discount_total' and 'price_total_no_discount' computations.
     def _has_discount(self):
         self.ensure_one()
-        return not self.currency_id.is_zero(self.discount)
+        currency = self.currency_id or self.env.company.currency_id
+        return not currency.is_zero(self.discount)
 
     @api.depends(
         "discount",
@@ -46,7 +47,7 @@ class SaleOrderLine(models.Model):
         for line in self:
             price_total_no_discount = 0.0
             discount_total = 0.0
-            currency = line.order_id.currency_id
+            currency = line.order_id.currency_id or self.env.company.currency_id
             if not line._has_discount():
                 price_total_no_discount = line.price_total
             else:
