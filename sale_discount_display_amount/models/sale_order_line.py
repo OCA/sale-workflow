@@ -6,7 +6,6 @@ from odoo.tools import float_compare
 
 
 class SaleOrderLine(models.Model):
-
     _inherit = "sale.order.line"
 
     discount_total = fields.Monetary(
@@ -22,12 +21,23 @@ class SaleOrderLine(models.Model):
         precompute=True,
     )
 
+    # This hook method determines if a discount is applied to the sale order line.
+    # It provides an extension point (a "hook") for other modules to easily
+    # modify the behavior of the discount calculation without directly altering
+    # this module's code. For example, if a module like "sale_triple_discount"
+    # introduces more complex discount logic (e.g., global discounts, tiered discounts),
+    # it can override this method to correctly reflect whether a discount applies,
+    # thereby influencing the 'discount_total' and 'price_total_no_discount' computations.
+    def _has_discount(self):
+        self.ensure_one()
+        return not self.currency_id.is_zero(self.discount)
+
     def _update_discount_display_fields(self):
         for line in self:
             price_total_no_discount = 0.0
             discount_total = 0.0
             currency = line.order_id.currency_id
-            if not line.discount:
+            if not line._has_discount():
                 price_total_no_discount = line.price_total
             else:
                 price = line.price_unit
