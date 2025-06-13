@@ -1,4 +1,5 @@
 # Copyright 2023 ACSONE SA/NV
+# Copyright 2025 Michael Tietz (MT Software) <mtietz@mt-software.de>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
@@ -140,3 +141,28 @@ class TestSaleOrderLineCancel(TestSaleOrderLineCancelBase):
         self.assertEqual(sale.order_line.product_qty_canceled, 0)
         self.assertEqual(sale.order_line.qty_to_deliver, 10)
         self.assertEqual(sale.order_line.product_qty_remains_to_deliver, 10)
+
+    def test_cancel_decrease_product_uom_qty(self):
+        sale = self.sale
+        sale.company_id.on_sale_line_cancel_decrease_line_qty = True
+        sale.with_context(disable_cancel_warning=True).action_cancel()
+        sale.picking_ids.unlink()
+        sale.action_draft()
+        sale.action_confirm()
+        line = self.sale.order_line
+        self.assertEqual(line.product_uom_qty, 10)
+        ship = self.sale.picking_ids
+        ship.action_assign()
+        ship.move_ids.move_line_ids.qty_done = 4
+        ship.with_context(cancel_backorder=False)._action_done()
+        moves_before = self.env["stock.move"].search([])
+        self.wiz.with_context(
+            active_id=line.id, active_model="sale.order.line"
+        ).cancel_remaining_qty()
+        moves_after = moves_before.search([("id", "not in", moves_before.ids)])
+        self.assertFalse(moves_after)
+        self.assertEqual(line.product_qty_canceled, 6)
+        self.assertEqual(line.product_qty_remains_to_deliver, 0)
+        self.assertEqual(line.qty_to_deliver, 0)
+        self.assertEqual(line.qty_delivered, 4)
+        self.assertEqual(line.product_uom_qty, 4)

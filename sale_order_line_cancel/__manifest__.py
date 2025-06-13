@@ -17,6 +17,7 @@
         "wizards/sale_order_line_cancel.xml",
         "views/sale_order.xml",
         "views/sale_order_line.xml",
+        "views/res_config_settings_views.xml",
     ],
     "website": "https://github.com/OCA/sale-workflow",
     "pre_init_hook": "pre_init_hook",

@@ -1,6 +1,7 @@
 # Copyright 2018 Okia SPRL
 # Copyright 2018 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # Copyright 2020 ACSONE SA/NV
+# Copyright 2025 Michael Tietz (MT Software) <mtietz@mt-software.de>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import _, api, fields, models
@@ -41,7 +42,7 @@ class SaleOrderLine(models.Model):
     @api.depends("qty_to_deliver", "product_qty_canceled")
     def _compute_product_qty_remains_to_deliver(self):
         for line in self:
-            qty_remaining = line.qty_to_deliver - line.product_qty_canceled
+            qty_remaining = max(0, line.qty_to_deliver - line.product_qty_canceled)
             line.product_qty_remains_to_deliver = qty_remaining
 
     def _get_moves_to_cancel(self):
@@ -57,7 +58,14 @@ class SaleOrderLine(models.Model):
         for line in self:
             if line._get_moves_to_cancel():
                 continue
-            line.product_qty_canceled = line.qty_to_deliver
+            qty_to_deliver = line.qty_to_deliver
+            vals = {"product_qty_canceled": qty_to_deliver}
+            if (
+                line.state == "sale"
+                and line.company_id.on_sale_line_cancel_decrease_line_qty
+            ):
+                vals["product_uom_qty"] = line.qty_delivered
+            line.write(vals)
 
     def cancel_remaining_qty(self):
         lines = self.filtered(lambda l: l.can_cancel_remaining_qty)
