@@ -17,6 +17,7 @@
         "views/res_config_settings_view.xml",
         "views/sale_order_view.xml",
     ],
+    "uninstall_hook": "uninstall_hook",
     "installable": True,
     "application": False,
 }
