@@ -30,7 +30,7 @@ msgstr "Gearchiveerd"
 #. module: sale_order_archive
 #. odoo-python
 #: code:addons/sale_order_archive/models/sale_order.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid "Only 'Locked' or 'Canceled' orders can be archived"
 msgstr "Alleen 'gesloten' of 'geannuleerde' order kunnen worden gearchiveerd"
 
