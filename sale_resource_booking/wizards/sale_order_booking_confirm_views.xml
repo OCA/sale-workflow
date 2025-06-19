@@ -18,8 +18,8 @@
                                 edit="true"
                                 editable="bottom"
                             >
-                                <field name="meeting_id" invisible="1" />
-                                <field name="sale_order_id" invisible="1" />
+                                <field name="meeting_id" column_invisible="1" />
+                                <field name="sale_order_id" column_invisible="1" />
                                 <field name="state" />
                                 <field name="type_id" />
                                 <field name="combination_id" />

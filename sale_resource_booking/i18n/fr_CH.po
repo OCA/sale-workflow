@@ -263,6 +263,3 @@ msgstr "Sauvegarder sans envoyer d'invitations"
 #: model_terms:ir.ui.view,arch_db:sale_resource_booking.view_order_form
 msgid "Sync bookings"
 msgstr "Synchroniser les réservations"
-
-#~ msgid "Sale Order"
-#~ msgstr "Commande"

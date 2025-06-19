@@ -35,8 +35,9 @@ class SaleOrderBookingConfirm(models.TransientModel):
             )
             share = share_f.save()
             share.action_send_mail()
+        return {"type": "ir.actions.client", "tag": "reload"}
 
     def action_noop(self):
         # At this point, the record was already created with the required
         # changes; nothing left to do
-        return
+        return {"type": "ir.actions.client", "tag": "reload"}
