@@ -17,14 +17,12 @@ class ResourceBookingSale(models.TransientModel):
         required=True,
     )
     partner_id = fields.Many2one(
-        "res.partner", string="Customer", index=True, ondelete="cascade", required=True
+        "res.partner", string="Customer", ondelete="cascade", required=True
     )
     product_id = fields.Many2one(
         "product.product",
         "Product",
-        context="{'default_resource_booking_type_id': type_id}",
         domain="[('resource_booking_type_id', '=', type_id)]",
-        index=True,
         ondelete="cascade",
         required=True,
     )

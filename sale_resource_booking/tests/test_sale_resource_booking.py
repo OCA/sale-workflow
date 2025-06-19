@@ -4,12 +4,14 @@
 from contextlib import suppress
 from datetime import datetime
 
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import Form
+from odoo.tools import mute_logger
 
+from odoo.addons.base.tests.common import BaseCommon
 from odoo.addons.resource_booking.tests.common import create_test_data
 
 
-class SaleResourceBookingsCase(TransactionCase):
+class SaleResourceBookingsCase(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -31,6 +33,7 @@ class SaleResourceBookingsCase(TransactionCase):
             return model.search(action["domain"])
         return model
 
+    @mute_logger("odoo.models.unlink")
     def _test_wizard_quotation(self, combination_rel):
         """Test quotation wizard."""
         assert combination_rel._name == "resource.booking.type.combination.rel"
@@ -87,7 +90,7 @@ class SaleResourceBookingsCase(TransactionCase):
         else:
             self.assertEqual(bookings.mapped("combination_auto_assign"), [True] * 2)
         # Cancel SO, bookings canceled
-        order.action_cancel()
+        order._action_cancel()
         self.assertEqual(bookings.mapped("state"), ["canceled"] * 2)
         # Delete SO lines, bookings deleted
         order.order_line.unlink()
@@ -122,7 +125,7 @@ class SaleResourceBookingsCase(TransactionCase):
         self.assertTrue(booking)
         self.assertEqual(booking.state, "pending")
         # Cancel order; booking canceled
-        order.action_cancel()
+        order._action_cancel()
         self.assertEqual(booking.state, "canceled")
         # Manually set order and booking to pending
         order.action_draft()

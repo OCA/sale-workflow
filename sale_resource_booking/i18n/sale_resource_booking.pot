@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -30,6 +30,7 @@ msgid "Booking type"
 msgstr ""
 
 #. module: sale_resource_booking
+#. odoo-python
 #: code:addons/sale_resource_booking/models/sale_order.py:0
 #: model_terms:ir.ui.view,arch_db:sale_resource_booking.view_order_form
 #, python-format
@@ -124,12 +125,6 @@ msgid ""
 msgstr ""
 
 #. module: sale_resource_booking
-#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_sale____last_update
-#: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order_booking_confirm____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: sale_resource_booking
 #: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_sale__write_uid
 #: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order_booking_confirm__write_uid
 msgid "Last Updated by"
@@ -152,13 +147,9 @@ msgid "Order Reference"
 msgstr ""
 
 #. module: sale_resource_booking
+#: model:ir.model,name:sale_resource_booking.model_product_template
 #: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_sale__product_id
 msgid "Product"
-msgstr ""
-
-#. module: sale_resource_booking
-#: model:ir.model,name:sale_resource_booking.model_product_template
-msgid "Product Template"
 msgstr ""
 
 #. module: sale_resource_booking
