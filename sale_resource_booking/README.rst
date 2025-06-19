@@ -17,21 +17,21 @@ Sell resource bookings
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/15.0/sale_resource_booking
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_resource_booking
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-15-0/sale-workflow-15-0-sale_resource_booking
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_resource_booking
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module extends the functionality of sale and resource bookings to support
-creating pending resource bookings automatically when confirming a sale order
-and to allow you to generate those sale orders easily from a resource booking
-type.
+This module extends the functionality of sale and resource bookings to
+support creating pending resource bookings automatically when confirming
+a sale order and to allow you to generate those sale orders easily from
+a resource booking type.
 
 **Table of contents**
 
@@ -49,44 +49,45 @@ Configuration
 
 To enjoy all features from this module, you need these permissions:
 
-* Sales / User: Own Documents Only
-* Resource Booking / User
+-  Sales / User: Own Documents Only
+-  Resource Booking / User
 
 Usage
 =====
 
 To quote one resource booking quickly, you need to:
 
-#. Go to *Resource bookings > Types* and pick one.
-#. Click *Quote*.
-#. Fill the values from that wizard.
-#. Click on *Generate quotation*.
+1. Go to *Resource bookings > Types* and pick one.
+2. Click *Quote*.
+3. Fill the values from that wizard.
+4. Click on *Generate quotation*.
 
-In the wizard, one of the things you need to indicate is the product. With this
-module, products can be linked to resource booking types (and, optionally,
-combinations). When such product is sold and the sale order is confirmed, a new
-booking is created automatically (in pending state).
+In the wizard, one of the things you need to indicate is the product.
+With this module, products can be linked to resource booking types (and,
+optionally, combinations). When such product is sold and the sale order
+is confirmed, a new booking is created automatically (in pending state).
 
-If you need to pre-create those pending bookings when the quotation is not yet
-confirmed, you can also do that with the *Sync bookings* button in the
-quotation form.
+If you need to pre-create those pending bookings when the quotation is
+not yet confirmed, you can also do that with the *Sync bookings* button
+in the quotation form.
 
-A booking can only be confirmed if its sale order is confirmed, when there is
-one.
+A booking can only be confirmed if its sale order is confirmed, when
+there is one.
 
 To create one of such products:
 
-#. Install ``sale_management``.
-#. Go to *Sales > Products > Products*.
-#. Create one.
-#. Go to the *Sales* tab.
-#. Under *Resource Bookings*, select one *Booking type*.
-#. Optionally, select a *Resource combination* to be assigned by default.
+1. Install ``sale_management``.
+2. Go to *Sales > Products > Products*.
+3. Create one.
+4. Go to the *Sales* tab.
+5. Under *Resource Bookings*, select one *Booking type*.
+6. Optionally, select a *Resource combination* to be assigned by
+   default.
 
-When you confirm a quotation that includes some products related to resource
-booking types, you will see a wizard that will help you update quickly those
-bookings' values, and invite requesters to schedule them. If you skip it, you
-can do it later with the bookings just created.
+When you confirm a quotation that includes some products related to
+resource booking types, you will see a wizard that will help you update
+quickly those bookings' values, and invite requesters to schedule them.
+If you skip it, you can do it later with the bookings just created.
 
 Bug Tracker
 ===========
@@ -94,7 +95,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_resource_booking%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_resource_booking%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -102,20 +103,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Jairo Llopis
-  * Stefan Ungureanu
+   -  Jairo Llopis
+   -  Stefan Ungureanu
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -135,6 +136,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-Yajo| 
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/15.0/sale_resource_booking>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_resource_booking>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
