@@ -1,6 +1,6 @@
 # © 2015 Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-
+from odoo.fields import Command
 from odoo.tests import TransactionCase
 
 
@@ -18,17 +18,62 @@ class TestSaleOrderLotSelection(TransactionCase):
 
         """
         super().setUpClass()
-        cls.prd_cable = cls.env.ref("stock.product_cable_management_box")
-        cls.prd_cable.tracking = "lot"
-        cls.product_46 = cls.env.ref("product.product_product_13")
-        cls.product_12 = cls.env.ref("product.product_product_12")
+        cls.partner = cls.env["res.partner"].create(
+            {
+                "name": "Partner Test",
+            }
+        )
+        cls.prd_cable = cls.env["product.product"].create(
+            {
+                "name": "Cable Test",
+                "tracking": "lot",
+                "is_storable": True,
+            }
+        )
+        cls.product_46 = cls.env["product.product"].create(
+            {
+                "name": "Product 46",
+                "is_storable": True,
+            }
+        )
+        cls.product_12 = cls.env["product.product"].create(
+            {
+                "name": "Product 12",
+                "is_storable": True,
+            }
+        )
         cls.supplier_location = cls.env.ref("stock.stock_location_suppliers")
         cls.customer_location = cls.env.ref("stock.stock_location_customers")
         cls.stock_location = cls.env.ref("stock.stock_location_stock")
         cls.product_model = cls.env["product.product"]
         cls.lot_model = cls.env["stock.lot"]
-        cls.lot_cable = cls.env.ref("sale_order_lot_selection.lot_cable_demo")
-        cls.sale = cls.env.ref("sale_order_lot_selection.sale_order_demo")
+        cls.lot_cable = cls.env["stock.lot"].create(
+            {
+                "name": "cable test lot",
+                "product_id": cls.prd_cable.id,
+            }
+        )
+        cls.sale = cls.env["sale.order"].create(
+            {
+                "partner_id": cls.partner.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": cls.prd_cable.id,
+                            "product_uom_qty": 1.0,
+                            "lot_id": cls.lot_cable.id,
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "product_id": cls.prd_cable.id,
+                            "product_uom_qty": 1.0,
+                            "lot_id": cls.lot_cable.id,
+                        }
+                    ),
+                ],
+            }
+        )
 
     def _retrieve_stock_quantity(self, product, lot, location):
         return product.with_context(lot_id=lot.id, location=location.id).qty_available
