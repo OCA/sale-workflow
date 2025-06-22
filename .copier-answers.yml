@@ -1,5 +1,5 @@
 # Do NOT update manually; changes here will be overwritten by Copier
-_commit: v1.29
+_commit: v1.32
 _src_path: git+https://github.com/OCA/oca-addons-repo-template
 additional_ruff_rules: []
 ci: GitHub
@@ -17,7 +17,9 @@ odoo_test_flavor: Both
 odoo_version: 18.0
 org_name: Odoo Community Association (OCA)
 org_slug: OCA
-rebel_module_groups: []
+rebel_module_groups:
+- sale_triple_discount
+- sale_fixed_discount
 repo_description: sale-workflow
 repo_name: sale-workflow
 repo_slug: sale-workflow
