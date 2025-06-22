@@ -19,6 +19,9 @@ org_slug: OCA
 postgres_image: ''
 rebel_module_groups:
 - sale_packaging_default,sale_order_product_recommendation_packaging_default,sale_order_line_final_price
+- sale_packaging_default
+- sale_triple_discount
+- sale_fixed_discount
 repo_description: sale-workflow
 repo_name: sale-workflow
 repo_slug: sale-workflow
