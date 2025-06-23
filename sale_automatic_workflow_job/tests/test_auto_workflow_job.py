@@ -84,6 +84,7 @@ class TestAutoWorkflowJob(TestCommon, TestAutomaticWorkflowMixin):
                 self.sale,
                 [
                     ("state", "=", "sale"),
+                    ("locked", "=", False),
                     ("invoice_status", "=", "to invoice"),
                     ("workflow_process_id", "=", self.sale.workflow_process_id.id),
                 ],
@@ -153,6 +154,7 @@ class TestAutoWorkflowJob(TestCommon, TestAutomaticWorkflowMixin):
                 self.sale,
                 [
                     ("state", "=", "sale"),
+                    ("locked", "=", False),
                     ("invoice_status", "=", "invoiced"),
                     ("workflow_process_id", "=", self.sale.workflow_process_id.id),
                 ],
