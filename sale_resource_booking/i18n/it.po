@@ -1,0 +1,257 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_resource_booking
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-07-01 14:25+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: sale_resource_booking
+#: model_terms:ir.ui.view,arch_db:sale_resource_booking.view_order_form
+msgid ""
+"(Re)sync resource bookings. The sync will be done automatically when "
+"confirming the quotation, but you can do it beforehand if needed with this "
+"button. It will create missing resource bookings in pending state, or cancel"
+" the spare ones."
+msgstr ""
+"(Ri)sincronizza le prenotazioni delle risorse. La sincronizzazione verrà "
+"effettuata automaticamente alla conferma del preventivo, ma è possibile "
+"attivarla in anticipo, se necessario, tramite questo pulsante. Verranno "
+"create le prenotazioni delle risorse mancanti in sospeso o annullate quelle "
+"in eccesso."
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_product_product__resource_booking_type_id
+#: model:ir.model.fields,field_description:sale_resource_booking.field_product_template__resource_booking_type_id
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_sale__type_id
+msgid "Booking type"
+msgstr "Tipo prenotazione"
+
+#. module: sale_resource_booking
+#. odoo-python
+#: code:addons/sale_resource_booking/models/sale_order.py:0
+#: model_terms:ir.ui.view,arch_db:sale_resource_booking.view_order_form
+#, python-format
+msgid "Bookings"
+msgstr "Prenotazioni"
+
+#. module: sale_resource_booking
+#: model_terms:ir.ui.view,arch_db:sale_resource_booking.resource_booking_sale_view_form
+#: model_terms:ir.ui.view,arch_db:sale_resource_booking.sale_order_booking_confirm_view_form
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: sale_resource_booking
+#: model:ir.model,name:sale_resource_booking.model_sale_order_booking_confirm
+msgid "Confirmation dialog to autofill resource bookings"
+msgstr ""
+"Finestra di dialogo di conferma per compilare automaticamente le "
+"prenotazioni delle risorse"
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_sale__create_uid
+#: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order_booking_confirm__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_sale__create_date
+#: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order_booking_confirm__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_sale__partner_id
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_sale__display_name
+#: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order_booking_confirm__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_resource_booking
+#: model_terms:ir.ui.view,arch_db:sale_resource_booking.sale_order_booking_confirm_view_form
+msgid "Enqueue invitation emails"
+msgstr "Accoda e-mail di invito"
+
+#. module: sale_resource_booking
+#: model:ir.actions.act_window,name:sale_resource_booking.sale_order_booking_confirm_action
+msgid "Fill booking values"
+msgstr "Compila valori prenotazione"
+
+#. module: sale_resource_booking
+#: model:ir.actions.act_window,name:sale_resource_booking.resource_booking_sale_action
+msgid "Generate Quotation"
+msgstr "Genera preventivo"
+
+#. module: sale_resource_booking
+#: model_terms:ir.ui.view,arch_db:sale_resource_booking.resource_booking_sale_view_form
+msgid "Generate quotation"
+msgstr "Genera preventivo"
+
+#. module: sale_resource_booking
+#: model_terms:ir.ui.view,arch_db:sale_resource_booking.resource_booking_type_form
+msgid "Generate quotation."
+msgstr "Genera preventivo."
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_sale__id
+#: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order_booking_confirm__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,help:sale_resource_booking.field_product_product__resource_booking_type_id
+#: model:ir.model.fields,help:sale_resource_booking.field_product_template__resource_booking_type_id
+msgid "If set, one pending booking will be generated when sold."
+msgstr "Se impostata, verrà creata una prenotazione in sospeso quando venduta."
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,help:sale_resource_booking.field_product_product__resource_booking_type_combination_rel_id
+#: model:ir.model.fields,help:sale_resource_booking.field_product_template__resource_booking_type_combination_rel_id
+msgid ""
+"If set, the booking will be created with this resource combination. "
+"Otherwise, the combination will be assigned automatically later, when the "
+"requester schedules the booking."
+msgstr ""
+"Se impostata, la prenotazione verrà creata con questa combinazione di "
+"risorse. In caso contrario, la combinazione verrà assegnata automaticamente "
+"in un secondo momento, quando il richiedente pianificherà la prenotazione."
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,help:sale_resource_booking.field_resource_booking__sale_order_state
+msgid ""
+"If there is a related quotation and it is not confirmed, the booking will "
+"not be able to become confirmed."
+msgstr ""
+"Se è presente un preventivo correlato e questo non viene confermato, la "
+"prenotazione non potrà essere confermata."
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_sale__write_uid
+#: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order_booking_confirm__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_sale__write_date
+#: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order_booking_confirm__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order_booking_confirm__order_id
+msgid "Order"
+msgstr "Ordine"
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking__sale_order_id
+msgid "Order Reference"
+msgstr "Riferimento ordine"
+
+#. module: sale_resource_booking
+#: model:ir.model,name:sale_resource_booking.model_product_template
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_sale__product_id
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_sale__product_uom_qty
+msgid "Quantity"
+msgstr "Quantità"
+
+#. module: sale_resource_booking
+#: model_terms:ir.ui.view,arch_db:sale_resource_booking.resource_booking_type_form
+msgid "Quote"
+msgstr "Preventiva"
+
+#. module: sale_resource_booking
+#: model:ir.model,name:sale_resource_booking.model_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order__resource_booking_ids
+msgid "Resource Booking"
+msgstr "Prenotazione risorsa"
+
+#. module: sale_resource_booking
+#: model:ir.model,name:sale_resource_booking.model_resource_booking_type
+msgid "Resource Booking Type"
+msgstr "Tipologia prenotazione risorsa"
+
+#. module: sale_resource_booking
+#: model_terms:ir.ui.view,arch_db:sale_resource_booking.product_template_form_view
+msgid "Resource Bookings"
+msgstr "Prenotazioni risorse"
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order_booking_confirm__resource_booking_ids
+#: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order_line__resource_booking_ids
+#: model_terms:ir.ui.view,arch_db:sale_resource_booking.sale_order_booking_confirm_view_form
+msgid "Resource bookings"
+msgstr "Prenotazioni risorsa"
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order__resource_booking_count
+msgid "Resource bookings count"
+msgstr "Conteggio prenotazioni risorsa"
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_product_product__resource_booking_type_combination_rel_id
+#: model:ir.model.fields,field_description:sale_resource_booking.field_product_template__resource_booking_type_combination_rel_id
+msgid "Resource combination"
+msgstr "Combinazione risorsa"
+
+#. module: sale_resource_booking
+#: model:ir.model,name:sale_resource_booking.model_resource_booking_sale
+msgid "Sale order generator for resource booking types"
+msgstr "Generazione ordine vendita per tipi prenotazione risorsa"
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking__sale_order_line_id
+msgid "Sale order line"
+msgstr "Riga ordine di vendita"
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking__sale_order_state
+msgid "Sale order state"
+msgstr "Stato ordine di vendita"
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,help:sale_resource_booking.field_resource_booking__sale_order_id
+msgid "Sale order that origins this booking."
+msgstr "Ordine di vendita che ha originato questa prenotazione."
+
+#. module: sale_resource_booking
+#: model_terms:ir.ui.view,arch_db:sale_resource_booking.resource_booking_form
+msgid "Sales"
+msgstr "Vendite"
+
+#. module: sale_resource_booking
+#: model:ir.model,name:sale_resource_booking.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: sale_resource_booking
+#: model:ir.model,name:sale_resource_booking.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Riga ordine di vendita"
+
+#. module: sale_resource_booking
+#: model_terms:ir.ui.view,arch_db:sale_resource_booking.sale_order_booking_confirm_view_form
+msgid "Save without sending invitations"
+msgstr "Salva senza inviare inviti"
+
+#. module: sale_resource_booking
+#: model_terms:ir.ui.view,arch_db:sale_resource_booking.view_order_form
+msgid "Sync bookings"
+msgstr "Sincronizza prenotazioni"
