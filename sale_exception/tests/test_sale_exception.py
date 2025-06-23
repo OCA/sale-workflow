@@ -29,6 +29,8 @@ class TestSaleException(TransactionCase):
                 cls.env.context, test_base_exception=True, tracking_disable=True
             )
         )
+        cls.env["sale.order"]._register_hook()
+        cls.env["exception.rule"].search([]).write({"active": False})
         cls.default_pl = cls.env["product.pricelist"].create(
             {
                 "name": "Public Pricelist",

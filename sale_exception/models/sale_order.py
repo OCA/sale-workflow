@@ -54,6 +54,34 @@ class SaleOrder(models.Model):
         self.detect_exceptions()
         return super().action_confirm()
 
+    def _register_hook(self):
+        # Exceptions must be detected before any other module runs its own
+        # `action_confirm` logic. Standard inheritance cannot grant that:
+        # modules with no dependency between them are ordered by installation
+        # order, so an override that acts before calling `super()` may run
+        # first. `sale_loyalty` is one case: it adds the loyalty points before
+        # the order is confirmed, so the points were granted even when an
+        # exception blocked the confirmation. The same happens with
+        # `sale_order_lot_generator`, and it may happen with payment or
+        # e-invoicing integrations, whose side effects live outside the
+        # transaction and are not undone by a rollback.
+        # Patching the resolved `action_confirm` on the registry class puts the
+        # detection outermost, whatever the MRO is.
+        ModelClass = self.env.registry["sale.order"]
+
+        original_action_confirm = ModelClass.action_confirm
+
+        def patched_action_confirm(self):
+            self.detect_exceptions()
+            original_func = patched_action_confirm.origin
+            return original_func(self)
+
+        patched_action_confirm.origin = original_action_confirm
+
+        ModelClass.action_confirm = patched_action_confirm
+
+        return super()._register_hook()
+
     def action_draft(self):
         res = super().action_draft()
         orders = self.filtered("ignore_exception")
