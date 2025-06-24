@@ -58,8 +58,8 @@ class SaleOrder(models.Model):
 
         return True
 
-    def action_cancel(self):
-        rv = super().action_cancel()
+    def _action_cancel(self):
+        rv = super()._action_cancel()
         for record in self:
             record.order_line.mapped("primeship_id").active = False
         return rv

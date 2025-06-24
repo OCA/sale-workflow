@@ -9,12 +9,12 @@
                 <group
                     string="Primeships"
                     name="primeships"
-                    attrs="{'invisible': [('type', '!=', 'service')]}"
+                    invisible="type != 'service'"
                 >
                     <field name="primeship_activation" />
                     <field
                         name="primeship_duration"
-                        attrs="{'invisible': [('primeship_activation', '=', False)]}"
+                        invisible="not primeship_activation"
                     />
                 </group>
             </xpath>

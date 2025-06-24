@@ -1,17 +1,16 @@
 # Copyright 2024 Akretion - Olivier Nibart
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import SavepointCase
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestCommon(SavepointCase):
+class TestCommon(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.SalePrimeship = cls.env["sale.primeship"]
         cls.SaleOrderLine = cls.env["sale.order.line"]
         cls.Partner = cls.env["res.partner"]
-        cls.partner = cls.Partner.create({"name": "John Doe"})
         cls.product = cls.env["product.template"].create(
             {
                 "name": "Primeship Product",
@@ -19,10 +18,14 @@ class TestCommon(SavepointCase):
                 "primeship_duration": 6,
             }
         )
-        cls.order = cls.env["sale.order"].create(
-            {
-                "partner_id": cls.partner.id,
-            }
+        cls.order = (
+            cls.env["sale.order"]
+            .with_context(disable_cancel_warning=True)
+            .create(
+                {
+                    "partner_id": cls.partner.id,
+                }
+            )
         )
 
     def make_primeship(self, start_date, end_date, order_line_id=None):

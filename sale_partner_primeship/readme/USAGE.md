@@ -1,16 +1,18 @@
-To make a product that activates primeship on sale order, you have to
-edit it, set its type to service and go to the product form Sales tab
-and tick the Activates primeship checkbox:
+To configure a product that activates primeship upon sale order confirmation:
+
+  - Edit the desired product and set its type to "Service"
+  - Navigate to the "Sales" tab in the product form
+  - Enable the "Activates primeship" checkbox
+  - Define the primeship duration (in months)
 
 ![](../static/description/primeship-product.png)
 
-You can then set a primeship duration.
-
-You can see current primeship availability for a customer:
+You can easily view a customer's current primeship status directly from their partner record:
 
 ![](../static/description/partner-with-primeship.png)
 
-And a click on the widget will get you to the primeship list view for
-this customer:
+Clicking on the primeship status widget will redirect you to a detailed list view showing all primeship records for that specific customer:
 
 ![](../static/description/primeship-partner-view.png)
+
+This interface allows you to track membership history, expiration dates, and manage customer primeship records efficiently.

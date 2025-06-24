@@ -18,7 +18,6 @@ class ResPartner(models.Model):
     # There is a cron job to set it to False when the customer has no active
     # primeship anymore.
     active_primeship = fields.Boolean(
-        string="Active Primeship",
         compute="_compute_active_primeship",
         store=True,
     )

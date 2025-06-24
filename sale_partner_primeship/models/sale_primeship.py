@@ -13,9 +13,9 @@ class SalePrimeship(models.Model):
     active = fields.Boolean(default=True)
     name = fields.Char(compute="_compute_name")
 
-    start_date = fields.Date(string="Start Date", required=True)
+    start_date = fields.Date(required=True)
     # End date day is not included in primeship date range
-    end_date = fields.Date(string="End Date", required=True)
+    end_date = fields.Date(required=True)
 
     partner_id = fields.Many2one(
         comodel_name="res.partner",
