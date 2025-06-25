@@ -17,7 +17,8 @@
                     <filter
                         string="Product Variant"
                         name="product_id"
-                        context="{'group_by':'product_tmpl_id'}"
+                        context="{'group_by':'product_id'}"
+                        groups="product.group_product_variant"
                     />
                     <filter
                         string="UoM"
@@ -35,7 +36,10 @@
         <field name="arch" type="xml">
             <list editable="top" multi_edit="1">
                 <field name="product_tmpl_id" />
-                <field name="product_id" />
+                <field
+                    name="product_id"
+                    domain="[('product_tmpl_id', '=', product_tmpl_id)]"
+                />
                 <field name="code" />
                 <field name="name" />
                 <field name="uom_id" />

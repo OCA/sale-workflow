@@ -1,6 +1,6 @@
 # Copyright 2018-2020 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class ProductTemplate(models.Model):
@@ -44,8 +44,8 @@ class ProductTemplate(models.Model):
         if len(self.product_variant_ids.sale_secondary_uom_id) > 1:
             return {
                 "warning": {
-                    "title": _("Warning"),
-                    "message": _(
+                    "title": self.env._("Warning"),
+                    "message": self.env._(
                         "Product variants have distinct sale secondary uom:"
                         "\n{secondary_uom}\n"
                         "All variants will be written with new secondary uom"
