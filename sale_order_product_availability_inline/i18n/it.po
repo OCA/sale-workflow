@@ -17,6 +17,11 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: sale_order_product_availability_inline
+#: model:ir.model,name:sale_order_product_availability_inline.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: sale_order_product_availability_inline
 #: model:ir.model,name:sale_order_product_availability_inline.model_product_product
 msgid "Product Variant"
 msgstr "Variante prodotto"
