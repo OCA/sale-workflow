@@ -1,5 +1,6 @@
 # Copyright 2018-2020 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from odoo import Command
 from odoo.tests import tagged
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -52,17 +53,13 @@ class TestProductTemplate(BaseCommon):
             {
                 "name": "Test Product 2",
                 "attribute_line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "attribute_id": cls.color_attribute.id,
                             "value_ids": [(6, 0, cls.color_values.ids)],
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "attribute_id": cls.size_attribute.id,
                             "value_ids": [(6, 0, cls.size_values.ids)],
