@@ -1,5 +1,6 @@
 # Copyright 2018-2020 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from odoo import Command
 from odoo.tests import Form, tagged
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -27,9 +28,7 @@ class TestSaleOrder(BaseCommon):
         cls.product.product_tmpl_id.write(
             {
                 "secondary_uom_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "unit-500",
                             "uom_id": cls.product_uom_unit.id,

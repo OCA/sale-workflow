@@ -86,6 +86,7 @@ Contributors
    -  Sergio Teruel
    -  Ernesto Tejeda
    -  Pedro M. Baeza
+   -  Pilar Vargas
 
 Maintainers
 -----------

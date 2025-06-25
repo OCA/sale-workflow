@@ -8,12 +8,12 @@
             expr="//table[hasclass('o_has_total_table','table','o_main_table')]//th[@name='th_quantity']"
             position="before"
         >
-            <th name="th_secondary_uom_id" class="text-right" groups="uom.group_uom">
+            <th name="th_secondary_uom_id" class="text-end" groups="uom.group_uom">
                 <span>Second. Qty</span>
             </th>
         </xpath>
         <xpath expr="//span[@t-field='line.product_uom_qty']/.." position="before">
-            <td name="td_secondary_uom_id" class="text-right" groups="uom.group_uom">
+            <td name="td_secondary_uom_id" class="text-end" groups="uom.group_uom">
                 <t t-if="line.secondary_uom_id">
                     <span t-field="line.secondary_uom_qty" />
                     <span
