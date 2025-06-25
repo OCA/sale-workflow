@@ -31,7 +31,6 @@
                         readonly="product_uom_readonly"
                         required="secondary_uom_qty != 0.0"
                     />
-
                 </div>
             </xpath>
             <xpath
@@ -54,7 +53,6 @@
                     required="secondary_uom_qty != 0.0"
                     groups="uom.group_uom"
                 />
-
             </xpath>
             <xpath
                 expr="//field[@name='order_line']/kanban//field[@name='company_id']"
