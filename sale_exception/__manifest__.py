@@ -5,7 +5,7 @@
 {
     "name": "Sale Exception",
     "summary": "Custom exceptions on sale order",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.1.0",
     "category": "Generic Modules/Sale",
     "author": "Akretion, "
     "Sodexis, "
