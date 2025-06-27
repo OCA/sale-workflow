@@ -1,1 +1,1 @@
-This module allows to select multiple warehouses in sale order lines so the sale order is split into multiple pickings depending on the warehouses selected in the lines.
+This module allows to select multiple warehouses in sale order lines so the sale order is split into multiple pickings depending on the warehouses selected in the lines. It also adds a new widget to sale order lines when the multiwarehouse options in sale orders are enabled in order to check the stock in each warehouse.

@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===============================
 Sale Order Line Multi Warehouse
 ===============================
@@ -17,7 +13,7 @@ Sale Order Line Multi Warehouse
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -32,7 +28,7 @@ Sale Order Line Multi Warehouse
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows to select multiple warehouses in sale order lines so the sale order is split into multiple pickings depending on the warehouses selected in the lines.
+This module allows to select multiple warehouses in sale order lines so the sale order is split into multiple pickings depending on the warehouses selected in the lines. It also adds a new widget to sale order lines when the multiwarehouse options in sale orders are enabled in order to check the stock in each warehouse.
 
 **Table of contents**
 
@@ -69,6 +65,8 @@ Usage
 * A sale order line cannot have multiple warehouse distribution lines related to the same warehouse.
 
 * Once the sale order is validated, the order will be split into multiple pickings, one for each warehouse selected in the warehouse distribution lines.
+
+* To open the multi warehouse widget in a sale order line, you need to click on the bar chart in a sale order line. Please, note that this widget replaces the widget added by the sale_stock module when the multi warehouse options in sale orders are enabled.
 
 * **IMPORTANT: In case this module is uninstalled, the warehouse distribution lines will be lost.**
 

@@ -13,4 +13,6 @@
 
 * Once the sale order is validated, the order will be split into multiple pickings, one for each warehouse selected in the warehouse distribution lines.
 
+* To open the multi warehouse widget in a sale order line, you need to click on the bar chart in a sale order line. Please, note that this widget replaces the widget added by the sale_stock module when the multi warehouse options in sale orders are enabled.
+
 * **IMPORTANT: In case this module is uninstalled, the warehouse distribution lines will be lost.**

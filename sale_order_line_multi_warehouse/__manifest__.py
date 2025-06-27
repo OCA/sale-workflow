@@ -23,4 +23,9 @@
         "views/res_config_settings_views.xml",
         "wizard/so_multi_warehouse_change_wizard_views.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "sale_order_line_multi_warehouse/static/src/**/*",
+        ],
+    },
 }
