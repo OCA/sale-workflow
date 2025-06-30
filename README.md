@@ -113,7 +113,7 @@ addon | version | maintainers | summary
 [sale_sourced_by_line](sale_sourced_by_line/) | 15.0.1.1.0 |  | Multiple warehouse source locations for Sale order
 [sale_start_end_dates](sale_start_end_dates/) | 15.0.1.0.1 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Adds start date and end date on sale order lines
 [sale_stock_cancel_restriction](sale_stock_cancel_restriction/) | 15.0.1.0.2 |  | Sale Stock Cancel Restriction
-[sale_stock_delivery_address](sale_stock_delivery_address/) | 15.0.1.0.1 |  | Sale Stock Delivery Address
+[sale_stock_delivery_address](sale_stock_delivery_address/) | 15.0.1.0.2 |  | Sale Stock Delivery Address
 [sale_stock_invoice_plan](sale_stock_invoice_plan/) | 15.0.1.0.1 | <a href='https://github.com/kittiu'><img src='https://github.com/kittiu.png' width='32' height='32' style='border-radius:50%;' alt='kittiu'/></a> | Add to sales order, ability to manage future invoice plan
 [sale_stock_last_date](sale_stock_last_date/) | 15.0.1.0.0 |  | Displays last delivery date in sale order lines
 [sale_stock_line_sequence](sale_stock_line_sequence/) | 15.0.1.0.0 |  | Glue Module for Sale Order Line Sequence and Stock Picking Line Sequence
