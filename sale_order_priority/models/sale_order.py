@@ -6,12 +6,6 @@ from odoo import api, fields, models
 from odoo.addons.stock.models import stock_move
 
 
-class SaleOrderLine(models.Model):
-    _inherit = "sale.order.line"
-
-    priority = fields.Selection(stock_move.PROCUREMENT_PRIORITIES, default="0")
-
-
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
@@ -40,8 +34,3 @@ class SaleOrder(models.Model):
                 lambda x, pr=priority: x.priority != pr
             ):
                 line.priority = priority
-
-    def action_confirm(self):
-        return super(
-            SaleOrder, self.with_context(sale_priority=self.priority)
-        ).action_confirm()

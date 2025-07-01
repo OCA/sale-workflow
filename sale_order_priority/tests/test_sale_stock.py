@@ -1,5 +1,7 @@
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from odoo.fields import Command
+
 from odoo.addons.sale.tests.common import TestSaleCommonBase
 
 
@@ -32,9 +34,7 @@ class TestSaleStock(TestSaleCommonBase):
                 "priority": sale_order_priority,
                 "company_id": self.company.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": self.company_data["product_order_cost"].name,
                             "product_id": self.company_data["product_order_cost"].id,
