@@ -31,7 +31,10 @@ class ResourceBooking(models.Model):
     )
 
     @api.depends(
-        "active", "meeting_id.attendee_ids.state", "sale_order_line_id.order_id.state"
+        "active",
+        "meeting_id.attendee_ids.state",
+        "sale_order_line_id.order_id.locked",
+        "sale_order_line_id.order_id.state",
     )
     def _compute_state(self):
         """A booking can only be confirmed if its sale order is confirmed.
@@ -41,11 +44,13 @@ class ResourceBooking(models.Model):
         automatically after payment.
         """
         result = super()._compute_state()
-        # False means "no sale order"
-        confirmable_states = {False, "sale", "done"}
         for one in self:
             # Only affect confirmed bookings related to unconfirmed quotations
-            if one.state != "confirmed" or one.sale_order_state in confirmable_states:
+            if (
+                one.state != "confirmed"
+                or not one.sale_order_line_id
+                or one.sale_order_state == "sale"
+            ):
                 continue
             # SO is not confirmed; neither is booking
             one.state = "scheduled"

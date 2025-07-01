@@ -35,7 +35,7 @@ class SaleOrder(models.Model):
 
     def action_open_resource_bookings(self):
         """Open related bookings."""
-        result = {
+        return {
             "domain": [("sale_order_id", "=", self.id)],
             "name": _("Bookings"),
             "res_model": "resource.booking",
@@ -43,7 +43,6 @@ class SaleOrder(models.Model):
             "type": "ir.actions.act_window",
             "view_mode": "list,calendar,form",
         }
-        return result
 
     def action_confirm(self):
         """Ask to fill booking values, if necessary."""

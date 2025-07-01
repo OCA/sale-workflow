@@ -4,12 +4,14 @@
 from contextlib import suppress
 from datetime import datetime
 
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+from odoo.tools import mute_logger
 
+from odoo.addons.base.tests.common import BaseCommon
 from odoo.addons.resource_booking.tests.common import create_test_data
 
 
-class SaleResourceBookingsCase(TransactionCase):
+class SaleResourceBookingsCase(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -21,6 +23,44 @@ class SaleResourceBookingsCase(TransactionCase):
             {"name": "test non-booking product"}
         )
 
+    def test_action_invite(self):
+        # Open wizard
+        order_f = Form(self.env["sale.order"])
+        order_f.partner_id = self.partner
+        with order_f.order_line.new() as line_f:
+            line_f.product_id = self.product
+        order = order_f.save()
+        wizard = self.env["sale.order.booking.confirm"].create(
+            {
+                "order_id": order.id,
+            }
+        )
+        order.action_confirm()
+        self.assertEqual(order.resource_booking_count, 1)
+        # Trigger invite with context
+        wizard = wizard.with_context(trigger_booking_email=True)
+        result = wizard.action_invite()
+        self.assertEqual(result["type"], "ir.actions.client")
+
+    def test_action_noop(self):
+        # Open wizard
+        order_f = Form(self.env["sale.order"])
+        order_f.partner_id = self.partner
+        with order_f.order_line.new() as line_f:
+            line_f.product_id = self.product
+        order = order_f.save()
+        order.action_confirm()
+        self.assertEqual(order.resource_booking_count, 1)
+        wizard = self.env["sale.order.booking.confirm"].create(
+            {
+                "order_id": order.id,
+            }
+        )
+        # Trigger noop with context
+        wizard = wizard.with_context(trigger_booking_email=True)
+        result = wizard.action_noop()
+        self.assertEqual(result["type"], "ir.actions.client")
+
     def _run_action(self, action):
         """Return a recordset of applying the action results."""
         self.assertEqual(action["type"], "ir.actions.act_window")
@@ -31,6 +71,7 @@ class SaleResourceBookingsCase(TransactionCase):
             return model.search(action["domain"])
         return model
 
+    @mute_logger("odoo.models.unlink")
     def _test_wizard_quotation(self, combination_rel):
         """Test quotation wizard."""
         assert combination_rel._name == "resource.booking.type.combination.rel"
@@ -87,11 +128,27 @@ class SaleResourceBookingsCase(TransactionCase):
         else:
             self.assertEqual(bookings.mapped("combination_auto_assign"), [True] * 2)
         # Cancel SO, bookings canceled
-        order.action_cancel()
+        order._action_cancel()
         self.assertEqual(bookings.mapped("state"), ["canceled"] * 2)
         # Delete SO lines, bookings deleted
         order.order_line.unlink()
         self.assertFalse(bookings.exists())
+
+    def test_action_bookings_resync(self):
+        # Create a minimal sale order with a line
+        order_f = Form(self.env["sale.order"])
+        order_f.partner_id = self.partner
+        with order_f.order_line.new() as line_f:
+            line_f.product_id = self.product
+        order = order_f.save()
+        order.action_confirm()
+        # Call resync method
+        action = order.action_bookings_resync()
+        # Check it returns a valid window action
+        self.assertIsInstance(action, dict)
+        self.assertEqual(action.get("type"), "ir.actions.act_window")
+        self.assertIn("context", action)
+        self.assertEqual(action["context"].get("default_order_id"), order.id)
 
     def test_wizard_quotation_product_no_rbc(self):
         """Test quotation wizard when product has no combination assigned."""
@@ -122,7 +179,7 @@ class SaleResourceBookingsCase(TransactionCase):
         self.assertTrue(booking)
         self.assertEqual(booking.state, "pending")
         # Cancel order; booking canceled
-        order.action_cancel()
+        order._action_cancel()
         self.assertEqual(booking.state, "canceled")
         # Manually set order and booking to pending
         order.action_draft()
