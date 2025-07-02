@@ -1,5 +1,4 @@
 <odoo>
-
     <record id="view_order_line_tree_add_tag" model="ir.ui.view">
         <field name="name">sale.order.line.tree.add.tag</field>
         <field name="model">sale.order.line</field>
@@ -59,5 +58,4 @@
         action="sale_order_line_tag_action"
         sequence="20"
     />
-
 </odoo>
