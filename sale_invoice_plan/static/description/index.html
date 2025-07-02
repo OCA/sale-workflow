@@ -369,11 +369,11 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:e65d2ca5ee4ad4e5e68e2d61d67b087fa84c66d97eb1c690d2c08ce8b36f4b23
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/sale-workflow/tree/16.0/sale_invoice_plan"><img alt="OCA/sale-workflow" src="https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_invoice_plan"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&amp;target_branch=16.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>By standard feature, user can gradually create partial invoices, one by one.
-This module add ability to create invoices based on the predefined invoice plan,
-either all at once, or one by one.
-The plan support both advance invoice and installment invoices.</p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/sale-workflow/tree/17.0/sale_invoice_plan"><img alt="OCA/sale-workflow" src="https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_invoice_plan"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&amp;target_branch=17.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
+<p>By standard feature, user can gradually create partial invoices, one by
+one. This module add ability to create invoices based on the predefined
+invoice plan, either all at once, or one by one. The plan support both
+advance invoice and installment invoices.</p>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
 <p class="last">This is an alpha version, the data model and design can change at any time without warning.
@@ -402,7 +402,8 @@ Only for development or testing purpose, do not use in production.
 </div>
 <div class="section" id="installation">
 <h1><a class="toc-backref" href="#toc-entry-1">Installation</a></h1>
-<p>Just install this module, and the sales order will have new option “Use Invoice Plan”</p>
+<p>Just install this module, and the sales order will have new option “Use
+Invoice Plan”</p>
 </div>
 <div class="section" id="usage">
 <h1><a class="toc-backref" href="#toc-entry-2">Usage</a></h1>
@@ -410,10 +411,13 @@ Only for development or testing purpose, do not use in production.
 <li>Create new sales quotation as per normal process</li>
 <li>Select option “Use Invoice Plan”, a new Invoice Plan tab will appear</li>
 <li>Click on “=&gt; Create Invoice Plan” link to open invoice planning wizard</li>
-<li>Do plan for number of installment and/or advance, start date and interval</li>
+<li>Do plan for number of installment and/or advance, start date and
+interval</li>
 <li>Double check that each advance/installment has correct plan percentage</li>
-<li>After confirm sales order, now we have new option to “Create Invoice by Plan”</li>
-<li>User can create only next invoice, or create all the rest invoices at the same time</li>
+<li>After confirm sales order, now we have new option to “Create Invoice
+by Plan”</li>
+<li>User can create only next invoice, or create all the rest invoices at
+the same time</li>
 </ul>
 </div>
 <div class="section" id="changelog">
@@ -436,7 +440,7 @@ Only for development or testing purpose, do not use in production.
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/sale-workflow/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_invoice_plan%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_invoice_plan%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
@@ -463,7 +467,8 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </div>
 <div class="section" id="other-credits">
 <h2><a class="toc-backref" href="#toc-entry-10">Other credits</a></h2>
-<p>The migration of this module from 13.0 to 14.0 was financially supported by Camptocamp</p>
+<p>The migration of this module from 13.0 to 14.0 was financially supported
+by Camptocamp</p>
 </div>
 <div class="section" id="maintainers">
 <h2><a class="toc-backref" href="#toc-entry-11">Maintainers</a></h2>
@@ -476,7 +481,7 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
 <p><a class="reference external image-reference" href="https://github.com/kittiu"><img alt="kittiu" src="https://github.com/kittiu.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/OCA/sale-workflow/tree/16.0/sale_invoice_plan">OCA/sale-workflow</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/OCA/sale-workflow/tree/17.0/sale_invoice_plan">OCA/sale-workflow</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
 </div>
