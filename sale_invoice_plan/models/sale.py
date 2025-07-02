@@ -44,7 +44,7 @@ class SaleOrder(models.Model):
     def _compute_invoice_plan_process(self):
         for rec in self:
             has_invoice_plan = rec.use_invoice_plan and rec.invoice_plan_ids
-            to_invoice = rec.invoice_plan_ids.filtered(lambda l: not l.invoiced)
+            to_invoice = rec.invoice_plan_ids.filtered(lambda plan: not plan.invoiced)
             inv_or_adv = rec.invoice_status == "to invoice" or (
                 rec.invoice_status == "no"
                 and "advance" in to_invoice.mapped("invoice_type")
@@ -65,7 +65,7 @@ class SaleOrder(models.Model):
     def _check_invoice_plan(self):
         for rec in self:
             if rec.state != "draft":
-                if rec.invoice_plan_ids.filtered(lambda l: not l.percent):
+                if rec.invoice_plan_ids.filtered(lambda plan: not plan.percent):
                     raise ValidationError(
                         _("Please fill percentage for all invoice plan lines")
                     )

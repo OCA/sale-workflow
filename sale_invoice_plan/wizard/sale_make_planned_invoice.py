@@ -13,7 +13,7 @@ class SaleAdvancePaymentInv(models.TransientModel):
         MakeInvoice = self.env["sale.advance.payment.inv"]
         invoice_plans = (
             self._context.get("all_remain_invoices")
-            and sale.invoice_plan_ids.filtered(lambda l: not l.invoiced)
+            and sale.invoice_plan_ids.filtered(lambda plan: not plan.invoiced)
             or sale.invoice_plan_ids.filtered("to_invoice")
         )
         for plan in invoice_plans.sorted("installment"):
