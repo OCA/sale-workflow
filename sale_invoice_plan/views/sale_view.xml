@@ -7,28 +7,11 @@
             <tree editable="bottom">
                 <field name="no_edit" column_invisible="1" />
                 <field name="analytic_account_id" />
-                <field
-                    name="installment"
-                    readonly="no_edit"
-                />
-                <field
-                    name="plan_date"
-                    readonly="no_edit"
-                />
-                <field
-                    name="invoice_type"
-                    readonly="no_edit"
-                />
-                <field
-                    name="percent"
-                    optional="show"
-                    readonly="no_edit"
-                />
-                <field
-                    name="amount"
-                    optional="show"
-                    readonly="no_edit"
-                />
+                <field name="installment" readonly="no_edit" />
+                <field name="plan_date" readonly="no_edit" />
+                <field name="invoice_type" readonly="no_edit" />
+                <field name="percent" optional="show" readonly="no_edit" />
+                <field name="amount" optional="show" readonly="no_edit" />
                 <field name="amount_invoiced" optional="hide" sum="Amount" />
                 <field name="to_invoice" />
                 <field name="invoiced" />
@@ -58,14 +41,15 @@
                         <field name="percent" />
                         <field name="amount" />
                         <field name="invoiced" />
-                        <field name="invoice_move_ids" widget="many2many_tags" readonly="1"/>
+                        <field
+                            name="invoice_move_ids"
+                            widget="many2many_tags"
+                            readonly="1"
+                        />
                     </group>
                 </group>
-                <separator
-                    string="Related Invoices"
-                    invisible="not invoice_move_ids"
-                />
-                <field name="invoice_move_ids" widget="many2many_tags" readonly="1"/>
+                <separator string="Related Invoices" invisible="not invoice_move_ids" />
+                <field name="invoice_move_ids" widget="many2many_tags" readonly="1" />
             </form>
         </field>
     </record>
@@ -107,10 +91,7 @@
                 >invoice_plan_process or invoice_status != 'no' or state != 'sale'</attribute>
             </xpath>
             <xpath expr="/form/sheet/notebook/page" position="after">
-                <page
-                    string="Invoice Plan"
-                    invisible="not use_invoice_plan"
-                >
+                <page string="Invoice Plan" invisible="not use_invoice_plan">
                     <button
                         name="%(action_sale_create_invoice_plan)d"
                         string="⇒ Create Invoice Plan"
