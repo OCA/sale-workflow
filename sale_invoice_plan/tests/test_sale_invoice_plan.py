@@ -15,7 +15,7 @@ _logger = logging.getLogger(__name__)
 class TestSaleInvoicePlan(common.TestSaleCommon):
     @classmethod
     def setUpClass(cls):
-        super(TestSaleInvoicePlan, cls).setUpClass()
+        super().setUpClass()
         context_no_mail = {
             "no_reset_password": True,
             "mail_create_nosubscribe": True,
