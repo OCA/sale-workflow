@@ -59,6 +59,9 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
                 "code": "SJT0",
             }
         )
+        cls.default_pricelist = cls.env['product.pricelist'].create({
+            'name': 'Default Pricelist',
+        })
 
         cls.setUpClassicProducts()
 
@@ -85,7 +88,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
                         },
                     )
                 ],
-                "pricelist_id": cls.env.ref("product.list0").id,
+                "pricelist_id": cls.default_pricelist.id,
             }
         )
 
@@ -265,7 +268,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         self.assertEqual(quantity, 1, "Wrong number of total invoice quantity")
 
     def test_03_unlink_invoice_plan(self):
-        ctx = {"active_id": self.so_service.id, "active_ids": [self.so_service.id]}
+        ctx = {"active_id": self.so_service.id}
         f = Form(self.env["sale.create.invoice.plan"])
         # Create Invoice Plan 3 installment
         num_installment = 3
