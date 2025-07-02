@@ -1,0 +1,18 @@
+<odoo>
+    <template
+        id="report_saleorder_document"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath expr="//div[@id='informations']" position="before">
+            <h3>
+                <span t-field="doc.client_order_ref" />
+            </h3>
+        </xpath>
+        <xpath
+            expr="//div[@t-field='doc.client_order_ref']/parent::div"
+            position="attributes"
+        >
+            <attribute name="t-if">False</attribute>
+        </xpath>
+    </template>
+</odoo>
