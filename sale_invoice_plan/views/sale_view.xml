@@ -5,29 +5,29 @@
         <field name="model">sale.invoice.plan</field>
         <field name="arch" type="xml">
             <tree editable="bottom">
-                <field name="no_edit" invisible="1" />
+                <field name="no_edit" column_invisible="1" />
                 <field name="analytic_account_id" />
                 <field
                     name="installment"
-                    attrs="{'readonly': [('no_edit', '=', True)]}"
+                    readonly="no_edit"
                 />
                 <field
                     name="plan_date"
-                    attrs="{'readonly': [('no_edit', '=', True)]}"
+                    readonly="no_edit"
                 />
                 <field
                     name="invoice_type"
-                    attrs="{'readonly': [('no_edit', '=', True)]}"
+                    readonly="no_edit"
                 />
                 <field
                     name="percent"
                     optional="show"
-                    attrs="{'readonly': [('no_edit', '=', True)]}"
+                    readonly="no_edit"
                 />
                 <field
                     name="amount"
                     optional="show"
-                    attrs="{'readonly': [('no_edit', '=', True)]}"
+                    readonly="no_edit"
                 />
                 <field name="amount_invoiced" optional="hide" sum="Amount" />
                 <field name="to_invoice" />
@@ -36,8 +36,9 @@
                     name="invoice_move_ids"
                     optional="hide"
                     widget="many2many_tags"
+                    readonly="1"
                 />
-                <field name="last" invisible="1" />
+                <field name="last" column_invisible="1" />
             </tree>
         </field>
     </record>
@@ -57,14 +58,14 @@
                         <field name="percent" />
                         <field name="amount" />
                         <field name="invoiced" />
-                        <field name="invoice_move_ids" widget="many2many_tags" />
+                        <field name="invoice_move_ids" widget="many2many_tags" readonly="1"/>
                     </group>
                 </group>
                 <separator
                     string="Related Invoices"
-                    attrs="{'invisible': [('invoice_move_ids', '=', [])]}"
+                    invisible="not invoice_move_ids"
                 />
-                <field name="invoice_move_ids" widget="many2many_tags" />
+                <field name="invoice_move_ids" widget="many2many_tags" readonly="1"/>
             </form>
         </field>
     </record>
@@ -74,7 +75,7 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath expr='/form/sheet/notebook' position="before">
-                <div attrs="{'readonly': [('invoice_count', '>', 0)]}">
+                <div readonly="invoice_count > 0">
                     <field name="use_invoice_plan" />
                     <label for="use_invoice_plan" />
                 </div>
@@ -86,7 +87,7 @@
                     string="Create Invoice by Plan"
                     type="action"
                     class="btn-primary"
-                    attrs="{'invisible': [('invoice_plan_process', '=', False)]}"
+                    invisible="not invoice_plan_process"
                 />
             </xpath>
             <xpath
@@ -94,41 +95,41 @@
                 position="attributes"
             >
                 <attribute
-                    name="attrs"
-                >{'invisible': ['|', ('invoice_plan_process', '=', True), ('invoice_status', '!=', 'to invoice')]}</attribute>
+                    name="invisible"
+                >invoice_plan_process or invoice_status != 'to invoice'</attribute>
             </xpath>
             <xpath
                 expr="//button[@name='%(sale.action_view_sale_advance_payment_inv)d'][2]"
                 position="attributes"
             >
                 <attribute
-                    name="attrs"
-                >{'invisible': ['|', ('invoice_plan_process', '=', True), '|', ('invoice_status', '!=', 'no'), ('state', '!=', 'sale')]}</attribute>
+                    name="invisible"
+                >invoice_plan_process or invoice_status != 'no' or state != 'sale'</attribute>
             </xpath>
             <xpath expr="/form/sheet/notebook/page" position="after">
                 <page
                     string="Invoice Plan"
-                    attrs="{'invisible': [('use_invoice_plan', '=', False)]}"
+                    invisible="not use_invoice_plan"
                 >
                     <button
                         name="%(action_sale_create_invoice_plan)d"
                         string="⇒ Create Invoice Plan"
                         type="action"
                         class="oe_link"
-                        attrs="{'invisible': ['|', ('invoice_plan_ids', '!=', []), ('invoice_count', '>', 0)]}"
+                        invisible="invoice_plan_ids or invoice_count > 0"
                     />
                     <button
                         name="remove_invoice_plan"
                         string="⇒ Remove Invoice Plan"
                         type="object"
                         class="oe_link"
-                        attrs="{'invisible': ['|', ('invoice_plan_ids', '=', []), ('invoice_count', '>', 0)]}"
+                        invisible="not invoice_plan_ids or invoice_count > 0"
                         confirm="Are you sure to remove this invoice plan?"
                     />
                     <field
                         name="invoice_plan_ids"
                         context="{'tree_view_ref': 'sale_invoice_plan.view_sale_invoice_plan_tree'}"
-                        attrs="{'invisible': [('invoice_plan_ids', '=', [])]}"
+                        invisible="not invoice_plan_ids"
                     />
                     <group class="oe_subtotal_footer oe_right">
                         <field name="invoice_plan_total_percent" />

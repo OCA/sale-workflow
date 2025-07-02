@@ -4,7 +4,7 @@
 {
     "name": "Sales Invoice Plan",
     "summary": "Add to sales order, ability to manage future invoice plan",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "author": "Ecosoft,Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/sale-workflow",

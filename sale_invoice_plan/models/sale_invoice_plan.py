@@ -12,7 +12,6 @@ class SaleInvoicePlan(models.Model):
         comodel_name="sale.order",
         string="Sales Order",
         index=True,
-        readonly=True,
         ondelete="cascade",
     )
     analytic_account_id = fields.Many2one(related="sale_id.analytic_account_id")
@@ -58,7 +57,6 @@ class SaleInvoicePlan(models.Model):
         column1="plan_id",
         column2="move_id",
         string="Invoices",
-        readonly=True,
     )
     amount_invoiced = fields.Float(compute="_compute_invoiced", store=True)
     to_invoice = fields.Boolean(
