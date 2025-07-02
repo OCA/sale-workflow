@@ -8,5 +8,5 @@ To test the module:
   to promise the delivery.
 - Additionally, a warning alert will be shown on the top side of the order advising the
   salesman to fix that issue.
-- If the salesman ignores it, the delivery date will be removed when the order gets
-  confirmed to respect the minimum expected date.
+- If the salesman ignores it, the delivery date will be set to the minimum expected date
+  when the order gets confirmed.

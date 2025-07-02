@@ -24,5 +24,7 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         # Ensure that the deliveries get on time
-        self.filtered("is_commitment_date_unsafe").commitment_date = False
+        unsafe_commitment_orders = self.filtered("is_commitment_date_unsafe")
+        for order in unsafe_commitment_orders:
+            order.commitment_date = order.expected_date
         return super().action_confirm()

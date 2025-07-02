@@ -25,7 +25,7 @@ class TestSaleOrderSafeCommitmentDate(TransactionCase):
         self.assertTrue(self.sale_order.is_commitment_date_unsafe)
         self.sale_order.action_confirm()
         self.assertFalse(self.sale_order.is_commitment_date_unsafe)
-        self.assertFalse(self.sale_order.commitment_date)
+        self.assertEqual(self.sale_order.commitment_date, self.sale_order.expected_date)
 
     def test_safe_commitment_date(self):
         """Time is freezed at 2018-01-11. There aren't lead times and the commitment
