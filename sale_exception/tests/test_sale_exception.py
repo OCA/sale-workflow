@@ -5,7 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo import Command
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Form, TransactionCase
 
 
@@ -126,7 +126,7 @@ class TestSaleException(TransactionCase):
             }
         )
         exception.active = False
-        so1.action_cancel()
+        so1.with_context(disable_cancel_warning=True).action_cancel()
         so1.action_draft()
         self.assertTrue(not so1.ignore_exception)
 
@@ -137,6 +137,7 @@ class TestSaleException(TransactionCase):
         ).create({"ignore": True})
         so_except_confirm.action_confirm()
         self.assertTrue(so1.ignore_exception)
+        self.assertEqual(so1.state, "sale")
 
     def _create_sale_order(self, partner, product):
         order_form = Form(self.env["sale.order"])
@@ -206,6 +207,10 @@ class TestSaleException(TransactionCase):
                 "active_model": sale_order._name,
             }
         ).create({"ignore": True})
-        so_except_confirm.action_confirm()
+        with self.assertRaisesRegex(
+            UserError,
+            "The exceptions can not be ignored, because some of them are blocking.",
+        ):
+            so_except_confirm.action_confirm()
         self.assertFalse(sale_order.ignore_exception)
         self.assertTrue(sale_order.state == "draft")
