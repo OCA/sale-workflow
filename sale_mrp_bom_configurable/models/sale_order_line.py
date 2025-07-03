@@ -14,14 +14,9 @@ class SaleOrderLine(models.Model):
     input_line_id = fields.Many2one(
         comodel_name="input.line",
         string="Input line",
-        compute="_compute_input_line_id",
-        store=True,
-        precompute=True,
     )
 
-    input_line_id_name = fields.Char(
-        related="input_line_id.name", readonly=False, store=True
-    )
+    input_line_id_name = fields.Char(related="input_line_id.name", readonly=False, store=True)
     input_line_domain = fields.Char()
 
     should_compute_price = fields.Boolean(
@@ -37,8 +32,7 @@ class SaleOrderLine(models.Model):
             default = {}
         if "input_line_ids" not in default:
             default["input_line_ids"] = [
-                Command.create(input_line.copy_data()[0])
-                for input_line in self.input_line_ids
+                Command.create(input_line.copy_data()[0]) for input_line in self.input_line_ids
             ]
         return super().copy_data(default)
 
@@ -58,34 +52,31 @@ class SaleOrderLine(models.Model):
         vals = {"name": "A1"}
         return vals
 
-    def write(self, vals):
+    @api.onchange("product_template_id")
+    def onchange_product_template_id(self):
         to_change = {}
         input_line_to_delete = []
         for rec in self:
-            if (
-                "product_template_id" in vals
-                and rec.product_template_id.id != vals["product_template_id"]
-            ):
-                to_change[rec.id] = rec.input_line_id.copy_data()[0]
-                input_line_to_delete = rec.input_line_ids.mapped("id")
-                rec.input_line_ids = [(5, 0, 0)]
+            template_variable_boms = rec._get_variable_bom()
+            if rec.product_template_id and len(template_variable_boms) > 0:
+                input_line = rec.input_line_id
+                if not input_line:
+                    if len(template_variable_boms) > 0:
+                        rec._create_input_line_config_from_line(template_variable_boms[0])
+                elif input_line.bom_id.product_tmpl_id != rec.product_template_id:
+                    to_change[rec.id] = rec.input_line_id.copy_data()[0]
+                    input_line_to_delete = rec.input_line_ids.mapped("id")
+                    rec.input_line_ids = [(5, 0, 0)]
 
-        res = super().write(vals)
+        self.env["input.line"].search([("id", "in", input_line_to_delete)]).unlink()
 
         for rec in self:
             if rec.id in to_change:
-
-                self.env["input.line"].search(
-                    [("id", "in", input_line_to_delete)]
-                ).unlink()
-
                 template_variable_boms = rec._get_variable_bom()
                 if len(template_variable_boms) > 0:
                     rec._create_input_line_config_from_line(
                         template_variable_boms[0], to_change[rec.id]
                     )
-
-        return res
 
     def _get_variable_bom(self):
         template_boms = self.product_template_id.bom_ids
@@ -93,25 +84,25 @@ class SaleOrderLine(models.Model):
         # sale_order_line product_template_id is not static
         # if the product template has a only one bom and that bom
         # is variable
-        if (
-            len(template_boms) == 1
-            and template_boms[0].configuration_type == "variable"
-        ):
+        if len(template_boms) == 1 and template_boms[0].configuration_type == "variable":
             template_variable_bom = template_boms[0]
             return [template_variable_bom[0]]
 
         return []
 
-    def _create_input_line_config_from_line(
-        self, template_variable_bom, copy_vals=None
-    ):
+    def _create_input_line_config_from_line(self, template_variable_bom, copy_vals=None):
         self.ensure_one()
         # Search if sale_order already has the config_id for this
         # product template
+        order_id = (
+            self.env["sale.order"].browse(self.order_id.id.origin)
+            if self.order_id.id.origin
+            else self.order_id
+        )
         input_config_filtered = list(
             filter(
                 lambda x: x.bom_id.id == template_variable_bom.id,
-                self.order_id.input_config_ids,
+                order_id.input_config_ids,
             )
         )
         input_config = False
@@ -120,10 +111,10 @@ class SaleOrderLine(models.Model):
             input_config = self.env["input.config"].create(
                 {
                     "bom_id": template_variable_bom.id,
-                    "name": f"{self.order_id.name} - {self.name}",
+                    "name": f"{order_id.name} - {self.name}",
                 }
             )
-            self.order_id.input_config_ids = [(4, input_config.id, 0)]
+            order_id.input_config_ids = [(4, input_config.id, 0)]
         else:
             input_config = input_config_filtered[0]
 
@@ -133,24 +124,11 @@ class SaleOrderLine(models.Model):
             vals.update(copy_vals)
 
         vals["config_id"] = input_config.id
-        input_line = (
-            self.env["input.line"].with_context(active_id=input_config.id).create(vals)
-        )
+        input_line = self.env["input.line"].create(vals)
         self.input_line_ids = [(4, input_line.id, 0)]
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        res = super().create(vals_list)
-
-        for rec in res:
-            template_variable_boms = rec._get_variable_bom()
-            if len(template_variable_boms) > 0:
-                rec._create_input_line_config_from_line(template_variable_boms[0])
-
-        return res
-
-    @api.depends("input_line_ids")
-    def _compute_input_line_id(self):
+    @api.onchange("input_line_ids")
+    def _onchange_input_line_ids(self):
         for rec in self:
             if len(rec.input_line_ids) > 0:
                 rec.input_line_id = rec.input_line_ids[0]
@@ -163,7 +141,7 @@ class SaleOrderLine(models.Model):
             if not rec.is_static_product:
                 if rec.should_compute_price:
                     rec = rec.with_context(
-                        price_config=rec.product_id.product_tmpl_id._find_price_config(),
+                        price_config=rec.product_template_id._find_price_config(),
                         input_line=rec.input_line_id,
                     )
                     rec.should_compute_price = False

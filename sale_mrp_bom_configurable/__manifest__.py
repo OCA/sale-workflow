@@ -33,6 +33,7 @@
             "sale_mrp_bom_configurable/static/src/xml/sale_price_config_change_button.xml",
             "sale_mrp_bom_configurable/static/src/js/sale_price_config_change_button.esm.js",
             "sale_mrp_bom_configurable/static/src/css/matrix_table.scss",
+            "sale_mrp_bom_configurable/static/src/css/sale_order_line_tree_view.scss",
         ],
     },
     "installable": True,
