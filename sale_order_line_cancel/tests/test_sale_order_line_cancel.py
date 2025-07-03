@@ -125,3 +125,18 @@ class TestSaleOrderLineCancel(TestSaleOrderLineCancelBase):
         self.assertEqual(sale.order_line.product_qty_canceled, 0)
         self.assertEqual(sale.order_line.qty_to_deliver, 10)
         self.assertEqual(sale.order_line.product_qty_remains_to_deliver, 10)
+
+    def test_sent_sale_order_with_picking_cancel(self):
+        sale = self.sale
+        sale.action_cancel()
+        sale.action_draft()
+        sale.state = "sent"
+        picking = sale.picking_ids.copy()
+        picking.action_assign()
+        self.assertEqual(sale.order_line.product_qty_canceled, 0)
+        self.assertEqual(sale.order_line.qty_to_deliver, 10)
+        self.assertEqual(sale.order_line.product_qty_remains_to_deliver, 10)
+        picking.action_cancel()
+        self.assertEqual(sale.order_line.product_qty_canceled, 0)
+        self.assertEqual(sale.order_line.qty_to_deliver, 10)
+        self.assertEqual(sale.order_line.product_qty_remains_to_deliver, 10)
