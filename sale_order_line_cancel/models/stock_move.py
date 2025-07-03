@@ -39,6 +39,6 @@ class StockMove(models.Model):
         return (
             self.state == "cancel"
             and self.sale_line_id
-            and self.sale_line_id.state != "draft"
+            and self.sale_line_id.state not in ["draft", "sent"]
             and self.picking_type_id.code == "outgoing"
         )
