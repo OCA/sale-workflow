@@ -21,7 +21,7 @@
                         nolabel="1"
                         colspan="4"
                         readonly="True"
-                        context="{'form_view_ref': 'account.view_account_payment_form','tree_view_ref': 'account.view_account_payment_tree'}"
+                        context="{'form_view_ref': 'account.view_account_payment_form','list_view_ref': 'account.view_account_payment_tree'}"
                     />
                 </page>
             </notebook>
