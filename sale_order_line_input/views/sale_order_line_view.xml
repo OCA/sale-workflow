@@ -17,7 +17,7 @@
                 editable="top"
                 create="true"
             >
-            <!-- We do not display the type because we don't want the user to be bothered with
+                <!-- We do not display the type because we don't want the user to be bothered with
                 that information if he has no section or note. -->
                 <field name="display_type" column_invisible="1" />
                 <field
