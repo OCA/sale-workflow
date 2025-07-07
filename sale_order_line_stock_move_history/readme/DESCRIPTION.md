@@ -1,0 +1,1 @@
+This module provides a button on each sale order line to view the stock moves history related to the product of that sale order line. It enhances the visibility of stock movements directly from the sales order interface.
