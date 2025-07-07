@@ -15,8 +15,8 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_stock_secondary_unit
-#: model:ir.model,name:sale_stock_secondary_unit.model_stock_rule
-msgid "Stock Rule"
+#: model:ir.model,name:sale_stock_secondary_unit.model_sale_order_line
+msgid "Sales Order Line"
 msgstr ""
 
 #~ msgid "Procurement Rule"

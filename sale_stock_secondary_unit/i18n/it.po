@@ -17,6 +17,9 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: sale_stock_secondary_unit
-#: model:ir.model,name:sale_stock_secondary_unit.model_stock_rule
-msgid "Stock Rule"
-msgstr "Regola di giacenza"
+#: model:ir.model,name:sale_stock_secondary_unit.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#~ msgid "Stock Rule"
+#~ msgstr "Regola di giacenza"
