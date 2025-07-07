@@ -6,7 +6,6 @@ from openupgradelib import openupgrade
 
 @openupgrade.migrate()
 def migrate(env, version):
-
     openupgrade.m2o_to_x2m(
         env.cr,
         env["product.customerinfo"],
