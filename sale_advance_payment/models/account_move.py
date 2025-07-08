@@ -10,12 +10,30 @@ class AccountMove(models.Model):
     def action_post(self):
         # Automatic reconciliation of payment when invoice confirmed.
         res = super().action_post()
-        sale_order = self.mapped("line_ids.sale_line_ids.order_id")
-        if sale_order and self.invoice_outstanding_credits_debits_widget is not False:
-            json_invoice_outstanding_data = (
-                self.invoice_outstanding_credits_debits_widget.get("content", [])
+        for move in self:
+            sale_order = move.mapped("line_ids.sale_line_ids.order_id")
+            if not sale_order:
+                continue
+
+            # Get payment move IDs first
+            payment_move_ids = sale_order.account_payment_ids.move_id.ids
+            if not payment_move_ids:
+                continue
+
+            # Domain search (most efficient for large datasets)
+            advance_payment_lines = self.env["account.move.line"].search(
+                [
+                    ("move_id", "in", payment_move_ids),
+                    (
+                        "account_id.account_type",
+                        "in",
+                        ("asset_receivable", "liability_payable"),
+                    ),
+                    ("reconciled", "=", False),
+                    ("parent_state", "=", "posted"),
+                ]
             )
-            for data in json_invoice_outstanding_data:
-                if data.get("move_id") in sale_order.account_payment_ids.move_id.ids:
-                    self.js_assign_outstanding_line(line_id=data.get("id"))
+
+            for line in advance_payment_lines:
+                move.js_assign_outstanding_line(line_id=line.id)
         return res

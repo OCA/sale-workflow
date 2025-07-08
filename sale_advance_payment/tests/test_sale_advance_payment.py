@@ -258,12 +258,34 @@ class TestSaleAdvancePayment(BaseCommon):
         invoice = self.sale_order_1._create_invoices()
         invoice.action_post()
 
-        # Compare payments
+        # Verify that advance payments are reconciled with the invoice
         rate = self.currency_rate.inverse_company_rate
-        payment_list = [100 * rate, 200, 250 * rate, 400]
-        payments = invoice.invoice_outstanding_credits_debits_widget
-        result = [d["amount"] for d in payments["content"]]
-        self.assertEqual(set(payment_list), set(result))
+        expected_payment_amounts = [100 * rate, 200, 250 * rate, 400]
+
+        # Get all payment lines that should have been reconciled
+        payment_lines = self.env["account.move.line"].search(
+            [
+                ("move_id", "in", self.sale_order_1.account_payment_ids.move_id.ids),
+                (
+                    "account_id.account_type",
+                    "in",
+                    ("asset_receivable", "liability_payable"),
+                ),
+                ("parent_state", "=", "posted"),
+            ]
+        )
+
+        # Check that all payments are reconciled
+        self.assertTrue(all(line.reconciled for line in payment_lines))
+
+        # Verify the payment amounts match
+        actual_payment_amounts = []
+        for line in payment_lines:
+            actual_payment_amounts.append(abs(line.balance))
+
+        actual_payment_amounts_sorted = sorted(actual_payment_amounts)
+        expected_payment_amounts_sorted = sorted(expected_payment_amounts)
+        self.assertEqual(actual_payment_amounts_sorted, expected_payment_amounts_sorted)
 
     def test_02_residual_amount_with_invoice(self):
         self.assertEqual(
