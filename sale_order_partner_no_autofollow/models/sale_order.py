@@ -11,7 +11,7 @@ class SaleOrder(models.Model):
             and self.partner_id.id in partner_ids
         ):
             partner_ids.remove(self.partner_id.id)
-        return super(SaleOrder, self).message_subscribe(partner_ids, subtype_ids)
+        return super().message_subscribe(partner_ids, subtype_ids)
 
     @api.model_create_multi
     def create(self, values):

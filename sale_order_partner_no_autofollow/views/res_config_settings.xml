@@ -8,8 +8,11 @@
         <field name="arch" type="xml">
             <xpath expr="//block[@name='invoicing_setting_container']" position="after">
                 <block title="Auto Follow" name="autofollow_settings_container">
-                    <setting id="partner_disable_autofollow_setting" help="Customer will not be added as follower automatically on sale orders">
-                        <field name="partner_disable_autofollow"/>
+                    <setting
+                        id="partner_disable_autofollow_setting"
+                        help="Customer will not be added as follower automatically on sale orders"
+                    >
+                        <field name="partner_disable_autofollow" />
                     </setting>
                 </block>
             </xpath>

@@ -7,7 +7,7 @@ class NoAutofollowCommon(TransactionCase):
         Test for orders, to check autofollow when the
         'customer no autofollow' mode is enabled in settings
         """
-        super(NoAutofollowCommon, self).setUp(*args, **kwargs)
+        super().setUp(*args, **kwargs)
 
         self.partner1 = self.env["res.partner"].create(
             {"name": "Test1", "email": "test1@test.com"}

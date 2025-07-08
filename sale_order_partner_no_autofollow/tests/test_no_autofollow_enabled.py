@@ -6,7 +6,7 @@ from .common import NoAutofollowCommon
 @tagged("post_install", "-at_install", "standart")
 class TestSaleOrderNoAutofollow(NoAutofollowCommon):
     def setUp(self, *args, **kwargs):
-        super(TestSaleOrderNoAutofollow, self).setUp(*args, **kwargs)
+        super().setUp(*args, **kwargs)
 
         self.env["ir.config_parameter"].sudo().set_param(
             "sale_order_partner_no_autofollow.partner_disable_autofollow", False
