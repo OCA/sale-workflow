@@ -6,63 +6,65 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-07-08 09:11+0000\n"
+"Last-Translator: Carlos Roca Zaragoza <carlos.roca@tecnativa.com>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.report_delivery_document
 msgid "<strong>Elab.</strong>"
-msgstr ""
+msgstr "<strong>Elab.</strong>"
 
 #. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.report_delivery_document
 msgid "<strong>Elaboration</strong>"
-msgstr ""
+msgstr "<strong>Elaboració</strong>"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__active
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__active
 msgid "Active"
-msgstr ""
+msgstr "Actiu"
 
 #. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_move_search
 msgid "After Date"
-msgstr ""
+msgstr "Després de la data"
 
 #. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_form
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.product_elaboration_profile_form_view
 msgid "Archived"
-msgstr ""
+msgstr "Arxivat"
 
 #. module: sale_elaboration
 #: model:ir.model.constraint,message:sale_elaboration.constraint_product_elaboration_code_uniq
 msgid "Code must be unique!"
-msgstr ""
+msgstr "El codi ha de ser únic!"
 
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Ajustos de configuració"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__create_uid
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__create_date
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creat el"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,help:sale_elaboration.field_sale_order_line__date_order
@@ -70,33 +72,35 @@ msgid ""
 "Creation date of draft/sent orders,\n"
 "Confirmation date of confirmed orders."
 msgstr ""
+"Data de creació de comandes esborrany/enviades,\n"
+"Data de confirmació de comandes confirmades."
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__date_order
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_res_config_settings__group_elaboration_note_on_delivery_slip
 msgid "Display Elaboration notes on Delivery Slips"
-msgstr ""
+msgstr "Mostrar elaboracions als albarans"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__display_name
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom visible"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__elaboration_price_unit
 msgid "Elab. Price"
-msgstr ""
+msgstr "Preu Elab."
 
 #. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_move_search
 msgid "Elaboration"
-msgstr ""
+msgstr "Elaboració"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_mixin__elaboration_note
@@ -104,24 +108,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_elaboration.field_stock_move__elaboration_note
 #: model:ir.model.fields,field_description:sale_elaboration.field_stock_move_line__elaboration_note
 msgid "Elaboration Note"
-msgstr ""
+msgstr "Nota d'elaboració"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_product__elaboration_profile_id
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_template__elaboration_profile_id
 #: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__elaboration_profile_id
 msgid "Elaboration Profile"
-msgstr ""
+msgstr "Perfil d'elaboració"
 
 #. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.res_config_settings_view
 msgid "Elaboration notes will appear on the delivery slip"
-msgstr ""
+msgstr "Les notes d’elaboració apareixeran a l’albarà"
 
 #. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_order_form
 msgid "Elaboration price:"
-msgstr ""
+msgstr "Preu d'elaboració:"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_mixin__elaboration_ids
@@ -135,30 +139,30 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.product_template_form_view
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_order_form
 msgid "Elaborations"
-msgstr ""
+msgstr "Elaboacions"
 
 #. module: sale_elaboration
 #: model:ir.actions.act_window,name:sale_elaboration.stock_move_elaboration_report_action
 #: model:ir.ui.menu,name:sale_elaboration.menu_sale_stock_move_elaboration_report
 #: model:ir.ui.menu,name:sale_elaboration.menu_stock_sale_stock_move_elaboration_report
 msgid "Elaborations Report"
-msgstr ""
+msgstr "Informe d'elaboracions"
 
 #. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 msgid "Elaborations Search"
-msgstr ""
+msgstr "Cerca d’elaboracions"
 
 #. module: sale_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 msgid "Group By"
-msgstr ""
+msgstr "Agrupar per"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__id
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,help:sale_elaboration.field_product_elaboration__active
@@ -166,11 +170,13 @@ msgid ""
 "If unchecked, it will allow you to hide the product elaborations without "
 "removing it."
 msgstr ""
+"Si no està seleccionat, et permetrà ocultar les elaboracions del producte "
+"sense eliminar-les."
 
 #. module: sale_elaboration
 #: model:res.groups,name:sale_elaboration.group_elaboration_note_on_delivery_slip
 msgid "Include elaboration notes on delivery slip"
-msgstr ""
+msgstr "Inclou les notes d’elaboració a l’albarà"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_mixin__is_elaboration
@@ -180,48 +186,48 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_elaboration.field_stock_move__is_elaboration
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_move_search
 msgid "Is Elaboration"
-msgstr ""
+msgstr "És elaboració"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration____last_update
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificació el"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__write_uid
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualització per"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__write_date
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualització el"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__name
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__name
 msgid "Name"
-msgstr ""
+msgstr "Nom"
 
 #. module: sale_elaboration
 #: model:ir.model.constraint,message:sale_elaboration.constraint_product_elaboration_name_uniq
 msgid "Name must be unique!"
-msgstr ""
+msgstr "El nom deu ser únic!"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_stock_move__order_date
 msgid "Order Date"
-msgstr ""
+msgstr "Data de comanda"
 
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_product_product
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__product_id
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 msgid "Product"
-msgstr ""
+msgstr "Producte"
 
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_product_elaboration_mixin
@@ -231,92 +237,92 @@ msgstr ""
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr ""
+msgstr "Moviment del producte (línia de moviment d'estoc)"
 
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Plantilla de producte"
 
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_product_elaboration_profile
 msgid "Product elaboration profiles"
-msgstr ""
+msgstr "Perfils d’elaboració de producte"
 
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_product_elaboration
 msgid "Product elaborations"
-msgstr ""
+msgstr "Elaboracions de producte"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__profile_ids
 msgid "Profile"
-msgstr ""
+msgstr "Perfil"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__route_id
 msgid "Route"
-msgstr ""
+msgstr "Ruta"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__route_ids
 msgid "Routes"
-msgstr ""
+msgstr "Rutes"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_stock_move__sale_id
 msgid "Sale"
-msgstr ""
+msgstr "Venda"
 
 #. module: sale_elaboration
 #: model:ir.actions.act_window,name:sale_elaboration.sale_elaboration_action
 #: model:ir.ui.menu,name:sale_elaboration.menu_sale_elaboration
 msgid "Sale Elaboration"
-msgstr ""
+msgstr "Elaboració de venda"
 
 #. module: sale_elaboration
 #: model:ir.actions.act_window,name:sale_elaboration.sale_elaboration_profile_action
 #: model:ir.ui.menu,name:sale_elaboration.menu_sale_elaboration_profile
 msgid "Sale Elaboration Profiles"
-msgstr ""
+msgstr "Perfils d'elaboració de venda"
 
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Comanda de venda"
 
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Línia comanda de venda"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_stock_move__salesman_id
 msgid "Salesman"
-msgstr ""
+msgstr "Comercial"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_stock_move__sequence_code
 msgid "Sequence Code"
-msgstr ""
+msgstr "Codi de seqüència"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__code
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__code
 msgid "Short Code"
-msgstr ""
+msgstr "Codi curt"
 
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Moviment d'estoc"
 
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_stock_rule
 msgid "Stock Rule"
-msgstr ""
+msgstr "Regla d'estoc"
 
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Transferència"
