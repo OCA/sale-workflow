@@ -21,5 +21,7 @@ msgstr ""
 msgid "Sales Order Line"
 msgstr ""
 
-#~ msgid "Stock Rule"
-#~ msgstr "Regla de stock"
+#. module: sale_stock_secondary_unit
+#: model:ir.model,name:sale_stock_secondary_unit.model_stock_rule
+msgid "Stock Rule"
+msgstr "Regla de stock"
