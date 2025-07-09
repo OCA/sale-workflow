@@ -54,6 +54,16 @@ msgid "Canceled"
 msgstr ""
 
 #. module: sale_order_line_cancel
+#: model:ir.model,name:sale_order_line_cancel.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_order_line_cancel
+#: model:ir.model,name:sale_order_line_cancel.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_line_cancel
 #: model:ir.model.fields,field_description:sale_order_line_cancel.field_sale_order_line_cancel__create_uid
 msgid "Created by"
 msgstr ""
@@ -93,6 +103,21 @@ msgstr ""
 #: code:addons/sale_order_line_cancel/wizards/sale_order_line_cancel.py:0
 #, python-format
 msgid "No sale order line ID found"
+msgstr ""
+
+#. module: sale_order_line_cancel
+#: model:ir.model.fields,help:sale_order_line_cancel.field_res_company__on_sale_line_cancel_decrease_line_qty
+#: model:ir.model.fields,help:sale_order_line_cancel.field_res_config_settings__on_sale_line_cancel_decrease_line_qty
+#: model_terms:ir.ui.view,arch_db:sale_order_line_cancel.res_config_settings_form_view
+msgid ""
+"On canceling the remaining qty to deliver of an order line it decreases the "
+"initial quantity"
+msgstr ""
+
+#. module: sale_order_line_cancel
+#: model:ir.model.fields,field_description:sale_order_line_cancel.field_res_company__on_sale_line_cancel_decrease_line_qty
+#: model:ir.model.fields,field_description:sale_order_line_cancel.field_res_config_settings__on_sale_line_cancel_decrease_line_qty
+msgid "On sale order line cancel decrease line quantity"
 msgstr ""
 
 #. module: sale_order_line_cancel
