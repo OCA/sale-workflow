@@ -166,3 +166,13 @@ class TestSaleOrderLineCancel(TestSaleOrderLineCancelBase):
         self.assertEqual(line.qty_to_deliver, 0)
         self.assertEqual(line.qty_delivered, 4)
         self.assertEqual(line.product_uom_qty, 4)
+
+    def test_ensure_no_decrease_product_uom_qty_on_so_cancel(self):
+        sale = self.sale
+        sale.with_context(disable_cancel_warning=True).action_cancel()
+        sale.picking_ids.unlink()
+        sale.action_draft()
+        sale.action_confirm()
+        sale.company_id.on_sale_line_cancel_decrease_line_qty = True
+        sale.action_cancel()
+        self.assertEqual(sale.order_line.product_uom_qty, 10)
