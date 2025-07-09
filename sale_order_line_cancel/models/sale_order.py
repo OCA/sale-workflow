@@ -15,6 +15,7 @@ class SaleOrder(models.Model):
         return res
 
     def _action_cancel(self):
-        res = super()._action_cancel()
+        new_self = self.with_context(ignore_sale_order_line_cancel=True)
+        res = super(SaleOrder, new_self)._action_cancel()
         self.order_line._update_qty_canceled()
         return res
