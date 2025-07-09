@@ -12,6 +12,8 @@ class StockMove(models.Model):
 
     def _action_cancel(self):
         res = super()._action_cancel()
+        if self.env.context.get("ignore_sale_order_line_cancel", False):
+            return res
         sale_lines = self._get_sale_lines_to_update_qty_canceled()
         sale_lines._update_qty_canceled()
         return res
