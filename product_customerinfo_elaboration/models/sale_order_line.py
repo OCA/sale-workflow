@@ -25,18 +25,17 @@ class SaleOrderLine(models.Model):
 
     def _get_product_customer_info(self):
         customerinfo = self.product_id.customer_ids.filtered(
-            lambda pc: pc.elaboration_ids and pc.name == self.order_id.partner_id
+            lambda pc: pc.elaboration_ids and pc.partner_id == self.order_id.partner_id
         )[:1]
         if not customerinfo:
             customerinfo = self.product_id.customer_ids.filtered(
                 lambda pc: pc.elaboration_ids
-                and pc.name == self.order_id.partner_id.commercial_partner_id
+                and pc.partner_id == self.order_id.partner_id.commercial_partner_id
             )[:1]
         return customerinfo
 
     @api.onchange("elaboration_ids")
     def onchange_elaboration_ids(self):
-        res = super().onchange_elaboration_ids()
         for line in self:
             customer_info = line._get_product_customer_info()
             if (
@@ -49,4 +48,3 @@ class SaleOrderLine(models.Model):
                 )
             ):
                 line.elaboration_note = customer_info.elaboration_note
-        return res

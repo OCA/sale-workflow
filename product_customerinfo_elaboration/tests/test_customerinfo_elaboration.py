@@ -1,23 +1,15 @@
 # Copyright 2022 Tecnativa - Carlos Roca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
 
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestCustomerinfoElaboration(TransactionCase):
+class TestCustomerinfoElaboration(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # Remove this variable in v16 and put instead:
-        # from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
-        DISABLED_MAIL_CONTEXT = {
-            "tracking_disable": True,
-            "mail_create_nolog": True,
-            "mail_create_nosubscribe": True,
-            "mail_notrack": True,
-            "no_reset_password": True,
-        }
-        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.customer0 = cls.env["res.partner"].create({"name": "Test partner 0"})
         cls.customer1 = cls.env["res.partner"].create(
             {"name": "Test partner 1", "parent_id": cls.customer0.id}
@@ -32,7 +24,7 @@ class TestCustomerinfoElaboration(TransactionCase):
         )
         cls.customer_info = cls.env["product.customerinfo"].create(
             {
-                "name": cls.customer0.id,
+                "partner_id": cls.customer0.id,
                 "product_tmpl_id": cls.product.product_tmpl_id.id,
                 "elaboration_ids": [(4, cls.elaboration.id)],
                 "elaboration_note": "Test elaboration note",

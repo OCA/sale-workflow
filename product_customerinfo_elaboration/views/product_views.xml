@@ -6,7 +6,7 @@
         <field name="model">product.customerinfo</field>
         <field
             name="inherit_id"
-            ref="product_supplierinfo_for_customer.product_customerinfo_form_view"
+            ref="product_customerinfo.product_customerinfo_form_view"
         />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='product_tmpl_id']/.." position="after">
@@ -21,7 +21,7 @@
         <field name="model">product.customerinfo</field>
         <field
             name="inherit_id"
-            ref="product_supplierinfo_for_customer.product_customerinfo_tree_view"
+            ref="product_customerinfo.product_customerinfo_tree_view"
         />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='price']" position="after">
