@@ -1,22 +1,23 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import odoo.tests.common as common
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleLastPriceInfo(common.TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.sale_order_model = self.env["sale.order"]
-        self.sale_line_model = self.env["sale.order.line"]
-        self.sale_order = self.env.ref("sale.sale_order_4")
-        self.sale_line = self.env.ref("sale.sale_order_line_9")
-        self.partner = self.env.ref("base.res_partner_3")
-        self.product = self.env.ref("product.product_delivery_02")
-        self.price_unit = 100.0
+class TestSaleLastPriceInfo(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.sale_order_model = cls.env["sale.order"]
+        cls.sale_line_model = cls.env["sale.order.line"]
+        cls.sale_order = cls.env.ref("sale.sale_order_4")
+        cls.sale_line = cls.env.ref("sale.sale_order_line_9")
+        cls.partner = cls.env.ref("base.res_partner_3")
+        cls.product = cls.env.ref("product.product_delivery_02")
+        cls.price_unit = 100.0
 
     def test_sale_last_price_info_demo(self):
         sale_line = self.sale_line_model.search(
-            [("product_id", "=", self.product.id), ("state", "in", ["sale", "done"])],
+            [("product_id", "=", self.product.id), ("state", "=", "sale")],
             limit=1,
             order="date_order_sale_last_price_info desc",
         )
