@@ -1,0 +1,1 @@
+Since Odoo restricted the permission for commercial users to create bank statements we created this module so that they can keep track of customer payments, especially in the case of cash payments, basically the commercial user records the payments in the 'payment sheet' and when validated by a responsible person the bank statement is created.

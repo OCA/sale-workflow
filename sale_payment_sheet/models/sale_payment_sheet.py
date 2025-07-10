@@ -2,7 +2,7 @@
 # Copyright 2020 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools import float_compare
 
@@ -108,7 +108,9 @@ class SalePaymentSheet(models.Model):
         for sheet in self:
             if sheet.state != "open":
                 raise UserError(
-                    _("You can not delete a sheet if has related journal items.")
+                    self.env._(
+                        "You can not delete a sheet if has related journal items."
+                    )
                 )
 
     @api.model
@@ -160,7 +162,7 @@ class SalePaymentSheet(models.Model):
                 statement_line = BankStatementLine.create(vals)
                 payment_sheet_line_ids.statement_line_id = statement_line
             sheet.message_post(
-                body=_(
+                body=self.env._(
                     "Sheet %(statement_name)s confirmed, bank statement were created.",
                     statement_name=statement.name,
                 )
@@ -172,7 +174,7 @@ class SalePaymentSheet(models.Model):
         self_sudo = self.sudo()
         if self_sudo.statement_id.line_ids.filtered("is_reconciled"):
             raise UserError(
-                _("You can not reopen a sheet that has any reconciled line.")
+                self.env._("You can not reopen a sheet that has any reconciled line.")
             )
         self_sudo.statement_id.unlink()
         self.state = "open"
@@ -300,7 +302,7 @@ class SalePaymentSheetLine(models.Model):
             # Allow to enter sheet line with an amount of 0,
             if line.journal_currency_id.is_zero(line.amount):
                 raise ValidationError(
-                    _("The amount of a cash transaction cannot be 0.")
+                    self.env._("The amount of a cash transaction cannot be 0.")
                 )
             # Do not allow to enter a invoice totally payed more than one time
             payment_lines = all_payment_lines.filtered(
@@ -317,7 +319,7 @@ class SalePaymentSheetLine(models.Model):
                 == 1
             ):
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "This invoice already has been included in other payment sheet"
                         " or the amount payed is greather than residual invoice amount."
                         "\n Invoice: %(invoice_name)s\n Amount payed: "
@@ -333,5 +335,7 @@ class SalePaymentSheetLine(models.Model):
     def unlink_except_statement_line(self):
         if self.filtered("statement_line_id"):
             raise UserError(
-                _("You can not delete payment lines if have related statement lines.")
+                self.env._(
+                    "You can not delete payment lines if have related statement lines."
+                )
             )

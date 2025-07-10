@@ -2,7 +2,7 @@
 # Copyright 2020 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import Command, api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -61,7 +61,7 @@ class SaleInvoicePaymentWiz(models.TransientModel):
             invoice_ids or self.env.context.get("active_ids")
         )
         res["wiz_line_ids"] = [
-            (0, 0, {"wiz_id": self.id, "invoice_id": x.id}) for x in invoices
+            Command.create({"wiz_id": self.id, "invoice_id": x.id}) for x in invoices
         ]
         res["partner_id"] = invoices[:1].partner_id.id
         return res
@@ -71,13 +71,20 @@ class SaleInvoicePaymentWiz(models.TransientModel):
         for wiz in self:
             wiz.currency_id = wiz.journal_id.currency_id
 
+    def _prepare_sheet_values(self):
+        return {
+            "user_id": self.env.user.id,
+            "journal_id": self.journal_id.id,
+            "date": fields.Date.today(),
+        }
+
     def create_sale_invoice_payment_sheet(self):
         invoices = (
             self.wiz_line_ids.filtered("is_selected").mapped("invoice_id")
         ).filtered(lambda inv: inv.state == "posted" and inv.payment_state != "paid")
         if not invoices:
             raise UserError(
-                _("You have to select at least an invoice to make a payment.")
+                self.env._("You have to select at least an invoice to make a payment.")
             )
         # Search an open payment sheet or create one if not exists
         SalePaymentSheet = self.env["sale.payment.sheet"]
@@ -90,13 +97,7 @@ class SaleInvoicePaymentWiz(models.TransientModel):
             ]
         )
         if not sheet:
-            sheet = SalePaymentSheet.create(
-                {
-                    "user_id": self.env.user.id,
-                    "journal_id": self.journal_id.id,
-                    "date": fields.Date.today(),
-                }
-            )
+            sheet = SalePaymentSheet.create(self._prepare_sheet_values())
         # First process refund invoices su summarize negative amounts
         for invoice in invoices.filtered(lambda inv: inv.move_type == "out_refund"):
             self._process_invoice(sheet, invoice)
@@ -131,11 +132,7 @@ class SaleInvoicePaymentWiz(models.TransientModel):
                 sheet_line.amount = amount_pay
             else:
                 sheet.line_ids = [
-                    (
-                        0,
-                        0,
-                        self._prepare_sheet_line_values(invoice, amount_pay),
-                    )
+                    Command.create(self._prepare_sheet_line_values(invoice, amount_pay))
                 ]
         self.amount -= amount_pay
 

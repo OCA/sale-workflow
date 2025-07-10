@@ -1,92 +1,76 @@
 # Copyright 2020 Tecnativa - Carlos Dauden
 # Copyright 2020 Tecnativa - Sergio Teruel
 # Copyright 2023 Tecnativa - Carolina Fernandez
+# Copyright 2025 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from freezegun import freeze_time
 
 from odoo.exceptions import UserError, ValidationError
-from odoo.tests import Form
+from odoo.tests import Form, new_test_user, tagged
+from odoo.tests.common import users
+from odoo.tools import mute_logger
 
-from odoo.addons.base.tests.common import BaseCommon
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
-@freeze_time("2021-01-01 09:30:00")
-class TestSaleInvoicePayment(BaseCommon):
+@tagged("post_install", "-at_install")
+class TestSaleInvoicePayment(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # Remove time zone from user to avoid to time local representation
-        cls.env.user.partner_id.tz = False
         # Archive all reconciliation models to avoid them interfering with the tests
         cls.env["account.reconcile.model"].search([]).active = False
-        account_group = cls.env.ref("account.group_account_user")
-        cls.env.user.write({"groups_id": [(4, account_group.id)]})
-        no_one_group = cls.env.ref("base.group_no_one")
-        cls.env.user.write({"groups_id": [(4, no_one_group.id)]})
+        # Although it would be appropriate to create a cash journal for each user,
+        # we will use default_journal_cash to simplify the test and avoid creating one.
+        cls.journal_cash_user = cls.company_data["default_journal_cash"]
+        cls.user = new_test_user(
+            cls.env,
+            # Remove time zone from user to avoid to time local representation
+            tz=False,
+            login="test-user",
+            groups="account.group_account_user,base.group_no_one",
+            commercial_journal_ids=cls.journal_cash_user.ids,
+        )
         cls.wizard_obj = cls.env["sale.invoice.payment.wiz"]
         cls.SalePaymentSheet = cls.env["sale.payment.sheet"]
         cls.partner = cls.env["res.partner"].create({"name": "Test partner"})
-        suspense_account = cls.env["account.account"].create(
-            {
-                "code": "assetcurrent",
-                "name": "Test Current Asset",
-                "account_type": "asset_current",
-            }
+        cls.account_invoice = cls.company_data["default_account_revenue"]
+        cls.invoice1 = cls.init_invoice(
+            "out_invoice",
+            partner=cls.partner,
+            post=True,
+            amounts=[100],
         )
-        cls.bank_journal = cls.env["account.journal"].create(
-            {
-                "name": "Bank journal",
-                "type": "bank",
-                "code": "test",
-                "suspense_account_id": suspense_account.id,
-            }
+        cls.invoice2 = cls.init_invoice(
+            "out_invoice",
+            partner=cls.partner,
+            post=True,
+            amounts=[100],
         )
-        cls.account_invoice = cls.env["account.account"].create(
-            {
-                "code": "test",
-                "name": "Test account",
-                "account_type": "income",
-            }
+        cls.refund1 = cls.init_invoice(
+            "out_refund",
+            partner=cls.partner,
+            post=True,
+            amounts=[10],
         )
-        cls.invoice1 = cls._create_invoice(cls)
-        cls.invoice2 = cls._create_invoice(cls)
-        cls.refund1 = cls._create_refund(cls)
-        (cls.invoice1 + cls.invoice2 + cls.refund1).action_post()
 
-    def _create_invoice(self):
-        invoice_form = Form(
-            self.env["account.move"].with_context(default_move_type="out_invoice")
-        )
-        invoice_form.partner_id = self.partner
-        with invoice_form.invoice_line_ids.new() as line_form:
-            line_form.name = "invoice test"
-            line_form.account_id = self.account_invoice
-            line_form.quantity = 1.0
-            line_form.price_unit = 100.00
-        return invoice_form.save()
-
-    def _create_refund(self):
-        invoice_form = Form(
-            self.env["account.move"].with_context(default_move_type="out_refund")
-        )
-        invoice_form.partner_id = self.partner
-        with invoice_form.invoice_line_ids.new() as line_form:
-            line_form.name = "invoice test"
-            line_form.account_id = self.account_invoice
-            line_form.quantity = 1.0
-            line_form.price_unit = 10.00
-        return invoice_form.save()
-
+    @users("test-user")
     def test_payment_wizard(self):
-        PaymentWiz = self.env["sale.invoice.payment.wiz"].with_context(
-            active_model="account.move",
-            active_ids=(self.invoice1 + self.invoice2).ids,
+        wiz_form = Form(
+            self.env["sale.invoice.payment.wiz"].with_context(
+                active_model="account.move",
+                active_ids=(self.invoice1 + self.invoice2).ids,
+            )
         )
-        with Form(PaymentWiz) as wiz_form:
-            wiz_form.journal_id = self.bank_journal
-            wiz_form.amount = 150.00
+        wiz_form.amount = 150.00
         wiz = wiz_form.save()
+        self.assertEqual(wiz.partner_id, self.partner)
+        self.assertEqual(wiz.journal_id, self.journal_cash_user)
+        self.assertEqual(len(wiz.wiz_line_ids), 2)
+        self.assertIn(self.invoice1, wiz.wiz_line_ids.mapped("invoice_id"))
+        self.assertIn(self.invoice2, wiz.wiz_line_ids.mapped("invoice_id"))
+        self.assertNotIn(self.refund1, wiz.wiz_line_ids.mapped("invoice_id"))
         action = wiz.create_sale_invoice_payment_sheet()
         sheet = self.SalePaymentSheet.browse(action["res_id"])
         self.assertEqual(len(sheet.line_ids), 2)
@@ -103,20 +87,22 @@ class TestSaleInvoicePayment(BaseCommon):
         self.assertEqual(sheet.amount_total, 150.00)
 
     def _create_payment_sheet(self):
-        with Form(self.SalePaymentSheet) as sheet_form:
-            sheet_form.journal_id = self.bank_journal
-            for index, invoice in enumerate(self.invoice1 + self.invoice2):
-                with sheet_form.line_ids.new() as line_sheet:
-                    line_sheet.partner_id = self.partner
-                    line_sheet.invoice_id = invoice
-                    # Only write for partial amount payed, by default the
-                    # amount line is total amount residual
-                    if index > 0:
-                        line_sheet.amount = 50.0
+        sheet_form = Form(self.SalePaymentSheet.with_user(self.user))
+        for index, invoice in enumerate(self.invoice1 + self.invoice2):
+            with sheet_form.line_ids.new() as line_sheet:
+                line_sheet.partner_id = invoice.partner_id
+                line_sheet.invoice_id = invoice
+                # Only write for partial amount payed, by default the
+                # amount line is total amount residual
+                if index > 0:
+                    line_sheet.amount = 50.0
         return sheet_form.save()
 
+    @freeze_time("2021-01-01 09:30:00")
     def test_manual_payment_sheet(self):
         sheet = self._create_payment_sheet()
+        self.assertEqual(sheet.user_id, self.user)
+        self.assertEqual(sheet.journal_id, self.journal_cash_user)
         self.assertEqual(len(sheet.line_ids), 2)
         line_partial_payment = sheet.line_ids.filtered(
             lambda ln: ln.transaction_type == "partial"
@@ -156,6 +142,7 @@ class TestSaleInvoicePayment(BaseCommon):
         self.assertTrue(sheet.statement_id)
         self.assertEqual(len(sheet.line_ids.mapped("statement_line_id")), 2)
 
+    @mute_logger("odoo.models.unlink")
     def test_payment_sheet_reopen(self):
         sheet = self._create_payment_sheet()
         sheet.button_confirm_sheet()
@@ -181,9 +168,19 @@ class TestSaleInvoicePayment(BaseCommon):
     def test_payment_sheet_invoice_constraint(self):
         # You can not add full invoice payed more than one time.
         sheet = self._create_payment_sheet()
+        sheet_form = Form(sheet)
+        with sheet_form.line_ids.new() as line_sheet:
+            line_sheet.partner_id = self.partner
+            line_sheet.invoice_id = self.invoice1
         with self.assertRaises(ValidationError):
-            with Form(sheet) as sheet_form:
-                with sheet_form.line_ids.new() as line_sheet:
-                    line_sheet.partner_id = self.partner
-                    line_sheet.invoice_id = self.invoice1
             sheet_form.save()
+
+    def test_payment_sheet_report(self):
+        sheet = self._create_payment_sheet()
+        report = self.env["ir.actions.report"]._get_report_from_name(
+            "sale_payment_sheet.report_sale_payment_sheet"
+        )
+        res = report._render_qweb_text(report, sheet.ids)
+        self.assertRegex(str(res[0]), self.invoice1.name)
+        self.assertRegex(str(res[0]), self.invoice2.name)
+        self.assertRegex(str(res[0]), self.partner.name)

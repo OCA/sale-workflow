@@ -4,7 +4,7 @@
         <field name="name">sale.payment.sheet.tree</field>
         <field name="model">sale.payment.sheet</field>
         <field name="arch" type="xml">
-            <tree decoration-info="state=='open'">
+            <list decoration-info="state=='open'">
                 <field name="name" />
                 <field name="date" />
                 <field name="journal_id" />
@@ -12,7 +12,7 @@
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="currency_id" column_invisible="1" />
                 <field name="state" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="view_sale_payment_sheet_search" model="ir.ui.view">
@@ -91,7 +91,6 @@
                     </div>
                     <group>
                         <group>
-                            <field name="commercial_journal_ids" invisible="1" />
                             <field
                                 name="journal_id"
                                 widget="selection"
@@ -121,7 +120,7 @@
                                 context="{'date':date}"
                                 readonly="state == 'confirm'"
                             >
-                                <tree
+                                <list
                                     editable="bottom"
                                     decoration-danger="amount &lt; 0.0"
                                 >
@@ -146,28 +145,20 @@
                                         column_invisible="1"
                                         readonly="1"
                                     />
-                                    <field
-                                        name="state"
-                                        column_invisible="1"
-                                        readonly="1"
-                                    />
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
                 </sheet>
                 <div class="o_attachment_preview" />
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers" />
-                    <field name="message_ids" widget="mail_thread" />
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
     <record id="action_sale_payment_sheet" model="ir.actions.act_window">
         <field name="name">Sale payment sheet</field>
         <field name="res_model">sale.payment.sheet</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
         <field name="search_view_id" ref="view_sale_payment_sheet_search" />

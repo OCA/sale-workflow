@@ -8,7 +8,7 @@
         <field name="name">sale.payment.sheet.account.invoice.tree</field>
         <field name="model">account.move</field>
         <field name="arch" type="xml">
-            <tree
+            <list
                 decoration-info="state == 'draft'"
                 decoration-muted="state == 'cancel'"
             >
@@ -39,13 +39,13 @@
                     optional="show"
                 />
                 <field name="currency_id" column_invisible="1" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="action_invoice_sale_payment_sheet" model="ir.actions.act_window">
         <field name="name">Invoices</field>
         <field name="res_model">account.move</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field name="view_id" ref="sale_payment_sheet.view_invoice_tree" />
         <field name="domain">[
             ('state', '=', 'posted'),
