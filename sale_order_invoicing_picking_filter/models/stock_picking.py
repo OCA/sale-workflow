@@ -21,3 +21,10 @@ class StockPicking(models.Model):
         )
         invoiced_pickings.write({"invoiced": True})
         (self - invoiced_pickings).write({"invoiced": False})
+
+    def _get_moves_order_picking_invoicing(self, order, code):
+        return (
+            self.filtered(lambda a: a.sale_id == order and a.picking_type_code == code)
+            .mapped("move_ids")
+            .filtered("sale_line_id")
+        )

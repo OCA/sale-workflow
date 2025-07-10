@@ -93,7 +93,7 @@ class SaleOrderLine(models.Model):
                     product_qty,
                     procurement_uom,
                     line.order_id.partner_shipping_id.property_stock_customer,
-                    line.display_name,
+                    line.product_id.display_name,
                     line.order_id.name,
                     line.order_id.company_id,
                     values,

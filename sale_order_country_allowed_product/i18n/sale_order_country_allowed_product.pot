@@ -1,0 +1,78 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_country_allowed_product
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_country_allowed_product
+#: model_terms:ir.ui.view,arch_db:sale_order_country_allowed_product.sale_order_country_allowed_product_template_form_view
+msgid "Country Availability"
+msgstr ""
+
+#. module: sale_order_country_allowed_product
+#: model:ir.model.fields,field_description:sale_order_country_allowed_product.field_sale_order_line__country_available
+msgid "Country Available"
+msgstr ""
+
+#. module: sale_order_country_allowed_product
+#: model:res.groups,name:sale_order_country_allowed_product.ignore_country_sale
+msgid "Ignore products sale countries"
+msgstr ""
+
+#. module: sale_order_country_allowed_product
+#: model:ir.model,name:sale_order_country_allowed_product.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: sale_order_country_allowed_product
+#: model:ir.model,name:sale_order_country_allowed_product.model_product_product
+msgid "Product Variant"
+msgstr ""
+
+#. module: sale_order_country_allowed_product
+#: model:ir.model.fields,field_description:sale_order_country_allowed_product.field_product_product__sale_allowed_country_ids
+#: model:ir.model.fields,field_description:sale_order_country_allowed_product.field_product_template__sale_allowed_country_ids
+msgid "Sale Allowed Countries"
+msgstr ""
+
+#. module: sale_order_country_allowed_product
+#. odoo-python
+#: code:addons/sale_order_country_allowed_product/models/sale_order.py:0
+#, python-format
+msgid ""
+"Sale order cannot be validated as some products are not available in the "
+"shipping country."
+msgstr ""
+
+#. module: sale_order_country_allowed_product
+#: model:ir.model,name:sale_order_country_allowed_product.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_country_allowed_product
+#: model:ir.model,name:sale_order_country_allowed_product.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_country_allowed_product
+#. odoo-python
+#: code:addons/sale_order_country_allowed_product/models/sale_order.py:0
+#, python-format
+msgid ""
+"The following products are not available in the shipping country: "
+"%(products_list)s"
+msgstr ""
+
+#. module: sale_order_country_allowed_product
+#: model:ir.model.fields,field_description:sale_order_country_allowed_product.field_sale_order__unavailable_product_msg
+msgid "Unavailable Product Msg"
+msgstr ""

@@ -1,0 +1,1 @@
+This module allows to set countries and states in warehouses, so they can automatically be set in a sale order when its shipping address matches the countries and states selected in a given warehouse.

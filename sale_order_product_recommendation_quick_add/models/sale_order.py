@@ -14,4 +14,4 @@ class SaleOrder(models.Model):
             .create({})
         )
         so_recomendation_wiz.generate_recommendations()
-        so_recomendation_wiz.action_accept()
+        return so_recomendation_wiz.action_accept()

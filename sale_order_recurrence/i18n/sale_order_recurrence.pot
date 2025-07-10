@@ -1,0 +1,151 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_recurrence
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_recurrence
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard__begin_date
+msgid "Begin Date"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model_terms:ir.ui.view,arch_db:sale_order_recurrence.view_sale_order_recurrence_wizard_form
+msgid "Cancel"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard__create_uid
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard_date_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard__create_date
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard_date_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard_date_line__commitment_date
+msgid "Delivery Date"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard__display_name
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard_date_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model_terms:ir.ui.view,arch_db:sale_order_recurrence.view_sale_order_recurrence_wizard_form
+msgid "Duplicate"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model_terms:ir.ui.view,arch_db:sale_order_recurrence.view_sale_order_recurrence_wizard_form
+msgid "Duplicate and Open"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard__id
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard_date_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard__include_current_date
+msgid "Include Current Date"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard____last_update
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard_date_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard__write_uid
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard_date_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard__write_date
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard_date_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.model.fields.selection,name:sale_order_recurrence.selection__sale_order_recurrence_wizard__recurrence_type__month
+msgid "Monthly"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard__date_line_ids
+msgid "New Dates"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard__recurrence_duration
+msgid "Recurrence Duration"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard__recurrence_type
+msgid "Recurrence Type"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.actions.act_window,name:sale_order_recurrence.action_sale_order_recurrence_wizard
+msgid "Recurrence Wizard"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard__order_id
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.model,name:sale_order_recurrence.model_sale_order_recurrence_wizard
+msgid "Sale Order Duplication Wizard"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.model,name:sale_order_recurrence.model_sale_order_recurrence_wizard_date_line
+msgid "Sale Order Duplication Wizard Line"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model_terms:ir.ui.view,arch_db:sale_order_recurrence.view_sale_order_recurrence_wizard_form
+msgid "Sale to duplicate"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model_terms:ir.ui.view,arch_db:sale_order_recurrence.view_sale_order_recurrence_wizard_form
+msgid "Settings"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.model.fields.selection,name:sale_order_recurrence.selection__sale_order_recurrence_wizard__recurrence_type__week
+msgid "Weekly"
+msgstr ""
+
+#. module: sale_order_recurrence
+#: model:ir.model.fields,field_description:sale_order_recurrence.field_sale_order_recurrence_wizard_date_line__wizard_id
+msgid "Wizard"
+msgstr ""

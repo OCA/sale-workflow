@@ -17,6 +17,7 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid ""
@@ -124,10 +125,16 @@ msgid "Amount"
 msgstr "Summe"
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "An order can't be empty"
 msgstr "Ein Auftrag kann nicht leer sein"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__analytic_distribution
+msgid "Analytic"
+msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__analytic_account_id
@@ -135,8 +142,13 @@ msgid "Analytic Account"
 msgstr ""
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__analytic_tag_ids
-msgid "Analytic Tags"
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__analytic_distribution_search
+msgid "Analytic Distribution Search"
+msgstr ""
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__analytic_precision
+msgid "Analytic Precision"
 msgstr ""
 
 #. module: sale_blanket_order
@@ -192,6 +204,7 @@ msgid "Blanket order wizard line"
 msgstr "Rahmenauftragszeile Assistent"
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid ""
@@ -207,6 +220,7 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/models/sale_orders.py:0
 #, python-format
 msgid ""
@@ -291,6 +305,7 @@ msgid "Customer Reference"
 msgstr "Kunden-Referenz"
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Date Scheduled"
@@ -311,6 +326,11 @@ msgstr "Gelieferte Menge"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__name
 msgid "Description"
 msgstr "Beschreibung"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_order__disable_adding_lines
+msgid "Disable Adding Lines"
+msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__group_blanket_disable_adding_lines
@@ -350,7 +370,6 @@ msgstr "Entwurf"
 #. module: sale_blanket_order
 #: model:ir.actions.server,name:sale_blanket_order.expired_blanket_orders_cron_ir_actions_server
 #: model:ir.cron,cron_name:sale_blanket_order.expired_blanket_orders_cron
-#: model:ir.cron,name:sale_blanket_order.expired_blanket_orders_cron
 msgid "Expire Blanket Orders"
 msgstr "Auslaufende Rahmenaufträge"
 
@@ -415,17 +434,13 @@ msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_needaction
-#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_unread
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_needaction
-#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Falls markiert, erfordern neue Nachrichten Ihre Aufmerksamkeit."
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_has_error
-#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_has_sms_error
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_has_error
-#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr ""
 "Wenn diese Option aktiviert ist, weisen einige Nachrichten einen "
@@ -507,6 +522,7 @@ msgid "Missing required fields on accountable sale order line."
 msgstr ""
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Must have some lines"
@@ -568,20 +584,14 @@ msgstr ""
 #. module: sale_blanket_order
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_needaction_counter
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_needaction_counter
-msgid "Number of messages which requires an action"
-msgstr "Anzahl der Nachrichten die eine Aktion erfordern"
+msgid "Number of messages requiring action"
+msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_has_error_counter
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Anzahl der Nachrichten mit einer Fehlermeldung"
-
-#. module: sale_blanket_order
-#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__message_unread_counter
-#: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Anzahl ungelesener Nachrichten"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__open
@@ -645,6 +655,7 @@ msgid "Partner"
 msgstr "Partner"
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Partner is mandatory"
@@ -663,6 +674,7 @@ msgid "Price"
 msgstr "Preis"
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Price must be greater than zero"
@@ -688,6 +700,7 @@ msgid "Purchase Order"
 msgstr "Beschaffungsauftrag"
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Quantity must be greater than zero"
@@ -727,12 +740,7 @@ msgid "Responsible User"
 msgstr "Verantwortlicher Benutzer"
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_has_sms_error
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_has_sms_error
-msgid "SMS Delivery error"
-msgstr ""
-
-#. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "Sale Blanket Order %s is not open"
@@ -784,6 +792,7 @@ msgid "Sales Order Line"
 msgstr "Auftragsposition"
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "Sales Orders"
@@ -875,6 +884,7 @@ msgid "Terms and Conditions"
 msgstr "Geschäftsbedingungen"
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/models/sale_orders.py:0
 #, python-format
 msgid ""
@@ -884,18 +894,21 @@ msgstr ""
 "übereinstimmen."
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/models/sale_orders.py:0
 #, python-format
 msgid "The customer must be equal to the blanket order lines customer"
 msgstr "Der Kunde muss dem Kunden der Blanko-Auftragszeilen entsprechen"
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/models/sale_orders.py:0
 #, python-format
 msgid "The product in the blanket order and in the sales order must match"
 msgstr "Das Produkt im Rahmenauftrag und im Kundenauftrag muss übereinstimmen"
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "The sale has already been completed."
@@ -930,18 +943,6 @@ msgid "Unit of Measure"
 msgstr "Mengeneinheit"
 
 #. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_unread
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_unread
-msgid "Unread Messages"
-msgstr "Ungelesene Nachrichten"
-
-#. module: sale_blanket_order
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__message_unread_counter
-#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Zähler für ungelesene Nachrichten"
-
-#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__amount_untaxed
 msgid "Untaxed Amount"
 msgstr "Nettosumme"
@@ -972,12 +973,14 @@ msgid "Validity Date"
 msgstr "Gültigkeitsdatum"
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Validity date is mandatory"
 msgstr "Gültigkeitsdatum ist obligatorisch"
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "Validity date must be in the future"
@@ -1006,6 +1009,7 @@ msgid "Wizard"
 msgstr "Assistent"
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid ""
@@ -1014,6 +1018,7 @@ msgid ""
 msgstr ""
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid ""
@@ -1022,6 +1027,7 @@ msgid ""
 msgstr ""
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "You can't create a sale order from an expired blanket order!"
@@ -1030,22 +1036,37 @@ msgstr ""
 "erstellen!"
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "You can't order more than the remaining quantities"
 msgstr "Sie können nicht mehr als die offene Menge beauftragen"
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "You have to select lines from the same company."
 msgstr "Sie müssen Zeilen desselben Unternehmens auswählen."
 
 #. module: sale_blanket_order
+#. odoo-python
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid "remaining"
 msgstr "verbleibend"
+
+#~ msgid "Number of messages which requires an action"
+#~ msgstr "Anzahl der Nachrichten die eine Aktion erfordern"
+
+#~ msgid "Number of unread messages"
+#~ msgstr "Anzahl ungelesener Nachrichten"
+
+#~ msgid "Unread Messages"
+#~ msgstr "Ungelesene Nachrichten"
+
+#~ msgid "Unread Messages Counter"
+#~ msgstr "Zähler für ungelesene Nachrichten"
 
 #~ msgid "Followers (Channels)"
 #~ msgstr "Abonnenten (Kanäle)"

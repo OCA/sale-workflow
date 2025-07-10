@@ -6,26 +6,37 @@ from freezegun import freeze_time
 
 import odoo.tests.common as common
 from odoo import fields
-from odoo.tests import Form
+from odoo.tests import Form, tagged
 
 
+@tagged("post_install", "-at_install")
 class TestSaleOrderType(common.TransactionCase):
-    def setUp(self):
-        super(TestSaleOrderType, self).setUp()
-        self.sale_type_model = self.env["sale.order.type"]
-        self.sale_order_model = self.env["sale.order"]
-        self.invoice_model = self.env["account.move"].with_context(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        if not cls.env.company.chart_template_id:
+            # Load a CoA if there's none in current company
+            coa = cls.env.ref("l10n_generic_coa.configurable_chart_template", False)
+            if not coa:
+                # Load the first available CoA
+                coa = cls.env["account.chart.template"].search(
+                    [("visible", "=", True)], limit=1
+                )
+            coa.try_loading(company=cls.env.company, install_demo=False)
+        cls.sale_type_model = cls.env["sale.order.type"]
+        cls.sale_order_model = cls.env["sale.order"]
+        cls.invoice_model = cls.env["account.move"].with_context(
             default_move_type="out_invoice"
         )
-        self.account_model = self.env["account.account"]
-        self.account = self.account_model.create(
+        cls.account_model = cls.env["account.account"]
+        cls.account = cls.account_model.create(
             {"code": "income", "name": "Income", "account_type": "income"}
         )
-        self.partner = self.env.ref("base.res_partner_1")
-        self.partner_child_1 = self.env["res.partner"].create(
-            {"name": "Test child", "parent_id": self.partner.id, "sale_type": False}
+        cls.partner = cls.env.ref("base.res_partner_1")
+        cls.partner_child_1 = cls.env["res.partner"].create(
+            {"name": "Test child", "parent_id": cls.partner.id, "sale_type": False}
         )
-        self.sequence = self.env["ir.sequence"].create(
+        cls.sequence = cls.env["ir.sequence"].create(
             {
                 "name": "Test Sales Order",
                 "code": "sale.order",
@@ -33,7 +44,7 @@ class TestSaleOrderType(common.TransactionCase):
                 "padding": 3,
             }
         )
-        self.sequence_quot = self.env["ir.sequence"].create(
+        cls.sequence_quot = cls.env["ir.sequence"].create(
             {
                 "name": "Test Quotation Update",
                 "code": "sale.order",
@@ -41,56 +52,56 @@ class TestSaleOrderType(common.TransactionCase):
                 "padding": 3,
             }
         )
-        self.journal = self.env["account.journal"].search(
-            [("type", "=", "sale")], limit=1
+        cls.journal = cls.env["account.journal"].search(
+            [("type", "=", "sale"), ("company_id", "=", cls.env.company.id)], limit=1
         )
-        self.default_sale_type_id = self.env["sale.order.type"].search([], limit=1)
-        self.default_sale_type_id.sequence_id = False
-        self.warehouse = self.env["stock.warehouse"].create(
+        cls.default_sale_type_id = cls.env["sale.order.type"].search([], limit=1)
+        cls.default_sale_type_id.sequence_id = False
+        cls.warehouse = cls.env["stock.warehouse"].create(
             {"name": "Warehouse Test", "code": "WT"}
         )
-        self.product = self.env["product.product"].create(
+        cls.product = cls.env["product.product"].create(
             {"type": "service", "invoice_policy": "order", "name": "Test product"}
         )
-        self.immediate_payment = self.env.ref("account.account_payment_term_immediate")
-        self.sale_pricelist = self.env.ref("product.list0")
-        self.free_carrier = self.env.ref("account.incoterm_FCA")
-        self.sale_type = self.sale_type_model.create(
+        cls.immediate_payment = cls.env.ref("account.account_payment_term_immediate")
+        cls.sale_pricelist = cls.env.ref("product.list0")
+        cls.free_carrier = cls.env.ref("account.incoterm_FCA")
+        cls.sale_type = cls.sale_type_model.create(
             {
                 "name": "Test Sale Order Type",
-                "sequence_id": self.sequence.id,
-                "journal_id": self.journal.id,
-                "warehouse_id": self.warehouse.id,
+                "sequence_id": cls.sequence.id,
+                "journal_id": cls.journal.id,
+                "warehouse_id": cls.warehouse.id,
                 "picking_policy": "one",
-                "payment_term_id": self.immediate_payment.id,
-                "pricelist_id": self.sale_pricelist.id,
-                "incoterm_id": self.free_carrier.id,
+                "payment_term_id": cls.immediate_payment.id,
+                "pricelist_id": cls.sale_pricelist.id,
+                "incoterm_id": cls.free_carrier.id,
                 "quotation_validity_days": 10,
             }
         )
-        self.sale_type_quot = self.sale_type_model.create(
+        cls.sale_type_quot = cls.sale_type_model.create(
             {
                 "name": "Test Quotation Type",
-                "sequence_id": self.sequence_quot.id,
-                "journal_id": self.journal.id,
-                "warehouse_id": self.warehouse.id,
+                "sequence_id": cls.sequence_quot.id,
+                "journal_id": cls.journal.id,
+                "warehouse_id": cls.warehouse.id,
                 "picking_policy": "one",
-                "payment_term_id": self.immediate_payment.id,
-                "pricelist_id": self.sale_pricelist.id,
-                "incoterm_id": self.free_carrier.id,
+                "payment_term_id": cls.immediate_payment.id,
+                "pricelist_id": cls.sale_pricelist.id,
+                "incoterm_id": cls.free_carrier.id,
             }
         )
-        self.sale_type_sequence_default = self.sale_type_quot.copy(
+        cls.sale_type_sequence_default = cls.sale_type_quot.copy(
             {
                 "name": "Test Sequence default",
-                "sequence_id": self.env["sale.order"]
-                .with_company(self.env.company.id)
+                "sequence_id": cls.env["sale.order"]
+                .with_company(cls.env.company.id)
                 ._default_sequence_id()
                 .id,
             }
         )
-        self.partner.sale_type = self.sale_type
-        self.sale_route = self.env["stock.route"].create(
+        cls.partner.sale_type = cls.sale_type
+        cls.sale_route = cls.env["stock.route"].create(
             {
                 "name": "SO -> Customer",
                 "product_selectable": True,
@@ -102,29 +113,29 @@ class TestSaleOrderType(common.TransactionCase):
                         {
                             "name": "SO -> Customer",
                             "action": "pull",
-                            "picking_type_id": self.ref("stock.picking_type_in"),
-                            "location_src_id": self.ref(
+                            "picking_type_id": cls.env.ref("stock.picking_type_in").id,
+                            "location_src_id": cls.env.ref(
                                 "stock.stock_location_components"
-                            ),
-                            "location_dest_id": self.ref(
+                            ).id,
+                            "location_dest_id": cls.env.ref(
                                 "stock.stock_location_customers"
-                            ),
+                            ).id,
                         },
                     )
                 ],
             }
         )
-        self.sale_type_route = self.sale_type_model.create(
+        cls.sale_type_route = cls.sale_type_model.create(
             {
                 "name": "Test Sale Order Type-1",
-                "sequence_id": self.sequence.id,
-                "journal_id": self.journal.id,
-                "warehouse_id": self.warehouse.id,
+                "sequence_id": cls.sequence.id,
+                "journal_id": cls.journal.id,
+                "warehouse_id": cls.warehouse.id,
                 "picking_policy": "one",
-                "payment_term_id": self.immediate_payment.id,
-                "pricelist_id": self.sale_pricelist.id,
-                "incoterm_id": self.free_carrier.id,
-                "route_id": self.sale_route.id,
+                "payment_term_id": cls.immediate_payment.id,
+                "pricelist_id": cls.sale_pricelist.id,
+                "incoterm_id": cls.free_carrier.id,
+                "route_id": cls.sale_route.id,
             }
         )
 

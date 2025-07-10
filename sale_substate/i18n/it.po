@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-01-05 10:38+0000\n"
+"PO-Revision-Date: 2025-02-21 18:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: sale_substate
 #: model:mail.template,body_html:sale_substate.mail_template_data_sale_substate_wait_docs
@@ -164,7 +164,7 @@ msgstr "Vendita"
 #. module: sale_substate
 #: model:ir.model.fields.selection,name:sale_substate.selection__base_substate_type__model__sale_order
 msgid "Sale order"
-msgstr "Ordini di vendita"
+msgstr "Ordine di vendita"
 
 #. module: sale_substate
 #: model:base.substate.type,name:sale_substate.base_substate_type_sale
@@ -194,7 +194,7 @@ msgid ""
 "The substate %(name)s is not defined for the state %(state)s but for "
 "%(target_state)s "
 msgstr ""
-"il substato %(name)s non è definito per lo sato %(state)s ma per "
+"Il substato %(name)s non è definito per lo stato %(state)s ma per "
 "%(target_state)s "
 
 #. module: sale_substate

@@ -1,0 +1,3 @@
+When the shipping address field in a sale order is modified, it is checked whether a warehouse is applied in the region according to the shipping address' country and state. In order to determine if the warehouse matches the address, the country in the shipping address must be part of the "Sale Order Countries" field in a warehouse. Moreover, if the warehouse has some states in its "Sale Order States" field, the state in the shipping address must be part of this field too. If no warehouses are found, the default process for warehouse selection is followed.
+
+Keep in mind that the Warehouse field in sale orders is only visible if the user has multi-warehouse rights.

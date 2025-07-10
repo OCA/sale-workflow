@@ -127,6 +127,27 @@ class RecommendationCaseTests(RecommendationCase):
             ],
         )
 
+    def test_recommendations_with_note(self):
+        self.new_so.write(
+            {
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {"display_type": "line_note", "name": "Test Note"},
+                    ),
+                ]
+            }
+        )
+        try:
+            wiz = self.wizard()
+            wiz.line_ids._compute_price_unit()
+        except KeyError:
+            self.fail(
+                "Calling the wizard on a sales order with notes "
+                "raised an exception unexpectedly"
+            )
+
     def test_change_uom(self):
         """Change UoM and units included."""
         unit, dozen = map(

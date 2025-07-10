@@ -50,6 +50,11 @@ msgid "Has Comment"
 msgstr "Tiene comentario"
 
 #. module: sale_tier_validation
+#: model:ir.model.fields,field_description:sale_tier_validation.field_sale_order__is_reevaluation_required
+msgid "Is Reevaluation Required"
+msgstr ""
+
+#. module: sale_tier_validation
 #: model_terms:ir.ui.view,arch_db:sale_tier_validation.view_sale_order_filter
 msgid "My Sales to review"
 msgstr "Mis ventas para revisar"

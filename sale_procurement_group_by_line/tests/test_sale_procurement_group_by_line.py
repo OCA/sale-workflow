@@ -96,9 +96,9 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         self.sale.action_confirm()
         self.assertEqual(self.sale.state, "sale")
         self.assertEqual(len(self.line1.move_ids), 1)
-        self.assertEqual(self.line1.move_ids.name, self.line1.display_name)
+        self.assertEqual(self.line1.move_ids.name, self.line1.product_id.display_name)
         self.assertEqual(len(self.line2.move_ids), 1)
-        self.assertEqual(self.line2.move_ids.name, self.line2.display_name)
+        self.assertEqual(self.line2.move_ids.name, self.line2.product_id.display_name)
 
     def test_03_action_launch_procurement_rule_2(self):
         group_id = self.proc_group_model.create(

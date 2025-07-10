@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-05 23:35+0000\n"
-"PO-Revision-Date: 2015-09-03 07:09+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2025-02-19 13:06+0000\n"
+"Last-Translator: İsmail Çağan Yılmaz <ismail.cagan.yilmaz@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/tr/)\n"
 "Language: tr\n"
@@ -17,26 +17,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: sale_order_price_recalculation
 #: model:ir.actions.server,name:sale_order_price_recalculation.recalculate_prices_act_serv
 msgid "Recalculate Prices"
-msgstr ""
+msgstr "Fiyatları Yeniden Hesapla"
 
 #. module: sale_order_price_recalculation
 #: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.view_order_form
 msgid "Recalculate prices"
-msgstr ""
+msgstr "Fiyatları yeniden hesapla"
 
 #. module: sale_order_price_recalculation
 #: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.view_order_form
 msgid "Reset descriptions"
-msgstr ""
+msgstr "Açıklamaları sıfırla"
 
 #. module: sale_order_price_recalculation
 #: model:ir.model,name:sale_order_price_recalculation.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Satış Siparişi"
 
 #, fuzzy
 #~| msgid "Sales Order"

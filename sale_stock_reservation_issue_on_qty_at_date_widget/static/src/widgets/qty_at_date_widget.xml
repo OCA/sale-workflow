@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2025 Moduon Team S.L. <info@moduon.team>
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<template id="template" xml:space="preserve">
+    <t
+        t-name="sale_stock_expiry_date_on_qty_at_date_widget.qtyAtDate"
+        t-inherit="sale_stock.qtyAtDate"
+        t-inherit-mode="extension"
+        owl="1"
+    >
+        <!-- TODO: Add also cursor-pointer class in Odoo 17 -->
+        <xpath expr="//a[@t-on-click='showPopup']" position="attributes">
+            <attribute
+                name="t-attf-class"
+            >fa fa-area-chart {{ calcData.forecasted_issue ? 'text-danger' : calcData.reservation_issue ? 'text-warning' : 'text-primary' }}</attribute>
+        </xpath>
+    </t>
+
+    <!-- TODO: rename this to QtyAtDatePopover in Odoo 17 -->
+    <t
+        t-name="sale_stock_expiry_date_on_qty_at_date_widget.QtyDetailPopOver"
+        t-inherit="sale_stock.QtyDetailPopOver"
+        t-inherit-mode="extension"
+        owl="1"
+    >
+        <xpath
+            expr="//b[@t-out='props.record.data.free_qty_today']"
+            position="attributes"
+        >
+            <attribute
+                name="t-att-class"
+            >!props.calcData.will_be_fulfilled ? 'text-danger': props.calcData.reservation_issue ? 'text-warning': ''</attribute>
+        </xpath>
+    </t>
+</template>

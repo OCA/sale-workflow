@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+     <record id="sale_order_view_tree" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="amount_total" position="after">
+                <field
+                    name="total_ordered_weight"
+                    sum="Ordered Weight"
+                    optional="hide"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record id="sale_order_view_tree_quotation" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="amount_total" position="after">
+                <field
+                    name="total_ordered_weight"
+                    sum="Ordered Weight"
+                    optional="hide"
+                />
+            </field>
+        </field>
+    </record>
+
+
+    <record id="sale_order_view_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+
+            <xpath
+                expr="//field[@name='order_line']/tree//field[@name='price_subtotal']"
+                position="before"
+            >
+                <field name="total_ordered_weight" optional="hide" />
+            </xpath>
+
+            <xpath expr="//group[@name='sale_total']" position="before">
+                <group
+                    class="oe_subtotal_footer oe_right"
+                    colspan="2"
+                    name="weight_total"
+                >
+                    <field name="total_ordered_weight" />
+                </group>
+                <div class="clearfix" />
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

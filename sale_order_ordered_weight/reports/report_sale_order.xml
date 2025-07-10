@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+     Copyright 2016 Andrea Cometa - Apulia Software
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/gpl.html).
+ -->
+<odoo>
+
+    <template
+        id="report_saleorder_document"
+        inherit_id="sale.report_saleorder_document"
+    >
+
+        <xpath expr="//t[@t-set='address']" position="after">
+            <t
+                t-set="weight_uom_name"
+                t-value="doc.env['product.template']._get_weight_uom_name_from_ir_config_parameter()"
+            />
+            <t
+                t-set="weight_precision"
+                t-value="(doc.env['product.template']._fields['weight'].get_digits(doc.env) or (None, None))[1]"
+            />
+            <t
+                t-set="display_line_weight_on_sale_report"
+                t-value="doc.company_id.display_line_weight_on_sale_report"
+            />
+            <t
+                t-set="display_order_weight_on_sale_report"
+                t-value="doc.company_id.display_order_weight_on_sale_report"
+            />
+        </xpath>
+
+
+        <xpath
+            expr="//table[hasclass('o_main_table')]/thead/tr/th[@name='th_priceunit']"
+            position="after"
+        >
+            <t t-if="display_line_weight_on_sale_report">
+                <th class="text-right">Weight</th>
+            </t>
+        </xpath>
+
+        <xpath
+            expr="//table[hasclass('o_main_table')]/tbody//tr//td[@name='td_priceunit']"
+            position="after"
+        >
+            <t t-if="display_line_weight_on_sale_report">
+                <td class="text-right">
+                    <t t-set="line_weight" t-value="line.total_ordered_weight" />
+                    <t t-if="line_weight">
+                        <span
+                            t-esc="line_weight"
+                            t-options="{'widget': 'float', 'precision': weight_precision}"
+                        />
+                        <span t-esc="weight_uom_name" />
+                    </t>
+                </td>
+            </t>
+        </xpath>
+
+        <xpath expr="//t[@t-call='account.document_tax_totals']" position="after">
+            <t t-if="display_order_weight_on_sale_report">
+                <tr class="border-black o_total">
+                    <td><strong>Total Weight</strong></td>
+                    <td class="text-end">
+                        <t t-set="order_weight" t-value="doc.total_ordered_weight" />
+                        <span
+                            t-esc="order_weight"
+                            t-options="{'widget': 'float', 'precision': weight_precision}"
+                        />
+                        <span t-esc="weight_uom_name" />
+                    </td>
+                </tr>
+            </t>
+        </xpath>
+
+    </template>
+
+</odoo>

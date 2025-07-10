@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <sheet position="before">
+                <field name="is_commitment_date_unsafe" invisible="1" />
+                <div
+                    class="alert alert-warning"
+                    attrs="{'invisible': [('is_commitment_date_unsafe', '=', False)]}"
+                    role="alert"
+                >
+                    <i class="fa fa-warning" /> You requested delivery on <field
+                        name="commitment_date"
+                        readonly="1"
+                        nolabel="1"
+                        widget="date"
+                    />, but it's not possible based on current lead times. Odoo will adjust the date automatically. Contact your sales manager if it’s urgent.
+                </div>
+            </sheet>
+        </field>
+    </record>
+    <record id="view_order_form_commitment_date_ux" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field
+            name="inherit_id"
+            ref="sale_order_safe_commitment_date.view_order_form"
+        />
+        <field name="arch" type="xml">
+            <field name="show_update_pricelist" position="before">
+                <label
+                    for="commitment_date"
+                    string="Delivery Date"
+                    attrs="{'invisible': [('expected_date', '=', False)]}"
+                />
+                <div
+                    name="commitment_date_div"
+                    class="o_row"
+                    attrs="{'invisible': [('expected_date', '=', False)]}"
+                >
+                    <field
+                        name="commitment_date"
+                        attrs="{'invisible': [('commitment_date', '=', False), ('state', 'not in', ('draft', 'sent'))]}"
+                    />
+                    <span name="expected_date_span" class="text-muted"><i
+                            class="fa fa-warning text-warning"
+                            attrs="{'invisible': [('is_commitment_date_unsafe', '=', False)]}"
+                            alt="The delivery date is sooner than the expected date. You may be unable to honor the delivery date."
+                        /> Expected: <field
+                            name="expected_date"
+                            class="oe_inline"
+                            widget="date"
+                        /></span>
+                </div>
+            </field>
+        </field>
+    </record>
+    <data noupdate="1">
+        <!-- TODO: Enable via res.config.settings -->
+        <record id="view_order_form_commitment_date_ux" model="ir.ui.view">
+            <field name="active" eval="False" />
+        </record>
+    </data>
+</odoo>
