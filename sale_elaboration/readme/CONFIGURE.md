@@ -14,6 +14,13 @@ To configure this module you need to:
 You can define elaboration profiles to limit the elaborations that can be
 selected for each product.
 
+To set the profile globally for a product category:
+
+1. Go to *Inventory > Configuration > Product Categories* and choose one.
+2. In the **Logistics** sections, you can set the desired **Elaboration profile**.
+
+If you want to set an specific elaboration profile for a product:
+
 1.  Go to *Sale \> Configuration \> Elaborations \> Sale Elaboration Profile*.
 2.  Create a new record.
 3.  Select the elaborations included to the profile.

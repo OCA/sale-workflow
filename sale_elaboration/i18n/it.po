@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-06-14 17:42+0000\n"
+"PO-Revision-Date: 2025-08-16 11:54+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__active
@@ -33,6 +33,11 @@ msgstr "Dopo la data"
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.product_elaboration_profile_form_view
 msgid "Archived"
 msgstr "In archivio"
+
+#. module: sale_elaboration
+#: model:product.elaboration,name:sale_elaboration.product_elaboration_assembly
+msgid "Assembly"
+msgstr "Assembla"
 
 #. module: sale_elaboration
 #: model:ir.model.constraint,message:sale_elaboration.constraint_product_elaboration_code_uniq
@@ -97,6 +102,7 @@ msgid "Elab. Price"
 msgstr "Elab. prezzo"
 
 #. module: sale_elaboration
+#: model:product.template,name:sale_elaboration.product_product_elaboration_product_template
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
 msgid "Elaboration"
@@ -111,6 +117,7 @@ msgid "Elaboration Note"
 msgstr "Nota elaborazione"
 
 #. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_category__elaboration_profile_id
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_product__elaboration_profile_id
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_template__elaboration_profile_id
 #: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__elaboration_profile_id
@@ -205,10 +212,13 @@ msgid "Is Prepared"
 msgstr "È preparata"
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration____last_update
-#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
+#: model:ir.model.fields,help:sale_elaboration.field_product_product__elaboration_profile_id
+#: model:ir.model.fields,help:sale_elaboration.field_product_template__elaboration_profile_id
+msgid ""
+"Keep this field empty to use the default value from the product category."
+msgstr ""
+"Lasciare il campo vuoto per utilizzare il valore predefinito della categoria "
+"prodotto."
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__write_uid
@@ -239,6 +249,11 @@ msgstr "Il nome deve essere univoco!"
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 msgid "Product"
 msgstr "Prodotto"
+
+#. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_product_category
+msgid "Product Category"
+msgstr "Categoria prodotto"
 
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_product_elaboration_mixin
@@ -333,9 +348,11 @@ msgstr "Trasferimento"
 #. module: sale_elaboration
 #. odoo-python
 #: code:addons/sale_elaboration/models/sale_order.py:0
-#, python-format
 msgid "Unsupported operator %s for searching on is_prepared"
 msgstr "Operatore %s non supportato per la ricerca in is_prepared"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
 
 #~ msgid "<strong>Elab.</strong>"
 #~ msgstr "<strong>Elab.</strong>"

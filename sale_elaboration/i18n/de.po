@@ -36,6 +36,11 @@ msgid "Archived"
 msgstr ""
 
 #. module: sale_elaboration
+#: model:product.elaboration,name:sale_elaboration.product_elaboration_assembly
+msgid "Assembly"
+msgstr ""
+
+#. module: sale_elaboration
 #: model:ir.model.constraint,message:sale_elaboration.constraint_product_elaboration_code_uniq
 msgid "Code must be unique!"
 msgstr ""
@@ -96,6 +101,7 @@ msgid "Elab. Price"
 msgstr ""
 
 #. module: sale_elaboration
+#: model:product.template,name:sale_elaboration.product_product_elaboration_product_template
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
 msgid "Elaboration"
@@ -110,6 +116,7 @@ msgid "Elaboration Note"
 msgstr ""
 
 #. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_category__elaboration_profile_id
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_product__elaboration_profile_id
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_template__elaboration_profile_id
 #: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__elaboration_profile_id
@@ -200,10 +207,11 @@ msgid "Is Prepared"
 msgstr ""
 
 #. module: sale_elaboration
-#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration____last_update
-#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile____last_update
-msgid "Last Modified on"
-msgstr "Zuletzt geändert am"
+#: model:ir.model.fields,help:sale_elaboration.field_product_product__elaboration_profile_id
+#: model:ir.model.fields,help:sale_elaboration.field_product_template__elaboration_profile_id
+msgid ""
+"Keep this field empty to use the default value from the product category."
+msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__write_uid
@@ -234,6 +242,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 msgid "Product"
 msgstr "Produkt"
+
+#. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_product_category
+msgid "Product Category"
+msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_product_elaboration_mixin
@@ -329,9 +342,11 @@ msgstr ""
 #. module: sale_elaboration
 #. odoo-python
 #: code:addons/sale_elaboration/models/sale_order.py:0
-#, python-format
 msgid "Unsupported operator %s for searching on is_prepared"
 msgstr ""
+
+#~ msgid "Last Modified on"
+#~ msgstr "Zuletzt geändert am"
 
 #~ msgid "Product Template"
 #~ msgstr "Produktvorlage"
