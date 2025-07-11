@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-01-31 20:06+0000\n"
+"PO-Revision-Date: 2025-07-11 20:29+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: sale_order_line_cancel
 #. odoo-python
@@ -59,12 +59,12 @@ msgstr "Annullata"
 #. module: sale_order_line_cancel
 #: model:ir.model,name:sale_order_line_cancel.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: sale_order_line_cancel
 #: model:ir.model,name:sale_order_line_cancel.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: sale_order_line_cancel
 #: model:ir.model.fields,field_description:sale_order_line_cancel.field_sale_order_line_cancel__create_uid
@@ -116,12 +116,14 @@ msgid ""
 "On canceling the remaining qty to deliver of an order line it decreases the "
 "initial quantity"
 msgstr ""
+"All'annullamento della q.tà residua da consegnare di una riga ordine questo "
+"diminuisce la quantità iniziale"
 
 #. module: sale_order_line_cancel
 #: model:ir.model.fields,field_description:sale_order_line_cancel.field_res_company__on_sale_line_cancel_decrease_line_qty
 #: model:ir.model.fields,field_description:sale_order_line_cancel.field_res_config_settings__on_sale_line_cancel_decrease_line_qty
 msgid "On sale order line cancel decrease line quantity"
-msgstr ""
+msgstr "All'annullamento della riga ordine di vendita diminuisce la quantità"
 
 #. module: sale_order_line_cancel
 #: model:ir.model.fields,field_description:sale_order_line_cancel.field_sale_order_line__product_qty_canceled
