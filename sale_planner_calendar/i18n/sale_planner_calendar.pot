@@ -62,7 +62,7 @@ msgstr ""
 #: code:addons/sale_planner_calendar/models/sale_planner_calendar_summary.py:0
 #, python-format
 msgid ""
-"Already exists a summary with same user, date and event type)\n"
+"Already exists a summary with same user, date and event type\n"
 "Access with 'Sale planner calendar summary' menu option"
 msgstr ""
 

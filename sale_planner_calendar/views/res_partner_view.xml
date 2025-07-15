@@ -16,10 +16,7 @@
                 </button>
             </div>
             <group name="sale" position="inside">
-                <field
-                    name="is_sale_planner_contact"
-                    attrs="{'invisible': [('parent_id', '=', False)]}"
-                />
+                <field name="is_sale_planner_contact" invisible="not parent_id" />
             </group>
         </field>
     </record>

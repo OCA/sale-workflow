@@ -65,7 +65,7 @@ msgstr "Ciclo avanzato"
 #: code:addons/sale_planner_calendar/models/sale_planner_calendar_summary.py:0
 #, python-format
 msgid ""
-"Already exists a summary with same user, date and event type)\n"
+"Already exists a summary with same user, date and event type\n"
 "Access with 'Sale planner calendar summary' menu option"
 msgstr ""
 "Esiste già un riepilogo con lo stesso utente, data e tipo evento)\n"
@@ -1224,46 +1224,3 @@ msgstr "Giorno della settimana"
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
 msgid "Whatsapp"
 msgstr "Whatsapp"
-
-#~ msgid "Assign new commercial to selected lines"
-#~ msgstr "Assegna nuovo commerciale alle righe selezionate"
-
-#~ msgid "Partner User"
-#~ msgstr "Utente partner"
-
-#~ msgid "Planned user"
-#~ msgstr "Utente pianificato"
-
-#~ msgid "Responsible"
-#~ msgstr "Responsabile"
-
-#~ msgid ""
-#~ "<i class=\"fa fa-pencil-square-o\"/>\n"
-#~ "                                        <span>Event</span>"
-#~ msgstr ""
-#~ "<i class=\"fa fa-pencil-square-o\"/>\n"
-#~ "                                        <span>Evento</span>"
-
-#~ msgid "Calendar Event Date"
-#~ msgstr "Data evento calendario"
-
-#~ msgid "Calendar Event Profile"
-#~ msgstr "Profilo evento calendario"
-
-#~ msgid "Event Planner State"
-#~ msgstr "Stato pianificatore evento"
-
-#~ msgid "Event Profile"
-#~ msgstr "Profilo evento"
-
-#~ msgid "Event schedule"
-#~ msgstr "Schedulazione evento"
-
-#~ msgid "Planner event"
-#~ msgstr "Evento pianificatore"
-
-#~ msgid "Process"
-#~ msgstr "Elabora"
-
-#~ msgid "Sale Planner Calendar Event Profile"
-#~ msgstr "Profilo evento calendario pianificatore vendite"

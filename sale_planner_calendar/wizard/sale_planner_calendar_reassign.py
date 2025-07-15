@@ -4,7 +4,7 @@
 
 from datetime import timedelta
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 
 
 class SalePlannerCalendarReassignWiz(models.TransientModel):
@@ -55,7 +55,8 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
     new_event_categ_ids = fields.Many2many(
         comodel_name="calendar.event.type",
         string="New tags",
-        help="Forces new tags for the specified period. Leave empty to keep current tags.",
+        help="Forces new tags for the specified period. Leave empty to keep current "
+        "tags.",
     )
 
     @api.onchange(
@@ -88,7 +89,6 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
                 {
                     "reassign_wiz_id": self.id,
                     "calendar_event_id": calendar_event.id,
-                    # "event_categ_ids": [(6, 0, calendar_event.categ_ids.ids)],
                     "event_user_id": calendar_event.user_id.id,
                     "partner_id": calendar_event.target_partner_id.id,
                     "partner_user_id": calendar_event.partner_user_id.id,
@@ -113,9 +113,7 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
         # Not send emails to attendees in copy methods
         if not self.env.company.sale_planner_mail_to_attendees:
             self = self.with_context(no_mail_to_attendees=True, dont_notify=True)
-        for line in self.line_ids:
-            if not line.new_user_id:
-                continue
+        for line in self.line_ids.filtered(lambda x: x.new_user_id):
             if self.assign_new_salesperson_to_partner:
                 line.partner_id.with_context(
                     skip_sale_planner_check=True
@@ -138,9 +136,7 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
                     {
                         "recurrence_update": "future_events",
                         "user_id": line.event_user_id.id,
-                        "partner_ids": [
-                            (6, False, partner_ids),
-                        ],
+                        "partner_ids": [Command.set(partner_ids)],
                         "is_dynamic_end_date": old_event.is_dynamic_end_date,
                     }
                 )
@@ -155,9 +151,7 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
             new_base_event_vals = {
                 "recurrence_update": "future_events",
                 "user_id": line.new_user_id.id,
-                "partner_ids": [
-                    (6, False, partner_ids),
-                ],
+                "partner_ids": [Command.set(partner_ids)],
                 # Next fields has different behavior if 'self.new_end' field has a
                 # value
                 "is_dynamic_end_date": False
@@ -167,7 +161,7 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
             }
             if line.new_event_categ_ids:
                 new_base_event_vals["categ_ids"] = [
-                    (6, 0, line.new_event_categ_ids.ids)
+                    Command.set(line.new_event_categ_ids.ids)
                 ]
             new_base_event_start.write(new_base_event_vals)
 
@@ -241,7 +235,8 @@ class SalePlannerCalendarReassignLineWiz(models.TransientModel):
     new_event_categ_ids = fields.Many2many(
         comodel_name="calendar.event.type",
         string="New tags",
-        help="Forces new tags for the specified period. Leave empty to keep current tags.",
+        help="Forces new tags for the specified period. Leave empty to keep current "
+        "tags.",
     )
 
     event_start = fields.Datetime(readonly=True)

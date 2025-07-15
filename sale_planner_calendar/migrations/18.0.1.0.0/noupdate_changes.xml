@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="partner_follower_rule" model="ir.rule">
+        <field
+            name="domain_force"
+        >['|','|',('message_partner_ids', 'in', user.partner_id.ids), ('user_id', '=', user.id), ('user_id', '=', False)]</field>
+    </record>
+</odoo>

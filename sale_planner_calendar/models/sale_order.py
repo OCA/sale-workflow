@@ -4,7 +4,7 @@ from datetime import timedelta
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -36,7 +36,7 @@ class SaleOrder(models.Model):
     def _prepare_calendar_event_planner(self):
         categ = self.env.ref("sale_planner_calendar.event_type_commercial_visit")
         return {
-            "name": _("Sale off planning"),
+            "name": self.env._("Sale off planning"),
             "target_partner_id": self.partner_id.id,
             "user_id": self.user_id.id,
             "start": self.date_order,
@@ -87,7 +87,7 @@ class SaleOrder(models.Model):
         cut_time = date_from.time()
         for order in orders:
             event = calendar_events.filtered(
-                lambda ev: ev.target_partner_id == order.partner_id
+                lambda ev, order=order: ev.target_partner_id == order.partner_id
                 and ev.user_id == order.user_id
                 and (ev.start.combine(ev.start.date(), cut_time) <= order.date_order)
                 and (
@@ -97,7 +97,7 @@ class SaleOrder(models.Model):
             )[:1]
             if not event:
                 event_summary = event_summaries.filtered(
-                    lambda sm: sm.user_id == order.user_id
+                    lambda sm, order=order: sm.user_id == order.user_id
                     and (
                         (
                             sm.date == order.date_order.date()

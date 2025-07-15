@@ -4,110 +4,50 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="sale.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <div data-key="sale_management" position="inside">
-                <h2>Sale Planner Calendar</h2>
-                <div class="row mt16 o_settings_container">
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_right_pane">
-                            <label for="susbscriptions_backward_days" />
-                            <div class="text-muted">
-                                Backward days to search documents to update subscriptions
-                            </div>
-                            <div class="content-group">
-                                <div class="mt16">
-                                    <field
-                                        name="susbscriptions_backward_days"
-                                        class="o_light_label"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_right_pane">
-                            <label for="sale_planner_forward_months" />
-                            <div class="text-muted">
-                                Forward months to create calendar events
-                            </div>
-                            <div class="content-group">
-                                <div class="mt16">
-                                    <field
-                                        name="sale_planner_forward_months"
-                                        class="o_light_label"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_right_pane">
-                            <label for="sale_planner_mail_to_attendees" />
-                            <div class="text-muted">
-                                Send invitations to attendees when a planner event is created
-                            </div>
-                            <div class="content-group">
-                                <div class="mt16">
-                                    <field
-                                        name="sale_planner_mail_to_attendees"
-                                        class="o_light_label"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_right_pane">
-                            <label for="sale_planner_order_cut_hour" />
-                            <div class="text-muted">
-                                Time of the next day until which orders of the current day are assigned
-                            </div>
-                            <div class="content-group">
-                                <div class="mt16">
-                                    <field
-                                        name="sale_planner_order_cut_hour"
-                                        class="o_light_label"
-                                        widget="float_time"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_right_pane">
-                            <label for="sale_planner_calendar_max_duration" />
-                            <div class="text-muted">
-                                Show a warning message when duration is more than this time.
-                                Set 00:00 to disable warning.
-                            </div>
-                            <div class="content-group">
-                                <div class="mt16">
-                                    <field
-                                        name="sale_planner_calendar_max_duration"
-                                        class="o_light_label"
-                                        widget="float_time"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 o_setting_box">
-                        <div class="o_setting_right_pane">
-                            <label for="sale_planner_done_on_sale_confirm" />
-                            <div class="text-muted">
-                                Set event as done when related sale order is confirmed.
-                            </div>
-                            <div class="content-group">
-                                <div class="mt16">
-                                    <field
-                                        name="sale_planner_done_on_sale_confirm"
-                                        class="o_light_label"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <app name="sale_management" position="inside">
+                <block
+                    title="Sale Planner Calendar"
+                    name="sale_planner_calendar_container"
+                >
+                    <setting
+                        id="susbscriptions_backward_days"
+                        help="Backward days to search documents to update subscriptions"
+                    >
+                        <field name="susbscriptions_backward_days" />
+                    </setting>
+                    <setting
+                        id="sale_planner_forward_months"
+                        help="Forward months to create calendar events"
+                    >
+                        <field name="sale_planner_forward_months" />
+                    </setting>
+                    <setting
+                        id="sale_planner_mail_to_attendees"
+                        help="Send invitations to attendees when a planner event is created"
+                    >
+                        <field name="sale_planner_mail_to_attendees" />
+                    </setting>
+                    <setting
+                        id="sale_planner_order_cut_hour"
+                        help="Time of the next day until which orders of the current day are assigned"
+                    >
+                        <field name="sale_planner_order_cut_hour" />
+                    </setting>
+                    <setting
+                        id="sale_planner_calendar_max_duration"
+                        help="Show a warning message when duration is more than this time.
+                                Set 00:00 to disable warning."
+                    >
+                        <field name="sale_planner_calendar_max_duration" />
+                    </setting>
+                    <setting
+                        id="sale_planner_done_on_sale_confirm"
+                        help="Set event as done when related sale order is confirmed."
+                    >
+                        <field name="sale_planner_done_on_sale_confirm" />
+                    </setting>
+                </block>
+            </app>
         </field>
     </record>
 </odoo>

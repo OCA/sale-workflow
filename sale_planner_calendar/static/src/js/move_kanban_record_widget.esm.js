@@ -1,9 +1,9 @@
-/** @odoo-module */
 import {registry} from "@web/core/registry";
 import {useService} from "@web/core/utils/hooks";
-const {Component} = owl;
+import {Component} from "@odoo/owl";
 
 export class MoveBaseWidget extends Component {
+    static template = "sale_planner_calendar.MoveBaseWidget";
     setup() {
         super.setup();
         this.orm = useService("orm");
@@ -34,7 +34,6 @@ export class MoveBaseWidget extends Component {
         this.props.record.model.load();
     }
 }
-MoveBaseWidget.template = "sale_planner_calendar.MoveBaseWidget";
 
 export class MovePreviousWidget extends MoveBaseWidget {
     setup() {
@@ -50,5 +49,9 @@ export class MoveAfterWidget extends MoveBaseWidget {
     }
 }
 
-registry.category("view_widgets").add("move_previous_record", MovePreviousWidget);
-registry.category("view_widgets").add("move_after_record", MoveAfterWidget);
+registry
+    .category("view_widgets")
+    .add("move_previous_record", {component: MovePreviousWidget});
+registry
+    .category("view_widgets")
+    .add("move_after_record", {component: MoveAfterWidget});

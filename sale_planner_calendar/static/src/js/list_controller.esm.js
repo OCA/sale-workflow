@@ -1,22 +1,19 @@
-/** @odoo-module **/
-
 import {ListController} from "@web/views/list/list_controller";
 import {patch} from "@web/core/utils/patch";
 import {useAskRecurrenceUpdatePolicy} from "@calendar/views/ask_recurrence_update_policy_hook";
 
-patch(ListController.prototype, "sale_planner_calendar.ListController", {
+patch(ListController.prototype, {
     setup() {
-        this._super(...arguments);
+        super.setup(...arguments);
         this.askRecurrenceUpdatePolicy = useAskRecurrenceUpdatePolicy();
     },
     async onDeleteSelectedRecords() {
-        const _super = this._super.bind(this);
-        const resIds = await this.model.root.getResIds(true);
+        const resIds = await this.getSelectedResIds();
         var records = this.model.root.records.filter((record) =>
             resIds.includes(record.resId)
         );
         if (
-            this.props.context &&
+            this.props.resModel === "calendar.event" &&
             this.props.context.choose_unlink_method &&
             !records.some((record) => !record.data.recurrency)
         ) {
@@ -31,7 +28,7 @@ patch(ListController.prototype, "sale_planner_calendar.ListController", {
             }
             return;
         }
-        return _super(...arguments);
+        return super.onDeleteSelectedRecords(...arguments);
     },
     _launchMassDeletion: async function (records, recurrenceUpdate) {
         let recs = [...records];

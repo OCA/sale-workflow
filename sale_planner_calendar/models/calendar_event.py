@@ -129,15 +129,12 @@ class CalendarEvent(models.Model):
                 ("payment_state", "!=", "paid"),
                 ("partner_id", "in", partner_ids),
             ],
-            fields=["amount_residual_signed", "invoice_date_due:min"],
+            aggregates=["amount_residual_signed:sum", "invoice_date_due:min"],
             groupby=["partner_id"],
         )
         invoice_dic = {
-            g["partner_id"][0]: {
-                "amount_residual_signed": g["amount_residual_signed"],
-                "invoice_date_due": g["invoice_date_due"],
-            }
-            for g in groups
+            partner.id: {"amount_residual_signed": amount, "invoice_date_due": date_due}
+            for partner, amount, date_due in groups
         }
         for rec in self:
             partner_vals = invoice_dic.get(
@@ -191,10 +188,10 @@ class CalendarEvent(models.Model):
     @api.depends("target_partner_id")
     def _compute_location_url(self):
         # The url is built to access the location from a google link. This will be done
-        # taking into account the location of the calendar event associated with the calendar
-        # planner event. If this location is not defined, the client's coordinates will
-        # be taken into account if they are defined, otherwise the client's address
-        # will be taken into account.
+        # taking into account the location of the calendar event associated with the
+        # calendar planner event. If this location is not defined, the client's
+        # coordinates will be taken into account if they are defined, otherwise the
+        # client's address will be taken into account.
         self.location_url = False
         for event in self:
             event_location = event.location
@@ -262,10 +259,11 @@ class CalendarEvent(models.Model):
             )
         )
         if max_duration and self.duration > max_duration:
+            msg = f"Max duration set in config parameters is {max_duration} hours"
             return {
                 "warning": {
                     "title": "Max duration exceeded",
-                    "message": f"Max duration set in config parameters is {max_duration} hours",
+                    "message": msg,
                     "type": "notification",
                 }
             }

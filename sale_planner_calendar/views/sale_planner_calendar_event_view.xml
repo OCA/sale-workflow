@@ -97,7 +97,7 @@
         <field name="name">sale.planner.calendar.event.tree</field>
         <field name="model">calendar.event</field>
         <field name="arch" type="xml">
-            <tree js_class="sale_planner_calendar_event_tree">
+            <list js_class="sale_planner_calendar_event_tree">
                 <field name="start" optional="show" />
                 <field name="user_id" string="Planner salesperson" optional="show" />
                 <field name="target_partner_id" optional="show" />
@@ -112,8 +112,8 @@
                 <field name="sale_order_subtotal" optional="show" />
                 <field name="sale_planner_state" optional="show" />
                 <field name="sale_planner_rating" optional="hide" />
-                <field name="sale_planner_currency_id" invisible="1" />
-            </tree>
+                <field name="sale_planner_currency_id" column_invisible="1" />
+            </list>
         </field>
     </record>
 
@@ -129,7 +129,7 @@
                             class="oe_stat_button"
                             name="action_done"
                             type="object"
-                            attrs="{'invisible':[('sale_planner_state', 'not in', ['pending'])]}"
+                            invisible="sale_planner_state not in ['pending']"
                             icon="fa-check"
                         />
                         <button
@@ -137,7 +137,7 @@
                             name="action_cancel"
                             string="Cancel"
                             type="object"
-                            attrs="{'invisible':[('sale_planner_state', 'in', ['cancel', 'done'])]}"
+                            invisible="sale_planner_state in ['cancel', 'done']"
                             icon="fa-close"
                         />
                         <button
@@ -145,7 +145,7 @@
                             class="oe_stat_button border-end"
                             name="action_pending"
                             type="object"
-                            attrs="{'invisible':[('sale_planner_state', 'in', ['pending'])]}"
+                            invisible="sale_planner_state in ['pending']"
                             icon="fa-pencil-square-o"
                         />
                         <button
@@ -179,7 +179,6 @@
                         <group>
                             <field name="name" />
                             <field name="target_partner_id" />
-                            <!-- TODO: Add attrs="{'invisible': [('user_id', '=', partner_user_id)]}" -->
                             <field name="partner_user_id" />
                             <field name="start" />
                             <field name="user_id" string="Planner salesperson" />
@@ -209,10 +208,7 @@
                         </group>
                     </group>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids" />
-                    <field name="message_ids" />
-                </div>
+                <chatter />
             </form>
         </field>
     </record>
@@ -283,14 +279,14 @@
         <field name="name">sale.planner.calendar.issue.tree</field>
         <field name="model">calendar.event</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="start" optional="show" />
                 <field name="user_id" string="Planner salesperson" optional="show" />
                 <field name="target_partner_id" optional="show" />
                 <field name="calendar_issue_type_id" />
                 <field name="comment" />
                 <field name="sale_planner_state" optional="show" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -307,11 +303,11 @@
     <record id="action_sale_planner_calendar_issue_tree" model="ir.actions.act_window">
         <field name="name">Sale planner calendar issue</field>
         <field name="res_model">calendar.event</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field
             name="context"
         >{'form_view_ref': 'sale_planner_calendar.view_sale_planner_calendar_issue_form',
-          'tree_view_ref': 'sale_planner_calendar.view_sale_planner_calendar_issue_tree',
+          'list_view_ref': 'sale_planner_calendar.view_sale_planner_calendar_issue_tree',
           'hide_footer': True
           }</field>
     </record>
@@ -397,8 +393,8 @@
                 <field name="duration" />
                 <field name="sale_planner_rating" />
                 <templates>
-                    <t t-name="kanban-box">
-                        <div t-attf-class="oe_kanban_card w-100 oe_kanban_global_click">
+                    <t t-name="card">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
                             <div class="row align-items-center">
                                 <div class="col col-lg-2 col-xl-2 pe-0 text-center">
                                     <div class="row" title="Clock">
@@ -431,23 +427,23 @@
                                             <field
                                                 name="sale_planner_state"
                                                 widget="label_selection"
-                                                class="btn btn-danger btn-lg p-0 pb-1"
-                                                attrs="{'invisible': [('sale_planner_state', '!=', 'cancel')]}"
+                                                invisible="sale_planner_state!='cancel'"
                                                 options="{'classes': {'cancel': 'danger'}}"
                                             />
                                             <button
                                                 name="action_open_rating"
                                                 type="object"
-                                                attrs="{'invisible': [('sale_planner_state', '=', 'cancel')]}"
+                                                invisible="sale_planner_state=='cancel'"
                                                 title="Change calendar event status by adding a previous rating"
                                                 t-att-class="'btn p-0 px-1 btn-lg text-capitalize ' + (record.sale_planner_state.raw_value == 'done' and 'btn-success' or 'btn-info')"
                                             >
                                                 <span
-                                                    class="badge pb-2"
+                                                    class="badge pt-2"
                                                     t-esc="record.sale_planner_state.raw_value"
                                                 />
                                                 <span
                                                     class="h3"
+                                                    t-if="record.sale_planner_rating.value"
                                                     t-esc="record.sale_planner_rating.value"
                                                 />
                                             </button>
@@ -547,7 +543,9 @@
                                                 <i
                                                     t-attf-class="fa fa-info fa-fw fa-2x #{record.comment.raw_value ? 'text-warning' : ''}"
                                                 />
-                                                <div>Info</div>
+                                                <div
+                                                    style="font-size: smaller; white-space: nowrap;"
+                                                >Info</div>
                                             </button>
                                         </div>
                                         <div class="col p-1">
@@ -558,7 +556,9 @@
                                                 title="Order"
                                             >
                                                 <i class="fa fa-dollar fa-fw fa-2x" />
-                                                <div>Order</div>
+                                                <div
+                                                    style="font-size: smaller; white-space: nowrap;"
+                                                >Order</div>
                                             </button>
                                             <div
                                                 t-if="record.sale_order_subtotal.raw_value "
@@ -580,7 +580,10 @@
                                                 <i
                                                     class="fa fa-pencil-square-o fa-fw fa-2x"
                                                 />
-                                                <div class="o_stat_text">Invoices</div>
+                                                <div
+                                                    class="o_stat_text"
+                                                    style="font-size: smaller; white-space: nowrap;"
+                                                >Invoices</div>
                                             </button>
                                         </div>
                                         <div class="col p-1">
@@ -593,7 +596,10 @@
                                                 <i
                                                     class="fa fa-pencil-square-o fa-fw fa-2x"
                                                 />
-                                                <div class="o_stat_text">Due</div>
+                                                <div
+                                                    class="o_stat_text"
+                                                    style="font-size: smaller; white-space: nowrap;"
+                                                >Due</div>
                                             </button>
                                             <div
                                                 t-if="record.invoice_amount_residual.raw_value "
@@ -627,7 +633,10 @@
                                                 aria-label="Whatsapp"
                                             >
                                                 <i class="fa fa-whatsapp fa-fw fa-2x" />
-                                                <div class="o_stat_text">Whatsapp</div>
+                                                <div
+                                                    class="o_stat_text"
+                                                    style="font-size: smaller; white-space: nowrap;"
+                                                >Whatsapp</div>
                                             </a>
                                         </div>
                                         <div
@@ -645,7 +654,10 @@
                                                 <i
                                                     class="fa fa fa-map-marker fa-fw fa-2x"
                                                 />
-                                                <div class="o_stat_text">Location</div>
+                                                <div
+                                                    class="o_stat_text"
+                                                    style="font-size: smaller; white-space: nowrap;"
+                                                >Location</div>
                                             </a>
                                         </div>
                                         <div class="col p-1">
@@ -658,7 +670,10 @@
                                                 <i
                                                     class="fa fa-exclamation-triangle fa-fw fa-2x"
                                                 />
-                                                <div class="o_stat_text">Issue</div>
+                                                <div
+                                                    class="o_stat_text"
+                                                    style="font-size: smaller; white-space: nowrap;"
+                                                >Issue</div>
                                             </button>
                                             <div
                                                 t-if="record.calendar_issue_type_id.raw_value "
@@ -683,7 +698,7 @@
     <record id="action_sale_planner_calendar_event" model="ir.actions.act_window">
         <field name="name">Sale planner calendar events</field>
         <field name="res_model">calendar.event</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban,list,form</field>
         <field
             name="search_view_id"
             ref="sale_planner_calendar.view_sale_planner_calendar_search"
@@ -692,7 +707,7 @@
             name="context"
         >{'search_default_my_event_planner': 1, 'search_default_planner_today': 1,
           'search_default_state_pending': 1,
-          'tree_view_ref':'sale_planner_calendar.view_sale_planner_calendar_tree',
+          'list_view_ref':'sale_planner_calendar.view_sale_planner_calendar_tree',
           'form_view_ref':'sale_planner_calendar.view_sale_planner_calendar_form',
           'kanban_view_ref':'sale_planner_calendar.view_sale_planner_calendar_kanban'
           }</field>

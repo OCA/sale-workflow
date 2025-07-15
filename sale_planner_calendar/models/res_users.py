@@ -1,11 +1,10 @@
 # Copyright 2024 Tecnativa - Carlos Roca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-import json
 from datetime import datetime
 
 import pytz
 
-from odoo import _, api, fields, models, modules
+from odoo import api, fields, models, modules
 
 
 class ResUsers(models.Model):
@@ -25,8 +24,8 @@ class ResUsers(models.Model):
         )
 
     @api.model
-    def systray_get_activities(self):
-        res = super().systray_get_activities()
+    def _get_activity_groups(self):
+        res = super()._get_activity_groups()
         # Get user timezone or UTC if not set
         user_tz = pytz.timezone(self.env.user.tz or "UTC")
         # Get current time in user's timezone
@@ -57,7 +56,7 @@ class ResUsers(models.Model):
                 {
                     "id": self.env["ir.model"]._get("calendar.event").id,
                     "type": "activity",
-                    "name": _("Sale planner calendar events"),
+                    "name": self.env._("Sale planner calendar events"),
                     "model": "calendar.event",
                     "icon": modules.module.get_module_icon(
                         self.env["calendar.event"]._original_module
@@ -67,7 +66,6 @@ class ResUsers(models.Model):
                     "overdue_count": events_overdue_count,
                     "planned_count": events_planned_count,
                     "is_planner": True,
-                    "domain": json.dumps(domain),
                 }
             )
         return res

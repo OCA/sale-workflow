@@ -55,14 +55,11 @@ class SalePlannerCalendarWizard(models.TransientModel):
                 self.env["calendar.event"].search(domain).sorted("hour")
             )
 
-    # TODO: Remove when control_panel_hidden works
     @api.depends("user_id", "event_type_id")
-    def name_get(self):
-        result = []
-        for wiz in self:
-            name = "{} - {}".format(wiz.user_id.name, wiz.event_type_id.name or "Plan")
-            result.append((wiz.id, name))
-        return result
+    def _compute_display_name(self):
+        for line in self:
+            event_type_name = line.event_type_id.name or "Plan"
+            line.display_name = f"{line.user_id.name} - {event_type_name}"
 
     def apply(self):
         pass

@@ -3,7 +3,7 @@
 {
     "name": "Sale planner calendar",
     "summary": "Sale planner calendar",
-    "version": "16.0.3.0.1",
+    "version": "18.0.1.0.0",
     "development_status": "Beta",
     "category": "Sale",
     "website": "https://github.com/OCA/sale-workflow",
@@ -34,7 +34,6 @@
         "web.assets_backend": [
             "sale_planner_calendar/static/src/xml/categ_icons_widget_template.xml",
             "sale_planner_calendar/static/src/xml/sale_planner_calendar_event_sales.xml",
-            "sale_planner_calendar/static/src/xml/activity_menu_view.xml",
             "sale_planner_calendar/static/src/scss/sale_planner_calendar.scss",
             "sale_planner_calendar/static/src/js/*.esm.js",
             "sale_planner_calendar/static/src/xml/move_kanban_record_widget.xml",

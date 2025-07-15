@@ -1,44 +1,27 @@
 # Copyright 2021 Tecnativa - Sergio Teruel
+# Copyright 2025 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-
-from datetime import date, timedelta
+from datetime import timedelta
 
 from freezegun import freeze_time
 
-from odoo.exceptions import AccessError
-from odoo.tests.common import Form, TransactionCase, tagged
+from odoo import Command, fields
+from odoo.tests import Form, new_test_user, tagged
+from odoo.tools import mute_logger
+
+from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 
 
 @tagged("-at_install", "post_install")
 @freeze_time("2022-02-04 09:00:00")
-class TestSalePlannerCalendar(TransactionCase):
+class TestSalePlannerCalendar(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # Remove this variable in v16 and put instead:
-        # from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
-        DISABLED_MAIL_CONTEXT = {
-            "tracking_disable": True,
-            "mail_create_nolog": True,
-            "mail_create_nosubscribe": True,
-            "mail_notrack": True,
-            "no_reset_password": True,
-        }
-        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.CalendarEvent = cls.env["calendar.event"]
-        cls.ResUsers = cls.env["res.users"]
         cls.Partner = cls.env["res.partner"]
-        cls.ProductTemplate = cls.env["product.template"]
-        cls.Product = cls.env["product.product"]
-        cls.AccountInvoice = cls.env["account.move"]
-        cls.AccountInvoiceLine = cls.env["account.move.line"]
-        cls.AccountJournal = cls.env["account.journal"]
         cls.SaleOrder = cls.env["sale.order"]
-        cls.SalePlannerCalendarEvent = cls.env["calendar.event"]
-
-        account_group = cls.env.ref("account.group_account_user")
-        cls.env.user.write({"groups_id": [(4, account_group.id)]})
-
+        cls.env.user.groups_id += cls.env.ref("account.group_account_user")
         cls.event_type_commercial_visit = cls.env.ref(
             "sale_planner_calendar.event_type_commercial_visit"
         )
@@ -48,46 +31,31 @@ class TestSalePlannerCalendar(TransactionCase):
         cls.pricelist = cls.env["product.pricelist"].create(
             {"name": "Test pricelist", "currency_id": cls.env.company.currency_id.id}
         )
-
         # Create some products
         cls._create_products()
-
         # Create some commercial users
         cls._create_commercial_users()
-
         # Create some partners
         cls._create_partners()
-
         # Create some calendar planner events
         cls.create_calendar_planner_event()
-
         # Some account data
-        cls.account = cls.env["account.account"].create(
-            {
-                "code": "test",
-                "name": "Test account",
-                "account_type": "income",
-            }
-        )
+        cls.account = cls.company_data["default_account_revenue"]
 
     @classmethod
     def _create_commercial_users(cls):
         # Create commercial_user_1 and commercial_user_2 with Own Documents
-        # Only security group
-        cls.commercial_users = cls.ResUsers.browse()
-        for i in range(2):
-            index = i + 1
-            user = cls.ResUsers.create(
-                {
-                    "name": "Commercial user %s" % index,
-                    "login": "Commercial user %s" % index,
-                    "groups_id": [
-                        (4, cls.env.ref("sales_team.group_sale_salesman").id)
-                    ],
-                }
-            )
-            setattr(cls, "commercial_user_%s" % index, user)
-            cls.commercial_users |= user
+        cls.commercial_user_1 = new_test_user(
+            cls.env,
+            login="commercial_user_1",
+            groups="sales_team.group_sale_salesman",
+        )
+        cls.commercial_user_2 = new_test_user(
+            cls.env,
+            login="commercial_user_2",
+            groups="sales_team.group_sale_salesman",
+        )
+        cls.commercial_users = cls.commercial_user_1 + cls.commercial_user_2
 
     @classmethod
     def _create_partners(cls):
@@ -125,11 +93,8 @@ class TestSalePlannerCalendar(TransactionCase):
 
     @classmethod
     def _create_products(cls):
-        cls.product = cls.Product.create(
-            {
-                "name": "Product test 1",
-                "list_price": 100.00,
-            }
+        cls.product = cls._create_product(
+            name="Product test 1", lst_price=100.00, standard_price=800.0
         )
 
     def _create_sale_order(self):
@@ -160,7 +125,7 @@ class TestSalePlannerCalendar(TransactionCase):
                     default_start="2022-02-07 09:00:00",
                     default_stop="2022-02-07 10:00:00",
                     default_mon=True,
-                    default_categ_ids=[(4, cls.event_type_delivery.id)],
+                    default_categ_ids=[Command.link(cls.event_type_delivery.id)],
                 )
                 event_form = Form(cls.CalendarEvent.with_context(**context))
                 cls.planned_events |= event_form.save()
@@ -178,19 +143,6 @@ class TestSalePlannerCalendar(TransactionCase):
             line_form.product_uom_qty = 1
             line_form.tax_id.remove(index=0)
         return so_form.save()
-
-    def _create_invoice(self, partner):
-        with Form(
-            self.env["account.move"].with_context(default_move_type="out_invoice")
-        ) as invoice_form:
-            invoice_form.partner_id = partner
-            with invoice_form.invoice_line_ids.new() as line_form:
-                line_form.name = "invoice test"
-                line_form.account_id = self.account
-                line_form.quantity = 1.0
-                line_form.price_unit = 100.00
-                line_form.tax_ids.remove(index=0)
-        return invoice_form.save()
 
     def test_create_calendar_planner_event(self):
         # Test the values for one planned recurrent event created
@@ -219,7 +171,6 @@ class TestSalePlannerCalendar(TransactionCase):
         summary = summary_form.save()
         summary.action_process()
         self.assertEqual(summary.event_total_count, 2)
-
         event_planner_id = summary.sale_planner_calendar_event_ids[0]
         # Create a new sale order from planner event
         self._create_sale_order_from_planner(event_planner_id)
@@ -229,8 +180,12 @@ class TestSalePlannerCalendar(TransactionCase):
         self.assertEqual(summary.sale_order_count, 2)
         self.assertEqual(summary.sale_order_subtotal, 200)
         # Create a new invoice from planner event
-        self.invoice1 = self._create_invoice(event_planner_id.target_partner_id)
-        self.invoice1.action_post()
+        self.invoice1 = self.init_invoice(
+            "out_invoice",
+            partner=event_planner_id.target_partner_id,
+            post=True,
+            amounts=[100],
+        )
         self.assertEqual(event_planner_id.invoice_amount_residual, 100)
         # Set event to done state
         event_planner_id.action_done()
@@ -241,7 +196,7 @@ class TestSalePlannerCalendar(TransactionCase):
     def test_reassign_wizard(self):
         wiz_form = Form(self.env["sale.planner.calendar.reassign.wiz"])
         wiz_form.user_id = self.commercial_user_1
-        wiz_form.new_start = date.today()
+        wiz_form.new_start = fields.Date.context_today(self.env.user)
         record = wiz_form.save()
         # Recover all planned event lines for commercial user 1
         record.action_get_lines()
@@ -260,6 +215,7 @@ class TestSalePlannerCalendar(TransactionCase):
         record.action_assign_new_values()
         self.assertEqual(len(record.line_ids.filtered(lambda ln: ln.new_user_id)), 1)
 
+    @mute_logger("odoo.models.unlink")
     def test_reassign_wizard_apply(self):
         # When creating new recurring events for reallocated changes,
         # each event must have a new recurrence. This test is
@@ -267,7 +223,9 @@ class TestSalePlannerCalendar(TransactionCase):
         wiz_form = Form(self.env["sale.planner.calendar.reassign.wiz"])
         wiz_form.user_id = self.commercial_user_1
         wiz_form.assign_new_salesperson_to_partner = True
-        wiz_form.new_start = date.today() + timedelta(days=8)
+        wiz_form.new_start = fields.Date.context_today(self.env.user) + timedelta(
+            days=8
+        )
         wiz_form.new_end = wiz_form.new_start + timedelta(days=20)
         record = wiz_form.save()
         record.action_get_lines()
@@ -285,50 +243,46 @@ class TestSalePlannerCalendar(TransactionCase):
         self.assertTrue(new_base_event_end.recurrence_id)
         self.assertEqual(new_base_event_end.recurrence_id, old_event.recurrence_id)
         record.apply()
-        # Events created for changes must have a new recurrence created from the old event
+        # Events created for changes must have a new recurrence created from the
+        # old event
         self.assertTrue(
-            self.env["calendar.event"].browse(new_base_event_start.id).recurrence_id
+            self.CalendarEvent.browse(new_base_event_start.id).recurrence_id
         )
         self.assertNotEqual(
-            self.env["calendar.event"].browse(new_base_event_start.id).recurrence_id,
+            self.CalendarEvent.browse(new_base_event_start.id).recurrence_id,
             old_event.recurrence_id,
         )
-        self.assertTrue(
-            self.env["calendar.event"].browse(new_base_event_end.id).recurrence_id
-        )
+        self.assertTrue(self.CalendarEvent.browse(new_base_event_end.id).recurrence_id)
         self.assertNotEqual(
-            self.env["calendar.event"].browse(new_base_event_end.id).recurrence_id,
+            self.CalendarEvent.browse(new_base_event_end.id).recurrence_id,
             old_event.recurrence_id,
         )
         # The original event must maintain its recurrence
         self.assertEqual(
-            self.env["calendar.event"].browse(old_event.id).recurrence_id,
+            self.CalendarEvent.browse(old_event.id).recurrence_id,
             old_event.recurrence_id,
         )
 
+    @mute_logger("odoo.models.unlink")
     def test_reassign_wizard_subscriptions(self):
         # Create a SO for partner 1 and user commercial 1
         sale_order = self._create_sale_order()
-        invoice = self._create_invoice(self.partner_1)
-
+        invoice = self.init_invoice(
+            "out_invoice",
+            partner=self.partner_1,
+            amounts=[100],
+        )
         # Check document permissions based on followers
-        with self.assertRaises(AccessError):
-            self.assertIsNotNone(
-                sale_order.with_user(self.commercial_user_2).check_access_rule("read")
-            )
-            self.assertIsNotNone(
-                sale_order.with_user(self.commercial_user_2).check_access_rule("write")
-            )
-            self.assertIsNotNone(
-                invoice.with_user(self.commercial_user_2).check_access_rule("read")
-            )
-            self.assertIsNotNone(
-                invoice.with_user(self.commercial_user_2).check_access_rule("write")
-            )
+        order_user_2 = sale_order.with_user(self.commercial_user_2)
+        self.assertFalse(order_user_2.has_access("read"))
+        self.assertFalse(order_user_2.has_access("write"))
+        invoice_user_2 = invoice.with_user(self.commercial_user_2)
+        self.assertFalse(invoice_user_2.has_access("read"))
+        self.assertFalse(invoice_user_2.has_access("write"))
 
         wiz_form = Form(self.env["sale.planner.calendar.reassign.wiz"])
         wiz_form.user_id = self.commercial_user_1
-        wiz_form.new_start = date.today()
+        wiz_form.new_start = fields.Date.context_today(self.env.user)
         record = wiz_form.save()
         # Recover all planned event lines for commercial user 1
         record.action_get_lines()
@@ -342,19 +296,13 @@ class TestSalePlannerCalendar(TransactionCase):
         record.apply()
         # Check document permissions based on followers
         # Sale order
-        self.assertIsNone(
-            sale_order.with_user(self.commercial_user_2).check_access_rule("read")
-        )
-        self.assertIsNone(
-            sale_order.with_user(self.commercial_user_2).check_access_rule("write")
-        )
+        order_user_2 = sale_order.with_user(self.commercial_user_2)
+        self.assertTrue(order_user_2.has_access("read"))
+        self.assertTrue(order_user_2.has_access("write"))
         # Account move (Invoice)
-        self.assertIsNone(
-            invoice.with_user(self.commercial_user_2).check_access_rule("read")
-        )
-        self.assertIsNone(
-            invoice.with_user(self.commercial_user_2).check_access_rule("write")
-        )
+        invoice_user_2 = invoice.with_user(self.commercial_user_2)
+        self.assertTrue(invoice_user_2.has_access("read"))
+        self.assertFalse(invoice_user_2.has_access("write"))
 
     def test_parter_sale_order(self):
         """User can setup a system parameter to create sale order from a event planner

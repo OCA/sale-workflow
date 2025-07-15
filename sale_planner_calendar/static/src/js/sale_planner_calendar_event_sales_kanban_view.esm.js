@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 import {KanbanController} from "@web/views/kanban/kanban_controller";
 import {kanbanView} from "@web/views/kanban/kanban_view";
 import {registry} from "@web/core/registry";
@@ -12,7 +10,6 @@ export class SalePlannerCalendarEventKanbanController extends KanbanController {
         this.action = useService("action");
     }
     async onClickNewSaleOrder() {
-        console.log(this);
         const calendar_summary_id = this.props.context.default_calendar_summary_id;
         const action = await this.orm.call(
             "calendar.event",

@@ -4,7 +4,7 @@ from datetime import timedelta
 
 import pytz
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -113,19 +113,19 @@ class SalePlannerCalendarSummary(models.Model):
             )
             if summaries:
                 raise ValidationError(
-                    _(
-                        "Already exists a summary with same user, date and event type)\n"
+                    self.env._(
+                        "Already exists a summary with same user, date and event type\n"
                         "Access with 'Sale planner calendar summary' menu option"
                     )
                 )
 
-    def name_get(self):
-        res = []
+    @api.depends("date", "user_id")
+    def _compute_display_name(self):
         DateField = self.env["ir.qweb.field.date"]
         for line in self:
-            name = f"{DateField.value_to_html(line.date, {})} {line.user_id.name}"
-            res.append((line.id, name))
-        return res
+            line.display_name = (
+                f"{DateField.value_to_html(line.date, {})} {line.user_id.name}"
+            )
 
     def action_open_sale_order(self):
         """
@@ -200,17 +200,11 @@ class SalePlannerCalendarSummary(models.Model):
         )
 
     def action_process(self):
+        start_from = self._get_datetime_from_date_tz_hour(self.date, "00:00:00")
+        start_to = self._get_datetime_from_date_tz_hour(self.date, "23:59:59")
         calendar_event_domain = [
-            (
-                "start",
-                ">=",
-                self._get_datetime_from_date_tz_hour(self.date, "00:00:00"),
-            ),
-            (
-                "start",
-                "<=",
-                self._get_datetime_from_date_tz_hour(self.date, "23:59:59"),
-            ),
+            ("start", ">=", start_from),
+            ("start", "<=", start_to),
             ("user_id", "=", self.user_id.id),
             ("target_partner_id", "!=", False),
             ("calendar_summary_id", "=", False),
@@ -219,49 +213,6 @@ class SalePlannerCalendarSummary(models.Model):
             calendar_event_domain.append(("categ_ids", "in", self.event_type_id.ids))
         calendar_events = self.env["calendar.event"].search(calendar_event_domain)
         calendar_events.calendar_summary_id = self
-        #
-        # event_planner_domain = [
-        #     (
-        #         "start",
-        #         ">=",
-        #         self._get_datetime_from_date_tz_hour(self.date, "00:00:00"),
-        #     ),
-        #     (
-        #         "start",
-        #         "<=",
-        #         self._get_datetime_from_date_tz_hour(self.date, "23:59:59"),
-        #     ),
-        #     ("user_id", "=", self.user_id.id),
-        #     "|",
-        #     ("calendar_summary_id", "=", False),
-        #     ("calendar_summary_id", "=", self.id),
-        # ]
-        # events_planner = self.env["calendar.event"].search(
-        #     event_planner_domain
-        # )
-        # # We can not do a typical search due to returned virtual ids like this
-        # # ("calendar_event_id.categ_ids", "in", self.event_type_id.ids)
-        # if self.event_type_id:
-        #     events_planner = events_planner.filtered(
-        #         lambda p: self.event_type_id.id in p.calendar_event_id.categ_ids.ids
-        #     )
-        #
-        # for calendar_event in calendar_events:
-        #     event_planner = events_planner.filtered(
-        #         lambda r: r.start
-        #         == fields.Datetime.to_datetime(calendar_event.start)
-        #         and r.partner_id == calendar_event.target_partner_id
-        #         and r.user_id == calendar_event.user_id
-        #     )
-        #     if event_planner:
-        #         if event_planner.calendar_summary_id != self:
-        #             event_planner.calendar_summary_id = self
-        #             event_planner.off_planning = True
-        #     else:
-        #         calendar_event.with_context(
-        #             default_calendar_summary_id=self.id,
-        #             default_date=calendar_event.start,
-        #         )._create_event_planner()
 
         # Search sale orders off planning
         date_from = self._get_datetime_from_date_tz_hour(
@@ -323,10 +274,10 @@ class SalePlannerCalendarSummary(models.Model):
                 self.env.ref(
                     "sale_planner_calendar.view_sale_planner_calendar_tree"
                 ).id,
-                "tree",
+                "list",
             ),
         ]
-        action["view_mode"] = "kanban,form,tree"
+        action["view_mode"] = "kanban,form,list"
         return action
 
     def action_open_payment_sheet(self):

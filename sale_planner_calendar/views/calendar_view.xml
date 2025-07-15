@@ -6,7 +6,6 @@
         <field name="arch" type="xml">
             <field name="duration" position="after">
                 <field name="until" optional="hide" />
-                <field name="recurrence_id" invisible="1" />
             </field>
         </field>
     </record>
@@ -16,7 +15,7 @@
         <field name="model">calendar.event</field>
         <field name="priority" eval="9999" />
         <field name="arch" type="xml">
-            <tree default_order="start">
+            <list default_order="start">
                 <field name="user_id" optional="show" />
                 <field name="name" string="Subject" optional="show" />
                 <field name="target_partner_id" optional="hide" />
@@ -31,8 +30,7 @@
                 <field name="location" optional="hide" />
                 <field name="duration" widget="float_time" optional="hide" />
                 <field name="recurrency" optional="hide" />
-                <field name="recurrence_id" invisible="1" />
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -40,7 +38,7 @@
         <field name="name">Recurrent calendar events</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">calendar.event</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="view_id" ref="view_calendar_event_tree_primary_only" />
         <field name="context">{
             'default_recurrency':True,
@@ -96,19 +94,12 @@
             <field name="user_id" position="after">
                 <label for="target_partner_id" string="Sale planner partner" />
                 <field name="target_partner_id" nolabel="1" />
+                <field name="is_base_recurrent_event" invisible="1" />
             </field>
-            <field name="recurrence_id" position="after">
-                <group attrs="{'invisible': [('recurrency', '=', False)]}">
-                    <field name="advanced_cycle" />
-                    <field
-                        name="cycle_number"
-                        attrs="{'invisible': [('advanced_cycle', '=', False)]}"
-                    />
-                    <field
-                        name="cycle_skip"
-                        attrs="{'invisible': [('advanced_cycle', '=', False)]}"
-                    />
-                </group>
+            <field name="location" position="before">
+                <field name="advanced_cycle" invisible="not recurrency" />
+                <field name="cycle_number" invisible="not advanced_cycle" />
+                <field name="cycle_skip" invisible="not advanced_cycle" />
             </field>
         </field>
     </record>
@@ -133,7 +124,7 @@
                 <field name="start_date" />
                 <field name="target_partner_mobile" />
                 <templates>
-                    <t t-name="kanban-box">
+                    <t t-name="card">
                         <div class="oe_kanban_card oe_kanban_global_click">
                             <div class="row mb4">
                                 <div class="col-8">
@@ -179,7 +170,7 @@
     <record id="action_calendar_event" model="ir.actions.act_window">
         <field name="name">My Calendar</field>
         <field name="res_model">calendar.event</field>
-        <field name="view_mode">calendar,tree,kanban,form</field>
+        <field name="view_mode">calendar,list,kanban,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
             Schedule a new calendar event

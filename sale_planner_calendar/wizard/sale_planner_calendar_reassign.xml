@@ -22,7 +22,7 @@
                                     string="Fill events from filter values"
                                     icon="fa-refresh"
                                     class="btn-light"
-                                    attrs="{'invisible': [('line_ids', '=', [])]}"
+                                    invisible="line_ids==[]"
                                 />
                                 <button
                                     name="action_get_lines"
@@ -30,7 +30,7 @@
                                     string="Fill events from filter values"
                                     class="btn-primary"
                                     icon="fa-refresh"
-                                    attrs="{'invisible': [('line_ids', '!=', [])]}"
+                                    invisible="line_ids!=[]"
                                 />
                             </div>
                         </group>
@@ -50,7 +50,7 @@
                                 <field name="assign_new_salesperson_to_partner" />
                                 <field
                                     name="unsuscribe_old_salesperson"
-                                    attrs="{'invisible': [('new_end', '!=', False)]}"
+                                    invisible="new_end"
                                 />
                             </group>
                         </group>
@@ -88,7 +88,7 @@
                             />
                         </div>
                         <field name="line_ids" nolabel="1">
-                            <tree
+                            <list
                                 editable="top"
                                 create="false"
                                 decoration-info="new_user_id"
@@ -112,7 +112,7 @@
                                     widget="many2many_tags"
                                     optional="hide"
                                 />
-                            </tree>
+                            </list>
                         </field>
                     </group>
                     <div>

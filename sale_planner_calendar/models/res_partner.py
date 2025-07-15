@@ -4,7 +4,7 @@ from datetime import timedelta
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, fields, models
+from odoo import Command, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -20,10 +20,13 @@ class ResPartner(models.Model):
         )
         sale_planner_forward_months = self.env.company.sale_planner_forward_months
         # TODO: Get default values from res.config.settings
+        f_name_day_of_week = fields.Date.today().strftime("%A")[:3].lower()
         action["context"] = {
             "default_target_partner_id": self.id,
-            "default_categ_ids": [(4, categ.id)],
-            # Passing True omits the partner name, ensuring precise calculation of GPS location.
+            "default_categ_ids": [Command.link(categ.id)],
+            # Passing True omits the partner name, ensuring precise calculation of GPS
+            # location.
+            "default_active": True,
             "default_location": self._display_address(True).replace("\n", " "),
             "default_duration": categ.duration,
             "default_name": categ.name,
@@ -32,19 +35,17 @@ class ResPartner(models.Model):
             + timedelta(minutes=round((categ.duration or 1.0) * 60)),
             "default_recurrency": True,
             "default_rrule_type": "weekly",
+            "default_rrule_type_ui": "weekly",
+            f"default_{f_name_day_of_week}": True,
+            "default_interval": 1,
             "default_end_type": "end_date",
             "default_until": fields.Date.today()
             + relativedelta(months=sale_planner_forward_months),
             "default_is_dynamic_end_date": True,
             "default_user_id": self.user_id.id or self.env.user.id,
             "default_partner_ids": [
-                (
-                    6,
-                    0,
-                    [
-                        self.id,
-                        self.user_id.partner_id.id or self.env.user.partner_id.id,
-                    ],
+                Command.set(
+                    (self + (self.user_id.partner_id or self.env.user.partner_id)).ids
                 )
             ],
             "choose_unlink_method": True,
@@ -56,7 +57,7 @@ class ResPartner(models.Model):
                     "dont_notify": True,
                 }
             )
-        action["view_mode"] = "tree,form"
+        action["view_mode"] = "list,form"
         action["view_id"] = False
         action["views"] = []
         action["domain"] = [
@@ -84,7 +85,7 @@ class ResPartner(models.Model):
                 ]
             )
             if calendar_events:
-                msg = _(
+                msg = self.env._(
                     "This partner has sale planned events\n"
                     "You must change salesperson from the planner wizard"
                 )

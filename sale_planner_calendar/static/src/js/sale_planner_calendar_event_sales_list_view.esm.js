@@ -1,5 +1,3 @@
-/** @odoo-module **/
-
 import {ListController} from "@web/views/list/list_controller";
 import {listView} from "@web/views/list/list_view";
 import {registry} from "@web/core/registry";
@@ -12,7 +10,6 @@ export class SalePlannerCalendarEventListController extends ListController {
         this.action = useService("action");
     }
     async onClickNewSaleOrder() {
-        console.log(this);
         const calendar_summary_id = this.props.context.default_calendar_summary_id;
         const action = await this.orm.call(
             "calendar.event",

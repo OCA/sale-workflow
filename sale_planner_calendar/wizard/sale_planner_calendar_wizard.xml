@@ -13,7 +13,7 @@
                         <field name="week_list" />
                     </group>
                     <field name="calendar_event_ids">
-                        <tree
+                        <list
                             editable="top"
                             default_order="hour"
                             create="false"
@@ -38,7 +38,7 @@
                                 optional="hide"
                                 widget="float_time"
                             />
-                        </tree>
+                        </list>
                     </field>
                     <button
                         name="apply"
