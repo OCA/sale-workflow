@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 import logging
 
-from odoo import _, fields
+from odoo import Command, _, fields
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Form, tagged
 
@@ -79,15 +79,15 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
                 "use_invoice_plan": True,
                 "order_line": [
                     (
-                        0,
-                        0,
-                        {
-                            "name": cls.product_order.name,
-                            "product_id": cls.product_order.id,
-                            "product_uom_qty": 1,
-                            "product_uom": cls.product_order.uom_id.id,
-                            "price_unit": cls.product_order.list_price,
-                        },
+                        Command.create(
+                            {
+                                "name": cls.product_order.name,
+                                "product_id": cls.product_order.id,
+                                "product_uom_qty": 1,
+                                "product_uom": cls.product_order.uom_id.id,
+                                "price_unit": cls.product_order.list_price,
+                            }
+                        )
                     )
                 ],
                 "pricelist_id": cls.default_pricelist.id,
@@ -315,15 +315,15 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
             {
                 "order_line": [
                     (
-                        0,
-                        0,
-                        {
-                            "name": "SO-Product-NEW",
-                            "product_id": self.product_order.id,
-                            "product_uom_qty": 1,
-                            "product_uom": self.product_order.uom_id.id,
-                            "price_unit": 280.0,
-                        },
+                        Command.create(
+                            {
+                                "name": "SO-Product-NEW",
+                                "product_id": self.product_order.id,
+                                "product_uom_qty": 1,
+                                "product_uom": self.product_order.uom_id.id,
+                                "price_unit": 280.0,
+                            }
+                        )
                     )
                 ],
             }
