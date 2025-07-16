@@ -26,9 +26,9 @@
         <field name="name">invoice.blocking.reason.list</field>
         <field name="model">invoice.blocking.reason</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="invoice_blocking_reason_action" model="ir.actions.act_window">
@@ -37,6 +37,6 @@
         <field name="res_model">invoice.blocking.reason</field>
         <field name="search_view_id" ref="invoice_blocking_reason_search_view" />
         <field name="view_id" ref="invoice_blocking_reason_list_view" />
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>
