@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="invoice_blocking_reason_search_view" model="ir.ui.view">
         <field name="name">invoice.blocking.reason.search</field>
         <field name="model">invoice.blocking.reason</field>
@@ -40,5 +39,4 @@
         <field name="view_id" ref="invoice_blocking_reason_list_view" />
         <field name="view_mode">tree,form</field>
     </record>
-
 </odoo>

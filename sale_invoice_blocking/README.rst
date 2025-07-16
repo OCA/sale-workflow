@@ -76,8 +76,8 @@ Authors
 Contributors
 ------------
 
--  Damien Crier <damien.crier@camptocamp.com>
--  Dhara Solanki <dhara.solanki@initos.com>
+- Damien Crier <damien.crier@camptocamp.com>
+- Dhara Solanki <dhara.solanki@initos.com>
 
 Maintainers
 -----------
