@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="view_order_form_invoice_blocking_reason" model="ir.ui.view">
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
@@ -10,5 +9,4 @@
             </field>
         </field>
     </record>
-
 </odoo>
