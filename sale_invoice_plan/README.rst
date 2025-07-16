@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ==================
 Sales Invoice Plan
 ==================
@@ -14,10 +10,10 @@ Sales Invoice Plan
    !! source digest: sha256:72ee8d8b39af83f0286c8dd2fa2362f701d233d0776e82459018d344311f91aa
    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-.. |badge1| image:: https://img.shields.io/badge/maturity-Alpha-red.png
+.. |badge1| image:: https://img.shields.io/badge/maturity-Production%2FStable-green.png
     :target: https://odoo-community.org/page/development-status
-    :alt: Alpha
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+    :alt: Production/Stable
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -37,11 +33,6 @@ one. This module add ability to create invoices based on the predefined
 invoice plan, either all at once, or one by one. The plan support both
 advance invoice and installment invoices.
 
-.. IMPORTANT::
-   This is an alpha version, the data model and design can change at any time without warning.
-   Only for development or testing purpose, do not use in production.
-   `More details on development status <https://odoo-community.org/page/development-status>`_
-
 **Table of contents**
 
 .. contents::
@@ -56,16 +47,18 @@ Invoice Plan"
 Usage
 =====
 
-- Create new sales quotation as per normal process
-- Select option "Use Invoice Plan", a new Invoice Plan tab will appear
-- Click on "=> Create Invoice Plan" link to open invoice planning wizard
-- Do plan for number of installment and/or advance, start date and
-  interval
-- Double check that each advance/installment has correct plan percentage
-- After confirm sales order, now we have new option to "Create Invoice
-  by Plan"
-- User can create only next invoice, or create all the rest invoices at
-  the same time
+-  Create new sales quotation as per normal process
+-  Select option "Use Invoice Plan", a new Invoice Plan tab will appear
+-  Click on "=> Create Invoice Plan" link to open invoice planning
+   wizard
+-  Do plan for number of installment and/or advance, start date and
+   interval
+-  Double check that each advance/installment has correct plan
+   percentage
+-  After confirm sales order, now we have new option to "Create Invoice
+   by Plan"
+-  User can create only next invoice, or create all the rest invoices at
+   the same time
 
 Changelog
 =========
@@ -73,12 +66,12 @@ Changelog
 15.0.1.1.0 (2022-05-10)
 -----------------------
 
-- remove dependency on stock
+-  remove dependency on stock
 
 12.0.1.0.0 (2019-03-08)
 -----------------------
 
-- Start of the history
+-  Start of the history
 
 Bug Tracker
 ===========
@@ -101,11 +94,11 @@ Authors
 Contributors
 ------------
 
-- Kitti Upariphutthiphong. <kittiu@gmail.com> (http://ecosoft.co.th)
+-  Kitti Upariphutthiphong. <kittiu@gmail.com> (http://ecosoft.co.th)
 
-- `Trobz <https://trobz.com>`__:
+-  `Trobz <https://trobz.com>`__:
 
-     - Son Ho <sonhd@trobz.com>
+      -  Son Ho <sonhd@trobz.com>
 
 Other credits
 -------------
