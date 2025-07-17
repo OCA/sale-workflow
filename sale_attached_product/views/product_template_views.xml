@@ -11,7 +11,7 @@
                             name="attached_product_ids"
                             widget="many2many_tags"
                             options="{'color_field': 'color'}"
-                            domain="[('id', '!=', active_id), '|', ('company_id', '=', company_id), ('company_id', '=', False)]"
+                            domain="[('id', '!=', id), ('company_id', 'in', [company_id, False])]"
                         />
                     </group>
                 </group>

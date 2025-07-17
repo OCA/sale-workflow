@@ -72,7 +72,10 @@ class SaleOrder(models.Model):
             attached_products = line._get_attached_products()
             line.attached_line_ids.with_context(
                 skip_auto_refresh_attached_product=True
-            ).filtered(lambda x: x.product_id not in attached_products).unlink()
+            ).filtered(
+                lambda x, attached_products=attached_products: x.product_id
+                not in attached_products
+            ).unlink()
 
     def _create_attached_lines(self):
         """New attached lines. After this, they'll be updated if there are changes in
