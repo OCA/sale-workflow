@@ -6,9 +6,21 @@ from odoo import api, fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    commitment_date = fields.Datetime(
+        compute="_compute_commitment_date",
+        store=True,
+        readonly=False,
+    )
     is_commitment_date_unsafe = fields.Boolean(
         compute="_compute_is_commitment_date_unsafe",
     )
+
+    @api.depends("expected_date")
+    def _compute_commitment_date(self):
+        for sale in self.filtered(
+            lambda x: x.expected_date and x.state in ["draft", "sent"]
+        ):
+            sale.commitment_date = sale.expected_date
 
     @api.depends("commitment_date", "expected_date", "state")
     def _compute_is_commitment_date_unsafe(self):
