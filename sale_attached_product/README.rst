@@ -17,19 +17,19 @@ Attached products in sales
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_attached_product
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_attached_product
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_attached_product
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_attached_product
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows to define a set of products which will be added automatically to the
-sales order whenever that product is present on it.
+This module allows to define a set of products which will be added
+automatically to the sales order whenever that product is present on it.
 
 **Table of contents**
 
@@ -41,30 +41,35 @@ Configuration
 
 To configure attached products:
 
-#. Go to *Sales > Products > Products* and choose on you want to attach products to.
-#. Go to the *Sales* tab and then to the *Attached products* section.
-#. Add as many products as you want to.
+1. Go to *Sales > Products > Products* and choose on you want to attach
+   products to.
+2. Go to the *Sales* tab and then to the *Attached products* section.
+3. Add as many products as you want to.
 
-If you want to autoupdate the products when they are added, set this config parameter:
+If you want to autoupdate the products when they are added, set this
+config parameter:
 
-  - `sale_attached_product.auto_update_attached_lines`
+   - sale_attached_product.auto_update_attached_lines
 
-Otherwise, the lines will be added, but they can be modified, deleted, etc.
+Otherwise, the lines will be added, but they can be modified, deleted,
+etc.
 
 Usage
 =====
 
 Now that you have your product configured:
 
-#. Place a new sale order and then add that product in a new line.
-#. Once you save your order, the attached products will be added in new lines to the
-   order with as many quantities as the main one.
+1. Place a new sale order and then add that product in a new line.
+2. Once you save your order, the attached products will be added in new
+   lines to the order with as many quantities as the main one.
 
-If the global `sale_attached_product.auto_update_attached_lines` setting is on:
+If the global sale_attached_product.auto_update_attached_lines setting
+is on:
 
-#. Update the main product quantity and the attached product quantities will be updated
-   in the same amount as well.
-#. If we delete the main line, the attached ones will go away in any case.
+1. Update the main product quantity and the attached product quantities
+   will be updated in the same amount as well.
+2. If we delete the main line, the attached ones will go away in any
+   case.
 
 Bug Tracker
 ===========
@@ -72,7 +77,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_attached_product%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_attached_product%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -80,19 +85,19 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-  * David Vidal
+  - David Vidal
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -112,6 +117,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-chienandalu| 
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_attached_product>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_attached_product>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

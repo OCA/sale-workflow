@@ -16,7 +16,7 @@ class SaleOrder(models.Model):
             self.order_line._get_auto_refresh_attached_product_triggers()
         )
         for trigger in order_line_triggers:
-            triggers.update({"order_line.{}".format(trigger)})
+            triggers.update({f"order_line.{trigger}"})
         return triggers
 
     def _get_attached_line_values_product(self, line, product):
