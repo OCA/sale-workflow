@@ -668,9 +668,6 @@ class BlanketOrderLine(models.Model):
         try:
             for line in self:
                 assert (
-                    not line.display_type and line.price_unit > 0.0
-                ) or line.display_type, self.env._("Price must be greater than zero")
-                assert (
                     not line.display_type and line.original_uom_qty > 0.0
                 ) or line.display_type, self.env._("Quantity must be greater than zero")
         except AssertionError as e:
