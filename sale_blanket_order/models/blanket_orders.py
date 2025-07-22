@@ -94,6 +94,13 @@ class BlanketOrder(models.Model):
         change_default=True,
         default=lambda self: self.env["crm.team"]._get_default_team_id(),
     )
+    tag_ids = fields.Many2many(
+        comodel_name="crm.tag",
+        relation="sale_blanket_order_tag_rel",
+        column1="blanket_order_id",
+        column2="tag_id",
+        string="Tags",
+    )
     company_id = fields.Many2one(
         comodel_name="res.company",
         required=True,
