@@ -1,0 +1,172 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_semaphore
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-06 15:17+0000\n"
+"PO-Revision-Date: 2025-11-06 16:24+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. module: sale_semaphore
+#: model_terms:ir.ui.view,arch_db:sale_semaphore.product_category_form_view
+#: model_terms:ir.ui.view,arch_db:sale_semaphore.product_template_form_view
+msgid "Active"
+msgstr "Activo"
+
+#. module: sale_semaphore
+#: model:ir.model.fields,field_description:sale_semaphore.field_product_category__semaphore_discount_danger
+#: model:ir.model.fields,field_description:sale_semaphore.field_product_product__semaphore_discount_danger
+#: model:ir.model.fields,field_description:sale_semaphore.field_product_template__semaphore_discount_danger
+msgid "Discount Danger"
+msgstr "Descuento rojo"
+
+#. module: sale_semaphore
+#: model:ir.model.fields,field_description:sale_semaphore.field_product_category__semaphore_discount_success
+#: model:ir.model.fields,field_description:sale_semaphore.field_product_product__semaphore_discount_success
+#: model:ir.model.fields,field_description:sale_semaphore.field_product_template__semaphore_discount_success
+msgid "Discount Success"
+msgstr "Descuento verde"
+
+#. module: sale_semaphore
+#: model:ir.model.fields,field_description:sale_semaphore.field_product_category__semaphore_discount_warning
+#: model:ir.model.fields,field_description:sale_semaphore.field_product_product__semaphore_discount_warning
+#: model:ir.model.fields,field_description:sale_semaphore.field_product_template__semaphore_discount_warning
+msgid "Discount Warning"
+msgstr "Decuento ámbar"
+
+#. module: sale_semaphore
+#: model:ir.model,name:sale_semaphore.model_account_invoice_report
+msgid "Invoices Statistics"
+msgstr "Estadísticas de facturas"
+
+#. module: sale_semaphore
+#: model:ir.model,name:sale_semaphore.model_account_move_line
+msgid "Journal Item"
+msgstr "Apunte contable"
+
+#. module: sale_semaphore
+#. openerp-web
+#: code:addons/sale_semaphore/static/src/semaphore/semaphore.esm.js:0
+#, python-format
+msgid "Please save to be able to reset the price."
+msgstr "Por favor, guarda para poder resetear el precio"
+
+#. module: sale_semaphore
+#: model:ir.model.fields,field_description:sale_semaphore.field_sale_order__price_below_semaphore
+#: model:ir.model.fields,field_description:sale_semaphore.field_sale_order_line__price_below_semaphore
+msgid "Price Below Semaphore"
+msgstr "Precio por debajo del semáforo"
+
+#. module: sale_semaphore
+#: model:ir.model,name:sale_semaphore.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_semaphore
+#: model:ir.model,name:sale_semaphore.model_product_category
+msgid "Product Category"
+msgstr "Categoría de producto"
+
+#. module: sale_semaphore
+#: model:ir.model,name:sale_semaphore.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: sale_semaphore
+#. openerp-web
+#: code:addons/sale_semaphore/static/src/semaphore/semaphore.xml:0
+#, python-format
+msgid "Reset"
+msgstr "Resetear"
+
+#. module: sale_semaphore
+#: model:ir.model,name:sale_semaphore.model_sale_report
+msgid "Sales Analysis Report"
+msgstr "Informe de análisis de ventas"
+
+#. module: sale_semaphore
+#: model:ir.model,name:sale_semaphore.model_sale_order
+msgid "Sales Order"
+msgstr "Orden de venta"
+
+#. module: sale_semaphore
+#: model:ir.model,name:sale_semaphore.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Linea de la orden de venta"
+
+#. module: sale_semaphore
+#. openerp-web
+#: code:addons/sale_semaphore/static/src/semaphore/semaphore.esm.js:0
+#: model:ir.model.fields,field_description:sale_semaphore.field_account_invoice_report__semaphore
+#: model:ir.model.fields,field_description:sale_semaphore.field_account_move_line__semaphore
+#: model:ir.model.fields,field_description:sale_semaphore.field_sale_order_line__semaphore
+#: model:ir.model.fields,field_description:sale_semaphore.field_sale_report__semaphore
+#: model_terms:ir.ui.view,arch_db:sale_semaphore.product_category_form_view
+#: model_terms:ir.ui.view,arch_db:sale_semaphore.product_template_form_view
+#: model_terms:ir.ui.view,arch_db:sale_semaphore.view_account_invoice_report_search
+#: model_terms:ir.ui.view,arch_db:sale_semaphore.view_order_product_search
+#, python-format
+msgid "Semaphore"
+msgstr "Semáforo"
+
+#. module: sale_semaphore
+#: model:ir.model.fields,field_description:sale_semaphore.field_product_category__semaphore_active
+#: model:ir.model.fields,field_description:sale_semaphore.field_product_product__semaphore_active
+#: model:ir.model.fields,field_description:sale_semaphore.field_product_template__semaphore_active
+#: model:ir.model.fields,field_description:sale_semaphore.field_sale_order_line__semaphore_active
+msgid "Semaphore Active"
+msgstr "Semáforo activo"
+
+#. module: sale_semaphore
+#: model:ir.model.fields,field_description:sale_semaphore.field_sale_order_line__semaphore_max_price_danger
+msgid "Semaphore Max Price Danger"
+msgstr "Precio máximo semáforo rojo"
+
+#. module: sale_semaphore
+#: model:ir.model.fields,field_description:sale_semaphore.field_sale_order_line__semaphore_max_price_success
+msgid "Semaphore Max Price Success"
+msgstr "Precio máximo semáforo verde"
+
+#. module: sale_semaphore
+#: model:ir.model.fields,field_description:sale_semaphore.field_sale_order_line__semaphore_max_price_warning
+msgid "Semaphore Max Price Warning"
+msgstr "Precio máximo semáforo amarillo"
+
+#. module: sale_semaphore
+#. openerp-web
+#: code:addons/sale_semaphore/static/src/semaphore/semaphore.esm.js:0
+#, python-format
+msgid "The product or its category has not the semaphore activated."
+msgstr "El producto o su categoría no tiene el semáforo activo"
+
+#. module: sale_semaphore
+#. openerp-web
+#: code:addons/sale_semaphore/static/src/semaphore/semaphore.esm.js:0
+#, python-format
+msgid "The semaphore assignation does not work in this model."
+msgstr "La asignación de semáforo no funciona en este modelo."
+
+#. module: sale_semaphore
+#: code:addons/sale_semaphore/models/sale_order.py:0
+#: code:addons/sale_semaphore/models/sale_order_line.py:0
+#, python-format
+msgid ""
+"There's a line with price below semaphore's accepted.\n"
+"\n"
+"Please set the prices in a way that they are accepted by the semaphore, or "
+"contact the purchasing administrators."
+msgstr ""
+"Hay líneas con precio inferior al semáforo.\n"
+"\n"
+"Por favor, establece los precios de forma que estén aceptados por el "
+"semáforo o contacta con algún administrador de ventas."
