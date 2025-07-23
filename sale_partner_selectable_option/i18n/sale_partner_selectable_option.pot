@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-23 13:02+0000\n"
+"PO-Revision-Date: 2025-07-23 13:02+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -32,4 +34,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_partner_selectable_option.field_res_partner__sale_selectable
 #: model:ir.model.fields,field_description:sale_partner_selectable_option.field_res_users__sale_selectable
 msgid "Selectable in sale orders"
+msgstr ""
+
+#. module: sale_partner_selectable_option
+#: code:addons/sale_partner_selectable_option/models/sale_order.py:0
+#, python-format
+msgid "The selected customer cannot be used in sales orders"
 msgstr ""

@@ -3,11 +3,22 @@
 
 from lxml import etree
 
-from odoo import api, models
+from odoo import _, api, models
+from odoo.exceptions import UserError
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
+
+    @api.constrains("partner_id")
+    def _check_partner_id(self):
+        for order in self:
+            if not order.partner_id.sale_selectable and not self.env.context.get(
+                "skip_sale_partner_selectable_restriction", False
+            ):
+                raise UserError(
+                    _("The selected customer cannot be used in sales orders")
+                )
 
     @api.model
     def fields_view_get(
