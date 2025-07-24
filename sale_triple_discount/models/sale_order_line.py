@@ -161,3 +161,18 @@ class SaleOrderLine(models.Model):
             }
         )
         return res
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        order_lines = super().create(vals_list)
+        lines_to_discount = order_lines
+        for line, vals in zip(order_lines, vals_list, strict=True):
+            if (line.discount != 0.0 or line.discount1 != 0.0) or (
+                line.discount == 0.0
+                and line.discount1 == 0.0
+                and "discount1" in vals
+                and vals["discount1"] == 0
+            ):
+                lines_to_discount -= line
+        lines_to_discount._compute_discounts()
+        return order_lines
