@@ -42,4 +42,5 @@ msgstr "Seleccionable en pedidos de venta"
 #: code:addons/sale_partner_selectable_option/models/sale_order.py:0
 #, python-format
 msgid "The selected customer cannot be used in sales orders"
-msgstr "El cliente que se ha seleccionado no se puede usar en las órdenes de venta"
+msgstr ""
+"El cliente que se ha seleccionado no se puede usar en las órdenes de venta"
