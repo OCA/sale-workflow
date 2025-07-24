@@ -70,7 +70,8 @@ Contributors
 
   * Víctor Martínez
   * Pedro M. Baeza
-  * César A. Sánchez <cesar.sanchez@tecnativa.com>
+  * César A. Sánchez
+  * Carlos Roca
 
 Maintainers
 ~~~~~~~~~~~
