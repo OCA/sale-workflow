@@ -27,7 +27,7 @@ class SaleOrder(models.Model):
         return res
 
     def write(self, line_values):
-        res = super(SaleOrder, self).write(line_values)
+        res = super().write(line_values)
         if "order_line" in line_values:
             self._update_moves_sequence()
         return res
