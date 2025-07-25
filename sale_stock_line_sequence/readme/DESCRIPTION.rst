@@ -1,1 +1,0 @@
-Glue module between Sale Order Line Sequence and Stock Picking Line Sequence that assigns sequence correctly to the move associated with the sale order line.  It does not take into account the sections and notes in the sale order.
