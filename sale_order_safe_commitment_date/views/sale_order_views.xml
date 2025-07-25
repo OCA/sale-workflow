@@ -29,37 +29,9 @@
         />
         <field name="arch" type="xml">
             <field name="show_update_pricelist" position="before">
-                <label
-                    for="commitment_date"
-                    string="Delivery Date"
-                    attrs="{'invisible': [('expected_date', '=', False)]}"
-                />
-                <div
-                    name="commitment_date_div"
-                    class="o_row"
-                    attrs="{'invisible': [('expected_date', '=', False)]}"
-                >
-                    <field
-                        name="commitment_date"
-                        attrs="{'invisible': [('commitment_date', '=', False), ('state', 'not in', ('draft', 'sent'))]}"
-                    />
-                    <span name="expected_date_span" class="text-muted"><i
-                            class="fa fa-warning text-warning"
-                            attrs="{'invisible': [('is_commitment_date_unsafe', '=', False)]}"
-                            alt="The delivery date is sooner than the expected date. You may be unable to honor the delivery date."
-                        /> Expected: <field
-                            name="expected_date"
-                            class="oe_inline"
-                            widget="date"
-                        /></span>
-                </div>
+                <field name="commitment_date" />
+
             </field>
         </field>
     </record>
-    <data noupdate="1">
-        <!-- TODO: Enable via res.config.settings -->
-        <record id="view_order_form_commitment_date_ux" model="ir.ui.view">
-            <field name="active" eval="False" />
-        </record>
-    </data>
 </odoo>

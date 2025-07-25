@@ -31,7 +31,7 @@ class SaleOrder(models.Model):
             lambda x: x.commitment_date
             and x.expected_date
             and x.state in {"draft", "sent"}
-            and x.commitment_date < x.expected_date
+            and x.commitment_date.date() < x.expected_date.date()
         ).is_commitment_date_unsafe = True
 
     def action_confirm(self):

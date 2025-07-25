@@ -76,12 +76,6 @@ To test the module:
 - If the salesman ignores it, the delivery date will be set to the
   minimum expected date when the order gets confirmed.
 
-Known issues / Roadmap
-======================
-
-- Make the extended view to add the delivery date to the header of the
-  form configurable with config settings.
-
 Bug Tracker
 ===========
 
@@ -104,6 +98,7 @@ Contributors
 ------------
 
 - David Vidal (`Moduon <https://www.moduon.team/>`__)
+- Emilio Pascual (`Moduon <https://www.moduon.team/>`__)
 
 Maintainers
 -----------
