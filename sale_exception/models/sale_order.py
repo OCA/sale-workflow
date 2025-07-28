@@ -49,6 +49,8 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         if self.detect_exceptions():
+            if not self.env.company.sale_exception_show_popup:
+                return
             return self._popup_exceptions()
         return super().action_confirm()
 
