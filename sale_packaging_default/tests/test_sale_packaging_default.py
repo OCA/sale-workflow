@@ -43,6 +43,23 @@ class SalePackagingDefaultCase(ProductCommon):
         )
         cls.p2_three_pack = cls.product2.packaging_ids[0]
         assert cls.p2_three_pack.name == "3-pack"
+        cls.product_packaging_qty_no_integer = cls.env["product.product"].create(
+            {
+                "name": "Product packaging with qty not integer",
+                "type": "consu",
+                "packaging_ids": [
+                    fields.Command.create(
+                        {
+                            "name": "1 Piece",
+                            "qty": 1.6,
+                            "sales": True,
+                            "sequence": 10,
+                        }
+                    ),
+                ],
+            }
+        )
+        cls.packaging = cls.product_packaging_qty_no_integer.packaging_ids
 
     def test_default_packaging_sale_order(self):
         """Check is packaging usage in sale order."""
@@ -126,3 +143,23 @@ class SalePackagingDefaultCase(ProductCommon):
             self.assertEqual(line_f.product_packaging_id, self.p2_three_pack)
             self.assertEqual(line_f.product_packaging_qty, 10)
             self.assertEqual(line_f.product_uom_qty, 30)
+
+    def test_product_packaging_qty_no_integer(self):
+        """Check behavior with float qty in packaging without using modulo operator.
+
+        If product_packaging_qty is multiple of qty pacakging, with modulo operator the
+        quantity per package might be a float. Example # 8 % 1.6 = 1.5999999999999996
+        """
+        so_f = Form(self.env["sale.order"])
+        so_f.partner_id = self.partner
+        with so_f.order_line.new() as line_f:
+            line_f.product_id = self.product_packaging_qty_no_integer
+            # Automatically set the default packaging and the quantity
+            self.assertEqual(line_f.product_packaging_id, self.packaging)
+            self.assertEqual(line_f.product_packaging_qty, 1)
+            self.assertEqual(line_f.product_uom_qty, 1.6)
+            # Change qty to 8 to force calculate with modulo operator
+            # (8 % 1.6 = 1.5999999999999996)
+            line_f.product_packaging_qty = 5
+            self.assertEqual(line_f.product_packaging_id, self.packaging)
+            self.assertEqual(line_f.product_uom_qty, 8)
