@@ -156,7 +156,28 @@ class TestSaleException(TransactionCase):
         sale_order.action_confirm()
         partner.sale_warn = "warning"
         sale_order2 = sale_order.copy()
-        sale_order2.detect_exceptions()
+        self.env.company.sale_exception_show_popup = True
+        result = sale_order2.action_confirm()
+        self.assertEqual(
+            result.get("xml_id"), "sale_exception.action_sale_exception_confirm"
+        )
+        self.assertEqual(sale_order2.state, "draft")
+        self.assertTrue(sale_order2.exception_ids.filtered(lambda x: x == exception))
+
+    def test_exception_partner_sale_warning_no_popup(self):
+        exception = self.env.ref("sale_exception.exception_partner_sale_warning")
+        exception.active = True
+        partner = self.env.ref("base.res_partner_1")
+        sale_order = self._create_sale_order(
+            partner=partner, product=self.env.ref("product.product_product_6")
+        )
+        sale_order.action_confirm()
+        partner.sale_warn = "warning"
+        sale_order2 = sale_order.copy()
+        self.env.company.sale_exception_show_popup = False
+        result = sale_order2.action_confirm()
+        self.assertIsNone(result)
+        self.assertEqual(sale_order2.state, "draft")
         self.assertTrue(sale_order2.exception_ids.filtered(lambda x: x == exception))
 
     def test_exception_product_sale_warning(self):
