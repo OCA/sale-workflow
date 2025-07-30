@@ -15,7 +15,7 @@
             <field name="service_tracking" position="after">
                 <field
                     name="invoicing_finished_task"
-                    invisible="(type != 'service') or (service_tracking not in ['task_global_project', 'task_in_project'])"
+                    invisible="type != 'service' or service_tracking not in ['task_global_project', 'task_in_project']"
                 />
             </field>
         </field>

@@ -3,7 +3,7 @@
 # Copyright 2017 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -40,8 +40,7 @@ class ProjectTask(models.Model):
     def write(self, vals):
         if "sale_line_id" in vals:
             self._check_sale_line_state(vals["sale_line_id"])
-        res = super().write(vals)
-        return res
+        return super().write(vals)
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -61,7 +60,7 @@ class ProjectTask(models.Model):
                 or sale_line.order_id.locked
             ):
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "You cannot create/modify a task related with a "
                         "invoiced, locked or cancel sale order line "
                     )

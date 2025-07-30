@@ -92,26 +92,3 @@ msgid ""
 msgstr ""
 "Non si può creare/modificare un lavoro relativo ad una riga ordine di "
 "vendita fatturata, bloccata o annullata "
-
-#~ msgid ""
-#~ "<span class=\"text-success\" attrs=\"{'invisible': [('invoiceable', '=', "
-#~ "False)]}\">Invoiceable</span>\n"
-#~ "                    <span class=\"text-danger\" attrs=\"{'invisible': "
-#~ "[('invoiceable', '!=', False)]}\">Not Invoiceable</span>"
-#~ msgstr ""
-#~ "<span class=\"text-success\" attrs=\"{'invisible': [('invoiceable', '=', "
-#~ "False)]}\">Fatturabile</span>\n"
-#~ "                    <span class=\"text-danger\" attrs=\"{'invisible': "
-#~ "[('invoiceable', '!=', False)]}\">Non fatturabile</span>"
-
-#, python-format
-#~ msgid ""
-#~ "You cannot create/modify a task related with a invoiced, done or cancel "
-#~ "sale order line "
-#~ msgstr ""
-#~ "Non si può creare/modificare un lavoro relativo ad una riga ordine "
-#~ "fatturata, eseguita o annullata. "
-
-#, fuzzy
-#~ msgid "Sale Order"
-#~ msgstr "Ordini vendita"

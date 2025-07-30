@@ -87,6 +87,3 @@ msgid ""
 "You cannot create/modify a task related with a invoiced, locked or cancel "
 "sale order line "
 msgstr ""
-
-#~ msgid "Sale Order"
-#~ msgstr "Prodajni nalog"
