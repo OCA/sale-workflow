@@ -89,26 +89,3 @@ msgid ""
 "You cannot create/modify a task related with a invoiced, locked or cancel "
 "sale order line "
 msgstr ""
-
-#~ msgid ""
-#~ "<span class=\"text-success\" attrs=\"{'invisible': [('invoiceable', '=', "
-#~ "False)]}\">Invoiceable</span>\n"
-#~ "                    <span class=\"text-danger\" attrs=\"{'invisible': "
-#~ "[('invoiceable', '!=', False)]}\">Not Invoiceable</span>"
-#~ msgstr ""
-#~ "<span class=\"text-success\" attrs=\"{'invisible': [('invoiceable', '=', "
-#~ "False)]}\">Faturável</span>\n"
-#~ "                     <span class=\"text-danger\" attrs=\"{'invisible': "
-#~ "[('invoiceable', '!=', False)]}\">Não faturável</span>"
-
-#, python-format
-#~ msgid ""
-#~ "You cannot create/modify a task related with a invoiced, done or cancel "
-#~ "sale order line "
-#~ msgstr ""
-#~ "Você não pode criar/modificar uma tarefa relacionada a um item do pedido "
-#~ "de venda faturada, concluída ou cancelada "
-
-#, fuzzy
-#~ msgid "Sale Order"
-#~ msgstr "Pedido de Venda"
