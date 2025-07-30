@@ -2,8 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.fields import Date
-from odoo.tests import Form
-from odoo.tests.common import TransactionCase
+from odoo.tests import Form, TransactionCase
 
 from odoo.addons.stock_account.tests.test_stockvaluation import _create_accounting_data
 
@@ -41,8 +40,9 @@ class TestSaleStockReconcileValuationKit(TransactionCase):
                 {
                     "name": name,
                     "standard_price": price,
-                    "type": "product",
+                    "type": "consu",
                     "categ_id": self.avco_category.id,
+                    "is_storable": True,
                 }
                 for name, price in [("Kit", 0), ("Compo 01", 10), ("Compo 02", 20)]
             ]
@@ -79,7 +79,7 @@ class TestSaleStockReconcileValuationKit(TransactionCase):
 
         # Set & Validate Picking
         for ml in self.so.picking_ids.move_ids:
-            ml.quantity_done = 1
+            ml.quantity = 1
         self.so.picking_ids.button_validate()
 
         self.invoice = self.so._create_invoices()
@@ -88,7 +88,10 @@ class TestSaleStockReconcileValuationKit(TransactionCase):
 
     def test_account_kit_reconciled(self):
         lines = self.invoice.line_ids.filtered(
-            lambda x: x.account_id.id == self.stock_output_account.id
+            lambda x: x.account_id == self.stock_output_account
         )
         for line in lines:
-            self.assertTrue(line.reconciled)
+            self.assertTrue(line.reconciled, "Invoice line is not reconciled")
+
+        stock_moves = self.so.picking_ids.move_ids
+        self.assertTrue(stock_moves)

@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ==================================
 Sale Stock Reconcile Valuation Kit
 ==================================
@@ -13,7 +17,7 @@ Sale Stock Reconcile Valuation Kit
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -66,6 +70,10 @@ Contributors
 - `ForgeFlow <https://www.forgeflow.com/>`__:
 
   - Jordi Ballester Alomar <jordi.ballester@forgeflow.com>
+
+- [Trobz] (https://trobz.com/):
+
+  - Khoi (Kien Kim) khoikk@trobz.com
 
 Maintainers
 -----------

@@ -33,25 +33,30 @@ class AccountMove(models.Model):
                     product_interim_account = product_accounts["stock_input"]
 
                 if product_interim_account.reconcile:
-                    # Search for anglo-saxon lines linked to the product in the journal entry.
+                    # Search for anglo-saxon lines linked to the product
+                    # in the journal entry.
                     product_account_moves = move.line_ids.filtered(
-                        lambda line: line.product_id == prod
-                        and line.account_id == product_interim_account
+                        lambda line,
+                        prod=prod,
+                        account=product_interim_account: line.product_id == prod
+                        and line.account_id == account
                         and not line.reconciled
                     )
                     for sale_line in product_account_moves.mapped("sale_line_id"):
                         sl_product_account_moves = product_account_moves.filtered(
-                            lambda x: sale_line in x.sale_line_id
+                            lambda x, sale_line=sale_line: sale_line in x.sale_line_id
                         )
                         # Search for anglo-saxon lines linked to
                         # the same sales order line in the stock moves.
                         product_stock_moves = stock_moves.filtered(
-                            lambda stock_move: stock_move.sale_line_id == sale_line
+                            lambda stock_move,
+                            sale_line=sale_line: stock_move.sale_line_id == sale_line
                         )
                         sl_product_account_moves += product_stock_moves.mapped(
                             "account_move_ids.line_ids"
                         ).filtered(
-                            lambda line: line.account_id == product_interim_account
+                            lambda line,
+                            account=product_interim_account: line.account_id == account
                             and not line.reconciled
                         )
                         # Reconcile.
