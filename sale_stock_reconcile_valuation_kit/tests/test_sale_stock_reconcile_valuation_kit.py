@@ -10,7 +10,7 @@ from odoo.addons.stock_account.tests.test_stockvaluation import _create_accounti
 
 class TestSaleStockReconcileValuationKit(TransactionCase):
     def setUp(self):
-        super(TestSaleStockReconcileValuationKit, self).setUp()
+        super().setUp()
         # Create Partner
         self.partner = self.env["res.partner"].create({"name": "Mr. Odoo"})
 
