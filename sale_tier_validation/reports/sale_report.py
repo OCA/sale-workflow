@@ -15,7 +15,9 @@ class ReportSaleOrder(models.AbstractModel):
         for order in docs:
             if not order.company_id.sale_report_print_block:
                 continue
-            if order.need_validation or (order.review_ids and not order.validated):
+            if order.need_validation or (
+                order.review_ids and order.validation_status != "validated"
+            ):
                 raise UserError(
                     _("Quotation printing is blocked until the order is approved.")
                 )

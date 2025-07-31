@@ -17,7 +17,7 @@
                 <filter
                     name="tier_validated"
                     string="Validated"
-                    domain="[('validated', '=', True)]"
+                    domain="[('validation_status', '=', 'validated')]"
                     help="SOs validated and ready to be confirmed"
                 />
             </filter>
