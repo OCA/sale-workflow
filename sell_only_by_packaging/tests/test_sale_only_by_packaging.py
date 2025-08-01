@@ -98,16 +98,16 @@ class TestSaleProductByPackagingOnly(SellOnlyByPackagingCommon):
                 self.assertEqual(len(logs.records), 1)
                 self.assertEqual(logs.records[0].levelno, logging.WARNING)
 
-    def test_onchange_qty_is_not_pack_multiple(self):
-        """Check package when qantity is not a multiple of package quantity.
+    def test_packaging_validation_with_sell_only_by_packaging(self):
+        """Check quantity validation when product can only be sold by packaging.
 
-        When the uom quantity is changed for a value not a multpile of a
-        possible package an error is raised.
+        When a product is marked as 'sell only by packaging', validate that
+        setting a non-multiple quantity of the packaging raises an error.
         """
         self.product.write({"sell_only_by_packaging": True})
         self.order_line.product_uom_qty = 40  # 2 packs
-        with self.assertRaises(ValidationError):
+        with self.assertRaisesRegex(
+            ValidationError,
+            r"can only be sold with a packaging and a packaging quantity",
+        ):
             self.order_line.product_packaging_qty = 0.9
-            self.assertAlmostEqual(
-                self.order_line.product_uom_qty, 18, places=self.precision
-            )

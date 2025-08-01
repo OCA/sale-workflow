@@ -13,26 +13,38 @@ class SaleOrderLine(models.Model):
         "product_id", "product_packaging_id", "product_packaging_qty", "product_uom_qty"
     )
     def _check_product_packaging_sell_only_by_packaging(self):
+        errors = []
         for line in self:
-            if not line.product_id.sell_only_by_packaging or not line.product_uom_qty:
+            if not line.product_uom_qty:
                 continue
+            if not line.product_id.sell_only_by_packaging:
+                continue
+            if error_message_min_qty := line._check_min_qty_packaging():
+                errors.append(error_message_min_qty)
+        if errors:
+            raise ValidationError(
+                self.env._(
+                    "The following lines has some issues with "
+                    + "packaging quantities:\n    - %s",
+                    "\n    - ".join(errors),
+                )
+            )
 
-            if (
-                not line.product_packaging_id
-                or float_compare(
-                    line.product_packaging_qty,
-                    int(line.product_packaging_qty),
-                    precision_digits=2,
-                )
-                != 0
-            ):
-                raise ValidationError(
-                    self.env._(
-                        "Product %s can only be sold with a packaging and a "
-                        "packaging quantity.",
-                        line.product_id.name,
-                    ),
-                )
+    def _check_min_qty_packaging(self):
+        if (
+            not self.product_packaging_id
+            or float_compare(
+                self.product_packaging_qty,
+                int(self.product_packaging_qty),
+                precision_digits=2,
+            )
+            != 0
+        ):
+            return self.env._(
+                "Product %s can only be sold with a packaging and a "
+                "packaging quantity.",
+                self.product_id.name,
+            )
 
     def _force_qty_with_package(self):
         self.ensure_one()
