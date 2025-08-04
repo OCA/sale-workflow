@@ -243,13 +243,6 @@ msgid "Last Installment"
 msgstr "Ultima rata"
 
 #. module: sale_invoice_plan
-#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan____last_update
-#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan____last_update
-#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__write_uid
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__write_uid
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__write_uid
@@ -320,6 +313,17 @@ msgid "Number of Installment"
 msgstr "Numero di rate"
 
 #. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_tree_invoice_plan
+msgid "Pend."
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_pending
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_filter_invoice_plan
+msgid "Pending plans"
+msgstr ""
+
+#. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__percent
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_total_percent
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_tree_readonly
@@ -336,7 +340,8 @@ msgstr "Pianifica data"
 #: code:addons/sale_invoice_plan/models/sale_invoice_plan.py:0
 #, python-format
 msgid ""
-"Plan quantity: %(plan_qty)s, exceed invoiceable quantity: %(invoiceable_qty)s\n"
+"Plan quantity: %(plan_qty)s, exceed invoiceable quantity: "
+"%(invoiceable_qty)s\n"
 "Product should be delivered before invoice"
 msgstr ""
 "Pianifica quantità: %(plan_qty)s, quantità in esubero fatturabile: "
@@ -446,6 +451,11 @@ msgid "View sales invoice plan lines"
 msgstr "Visualizza le righe di piano di fatturazione vendite"
 
 #. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_filter_invoice_plan
+msgid "With pending plans"
+msgstr ""
+
+#. module: sale_invoice_plan
 #: model:ir.model,name:sale_invoice_plan.model_sale_make_planned_invoice
 msgid "Wizard when create invoice by plan"
 msgstr "Procedura guidata per creare fatturazione in base al piano"
@@ -464,3 +474,6 @@ msgstr "⇒ Crea un piano di fatturazione"
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
 msgid "⇒ Remove Invoice Plan"
 msgstr "⇒ Rimuovi il piano di fatturazione"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
