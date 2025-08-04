@@ -305,6 +305,17 @@ msgid "Number of Installment"
 msgstr ""
 
 #. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_tree_invoice_plan
+msgid "Pend."
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_pending
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_filter_invoice_plan
+msgid "Pending plans"
+msgstr ""
+
+#. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__percent
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_total_percent
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_sale_invoice_plan_tree_readonly
@@ -421,6 +432,11 @@ msgstr ""
 #. module: sale_invoice_plan
 #: model_terms:ir.actions.act_window,help:sale_invoice_plan.action_sale_invoice_plan
 msgid "View sales invoice plan lines"
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_filter_invoice_plan
+msgid "With pending plans"
 msgstr ""
 
 #. module: sale_invoice_plan

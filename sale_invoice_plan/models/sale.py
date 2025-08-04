@@ -33,6 +33,11 @@ class SaleOrder(models.Model):
         compute="_compute_invoice_plan_total",
         string="Total Amount",
     )
+    invoice_plan_pending = fields.Integer(
+        compute="_compute_invoice_plan_pending",
+        string="Pending plans",
+        store=True,
+    )
 
     @api.depends("invoice_plan_ids")
     def _compute_invoice_plan_total(self):
@@ -51,6 +56,13 @@ class SaleOrder(models.Model):
             )
             rec.invoice_plan_process = (
                 rec.state == "sale" and has_invoice_plan and to_invoice and inv_or_adv
+            )
+
+    @api.depends("invoice_plan_ids.invoiced")
+    def _compute_invoice_plan_pending(self):
+        for order in self:
+            order.invoice_plan_pending = len(
+                order.invoice_plan_ids.filtered(lambda x: not x.invoiced)
             )
 
     @api.constrains("invoice_plan_ids")
