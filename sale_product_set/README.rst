@@ -46,21 +46,20 @@ updated or removed as any other sales order lines.
 Usage
 =====
 
-- Define a *product set* as sales manager:
+-  Define a *product set* as sales manager:
 
-  - choose products
-  - for each product, define a quantity.
-  - for each product (if Discounts setting is active), define a discount
-    or leave default value
-  - Sort *set* lines, this order will be the default when added into the
-    quotation
+   -  choose products
+   -  for each product, define a quantity.
+   -  for each product (if Discounts setting is active), define a
+      discount or leave default value
+   -  Sort *set* lines, this order will be the default when added into
+      the quotation
 
-- Then you can remove or update added lines as any other sales order
-  lines.
+-  Then you can remove or update added lines as any other sales order
+   lines.
 
-|Sale order|
-
-.. |Sale order| image:: https://raw.githubusercontent.com/sale_product_set/static/description/sale_order.png
+.. image:: https://raw.githubusercontent.com/sale_product_set/static/description/sale_order.png
+   :alt: Sale order
 
 Bug Tracker
 ===========
@@ -83,27 +82,27 @@ Authors
 Contributors
 ------------
 
-- Clovis Nzouendjou <clovis@anybox.fr>
-- Pierre Verkest <pverkest@anybox.fr>
-- Denis Leemann <denis.leemann@camptocamp.com>
-- Simone Orsi <simone.orsi@camptocamp.com>
-- Souheil Bejaoui <souheil.bejaoui@acsone.eu>
-- Adria Gil Sorribes <adria.gil@forgeflow.com>
-- Phuc (Tran Thanh) <phuc@trobz.com>
-- Manuel Regidor <manuel.regidor@sygel.es>
-- `Tecnativa <https://www.tecnativa.com>`__:
+-  Clovis Nzouendjou <clovis@anybox.fr>
+-  Pierre Verkest <pverkest@anybox.fr>
+-  Denis Leemann <denis.leemann@camptocamp.com>
+-  Simone Orsi <simone.orsi@camptocamp.com>
+-  Souheil Bejaoui <souheil.bejaoui@acsone.eu>
+-  Adria Gil Sorribes <adria.gil@forgeflow.com>
+-  Phuc (Tran Thanh) <phuc@trobz.com>
+-  Manuel Regidor <manuel.regidor@sygel.es>
+-  `Tecnativa <https://www.tecnativa.com>`__:
 
-  - Pilar Vargas
-  - Juan Carlos Oñate
+   -  Pilar Vargas
+   -  Juan Carlos Oñate
 
-- Nils Coenen <nils.coenen@nico-solutions.de>
+-  Nils Coenen <nils.coenen@nico-solutions.de>
 
 Other credits
 -------------
 
 The development of this module has been financially supported by:
 
-- Camptocamp
+-  Camptocamp
 
 Maintainers
 -----------
