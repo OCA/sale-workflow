@@ -120,6 +120,39 @@
             </xpath>
         </field>
     </record>
+    <record id="view_order_tree_invoice_plan" model="ir.ui.view">
+        <field name="name">view.order.tree.invoice.plan</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_status']" position="after">
+                <field
+                    name="invoice_plan_pending"
+                    optional="hide"
+                    string="Pend."
+                    decoration-bf="invoice_plan_pending &gt; 0"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_order_filter_invoice_plan" model="ir.ui.view">
+        <field name="name">view.order.search.invoice.plan</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']" position="after">
+                <field name="invoice_plan_pending" string="Pending plans" />
+            </xpath>
+            <xpath expr="//filter[@name='activities_upcoming_all']" position="after">
+                <separator />
+                <filter
+                    name="invoice_plan_pending"
+                    string="With pending plans"
+                    domain="[('invoice_plan_pending','&gt;',0)]"
+                />
+            </xpath>
+        </field>
+    </record>
     <!-- Invoice Plan Lines -->
     <record id="view_sale_invoice_plan_filter" model="ir.ui.view">
         <field name="name">view.sale.invoice.plan.filter</field>

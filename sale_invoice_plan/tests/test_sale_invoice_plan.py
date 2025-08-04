@@ -176,6 +176,11 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
                 num_installment,
                 "Wrong number of installment created",
             )
+            self.assertEqual(
+                self.so_service.invoice_plan_pending,
+                num_installment,
+                "Pending invoice plan count mismatch after creation",
+            )
         # Change plan, so that the 1st installment is 1000 and 5th is 3000
         self.assertEqual(len(self.so_service.invoice_plan_ids), 5)
         self.so_service.invoice_plan_ids[0].amount = 280.0
@@ -188,6 +193,11 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         self.assertEqual(
             self.so_service.amount_total,
             sum(self.so_service.invoice_ids.mapped("amount_total")),
+        )
+        self.assertEqual(
+            self.so_service.invoice_plan_pending,
+            num_installment - 1,
+            "Pending invoice plan count mismatch after 1st invoice",
         )
         invoices = self.so_service.invoice_ids
         self.assertEqual(len(invoices), 1, "Only 1 invoice should be created")
@@ -209,11 +219,23 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
             f.num_installment = num_installment
             plan = f.save()
             plan.with_context(**ctx).sale_create_invoice_plan()
+            self.assertEqual(
+                self.so_service.invoice_plan_pending,
+                num_installment,
+                "Pending invoice plan count mismatch after creation",
+            )
+
         # Confirm the SO
         self.so_service.action_confirm()
         # Create all invoices
         make_wizard = self.env["sale.make.planned.invoice"].create({})
         make_wizard.with_context(**ctx).create_invoices_by_plan()
+        # Valid number of invoices plan pending
+        self.assertEqual(
+            self.so_service.invoice_plan_pending,
+            0,
+            "Pending invoice plan should be 0 after invoicing all",
+        )
         # Valid number of invoices
         invoices = self.so_service.invoice_ids
         self.assertEqual(
@@ -242,6 +264,11 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
             num_installment + 1,
             "Wrong number of installment created",
         )
+        self.assertEqual(
+            self.so_service.invoice_plan_pending,
+            num_installment + 1,
+            "Pending invoice plan count mismatch (with advance)",
+        )
         # If advance percent is not filled, show error
         with self.assertRaises(ValidationError):
             self.so_service.action_confirm()
@@ -256,6 +283,12 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         # Create all invoice plan
         wizard = self.env["sale.make.planned.invoice"].create({})
         wizard.with_context(**ctx).create_invoices_by_plan()
+        # Valid number of invoices plan pending
+        self.assertEqual(
+            self.so_service.invoice_plan_pending,
+            0,
+            "Pending invoice plan should be 0 after all invoiced (with advance)",
+        )
         # Valid number of invoices, including advance
         invoices = self.so_service.invoice_ids
         self.assertEqual(
