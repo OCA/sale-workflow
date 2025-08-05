@@ -3,7 +3,7 @@
 {
     "name": "Sale order safe commitment date",
     "summary": "Avoid confirming a commitment date previous to the expected date",
-    "version": "16.0.1.2.0",
+    "version": "16.0.1.3.0",
     "development_status": "Alpha",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",

@@ -21,23 +21,13 @@ msgid ""
 msgstr ""
 
 #. module: sale_order_safe_commitment_date
-#: model_terms:ir.ui.view,arch_db:sale_order_safe_commitment_date.view_order_form_commitment_date_ux
-msgid ""
-"<i class=\"fa fa-warning text-warning\" attrs=\"{'invisible': "
-"[('is_commitment_date_unsafe', '=', False)]}\" alt=\"The delivery date is "
-"sooner than the expected date. You may be unable to honor the delivery "
-"date.\"/> Expected:"
-msgstr ""
-
-#. module: sale_order_safe_commitment_date
 #: model_terms:ir.ui.view,arch_db:sale_order_safe_commitment_date.view_order_form
 msgid "<i class=\"fa fa-warning\"/> You requested delivery on"
 msgstr ""
 
 #. module: sale_order_safe_commitment_date
-#: model:ir.model.fields,field_description:sale_order_safe_commitment_date.field_sale_order__commitment_date
-#: model_terms:ir.ui.view,arch_db:sale_order_safe_commitment_date.view_order_form_commitment_date_ux
-msgid "Delivery Date"
+#: model:ir.model.fields,field_description:sale_order_safe_commitment_date.field_sale_order__date_for_commitment
+msgid "Delivery date"
 msgstr ""
 
 #. module: sale_order_safe_commitment_date
@@ -51,7 +41,7 @@ msgid "Sales Order"
 msgstr ""
 
 #. module: sale_order_safe_commitment_date
-#: model:ir.model.fields,help:sale_order_safe_commitment_date.field_sale_order__commitment_date
+#: model:ir.model.fields,help:sale_order_safe_commitment_date.field_sale_order__date_for_commitment
 msgid ""
 "This is the delivery date promised to the customer. If set, the delivery "
 "order will be scheduled based on this date rather than product lead times."
