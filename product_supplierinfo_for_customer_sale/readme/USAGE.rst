@@ -29,3 +29,5 @@ To use this module, you need:
 .. figure:: ../static/description/description_code_2.png
     :alt: Search by exist customer code
     :width: 600 px
+
+- In Sales > Product > Product Customer Info, user can access a list view with all supplierinfos set in products, as well as create new ones.
