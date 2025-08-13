@@ -59,7 +59,7 @@ class CustomerPortalSaleOrderSearch(portal.CustomerPortal):
         date_end=None,
         sortby=None,
         quotation_page=False,
-        **kwargs
+        **kwargs,
     ):
         values = super()._prepare_sale_portal_rendering_values(
             page=page,
@@ -67,7 +67,7 @@ class CustomerPortalSaleOrderSearch(portal.CustomerPortal):
             date_end=date_end,
             sortby=sortby,
             quotation_page=quotation_page,
-            **kwargs
+            **kwargs,
         )
         search = request.params.get("search") or ""
         search_in = request.params.get("search_in") or "all"
