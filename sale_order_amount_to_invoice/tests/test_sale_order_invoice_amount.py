@@ -1,12 +1,12 @@
-# Copyright (C) 2024 Cetmix OÜ
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests import tagged
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form, tagged
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @tagged("post_install", "-at_install")
-class TestSaleOrderInvoiceAmount(TransactionCase):
+class TestSaleOrderInvoiceAmount(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -42,7 +42,6 @@ class TestSaleOrderInvoiceAmount(TransactionCase):
                 line_2.price_unit = 150.0
 
         sale_order = form.save()
-
         self.assertEqual(
             sale_order.untaxed_amount_to_invoice,
             0,
