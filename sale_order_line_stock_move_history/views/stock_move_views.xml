@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
+       License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+
+    <record id="stock_move_line_history" model="ir.ui.view">
+        <field name="name">stock.move.line.custom.tree</field>
+        <field name="model">stock.move.line</field>
+        <field name="arch" type="xml">
+            <list string="Stock Move History" create="0">
+                <field name="product_id" />
+                <field name="date" />
+                <field
+                    name="reference"
+                    string="Reference"
+                    column_invisible="context.get('no_reference', False)"
+                />
+                <field name="location_id" />
+                <field name="location_dest_id" />
+                <field
+                    name="quantity"
+                    string="Quantity"
+                    decoration-danger="(location_usage in ('internal','transit')) and (location_dest_usage not in ('internal','transit'))"
+                    decoration-success="(location_usage not in ('internal','transit')) and (location_dest_usage in ('internal','transit'))"
+                />
+                <field
+                    name="product_uom_id"
+                    options="{'no_open': True, 'no_create': True}"
+                    string="Unit"
+                    groups="uom.group_uom"
+                />
+                <field
+                    name="state"
+                    widget='badge'
+                    optional="show"
+                    decoration-danger="state=='cancel'"
+                    decoration-info="state== 'assigned'"
+                    decoration-muted="state == 'draft'"
+                    decoration-success="state == 'done'"
+                    decoration-warning="state not in ('draft','cancel','done','assigned')"
+                />
+                <field
+                    name="create_uid"
+                    string="Done By"
+                    widget="many2one_avatar_user"
+                    optional="hide"
+                />
+            </list>
+        </field>
+    </record>
+</odoo>

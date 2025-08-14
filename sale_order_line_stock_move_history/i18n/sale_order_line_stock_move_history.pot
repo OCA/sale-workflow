@@ -1,0 +1,55 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_stock_move_history
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_line_stock_move_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_stock_move_history.stock_move_line_history
+msgid "Done By"
+msgstr ""
+
+#. module: sale_order_line_stock_move_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_stock_move_history.stock_move_line_history
+msgid "Quantity"
+msgstr ""
+
+#. module: sale_order_line_stock_move_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_stock_move_history.stock_move_line_history
+msgid "Reference"
+msgstr ""
+
+#. module: sale_order_line_stock_move_history
+#: model:ir.model,name:sale_order_line_stock_move_history.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_line_stock_move_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_stock_move_history.stock_move_line_history
+msgid "Stock Move History"
+msgstr ""
+
+#. module: sale_order_line_stock_move_history
+#. odoo-python
+#: code:addons/sale_order_line_stock_move_history/models/sale_order_line.py:0
+msgid "Stock Moves History for %s"
+msgstr ""
+
+#. module: sale_order_line_stock_move_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_stock_move_history.stock_move_line_history
+msgid "Unit"
+msgstr ""
+
+#. module: sale_order_line_stock_move_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_stock_move_history.view_order_form_inherit_stock_moves
+msgid "View Stock Moves History"
+msgstr ""

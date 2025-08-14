@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record
+        model="ir.ui.view"
+        id="sale_elaboration_product_category_view_form_inherit_elaboration_id"
+    >
+        <field name="name">product.category.view.form.sale.elaboration</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='logistics']" position="inside">
+                <field name="elaboration_profile_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

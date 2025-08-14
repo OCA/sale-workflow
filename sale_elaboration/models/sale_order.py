@@ -1,4 +1,4 @@
-# Copyright 2018 Tecnativa - Sergio Teruel
+elaboration_profile_id# Copyright 2018 Tecnativa - Sergio Teruel
 # Copyright 2019 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import _, api, fields, models
@@ -58,7 +58,7 @@ class SaleOrderLine(models.Model):
         search="_search_is_prepared",
         help=("Dummy field to be able to find prepared lines"),
     )
-
+       
     def get_elaboration_stock_route(self):
         self.ensure_one()
         return self.elaboration_ids.route_ids[:1]

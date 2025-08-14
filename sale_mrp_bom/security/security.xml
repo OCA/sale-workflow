@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="sale_mrp_bom_group" model="res.groups">
+        <field name="name">Allows to define a BOM on sale order lines</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+</odoo>

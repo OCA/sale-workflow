@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_stock_move_history
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-07-23 14:25+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: sale_order_line_stock_move_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_stock_move_history.stock_move_line_history
+msgid "Done By"
+msgstr "Eseguito da"
+
+#. module: sale_order_line_stock_move_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_stock_move_history.stock_move_line_history
+msgid "Quantity"
+msgstr "Quantità"
+
+#. module: sale_order_line_stock_move_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_stock_move_history.stock_move_line_history
+msgid "Reference"
+msgstr "Riferimento"
+
+#. module: sale_order_line_stock_move_history
+#: model:ir.model,name:sale_order_line_stock_move_history.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Riga ordine di vendita"
+
+#. module: sale_order_line_stock_move_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_stock_move_history.stock_move_line_history
+msgid "Stock Move History"
+msgstr "Cronologia movimenti magazzino"
+
+#. module: sale_order_line_stock_move_history
+#. odoo-python
+#: code:addons/sale_order_line_stock_move_history/models/sale_order_line.py:0
+msgid "Stock Moves History for %s"
+msgstr "Cronologia movimenti magazzino per %s"
+
+#. module: sale_order_line_stock_move_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_stock_move_history.stock_move_line_history
+msgid "Unit"
+msgstr "Unità"
+
+#. module: sale_order_line_stock_move_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_stock_move_history.view_order_form_inherit_stock_moves
+msgid "View Stock Moves History"
+msgstr "Visualizza cronologia movimenti di magazzino"

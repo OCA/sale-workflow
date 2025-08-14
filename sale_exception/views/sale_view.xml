@@ -48,7 +48,11 @@
                 </div>
             </sheet>
             <xpath expr="//field[@name='date_order']/.." position="inside">
-                <field name="ignore_exception" invisible="state != 'sale'" />
+                <field
+                    name="ignore_exception"
+                    invisible="state != 'sale'"
+                    groups="base_exception.group_exception_rule_manager"
+                />
             </xpath>
             <xpath expr="//field[@name='order_line']/form/group[1]" position="before">
                 <div

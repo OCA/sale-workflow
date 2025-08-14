@@ -35,6 +35,11 @@ msgid "Archived"
 msgstr "In archivio"
 
 #. module: sale_elaboration
+#: model:product.elaboration,name:sale_elaboration.product_elaboration_assembly
+msgid "Assembly"
+msgstr ""
+
+#. module: sale_elaboration
 #: model:ir.model.constraint,message:sale_elaboration.constraint_product_elaboration_code_uniq
 msgid "Code must be unique!"
 msgstr "Il codice deve essere univoco!"
@@ -97,6 +102,7 @@ msgid "Elab. Price"
 msgstr "Elab. prezzo"
 
 #. module: sale_elaboration
+#: model:product.template,name:sale_elaboration.product_product_elaboration_product_template
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_sales_order_line_filter
 msgid "Elaboration"
@@ -111,6 +117,7 @@ msgid "Elaboration Note"
 msgstr "Nota elaborazione"
 
 #. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_category__elaboration_profile_id
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_product__elaboration_profile_id
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_template__elaboration_profile_id
 #: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__elaboration_profile_id
@@ -210,6 +217,12 @@ msgstr "È preparata"
 msgid "Last Modified on"
 msgstr "Ultima modifica il"
 
+#: model:ir.model.fields,help:sale_elaboration.field_product_product__elaboration_profile_id
+#: model:ir.model.fields,help:sale_elaboration.field_product_template__elaboration_profile_id
+msgid ""
+"Keep this field empty to use the default value from the product category."
+msgstr ""
+
 #. module: sale_elaboration
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__write_uid
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__write_uid
@@ -239,6 +252,11 @@ msgstr "Il nome deve essere univoco!"
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 msgid "Product"
 msgstr "Prodotto"
+
+#. module: sale_elaboration
+#: model:ir.model,name:sale_elaboration.model_product_category
+msgid "Product Category"
+msgstr ""
 
 #. module: sale_elaboration
 #: model:ir.model,name:sale_elaboration.model_product_elaboration_mixin
@@ -336,9 +354,14 @@ msgstr "Trasferimento"
 #, python-format
 msgid "Unsupported operator %s for searching on is_prepared"
 msgstr "Operatore %s non supportato per la ricerca in is_prepared"
+msgid "Unsupported operator %s for searching on is_prepared"
+msgstr "Operatore %s non supportato per la ricerca in is_prepared"
 
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
 #~ msgid "<strong>Elab.</strong>"
 #~ msgstr "<strong>Elab.</strong>"
 
 #~ msgid "<strong>Elaboration</strong>"
 #~ msgstr "<strong>Elaborazione</strong>"
+Search: (Use /re/ syntax for regexp search)
