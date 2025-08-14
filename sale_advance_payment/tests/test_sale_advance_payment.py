@@ -315,6 +315,10 @@ class TestSaleAdvancePayment(common.TransactionCase):
             }
         )._create_payments()
         self.assertEqual(self.sale_order_1.amount_residual, 2200)
+        # Cancel invoice and check residual amount
+        invoice.button_draft()
+        invoice.button_cancel()
+        self.assertEqual(self.sale_order_1.amount_residual, 3400)
 
     def test_03_residual_amount_big_pre_payment(self):
         self.assertEqual(
