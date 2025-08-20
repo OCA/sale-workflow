@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-02-20 11:06+0000\n"
+"PO-Revision-Date: 2025-08-20 16:50+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: sale_manual_delivery
 #: model_terms:ir.ui.view,arch_db:sale_manual_delivery.manual_delivery_wizard_form
@@ -207,7 +207,7 @@ msgstr "Quantità da spedire"
 #. module: sale_manual_delivery
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__remaining_qty
 msgid "Remaining quantity"
-msgstr "Quantità rimanente"
+msgstr "Quantità residua"
 
 #. module: sale_manual_delivery
 #: model:ir.model.fields,help:sale_manual_delivery.field_manual_delivery_line__remaining_qty
