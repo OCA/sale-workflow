@@ -7,10 +7,13 @@
         <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock" />
         <field name="arch" type="xml">
             <group name="sale_shipping" position="inside">
-                <field name="picking_note" readonly="state not in ('draft','sent')" />
+                <field
+                    name="picking_note"
+                    readonly="state not in ('draft','sent', 'sale')"
+                />
                 <field
                     name="picking_customer_note"
-                    readonly="state not in ('draft','sent')"
+                    readonly="state not in ('draft','sent', 'sale')"
                 />
             </group>
         </field>
