@@ -5,7 +5,7 @@
     "summary": "Allow to choose by default a warehouse on SO "
     "based on a Partner parameter",
     "version": "18.0.1.0.0",
-    "development_status": "Alpha",
+    "development_status": "Beta",
     "category": "Warehouse Management",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Camptocamp, BCIM, Odoo Community Association (OCA)",
