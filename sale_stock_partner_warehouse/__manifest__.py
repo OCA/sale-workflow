@@ -2,8 +2,9 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 {
     "name": "sale stock partner wharehouse",
-    "summary": "Allow to choose by default a warehouse on SO based on a Partner parameter",
-    "version": "16.0.1.0.0",
+    "summary": "Allow to choose by default a warehouse on SO "
+    "based on a Partner parameter",
+    "version": "18.0.1.0.0",
     "development_status": "Alpha",
     "category": "Warehouse Management",
     "website": "https://github.com/OCA/sale-workflow",
