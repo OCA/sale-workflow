@@ -1,8 +1,7 @@
 # Copyright 2024 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests import common
-from odoo.tests.common import Form
+from odoo.tests import Form, common
 
 from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
 
