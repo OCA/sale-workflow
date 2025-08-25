@@ -4,7 +4,7 @@
 from contextlib import suppress
 from datetime import datetime
 
-from odoo.tests.common import Form
+from odoo.tests import Form
 from odoo.tools import mute_logger
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -22,6 +22,42 @@ class SaleResourceBookingsCase(BaseCommon):
         cls.product_normal = cls.env["product.product"].create(
             {"name": "test non-booking product"}
         )
+
+    def test_action_invite(self):
+        order_f = Form(self.env["sale.order"])
+        order_f.partner_id = self.partner
+        with order_f.order_line.new() as line_f:
+            line_f.product_id = self.product
+        order = order_f.save()
+        order.action_confirm()
+        bookings = order.order_line.mapped("resource_booking_ids")
+        # Open wizard
+        wizard = self.env["sale.order.booking.confirm"].create(
+            {"order_id": order.id, "resource_booking_ids": [(6, 0, bookings.ids)]}
+        )
+        self.assertEqual(order.resource_booking_count, 1)
+        # Trigger invite with context
+        wizard = wizard.with_context(trigger_booking_email=True)
+        result = wizard.action_invite()
+        self.assertEqual(result["type"], "ir.actions.client")
+
+    def test_action_noop(self):
+        # Open wizard
+        order_f = Form(self.env["sale.order"])
+        order_f.partner_id = self.partner
+        with order_f.order_line.new() as line_f:
+            line_f.product_id = self.product
+        order = order_f.save()
+        order.action_confirm()
+        bookings = order.order_line.mapped("resource_booking_ids")
+        self.assertEqual(order.resource_booking_count, 1)
+        wizard = self.env["sale.order.booking.confirm"].create(
+            {"order_id": order.id, "resource_booking_ids": [(6, 0, bookings.ids)]}
+        )
+        # Trigger noop with context
+        wizard = wizard.with_context(trigger_booking_email=True)
+        result = wizard.action_noop()
+        self.assertEqual(result["type"], "ir.actions.client")
 
     def _run_action(self, action):
         """Return a recordset of applying the action results."""
@@ -95,6 +131,22 @@ class SaleResourceBookingsCase(BaseCommon):
         # Delete SO lines, bookings deleted
         order.order_line.unlink()
         self.assertFalse(bookings.exists())
+
+    def test_action_bookings_resync(self):
+        # Create a minimal sale order with a line
+        order_f = Form(self.env["sale.order"])
+        order_f.partner_id = self.partner
+        with order_f.order_line.new() as line_f:
+            line_f.product_id = self.product
+        order = order_f.save()
+        order.action_confirm()
+        # Call resync method
+        action = order.action_bookings_resync()
+        # Check it returns a valid window action
+        self.assertIsInstance(action, dict)
+        self.assertEqual(action.get("type"), "ir.actions.act_window")
+        self.assertIn("context", action)
+        self.assertEqual(action["context"].get("default_order_id"), order.id)
 
     def test_wizard_quotation_product_no_rbc(self):
         """Test quotation wizard when product has no combination assigned."""
