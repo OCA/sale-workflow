@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
-from odoo.tests.common import Form
 
 
 class ResourceBookingSale(models.TransientModel):
@@ -29,14 +28,23 @@ class ResourceBookingSale(models.TransientModel):
     product_uom_qty = fields.Integer(string="Quantity", required=True, default=1)
 
     def action_generate(self):
-        so_form = Form(self.env["sale.order"])
-        so_form.partner_id = self.partner_id
-        with so_form.order_line.new() as sol_form:
-            sol_form.product_id = self.product_id
-            sol_form.product_uom_qty = self.product_uom_qty
-        so = so_form.save()
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner_id.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product_id.id,
+                            "product_uom_qty": self.product_uom_qty,
+                        },
+                    )
+                ],
+            }
+        )
         return {
-            "res_id": so.id,
+            "res_id": order.id,
             "res_model": "sale.order",
             "target": "current",
             "type": "ir.actions.act_window",
