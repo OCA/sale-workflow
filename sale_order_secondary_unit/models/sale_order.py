@@ -19,19 +19,13 @@ class SaleOrderLine(models.Model):
 
     product_uom_qty = fields.Float(copy=True)
 
-    @api.depends(
-        "display_type",
-        "product_id",
-        "product_packaging_qty",
+    @api.onchange(
         "secondary_uom_qty",
         "secondary_uom_id",
-        "product_uom_qty",
     )
-    def _compute_product_uom_qty(self):
-        res = super()._compute_product_uom_qty()
+    def _compute_target_field_qty(self):
         for line in self:
             line._compute_helper_target_field_qty()
-        return res
 
     @api.depends("product_id")
     def _compute_product_uom(self):
