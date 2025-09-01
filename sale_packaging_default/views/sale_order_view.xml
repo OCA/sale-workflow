@@ -9,15 +9,15 @@
         <field name="arch" type="xml">
             <!-- Move packaging and packaging qty before product qty in tree view -->
             <xpath
-                expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
+                expr="//field[@name='order_line']/list/field[@name='product_uom_qty']"
                 position="before"
             >
                 <xpath
-                    expr="//field[@name='order_line']/tree/field[@name='product_packaging_id']"
+                    expr="//field[@name='order_line']/list/field[@name='product_packaging_id']"
                     position="move"
                 />
                 <xpath
-                    expr="//field[@name='order_line']/tree/field[@name='product_packaging_qty']"
+                    expr="//field[@name='order_line']/list/field[@name='product_packaging_qty']"
                     position="move"
                 />
             </xpath>
