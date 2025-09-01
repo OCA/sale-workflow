@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath
                 expr="//field[@name='invoice_line_ids']/list/field[@name='sequence']"
-                position="before"
+                position="after"
             >
                 <field
                     name="related_so_sequence"
