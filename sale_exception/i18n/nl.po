@@ -78,6 +78,16 @@ msgstr ""
 "uitzonderingen."
 
 #. module: sale_exception
+#: model:ir.model,name:sale_exception.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_exception
+#: model:ir.model,name:sale_exception.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
 msgid "Confirm"
 msgstr "Bevestigen"
@@ -101,6 +111,13 @@ msgstr "Verkoopwaarschuwing klant"
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__display_name
 msgid "Display Name"
 msgstr "Weergavenaam"
+
+#. module: sale_exception
+#: model_terms:ir.ui.view,arch_db:sale_exception.res_config_settings_view_form_sale_exception
+msgid ""
+"Display popup at confirm or simply rely on the red alert already visible on "
+"top of the order."
+msgstr ""
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_exception_rule
@@ -193,6 +210,12 @@ msgstr "Productwaarschuwing"
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__related_model_id
 msgid "Sale"
 msgstr "Verkoop"
+
+#. module: sale_exception
+#: model:ir.model.fields,field_description:sale_exception.field_res_company__sale_exception_show_popup
+#: model:ir.model.fields,field_description:sale_exception.field_res_config_settings__sale_exception_show_popup
+msgid "Sale Exception Popup"
+msgstr ""
 
 #. module: sale_exception
 #: model:ir.actions.act_window,name:sale_exception.action_sale_test_tree
