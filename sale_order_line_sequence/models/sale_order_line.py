@@ -14,7 +14,7 @@ class SaleOrderLine(models.Model):
         default=9999,
     )
 
-    visible_sequence = fields.Integer(
+    visible_sequence = fields.Char(
         "Line Number",
         help="Displays the sequence of the line in the sale order.",
         compute="_compute_visible_sequence",
@@ -29,5 +29,5 @@ class SaleOrderLine(models.Model):
                 lambda order_line: not order_line.display_type
             )
             for line in sorted(order_lines, key=lambda order_line: order_line.sequence):
-                line.visible_sequence = sequence
+                line.visible_sequence = str(sequence)
                 sequence += 1
