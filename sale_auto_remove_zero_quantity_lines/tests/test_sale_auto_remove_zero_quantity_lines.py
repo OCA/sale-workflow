@@ -11,6 +11,12 @@ class TestSaleAutoRemoveZeroQuantityLines(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env["base"].with_context(**DISABLED_MAIL_CONTEXT).env
+        cls.public_pricelist = cls.env["product.pricelist"].create(
+            {
+                "name": "Test Public Pricelist",
+                "sequence": 1,
+            }
+        )
 
     def test_sale_auto_remove_zero_quantity_lines(self):
         self.env.user.company_id.sale_auto_remove_zero_quantity_lines = True
@@ -67,7 +73,7 @@ class TestSaleAutoRemoveZeroQuantityLines(TransactionCase):
                         },
                     ),
                 ],
-                "pricelist_id": self.env.ref("product.list0").id,
+                "pricelist_id": self.public_pricelist.id,
             }
         )
         so.action_confirm()
