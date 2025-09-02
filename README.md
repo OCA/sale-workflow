@@ -34,6 +34,7 @@ addon | version | maintainers | summary
 [sale_automatic_workflow_job](sale_automatic_workflow_job/) | 15.0.1.0.0 |  | Execute sale automatic workflows in queue jobs
 [sale_automatic_workflow_payment_mode](sale_automatic_workflow_payment_mode/) | 15.0.1.0.0 |  | Sale Automatic Workflow - Payment Mode
 [sale_blanket_order](sale_blanket_order/) | 15.0.1.2.1 |  | Blanket Orders
+[sale_cancel_confirmed_invoice](sale_cancel_confirmed_invoice/) | 15.0.1.0.0 |  | Sale Cancel Confirmed Invoice
 [sale_cancel_reason](sale_cancel_reason/) | 15.0.1.0.0 |  | Sale Cancel Reason
 [sale_commercial_partner](sale_commercial_partner/) | 15.0.1.0.2 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Add stored related field 'Commercial Entity' on sale orders
 [sale_credit_point](sale_credit_point/) | 15.0.1.1.0 |  | Sale Credit Points
