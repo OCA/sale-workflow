@@ -9,31 +9,32 @@ msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-29 03:51+0000\n"
-"PO-Revision-Date: 2017-08-29 03:51+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2025-09-03 21:42+0000\n"
+"Last-Translator: Tamer Sezgin <tamer.sezgin@gmail.com>\n"
 "Language-Team: Turkish (https://www.transifex.com/oca/teams/23907/tr/)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: sale_order_line_date
 #: field:sale.order.line,requested_date:0
 msgid "Requested Date"
-msgstr ""
+msgstr "İstenen Tarih"
 
 #. module: sale_order_line_date
 #: model:ir.model,name:sale_order_line_date.model_sale_order
 msgid "Sales Order"
-msgstr "Sipariş Emri"
+msgstr "Satis Siparişi"
 
 #. module: sale_order_line_date
 #: model:ir.model,name:sale_order_line_date.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Sipariş Kalemi"
+msgstr "Satış Siparişi Satırı"
 
 #. module: sale_order_line_date
 #: view:sale.order:sale_order_line_date.sale_order_requested_date_form_view
 msgid "{'default_requested_date':requested_date}"
-msgstr ""
+msgstr "{'default_requested_date':requested_date }"
