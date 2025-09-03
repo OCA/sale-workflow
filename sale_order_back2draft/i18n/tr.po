@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-05 23:35+0000\n"
-"PO-Revision-Date: 2015-09-03 07:09+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2025-09-03 21:42+0000\n"
+"Last-Translator: Tamer Sezgin <tamer.sezgin@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/tr/)\n"
 "Language: tr\n"
@@ -17,11 +17,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: sale_order_back2draft
 #: view:sale.order:sale_order_back2draft.view_order_form_draft
 msgid "Back to draft"
-msgstr ""
+msgstr "Taslağa geri dön"
 
 #. module: sale_order_back2draft
 #: model:ir.model,name:sale_order_back2draft.model_sale_order
@@ -33,3 +34,5 @@ msgstr "Sipariş Emri"
 #, python-format
 msgid "You can't back any order that it's not on cancel state. Order: %s"
 msgstr ""
+"İptal durumunda olmayan bir siparişi geri taslak durumuna alamazsınız. "
+"Sipariş: %s"
