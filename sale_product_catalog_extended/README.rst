@@ -57,10 +57,10 @@ Authors
 Contributors
 ------------
 
--  `Tecnativa <https://www.tecnativa.com>`__:
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-   -  Carlos Dauden
-   -  Carlos Roca
+  - Carlos Dauden
+  - Carlos Roca
 
 Maintainers
 -----------

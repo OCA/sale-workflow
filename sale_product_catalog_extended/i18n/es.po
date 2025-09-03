@@ -1,0 +1,67 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_product_catalog_extended
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-25 11:21+0000\n"
+"PO-Revision-Date: 2026-05-25 11:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_product_product__catalog_origin_data
+msgid "Catalog Origin Data"
+msgstr "Datos de origen del catálogo"
+
+#. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/order_line/order_line.xml:0
+msgid "Edit"
+msgstr "Editar"
+
+#. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/order_line/order_line.xml:0
+msgid "Edit Lines"
+msgstr "Editar líneas"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields.selection,name:sale_product_catalog_extended.selection__product_product__catalog_origin_data__sale_order
+msgid "Last sales"
+msgstr "Últimas ventas"
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.product_view_search_catalog
+msgid "Origin"
+msgstr "Origen"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model,name:sale_product_catalog_extended.model_product_product
+msgid "Product Variant"
+msgstr "Variante de producto"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model,name:sale_product_catalog_extended.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_product_catalog_extended
+#: model:ir.actions.act_window,name:sale_product_catalog_extended.action_open_editable_sale_order_line
+#: model:ir.actions.act_window,name:sale_product_catalog_extended.action_open_editable_sale_order_line_multi
+#: model:ir.model,name:sale_product_catalog_extended.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/order_line/order_line.xml:0
+msgid "Total quantity:"
+msgstr "Cantidad total:"

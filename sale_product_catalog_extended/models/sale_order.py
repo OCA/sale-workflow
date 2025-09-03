@@ -20,6 +20,13 @@ class SaleOrder(models.Model):
             self._get_catalog_order_line_filter_domain(product_id, **kwargs)
         ).ids
 
+    def _get_action_add_from_catalog_extra_context(self):
+        # TODO: partner_id or shipping_partner_id?
+        return {
+            **super()._get_action_add_from_catalog_extra_context(),
+            "product_catalog_partner_id": self.partner_shipping_id.id,
+        }
+
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
