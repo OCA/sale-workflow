@@ -99,82 +99,53 @@ class TestSaleOrder(SavepointCase):
             self.so_2.order_line[2].product_id.type,
             "service",
         )
+        # this should do nothing, and no crash
         self.sale_orders.automatic_set_route_on_sol()
         self.assertEqual(
             self.sale_orders.order_line.mapped("route_id.id"),
             [],
-        )
-        self.so_1.workflow_process_id = self.wkflow_1
-        self.so_2.workflow_process_id = self.wkflow_2
-        self.sale_orders.automatic_set_route_on_sol()
-        self.assertEqual(
-            self.so_1.order_line.mapped("route_id.id"),
-            [],
-        )
-        self.assertEqual(
-            self.so_2.order_line.mapped("route_id.id"),
-            [self.wkflow_2.sale_line_route_id.id],
-        )
-        # not on qty_delivered_method != 'stock_move'
-        self.assertEqual(
-            self.so_2.order_line[2].route_id.id,
-            False,
-        )
-        # note : this will set a route_id on our service product,
-        # we will use that later on to test the function
-        self.so_1.order_line.route_id = self.route_1
-        self.so_2.order_line.route_id = self.route_1
-        self.sale_orders.automatic_set_route_on_sol()
-        self.assertEqual(
-            self.so_1.order_line.mapped("route_id.id"),
-            [self.route_1.id],
-        )
-        # the service product on so_2 should have been untouched
-        self.assertEqual(
-            self.so_2.order_line[2].route_id.id,
-            self.route_1.id,
-        )
-        # fix that and check the whole thing
-        self.so_2.order_line[2].route_id = False
-        self.assertEqual(
-            self.so_2.order_line.mapped("route_id.id"),
-            [self.wkflow_2.sale_line_route_id.id],
         )
 
-    def test_02_onchange_automatic(self):
-        self.assertEqual(
-            self.sale_orders.order_line.mapped("route_id.id"),
-            [],
-        )
-        # note : this will set a route_id on our service product,
-        # we will use that later on to test the function
-        self.so_1.order_line.route_id = self.route_1
-        self.assertEqual(
-            self.so_1.order_line.mapped("route_id.id"),
-            [self.route_1.id],
-        )
+        self.so_2.order_line[0].route_id = self.route_1
+        self.so_2.order_line[1].route_id = False
+        self.so_2.order_line[2].route_id = False
+
         self.so_1.workflow_process_id = self.wkflow_1
-        self.so_1._onchange_workflow_process_id()
-        self.assertEqual(
-            self.so_1.order_line.mapped("route_id.id"),
-            [self.route_1.id],
-        )
-        self.so_1.workflow_process_id = False
-        self.so_1._onchange_workflow_process_id()
-        self.assertEqual(
-            self.so_1.order_line.mapped("route_id.id"),
-            [self.route_1.id],
-        )
-        self.so_1.workflow_process_id = self.wkflow_2
-        self.so_1._onchange_workflow_process_id()
-        # the service product should have been untouched
-        self.assertEqual(
-            self.so_1.order_line[2].route_id.id,
-            self.route_1.id,
-        )
-        # fix that and check the whole thing
-        self.so_1.order_line[2].route_id = False
+        self.wkflow_2.sale_line_route_policy = "fill_empty"
+        self.so_2.workflow_process_id = self.wkflow_2
+        self.sale_orders.automatic_set_route_on_sol()
+        # workflow 1 has no route_id, so does nothing
         self.assertEqual(
             self.so_1.order_line.mapped("route_id.id"),
             [],
+        )
+
+        # workflow 2 with policy fill_empty should set only
+        # lines with no route already, and not type service
+        self.assertEqual(
+            self.so_2.order_line[0].route_id,
+            self.route_1,
+        )
+        self.assertEqual(
+            self.so_2.order_line[1].route_id,
+            self.route_2,
+        )
+        self.assertFalse(
+            self.so_2.order_line[2].route_id,
+        )
+
+        self.wkflow_2.sale_line_route_policy = "replace"
+        self.sale_orders.automatic_set_route_on_sol()
+        # workflow 2 with policy replace sholud set everything
+        # except on product service
+        self.assertEqual(
+            self.so_2.order_line[0].route_id,
+            self.route_2,
+        )
+        self.assertEqual(
+            self.so_2.order_line[1].route_id,
+            self.route_2,
+        )
+        self.assertFalse(
+            self.so_2.order_line[2].route_id,
         )

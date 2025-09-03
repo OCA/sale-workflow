@@ -15,3 +15,15 @@ class SaleWorkflowProcess(models.Model):
         ondelete="restrict",
         check_company=True,
     )
+
+    sale_line_route_policy = fields.Selection(
+        [
+            ("replace", "Replace: Set route from workflow if defined"),
+            ("fill_empty", "Fill Empty: Set route only if line has no route"),
+        ],
+        string="Route Policy",
+        default="replace",
+        required=True,
+        help="Replace: Always apply workflow route when one is defined.\n"
+        "Fill Empty: Only set workflow route on lines that don't already have a route defined.",
+    )

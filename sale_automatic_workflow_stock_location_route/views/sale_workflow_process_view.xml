@@ -10,6 +10,7 @@
         <field name="arch" type="xml">
             <field name="picking_policy" position="after">
                 <field name="sale_line_route_id" />
+                <field name="sale_line_route_policy" />
             </field>
         </field>
     </record>
@@ -26,6 +27,7 @@
         <field name="arch" type="xml">
             <field name="picking_policy" position="after">
                 <field name="sale_line_route_id" />
+                <field name="sale_line_route_policy" />
             </field>
         </field>
     </record>

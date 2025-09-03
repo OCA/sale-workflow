@@ -8,13 +8,19 @@ from odoo import api, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    def _get_sols_to_automatically_set_route_on(self):
+        self.ensure_one()
+        route_policy = self.workflow_process_id.sale_line_route_policy
+        return self.order_line.filtered(
+            lambda sol: sol.qty_delivered_method == "stock_move"
+            and (route_policy == "replace" or not sol.route_id)
+        )
+
     def automatic_set_route_on_sol(self):
         for sale in self:
             route_id = sale.workflow_process_id.sale_line_route_id
             if route_id:
-                sale.order_line.filtered(
-                    lambda sol: sol.qty_delivered_method == "stock_move"
-                ).route_id = route_id
+                sale._get_sols_to_automatically_set_route_on().route_id = route_id
 
     def _action_confirm(self):
         self.automatic_set_route_on_sol()
@@ -22,13 +28,12 @@ class SaleOrder(models.Model):
 
     @api.onchange("workflow_process_id")
     def _onchange_workflow_process_id(self):
-        """if there is a sale_line_route_id set in the workflow
-        then wipe the existing route_id on order line to avoid
-        a confusion for the user, as they can be modified at confirmation time"""
+        """Apply workflow route to sale order lines when workflow has a route defined.
+
+        When switching to a workflow that has a route defined, this immediately
+        applies the route to eligible lines based on the route policy to give
+        users immediate visual feedback of what will happen at confirmation.
+        """
         res = super()._onchange_workflow_process_id()
-        route_id = self.workflow_process_id.sale_line_route_id
-        if route_id:
-            self.order_line.filtered(
-                lambda sol: sol.qty_delivered_method == "stock_move"
-            ).route_id = False
+        self.automatic_set_route_on_sol()
         return res
