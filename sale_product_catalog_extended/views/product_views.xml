@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_view_search_catalog" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_view_search_catalog" />
+        <field name="arch" type="xml">
+            <xpath expr="//searchpanel/field[@name='categ_id']" position="before">
+                <field name="catalog_origin_data" string="Origin" expand="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

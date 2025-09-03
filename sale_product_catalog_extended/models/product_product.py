@@ -1,0 +1,81 @@
+# Copyright 2025 Tecnativa - Carlos Dauden
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from datetime import timedelta
+
+from odoo import api, fields, models
+
+
+class ProductProduct(models.Model):
+    _inherit = "product.product"
+
+    catalog_origin_data = fields.Selection(
+        selection=[("sale_order", "Last sales")],
+        store=False,
+        search="_search_catalog_origin_data",
+    )
+
+    @api.model
+    def search_fetch(self, domain, field_names, offset=0, limit=None, order=None):
+        catalog_orig_data_bool_list = [
+            "catalog_origin_data" in subdomain for subdomain in domain
+        ]
+        if any(catalog_orig_data_bool_list):
+            # Get value of catalog_origin_data from domain to know which method throw.
+            # Then browse the ids to respect the order.
+            product_ids = getattr(
+                self,
+                f"_get_product_picker_data_{domain[catalog_orig_data_bool_list.index(True)][2]}",
+            )()
+            return self.browse(product_ids)
+        return super().search_fetch(
+            domain, field_names, offset=offset, limit=limit, order=order
+        )
+
+    @api.model
+    def _search_catalog_origin_data(self, operator, value):
+        # Hack to be able to filter by catalog_origin_data
+        return []
+
+    @api.model
+    def _product_picker_data_sale_order_domain(self):
+        """Domain to find recent SO lines."""
+        months = 6
+        start = fields.Datetime.now() - timedelta(days=months * 30)
+        start = fields.Datetime.to_string(start)
+        catalog_partner_id = self.env.context.get("product_catalog_partner_id", False)
+        catalog_order_id = self.env.context.get("product_catalog_order_id", False)
+        # Search with sudo for get sale order from other commercials users
+        other_sales = (
+            self.env["sale.order"]
+            # .sudo()
+            ._search(
+                [
+                    ("id", "!=", catalog_order_id),
+                    ("company_id", "=", self.env.company.id),
+                    ("partner_shipping_id", "=", catalog_partner_id),
+                    ("date_order", ">=", start),
+                ]
+            )
+        )
+        domain = [
+            ("order_id", "in", other_sales),
+            ("qty_delivered", "!=", 0.0),
+        ]
+        return domain
+
+    @api.model
+    def _get_product_picker_data_sale_order(self):
+        # Specific limit to allow show all products sold in recent orders
+        limit = int(
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("sale_order_product_picker.product_picker_last_order_limit", "0")
+        )
+        sol_groups = self.env["sale.order.line"]._read_group(
+            self._product_picker_data_sale_order_domain(),
+            groupby=["product_id"],
+            aggregates=["__count", "qty_delivered:sum"],
+            limit=limit,
+            order="__count desc, qty_delivered:sum desc",
+        )
+        return [g[0].id for g in sol_groups]
