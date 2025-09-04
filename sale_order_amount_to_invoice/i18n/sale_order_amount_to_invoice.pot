@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,14 +14,19 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_amount_to_invoice
+#: model_terms:ir.ui.view,arch_db:sale_order_amount_to_invoice.view_order_form
+msgid "<span class=\"fw-bold small\">Amount To Invoice:</span>"
+msgstr ""
+
+#. module: sale_order_amount_to_invoice
 #: model:ir.model,name:sale_order_amount_to_invoice.model_sale_order
 msgid "Sales Order"
 msgstr ""
 
 #. module: sale_order_amount_to_invoice
+#: model_terms:ir.ui.view,arch_db:sale_order_amount_to_invoice.sale_order_list_upload
 #: model_terms:ir.ui.view,arch_db:sale_order_amount_to_invoice.view_order_form
-#: model_terms:ir.ui.view,arch_db:sale_order_amount_to_invoice.view_order_tree
-#: model_terms:ir.ui.view,arch_db:sale_order_amount_to_invoice.view_quotation_tree
+#: model_terms:ir.ui.view,arch_db:sale_order_amount_to_invoice.view_quotation_tree_with_onboarding
 msgid "To Invoice"
 msgstr ""
 
