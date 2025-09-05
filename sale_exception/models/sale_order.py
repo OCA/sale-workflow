@@ -2,6 +2,8 @@
 # Copyright 2018 Akretion
 # Copyright 2019 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+from odoo.api import Environment
+from odoo.modules.registry import Registry
 
 from odoo import api, models
 
@@ -48,10 +50,18 @@ class SaleOrder(models.Model):
             orders._check_exception()
 
     def action_confirm(self):
-        if self.detect_exceptions():
-            if not self.env.company.sale_exception_show_popup:
-                return
-            return self._popup_exceptions()
+        breakpoint()
+        with Registry(self.env.cr.dbname).cursor() as new_cr:
+            new_env = Environment(new_cr, self.env.uid, self.env.context)
+            exception_ids = self.with_env(new_env).detect_exceptions()
+            if exception_ids:
+                new_cr.commit()
+                
+        if exception_ids:
+            # FIXME: As ValidationError is raised, the client is not refreshed to 
+            #  display the exception summary. Should we catch the ValidationError
+            #  and use another error class to force that?
+            self._check_exception()
         return super().action_confirm()
 
     def action_draft(self):
