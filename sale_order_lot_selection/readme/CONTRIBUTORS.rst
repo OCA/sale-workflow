@@ -4,3 +4,7 @@
 * Bhavesh Odedra <bodedra@opensourceintegrators.com>
 * François Honoré <francois.honore@acsone.eu>
 * Florian da Costa <florian.dacosta@akretion.com>
+* `Cetmix <https://cetmix.com>`_:
+
+  * George Smirnov
+  * Anatol Mikheev

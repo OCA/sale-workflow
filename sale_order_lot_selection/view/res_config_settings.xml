@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form_stock" model="ir.ui.view">
+        <field
+            name="name"
+        >res.config.settings.view.form.inherit.sale_order_lot_selection</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="stock.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='warning_info']" position="after">
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    groups="stock.group_production_lot"
+                >
+                    <div class="o_setting_left_pane">
+                        <field name="allow_generate_so_from_lots" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="allow_generate_so_from_lots" />
+                        <div class="text-muted">
+                            Allow to generate Sale Quotations from stock lots
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

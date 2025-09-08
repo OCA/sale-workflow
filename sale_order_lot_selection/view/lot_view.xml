@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem
+        id="menu_lots"
+        name="Lots/Serial Numbers"
+        action="stock.action_production_lot_form"
+        parent="sale.product_menu_catalog"
+        sequence="30"
+    />
+</odoo>
