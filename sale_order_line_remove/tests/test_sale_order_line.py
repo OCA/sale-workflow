@@ -7,7 +7,7 @@ from odoo.tests import TransactionCase
 
 class TestSaleOrderLine(TransactionCase):
     def setUp(self):
-        super(TestSaleOrderLine, self).setUp()
+        super().setUp()
         self.SaleOrder = self.env["sale.order"]
         self.SaleOrderLine = self.env["sale.order.line"]
         self.partner = self.env.ref("base.res_partner_2")
