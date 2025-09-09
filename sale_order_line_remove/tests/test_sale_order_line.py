@@ -6,13 +6,15 @@ from odoo.tests import TransactionCase
 
 
 class TestSaleOrderLine(TransactionCase):
-    def setUp(self):
+    def setUp(cls):
         super().setUp()
-        self.SaleOrder = self.env["sale.order"]
-        self.SaleOrderLine = self.env["sale.order.line"]
-        self.partner = self.env.ref("base.res_partner_2")
-        self.product = self.env.ref("product.product_product_4")
-        self.uom = self.env.ref("uom.product_uom_unit")
+        cls.SaleOrder = cls.env["sale.order"]
+        cls.SaleOrderLine = cls.env["sale.order.line"]
+        cls.partner = cls.env.ref("base.res_partner_2")
+        cls.product = cls.env.ref("product.product_product_4")
+        cls.uom = cls.env.ref("uom.product_uom_unit")
+        cls.config_param = cls.env["ir.config_parameter"].sudo()
+        cls.config_param.set_param("sale.order.line.remove", True)
 
     def test_check_line_unlink(self):
         sale_order = self.SaleOrder.create({"partner_id": self.partner.id})
@@ -57,7 +59,7 @@ class TestSaleOrderLine(TransactionCase):
         picking.action_confirm()
         picking.action_assign()
         for move in picking.move_ids_without_package:
-            move.quantity_done = move.product_uom_qty
+            move.quantity = move.product_uom_qty
         picking.button_validate()
         with self.assertRaises(UserError):
             sale_order_line._check_line_unlink()
@@ -77,7 +79,7 @@ class TestSaleOrderLine(TransactionCase):
         picking.action_confirm()
         picking.action_assign()
         for move in picking.move_ids_without_package:
-            move.quantity_done = move.product_uom_qty
+            move.quantity = move.product_uom_qty
         picking.button_validate()
         with self.assertRaises(UserError):
             sale_order_line.unlink()
@@ -97,7 +99,7 @@ class TestSaleOrderLine(TransactionCase):
         picking.action_confirm()
         picking.action_assign()
         for move in picking.move_ids_without_package:
-            move.quantity_done = move.product_uom_qty
+            move.quantity = move.product_uom_qty
         picking.button_validate()
         with self.assertRaises(UserError):
             sale_order_line._check_line_unlink()
@@ -117,7 +119,7 @@ class TestSaleOrderLine(TransactionCase):
         picking.action_confirm()
         picking.action_assign()
         for move in picking.move_ids_without_package:
-            move.quantity_done = move.product_uom_qty
+            move.quantity = move.product_uom_qty
         picking.button_validate()
         sale_order._create_invoices()
         with self.assertRaises(UserError):
