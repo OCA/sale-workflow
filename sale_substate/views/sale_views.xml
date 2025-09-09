@@ -11,7 +11,7 @@
                   <field
                         name="substate_id"
                         widget="statusbar"
-                        options="{'clickable': '1',}"
+                        options="{'clickable': '1'}"
                     />
               </header>
           </xpath>
