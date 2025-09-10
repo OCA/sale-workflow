@@ -6,13 +6,15 @@
       <field name="model">sale.order</field>
       <field name="inherit_id" ref="sale.view_order_form" />
       <field name="arch" type="xml">
-          <xpath expr="//header" position="after">
+          <xpath expr="//header" position="inside">
               <header name="substate">
                   <field
                         name="substate_id"
                         widget="statusbar"
                         options="{'clickable': '1'}"
-                    />
+                        invisible="not has_base_substate"
+                  />
+                  <field name="has_base_substate" invisible="1" />
               </header>
           </xpath>
       </field>

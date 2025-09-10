@@ -15,3 +15,9 @@ class BaseSubstateType(models.Model):
 class SaleOrder(models.Model):
     _inherit = ["sale.order", "base.substate.mixin"]
     _name = "sale.order"
+
+    has_base_substate = fields.Boolean(compute="_compute_has_base_substate")
+
+    def _compute_has_base_substate(self):
+        for rec in self:
+            rec.has_base_substate = bool(self.env["base.substate"].search_count([]))
