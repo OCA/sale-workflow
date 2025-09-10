@@ -6,7 +6,7 @@
       <field name="model">sale.order</field>
       <field name="inherit_id" ref="sale.view_order_form" />
       <field name="arch" type="xml">
-          <xpath expr="//header" position="inside">
+          <xpath expr="//header" position="after">
               <header name="substate">
                   <field
                         name="substate_id"
