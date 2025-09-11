@@ -4,7 +4,7 @@
         <t t-call="web.external_layout">
             <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})" />
             <div class="page">
-                <div class="oe_structure" />
+                <div id="oe_structure_layout_01" class="oe_structure" />
                 <div class="row">
                     <div class="col-xs-6">
                         <div
@@ -54,12 +54,6 @@
                             <t
                                 t-set="current_subtotal"
                                 t-value="current_subtotal + l.price_subtotal"
-                                groups="account.group_show_line_subtotals_tax_excluded"
-                            />
-                            <t
-                                t-set="current_subtotal"
-                                t-value="current_subtotal + l.price_total"
-                                groups="account.group_show_line_subtotals_tax_included"
                             />
                             <tr
                                 t-att-class="'bg-200 fw-bold o_line_section' if l.display_type == 'line_section' else 'fst-italic o_line_note' if l.display_type == 'line_note' else ''"
@@ -160,7 +154,7 @@
                 </div>
 
                 <p t-field="doc.note" />
-                <div class="oe_structure" />
+                <div id="oe_structure_layout_02" class="oe_structure" />
             </div>
         </t>
     </template>

@@ -125,7 +125,6 @@ class BlanketOrderWizard(models.TransientModel):
             "pricelist_id": pricelist_id,
             "payment_term_id": payment_term_id,
             "order_line": order_lines_by_customer[customer],
-            "analytic_account_id": self.blanket_order_id.analytic_account_id.id,
             "client_order_ref": client_order_ref,
             "tag_ids": [(6, 0, tag_ids.ids)] if tag_ids else False,
         }

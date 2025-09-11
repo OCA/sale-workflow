@@ -62,13 +62,6 @@ class BlanketOrder(models.Model):
         required=True,
     )
     currency_id = fields.Many2one("res.currency", related="pricelist_id.currency_id")
-    analytic_account_id = fields.Many2one(
-        comodel_name="account.analytic.account",
-        string="Analytic Account",
-        copy=False,
-        check_company=True,
-        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
-    )
     payment_term_id = fields.Many2one(
         "account.payment.term",
         string="Payment Terms",
@@ -243,10 +236,10 @@ class BlanketOrder(models.Model):
             ._get_fiscal_position(self.partner_id),
         }
 
-        if self.partner_id.user_id:
+        if user := self.partner_id.user_id:
             values["user_id"] = self.partner_id.user_id.id
-        if self.partner_id.team_id:
-            values["team_id"] = self.partner_id.team_id.id
+            if user.sale_team_id:
+                values["team_id"] = user.sale_team_id.id
         self.update(values)
 
     def unlink(self):
@@ -273,7 +266,7 @@ class BlanketOrder(models.Model):
                 assert len(order.line_ids) > 0, _("Must have some lines")
                 order.line_ids._validate()
         except AssertionError as e:
-            raise UserError(e) from e
+            raise UserError(str(e)) from e
 
     def set_to_draft(self):
         for order in self:
@@ -322,7 +315,7 @@ class BlanketOrder(models.Model):
 
     def action_view_sale_blanket_order_line(self):
         action = self.env["ir.actions.act_window"]._for_xml_id(
-            "sale_blanket_order.act_open_sale_blanket_order_lines_view_tree"
+            "sale_blanket_order.act_open_sale_blanket_order_lines_view_list"
         )
         lines = self.mapped("line_ids")
         if len(lines) > 0:
@@ -387,7 +380,9 @@ class BlanketOrder(models.Model):
 class BlanketOrderLine(models.Model):
     _name = "sale.blanket.order.line"
     _description = "Blanket Order Line"
-    _inherit = ["mail.thread", "mail.activity.mixin", "analytic.mixin"]
+    _inherit = ["analytic.mixin"]
+    _order = "order_id, sequence, id"
+    _check_company_auto = True
 
     @api.depends(
         "original_uom_qty",
@@ -417,7 +412,7 @@ class BlanketOrderLine(models.Model):
                 }
             )
 
-    name = fields.Char("Description", tracking=True)
+    name = fields.Char("Description")
     sequence = fields.Integer()
     order_id = fields.Many2one("sale.blanket.order", required=True, ondelete="cascade")
     product_id = fields.Many2one(
@@ -492,7 +487,7 @@ class BlanketOrderLine(models.Model):
     def _compute_display_name(self):
         if self.env.context.get("from_sale_order"):
             for record in self:
-                name = "[%s]" % record.order_id.name
+                name = f"{record.order_id.name}"
                 if record.date_schedule:
                     formatted_date = format_date(record.env, record.date_schedule)
                     name += " - {}: {}".format(_("Date Scheduled"), formatted_date)
@@ -505,101 +500,14 @@ class BlanketOrderLine(models.Model):
         else:
             return super()._compute_display_name()
 
-    def _get_real_price_currency(self, product, rule_id, qty, uom, pricelist_id):
-        """Retrieve the price before applying the pricelist
-        :param obj product: object of current product record
-        :param float qty: total quentity of product
-        :param tuple price_and_rule: tuple(price, suitable_rule) coming
-               from pricelist computation
-        :param obj uom: unit of measure of current order line
-        :param integer pricelist_id: pricelist id of sale order"""
-        # Copied and adapted from the sale module
-        PricelistItem = self.env["product.pricelist.item"]
-        field_name = "lst_price"
-        currency_id = None
-        product_currency = None
-        if rule_id:
-            pricelist_item = PricelistItem.browse(rule_id)
-            if pricelist_item.pricelist_id.discount_policy == "without_discount":
-                while (
-                    pricelist_item.base == "pricelist"
-                    and pricelist_item.base_pricelist_id
-                    and pricelist_item.base_pricelist_id.discount_policy
-                    == "without_discount"
-                ):
-                    price, rule_id = pricelist_item.base_pricelist_id.with_context(
-                        uom=uom.id
-                    )._get_product_price_rule(product, qty, uom)
-                    pricelist_item = PricelistItem.browse(rule_id)
-
-            if pricelist_item.base == "standard_price":
-                field_name = "standard_price"
-            if pricelist_item.base == "pricelist" and pricelist_item.base_pricelist_id:
-                field_name = "price"
-                product = product.with_context(
-                    pricelist=pricelist_item.base_pricelist_id.id
-                )
-                product_currency = pricelist_item.base_pricelist_id.currency_id
-            currency_id = pricelist_item.pricelist_id.currency_id
-
-        product_currency = (
-            product_currency
-            or (product.company_id and product.company_id.currency_id)
-            or self.env.company.currency_id
-        )
-        if not currency_id:
-            currency_id = product_currency
-            cur_factor = 1.0
-        else:
-            if currency_id.id == product_currency.id:
-                cur_factor = 1.0
-            else:
-                cur_factor = currency_id._get_conversion_rate(
-                    product_currency, currency_id
-                )
-
-        product_uom = product.uom_id.id
-        if uom and uom.id != product_uom:
-            # the unit price is in a different uom
-            uom_factor = uom._compute_price(1.0, product.uom_id)
-        else:
-            uom_factor = 1.0
-
-        return product[field_name] * uom_factor * cur_factor, currency_id.id
-
     def _get_display_price(self):
-        # Copied and adapted from the sale module
+        # Compute the display price for blanket order lines
         self.ensure_one()
         self.product_id.ensure_one()
 
-        pricelist_price = self.pricelist_item_id._compute_price(
+        return self.pricelist_item_id._compute_price(
             product=self.product_id,
             quantity=self.original_uom_qty or 1.0,
-            uom=self.product_uom,
-            date=fields.Date.today(),
-            currency=self.currency_id,
-        )
-
-        if self.order_id.pricelist_id.discount_policy == "with_discount":
-            return pricelist_price
-
-        if not self.pricelist_item_id:
-            # No pricelist rule found => no discount from pricelist
-            return pricelist_price
-
-        base_price = self._get_pricelist_price_before_discount()
-
-        # negative discounts (= surcharge) are included in the display price
-        return max(base_price, pricelist_price)
-
-    def _get_pricelist_price_before_discount(self):
-        # Copied and adapted from the sale module
-        self.ensure_one()
-        self.product_id.ensure_one()
-
-        return self.pricelist_item_id._compute_price_before_discount(
-            product=self.product_id,
-            quantity=self.product_uom_qty or 1.0,
             uom=self.product_uom,
             date=fields.Date.today(),
             currency=self.currency_id,
@@ -687,7 +595,7 @@ class BlanketOrderLine(models.Model):
                     not line.display_type and line.original_uom_qty > 0.0
                 ) or line.display_type, _("Quantity must be greater than zero")
         except AssertionError as e:
-            raise UserError(e) from e
+            raise UserError(str(e)) from None
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -724,9 +632,9 @@ class BlanketOrderLine(models.Model):
         ),
     ]
 
-    def write(self, values):
-        if "display_type" in values and self.filtered(
-            lambda line: line.display_type != values.get("display_type")
+    def write(self, vals):
+        if "display_type" in vals and self.filtered(
+            lambda line: line.display_type != vals.get("display_type")
         ):
             raise UserError(
                 _(
@@ -737,4 +645,4 @@ class BlanketOrderLine(models.Model):
                     """
                 )
             )
-        return super().write(values)
+        return super().write(vals)

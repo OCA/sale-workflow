@@ -7,7 +7,7 @@
             <form string="Create Sale Order">
                 <group>
                     <field name="line_ids" nolabel="1" colspan="2">
-                        <tree create="false" editable="bottom">
+                        <list create="false" editable="bottom">
                             <field
                                 name="blanket_line_id"
                                 force_save="1"
@@ -30,7 +30,7 @@
                                          'business_domain': 'sale_order'
                                          }"
                             />
-                        </tree>
+                        </list>
                     </field>
                 </group>
                 <footer>
