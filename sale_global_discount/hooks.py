@@ -25,7 +25,7 @@ def _pre_init_global_discount_fields(env):
         )
         env.cr.execute(
             """
-        update sale_order set amount_untaxed_before_global_discounts = amount_untaxed
+        UPDATE sale_order SET amount_untaxed_before_global_discounts = amount_untaxed
         """
         )
     if not column_exists(env.cr, "sale_order", "amount_total_before_global_discounts"):
@@ -37,6 +37,6 @@ def _pre_init_global_discount_fields(env):
         )
         env.cr.execute(
             """
-        update sale_order set amount_total_before_global_discounts = amount_total
+        UPDATE sale_order SET amount_total_before_global_discounts = amount_total
         """
         )

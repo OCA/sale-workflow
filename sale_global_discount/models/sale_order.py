@@ -2,7 +2,7 @@
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 from odoo.tools.misc import formatLang
 
 
@@ -75,14 +75,14 @@ class SaleOrder(models.Model):
         ):
             if not line.tax_id:
                 raise exceptions.UserError(
-                    _("With global discounts, taxes in lines are required.")
+                    self.env._("With global discounts, taxes in lines are required.")
                 )
             for key in taxes_keys:
                 if key == line.tax_id:
                     break
                 elif key & line.tax_id:
                     raise exceptions.UserError(
-                        _("Incompatible taxes found for global discounts.")
+                        self.env._("Incompatible taxes found for global discounts.")
                     )
             else:
                 taxes_keys[line.tax_id] = True

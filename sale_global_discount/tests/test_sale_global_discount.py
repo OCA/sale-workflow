@@ -11,7 +11,8 @@ from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls, chart_template_ref=None):
-        super().setUpClass(chart_template_ref=chart_template_ref)
+        super().setUpClass()
+        cls.chart_template = chart_template_ref
         cls.env.ref("base_global_discount.group_global_discount").write(
             {"users": [(4, cls.env.user.id)]}
         )
