@@ -50,6 +50,17 @@ class SaleOrderLine(models.Model):
         super()._compute_amount()
         self.triple_discount_postprocess(prev_values)
 
+    @api.depends(lambda self: self._discount_fields())
+    def _compute_untaxed_amount_to_invoice(self):
+        """
+        Collapse all discounts into hardcoded `discount` field
+        before computing.
+        """
+        prev_values = self.triple_discount_preprocess()
+        res = super()._compute_untaxed_amount_to_invoice()
+        self.triple_discount_postprocess(prev_values)
+        return res
+
     discount2 = fields.Float(
         string="Disc. 2 (%)",
         digits="Discount",
