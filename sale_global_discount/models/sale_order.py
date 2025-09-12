@@ -2,7 +2,7 @@
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 from odoo.tools.misc import formatLang
 
 
@@ -71,18 +71,20 @@ class SaleOrder(models.Model):
             return True
         taxes_keys = {}
         for line in self.order_line.filtered(
-            lambda _line: not _line.display_type and _line.product_id
+            lambda _line: not _line.display_type
+            and _line.product_id
+            and not _line.product_id.bypass_global_discount
         ):
             if not line.tax_id:
                 raise exceptions.UserError(
-                    _("With global discounts, taxes in lines are required.")
+                    self.env._("With global discounts, taxes in lines are required.")
                 )
             for key in taxes_keys:
                 if key == line.tax_id:
                     break
                 elif key & line.tax_id:
                     raise exceptions.UserError(
-                        _("Incompatible taxes found for global discounts.")
+                        self.env._("Incompatible taxes found for global discounts.")
                     )
             else:
                 taxes_keys[line.tax_id] = True
@@ -109,7 +111,9 @@ class SaleOrder(models.Model):
                         line.price_subtotal, discounts.copy()
                     )
                 amount_discounted_untaxed += discounted_subtotal
-                discounted_tax = line.tax_id.compute_all(
+                discounted_tax = line.tax_id.with_context(
+                    force_price_include=False
+                ).compute_all(
                     discounted_subtotal,
                     line.order_id.currency_id,
                     1.0,
@@ -143,11 +147,12 @@ class SaleOrder(models.Model):
         for order in self:
             amount_discount_by_group = {}
             cumulative_discount_rate = 1.0
+            currency = order.currency_id
             # Calculate cumulative discount rate
             for gbl_disc in order.global_discount_ids:
                 discount_rate = gbl_disc.discount / 100
                 cumulative_discount_rate *= 1 - discount_rate
-            amount_untaxed = 0.0
+            base_amount = 0.0
             # Calculate the total discount amount and discount by tax group
             for line in order.order_line:
                 if line.display_type or not line.product_id:
@@ -159,69 +164,76 @@ class SaleOrder(models.Model):
                     )
                 else:
                     discounted_price_subtotal = line.price_subtotal
-                amount_untaxed += discounted_price_subtotal
-                # Calculate tax amounts for each tax group based on the
-                # discounted subtotal
+                base_amount += discounted_price_subtotal
+                # Calculate tax amounts for each tax group based on the discounted
+                # subtotal
                 for tax in line.tax_id:
                     tax_group_id = tax.tax_group_id.id
                     if tax_group_id not in amount_discount_by_group:
                         amount_discount_by_group[tax_group_id] = 0.0
-                    # Calculate correct base amount for tax computation
-                    base_amount = discounted_price_subtotal
                     # Compute taxes on the correct base amount
-                    discounted_tax_vals = tax.compute_all(
-                        base_amount,
-                        order.currency_id,
+                    discounted_tax_vals = tax.with_context(
+                        force_price_include=False
+                    ).compute_all(
+                        discounted_price_subtotal,
+                        currency,
                         1.0,
                         product=line.product_id,
                         partner=order.partner_shipping_id,
                     )
-                    total_discounted_tax = sum(
+                    amount_discount_by_group[tax_group_id] += sum(
                         t.get("amount", 0.0)
                         for t in discounted_tax_vals.get("taxes", [])
                     )
-                    amount_discount_by_group[tax_group_id] += total_discounted_tax
             # Calculate the final amount total
-            amount_total = amount_untaxed + sum(amount_discount_by_group.values())
-            order.tax_totals["amount_untaxed"] = amount_untaxed
-            order.tax_totals["amount_total"] = amount_total
-            order.tax_totals["formatted_amount_untaxed"] = formatLang(
-                self.env, amount_untaxed, currency_obj=order.currency_id
+            total_amount = base_amount + sum(amount_discount_by_group.values())
+            base_amount_currency = formatLang(
+                self.env, base_amount, currency_obj=currency
             )
-            order.tax_totals["formatted_amount_total"] = formatLang(
-                self.env, amount_total, currency_obj=order.currency_id
+            order.tax_totals.update(
+                {
+                    "base_amount": base_amount,
+                    "total_amount": total_amount,
+                    "base_amount_currency": base_amount,
+                    "total_amount_currency": total_amount,
+                }
             )
-            # Update groups by subtotal
-            for group in order.tax_totals["groups_by_subtotal"].values():
-                for tax_group in group:
-                    tax_group_id = tax_group["tax_group_id"]
-                    discount_for_group = amount_discount_by_group.get(tax_group_id, 0.0)
-                    tax_group["tax_group_amount"] = discount_for_group
-                    tax_group["formatted_tax_group_amount"] = formatLang(
-                        self.env,
-                        tax_group["tax_group_amount"],
-                        currency_obj=order.currency_id,
-                    )
-            # Update subtotals
-            for subtotal in order.tax_totals["subtotals"]:
-                subtotal["amount"] = amount_untaxed
-                subtotal["formatted_amount"] = formatLang(
-                    self.env, amount_untaxed, currency_obj=order.currency_id
+            # Update subtotals and groups by subtotal
+            for group in order.tax_totals["subtotals"]:
+                group.update(
+                    {
+                        "base_amount": base_amount,
+                        "base_amount_currency": base_amount,
+                        "amount": base_amount,
+                        "formatted_amount": base_amount_currency,
+                    }
                 )
+                for tax_group in group["tax_groups"]:
+                    discounted_tax_amount = amount_discount_by_group.get(
+                        tax_group["id"], 0.0
+                    )
+                    tax_group.update(
+                        {
+                            "base_amount": base_amount,
+                            "base_amount_currency": base_amount,
+                            "tax_amount": discounted_tax_amount,
+                            "tax_amount_currency": discounted_tax_amount,
+                        }
+                    )
         return res
 
     @api.depends("partner_id", "company_id")
     def _compute_global_discount_ids(self):
         for order in self:
-            commercial = order.partner_id.commercial_partner_id
-            commercial_global_disc = commercial.customer_global_discount_ids
-            partner_global_disc = order.partner_id.customer_global_discount_ids
+            commercial_global_disc = (
+                order.partner_id.commercial_partner_id.customer_global_discount_ids
+            )
+            _discounts = (
+                commercial_global_disc
+                if commercial_global_disc
+                else order.partner_id.customer_global_discount_ids
+            )
             discounts = self.env["global.discount"]
-            _discounts = self.env["global.discount"]
-            if partner_global_disc:
-                _discounts = partner_global_disc
-            else:
-                _discounts = commercial_global_disc
             for discount in _discounts:
                 if discount.company_id == order.company_id:
                     discounts |= discount

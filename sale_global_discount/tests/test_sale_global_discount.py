@@ -11,7 +11,8 @@ from odoo.addons.account.tests.common import AccountTestInvoicingCommon
 class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls, chart_template_ref=None):
-        super().setUpClass(chart_template_ref=chart_template_ref)
+        super().setUpClass()
+        cls.chart_template = chart_template_ref
         cls.env.ref("base_global_discount.group_global_discount").write(
             {"users": [(4, cls.env.user.id)]}
         )
@@ -105,13 +106,16 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
             order_line.price_unit = 33.33
         cls.sale = sale_form.save()
 
-    def get_taxes_widget_total_tax(self, order):
-        return sum(
-            tax_vals["tax_group_amount"]
-            for tax_vals in order.tax_totals["groups_by_subtotal"]["Untaxed Amount"]
-        )
+    @staticmethod
+    def get_taxes_widget_total_tax(order):
+        tax_amount_total = 0.0
+        for subtotal in order.tax_totals["subtotals"]:
+            tax_amount_total = sum(
+                tax_group["tax_amount"] for tax_group in subtotal["tax_groups"]
+            )
+        return tax_amount_total
 
-    def test_01_global_sale_succesive_discounts(self):
+    def test_01_global_sale_successive_discounts(self):
         """Add global discounts to the sale order"""
         self.assertAlmostEqual(self.sale.amount_total, 299.99)
         self.assertAlmostEqual(self.sale.amount_tax, 50)
@@ -121,6 +125,7 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         self.assertAlmostEqual(self.sale.amount_untaxed, 249.99)
         # Apply a single 20% global discount
         self.sale.global_discount_ids = self.global_discount_1
+        self.sale._compute_tax_totals()
         # Discount is computed over the base and global taxes are computed
         # according to it line by line with the core method
         self.assertAlmostEqual(self.sale.amount_global_discount, 50)
@@ -134,6 +139,7 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         )
         # Apply an additional 30% global discount
         self.sale.global_discount_ids += self.global_discount_2
+        self.sale._compute_tax_totals()
         self.assertAlmostEqual(self.sale.amount_global_discount, 110)
         self.assertAlmostEqual(self.sale.amount_untaxed, 139.99)
         self.assertAlmostEqual(self.sale.amount_untaxed_before_global_discounts, 249.99)
@@ -159,6 +165,7 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         """Change the partner and his global discounts go to the invoice"""
         # (30% then 50%)
         self.sale.partner_id = self.partner_2
+        self.sale._compute_tax_totals()
         self.assertAlmostEqual(self.sale.amount_global_discount, 162.49)
         self.assertAlmostEqual(self.sale.amount_untaxed, 87.5)
         self.assertAlmostEqual(self.sale.amount_untaxed_before_global_discounts, 249.99)
@@ -172,6 +179,7 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
     def test_03_global_sale_discounts_to_invoice(self):
         """All the discounts go to the invoice"""
         self.sale.partner_id = self.partner_2
+        self.sale._compute_tax_totals()
         self.sale.order_line.mapped("product_id").write({"invoice_policy": "order"})
         self.sale.action_confirm()
         move = self.sale._create_invoices()
@@ -236,6 +244,30 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         self.assertAlmostEqual(self.sale.amount_untaxed, 185.00)
         self.assertAlmostEqual(self.sale.amount_total, 222.00)
         self.assertAlmostEqual(self.sale.amount_tax, 37.00)
+        self.assertAlmostEqual(
+            self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
+        )
+
+    def test_08_global_discount_with_tax_included(self):
+        tax_included = self.env["account.tax"].create(
+            {
+                "name": "IVA 21% included",
+                "amount": 21,
+                "amount_type": "percent",
+                "type_tax_use": "sale",
+                "price_include": True,
+                "include_base_amount": True,
+            }
+        )
+        for line in self.sale.order_line:
+            line.tax_id = [(6, 0, tax_included.ids)]
+        self.sale._compute_tax_totals()
+        self.sale.global_discount_ids = self.global_discount_1
+        self.sale._compute_tax_totals()
+        self.assertTrue(self.sale.amount_tax > 0)
+        self.assertTrue(
+            self.sale.amount_total < self.sale.amount_total_before_global_discounts
+        )
         self.assertAlmostEqual(
             self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
         )
