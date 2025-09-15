@@ -12,15 +12,15 @@ class TestModule(TransactionCase):
         cls.pricelist = cls.env["product.pricelist"].create(
             {
                 "name": "Test multi-currency",
-                "discount_policy": "without_discount",
                 "currency_id": cls.env.ref("base.USD").id,
                 "item_ids": [
                     (
                         0,
                         0,
                         {
-                            "applied_on": "3_global",
+                            "applied_on": "1_product",
                             "compute_price": "percentage",
+                            "product_tmpl_id": cls.product.product_tmpl_id.id,
                             "percent_price": 20,
                         },
                     ),

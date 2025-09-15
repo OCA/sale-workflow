@@ -29,7 +29,7 @@ class SaleOrderLine(models.Model):
                 line.update({"discount": line.order_id.general_discount})
         return
 
-    @api.depends("product_id", "product_uom", "product_uom_qty")
+    @api.depends("product_id", "product_uom", "product_uom_qty", "discount")
     def _compute_discount2(self):
         pricelist_discount = self._get_discount_field_position("pricelist_discount")
         general_discount = self._get_discount_field_position("general_discount")
@@ -50,7 +50,7 @@ class SaleOrderLine(models.Model):
             ):
                 line.update({"discount2": line.order_id.general_discount})
 
-    @api.depends("product_id", "product_uom", "product_uom_qty")
+    @api.depends("product_id", "product_uom", "product_uom_qty", "discount")
     def _compute_discount3(self):
         pricelist_discount = self._get_discount_field_position("pricelist_discount")
         general_discount = self._get_discount_field_position("general_discount")
@@ -81,11 +81,9 @@ class SaleOrderLine(models.Model):
         if not self.product_id or self.display_type:
             return 0.0
         if not (
-            self.order_id.pricelist_id
-            and self.order_id.pricelist_id.discount_policy == "without_discount"
+            self.pricelist_item_id
+            and self.pricelist_item_id.compute_price == "percentage"
         ):
-            return 0.0
-        if not self.pricelist_item_id:
             return 0.0
         self = self.with_company(self.company_id)
         pricelist_price = self._get_pricelist_price()
