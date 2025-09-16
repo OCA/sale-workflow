@@ -32,11 +32,7 @@
                                 name="company_id"
                                 groups="base.group_multi_company"
                             />
-                            <field
-                                name="route_id"
-                                invisible="not warehouse_id"
-                                groups="stock.group_adv_location"
-                            />
+                            <field name="route_id" groups="stock.group_adv_location" />
                             <field name="sequence_id" />
                             <field
                                 name="analytic_account_id"
