@@ -46,7 +46,7 @@ class SaleOrderLine(models.Model):
                 or line.product_id.type != "consu"
             ):
                 continue
-            qty = line._get_qty_procurement(previous_product_uom_qty)
+            qty = line._get_qty_procurement(previous_product_uom_qty) or 0.0
             if (
                 float_compare(qty, line.product_uom_qty, precision_digits=precision)
                 == 0
