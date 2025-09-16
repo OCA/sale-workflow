@@ -1,0 +1,26 @@
+<odoo>
+    <record id="product_template_only_form_view" model="ir.ui.view">
+        <field name="name">product.template.form.view.sale.product.identification
+        </field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales']" position="inside">
+                <group string="Identification">
+                    <field name="required_identification" />
+                    <field
+                        name="product_tmpl_category_ids"
+                        invisible="not required_identification"
+                        nolabel="1"
+                    >
+                        <list editable="bottom">
+                            <field name="category_id" />
+                            <field name="is_mandatory" />
+                            <field name="message" />
+                        </list>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
