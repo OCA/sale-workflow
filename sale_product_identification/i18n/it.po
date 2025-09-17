@@ -1,0 +1,213 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_product_identification
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-10-02 17:04+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: sale_product_identification
+#. odoo-python
+#: code:addons/sale_product_identification/models/res_partner_id_number.py:0
+msgid ""
+"\n"
+"%(product)s\n"
+"%(categories)s"
+msgstr ""
+"\n"
+"%(product)s\n"
+"%(categories)s"
+
+#. module: sale_product_identification
+#. odoo-python
+#: code:addons/sale_product_identification/models/sale_order.py:0
+msgid "%(order)s%(message)s"
+msgstr "%(order)s%(message)s"
+
+#. module: sale_product_identification
+#. odoo-python
+#: code:addons/sale_product_identification/models/res_partner_id_number.py:0
+msgid "A client is required to verify identifications."
+msgstr "Il cliente è tenuto a verificare i documenti d'identità."
+
+#. module: sale_product_identification
+#: model:ir.model.fields,help:sale_product_identification.field_product_template_id_category__message
+msgid ""
+"Allows you to define a description of why this identification is being added.\n"
+"Example: Asking the customer for identification"
+msgstr ""
+"Consente di definire una descrizione del motivo per cui viene aggiunto "
+"questo identificativo.\n"
+"Esempio: richiesta di identificazione al cliente"
+
+#. module: sale_product_identification
+#: model_terms:ir.ui.view,arch_db:sale_product_identification.confirm_identification_view
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: sale_product_identification
+#: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__category_id
+msgid "Category"
+msgstr "Categoria"
+
+#. module: sale_product_identification
+#: model_terms:ir.ui.view,arch_db:sale_product_identification.confirm_identification_view
+msgid "Confirm"
+msgstr "Conferma"
+
+#. module: sale_product_identification
+#: model:ir.model,name:sale_product_identification.model_confirm_identification
+msgid "Confirm Identification Wizard"
+msgstr "Procedura guidata conferma identificazione"
+
+#. module: sale_product_identification
+#. odoo-python
+#: code:addons/sale_product_identification/models/sale_order.py:0
+msgid "Confirm identification"
+msgstr "Conferma identificazione"
+
+#. module: sale_product_identification
+#: model_terms:ir.ui.view,arch_db:sale_product_identification.confirm_identification_view
+msgid "Confirm identifications"
+msgstr "Conferma identificazioni"
+
+#. module: sale_product_identification
+#: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__create_uid
+#: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: sale_product_identification
+#: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__create_date
+#: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: sale_product_identification
+#: model:ir.model.fields,help:sale_product_identification.field_product_template_id_category__is_mandatory
+msgid "Defines whether identification is mandatory."
+msgstr "Definisce quando è obbligatoria l'identificazione."
+
+#. module: sale_product_identification
+#: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__display_name
+#: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_product_identification
+#: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__id
+#: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_product_identification
+#: model_terms:ir.ui.view,arch_db:sale_product_identification.product_template_only_form_view
+msgid "Identification"
+msgstr "Identificazione"
+
+#. module: sale_product_identification
+#: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__is_mandatory
+msgid "Is Mandatory"
+msgstr "È obbligatorio"
+
+#. module: sale_product_identification
+#: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__write_uid
+#: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: sale_product_identification
+#: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__write_date
+#: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: sale_product_identification
+#: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__message
+#: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__message
+msgid "Message"
+msgstr "Messaggio"
+
+#. module: sale_product_identification
+#: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__order_ids
+msgid "Orders"
+msgstr "Ordini"
+
+#. module: sale_product_identification
+#: model:ir.model,name:sale_product_identification.model_res_partner_id_number
+msgid "Partner ID Number"
+msgstr "Numero ID partner"
+
+#. module: sale_product_identification
+#: model:ir.model,name:sale_product_identification.model_product_template
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: sale_product_identification
+#: model:ir.model,name:sale_product_identification.model_product_template_id_category
+msgid "Product Template Identification Category"
+msgstr "Categoria identificazione modello prodotto"
+
+#. module: sale_product_identification
+#: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__product_tmpl_id
+msgid "Product Tmpl"
+msgstr "Modello prodotto"
+
+#. module: sale_product_identification
+#: model:ir.model.fields,field_description:sale_product_identification.field_product_product__product_tmpl_category_ids
+#: model:ir.model.fields,field_description:sale_product_identification.field_product_template__product_tmpl_category_ids
+msgid "Product Tmpl Category"
+msgstr "Categoria modello prodotto"
+
+#. module: sale_product_identification
+#: model:ir.model.fields,field_description:sale_product_identification.field_product_product__required_identification
+#: model:ir.model.fields,field_description:sale_product_identification.field_product_template__required_identification
+msgid "Required Identification"
+msgstr "Identificazione richiesta"
+
+#. module: sale_product_identification
+#: model:ir.model,name:sale_product_identification.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: sale_product_identification
+#. odoo-python
+#: code:addons/sale_product_identification/models/sale_order.py:0
+msgid ""
+"The following identifications are required for partner, please verify.\n"
+" %(identifications)s"
+msgstr ""
+"L'identificazione seguente è richiesta per il partner, verificare.\n"
+" %(identifications)s"
+
+#. module: sale_product_identification
+#. odoo-python
+#: code:addons/sale_product_identification/models/sale_order.py:0
+msgid ""
+"The following identifications require verification, please validate before continuing:\n"
+" %(identifications)s"
+msgstr ""
+"L'identificazione seguente richiede la verifica, verificare prima di "
+"continuare:\n"
+" %(identifications)s"
+
+#. module: sale_product_identification
+#. odoo-python
+#: code:addons/sale_product_identification/models/product_template.py:0
+msgid ""
+"There are repeated categories in the identifications configuration, the quantities are shown below.\n"
+"%(categories)s"
+msgstr ""
+"Ci sono delle categorie ripetute nella configurazione delle identificazioni, "
+"le quantità sono visualizzate in calce.\n"
+"%(categories)s"
