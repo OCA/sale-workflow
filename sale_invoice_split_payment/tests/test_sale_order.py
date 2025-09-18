@@ -54,7 +54,6 @@ class TestSaleOrer(TransactionCase):
         )
 
     def test_sale_order(self):
-
         sale_order1 = self.env["sale.order"].create(
             {
                 "partner_id": self.partner.id,
