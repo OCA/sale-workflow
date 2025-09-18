@@ -29,10 +29,10 @@ class TestSaleOrer(TransactionCase):
                         0,
                         0,
                         {
-                            "value": "balance",
-                            "days": 15,
+                            "value_amount": 100,
+                            "value": "percent",
                         },
-                    ),
+                    )
                 ],
             }
         )
@@ -45,10 +45,10 @@ class TestSaleOrer(TransactionCase):
                         0,
                         0,
                         {
-                            "value": "balance",
-                            "days": 30,
+                            "value_amount": 100,
+                            "value": "percent",
                         },
-                    ),
+                    )
                 ],
             }
         )
