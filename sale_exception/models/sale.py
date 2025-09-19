@@ -27,11 +27,9 @@ class SaleOrder(models.Model):
     _name = "sale.order"
     _order = "main_exception_id asc, date_order desc, name desc"
 
-    def detect_exceptions(self):
-        all_exceptions = super().detect_exceptions()
-        lines = self.mapped("order_line")
-        all_exceptions += lines.detect_exceptions()
-        return all_exceptions
+    @api.model
+    def _get_sub_exception_field_names(self):
+        return ["order_line"]
 
     @api.model
     def test_all_draft_orders(self):

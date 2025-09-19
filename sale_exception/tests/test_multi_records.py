@@ -100,6 +100,17 @@ class TestSaleExceptionMultiRecord(SavepointCase):
                 "</ul>"
             ),
         )
+        exception_no_dumping.is_blocking = True
+        so3.order_line[0].flush()
+        self.assertEqual(
+            so3.order_line[0].exceptions_summary,
+            (
+                "<ul>"
+                "<li>No dumping: <i>A product is sold cheaper than his cost.</i> "
+                "<b>(Blocking exception)</b></li>"
+                "</ul>"
+            ),
+        )
 
         # test return value of detect_exception()
 
