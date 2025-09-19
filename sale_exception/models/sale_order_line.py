@@ -40,10 +40,6 @@ class SaleOrderLine(models.Model):
     def _get_main_records(self):
         return self.mapped("order_id")
 
-    @api.model
-    def _reverse_field(self):
-        return "sale_ids"
-
     def _detect_exceptions(self, rule):
         records = super()._detect_exceptions(rule)
         # Thanks to the new flush of odoo 13.0, queries will be optimized
