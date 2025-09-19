@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2025-02-11 17:06+0000\n"
+"PO-Revision-Date: 2025-04-08 09:24+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: sale_rental
 #: model:ir.model.fields,help:sale_rental.field_sale_rental__in_state
@@ -49,13 +49,13 @@ msgstr "Vendita da noleggio"
 #: code:addons/sale_rental/models/stock_warehouse.py:0
 #, python-format
 msgid "Can't find any generic 'Rent' route."
-msgstr "Impossibile trovare route \"Noleggio\""
+msgstr "Impossibile trovare un percorso 'Noleggio' generico."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/stock_warehouse.py:0
 #, python-format
 msgid "Can't find any generic 'Sell Rented Product' route."
-msgstr "Impossibile trovare route\"Vendita da noleggio\""
+msgstr "Impossibile trovare un percorso 'Vendita prodotto noleggiato' generico."
 
 #. module: sale_rental
 #: model_terms:ir.ui.view,arch_db:sale_rental.create_rental_product_form
@@ -205,7 +205,7 @@ msgstr ""
 #: model:ir.model.fields,help:sale_rental.field_sale_order_line__rental_qty
 #: model:ir.model.fields,help:sale_rental.field_sale_rental__rental_qty
 msgid "Indicate the number of items that will be rented."
-msgstr "Indica il numero di pezzi che verranno noleggiati"
+msgstr "Indica il numero di pezzi che verranno noleggiati."
 
 #. module: sale_rental
 #: model:ir.model,name:sale_rental.model_stock_inventory
@@ -253,7 +253,7 @@ msgstr "Nuovo noleggio"
 #: code:addons/sale_rental/models/sale_order.py:0
 #, python-format
 msgid "Not enough stock !"
-msgstr "Non abbastanza stock!"
+msgstr "Giacenza non sufficiente!"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:0
@@ -262,8 +262,8 @@ msgid ""
 "On the 'new rental' sale order line with product '%s', we should have a "
 "rental service product !"
 msgstr ""
-"Nella nuova riga dell'ordine di vendita per il prodotto %s, e' necessario "
-"avere un prodotto di tipo \"servizio noleggio\"!"
+"Nella riga 'nuovo noleggio' dell'ordine di vendita con il prodotto '%s', è "
+"necessario avere un prodotto di tipo servizio noleggio!"
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:0
@@ -273,9 +273,9 @@ msgid ""
 "product with a quantity (%s) that is different from the rented quantity "
 "(%s). This is not supported."
 msgstr ""
-"Nell'ordine di vendita per il prodotto %s si sta tentando di noleggiare la "
-"quantità (%s) che e' diversa da quella noleggiata (%s). Questo non e' "
-"previsto"
+"Nell'ordine di vendita per il prodotto %s si sta tentando di vendere un "
+"prodotto noleggiato con quantità (%s) che e' diversa da quella noleggiata "
+"(%s). Questo non è previsto."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/sale_order.py:0
@@ -568,7 +568,7 @@ msgstr "Prodotti noleggiati venduti"
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_stock_warehouse__sell_rented_product_route_id
 msgid "Sell Rented Product Route"
-msgstr "Sell Rented Product Route"
+msgstr "Percorso vendita prodotto noleggiato"
 
 #. module: sale_rental
 #: model:ir.model.fields.selection,name:sale_rental.selection__sale_rental__state__sell_progress
@@ -629,14 +629,14 @@ msgid ""
 "The Rental Service of the Rental Extension you just selected is '%s' and "
 "it's not the same as the Product currently selected in this Sale Order Line."
 msgstr ""
-"L'estensione del servizio di noleggio che e' stato selezionato per '%s' non "
-"e' lo stesso prodotto di quella nell'ordine di vendita"
+"Il servizio noleggio dell'estensione noleggio selezionato è '%s' che è "
+"diverso dal prodotto attualmente selezionato nella riga ordine di vendita."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/product.py:0
 #, python-format
 msgid "The rental product '%s' must be of type 'Service'."
-msgstr "Il prodotto di noleggio '%s' deve essere di tipo 'Servizio'"
+msgstr "Il prodotto di noleggio '%s' deve essere di tipo 'Servizio'."
 
 #. module: sale_rental
 #: code:addons/sale_rental/models/product.py:0
@@ -645,8 +645,8 @@ msgid ""
 "The rental product '%s' must have the option 'Must Have Start and End Dates' "
 "checked."
 msgstr ""
-"Il prodotto noleggiabile '%s' deve avere il flag su \"Deve avere una data di "
-"inizio e di fine\""
+"Il prodotto noleggiabile '%s' deve avere il flag su "
+"\"Deve avere una data di inizio e di fine\"."
 
 #. module: sale_rental
 #: model:ir.model.constraint,message:sale_rental.constraint_sale_order_line_rental_qty_positive

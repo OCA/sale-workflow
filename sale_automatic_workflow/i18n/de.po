@@ -66,6 +66,11 @@ msgid "Automatic Workflow Sale Done Filter"
 msgstr ""
 
 #. module: sale_automatic_workflow
+#: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_send_invoice_filter
+msgid "Automatic Workflow Send Invoice Filter"
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: model:ir.filters,name:sale_automatic_workflow.automatic_workflow_validate_invoice_filter
 msgid "Automatic Workflow Validate Invoice Filter"
 msgstr ""
@@ -289,6 +294,21 @@ msgid ""
 msgstr ""
 
 #. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__send_invoice
+msgid "Send Invoice"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__send_invoice_filter_id
+msgid "Send Invoice Filter"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__send_invoice_filter_domain
+msgid "Send Invoice Filter Domain"
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__send_order_confirmation_mail
 msgid "Send order confirmation mail"
 msgstr ""
@@ -314,8 +334,18 @@ msgid "Stock Move"
 msgstr "Lagerbuchung"
 
 #. module: sale_automatic_workflow
+#: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__send_invoice_template_id
+msgid "Template to use when sending the email. Keep blank to use the default."
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_stock_picking
 msgid "Transfer"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__send_invoice_template_id
+msgid "Use template"
 msgstr ""
 
 #. module: sale_automatic_workflow

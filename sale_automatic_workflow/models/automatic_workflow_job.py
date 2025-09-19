@@ -95,6 +95,58 @@ class AutomaticWorkflowJob(models.Model):
                     invoice.with_company(invoice.company_id), validate_invoice_filter
                 )
 
+    def _do_send_invoice(self, invoice, domain_filter, template=None):
+        """Send an invoice by email, re-filter to ensure
+        it has not been sent since"""
+        if not self.env["account.move"].search_count(
+            [("id", "=", invoice.id)] + domain_filter
+        ):
+            return "{} {} job bypassed".format(invoice.display_name, invoice)
+
+        # take the context from the actual action_invoice_sent method
+        action = invoice.action_invoice_sent()
+        action_context = action["context"]
+
+        if template:
+            action_context["default_template_id"] = template.id
+
+        # Create the email using the wizard
+        invoice_send_wizard = (
+            self.env["account.invoice.send"]
+            .with_context(
+                action_context,
+                mark_invoice_as_sent=True,
+                active_ids=[invoice.id],
+                force_email=True,
+            )
+            .create(
+                {
+                    "is_print": False,
+                    "composition_mode": "comment",
+                    "model": "account.move",
+                    "res_id": invoice.id,
+                }
+            )
+        )
+
+        invoice_send_wizard.onchange_is_email()
+        invoice_send_wizard._send_email()
+
+        return "{} {} sent invoice successfully".format(invoice.display_name, invoice)
+
+    @api.model
+    def _send_invoices(self, send_invoice_filter, template=None):
+        move_obj = self.env["account.move"]
+        invoices = move_obj.search(send_invoice_filter)
+        _logger.debug("Invoices to send: %s", invoices.ids)
+        for invoice in invoices:
+            with savepoint(self.env.cr):
+                self._do_send_invoice(
+                    invoice.with_company(invoice.company_id),
+                    send_invoice_filter,
+                    template=template,
+                )
+
     def _do_validate_picking(self, picking, domain_filter):
         """Validate a stock.picking"""
         picking.validate_picking()
@@ -189,6 +241,12 @@ class AutomaticWorkflowJob(models.Model):
             self._validate_invoices(
                 safe_eval(sale_workflow.validate_invoice_filter_id.domain)
                 + workflow_domain
+            )
+        if sale_workflow.send_invoice:
+            self._send_invoices(
+                safe_eval(sale_workflow.send_invoice_filter_id.domain)
+                + workflow_domain,
+                template=sale_workflow.send_invoice_template_id,
             )
         if sale_workflow.sale_done:
             self._sale_done(

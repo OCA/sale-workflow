@@ -23,7 +23,7 @@
                     for="sale_min_qty"
                     string="Min Quantity Recommended"
                     attrs="{'invisible': ['|',  ('is_qty_less_min_qty','=', False),
-                     '&amp;', ('is_qty_less_min_qty','=', True), ('force_sale_min_qty','=', False,)]}"
+                     '&amp;', ('is_qty_less_min_qty','=', True), ('force_sale_min_qty','=', False)]}"
                     style="background-color:yellow"
                 />
                 <label
@@ -31,7 +31,7 @@
                     for="sale_min_qty"
                     string="Min Quantity Required"
                     attrs="{'invisible': ['|',  ('is_qty_less_min_qty','=', False),
-                     '&amp;', ('is_qty_less_min_qty','=', True), ('force_sale_min_qty','=', True,)]}"
+                     '&amp;', ('is_qty_less_min_qty','=', True), ('force_sale_min_qty','=', True)]}"
                     style="background-color:red"
                 />
                 <label
@@ -46,15 +46,15 @@
                     for="sale_min_qty"
                     string="Max Quantity Recommended"
                     attrs="{'invisible': ['|',  ('is_qty_bigger_max_qty','=', False),
-                     '&amp;', ('is_qty_bigger_max_qty','=', True), ('force_sale_max_qty','=', False,)]}"
+                     '&amp;', ('is_qty_bigger_max_qty','=', True), ('force_sale_max_qty','=', False)]}"
                     style="background-color:yellow"
                 />
                 <label
                     colspan="2"
                     for="sale_min_qty"
                     string="Max Quantity Exceeded"
-                    attrs="{'invisible': ['|',  ('is_qty_bigger_max_qty','=', True),
-                     '&amp;', ('is_qty_bigger_max_qty','=', True), ('force_sale_max_qty','=', True,)]}"
+                    attrs="{'invisible': ['|',  ('is_qty_bigger_max_qty','=', False),
+                     '&amp;', ('is_qty_bigger_max_qty','=', True), ('force_sale_max_qty','=', True)]}"
                     style="background-color:red"
                 />
            </xpath>

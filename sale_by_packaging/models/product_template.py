@@ -12,6 +12,7 @@ class ProductTemplate(models.Model):
         default=False,
         help="Restrict the usage of this product on sale order lines without "
         "packaging defined",
+        copy=False,
     )
 
     min_sellable_qty = fields.Float(
