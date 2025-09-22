@@ -6,97 +6,99 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-09-22 13:42+0000\n"
+"Last-Translator: Carlos Roca Zaragoza <carlos.roca@tecnativa.com>\n"
 "Language-Team: none\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: sale_payment_sheet
 #: model:ir.actions.report,print_report_name:sale_payment_sheet.action_report_sale_payment_sheet
 msgid "'Payment sheet %s' % (object.name)"
-msgstr ""
+msgstr "\"'Fulla de pagaments %s' % (object.name)\""
 
 #. module: sale_payment_sheet
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
 msgid "<span>Page: </span>"
-msgstr ""
+msgstr "<span>Pàgina: </span>"
 
 #. module: sale_payment_sheet
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
 msgid "<span>Sheet: </span>"
-msgstr ""
+msgstr "<span>Fulla: </span>"
 
 #. module: sale_payment_sheet
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
 msgid "<span>Total: </span>"
-msgstr ""
+msgstr "<span>Total: </span>"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Acció necessària"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_res_users__commercial_journal_ids
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__commercial_journal_ids
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__commercial_journal_ids
 msgid "Allowed journals for commercial"
-msgstr ""
+msgstr "Diaris permeses per a ús comercial"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__amount
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__amount
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
 msgid "Amount"
-msgstr ""
+msgstr "Import"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__amount_residual
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.sale_invoice_payment_wiz
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_invoice_tree
 msgid "Amount Due"
-msgstr ""
+msgstr "Import del deute"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Nombre d'adjunts"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__statement_id
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_form
 msgid "Bank statement"
-msgstr ""
+msgstr "Extracte bancari"
 
 #. module: sale_payment_sheet
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.sale_invoice_payment_wiz
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel·lar"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__company_id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__company_id
 msgid "Company"
-msgstr ""
+msgstr "Empresa"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__company_id
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet_line__company_id
 msgid "Company related to this journal"
-msgstr ""
+msgstr "Empresa relacionada amb aquest diari"
 
 #. module: sale_payment_sheet
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_form
 msgid "Confirm sheet"
-msgstr ""
+msgstr "Confirmar fulla"
 
 #. module: sale_payment_sheet
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_search
 msgid "Confirmed"
-msgstr ""
+msgstr "Confirmada"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__create_uid
@@ -104,7 +106,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__create_uid
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creat per"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__create_date
@@ -112,14 +114,14 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__create_date
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creat el"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__currency_id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__currency_id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Divisa"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__date
@@ -127,12 +129,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_search
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: sale_payment_sheet
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
 msgid "Description"
-msgstr ""
+msgstr "Descripció"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__display_name
@@ -140,58 +142,60 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__display_name
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nom a mostrar"
 
 #. module: sale_payment_sheet
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_search
 msgid "Draft"
-msgstr ""
+msgstr "Esborrany"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__invoice_date_due
 msgid "Due Date"
-msgstr ""
+msgstr "Data de venciment"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__reference
 msgid "External Reference"
-msgstr ""
+msgstr "Referència externa"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Seguidors"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguidors (Partners)"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields.selection,name:sale_payment_sheet.selection__sale_payment_sheet_line__transaction_type__full
 msgid "Full payment"
-msgstr ""
+msgstr "Pagament complet"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet_line__sequence
 msgid ""
 "Gives the sequence order when displaying a list of payment sheet lines."
 msgstr ""
+"Indica l’ordre de la seqüència en mostrar una llista de línies del full de "
+"pagament."
 
 #. module: sale_payment_sheet
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_search
 msgid "Group By"
-msgstr ""
+msgstr "Agrupar per"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__group_lines
 msgid "Group statement lines by"
-msgstr ""
+msgstr "Agrupa les línies de l’extracte per"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Té un missatge"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__id
@@ -199,63 +203,63 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_needaction
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_unread
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Si està marcat, hi ha nous missatges que requereixen la vostra atenció."
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Si està marcat, alguns missatges tenen un error d'entrega."
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__invoice_id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__invoice_id
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
 msgid "Invoice"
-msgstr ""
+msgstr "Factura"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__invoice_date
 msgid "Invoice/Bill Date"
-msgstr ""
+msgstr "Data de Factura/Factura de proveïdor"
 
 #. module: sale_payment_sheet
 #: model:ir.actions.act_window,name:sale_payment_sheet.action_invoice_sale_payment_sheet
 #: model:ir.ui.menu,name:sale_payment_sheet.sale_payment_invoice
 msgid "Invoices"
-msgstr ""
+msgstr "Factures"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Es seguidor"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__is_selected
 msgid "Is Selected"
-msgstr ""
+msgstr "Està seleccionat"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__journal_id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__journal_id
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_search
 msgid "Journal"
-msgstr ""
+msgstr "Diari"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__journal_currency_id
 msgid "Journal's Currency"
-msgstr ""
+msgstr "Moneda del diari"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__name
 msgid "Label"
-msgstr ""
+msgstr "Etiqueta"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz____last_update
@@ -263,7 +267,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet____last_update
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificació el"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__write_uid
@@ -271,7 +275,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__write_uid
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualització per"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__write_date
@@ -279,84 +283,84 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__write_date
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualització el"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Adjunt principal"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Error d'entrega del missatge"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Missatges"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields.selection,name:sale_payment_sheet.selection__sale_payment_sheet__state__open
 msgid "New"
-msgstr ""
+msgstr "Nou"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__note
 msgid "Notes"
-msgstr ""
+msgstr "Notes"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Nombre d'accions"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Nombre d'errors"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr ""
+msgstr "Nombre de missatges que requereixen una acció"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Nombre de missatges amb error d'entrega"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet__message_unread_counter
 msgid "Number of unread messages"
-msgstr ""
+msgstr "Nombre de missatges no llegits"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields.selection,name:sale_payment_sheet.selection__sale_payment_sheet_line__transaction_type__partial
 msgid "Partial payment"
-msgstr ""
+msgstr "Cobrament parcial"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__partner_id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__partner_id
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.report_sale_payment_sheet
 msgid "Partner"
-msgstr ""
+msgstr "Empresa"
 
 #. module: sale_payment_sheet
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.sale_invoice_payment_wiz
 msgid "Payment"
-msgstr ""
+msgstr "Pagament"
 
 #. module: sale_payment_sheet
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_search
 msgid "Payment sheet"
-msgstr ""
+msgstr "Full de cobrament"
 
 #. module: sale_payment_sheet
 #: model:ir.ui.menu,name:sale_payment_sheet.sale_payment_sheet_menu
 msgid "Payments"
-msgstr ""
+msgstr "Cobraments"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__ref
@@ -364,43 +368,43 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__ref
 #: model:ir.model.fields.selection,name:sale_payment_sheet.selection__sale_payment_sheet__group_lines__ref
 msgid "Reference"
-msgstr ""
+msgstr "Referència"
 
 #. module: sale_payment_sheet
 #: model_terms:ir.actions.act_window,help:sale_payment_sheet.action_sale_payment_sheet
 msgid "Register a invoice payment (Salesman)"
-msgstr ""
+msgstr "Registrar el pagament d’una factura (Comercial)"
 
 #. module: sale_payment_sheet
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_form
 msgid "Reset to New"
-msgstr ""
+msgstr "Restablir a nou"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__user_id
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__user_id
 msgid "Responsible"
-msgstr ""
+msgstr "Responsable"
 
 #. module: sale_payment_sheet
 #: model:ir.model,name:sale_payment_sheet.model_sale_payment_sheet
 msgid "Sale Payment Sheet"
-msgstr ""
+msgstr "Full de cobrament de venda"
 
 #. module: sale_payment_sheet
 #: model:ir.model,name:sale_payment_sheet.model_sale_payment_sheet_line
 msgid "Sale Payment Sheet Line"
-msgstr ""
+msgstr "Línia del full de cobrament de venda"
 
 #. module: sale_payment_sheet
 #: model:ir.actions.act_window,name:sale_payment_sheet.action_sale_invoice_payment_wiz
 msgid "Sale invoice payment"
-msgstr ""
+msgstr "Cobrament de factura de venda"
 
 #. module: sale_payment_sheet
 #: model:ir.model,name:sale_payment_sheet.model_sale_invoice_payment_line_wiz
 msgid "Sale invoice payment lines wizard"
-msgstr ""
+msgstr "Línies del asistent de cobrament de factura de venda"
 
 #. module: sale_payment_sheet
 #: model:ir.model,name:sale_payment_sheet.model_sale_invoice_payment_wiz
