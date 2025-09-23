@@ -11,6 +11,7 @@ class SaleOrderLine(models.Model):
         compute="_compute_lot_id",
         store=True,
         readonly=False,
+        precompute=True,
     )
 
     def _prepare_procurement_values(self, group_id=False):
