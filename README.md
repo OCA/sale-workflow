@@ -89,6 +89,7 @@ addon | version | maintainers | summary
 [sale_order_qty_change_no_recompute](sale_order_qty_change_no_recompute/) | 15.0.2.0.1 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Prevent recompute if only quantity has changed in sale order line
 [sale_order_report_without_price](sale_order_report_without_price/) | 15.0.1.0.0 |  | Allow you to generate quotation and order reports without price.
 [sale_order_restrict_cancel_existing_invoice](sale_order_restrict_cancel_existing_invoice/) | 15.0.1.0.0 | <a href='https://github.com/rousseldenis'><img src='https://github.com/rousseldenis.png' width='32' height='32' style='border-radius:50%;' alt='rousseldenis'/></a> | Allows to restrict sale order cancelling if an invoice exists
+[sale_order_restrict_copy_archived_product](sale_order_restrict_copy_archived_product/) | 15.0.1.0.0 |  | Restrict dulpication of sales order if they have archived products
 [sale_order_revision](sale_order_revision/) | 15.0.1.0.1 |  | Keep track of revised quotations
 [sale_order_secondary_unit](sale_order_secondary_unit/) | 15.0.2.2.2 |  | Sale product in a secondary unit
 [sale_order_type](sale_order_type/) | 15.0.2.1.4 |  | Sale Order Type
