@@ -8,35 +8,25 @@ from odoo.exceptions import ValidationError
 
 
 class SaleOrderLine(models.Model):
-    _inherit = "sale.order.line"
+    _name = "sale.order.line"
+    _inherit = ["sale.order.line", "triple.discount.mixin"]
 
     discount = fields.Float(
         string="Total discount",
         store=True,
-        compute="_compute_discount_consolidated",
+        compute="_compute_discount",
         compute_sudo=True,
         precompute=True,
         readonly=True,
     )
     discount1 = fields.Float(
-        string="Disc. 1 (%)",
+        string="Discount 1 (%)",
         digits="Discount",
+        compute="_compute_discount1",
         store=True,
-        default=0.0,
-        compute="_compute_discount",
         compute_sudo=True,
         precompute=True,
         readonly=False,
-    )
-    discount2 = fields.Float(
-        string="Disc. 2 (%)",
-        digits="Discount",
-        default=0.0,
-    )
-    discount3 = fields.Float(
-        string="Disc. 3 (%)",
-        digits="Discount",
-        default=0.0,
     )
     discounting_type = fields.Selection(
         selection=[("additive", "Additive"), ("multiplicative", "Multiplicative")],
@@ -47,6 +37,41 @@ class SaleOrderLine(models.Model):
         "then applied.\nMultiplicative discounts are applied sequentially.\n"
         "Multiplicative discounts are default",
     )
+
+    @api.depends(
+        lambda self: self._get_multiple_discount_field_names()
+        + ["product_id", "product_uom", "product_uom_qty"]
+    )
+    def _compute_discount(self):
+        # Base Odoo just continues instead of assigning to 0 in this case
+        # but we depend on the super() value resetting to a discount unpolluted
+        # by the extra fields before taking them into account
+        for line in self:
+            if not (
+                line.order_id.pricelist_id
+                and line.order_id.pricelist_id.discount_policy == "without_discount"
+            ):
+                line.discount = 0
+        res = super()._compute_discount()
+        if self.env.context.get("skip_triple_discount"):
+            return res
+        for line in self._get_lines_to_compute_discount():
+            line.discount = line._get_final_discount()
+        return res
+
+    @api.depends("product_id", "product_uom", "product_uom_qty")
+    def _compute_discount1(self):
+        # Calculate the original super()s discount and drag it to discount1
+        # This is primarily for the field to visually update when creating new lines
+        # rather than updating itself in the create() after you save
+        # Since we aren't in the actual compute, this shouldn't actually save any
+        # values to .discount
+        with self.env.protecting(
+            [self.env["sale.order.line"]._fields["discount"]], self
+        ):
+            self.with_context(skip_triple_discount=True)._compute_discount()
+            for line in self:
+                line.discount1 = line.discount
 
     def _get_final_discount(self):
         self.ensure_one()
@@ -71,76 +96,15 @@ class SaleOrderLine(models.Model):
 
     def _multiplicative_discount(self):
         self.ensure_one()
-        discounts = [1 - (self[x] or 0.0) / 100 for x in self._discount_fields()]
-        final_discount = 1
-        for discount in discounts:
-            final_discount *= discount
-        result = 100 - final_discount * 100
-        dp = self.env.ref("product.decimal_discount").precision_get("Discount")
-        return round(result, dp)
+        return self._get_aggregated_multiple_discounts(
+            [self[x] for x in self._discount_fields()]
+        )
 
     @api.model
     def _discount_fields(self):
-        return ["discount1", "discount2", "discount3"]
-
-    # Copy of Odoo function to change field being assigned from discount to discount1
-    @api.depends("product_id", "product_uom", "product_uom_qty")
-    def _compute_discount(self):
-        for line in self:
-            if not line.product_id or line.display_type:
-                line.discount1 = 0.0
-
-            if not (
-                line.order_id.pricelist_id
-                and line.order_id.pricelist_id.discount_policy == "without_discount"
-            ):
-                continue
-
-            line.discount1 = 0.0
-
-            if not line.pricelist_item_id:
-                # No pricelist rule was found for the product
-                # therefore, the pricelist didn't apply any discount/change
-                # to the existing sales price.
-                continue
-
-            line.discount1 = line._calc_discount_from_pricelist()
-
-    def _calc_discount_from_pricelist(self):
-        self.ensure_one()
-        self = self.with_company(self.company_id)
-        pricelist_price = self._get_pricelist_price()
-        base_price = self._get_pricelist_price_before_discount()
-
-        if base_price != 0:  # Avoid division by zero
-            discount = (base_price - pricelist_price) / base_price * 100
-            if (discount > 0 and base_price > 0) or (discount < 0 and base_price < 0):
-                # only show negative discounts if price is negative
-                # otherwise it's a surcharge which shouldn't be shown to the customer
-                return discount
-
-    @api.depends("discount1", "discount2", "discount3", "discounting_type")
-    def _compute_discount_consolidated(self):
-        for line in self:
-            line.discount = line._get_final_discount()
-
-    _sql_constraints = [
-        (
-            "discount1_limit",
-            "CHECK (discount1 <= 100.0)",
-            "Discount 1 must be lower or equal than 100%.",
-        ),
-        (
-            "discount2_limit",
-            "CHECK (discount2 <= 100.0)",
-            "Discount 2 must be lower or equal than 100%.",
-        ),
-        (
-            "discount3_limit",
-            "CHECK (discount3 <= 100.0)",
-            "Discount 3 must be lower or equal than 100%.",
-        ),
-    ]
+        # Kept for backwards compatibility
+        # TODO: Remove in future versions
+        return self._get_multiple_discount_field_names()
 
     def _prepare_invoice_line(self, **kwargs):
         """
