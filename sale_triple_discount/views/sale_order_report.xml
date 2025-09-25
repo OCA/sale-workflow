@@ -45,7 +45,7 @@
                 <span>Disc. 3 (%)</span>
             </th>
         </xpath>
-        <xpath expr="//table/tbody//tr//td[@t-if='display_discount']" position="after">
+        <xpath expr="//span[@t-field='line.discount']/.." position="after">
             <td
                 t-if="display_discount1"
                 class="text-right"

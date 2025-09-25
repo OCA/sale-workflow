@@ -35,9 +35,9 @@ class TestSaleOrder(common.TransactionCase):
                 "name": "Line 1",
                 "product_uom_qty": 1.0,
                 "tax_id": [(6, 0, [cls.tax.id])],
-                "price_unit": 600.0,
             }
         )
+        cls.so_line1.price_unit = 600
         cls.so_line2 = so_line.create(
             {
                 "order_id": cls.order.id,
@@ -45,9 +45,9 @@ class TestSaleOrder(common.TransactionCase):
                 "name": "Line 2",
                 "product_uom_qty": 10.0,
                 "tax_id": [(6, 0, [cls.tax.id])],
-                "price_unit": 60.0,
             }
         )
+        cls.so_line2.price_unit = 60
 
     def test_01_sale_order_classic_discount(self):
         """Tests with single discount"""
