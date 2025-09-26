@@ -1,0 +1,22 @@
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']" position="before">
+                <field name="show_discount_warning_label" invisible="1" />
+                <div
+                    class="alert alert-warning oe_edit_only"
+                    role="alert"
+                    attrs="{'invisible': [('show_discount_warning_label', '=', False)]}"
+                >
+                    At least one line is using a fixed discount and a percentage discount at the same time.
+                    This is currently not supported and will prioritise the use of the fixed discount. <br
+                    />
+                    It is recommended you remove one of the discount types to avoid confusion.
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
