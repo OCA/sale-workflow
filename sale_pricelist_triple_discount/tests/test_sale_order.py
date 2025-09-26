@@ -55,7 +55,7 @@ class TestSalePrices(SaleCommon):
         rule_explanation = "49.6 % discount"
         self.assertIn(rule_explanation, rule.price)
         line = order.order_line
-        self.assertFalse(line.discount)
+        self.assertFalse(line.discount1)
         self.assertFalse(line.discount2)
         self.assertFalse(line.discount3)
         self.assertEqual(line.price_unit, 10.08)
@@ -95,7 +95,7 @@ class TestSalePrices(SaleCommon):
         rule_explanation = "49.6 % discount"
         self.assertIn(rule_explanation, rule.price)
         line = order.order_line
-        self.assertEqual(line.discount, 10)
+        self.assertEqual(line.discount1, 10)
         self.assertEqual(line.discount2, 20)
         self.assertEqual(line.discount3, 30)
         self.assertEqual(line.price_unit, 20)
@@ -136,7 +136,7 @@ class TestSalePrices(SaleCommon):
         self.assertIn(rule_explanation, rule.price)
         self.assertIn(rule_explanation, rule.rule_tip)
         line = order.order_line
-        self.assertFalse(line.discount)
+        self.assertFalse(line.discount1)
         self.assertFalse(line.discount2)
         self.assertFalse(line.discount3)
         self.assertEqual(line.price_unit, 10.08)
@@ -177,7 +177,7 @@ class TestSalePrices(SaleCommon):
         self.assertIn(rule_explanation, rule.price)
         self.assertIn(rule_explanation, rule.rule_tip)
         line = order.order_line
-        self.assertEqual(line.discount, 10)
+        self.assertEqual(line.discount1, 10)
         self.assertEqual(line.discount2, 20)
         self.assertEqual(line.discount3, 30)
         self.assertEqual(line.price_unit, 20)

@@ -23,22 +23,13 @@ msgid "<span>%</span>"
 msgstr "<span>%</span>"
 
 #. module: sale_pricelist_triple_discount
-#: model:ir.model.fields,field_description:sale_pricelist_triple_discount.field_sale_order_line__discount2
-msgid "Disc. 2 (%)"
-msgstr "Sc. 2 (%)"
-
-#. module: sale_pricelist_triple_discount
-#: model:ir.model.fields,field_description:sale_pricelist_triple_discount.field_sale_order_line__discount3
-msgid "Disc. 3 (%)"
-msgstr "Sc. 3 (%)"
-
-#. module: sale_pricelist_triple_discount
 #: model_terms:ir.ui.view,arch_db:sale_pricelist_triple_discount.product_pricelist_view_form_discount
 msgid "Discount 2"
 msgstr "Sconto 2"
 
 #. module: sale_pricelist_triple_discount
 #: model:ir.model.fields,field_description:sale_pricelist_triple_discount.field_product_pricelist_item__discount2
+#: model:ir.model.fields,field_description:sale_pricelist_triple_discount.field_sale_order_line__discount2
 msgid "Discount 2 (%)"
 msgstr "Sconto 2 (%)"
 
@@ -49,6 +40,7 @@ msgstr "Sconto 3"
 
 #. module: sale_pricelist_triple_discount
 #: model:ir.model.fields,field_description:sale_pricelist_triple_discount.field_product_pricelist_item__discount3
+#: model:ir.model.fields,field_description:sale_pricelist_triple_discount.field_sale_order_line__discount3
 msgid "Discount 3 (%)"
 msgstr "Sconto 3 (%)"
 
@@ -56,6 +48,11 @@ msgstr "Sconto 3 (%)"
 #: model:ir.model,name:sale_pricelist_triple_discount.model_product_pricelist_item
 msgid "Pricelist Rule"
 msgstr "Regola listino prezzi"
+
+#. module: sale_pricelist_triple_discount
+#: model:ir.model,name:sale_pricelist_triple_discount.model_sale_order
+msgid "Sales Order"
+msgstr ""
 
 #. module: sale_pricelist_triple_discount
 #: model:ir.model,name:sale_pricelist_triple_discount.model_sale_order_line
@@ -71,3 +68,9 @@ msgstr "Secondo sconto applicato alla riga dell'ordine di vendita."
 #: model:ir.model.fields,help:sale_pricelist_triple_discount.field_product_pricelist_item__discount3
 msgid "Third discount applied on a sale order line."
 msgstr "Terzo sconto applicato alla riga dell'ordine di vendita."
+
+#~ msgid "Disc. 2 (%)"
+#~ msgstr "Sc. 2 (%)"
+
+#~ msgid "Disc. 3 (%)"
+#~ msgstr "Sc. 3 (%)"

@@ -37,7 +37,7 @@ class ProductPricelistItem(models.Model):
         discount_fields = self.env["sale.order.line"]._discount_fields()
         item_discount_field = COMPUTE_PRICE_TO_DISCOUNT_FIELD.get(self.compute_price)
         if item_discount_field is not None:
-            discount_index = discount_fields.index("discount")
+            discount_index = discount_fields.index("discount1")
             discount_fields[discount_index] = item_discount_field
 
         # Exclude discounts that are 0 according to their precision
