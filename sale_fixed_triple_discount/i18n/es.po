@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_fixed_triple_discount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-25 15:27+0000\n"
+"PO-Revision-Date: 2025-09-25 15:27+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_fixed_triple_discount
+#: model_terms:ir.ui.view,arch_db:sale_fixed_triple_discount.view_order_form
+msgid ""
+"At least one line is using a fixed discount and a percentage discount at the same time.\n"
+"                    This is currently not supported and will prioritise the use of the fixed discount. <br/>\n"
+"                    It is recommended you remove one of the discount types to avoid confusion."
+msgstr "Al menos una línea está utilizando un descuento fijo y un descuento porcentual al mismo tiempo.\n"
+"                    Esto no está actualmente soportado y priorizará el uso del descuento fijo. <br/>\n"
+"                    Se recomienda que elimines uno de los tipos de descuento para evitar confusión."
+
+#. module: sale_fixed_triple_discount
+#: model:ir.model,name:sale_fixed_triple_discount.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de Venta"
+
+#. module: sale_fixed_triple_discount
+#: model:ir.model,name:sale_fixed_triple_discount.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_fixed_triple_discount
+#: model:ir.model.fields,field_description:sale_fixed_triple_discount.field_sale_order__show_discount_warning_label
+msgid "Show Discount Warning Label"
+msgstr ""
