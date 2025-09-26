@@ -18,8 +18,6 @@ org_name: Odoo Community Association (OCA)
 org_slug: OCA
 rebel_module_groups:
 - sale_packaging_default,sale_order_product_recommendation,sale_order_product_recommendation_packaging_default,sale_order_product_recommendation_elaboration
-- sale_order_general_discount_triple,sale_pricelist_triple_discount,sale_triple_discount
-- sale_fixed_discount
 - sale_order_safe_commitment_date
 repo_description: 'TODO: add repo description.'
 repo_name: sale-workflow
