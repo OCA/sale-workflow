@@ -6,6 +6,10 @@ from odoo import api, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
+    # when sale_order_general_discount_triple is installed we want to handle
+    # the general discount in that module instead
+    _set_general_discount_in_compute_discount = True
+
     @api.depends("order_id", "order_id.general_discount")
     def _compute_discount(self):
         res = super()._compute_discount()
@@ -14,6 +18,8 @@ class SaleOrderLine(models.Model):
             # the case where a discount was set to a value != 0 and then
             # set again to 0 to remove the discount on all the lines at the same
             # time
-            if line.order_id.general_discount or line.order_id._origin.general_discount:
+            if (
+                line.order_id.general_discount or line.order_id._origin.general_discount
+            ) and line._set_general_discount_in_compute_discount:
                 line.discount = line.order_id.general_discount
         return res
