@@ -41,6 +41,7 @@ msgstr ""
 
 #. module: sale_delivery_state
 #: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order__delivery_status
+#: model_terms:ir.ui.view,arch_db:sale_delivery_state.sale_order_view_search_inherit_sale_inherit_delivery_status
 msgid "Delivery Status"
 msgstr ""
 
@@ -74,6 +75,11 @@ msgstr ""
 #. module: sale_delivery_state
 #: model:ir.model.fields.selection,name:sale_delivery_state.selection__sale_order__delivery_status__partial
 msgid "Partially Delivered"
+msgstr ""
+
+#. module: sale_delivery_state
+#: model_terms:ir.ui.view,arch_db:sale_delivery_state.sale_order_view_search_inherit_sale_inherit_delivery_status
+msgid "Pending Deliveries"
 msgstr ""
 
 #. module: sale_delivery_state
