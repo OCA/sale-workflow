@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-11-09 20:56+0000\n"
-"PO-Revision-Date: 2025-05-20 06:55+0000\n"
+"PO-Revision-Date: 2025-09-26 16:14+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -90,7 +90,7 @@ msgstr "Consegnata parzialmente"
 #. module: sale_delivery_state
 #: model_terms:ir.ui.view,arch_db:sale_delivery_state.sale_order_view_search_inherit_sale_inherit_delivery_status
 msgid "Pending Deliveries"
-msgstr ""
+msgstr "Consegne in attesa"
 
 #. module: sale_delivery_state
 #: model:ir.model,name:sale_delivery_state.model_sale_order
