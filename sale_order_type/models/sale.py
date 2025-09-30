@@ -21,6 +21,7 @@ class SaleOrder(models.Model):
         copy=True,
         check_company=True,
     )
+    order_type_required = fields.Boolean(related="company_id.sale_order_type_required")
     # Fields converted to computed writable
     picking_policy = fields.Selection(
         compute="_compute_picking_policy", store=True, readonly=False

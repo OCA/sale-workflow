@@ -25,6 +25,7 @@
   - Giovanni Serra \<<giovanni@gslab.it>\>
 - Tharathip Chaweewongphan \<<tharathipc@ecosoft.co.th>\>
 - Isaac Gallart \<<igallart@puntsistemes.es>\>
+- Denis Rousse \<<denis.roussel@acsone.eu>\>
 
 Do not contact contributors directly about support or help with
 technical issues.

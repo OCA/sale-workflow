@@ -265,3 +265,23 @@ class TestSaleOrderType(common.TransactionCase):
     def test_res_partner_copy_data(self):
         new_partner = self.partner.copy()
         self.assertEqual(self.partner.sale_type, new_partner.sale_type)
+
+    def test_sale_order_type_required(self):
+        sale_form = Form(self.env["sale.order"])
+        sale_form.partner_id = self.partner
+        with sale_form.order_line.new() as order_line:
+            order_line.product_id = self.product
+            order_line.product_uom_qty = 1.0
+        sale_form.type_id = self.sale_type.browse()
+        with self.assertRaises(AssertionError):
+            sale_form.save()
+
+    def test_sale_order_type_not_required(self):
+        self.env.company.sale_order_type_required = False
+        sale_form = Form(self.env["sale.order"])
+        sale_form.partner_id = self.partner
+        with sale_form.order_line.new() as order_line:
+            order_line.product_id = self.product
+            order_line.product_uom_qty = 1.0
+        sale_form.type_id = self.sale_type.browse()
+        sale_form.save()
