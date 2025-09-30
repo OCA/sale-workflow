@@ -8,7 +8,7 @@
             <field name="currency_id" position="after">
                 <field
                     name="type_id"
-                    required="1"
+                    required="order_type_required"
                     readonly="state in ['sale', 'cancel'] or locked"
                 />
             </field>

@@ -30,6 +30,7 @@
         "data/default_type.xml",
         "reports/account_invoice_report_view.xml",
         "reports/sale_report_view.xml",
+        "views/res_config_settings.xml",
     ],
     "installable": True,
 }
