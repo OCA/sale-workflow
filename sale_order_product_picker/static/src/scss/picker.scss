@@ -20,3 +20,16 @@
         margin-left: 5px;
     }
 }
+
+div[name="picker_ids"] {
+    position: relative;
+    #processing_picker {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        bottom: 0px;
+        right: 0px;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 1000;
+    }
+}

@@ -6,3 +6,5 @@ custom descriptions.
 
 .. image:: /sale_order_price_recalculation/static/description/sale_order_price_recalculation.png
     :alt: Sale order price recalculation
+
+You may also select several orders to recompute prices at once.

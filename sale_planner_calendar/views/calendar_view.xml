@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_calendar_event_tree" model="ir.ui.view">
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_tree" />
+        <field name="arch" type="xml">
+            <field name="duration" position="after">
+                <field name="until" optional="hide" />
+                <field name="recurrence_id" invisible="1" />
+            </field>
+        </field>
+    </record>
+
+    <record id="view_calendar_event_tree_primary_only" model="ir.ui.view">
+        <field name="name">calendar.event.primary.only</field>
+        <field name="model">calendar.event</field>
+        <field name="priority" eval="9999" />
+        <field name="arch" type="xml">
+            <tree default_order="start">
+                <field name="user_id" optional="show" />
+                <field name="name" string="Subject" optional="show" />
+                <field name="target_partner_id" optional="hide" />
+                <field name="start" string="Start Date" optional="show" />
+                <field name="until" optional="hide" />
+                <field
+                    name="categ_ids"
+                    widget="many2many_tags"
+                    optional="show"
+                    options="{'color_field': 'color', 'no_create_edit': True}"
+                />
+                <field name="location" optional="hide" />
+                <field name="duration" widget="float_time" optional="hide" />
+                <field name="recurrency" optional="hide" />
+                <field name="recurrence_id" invisible="1" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="calendar_event_tree_primary_only_action" model="ir.actions.act_window">
+        <field name="name">Recurrent calendar events</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">calendar.event</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_calendar_event_tree_primary_only" />
+        <field name="context">{
+            'default_recurrency':True,
+            'search_default_user_id':uid,
+            'choose_unlink_method': True,
+        }</field>
+        <field name="domain">[('recurrency', '=', True),
+            ("is_base_recurrent_event", "=", True), ('target_partner_id', '!=', False), '|', ('recurrence_id.until', '>=', datetime.date.today().strftime("%Y-%m-%d")), ('recurrence_id.until', '=', False)]</field>
+    </record>
+
+    <record id="view_calendar_event_search" model="ir.ui.view">
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_search" />
+        <field name="arch" type="xml">
+            <field name="partner_ids" position="before">
+                <field name="target_partner_id" />
+            </field>
+            <filter name="inactive" position="before">
+                <separator />
+                <filter
+                    string="Today"
+                    name="start_today"
+                    domain="[('start','&gt;=', time.strftime('%%Y-%%m-%%d 00:00:00')),('start','&lt;',(datetime.date.today() + datetime.timedelta(days=1)).strftime('%%Y-%%m-%%d 00:00:00'))]"
+                />
+                <filter
+                    string="Tomorrow"
+                    name="start_tomorrow"
+                    domain="[('start','&gt;', time.strftime('%%Y-%%m-%%d 23:59:59')),('start','&lt;',(datetime.date.today() + datetime.timedelta(days=2)).strftime('%%Y-%%m-%%d 00:00:00'))]"
+                />
+                <separator />
+            </filter>
+            <filter name="responsible" position="after">
+                <filter
+                    string="Sale planner partner"
+                    name="group_by_target_partner"
+                    domain="[]"
+                    context="{'group_by': 'target_partner_id'}"
+                />
+                <filter
+                    string="Tags"
+                    name="group_by_tags"
+                    domain="[]"
+                    context="{'group_by': 'categ_ids'}"
+                />
+            </filter>
+        </field>
+    </record>
+
+    <record id="view_calendar_event_form" model="ir.ui.view">
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form" />
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <label for="target_partner_id" string="Sale planner partner" />
+                <field name="target_partner_id" nolabel="1" />
+            </field>
+            <field name="recurrence_id" position="after">
+                <group attrs="{'invisible': [('recurrency', '=', False)]}">
+                    <field name="advanced_cycle" />
+                    <field
+                        name="cycle_number"
+                        attrs="{'invisible': [('advanced_cycle', '=', False)]}"
+                    />
+                    <field
+                        name="cycle_skip"
+                        attrs="{'invisible': [('advanced_cycle', '=', False)]}"
+                    />
+                </group>
+            </field>
+        </field>
+    </record>
+
+    <!-- TODO: Review to be removed -->
+    <record id="view_calendar_event_kanban" model="ir.ui.view">
+        <field name="name">calendar.event.kanban</field>
+        <field name="model">calendar.event</field>
+        <field name="priority" eval="32" />
+        <field name="arch" type="xml">
+            <kanban
+                class="o_kanban_mobile"
+                default_order="start"
+                quick_create_view="view_sale_planner_calendar_form"
+                on_create="action_sale_planner_calendar_event"
+            >
+                <field name="name" />
+                <field name="target_partner_id" />
+                <field name="attendee_ids" />
+                <field name="categ_ids" />
+                <field name="start" />
+                <field name="start_date" />
+                <field name="target_partner_mobile" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="row mb4">
+                                <div class="col-8">
+                                    <strong><span><t
+                                                t-esc="record.start.value"
+                                            /></span></strong>
+                                </div>
+                                <div class="col-4 text-end">
+                                    <field
+                                        name="categ_ids"
+                                        widget="many2many_tags"
+                                        options="{'color_field': 'color'}"
+                                    />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8">
+                                    <field name="target_partner_id" />
+                                </div>
+                                <div class="col-4">
+                                    <div class="float-end">
+                                        <div t-if="record.target_partner_mobile.value">
+                                            <span title="Mobile">
+                                                <i class="fa fa-phone" />
+                                                <field
+                                                    name="target_partner_mobile"
+                                                    widget="phone"
+                                                />
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="action_calendar_event" model="ir.actions.act_window">
+        <field name="name">My Calendar</field>
+        <field name="res_model">calendar.event</field>
+        <field name="view_mode">calendar,tree,kanban,form</field>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Schedule a new calendar event
+          </p>
+        </field>
+        <field
+            name="search_view_id"
+            ref="sale_planner_calendar.view_calendar_event_search"
+        />
+        <field name="context">{
+            'search_default_start_today': 1,
+            'choose_unlink_method': True,
+        }</field>
+        <field
+            name="domain"
+        >[('user_id', '=', uid), ('target_partner_id', '!=', False)]</field>
+    </record>
+</odoo>

@@ -1,0 +1,162 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_cancel
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-07-11 20:29+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: sale_order_line_cancel
+#. odoo-python
+#: code:addons/sale_order_line_cancel/models/sale_order_line.py:0
+#, python-format
+msgid "<b>%(product)s</b>: The order line has been canceled"
+msgstr "<b>%(product)s</b>: la riga ordine è stata cancellata"
+
+#. module: sale_order_line_cancel
+#: model:ir.model.fields,field_description:sale_order_line_cancel.field_sale_order_line__can_cancel_remaining_qty
+msgid "Can Cancel Remaining Qty"
+msgstr "Può annullare la q.tà residura"
+
+#. module: sale_order_line_cancel
+#: model_terms:ir.ui.view,arch_db:sale_order_line_cancel.sale_order_line_cancel_view_form
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: sale_order_line_cancel
+#: model:ir.model,name:sale_order_line_cancel.model_sale_order_line_cancel
+msgid "Cancel Remaining Wizard"
+msgstr "Procedura guidata annullamento residuo"
+
+#. module: sale_order_line_cancel
+#: model:ir.actions.act_window,name:sale_order_line_cancel.action_sale_order_line_cancel
+#: model_terms:ir.ui.view,arch_db:sale_order_line_cancel.sale_order_form_view
+#: model_terms:ir.ui.view,arch_db:sale_order_line_cancel.sale_order_line_tree_view
+msgid "Cancel remaining qty"
+msgstr "Annulla q.tà residua"
+
+#. module: sale_order_line_cancel
+#: model_terms:ir.ui.view,arch_db:sale_order_line_cancel.sale_order_line_cancel_view_form
+msgid "Cancel remaining quantity"
+msgstr "Annulla quantità residua"
+
+#. module: sale_order_line_cancel
+#: model_terms:ir.ui.view,arch_db:sale_order_line_cancel.sale_order_form_view
+#: model_terms:ir.ui.view,arch_db:sale_order_line_cancel.sale_order_line_tree_view
+msgid "Canceled"
+msgstr "Annullata"
+
+#. module: sale_order_line_cancel
+#: model:ir.model,name:sale_order_line_cancel.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: sale_order_line_cancel
+#: model:ir.model,name:sale_order_line_cancel.model_res_config_settings
+msgid "Config Settings"
+msgstr "Impostazioni configurazione"
+
+#. module: sale_order_line_cancel
+#: model:ir.model.fields,field_description:sale_order_line_cancel.field_sale_order_line_cancel__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: sale_order_line_cancel
+#: model:ir.model.fields,field_description:sale_order_line_cancel.field_sale_order_line_cancel__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: sale_order_line_cancel
+#: model:ir.model.fields,field_description:sale_order_line_cancel.field_sale_order_line_cancel__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_order_line_cancel
+#: model:ir.model.fields,field_description:sale_order_line_cancel.field_sale_order_line_cancel__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_line_cancel
+#: model:ir.model.fields,field_description:sale_order_line_cancel.field_sale_order_line_cancel____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: sale_order_line_cancel
+#: model:ir.model.fields,field_description:sale_order_line_cancel.field_sale_order_line_cancel__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: sale_order_line_cancel
+#: model:ir.model.fields,field_description:sale_order_line_cancel.field_sale_order_line_cancel__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: sale_order_line_cancel
+#. odoo-python
+#: code:addons/sale_order_line_cancel/wizards/sale_order_line_cancel.py:0
+#, python-format
+msgid "No sale order line ID found"
+msgstr "Nessun ID riga ordine di vendita trovato"
+
+#. module: sale_order_line_cancel
+#: model:ir.model.fields,help:sale_order_line_cancel.field_res_company__on_sale_line_cancel_decrease_line_qty
+#: model:ir.model.fields,help:sale_order_line_cancel.field_res_config_settings__on_sale_line_cancel_decrease_line_qty
+#: model_terms:ir.ui.view,arch_db:sale_order_line_cancel.res_config_settings_form_view
+msgid ""
+"On canceling the remaining qty to deliver of an order line it decreases the "
+"initial quantity"
+msgstr ""
+"All'annullamento della q.tà residua da consegnare di una riga ordine questo "
+"diminuisce la quantità iniziale"
+
+#. module: sale_order_line_cancel
+#: model:ir.model.fields,field_description:sale_order_line_cancel.field_res_company__on_sale_line_cancel_decrease_line_qty
+#: model:ir.model.fields,field_description:sale_order_line_cancel.field_res_config_settings__on_sale_line_cancel_decrease_line_qty
+msgid "On sale order line cancel decrease line quantity"
+msgstr "All'annullamento della riga ordine di vendita diminuisce la quantità"
+
+#. module: sale_order_line_cancel
+#: model:ir.model.fields,field_description:sale_order_line_cancel.field_sale_order_line__product_qty_canceled
+msgid "Qty canceled"
+msgstr "Q.tà annullata"
+
+#. module: sale_order_line_cancel
+#: model:ir.model.fields,field_description:sale_order_line_cancel.field_sale_order_line__product_qty_remains_to_deliver
+msgid "Remains to deliver"
+msgstr "Residuo da consegnare"
+
+#. module: sale_order_line_cancel
+#: model:ir.model,name:sale_order_line_cancel.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: sale_order_line_cancel
+#: model:ir.model,name:sale_order_line_cancel.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Riga ordine di vendita"
+
+#. module: sale_order_line_cancel
+#: model:ir.model,name:sale_order_line_cancel.model_stock_move
+msgid "Stock Move"
+msgstr "Movimento di magazzino"
+
+#. module: sale_order_line_cancel
+#: model_terms:ir.ui.view,arch_db:sale_order_line_cancel.sale_order_form_view
+#: model_terms:ir.ui.view,arch_db:sale_order_line_cancel.sale_order_line_tree_view
+msgid "To Deliver"
+msgstr "Da consegnare"
+
+#. module: sale_order_line_cancel
+#: model_terms:ir.ui.view,arch_db:sale_order_line_cancel.sale_order_line_cancel_view_form
+msgid "Validate"
+msgstr "Valida"

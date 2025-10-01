@@ -1,6 +1,6 @@
 # Copyright 2020 Sergio Teruel <sergio.teruel@tecnativa.com>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 from odoo.tests import common, tagged
 
 
@@ -73,3 +73,34 @@ class TestSaleTierValidation(common.TransactionCase):
         so.with_user(self.test_user_1).validate_tier()
         so.action_confirm()
         self.assertEqual(so.state, "sale")
+
+    def test_block_print_unvalidated_sale_order(self):
+        so = self.env["sale.order"].create(
+            {
+                "partner_id": self.customer.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Test line",
+                            "product_id": self.product.id,
+                            "product_uom_qty": 1,
+                            "product_uom": self.product.uom_id.id,
+                            "price_unit": self.product.list_price,
+                        },
+                    )
+                ],
+            }
+        )
+        so.company_id.sale_report_print_block = True
+        report = self.env["report.sale.report_saleorder"]
+        # Attempt to render the report before validation
+        with self.assertRaises(UserError):
+            report._get_report_values(docids=[so.id])
+        so.request_validation()
+        with self.assertRaises(UserError):
+            report._get_report_values(docids=[so.id])
+        so.with_user(self.test_user_1).validate_tier()
+        # Attempt to render the report after validation
+        report._get_report_values(docids=[so.id])

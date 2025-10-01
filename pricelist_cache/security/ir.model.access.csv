@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_pricelist_cache_user,access_product_pricelist_cache_user,model_product_pricelist_cache,base.group_user,1,0,0,0
+access_product_pricelist_cache_system,access_product_pricelist_cache_system,model_product_pricelist_cache,base.group_system,1,1,1,1
+access_product_pricelist_cache_wizard_user,access_product_pricelist_cache_wizard,model_product_pricelist_cache_wizard,base.group_user,1,1,1,1

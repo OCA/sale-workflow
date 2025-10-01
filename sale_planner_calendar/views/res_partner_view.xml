@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_partner_form">
+        <field name="model">res.partner</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button
+                    class="oe_stat_button"
+                    name="action_calendar_planner"
+                    icon="fa-calendar"
+                    type="object"
+                >
+                    <span class="o_stat_text">Planner</span>
+                </button>
+            </div>
+            <group name="sale" position="inside">
+                <field
+                    name="is_sale_planner_contact"
+                    attrs="{'invisible': [('parent_id', '=', False)]}"
+                />
+            </group>
+        </field>
+    </record>
+
+</odoo>

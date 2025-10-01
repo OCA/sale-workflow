@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_calendar_event_type_tree" model="ir.ui.view">
+        <field name="name">calendar.event.type</field>
+        <field name="model">calendar.event.type</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_type_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="duration" />
+                <field name="icon" />
+            </field>
+        </field>
+    </record>
+
+</odoo>

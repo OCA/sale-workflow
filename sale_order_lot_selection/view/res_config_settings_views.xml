@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.stock</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="500" />
+        <field name="inherit_id" ref="stock.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='production_lot_info']" position="inside">
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    id="allow_to_change_lot_on_confirmed_so"
+                    attrs="{'invisible': [('group_stock_production_lot', '=', False)]}"
+                    title="Allow Lot/Serial Numbers changes after sale confirmation"
+                >
+                    <div class="o_setting_left_pane">
+                        <field name="allow_to_change_lot_on_confirmed_so" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="allow_to_change_lot_on_confirmed_so" />
+                        <span
+                            class="fa fa-lg fa-building-o"
+                            title="Values set here are company-specific."
+                            role="img"
+                            aria-label="Values set here are company-specific."
+                            groups="base.group_multi_company"
+                        />
+                        <div class="text-muted">
+                            Choose between two strategies :
+                            <ul>
+                                <li>Lock lot/serial numbers in sales orders lines after
+                            confirmation</li>
+                                <li>Allow lot/serial numbers to be updated after
+                            confirmation and propagate changes to stock moves</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

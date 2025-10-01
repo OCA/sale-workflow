@@ -39,6 +39,15 @@ class SaleOrder(models.Model):
         store=True,
     )
 
+    margin_curr = fields.Monetary(
+        string="Margin",
+        readonly=True,
+        help="Sale Order Margin in the company Currency",
+        compute="_compute_amount_company",
+        currency_field="company_currency_id",
+        store=True,
+    )
+
     @api.depends("amount_total", "currency_rate")
     def _compute_amount_company(self):
         for order in self:
@@ -46,10 +55,13 @@ class SaleOrder(models.Model):
                 to_untaxed = order.amount_untaxed
                 to_tax = order.amount_tax
                 to_amount = order.amount_total
+                to_margin = order.margin
             else:
                 to_untaxed = order.amount_untaxed / order.currency_rate
                 to_tax = order.amount_tax / order.currency_rate
                 to_amount = order.amount_total / order.currency_rate
+                to_margin = order.margin / order.currency_rate
             order.amount_untaxed_curr = to_untaxed
             order.amount_tax_curr = to_tax
             order.amount_total_curr = to_amount
+            order.margin_curr = to_margin

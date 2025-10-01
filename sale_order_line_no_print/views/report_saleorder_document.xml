@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Moduon Team S.L.
+     License Licencia Moduon 1.0 -->
+<odoo>
+    <template
+        id="report_saleorder_document"
+        inherit_id="sale.report_saleorder_document"
+        priority="999"
+    >
+        <!-- Ensure compatibility if other modules extend the conditions matching
+         just the beggining of the condition-->
+        <xpath
+            expr="//t[starts-with(@t-if, 'not line.display_type')]"
+            position="replace"
+        >
+            <t t-if="not line.display_type and line.display_in_report">$0</t>
+        </xpath>
+    </template>
+    <template
+        id="sale_order_portal_content"
+        inherit_id="sale.sale_order_portal_content"
+        priority="99"
+    >
+        <!-- Ensure compatibility if other modules extend the conditions matching
+         just the beggining of the condition-->
+        <xpath
+            expr="//t[starts-with(@t-if, 'not line.display_type')]"
+            position="replace"
+        >
+            <t t-if="line.display_in_report">$0</t>
+        </xpath>
+    </template>
+</odoo>

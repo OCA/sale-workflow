@@ -21,6 +21,16 @@ msgid ""
 msgstr ""
 
 #. module: sale_delivery_state
+#: model:ir.model,name:sale_delivery_state.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_delivery_state
+#: model:ir.model,name:sale_delivery_state.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_delivery_state
 #: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order__delivery_status
 msgid "Delivery Status"
 msgstr ""
@@ -41,6 +51,13 @@ msgid "Fully Delivered"
 msgstr ""
 
 #. module: sale_delivery_state
+#: model_terms:ir.ui.view,arch_db:sale_delivery_state.sale_delivery_state_res_config_settings_view_form
+msgid ""
+"If active, sale order lines containing Service products will not be "
+"evaluated by default when determining the Delivery State."
+msgstr ""
+
+#. module: sale_delivery_state
 #: model:ir.model.fields.selection,name:sale_delivery_state.selection__sale_order__delivery_status__pending
 msgid "Not Delivered"
 msgstr ""
@@ -53,6 +70,22 @@ msgstr ""
 #. module: sale_delivery_state
 #: model:ir.model,name:sale_delivery_state.model_sale_order
 msgid "Sales Order"
+msgstr ""
+
+#. module: sale_delivery_state
+#: model:ir.model,name:sale_delivery_state.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_delivery_state
+#: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order_line__skip_sale_delivery_state
+msgid "Skip Delivery State"
+msgstr ""
+
+#. module: sale_delivery_state
+#: model:ir.model.fields,field_description:sale_delivery_state.field_res_company__skip_service_sale_delivery_state
+#: model:ir.model.fields,field_description:sale_delivery_state.field_res_config_settings__skip_service_sale_delivery_state
+msgid "Skip Service products for Sale Delivery State"
 msgstr ""
 
 #. module: sale_delivery_state

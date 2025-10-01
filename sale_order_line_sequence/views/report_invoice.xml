@@ -4,16 +4,14 @@
         id="report_invoice_document_inherit_sale_sequence"
         inherit_id="account.report_invoice_document"
     >
-        <!--complicated expr to be compatible with other modules-->
-        <xpath expr="//table/thead/tr/th[1]" position="before">
+        <xpath expr="//th[@name='th_description']" position="before">
             <th
                 t-if="(o.move_type == 'out_invoice' or o.move_type == 'out_refund') and any(l.related_so_sequence for l in o.invoice_line_ids)"
             >
                 Line Number
             </th>
         </xpath>
-        <!--complicated expr to be compatible with other modules-->
-        <xpath expr="//table/tbody//span[1]/.." position="before">
+        <xpath expr="//td[@name='account_invoice_line_name']" position="before">
              <td
                 t-if="(o.move_type == 'out_invoice' or o.move_type == 'out_refund') and line.related_so_sequence"
             >

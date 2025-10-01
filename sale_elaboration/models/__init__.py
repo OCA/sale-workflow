@@ -1,5 +1,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from . import product
+from . import product_category
 from . import product_elaboration
 from . import product_elaboration_mixin
 from . import product_elaboration_profile

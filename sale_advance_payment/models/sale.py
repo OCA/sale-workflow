@@ -50,6 +50,8 @@ class SaleOrder(models.Model):
         "account_payment_ids.move_id.line_ids.credit",
         "account_payment_ids.move_id.line_ids.currency_id",
         "account_payment_ids.move_id.line_ids.amount_currency",
+        "invoice_ids",
+        "invoice_ids.state",
         "invoice_ids.amount_residual",
     )
     def _compute_advance_payment(self):
@@ -81,8 +83,16 @@ class SaleOrder(models.Model):
                     advance_amount += line_amount
             # Consider payments in related invoices.
             invoice_paid_amount = 0.0
-            for inv in order.invoice_ids:
-                invoice_paid_amount += inv.amount_total - inv.amount_residual
+            for inv in order.invoice_ids.filtered(lambda x: x.state != "cancel"):
+                paid_amount = inv.amount_total_in_currency_signed - inv.amount_residual
+                if inv.currency_id != order.currency_id:
+                    paid_amount = inv.currency_id._convert(
+                        paid_amount,
+                        order.currency_id,
+                        order.company_id,
+                        inv.invoice_date or inv.date,
+                    )
+                invoice_paid_amount += paid_amount
             amount_residual = order.amount_total - advance_amount - invoice_paid_amount
             payment_state = "not_paid"
             if mls:

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Moduon Team S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
+<data>
+    <record id="sale_order_line_view_form_readonly" model="ir.ui.view">
+        <field name="name">sale.order.line.form.readonly</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group" position="inside">
+                <group name="grp_attributes" string="Attributes">
+                    <field
+                        name="all_product_attribute_value_ids"
+                        widget="many2many_tags"
+                        options="{'color_field': 'color'}"
+                        nolabel="1"
+                        colspan="2"
+                    />
+                    <field
+                        name="all_product_template_attribute_value_ids"
+                        nolabel="1"
+                        colspan="2"
+                    >
+                        <tree string="Attributes" editable="bottom">
+                            <field name="attribute_id" optional="hide" />
+                            <field name="name" optional="hide" />
+                            <field name="product_attribute_value_id" optional="show" />
+                            <field name="currency_id" invisible="1" />
+                            <field name="price_extra" sum="Total" widget="monetary" />
+                            <field name="html_color" optional="hide" />
+                            <field name="is_custom" optional="hide" />
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_line_tree" model="ir.ui.view">
+        <field name="name">sale.order.line.tree</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field
+                    name="all_product_attribute_value_ids"
+                    widget="many2many_tags"
+                    options="{'color_field': 'color'}"
+                    optional="hide"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sales_order_line_filter" model="ir.ui.view">
+        <field name="name">sale.order.line.select</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//search/field[@name='product_id']" position="after">
+                <field name="all_product_attribute_value_ids" />
+            </xpath>
+            <xpath expr="//search/group" position="inside">
+                <filter
+                    string="Attribute Values"
+                    name="grp_all_product_attribute_values"
+                    domain="[]"
+                    context="{'group_by':'all_product_attribute_value_ids'}"
+                />
+            </xpath>
+        </field>
+    </record>
+</data>

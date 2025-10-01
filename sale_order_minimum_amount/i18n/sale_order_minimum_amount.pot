@@ -1,0 +1,60 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_minimum_amount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_minimum_amount
+#: model:ir.model,name:sale_order_minimum_amount.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_order_minimum_amount
+#: model:ir.model,name:sale_order_minimum_amount.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_minimum_amount
+#: model:ir.model.fields,field_description:sale_order_minimum_amount.field_res_company__sale_min_order_limit
+#: model:ir.model.fields,field_description:sale_order_minimum_amount.field_res_config_settings__sale_min_order_limit
+msgid "Minimum Sales Order Amount"
+msgstr ""
+
+#. module: sale_order_minimum_amount
+#: model_terms:ir.ui.view,arch_db:sale_order_minimum_amount.res_config_settings_view_form_inherited_sale_order_minimum_amount
+msgid "Minimum total amount required to confirm a sales order."
+msgstr ""
+
+#. module: sale_order_minimum_amount
+#: model_terms:ir.ui.view,arch_db:sale_order_minimum_amount.res_config_settings_view_form_inherited_sale_order_minimum_amount
+msgid "Minimum total amount to confirm a sales order"
+msgstr ""
+
+#. module: sale_order_minimum_amount
+#. odoo-python
+#: code:addons/sale_order_minimum_amount/models/sale_order.py:0
+#, python-format
+msgid "Only sale orders over %(amount).2f %(currency)s can be confirmed."
+msgstr ""
+
+#. module: sale_order_minimum_amount
+#: model:ir.model,name:sale_order_minimum_amount.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_minimum_amount
+#: model:ir.model.fields,help:sale_order_minimum_amount.field_res_company__sale_min_order_limit
+#: model:ir.model.fields,help:sale_order_minimum_amount.field_res_config_settings__sale_min_order_limit
+msgid ""
+"Sales users cannot confirm orders below this amount. Sales Managers are not "
+"restricted."
+msgstr ""

@@ -1,0 +1,205 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_price_history
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-04-16 09:23+0000\n"
+"Last-Translator: Betül Öğmen <betulo@eska.biz>\n"
+"Language-Team: none\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: sale_order_line_price_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
+msgid "Close"
+msgstr "Kapat"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__create_uid
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__create_uid
+msgid "Created by"
+msgstr "Oluşturan"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__create_date
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__create_date
+msgid "Created on"
+msgstr "Oluşturulma Tarihi"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_date_order
+msgid ""
+"Creation date of draft/sent orders,\n"
+"Confirmation date of confirmed orders."
+msgstr ""
+"Taslak/Gönderildi'deki siparişlerin oluşturulma tarihi, \n"
+"Onaylanan siparişlerin onay tarihi."
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line__order_partner_id
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__partner_id
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__partner_id
+msgid "Customer"
+msgstr "Müşteri"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__discount
+msgid "Discount (%)"
+msgstr "İndirim (%)"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__display_name
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__display_name
+msgid "Display Name"
+msgstr "İsmi Göster"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__history_id
+msgid "History"
+msgstr "Geçmiş"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__line_ids
+msgid "History lines"
+msgstr "Geçmiş satırlar"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__id
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
+msgid "Include Quotations"
+msgstr "Teklifleri dahil et"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_commercial_partner
+msgid "Include commercial entity"
+msgstr "Ticari varlığı dahil et"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history__include_commercial_partner
+msgid "Include commercial entity and its contacts in the sale history"
+msgstr "Ticari kuruluşu ve onun bağlantılarını satış geçmişine dahil edin"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
+msgid "Include quotations lines in the sale history"
+msgstr "Satış geçmişine teklif satırlarını ekleyin"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history____last_update
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line____last_update
+msgid "Last Modified on"
+msgstr "Son Güncelleme Tarihi"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__write_uid
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__write_uid
+msgid "Last Updated by"
+msgstr "Son Güncelleyen"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__write_date
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__write_date
+msgid "Last Updated on"
+msgstr "Son Güncelleme Tarihi"
+
+#. module: sale_order_line_price_history
+#. odoo-python
+#: code:addons/sale_order_line_price_history/wizards/sale_order_line_price_history.py:0
+#, python-format
+msgid "Not found historical sale order line for this action!"
+msgstr "Bu eylem için geçmiş satış siparişi satırı bulunamadı!"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_date_order
+msgid "Order Date"
+msgstr "Sipariş Tarihi"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__order_id
+msgid "Order Reference"
+msgstr "Sipariş Referansı"
+
+#. module: sale_order_line_price_history
+#. odoo-javascript
+#: code:addons/sale_order_line_price_history/static/src/xml/sale_line_price_history_widget.xml:0
+#: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
+#: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.view_order_form
+#, python-format
+msgid "Price History"
+msgstr "Ücret Geçmişi"
+
+#. module: sale_order_line_price_history
+#: model:ir.actions.act_window,name:sale_order_line_price_history.sale_order_line_price_history_action
+msgid "Price history per customer"
+msgstr "Müşteri başına fiyat geçmişi"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__product_id
+msgid "Product"
+msgstr "Ürün"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__product_uom_qty
+msgid "Quantity"
+msgstr "Nicelik"
+
+#. module: sale_order_line_price_history
+#: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
+msgid "Sale history"
+msgstr "Satış geçmişi"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__sale_order_line_id
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_line_id
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__target_sale_order_line_id
+msgid "Sale order line"
+msgstr "Satış sipariş satırı"
+
+#. module: sale_order_line_price_history
+#: model:ir.model,name:sale_order_line_price_history.model_sale_order_line_price_history
+msgid "Sale order line price history"
+msgstr "Satış siparişi satırı fiyat geçmişi"
+
+#. module: sale_order_line_price_history
+#: model:ir.model,name:sale_order_line_price_history.model_sale_order_line_price_history_line
+msgid "Sale order line price history line"
+msgstr "Satış siparişi satırı fiyat geçmişi satırı"
+
+#. module: sale_order_line_price_history
+#: model:ir.model,name:sale_order_line_price_history.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Satış Sipariş Satırı"
+
+#. module: sale_order_line_price_history
+#. odoo-javascript
+#: code:addons/sale_order_line_price_history/static/src/xml/set_price_to_line_widget.xml:0
+#, python-format
+msgid "Set Historic Price"
+msgstr "Geçmiş Fiyatı Ayarla"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__order_state
+msgid "Status"
+msgstr "Durum"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__price_unit
+msgid "Unit Price"
+msgstr "Birim Fiyatı"
+
+#. module: sale_order_line_price_history
+#: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__history_sale_order_line_id
+msgid "history sale order line"
+msgstr "geçmiş satış şiparişi satırı"

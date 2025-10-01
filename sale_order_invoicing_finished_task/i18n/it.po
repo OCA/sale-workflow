@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2024-01-05 10:37+0000\n"
+"PO-Revision-Date: 2025-02-12 18:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: sale_order_invoicing_finished_task
 #: model_terms:ir.ui.view,arch_db:sale_order_invoicing_finished_task.edit_project_task_track
@@ -29,15 +29,16 @@ msgid ""
 msgstr ""
 "<span class=\"text-success\" attrs=\"{'invisible': [('invoiceable', '=', "
 "False)]}\">Fatturabile</span>\n"
-"                    <span class=\"text-danger\" attrs=\"{'invisible': [("
-"'invoiceable', '!=', False)]}\">Non fatturabile</span>"
+"                    <span class=\"text-danger\" attrs=\"{'invisible': "
+"[('invoiceable', '!=', False)]}\">Non fatturabile</span>"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_template__invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_project_task__invoicing_finished_task
 msgid "Invoice the order lines only when the task is set to invoiceable"
-msgstr "Fattura le righe ordine solo qando il lavoro è impostato a fatturabile"
+msgstr ""
+"Fattura le righe ordine solo quando il lavoro è impostato a fatturabile"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task__invoiceable
@@ -56,11 +57,6 @@ msgstr "Controllo fatturazione da lavori"
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_product_template
 msgid "Product"
 msgstr "Prodotto"
-
-#. module: sale_order_invoicing_finished_task
-#: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order
-msgid "Sales Order"
-msgstr "Ordine di vendita"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order_line
@@ -92,6 +88,9 @@ msgid ""
 msgstr ""
 "Non si può creare/modificare un lavoro relativo ad una riga ordine "
 "fatturata, eseguita o annullata. "
+
+#~ msgid "Sales Order"
+#~ msgstr "Ordine di vendita"
 
 #, fuzzy
 #~ msgid "Sale Order"

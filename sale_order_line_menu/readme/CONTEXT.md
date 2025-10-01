@@ -1,0 +1,1 @@
+Sometimes, for analysis purposes, we need to be able to search across the Sales Order Lines.

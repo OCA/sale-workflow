@@ -31,6 +31,14 @@
                     options="{'currency_field': 'company_currency_id'}"
                     optional="show"
                 />
+                <field
+                    name="margin_curr"
+                    sum="Total"
+                    string="Margin (Company Currency)"
+                    widget="monetary"
+                    options="{'currency_field': 'company_currency_id'}"
+                    optional="hide"
+                />
             </field>
         </field>
     </record>

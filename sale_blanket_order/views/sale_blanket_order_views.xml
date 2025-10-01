@@ -215,7 +215,6 @@
                                         context="{'default_type_tax_use': 'sale'}"
                                         options="{'no_create': True}"
                                         attrs="{
-                                            'required': [('display_type', '=', False)],
                                             'invisible': [('display_type', '=', True)],
                                         }"
                                     />
@@ -274,6 +273,11 @@
                                         options="{'no_create': True}"
                                     />
                                     <field name="client_order_ref" />
+                                    <field
+                                        name="tag_ids"
+                                        widget="many2many_tags"
+                                        options="{'color_field': 'color', 'no_create_edit': True}"
+                                    />
                                     <field
                                         name="company_id"
                                         options="{'no_create': True}"

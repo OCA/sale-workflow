@@ -1,0 +1,119 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_menu
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-07-18 15:25+0000\n"
+"Last-Translator: iaranburu <iaranburu@binovo.es>\n"
+"Language-Team: none\n"
+"Language: eu_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: sale_order_line_menu
+#: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__account_analytic_id
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Analytic Account"
+msgstr "Kontu analitikoa"
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Cancelled"
+msgstr "Ezeztatuta"
+
+#. module: sale_order_line_menu
+#: model:ir.model.fields,help:sale_order_line_menu.field_sale_order_line__date_order
+msgid ""
+"Creation date of draft/sent orders,\n"
+"Confirmation date of confirmed orders."
+msgstr ""
+"Zirriborroen/bidalitako eskaeren sortze-data,\n"
+"Berretsitako eskaeren berreste-data."
+
+#. module: sale_order_line_menu
+#: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__date_order
+msgid "Date"
+msgstr "Data"
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Fully Invoiced"
+msgstr "Erabat fakturatuta"
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Invoice Status"
+msgstr "Fakturazio-egoera"
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Locked"
+msgstr "Blokeatua"
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Nothing to Invoice"
+msgstr "Fakturatzeko ezer ez"
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Order Date"
+msgstr "Eskaera-data"
+
+#. module: sale_order_line_menu
+#: model:ir.actions.act_window,name:sale_order_line_menu.action_orders_lines
+#: model:ir.ui.menu,name:sale_order_line_menu.sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sale_order_line_pivot
+msgid "Order Lines"
+msgstr "Eskaera-lerroak"
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_tree
+msgid "Price Subtotal"
+msgstr "Prezioaren guztizko partziala"
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_tree
+msgid "Price Tax"
+msgstr "Zergaren prezioa"
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_tree
+msgid "Price Total"
+msgstr "Erabateko prezioa"
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Quotation"
+msgstr "Kotizazioa"
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Quotation Sent"
+msgstr "Bidalitako kotizazioa"
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Sales Order"
+msgstr "Salmentak"
+
+#. module: sale_order_line_menu
+#: model:ir.model,name:sale_order_line_menu.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Salmenta lerroa"
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "To Invoice"
+msgstr "Fakturatzeko"
+
+#. module: sale_order_line_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
+msgid "Upselling Opportunity"
+msgstr "Salmenta gehigarriaren aukera"

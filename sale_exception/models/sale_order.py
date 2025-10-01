@@ -9,7 +9,6 @@ from odoo import api, models
 class SaleOrder(models.Model):
     _inherit = ["sale.order", "base.exception"]
     _name = "sale.order"
-    _order = "main_exception_id asc, date_order desc, name desc"
 
     @api.model
     def _reverse_field(self):

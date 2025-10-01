@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="demo_product_sale_force_invoiced_qty_1" model="product.product">
+        <field name="name">Sale Force Invoiced qty product 1</field>
+        <field name="type">service</field>
+        <field name="invoice_policy">delivery</field>
+    </record>
+
+    <record id="demo_product_sale_force_invoiced_qty_2" model="product.product">
+        <field name="name">Sale Force Invoiced qty product 2</field>
+        <field name="type">service</field>
+        <field name="invoice_policy">delivery</field>
+    </record>
+</odoo>
