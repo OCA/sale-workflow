@@ -15,6 +15,14 @@
                     options="{'currency_field': 'company_currency_id'}"
                     optional="show"
                 />
+                <field
+                    name="amount_untaxed_curr"
+                    sum="Untaxed Total"
+                    string="Untaxed Total (Company Currency)"
+                    widget="monetary"
+                    options="{'currency_field': 'company_currency_id'}"
+                    optional="show"
+                />
             </field>
         </field>
     </record>

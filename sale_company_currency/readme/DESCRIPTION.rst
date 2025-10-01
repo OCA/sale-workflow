@@ -1,5 +1,5 @@
 This module adds functional fields to show sale order in the company currency:
-amount total.
+amount total/amount untaxed.
 
 1. For tree view, when you have SO in multiple currencies, Odoo sums them up
    regardless the different currencies. This module adds a column & sums in

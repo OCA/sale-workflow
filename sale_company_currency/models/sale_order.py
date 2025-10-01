@@ -22,12 +22,23 @@ class SaleOrder(models.Model):
         currency_field="company_currency_id",
         store=True,
     )
+    amount_untaxed_curr = fields.Monetary(
+        string="Untaxed Amount",
+        readonly=True,
+        help="Sale Order Untaxed Amount in the company Currency",
+        compute="_compute_amount_company",
+        currency_field="company_currency_id",
+        store=True,
+    )
 
-    @api.depends("amount_total", "currency_rate")
+    @api.depends("amount_total", "amount_untaxed", "currency_rate")
     def _compute_amount_company(self):
         for order in self:
             if order.currency_id.id == order.company_id.currency_id.id:
                 to_amount = order.amount_total
+                to_untaxed = order.amount_untaxed
             else:
                 to_amount = order.amount_total * order.currency_rate
+                to_untaxed = order.amount_untaxed * order.currency_rate
             order.amount_total_curr = to_amount
+            order.amount_untaxed_curr = to_untaxed
