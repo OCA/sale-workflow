@@ -1,10 +1,11 @@
 # © 2015 Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo.fields import Command
-from odoo.tests import TransactionCase
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleOrderLotSelection(TransactionCase):
+class TestSaleOrderLotSelection(BaseCommon):
     @classmethod
     def setUpClass(cls):
         """
