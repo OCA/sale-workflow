@@ -14,6 +14,7 @@
                     invisible="not product_id or product_tracking=='none'"
                     context="{'default_product_id': product_id}"
                     groups="stock.group_production_lot"
+                    optional="show"
                 />
             </xpath>
             <xpath
