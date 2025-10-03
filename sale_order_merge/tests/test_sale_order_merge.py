@@ -1,227 +1,230 @@
 # Copyright 2016 Opener B.V. - Stefan Rijnhart
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from openerp.tests.common import TransactionCase
+
+from odoo import Command
+from odoo.exceptions import ValidationError
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleOrderMerge(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.journal_sale = self.env.ref("account.sales_journal")
-        self.env.ref("product.product_product_24").write(
+class TestSaleOrderMerge(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.journal_sale = cls.env["account.journal"].create(
+            {
+                "company_id": cls.env.company.id,
+                "name": "Test journal for sale",
+                "type": "sale",
+                "code": "TSALE",
+            }
+        )
+        cls.env.ref("product.product_product_24").write(
             {
                 "list_price": 2,
             }
         )
-        self.env.ref("product.product_product_25").write(
+        cls.env.ref("product.product_product_25").write(
             {
                 "list_price": 3,
             }
         )
-        self.period_id = self.env["account.period"].find().id
 
-    def create_sale_orders(self, policy):
+    def create_sale_orders(self):
         order1 = self.env["sale.order"].create(
             {
                 "partner_id": self.env.ref("base.res_partner_2").id,
-                "order_policy": policy,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.env.ref("product.product_product_24").id,
                             "product_uom_qty": 1,
-                        },
-                    ),
+                        }
+                    )
                 ],
             }
         )
         order2 = self.env["sale.order"].create(
             {
                 "partner_id": self.env.ref("base.res_partner_2").id,
-                "order_policy": policy,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.env.ref("product.product_product_24").id,
                             "product_uom_qty": 1,
-                        },
+                        }
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.env.ref("product.product_product_25").id,
                             "product_uom_qty": 1,
-                        },
+                        }
                     ),
                 ],
             }
         )
         return order1, order2
 
-    def merge(self, order1, order2):
-        """Create a wizard, check that mergeable orders are added by default.
-        Reset mergeable orders to only order2, excluding other orders from
-        demo data. Perform the merge"""
-        wiz = self.env["sale.order.merge"].browse(order1.button_merge()["res_id"])
-        self.assertIn(order2, wiz.to_merge)
-        wiz.to_merge = order2
-        wiz.merge()
-        self.assertEqual(order2.state, "cancel")
-
-    def pay_invoice(self, invoice):
-        """Confirm and pay the invoice"""
-        invoice.signal_workflow("invoice_open")
-        invoice.pay_and_reconcile(
-            invoice.amount_total,
-            self.env.ref("account.cash").id,
-            self.period_id,
-            self.env.ref("account.bank_journal").id,
-            self.env.ref("account.cash").id,
-            self.period_id,
-            self.env.ref("account.bank_journal").id,
+    def create_wizard_merge(self, order_id, order_ids):
+        return (
+            self.env["sale.order.merge"]
+            .with_context(
+                **{
+                    "default_to_merge": [Command.set(order_ids)],
+                    "default_order_id": order_id.id,
+                }
+            )
+            .create({})
         )
-        self.assertEqual(invoice.state, "paid")
 
-    def test_01_policy_manual(self):
-        """Check that state is manual after merging orders in different states
-        because otherwise the button to create additional invoices is not
-        visible.
-        """
-        order1, order2 = self.create_sale_orders("manual")
-        order1.action_button_confirm()
-        order2.action_button_confirm()
-        self.assertEqual(order1.state, "manual")
-        order1.action_invoice_create()
-        order1.signal_workflow("manual_invoice")
-        invoice1 = order1.invoice_ids
-        self.assertEqual(order1.state, "progress")
+    def test_action_button_merge(self):
+        order1, order2 = self.create_sale_orders()
+        order_id = self.env["sale.order"].create(
+            {
+                "partner_id": self.env.ref("base.res_partner_2").id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.env.ref("product.product_product_24").id,
+                            "product_uom_qty": 1,
+                        }
+                    )
+                ],
+            }
+        )
+        result = order_id.action_button_merge()
+        wizard_result = self.env["sale.order.merge"].browse(result["res_id"])
+        merge_ids = wizard_result.to_merge.ids
+        self.assertIn(order1.id, merge_ids)
+        self.assertIn(order2.id, merge_ids)
+        self.assertEqual(order_id.id, wizard_result.order_id.id)
+        wizard_id = self.create_wizard_merge(order_id, [order1.id, order2.id])
+        with Form(wizard_id) as form_merge:
+            self.assertEqual(len(form_merge.to_merge), 2)
+            self.assertIn(order1, form_merge.to_merge)
+            wizard_id.merge()
 
-        self.merge(order1, order2)
-        self.assertEqual(order1.state, "manual")
+        line_ids = order_id.order_line
+        self.assertEqual(order_id.state, "draft")
+        self.assertEqual(len(line_ids), 4)
 
-        # Pay first invoice
-        self.pay_invoice(invoice1)
-        self.assertLess(order1.invoiced_rate, 100)
-        order1.action_invoice_create()
-        order1.signal_workflow("manual_invoice")
-        self.assertEqual(order1.state, "progress")
+        order3, order4 = self.create_sale_orders()
+        order3.action_confirm()
+        order3._create_invoices()
+        wizard3_id = self.create_wizard_merge(order_id, [order3.id, order4.id])
+        self.assertTrue(wizard3_id.message_alert)
+        order_id.action_confirm()
+        with Form(wizard3_id) as form_merge:
+            self.assertEqual(len(form_merge.to_merge), 2)
+            self.assertIn(order3, form_merge.to_merge)
+            wizard3_id.merge()
+        self.assertTrue(wizard3_id.message_alert)
+        self.assertEqual(order_id.state, "sale")
+        self.assertEqual(order3.state, "cancel")
+        self.assertEqual(order4.state, "cancel")
+        self.assertEqual(len(order3.picking_ids), 0)
+        self.assertEqual(len(order4.picking_ids), 0)
+        self.assertEqual(len(order_id.invoice_ids), 1)
 
-        # Pay second invoice
-        self.assertEqual(len(order1.invoice_ids), 2)
-        invoice2 = order1.invoice_ids - invoice1
-        self.pay_invoice(invoice2)
-        self.assertEqual(order1.invoiced_rate, 100)
+    def test_validate_selected_message_error(self):
+        order1, order2 = self.create_sale_orders()
+        order_invalid = self.env["sale.order"].create(
+            {
+                "partner_id": self.env.ref("base.res_partner_3").id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.env.ref("product.product_product_24").id,
+                            "product_uom_qty": 1,
+                        }
+                    )
+                ],
+            }
+        )
+        orders = order_invalid | order1 | order2
+        with self.assertRaises(ValidationError) as exPartner:
+            orders.action_button_merge()
+        msg_partner = str(exPartner.exception)
+        self.assertIn("Partner - Orders", msg_partner)
+        self.assertIn(self.env.ref("base.res_partner_3").name, msg_partner)
+        order_invalid.write(
+            {"partner_shipping_id": self.env.ref("base.res_partner_3").id}
+        )
+        with self.assertRaises(ValidationError) as exDelivery:
+            orders.action_button_merge()
+        msg_delivery = str(exDelivery.exception)
+        self.assertIn("Delivery address - Orders", msg_delivery)
+        self.assertIn(self.env.ref("base.res_partner_3").name, msg_delivery)
 
-        picking1 = order1.picking_ids
-        picking1.force_assign()
-        picking1.do_prepare_partial()
-        picking1.do_transfer()
-        self.assertEqual(order1.state, "done")
+        company = self.env["res.company"].create(
+            {
+                "name": "Test Company",
+            }
+        )
+        order_invalid.write({"company_id": company.id})
+        with self.assertRaises(ValidationError) as exCompany:
+            orders.action_button_merge()
+        msg_company = str(exCompany.exception)
+        self.assertIn("Company - Orders", msg_company)
+        self.assertIn(company.name, msg_company)
 
-    def test_02_policy_prepaid(self):
-        """Merge prepaid orders and check procurment trigger"""
-        order1, order2 = self.create_sale_orders("prepaid")
-        order1.action_button_confirm()
-        order2.action_button_confirm()
-        self.assertEqual(order1.amount_untaxed, 2)
-        self.assertEqual(order1.state, "progress")
-        self.assertEqual(order2.state, "progress")
-        self.assertIn(order1, order2.merge_with)
-        self.assertIn(order2, order1.merge_with)
-        self.assertTrue(order1.merge_ok)
-        self.assertTrue(order2.merge_ok)
+        warehouse_id = self.env["stock.warehouse"].create(
+            {"name": "Test Warehouse", "code": "TESTW", "company_id": company.id}
+        )
+        order_invalid.write({"warehouse_id": warehouse_id.id})
+        with self.assertRaises(ValidationError) as exWarehouse:
+            orders.action_button_merge()
+        msg_warehouse = str(exWarehouse.exception)
+        self.assertIn("Warehouse - Orders", msg_warehouse)
+        self.assertIn(warehouse_id.name, msg_warehouse)
 
-        # Pay order1's invoice to trigger procurement
-        invoice1 = order1.invoice_ids
-        self.pay_invoice(invoice1)
-        self.assertEqual(order1.invoiced_rate, 100)
+        currency_eur = self.env.ref("base.EUR")
+        currency_eur.active = True
+        order_invalid.write({"currency_id": currency_eur.id})
+        with self.assertRaises(ValidationError) as exCurrency:
+            orders.action_button_merge()
+        msg_currency = str(exCurrency.exception)
+        self.assertIn("Currency - Orders", msg_currency)
+        self.assertIn(self.env.ref("base.res_partner_3").name, msg_currency)
 
-        picking1 = order1.picking_ids
-        self.assertEqual(len(picking1.move_lines), 1)
+        order_confirm = self.env["sale.order"].create(
+            {
+                "partner_id": self.env.ref("base.res_partner_2").id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.env.ref("product.product_product_27").id,
+                            "product_uom_qty": 1,
+                        }
+                    )
+                ],
+            }
+        )
+        conf = self.env["res.config.settings"].create({"merge_order_confirm": False})
+        conf.execute()
+        order_confirm.action_confirm()
+        with self.assertRaises(ValidationError) as exState:
+            (orders | order_confirm).action_button_merge()
+        msg_state = str(exState.exception)
+        self.assertIn("State - Orders", msg_state)
+        self.assertIn("Sale", msg_state)
 
-        self.merge(order1, order2)
-        self.assertLess(order1.invoiced_rate, 100)
-
-        # The procurement of the additional lines has been triggered
-        self.assertEqual(len(picking1.move_lines), 3)
-
-        # Deliver order and check order status
-        picking1.force_assign()
-        picking1.do_prepare_partial()
-        picking1.do_transfer()
-        self.assertEqual(order1.state, "done")
-
-    def test_03_policy_picking(self):
-        """Merge a partially delivered order into an undelivered one"""
-        order1, order2 = self.create_sale_orders("picking")
-        order1.action_button_confirm()
-        order2.action_button_confirm()
-        self.assertEqual(order1.amount_untaxed, 2)
-        self.assertEqual(order1.state, "progress")
-        self.assertEqual(order2.state, "progress")
-        self.assertIn(order1, order2.merge_with)
-        self.assertIn(order2, order1.merge_with)
-        self.assertTrue(order1.merge_ok)
-        self.assertTrue(order2.merge_ok)
-        move_line1 = order1.picking_ids.move_lines
-        self.assertEqual(len(move_line1), 1)
-
-        # Partially deliver order 2 before merging
-        picking2 = order2.picking_ids[0]
-        picking2.force_assign()
-        picking2.do_prepare_partial()
-        self.env["stock.pack.operation"].search(
-            [
-                ("picking_id", "=", picking2.id),
-                ("product_id", "=", self.env.ref("product.product_product_24").id),
-            ]
-        ).unlink()
-        picking2.do_transfer()
-        invoice_id = picking2.with_context(
-            inv_type="out_invoice"
-        ).action_invoice_create(
-            journal_id=self.journal_sale.id, group=False, type="out_invoice"
-        )[0]
-        invoice2 = self.env["account.invoice"].browse(invoice_id)
-
-        self.merge(order1, order2)
-
-        self.assertIn(picking2, order1.picking_ids)
-        self.assertEqual(picking2.origin, order1.name)
-        self.assertIn(invoice2, order1.invoice_ids)
-        self.assertEqual(len(order1.order_line), 3)
-        self.assertEqual(order1.amount_untaxed, 7)
-
-        # Retrieve the remaining picking from the original move line, as it may
-        # have been merged in order2's back order (or the other way around)
-        picking1 = move_line1.picking_id
-        self.assertEqual(len(picking1.move_lines), 2)
-        self.assertIn(picking1, order1.picking_ids)
-
-        # Process the remaining goods from the combined order
-        picking1.force_assign()
-        picking1.do_prepare_partial()
-        picking1.do_transfer()
-        self.assertEqual(order1.state, "done")
-        invoice_id = picking1.with_context(
-            inv_type="out_invoice"
-        ).action_invoice_create(
-            journal_id=self.journal_sale.id, group=False, type="out_invoice"
-        )[0]
-
-        invoice1 = self.env["account.invoice"].browse(invoice_id)
-        invoice1.signal_workflow("invoice_open")
-        invoice2.signal_workflow("invoice_open")
-        self.assertEqual(order1.invoiced_rate, 100)
-
-    def test_04_order_policy(self):
-        """The order policy is propagated from the confirmed to the draft"""
-        order1, order2 = self.create_sale_orders("prepaid")
-        order2.write({"order_policy": "manual"})
-        order2.action_button_confirm()
-        self.merge(order1, order2)
-        self.assertEqual(order1.order_policy, "manual")
+    def test_merge_order_by_states(self):
+        conf = self.env["res.config.settings"].create({"merge_order_confirm": True})
+        conf.execute()
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.env.ref("base.res_partner_10").id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.env.ref("product.product_product_5").id,
+                            "product_uom_qty": 1,
+                        }
+                    )
+                ],
+            }
+        )
+        result = order._merge_order_by_states()
+        self.assertIn("sale", result)

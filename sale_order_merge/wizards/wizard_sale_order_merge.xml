@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="sale_order_merge_form" model="ir.ui.view">
+        <field name="name">sale.order.merge.view.form</field>
+        <field name="model">sale.order.merge</field>
+        <field name="arch" type="xml">
+            <form string="Merge sale orders">
+                <sheet>
+                    <field name="mergeable" invisible="1" />
+                    <field
+                        name="to_merge"
+                        nolabel="1"
+                        context="{'tree_view_ref': 'sale.view_quotation_tree_with_onboarding'}"
+                    />
+                    <label for="order_id" />
+                    <field name="order_id" />
+                </sheet>
+                <footer>
+                    <field name="message_alert" invisible="1" />
+                    <div
+                        class="alert alert-warning"
+                        role="alert"
+                        colspan="2"
+                        invisible="not message_alert"
+                    >
+                        The target order (<field
+                            name="order_id"
+                            readonly="1"
+                        />) is not confirmed,
+                        please note that confirmed orders (Sales Order) that are marked to have their
+                        pickings merged will be cancelled and not merged.
+                    </div>
+                    <button
+                        name="merge"
+                        type="object"
+                        string="Merge"
+                        class="oe_highlight"
+                        invisible="not to_merge"
+                    />
+                    <button special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
