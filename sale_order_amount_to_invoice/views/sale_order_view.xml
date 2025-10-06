@@ -20,7 +20,7 @@
                 <field
                     name="untaxed_amount_to_invoice"
                     string="To Invoice"
-                    attrs="{'invisible': [('state', '!=', 'sale')]}"
+                    invisible="state != 'sale'"
                 />
             </xpath>
         </field>
@@ -34,9 +34,9 @@
                 <field
                     name="untaxed_amount_to_invoice"
                     string="To Invoice"
-                    attrs="{'invisible': [('state', '!=', 'sale')]}"
                     optional="hide"
                     sum="To Invoice"
+                    invisible="state != 'sale'"
                 />
             </field>
         </field>
@@ -50,9 +50,9 @@
                 <field
                     name="untaxed_amount_to_invoice"
                     string="To Invoice"
-                    attrs="{'invisible': [('state', '!=', 'sale')]}"
                     optional="hide"
                     sum="To Invoice"
+                    invisible="state != 'sale'"
                 />
             </field>
         </field>
