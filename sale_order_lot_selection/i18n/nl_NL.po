@@ -11,8 +11,8 @@ msgstr ""
 "POT-Creation-Date: 2017-06-06 13:17+0000\n"
 "PO-Revision-Date: 2025-04-11 22:24+0000\n"
 "Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
-"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/"
-"23907/nl_NL/)\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/"
+"teams/23907/nl_NL/)\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,6 +24,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__lot_id
 msgid "Lot"
 msgstr "Lot"
+
+#. module: sale_order_lot_selection
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__product_tracking
+msgid "Product Tracking"
+msgstr ""
 
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
