@@ -12,7 +12,7 @@ from odoo import api, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.onchange("commitment_date")
+    @api.onchange("commitment_date", "expected_date")
     def _onchange_commitment_date(self):
         """Update empty commitment date order lines
         with commitment date from sale order"""
