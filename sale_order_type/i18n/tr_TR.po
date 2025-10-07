@@ -25,11 +25,6 @@ msgid "Active"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order__analytic_account_id
-msgid "Analytic Account"
-msgstr ""
-
-#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_account_id
 msgid "Analytic account"
 msgstr ""
@@ -46,14 +41,30 @@ msgid "Billing Journal"
 msgstr ""
 
 #. module: sale_order_type
+#: model_terms:ir.ui.view,arch_db:sale_order_type.res_config_settings_view_form
+msgid ""
+"Check this if you want the sale order type required on sale order forms."
+msgstr ""
+
+#. module: sale_order_type
 #: model_terms:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
 msgid "Click to set a new type for sale order."
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model,name:sale_order_type.model_res_company
+msgid "Companies"
 msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__company_id
 msgid "Company"
 msgstr "Firma"
+
+#. module: sale_order_type
+#: model:ir.model,name:sale_order_type.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_partner
@@ -100,6 +111,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__id
 msgid "ID"
 msgstr "Kimlik"
+
+#. module: sale_order_type
+#: model:ir.model.fields,help:sale_order_type.field_res_company__sale_order_type_required
+#: model:ir.model.fields,help:sale_order_type.field_res_config_settings__sale_order_type_required
+#: model:ir.model.fields,help:sale_order_type.field_sale_order__order_type_required
+msgid "If checked, the sale orders will require a type."
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model.fields,help:sale_order_type.field_sale_order__picking_policy
@@ -151,7 +169,6 @@ msgstr "Ad"
 #. module: sale_order_type
 #. odoo-python
 #: code:addons/sale_order_type/models/sale.py:0
-#, python-format
 msgid "New"
 msgstr ""
 
@@ -197,9 +214,15 @@ msgid "Sale Order Type"
 msgstr ""
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_res_company__sale_order_type_required
+#: model:ir.model.fields,field_description:sale_order_type.field_res_config_settings__sale_order_type_required
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order__order_type_required
+msgid "Sale Order Type Required"
+msgstr ""
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_bank_statement_line__sale_type_id
 #: model:ir.model.fields,field_description:sale_order_type.field_account_move__sale_type_id
-#: model:ir.model.fields,field_description:sale_order_type.field_account_payment__sale_type_id
 msgid "Sale Type"
 msgstr ""
 
