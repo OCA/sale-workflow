@@ -22,7 +22,7 @@ const config = [{
         },
 
         ecmaVersion: 2024,
-        sourceType: "script",
+        sourceType: "module",
     },
 
     rules: {

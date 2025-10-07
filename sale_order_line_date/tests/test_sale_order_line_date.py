@@ -7,22 +7,40 @@
 
 import datetime
 
-from odoo import fields
-from odoo.tests.common import TransactionCase
+from odoo import Command, fields
+
+from odoo.addons.sale.tests.common import TestSaleCommon
 
 
-class TestSaleOrderLineDates(TransactionCase):
+class TestSaleOrderLineDates(TestSaleCommon):
     @classmethod
     def setUpClass(cls):
         """Setup a Sale Order with 4 lines."""
         super().setUpClass()
-        customer = cls.env.ref("base.res_partner_3")
-        cls.company = cls.env.ref("base.main_company")
+        customer = cls.partner_a
+        cls.company = cls.env.company
         cls.company.security_lead = 1
 
         price = 100.0
         qty = 5
-        product_id = cls.env.ref("product.product_product_7")
+        product_id = cls.product
+
+        combo_vals = {
+            "name": "Box",
+            "combo_item_ids": [
+                Command.create({"product_id": product_id.id}),
+            ],
+        }
+        combo = cls.env["product.combo"].create(combo_vals)
+        product_combo = cls._create_product(
+            name="Box with Box",
+            list_price=10.0,
+            type="combo",
+            combo_ids=[
+                Command.link(combo.id),
+            ],
+        )
+
         cls.today = fields.Datetime.now()
         cls.dt1 = cls.today + datetime.timedelta(days=9)
         cls.dt2 = cls.today + datetime.timedelta(days=10)
@@ -48,6 +66,19 @@ class TestSaleOrderLineDates(TransactionCase):
             cls.sale2, product_id, qty, price, cls.dt1
         )
 
+        cls.sale3 = cls._create_sale_order(customer, cls.dt3)
+        cls.sale_line_combo = cls._create_sale_order_line(
+            cls.sale2, product_combo, qty, price, cls.dt1
+        )
+
+        extra_combo_sol_vals = {
+            "combo_item_id": combo.combo_item_ids.id,
+            "linked_line_id": cls.sale_line_combo.id,
+        }
+        cls.sale_line_combo_child = cls._create_sale_order_line(
+            cls.sale3, product_id, qty, price, False, extra_combo_sol_vals
+        )
+
     @classmethod
     def _create_sale_order(cls, customer, date):
         sale = cls.env["sale.order"].create(
@@ -62,17 +93,18 @@ class TestSaleOrderLineDates(TransactionCase):
         return sale
 
     @classmethod
-    def _create_sale_order_line(cls, sale, product, qty, price, date):
-        sale_line = cls.env["sale.order.line"].create(
-            {
-                "product_id": product.id,
-                "name": "cool product",
-                "order_id": sale.id,
-                "price_unit": price,
-                "product_uom_qty": qty,
-                "commitment_date": date,
-            }
-        )
+    def _create_sale_order_line(cls, sale, product, qty, price, date, extra_vals=None):
+        values = {
+            "product_id": product.id,
+            "name": "cool product",
+            "order_id": sale.id,
+            "price_unit": price,
+            "product_uom_qty": qty,
+            "commitment_date": date,
+        }
+        if extra_vals:
+            values.update(extra_vals)
+        sale_line = cls.env["sale.order.line"].create(values)
         return sale_line
 
     def _assert_equal_dates(self, date1, date2):
@@ -186,3 +218,12 @@ class TestSaleOrderLineDates(TransactionCase):
         duplicated_order = self.sale1.copy()
         for duplicated_line in duplicated_order.order_line:
             self.assertFalse(duplicated_line.commitment_date)
+
+    def test_06_commitment_date_propagated_to_combo_subproducts(self):
+        """
+        Test if commitment_date field is correctly updated to items from combo.
+        Note: On the form view possible to update only date of combo line
+        """
+        self._assert_equal_dates(self.sale_line_combo_child.commitment_date, self.dt1)
+        self.sale_line_combo.commitment_date = self.dt2
+        self._assert_equal_dates(self.sale_line_combo_child.commitment_date, self.dt2)
