@@ -27,19 +27,19 @@ class SaleOrder(models.Model):
     )
     amount_global_discount = fields.Monetary(
         string='Total Global Discounts',
-        compute='_amount_all',
+        compute='_amount_all',  # pylint: disable=C8108
         currency_field='currency_id',
         readonly=True,
     )
     amount_untaxed_before_global_discounts = fields.Monetary(
         string='Amount Untaxed Before Discounts',
-        compute='_amount_all',
+        compute='_amount_all',  # pylint: disable=C8108
         currency_field='currency_id',
         readonly=True,
     )
     amount_total_before_global_discounts = fields.Monetary(
         string='Amount Total Before Discounts',
-        compute='_amount_all',
+        compute='_amount_all',  # pylint: disable=C8108
         currency_field='currency_id',
         readonly=True,
     )

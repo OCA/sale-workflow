@@ -558,20 +558,20 @@ class BlanketOrderLine(models.Model):
         for line in self:
             sale_lines = line.sale_lines
             line.ordered_uom_qty = sum(
-                l.product_uom._compute_quantity(
-                    l.product_uom_qty, line.product_uom)
-                for l in sale_lines if l.order_id.state != 'cancel' and
-                l.product_id == line.product_id)
+                sale_line.product_uom._compute_quantity(
+                    sale_line.product_uom_qty, line.product_uom)
+                for sale_line in sale_lines if sale_line.order_id.state != 'cancel' and
+                sale_line.product_id == line.product_id)
             line.invoiced_uom_qty = sum(
-                l.product_uom._compute_quantity(
-                    l.qty_invoiced, line.product_uom)
-                for l in sale_lines if l.order_id.state != 'cancel' and
-                l.product_id == line.product_id)
+                sale_line.product_uom._compute_quantity(
+                    sale_line.qty_invoiced, line.product_uom)
+                for sale_line in sale_lines if sale_line.order_id.state != 'cancel' and
+                sale_line.product_id == line.product_id)
             line.delivered_uom_qty = sum(
-                l.product_uom._compute_quantity(
-                    l.qty_delivered, line.product_uom)
-                for l in sale_lines if l.order_id.state != 'cancel' and
-                l.product_id == line.product_id)
+                sale_line.product_uom._compute_quantity(
+                    sale_line.qty_delivered, line.product_uom)
+                for sale_line in sale_lines if sale_line.order_id.state != 'cancel' and
+                sale_line.product_id == line.product_id)
             line.remaining_uom_qty = line.original_uom_qty - \
                 line.ordered_uom_qty
             line.remaining_qty = line.product_uom._compute_quantity(

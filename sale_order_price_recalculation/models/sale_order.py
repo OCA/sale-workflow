@@ -13,10 +13,10 @@ class SaleOrder(models.Model):
     @api.multi
     def recalculate_prices(self):
         for line in self.mapped('order_line'):
-            dict = line._convert_to_write(line.read()[0])
+            values = line._convert_to_write(line.read()[0])
             if 'product_tmpl_id' in line._fields:
-                dict['product_tmpl_id'] = line.product_tmpl_id
-            line2 = self.env['sale.order.line'].new(dict)
+                values['product_tmpl_id'] = line.product_tmpl_id
+            line2 = self.env['sale.order.line'].new(values)
             # we make this to isolate changed values:
             line2.product_uom_change()
             line2._onchange_discount()

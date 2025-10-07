@@ -4,7 +4,7 @@ from dateutil.relativedelta import relativedelta
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
 from odoo.addons import decimal_precision as dp
-from odoo.tools.float_utils import float_compare, float_round as round
+from odoo.tools.float_utils import float_compare, float_round
 
 
 class SaleOder(models.Model):
@@ -65,7 +65,7 @@ class SaleOder(models.Model):
         invoice_plans = []
         Decimal = self.env['decimal.precision']
         prec = Decimal.precision_get('Product Unit of Measure')
-        percent = round(1.0 / num_installment * 100, prec)
+        percent = float_round(1.0 / num_installment * 100, prec)
         percent_last = 100 - (percent * (num_installment-1))
         # Advance
         if advance:
@@ -237,7 +237,7 @@ class SaleInvoicePlan(models.Model):
             else:
                 plan_qty = order_line.product_uom_qty * (percent/100)
                 prec = order_line.product_uom.rounding
-                plan_qty = round(plan_qty, precision_rounding=prec)
+                plan_qty = float_round(plan_qty, precision_rounding=prec)
                 if float_compare(plan_qty, line.quantity, prec) == 1:
                     raise ValidationError(
                         _('Plan quantity: %s, exceed invoiceable quantity: %s'

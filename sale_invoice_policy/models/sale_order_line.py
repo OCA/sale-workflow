@@ -12,7 +12,7 @@ class SaleOrderLine(models.Model):
                  'order_id.state', 'order_id.invoice_policy')
     def _get_to_invoice_qty(self):
         invoice_policies = set(self.mapped('order_id.invoice_policy'))
-        line_by_id = {l.id: l for l in self}
+        line_by_id = {line.id: line for line in self}
         done_lines = self.env['sale.order.line'].browse()
         for invoice_policy in invoice_policies:
             so_lines = self.with_context(
@@ -36,7 +36,7 @@ class SaleOrderLine(models.Model):
                  'qty_invoiced', 'order_id.invoice_policy')
     def _compute_invoice_status(self):
         invoice_policies = set(self.mapped('order_id.invoice_policy'))
-        line_by_id = {l.id: l for l in self}
+        line_by_id = {line.id: line for line in self}
         done_lines = self.env['sale.order.line'].browse()
         for invoice_policy in invoice_policies:
             so_lines = self.with_context(

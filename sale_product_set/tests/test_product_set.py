@@ -143,17 +143,17 @@ class TestProductSet(common.SavepointCase):
             'quantity': 1,
             'discount': 50
         })
-        set = self.env['product.set'].create({
+        product_set = self.env['product.set'].create({
             'name': 'Test',
             'set_line_ids': [(4, set_line.id)]
         })
         so = self.env.ref('sale.sale_order_6')
         so_set = self.product_set_add.with_context(
-            active_id=so.id).create({'product_set_id': set.id,
+            active_id=so.id).create({'product_set_id': product_set.id,
                                      'quantity': 1})
         so_set.add_set()
         order_line = so.order_line.filtered(
-            lambda x: x.product_id == set.set_line_ids[0].product_id
+            lambda x: x.product_id == product_set.set_line_ids[0].product_id
         )
         order_line.ensure_one()
         self.assertEqual(

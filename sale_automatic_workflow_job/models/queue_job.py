@@ -9,12 +9,12 @@ class QueueJob(models.Model):
     _inherit = "queue.job"
 
     def _related_action_sale_automatic_workflow(self):
-        object = self.args[0]
+        record = self.args[0]
         action = {
             "name": _("Sale Automatic Workflow Job"),
             "type": "ir.actions.act_window",
-            "res_model": object._name,
+            "res_model": record._name,
             "view_mode": "form",
-            "res_id": object.id,
+            "res_id": record.id,
         }
         return action
