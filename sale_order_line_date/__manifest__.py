@@ -8,15 +8,23 @@
 
 {
     "name": "Sale Order Line Date",
-    "version": "18.0.1.0.2",
+    "version": "19.0.1.0.0",
     "summary": "Adds a commitment date to each sale order line.",
-    "author": "OdooMRP team,"
-    "AvanzOSC,"
-    "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
-    "Odoo Community Association (OCA)",
+    "author": (
+        "OdooMRP team,"
+        "AvanzOSC,"
+        "Serv. Tecnol. Avanzados - Pedro M. Baeza,"
+        "Odoo Community Association (OCA)"
+        ", SprintIT Ltd."
+    ),
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sale",
     "license": "AGPL-3",
     "depends": ["sale_stock"],
     "data": ["views/sale_order_view.xml", "reports/sale_order_report.xml"],
+    "assets": {
+        "web.assets_backend": [
+            "sale_order_line_date/static/src/js/sale_order_line_field/*",
+        ],
+    },
 }

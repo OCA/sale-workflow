@@ -21,19 +21,19 @@ Sale Order Line Date
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/18.0/sale_order_line_date
+    :target: https://github.com/OCA/sale-workflow/tree/19.0/sale_order_line_date
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-sale_order_line_date
+    :target: https://translation.odoo-community.org/projects/sale-workflow-19-0/sale-workflow-19-0-sale_order_line_date
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
 This module adds a commitment date to each sale order line and propagate
-it to stock moves and pickings. The commitment date of the whole sale
+it to stock moves and pickings. The commitment date of the wholesale
 order is computed based on each sale order line date and the sale order
 shipping policy. It can't be modified.
 
@@ -54,7 +54,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_line_date%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_line_date%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -67,6 +67,7 @@ Authors
 * OdooMRP team
 * AvanzOSC
 * Serv. Tecnol. Avanzados - Pedro M. Baeza
+* SprintIT Ltd.
 
 Contributors
 ------------
@@ -85,12 +86,13 @@ Contributors
 - Moaad Bourhim <moaad.bourhim@gmail.com>
 - Bernat Puig <bernat.puig@forgeflow.com>
 - Nhan Tran <nhant@trobz.com>
+- Tatiana Deribina <tatiana.deribina@sprintit.fi>
 
 Other credits
 -------------
 
-The migration of this module from 17.0 to 18.0 was financially supported
-by Camptocamp
+The migration of this module from 18.0 to 19.0 was financially supported
+by SprintIT Ltd.
 
 Maintainers
 -----------
@@ -105,6 +107,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/18.0/sale_order_line_date>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/19.0/sale_order_line_date>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
