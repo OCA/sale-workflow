@@ -15,7 +15,7 @@ exclude: |
   # You don't usually want a bot to modify your legal texts
   (LICENSE.*|COPYING.*)
 default_language_version:
-  python: python3.6
+  python: python3.8
 repos:
   - repo: https://github.com/oca/maintainer-tools
     rev: ab1d7f6
