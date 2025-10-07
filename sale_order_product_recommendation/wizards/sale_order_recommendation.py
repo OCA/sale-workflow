@@ -103,7 +103,7 @@ class SaleOrderRecommendation(models.TransientModel):
             ),
             reverse=True,
         )
-        found_dict = {l["product_id"][0]: l for l in found_lines}
+        found_dict = {line["product_id"][0]: line for line in found_lines}
         recommendation_lines = self.env["sale.order.recommendation.line"]
         existing_product_ids = set()
         # Always recommend all products already present in the linked SO
