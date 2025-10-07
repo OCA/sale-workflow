@@ -19,9 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_merge_draft_invoice
-#: code:addons/sale_merge_draft_invoice/wizard/sale_make_invoice_advance.py:18
 #: model:ir.model.fields,help:sale_merge_draft_invoice.field_sale_advance_payment_inv__merge_draft_invoice
-#, python-format
 msgid ""
 "Activate this option in order to merge the resulting invoice with existing "
 "draft invoices or deactivate it if you wish a separate invoice for this sale "
