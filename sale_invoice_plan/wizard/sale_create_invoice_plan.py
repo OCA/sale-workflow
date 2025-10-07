@@ -36,7 +36,7 @@ class SaleCreateInvoicePlan(models.TransientModel):
         required=True,
     )
 
-    @api.one
+    @api.one  # pylint: disable=W8104
     @api.constrains('num_installment')
     def _check_num_installment(self):
         if self.num_installment <= 1:
