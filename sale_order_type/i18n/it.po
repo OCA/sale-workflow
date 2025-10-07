@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-20 22:37+0000\n"
-"PO-Revision-Date: 2025-09-22 10:59+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2025-10-07 10:43+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -45,6 +45,8 @@ msgstr "Registro di fatturazione"
 msgid ""
 "Check this if you want the sale order type required on sale order forms."
 msgstr ""
+"Selezionare se si vuole che il tipo ordine vendita sia obbligatorio nelle "
+"maschere ordine di vendita."
 
 #. module: sale_order_type
 #: model_terms:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
@@ -54,7 +56,7 @@ msgstr "Cliccare per impostare un nuovo tipo di ordine di vendita."
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__company_id
@@ -64,7 +66,7 @@ msgstr "Azienda"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_partner
@@ -117,7 +119,7 @@ msgstr "ID"
 #: model:ir.model.fields,help:sale_order_type.field_res_config_settings__sale_order_type_required
 #: model:ir.model.fields,help:sale_order_type.field_sale_order__order_type_required
 msgid "If checked, the sale orders will require a type."
-msgstr ""
+msgstr "Se selezionata, gli ordini di vendita richiedono un tipo."
 
 #. module: sale_order_type
 #: model:ir.model.fields,help:sale_order_type.field_sale_order__picking_policy
@@ -223,7 +225,7 @@ msgstr "Tipo di ordine di vendita"
 #: model:ir.model.fields,field_description:sale_order_type.field_res_config_settings__sale_order_type_required
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order__order_type_required
 msgid "Sale Order Type Required"
-msgstr ""
+msgstr "Tipo ordine di vendita obbligatorio"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_bank_statement_line__sale_type_id
