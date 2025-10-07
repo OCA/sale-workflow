@@ -12,3 +12,4 @@
 - Moaad Bourhim \<<moaad.bourhim@gmail.com>\>
 - Bernat Puig \<<bernat.puig@forgeflow.com>\>
 - Nhan Tran \<<nhant@trobz.com>\>
+- Tatiana Deribina \<<tatiana.deribina@sprintit.fi>\>

@@ -8,10 +8,10 @@
             <field name="order_line" position="attributes">
                 <attribute
                     name="context"
-                >{'default_commitment_date':commitment_date}</attribute>
+                >{'default_commitment_date': commitment_date}</attribute>
             </field>
             <xpath
-                expr="//field[@name='order_line']/form//field[@name='tax_id']"
+                expr="//field[@name='order_line']/form//field[@name='tax_ids']"
                 position="after"
             >
                 <field name="commitment_date" />
