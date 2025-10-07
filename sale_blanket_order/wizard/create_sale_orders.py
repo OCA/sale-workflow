@@ -63,15 +63,15 @@ class BlanketOrderWizard(models.TransientModel):
         self._check_valid_blanket_order_line(bo_lines)
 
         lines = [(0, 0, {
-            'blanket_line_id': l.id,
-            'product_id': l.product_id.id,
-            'date_schedule': l.date_schedule,
-            'remaining_uom_qty': l.remaining_uom_qty,
-            'price_unit': l.price_unit,
-            'product_uom': l.product_uom,
-            'qty': l.remaining_uom_qty,
-            'partner_id': l.partner_id,
-        }) for l in bo_lines.filtered(lambda l: l.remaining_uom_qty != 0.0)]
+            'blanket_line_id': line.id,
+            'product_id': line.product_id.id,
+            'date_schedule': line.date_schedule,
+            'remaining_uom_qty': line.remaining_uom_qty,
+            'price_unit': line.price_unit,
+            'product_uom': line.product_uom,
+            'qty': line.remaining_uom_qty,
+            'partner_id': line.partner_id,
+        }) for line in bo_lines.filtered(lambda l: l.remaining_uom_qty != 0.0)]
         return lines
 
     blanket_order_id = fields.Many2one(
