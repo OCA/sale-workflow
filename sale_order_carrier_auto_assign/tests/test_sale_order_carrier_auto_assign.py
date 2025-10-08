@@ -7,7 +7,6 @@ from odoo.tests import Form
 from odoo.addons.base.tests.common import BaseCommon
 
 
-# Common class for OnCreate and OnConfirm
 class TestSaleOrderCarrierAutoAssignCommon(BaseCommon):
     @classmethod
     def setUpClass(cls):
@@ -17,6 +16,7 @@ class TestSaleOrderCarrierAutoAssignCommon(BaseCommon):
             {
                 "name": "Test product storable",
                 "type": "consu",
+                "weight": 1.0,
             }
         )
         cls.product_service = cls.env["product.product"].create(
@@ -25,9 +25,39 @@ class TestSaleOrderCarrierAutoAssignCommon(BaseCommon):
                 "type": "service",
             }
         )
-        cls.delivery_local_delivery = cls.env.ref("delivery.delivery_local_delivery")
+        cls.delivery_local_delivery = cls.env["delivery.carrier"].create(
+            {
+                "name": "Local Delivery",
+                "delivery_type": "fixed",
+                "product_id": cls.env["product.product"]
+                .create(
+                    {
+                        "name": "Delivery Product",
+                        "type": "service",
+                    }
+                )
+                .id,
+                "fixed_price": 10.0,
+            }
+        )
         cls.delivery_local_delivery.fixed_price = 10
         cls.delivery_local_delivery.free_over = False
+        cls.delivery_carrier_alternative = cls.env["delivery.carrier"].create(
+            {
+                "name": "Alternative Carrier",
+                "delivery_type": "fixed",
+                "product_id": cls.env["product.product"]
+                .create(
+                    {
+                        "name": "Alternative Delivery Product",
+                        "type": "service",
+                    }
+                )
+                .id,
+                "fixed_price": 15.0,
+                "free_over": False,
+            }
+        )
         cls.partner = cls.env["res.partner"].create(
             {
                 "name": "Test partner",
@@ -65,7 +95,13 @@ class TestSaleOrderCarrierAutoAssignOnCreate(TestSaleOrderCarrierAutoAssignCommo
             {
                 "partner_id": self.partner.id,
                 "order_line": [
-                    Command.create({"product_id": self.product_storable.id})
+                    Command.create(
+                        {
+                            "product_id": self.product_storable.id,
+                            "product_uom_qty": 1.0,
+                            "price_unit": 100.0,
+                        }
+                    )
                 ],
             }
         )
@@ -86,8 +122,8 @@ class TestSaleOrderCarrierAutoAssignOnConfirm(TestSaleOrderCarrierAutoAssignComm
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.settings.carrier_on_create = False
         cls.settings.carrier_auto_assign = True
-        cls._create_sale_order()
         cls.settings.set_values()
         cls.sale_order_form = Form(cls.env["sale.order"])
         cls.sale_order_form.partner_id = cls.partner
@@ -128,7 +164,7 @@ class TestSaleOrderCarrierAutoAssignOnConfirm(TestSaleOrderCarrierAutoAssignComm
         self.assertEqual(
             self.partner.property_delivery_carrier_id, self.delivery_local_delivery
         )
-        carrier = self.env.ref("delivery.delivery_carrier")
+        carrier = self.delivery_carrier_alternative
         self.sale_order.carrier_id = carrier
         self.sale_order.action_confirm()
         self.assertEqual(self.sale_order.state, "sale")
