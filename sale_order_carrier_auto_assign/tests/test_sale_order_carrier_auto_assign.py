@@ -4,44 +4,7 @@
 from odoo.fields import Command
 from odoo.tests import Form
 
-from odoo.addons.base.tests.common import BaseCommon
-
-
-# Common class for OnCreate and OnConfirm
-class TestSaleOrderCarrierAutoAssignCommon(BaseCommon):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.settings = cls.env["res.config.settings"].create({})
-        cls.product_storable = cls.env["product.product"].create(
-            {
-                "name": "Test product storable",
-                "type": "consu",
-            }
-        )
-        cls.product_service = cls.env["product.product"].create(
-            {
-                "name": "Test product service",
-                "type": "service",
-            }
-        )
-        cls.delivery_local_delivery = cls.env.ref("delivery.delivery_local_delivery")
-        cls.delivery_local_delivery.fixed_price = 10
-        cls.delivery_local_delivery.free_over = False
-        cls.partner = cls.env["res.partner"].create(
-            {
-                "name": "Test partner",
-                "property_delivery_carrier_id": cls.delivery_local_delivery.id,
-            }
-        )
-
-    @classmethod
-    def _create_sale_order(cls):
-        sale_order_form = Form(cls.env["sale.order"])
-        sale_order_form.partner_id = cls.partner
-        with sale_order_form.order_line.new() as line_form:
-            line_form.product_id = cls.product_storable
-        return sale_order_form.save()
+from .common import TestSaleOrderCarrierAutoAssignCommon
 
 
 class TestSaleOrderCarrierAutoAssignOnCreate(TestSaleOrderCarrierAutoAssignCommon):
@@ -77,11 +40,47 @@ class TestSaleOrderCarrierAutoAssignOnCreate(TestSaleOrderCarrierAutoAssignCommo
             {
                 "partner_id": self.partner.id,
                 "order_line": [
-                    Command.create({"product_id": self.product_storable.id})
+                    Command.create(
+                        {
+                            "product_id": self.product_storable.id,
+                            "product_uom_qty": 1.0,
+                            "price_unit": 100.0,
+                        }
+                    )
                 ],
             }
         )
         self.assertEqual(sale_order.carrier_id, self.delivery_local_delivery)
+
+    def test_sale_order_carrier_auto_assign_unavailable_carrier(self):
+        unavailable_country = self.env["res.country"].create(
+            {
+                "name": "Unavailable Carrier Country",
+                "code": "XA",
+            }
+        )
+        unavailable_carrier = self.delivery_local_delivery.copy(
+            {
+                "name": "Unavailable Carrier",
+                "country_ids": [Command.set(unavailable_country.ids)],
+            }
+        )
+        self.partner.property_delivery_carrier_id = unavailable_carrier
+        sale_order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.product_storable.id,
+                            "product_uom_qty": 1.0,
+                            "price_unit": 100.0,
+                        }
+                    )
+                ],
+            }
+        )
+        self.assertFalse(sale_order.carrier_id)
 
     def test_sale_order_carrier_auto_assign_create_2steps_from_order(self):
         """Test carrier is set when a product line is added"""
@@ -164,7 +163,17 @@ class TestSaleOrderCarrierAutoAssignOnConfirm(TestSaleOrderCarrierAutoAssignComm
             lambda line: line.is_delivery
         )
         delivery_rate = self.delivery_local_delivery.rate_shipment(self.sale_order)
-        self.assertEqual(delivery_line.price_unit, delivery_rate["carrier_price"])
+        self.assertEqual(delivery_line.price_unit, delivery_rate["price"])
+
+    def test_sale_order_carrier_auto_assign_free_over(self):
+        self.delivery_local_delivery.free_over = True
+        self.delivery_local_delivery.amount = 1.0
+        sale_order = self._create_sale_order()
+        sale_order.action_confirm()
+        delivery_line = sale_order.order_line.filtered(lambda line: line.is_delivery)
+        delivery_rate = self.delivery_local_delivery.rate_shipment(sale_order)
+        self.assertEqual(delivery_rate["price"], 0.0)
+        self.assertEqual(delivery_line.price_unit, delivery_rate["price"])
 
     def test_sale_order_carrier_auto_assign_disabled(self):
         self.assertEqual(
@@ -188,7 +197,7 @@ class TestSaleOrderCarrierAutoAssignOnConfirm(TestSaleOrderCarrierAutoAssignComm
         self.assertEqual(
             self.partner.property_delivery_carrier_id, self.delivery_local_delivery
         )
-        carrier = self.env.ref("delivery.delivery_carrier")
+        carrier = self.delivery_carrier_alternative
         self.sale_order.carrier_id = carrier
         self.sale_order.action_confirm()
         self.assertEqual(self.sale_order.state, "sale")
