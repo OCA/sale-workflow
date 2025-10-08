@@ -41,7 +41,7 @@ class SaleOrderLine(models.Model):
     def write(self, vals):
         res = super().write(vals)
         allow_to_change_lot = self.env.company.allow_to_change_lot_on_confirmed_so
-        if "lot_id" in vals and (
+        if vals.get("lot_id") and (
             allow_to_change_lot or self.order_id.state not in ["sale", "done"]
         ):
             self.move_ids.write({"restrict_lot_id": vals.get("lot_id")})
