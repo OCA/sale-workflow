@@ -28,12 +28,10 @@ class SaleOrder(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        ctx_carrier_on_create = self.env.context.get("carrier_on_create")
-        orders = super(SaleOrder, self.with_context(carrier_on_create=True)).create(
-            vals_list
-        )
-        orders = orders.with_context(carrier_on_create=ctx_carrier_on_create)
-        orders._set_carrier_on_create()
+        orders = super().create(vals_list)
+        for order in orders:
+            if not order.carrier_id and order._is_auto_set_carrier_on_create():
+                order._set_delivery_carrier(set_delivery_line=False)
         return orders
 
     def _set_carrier_on_create(self):
@@ -65,38 +63,26 @@ class SaleOrder(models.Model):
     def _set_delivery_carrier(
         self, set_delivery_line=True, preserve_order_carrier=True
     ):
-        """Automatically change delivery carrier.
-
-        :param set_delivery_line: It will create or update the delivery line
-        :param preserve_order_carrier: It will respect the carrier set on the order
-        """
         for order in self:
             if not order.order_line:
                 continue
             # Preserve the carrier only if explicitly set on the attribute
             if preserve_order_carrier and order.delivery_set:
                 continue
-            delivery_wiz_action = order.action_open_delivery_wizard()
-            delivery_wiz_context = delivery_wiz_action.get("context", {})
-            if not delivery_wiz_context.get("default_carrier_id"):
-                continue
-            # Use the real order because can be an onchange
-            if isinstance(delivery_wiz_context.get("default_order_id"), models.NewId):
-                delivery_wiz_context["default_order_id"] = order._origin.id or order.id
-            delivery_wiz_model = self.env[
-                delivery_wiz_action.get("res_model")
-            ].with_context(**delivery_wiz_context)
-            if order._origin:
-                delivery_wiz = delivery_wiz_model.create({})
-            else:
-                delivery_wiz = delivery_wiz_model.new({})
-            # Do not override carrier
             if preserve_order_carrier and order.carrier_id:
-                delivery_wiz.carrier_id = order.carrier_id
-            if not set_delivery_line or order.is_all_service:
-                # Only set the carrier
-                if order.carrier_id != delivery_wiz.carrier_id:
-                    order.carrier_id = delivery_wiz.carrier_id
+                carrier = order.carrier_id
             else:
-                delivery_wiz._get_delivery_rate()
-                delivery_wiz.button_confirm()
+                order = order.with_company(order.company_id)
+                ship_partner = order.partner_shipping_id
+                carrier_property = (
+                    ship_partner.property_delivery_carrier_id
+                    or ship_partner.commercial_partner_id.property_delivery_carrier_id
+                )
+                carrier = carrier_property.available_carriers(ship_partner, order)
+                order.carrier_id = carrier
+
+            if set_delivery_line and not order.is_all_service and carrier:
+                result = carrier.rate_shipment(order)
+                if result.get("success"):
+                    price_unit = result["price"]
+                    order._create_delivery_line(carrier, price_unit)

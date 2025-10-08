@@ -5,8 +5,8 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="delivery.view_order_form_with_carrier" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='delivery_set']" position="after">
-                <!-- carrier_id must exist in view to be able to be wrote it in onchange -->
+            <xpath expr="//field[@name='recompute_delivery_price']" position="after">
+                <!-- carrier_id must exist in the view to be written in onchange -->
                 <field name="carrier_id" invisible="1" />
             </xpath>
         </field>
