@@ -141,11 +141,6 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_order_line_cancel
-#: model:ir.model,name:sale_order_line_cancel.model_stock_move
-msgid "Stock Move"
-msgstr ""
-
-#. module: sale_order_line_cancel
 #: model_terms:ir.ui.view,arch_db:sale_order_line_cancel.sale_order_form_view
 #: model_terms:ir.ui.view,arch_db:sale_order_line_cancel.sale_order_line_tree_view
 msgid "To Deliver"
