@@ -146,11 +146,6 @@ msgid "Sales Order Line"
 msgstr "Riga ordine di vendita"
 
 #. module: sale_order_line_cancel
-#: model:ir.model,name:sale_order_line_cancel.model_stock_move
-msgid "Stock Move"
-msgstr "Movimento di magazzino"
-
-#. module: sale_order_line_cancel
 #: model_terms:ir.ui.view,arch_db:sale_order_line_cancel.sale_order_form_view
 #: model_terms:ir.ui.view,arch_db:sale_order_line_cancel.sale_order_line_tree_view
 msgid "To Deliver"
@@ -160,3 +155,6 @@ msgstr "Da consegnare"
 #: model_terms:ir.ui.view,arch_db:sale_order_line_cancel.sale_order_line_cancel_view_form
 msgid "Validate"
 msgstr "Valida"
+
+#~ msgid "Stock Move"
+#~ msgstr "Movimento di magazzino"
