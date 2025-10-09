@@ -44,7 +44,7 @@ Contributors
 
 * Guewen Baconnier <guewen.baconnier@camptocamp.com>
 * Yannick Vaucher <yannick.vaucher@camptocamp.com>
-* Eficent Business and IT Consulting Services S.L. <contact@eficent.com>
+* ForgeFlow, S.L. <contact@forgeflow.com>
 * Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
 * Info A Tout Prix <huret.emmanuel@infoatoutprix.fr>
 * Ajay Javiya <ajaviya@odoogap.com>
