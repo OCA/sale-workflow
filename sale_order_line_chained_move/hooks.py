@@ -3,11 +3,13 @@
 from odoo import SUPERUSER_ID, api
 
 
-def __find_origin_moves(moves):
+def __find_origin_moves(moves, visited=None):
     all_moves = moves
-    for move in moves:
+    unvisited_moves = (moves - visited) if visited else moves
+    for move in unvisited_moves:
+        visited = visited + move if visited else move
         if move.move_orig_ids:
-            all_moves |= __find_origin_moves(move.move_orig_ids)
+            all_moves |= __find_origin_moves(move.move_orig_ids, visited)
     return all_moves
 
 
