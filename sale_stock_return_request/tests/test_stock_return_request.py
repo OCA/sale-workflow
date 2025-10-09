@@ -1,4 +1,5 @@
 # Copyright 2019 Tecnativa - David Vidal
+# Copyright 2025 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import Command
@@ -53,48 +54,27 @@ class SaleReturnRequestCase(StockReturnRequestCase):
         # Confirm all the sale orders
         for order in cls.sale_orders:
             order.action_confirm()
-        # Adjust quants to avoid reservation quircks
-        quant_lot_1 = cls.env["stock.quant"].search(
-            [
-                ("product_id", "=", cls.prod_3.id),
-                ("lot_id", "=", cls.prod_3_lot1.id),
-                ("location_id", "=", cls.wh1.lot_stock_id.id),
-            ]
-        )
-        quant_lot_2 = cls.env["stock.quant"].search(
-            [
-                ("product_id", "=", cls.prod_3.id),
-                ("lot_id", "=", cls.prod_3_lot2.id),
-                ("location_id", "=", cls.wh1.lot_stock_id.id),
-            ]
-        )
-        quant_lot_1.reserved_quantity = 90.0
-        quant_lot_2.reserved_quantity = 10.0
         # Deliver products. For each picking:
-        # 10 units of TSTPROD3LOT0001 -> -20 units of 90 already existing
-        # 2 units of TSTPROD3LOT0002 -> -4 units of 10 already existing
+        # 10 units of TSTPROD3LOT0001 -> -20 units of 70 already existing
+        # 4 units of TSTPROD3LOT0002 -> -8 units of 0 already existing
         for picking in cls.sale_orders.mapped("picking_ids"):
-            for ml in picking.move_line_ids:
-                ml.write(
-                    {
-                        "lot_id": cls.prod_3_lot1.id,
-                        "quantity": 10.0,
-                    }
-                )
-                ml.create(
-                    {
-                        "move_id": ml.move_id.id,
-                        "picking_id": ml.picking_id.id,
-                        "location_id": ml.location_id.id,
-                        "location_dest_id": ml.location_dest_id.id,
-                        "product_uom_id": ml.product_uom_id.id,
-                        "product_id": cls.prod_3.id,
-                        "lot_id": cls.prod_3_lot2.id,
-                        "quantity": 4.0,
-                    }
-                )
+            picking.move_line_ids.unlink()
+            move = picking.move_ids
+            vals = {
+                "move_id": move.id,
+                "picking_id": picking.id,
+                "location_id": move.location_id.id,
+                "location_dest_id": move.location_dest_id.id,
+                "product_uom_id": move.product_uom.id,
+                "product_id": move.product_id.id,
+                "lot_id": cls.prod_3_lot1.id,
+                "quantity": 10.0,
+            }
+            cls.env["stock.move.line"].create(vals)
+            vals["lot_id"] = cls.prod_3_lot2.id
+            vals["quantity"] = 4
+            cls.env["stock.move.line"].create(vals)
             picking.button_validate()
-        quant_lot_1.reserved_quantity = quant_lot_2.reserved_quantity = 0.0
 
     def test_01_return_sale_stock_from_customer(self):
         """Return stock from customer and the corresponding
@@ -140,16 +120,16 @@ class SaleReturnRequestCase(StockReturnRequestCase):
         self.assertTrue(
             all([True if x == "done" else False for x in pickings.mapped("state")])
         )
-        # For lot TSTPROD3LOT0001 we had 70 units
+        # For lot TSTPROD3LOT0001 we had 50 units
         prod_3_qty_lot_1 = self.prod_3.with_context(
             location=self.wh1.lot_stock_id.id, lot_id=self.prod_3_lot1.id
         ).qty_available
-        # For lot TSTPROD3LOT0002 we had 2 units
+        # For lot TSTPROD3LOT0002 we had -8 units
         prod_3_qty_lot_2 = self.prod_3.with_context(
             location=self.wh1.lot_stock_id.id, lot_id=self.prod_3_lot2.id
         ).qty_available
-        self.assertAlmostEqual(prod_3_qty_lot_1, 82.0)
-        self.assertAlmostEqual(prod_3_qty_lot_2, 6.0)
+        self.assertAlmostEqual(prod_3_qty_lot_1, 62.0)
+        self.assertAlmostEqual(prod_3_qty_lot_2, -4.0)
         # There were 28 units in the sale orders.
         self.assertAlmostEqual(
             sum(sale_orders.mapped("order_line.qty_delivered")), 12.0
