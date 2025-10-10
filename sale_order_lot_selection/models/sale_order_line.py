@@ -39,12 +39,41 @@ class SaleOrderLine(models.Model):
             )
 
     def write(self, vals):
+        """
+        Override of write to manage propagation of lot changes to stock moves.
+
+        Behavior
+        - If vals does not include lot_id, this method behaves exactly as the
+          standard write and returns.
+        - If lot_id is present, we compare the original lot per line with the
+          new lot after super().write(vals):
+          - If the lot did not actually change, the call is a no-op regarding
+            stock moves (nothing is propagated and no error is raised).
+          - If the order is in draft/quotation (not in sale/done), we propagate
+            the change to related stock moves by writing move.restrict_lot_id
+            to the new value (which can be a lot id or False).
+          - If the order is in sale/done:
+            - When the company setting allow_to_change_lot_on_confirmed_so is
+              True, we propagate the change to the related stock moves.
+            - When the company setting is False, we prevent changing the lot
+              and raise a UserError.
+        """
+        # Capture original lot ids to detect actual changes per record
+        original_lots = {rec.id: rec.lot_id.id for rec in self}
         res = super().write(vals)
+        if "lot_id" not in vals:
+            return res
         allow_to_change_lot = self.env.company.allow_to_change_lot_on_confirmed_so
-        if vals.get("lot_id") and (
-            allow_to_change_lot or self.order_id.state not in ["sale", "done"]
-        ):
-            self.move_ids.write({"restrict_lot_id": vals.get("lot_id")})
-        elif "lot_id" in vals and not allow_to_change_lot:
-            raise UserError(_("You can't change the lot on confirmed sale order."))
+        for line in self:
+            old_lot = original_lots.get(line.id)
+            new_lot = line.lot_id.id
+            # Only act if there is an actual change
+            if new_lot == old_lot:
+                continue
+            if allow_to_change_lot or line.order_id.state not in ["sale", "done"]:
+                # Propagate the new lot restriction to related stock moves
+                line.move_ids.write({"restrict_lot_id": new_lot})
+            else:
+                # Disallow changing the lot on confirmed SO if company setting forbids it
+                raise UserError(_("You can't change the lot on confirmed sale order."))
         return res
