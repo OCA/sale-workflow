@@ -1,13 +1,26 @@
 # Copyright 2020 Camptocamp (https://www.camptocamp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+import logging
 
-from odoo import models
+from odoo import api, models
 
 from odoo.addons.queue_job.job import identity_exact
+
+_logger = logging.getLogger(__name__)
 
 
 class AutomaticWorkflowJob(models.Model):
     _inherit = "automatic.workflow.job"
+
+    @api.model
+    def _job_prepare_context_before_enqueue_keys(self):
+        res = super()._job_prepare_context_before_enqueue_keys()
+        res += (
+            "send_order_confirmation_mail_in_job",
+            "auto_delay_do_send_mail",
+            "auto_delay_do_validation_finished",
+        )
+        return res
 
     def _do_validate_sale_order_job_options(self, sale, domain_filter):
         description = self.env._("Validate sales order %s", sale.display_name)
@@ -21,13 +34,17 @@ class AutomaticWorkflowJob(models.Model):
         return {"description": description, "identity_key": identity_exact}
 
     def _do_validate_sale_order(self, sale, domain_filter):
+        send_order_confirmation_mail = self.env.context.get(
+            "send_order_confirmation_mail_in_job", False
+        )
         result = super()._do_validate_sale_order(sale, domain_filter)
 
-        if self.env.context.get("send_order_confirmation_mail"):
+        if send_order_confirmation_mail:
             self.with_context(
-                auto_delay_do_validation_finished=True
+                auto_delay_do_validation_finished=True,
+                # if we don't clear job_uuid, then a new job will not be created
+                job_uuid=False,
             )._do_send_order_confirmation_mail(sale)
-
         return result
 
     def _do_send_order_confirmation_mail(self, sale):
@@ -39,6 +56,10 @@ class AutomaticWorkflowJob(models.Model):
             auto_delay_do_validation=True,
             auto_delay_do_send_mail=True,
             auto_delay_do_validation_finished=False,
+            send_order_confirmation_mail_in_job=self.env.context.get(
+                "send_order_confirmation_mail", False
+            ),
+            send_order_confirmation_mail=False,
         )
         return super(AutomaticWorkflowJob, with_context)._validate_sale_orders(
             domain_filter

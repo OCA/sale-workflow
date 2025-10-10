@@ -60,7 +60,7 @@ class TestAutoWorkflowJob(TestCommon, TestAutomaticWorkflowMixin):
                     identity_key=identity_exact,
                 ),
             )
-
+            trap.perform_enqueued_jobs()
             trap.assert_jobs_count(
                 1,
                 only=self.env[
