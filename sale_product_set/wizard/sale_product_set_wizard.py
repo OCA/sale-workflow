@@ -51,8 +51,7 @@ class SaleProductSetWizard(models.TransientModel):
         if self.order_id.partner_id not in allowed_partners:
             raise exceptions.ValidationError(
                 self.env._(
-                    "You can use a sale order assigned "
-                    "only to following partner(s): {}"
+                    "You can use a sale order assigned only to following partner(s): {}"
                 ).format(", ".join(allowed_partners.mapped("name")))
             )
         return super()._check_partner()
