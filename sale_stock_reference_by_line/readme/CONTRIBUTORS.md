@@ -3,3 +3,4 @@
 - Jordi Ballester \<<jordi.ballester@forgeflow.com>\>
 - Serpent Consulting Services Pvt. Ltd. \<<support@serpentcs.com>\>
 - Carmen Rondon Regalado \<<crondon@archeti.com>\>
+- Tatiana Deribina \<<tatiana.deribina@sprintit.fi>\>

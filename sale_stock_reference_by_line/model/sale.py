@@ -10,30 +10,33 @@ from odoo.tools.float_utils import float_compare
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    procurement_group_id = fields.Many2one(
-        "procurement.group", "Procurement group", copy=False
+    stock_reference_id = fields.Many2one(
+        "stock.reference", "Procurement Reference", copy=False
     )
 
-    def _get_procurement_group(self):
-        super()._get_procurement_group()
-        return self.procurement_group_id or False
+    def _get_stock_reference(self):
+        return self.stock_reference_id or False
 
-    def _get_procurement_group_key(self):
+    def _get_stock_reference_key(self):
         """Return a key with priority to be used to regroup lines in multiple
         procurement groups
 
         """
         return 8, self.order_id.id
 
-    def _action_launch_stock_rule(self, previous_product_uom_qty=False):
+    def _prepare_procurement_values(self):
+        # Overload core method to modify stock references to the line specific
+        values = super()._prepare_procurement_values()
+        values["reference_ids"] = self.stock_reference_id
+        return values
+
+    def _action_launch_stock_rule(self, *, previous_product_uom_qty=False):
         """
         Launch procurement group run method.
         """
-        if self._context.get("skip_procurement"):
+        if self.env.context.get("skip_procurement"):
             return True
-        precision = self.env["decimal.precision"].precision_get(
-            "Product Unit of Measure"
-        )
+        precision = self.env["decimal.precision"].precision_get("Product Unit")
         procurements = []
         groups = {}
         if not previous_product_uom_qty:
@@ -46,63 +49,46 @@ class SaleOrderLine(models.Model):
                 or line.product_id.type != "consu"
             ):
                 continue
-            qty = line._get_qty_procurement(previous_product_uom_qty) or 0.0
+            qty = line._get_qty_procurement(previous_product_uom_qty)
             if (
                 float_compare(qty, line.product_uom_qty, precision_digits=precision)
                 == 0
             ):
                 continue
 
-            group_id = line._get_procurement_group()
+            group = line._get_stock_reference()
 
             # Group the sales order lines with same procurement group
             # according to the group key
             for order_line in line.order_id.order_line:
-                g_id = order_line.procurement_group_id or False
-                if g_id:
-                    groups[order_line._get_procurement_group_key()] = g_id
-            if not group_id:
-                group_id = groups.get(line._get_procurement_group_key())
+                line_group = order_line.stock_reference_id or False
+                if line_group:
+                    groups[order_line._get_stock_reference_key()] = line_group
+            if not group:
+                group = groups.get(line._get_stock_reference_key())
 
-            if not group_id:
-                vals = line._prepare_procurement_group_vals()
-                group_id = self.env["procurement.group"].create(vals)
-            else:
-                # In case the procurement group is already created and the
-                # order was cancelled, we need to update certain values
-                # of the group.
-                updated_vals = {}
-                if group_id.partner_id != line.order_id.partner_shipping_id:
-                    updated_vals.update(
-                        {"partner_id": line.order_id.partner_shipping_id.id}
-                    )
-                if group_id.move_type != line.order_id.picking_policy:
-                    updated_vals.update({"move_type": line.order_id.picking_policy})
-                if updated_vals:
-                    group_id.write(updated_vals)
-            line.procurement_group_id = group_id
+            if not group:
+                vals = line._prepare_reference_vals()
+                group = self.env["stock.reference"].create(vals)
 
-            values = line._prepare_procurement_values(group_id=group_id)
+            line.stock_reference_id = group
+
+            values = line._prepare_procurement_values()
             product_qty = line.product_uom_qty - qty
 
-            line_uom = line.product_uom
+            line_uom = line.product_uom_id
             quant_uom = line.product_id.uom_id
-            origin = (
-                f"{line.order_id.name} - {line.order_id.client_order_ref}"
-                if line.order_id.client_order_ref
-                else line.order_id.name
-            )
             product_qty, procurement_uom = line_uom._adjust_uom_quantities(
                 product_qty, quant_uom
             )
             procurements += line._create_procurements(
-                product_qty, procurement_uom, origin, values
+                product_qty, procurement_uom, values
             )
             # We store the procured quantity in the UoM of the line to avoid
             # duplicated procurements, specially for dropshipping and kits.
             previous_product_uom_qty[line.id] = line.product_uom_qty
         if procurements:
-            self.env["procurement.group"].run(procurements)
+            self.env["stock.rule"].run(procurements)
         # This next block is currently needed only because the scheduler trigger is done
         # by picking confirmation rather than stock.move confirmation
         orders = self.mapped("order_id")

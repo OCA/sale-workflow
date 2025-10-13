@@ -4,13 +4,18 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    "name": "Sale Procurement Group by Line",
-    "summary": "Base module for multiple procurement group by Sale order",
-    "version": "18.0.1.0.1",
-    "author": "Camptocamp,"
-    "ForgeFlow,"
-    "Serpent Consulting Services Pvt. Ltd.,"
-    "Odoo Community Association (OCA)",
+    "name": "Sale Stock Reference by Line",
+    "summary": (
+        "Base module for definition of stock references creation rules for Sale order"
+    ),
+    "version": "19.0.1.0.0",
+    "author": (
+        "Camptocamp,"
+        "ForgeFlow,"
+        "Serpent Consulting Services Pvt. Ltd.,"
+        "Odoo Community Association (OCA)"
+        ", SprintIT Ltd."
+    ),
     "category": "Warehouse",
     "license": "AGPL-3",
     "development_status": "Production/Stable",

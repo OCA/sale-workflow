@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * sale_procurement_group_by_line
+# * sale_stock_reference_by_line
 #
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
@@ -20,18 +20,18 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#. module: sale_procurement_group_by_line
-#: model:ir.model.fields,field_description:sale_procurement_group_by_line.field_sale_order_line__procurement_group_id
-msgid "Procurement group"
+#. module: sale_stock_reference_by_line
+#: model:ir.model.fields,field_description:sale_stock_reference_by_line.field_sale_order_line__stock_reference_id
+msgid "Procurement Reference"
 msgstr ""
 
-#. module: sale_procurement_group_by_line
-#: model:ir.model,name:sale_procurement_group_by_line.model_sale_order_line
+#. module: sale_stock_reference_by_line
+#: model:ir.model,name:sale_stock_reference_by_line.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Stavka ponude"
 
-#. module: sale_procurement_group_by_line
-#: model:ir.model,name:sale_procurement_group_by_line.model_stock_move
+#. module: sale_stock_reference_by_line
+#: model:ir.model,name:sale_stock_reference_by_line.model_stock_move
 msgid "Stock Move"
 msgstr ""
 

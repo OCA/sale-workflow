@@ -9,11 +9,9 @@ class StockMove(models.Model):
 
     def _update_candidate_moves_list(self, candidate_moves_set):
         """
-        We want to merge stock moves within the procurement group only
+        We want to merge stock moves within the stock reference only
         """
         res = super()._update_candidate_moves_list(candidate_moves_set)
         if self.env.context.get("sale_group_by_line"):
-            candidate_moves_set.add(
-                self.sale_line_id.procurement_group_id.stock_move_ids
-            )
+            candidate_moves_set.add(self.sale_line_id.stock_reference_id.move_ids)
         return res
