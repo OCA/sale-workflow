@@ -11,15 +11,19 @@ class TestAccountInvoiceReport(AccountTestInvoicingCommon):
         super().setUpClass()
 
         cls.other_currency = cls.setup_other_currency("ARS")
-        cls.sale_order_types = cls.env["sale.order.type"].create(
-            [
-                {
-                    "name": "Normal Order",
-                },
-                {
-                    "name": "Special Order",
-                },
-            ]
+        cls.sale_order_types = (
+            cls.env["sale.order.type"]
+            .sudo()
+            .create(
+                [
+                    {
+                        "name": "Normal Order",
+                    },
+                    {
+                        "name": "Special Order",
+                    },
+                ]
+            )
         )
 
         cls.invoices = cls.env["account.move"].create(
@@ -53,8 +57,8 @@ class TestAccountInvoiceReport(AccountTestInvoicingCommon):
         )
 
     def test_invoice_report_sale_order_type(self):
-        self.env["account.invoice.report"].read_group(
+        self.env["account.invoice.report"]._read_group(
             domain=[],
-            fields=["product_id, quantity, sale_type_id"],
-            groupby="sale_type_id",
+            groupby=["sale_type_id"],
+            aggregates=["product_id:recordset", "quantity:sum"],
         )
