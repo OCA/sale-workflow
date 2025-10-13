@@ -10,7 +10,7 @@
                     class="px-2 btn-link"
                     type="action"
                     name="%(act_open_wizard_product_set_add_from_order)d"
-                    invisible="state not in ('draft', 'sent')"
+                    invisible="parent.state not in ['draft', 'sent']"
                     groups="base.group_user"
                     string="Add set"
                     context="{'order_id': parent.id}"

@@ -15,7 +15,7 @@ class ProductSetLine(models.Model):
             "order_id": order.id,
             "product_id": self.product_id.id,
             "product_uom_qty": self.quantity * quantity,
-            "product_uom": self.product_id.uom_id.id,
+            "product_uom_id": self.product_id.uom_id.id,
             "sequence": max_sequence + self.sequence,
             "discount": self.discount,
             "company_id": self.company_id.id,
