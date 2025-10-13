@@ -4,7 +4,7 @@
 
 from datetime import datetime, timedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
@@ -139,7 +139,7 @@ class SaleOrder(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            if vals.get("name", _("New")) == _("New") and vals.get("type_id"):
+            if vals.get("name", self.env._("New")) == self.env._("New"):
                 sale_type = self.env["sale.order.type"].browse(vals["type_id"])
                 if sale_type.sequence_id:
                     vals["name"] = sale_type.sequence_id.next_by_id(
@@ -189,15 +189,17 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    route_id = fields.Many2one(compute="_compute_route_id", store=True, readonly=False)
+    route_ids = fields.Many2many(
+        compute="_compute_route_ids", store=True, readonly=False, precompute=True
+    )
 
     @api.depends("order_id.type_id")
-    def _compute_route_id(self):
+    def _compute_route_ids(self):
         res = None
-        if hasattr(super(), "_compute_route_id"):
-            res = super()._compute_route_id()
+        if hasattr(super(), "_compute_route_ids"):
+            res = super()._compute_route_ids()
         for line in self.filtered("order_id.type_id"):
             order_type = line.order_id.type_id
-            if order_type.route_id:
-                line.route_id = order_type.route_id
+            if order_type.route_ids:
+                line.route_ids = order_type.route_ids
         return res

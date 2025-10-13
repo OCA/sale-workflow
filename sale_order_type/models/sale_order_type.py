@@ -45,9 +45,9 @@ class SaleOrderTypology(models.Model):
         comodel_name="product.pricelist", string="Pricelist", check_company=True
     )
     incoterm_id = fields.Many2one(comodel_name="account.incoterms", string="Incoterm")
-    route_id = fields.Many2one(
+    route_ids = fields.Many2many(
         "stock.route",
-        string="Route",
+        string="Routes",
         domain=[("sale_selectable", "=", True)],
         ondelete="restrict",
         check_company=True,

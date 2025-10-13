@@ -23,7 +23,7 @@ class TestSaleOrderType(BaseCommon):
         cls.account = cls.account_model.create(
             {"code": "income", "name": "Income", "account_type": "income"}
         )
-        cls.partner = cls.env.ref("base.res_partner_1")
+        cls.partner = cls.env.ref("base.main_partner")
         cls.partner_child_1 = cls.env["res.partner"].create(
             {"name": "Test child", "parent_id": cls.partner.id, "sale_type": False}
         )
@@ -107,9 +107,7 @@ class TestSaleOrderType(BaseCommon):
                             "name": "SO -> Customer",
                             "action": "pull",
                             "picking_type_id": cls.env.ref("stock.picking_type_in").id,
-                            "location_src_id": cls.env.ref(
-                                "stock.stock_location_components"
-                            ).id,
+                            "location_src_id": cls.warehouse.lot_stock_id.id,
                             "location_dest_id": cls.env.ref(
                                 "stock.stock_location_customers"
                             ).id,
@@ -128,7 +126,7 @@ class TestSaleOrderType(BaseCommon):
                 "payment_term_id": cls.immediate_payment.id,
                 "pricelist_id": cls.sale_pricelist.id,
                 "incoterm_id": cls.free_carrier.id,
-                "route_id": cls.sale_route.id,
+                "route_ids": [(6, 0, [cls.sale_route.id])],
             }
         )
 
@@ -199,7 +197,7 @@ class TestSaleOrderType(BaseCommon):
     def test_sale_order_flow_route(self):
         order = self.create_sale_order()
         order.type_id = self.sale_type_route.id
-        self.assertEqual(order.type_id.route_id, order.order_line[0].route_id)
+        self.assertEqual(order.type_id.route_ids, order.order_line[0].route_ids)
         sale_line_dict = {
             "product_id": self.product.id,
             "name": self.product.name,
@@ -207,7 +205,7 @@ class TestSaleOrderType(BaseCommon):
             "price_unit": self.product.lst_price,
         }
         order.write({"order_line": [(0, 0, sale_line_dict)]})
-        self.assertEqual(order.type_id.route_id, order.order_line[1].route_id)
+        self.assertEqual(order.type_id.route_ids, order.order_line[1].route_ids)
 
     def test_sale_order_in_draft_state_update_name(self):
         order = self.create_sale_order()

@@ -29,7 +29,6 @@ class TestSaleReport(TestSaleCommon):
                     "partner_id": cls.partner_a.id,
                     "partner_invoice_id": cls.partner_a.id,
                     "partner_shipping_id": cls.partner_a.id,
-                    "pricelist_id": cls.company_data["default_pricelist"].id,
                     "type_id": cls.sale_order_types[0].id,  # Normal Order
                 }
             )
@@ -40,16 +39,16 @@ class TestSaleReport(TestSaleCommon):
                 "name": cls.company_data["product_order_no"].name,
                 "product_id": cls.company_data["product_order_no"].id,
                 "product_uom_qty": 5,
-                "product_uom": cls.company_data["product_order_no"].uom_id.id,
+                "product_uom_id": cls.company_data["product_order_no"].uom_id.id,
                 "price_unit": cls.company_data["product_order_no"].list_price,
                 "order_id": cls.sale_order.id,
-                "tax_id": False,
+                "tax_ids": False,
             }
         )
 
     def test_sale_report_sale_order_type(self):
-        self.env["sale.report"].read_group(
+        self.env["sale.report"]._read_group(
             domain=[],
-            fields=["product_id, quantity, type_id"],
-            groupby="type_id",
+            groupby=["type_id"],
+            aggregates=["product_id:recordset", "product_uom_qty:sum"],
         )
