@@ -34,7 +34,7 @@
         <field name="description">The customer has a sale warning in his form</field>
         <field name="sequence">40</field>
         <field name="model">sale.order</field>
-        <field name="code">failed=self.partner_id.sale_warn == "warning"</field>
+        <field name="code">failed=bool(self.partner_id.sale_warn_msg)</field>
         <field name="active" eval="False" />
     </record>
     <record id="exception_product_sale_warning" model="exception.rule">
@@ -42,7 +42,7 @@
         <field name="description">The product has a warning in his form</field>
         <field name="sequence">40</field>
         <field name="model">sale.order.line</field>
-        <field name="code">failed=self.product_id.sale_line_warn == "warning"</field>
+        <field name="code">failed=bool(self.product_id.sale_line_warn_msg)</field>
         <field name="active" eval="False" />
     </record>
 </odoo>
