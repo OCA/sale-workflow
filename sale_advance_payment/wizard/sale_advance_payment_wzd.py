@@ -97,7 +97,9 @@ class AccountVoucherWizard(models.TransientModel):
         sale_ids = self.env.context.get("active_ids", [])
         if not sale_ids:
             return res
-        sale_id = fields.first(sale_ids)
+        sale_id = next(iter(sale_ids), None)
+        if not sale_id:
+            return res
         sale = self.env["sale.order"].browse(sale_id)
         if "amount_total" in fields_list:
             res.update(
@@ -141,7 +143,8 @@ class AccountVoucherWizard(models.TransientModel):
             "amount": self.amount_advance,
             "payment_type": self.payment_type,
             "partner_type": "customer",
-            "ref": self.payment_ref or sale.name,
+            "memo": self.payment_ref or sale.name,
+            "payment_reference": self.payment_ref or sale.name,
             "journal_id": self.journal_id.id,
             "currency_id": self.journal_currency_id.id,
             "partner_id": partner_id,
@@ -157,7 +160,7 @@ class AccountVoucherWizard(models.TransientModel):
         sale_obj = self.env["sale.order"]
         sale_ids = self.env.context.get("active_ids", [])
         if sale_ids:
-            sale_id = fields.first(sale_ids)
+            sale_id = next(iter(sale_ids), None)
             sale = sale_obj.browse(sale_id)
             payment_vals = self._prepare_payment_vals(sale)
             payment = payment_obj.create(payment_vals)

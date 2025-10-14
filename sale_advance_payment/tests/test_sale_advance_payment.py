@@ -3,10 +3,11 @@
 
 from odoo import fields
 from odoo.exceptions import ValidationError
-from odoo.tests import common
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleAdvancePayment(common.TransactionCase):
+class TestSaleAdvancePayment(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -45,30 +46,30 @@ class TestSaleAdvancePayment(common.TransactionCase):
             {
                 "order_id": cls.sale_order_1.id,
                 "product_id": cls.product_1.id,
-                "product_uom": cls.product_1.uom_id.id,
+                "product_uom_id": cls.product_1.uom_id.id,
                 "product_uom_qty": 10.0,
                 "price_unit": 100.0,
-                "tax_id": cls.tax,
+                "tax_ids": cls.tax,
             }
         )
         cls.order_line_2 = cls.env["sale.order.line"].create(
             {
                 "order_id": cls.sale_order_1.id,
                 "product_id": cls.product_2.id,
-                "product_uom": cls.product_2.uom_id.id,
+                "product_uom_id": cls.product_2.uom_id.id,
                 "product_uom_qty": 25.0,
                 "price_unit": 40.0,
-                "tax_id": cls.tax,
+                "tax_ids": cls.tax,
             }
         )
         cls.order_line_3 = cls.env["sale.order.line"].create(
             {
                 "order_id": cls.sale_order_1.id,
                 "product_id": cls.product_3.id,
-                "product_uom": cls.product_3.uom_id.id,
+                "product_uom_id": cls.product_3.uom_id.id,
                 "product_uom_qty": 20.0,
                 "price_unit": 50.0,
-                "tax_id": cls.tax,
+                "tax_ids": cls.tax,
             }
         )
 
