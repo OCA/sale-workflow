@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Advance Payment",
-    "version": "17.0.1.0.5",
+    "version": "19.0.1.0.0",
     "author": "Comunitea, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
