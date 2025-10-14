@@ -68,9 +68,6 @@
                     <field name="exceptions_summary" />
                 </div>
             </xpath>
-            <xpath expr="//field[@name='order_line']/list" position="inside">
-                <field name="is_exception_danger" column_invisible="1" />
-            </xpath>
             <xpath expr="//field[@name='order_line']/list" position="attributes">
                 <attribute name="decoration-danger">is_exception_danger</attribute>
             </xpath>

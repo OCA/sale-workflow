@@ -19,28 +19,89 @@ class TestSaleException(TransactionCase):
                 "name": "Public Pricelist",
             }
         )
+        cls.partner = cls.env["res.partner"].create(
+            {
+                "name": "Test Partner",
+                "email": "test@test.com",
+            }
+        )
+        cls.product_6 = cls.env["product.product"].create(
+            {
+                "name": "Test Product 6",
+                "type": "consu",
+                "list_price": 100.0,
+                "standard_price": 70.0,
+            }
+        )
+        cls.product_7 = cls.env["product.product"].create(
+            {
+                "name": "Test Product 7",
+                "type": "consu",
+                "list_price": 200.0,
+                "standard_price": 150.0,
+            }
+        )
+        cls.excep_no_zip = cls.env["exception.rule"].create(
+            {
+                "name": "No ZIP code on destination",
+                "description": "No ZIP code on destination",
+                "sequence": 50,
+                "model": "sale.order",
+                "code": "failed=not self.partner_shipping_id.zip",
+                "active": False,
+            }
+        )
+        cls.excep_no_free = cls.env["exception.rule"].create(
+            {
+                "name": "No free order",
+                "description": "The total can't be 0",
+                "sequence": 50,
+                "model": "sale.order",
+                "exception_type": "by_domain",
+                "domain": "[('amount_total', '=', 0)]",
+                "active": False,
+            }
+        )
+        cls.exception_partner_sale_warning = cls.env["exception.rule"].create(
+            {
+                "name": "Customer sale warning",
+                "description": "The customer has a sale warning in his form",
+                "sequence": 40,
+                "model": "sale.order",
+                "code": "failed=bool(self.partner_id.sale_warn_msg)",
+                "active": False,
+            }
+        )
+        cls.exception_product_sale_warning = cls.env["exception.rule"].create(
+            {
+                "name": "Product warning",
+                "description": "The product has a warning in his form",
+                "sequence": 40,
+                "model": "sale.order.line",
+                "code": "failed=bool(self.product_id.sale_line_warn_msg)",
+                "active": False,
+            }
+        )
 
     def test_sale_order_exception(self):
         self.sale_exception_confirm = self.env["sale.exception.confirm"]
 
-        exception = self.env.ref("sale_exception.excep_no_zip").sudo()
-        exception.active = True
+        self.excep_no_zip.sudo().active = True
 
-        partner = self.env.ref("base.res_partner_1")
-        partner.zip = False
-        p = self.env.ref("product.product_product_6")
+        self.partner.zip = False
+        p = self.product_6
         so1 = self.env["sale.order"].create(
             {
-                "partner_id": partner.id,
-                "partner_invoice_id": partner.id,
-                "partner_shipping_id": partner.id,
+                "partner_id": self.partner.id,
+                "partner_invoice_id": self.partner.id,
+                "partner_shipping_id": self.partner.id,
                 "order_line": [
                     Command.create(
                         {
                             "name": p.name,
                             "product_id": p.id,
                             "product_uom_qty": 2,
-                            "product_uom": p.uom_id.id,
+                            "product_uom_id": p.uom_id.id,
                             "price_unit": p.list_price,
                         },
                     )
@@ -50,25 +111,24 @@ class TestSaleException(TransactionCase):
         )
 
         # confirm quotation
-        exception = self.env.ref("sale_exception.excep_no_zip")
-        exception.active = True
+        self.excep_no_zip.active = True
         so1.action_confirm()
         self.assertTrue(so1.state == "draft")
         so1.detect_exceptions()
-        self.assertTrue(so1.exception_ids.filtered(lambda x: x == exception))
+        self.assertTrue(so1.exception_ids.filtered(lambda x: x == self.excep_no_zip))
         # test all draft so
         so2 = self.env["sale.order"].create(
             {
-                "partner_id": partner.id,
-                "partner_invoice_id": partner.id,
-                "partner_shipping_id": partner.id,
+                "partner_id": self.partner.id,
+                "partner_invoice_id": self.partner.id,
+                "partner_shipping_id": self.partner.id,
                 "order_line": [
                     Command.create(
                         {
                             "name": p.name,
                             "product_id": p.id,
                             "product_uom_qty": 3,
-                            "product_uom": p.uom_id.id,
+                            "product_uom_id": p.uom_id.id,
                             "price_unit": p.list_price,
                         },
                     )
@@ -84,7 +144,7 @@ class TestSaleException(TransactionCase):
         self.assertTrue(so1.state == "sale")
 
         # Add a order line to test after SO is confirmed
-        p = self.env.ref("product.product_product_7")
+        p = self.product_7
 
         # set ignore_exception = False  (Done by onchange of order_line)
         self.assertRaises(
@@ -98,7 +158,7 @@ class TestSaleException(TransactionCase):
                             "name": p.name,
                             "product_id": p.id,
                             "product_uom_qty": 2,
-                            "product_uom": p.uom_id.id,
+                            "product_uom_id": p.uom_id.id,
                             "price_unit": p.list_price,
                         },
                     )
@@ -106,7 +166,7 @@ class TestSaleException(TransactionCase):
             },
         )
 
-        p = self.env.ref("product.product_product_7")
+        p = self.product_7
 
         # Set ignore exception True  (Done manually by user)
         so1.write(
@@ -118,14 +178,14 @@ class TestSaleException(TransactionCase):
                             "name": p.name,
                             "product_id": p.id,
                             "product_uom_qty": 2,
-                            "product_uom": p.uom_id.id,
+                            "product_uom_id": p.uom_id.id,
                             "price_unit": p.list_price,
                         },
                     )
                 ],
             }
         )
-        exception.active = False
+        self.excep_no_zip.active = False
         so1.with_context(disable_cancel_warning=True).action_cancel()
         so1.action_draft()
         self.assertTrue(not so1.ignore_exception)
@@ -147,14 +207,12 @@ class TestSaleException(TransactionCase):
         return order_form.save()
 
     def test_exception_partner_sale_warning(self):
-        exception = self.env.ref("sale_exception.exception_partner_sale_warning")
-        exception.active = True
-        partner = self.env.ref("base.res_partner_1")
+        self.exception_partner_sale_warning.active = True
         sale_order = self._create_sale_order(
-            partner=partner, product=self.env.ref("product.product_product_6")
+            partner=self.partner, product=self.product_6
         )
         sale_order.action_confirm()
-        partner.sale_warn = "warning"
+        self.partner.sale_warn_msg = "warning"
         sale_order2 = sale_order.copy()
         self.env.company.sale_exception_show_popup = True
         result = sale_order2.action_confirm()
@@ -162,57 +220,63 @@ class TestSaleException(TransactionCase):
             result.get("xml_id"), "sale_exception.action_sale_exception_confirm"
         )
         self.assertEqual(sale_order2.state, "draft")
-        self.assertTrue(sale_order2.exception_ids.filtered(lambda x: x == exception))
+        self.assertTrue(
+            sale_order2.exception_ids.filtered(
+                lambda x: x == self.exception_partner_sale_warning
+            )
+        )
 
     def test_exception_partner_sale_warning_no_popup(self):
-        exception = self.env.ref("sale_exception.exception_partner_sale_warning")
-        exception.active = True
-        partner = self.env.ref("base.res_partner_1")
+        self.exception_partner_sale_warning.active = True
         sale_order = self._create_sale_order(
-            partner=partner, product=self.env.ref("product.product_product_6")
+            partner=self.partner, product=self.product_6
         )
         sale_order.action_confirm()
-        partner.sale_warn = "warning"
+        self.partner.sale_warn_msg = "warning"
         sale_order2 = sale_order.copy()
         self.env.company.sale_exception_show_popup = False
         result = sale_order2.action_confirm()
         self.assertIsNone(result)
         self.assertEqual(sale_order2.state, "draft")
-        self.assertTrue(sale_order2.exception_ids.filtered(lambda x: x == exception))
+        self.assertTrue(
+            sale_order2.exception_ids.filtered(
+                lambda x: x == self.exception_partner_sale_warning
+            )
+        )
 
     def test_exception_product_sale_warning(self):
-        exception = self.env.ref("sale_exception.exception_product_sale_warning")
-        exception.active = True
-        product = self.env.ref("product.product_product_6")
+        self.exception_product_sale_warning.active = True
         sale_order = self._create_sale_order(
-            partner=self.env.ref("base.res_partner_1"), product=product
+            partner=self.partner, product=self.product_6
         )
         sale_order.action_confirm()
-        product.sale_line_warn = "warning"
+        self.product_6.sale_line_warn_msg = "warning"
         sale_order2 = sale_order.copy()
         sale_order2.detect_exceptions()
-        self.assertTrue(sale_order2.exception_ids.filtered(lambda x: x == exception))
+        self.assertTrue(
+            sale_order2.exception_ids.filtered(
+                lambda x: x == self.exception_product_sale_warning
+            )
+        )
 
     def test_exception_no_free(self):
         # No allow ignoring exceptions if the "is_blocking" field is checked
         self.sale_exception_confirm = self.env["sale.exception.confirm"]
-        exception = self.env.ref("sale_exception.excep_no_free")
-        exception.active = True
-        exception.is_blocking = True
-        partner = self.env.ref("base.res_partner_1")
-        p = self.env.ref("product.product_product_6")
+        self.excep_no_free.active = True
+        self.excep_no_free.is_blocking = True
+        p = self.product_6
         sale_order = self.env["sale.order"].create(
             {
-                "partner_id": partner.id,
-                "partner_invoice_id": partner.id,
-                "partner_shipping_id": partner.id,
+                "partner_id": self.partner.id,
+                "partner_invoice_id": self.partner.id,
+                "partner_shipping_id": self.partner.id,
                 "order_line": [
                     Command.create(
                         {
                             "name": p.name,
                             "product_id": p.id,
                             "product_uom_qty": 2,
-                            "product_uom": p.uom_id.id,
+                            "product_uom_id": p.uom_id.id,
                             "price_unit": 0,
                         },
                     )
@@ -224,7 +288,7 @@ class TestSaleException(TransactionCase):
             **{
                 "active_id": sale_order.id,
                 "active_ids": [sale_order.id],
-                "exception_ids": [exception.id],
+                "exception_ids": [self.excep_no_free.id],
                 "active_model": sale_order._name,
             }
         ).create({"ignore": True})
