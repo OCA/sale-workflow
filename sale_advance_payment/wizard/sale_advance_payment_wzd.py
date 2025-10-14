@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import float_compare
 
@@ -55,7 +55,9 @@ class AccountVoucherWizard(models.TransientModel):
     @api.constrains("amount_advance")
     def check_amount(self):
         if self.amount_advance <= 0:
-            raise exceptions.ValidationError(_("Amount of advance must be positive."))
+            raise exceptions.ValidationError(
+                self.env._("Amount of advance must be positive.")
+            )
         if self.env.context.get("active_id", False):
             if self.payment_type == "inbound":
                 if (
@@ -67,7 +69,7 @@ class AccountVoucherWizard(models.TransientModel):
                     > 0
                 ):
                     raise exceptions.ValidationError(
-                        _(
+                        self.env._(
                             "Inbound amount of advance is greater than residual "
                             "amount on sale"
                         )
@@ -83,7 +85,7 @@ class AccountVoucherWizard(models.TransientModel):
                     > 0
                 ):
                     raise exceptions.ValidationError(
-                        _(
+                        self.env._(
                             "Outbound amount of advance is greater than the "
                             "advanced paid amount"
                         )
@@ -127,7 +129,7 @@ class AccountVoucherWizard(models.TransientModel):
         partner_id = sale.partner_invoice_id.commercial_partner_id.id
         if self.amount_advance < 0.0:
             raise UserError(
-                _(
+                self.env._(
                     "The amount to advance must always be positive. "
                     "Please use the payment type to indicate if this "
                     "is an inbound or an outbound payment."
