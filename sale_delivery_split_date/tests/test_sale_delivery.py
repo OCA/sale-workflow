@@ -3,18 +3,25 @@
 
 import datetime
 
-from odoo.tests.common import TransactionCase
 from odoo.tools import format_date
 
+from odoo.addons.sale_stock.tests.common import TestSaleStockCommon
 
-class TestSaleDelivery(TransactionCase):
+
+class TestSaleDelivery(TestSaleStockCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-        customer = cls.env.ref("base.res_partner_3")
-        p1 = cls.env.ref("product.product_product_16")
-        p2 = cls.env.ref("product.product_product_25")
+        customer = cls.partner_a
+        p1 = cls._create_product(
+            name="test_product1",
+            is_storable=True,
+        )
+        p2 = cls._create_product(
+            name="test_product2",
+            is_storable=True,
+        )
         today = datetime.datetime(2020, 1, 1)
         cls.dt1 = today + datetime.timedelta(days=9)
         cls.dt2 = today + datetime.timedelta(days=10)
@@ -59,13 +66,13 @@ class TestSaleDelivery(TransactionCase):
             "The picking must be planned at the expected date",
         )
         self.assertEqual(
-            self.so_line1.procurement_group_id,
-            self.so_line2.procurement_group_id,
+            self.so_line1.stock_reference_id,
+            self.so_line2.stock_reference_id,
             "The procurement group must be the same",
         )
         self.assertIn(
             format_date(self.env, self.date_sooner.date()),
-            self.so_line1.procurement_group_id.name,
+            self.so_line1.stock_reference_id.name,
         )
 
     def test_check_multiple_dates(self):
@@ -94,17 +101,17 @@ class TestSaleDelivery(TransactionCase):
             "The second picking must be planned at the latest date",
         )
         self.assertNotEqual(
-            self.so_line1.procurement_group_id,
-            self.so_line2.procurement_group_id,
+            self.so_line1.stock_reference_id,
+            self.so_line2.stock_reference_id,
             "The procurement group must be different",
         )
         self.assertIn(
             format_date(self.env, self.date_sooner.date()),
-            self.so_line1.procurement_group_id.name,
+            self.so_line1.stock_reference_id.name,
         )
         self.assertIn(
             format_date(self.env, self.date_later.date()),
-            self.so_line2.procurement_group_id.name,
+            self.so_line2.stock_reference_id.name,
         )
 
     def test_check_same_dates(self):
@@ -128,13 +135,24 @@ class TestSaleDelivery(TransactionCase):
             "The picking must be planned at the expected date",
         )
         self.assertEqual(
-            self.so_line1.procurement_group_id,
-            self.so_line2.procurement_group_id,
+            self.so_line1.move_ids.date_deadline,
+            self.so_line1.commitment_date,
+            "First SO Line move deadline must be equal to commitment date",
+        )
+        self.assertEqual(
+            self.so_line2.move_ids.date_deadline,
+            self.so_line2.commitment_date,
+            "Second SO Line move deadline must be equal to commitment date",
+        )
+
+        self.assertEqual(
+            self.so_line1.stock_reference_id,
+            self.so_line2.stock_reference_id,
             "The procurement group must be the same",
         )
         self.assertIn(
             format_date(self.env, self.date_sooner.date()),
-            self.so_line1.procurement_group_id.name,
+            self.so_line1.stock_reference_id.name,
         )
 
     def test_security_lead_time_same_dates(self):
@@ -160,13 +178,23 @@ class TestSaleDelivery(TransactionCase):
             "(with security lead time)",
         )
         self.assertEqual(
-            self.so_line1.procurement_group_id,
-            self.so_line2.procurement_group_id,
+            self.so_line1.move_ids.date_deadline,
+            self.so_line1.commitment_date,
+            "First SO Line move deadline must be equal to commitment date",
+        )
+        self.assertEqual(
+            self.so_line2.move_ids.date_deadline,
+            self.so_line2.commitment_date,
+            "Second SO Line move deadline must be equal to commitment date",
+        )
+        self.assertEqual(
+            self.so_line1.stock_reference_id,
+            self.so_line2.stock_reference_id,
             "The procurement group must be the same",
         )
         self.assertIn(
             format_date(self.env, security_date.date()),
-            self.so_line1.procurement_group_id.name,
+            self.so_line1.stock_reference_id.name,
         )
 
     def test_security_lead_time_multiple_dates(self):
@@ -193,21 +221,31 @@ class TestSaleDelivery(TransactionCase):
             "(with security lead time)",
         )
         self.assertEqual(
+            sorted_pickings[0].date_deadline,
+            self.so_line1.commitment_date,
+            "The picking deadline must be equal to commitment date",
+        )
+        self.assertEqual(
             sorted_pickings[1].scheduled_date,
             security_date_later,
             "The second picking must be planned at the latest date "
             "(with security lead time)",
         )
+        self.assertEqual(
+            sorted_pickings[1].date_deadline,
+            self.so_line2.commitment_date,
+            "The picking deadline must be equal to commitment date",
+        )
         self.assertNotEqual(
-            self.so_line1.procurement_group_id,
-            self.so_line2.procurement_group_id,
+            self.so_line1.stock_reference_id,
+            self.so_line2.stock_reference_id,
             "The procurement group must be different",
         )
         self.assertIn(
             format_date(self.env, security_date_sooner.date()),
-            self.so_line1.procurement_group_id.name,
+            self.so_line1.stock_reference_id.name,
         )
         self.assertIn(
             format_date(self.env, security_date_later.date()),
-            self.so_line2.procurement_group_id.name,
+            self.so_line2.stock_reference_id.name,
         )
