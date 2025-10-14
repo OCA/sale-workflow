@@ -62,8 +62,10 @@ class ResPartner(models.Model):
         action["domain"] = [
             ("target_partner_id", "=", self.id),
             ("recurrency", "=", True),
-            ("recurrence_id.until", ">", fields.Date.today()),
             ("is_base_recurrent_event", "=", True),
+            "|",
+            ("recurrence_id.end_type", "=", "forever"),
+            ("recurrence_id.until", ">", fields.Date.today()),
         ]
         return action
 
