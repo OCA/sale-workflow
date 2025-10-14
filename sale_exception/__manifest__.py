@@ -7,10 +7,7 @@
     "summary": "Custom exceptions on sale order",
     "version": "18.0.2.1.0",
     "category": "Generic Modules/Sale",
-    "author": "Akretion, "
-    "Sodexis, "
-    "Camptocamp, "
-    "Odoo Community Association (OCA)",
+    "author": "Akretion, Sodexis, Camptocamp, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale", "base_exception"],
     "license": "AGPL-3",
