@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Delivery Split Date",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "summary": "Sale Deliveries split by date",
     "category": "Sales Management",
     "license": "AGPL-3",
@@ -11,7 +11,7 @@
     "website": "https://github.com/OCA/sale-workflow",
     "depends": [
         "sale_order_line_date",
-        "sale_procurement_group_by_line",
+        "sale_stock_reference_by_line",  # ex. sale_procurement_group_by_line
     ],
     "data": [
         "views/stock_picking.xml",
