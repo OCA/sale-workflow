@@ -35,8 +35,13 @@
                 name="t-att-class"
             >((line.discount or line.discount_fixed) and 'text-danger' or '') + ' text-right'</attribute>
         </xpath>
-        <xpath expr="//div[@t-if='line.discount']/t" position="attributes">
-            <attribute name="t-out">line.price_unit - line.discount_fixed</attribute>
+        <xpath expr="//div[@t-if='line.discount']" position="after">
+            <div t-elif="line.discount_fixed">
+                <t
+                    t-out="line.price_unit - line.discount_fixed"
+                    t-options='{"widget": "float", "decimal_precision": "Product Price"}'
+                />
+            </div>
         </xpath>
         <xpath
             expr="//section[@id='details']//table/tbody//t[@t-foreach='lines_to_report']/tr//t[@t-if='not line.display_type']//td[@t-if='display_discount']"
