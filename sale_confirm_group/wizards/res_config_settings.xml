@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_res_config_settings_view_form_inherit" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <block name="quotation_order_setting_container" position="inside">
+                <setting
+                    id="sale_confirmation_groups"
+                    company_dependent="1"
+                    help="If the checkbox is flagged and at least 1 group is selected, SO confirmation will be allowed to such groups only. This is company-specific."
+                >
+                    <field
+                        name="use_sale_confirmation_groups"
+                        string="Use SO Confirmation Groups"
+                    />
+                    <field
+                        name="sale_confirmation_group_ids"
+                        nolabel="1"
+                        invisible="not use_sale_confirmation_groups"
+                    >
+                        <list editable="bottom">
+                            <field name="display_name" nolabel="1" />
+                        </list>
+                    </field>
+                </setting>
+            </block>
+        </field>
+    </record>
+</odoo>
