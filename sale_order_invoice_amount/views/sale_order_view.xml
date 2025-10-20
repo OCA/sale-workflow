@@ -7,6 +7,11 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='invoice_status']" position="after">
                 <field name="amount_invoiced" sum="Already invoiced" optional="hide" />
+                <field
+                    name="amount_to_invoice"
+                    sum="Amount to invoice"
+                    optional="hide"
+                />
             </xpath>
         </field>
     </record>

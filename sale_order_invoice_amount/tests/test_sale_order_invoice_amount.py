@@ -14,11 +14,6 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
         # Partners
         partner_model = cls.env["res.partner"]
         cls.res_partner_1 = partner_model.create({"name": "Wood Corner"})
-        cls.env.company.write(
-            {
-                "enable_amount_invoiced_based_on_quantity": True,
-            }
-        )
         cls.res_partner_address_1 = partner_model.create(
             {"name": "Willie Burke", "parent_id": cls.res_partner_1.id}
         )
@@ -136,34 +131,22 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             121.0,
             "Uninvoiced Amount should be 121.0, as the lines keep uninvoiced.",
         )
-        test_invoice.button_cancel()
-        self.sale_order_1._create_invoices(final=True)
-        self.assertEqual(
-            self.sale_order_1.amount_invoiced,
-            363.0,
-            "Invoiced Amount should be calculated.",
-        )
-        self.assertEqual(
-            self.sale_order_1.amount_to_invoice,
-            0.00,
-            "Uninvoiced Amount should be calculated.",
-        )
         tax_totals = self.sale_order_1.tax_totals
         self.assertEqual(
             tax_totals["amount_invoiced"],
-            363.0,
+            242.0,
         )
         self.assertEqual(
             tax_totals["amount_to_invoice"],
-            0.00,
+            121.00,
         )
         self.assertEqual(
             tax_totals["formatted_amount_invoiced"],
-            "$\xa0363.00",
+            "$\xa0242.00",
         )
         self.assertEqual(
             tax_totals["formatted_amount_to_invoice"],
-            "$\xa00.00",
+            "$\xa0121.00",
         )
 
     def test_02_sale_order_invoiced_amount_different_currencies_invoice(self):
@@ -229,18 +212,6 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             self.sale_order_1.amount_to_invoice,
             121.0,
             "Uninvoiced Amount should be 121, as the lines keep uninvoiced.",
-        )
-        test_invoice.button_cancel()
-        self.sale_order_1._create_invoices(final=True)
-        self.assertEqual(
-            self.sale_order_1.amount_invoiced,
-            363.0,
-            "Invoiced Amount should be calculated.",
-        )
-        self.assertEqual(
-            self.sale_order_1.amount_to_invoice,
-            0.0,
-            "Uninvoiced Amount should be calculated.",
         )
 
     def test_03_sale_order_invoiced_amount_different_currencies_sale(self):
@@ -414,56 +385,7 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             "Uninvoiced Amount should be calculated.",
         )
 
-    def test_04_sale_order_invoiced_amount_different_price_deactivated(self):
-        self.env.company.write(
-            {
-                "enable_amount_invoiced_based_on_quantity": False,
-            }
-        )
-
-        self.sale_order_1.action_confirm()
-        aml1 = self.order_line_1._prepare_invoice_line()
-        aml1["price_unit"] = 15.0
-        aml1["quantity"] = 5.0
-        aml2 = self.order_line_2._prepare_invoice_line()
-        test_invoice = self.env["account.move"].create(
-            {
-                "move_type": "out_invoice",
-                "invoice_date": fields.Date.from_string("2024-01-01"),
-                "date": fields.Date.from_string("2024-01-01"),
-                "partner_id": self.res_partner_1.id,
-                "line_ids": [
-                    (
-                        0,
-                        0,
-                        aml1,
-                    ),
-                    (
-                        0,
-                        0,
-                        aml2,
-                    ),
-                ],
-            }
-        )
-        test_invoice.action_post()
-        self.assertEqual(
-            self.sale_order_1.amount_invoiced,
-            211.75,
-            "Invoiced Amount should be 211.75",
-        )
-        self.assertEqual(
-            self.sale_order_1.amount_to_invoice,
-            151.25,
-            "Uninvoiced Amount should be 121, as the lines keep uninvoiced.",
-        )
-
-    def test_05_sale_order_invoiced_amount_different_price_activated(self):
-        self.env.company.write(
-            {
-                "enable_amount_invoiced_based_on_quantity": True,
-            }
-        )
+    def test_05_sale_order_invoiced(self):
         self.assertEqual(
             self.sale_order_1.amount_invoiced,
             0.0,

@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Order Invoice Amount",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
@@ -15,7 +15,6 @@
     ],
     "data": [
         "views/sale_order_view.xml",
-        "views/sale_order_config_settings.xml",
     ],
     "installable": True,
     "assets": {
