@@ -38,8 +38,8 @@ class SaleOrderLine(models.Model):
         Exclude lines that have their order invoice policy filled in
         """
         other_lines = self.filtered(
-            lambda l: l.product_id.type == "service"
-            or l.order_id.invoice_policy == "product"
+            lambda l: not l.order_id.invoice_policy
+            or not l.order_id.invoice_policy_required
         )
         super(SaleOrderLine, other_lines)._compute_qty_to_invoice()
         for line in self - other_lines:
