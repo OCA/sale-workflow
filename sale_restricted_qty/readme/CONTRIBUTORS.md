@@ -3,3 +3,5 @@
   - Ashish Hirpara \<<https://ashish-hirpara.com>\>
 - [Aion Tech](https://aiontech.company/):
   - Simone Rubino \<<simone.rubino@aion-tech.it>\>
+- [CorporateHub](https://corporatehub.eu/)
+  - Alexey Pelykh \<<alexey.pelykh@corphub.eu>\>

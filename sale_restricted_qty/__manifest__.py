@@ -1,9 +1,10 @@
 # Copyright 2019 Akretion (<http://www.akretion.com>)
 # Copyright 2023 Simone Rubino - Aion Tech
+# Copyright 2024 CorporateHub
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
-    "name": "Sale order min quantity",
+    "name": "Sale order restricted quantity: min, max, multiple-of",
     "version": "18.0.1.0.0",
     "category": "Sales Management",
     "author": "Akretion, Odoo Community Association (OCA)",
@@ -15,8 +16,7 @@
     "data": [
         "views/product_category_views.xml",
         "views/product_template_views.xml",
-        "views/product_product_views.xml",
-        "views/sale_views.xml",
+        "views/sale_order_views.xml",
     ],
     "installable": True,
 }
