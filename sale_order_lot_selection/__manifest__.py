@@ -6,8 +6,17 @@
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
     "depends": ["sale_stock", "stock_restrict_lot"],
-    "data": ["views/sale_order_views.xml"],
+    "data": [
+        "views/product_document_views.xml",
+        "views/sale_order_views.xml",
+        "views/stock_lot_views.xml",
+    ],
     "demo": ["demo/sale_demo.xml"],
     "maintainers": ["bodedra"],
     "installable": True,
+    "assets": {
+        "web.assets_backend": [
+            "sale_order_lot_selection/static/src/**/*",
+        ],
+    },
 }
