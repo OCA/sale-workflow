@@ -2,7 +2,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 
 from odoo import api, models, tools
-from odoo.osv import expression
+from odoo.fields import Domain
 from odoo.tools import config
 
 
@@ -32,13 +32,14 @@ class IrRule(models.Model):
             if user.has_group(group_my_records) and not user.has_group(
                 group_all_records
             ):
-                domain_followers = [
-                    "|",
-                    ("message_partner_ids", "in", user.partner_id.ids),
-                    ("id", "=", user.partner_id.id),
-                ]
-                domain_user = [("user_id", "in", [user.id, False])]
-                extra_domain = expression.OR([domain_followers, domain_user])
-                extra_domain = expression.normalize_domain(extra_domain)
-                res = expression.AND([extra_domain] + [res])
+                domain_followers = Domain(
+                    [
+                        "|",
+                        ("message_partner_ids", "in", user.partner_id.ids),
+                        ("id", "=", user.partner_id.id),
+                    ]
+                )
+                domain_user = Domain([("user_id", "in", [user.id, False])])
+                extra_domain = domain_followers | domain_user
+                res = extra_domain & res
         return res

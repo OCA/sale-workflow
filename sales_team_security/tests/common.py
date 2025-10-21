@@ -16,7 +16,7 @@ class TestCommon(BaseCommon):
             {
                 "login": "sales_team_security",
                 "name": "Test sales_team_security user",
-                "groups_id": [(4, cls.env.ref("sales_team.group_sale_salesman").id)],
+                "group_ids": [(4, cls.env.ref("sales_team.group_sale_salesman").id)],
             }
         )
         cls.crm_team_member = cls.env["crm.team.member"].create(
@@ -39,7 +39,7 @@ class TestCommon(BaseCommon):
             {
                 "login": "sales_team_security2",
                 "name": "Test sales_team_security user 2",
-                "groups_id": [(4, cls.env.ref("sales_team.group_sale_salesman").id)],
+                "group_ids": [(4, cls.env.ref("sales_team.group_sale_salesman").id)],
             }
         )
         cls.crm_team_member2 = cls.env["crm.team.member"].create(
@@ -80,7 +80,7 @@ class TestCommon(BaseCommon):
         self._check_permission(self.user2, self.team2, False)
         self._check_permission(self.user2, self.team, False)
         # Add to group "Team manager"
-        self.user.groups_id = [
+        self.user.group_ids = [
             (4, self.env.ref("sales_team_security.group_sale_team_manager").id)
         ]
         self._check_permission(False, False, True)
@@ -99,7 +99,7 @@ class TestCommon(BaseCommon):
         if not is_res_partner:
             self._check_permission(self.user2, self.team, True)
         # Add to group "See all leads"
-        self.user.groups_id = [
+        self.user.group_ids = [
             (4, self.env.ref("sales_team.group_sale_salesman_all_leads").id)
         ]
         self._check_permission(False, False, True)
@@ -113,7 +113,7 @@ class TestCommon(BaseCommon):
         self._check_permission(self.user2, self.team, True)
         # Regular internal user
         if extra_checks and is_res_partner:
-            self.user.groups_id = [(6, 0, [self.env.ref("base.group_user").id])]
+            self.user.group_ids = [(6, 0, [self.env.ref("base.group_user").id])]
             self._check_permission(False, False, True)
             self._check_permission(self.user, False, True)
             self._check_permission(self.user2, False, True)
