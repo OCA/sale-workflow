@@ -185,3 +185,21 @@ class SaleOrderLine(models.Model):
         if failed_lines:
             msg = _("Check quantity for these products:\n") + "\n".join(failed_lines)
             raise ValidationError(msg)
+
+
+
+    @api.onchange("product_id")
+    def _onchange_product_id_set_min_qty(self):
+        """Set default quantity to minimum quantity when enforced."""
+        # Only auto-populate if product is set and quantity is not meaningfully set by user
+        # We auto-populate when quantity is 0 or when it's the default value of 1.0
+        # but only if it hasn't been explicitly set by the user to a different value
+        if (
+            self.product_id
+            and self.is_min_qty_set
+            and self.restrict_min_qty
+            and (not self.product_uom_qty or self.product_uom_qty in (0.0, 1.0))
+        ):
+            self.product_uom_qty = self.min_qty
+
+
