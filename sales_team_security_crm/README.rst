@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ==================================
 CRM documents permissions by teams
 ==================================
@@ -13,17 +17,17 @@ CRM documents permissions by teams
 .. |badge1| image:: https://img.shields.io/badge/maturity-Production%2FStable-green.png
     :target: https://odoo-community.org/page/development-status
     :alt: Production/Stable
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/18.0/sales_team_security_crm
+    :target: https://github.com/OCA/sale-workflow/tree/19.0/sales_team_security_crm
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-sales_team_security_crm
+    :target: https://translation.odoo-community.org/projects/sale-workflow-19-0/sale-workflow-19-0-sales_team_security_crm
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -41,7 +45,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sales_team_security_crm%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sales_team_security_crm%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -57,19 +61,19 @@ Authors
 Contributors
 ------------
 
--  `Tecnativa <https://www.tecnativa.com>`__:
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-   -  Pedro M. Baeza
-   -  César A. Sánchez
+  - Pedro M. Baeza
+  - César A. Sánchez
 
--  `Guadaltech <https://www.guadaltech.es>`__:
+- `Guadaltech <https://www.guadaltech.es>`__:
 
-   -  Ramón Bajona
+  - Ramón Bajona
 
--  Iván Todorovich <ivan.todorovich@gmail.com>
--  `Pesol <https://www.pesol.es>`__:
+- Iván Todorovich <ivan.todorovich@gmail.com>
+- `Pesol <https://www.pesol.es>`__:
 
-   -  Jonathan Oscategui Taza <info@pesol.es>
+  - Jonathan Oscategui Taza <info@pesol.es>
 
 Maintainers
 -----------
@@ -92,6 +96,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-ivantodorovich| 
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/18.0/sales_team_security_crm>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/19.0/sales_team_security_crm>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
