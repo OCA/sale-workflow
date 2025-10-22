@@ -189,3 +189,13 @@ class TestSaleOrderCarrierAutoAssignOnConfirm(TestSaleOrderCarrierAutoAssignComm
         self.sale_order.action_confirm()
         self.assertEqual(self.sale_order.state, "sale")
         self.assertFalse(self.sale_order.carrier_id)
+
+    def test_sale_order_carrier_onchange_no_order_line(self):
+        """Ensure no error occurs when changing partner on an empty sale order."""
+        sale_order = self.env["sale.order"].create({"partner_id": self.partner.id})
+        new_partner = self.env["res.partner"].create({"name": "Another Partner"})
+        sale_order.partner_id = new_partner
+        self.assertFalse(
+            sale_order.carrier_id,
+            "Carrier should not be set for sale order without lines",
+        )
