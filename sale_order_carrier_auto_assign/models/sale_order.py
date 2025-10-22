@@ -71,6 +71,8 @@ class SaleOrder(models.Model):
         :param preserve_order_carrier: It will respect the carrier set on the order
         """
         for order in self:
+            if not order.order_line:
+                continue
             if order.delivery_set:
                 continue
             delivery_wiz_action = order.action_open_delivery_wizard()

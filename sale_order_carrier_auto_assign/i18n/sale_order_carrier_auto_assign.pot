@@ -58,6 +58,11 @@ msgid "Sales Order"
 msgstr ""
 
 #. module: sale_order_carrier_auto_assign
+#: model:ir.model,name:sale_order_carrier_auto_assign.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_carrier_auto_assign
 #: model_terms:ir.ui.view,arch_db:sale_order_carrier_auto_assign.res_config_settings_view_form_sale
 msgid "Set default shipping method automatically."
 msgstr ""
