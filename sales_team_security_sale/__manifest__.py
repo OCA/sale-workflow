@@ -4,7 +4,7 @@
 {
     "name": "Sale documents permissions by teams",
     "summary": "Integrates sales_team_security with sale",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Tecnativa, Iván Todorovich, Odoo Community Association (OCA)",
