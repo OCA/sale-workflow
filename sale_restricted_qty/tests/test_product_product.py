@@ -33,10 +33,10 @@ class TestProductTemplate(common.TransactionCase):
         self.assertEqual(template.is_sale_restrict_multiple_of_qty_set, False)
         self.assertEqual(template.sale_restrict_multiple_of_qty, "0")
 
-        product = self.Product.create(
+        product = template.product_variant_id
+        product.write(
             {
                 "name": "Product",
-                "product_tmpl_id": template.id,
             }
         )
         self.assertEqual(product.sale_min_qty, 0.0)
