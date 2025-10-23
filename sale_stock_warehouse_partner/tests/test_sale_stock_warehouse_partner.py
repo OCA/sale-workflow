@@ -1,10 +1,12 @@
 # Copyright 2025 Tecnativa - Eduardo Ezerouali
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
-from odoo.tests import Form, TransactionCase, tagged
+from odoo.tests import Form, tagged
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @tagged("post_install", "-at_install")
-class TestSaleStockWarehousePartner(TransactionCase):
+class TestSaleStockWarehousePartner(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
