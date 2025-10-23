@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =============================
 Sale Stock Warehouse Partner 
 =============================
@@ -17,25 +13,26 @@ Sale Stock Warehouse Partner
 .. |badge1| image:: https://img.shields.io/badge/maturity-Alpha-red.png
     :target: https://odoo-community.org/page/development-status
     :alt: Alpha
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/15.0/sale_stock_warehouse_partner
+    :target: https://github.com/OCA/sale-workflow/tree/18.0/sale_stock_warehouse_partner
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-15-0/sale-workflow-15-0-sale_stock_warehouse_partner
+    :target: https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-sale_stock_warehouse_partner
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows setting a **warehouse** on partner records and applies
-a priority sequence when creating a Sale Order. If the warehouse is defined 
-at a higher-priority level, it will override the lower ones. Priority are defined
-following next order: `partner_shipping_id`, `partner_id` and last `user_id`.
+This module allows setting a **warehouse** on partner records and
+applies a priority sequence when creating a Sale Order. If the warehouse
+is defined at a higher-priority level, it will override the lower ones.
+Priority are defined following next order: partner_shipping_id,
+partner_id and last user_id.
 
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
@@ -50,9 +47,9 @@ following next order: `partner_shipping_id`, `partner_id` and last `user_id`.
 Usage
 =====
 
-When creating a sale order, the system will automatically assign the warehouse
-according to the above sequence. Changing the customer, delivery address,
-salesperson  will re-trigger the warehouse selection.
+When creating a sale order, the system will automatically assign the
+warehouse according to the above sequence. Changing the customer,
+delivery address, salesperson will re-trigger the warehouse selection.
 
 Bug Tracker
 ===========
@@ -60,7 +57,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_stock_warehouse_partner%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_stock_warehouse_partner%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -68,19 +65,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 * Odoo SA
 
 Contributors
-~~~~~~~~~~~~
+------------
 
 - [Tecnativa](https://www.tecnativa.com):
+
   - Eduardo Ezerouali
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -92,6 +90,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/15.0/sale_stock_warehouse_partner>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/18.0/sale_stock_warehouse_partner>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
