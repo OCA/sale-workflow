@@ -1,0 +1,2 @@
+- Go to Sales → Configuration → Settings
+- Enable “No Product Code in Sale Line Name” to hide the product code in sale order lines.
