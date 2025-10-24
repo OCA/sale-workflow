@@ -11,8 +11,14 @@ class TestSaleOrderArchive(TransactionCase):
         test_context = cls.env.context.copy()
         test_context["test_carrier_auto_assign"] = True
         cls.env = cls.env(context=dict(test_context, tracking_disable=True))
-        cls.partner = cls.env.ref("base.res_partner_2")
-        product = cls.env.ref("product.product_product_9")
+        cls.partner = cls.env["res.partner"].create({
+            "name": "Test Partner",
+            "email": "test@example.com",
+        })
+        product = cls.env["product.product"].create({
+            "name": "Test Product",
+            "type": "consu",
+        })
         sale_order_form = Form(cls.env["sale.order"])
         sale_order_form.partner_id = cls.partner
         with sale_order_form.order_line.new() as line_form:
