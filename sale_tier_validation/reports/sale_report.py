@@ -1,7 +1,7 @@
 # Copyright 2024 Quartile (https://www.quartile.co)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import UserError
 
 
@@ -17,7 +17,9 @@ class ReportSaleOrder(models.AbstractModel):
                 continue
             if order.need_validation or (order.review_ids and not order.validated):
                 raise UserError(
-                    _("Quotation printing is blocked until the order is approved.")
+                    self.env._(
+                        "Quotation printing is blocked until the order is approved."
+                    )
                 )
         return {
             "doc_ids": docids,
