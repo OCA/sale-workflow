@@ -37,12 +37,12 @@
                 <field name="product_id" />
                 <field name="product_template_id" optional="hide" />
             </xpath>
-            <xpath expr="//field[@name='product_uom']" position="before">
+            <xpath expr="//field[@name='product_uom_id']" position="before">
                 <field name="price_unit" optional="show" />
                 <field name="discount" optional="hide" />
             </xpath>
             <xpath expr="//field[@name='price_subtotal']" position="after">
-                <field name="tax_id" widget="many2many_tags" optional="hide" />
+                <field name="tax_ids" widget="many2many_tags" optional="hide" />
                 <field
                     name="price_tax"
                     widget="monetary"

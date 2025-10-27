@@ -6,3 +6,5 @@
   - Eduardo de Miguel \<<edu@moduon.team>\>
   - Emilio Pascual \<<emilio@moduon.team>\>
   - Rafael Blasco \<<rafaelbn@moduon.team>\>
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia
