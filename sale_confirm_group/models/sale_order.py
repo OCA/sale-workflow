@@ -31,7 +31,9 @@ class SaleOrder(models.Model):
             elif not (groups := company.sale_confirmation_group_ids):
                 sales.user_can_confirm = True
             else:
-                sales.user_can_confirm = user in groups.users
+                sales.user_can_confirm = (
+                    user in groups.with_context(active_test=False).users
+                )
 
     def action_confirm(self):
         # OVERRIDE: prevent unallowed users from confirming a sale order,
@@ -59,7 +61,7 @@ class SaleOrder(models.Model):
 
         Set context key "skip_check_user_can_confirm" as ``True`` to skip the checks.
         """
-        return bool(self.env.context.get("skip_check_user_can_confirm"))
+        return bool(self.env.context.get("skip_check_user_can_confirm", self.env.su))
 
     def _filter_user_can_confirm(self) -> "SaleOrder":
         """Returns the subset of records that the current user can confirm
