@@ -15,10 +15,18 @@ class AccountMoveLine(models.Model):
     @api.depends("move_id.invoice_line_ids")
     def _compute_related_so_sequence(self):
         for rec in self:
-            if len(rec.move_id.line_ids.sale_line_ids.order_id) > 1:
-                rec.related_so_sequence = (
-                    f"{rec.sale_line_ids.order_id.name}/"
-                    f"{rec.sale_line_ids.visible_sequence}"
+            if (
+                len(rec.move_id.line_ids.sale_line_ids.order_id) > 1
+                or len(rec.sale_line_ids) > 1
+            ):
+                sequences = sorted(
+                    set(
+                        (sl.visible_sequence, sl.order_id.name)
+                        for sl in rec.sale_line_ids
+                    )
+                )
+                rec.related_so_sequence = ", ".join(
+                    f"{seq[1]}/{seq[0]}" for seq in sequences
                 )
             else:
                 rec.related_so_sequence = str(rec.sale_line_ids.visible_sequence)

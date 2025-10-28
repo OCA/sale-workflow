@@ -9,11 +9,11 @@
             position="before"
         >
             <th name="th_visible_sequence">
-                <strong>Line Number</strong>
+                <span>Line Number</span>
             </th>
         </xpath>
         <xpath
-            expr="//tbody[hasclass('sale_tbody')]//td[@name='td_name']/span[@t-field='line.name']/.."
+            expr="//tbody[hasclass('sale_tbody')]//td[@name='td_product_name']/span[@t-field='line.name']/.."
             position="before"
         >
             <td name="td_visible_sequence">

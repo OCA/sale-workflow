@@ -2,3 +2,5 @@
 - Serpent Consulting Services Pvt. Ltd. \<<support@serpentcs.com>\>
 - Rattapong Chokmasermkul \<<rattapongc@ecosoft.co.th>\>
 - Marcin Chechłacz \<<marcin.chechlacz@braintec.com>\>
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia
