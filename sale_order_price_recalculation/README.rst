@@ -106,6 +106,9 @@ Contributors
 - Duc, Dao Dong <duc.dd@komit-consulting.com>
   (https://komit-consulting.com)
 - Raf Ven <raf.ven@dynapps.be>
+- `Heliconia Solutions Pvt. Ltd. <https://www.heliconia.io>`__
+
+  - Bhavesh Heliconia
 
 Maintainers
 -----------
