@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sale_advance_payment_inv" model="ir.ui.view">
+        <field name="name">Invoice Orders</field>
+        <field name="model">sale.advance.payment.inv</field>
+        <field name="inherit_id" ref="sale.view_sale_advance_payment_inv" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@invisible='not has_down_payments']" position="after">
+                <group
+                    name="partial_down_payment_deduction"
+                    string="Down payment deduction"
+                    invisible="advance_payment_method != 'delivered'"
+                >
+                    <group>
+                        <field name="total_deduction_amount" />
+                        <field name="deduct_down_payments" widget="boolean_toggle" />
+                    </group>
+                    <group>
+                        <field
+                            name="down_payment_deduction"
+                            invisible="not deduct_down_payments"
+                        />
+                        <field
+                            name="deduction_amount"
+                            invisible="not deduct_down_payments or down_payment_deduction == 'full'"
+                        />
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

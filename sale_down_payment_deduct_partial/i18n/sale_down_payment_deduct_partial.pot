@@ -1,0 +1,81 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_down_payment_deduct_partial
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-29 11:36+0000\n"
+"PO-Revision-Date: 2025-10-29 11:36+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_down_payment_deduct_partial
+#: model:ir.model.fields,help:sale_down_payment_deduct_partial.field_sale_advance_payment_inv__down_payment_deduction
+msgid "Choose whether to deduct the full down payment or a partial amount."
+msgstr ""
+
+#. module: sale_down_payment_deduct_partial
+#: model:ir.model.fields.selection,name:sale_down_payment_deduct_partial.selection__sale_advance_payment_inv__down_payment_deduction__full
+msgid "Deduct full down payment"
+msgstr ""
+
+#. module: sale_down_payment_deduct_partial
+#: model:ir.model.fields.selection,name:sale_down_payment_deduct_partial.selection__sale_advance_payment_inv__down_payment_deduction__partial
+msgid "Deduct partial down payment"
+msgstr ""
+
+#. module: sale_down_payment_deduct_partial
+#: model:ir.model.fields,field_description:sale_down_payment_deduct_partial.field_sale_advance_payment_inv__deduction_amount
+msgid "Deduction"
+msgstr ""
+
+#. module: sale_down_payment_deduct_partial
+#: model:ir.model.fields,field_description:sale_down_payment_deduct_partial.field_sale_advance_payment_inv__down_payment_deduction
+msgid "Down Payment Deduction"
+msgstr ""
+
+#. module: sale_down_payment_deduct_partial
+#: model_terms:ir.ui.view,arch_db:sale_down_payment_deduct_partial.view_sale_advance_payment_inv
+msgid "Down payment deduction"
+msgstr ""
+
+#. module: sale_down_payment_deduct_partial
+#: model:ir.model,name:sale_down_payment_deduct_partial.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr ""
+
+#. module: sale_down_payment_deduct_partial
+#: model:ir.model,name:sale_down_payment_deduct_partial.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_down_payment_deduct_partial
+#: model:ir.model.fields,help:sale_down_payment_deduct_partial.field_sale_advance_payment_inv__deduction_amount
+msgid ""
+"Specify the amount to deduct from the down payment if partial deduction is "
+"selected."
+msgstr ""
+
+#. module: sale_down_payment_deduct_partial
+#. odoo-python
+#: code:addons/sale_down_payment_deduct_partial/wizard/sale_make_invoice_advance.py:0
+msgid ""
+"The deduction amount cannot exceed the total available down payment "
+"deduction."
+msgstr ""
+
+#. module: sale_down_payment_deduct_partial
+#: model:ir.model.fields,field_description:sale_down_payment_deduct_partial.field_sale_advance_payment_inv__total_deduction_amount
+msgid "Total Deduction"
+msgstr ""
+
+#. module: sale_down_payment_deduct_partial
+#: model:ir.model.fields,help:sale_down_payment_deduct_partial.field_sale_advance_payment_inv__total_deduction_amount
+msgid "Total amount available for down payment deduction."
+msgstr ""
