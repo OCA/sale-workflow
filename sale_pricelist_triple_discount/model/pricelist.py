@@ -34,7 +34,10 @@ class ProductPricelistItem(models.Model):
     def _get_triple_discounts_perc(self):
         """Return the list of discounts percentages to be applied."""
         self.ensure_one()
-        discount_fields = self.env["sale.order.line"]._discount_fields()
+        discount_fields = self.env[
+            "sale.order.line"
+        ]._get_multiple_discount_field_names()
+        discount_fields += ["discount"]
         item_discount_field = COMPUTE_PRICE_TO_DISCOUNT_FIELD.get(self.compute_price)
         if item_discount_field is not None:
             discount_index = discount_fields.index("discount1")
