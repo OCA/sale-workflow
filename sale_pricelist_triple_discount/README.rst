@@ -78,10 +78,10 @@ Authors
 Contributors
 ------------
 
-- Simone Rubino <simone.rubino@agilebg.com>
-- `Aion Tech <https://aiontech.company/>`__:
+-  Simone Rubino <simone.rubino@agilebg.com>
+-  `Aion Tech <https://aiontech.company/>`__:
 
-  - Simone Rubino <simone.rubino@aion-tech.it>
+   -  Simone Rubino <simone.rubino@aion-tech.it>
 
 Maintainers
 -----------
