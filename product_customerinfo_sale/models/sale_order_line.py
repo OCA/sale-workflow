@@ -56,3 +56,14 @@ class SaleOrderLine(models.Model):
                 if customerinfo.min_qty:
                     line.product_uom_qty = customerinfo.min_qty
         return res
+
+    def _get_product_price_context(self):
+        # Include partner in the context to ensure correct computation
+        # of the price based on product customerinfo.
+        res = super()._get_product_price_context()
+        if not self.order_id.partner_id:
+            return res
+        return dict(
+            res,
+            partner_id=self.order_id.partner_id.id,
+        )
