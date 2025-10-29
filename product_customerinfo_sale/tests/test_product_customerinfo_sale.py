@@ -106,6 +106,11 @@ class TestProductCustomerInfoSale(BaseCommon):
             self.customerinfo.min_qty,
             "Error: Min qty was not passed to the sale order line",
         )
+        self.assertEqual(
+            line.price_unit,
+            100.0,
+            "Error: Unit price was not passed to the sale order line",
+        )
 
     def test_product_customerinfo_variant(self):
         order_form = Form(self.env["sale.order"])
