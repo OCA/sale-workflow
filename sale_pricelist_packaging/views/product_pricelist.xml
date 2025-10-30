@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="product_pricelist_view" model="ir.ui.view">
+        <field name="name">product.pricelist.tree</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='item_ids']/tree//field[@name='applied_on']"
+                position="after"
+            >
+                <field
+                    name="packaging_id"
+                    attrs="{'invisible': [('applied_on', '!=', '0_product_variant')]}"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_pricelist_item_form_view" model="ir.ui.view">
+        <field name="name">product.pricelist.item.form</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
+        <field name="arch" type="xml">
+            <group name="pricelist_rule_related" position="after">
+                <group>
+                    <field
+                        name="packaging_id"
+                        domain="[('product_id', '=', product_id)]"
+                    />
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
