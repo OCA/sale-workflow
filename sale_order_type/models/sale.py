@@ -139,7 +139,9 @@ class SaleOrder(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            if vals.get("name", self.env._("New")) == self.env._("New"):
+            if vals.get("name", self.env._("New")) == self.env._("New") and vals.get(
+                "type_id"
+            ):
                 sale_type = self.env["sale.order.type"].browse(vals["type_id"])
                 if sale_type.sequence_id:
                     vals["name"] = sale_type.sequence_id.next_by_id(
