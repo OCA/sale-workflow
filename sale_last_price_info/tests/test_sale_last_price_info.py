@@ -8,15 +8,39 @@ class TestSaleLastPriceInfo(common.TransactionCase):
         super().setUp()
         self.sale_order_model = self.env["sale.order"]
         self.sale_line_model = self.env["sale.order.line"]
-        self.sale_order = self.env.ref("sale.sale_order_4")
-        self.sale_line = self.env.ref("sale.sale_order_line_9")
-        self.partner = self.env.ref("base.res_partner_3")
-        self.product = self.env.ref("product.product_delivery_02")
-        self.price_unit = 100.0
+        self.partner = self.env["res.partner"].create(
+            {
+                "name": "Test Customer",
+            }
+        )
+        self.product = self.env["product.product"].create(
+            {
+                "name": "Test Product",
+                "type": "consu",
+                "invoice_policy": "delivery",
+            }
+        )
+        self.sale_order = self.sale_order_model.create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "product_uom_qty": 1,
+                            "price_unit": 100.0,
+                        },
+                    )
+                ],
+            }
+        )
 
     def test_sale_last_price_info_demo(self):
+        self.sale_order.action_confirm()
         sale_line = self.sale_line_model.search(
-            [("product_id", "=", self.product.id), ("state", "in", ["sale", "done"])],
+            [("product_id", "=", self.product.id), ("state", "=", "sale")],
             limit=1,
             order="date_order_sale_last_price_info desc",
         )
