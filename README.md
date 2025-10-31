@@ -21,7 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[sale_order_type](sale_order_type/) | 19.0.1.0.0 |  | Sale Order Type
+[sale_order_type](sale_order_type/) | 19.0.1.0.1 |  | Sale Order Type
 
 [//]: # (end addons)
 
