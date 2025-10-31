@@ -8,7 +8,7 @@
     "license": "AGPL-3",
     "author": "ForgeFlow S.L., Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
-    "depends": ["sale_management"],
+    "depends": ["sale_management", "sale_create_invoices_hook"],
     "data": [
         "wizard/sale_make_invoice_advance.xml",
     ],

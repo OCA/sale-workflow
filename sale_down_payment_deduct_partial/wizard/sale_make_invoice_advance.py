@@ -51,18 +51,36 @@ class SaleAdvancePaymentInv(models.TransientModel):
         # Although it's the same logic, one field is readonly and the other is editable
         for wizard in self:
             dp_lines = wizard.sale_order_ids.mapped("order_line").filtered(
-                lambda lin: lin.is_downpayment
+                lambda line: line.is_downpayment
             )
-            total_remaining = sum(lin.qty_invoiced * lin.price_unit for lin in dp_lines)
+            total_remaining = 0.0
+            for line in dp_lines:
+                res = line.tax_id.compute_all(
+                    line.price_unit,
+                    currency=line.order_id.currency_id,
+                    quantity=line.qty_invoiced,
+                    product=line.product_id,
+                    partner=line.order_id.partner_shipping_id,
+                )
+                total_remaining += res["total_included"]
             wizard.total_deduction_amount = total_remaining
 
     @api.depends("sale_order_ids")
     def _compute_deduction_amount(self):
         for wizard in self:
             dp_lines = wizard.sale_order_ids.mapped("order_line").filtered(
-                lambda lin: lin.is_downpayment
+                lambda line: line.is_downpayment
             )
-            total_remaining = sum(lin.qty_invoiced * lin.price_unit for lin in dp_lines)
+            total_remaining = 0.0
+            for line in dp_lines:
+                res = line.tax_id.compute_all(
+                    line.price_unit,
+                    currency=line.order_id.currency_id,
+                    quantity=line.qty_invoiced,
+                    product=line.product_id,
+                    partner=line.order_id.partner_shipping_id,
+                )
+                total_remaining += res["total_included"]
             wizard.deduction_amount = total_remaining
 
     def _create_invoices(self, sale_orders):
@@ -70,15 +88,44 @@ class SaleAdvancePaymentInv(models.TransientModel):
         # Only run if partial deduction is selected
         if self.down_payment_deduction == "partial" and self.deduction_amount:
             for order in self.sale_order_ids:
-                dp_lines = order.order_line.filtered("is_downpayment")
-                total_dp_remaining = sum(
-                    lin.qty_invoiced * lin.price_unit for lin in dp_lines
+                dp_lines = order.order_line.filtered(
+                    lambda line: line.is_downpayment
+                    and not line.display_type == "line_section"
                 )
-                # Deduct only up to the available amount
-                to_deduct = min(self.deduction_amount, total_dp_remaining)
-                order._adjust_downpayment_lines(to_deduct)
-        res = super()._create_invoices(sale_orders)
-        # Recompute qty_to_invoice to reflect changes, after invoice creation
-        # since by adjusting the down payment lines we modified it
+                total_dp_remaining = 0.0
+                for lin in dp_lines:
+                    res = lin.tax_id.compute_all(
+                        lin.price_unit,
+                        currency=lin.order_id.currency_id,
+                        quantity=lin.qty_invoiced,
+                        product=lin.product_id,
+                        partner=lin.order_id.partner_shipping_id,
+                    )
+                    total_dp_remaining += res["total_included"]
+                # Deduct only up to available total (tax included)
+                to_deduct_incl = min(self.deduction_amount, total_dp_remaining)
+                # Convert to tax-excluded base before adjusting
+                # Assume consistent tax rate on downpayment lines
+                if dp_lines:
+                    line = dp_lines[0]
+                    taxes_res = line.tax_id.compute_all(
+                        1.0,
+                        currency=line.order_id.currency_id,
+                        quantity=1.0,
+                        product=line.product_id,
+                        partner=line.order_id.partner_shipping_id,
+                    )
+                    tax_ratio = (
+                        taxes_res["total_excluded"] / taxes_res["total_included"]
+                        if taxes_res["total_included"]
+                        else 1.0
+                    )
+                    to_deduct_excl = to_deduct_incl * tax_ratio
+                else:
+                    to_deduct_excl = to_deduct_incl
+                order._adjust_downpayment_lines(to_deduct_excl)
+        invoices = super()._create_invoices(
+            sale_orders.with_context(skip_downpayment_final_fix=True)
+        )
         self.sale_order_ids.order_line._compute_qty_to_invoice()
-        return res
+        return invoices
