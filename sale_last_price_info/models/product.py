@@ -16,7 +16,7 @@ class ProductProduct(models.Model):
         """Get last sale price, last sale date and last customer"""
         for product in self:
             line = self.env["sale.order.line"].search(
-                [("product_id", "=", product.id), ("state", "in", ["sale", "done"])],
+                [("product_id", "=", product.id), ("state", "=", "sale")],
                 limit=1,
                 order="date_order_sale_last_price_info desc",
             )
