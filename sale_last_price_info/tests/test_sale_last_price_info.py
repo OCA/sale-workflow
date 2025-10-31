@@ -5,7 +5,7 @@ import odoo.tests.common as common
 
 class TestSaleLastPriceInfo(common.TransactionCase):
     def setUp(self):
-        super(TestSaleLastPriceInfo, self).setUp()
+        super().setUp()
         self.sale_order_model = self.env["sale.order"]
         self.sale_line_model = self.env["sale.order.line"]
         self.sale_order = self.env.ref("sale.sale_order_4")
