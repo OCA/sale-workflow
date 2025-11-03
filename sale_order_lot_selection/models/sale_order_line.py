@@ -1,6 +1,5 @@
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
-from odoo.tools import float_compare
 
 
 class SaleOrderLine(models.Model):

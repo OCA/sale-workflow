@@ -382,7 +382,7 @@ class TestSaleOrderLotSelection(BaseCommon):
         self.assertEqual(line_0.move_ids.state, "assigned")
         self.assertEqual(line_0.move_ids.restrict_lot_id, lot_extra_1)
         picking = self.sale.picking_ids
-        picking.move_ids_without_package.mapped("move_line_ids").write({"quantity": 1})
+        picking.move_ids.mapped("move_line_ids").write({"quantity": 1})
         picking.button_validate()
         self.assertEqual(picking.state, "done")
         msg = (
