@@ -62,27 +62,51 @@ class TestSaleOrderCarrierAutoAssignOnCreate(TestSaleOrderCarrierAutoAssignCommo
         cls.settings.carrier_auto_assign = False
         cls.settings.set_values()
 
-    def test_sale_order_carrier_auto_assign_no_carrier(self):
+    def test_auto_assign_no_carrier(self):
         self.partner.property_delivery_carrier_id = False
         sale_order = self._create_sale_order()
         self.assertFalse(sale_order.carrier_id)
 
-    def test_sale_order_carrier_auto_assign_onchange(self):
-        sale_order = self._create_sale_order()
-        self.assertEqual(sale_order.carrier_id, self.delivery_local_delivery)
-        # Change partner and check carrier change
-        new_carrier = self.delivery_local_delivery.copy()
-        new_partner = self.env["res.partner"].create(
+    def test_auto_assign_create_default(self):
+        # pass a carrier, no override expected
+        carrier = self.delivery_local_delivery2.copy({"name": "Another delivery"})
+        sale_order = self.env["sale.order"].create(
             {
-                "name": "Test partner 2",
-                "property_delivery_carrier_id": new_carrier.id,
+                "partner_id": self.partner.id,
+                "order_line": [
+                    Command.create({"product_id": self.product_storable.id})
+                ],
+                "carrier_id": carrier.id,
             }
         )
-        sale = Form(sale_order)
-        sale.partner_id = new_partner
-        self.assertEqual(sale.carrier_id, new_carrier)
+        self.assertEqual(sale_order.carrier_id, carrier)
 
-    def test_sale_order_carrier_auto_assign_create(self):
+    def test_auto_assign_write_default(self):
+        # pass a carrier, no override expected
+        carrier = self.delivery_local_delivery2.copy({"name": "Another delivery"})
+        sale_order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    Command.create({"product_id": self.product_storable.id})
+                ],
+                "carrier_id": carrier.id,
+            }
+        )
+        self.assertEqual(sale_order.carrier_id, carrier)
+        # Set a specific carrier, should not be overridden
+        sale_order.write({"carrier_id": self.delivery_local_delivery.id})
+        self.assertEqual(sale_order.carrier_id, self.delivery_local_delivery)
+        # Set new shipping address and specific carrier, should not be overridden
+        sale_order.write(
+            {
+                "partner_shipping_id": self.partner_delivery.id,
+                "carrier_id": carrier.id,
+            }
+        )
+        self.assertEqual(sale_order.carrier_id, carrier)
+
+    def test_auto_assign_create(self):
         sale_order = self.env["sale.order"].create(
             {
                 "partner_id": self.partner.id,
@@ -93,7 +117,7 @@ class TestSaleOrderCarrierAutoAssignOnCreate(TestSaleOrderCarrierAutoAssignCommo
         )
         self.assertEqual(sale_order.carrier_id, self.delivery_local_delivery)
 
-    def test_sale_order_carrier_auto_assign_create_2steps_from_order(self):
+    def test_auto_assign_create_2steps_from_order(self):
         """Test carrier is set when a product line is added"""
         sale_order = self.env["sale.order"].create(
             {
@@ -109,7 +133,7 @@ class TestSaleOrderCarrierAutoAssignOnCreate(TestSaleOrderCarrierAutoAssignCommo
         )
         self.assertEqual(sale_order.carrier_id, self.delivery_local_delivery)
 
-    def test_sale_order_carrier_auto_assign_create_2steps_from_line(self):
+    def test_auto_assign_create_2steps_from_line(self):
         """Test carrier is set when a product line is added"""
         sale_order = self.env["sale.order"].create(
             {
@@ -124,7 +148,7 @@ class TestSaleOrderCarrierAutoAssignOnCreate(TestSaleOrderCarrierAutoAssignCommo
         )
         self.assertEqual(sale_order.carrier_id, self.delivery_local_delivery)
 
-    def test_sale_order_carrier_auto_assign_create_3steps_from_line(self):
+    def test_auto_assign_create_3steps_from_line(self):
         """Test carrier is set when a product line is added"""
         sale_order = self.env["sale.order"].create(
             {
@@ -140,13 +164,13 @@ class TestSaleOrderCarrierAutoAssignOnCreate(TestSaleOrderCarrierAutoAssignCommo
         sale_order_line.product_id = self.product_storable
         self.assertEqual(sale_order.carrier_id, self.delivery_local_delivery)
 
-    def test_sale_order_carrier_auto_assign_disabled(self):
+    def test_auto_assign_disabled(self):
         self.settings.carrier_on_create = False
         self.settings.set_values()
         sale_order = self._create_sale_order()
         self.assertFalse(sale_order.carrier_id)
 
-    def test_sale_order_carrier_auto_assign_all_service(self):
+    def test_auto_assign_all_service(self):
         sale_order = self.env["sale.order"].create({"partner_id": self.partner.id})
         self.assertFalse(sale_order.carrier_id)
 
@@ -163,6 +187,9 @@ class TestSaleOrderCarrierAutoAssignOnCreate(TestSaleOrderCarrierAutoAssignCommo
         sale_order_form.partner_shipping_id = self.partner_delivery
         so = sale_order_form.save()
         self.assertEqual(so.carrier_id, self.delivery_local_delivery2)
+        with Form(so.with_context(foo=1)) as so_form:
+            so_form.partner_shipping_id = self.partner
+        self.assertEqual(so.carrier_id, self.delivery_local_delivery)
 
 
 class TestSaleOrderCarrierAutoAssignOnConfirm(TestSaleOrderCarrierAutoAssignCommon):
@@ -179,7 +206,7 @@ class TestSaleOrderCarrierAutoAssignOnConfirm(TestSaleOrderCarrierAutoAssignComm
             line_form.product_id = cls.product_storable
         cls.sale_order = cls.sale_order_form.save()
 
-    def test_sale_order_carrier_auto_assign(self):
+    def test_auto_assign(self):
         self.assertFalse(self.sale_order.carrier_id)
         self.sale_order.action_confirm()
         self.assertEqual(self.sale_order.state, "sale")
@@ -190,7 +217,7 @@ class TestSaleOrderCarrierAutoAssignOnConfirm(TestSaleOrderCarrierAutoAssignComm
         delivery_rate = self.delivery_local_delivery.rate_shipment(self.sale_order)
         self.assertEqual(delivery_line.price_unit, delivery_rate["carrier_price"])
 
-    def test_sale_order_carrier_auto_assign_disabled(self):
+    def test_auto_assign_disabled(self):
         self.assertEqual(
             self.partner.property_delivery_carrier_id, self.delivery_local_delivery
         )
@@ -201,14 +228,14 @@ class TestSaleOrderCarrierAutoAssignOnConfirm(TestSaleOrderCarrierAutoAssignComm
         self.assertEqual(self.sale_order.state, "sale")
         self.assertFalse(self.sale_order.carrier_id)
 
-    def test_sale_order_carrier_auto_assign_no_carrier(self):
+    def test_auto_assign_no_carrier(self):
         self.partner.property_delivery_carrier_id = False
         self.assertFalse(self.sale_order.carrier_id)
         self.sale_order.action_confirm()
         self.assertEqual(self.sale_order.state, "sale")
         self.assertFalse(self.sale_order.carrier_id)
 
-    def test_sale_order_carrier_auto_assign_carrier_already_set(self):
+    def test_auto_assign_carrier_already_set(self):
         self.assertEqual(
             self.partner.property_delivery_carrier_id, self.delivery_local_delivery
         )
@@ -218,7 +245,7 @@ class TestSaleOrderCarrierAutoAssignOnConfirm(TestSaleOrderCarrierAutoAssignComm
         self.assertEqual(self.sale_order.state, "sale")
         self.assertEqual(self.sale_order.carrier_id, carrier)
 
-    def test_sale_order_carrier_auto_assign_all_service(self):
+    def test_auto_assign_all_service(self):
         self.assertEqual(
             self.partner.property_delivery_carrier_id, self.delivery_local_delivery
         )
@@ -227,7 +254,7 @@ class TestSaleOrderCarrierAutoAssignOnConfirm(TestSaleOrderCarrierAutoAssignComm
         self.assertEqual(self.sale_order.state, "sale")
         self.assertFalse(self.sale_order.carrier_id)
 
-    def test_sale_order_carrier_onchange_no_order_line(self):
+    def test_onchange_no_order_line(self):
         """Ensure no error occurs when changing partner on an empty sale order."""
         sale_order = self.env["sale.order"].create({"partner_id": self.partner.id})
         new_partner = self.env["res.partner"].create({"name": "Another Partner"})
