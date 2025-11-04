@@ -10,7 +10,6 @@
             >
                 <field
                     name="lot_id"
-                    domain="[('product_id','=', product_id)]"
                     invisible="not product_id or product_tracking=='none'"
                     context="{'default_product_id': product_id}"
                     groups="stock.group_production_lot"
@@ -23,7 +22,6 @@
             >
                 <field
                     name="lot_id"
-                    domain="[('product_id','=', product_id)]"
                     invisible="not product_id or product_tracking=='none'"
                     context="{'default_product_id': product_id}"
                     groups="stock.group_production_lot"
