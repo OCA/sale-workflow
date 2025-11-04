@@ -1,16 +1,107 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <!-- Hiding original Total row from account module -->
+    <template id="hide_original_total_row" inherit_id="account.document_tax_totals">
+        <xpath expr="//tr[contains(@class, 'o_total')]" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+    </template>
+
+    <!-- Custom Total with discount display -->
     <template
         id="sale_discount_display_amount_document"
         inherit_id="sale.report_saleorder_document"
     >
         <xpath expr="//t[@t-call='account.document_tax_totals']" position="after">
-            <tr t-if="doc.discount_total" groups="product.group_discount_per_so_line">
-                <td name="td_discount_total_label"><span>Total Discount</span></td>
-                <td name="td_discount_total" class="text-end">
-                    <span t-field="doc.discount_total" />
+
+            <!-- Add separator line like in original -->
+            <tr class="border-black o_subtotal">
+                <td colspan="2" />
+            </tr>
+
+            <!-- Custom TOTAL line -->
+            <tr>
+                <td><strong>Total</strong></td>
+                <td class="text-end">
+                    <t t-if="doc.discount_total">
+                        <!-- Struck-through total before discount -->
+                        <div
+                            style="text-decoration: line-through; color: #c9302c; font-size: 0.9em;"
+                        >
+                            <span
+                                t-field="doc.price_total_no_discount"
+                                t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"
+                            />
+                        </div>
+                        <!-- Actual total -->
+                        <div>
+                            <strong>
+                                <span
+                                    t-field="doc.amount_total"
+                                    t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"
+                                />
+                            </strong>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <strong>
+                            <span
+                                t-field="doc.amount_total"
+                                t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"
+                            />
+                        </strong>
+                    </t>
                 </td>
             </tr>
+
+            <!-- Total Discount -->
+            <tr t-if="doc.discount_total" groups="product.group_discount_per_so_line">
+                <td><strong>Total Discount</strong></td>
+                <td class="text-end">
+                    <span
+                        t-field="doc.discount_total"
+                        t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"
+                    />
+                </td>
+            </tr>
+
+        </xpath>
+
+        <!-- Line totals with strikethrough for discounted items - using attributes instead of replace -->
+        <xpath expr="//td[@name='td_subtotal']" position="attributes">
+            <attribute name="t-if">False</attribute>
+        </xpath>
+
+        <!-- Add our custom subtotal display -->
+        <xpath expr="//td[@name='td_subtotal']" position="after">
+            <td
+                t-if="not line.is_downpayment"
+                name="custom_td_subtotal"
+                class="text-end o_price_total"
+            >
+                <t t-if="line.discount">
+                    <div
+                        style="text-decoration: line-through; color: #c9302c; font-size: 0.9em;"
+                    >
+                        <span
+                            t-field="line.price_total_no_discount"
+                            t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"
+                        />
+                    </div>
+                    <div>
+                        <span
+                            t-field="line.price_total"
+                            t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"
+                        />
+                    </div>
+                </t>
+                <t t-else="">
+                    <span
+                        t-field="line.price_total"
+                        t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"
+                    />
+                </t>
+            </td>
         </xpath>
     </template>
 </odoo>
