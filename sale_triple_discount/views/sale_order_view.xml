@@ -11,6 +11,7 @@
             >
                 <attribute name="optional">hide</attribute>
                 <attribute name="string">Total Disc (%)</attribute>
+                <attribute name="readonly">1</attribute>
             </xpath>
             <xpath
                 expr="//field[@name='order_line']//list//field[@name='discount']"
@@ -43,6 +44,7 @@
                 position="attributes"
             >
                 <attribute name="string">Total Disc (%)</attribute>
+                <attribute name="readonly">1</attribute>
             </xpath>
             <xpath
                 expr="//field[@name='order_line']//form//div[@name='discount']"
