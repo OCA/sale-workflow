@@ -46,16 +46,16 @@ class SaleImportProducts(models.TransientModel):
         )
         
         # 使用Odoo的产品价格计算方法
-        # 直接从销售订单获取货币和公司
-        currency = sale.currency_id
-        company = sale.company_id
-        
         # 首先获取产品的基础价格
         price = item.product_id.list_price
         
         # 获取适用的价格表并计算价格（考虑数量和客户）
         if sale.pricelist_id:
-            price = sale.pricelist_id._get_product_price(item.product_id, item.quantity, sale.partner_id)
+            price = sale.pricelist_id._get_product_price(
+                item.product_id,
+                item.quantity,
+                sale.partner_id
+            )
         
         # 设置正确计算的价格
         sale_line.price_unit = price
