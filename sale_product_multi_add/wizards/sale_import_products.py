@@ -35,15 +35,34 @@ class SaleImportProducts(models.TransientModel):
 
     @api.model
     def _get_line_values(self, sale, item):
+        # 创建销售订单行记录
         sale_line = self.env["sale.order.line"].new(
             {
                 "order_id": sale.id,
                 "product_id": item.product_id.id,
                 "product_uom_qty": item.quantity,
                 "product_uom": item.product_id.uom_id.id,
-                "price_unit": item.product_id.list_price,
             }
         )
+        
+        # 使用Odoo的产品价格计算方法
+        # 直接从销售订单获取货币和公司
+        currency = sale.currency_id
+        company = sale.company_id
+        
+        # 首先获取产品的基础价格
+        price = item.product_id.list_price
+        
+        # 获取适用的价格表并计算价格（考虑数量和客户）
+        if sale.pricelist_id:
+            price = sale.pricelist_id._get_product_price(item.product_id, item.quantity, sale.partner_id)
+        
+        # 设置正确计算的价格
+        sale_line.price_unit = price
+        
+        # 确保正确的产品单位
+        sale_line.product_uom = item.product_id.uom_id
+        
         line_values = sale_line._convert_to_write(sale_line._cache)
         return line_values
 

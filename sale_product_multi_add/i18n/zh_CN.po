@@ -30,7 +30,7 @@ msgstr "取消"
 #. module: sale_product_multi_add
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
 msgid "Confirm"
-msgstr ""
+msgstr "确认"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__create_uid
@@ -64,59 +64,59 @@ msgstr "导入产品"
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__items
 msgid "Items"
-msgstr ""
+msgstr "项目"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__write_uid
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "最后更新人"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__write_date
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "最后更新时间"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__product_id
 msgid "Product"
-msgstr ""
+msgstr "产品"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__products
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
 msgid "Products"
-msgstr ""
+msgstr "产品"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__quantity
 msgid "Quantity"
-msgstr ""
+msgstr "数量"
 
 #. module: sale_product_multi_add
 #: model:ir.model,name:sale_product_multi_add.model_sale_import_products
 msgid "Sale Import Products"
-msgstr ""
+msgstr "销售产品导入向导"
 
 #. module: sale_product_multi_add
 #: model:ir.model,name:sale_product_multi_add.model_sale_import_products_items
 msgid "Sale Import Products Items"
-msgstr ""
+msgstr "销售产品导入项"
 
 #. module: sale_product_multi_add
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
 msgid "Set quantities"
-msgstr ""
+msgstr "设置数量"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__wizard_id
 msgid "Wizard"
-msgstr ""
+msgstr "向导"
 
 #. module: sale_product_multi_add
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
 msgid "or"
-msgstr ""
+msgstr "或"
