@@ -12,7 +12,7 @@
                 <field
                     name="min_sellable_qty"
                     optional="show"
-                    invisible="type != 'product' or not sell_only_by_packaging"
+                    invisible="type != 'consu' or not sell_only_by_packaging"
                 />
             </field>
         </field>
