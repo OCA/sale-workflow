@@ -27,4 +27,4 @@ Unit price: 600.00 -\>
 > - Disc. 2 = -5% -\> Amount = 315.00
 
 Module allows defining additional discount fields and applying them with
-other by adding them to the \_discount_fields method.
+other by adding them to the \_get_multiple_discount_field_names method.

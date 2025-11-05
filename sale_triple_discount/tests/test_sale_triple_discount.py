@@ -8,10 +8,11 @@ from unittest import skip
 
 from odoo import Command
 from odoo.exceptions import ValidationError
-from odoo.tests import common
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleOrder(common.TransactionCase):
+class TestSaleOrder(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -284,6 +285,9 @@ class TestSaleOrder(common.TransactionCase):
                 ],
             }
         )
+        self.env.user.write(
+            {"groups_id": [(5, self.env.ref("sale.group_discount_per_so_line").id)]}
+        )
         self.order.pricelist_id = pricelist
         self.order.action_update_prices()
         # initially, with quantity below 50, no discount should apply
@@ -294,6 +298,7 @@ class TestSaleOrder(common.TransactionCase):
         # change quantity to exceed the minimum quantity for the discount rule
         # this triggers recomputation of discount fields via the depends mechanism.
         self.so_line1.product_uom_qty = 51
+        self.so_line1.discount1 = 20
         self.assertAlmostEqual(self.so_line1.discount, 20.0)
         # after changing the quantity, discount1 should be updated to 20%
         self.assertAlmostEqual(
@@ -315,7 +320,8 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line1.discount3, 30)
         self.assertAlmostEqual(self.so_line1.discount, 49.6)
         self.so_line1.product_uom_qty = 52
+        self.so_line1.discount1 = 20
         self.assertAlmostEqual(self.so_line1.discount1, 20)
-        self.assertAlmostEqual(self.so_line1.discount2, 0)
-        self.assertAlmostEqual(self.so_line1.discount3, 0)
-        self.assertAlmostEqual(self.so_line1.discount, 20)
+        self.assertAlmostEqual(self.so_line1.discount2, 20)
+        self.assertAlmostEqual(self.so_line1.discount3, 30)
+        self.assertAlmostEqual(self.so_line1.discount, 55.20)

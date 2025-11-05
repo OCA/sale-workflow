@@ -10,7 +10,8 @@ from odoo.exceptions import ValidationError
 
 
 class SaleOrderLine(models.Model):
-    _inherit = "sale.order.line"
+    _name = "sale.order.line"
+    _inherit = ["sale.order.line", "triple.discount.mixin"]
 
     # core discount field is now a computed field
     # based on the 3 discounts defined below.
@@ -20,38 +21,19 @@ class SaleOrderLine(models.Model):
     # the main discount is 24.7885 % (and not 24.79)
     discount = fields.Float(
         string="Total Disc (%)",
-        compute="_compute_discount",
-        inverse="_inverse_discount",
         store=True,
-        readonly=True,
-        digits=None,
+        compute="_compute_discount",
+        compute_sudo=True,
+        precompute=True,
     )
     discount1 = fields.Float(
-        compute="_compute_discounts",
-        precompute=True,
-        store=True,
-        readonly=False,
         string="Disc. 1 (%)",
         digits="Discount",
-        default=0.0,
-    )
-    discount2 = fields.Float(
-        compute="_compute_discounts",
-        precompute=True,
+        compute="_compute_discount1",
         store=True,
-        readonly=False,
-        string="Disc. 2 (%)",
-        digits="Discount",
-        default=0.0,
-    )
-    discount3 = fields.Float(
-        compute="_compute_discounts",
+        compute_sudo=True,
         precompute=True,
-        store=True,
         readonly=False,
-        string="Disc. 3 (%)",
-        digits="Discount",
-        default=0.0,
     )
     discounting_type = fields.Selection(
         selection=[("additive", "Additive"), ("multiplicative", "Multiplicative")],
@@ -88,7 +70,9 @@ class SaleOrderLine(models.Model):
 
     def _additive_discount(self):
         self.ensure_one()
-        discount = sum(self[x] or 0.0 for x in self._discount_fields())
+        discount = sum(
+            self[x] or 0.0 for x in self._get_multiple_discount_field_names()
+        )
         if discount <= 0:
             return 0
         elif discount >= 100:
@@ -97,55 +81,44 @@ class SaleOrderLine(models.Model):
 
     def _multiplicative_discount(self):
         self.ensure_one()
-        discounts = [1 - (self[x] or 0.0) / 100 for x in self._discount_fields()]
-        final_discount = 1
-        for discount in discounts:
-            final_discount *= discount
-        return 100 - final_discount * 100
+        return self._get_aggregated_multiple_discounts(
+            [self[x] for x in self._get_multiple_discount_field_names()]
+        )
 
-    @api.model
-    def _discount_fields(self):
-        return ["discount1", "discount2", "discount3"]
-
-    @api.depends("discount1", "discount2", "discount3", "discounting_type")
+    @api.depends(
+        lambda self: self._get_multiple_discount_field_names()
+        + ["product_id", "product_uom", "product_uom_qty"]
+    )
     def _compute_discount(self):
+        # Base Odoo just continues instead of assigning to 0 in this case
+        # but we depend on the super() value resetting to a discount unpolluted
+        # by the extra fields before taking them into account
+        discount_enabled = self.env[
+            "product.pricelist.item"
+        ]._is_discount_feature_enabled()
+        for line in self:
+            if not (line.order_id.pricelist_id and discount_enabled):
+                line.discount = 0
         res = super()._compute_discount()
-        for rec in self:
-            rec.discount = rec._get_final_discount()
+        if self.env.context.get("skip_triple_discount"):
+            return res
+        for line in self:
+            line.discount = line._get_final_discount()
         return res
 
-    def _inverse_discount(self):
-        for rec in self:
-            rec.update({"discount1": rec.discount, "discount2": 0, "discount3": 0})
-
-    @api.depends("discount")
-    def _compute_discounts(self):
-        # We intentionally call super to avoid triggering the full compute logic,
-        # which would recalculate 'discount' from the three discount fields
-        # At this stage, those fields may not be updated yet, and calling
-        # _compute_discount() directly would overwrite the current value
-        # calling super ensures the cache is coherent before applying the inverse
-        super()._compute_discount()
-        self._inverse_discount()
-        return True
-
-    _sql_constraints = [
-        (
-            "discount1_limit",
-            "CHECK (discount1 <= 100.0)",
-            "Discount 1 must be lower or equal than 100%.",
-        ),
-        (
-            "discount2_limit",
-            "CHECK (discount2 <= 100.0)",
-            "Discount 2 must be lower or equal than 100%.",
-        ),
-        (
-            "discount3_limit",
-            "CHECK (discount3 <= 100.0)",
-            "Discount 3 must be lower or equal than 100%.",
-        ),
-    ]
+    @api.depends("product_id", "product_uom", "product_uom_qty")
+    def _compute_discount1(self):
+        # Calculate the original super()s discount and drag it to discount1
+        # This is primarily for the field to visually update when creating new lines
+        # rather than updating itself in the create() after you save
+        # Since we aren't in the actual compute, this shouldn't actually save any
+        # values to .discount
+        with self.env.protecting(
+            [self.env["sale.order.line"]._fields["discount"]], self
+        ):
+            self.with_context(skip_triple_discount=True)._compute_discount()
+            for line in self:
+                line.discount1 = line.discount
 
     def _prepare_invoice_line(self, **kwargs):
         """
@@ -153,11 +126,25 @@ class SaleOrderLine(models.Model):
         more discount fields to the invoice lines
         """
         res = super()._prepare_invoice_line(**kwargs)
-        res.update(
-            {
-                "discount1": self.discount1,
-                "discount2": self.discount2,
-                "discount3": self.discount3,
-            }
-        )
+        res.pop("discount", None)
+        if self.discounting_type == "multiplicative":
+            res.update(
+                {
+                    "discount1": self.discount1,
+                    "discount2": self.discount2,
+                    "discount3": self.discount3,
+                }
+            )
+        else:
+            res.update({"discount1": self.discount})
         return res
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        order_lines = super().create(vals_list)
+        lines_to_discount = self.env["sale.order.line"]
+        for line, vals in zip(order_lines, vals_list, strict=True):
+            if "discount" in vals and vals["discount"] == 0:
+                lines_to_discount |= line
+        lines_to_discount.write({"discount1": 0.0, "discount2": 0.0, "discount3": 0.0})
+        return order_lines
