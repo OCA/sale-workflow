@@ -3,7 +3,7 @@
 {
     "name": "Sale Order General Discount Triple",
     "summary": "General discount per sale order with triple",
-    "version": "17.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Ashish Hirpara, Ooops, Odoo Community Association (OCA)",
