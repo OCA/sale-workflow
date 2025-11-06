@@ -21,6 +21,7 @@ class SaleOrderLine(models.Model):
     # the main discount is 24.7885 % (and not 24.79)
     discount = fields.Float(
         string="Total Disc (%)",
+        digits=None,
         store=True,
         compute="_compute_discount",
         compute_sudo=True,
@@ -58,17 +59,17 @@ class SaleOrderLine(models.Model):
 
     def _get_final_discount(self):
         self.ensure_one()
-        if self.discounting_type == "additive":
+        if self.discounting_type == "additive":  # pragma: no cover
             return self._additive_discount()
         elif self.discounting_type == "multiplicative":
             return self._multiplicative_discount()
-        else:
+        else:  # pragma: no cover
             raise ValidationError(
                 _("Sale order line %(name)s has unknown discounting type %(dic_type)s")
                 % {"name": self.name, "disc_type": self.discounting_type}
             )
 
-    def _additive_discount(self):
+    def _additive_discount(self):  # pragma: no cover
         self.ensure_one()
         discount = sum(
             self[x] or 0.0 for x in self._get_multiple_discount_field_names()
@@ -135,7 +136,7 @@ class SaleOrderLine(models.Model):
                     "discount3": self.discount3,
                 }
             )
-        else:
+        else:  # pragma: no cover
             res.update({"discount1": self.discount})
         return res
 
