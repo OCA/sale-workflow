@@ -9,55 +9,13 @@ from unittest import skip
 from odoo import Command
 from odoo.exceptions import ValidationError
 
-from odoo.addons.base.tests.common import BaseCommon
+from .common import SaleTripleDiscountCommon
 
 
-class TestSaleOrder(BaseCommon):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.env.user.groups_id += cls.env.ref("sale.group_discount_per_so_line")
-        cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
-        cls.product1 = cls.env["product.product"].create(
-            {"name": "Test Product 1", "type": "service", "invoice_policy": "order"}
-        )
-        cls.product2 = cls.env["product.product"].create(
-            {"name": "Test Product 2", "type": "service", "invoice_policy": "order"}
-        )
-        cls.tax = cls.env["account.tax"].create(
-            {
-                "name": "TAX 15%",
-                "amount_type": "percent",
-                "type_tax_use": "sale",
-                "amount": 15.0,
-            }
-        )
-        cls.order = cls.env["sale.order"].create({"partner_id": cls.partner.id})
-        so_line = cls.env["sale.order.line"]
-        cls.so_line1 = so_line.create(
-            {
-                "order_id": cls.order.id,
-                "product_id": cls.product1.id,
-                "name": "Line 1",
-                "product_uom_qty": 1.0,
-                "tax_id": [(6, 0, [cls.tax.id])],
-                "price_unit": 600.0,
-            }
-        )
-        cls.so_line2 = so_line.create(
-            {
-                "order_id": cls.order.id,
-                "product_id": cls.product2.id,
-                "name": "Line 2",
-                "product_uom_qty": 10.0,
-                "tax_id": [(6, 0, [cls.tax.id])],
-                "price_unit": 60.0,
-            }
-        )
-
+class TestSaleOrder(SaleTripleDiscountCommon):
     def _test_invoice_discount(self):
         self.order.action_confirm()
-        if self.order.state == "waiting_approval":
+        if self.order.state == "waiting_approval":  # pragma: no cover
             self.order.action_approve()
             self.assertAlmostEqual(self.order.state, "approved")
             self.order.action_confirm()
@@ -85,7 +43,7 @@ class TestSaleOrder(BaseCommon):
 
         self.assertAlmostEqual(self.order.amount_total, invoice.amount_total)
 
-    def test_01_sale_order_classic_discount(self):
+    def test_01_sale_order_classic_discount(self) -> None:
         """Tests with single discount"""
         self.so_line1.discount1 = 50.0
         self.so_line2.discount1 = 75.0
@@ -98,7 +56,7 @@ class TestSaleOrder(BaseCommon):
         self.assertAlmostEqual(self.order.amount_tax, 22.5)
         self._test_invoice_discount()
 
-    def test_02_sale_order_simple_triple_discount(self):
+    def test_02_sale_order_simple_triple_discount(self) -> None:
         """Tests on a single line"""
         self.so_line2.unlink()
         # Divide by two on every discount:
@@ -124,7 +82,7 @@ class TestSaleOrder(BaseCommon):
         self.assertAlmostEqual(tax_totals["tax_amount"], 67.5)
 
     @skip
-    def test_02_sale_order_simple_triple_discount_2(self):
+    def test_03_sale_order_simple_triple_discount_2(self) -> None:  # pragma: no cover
         # FIXME: see https://github.com/OCA/sale-workflow/issues/3649
         # set discount_type to additive
         self.so_line1.discount1 = 10.0
@@ -153,7 +111,7 @@ class TestSaleOrder(BaseCommon):
         self.assertAlmostEqual(self.order.amount_untaxed, 75.0)
         self.assertAlmostEqual(self.order.amount_tax, 11.25)
 
-    def test_03_sale_order_complex_triple_discount_1(self):
+    def test_04_sale_order_complex_triple_discount_1(self) -> None:
         """Tests on multiple lines"""
         self.so_line1.discount1 = 50.0
         self.so_line1.discount2 = 50.0
@@ -168,7 +126,7 @@ class TestSaleOrder(BaseCommon):
         self._test_invoice_discount()
 
     @skip
-    def test_03_sale_order_complex_triple_discount_2(self):
+    def test_05_sale_order_complex_triple_discount_2(self) -> None:  # pragma: no cover
         # FIXME: see https://github.com/OCA/sale-workflow/issues/3649
         # additive discount
         self.so_line2.discounting_type = "additive"
@@ -187,7 +145,7 @@ class TestSaleOrder(BaseCommon):
         self.assertAlmostEqual(self.order.amount_tax, 56.25)
         self._test_invoice_discount()
 
-    def test_03_sale_order_complex_triple_discount_3(self):
+    def test_06_sale_order_complex_triple_discount_3(self) -> None:
         self.so_line2.discounting_type = "multiplicative"
         self.so_line1.discount1 = 50.0
         self.so_line1.discount2 = 50.0
@@ -199,7 +157,7 @@ class TestSaleOrder(BaseCommon):
         self.assertAlmostEqual(self.order.amount_tax, 51.75)
         self._test_invoice_discount()
 
-    def test_04_sale_order_triple_discount_invoicing(self):
+    def test_07_sale_order_triple_discount_invoicing(self) -> None:
         """When a confirmed order is invoiced, the resultant invoice
         should inherit the discounts"""
         self.so_line1.discount1 = 50.0
@@ -208,7 +166,7 @@ class TestSaleOrder(BaseCommon):
         self.so_line2.discount3 = 50.0
         self._test_invoice_discount()
 
-    def test_05_round_globally(self):
+    def test_08_round_globally(self) -> None:
         """Tests on multiple lines when 'round_globally' is active"""
         self.env.user.company_id.tax_calculation_rounding_method = "round_globally"
         self.so_line1.discount1 = 50.0
@@ -224,7 +182,7 @@ class TestSaleOrder(BaseCommon):
         self._test_invoice_discount()
 
     @skip
-    def test_06_discount_0(self):
+    def test_09_discount_0(self) -> None:  # pragma: no cover
         # FIXME: see https://github.com/OCA/sale-workflow/issues/3649
         self.so_line1.discounting_type = "additive"
         self.so_line1.discount1 = 0.0
@@ -240,7 +198,18 @@ class TestSaleOrder(BaseCommon):
         self.assertAlmostEqual(self.order.amount_tax, 180.0)
         self._test_invoice_discount()
 
-    def test_discount_wizard(self):
+    def test_10_preserves_discount_precision(self) -> None:
+        self.so_line1.price_unit = 1200.0
+        self.so_line1.discount1 = 5.0
+        self.so_line1.discount2 = 9.0
+        self.so_line1.discount3 = 13.0
+
+        discount_field = self.env["sale.order.line"]._fields["discount"]
+        self.assertIsNone(discount_field._digits)
+        self.assertAlmostEqual(self.so_line1.discount, 24.7885)
+        self.assertAlmostEqual(self.so_line1.price_subtotal, 902.54)
+
+    def test_11_discount_wizard(self) -> None:
         self.so_line1.discount1 = 50.0
         self.so_line1.discount2 = 50.0
         self.so_line1.discount3 = 50.0
@@ -256,12 +225,12 @@ class TestSaleOrder(BaseCommon):
         self.assertAlmostEqual(self.so_line1.discount2, 0)
         self.assertAlmostEqual(self.so_line1.discount3, 0)
 
-    def test_discounting_type_additive_not_allowed(self):
+    def test_12_discounting_type_additive_not_allowed(self) -> None:
         # FIXME: see https://github.com/OCA/sale-workflow/issues/3649
         with self.assertRaises(ValidationError):
             self.so_line1.discounting_type = "additive"
 
-    def test_pricelist_discount_applies_to_discount1(self):
+    def test_13_pricelist_discount_applies_to_discount1(self) -> None:
         """
         test that the pricelist discount is correctly applied to discount1 and standard
         discount is correctly set
@@ -325,3 +294,36 @@ class TestSaleOrder(BaseCommon):
         self.assertAlmostEqual(self.so_line1.discount2, 20)
         self.assertAlmostEqual(self.so_line1.discount3, 30)
         self.assertAlmostEqual(self.so_line1.discount, 55.20)
+
+    def test_14_explicit_zero_discount_clears_multiple_discounts(self) -> None:
+        line = self.env["sale.order.line"].create(
+            {
+                "order_id": self.order.id,
+                "product_id": self.product1.id,
+                "name": "Line with zero standard discount",
+                "product_uom_qty": 1,
+                "price_unit": 600,
+                "discount": 0,
+                "discount1": 10,
+                "discount2": 20,
+                "discount3": 30,
+            }
+        )
+        self.assertEqual(line.discount1, 0)
+        self.assertEqual(line.discount2, 0)
+        self.assertEqual(line.discount3, 0)
+
+    def test_15_global_discount_preserves_line_discounts(self) -> None:
+        self.so_line1.discount1 = 5
+        self.so_line1.discount2 = 9
+        self.so_line1.discount3 = 13
+        self.env["sale.order.discount"].create(
+            {
+                "sale_order_id": self.order.id,
+                "discount_percentage": 0.1,
+                "discount_type": "so_discount",
+            }
+        ).action_apply_discount()
+        self.assertEqual(self.so_line1.discount1, 5)
+        self.assertEqual(self.so_line1.discount2, 9)
+        self.assertEqual(self.so_line1.discount3, 13)
