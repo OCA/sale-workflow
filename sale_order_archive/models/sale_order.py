@@ -10,11 +10,11 @@ class SaleOrder(models.Model):
 
     active = fields.Boolean(copy=False, default=True)
 
-    def toggle_active(self):
+    def action_archive(self):
         if self.filtered(
             lambda so: not so.locked and so.state != "cancel" and so.active
         ):
             raise UserError(
                 self.env._("Only 'Locked' or 'Canceled' orders can be archived")
             )
-        return super().toggle_active()
+        return super().action_archive()
