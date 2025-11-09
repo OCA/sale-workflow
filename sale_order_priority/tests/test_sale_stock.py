@@ -2,10 +2,10 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo.fields import Command
 
-from odoo.addons.sale.tests.common import TestSaleCommonBase
+from odoo.addons.sale.tests.common import TestSaleCommon
 
 
-class TestSaleStock(TestSaleCommonBase):
+class TestSaleStock(TestSaleCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -17,7 +17,7 @@ class TestSaleStock(TestSaleCommonBase):
             }
         )
 
-        cls.company_data = cls.setup_sale_configuration_for_company(cls.company)
+        cls.company_data = cls.collect_company_accounting_data(cls.company)
 
         cls.partner = cls.env["res.partner"].create(
             {
@@ -40,7 +40,7 @@ class TestSaleStock(TestSaleCommonBase):
                             "product_id": self.company_data["product_order_cost"].id,
                             "product_uom_qty": 2,
                             "qty_delivered": 1,
-                            "product_uom": self.company_data[
+                            "product_uom_id": self.company_data[
                                 "product_order_cost"
                             ].uom_id.id,
                             "price_unit": self.company_data[
