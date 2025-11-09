@@ -6,6 +6,6 @@ class StockMove(models.Model):
 
     def _get_new_picking_values(self):
         picking_values = super()._get_new_picking_values()
-        if self.group_id.sale_id.priority:
-            picking_values["priority"] = self.group_id.sale_id.priority
+        if self.reference_ids.sale_ids.priority:
+            picking_values["priority"] = self.reference_ids.sale_ids.priority
         return picking_values
