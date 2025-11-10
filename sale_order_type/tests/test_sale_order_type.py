@@ -129,6 +129,25 @@ class TestSaleOrderType(BaseCommon):
                 "route_ids": [(6, 0, [cls.sale_route.id])],
             }
         )
+        cls.analytic_plan = cls.env["account.analytic.plan"].create(
+            {"name": "Test Plan"}
+        )
+        cls.analytic_account = cls.env["account.analytic.account"].create(
+            {"name": "Test Analytic", "plan_id": cls.analytic_plan.id}
+        )
+        cls.sale_type_analytic = cls.sale_type_model.create(
+            {
+                "name": "Test Sale Order Type With Analytics",
+                "sequence_id": cls.sequence.id,
+                "journal_id": cls.journal.id,
+                "warehouse_id": cls.warehouse.id,
+                "picking_policy": "one",
+                "payment_term_id": cls.immediate_payment.id,
+                "pricelist_id": cls.sale_pricelist.id,
+                "incoterm_id": cls.free_carrier.id,
+                "analytic_distribution": {str(cls.analytic_account.id): 100.0},
+            }
+        )
 
     def create_sale_order(self, partner=False):
         sale_form = Form(self.env["sale.order"])
@@ -285,3 +304,12 @@ class TestSaleOrderType(BaseCommon):
             order_line.product_uom_qty = 1.0
         sale_form.type_id = self.sale_type.browse()
         sale_form.save()
+
+    def test_analytic_distribution_propagation(self):
+        self.partner.sale_type = self.sale_type_analytic
+        order = self.create_sale_order()
+        self.assertEqual(order.type_id, self.sale_type_analytic)
+        self.assertEqual(
+            order.order_line[0].analytic_distribution,
+            {str(self.analytic_account.id): 100.0},
+        )
