@@ -205,3 +205,10 @@ class SaleOrderLine(models.Model):
             if order_type.route_ids:
                 line.route_ids = order_type.route_ids
         return res
+
+    @api.depends("order_id.type_id")
+    def _compute_analytic_distribution(self):
+        res = super()._compute_analytic_distribution()
+        for line in self.filtered("order_id.type_id.analytic_distribution"):
+            line.analytic_distribution = line.order_id.type_id.analytic_distribution
+        return res
