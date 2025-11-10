@@ -19,8 +19,7 @@ class SaleOrderTypology(models.Model):
     journal_id = fields.Many2one(
         comodel_name="account.journal",
         string="Billing Journal",
-        domain="[('type', '=', 'sale'), '|', ('company_id', '=', False), "
-        "('company_id', '=', company_id)]",
+        domain="[('type', '=', 'sale')]",
         check_company=True,
     )
     warehouse_id = fields.Many2one(
