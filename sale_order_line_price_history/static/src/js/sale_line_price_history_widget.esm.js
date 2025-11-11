@@ -14,8 +14,8 @@ export class PriceHistoryWidget extends Component {
             "sale_order_line_price_history.sale_order_line_price_history_action",
             {
                 additionalContext: {
-                    default_product_id: this.props.record.data.product_id[0],
-                    default_partner_id: this.props.record.data.order_partner_id[0],
+                    default_product_id: this.props.record.data.product_id.id,
+                    default_partner_id: this.props.record.data.order_partner_id.id,
                     default_active_id: this.props.value,
                     default_sale_order_line_id: this.props.value,
                 },
