@@ -10,21 +10,23 @@
         />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='line_ids']/tree//field[@name='units_included']"
+                expr="//field[@name='line_ids']/list//field[@name='units_included']"
                 position="before"
             >
-                <field name="product_tmpl_id" invisible="1" />
-                <field name="product_uom_readonly" invisible="1" />
+                <field name="product_tmpl_id" column_invisible="1" />
                 <field
                     name="secondary_uom_qty"
-                    attrs="{'invisible': [('secondary_uom_id', '=', False)]}"
+                    groups="uom.group_uom"
+                    invisible="not secondary_uom_id"
                     widget="numeric_step"
                     optional="show"
                 />
                 <field
                     name="secondary_uom_id"
+                    groups="uom.group_uom"
                     domain="[('product_tmpl_id', '=', product_tmpl_id)]"
-                    attrs="{'readonly': [('product_uom_readonly', '=', True)]}"
+                    readonly="product_uom_readonly"
+                    options="{'no_create': True}"
                     optional="show"
                 />
             </xpath>
@@ -33,18 +35,20 @@
                 position="before"
             >
                 <field name="product_tmpl_id" invisible="1" />
-                <field name="secondary_uom_qty" />
+                <field name="secondary_uom_qty" groups="uom.group_uom" />
                 <field
                     name="secondary_uom_id"
+                    groups="uom.group_uom"
                     domain="[('product_tmpl_id', '=', product_tmpl_id)]"
+                    options="{'no_create': True}"
                 />
-                <field name="secondary_uom_name" />
+                <field name="secondary_uom_name" groups="uom.group_uom" />
             </xpath>
             <xpath
-                expr="//field[@name='line_ids']/kanban//t[@t-name='kanban-box']//field[@name='units_included']"
+                expr="//field[@name='line_ids']/kanban//t[@t-name='card']//field[@name='units_included']"
                 position="before"
             >
-                <t t-if="record.secondary_uom_id.value">
+                <t t-if="record.secondary_uom_id.value" groups="uom.group_uom">
                     <field name="secondary_uom_qty" />
                     <span />
                     <field name="secondary_uom_name" />
@@ -59,12 +63,16 @@
                 <field name="product_uom_readonly" invisible="1" />
                 <field
                     name="secondary_uom_qty"
-                    attrs="{'invisible': [('secondary_uom_id', '=', False)]}"
+                    groups="uom.group_uom"
+                    invisible="not secondary_uom_id"
                     widget="numeric_step"
                 />
                 <field
                     name="secondary_uom_id"
-                    attrs="{'readonly': [('product_uom_readonly', '=', True)], 'invisible': [('secondary_uom_id', '=', False)]}"
+                    groups="uom.group_uom"
+                    readonly="product_uom_readonly"
+                    options="{'no_create': True}"
+                    invisible="not secondary_uom_id"
                     domain="[('product_tmpl_id', '=', product_tmpl_id)]"
                 />
             </xpath>

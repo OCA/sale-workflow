@@ -27,7 +27,9 @@ class SaleOrderRecommendationLine(models.TransientModel):
     _inherit = "sale.order.recommendation.line"
 
     secondary_uom_id = fields.Many2one(comodel_name="product.secondary.unit")
-    secondary_uom_name = fields.Char(related="secondary_uom_id.name")
+    secondary_uom_name = fields.Char(
+        string="Secondary Unit", related="secondary_uom_id.name"
+    )
     secondary_uom_qty = fields.Float(
         string="Secondary Qty", digits="Product Unit of Measure"
     )
@@ -76,18 +78,18 @@ class SaleOrderRecommendationLine(models.TransientModel):
         ):
             self.secondary_uom_qty = qty
 
-    def _prepare_update_so_line(self, line_form):
-        res = super()._prepare_update_so_line(line_form)
+    def _prepare_update_so_line_vals(self):
+        vals = super()._prepare_update_so_line_vals()
         if self.secondary_uom_id:
             # Avoid error when product_uom_readonly is True
-            if line_form.secondary_uom_id != self.secondary_uom_id:
-                line_form.secondary_uom_id = self.secondary_uom_id
-            line_form.secondary_uom_qty = self.secondary_uom_qty
-        return res
+            if vals.get("secondary_uom_id", False) != self.secondary_uom_id.id:
+                vals["secondary_uom_id"] = self.secondary_uom_id.id
+            vals["secondary_uom_qty"] = self.secondary_uom_qty
+        return vals
 
-    def _prepare_new_so_line(self, line_form, sequence):
-        res = super()._prepare_new_so_line(line_form, sequence)
+    def _prepare_new_so_line_vals(self, sequence):
+        vals = super()._prepare_new_so_line_vals(sequence)
         if self.secondary_uom_id:
-            line_form.secondary_uom_id = self.secondary_uom_id
-            line_form.secondary_uom_qty = self.secondary_uom_qty
-        return res
+            vals["secondary_uom_id"] = self.secondary_uom_id.id
+            vals["secondary_uom_qty"] = self.secondary_uom_qty
+        return vals

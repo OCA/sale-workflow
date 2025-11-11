@@ -44,7 +44,7 @@ Configuration
 
 To configure product secondary units, you need:
 
--  To have the "Display secondary units" permission.
+-  To have the "Manage Multiple Units of Measure" permission.
 
 Then, in any product form you'll be able to set its product secondary
 units:

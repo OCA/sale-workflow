@@ -1,11 +1,16 @@
 # Copyright 2019 Tecnativa - David Vidal
 # Copyright 2020 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from freezegun import freeze_time
+
+from odoo.fields import Command
+
 from odoo.addons.sale_order_product_recommendation.tests import (
     test_recommendation_common,
 )
 
 
+@freeze_time("2021-10-02 15:30:00")
 class RecommendationCaseTests(test_recommendation_common.RecommendationCase):
     @classmethod
     def setUpClass(cls):
@@ -14,9 +19,7 @@ class RecommendationCaseTests(test_recommendation_common.RecommendationCase):
         cls.prod_1.write(
             {
                 "secondary_uom_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "Pack",
                             "product_tmpl_id": cls.prod_1.product_tmpl_id.id,
@@ -34,9 +37,7 @@ class RecommendationCaseTests(test_recommendation_common.RecommendationCase):
         cls.prod_2.write(
             {
                 "secondary_uom_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "Pack",
                             "product_tmpl_id": cls.prod_2.product_tmpl_id.id,
