@@ -8,9 +8,29 @@ class TestSaleOrderLinePriceHistory(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.partner_1 = cls.env.ref("base.res_partner_1")
-        cls.partner_2 = cls.env.ref("base.res_partner_2")
-        cls.product = cls.env.ref("product.product_order_01")
+        cls.partner_1 = cls.env["res.partner"].create(
+            {
+                "name": "Test Partner 1",
+                "email": "tp1@example.com",
+            }
+        )
+        cls.partner_2 = cls.env["res.partner"].create(
+            {
+                "name": "Test Partner 2",
+                "email": "tp2@example.com",
+            }
+        )
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "Test Product",
+                "type": "consu",
+                "list_price": 100.0,
+                "standard_price": 50.0,
+                "default_code": "TESTPROD",
+                "uom_id": cls.env.ref("uom.product_uom_unit").id,
+                "company_id": cls.env.company.id,
+            }
+        )
         cls.sale_order_1 = cls.env["sale.order"].create(
             {"partner_id": cls.partner_1.id}
         )
@@ -21,7 +41,7 @@ class TestSaleOrderLinePriceHistory(TransactionCase):
                 "name": cls.product.name,
                 "product_id": cls.product.id,
                 "product_uom_qty": 2,
-                "product_uom": cls.product.uom_id.id,
+                "product_uom_id": cls.product.uom_id.id,
                 "price_unit": 10,
                 "discount": 5,
             }
@@ -36,7 +56,7 @@ class TestSaleOrderLinePriceHistory(TransactionCase):
                 "name": cls.product.name,
                 "product_id": cls.product.id,
                 "product_uom_qty": 2,
-                "product_uom": cls.product.uom_id.id,
+                "product_uom_id": cls.product.uom_id.id,
                 "price_unit": 20,
             }
         )
@@ -51,7 +71,7 @@ class TestSaleOrderLinePriceHistory(TransactionCase):
                 "name": cls.product.name,
                 "product_id": cls.product.id,
                 "product_uom_qty": 2,
-                "product_uom": cls.product.uom_id.id,
+                "product_uom_id": cls.product.uom_id.id,
                 "price_unit": 30,
             }
         )
@@ -92,7 +112,7 @@ class TestSaleOrderLinePriceHistory(TransactionCase):
                 "name": self.product.name,
                 "product_id": self.product.id,
                 "product_uom_qty": 2,
-                "product_uom": self.product.uom_id.id,
+                "product_uom_id": self.product.uom_id.id,
                 "price_unit": 40,
             }
         )
@@ -114,8 +134,16 @@ class TestSaleOrderLinePriceHistory(TransactionCase):
 
     def test_onchange_partner_id_include_commercial_partner(self):
         # Another sale orders with a partner child of cls.sale_order_2
+        child_partner = self.env["res.partner"].create(
+            {
+                "name": "Child of SO2 Partner",
+                "parent_id": self.sale_order_2.partner_id.commercial_partner_id.id,
+                "type": "contact",
+                "email": "child@example.com",
+            }
+        )
         self.sale_order_4 = self.env["sale.order"].create(
-            {"partner_id": self.ref("base.res_partner_address_31")}
+            {"partner_id": child_partner.id}
         )
         self.sale_order_line_4 = self.env["sale.order.line"].create(
             {
@@ -123,7 +151,7 @@ class TestSaleOrderLinePriceHistory(TransactionCase):
                 "name": self.product.name,
                 "product_id": self.product.id,
                 "product_uom_qty": 2,
-                "product_uom": self.product.uom_id.id,
+                "product_uom_id": self.product.uom_id.id,
                 "price_unit": 40,
             }
         )
