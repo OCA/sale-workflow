@@ -1,4 +1,4 @@
-# Copyright 2024 Moduon Team S.L.
+# Copyright 2025 Moduon Team S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
 from freezegun import freeze_time
@@ -12,6 +12,22 @@ class TestSaleOrderLineEffectiveDates(TestStockCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.warehouse_2_steps = cls.env["stock.warehouse"].create(
+            {
+                "name": "Warehouse 2 steps",
+                "code": "2S",
+                "reception_steps": "two_steps",
+                "delivery_steps": "pick_ship",
+            }
+        )
+        delivery_route_2 = cls.warehouse_2_steps.delivery_route_id
+        delivery_route_2.rule_ids[0].write(
+            {
+                "location_dest_id": delivery_route_2.rule_ids[1].location_src_id.id,
+                "name": "2S: Stock → Output",
+            }
+        )
+        delivery_route_2.rule_ids[1].write({"action": "pull"})
         cls.env["stock.picking.type"].browse(
             cls.picking_type_out
         ).create_backorder = "always"

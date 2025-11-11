@@ -7,11 +7,9 @@
         <field name="model">sale.order.line</field>
         <field name="inherit_id" ref="sale.view_order_line_tree" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='qty_to_invoice']" position="after">
+            <xpath expr="//list" position="inside">
                 <field name="effective_date" optional="hide" />
                 <field name="last_effective_date" optional="hide" />
-            </xpath>
-            <xpath expr="//tree" position="inside">
                 <field name="order_commitment_date" optional="hide" />
             </xpath>
         </field>
