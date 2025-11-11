@@ -1,0 +1,18 @@
+<odoo>
+    <record id="view_order_form_inherit_commitment_date_move" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.move.commitment_date</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="(//field[@name='date_order'])[2]" position="after">
+                <field name="is_delivery_date_required" invisible="1" />
+                <label for="commitment_date" position="move" />
+                <field name="commitment_date" position="move" />
+            </xpath>
+            <xpath expr="//field[@name='commitment_date']" position="attributes">
+                <attribute name="required">is_delivery_date_required == True</attribute>
+                <attribute name="nolabel">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
