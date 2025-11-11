@@ -1,12 +1,14 @@
 # Copyright 2017 Tecnativa - Jairo Llopis
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from freezegun import freeze_time
 
-from odoo.tests import TransactionCase, new_test_user
+from odoo.fields import Command
+from odoo.tests import new_test_user
 
-from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class RecommendationCase(TransactionCase):
+class RecommendationCase(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -15,13 +17,11 @@ class RecommendationCase(TransactionCase):
             cls.env,
             "test_recommendation",
             "sales_team.group_sale_salesman",
-            DISABLED_MAIL_CONTEXT,
         )
         cls.user_invoice = new_test_user(
             cls.env,
             "test_recommendation_invoice",
             "account.group_account_invoice",
-            DISABLED_MAIL_CONTEXT,
         )
         cls.env = cls.user_salesman.env
         cls.pricelist = cls.env["product.pricelist"].create(
@@ -73,13 +73,10 @@ class RecommendationCase(TransactionCase):
         cls.order1 = cls.env["sale.order"].create(
             {
                 "partner_id": cls.partner.id,
-                "state": "sale",
                 "locked": "True",
                 "date_order": "2021-05-05",
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.prod_1.id,
                             "name": cls.prod_1.name,
@@ -89,9 +86,7 @@ class RecommendationCase(TransactionCase):
                             "price_unit": 24.50,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.prod_2.id,
                             "name": cls.prod_2.name,
@@ -101,9 +96,7 @@ class RecommendationCase(TransactionCase):
                             "price_unit": 49.50,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": cls.prod_3.id,
                             "name": cls.prod_3.name,
@@ -116,11 +109,12 @@ class RecommendationCase(TransactionCase):
                 ],
             }
         )
+        with freeze_time("2021-05-05"):
+            cls.order1.action_confirm()
         cls.order2 = cls.env["sale.order"].create(
             {
                 "partner_id": cls.partner.id,
                 "partner_shipping_id": cls.partner_delivery.id,
-                "state": "sale",
                 "locked": "True",
                 "date_order": "2021-05-03",
                 "order_line": [
@@ -139,6 +133,8 @@ class RecommendationCase(TransactionCase):
                 ],
             }
         )
+        with freeze_time("2021-05-03"):
+            cls.order2.action_confirm()
         # Create a new sale order for the same customer
         cls.new_so = cls.env["sale.order"].create(
             {
