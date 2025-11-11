@@ -10,7 +10,7 @@ class SaleOrder(models.Model):
             self.env["ir.config_parameter"]
             .sudo()
             .get_param(
-                "sale_order_general_discount_triple.general_discount", "discount"
+                "sale_order_general_discount_triple.general_discount", "discount1"
             )
         )
         if general_discount != "no_apply":
@@ -19,8 +19,16 @@ class SaleOrder(models.Model):
 
     def _create_delivery_line(self, carrier, price_unit):
         res = super()._create_delivery_line(carrier, price_unit)
-        for line in self.order_line:
-            line._compute_discount()
-            line._compute_discount2()
-            line._compute_discount3()
+        res._compute_discount1()
+        res._compute_discount2()
+        res._compute_discount3()
+        return res
+
+    def _recompute_prices(self):
+        res = super()._recompute_prices()
+        # When change pricelist in order line discounts need to be updated
+        lines_to_update = self._get_update_prices_lines()
+        lines_to_update._compute_discount1()
+        lines_to_update._compute_discount2()
+        lines_to_update._compute_discount3()
         return res

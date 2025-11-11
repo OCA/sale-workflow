@@ -4,29 +4,34 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    discount2 = fields.Float(compute="_compute_discount2", store=True, readonly=False)
-    discount3 = fields.Float(compute="_compute_discount3", store=True, readonly=False)
+    discount1 = fields.Float(compute="_compute_discount1", store=True, readonly=False)
+    discount2 = fields.Float(
+        compute="_compute_discount2", store=True, readonly=False, precompute=True
+    )
+    discount3 = fields.Float(
+        compute="_compute_discount3", store=True, readonly=False, precompute=True
+    )
 
     @api.depends("product_id", "product_uom", "product_uom_qty")
-    def _compute_discount(self):
+    def _compute_discount1(self):
         pricelist_discount = self._get_discount_field_position("pricelist_discount")
         general_discount = self._get_discount_field_position("general_discount")
-        if "discount" not in [pricelist_discount, general_discount]:
+        if "discount1" not in [pricelist_discount, general_discount]:
             for line in self:
                 if line._check_is_reward_line():
                     continue
-                line.update({"discount": 0.0})
+                line.update({"discount1": 0.0})
             return
         for line in self:
             if line._check_is_reward_line():
                 continue
-            if pricelist_discount == "discount":
-                line.update({"discount": line._get_pricelist_discount()})
+            if pricelist_discount == "discount1":
+                line.update({"discount1": line._get_pricelist_discount()})
             elif (
-                general_discount == "discount"
+                general_discount == "discount1"
                 and not line.product_id.bypass_general_discount
             ):
-                line.update({"discount": line.order_id.general_discount})
+                line.update({"discount1": line.order_id.general_discount})
         return
 
     @api.depends("product_id", "product_uom", "product_uom_qty")
@@ -100,5 +105,5 @@ class SaleOrderLine(models.Model):
         return (
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param(f"sale_order_general_discount_triple.{field_name}", "discount")
+            .get_param(f"sale_order_general_discount_triple.{field_name}", "discount1")
         )
