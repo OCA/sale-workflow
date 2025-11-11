@@ -1,7 +1,7 @@
 # Copyright 2019 Tecnativa - Ernesto Tejeda
 # Copyright 2024 Moduon Team S.L. <info@moduon.team>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -27,12 +27,12 @@ class SaleOrderLinePriceHistory(models.TransientModel):
     product_id = fields.Many2one(
         comodel_name="product.product",
         string="Product",
-        default=_default_product_id,
+        default=lambda self: self._default_product_id(),
     )
     partner_id = fields.Many2one(
         comodel_name="res.partner",
         string="Customer",
-        default=_default_partner_id,
+        default=lambda self: self._default_partner_id(),
     )
     line_ids = fields.One2many(
         comodel_name="sale.order.line.price.history.line",
@@ -152,5 +152,5 @@ class SaleOrderLinePriceHistoryline(models.TransientModel):
             )
         else:
             raise ValidationError(
-                _("Not found historical sale order line for this action!")
+                self.env._("Not found historical sale order line for this action!")
             )
