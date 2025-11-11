@@ -1,0 +1,2 @@
+- Go to the shipping partner record.
+- Assign the Delivery Method under the Sales section.
