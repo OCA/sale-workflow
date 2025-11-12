@@ -1,23 +1,24 @@
 # Copyright 2024 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import api, models
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    warehouse_id = fields.Many2one(
-        compute="_compute_warehouse_id", store=True, precompute=True
-    )
-
-    @api.depends("partner_id")
+    @api.depends("partner_id", "partner_shipping_id")
     def _compute_warehouse_id(self):
-        sales_with_partner_warehouse = self.filtered(
-            lambda sale: sale.state == "draft" and sale.partner_id.sale_warehouse_id
-        )
-        for sale in sales_with_partner_warehouse:
-            sale.warehouse_id = sale.partner_id.sale_warehouse_id
-        return super(
-            SaleOrder, self - sales_with_partner_warehouse
-        )._compute_warehouse_id()
+        draft_orders = self.filtered(lambda s: s.state == "draft")
+        to_super = self - draft_orders
+        for sale in draft_orders:
+            warehouse = False
+            if sale.company_id.sale_warehouse_by_partner_shipping:
+                warehouse = sale.partner_shipping_id.sale_warehouse_id
+            warehouse = warehouse or sale.partner_id.sale_warehouse_id
+            if warehouse:
+                sale.warehouse_id = warehouse
+                continue
+            to_super |= sale
+        if to_super:
+            return super(SaleOrder, to_super)._compute_warehouse_id()
