@@ -14,6 +14,7 @@
     "installable": True,
     "data": [
         "views/partner_view.xml",
+        "views/res_config_settings_views.xml",
     ],
     "depends": [
         "sale_stock",
