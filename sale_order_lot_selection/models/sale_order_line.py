@@ -1,4 +1,5 @@
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 from odoo.tools import float_compare
 
 
@@ -21,6 +22,7 @@ class SaleOrderLine(models.Model):
         domain="domain_lot_id",
         copy=False,
         compute="_compute_lot_id",
+        inverse="_inverse_lot_id",
         store=True,
         readonly=False,
         precompute=True,
@@ -71,3 +73,19 @@ class SaleOrderLine(models.Model):
         for sol in self:
             if sol.product_id != sol.lot_id.product_id:
                 sol.lot_id = False
+
+    def _inverse_lot_id(self):
+        for item in self.filtered(
+            lambda x: x.product_id and x.product_tracking != "none" and x.move_ids
+        ):
+            moves = item.move_ids.filtered(lambda x: x.restrict_lot_id)
+            if any(move.state == "done" for move in moves):
+                raise ValidationError(
+                    self.env._(
+                        "You can't modify the Lot/Serial number "
+                        "because some stock move has already been done."
+                    )
+                )
+            pending_moves = moves.filtered(lambda x: x.state != "cancel")
+            if pending_moves:
+                pending_moves._set_restrict_lot_id_from_sol(item.lot_id)

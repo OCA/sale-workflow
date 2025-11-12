@@ -1,6 +1,9 @@
 # © 2015 Agile Business Group
+# Copyright 2026 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+from odoo.exceptions import ValidationError
 from odoo.fields import Command
+from odoo.tools import mute_logger
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -365,3 +368,39 @@ class TestSaleOrderLotSelection(BaseCommon):
         self.assertEqual(self.order4.state, "sale")
         # products are reserved
         self.assertEqual(self.order4.picking_ids[0].state, "assigned")
+
+    @mute_logger("odoo.models.unlink")
+    def test_03_sale_order_lot_selection_exception(self):
+        self._update_stock_quantity(self.prd_cable, self.lot_cable, 2)
+        lot_extra_1 = self.env["stock.lot"].create(
+            {
+                "name": "test lot extra 1",
+                "product_id": self.prd_cable.id,
+            }
+        )
+        self._update_stock_quantity(self.prd_cable, lot_extra_1, 1)
+        lot_extra_2 = self.env["stock.lot"].create(
+            {
+                "name": "test lot extra 2",
+                "product_id": self.prd_cable.id,
+            }
+        )
+        self.sale.action_confirm()
+        line_0 = self.sale.order_line[0]
+        line_1 = self.sale.order_line[1]
+        self.assertEqual(line_0.move_ids.state, "assigned")
+        self.assertEqual(line_0.move_ids.restrict_lot_id, self.lot_cable)
+        self.assertEqual(line_1.move_ids.restrict_lot_id, self.lot_cable)
+        line_0.lot_id = lot_extra_1
+        self.assertEqual(line_0.move_ids.state, "assigned")
+        self.assertEqual(line_0.move_ids.restrict_lot_id, lot_extra_1)
+        picking = self.sale.picking_ids
+        picking.move_ids_without_package.mapped("move_line_ids").write({"quantity": 1})
+        picking.button_validate()
+        self.assertEqual(picking.state, "done")
+        msg = (
+            "You can't modify the Lot/Serial number "
+            "because some stock move has already been done."
+        )
+        with self.assertRaisesRegex(ValidationError, msg):
+            line_0.lot_id = lot_extra_2
