@@ -11,6 +11,7 @@
                 <field
                     name="lot_id"
                     invisible="not product_id or product_tracking=='none'"
+                    readonly="qty_delivered>0"
                     context="{'default_product_id': product_id}"
                     groups="stock.group_production_lot"
                     optional="show"
@@ -23,6 +24,7 @@
                 <field
                     name="lot_id"
                     invisible="not product_id or product_tracking=='none'"
+                    readonly="qty_delivered>0"
                     context="{'default_product_id': product_id}"
                     groups="stock.group_production_lot"
                 />
