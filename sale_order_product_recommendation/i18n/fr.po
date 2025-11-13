@@ -171,8 +171,8 @@ msgstr "ID"
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
 msgid ""
-"If this is selected, it will take care by default on"
-"                                 Delivery Address instead of customer on "
+"If this is selected, it will take care by default "
+"on                                 Delivery Address instead of customer on "
 "sale orders                                 recommendation"
 msgstr ""
 "Lorsque cette case est cochée, la recommandation s'appliquera par défaut à "
@@ -184,6 +184,11 @@ msgid "If you change the pricelist, only newly added lines will be affected."
 msgstr ""
 "Si vous modifiez la liste de prix, seules les lignes ajoutées après cette "
 "modification seront affectées."
+
+#. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__image_128
+msgid "Image 128"
+msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_default_code
@@ -405,8 +410,8 @@ msgstr "Assistant"
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "You will lose any changes you have made. Are you sure?"
 msgstr ""
-"Vous perdrez toutes les modifications que vous avez apportées. Êtes-vous sûr "
-"?"
+"Vous perdrez toutes les modifications que vous avez apportées. Êtes-vous "
+"sûr ?"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form

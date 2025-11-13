@@ -18,49 +18,6 @@ msgstr ""
 "X-Generator: Weblate 4.17\n"
 
 #. module: sale_order_product_recommendation
-#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
-msgid ""
-"<span class=\"o_form_label\">Add recommended with zero units included</span>"
-msgstr ""
-"<span class=\"o_form_label\">Añadir recomendado con cero unidades incluidas</"
-"span>"
-
-#. module: sale_order_product_recommendation
-#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
-msgid "<span class=\"o_form_label\">Default Number of recommendations</span>"
-msgstr ""
-"<span class=\"o_form_label\">Número de recomendaciones por defecto</span>"
-
-#. module: sale_order_product_recommendation
-#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
-msgid ""
-"<span class=\"o_form_label\">Default months backwards to generate "
-"recommendations</span>"
-msgstr ""
-"<span class=\"o_form_label\">Meses atrás por defecto para generar las "
-"recomendaciones</span>"
-
-#. module: sale_order_product_recommendation
-#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
-msgid "<span class=\"o_form_label\">Product recommendation price origin</span>"
-msgstr ""
-"<span class=\"o_form_label\">Origen del precio para el recomendador de "
-"productos</span>"
-
-#. module: sale_order_product_recommendation
-#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
-msgid ""
-"<span class=\"o_form_label\">Sale order product recommendation domain</span>"
-msgstr ""
-"<span class=\"o_form_label\">Dominio de recomendación de productos de "
-"pedidos de venta</span>"
-
-#. module: sale_order_product_recommendation
-#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
-msgid "<span class=\"o_form_label\">Use delivery address</span>"
-msgstr "<span class=\"o_form_label\">Usar dirección de entrega</span>"
-
-#. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "<span>To be included: </span>"
 msgstr "<span>Para ser incluido: </span>"
@@ -76,6 +33,11 @@ msgstr "Aceptar"
 msgid "Add recomented products in so even if units included is zero."
 msgstr ""
 "Añada los productos recomendados aunque las unidades incluidas sean cero."
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid "Add recommended with zero units included"
+msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
@@ -140,6 +102,16 @@ msgid "Customer"
 msgstr "Cliente"
 
 #. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid "Default Number of recommendations"
+msgstr ""
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid "Default months backwards to generate recommendations"
+msgstr ""
+
+#. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_config_settings__default_line_amount
 msgid "Default sale number of recommendations"
 msgstr "Número por defecto de recomendaciones"
@@ -199,14 +171,10 @@ msgstr "ID"
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
 msgid ""
-"If this is selected, it will take care by default on\n"
-"                                Delivery Address instead of customer on sale "
-"orders\n"
-"                                recommendation"
+"If this is selected, it will take care by default "
+"on                                 Delivery Address instead of customer on "
+"sale orders                                 recommendation"
 msgstr ""
-"Si se selecciona, se va a tener en cuenta por defecto la\n"
-"                            Direccion de entrega en lugar del cliente en el\n"
-"                            recomendador de productos"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation_line__pricelist_id
@@ -216,15 +184,14 @@ msgstr ""
 "agregadas."
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__image_128
+msgid "Image 128"
+msgstr ""
+
+#. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_default_code
 msgid "Internal Reference"
 msgstr "Referencia Interna"
-
-#. module: sale_order_product_recommendation
-#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation____last_update
-#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__write_uid
@@ -257,7 +224,6 @@ msgstr "Nombre"
 #. module: sale_order_product_recommendation
 #. odoo-python
 #: code:addons/sale_order_product_recommendation/wizards/sale_order_recommendation.py:0
-#, python-format
 msgid "Nothing found! Modify your criteria or fill the order manually."
 msgstr "Nothing found! Modify your criteria or fill the order manually."
 
@@ -321,6 +287,11 @@ msgid "Product price origin"
 msgstr "Origen del precio del producto"
 
 #. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid "Product recommendation price origin"
+msgstr ""
+
+#. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__line_ids
 msgid "Products"
 msgstr "Productos"
@@ -365,6 +336,11 @@ msgstr "Línea de venta Recomendación Dominio"
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__order_id
 msgid "Sale Order"
 msgstr "Pedido de venta"
+
+#. module: sale_order_product_recommendation
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
+msgid "Sale order product recommendation domain"
+msgstr ""
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
@@ -417,6 +393,7 @@ msgstr "Unidades entregadas"
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_config_settings__default_use_delivery_address
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__use_delivery_address
+#: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
 msgid "Use delivery address"
 msgstr "Usar dirección de entrega"
 
@@ -434,3 +411,52 @@ msgstr "Perderás todos los cambios que hayas hecho. ¿Está seguro?"
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "times -"
 msgstr "veces -"
+
+#~ msgid ""
+#~ "<span class=\"o_form_label\">Add recommended with zero units included</"
+#~ "span>"
+#~ msgstr ""
+#~ "<span class=\"o_form_label\">Añadir recomendado con cero unidades "
+#~ "incluidas</span>"
+
+#~ msgid ""
+#~ "<span class=\"o_form_label\">Default Number of recommendations</span>"
+#~ msgstr ""
+#~ "<span class=\"o_form_label\">Número de recomendaciones por defecto</span>"
+
+#~ msgid ""
+#~ "<span class=\"o_form_label\">Default months backwards to generate "
+#~ "recommendations</span>"
+#~ msgstr ""
+#~ "<span class=\"o_form_label\">Meses atrás por defecto para generar las "
+#~ "recomendaciones</span>"
+
+#~ msgid ""
+#~ "<span class=\"o_form_label\">Product recommendation price origin</span>"
+#~ msgstr ""
+#~ "<span class=\"o_form_label\">Origen del precio para el recomendador de "
+#~ "productos</span>"
+
+#~ msgid ""
+#~ "<span class=\"o_form_label\">Sale order product recommendation domain</"
+#~ "span>"
+#~ msgstr ""
+#~ "<span class=\"o_form_label\">Dominio de recomendación de productos de "
+#~ "pedidos de venta</span>"
+
+#~ msgid "<span class=\"o_form_label\">Use delivery address</span>"
+#~ msgstr "<span class=\"o_form_label\">Usar dirección de entrega</span>"
+
+#~ msgid ""
+#~ "If this is selected, it will take care by default on\n"
+#~ "                                Delivery Address instead of customer on "
+#~ "sale orders\n"
+#~ "                                recommendation"
+#~ msgstr ""
+#~ "Si se selecciona, se va a tener en cuenta por defecto la\n"
+#~ "                            Direccion de entrega en lugar del cliente en "
+#~ "el\n"
+#~ "                            recomendador de productos"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"

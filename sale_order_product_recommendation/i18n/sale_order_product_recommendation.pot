@@ -170,6 +170,11 @@ msgid "If you change the pricelist, only newly added lines will be affected."
 msgstr ""
 
 #. module: sale_order_product_recommendation
+#: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__image_128
+msgid "Image 128"
+msgstr ""
+
+#. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_default_code
 msgid "Internal Reference"
 msgstr ""

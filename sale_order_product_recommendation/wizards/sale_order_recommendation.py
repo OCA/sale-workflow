@@ -233,6 +233,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
     partner_id = fields.Many2one(related="wizard_id.order_id.partner_id")
     product_id = fields.Many2one("product.product")
     product_name = fields.Char(related="product_id.name", readonly=True)
+    image_128 = fields.Image(related="product_id.image_128", readonly=True)
     product_categ_complete_name = fields.Char(
         string="Product category",
         related="product_id.categ_id.complete_name",

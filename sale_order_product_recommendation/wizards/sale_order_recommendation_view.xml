@@ -85,55 +85,49 @@
                                 <field name="units_included" />
                                 <field name="currency_id" />
                                 <templates>
-                                    <t t-name="card">
-                                        <div class="oe_kanban_global_click">
-                                            <div class="o_kanban_image me-1">
-                                                <img
-                                                    t-att-src="kanban_image('product.product', 'image_128', record.product_id.raw_value)"
-                                                    alt="Product"
-                                                    class="o_image_64_contain"
+                                    <t t-name="card" class="flex-row">
+                                        <main class="pe-2">
+                                            <div class="mb-1">
+                                                <div class="h5">
+                                                    <field name="product_id" />
+                                                </div>
+                                                <field
+                                                    class="w-auto mb-0"
+                                                    name="product_is_favorite"
+                                                    widget="boolean_favorite"
                                                 />
                                             </div>
-                                            <div class="oe_kanban_details">
-                                                <div class="o_kanban_record_top mb-0">
-                                                    <div
-                                                        class="o_kanban_record_headings"
-                                                    >
-                                                        <field
-                                                            name="product_id"
-                                                            class="o_kanban_record_title"
-                                                        />
-                                                    </div>
+                                            <div>Price: <field
+                                                name="price_unit"
+                                                widget="monetary"
+                                                options="{'currency_field': 'currency_id', 'field_digits': True}"
+                                            /></div>
+                                            <div>Delivered: <field
+                                                name="times_delivered"
+                                            /> times - <field
+                                                name="units_delivered"
+                                            /> <field name="sale_uom_id" /></div>
+                                            <div>
+                                                <strong>
+                                                    <span>To be included: </span>
+                                                    <field name="units_included" />
+                                                    <span />
                                                     <field
-                                                        class="w-auto mb-0"
-                                                        name="product_is_favorite"
-                                                        widget="priority"
+                                                        name="sale_uom_id"
+                                                        groups="uom.group_uom"
                                                     />
-                                                </div>
-                                                <div>Price: <field
-                                                    name="price_unit"
-                                                    widget="monetary"
-                                                    options="{'currency_field': 'currency_id', 'field_digits': True}"
-                                                    class="oe_inline mt-0 mb-0"
-                                                /></div>
-                                                <div>Delivered: <field
-                                                    name="times_delivered"
-                                                /> times - <field
-                                                    name="units_delivered"
-                                                /> <field name="sale_uom_id" /></div>
-                                                <div>
-                                                    <strong>
-                                                        <span>To be included: </span>
-                                                        <field name="units_included" />
-                                                        <span />
-                                                        <field
-                                                            name="sale_uom_id"
-                                                            groups="uom.group_uom"
-                                                        />
-                                                    </strong>
-                                                </div>
+                                                </strong>
                                             </div>
-                                        </div>
+                                        </main>
+                                        <aside>
+                                            <field
+                                                name="image_128"
+                                                widget="image"
+                                                alt="Product"
+                                                options="{'img_class': 'w-100 object-fit-contain'}"
+                                                invisible="not image_128"
+                                            />
+                                        </aside>
                                     </t>
                                 </templates>
                             </kanban>
