@@ -8,3 +8,5 @@
   - Bert Van Groenendael \<<bert.vangroenendael@dynapps.eu>\>
 - [Trobz](https://www.trobz.com):
   - Nhan Tran \<<nhant@trobz.com>\>
+- [Quartile](https://www.quartile.co):
+  - Aung Ko Ko Lin
