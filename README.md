@@ -21,6 +21,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
+[sale_exception](sale_exception/) | 19.0.1.0.0 |  | Custom exceptions on sale order
 [sale_order_type](sale_order_type/) | 19.0.1.0.1 |  | Sale Order Type
 
 [//]: # (end addons)
