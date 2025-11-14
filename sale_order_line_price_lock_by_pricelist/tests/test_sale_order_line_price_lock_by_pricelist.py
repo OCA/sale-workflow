@@ -1,11 +1,12 @@
 # Copyright 2025 Moduon Team S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
-from odoo.tests import Form, common, users
+from odoo.tests import Form, users
 
+from odoo.addons.base.tests.common import BaseCommon
 from odoo.addons.mail.tests.common import mail_new_test_user
 
 
-class TestSaleOrderLinePriceLockByPricelist(common.TransactionCase):
+class TestSaleOrderLinePriceLockByPricelist(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -26,20 +27,18 @@ class TestSaleOrderLinePriceLockByPricelist(common.TransactionCase):
                 "name": "Mr. Odoo",
             }
         )
-        cls.pricelist_1 = cls.env[
-            "product.pricelist"
-        ].create(
+        cls.pricelist_1 = cls.env["product.pricelist"].create(
             {
                 "name": "Test Pricelist 1",
-                "lock_product_prices_applied_on": "1_product",  # Lock scope set to Product
+                # Lock scope set to Product
+                "lock_product_prices_applied_on": "1_product",
             }
         )
-        cls.pricelist_2 = cls.env[
-            "product.pricelist"
-        ].create(
+        cls.pricelist_2 = cls.env["product.pricelist"].create(
             {
                 "name": "Test Pricelist 1",
-                "lock_product_prices_applied_on": "1_product",  # Lock scope set to Product
+                # Lock scope set to Product
+                "lock_product_prices_applied_on": "1_product",
             }
         )
         cls.env["product.pricelist.item"].create(
@@ -68,7 +67,7 @@ class TestSaleOrderLinePriceLockByPricelist(common.TransactionCase):
             notification_type="inbox",
             groups="sales_team.group_sale_salesman",
         )
-        cls.user_sales_salesman = mail_new_test_user(
+        cls.user_sales_sales_manager = mail_new_test_user(
             cls.env,
             login="user_sales_sales_manager",
             name="Paco Sales Manager",
@@ -82,6 +81,11 @@ class TestSaleOrderLinePriceLockByPricelist(common.TransactionCase):
                 "name": "Mr. Odoo",
             }
         )
+        cls.env["res.config.settings"].create(
+            {
+                "group_product_pricelist": True,
+            }
+        ).execute()
 
     def _create_sales_order(self):
         sale_form = Form(self.env["sale.order"])

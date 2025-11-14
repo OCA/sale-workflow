@@ -24,7 +24,9 @@ class ProductPricelist(models.Model):
         inheritance"""
         self.ensure_one()
         item = self.env["product.pricelist.item"].browse(
-            self._get_product_rule(product, quantity, uom, date, **kwargs)
+            self._get_product_rule(
+                product, quantity=quantity, uom=uom, date=date, **kwargs
+            )
         )
         if item.base and item.base == "pricelist" and item.base_pricelist_id:
             return item.base_pricelist_id._get_base_product_rule(
