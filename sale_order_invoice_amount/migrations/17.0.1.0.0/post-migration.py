@@ -53,7 +53,7 @@ def migrate(cr, version):
             openupgrade.logged_query(
                 cr,
                 f"""
-                UPDATE _ir_translation
+                UPDATE ir_translation
                 SET name = '{model},{new_field}'
                 WHERE name = '{model},{old_field}' AND type = 'model'
                 """,
