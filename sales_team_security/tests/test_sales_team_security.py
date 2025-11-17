@@ -57,3 +57,54 @@ class TestSalesTeamSecurity(TestCommon):
         # Make sure the acces is not due to the subscription
         self.partner.message_unsubscribe(partner_ids=self.user.partner_id.ids)
         self.assertEqual(bool(Partner.search(domain)), True)
+
+    def test_team_contacts_visibility(self):
+        """Test that users from the same team can see contacts from other salesmen
+        in the same team when they have the 'group_sale_team_manager' group
+        """
+        # Create a user with team manager permissions
+        user_manager = self.env["res.users"].create(
+            {
+                "login": "team_manager",
+                "name": "Team Manager",
+                "group_ids": [
+                    (4, self.env.ref("sales_team.group_sale_salesman").id),
+                    (4, self.env.ref("sales_team_security.group_sale_team_manager").id),
+                ],
+            }
+        )
+        self.env["crm.team.member"].create(
+            {
+                "user_id": user_manager.id,
+                "crm_team_id": self.team.id,
+            }
+        )
+
+        # Create another salesman in the same team
+        user3 = self.env["res.users"].create(
+            {
+                "login": "salesman_a",
+                "name": "Salesman A",
+                "group_ids": [(4, self.env.ref("sales_team.group_sale_salesman").id)],
+            }
+        )
+        self.env["crm.team.member"].create(
+            {
+                "user_id": user3.id,
+                "crm_team_id": self.team.id,
+            }
+        )
+
+        # Create a contact assigned to user3
+        partner_a = self.env["res.partner"].create(
+            {"name": "Salesman A Contact", "user_id": user3.id}
+        )
+
+        # Verify that user_manager can see the contact created by user3
+        partner_a.message_unsubscribe(partner_ids=user_manager.partner_id.ids)
+        domain = [("id", "=", partner_a.id)]
+        Partner = self.env["res.partner"].with_user(user_manager)
+        self.assertTrue(
+            bool(Partner.search(domain)),
+            "User with team manager group should see contacts from teammates",
+        )

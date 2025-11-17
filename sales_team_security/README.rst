@@ -32,10 +32,10 @@ Sales documents permissions by channels (teams)
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds a new "Sale" group called "User: Team documents", that
-includes the proper permissions for showing only the information related
-to that user sale team (having assigned that team/channel or no team at
-all, independently from the assigned salesman):
+This module adds a new "Sale" group called "User: Team Documents Only",
+that includes the proper permissions for showing only the information
+related to that user sale team (having assigned that team/channel or no
+team at all, independently from the assigned salesman):
 
 - Contacts.
 - Quotations/Sales Orders (implemented in sales_team_security_sale)
@@ -59,6 +59,11 @@ For keeping consistent accesses, followers of the main and
 shipping/invoice contacts are synced according the salesman of the
 children contacts
 
+Additionally, users with the "User: Team Documents Only" group can see
+contacts created by any salesman that belongs to the same sales team(s),
+allowing team members to view and access contacts managed by their
+teammates.
+
 **Table of contents**
 
 .. contents::
@@ -76,7 +81,7 @@ Configuration
 
 1. Go to *Configuration > Users & Companies > Users*.
 2. Open or create a user.
-3. On the section "Sale", select "User: Team documents".
+3. On the section "Sale", select "User: Team Documents Only".
 
 Known issues / Roadmap
 ======================
