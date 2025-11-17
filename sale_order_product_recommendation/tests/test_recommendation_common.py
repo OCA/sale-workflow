@@ -73,7 +73,6 @@ class RecommendationCase(BaseCommon):
         cls.order1 = cls.env["sale.order"].create(
             {
                 "partner_id": cls.partner.id,
-                "locked": "True",
                 "date_order": "2021-05-05",
                 "order_line": [
                     Command.create(
@@ -83,7 +82,6 @@ class RecommendationCase(BaseCommon):
                             "product_uom_qty": 25,
                             "qty_delivered_method": "manual",
                             "qty_delivered": 25,
-                            "price_unit": 24.50,
                         },
                     ),
                     Command.create(
@@ -93,7 +91,6 @@ class RecommendationCase(BaseCommon):
                             "product_uom_qty": 50,
                             "qty_delivered_method": "manual",
                             "qty_delivered": 50,
-                            "price_unit": 49.50,
                         },
                     ),
                     Command.create(
@@ -103,19 +100,21 @@ class RecommendationCase(BaseCommon):
                             "product_uom_qty": 100,
                             "qty_delivered_method": "manual",
                             "qty_delivered": 100,
-                            "price_unit": 74.50,
                         },
                     ),
                 ],
             }
         )
+        cls.order1.order_line[0].write({"price_unit": 24.50})
+        cls.order1.order_line[1].write({"price_unit": 49.50})
+        cls.order1.order_line[2].write({"price_unit": 74.50})
+        cls.order1.write({"locked": True})
         with freeze_time("2021-05-05"):
             cls.order1.action_confirm()
         cls.order2 = cls.env["sale.order"].create(
             {
                 "partner_id": cls.partner.id,
                 "partner_shipping_id": cls.partner_delivery.id,
-                "locked": "True",
                 "date_order": "2021-05-03",
                 "order_line": [
                     (
@@ -127,12 +126,13 @@ class RecommendationCase(BaseCommon):
                             "product_uom_qty": 50,
                             "qty_delivered_method": "manual",
                             "qty_delivered": 50,
-                            "price_unit": 89.00,
                         },
                     ),
                 ],
             }
         )
+        cls.order2.order_line.write({"price_unit": 89.00})
+        cls.order2.write({"locked": True})
         with freeze_time("2021-05-03"):
             cls.order2.action_confirm()
         # Create a new sale order for the same customer
