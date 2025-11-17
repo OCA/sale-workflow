@@ -37,46 +37,4 @@ def migrate(cr, version):
     companies = env["res.company"].search([])
     companies.write({"enable_amount_invoiced_based_on_quantity": True})
 
-    for model, table, old_field, new_field in _field_renames:
-        if not openupgrade.column_exists(cr, table, old_field):
-            # Update ir.model.data (if they exist)
-            openupgrade.logged_query(
-                cr,
-                f"""
-                UPDATE ir_model_data
-                SET name = regexp_replace(name, '{old_field}', '{new_field}')
-                WHERE module = 'sale_order_invoice_amount'
-                AND name ~ '{".*" + old_field + ".*"}'
-                """,
-            )
-            # Update translations
-            openupgrade.logged_query(
-                cr,
-                f"""
-                UPDATE ir_translation
-                SET name = '{model},{new_field}'
-                WHERE name = '{model},{old_field}' AND type = 'model'
-                """,
-            )
-
-            # Update filters
-            openupgrade.logged_query(
-                cr,
-                f"""
-                UPDATE ir_filters
-                SET domain = regexp_replace(domain,
-                '''?{old_field}''?', '{new_field}', 'g')
-                WHERE model_id = '{model}' AND domain ~ '{old_field}'
-                """,
-            )
-            # Update exports
-            openupgrade.logged_query(
-                cr,
-                f"""
-                UPDATE ir_exports_line iel
-                SET name = '{new_field}'
-                FROM ir_exports ie
-                WHERE iel.name = '{old_field}' AND
-                ie.id = iel.export_id AND ie.resource = '{model}'
-                """,
-            )
+    openupgrade.rename_fields(env=cr, field_spec=_field_renames, no_deep=True)
