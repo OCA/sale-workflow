@@ -28,6 +28,7 @@ class IrRule(models.Model):
         user = self.env.user
         group_my_records = "sales_team.group_sale_salesman"
         group_all_records = "sales_team.group_sale_salesman_all_leads"
+        group_team_manager = "sales_team_security.group_sale_team_manager"
         if model_name == "res.partner" and not self.env.su:
             if user.has_group(group_my_records) and not user.has_group(
                 group_all_records
@@ -41,5 +42,15 @@ class IrRule(models.Model):
                 )
                 domain_user = Domain([("user_id", "in", [user.id, False])])
                 extra_domain = domain_followers | domain_user
+
+                if user.has_group(group_team_manager):
+                    user_teams = user.crm_team_member_ids.mapped("crm_team_id")
+                    if user_teams:
+                        team_user_ids = user_teams.mapped(
+                            "crm_team_member_ids.user_id"
+                        ).ids
+                        domain_team = Domain([("user_id", "in", team_user_ids)])
+                        extra_domain = extra_domain | domain_team
+
                 res = extra_domain & res
         return res

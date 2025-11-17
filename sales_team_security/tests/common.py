@@ -1,6 +1,7 @@
 # Copyright 2016-2020 Tecnativa - Pedro M. Baeza
 # Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
+from odoo import Command
 from odoo.tools import mute_logger
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -16,7 +17,9 @@ class TestCommon(BaseCommon):
             {
                 "login": "sales_team_security",
                 "name": "Test sales_team_security user",
-                "group_ids": [(4, cls.env.ref("sales_team.group_sale_salesman").id)],
+                "group_ids": [
+                    Command.link(cls.env.ref("sales_team.group_sale_salesman").id)
+                ],
             }
         )
         cls.crm_team_member = cls.env["crm.team.member"].create(
@@ -39,7 +42,9 @@ class TestCommon(BaseCommon):
             {
                 "login": "sales_team_security2",
                 "name": "Test sales_team_security user 2",
-                "group_ids": [(4, cls.env.ref("sales_team.group_sale_salesman").id)],
+                "group_ids": [
+                    Command.link(cls.env.ref("sales_team.group_sale_salesman").id)
+                ],
             }
         )
         cls.crm_team_member2 = cls.env["crm.team.member"].create(
@@ -81,7 +86,7 @@ class TestCommon(BaseCommon):
         self._check_permission(self.user2, self.team, False)
         # Add to group "Team manager"
         self.user.group_ids = [
-            (4, self.env.ref("sales_team_security.group_sale_team_manager").id)
+            Command.link(self.env.ref("sales_team_security.group_sale_team_manager").id)
         ]
         self._check_permission(False, False, True)
         self._check_permission(self.user, False, True)
@@ -95,12 +100,13 @@ class TestCommon(BaseCommon):
             self.check_permission_subscribe = False
         else:
             self._check_permission(self.user, self.team2, True)
-        self._check_permission(self.user2, self.team2, False)
+        if not is_res_partner:
+            self._check_permission(self.user2, self.team2, False)
         if not is_res_partner:
             self._check_permission(self.user2, self.team, True)
         # Add to group "See all leads"
         self.user.group_ids = [
-            (4, self.env.ref("sales_team.group_sale_salesman_all_leads").id)
+            Command.link(self.env.ref("sales_team.group_sale_salesman_all_leads").id)
         ]
         self._check_permission(False, False, True)
         self._check_permission(self.user, False, True)
@@ -113,7 +119,7 @@ class TestCommon(BaseCommon):
         self._check_permission(self.user2, self.team, True)
         # Regular internal user
         if extra_checks and is_res_partner:
-            self.user.group_ids = [(6, 0, [self.env.ref("base.group_user").id])]
+            self.user.group_ids = [Command.set([self.env.ref("base.group_user").id])]
             self._check_permission(False, False, True)
             self._check_permission(self.user, False, True)
             self._check_permission(self.user2, False, True)
