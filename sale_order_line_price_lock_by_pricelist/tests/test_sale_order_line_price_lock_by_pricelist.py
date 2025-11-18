@@ -26,13 +26,17 @@ class TestSaleOrderLinePriceLockByPricelist(common.TransactionCase):
                 "name": "Mr. Odoo",
             }
         )
-        cls.pricelist_1 = cls.env["product.pricelist"].create(
+        cls.pricelist_1 = cls.env[
+            "product.pricelist"
+        ].create(
             {
                 "name": "Test Pricelist 1",
                 "lock_product_prices_applied_on": "1_product",  # Lock scope set to Product
             }
         )
-        cls.pricelist_2 = cls.env["product.pricelist"].create(
+        cls.pricelist_2 = cls.env[
+            "product.pricelist"
+        ].create(
             {
                 "name": "Test Pricelist 1",
                 "lock_product_prices_applied_on": "1_product",  # Lock scope set to Product
