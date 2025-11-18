@@ -26,6 +26,12 @@ class TestProductSet(common.TransactionCase):
         vals.update(kw)
         return self.product_set_add.with_context(**ctx or {}).create(vals)
 
+    def _get_order_lines(self, so, include_section=False):
+        return so.order_line.filtered(
+            lambda line: (include_section or not line.display_type)
+            and not line._is_delivery()
+        )
+
     def test_add_set_lines_init(self):
         wiz = self._get_wiz()
         # Default to all lines from set
@@ -47,13 +53,13 @@ class TestProductSet(common.TransactionCase):
 
     def test_add_set(self):
         so = self.so
-        count_lines = len(so.order_line)
+        count_lines = len(self._get_order_lines(so))
         # Simulation the opening of the wizard and adding a set on the
         # current sale order
         wiz = self._get_wiz()
         wiz.add_set()
         # checking our sale order
-        self.assertEqual(len(so.order_line), count_lines + 3)
+        self.assertEqual(len(self._get_order_lines(so)), count_lines + 3)
         # check all lines are included
         for line in self.product_set.set_line_ids:
             order_line = so.order_line.filtered(
@@ -81,14 +87,14 @@ class TestProductSet(common.TransactionCase):
 
     def test_add_set_sequence(self):
         so = self.so
-        count_lines = len(so.order_line)
+        count_lines = len(self._get_order_lines(so))
         # Start from -1 to have mixed negative, null and positive (-1, 0, 1)
         for seq, line in enumerate(self.product_set.set_line_ids, start=-1):
             line.write({"sequence": seq})
         wiz = self._get_wiz()
         wiz.add_set()
         sequence = {line.product_id: line.sequence for line in so.order_line}
-        self.assertEqual(len(so.order_line), count_lines + 3)
+        self.assertEqual(len(self._get_order_lines(so)), count_lines + 3)
         # make sure sale order line sequence keep sequence set on set
         seq_line1 = sequence.pop(
             self.env.ref("product_set.product_set_line_computer_4").product_id
@@ -114,7 +120,7 @@ class TestProductSet(common.TransactionCase):
         so = self.so_model.create({"partner_id": self.ref("base.res_partner_1")})
         wiz = self._get_wiz(order_id=so.id)
         wiz.add_set()
-        self.assertEqual(len(so.order_line), 3)
+        self.assertEqual(len(self._get_order_lines(so)), 3)
 
     def test_add_set_non_matching_partner(self):
         so = self.so_model.create({"partner_id": self.ref("base.res_partner_1")})
@@ -125,35 +131,35 @@ class TestProductSet(common.TransactionCase):
 
     def test_add_set_non_matching_partner_ctx_bypass(self):
         so = self.so_model.create({"partner_id": self.ref("base.res_partner_1")})
-        self.assertEqual(len(so.order_line), 0)
+        self.assertEqual(len(self._get_order_lines(so)), 0)
         self.product_set.partner_id = self.ref("base.res_partner_2")
         wiz = self._get_wiz(order_id=so.id).with_context(
             product_set_add_skip_validation=True
         )
         wiz.add_set()
-        self.assertEqual(len(so.order_line), 3)
+        self.assertEqual(len(self._get_order_lines(so)), 3)
 
     def test_add_set_non_matching_partner_ctx_override(self):
         so = self.so_model.create({"partner_id": self.ref("base.res_partner_1")})
-        self.assertEqual(len(so.order_line), 0)
+        self.assertEqual(len(self._get_order_lines(so)), 0)
         wiz = self._get_wiz(order_id=so.id).with_context(
             allowed_order_partner_ids=[self.ref("base.res_partner_2")]
         )
         wiz.add_set()
-        self.assertEqual(len(so.order_line), 3)
+        self.assertEqual(len(self._get_order_lines(so)), 3)
 
     def test_add_set_no_update_existing_products(self):
         so = self.so_model.create({"partner_id": self.ref("base.res_partner_1")})
         wiz = self._get_wiz(order_id=so.id)
         wiz.add_set()
-        self.assertEqual(len(so.order_line), 3)
+        self.assertEqual(len(self._get_order_lines(so)), 3)
         # if we run it again by default the wizard sums up quantities
         wiz.add_set()
-        self.assertEqual(len(so.order_line), 6)
+        self.assertEqual(len(self._get_order_lines(so)), 6)
         # but we can turn it off
         wiz.skip_existing_products = True
         wiz.add_set()
-        self.assertEqual(len(so.order_line), 6)
+        self.assertEqual(len(self._get_order_lines(so)), 6)
 
     def test_discount(self):
         product_test = self.env["product.product"].create(
@@ -188,7 +194,7 @@ class TestProductSet(common.TransactionCase):
     def test_add_set_section(self):
         so = self.env.ref("sale.sale_order_6")
         base_line_ids = so.order_line
-        count_lines = len(so.order_line)
+        count_lines = len(self._get_order_lines(so))
         product_set_with_section = self.env.ref("product_set.product_set_services")
         so_set = self.product_set_add.create(
             {
@@ -198,7 +204,9 @@ class TestProductSet(common.TransactionCase):
             }
         )
         so_set.add_set()
-        self.assertEqual(len(so.order_line), count_lines + 3)
+        self.assertEqual(
+            len(self._get_order_lines(so, include_section=True)), count_lines + 3
+        )
         products_in_set = product_set_with_section.set_line_ids.filtered(
             lambda a: a.product_id
         ).mapped("product_id")
