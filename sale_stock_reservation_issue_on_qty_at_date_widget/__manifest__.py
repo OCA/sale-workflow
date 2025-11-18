@@ -3,13 +3,15 @@
 
 {
     "name": "Sale Stock Reservation Issue on Qty at Date widget",
-    "summary": "Warn user when a reservation issue will happen when confirming an order",
-    "version": "16.0.1.0.0",
+    "summary": (
+        "Warn user when a reservation issue will " "happen when confirming an order"
+    ),
+    "version": "18.0.1.0.0",
     "development_status": "Alpha",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Moduon, Odoo Community Association (OCA)",
-    "maintainers": ["Shide", "rafaelbn"],
+    "maintainers": ["Shide", "rafaelbn", "Andrii9090"],
     "license": "LGPL-3",
     "application": False,
     "installable": True,
