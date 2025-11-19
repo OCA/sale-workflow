@@ -5,6 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models
+from odoo.fields import Domain
 
 
 class SaleOrder(models.Model):
@@ -16,16 +17,14 @@ class SaleOrder(models.Model):
     )
     old_revision_ids = fields.One2many(
         comodel_name="sale.order",
+        inverse_name="current_revision_id",
     )
 
     # Overwrite as sales.order can be multi-company
-    _sql_constraints = [
-        (
-            "revision_unique",
-            "unique(unrevisioned_name, revision_number, company_id)",
-            "Order Reference and revision must be unique per Company.",
-        )
-    ]
+    _revision_unique = models.UniqueIndex(
+        "(unrevisioned_name, revision_number, company_id)",
+        message="Order Reference and revision must be unique per Company.",
+    )
 
     def _prepare_revision_data(self, new_revision):
         vals = super()._prepare_revision_data(new_revision)
@@ -35,7 +34,7 @@ class SaleOrder(models.Model):
     def action_view_revisions(self):
         self.ensure_one()
         result = self.env["ir.actions.act_window"]._for_xml_id("sale.action_orders")
-        result["domain"] = ["|", ("active", "=", False), ("active", "=", True)]
+        result["domain"] = Domain(["|", ("active", "=", False), ("active", "=", True)])
         result["context"] = {
             "active_test": 0,
             "search_default_current_revision_id": self.id,
