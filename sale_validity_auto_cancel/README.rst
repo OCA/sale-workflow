@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =========================
 Sale Validity Auto-Cancel
 =========================
@@ -17,7 +13,7 @@ Sale Validity Auto-Cancel
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-LGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -87,6 +83,10 @@ Contributors
   - Foram Darji <fd@oerp.ca>
 
 - Heliconia Solutions Pvt. Ltd. <https://www.heliconia.io>
+- ACSONE SA/NV (http://acsone.eu)
+
+  - Alexis Anthonissen <alexis.anthonissen@acsone.eu>
+  - Stéphane Mangin <stephane.mangin@acsone.eu>
 
 Maintainers
 -----------
