@@ -21,6 +21,13 @@ class SaleOrder(models.Model):
         # Can be inherited to exclude/include order states
         return ["draft", "sent"]
 
+    def _action_cancel_expired(self, company_id):
+        for order in self:
+            try:
+                order.with_context(company_id=company_id)._action_cancel()
+            except Exception as e:
+                _logger.error("Failed to auto-cancel %s: %s", (order.name, str(e)))
+
     def cron_sale_validity_auto_cancel(self):
         today = fields.Date.today()
         for company in self.env["res.company"].search([]):
@@ -35,8 +42,4 @@ class SaleOrder(models.Model):
                     ("auto_cancel_expired_so", "=", True),
                 ]
             )
-            for order in orders:
-                try:
-                    order.with_context(company_id=company.id)._action_cancel()
-                except Exception as e:
-                    _logger.error("Failed to auto-cancel %s: %s", (order.name, str(e)))
+            orders._action_cancel_expired(company.id)
