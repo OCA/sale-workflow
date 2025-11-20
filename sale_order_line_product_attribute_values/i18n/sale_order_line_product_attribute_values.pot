@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,21 +14,25 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_line_product_attribute_values
+#: model:ir.model.fields,field_description:sale_order_line_product_attribute_values.field_sale_order_line__all_product_attribute_value_ids
+msgid "All Product Attribute Value"
+msgstr ""
+
+#. module: sale_order_line_product_attribute_values
 #: model:ir.model.fields,help:sale_order_line_product_attribute_values.field_sale_order_line__all_product_attribute_value_ids
 msgid ""
-"All Product Attribute Values used directly or indirecly for this line.\n"
+"All Product Attribute Values used directly or indirectly for this line.\n"
 "Contains information about increased price, html color, etc."
 msgstr ""
 
 #. module: sale_order_line_product_attribute_values
 #: model:ir.model.fields,help:sale_order_line_product_attribute_values.field_sale_order_line__all_product_template_attribute_value_ids
 msgid ""
-"All Product Template Attribute Values used directly or indirecly for this "
+"All Product Template Attribute Values used directly or indirectly for this "
 "line."
 msgstr ""
 
 #. module: sale_order_line_product_attribute_values
-#: model:ir.model.fields,field_description:sale_order_line_product_attribute_values.field_sale_order_line__all_product_attribute_value_ids
 #: model_terms:ir.ui.view,arch_db:sale_order_line_product_attribute_values.view_sales_order_line_filter
 msgid "Attribute Values"
 msgstr ""
