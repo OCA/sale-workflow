@@ -15,6 +15,11 @@
         "views/sale_view.xml",
         "report/sale_report_template.xml",
     ],
+    "assets": {
+        "web.report_assets_common": [
+            "sale_discount_display_amount/static/src/css/report.css",
+        ],
+    },
     "pre_init_hook": "pre_init_hook",
     "post_init_hook": "post_init_hook",
 }
