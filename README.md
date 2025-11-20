@@ -48,7 +48,7 @@ addon | version | maintainers | summary
 [sale_commitment_date_mandatory](sale_commitment_date_mandatory/) | 14.0.1.1.0 |  | Set commitment data mandatory and don't allowto add lines unless this field is filled
 [sale_company_currency](sale_company_currency/) | 14.0.1.0.1 |  | Company Currency in Sale Orders
 [sale_contact_type](sale_contact_type/) | 14.0.1.0.0 |  | Define ordering contact type
-[sale_coupon_order_discount_fast_change_ui](sale_coupon_order_discount_fast_change_ui/) | 14.0.1.0.0 |  | This module adds an option related to the reward lines to the Sale Order Discount Fast Change UI module
+[sale_coupon_order_discount_fast_change_ui](sale_coupon_order_discount_fast_change_ui/) | 14.0.1.0.1 |  | This module adds an option related to the reward lines to the Sale Order Discount Fast Change UI module
 [sale_default_uom](sale_default_uom/) | 14.0.1.1.1 | <a href='https://github.com/ashishhirapara'><img src='https://github.com/ashishhirapara.png' width='32' height='32' style='border-radius:50%;' alt='ashishhirapara'/></a> | Set default Unit of Measure value of a product in sales order lines.
 [sale_delivery_date](sale_delivery_date/) | 14.0.1.1.0 | <a href='https://github.com/mmequignon'><img src='https://github.com/mmequignon.png' width='32' height='32' style='border-radius:50%;' alt='mmequignon'/></a> | Postpones delivery dates based on customer preferences, and/or warehouse configuration.
 [sale_delivery_split_date](sale_delivery_split_date/) | 14.0.1.0.1 |  | Sale Deliveries split by date
