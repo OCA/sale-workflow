@@ -1,0 +1,1 @@
+Adds a config option to make the payment terms on sale orders computed based on the "invoice address" (`partner_invoice_id`) instead of the "customer" (`partner_id`).

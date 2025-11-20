@@ -1,0 +1,1 @@
+from . import test_sale_order_payment_terms_from_invoice_address
