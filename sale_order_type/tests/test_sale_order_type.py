@@ -368,3 +368,52 @@ class TestSaleOrderType(BaseCommon):
             order.order_line[0].analytic_distribution,
             {str(self.analytic_account.id): 100.0},
         )
+
+    def test_credit_note_preserves_sale_type_from_sale_order(self):
+        """Test credit notes preserve sale order type.
+
+        When creating a credit note (refund) from an invoice that originated
+        from a sale order, the sale_type_id from the sale order should be
+        maintained and not overridden by the partner's default sale type.
+        """
+        # Create a test partner with a specific default sale type
+        test_partner = self.env["res.partner"].create(
+            {
+                "name": "Test Partner",
+                "sale_type": self.sale_type_quot.id,
+            }
+        )
+        # Create and confirm a sale order with a DIFFERENT sale type
+        # than partner's default
+        sale_form = Form(self.env["sale.order"])
+        sale_form.partner_id = test_partner
+        sale_form.type_id = self.sale_type
+        with sale_form.order_line.new() as order_line:
+            order_line.product_id = self.product
+        sale_order = sale_form.save()
+        sale_order.action_confirm()
+        invoice = sale_order._create_invoices()
+        invoice.action_post()
+        # Create a credit note (refund) from the invoice
+        refund_wizard = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=invoice.ids)
+            .create(
+                {
+                    "reason": "Test refund",
+                    "journal_id": invoice.journal_id.id,
+                }
+            )
+        )
+        refund_action = refund_wizard.refund_moves()
+        credit_note = self.env["account.move"].browse(refund_action["res_id"])
+        # CRITICAL ASSERTION: Credit note should preserve the sale order's type,
+        # NOT default to the partner's sale type
+        self.assertEqual(
+            credit_note._origin.sale_type_id,
+            sale_order.type_id,
+            "Credit note should preserve sale type from sale order "
+            f"(expected: {sale_order.type_id.name}), "
+            "not use partner's default sale type "
+            f"(partner has: {sale_order.partner_id.sale_type.name})",
+        )
