@@ -5,7 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -68,7 +68,7 @@ class SaleOrderLine(models.Model):
         # FIXME: see https://github.com/OCA/sale-workflow/issues/3649
         if any(rec.discounting_type == "additive" for rec in self):
             raise ValidationError(
-                _(
+                self.env._(
                     "Additive discount type is not fully implemented."
                     " See https://github.com/OCA/sale-workflow/issues/3649 "
                 )
@@ -82,8 +82,12 @@ class SaleOrderLine(models.Model):
             return self._multiplicative_discount()
         else:
             raise ValidationError(
-                _("Sale order line %(name)s has unknown discounting type %(dic_type)s")
-                % {"name": self.name, "disc_type": self.discounting_type}
+                self.env._(
+                    "Sale order line %(name)s has unknown discounting type "
+                    "%(disc_type)s",
+                    name=self.name,
+                    disc_type=self.discounting_type,
+                )
             )
 
     def _additive_discount(self):
@@ -129,23 +133,18 @@ class SaleOrderLine(models.Model):
         self._inverse_discount()
         return True
 
-    _sql_constraints = [
-        (
-            "discount1_limit",
-            "CHECK (discount1 <= 100.0)",
-            "Discount 1 must be lower or equal than 100%.",
-        ),
-        (
-            "discount2_limit",
-            "CHECK (discount2 <= 100.0)",
-            "Discount 2 must be lower or equal than 100%.",
-        ),
-        (
-            "discount3_limit",
-            "CHECK (discount3 <= 100.0)",
-            "Discount 3 must be lower or equal than 100%.",
-        ),
-    ]
+    _discount1_limit = models.Constraint(
+        "CHECK (discount1 <= 100.0)",
+        "Discount 1 must be lower or equal than 100%.",
+    )
+    _discount2_limit = models.Constraint(
+        "CHECK (discount2 <= 100.0)",
+        "Discount 2 must be lower or equal than 100%.",
+    )
+    _discount3_limit = models.Constraint(
+        "CHECK (discount3 <= 100.0)",
+        "Discount 3 must be lower or equal than 100%.",
+    )
 
     def _prepare_invoice_line(self, **kwargs):
         """
@@ -166,7 +165,7 @@ class SaleOrderLine(models.Model):
     def create(self, vals_list):
         order_lines = super().create(vals_list)
         lines_to_discount = order_lines
-        for line, vals in zip(order_lines, vals_list, strict=True):
+        for line, vals in zip(order_lines, vals_list, strict=False):
             if (line.discount != 0.0 or line.discount1 != 0.0) or (
                 line.discount == 0.0
                 and line.discount1 == 0.0

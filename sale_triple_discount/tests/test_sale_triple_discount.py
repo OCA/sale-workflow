@@ -15,7 +15,7 @@ class TestSaleOrder(common.TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env.user.groups_id += cls.env.ref("sale.group_discount_per_so_line")
+        cls.env.user.group_ids += cls.env.ref("sale.group_discount_per_so_line")
         cls.partner = cls.env["res.partner"].create({"name": "Mr. Odoo"})
         cls.product1 = cls.env["product.product"].create(
             {"name": "Test Product 1", "type": "service", "invoice_policy": "order"}
@@ -39,7 +39,7 @@ class TestSaleOrder(common.TransactionCase):
                 "product_id": cls.product1.id,
                 "name": "Line 1",
                 "product_uom_qty": 1.0,
-                "tax_id": [(6, 0, [cls.tax.id])],
+                "tax_ids": [(6, 0, [cls.tax.id])],
                 "price_unit": 600.0,
             }
         )
@@ -49,7 +49,7 @@ class TestSaleOrder(common.TransactionCase):
                 "product_id": cls.product2.id,
                 "name": "Line 2",
                 "product_uom_qty": 10.0,
-                "tax_id": [(6, 0, [cls.tax.id])],
+                "tax_ids": [(6, 0, [cls.tax.id])],
                 "price_unit": 60.0,
             }
         )
@@ -93,7 +93,7 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.order.amount_untaxed, 450.0)
         self.assertAlmostEqual(self.order.amount_tax, 67.5)
         # Mix taxed and untaxed:
-        self.so_line1.tax_id = False
+        self.so_line1.tax_ids = False
         self.assertAlmostEqual(self.order.amount_tax, 22.5)
         self._test_invoice_discount()
 
