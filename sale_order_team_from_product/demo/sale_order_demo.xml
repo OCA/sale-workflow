@@ -1,0 +1,77 @@
+<odoo>
+    <record id="crm_team_from_product_demo" model="crm.team">
+        <field name="name">Team from Product (Demo)</field>
+        <field name="company_id" ref="base.main_company" />
+    </record>
+
+    <record id="product_team_from_product_tmpl_1" model="product.template">
+        <field name="name">Team From Product A</field>
+        <field name="type">service</field>
+        <field name="list_price">10.0</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field
+            name="sales_team_id"
+            ref="sale_order_team_from_product.crm_team_from_product_demo"
+        />
+    </record>
+
+    <record id="product_team_from_product_tmpl_2" model="product.template">
+        <field name="name">Team From Product B</field>
+        <field name="type">service</field>
+        <field name="list_price">20.0</field>
+        <field name="uom_id" ref="uom.product_uom_unit" />
+        <field name="uom_po_id" ref="uom.product_uom_unit" />
+        <field
+            name="sales_team_id"
+            ref="sale_order_team_from_product.crm_team_from_product_demo"
+        />
+    </record>
+
+    <function model="ir.model.data" name="_update_xmlids">
+        <value
+            model="product.product"
+            eval="[
+            {
+                'xml_id': 'sale_order_team_from_product.product_team_from_product_1',
+                'record': obj().env.ref('sale_order_team_from_product.product_team_from_product_tmpl_1').product_variant_id,
+            },
+            {
+                'xml_id': 'sale_order_team_from_product.product_team_from_product_2',
+                'record': obj().env.ref('sale_order_team_from_product.product_team_from_product_tmpl_2').product_variant_id,
+            },
+        ]"
+        />
+    </function>
+
+    <record id="sale_order_demo_team_from_product" model="sale.order">
+        <field name="partner_id" ref="base.res_partner_2" />
+        <field name="partner_invoice_id" ref="base.res_partner_2" />
+        <field name="partner_shipping_id" ref="base.res_partner_2" />
+        <field name="user_id" ref="base.user_demo" />
+        <field
+            name="team_id"
+            ref="sale_order_team_from_product.crm_team_from_product_demo"
+        />
+        <field name="source_id" ref="sale.utm_source_sale_order_0" />
+        <field name="client_order_ref">Demo - Sales Team from Product</field>
+    </record>
+
+    <record id="sale_order_line_demo_team_product_1" model="sale.order.line">
+        <field name="order_id" ref="sale_order_demo_team_from_product" />
+        <field
+            name="product_id"
+            ref="sale_order_team_from_product.product_team_from_product_1"
+        />
+        <field name="product_uom_qty">1.0</field>
+    </record>
+
+    <record id="sale_order_line_demo_team_product_2" model="sale.order.line">
+        <field name="order_id" ref="sale_order_demo_team_from_product" />
+        <field
+            name="product_id"
+            ref="sale_order_team_from_product.product_team_from_product_2"
+        />
+        <field name="product_uom_qty">1.0</field>
+    </record>
+</odoo>

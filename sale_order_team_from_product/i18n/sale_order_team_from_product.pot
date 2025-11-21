@@ -1,0 +1,81 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_team_from_product
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-21 16:59+0000\n"
+"PO-Revision-Date: 2025-11-21 16:59+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_team_from_product
+#: model_terms:ir.ui.view,arch_db:sale_order_team_from_product.res_config_settings_view_form_sale_order_team_from_product
+msgid ""
+"<span class=\"text-muted\">\n"
+"                                Do not override an already set Sales Team\n"
+"                                on the quotation.\n"
+"                            </span>"
+msgstr ""
+
+#. module: sale_order_team_from_product
+#: model:ir.model,name:sale_order_team_from_product.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_team_from_product
+#: model:ir.model.fields,help:sale_order_team_from_product.field_res_config_settings__skip_sales_team_if_set
+msgid ""
+"If enabled, the Sales Team from products will not override an already set "
+"Sales Team on the quotation."
+msgstr ""
+
+#. module: sale_order_team_from_product
+#: model:ir.model.fields,help:sale_order_team_from_product.field_res_config_settings__set_sales_team_from_products
+msgid ""
+"If enabled, the Sales Team on a quotation will be set based on the Sales "
+"Team defined on the products."
+msgstr ""
+
+#. module: sale_order_team_from_product
+#: model:ir.model,name:sale_order_team_from_product.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_team_from_product
+#: model:ir.model.fields,field_description:sale_order_team_from_product.field_res_config_settings__set_sales_team_from_products
+#: model_terms:ir.ui.view,arch_db:sale_order_team_from_product.res_config_settings_view_form_sale_order_team_from_product
+msgid "Set sales team from products"
+msgstr ""
+
+#. module: sale_order_team_from_product
+#: model_terms:ir.ui.view,arch_db:sale_order_team_from_product.res_config_settings_view_form_sale_order_team_from_product
+msgid ""
+"Set the Sales Team on quotations from the Sales Team defined on products."
+msgstr ""
+
+#. module: sale_order_team_from_product
+#: model:ir.model.fields,field_description:sale_order_team_from_product.field_res_config_settings__skip_sales_team_if_set
+msgid "Skip if team is already set"
+msgstr ""
+
+#. module: sale_order_team_from_product
+#: model:crm.team,name:sale_order_team_from_product.crm_team_from_product_demo
+msgid "Team from Product (Demo)"
+msgstr ""
+
+#. module: sale_order_team_from_product
+#: model:product.template,name:sale_order_team_from_product.product_product_2_product_template
+msgid "Virtual Home Staging"
+msgstr ""
+
+#. module: sale_order_team_from_product
+#: model:product.template,name:sale_order_team_from_product.product_product_1_product_template
+msgid "Virtual Interior Design"
+msgstr ""
