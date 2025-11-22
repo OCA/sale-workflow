@@ -49,7 +49,8 @@ class SaleImportProducts(models.TransientModel):
         # First get the product's base price
         price = item.product_id.list_price
 
-        # Get applicable pricelist and calculate price (considering quantity and customer)
+        # Get applicable pricelist and calculate price
+        # (considering quantity and customer)
         if sale.pricelist_id:
             price = sale.pricelist_id._get_product_price(
                 item.product_id, item.quantity, sale.partner_id
