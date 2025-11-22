@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import odoo.tests.common as common
-from odoo.exceptions import UserError
 
 
 class TestCoverageImprovement(common.TransactionCase):
@@ -28,16 +27,20 @@ class TestCoverageImprovement(common.TransactionCase):
         """Test _get_line_values method with pricelist pricing"""
         # Create a partner and pricelist
         partner = self.env.ref("base.res_partner_2")
-        pricelist = self.env["product.pricelist"].create({
-            "name": "Test Pricelist",
-            "currency_id": self.env.ref("base.EUR").id,
-        })
-        
+        pricelist = self.env["product.pricelist"].create(
+            {
+                "name": "Test Pricelist",
+                "currency_id": self.env.ref("base.EUR").id,
+            }
+        )
+
         # Create a sale order with pricelist
-        so = self.env["sale.order"].create({
-            "partner_id": partner.id,
-            "pricelist_id": pricelist.id,
-        })
+        so = self.env["sale.order"].create(
+            {
+                "partner_id": partner.id,
+                "pricelist_id": pricelist.id,
+            }
+        )
 
         # Create wizard
         wizard = self.env["sale.import.products"].create(
