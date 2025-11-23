@@ -25,7 +25,6 @@ class ResPartner(models.Model):
                 self.env.company.use_partner_pricelist
                 and partner.commercial_partner_id.allowed_pricelist_ids
                 and partner.commercial_partner_id.property_product_pricelist
-                and partner.commercial_partner_id.property_product_pricelist
                 not in partner.commercial_partner_id.allowed_pricelist_ids
             ):
                 raise ValidationError(

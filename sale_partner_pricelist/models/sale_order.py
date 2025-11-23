@@ -17,25 +17,25 @@ class SaleOrder(models.Model):
 
     @api.depends("partner_id")
     def _compute_partner_allowed_pricelist_ids(self):
-        for rec in self:
+        for record in self:
             if (
-                rec.partner_id
-                and rec.partner_id.commercial_partner_id.allowed_pricelist_ids
+                record.partner_id
+                and record.partner_id.commercial_partner_id.allowed_pricelist_ids
             ):
-                rec.partner_allowed_pricelist_ids = (
-                    rec.partner_id.commercial_partner_id.allowed_pricelist_ids
+                record.partner_allowed_pricelist_ids = (
+                    record.partner_id.commercial_partner_id.allowed_pricelist_ids
                 )
             else:
-                rec.partner_allowed_pricelist_ids = self.env[
+                record.partner_allowed_pricelist_ids = self.env[
                     "product.pricelist"
                 ].search([])
 
     @api.constrains("pricelist_id")
     def _check_allowed_pricelist(self):
-        for rec in self:
+        for record in self:
             if (
-                self.company_id.use_partner_pricelist
-                and rec.pricelist_id not in rec.partner_allowed_pricelist_ids
+                record.company_id.use_partner_pricelist
+                and record.pricelist_id not in record.partner_allowed_pricelist_ids
             ):
                 raise ValidationError(
                     _("The selected Pricelist is not allowed for this Partner.")

@@ -11,3 +11,9 @@ class ResConfigSettings(models.TransientModel):
         related="company_id.use_partner_pricelist",
         readonly=False,
     )
+
+    def set_values(self):
+        super().set_values()
+        if self.use_partner_pricelist and not self.group_product_pricelist:
+            self.group_product_pricelist = True
+        return

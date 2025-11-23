@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
 
 from odoo.exceptions import ValidationError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests.common import TransactionCase
 
 
 class TestResPartner(TransactionCase):
@@ -39,10 +39,12 @@ class TestResPartner(TransactionCase):
             self.partner.property_product_pricelist = self.pricelist_2
 
     def test_02_sale_order_constraint(self):
-        order = Form(self.env["sale.order"])
-        order.partner_id = self.partner
-        order.pricelist_id = self.pricelist_2
         with self.assertRaisesRegex(
             ValidationError, "The selected Pricelist is not allowed for this Partner."
         ):
-            order.save()
+            self.env["sale.order"].create(
+                {
+                    "partner_id": self.partner.id,
+                    "pricelist_id": self.pricelist_2.id,
+                }
+            )

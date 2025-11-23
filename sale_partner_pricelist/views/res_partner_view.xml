@@ -13,7 +13,7 @@
                     name="allowed_pricelist_ids"
                     widget="many2many_tags"
                     options="{'no_create': True}"
-                    attrs="{'invisible': [('is_company','=',False),('parent_id','!=',False)]}"
+                    invisible="not is_company and parent_id"
                 />
                 </xpath>
             </field>
