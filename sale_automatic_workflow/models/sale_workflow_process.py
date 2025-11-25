@@ -47,7 +47,7 @@ class SaleWorkflowProcess(models.Model):
     )
     invoice_date_is_order_date = fields.Boolean(
         string="Force Invoice Date",
-        help="When checked, the invoice date will be " "the same than the order's date",
+        help="When checked, the invoice date will be the same than the order's date",
     )
 
     invoice_service_delivery = fields.Boolean(
@@ -90,7 +90,7 @@ class SaleWorkflowProcess(models.Model):
         "ir.filters",
         string="Validate Invoice Filter",
         default=lambda self: self._default_filter(
-            "sale_automatic_workflow." "automatic_workflow_validate_invoice_filter"
+            "sale_automatic_workflow.automatic_workflow_validate_invoice_filter"
         ),
     )
     sale_done_filter_id = fields.Many2one(
