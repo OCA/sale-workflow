@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import ValidationError
+from odoo.fields import Command
 from odoo.tests import Form
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -11,7 +12,9 @@ class TestSaleFixedDiscount(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env.user.groups_id |= cls.env.ref("sale.group_discount_per_so_line")
+        cls.env.user.group_ids = [
+            Command.link(cls.env.ref("sale.group_discount_per_so_line").id)
+        ]
         cls.partner = cls.env["res.partner"].create({"name": "Test"})
         cls.tax = cls.env["account.tax"].create(
             {
@@ -38,7 +41,7 @@ class TestSaleFixedDiscount(BaseCommon):
                 "price_unit": 200.0,
                 "product_uom_qty": 1,
                 "product_id": cls.product.id,
-                "tax_id": [(6, 0, [cls.tax.id])],
+                "tax_ids": [Command.set([cls.tax.id])],
             }
         )
 

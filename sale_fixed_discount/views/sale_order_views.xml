@@ -3,7 +3,6 @@
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="view_order_form" model="ir.ui.view">
-        <field name="name">sale.order.form - sale_fixed_discount</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
@@ -11,13 +10,21 @@
                 expr="//field[@name='order_line']/form//label[@for='discount']"
                 position="before"
             >
-                <field name="discount_fixed" groups="sale.group_discount_per_so_line" />
+                <field
+                    name="discount_fixed"
+                    optional="show"
+                    groups="sale.group_discount_per_so_line"
+                />
             </xpath>
             <xpath
                 expr="//field[@name='order_line']/list/field[@name='discount']"
                 position="before"
             >
-                <field name="discount_fixed" groups="sale.group_discount_per_so_line" />
+                <field
+                    name="discount_fixed"
+                    optional="show"
+                    groups="sale.group_discount_per_so_line"
+                />
             </xpath>
         </field>
     </record>

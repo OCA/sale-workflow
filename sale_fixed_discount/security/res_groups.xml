@@ -3,7 +3,7 @@
     <record id="sale.group_discount_per_so_line" model="res.groups">
         <field
             name="implied_ids"
-            eval="[(4, ref('account_invoice_fixed_discount.group_fixed_discount'))]"
+            eval="[Command.link(ref('account_invoice_fixed_discount.group_fixed_discount'))]"
         />
     </record>
 </odoo>
