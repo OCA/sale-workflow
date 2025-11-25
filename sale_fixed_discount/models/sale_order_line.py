@@ -64,7 +64,7 @@ class SaleOrderLine(models.Model):
             return self.env["account.tax"]._prepare_base_line_for_taxes_computation(
                 self,
                 **{
-                    "tax_ids": self.tax_id,
+                    "tax_ids": self.tax_ids,
                     "quantity": self.product_uom_qty,
                     "partner_id": self.order_id.partner_id,
                     "currency_id": self.order_id.currency_id
