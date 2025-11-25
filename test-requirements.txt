@@ -1,0 +1,1 @@
+odoo-addon-account_invoice_fixed_discount @ git+https://github.com/OCA/account-invoicing.git@refs/pull/2174/head#subdirectory=account_invoice_fixed_discount
