@@ -3,12 +3,13 @@
   Copyright (C) 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
   License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 -->
+<!-- pylint: disable=xml-dangerous-filter-wo-user -->
 <odoo noupdate="1">
     <record id="automatic_workflow_order_filter" model="ir.filters">
         <field name="name">Automatic Workflow Order Filter</field>
         <field name="model_id">sale.order</field>
         <field name="domain">[('state', '=', 'draft')]</field>
-        <field name="user_id" ref="base.user_root" />
+        <field name="user_ids" eval="[(4, ref('base.user_root'))]" />
     </record>
     <record id="automatic_workflow_create_invoice_filter" model="ir.filters">
         <field name="name">Automatic Workflow Create Invoice Filter</field>
@@ -16,7 +17,7 @@
         <field
             name="domain"
         >[('state','=','sale'), ('locked', '=', False), ('invoice_status','=','to invoice')]</field>
-        <field name="user_id" ref="base.user_root" />
+        <field name="user_ids" eval="[(4, ref('base.user_root'))]" />
     </record>
     <record id="automatic_workflow_validate_invoice_filter" model="ir.filters">
         <field name="name">Automatic Workflow Validate Invoice Filter</field>
@@ -24,7 +25,7 @@
         <field
             name="domain"
         >[('state', '=', 'draft'), ('posted_before', '=', False)]</field>
-        <field name="user_id" ref="base.user_root" />
+        <field name="user_ids" eval="[(4, ref('base.user_root'))]" />
     </record>
     <record id="automatic_workflow_sale_done_filter" model="ir.filters">
         <field name="name">Automatic Workflow Sale Done Filter</field>
@@ -32,7 +33,7 @@
         <field
             name="domain"
         >[('state', '=', 'sale'), ('locked', '=', False), ('invoice_status','=','invoiced')]</field>
-        <field name="user_id" ref="base.user_root" />
+        <field name="user_ids" eval="[(4, ref('base.user_root'))]" />
     </record>
     <record id="automatic_workflow_payment_filter" model="ir.filters">
         <field name="name">Automatic Workflow Payment Filter</field>
@@ -40,26 +41,26 @@
         <field
             name="domain"
         >[('state', '=', 'posted'), ('move_type', '=', 'out_invoice'), ('payment_state','!=','paid')]</field>
-        <field name="user_id" ref="base.user_root" />
+        <field name="user_ids" eval="[(4, ref('base.user_root'))]" />
     </record>
     <record id="automatic_validation" model="sale.workflow.process">
         <field name="name">Automatic</field>
         <field name="validate_order" eval="1" />
         <field name="send_order_confirmation_mail" eval="1" />
-        <field name="order_filter_id" eval="automatic_workflow_order_filter" />
+        <field name="order_filter_id" ref="automatic_workflow_order_filter" />
         <field name="create_invoice" eval="1" />
         <field
             name="create_invoice_filter_id"
-            eval="automatic_workflow_create_invoice_filter"
+            ref="automatic_workflow_create_invoice_filter"
         />
         <field name="validate_invoice" eval="1" />
         <field
             name="validate_invoice_filter_id"
-            eval="automatic_workflow_validate_invoice_filter"
+            ref="automatic_workflow_validate_invoice_filter"
         />
         <field name="invoice_date_is_order_date" eval="0" />
         <field name="sale_done" eval="0" />
-        <field name="sale_done_filter_id" eval="automatic_workflow_sale_done_filter" />
+        <field name="sale_done_filter_id" ref="automatic_workflow_sale_done_filter" />
         <field name="register_payment" eval="0" />
         <field name="payment_filter_id" ref="automatic_workflow_payment_filter" />
         <field
@@ -71,16 +72,16 @@
         <field name="validate_order" eval="0" />
         <field name="validate_invoice" eval="0" />
         <field name="invoice_date_is_order_date" eval="0" />
-        <field name="order_filter_id" eval="automatic_workflow_order_filter" />
+        <field name="order_filter_id" ref="automatic_workflow_order_filter" />
         <field
             name="create_invoice_filter_id"
-            eval="automatic_workflow_create_invoice_filter"
+            ref="automatic_workflow_create_invoice_filter"
         />
         <field
             name="validate_invoice_filter_id"
-            eval="automatic_workflow_validate_invoice_filter"
+            ref="automatic_workflow_validate_invoice_filter"
         />
-        <field name="sale_done_filter_id" eval="automatic_workflow_sale_done_filter" />
+        <field name="sale_done_filter_id" ref="automatic_workflow_sale_done_filter" />
         <field name="register_payment" eval="0" />
         <field name="payment_filter_id" ref="automatic_workflow_payment_filter" />
     </record>

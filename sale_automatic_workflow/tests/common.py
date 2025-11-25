@@ -42,7 +42,7 @@ class TestAutomaticWorkflowMixin:
                     {
                         "name": product.name,
                         "product_id": product.id,
-                        "product_uom": self.product_uom_unit.id,
+                        "product_uom_id": self.product_uom_unit.id,
                         "price_unit": product.list_price,
                         "product_uom_qty": 1,
                     },
@@ -185,7 +185,7 @@ class TestMultiCompanyCommon(AccountTestInvoicingCommon):
                             "product_id": product.id,
                             "price_unit": product.list_price,
                             "product_uom_qty": qty,
-                            "product_uom": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                         },
                     )
                 ],
