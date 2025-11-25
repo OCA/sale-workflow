@@ -31,8 +31,7 @@ class AutomaticWorkflowJob(models.Model):
 
     _name = "automatic.workflow.job"
     _description = (
-        "Scheduler that will play automatically the validation of"
-        " invoices, pickings..."
+        "Scheduler that will play automatically the validation of invoices, pickings..."
     )
 
     def _do_validate_sale_order(self, sale, domain_filter):
