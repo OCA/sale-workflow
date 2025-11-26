@@ -2,7 +2,6 @@
 <!-- Copyright 2020 ACSONE SA/NV
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record model="ir.ui.view" id="sale_order_form_view">
         <field
             name="name"
@@ -10,10 +9,10 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock" />
         <field name="arch" type="xml">
-            <field name="warehouse_id" position="before">
+            <xpath expr="//group[@name='sale_shipping']" position="inside">
                 <field name="picking_validation_blocked" />
                 <field name="hide_button_picking_validation_blocked" invisible="True" />
-            </field>
+            </xpath>
             <button name="action_draft" position="after">
                 <button
                     name="action_block_picking_validation"
@@ -32,5 +31,4 @@
             </button>
         </field>
     </record>
-
 </odoo>

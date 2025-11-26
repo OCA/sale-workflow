@@ -19,8 +19,8 @@
                 >
                     <div
                     >Warning: The validation of this picking is prevented by sale order <field
-                            name="sale_id"
-                        />.</div>
+                        name="sale_id"
+                    />.</div>
                 </div>
             </xpath>
         </field>
