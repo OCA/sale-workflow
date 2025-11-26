@@ -58,5 +58,4 @@ class TestSaleOrderLineCancelBase(TransactionCase):
     def _add_done_sale_order(cls, **kwargs):
         so = cls._create_sale_order(**kwargs)
         so.action_confirm()
-        so.action_done()
         return so
