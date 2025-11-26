@@ -2,7 +2,7 @@
 #   (http://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -22,7 +22,9 @@ class SaleOrder(models.Model):
         auto_done = self.env.user.has_group("sale.group_auto_done_setting")
         if auto_done and any(so.delivery_block_id for so in self):
             raise ValidationError(
-                _('You cannot block a sale order with "auto_done_setting" active.')
+                self.env._(
+                    'You cannot block a sale order with "auto_done_setting" active.'
+                )
             )
 
     @api.depends("partner_id", "payment_term_id")
@@ -45,17 +47,3 @@ class SaleOrder(models.Model):
         order_to_unblock.write({"delivery_block_id": False})
         order_to_unblock.order_line._action_launch_stock_rule()
         return True
-
-    def copy(self, default=None):
-        new_so = super().copy(default=default)
-        for so in new_so:
-            if so.partner_id.default_delivery_block and not so.delivery_block_id:
-                so.delivery_block_id = so.partner_id.default_delivery_block
-            elif (
-                so.payment_term_id.default_delivery_block_reason_id
-                and not so.delivery_block_id
-            ):
-                so.delivery_block_id = (
-                    so.payment_term_id.default_delivery_block_reason_id
-                )
-        return new_so
