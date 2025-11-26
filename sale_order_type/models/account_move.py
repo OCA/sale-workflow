@@ -27,7 +27,9 @@ class AccountMove(models.Model):
             "active_model", False
         ) in ["sale.order", "sale.advance.payment.inv"]:
             return
-        sale_type = self.env["sale.order.type"].browse()
+        sale_type = self.env["sale.order.type"].search(
+            [("company_id", "in", [self.env.company.id, False])], limit=1
+        )
         self.sale_type_id = sale_type
         for record in self:
             if record.move_type not in ["out_invoice", "out_refund"]:

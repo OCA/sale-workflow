@@ -70,7 +70,9 @@ class SaleOrder(models.Model):
             )
             # Default user sale type value
             if not sale_type:
-                sale_type = record.default_get(["type_id"]).get("type_id", False)
+                type_id = record.default_get(["type_id"]).get("type_id", False)
+                if type_id:
+                    sale_type = record.env["sale.order.type"].browse(type_id)
             # Get first sale type value
             if not sale_type:
                 sale_type = record._default_type_id()
