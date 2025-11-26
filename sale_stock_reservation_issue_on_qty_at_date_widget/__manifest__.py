@@ -6,7 +6,7 @@
     "summary": (
         "Warn user when a reservation issue will " "happen when confirming an order"
     ),
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.0.1",
     "development_status": "Alpha",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
