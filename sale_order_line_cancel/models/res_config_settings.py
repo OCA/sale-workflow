@@ -7,5 +7,7 @@ class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
 
     on_sale_line_cancel_decrease_line_qty = fields.Boolean(
-        related="company_id.on_sale_line_cancel_decrease_line_qty", readonly=False
+        string="Decrease Line Quantity on Cancel",
+        related="company_id.on_sale_line_cancel_decrease_line_qty",
+        readonly=False
     )

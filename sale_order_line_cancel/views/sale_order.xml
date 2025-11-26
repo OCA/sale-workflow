@@ -15,20 +15,20 @@
                     icon="fa-ban"
                     colspan="2"
                     title="Cancel remaining qty"
-                    attrs="{'invisible': [('can_cancel_remaining_qty', '!=', True)]}"
+                    invisible="can_cancel_remaining_qty != True"
                 />
       </xpath>
       <xpath
                 expr="//field[@name='order_line']/tree/field[@name='qty_delivered']"
                 position="after"
             >
-        <field name="can_cancel_remaining_qty" invisible="1" />
+        <field name="can_cancel_remaining_qty" column_invisible="1" />
         <button
                     name="%(action_sale_order_line_cancel)d"
                     type="action"
                     icon="fa-ban"
                     title="Cancel remaining qty"
-                    attrs="{'invisible': [('can_cancel_remaining_qty', '!=', True)]}"
+                    invisible="can_cancel_remaining_qty != True"
                 />
       </xpath>
       <xpath
@@ -41,8 +41,8 @@
         <!-- show cancel button at done state as we expect auto-locking to be enabled -->
         <xpath expr="//button[@name='action_cancel']" position="attributes">
             <attribute
-                    name="attrs"
-                >{'invisible': ['|', ('state', 'not in', ['draft', 'sent','sale', 'done']), ('id', '=', False)]}</attribute>
+                    name="invisible"
+                >state not in ['draft', 'sent','sale', 'done'] or id == False</attribute>
         </xpath>
     </field>
   </record>

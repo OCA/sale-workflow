@@ -3,7 +3,8 @@
 from odoo.tools.sql import column_exists
 
 
-def pre_init_hook(cr):
+def pre_init_hook(env):
+    cr = env.cr
     if not column_exists(cr, "sale_order_line", "product_qty_remains_to_deliver"):
         cr.execute(
             "ALTER TABLE sale_order_line ADD COLUMN product_qty_remains_to_deliver NUMERIC"

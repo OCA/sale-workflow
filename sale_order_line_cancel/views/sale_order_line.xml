@@ -13,7 +13,7 @@
                     type="action"
                     icon="fa-ban"
                     title="Cancel remaining qty"
-                    attrs="{'invisible': [('can_cancel_remaining_qty', '!=', True)]}"
+                    invisible="can_cancel_remaining_qty != True"
                 />
       </xpath>
     </field>
