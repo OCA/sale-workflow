@@ -5,7 +5,6 @@
     <!--License
     AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).-->
     <record id="view_payment_term_form" model="ir.ui.view">
-        <field name="name">account.payment.term.form</field>
         <field name="model">account.payment.term</field>
         <field name="inherit_id" ref="account.view_payment_term_form" />
         <field name="arch" type="xml">

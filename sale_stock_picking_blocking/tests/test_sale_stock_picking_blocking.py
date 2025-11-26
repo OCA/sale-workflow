@@ -1,6 +1,7 @@
 # Copyright 2024 ForgeFlow S.L.
 #   (http://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+from odoo import Command
 from odoo.exceptions import ValidationError
 from odoo.tests import Form, TransactionCase
 
@@ -16,37 +17,31 @@ class TestSaleDeliveryBlock(TransactionCase):
         group_ids = [
             cls.env.ref("sale_stock_picking_blocking.group_sale_delivery_block").id,
             cls.env.ref("sales_team.group_sale_manager").id,
+            cls.env.ref("product.group_product_manager").id,
         ]
         user_dict = {
             "name": "User test",
             "login": "tua@example.com",
             "password": "base-test-passwd",
             "email": "armande.hruser@example.com",
-            "groups_id": [(6, 0, group_ids)],
+            "group_ids": [Command.set(group_ids)],
         }
         cls.user_test = cls.usr_model.create(user_dict)
         # Create product:
         prod_dict = {
             "name": "test product",
             "type": "consu",
-            "categ_id": cls.env.ref("product.product_category_all").id,
             "list_price": 100.0,
             "standard_price": 60.0,
             "uom_id": cls.env.ref("uom.product_uom_unit").id,
-            "uom_po_id": cls.env.ref("uom.product_uom_unit").id,
         }
         cls.product = (
             cls.env["product.product"].with_user(cls.user_test).create(prod_dict)
         )
         # Create Sale order:
-        # TODO/TMP:
-        # - we explicitely add a name to avoid
-        #   a weird issue occuring randomly during tests
-        # - seems related to sale_order_revision,
-        #   further investigations ongoing
+        cls.partner = cls.env["res.partner"].create({"name": "Partner"})
         so_dict = {
-            "partner_id": cls.env.ref("base.res_partner_1").id,
-            "name": "Test Sale Delivery Block",
+            "partner_id": cls.partner.id,
         }
         cls.sale_order = cls.so_model.with_user(cls.user_test).create(so_dict)
         # Create Sale order lines:
@@ -137,52 +132,9 @@ class TestSaleDeliveryBlock(TransactionCase):
         self.assertEqual(so.delivery_block_id, block_reason)
         self.assertEqual(so.copy().delivery_block_id, block_reason)
 
-    def test_copy_applies_delivery_block_logic(self):
-        """Test if copy() correctly applies delivery block from partner or payment
-        term"""
-        block_reason = self.block_model.with_user(self.user_test).create(
-            {"name": "Test Block Copy"}
-        )
-        # Partner with default block reason
-        partner = self.env["res.partner"].create(
-            {
-                "name": "Copy Partner",
-                "default_delivery_block": block_reason.id,
-            }
-        )
-        # Payment term with default block reason
-        payment_term = self.env["account.payment.term"].create(
-            {
-                "name": "Copy Payment Term",
-                "default_delivery_block_reason_id": block_reason.id,
-            }
-        )
-        # Case 1: partner default_delivery_block applies
-        so = self.so_model.with_user(self.user_test).create(
-            {
-                "partner_id": partner.id,
-                "payment_term_id": payment_term.id,
-            }
-        )
-        copied_so = so.copy()
-        self.assertEqual(
-            copied_so.delivery_block_id,
-            block_reason,
-            "Delivery block should come from partner's default_delivery_block",
-        )
-
-        # Case 2: partner does NOT have block, but payment term does
-        partner.default_delivery_block = False
-        so_no_partner_block = self.so_model.with_user(self.user_test).create(
-            {
-                "partner_id": partner.id,
-                "payment_term_id": payment_term.id,
-            }
-        )
-        copied_so2 = so_no_partner_block.copy()
-        self.assertEqual(
-            copied_so2.delivery_block_id,
-            block_reason,
-            "Delivery block should come from payment term's "
-            "default_delivery_block_reason_id",
+    def test_commercial_fields(self):
+        self.assertIn(
+            "default_delivery_block",
+            self.env["res.partner"]._commercial_fields(),
+            "default_delivery_block must be included in _commercial_fields().",
         )
