@@ -9,5 +9,5 @@ class ResConfigSettings(models.TransientModel):
     on_sale_line_cancel_decrease_line_qty = fields.Boolean(
         string="Decrease Line Quantity on Cancel",
         related="company_id.on_sale_line_cancel_decrease_line_qty",
-        readonly=False
+        readonly=False,
     )

@@ -3,7 +3,7 @@
     <record id="res_config_settings_form_view" model="ir.ui.view">
         <field name="name">res.config.settings.form.view.sale.order.line.cancel</field>
         <field name="model">res.config.settings</field>
-        <field name="priority" eval="20"/>
+        <field name="priority" eval="20" />
         <field name="inherit_id" ref="sale.res_config_settings_view_form" />
         <field name="arch" type="xml">
             <xpath expr="//block[@id='user_default_rights']" position="after">

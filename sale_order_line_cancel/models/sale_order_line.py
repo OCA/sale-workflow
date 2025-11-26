@@ -57,7 +57,7 @@ class SaleOrderLine(models.Model):
             line.write(vals)
 
     def cancel_remaining_qty(self):
-        lines = self.filtered(lambda l: l.can_cancel_remaining_qty)
+        lines = self.filtered(lambda line: line.can_cancel_remaining_qty)
         lines._update_qty_canceled()
         for line in lines:
             line.order_id.message_post(
