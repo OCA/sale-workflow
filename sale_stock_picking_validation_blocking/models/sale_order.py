@@ -20,11 +20,10 @@ class SaleOrder(models.Model):
 
     @api.depends("picking_validation_blocked", "state", "delivery_count")
     def _compute_hide_picking_validation_blocked(self):
+        is_manager = self.env.user.has_group("sales_team.group_sale_manager")
         for rec in self:
             rec.hide_button_picking_validation_blocked = (
-                rec.state != "sale"
-                or not self.env.user.has_group("sales_team.group_sale_manager")
-                or rec.delivery_count == 0
+                rec.state != "sale" or not is_manager or rec.delivery_count == 0
             )
 
     def action_block_picking_validation(self):

@@ -18,6 +18,6 @@ class StockPicking(models.Model):
         for picking in self:
             if picking.validation_blocked_by_so:
                 raise ValidationError(
-                    _("Validation is blocked by SO for picking %s" % picking.name)
+                    _("Validation is blocked by SO for picking %s", picking.name)
                 )
         return super().button_validate()
