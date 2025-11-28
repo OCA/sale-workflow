@@ -62,13 +62,42 @@ class TestSaleOrder(TransactionCase):
         self.sale_order._compute_amount_company()
         amount_total_curr_rounded = round(self.sale_order.amount_total_curr, 2)
         amount_total_converted_rounded = round(
-            self.sale_order.amount_total * self.sale_order.currency_rate, 2
+            self.sale_order.amount_total / self.sale_order.currency_rate, 2
         )
         self.assertEqual(
             amount_total_curr_rounded,
             amount_total_converted_rounded,
             msg=(
                 "Amount in company currency should be converted "
-                "using the currency rate."
+                "using the currency rate (division, not multiplication)."
             ),
+        )
+
+    def test_03_amount_total_curr_conversion_logic(self):
+        """Test specific conversion logic to ensure division is used, not multiplication."""
+        # Set up a specific scenario to test the conversion logic
+        self.sale_order.currency_id = self.currency_eur
+        # Set a specific currency rate for testing
+        self.sale_order.currency_rate = 0.85  # 1 EUR = 0.85 USD
+        
+        # Calculate expected result: amount_total / currency_rate
+        expected_amount = self.sale_order.amount_total / 0.85
+        
+        self.sale_order._compute_amount_company()
+        
+        # Verify the conversion uses division, not multiplication
+        self.assertAlmostEqual(
+            self.sale_order.amount_total_curr,
+            expected_amount,
+            places=2,
+            msg="Conversion should use division (amount_total / rate), not multiplication."
+        )
+        
+        # Verify that multiplication would give a different (wrong) result
+        wrong_amount = self.sale_order.amount_total * 0.85
+        self.assertNotAlmostEqual(
+            self.sale_order.amount_total_curr,
+            wrong_amount,
+            places=2,
+            msg="Multiplication should give a different result than the correct division."
         )
