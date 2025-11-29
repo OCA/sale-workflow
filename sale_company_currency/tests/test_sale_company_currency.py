@@ -168,8 +168,17 @@ class TestSaleOrder(TransactionCase):
         )
 
         # Set different currency rates for both orders
-        # First, change the currency of the original order to force conversion
-        self.sale_order.currency_id = self.currency_eur
+        # First, change the currency of both orders to force conversion
+        # Check what currency the company uses
+        if self.company.currency_id == self.currency_usd:
+            # Company uses USD, so use EUR for both orders
+            self.sale_order.currency_id = self.currency_eur
+            sale_order_2.currency_id = self.currency_eur
+        else:
+            # Company uses something else, use USD for both orders
+            self.sale_order.currency_id = self.currency_usd
+            sale_order_2.currency_id = self.currency_usd
+
         self.sale_order.currency_rate = 0.85
         sale_order_2.currency_rate = 1.20
 
