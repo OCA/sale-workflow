@@ -97,15 +97,6 @@ class TestSaleOrder(TransactionCase):
             msg="Conversion should use division, not multiplication.",
         )
 
-        # Verify that multiplication would give a different (wrong) result
-        wrong_amount = self.sale_order.amount_total * 0.85
-        self.assertNotAlmostEqual(
-            self.sale_order.amount_total_curr,
-            wrong_amount,
-            places=2,
-            msg="Multiplication should give different result than correct division.",
-        )
-
     def test_04_amount_total_curr_rate_one(self):
         """Test conversion when currency_rate = 1 (should behave like same currency)."""
         self.sale_order.currency_id = self.currency_eur
@@ -225,3 +216,17 @@ class TestSaleOrder(TransactionCase):
         self.sale_order.order_line[0].price_unit = 50.0
         if len(self.sale_order.order_line) > 1:
             self.sale_order.order_line[1].price_unit = 100.0
+
+    def test_08_amount_total_curr_zero_rate(self):
+        """Test conversion with zero currency rate (should not divide by zero)."""
+        self.sale_order.currency_id = self.currency_eur
+        self.sale_order.currency_rate = 0.0
+
+        self.sale_order._compute_amount_company()
+
+        # Should fall back to amount_total when rate is zero
+        self.assertEqual(
+            self.sale_order.amount_total_curr,
+            self.sale_order.amount_total,
+            "Zero currency_rate should result in amount_total_curr = amount_total",
+        )

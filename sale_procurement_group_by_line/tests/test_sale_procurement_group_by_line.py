@@ -143,42 +143,34 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         self.assertEqual(self.sale.order_line[1].procurement_group_id, proc_group)
         self.assertEqual(len(self.line1.move_ids), 1)
 
-    def test_07_kit_product_no_procurement_error(self):
-        """Test that kit products don't cause TypeError in _action_launch_stock_rule.
+    def test_07_consumable_product_none_qty_handling(self):
+        """Test that _action_launch_stock_rule handles None qty values safely.
 
-        This test reproduces the bug described in issue #3890 where products
-        of type 'kit' could cause TypeError with None values
+        This test reproduces the bug described in issue #3890 where
+        _get_qty_procurement could return None, causing TypeError in float_compare
         """
-        # Create a kit product
-        kit_product = self.product_model.create(
+        # Create a consumable product (kits don't exist as product type in Odoo)
+        consu_product = self.product_model.create(
             {
-                "name": "Test Kit Product",
+                "name": "Test Consumable Product",
                 "categ_id": self.product_ctg.id,
-                "type": "kit",
-                "is_storable": True,
+                "type": "consu",  # Use valid consumable type
+                "is_storable": False,
             }
         )
 
-        # Add kit product to sale order
-        kit_line = self.order_line_model.create(
+        # Add consumable product to sale order
+        consu_line = self.order_line_model.create(
             {
                 "order_id": self.sale.id,
-                "product_id": kit_product.id,
+                "product_id": consu_product.id,
                 "product_uom_qty": 2.0,
-                "name": "Kit Product Line",
+                "name": "Consumable Product Line",
             }
         )
 
-        # This should not raise TypeError
-        try:
-            self.sale.action_confirm()
-            # If we get here, the bug is fixed
-            self.assertEqual(self.sale.state, "sale")
-            # Kit product should not have procurement group (skipped in our fix)
-            self.assertFalse(kit_line.procurement_group_id)
-        except TypeError as e:
-            if "unsupported operand type(s) for" in str(e):
-                self.fail(f"Bug #3890 reproduced: {e}")
-            else:
-                # Re-raise if it's a different TypeError
-                raise
+        # This should not raise TypeError even if _get_qty_procurement returns None
+        self.sale.action_confirm()
+        self.assertEqual(self.sale.state, "sale")
+        # Consumable products should get procurement groups
+        self.assertTrue(consu_line.procurement_group_id)

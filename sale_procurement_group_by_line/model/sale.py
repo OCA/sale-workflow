@@ -38,21 +38,40 @@ class SaleOrderLine(models.Model):
         groups = {}
         if not previous_product_uom_qty:
             previous_product_uom_qty = {}
+
+        # Process each line for procurement
+        procurements_data = self._prepare_procurement_data(
+            previous_product_uom_qty, precision, groups
+        )
+        procurements = procurements_data["procurements"]
+        previous_product_uom_qty = procurements_data["previous_product_uom_qty"]
+
+        if procurements:
+            self.env["procurement.group"].run(procurements)
+        # This next block is currently needed only because the scheduler trigger is done
+        # by picking confirmation rather than stock.move confirmation
+        orders = self.mapped("order_id")
+        for order in orders:
+            pickings_to_confirm = order.picking_ids.filtered(
+                lambda p: p.state not in ["cancel", "done"]
+            )
+            if pickings_to_confirm:
+                # Trigger the Scheduler for Pickings
+                pickings_to_confirm.action_confirm()
+        return super(
+            SaleOrderLine, self.with_context(sale_group_by_line=True)
+        )._action_launch_stock_rule(previous_product_uom_qty=previous_product_uom_qty)
+
+    def _prepare_procurement_data(self, previous_product_uom_qty, precision, groups):
+        """Prepare procurement data for sale order lines."""
+        procurements = []
         for line in self:
             line = line.with_company(line.company_id)
-            if (
-                line.state != "sale"
-                or line.order_id.locked
-                or line.product_id.type != "consu"
-            ):
+            if not self._should_process_line_for_procurement(line):
                 continue
 
             # Get quantity with safety for None values
             qty = line._get_qty_procurement(previous_product_uom_qty)
-
-            # Handle kit products: skip procurement for kits
-            if line.product_id.type == "kit":
-                continue
 
             # Ensure qty is not None
             qty_to_compare = qty or 0.0
@@ -116,18 +135,15 @@ class SaleOrderLine(models.Model):
             # We store the procured quantity in the UoM of the line to avoid
             # duplicated procurements, specially for dropshipping and kits.
             previous_product_uom_qty[line.id] = line.product_uom_qty
-        if procurements:
-            self.env["procurement.group"].run(procurements)
-        # This next block is currently needed only because the scheduler trigger is done
-        # by picking confirmation rather than stock.move confirmation
-        orders = self.mapped("order_id")
-        for order in orders:
-            pickings_to_confirm = order.picking_ids.filtered(
-                lambda p: p.state not in ["cancel", "done"]
-            )
-            if pickings_to_confirm:
-                # Trigger the Scheduler for Pickings
-                pickings_to_confirm.action_confirm()
-        return super(
-            SaleOrderLine, self.with_context(sale_group_by_line=True)
-        )._action_launch_stock_rule(previous_product_uom_qty=previous_product_uom_qty)
+        return {
+            "procurements": procurements,
+            "previous_product_uom_qty": previous_product_uom_qty,
+        }
+
+    def _should_process_line_for_procurement(self, line):
+        """Check if a sale order line should be processed for procurement."""
+        return not (
+            line.state != "sale"
+            or line.order_id.locked
+            or line.product_id.type != "consu"
+        )

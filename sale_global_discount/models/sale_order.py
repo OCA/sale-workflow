@@ -19,10 +19,9 @@ class SaleOrder(models.Model):
         store=True,
         readonly=False,
     )
-    # HACK: Looks like UI doesn't behave well with Many2many fields and
-    # negative groups when the same field is shown. In this case, we want to
-    # show the readonly version to any not in the global discount group.
-    # TODO: Check if it's fixed in future versions
+    # This pattern shows the editable version to users in the global discount group
+    # and the readonly version to users not in the group. This is the correct
+    # approach in Odoo 18.0+ as negative groups are properly supported.
     global_discount_ids_readonly = fields.Many2many(
         related="global_discount_ids",
         string="Sale Global Discounts (readonly)",
