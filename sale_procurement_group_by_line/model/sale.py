@@ -46,9 +46,24 @@ class SaleOrderLine(models.Model):
                 or line.product_id.type != "consu"
             ):
                 continue
-            qty = line._get_qty_procurement(previous_product_uom_qty) or 0.0
+
+            # Get quantity with safety for None values
+            qty = line._get_qty_procurement(previous_product_uom_qty)
+
+            # Handle kit products: skip procurement for kits
+            if line.product_id.type == "kit":
+                continue
+
+            # Ensure qty is not None
+            qty_to_compare = qty or 0.0
+            product_uom_qty_to_compare = line.product_uom_qty or 0.0
+
             if (
-                float_compare(qty, line.product_uom_qty, precision_digits=precision)
+                float_compare(
+                    qty_to_compare,
+                    product_uom_qty_to_compare,
+                    precision_digits=precision,
+                )
                 == 0
             ):
                 continue

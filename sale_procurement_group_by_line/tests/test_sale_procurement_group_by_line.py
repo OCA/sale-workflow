@@ -142,3 +142,43 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         self.sale.order_line[1].product_uom_qty += 1
         self.assertEqual(self.sale.order_line[1].procurement_group_id, proc_group)
         self.assertEqual(len(self.line1.move_ids), 1)
+
+    def test_07_kit_product_no_procurement_error(self):
+        """Test that kit products don't cause TypeError in _action_launch_stock_rule.
+
+        This test reproduces the bug described in issue #3890 where products
+        of type 'kit' could cause TypeError with None values
+        """
+        # Create a kit product
+        kit_product = self.product_model.create(
+            {
+                "name": "Test Kit Product",
+                "categ_id": self.product_ctg.id,
+                "type": "kit",
+                "is_storable": True,
+            }
+        )
+
+        # Add kit product to sale order
+        kit_line = self.order_line_model.create(
+            {
+                "order_id": self.sale.id,
+                "product_id": kit_product.id,
+                "product_uom_qty": 2.0,
+                "name": "Kit Product Line",
+            }
+        )
+
+        # This should not raise TypeError
+        try:
+            self.sale.action_confirm()
+            # If we get here, the bug is fixed
+            self.assertEqual(self.sale.state, "sale")
+            # Kit product should not have procurement group (skipped in our fix)
+            self.assertFalse(kit_line.procurement_group_id)
+        except TypeError as e:
+            if "unsupported operand type(s) for" in str(e):
+                self.fail(f"Bug #3890 reproduced: {e}")
+            else:
+                # Re-raise if it's a different TypeError
+                raise
