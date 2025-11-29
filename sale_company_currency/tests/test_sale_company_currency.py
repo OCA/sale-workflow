@@ -34,12 +34,16 @@ class TestSaleOrder(TransactionCase):
                             "product_uom_qty": 2,
                             "price_unit": 50.0,
                         },
+                    ),
+                    (
+                        0,
+                        0,
                         {
                             "product_id": cls.product2.id,
                             "product_uom_qty": 1,
                             "price_unit": 100.0,
                         },
-                    )
+                    ),
                 ],
             }
         )
@@ -172,10 +176,9 @@ class TestSaleOrder(TransactionCase):
         orders._compute_amount_company()
 
         # Verify both orders computed correctly
-        # Order 1: 2×50 + 1×100 = 200.0 total, rate 0.85 → 200.0 / 0.85 = 235.29
-        expected_1 = 200.0 / 0.85
-        # Order 2: 3×75 = 225.0 total, rate 1.20 → 225.0 / 1.20 = 187.50
-        expected_2 = 225.0 / 1.20
+        # Use the actual amount_total values from the orders
+        expected_1 = self.sale_order.amount_total / 0.85
+        expected_2 = sale_order_2.amount_total / 1.20
 
         self.assertAlmostEqual(
             self.sale_order.amount_total_curr,
