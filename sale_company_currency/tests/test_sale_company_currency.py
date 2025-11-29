@@ -172,8 +172,10 @@ class TestSaleOrder(TransactionCase):
         orders._compute_amount_company()
 
         # Verify both orders computed correctly
-        expected_1 = self.sale_order.amount_total / 0.85
-        expected_2 = sale_order_2.amount_total / 1.20
+        # Order 1: 2×50 + 1×100 = 200.0 total, rate 0.85 → 200.0 / 0.85 = 235.29
+        expected_1 = 200.0 / 0.85
+        # Order 2: 3×75 = 225.0 total, rate 1.20 → 225.0 / 1.20 = 187.50
+        expected_2 = 225.0 / 1.20
 
         self.assertAlmostEqual(
             self.sale_order.amount_total_curr,
@@ -192,9 +194,9 @@ class TestSaleOrder(TransactionCase):
         """Test edge cases like zero amount_total and extreme values."""
         self.sale_order.currency_id = self.currency_eur
 
-        # Test with zero amount_total
-        self.sale_order.order_line[0].price_unit = 0.0
-        self.sale_order.order_line[1].price_unit = 0.0
+        # Test with zero amount_total - set all line prices to zero
+        for line in self.sale_order.order_line:
+            line.price_unit = 0.0
         self.sale_order.currency_rate = 0.85
 
         self.sale_order._compute_amount_company()
@@ -207,4 +209,5 @@ class TestSaleOrder(TransactionCase):
 
         # Reset to normal values
         self.sale_order.order_line[0].price_unit = 50.0
-        self.sale_order.order_line[1].price_unit = 100.0
+        if len(self.sale_order.order_line) > 1:
+            self.sale_order.order_line[1].price_unit = 100.0
