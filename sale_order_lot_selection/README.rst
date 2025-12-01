@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ========================
 Sale Order Lot Selection
 ========================
@@ -17,7 +13,7 @@ Sale Order Lot Selection
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -43,13 +39,13 @@ selected lot number will be the one delivered to the Customer.
 Usage
 =====
 
-- Create/edit a product and set traceability by 'By Lots' option.
-- Create a new lot number and assign product.
-- Update quantity for that product and assign lot number.
-- Go to Sales > Orders > Quotations.
-- Create a new quotation and add recently above configured product.
-- Select lot number and confirm it.
-- Delivery order will reserve the lot when available
+-  Create/edit a product and set traceability by 'By Lots' option.
+-  Create a new lot number and assign product.
+-  Update quantity for that product and assign lot number.
+-  Go to Sales > Orders > Quotations.
+-  Create a new quotation and add recently above configured product.
+-  Select lot number and confirm it.
+-  Delivery order will reserve the lot when available
 
 Known issues / Roadmap
 ======================
@@ -85,17 +81,17 @@ Authors
 Contributors
 ------------
 
-- Nicola Malcontenti <nicola.malcontenti@agilebg.com>
-- Lorenzo Battistini <lorenzo.battistini@agilebg.com>
-- Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
-- Bhavesh Odedra <bodedra@opensourceintegrators.com>
-- François Honoré <francois.honore@acsone.eu>
-- Florian da Costa <florian.dacosta@akretion.com>
-- Sander Lienaerts <sander.lienaerts@codeforward.nl>
+-  Nicola Malcontenti <nicola.malcontenti@agilebg.com>
+-  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+-  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+-  Bhavesh Odedra <bodedra@opensourceintegrators.com>
+-  François Honoré <francois.honore@acsone.eu>
+-  Florian da Costa <florian.dacosta@akretion.com>
+-  Sander Lienaerts <sander.lienaerts@codeforward.nl>
 
-- ``Tecnativa <https://www.tecnativa.com>``\ \_:
+-  ``Tecnativa <https://www.tecnativa.com>``\ \_:
 
-  - Víctor Martínez
+   -  Víctor Martínez
 
 Maintainers
 -----------
