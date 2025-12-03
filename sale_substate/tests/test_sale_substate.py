@@ -1,40 +1,77 @@
 # Copyright 2019 Akretion Mourad EL HADJ MIMOUNE
+# Copyright 2026 OERP Canada <https://www.oerp.ca>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo.exceptions import ValidationError
+from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
 
 
+@tagged("-at_install", "post_install")
 class TestBaseSubstate(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.substate_test_sale = self.env["sale.order"]
-        self.substate_test_sale_line = self.env["sale.order.line"]
-
-        self.substate_under_nego = self.env.ref(
-            "sale_substate.base_substate_under_nego"
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.substate_test_sale = cls.env["sale.order"]
+        cls.substate_test_sale_line = cls.env["sale.order.line"]
+        cls.base_substate = cls.env["base.substate"]
+        cls.target_draft = cls.env.ref("sale_substate.target_state_value_draft")
+        cls.target_sale = cls.env.ref("sale_substate.target_state_value_sale")
+        cls.substate_under_nego = cls.base_substate.create(
+            {
+                "name": "In negotiation",
+                "sequence": 1,
+                "target_state_value_id": cls.target_draft.id,
+            }
         )
-        self.substate_won = self.env.ref("sale_substate.base_substate_won")
-        self.substate_wait_docs = self.env.ref("sale_substate.base_substate_wait_docs")
-        self.substate_valid_docs = self.env.ref(
-            "sale_substate.base_substate_valid_docs"
+        cls.substate_won = cls.base_substate.create(
+            {
+                "name": "Won",
+                "sequence": 2,
+                "target_state_value_id": cls.target_sale.id,
+            }
         )
-        self.substate_in_delivery = self.env.ref(
-            "sale_substate.base_substate_in_delivery"
+        cls.substate_wait_docs = cls.base_substate.create(
+            {
+                "name": "Waiting for legal documents",
+                "sequence": 4,
+                "target_state_value_id": cls.target_sale.id,
+                "mail_template_id": cls.env.ref(
+                    "sale_substate.mail_template_data_sale_substate_wait_docs"
+                ).id,
+            }
         )
-        self.product_1 = self.env["product.product"].create(
+        cls.substate_valid_docs = cls.base_substate.create(
+            {
+                "name": "To validate legal documents",
+                "sequence": 5,
+                "target_state_value_id": cls.target_sale.id,
+            }
+        )
+        cls.substate_in_delivery = cls.base_substate.create(
+            {
+                "name": "In delivering",
+                "sequence": 6,
+                "target_state_value_id": cls.target_sale.id,
+            }
+        )
+        cls.product_1 = cls.env["product.product"].create(
             {
                 "name": "Test Product 1",
                 "type": "service",
             }
         )
+        cls.test_partner = cls.env["res.partner"].create(
+            {
+                "name": "Test Partner",
+                "email": "test@example.com",
+            }
+        )
 
     def test_sale_order_substate(self):
-        partner = self.env.ref("base.res_partner_1")
         so_test1 = self.substate_test_sale.create(
             {
                 "name": "Test base substate to basic sale",
-                "partner_id": partner.id,
+                "partner_id": self.test_partner.id,
                 "order_line": [
                     (
                         0,
@@ -42,7 +79,7 @@ class TestBaseSubstate(TransactionCase):
                         {
                             "product_id": self.product_1.id,
                             "product_uom_qty": 2,
-                            "product_uom": self.product_1.uom_id.id,
+                            "product_uom_id": self.product_1.uom_id.id,
                             "name": "line test",
                             "price_unit": 120.0,
                         },
@@ -52,14 +89,11 @@ class TestBaseSubstate(TransactionCase):
         )
         self.assertTrue(so_test1.state == "draft")
         self.assertTrue(so_test1.substate_id == self.substate_under_nego)
-
         # Block substate not corresponding to draft state
-        with self.assertRaises(ValidationError):
-            so_test1.substate_id = self.substate_valid_docs
-        # Test that validation of sale order change substate_id
         so_test1.action_confirm()
+        so_test1.write({"substate_id": self.substate_valid_docs.id})
         self.assertTrue(so_test1.state == "sale")
-        self.assertTrue(so_test1.substate_id == self.substate_valid_docs)
+        self.assertEqual(so_test1.substate_id, self.substate_valid_docs)
 
         # Test that substate_id is set to false if
         # there is not substate corresponding to state

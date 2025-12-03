@@ -3,9 +3,9 @@
 
 {
     "name": "Sale Sub State",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Tools",
-    "author": "Akretion, " "Odoo Community Association (OCA)",
+    "author": "Akretion, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
     "depends": ["base_substate", "sale_management"],
