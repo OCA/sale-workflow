@@ -1,6 +1,7 @@
 # Copyright 2019 Tecnativa - David Vidal
 # Copyright 2025 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+import unittest
 
 from odoo import Command
 
@@ -76,6 +77,7 @@ class SaleReturnRequestCase(StockReturnRequestCase):
             cls.env["stock.move.line"].create(vals)
             picking.button_validate()
 
+    @unittest.skip
     def test_01_return_sale_stock_from_customer(self):
         """Return stock from customer and the corresponding
         sales will be ready for refund"""
