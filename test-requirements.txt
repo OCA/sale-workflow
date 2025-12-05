@@ -1,1 +1,4 @@
 odoo-test-helper
+# Temporary reference for PR #4024
+git+https://github.com/OCA/sale-workflow.git@refs/pull/4024/head#egg=sale_workflow
+
