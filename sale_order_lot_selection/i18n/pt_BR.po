@@ -20,6 +20,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: sale_order_lot_selection
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__domain_lot_id
+msgid "Domain Lot"
+msgstr ""
+
+#. module: sale_order_lot_selection
 #: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__lot_id
 #: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_report__lot_id
 #: model_terms:ir.ui.view,arch_db:sale_order_lot_selection.view_order_product_search
