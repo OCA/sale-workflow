@@ -97,6 +97,21 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
             cls, [(cls.product, 10, [cls.elaboration_a])]
         )
         cls.category_1.elaboration_profile_id = cls.elaboration_profile_b
+        cls.env.user.groups_id += cls.env.ref("stock.group_adv_location")
+        cls.route_elaboration = cls.env["stock.route"].create(
+            {"name": "Elaboration route", "sale_selectable": True}
+        )
+        cls.route_manual = cls.env["stock.route"].create(
+            {"name": "Manual route", "sale_selectable": True}
+        )
+        cls.elaboration_route = cls.Elaboration.create(
+            {
+                "code": "RR",
+                "name": "Routed",
+                "product_id": cls.product_elaboration_A.id,
+                "route_ids": [Command.set(cls.route_elaboration.ids)],
+            }
+        )
 
     def _create_sale_order(self, products_info):
         order_form = Form(self.env["sale.order"])
@@ -247,3 +262,44 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
         elaboration_lines = self.order.order_line.filtered("is_elaboration")
         self.assertEqual(len(elaboration_lines), 1)
         self.assertEqual(elaboration_lines.product_uom_qty, 15.0)
+
+    def test_route_new_line_elaboration_unset(self):
+        order_form = Form(self.order)
+        with order_form.order_line.new() as line_form:
+            line_form.product_id = self.product
+            line_form.elaboration_ids.add(self.elaboration_route)
+            self.assertEqual(line_form.route_id, self.route_elaboration)
+            # Removed before saving the line
+            line_form.elaboration_ids.remove(id=self.elaboration_route.id)
+            self.assertFalse(line_form.route_id)
+
+    def test_route_saved_line_elaboration_unset(self):
+        order_form = Form(self.order)
+        with order_form.order_line.edit(0) as line_form:
+            line_form.elaboration_ids.add(self.elaboration_route)
+        order_form.save()
+        self.assertEqual(self.order.order_line.route_id, self.route_elaboration)
+        order_form = Form(self.order)
+        with order_form.order_line.edit(0) as line_form:
+            line_form.elaboration_ids.clear()
+        order_form.save()
+        self.assertFalse(self.order.order_line.route_id)
+
+    def test_route_manual_kept(self):
+        order_form = Form(self.order)
+        with order_form.order_line.edit(0) as line_form:
+            line_form.route_id = self.route_manual
+            # Elaborations without route don't touch it
+            line_form.elaboration_ids.add(self.elaboration_b)
+            self.assertEqual(line_form.route_id, self.route_manual)
+            line_form.elaboration_ids.clear()
+            self.assertEqual(line_form.route_id, self.route_manual)
+        order_form.save()
+        self.assertEqual(self.order.order_line.route_id, self.route_manual)
+
+    def test_route_elaboration_unset_with_write(self):
+        line = self.order.order_line
+        line.write({"elaboration_ids": [Command.set(self.elaboration_route.ids)]})
+        self.assertEqual(line.route_id, self.route_elaboration)
+        line.write({"elaboration_ids": [Command.clear()]})
+        self.assertFalse(line.route_id)
