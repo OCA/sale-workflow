@@ -10,8 +10,8 @@ class TestSaleRequirePODoc(BaseCommon):
     def setUpClass(cls):
         super().setUpClass()
 
-        cls.partner = cls.env.ref("base.res_partner_1")
-        cls.product = cls.env.ref("product.product_product_6")
+        cls.partner = cls.env["res.partner"].create({"name": "test-custom"})
+        cls.product = cls.env["product.product"].create({"name": "test-product"})
 
         cls.sale = cls.env["sale.order"].create(
             {
@@ -24,7 +24,7 @@ class TestSaleRequirePODoc(BaseCommon):
                             "name": cls.product.name,
                             "product_id": cls.product.id,
                             "product_uom_qty": 1,
-                            "product_uom": cls.product.uom_id.id,
+                            "product_uom_id": cls.product.uom_id.id,
                             "price_unit": 1,
                         },
                     )
