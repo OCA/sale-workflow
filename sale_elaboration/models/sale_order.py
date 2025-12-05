@@ -74,8 +74,31 @@ class SaleOrderLine(models.Model):
 
     @api.depends("elaboration_ids")
     def _compute_route_ids(self):
+        # Reset routes: elaboration might be unset. Only the routes an
+        # elaboration can set, so manual ones or the ones set by other modules
+        # are kept.
+        elaboration_routes = (
+            self.env["product.elaboration"]
+            .with_context(active_test=False)
+            .search([("route_ids", "!=", False)])
+            .route_ids
+        )
         for line in self:
-            line.route_ids = line.get_elaboration_stock_route()
+            # Compare with _origin, as new lines hold NewId records
+            stale_routes = elaboration_routes - line.elaboration_ids.route_ids._origin
+            if line.route_ids._origin & stale_routes:
+                line.route_ids = line.route_ids.filtered(
+                    lambda r, stale=stale_routes: r._origin not in stale
+                )
+        # Other modules might use this compute. Let's respect inheritance
+        res = None
+        if hasattr(super(), "_compute_route_ids"):
+            res = super()._compute_route_ids()
+        for line in self.filtered("elaboration_ids"):
+            route = line.get_elaboration_stock_route()
+            if route:
+                line.route_ids = route
+        return res
 
     @api.depends("elaboration_ids", "order_id.pricelist_id")
     def _compute_elaboration_price_unit(self):
