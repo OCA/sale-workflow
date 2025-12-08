@@ -6,7 +6,7 @@ from odoo.tests.common import TransactionCase
 
 class TestSaleCancelConfirmed(TransactionCase):
     def setUp(self):
-        super(TestSaleCancelConfirmed, self).setUp()
+        super().setUp()
         SaleOrder = self.env["sale.order"]
         self.env.company.write({"enable_sale_cancel_restrict": True})
         self.partner = self.env["res.partner"].create({"name": "Test Parnter"})

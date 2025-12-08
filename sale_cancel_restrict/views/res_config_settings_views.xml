@@ -22,7 +22,7 @@
                         <div class="text-muted">
                             When you try to cancel a sales order, if there is some delivery done or
                             an invoice posted will prevent the sales order from being cancelled.<br
-                            />
+                        />
                         </div>
                     </div>
                 </div>
