@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Cancel Restrict",
-    "version": "15.0.1.0.0",
+    "version": "19.0.1.0.0",
     "author": "ForgeFlow,Odoo Community Association (OCA)",
     "category": "Sale",
     "license": "AGPL-3",
