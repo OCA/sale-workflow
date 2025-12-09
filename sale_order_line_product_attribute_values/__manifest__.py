@@ -4,7 +4,7 @@
 {
     "name": "Sale Order Line all Product Attribute Values",
     "summary": "Store Product Attribute Values in Sale Order Lines",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.0.1",
     "development_status": "Alpha",
     "category": "Sales/Sales",
     "website": "https://github.com/OCA/sale-workflow",
