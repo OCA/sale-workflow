@@ -9,7 +9,11 @@
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
     "depends": ["sale_management"],
-    "data": ["views/res_partner_view.xml", "views/sale_order_view.xml"],
+    "data": [
+        "views/res_partner_view.xml",
+        "views/sale_order_view.xml",
+        "views/res_config_settings.xml",
+    ],
     "auto_install": False,
     "application": False,
     "installable": True,
