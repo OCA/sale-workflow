@@ -1,0 +1,1 @@
+- In the Sale Order form, enable the display of 'Base Price' field.
