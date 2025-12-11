@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2025 Moduon Team S.L.
-     License Licencia Moduon 1.0 -->
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
 <odoo>
     <record id="view_order_form" model="ir.ui.view">
         <field name="name">sale.order.form</field>
@@ -9,7 +9,7 @@
         <field name="priority">99</field>
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/tree//field[@name='price_subtotal']"
+                expr="//field[@name='order_line']/list//field[@name='price_subtotal']"
                 position="after"
             >
                 <field name="price_total" invisible="1" />
@@ -18,7 +18,8 @@
                     widget="boolean_toggle"
                     options="{'autosave': False}"
                     optional="hide"
-                    attrs="{'readonly': [('price_total', '!=', 0)], 'invisible': [('price_total', '!=', 0)]}"
+                    readonly="price_total != 0"
+                    invisible="price_total != 0"
                 />
             </xpath>
         </field>
