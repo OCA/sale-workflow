@@ -18,7 +18,7 @@ class AccountMove(models.Model):
             widget_json = invoice.invoice_outstanding_credits_debits_widget or {}
             can_reconcile_lines = filter(
                 lambda x: x.get("move_id") in advance_payment_moves.ids,
-                widget_json.get("content", [])
+                widget_json.get("content", []),
             )
             for line in can_reconcile_lines:
                 invoice.js_assign_outstanding_line(line_id=line.get("id"))

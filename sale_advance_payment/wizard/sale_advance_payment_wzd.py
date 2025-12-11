@@ -56,7 +56,8 @@ class AccountVoucherWizard(models.TransientModel):
     def check_amount(self):
         if self.amount_advance <= 0:
             raise exceptions.ValidationError(_("Amount of advance must be positive."))
-        if self.env.context.get("active_id", False):
+        allow_overpayment = self.order_id.company_id.allow_advance_overpayment
+        if self.env.context.get("active_id") and not allow_overpayment:
             if self.payment_type == "inbound":
                 if (
                     float_compare(
