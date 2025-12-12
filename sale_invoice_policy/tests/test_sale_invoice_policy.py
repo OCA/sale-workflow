@@ -10,7 +10,11 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         super().setUpClass()
         cls.product_obj = cls.env["product.product"]
         cls.sale_obj = cls.env["sale.order"]
-        cls.partner = cls.env.ref("base.res_partner_2")
+        cls.partner = cls.env["res.partner"].create(
+            {
+                "name": "Bob",
+            }
+        )
         cls.product = cls.product_obj.create(
             {"name": "Test", "type": "consu", "list_price": 20.0}
         )
@@ -29,7 +33,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         """Test invoicing based on ordered quantities"""
         so = self.env["sale.order"].create(
             {
-                "partner_id": self.env.ref("base.res_partner_2").id,
+                "partner_id": self.partner.id,
                 "order_line": [
                     (0, 0, {"product_id": self.product.id, "product_uom_qty": 2.0}),
                     (0, 0, {"product_id": self.product2.id, "product_uom_qty": 3.0}),
@@ -64,7 +68,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         self.assertEqual("order", self.product.invoice_policy)
         so = self.env["sale.order"].create(
             {
-                "partner_id": self.env.ref("base.res_partner_2").id,
+                "partner_id": self.partner.id,
                 "invoice_policy": "delivery",
                 "order_line": [
                     (0, 0, {"product_id": self.product.id, "product_uom_qty": 2.0}),
@@ -120,16 +124,12 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         settings = self.env["res.config.settings"].create({})
         settings.sale_default_invoice_policy = "delivery"
         settings.execute()
-        so = self.env["sale.order"].create(
-            {"partner_id": self.env.ref("base.res_partner_2").id}
-        )
+        so = self.env["sale.order"].create({"partner_id": self.partner.id})
         self.assertEqual(so.invoice_policy, "delivery")
         # order policy is the default
         settings.sale_default_invoice_policy = "order"
         settings.execute()
-        so = self.env["sale.order"].create(
-            {"partner_id": self.env.ref("base.res_partner_2").id}
-        )
+        so = self.env["sale.order"].create({"partner_id": self.partner.id})
         self.assertEqual(so.invoice_policy, "order")
 
     def test_context_manager_exception(self):
@@ -138,7 +138,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         self.assertEqual("order", self.product.invoice_policy)
         so = self.env["sale.order"].create(
             {
-                "partner_id": self.env.ref("base.res_partner_2").id,
+                "partner_id": self.partner.id,
                 "invoice_policy": "delivery",
                 "order_line": [
                     (0, 0, {"product_id": self.product.id, "product_uom_qty": 2.0}),
@@ -149,7 +149,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
 
         so2 = self.env["sale.order"].create(
             {
-                "partner_id": self.env.ref("base.res_partner_2").id,
+                "partner_id": self.partner.id,
                 "invoice_policy": "order",
                 "order_line": [
                     (0, 0, {"product_id": self.product.id, "product_uom_qty": 2.0}),
@@ -174,7 +174,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         invoicing is enabled, that the policy is changed on order."""
         so = self.env["sale.order"].create(
             {
-                "partner_id": self.env.ref("base.res_partner_2").id,
+                "partner_id": self.partner.id,
                 "order_line": [
                     (0, 0, {"product_id": self.product.id, "product_uom_qty": 2.0}),
                     (0, 0, {"product_id": self.product2.id, "product_uom_qty": 3.0}),

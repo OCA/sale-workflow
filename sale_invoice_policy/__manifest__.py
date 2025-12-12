@@ -8,9 +8,9 @@
     "author": "ACSONE SA/NV, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales Management",
-    "version": "18.0.1.1.0",
+    "version": "19.0.1.0.0",
     "license": "AGPL-3",
-    "depends": ["sale_stock", "base_partition"],
+    "depends": ["base", "sale_stock", "base_partition"],
     "external_dependencies": {"python": ["openupgradelib"]},
     "data": [
         "views/res_config_settings_view.xml",
