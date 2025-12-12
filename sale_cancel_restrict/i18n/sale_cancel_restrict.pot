@@ -1,0 +1,71 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_cancel_restrict
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_cancel_restrict
+#: model:ir.model,name:sale_cancel_restrict.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_cancel_restrict
+#: model:ir.model,name:sale_cancel_restrict.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_cancel_restrict
+#: model:ir.model.fields,field_description:sale_cancel_restrict.field_res_company__display_name
+#: model:ir.model.fields,field_description:sale_cancel_restrict.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sale_cancel_restrict.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_cancel_restrict
+#: model:ir.model.fields,field_description:sale_cancel_restrict.field_res_company__enable_sale_cancel_restrict
+#: model:ir.model.fields,field_description:sale_cancel_restrict.field_res_config_settings__enable_sale_cancel_restrict
+msgid "Enable Sale Cancel Restrict"
+msgstr ""
+
+#. module: sale_cancel_restrict
+#: model:ir.model.fields,field_description:sale_cancel_restrict.field_res_company__id
+#: model:ir.model.fields,field_description:sale_cancel_restrict.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sale_cancel_restrict.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_cancel_restrict
+#: model:ir.model,name:sale_cancel_restrict.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_cancel_restrict
+#: model_terms:ir.ui.view,arch_db:sale_cancel_restrict.res_config_settings_view_form_inherit_sale_management
+msgid ""
+"When you try to cancel a sales order, if there is some delivery done or an "
+"invoice posted will prevent the sales order from being cancelled."
+msgstr ""
+
+#. module: sale_cancel_restrict
+#. odoo-python
+#: code:addons/sale_cancel_restrict/models/sale_order.py:0
+msgid ""
+"You cannot cancel the SO: %(so_name)s as it has some invoices in draft or "
+"posted state. Please cancel them to be able to cancel the SO."
+msgstr ""
+
+#. module: sale_cancel_restrict
+#. odoo-python
+#: code:addons/sale_cancel_restrict/models/sale_order.py:0
+msgid ""
+"You cannot cancel the SO: %(so_name)s as it has some transfers already done."
+msgstr ""
