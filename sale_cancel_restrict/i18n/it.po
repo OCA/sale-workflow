@@ -6,48 +6,50 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2025-12-14 21:42+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: sale_cancel_restrict
 #: model:ir.model,name:sale_cancel_restrict.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: sale_cancel_restrict
 #: model:ir.model,name:sale_cancel_restrict.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: sale_cancel_restrict
 #: model:ir.model.fields,field_description:sale_cancel_restrict.field_res_company__display_name
 #: model:ir.model.fields,field_description:sale_cancel_restrict.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:sale_cancel_restrict.field_sale_order__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: sale_cancel_restrict
 #: model:ir.model.fields,field_description:sale_cancel_restrict.field_res_company__enable_sale_cancel_restrict
 #: model:ir.model.fields,field_description:sale_cancel_restrict.field_res_config_settings__enable_sale_cancel_restrict
 msgid "Enable Sale Cancel Restrict"
-msgstr ""
+msgstr "Abilita limitazione annullamento vendita"
 
 #. module: sale_cancel_restrict
 #: model:ir.model.fields,field_description:sale_cancel_restrict.field_res_company__id
 #: model:ir.model.fields,field_description:sale_cancel_restrict.field_res_config_settings__id
 #: model:ir.model.fields,field_description:sale_cancel_restrict.field_sale_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_cancel_restrict
 #: model:ir.model,name:sale_cancel_restrict.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_cancel_restrict
 #: model_terms:ir.ui.view,arch_db:sale_cancel_restrict.res_config_settings_view_form_inherit_sale_management
@@ -55,6 +57,9 @@ msgid ""
 "When you try to cancel a sales order, if there is some delivery done or an "
 "invoice posted will prevent the sales order from being cancelled."
 msgstr ""
+"Quando si tenta di annullare un ordine di vendita, se c'è qualche consegna "
+"eseguita o una fattura inviata, eviterà che l'ordine di vendita sia "
+"annullato."
 
 #. module: sale_cancel_restrict
 #. odoo-python
@@ -63,6 +68,8 @@ msgid ""
 "You cannot cancel the SO: %(so_name)s as it has some invoices in draft or "
 "posted state. Please cancel them to be able to cancel the SO."
 msgstr ""
+"Non si può annullare l'OV: %(so_name)s perché ci sono alcune fatture in "
+"bozza o inviate. Annullare le fatture per poter annullare l'OV."
 
 #. module: sale_cancel_restrict
 #. odoo-python
@@ -70,3 +77,5 @@ msgstr ""
 msgid ""
 "You cannot cancel the SO: %(so_name)s as it has some transfers already done."
 msgstr ""
+"Non si può annullare l'OV: %(so_name)s perché ha delle consegne già "
+"effettuate."
