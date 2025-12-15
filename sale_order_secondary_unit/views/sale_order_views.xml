@@ -41,6 +41,7 @@
                     name="secondary_uom_qty"
                     column_invisible="parent.state in ('done', 'cancel')"
                     groups="uom.group_uom"
+                    optional="show"
                 />
 
                 <field
@@ -52,6 +53,7 @@
                     readonly="product_uom_readonly"
                     required="secondary_uom_qty != 0.0"
                     groups="uom.group_uom"
+                    optional="show"
                 />
             </xpath>
             <xpath
