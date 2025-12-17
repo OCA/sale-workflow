@@ -8,6 +8,22 @@ from odoo import fields, models
 class SaleOrderRecommendation(models.TransientModel):
     _inherit = "sale.order.recommendation"
 
+    def generate_recommendations(self):
+        # Let's prefetch all the values we need once and leave them in the context
+        # so we can just gather them from cache.
+        prefetched_lines = (
+            self.env["sale.order.line"]
+            .sudo()
+            .search_fetch(
+                self._recommendable_sale_order_lines_domain(),
+                ["product_id", "date_order", "elaboration_ids", "elaboration_note"],
+            )
+        )
+        return super(
+            SaleOrderRecommendation,
+            self.with_context(prefetched_lines=prefetched_lines),
+        ).generate_recommendations()
+
     def _prepare_recommendation_line_vals(self, group_line, so_line=False):
         """Include elaboration info from last sales."""
         vals = super()._prepare_recommendation_line_vals(group_line, so_line)
@@ -23,8 +39,11 @@ class SaleOrderRecommendation(models.TransientModel):
             )
             return vals
         # Recommend last elaborations used
-        all_lines = self.env["sale.order.line"].search(group_line["__domain"])
-        last_line = all_lines.sorted(lambda line: line.order_id.date_order)[-1:]
+        product, *_ = group_line
+        all_lines = self.env.context.get("prefetched_lines")
+        last_line = all_lines.filtered(
+            lambda x, product=product: x.product_id == product
+        ).sorted(lambda x: x.date_order)[-1:]
         vals.update(
             {
                 "elaboration_ids": [fields.Command.set(last_line.elaboration_ids.ids)],

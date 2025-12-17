@@ -17,7 +17,7 @@
                 </group>
             </xpath>
             <xpath
-                expr="//field[@name='line_ids']/tree//field[@name='units_included']"
+                expr="//field[@name='line_ids']/list//field[@name='units_included']"
                 position="after"
             >
                 <field name="elaboration_ids" widget="many2many_tags" optional="show" />
