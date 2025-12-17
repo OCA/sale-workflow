@@ -13,25 +13,23 @@
         <field name="priority">30</field>
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='line_ids']/tree/field[@name='units_included']"
+                expr="//field[@name='line_ids']/list/field[@name='units_included']"
                 position="after"
             >
-                <field name="display_qty_widget" invisible="1" />
-                <field name="forecast_expected_date" invisible="1" />
-                <field name="free_qty_today" invisible="1" />
-                <field name="is_mto" invisible="1" />
-                <field name="move_ids" invisible="1" />
-                <field name="product_uom" invisible="1" />
-                <field name="qty_available_today" invisible="1" />
-                <field name="qty_to_deliver" invisible="1" />
-                <field name="scheduled_date" invisible="1" />
-                <field name="state" invisible="1" />
-                <field name="virtual_available_at_date" invisible="1" />
-                <field name="warehouse_id" invisible="1" />
-
+                <field name="display_qty_widget" column_invisible="1" />
+                <field name="forecast_expected_date" column_invisible="1" />
+                <field name="free_qty_today" column_invisible="1" />
+                <field name="is_mto" column_invisible="1" />
+                <field name="move_ids" column_invisible="1" />
+                <field name="product_uom" column_invisible="1" />
+                <field name="qty_available_today" column_invisible="1" />
+                <field name="qty_to_deliver" column_invisible="1" />
+                <field name="scheduled_date" column_invisible="1" />
+                <field name="state" column_invisible="1" />
+                <field name="virtual_available_at_date" column_invisible="1" />
+                <field name="warehouse_id" column_invisible="1" />
                 <widget name="qty_at_date_widget" width="0.1" />
             </xpath>
-
             <xpath
                 expr="//field[@name='line_ids']/kanban//div[strong/field[@name='units_included']]"
                 position="inside"
@@ -48,16 +46,15 @@
                 <field name="state" invisible="1" />
                 <field name="virtual_available_at_date" invisible="1" />
                 <field name="warehouse_id" invisible="1" />
-
                 <div class="d-inline-block">
                     <widget
                         name="qty_at_date_widget"
                         width="0.1"
                         context="{'target': 'new'}"
+                        class="ms-1"
                     />
                 </div>
             </xpath>
-
             <xpath
                 expr="//field[@name='line_ids']/form//field[@name='units_included']"
                 position="replace"
@@ -74,7 +71,6 @@
                 <field name="state" invisible="1" />
                 <field name="virtual_available_at_date" invisible="1" />
                 <field name="warehouse_id" invisible="1" />
-
                 <label for="units_included" />
                 <div class="o_row">
                     <t>$0</t>
