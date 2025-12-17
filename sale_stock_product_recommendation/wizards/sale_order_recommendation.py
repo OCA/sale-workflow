@@ -52,7 +52,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
     @api.depends(
         "sale_line_id.display_qty_widget",
         "sale_line_id.qty_delivered",
-        *GHOST_LINE_DEPS
+        *GHOST_LINE_DEPS,
     )
     def _compute_qty_to_deliver(self):
         """Compute the visibility of the inventory widget."""
@@ -66,7 +66,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
         "sale_line_id.qty_available_today",
         "sale_line_id.scheduled_date",
         "sale_line_id.virtual_available_at_date",
-        *GHOST_LINE_DEPS
+        *GHOST_LINE_DEPS,
     )
     def _compute_qty_at_date(self):
         """Compute the quantity forecasted of product at delivery date."""
