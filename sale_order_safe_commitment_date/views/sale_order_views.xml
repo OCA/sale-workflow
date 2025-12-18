@@ -5,25 +5,76 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <sheet position="before">
-                <field name="is_commitment_date_unsafe" invisible="1" />
                 <div
-                    class="alert alert-warning"
-                    attrs="{'invisible': [('is_commitment_date_unsafe', '=', False)]}"
+                    class="alert alert-danger"
+                    invisible="not in_sale_cutoff_hour or state == 'sale' or not expected_day"
                     role="alert"
                 >
-                    <i class="fa fa-warning" /> You requested delivery on <field
-                        name="commitment_date"
-                        readonly="1"
-                        nolabel="1"
-                        widget="date"
-                    />, but it's not possible based on current lead times. Odoo will adjust the date automatically. Contact your sales manager if it’s urgent.
+                    <i class="fa fa-clock-o" title="Cut-off" /> <strong
+                >Sales cut-off:</strong> deliveries will be pushed to <field
+                    name="expected_day"
+                    readonly="1"
+                    nolabel="1"
+                    class="fw-bold"
+                    widget="date"
+                />
+                </div>
+                <div
+                    class="alert alert-danger"
+                    invisible="not in_sale_cutoff_hour or state == 'sale' or expected_day"
+                    role="alert"
+                >
+                    <i class="fa fa-clock-o" title="Cut-off" />
+                    <strong>Sales cut-off</strong>
+                </div>
+                <div
+                    class="alert alert-warning"
+                    invisible="not is_commitment_date_unsafe"
+                    role="alert"
+                >
+                    <i class="fa fa-warning" /> You requested the delivery on <field
+                    name="delivery_day"
+                    invisible="date_for_commitment"
+                    readonly="1"
+                    nolabel="1"
+                    class="fw-bold"
+                    widget="date"
+                /><field
+                    name="date_for_commitment"
+                    invisible="not date_for_commitment"
+                    readonly="1"
+                    nolabel="1"
+                    class="fw-bold"
+                    widget="date"
+                />, but based on your order lead times it can't be delivered sooner than <field
+                    name="expected_day"
+                    readonly="1"
+                    nolabel="1"
+                    class="fw-bold"
+                    widget="date"
+                />. Odoo will adjust the date automatically. Contact your sales manager if it’s urgent.
                 </div>
             </sheet>
             <field name="show_update_pricelist" position="before">
-                 <field
-                    name="date_for_commitment"
-                    attrs="{'readonly': [('state', 'in', ['cancel', 'done'])]}"
-                />
+                <label for="date_for_commitment" string="Delivery Date" />
+                <div name="date_for_commitment_div" class="o_row">
+                    <field
+                        name="date_for_commitment"
+                        readonly="state == 'cancel' or locked"
+                    />
+                    <span
+                        name="expected_day_span"
+                        class="text-muted"
+                        invisible="not expected_day"
+                    ><i
+                        invisible="not is_commitment_date_unsafe"
+                        class="text-danger fa fa-warning"
+                    /> Expected: <field
+                        name="expected_day"
+                        class="oe_inline"
+                        readonly="1"
+                    /></span>
+                </div>
             </field>
         </field>
     </record>

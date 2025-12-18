@@ -4,37 +4,106 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0+e\n"
+"Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-22 07:27+0000\n"
-"PO-Revision-Date: 2025-08-13 17:25+0000\n"
-"Last-Translator: David Vidal <david.vidal@tecnativa.com>\n"
+"POT-Creation-Date: 2026-02-03 10:42+0000\n"
+"PO-Revision-Date: 2026-02-03 11:43+0100\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.6\n"
+
+#. module: sale_order_safe_commitment_date
+#: model_terms:ir.ui.view,arch_db:sale_order_safe_commitment_date.view_order_form
+msgid ", but based on your order lead times it can't be delivered sooner than"
+msgstr ""
+", pero en base a los tiempos de entrega de tu pedido no puede servirse antes del"
 
 #. module: sale_order_safe_commitment_date
 #: model_terms:ir.ui.view,arch_db:sale_order_safe_commitment_date.view_order_form
 msgid ""
-", but it's not possible based on current lead times. Odoo will adjust the "
-"date automatically. Contact your sales manager if it’s urgent."
+". Odoo will adjust the date automatically. Contact your sales manager if it’s "
+"urgent."
 msgstr ""
-", pero no es posible según los plazos actuales. Odoo ajustará la fecha "
-"automáticamente. Contacta con tu responsable si es urgente."
+". Odoo ajustará la fecha automáticamente. Contacta con tu responsable de ventas si "
+"es urgente."
 
 #. module: sale_order_safe_commitment_date
 #: model_terms:ir.ui.view,arch_db:sale_order_safe_commitment_date.view_order_form
-msgid "<i class=\"fa fa-warning\"/> You requested delivery on"
+msgid ""
+"<i class=\"fa fa-clock-o\" title=\"Cut-off\"/>\n"
+"                    <strong>Sales cut-off</strong>"
+msgstr ""
+"<i class=\"fa fa-clock-o\" title=\"Cut-off\"/> <strong>Hora de corte de ventas</"
+"strong>"
+
+#. module: sale_order_safe_commitment_date
+#: model_terms:ir.ui.view,arch_db:sale_order_safe_commitment_date.view_order_form
+msgid ""
+"<i class=\"fa fa-clock-o\" title=\"Cut-off\"/> <strong>Sales cut-off:</strong> "
+"deliveries will be pushed to"
+msgstr ""
+"<i class=\"fa fa-clock-o\" title=\"Hora de corte\"/> <strong>Hora de corte de "
+"ventas:</strong> las entregas se retrasarán al"
+
+#. module: sale_order_safe_commitment_date
+#: model_terms:ir.ui.view,arch_db:sale_order_safe_commitment_date.view_order_form
+msgid ""
+"<i class=\"fa fa-warning text-danger\" invisible=\"not is_commitment_date_unsafe\"/"
+"> Expected:"
+msgstr ""
+"<i class=\"fa fa-warning text-danger\" invisible=\"not is_commitment_date_unsafe\"/"
+"> Previsto:"
+
+#. module: sale_order_safe_commitment_date
+#: model_terms:ir.ui.view,arch_db:sale_order_safe_commitment_date.view_order_form
+msgid "<i class=\"fa fa-warning\"/> You requested the delivery on"
 msgstr "<i class=\"fa fa-warning\"/> Has solicitado entregar el pedido el"
+
+#. module: sale_order_safe_commitment_date
+#: model:ir.model.fields,help:sale_order_safe_commitment_date.field_sale_order__expected_day
+msgid "Based on lead time and order allowance"
+msgstr "Basado en tiempos de entrega hora de corte"
+
+#. module: sale_order_safe_commitment_date
+#: model:ir.model,name:sale_order_safe_commitment_date.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: sale_order_safe_commitment_date
+#: model:ir.model,name:sale_order_safe_commitment_date.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: sale_order_safe_commitment_date
+#: model_terms:ir.ui.view,arch_db:sale_order_safe_commitment_date.view_order_form
+msgid "Delivery Date"
+msgstr "Fecha de entrega"
+
+#. module: sale_order_safe_commitment_date
+#: model:ir.model.fields,field_description:sale_order_safe_commitment_date.field_sale_order__delivery_day
+msgid "Delivery Day"
+msgstr "Día de entrega"
 
 #. module: sale_order_safe_commitment_date
 #: model:ir.model.fields,field_description:sale_order_safe_commitment_date.field_sale_order__date_for_commitment
 msgid "Delivery date"
 msgstr "Fecha de entrega"
+
+#. module: sale_order_safe_commitment_date
+#: model:ir.model.fields,field_description:sale_order_safe_commitment_date.field_sale_order__expected_day
+msgid "Expected Day"
+msgstr "Día previsto"
+
+#. module: sale_order_safe_commitment_date
+#: model:ir.model.fields,field_description:sale_order_safe_commitment_date.field_res_company__in_sale_cutoff_hour
+#: model:ir.model.fields,field_description:sale_order_safe_commitment_date.field_sale_order__in_sale_cutoff_hour
+msgid "In Sale Cutoff Hour"
+msgstr "En hora de corte"
 
 #. module: sale_order_safe_commitment_date
 #: model:ir.model.fields,field_description:sale_order_safe_commitment_date.field_sale_order__is_commitment_date_unsafe
@@ -47,25 +116,39 @@ msgid "Sales Order"
 msgstr "Pedido de venta"
 
 #. module: sale_order_safe_commitment_date
+#: model:ir.model,name:sale_order_safe_commitment_date.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_order_safe_commitment_date
+#: model:ir.model.fields,help:sale_order_safe_commitment_date.field_res_company__in_sale_cutoff_hour
+msgid ""
+"Sales can't be delivered according to their lead times and will be postponed for a "
+"day"
+msgstr ""
+"Las ventas no pueden ser entregadas de acuerdo a sus tiempos de entrega y serán "
+"pospuestas por un día"
+
+#. module: sale_order_safe_commitment_date
+#: model:ir.model.fields,field_description:sale_order_safe_commitment_date.field_res_company__sales_cutoff_calendar
+#: model:ir.model.fields,field_description:sale_order_safe_commitment_date.field_res_config_settings__sales_cutoff_calendar
+msgid "Sales cut-off schedule"
+msgstr "Horario de hora de corte de ventas"
+
+#. module: sale_order_safe_commitment_date
+#: model_terms:ir.ui.view,arch_db:sale_order_safe_commitment_date.res_config_settings_view_form
+msgid ""
+"Set up the hours on which the salesmen can't place orders for the given lead times"
+msgstr ""
+"Configura las horas en las cuales un comercial no pueden hacer pedidos para los "
+"tiempos de entrega configurados"
+
+#. module: sale_order_safe_commitment_date
 #: model:ir.model.fields,help:sale_order_safe_commitment_date.field_sale_order__date_for_commitment
 msgid ""
-"This is the delivery date promised to the customer. If set, the delivery "
-"order will be scheduled based on this date rather than product lead times."
+"This is the delivery date promised to the customer. If set, the delivery order will "
+"be scheduled based on this date rather than product lead times."
 msgstr ""
-"Es la fecha de entrega prometida al cliente. Si se establece, la orden de "
-"entrega se programará en función de esta fecha en lugar de los plazos de "
-"entrega del producto."
-
-#~ msgid ""
-#~ "<i class=\"fa fa-warning text-warning\" attrs=\"{'invisible': "
-#~ "[('is_commitment_date_unsafe', '=', False)]}\" alt=\"The delivery date is "
-#~ "sooner than the expected date. You may be unable to honor the delivery "
-#~ "date.\"/> Expected:"
-#~ msgstr ""
-#~ "<i class=\"fa fa-warning text-warning\" attrs=\"{'invisible': "
-#~ "[('is_commitment_date_unsafe', '=', False)]}\" alt=\"La fecha de entrega "
-#~ "es anterior a la fecha esperada. Es posible que no pueda respetar la "
-#~ "fecha de entrega.\"/> Previsto:"
-
-#~ msgid "Delivery Date"
-#~ msgstr "Fecha de entrega"
+"Es la fecha de entrega prometida al cliente. Si se establece, la orden de entrega "
+"se programará en función de esta fecha en lugar de los plazos de entrega del "
+"producto."

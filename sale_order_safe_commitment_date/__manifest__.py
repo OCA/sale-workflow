@@ -3,15 +3,16 @@
 {
     "name": "Sale order safe commitment date",
     "summary": "Avoid confirming a commitment date previous to the expected date",
-    "version": "16.0.1.3.0",
+    "version": "18.0.1.0.0",
     "development_status": "Alpha",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Moduon, Odoo Community Association (OCA)",
     "maintainers": ["chienandalu", "rafaelbn"],
     "license": "LGPL-3",
-    "depends": ["sale"],
+    "depends": ["sale_stock"],
     "data": [
         "views/sale_order_views.xml",
+        "views/res_config_settings_views.xml",
     ],
 }
