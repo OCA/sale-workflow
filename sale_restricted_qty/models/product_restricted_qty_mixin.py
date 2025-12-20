@@ -7,14 +7,16 @@ from odoo import api, fields, models
 RESTRICTION_ENABLED = "1"
 RESTRICTION_DISABLED = "0"
 RESTRICTION_SELECTION = [
-    (RESTRICTION_ENABLED, "Yes"),
-    (RESTRICTION_DISABLED, "No"),
+    (RESTRICTION_ENABLED, "Blocking"),
+    (RESTRICTION_DISABLED, "Warning"),
 ]
 
 
 class ProductRestrictedQtyMixin(models.AbstractModel):
-    _name = "product.restricted.qty.mixin"
+    _name = "sale.product.restricted.qty.mixin"
     _description = "Product Restricted Qty Mixin"
+
+    _sale_restricted_qty_parent_field = None
 
     is_sale_own_min_qty_set = fields.Boolean()
     is_sale_inherited_min_qty_set = fields.Boolean(
@@ -65,7 +67,10 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
         recursive=True,
     )
     sale_restrict_min_qty = fields.Selection(
-        help="Enforce the minimum quantity of product that can be sold.",
+        help="Decide if the minimum quantity constraint is strictly enforced "
+        "(Blocking) or if it only triggers a warning (Warning).\n"
+        "Use 'Warning' if you want to allow exceptions like selling samples "
+        "or leftover stock.",
         selection=RESTRICTION_SELECTION,
         compute="_compute_sale_restrict_min_qty",
         inverse="_inverse_sale_restrict_min_qty",
@@ -122,7 +127,10 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
         recursive=True,
     )
     sale_restrict_max_qty = fields.Selection(
-        help="Enforce the maximum quantity of product that can be sold.",
+        help="Decide if the maximum quantity constraint is strictly enforced "
+        "(Blocking) or if it only triggers a warning (Warning).\n"
+        "Use 'Warning' if you want to allow large orders that exceed strict "
+        "policies under special conditions.",
         selection=RESTRICTION_SELECTION,
         compute="_compute_sale_restrict_max_qty",
         inverse="_inverse_sale_restrict_max_qty",
@@ -179,13 +187,18 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
         recursive=True,
     )
     sale_restrict_multiple_of_qty = fields.Selection(
-        help="Enforce the multiple-of quantity of product that can be sold.",
+        help="Decide if the multiple-of quantity constraint is strictly enforced "
+        "(Blocking) or if it only triggers a warning (Warning).\n"
+        "Use 'Warning' to allow selling non-standard quantities for special "
+        "cases like clearing leftover stock.",
         selection=RESTRICTION_SELECTION,
         compute="_compute_sale_restrict_multiple_of_qty",
         inverse="_inverse_sale_restrict_multiple_of_qty",
         store=True,
         recursive=True,
     )
+
+    # --- min_qty ---
 
     @api.onchange("is_sale_own_min_qty_set")
     def _onchange_is_sale_min_qty_set(self):
@@ -196,8 +209,18 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
 
     def _get_is_sale_inherited_min_qty_set(self):
         self.ensure_one()
-        return False
+        parent_field = self._sale_restricted_qty_parent_field
+        if not parent_field or not self[parent_field]:
+            return False
+        return self[parent_field].is_sale_min_qty_set
 
+    @api.depends(
+        lambda self: (
+            [f"{self._sale_restricted_qty_parent_field}.is_sale_min_qty_set"]
+            if self._sale_restricted_qty_parent_field
+            else []
+        )
+    )
     def _compute_is_sale_inherited_min_qty_set(self):
         for rec in self:
             rec.is_sale_inherited_min_qty_set = rec._get_is_sale_inherited_min_qty_set()
@@ -211,8 +234,18 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
 
     def _get_sale_inherited_min_qty(self):
         self.ensure_one()
-        return 0.0
+        parent_field = self._sale_restricted_qty_parent_field
+        if not parent_field or not self[parent_field]:
+            return 0.0
+        return self[parent_field].sale_min_qty
 
+    @api.depends(
+        lambda self: (
+            [f"{self._sale_restricted_qty_parent_field}.sale_min_qty"]
+            if self._sale_restricted_qty_parent_field
+            else []
+        )
+    )
     def _compute_sale_inherited_min_qty(self):
         for rec in self:
             rec.sale_inherited_min_qty = rec._get_sale_inherited_min_qty()
@@ -236,6 +269,8 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
                 rec.sale_own_min_qty = 0.0
                 rec.is_sale_own_min_qty_set = False
 
+    # --- restrict_min_qty ---
+
     @api.onchange("is_sale_own_restrict_min_qty_set")
     def _onchange_is_sale_restrict_min_qty_set(self):
         if self.is_sale_own_restrict_min_qty_set:
@@ -258,8 +293,21 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
 
     def _get_is_sale_inherited_restrict_min_qty_set(self):
         self.ensure_one()
-        return False
+        parent_field = self._sale_restricted_qty_parent_field
+        if not parent_field or not self[parent_field]:
+            return False
+        return self[parent_field].is_sale_restrict_min_qty_set
 
+    @api.depends(
+        lambda self: (
+            [
+                f"{self._sale_restricted_qty_parent_field}"
+                f".is_sale_restrict_min_qty_set"
+            ]
+            if self._sale_restricted_qty_parent_field
+            else []
+        )
+    )
     def _compute_is_sale_inherited_restrict_min_qty_set(self):
         for rec in self:
             rec.is_sale_inherited_restrict_min_qty_set = (
@@ -279,8 +327,18 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
 
     def _get_sale_inherited_restrict_min_qty(self):
         self.ensure_one()
-        return RESTRICTION_DISABLED
+        parent_field = self._sale_restricted_qty_parent_field
+        if not parent_field or not self[parent_field]:
+            return RESTRICTION_DISABLED
+        return self[parent_field].sale_restrict_min_qty
 
+    @api.depends(
+        lambda self: (
+            [f"{self._sale_restricted_qty_parent_field}.sale_restrict_min_qty"]
+            if self._sale_restricted_qty_parent_field
+            else []
+        )
+    )
     def _compute_sale_inherited_restrict_min_qty(self):
         for rec in self:
             rec.sale_inherited_restrict_min_qty = (
@@ -298,9 +356,11 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
             )
 
     def _inverse_sale_restrict_min_qty(self):
-        for rec in self.with_context(sale_own_restrict_min_qty=True):
+        for rec in self.with_context(skip_sale_own_restrict_min_qty=True):
             rec.is_sale_own_restrict_min_qty_set = True
             rec.sale_own_restrict_min_qty = rec.sale_restrict_min_qty
+
+    # --- max_qty ---
 
     @api.onchange("is_sale_own_max_qty_set")
     def _onchange_is_sale_max_qty_set(self):
@@ -311,8 +371,18 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
 
     def _get_is_sale_inherited_max_qty_set(self):
         self.ensure_one()
-        return False
+        parent_field = self._sale_restricted_qty_parent_field
+        if not parent_field or not self[parent_field]:
+            return False
+        return self[parent_field].is_sale_max_qty_set
 
+    @api.depends(
+        lambda self: (
+            [f"{self._sale_restricted_qty_parent_field}.is_sale_max_qty_set"]
+            if self._sale_restricted_qty_parent_field
+            else []
+        )
+    )
     def _compute_is_sale_inherited_max_qty_set(self):
         for rec in self:
             rec.is_sale_inherited_max_qty_set = rec._get_is_sale_inherited_max_qty_set()
@@ -326,8 +396,18 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
 
     def _get_sale_inherited_max_qty(self):
         self.ensure_one()
-        return 0.0
+        parent_field = self._sale_restricted_qty_parent_field
+        if not parent_field or not self[parent_field]:
+            return 0.0
+        return self[parent_field].sale_max_qty
 
+    @api.depends(
+        lambda self: (
+            [f"{self._sale_restricted_qty_parent_field}.sale_max_qty"]
+            if self._sale_restricted_qty_parent_field
+            else []
+        )
+    )
     def _compute_sale_inherited_max_qty(self):
         for rec in self:
             rec.sale_inherited_max_qty = rec._get_sale_inherited_max_qty()
@@ -348,8 +428,10 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
                 rec.sale_own_max_qty = rec.sale_max_qty
                 rec.is_sale_own_max_qty_set = True
             else:
-                rec.sale_own_max_qty = False
+                rec.sale_own_max_qty = 0.0
                 rec.is_sale_own_max_qty_set = False
+
+    # --- restrict_max_qty ---
 
     @api.onchange("is_sale_own_restrict_max_qty_set")
     def _onchange_is_sale_restrict_max_qty_set(self):
@@ -373,8 +455,21 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
 
     def _get_is_sale_inherited_restrict_max_qty_set(self):
         self.ensure_one()
-        return False
+        parent_field = self._sale_restricted_qty_parent_field
+        if not parent_field or not self[parent_field]:
+            return False
+        return self[parent_field].is_sale_restrict_max_qty_set
 
+    @api.depends(
+        lambda self: (
+            [
+                f"{self._sale_restricted_qty_parent_field}"
+                f".is_sale_restrict_max_qty_set"
+            ]
+            if self._sale_restricted_qty_parent_field
+            else []
+        )
+    )
     def _compute_is_sale_inherited_restrict_max_qty_set(self):
         for rec in self:
             rec.is_sale_inherited_restrict_max_qty_set = (
@@ -394,8 +489,18 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
 
     def _get_sale_inherited_restrict_max_qty(self):
         self.ensure_one()
-        return RESTRICTION_DISABLED
+        parent_field = self._sale_restricted_qty_parent_field
+        if not parent_field or not self[parent_field]:
+            return RESTRICTION_DISABLED
+        return self[parent_field].sale_restrict_max_qty
 
+    @api.depends(
+        lambda self: (
+            [f"{self._sale_restricted_qty_parent_field}.sale_restrict_max_qty"]
+            if self._sale_restricted_qty_parent_field
+            else []
+        )
+    )
     def _compute_sale_inherited_restrict_max_qty(self):
         for rec in self:
             rec.sale_inherited_restrict_max_qty = (
@@ -417,6 +522,8 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
             rec.is_sale_own_restrict_max_qty_set = True
             rec.sale_own_restrict_max_qty = rec.sale_restrict_max_qty
 
+    # --- multiple_of_qty ---
+
     @api.onchange("is_sale_own_multiple_of_qty_set")
     def _onchange_is_sale_multiple_of_qty_set(self):
         if self.is_sale_own_multiple_of_qty_set:
@@ -426,8 +533,21 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
 
     def _get_is_sale_inherited_multiple_of_qty_set(self):
         self.ensure_one()
-        return False
+        parent_field = self._sale_restricted_qty_parent_field
+        if not parent_field or not self[parent_field]:
+            return False
+        return self[parent_field].is_sale_multiple_of_qty_set
 
+    @api.depends(
+        lambda self: (
+            [
+                f"{self._sale_restricted_qty_parent_field}"
+                f".is_sale_multiple_of_qty_set"
+            ]
+            if self._sale_restricted_qty_parent_field
+            else []
+        )
+    )
     def _compute_is_sale_inherited_multiple_of_qty_set(self):
         for rec in self:
             rec.is_sale_inherited_multiple_of_qty_set = (
@@ -446,8 +566,18 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
 
     def _get_sale_inherited_multiple_of_qty(self):
         self.ensure_one()
-        return 0.0
+        parent_field = self._sale_restricted_qty_parent_field
+        if not parent_field or not self[parent_field]:
+            return 0.0
+        return self[parent_field].sale_multiple_of_qty
 
+    @api.depends(
+        lambda self: (
+            [f"{self._sale_restricted_qty_parent_field}.sale_multiple_of_qty"]
+            if self._sale_restricted_qty_parent_field
+            else []
+        )
+    )
     def _compute_sale_inherited_multiple_of_qty(self):
         for rec in self:
             rec.sale_inherited_multiple_of_qty = (
@@ -475,8 +605,10 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
                 rec.sale_own_multiple_of_qty = rec.sale_multiple_of_qty
                 rec.is_sale_own_multiple_of_qty_set = True
             else:
-                rec.sale_own_multiple_of_qty = False
+                rec.sale_own_multiple_of_qty = 0.0
                 rec.is_sale_own_multiple_of_qty_set = False
+
+    # --- restrict_multiple_of_qty ---
 
     @api.onchange("is_sale_own_restrict_multiple_of_qty_set")
     def _onchange_is_sale_restrict_multiple_of_qty_set(self):
@@ -506,8 +638,21 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
 
     def _get_is_sale_inherited_restrict_multiple_of_qty_set(self):
         self.ensure_one()
-        return False
+        parent_field = self._sale_restricted_qty_parent_field
+        if not parent_field or not self[parent_field]:
+            return False
+        return self[parent_field].is_sale_restrict_multiple_of_qty_set
 
+    @api.depends(
+        lambda self: (
+            [
+                f"{self._sale_restricted_qty_parent_field}"
+                f".is_sale_restrict_multiple_of_qty_set"
+            ]
+            if self._sale_restricted_qty_parent_field
+            else []
+        )
+    )
     def _compute_is_sale_inherited_restrict_multiple_of_qty_set(self):
         for rec in self:
             rec.is_sale_inherited_restrict_multiple_of_qty_set = (
@@ -527,8 +672,21 @@ class ProductRestrictedQtyMixin(models.AbstractModel):
 
     def _get_sale_inherited_restrict_multiple_of_qty(self):
         self.ensure_one()
-        return RESTRICTION_DISABLED
+        parent_field = self._sale_restricted_qty_parent_field
+        if not parent_field or not self[parent_field]:
+            return RESTRICTION_DISABLED
+        return self[parent_field].sale_restrict_multiple_of_qty
 
+    @api.depends(
+        lambda self: (
+            [
+                f"{self._sale_restricted_qty_parent_field}"
+                f".sale_restrict_multiple_of_qty"
+            ]
+            if self._sale_restricted_qty_parent_field
+            else []
+        )
+    )
     def _compute_sale_inherited_restrict_multiple_of_qty(self):
         for rec in self:
             rec.sale_inherited_restrict_multiple_of_qty = (

@@ -6,6 +6,7 @@
 
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from odoo.tools import float_is_zero
 
 from .product_restricted_qty_mixin import RESTRICTION_ENABLED
 
@@ -117,8 +118,12 @@ class SaleOrderLine(models.Model):
             )
             line.is_below_min_qty = line.is_min_qty_set and qty < line.min_qty
             line.is_above_max_qty = line.is_max_qty_set and qty > line.max_qty
+            rounding = line.product_id.uom_id.rounding
             line.is_not_multiple_of_qty = line.is_multiple_of_qty_set and (
-                line.multiple_of_qty != 0 and qty % line.multiple_of_qty != 0
+                line.multiple_of_qty != 0
+                and not float_is_zero(
+                    qty % line.multiple_of_qty, precision_rounding=rounding
+                )
             )
 
     @api.constrains(
@@ -138,6 +143,9 @@ class SaleOrderLine(models.Model):
     def check_restricted_qty(self):
         failed_lines = []
         for line in self:
+            if line.state not in ("draft", "sent"):
+                continue
+
             qty = line.product_uom._compute_quantity(
                 line.product_uom_qty, line.product_id.uom_id
             )
@@ -160,11 +168,14 @@ class SaleOrderLine(models.Model):
                     }
                 )
 
+            rounding = line.product_id.uom_id.rounding
             if (
                 line.is_multiple_of_qty_set
                 and line.restrict_multiple_of_qty
                 and line.multiple_of_qty != 0
-                and qty % line.multiple_of_qty != 0
+                and not float_is_zero(
+                    qty % line.multiple_of_qty, precision_rounding=rounding
+                )
             ):
                 failed_constraints.append(
                     _("quantity should be multiple of %(multiple_of_qty)s")
@@ -175,8 +186,12 @@ class SaleOrderLine(models.Model):
 
             if failed_constraints:
                 failed_lines.append(
-                    _('Product "%(product_name)s": %(failed_constraints)s')
+                    _(
+                        '%(order_name)s - Product "%(product_name)s": '
+                        "%(failed_constraints)s"
+                    )
                     % {
+                        "order_name": line.order_id.name,
                         "product_name": line.product_id.name,
                         "failed_constraints": ", ".join(failed_constraints),
                     }
@@ -186,12 +201,11 @@ class SaleOrderLine(models.Model):
             msg = _("Check quantity for these products:\n") + "\n".join(failed_lines)
             raise ValidationError(msg)
 
-
-
     @api.onchange("product_id")
     def _onchange_product_id_set_min_qty(self):
         """Set default quantity to minimum quantity when enforced."""
-        # Only auto-populate if product is set and quantity is not meaningfully set by user
+        # Only auto-populate if product is set and quantity is not
+        # meaningfully set by user
         # We auto-populate when quantity is 0 or when it's the default value of 1.0
         # but only if it hasn't been explicitly set by the user to a different value
         if (
@@ -201,5 +215,3 @@ class SaleOrderLine(models.Model):
             and (not self.product_uom_qty or self.product_uom_qty in (0.0, 1.0))
         ):
             self.product_uom_qty = self.min_qty
-
-

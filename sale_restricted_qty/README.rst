@@ -30,7 +30,8 @@ Sale order restricted quantity: min, max, multiple-of
 
 This module allows to set mininal, maximal, and multiple-of quantity
 constraints on product categories and products, and to check and
-optionally enforce these constraints on sale orders.
+optionally enforce these constraints on sale orders (either as strict
+blocking or soft warnings).
 
 **Table of contents**
 
@@ -45,15 +46,37 @@ To set quantity constraints on a product: navigate to **Sales > Products
 Constraints** section set corresponding values in the *Min Qty*, *Max
 Qty*, or *Multiple-Of Qty* fields.
 
+**Constraint Types:**
+
+- **Min Qty**: Minimum quantity required for a sale.
+- **Max Qty**: Maximum quantity allowed for a sale.
+- **Multiple-Of Qty**: Quantity must be a multiple of this value.
+
+**Enforcement Levels (Restrict):** For each constraint, you can choose
+the enforcement level:
+
+- **Blocking**: Strictly enforces the rule. The user cannot confirm the
+  line with an invalid quantity.
+- **Warning**: Displays a warning (yellow/orange indication) but allows
+  the user to proceed.
+
+  - *Use Case*: Use **Warning** when you want to allow flexibility, such
+    as selling **samples** (below min qty) or clearing out **leftover
+    stock** (remainder not matching multiple-of qty).
+
+**Auto-Suggest:** When you select a product in a Sales Order line, if a
+Minimum Quantity is strictly enforced (**Blocking**) and the current
+quantity is not set (or is 0/1), the system will automatically populate
+the quantity with the Minimum Quantity.
+
 To set quantity constraints on a product variant: navigate to **Sales >
 Products > Product Variants**, open the product variant, and on the
 **Sales** tab in the **Qty Constraints** section set corresponding
-values in the *Min Qty*, *Max Qty*, or *Multiple-Of Qty* fields.
+values.
 
 To set quantity constraints on a product category: navigate to **Sales >
 Configuration > Product Categories**, open the product category, and in
-the **Sales Qty Constraints** section set corresponding values in the
-*Min Qty*, *Max Qty*, or *Multiple-Of Qty* fields.
+the **Sales Qty Constraints** section set corresponding values.
 
 The settings are inherited from the product category to the product, and
 from the product to the product variant. To override the inherited
@@ -81,18 +104,18 @@ Authors
 Contributors
 ------------
 
--  Mourad EL HADJ MIMOUN <mourad.elhadj.mimoune@akretion.com>
--  `Ooops <https://www.ooops404.com/>`__:
+- Mourad EL HADJ MIMOUN <mourad.elhadj.mimoune@akretion.com>
+- `Ooops <https://www.ooops404.com/>`__:
 
-   -  Ashish Hirpara <https://ashish-hirpara.com>
+  - Ashish Hirpara <https://ashish-hirpara.com>
 
--  `Aion Tech <https://aiontech.company/>`__:
+- `Aion Tech <https://aiontech.company/>`__:
 
-   -  Simone Rubino <simone.rubino@aion-tech.it>
+  - Simone Rubino <simone.rubino@aion-tech.it>
 
--  `CorporateHub <https://corporatehub.eu/>`__
+- `CorporateHub <https://corporatehub.eu/>`__
 
-   -  Alexey Pelykh <alexey.pelykh@corphub.eu>
+  - Alexey Pelykh <alexey.pelykh@corphub.eu>
 
 Maintainers
 -----------
