@@ -31,4 +31,4 @@ class MrpProduction(models.Model):
                 # If so, use the 'sale_order_id' from the parent production
                 values["sale_order_id"] = production_id.sale_order_id.id
 
-        return super(MrpProduction, self).create(values)
+        return super().create(values)

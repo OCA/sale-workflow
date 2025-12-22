@@ -3,7 +3,6 @@
      Copyright 2016-2018 Akretion
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record model="ir.ui.view" id="view_order_form">
         <field name="name">sale.order.form</field>
         <field name="model">sale.order</field>
@@ -26,5 +25,4 @@
             </xpath>
         </field>
     </record>
-
 </odoo>

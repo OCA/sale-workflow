@@ -7,7 +7,7 @@ from odoo.tests.common import TransactionCase
 
 class TestSaleMrpLink(TransactionCase):
     def setUp(self):
-        super(TestSaleMrpLink, self).setUp()
+        super().setUp()
         self.partner = self.env.ref("base.res_partner_2")
         self.warehouse = self.env.ref("stock.warehouse0")
         route_manufacture = self.warehouse.manufacture_pull_id.route_id.id
