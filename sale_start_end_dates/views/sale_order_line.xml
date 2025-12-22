@@ -52,7 +52,7 @@
                     required="must_have_dates"
                     invisible="not must_have_dates"
                 />
-                <field name="must_have_dates" column_invisible="1" />
+                <field name="must_have_dates" invisible="1" />
             </field>
         </field>
     </record>

@@ -5,7 +5,7 @@
 
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools.misc import format_date
 
@@ -29,7 +29,7 @@ class SaleOrder(models.Model):
                 and order.default_start_date > order.default_end_date
             ):
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "Default start date (%(start_date)s) should be before or be "
                         "the same as default end date (%(end_date)s) "
                         "for sale order '%(name)s'.",
@@ -95,8 +95,8 @@ class SaleOrderLine(models.Model):
         res = {"warning": {}}
         for line in self:
             if line.number_of_days < 0:
-                res["warning"]["title"] = _("Wrong number of days")
-                res["warning"]["message"] = _(
+                res["warning"]["title"] = self.env._("Wrong number of days")
+                res["warning"]["message"] = self.env._(
                     "On sale order line with product '%(product_name)s', the "
                     "number of days is negative (%(number_of_days)s) ; this is not "
                     "allowed. The number of days has been forced to 1.",
@@ -120,20 +120,21 @@ class SaleOrderLine(models.Model):
             if line.product_id.must_have_dates:
                 if not line.end_date:
                     raise ValidationError(
-                        _("Missing End Date for sale order line with Product '%s'.")
-                        % (line.product_id.display_name)
+                        self.env._(
+                            "Missing End Date for sale order line with Product '%s'.",
+                            line.product_id.display_name,
+                        )
                     )
                 if not line.start_date:
                     raise ValidationError(
-                        _(
-                            "Missing Start Date for sale order line with "
-                            "Product '%s'."
+                        self.env._(
+                            "Missing Start Date for sale order line with Product '%s'.",
+                            line.product_id.display_name,
                         )
-                        % (line.product_id.display_name)
                     )
                 if line.start_date > line.end_date:
                     raise ValidationError(
-                        _(
+                        self.env._(
                             "Start date (%(start_date)s) should be before or "
                             "be the same as end date (%(end_date)s) for "
                             "sale order line with product '%(product_name)s'.",

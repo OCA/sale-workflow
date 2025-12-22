@@ -12,11 +12,7 @@
             <field name="product_uom_qty" position="before">
                 <field name="start_date" optional="hide" />
                 <field name="end_date" optional="hide" />
-                <field
-                    name="number_of_days"
-                    optional="hide"
-                    invisible="not start_date"
-                />
+                <field name="number_of_days" optional="hide" />
             </field>
         </field>
     </record>
