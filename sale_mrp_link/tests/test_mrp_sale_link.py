@@ -2,6 +2,7 @@
 # Copyright 2016-2018 Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from odoo import Command
 from odoo.tests.common import TransactionCase
 
 
@@ -10,16 +11,17 @@ class TestSaleMrpLink(TransactionCase):
         super().setUp()
         self.partner = self.env.ref("base.res_partner_2")
         self.warehouse = self.env.ref("stock.warehouse0")
-        route_manufacture = self.warehouse.manufacture_pull_id.route_id.id
-        route_mto = self.warehouse.mto_pull_id.route_id.id
+        route_manufacture = self.warehouse.manufacture_pull_id.route_id
+        route_mto = self.warehouse.mto_pull_id.route_id
+        route_mto.active = True
         self.product_a = self._create_product(
-            "Product A", route_ids=[(6, 0, [route_manufacture, route_mto])]
+            "Product A", route_ids=[Command.set([route_manufacture.id, route_mto.id])]
         )
         self.product_b = self._create_product(
-            "Product B", route_ids=[(6, 0, [route_manufacture, route_mto])]
+            "Product B", route_ids=[Command.set([route_manufacture.id, route_mto.id])]
         )
-        self.product_c = self._create_product("Product C", route_ids=[])
-        self.product_d = self._create_product("Product D", route_ids=[])
+        self.product_c = self._create_product("Product C", route_ids=[Command.clear()])
+        self.product_d = self._create_product("Product D", route_ids=[Command.clear()])
 
     def _create_bom(self, template):
         return self.env["mrp.bom"].create(
@@ -33,7 +35,7 @@ class TestSaleMrpLink(TransactionCase):
 
     def _create_product(self, name, route_ids):
         return self.env["product.product"].create(
-            {"name": name, "type": "product", "route_ids": route_ids}
+            {"name": name, "type": "consu", "is_storable": True, "route_ids": route_ids}
         )
 
     def _create_sale_order(self, partner, client_ref):
@@ -76,13 +78,16 @@ class TestSaleMrpLink(TransactionCase):
         so = self._create_sale_order(self.partner, "SO2")
         self._create_sale_order_line(so, self.product_a, 1, 10.0)
         so.action_confirm()
-        mo = self.env["mrp.production"].search([("sale_order_id", "=", so.id)])
+        mo = self.env["mrp.production"].search(
+            [("sale_order_id", "=", so.id)],
+            order="id asc",  # To have a deterministic order
+        )
         self.assertEqual(len(mo), 2)
         action = so.action_view_production()
         mo_ids = action.get("domain")[0][2]
-        self.assertEqual(mo.ids, mo_ids)
+        self.assertListEqual(mo.ids, mo_ids)
         self.assertEqual(len(mo), so.production_count)
         # The first MO will be the one that comes from the SO, the other one
-        #  will have the first MO as it's origin.
+        #  will have the first MO as its origin.
         self.assertEqual(so.client_order_ref, mo[0].origin)
         self.assertEqual(mo[1].origin, mo[0].name)

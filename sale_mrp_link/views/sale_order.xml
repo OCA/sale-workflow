@@ -14,7 +14,7 @@
                     name="action_view_production"
                     class="oe_stat_button"
                     icon="fa-gears"
-                    attrs="{'invisible': [('production_count', '=', 0)]}"
+                    invisible="production_count == 0"
                 >
                     <field
                         name="production_count"
