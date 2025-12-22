@@ -65,7 +65,7 @@ class TestSaleStartEndDates(TransactionCase):
                 "product_id": self.product_id.id,
                 "name": self.product_id.display_name,
                 "product_uom_qty": 2,
-                "product_uom": self.product_id.uom_id.id,
+                "product_uom_id": self.product_id.uom_id.id,
                 "order_id": self.so.id,
             }
         )
@@ -78,7 +78,7 @@ class TestSaleStartEndDates(TransactionCase):
                 "product_id": self.product_no_dates.id,
                 "name": self.product_no_dates.display_name,
                 "product_uom_qty": 2,
-                "product_uom": self.product_no_dates.uom_id.id,
+                "product_uom_id": self.product_no_dates.uom_id.id,
                 "order_id": self.so.id,
             }
         )
