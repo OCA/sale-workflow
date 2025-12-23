@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-sale-workflow"
-version = "19.0.20251216.0"
+version = "19.0.20251223.0"
 dependencies = [
     "odoo-addon-sale_automatic_workflow==19.0.*",
     "odoo-addon-sale_cancel_restrict==19.0.*",
@@ -13,6 +13,7 @@ dependencies = [
     "odoo-addon-sale_order_type==19.0.*",
     "odoo-addon-sale_partner_incoterm==19.0.*",
     "odoo-addon-sale_require_po_doc==19.0.*",
+    "odoo-addon-sale_stock_reference_by_line==19.0.*",
 ]
 classifiers=[
     "Programming Language :: Python",

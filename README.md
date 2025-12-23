@@ -32,6 +32,7 @@ addon | version | maintainers | summary
 [sale_order_type](sale_order_type/) | 19.0.1.0.1 |  | Sale Order Type
 [sale_partner_incoterm](sale_partner_incoterm/) | 19.0.1.0.0 |  | Set the customer preferred incoterm on each sales order
 [sale_require_po_doc](sale_require_po_doc/) | 19.0.1.0.0 |  | Sale Orders Require PO or Sales Documentation
+[sale_stock_reference_by_line](sale_stock_reference_by_line/) | 19.0.1.0.0 |  | Base module for definition of stock references creation rules for Sale order
 
 [//]: # (end addons)
 
