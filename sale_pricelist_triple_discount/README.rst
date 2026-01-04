@@ -87,6 +87,10 @@ Contributors
 
    -  Simone Rubino <simone.rubino@aion-tech.it>
 
+-  `Open Source Integrators <https://www.opensourceintegrators.com/>`__
+
+   -  Daniel Reis <dreis@opensourceintegrators.com>
+
 Maintainers
 -----------
 
