@@ -41,3 +41,27 @@ class TestStockSourcingAddress(TestStockSourcingAddressCommon):
         move_2 = self.move_model.search([("sale_line_id", "=", self.line_2.id)])
         self.assertEqual(move_2.picking_id.partner_id, self.address_2)
         self.assertEqual(move_2.location_dest_id, self.customer_loc_default)
+
+    def test_procurement_group_key_no_override(self):
+        """Test that the procurement group key is not overridden if no
+        destination address is set on the line.
+        """
+        # pylint: disable=missing-return
+        # Ensure dest_address_id is not set
+        self.line_1.dest_address_id = False
+        key = self.line_1._get_procurement_group_key()
+        # The key should be exactly what the parent returns,
+        # without being modified/wrapped by this module.
+        parent_key = super(type(self.line_1), self.line_1)._get_procurement_group_key()
+        self.assertEqual(key, parent_key)
+
+    def test_procurement_group_key_override(self):
+        """Test that the procurement group key is overridden if a
+        destination address is set on the line.
+        """
+        # Ensure dest_address_id is set
+        self.line_1.dest_address_id = self.address_1
+        key = self.line_1._get_procurement_group_key()
+        # The key should be (15, address_id)
+        expected_key = (15, self.address_1)
+        self.assertEqual(key, expected_key)
