@@ -28,6 +28,16 @@ msgid "Cannot split orders %(order_names)s without any split strategy defined"
 msgstr ""
 
 #. module: sale_order_split_strategy
+#: model:ir.model,name:sale_order_split_strategy.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_order_split_strategy
+#: model:ir.model,name:sale_order_split_strategy.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_split_strategy
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__copy_notes
 msgid "Copy Notes"
 msgstr ""
@@ -50,6 +60,16 @@ msgstr ""
 #. module: sale_order_split_strategy
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields.selection,name:sale_order_split_strategy.selection__res_company__sale_order_split_strategy_errors__do_nothing
+msgid "Do nothing"
+msgstr ""
+
+#. module: sale_order_split_strategy
+#: model_terms:ir.ui.view,arch_db:sale_order_split_strategy.res_config_settings_view_form_sale_exception
+msgid "How split errors are to be reported"
 msgstr ""
 
 #. module: sale_order_split_strategy
@@ -83,8 +103,24 @@ msgid "Order split strategy"
 msgstr ""
 
 #. module: sale_order_split_strategy
+#: model:ir.model.fields.selection,name:sale_order_split_strategy.selection__res_company__sale_order_split_strategy_errors__post_message
+msgid "Post message"
+msgstr ""
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields.selection,name:sale_order_split_strategy.selection__res_company__sale_order_split_strategy_errors__raise_errors
+msgid "Raise errors"
+msgstr ""
+
+#. module: sale_order_split_strategy
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__remove_empty_sections_after_split
 msgid "Remove Empty Sections After Split"
+msgstr ""
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_res_company__sale_order_split_strategy_errors
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_res_config_settings__sale_order_split_strategy_errors
+msgid "Sale Order Split Strategy Errors"
 msgstr ""
 
 #. module: sale_order_split_strategy
