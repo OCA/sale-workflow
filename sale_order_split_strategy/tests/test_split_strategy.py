@@ -1,6 +1,8 @@
 # Copyright 2024 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
+from odoo.exceptions import UserError
 from odoo.tests import Form
+from odoo.tests.common import RecordCapturer
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -166,3 +168,58 @@ class TestSplitStrategy(BaseCommon):
         self.assertIn("Middle lines", order.order_line.mapped("name"))
         self.assertIn("Last line", order.order_line.mapped("name"))
         self.assertNotIn("Empty section", order.order_line.mapped("name"))
+
+    def test_error_no_strategy_on_split(self):
+        order = self._create_order()
+        with self.assertRaisesRegex(UserError, "without any split strategy defined"):
+            order.action_split()
+
+    def test_error_no_lines_to_split(self):
+        order = self._create_order()
+        order.split_strategy_id = self.product_type_not_service_strategy
+        order.company_id.sale_order_split_strategy_errors = "do_nothing"
+        order.order_line.filtered(
+            lambda li: li.product_id in (self.product_consu_1, self.product_consu_2)
+        ).unlink()
+        with RecordCapturer(self.env["mail.message"].sudo(), []) as message_capture:
+            new_orders = order.action_split()
+            self.assertFalse(message_capture.records)
+            self.assertFalse(new_orders)
+        order.company_id.sale_order_split_strategy_errors = "post_message"
+        with RecordCapturer(self.env["mail.message"].sudo(), []) as message_capture:
+            new_orders = order.action_split()
+            self.assertTrue(message_capture.records)
+            self.assertFalse(new_orders)
+        order.company_id.sale_order_split_strategy_errors = "raise_errors"
+        with (
+            RecordCapturer(self.env["mail.message"].sudo(), []) as message_capture,
+            self.assertRaisesRegex(UserError, "there are no matching lines"),
+        ):
+            new_orders = order.action_split()
+            self.assertFalse(message_capture.records)
+
+    def test_error_only_lines_to_split(self):
+        order = self._create_order()
+        order.split_strategy_id = self.product_type_not_service_strategy
+        order.company_id.sale_order_split_strategy_errors = "do_nothing"
+        order.order_line.filtered(
+            lambda li: li.product_id not in (self.product_consu_1, self.product_consu_2)
+        ).unlink()
+        with RecordCapturer(self.env["mail.message"].sudo(), []) as message_capture:
+            new_orders = order.action_split()
+            self.assertFalse(message_capture.records)
+            self.assertFalse(new_orders)
+        order.company_id.sale_order_split_strategy_errors = "post_message"
+        with RecordCapturer(self.env["mail.message"].sudo(), []) as message_capture:
+            new_orders = order.action_split()
+            self.assertTrue(message_capture.records)
+            self.assertFalse(new_orders)
+        order.company_id.sale_order_split_strategy_errors = "raise_errors"
+        with (
+            RecordCapturer(self.env["mail.message"].sudo(), []) as message_capture,
+            self.assertRaisesRegex(
+                UserError, "there would not be any lines left on this order"
+            ),
+        ):
+            new_orders = order.action_split()
+            self.assertFalse(message_capture.records)
