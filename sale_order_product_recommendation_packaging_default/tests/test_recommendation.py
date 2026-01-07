@@ -3,8 +3,7 @@
 from freezegun import freeze_time
 
 from odoo.fields import Command
-from odoo.tests import tagged
-from odoo.tests.common import Form
+from odoo.tests import Form, tagged
 
 from odoo.addons.sale_order_product_recommendation.tests import (
     test_recommendation_common,
@@ -17,7 +16,9 @@ class PackagingRecommendationCase(test_recommendation_common.RecommendationCase)
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env.user.groups_id |= cls.env.ref("product.group_stock_packaging")
+        cls.env.user.groups_id |= cls.env.ref(
+            "product.group_stock_packaging"
+        ) + cls.env.ref("product.group_product_manager")
         # Product 1 has 3 packagings
         cls.prod_1_dozen, cls.prod_1_box, cls.prod_1_pallet = cls.env[
             "product.packaging"
@@ -199,8 +200,6 @@ class PackagingRecommendationCase(test_recommendation_common.RecommendationCase)
                 }
             )
         ]
-        # Ensure pricelist wants to recompute discounts
-        self.new_so.sudo().pricelist_id.discount_policy = "without_discount"
         # Do not modify anything
         wiz = self.wizard()
         wiz.action_accept()

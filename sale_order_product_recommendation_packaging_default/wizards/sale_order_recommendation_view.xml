@@ -11,7 +11,7 @@
         />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='line_ids']/tree/field[@name='units_included']"
+                expr="//field[@name='line_ids']/list/field[@name='units_included']"
                 position="before"
             >
                 <field
@@ -25,7 +25,7 @@
                     groups="product.group_stock_packaging"
                     optional="show"
                     widget="numeric_step"
-                    attrs="{'invisible': [('product_packaging_id', '=', False)]}"
+                    invisible="not product_packaging_id"
                 />
             </xpath>
             <xpath
@@ -41,7 +41,7 @@
                     name="product_packaging_qty"
                     groups="product.group_stock_packaging"
                     widget="numeric_step"
-                    attrs="{'readonly': [('product_packaging_id', '=', False)]}"
+                    invisible="not product_packaging_id"
                 />
             </xpath>
         </field>
