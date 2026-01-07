@@ -42,7 +42,7 @@ class SaleOrder(models.Model):
 
     # Amount to invoice could not be equal to total - amount invoiced.
     # For example if the amount invoiced does not match with the price unit.
-    @api.depends("invoice_ids.state")
+    @api.depends("state", "invoice_ids.state", "currency_id", "amount_total")
     def _compute_amount_to_invoice(self):
         if not self.env.company.enable_amount_invoiced_based_on_quantity:
             return super()._compute_amount_to_invoice()
