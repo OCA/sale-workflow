@@ -1,0 +1,8 @@
+<odoo>
+    <record id="minimum_amount_block_reason" model="sale.approval.block.reason">
+        <field name="name">Minimum Amount per Customer</field>
+        <field
+            name="description"
+        >Set total minimum amount (before taxes) for a customer.</field>
+    </record>
+</odoo>
