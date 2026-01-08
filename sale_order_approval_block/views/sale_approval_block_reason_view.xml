@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_approval_block_reason_tree_view" model="ir.ui.view">
+        <field name="name">sale.approval.block.reason.tree</field>
+        <field name="model">sale.approval.block.reason</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="description" />
+            </list>
+        </field>
+    </record>
+
+    <record id="sale_approval_block_reason_form_view" model="ir.ui.view">
+        <field name="name">sale.approval.block.reason.form</field>
+        <field name="model">sale.approval.block.reason</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="bg-danger"
+                        invisible="active"
+                    />
+                    <group name="top" colspan="2" col="2">
+                        <field name="name" />
+                        <field name="description" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sale_approval_block_reason" model="ir.actions.act_window">
+        <field name="name">Sale Approval Block Reasons</field>
+        <field name="res_model">sale.approval.block.reason</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem
+        id="menu_sale_approval_block_reason"
+        name="Sale Approval Block Reasons"
+        parent="sale.menu_sales_config"
+        action="action_sale_approval_block_reason"
+    />
+</odoo>

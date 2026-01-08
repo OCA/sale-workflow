@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="so_excep_approval_block" model="exception.rule">
+        <field name="name">Approval Blocked</field>
+        <field name="description">The approval has been blocked,
+                with a Blocking reason.</field>
+        <field name="sequence">100</field>
+        <field name="model">sale.order</field>
+        <field
+            name="code"
+        >if 'approval_block_id' in self._fields and self.approval_block_id: failed = True</field>
+        <field name="active" eval="True" />
+    </record>
+</odoo>
