@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='sale_management']" position='inside'>
+                <block
+                    title="Purchase stock"
+                    name="purchase_stock_auto_confirm_settings"
+                >
+                    <setting
+                        id="purchase_auto_validation"
+                        help="Automatically validate purchase orders created from sales orders using MTO or Dropship rules."
+                    >
+                        <field name="purchase_auto_validation" />
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
