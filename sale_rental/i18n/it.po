@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2025-04-08 09:24+0000\n"
+"PO-Revision-Date: 2026-01-11 15:14+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -425,7 +425,7 @@ msgstr "Prezzo giornaliero noleggio"
 #: model:ir.model.fields,field_description:sale_rental.field_sale_order_line__rental_qty
 #: model:ir.model.fields,field_description:sale_rental.field_sale_rental__rental_qty
 msgid "Rental Quantity"
-msgstr "Quantità noleggiata"
+msgstr "Quantità noleggio"
 
 #. module: sale_rental
 #: model:ir.model.fields,field_description:sale_rental.field_stock_warehouse__rental_route_id
