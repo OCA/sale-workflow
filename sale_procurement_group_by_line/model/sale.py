@@ -67,6 +67,7 @@ class SaleOrderLine(models.Model):
             if not group_id:
                 vals = line._prepare_procurement_group_vals()
                 group_id = self.env["procurement.group"].create(vals)
+                line.order_id.procurement_group_id = group_id
             else:
                 # In case the procurement group is already created and the
                 # order was cancelled, we need to update certain values
