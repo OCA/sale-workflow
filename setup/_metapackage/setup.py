@@ -58,6 +58,7 @@ setuptools.setup(
         'odoo14-addon-sale_mail_autosubscribe',
         'odoo14-addon-sale_manual_delivery',
         'odoo14-addon-sale_mrp_bom',
+        'odoo14-addon-sale_multi_payment_confirm',
         'odoo14-addon-sale_order_amount_to_invoice',
         'odoo14-addon-sale_order_archive',
         'odoo14-addon-sale_order_carrier_auto_assign',
