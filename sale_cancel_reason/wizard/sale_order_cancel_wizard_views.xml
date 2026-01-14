@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_cancel_wizard_view_form" model="ir.ui.view">
+        <field name="name">sale.order.cancel.wizard.view.form</field>
+        <field name="model">sale.order.cancel.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <p>
+                        Are you sure you want to cancel this order? This may affect related documents or processes.
+                    </p>
+                    <p>
+                        Choose the reason for the cancellation of the
+                        sale order.
+                    </p>
+                    <group>
+                        <field
+                            name="reason_id"
+                            options="{'no_create': True, 'no_open': True}"
+                        />
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        name="action_cancel"
+                        type="object"
+                        string="Cancel"
+                        class="btn-primary"
+                    />
+                    <button special="cancel" string="Discard" class="btn-secondary" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

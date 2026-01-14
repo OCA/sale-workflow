@@ -16,16 +16,16 @@ class SaleOrder(models.Model):
         copy=False,
     )
 
-    def _show_cancel_wizard(self):
-        for order in self:
-            if not order._context.get("disable_cancel_warning"):
-                return True
-        return False
-
     def action_draft(self):
         res = super().action_draft()
         self.write({"cancel_reason_id": False})
         return res
+
+    def action_cancel_wizard(self):
+        self.ensure_one()
+        return self.env["sale.order.cancel.wizard"]._get_records_action(
+            target="new", context={"default_order_id": self.id}
+        )
 
 
 class SaleOrderCancelReason(models.Model):
