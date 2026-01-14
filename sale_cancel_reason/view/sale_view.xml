@@ -20,6 +20,24 @@
                     />
                 </p>
             </xpath>
+            <xpath expr="//button[@name='action_cancel']" position="attributes">
+                <attribute
+                    name="invisible"
+                    separator=" or "
+                    add="not context.get('disable_cancel_warning')"
+                />
+                <attribute name="confirm" />
+                <attribute name="string">Cancel</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_cancel']" position="after">
+                <button
+                    name="action_cancel_wizard"
+                    string="Cancel"
+                    type="object"
+                    data-hotkey="x"
+                    invisible="state not in ['draft', 'sent', 'sale'] or not id or locked or context.get('disable_cancel_warning')"
+                />
+            </xpath>
         </field>
     </record>
     <record model="ir.ui.view" id="view_sale_order_cancel_reason_form">
