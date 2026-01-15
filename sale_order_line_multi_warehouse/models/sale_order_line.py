@@ -280,7 +280,7 @@ class SaleOrderLine(models.Model):
         return qty
 
     def _prepare_procurement_values(self, group_id=False):
-        values = super(SaleOrderLine, self)._prepare_procurement_values(group_id)
+        values = super()._prepare_procurement_values(group_id)
         self.ensure_one()
         if self.allow_sale_multi_warehouse and self.env.context.get(
             "warehouse_line", False
