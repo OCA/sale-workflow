@@ -1,5 +1,5 @@
 # Copyright 2025 360ERP (https://www.360erp.com)
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.tests.common import TransactionCase
 
@@ -29,8 +29,8 @@ class TestSalePhantomBomProcurementMultiLine(TransactionCase):
         cls.company = cls.env.company
 
         # Required groups
-        cls.env.user.groups_id += cls.env.ref("stock.group_adv_location")
-        cls.env.user.groups_id += cls.env.ref("sale_mrp_bom.sale_mrp_bom_group")
+        cls.env.user.group_ids += cls.env.ref("stock.group_adv_location")
+        cls.env.user.group_ids += cls.env.ref("sale_mrp_bom.sale_mrp_bom_group")
 
         # Ensure MTO Route is Active
         cls.mto_route = cls.env.ref(
@@ -40,13 +40,14 @@ class TestSalePhantomBomProcurementMultiLine(TransactionCase):
             cls.mto_route.action_unarchive()
 
         # Products
+        cls.categ = cls.env["product.category"].create({"name": "Test Category"})
         cls.product_mtokit = cls.env["product.product"].create(
             [
                 {
                     "name": "MTOKIT",
                     "type": "consu",
                     "route_ids": [(6, 0, [cls.mto_route.id])],
-                    "categ_id": cls.env.ref("product.product_category_all").id,
+                    "categ_id": cls.categ.id,
                 }
             ]
         )
@@ -56,7 +57,7 @@ class TestSalePhantomBomProcurementMultiLine(TransactionCase):
                     "name": "MTOCOMP",
                     "type": "consu",
                     "route_ids": [],
-                    "categ_id": cls.env.ref("product.product_category_all").id,
+                    "categ_id": cls.categ.id,
                 }
             ]
         )
@@ -103,7 +104,9 @@ class TestSalePhantomBomProcurementMultiLine(TransactionCase):
             ]
         )
 
-        cls.partner = cls.env.ref("base.res_partner_2")  # Customer
+        cls.partner = cls.env["res.partner"].create(
+            {"name": "Test Customer"}
+        )  # Customer
         cls.warehouse = cls.env.ref("stock.warehouse0")
 
     def _create_sale_order(self, partner):
@@ -126,7 +129,7 @@ class TestSalePhantomBomProcurementMultiLine(TransactionCase):
                     "product_id": product.id,
                     "product_uom_qty": qty,
                     "bom_id": bom.id,
-                    "product_uom": product.uom_id.id,
+                    "product_uom_id": product.uom_id.id,
                     "price_unit": 1,
                 }
             ]

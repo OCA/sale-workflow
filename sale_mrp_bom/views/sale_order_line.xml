@@ -5,7 +5,7 @@
         <field name="model">sale.order.line</field>
         <field name="inherit_id" ref="sale.view_order_line_tree" />
         <field name="arch" type="xml">
-            <field name="route_id" position="after">
+            <field name="route_ids" position="after">
                 <field
                     name="bom_id"
                     groups="sale_mrp_bom.sale_mrp_bom_group"

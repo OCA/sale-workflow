@@ -1,11 +1,11 @@
-# Copyright 2025 360ERP (<https://www.360erp.com>)
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
+# Copyright 2026 ForgeFlow, S.L.
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, models
 
 
-class ProcurementGroup(models.Model):
-    _inherit = "procurement.group"
+class StockRule(models.Model):
+    _inherit = "stock.rule"
 
     @api.model
     def run(self, procurements, raise_user_error=True):
@@ -79,7 +79,7 @@ class ProcurementGroup(models.Model):
                         )
                     )
                     procurements_without_kit.append(
-                        self.env["procurement.group"].Procurement(
+                        self.env["stock.rule"].Procurement(
                             bom_line.product_id,
                             component_qty,
                             procurement_uom,

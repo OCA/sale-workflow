@@ -9,7 +9,9 @@ class TestSaleMrpLink(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.partner = cls.env.ref("base.res_partner_2")
+        cls.partner = cls.env["res.partner"].create(
+            {"name": "Test Customer"}
+        )  # Customer
         cls.warehouse = cls.env.ref("stock.warehouse0")
         route_manufacture = cls.warehouse.manufacture_pull_id.route_id.id
         route_mto = cls.warehouse.mto_pull_id.route_id.id

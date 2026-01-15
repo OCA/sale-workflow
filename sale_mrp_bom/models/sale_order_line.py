@@ -1,7 +1,7 @@
 # Copyright 2020 Akretion Renato Lima <renato.lima@akretion.com.br>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -29,7 +29,7 @@ class SaleOrderLine(models.Model):
             if not bom_product and bom_product_tmpl == line.product_template_id:
                 continue
             raise ValidationError(
-                _(
+                self.env._(
                     "Please select a BoM that matches the product %(product)s",
                     product=line.product_id.display_name,
                 )
