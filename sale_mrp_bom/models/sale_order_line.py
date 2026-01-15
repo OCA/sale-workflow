@@ -1,7 +1,7 @@
 # Copyright 2020 Akretion Renato Lima <renato.lima@akretion.com.br>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -29,8 +29,17 @@ class SaleOrderLine(models.Model):
             if not bom_product and bom_product_tmpl == line.product_template_id:
                 continue
             raise ValidationError(
-                _(
+                self.env._(
                     "Please select a BoM that matches the product %(product)s",
                     product=line.product_id.display_name,
                 )
             )
+
+    def _get_qty_procurement(self, previous_product_uom_qty=False):
+        # Make sale_mrp measure kit lines with the BoM chosen on the line
+        line = self
+        if self.bom_id.type == "phantom":
+            line = self.with_context(sale_mrp_bom_kit_id=self.bom_id.id)
+        return super(SaleOrderLine, line)._get_qty_procurement(
+            previous_product_uom_qty=previous_product_uom_qty
+        )

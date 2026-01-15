@@ -2,16 +2,19 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import ValidationError
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase, new_test_user
 
 
 class TestSaleMrpLink(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.partner = cls.env.ref("base.res_partner_2")
+        cls.partner = cls.env["res.partner"].create(
+            {"name": "Test Customer"}
+        )  # Customer
         cls.warehouse = cls.env.ref("stock.warehouse0")
         route_manufacture = cls.warehouse.manufacture_pull_id.route_id.id
+        cls.warehouse.mto_pull_id.route_id.active = True
         route_mto = cls.warehouse.mto_pull_id.route_id.id
         cls.product_a = cls._create_product(
             "Product A", route_ids=[(6, 0, [route_manufacture, route_mto])]
@@ -92,8 +95,26 @@ class TestSaleMrpLink(TransactionCase):
 
         # Check manufacture order
         mos = self.env["mrp.production"].search([]) - previous_mos
+        self.assertEqual(len(mos), 2)
         for mo in mos:
             self.assertEqual(mo.bom_id, self.boms.get(mo.product_id.id))
+
+    def test_define_bom_in_sale_line_salesman(self):
+        """A salesman without manufacturing rights can confirm the order."""
+        bom_a, _bom_b = self._prepare_bom_lines()
+        salesman = new_test_user(
+            self.env,
+            login="sale_mrp_bom_salesman",
+            groups="sales_team.group_sale_salesman",
+        )
+        previous_mos = self.env["mrp.production"].search([])
+        so = self._create_sale_order(self.partner, "SO3")
+        so.user_id = salesman
+        self._create_sale_order_line(so, self.product_a, 1, 10.0, bom_a)
+        so.with_user(salesman).action_confirm()
+        self.assertEqual(so.state, "sale")
+        mo = self.env["mrp.production"].search([]) - previous_mos
+        self.assertEqual(mo.bom_id, bom_a)
 
     def test_pick_a_pack_confirm(self):
         so, bom_a, bom_b = self._prepare_so()
