@@ -56,17 +56,15 @@ class SaleOrderLineWarehouse(models.Model):
         string="Forecast Qty. UoM", comodel_name="uom.uom", related="product_id.uom_id"
     )
 
-    def name_get(self):
-        result = []
-        for rec in self:
+    def _compute_display_name(self):
+        for line in self:
             name = "{} - {}: {} {}".format(
-                rec.warehouse_id.code,
-                rec.warehouse_id.name,
-                rec.product_uom_qty,
-                rec.product_uom_id.name,
+                line.warehouse_id.code,
+                line.warehouse_id.name,
+                line.product_uom_qty,
+                line.product_uom_id.name,
             )
-            result.append((rec.id, name))
-        return result
+            line.display_name = name
 
     @api.depends("product_id", "warehouse_id")
     def _compute_qty_forecast(self):
@@ -82,7 +80,7 @@ class SaleOrderLineWarehouse(models.Model):
     @api.depends(
         "order_line_id.move_ids.state",
         "order_line_id.move_ids.scrapped",
-        "order_line_id.move_ids.quantity_done",
+        "order_line_id.move_ids.quantity",
         "order_line_id.move_ids.product_uom",
     )
     def _compute_qty_delivered(self):
@@ -94,25 +92,26 @@ class SaleOrderLineWarehouse(models.Model):
                     outgoing_moves,
                     incoming_moves,
                 ) = order_line._get_outgoing_incoming_moves()
+                warehouse_id = line.warehouse_id
                 for move in outgoing_moves.filtered(
-                    lambda a: a.warehouse_id == line.warehouse_id
-                    or a.picking_id.location_id.warehouse_id == line.warehouse_id
+                    lambda a, warehouse=warehouse_id: a.warehouse_id == warehouse
+                    or a.picking_id.location_id.warehouse_id == warehouse
                 ):
                     if move.state != "done":
                         continue
                     qty += move.product_uom._compute_quantity(
-                        move.quantity_done,
+                        move.quantity,
                         order_line.product_uom,
                         rounding_method="HALF-UP",
                     )
                 for move in incoming_moves.filtered(
-                    lambda a: a.warehouse_id == line.warehouse_id
-                    or a.picking_id.location_id.warehouse_id == line.warehouse_id
+                    lambda a, warehouse=warehouse_id: a.warehouse_id == warehouse
+                    or a.picking_id.location_id.warehouse_id == warehouse
                 ):
                     if move.state != "done":
                         continue
                     qty -= move.product_uom._compute_quantity(
-                        move.quantity_done,
+                        move.quantity,
                         order_line.product_uom,
                         rounding_method="HALF-UP",
                     )
@@ -137,9 +136,10 @@ class SaleOrderLineWarehouse(models.Model):
                 ):
                     order_line.with_context(
                         bypass_write_order_line_warehouse=True
-                    ).write({"product_uom_qty": new_qty})
+                    ).product_uom_qty = new_qty
         return ret_vals
 
+    @api.model_create_multi
     def create(self, vals_list):
         lines = super().create(vals_list)
         for order_line in lines.mapped("order_line_id"):
@@ -156,16 +156,16 @@ class SaleOrderLineWarehouse(models.Model):
                 )
                 != 0.0
             ):
-                order_line.with_context(bypass_write_order_line_warehouse=True).write(
-                    {"product_uom_qty": new_qty}
-                )
+                order_line.with_context(
+                    bypass_write_order_line_warehouse=True
+                ).product_uom_qty = new_qty
         return lines
 
     def unlink(self):
         if not self.env.context.get("bypass_write_order_line_warehouse", False):
             # Do not adjust warehouse distribution lines quantity as it has already
             # been set here
-            self.with_context(bypass_write_order_line_warehouse=True).write(
+            self.with_context(bypass_write_order_line_warehouse=True).update(
                 {"product_uom_qty": 0.0}
             )
         return super().unlink()

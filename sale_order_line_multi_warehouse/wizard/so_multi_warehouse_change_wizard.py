@@ -23,18 +23,15 @@ class SOMultiWarehouseChangeWizard(models.TransientModel):
         comodel_name="so.multi.warehouse.change.line.wizard",
         inverse_name="so_multi_warehouse_change_wizard_id",
     )
-    has_incompatibilities = fields.Selection(
-        selection=[
-            ("yes", "Yes"),
-            ("no", "No"),
-        ],
-        readonly=True,
+    has_incompatibilities = fields.Boolean(
         copy=False,
+        default=False,
     )
 
     @api.onchange("new_warehouse_id")
     def _onchange_warehouse_id(self):
-        self.has_incompatibilities = False
+        for warehouse in self:
+            warehouse.has_incompatibilities = False
 
     def check_incompatible(self):
         self.so_multi_warehouse_change_line_ids.unlink()
@@ -45,9 +42,9 @@ class SOMultiWarehouseChangeWizard(models.TransientModel):
                     sel.new_warehouse_id
                 )
             )
-            has_incompatibilities = "no"
+            has_incompatibilities = False
             if incompatible_lines:
-                has_incompatibilities = "yes"
+                has_incompatibilities = True
                 for incompatible_line in incompatible_lines:
                     vals.append(
                         {
@@ -56,7 +53,7 @@ class SOMultiWarehouseChangeWizard(models.TransientModel):
                         }
                     )
                 self.env["so.multi.warehouse.change.line.wizard"].create(vals)
-            sel.write({"has_incompatibilities": has_incompatibilities})
+            sel.update({"has_incompatibilities": has_incompatibilities})
         return {
             "type": "ir.actions.act_window",
             "res_model": self._name,
@@ -69,7 +66,7 @@ class SOMultiWarehouseChangeWizard(models.TransientModel):
 
     def change_warehouse(self):
         self.ensure_one()
-        if self.sale_order_id.state not in ["sale", "done"] and self.new_warehouse_id:
+        if self.sale_order_id.state != "sale" and self.new_warehouse_id:
             for line in self.so_multi_warehouse_change_line_ids:
                 so_line_warehouse = line.sale_order_line_warehouse_id
                 related_lines = (
@@ -81,7 +78,7 @@ class SOMultiWarehouseChangeWizard(models.TransientModel):
                     )
                 )
                 if same_warehouse_line:
-                    same_warehouse_line.write(
+                    same_warehouse_line.update(
                         {
                             "product_uom_qty": same_warehouse_line.product_uom_qty
                             + line.sale_order_line_warehouse_id.product_uom_qty
@@ -89,10 +86,10 @@ class SOMultiWarehouseChangeWizard(models.TransientModel):
                     )
                     line.sale_order_line_warehouse_id.unlink()
                 else:
-                    line.sale_order_line_warehouse_id.write(
-                        {"warehouse_id": self.new_warehouse_id.id}
+                    line.sale_order_line_warehouse_id.warehouse_id = (
+                        self.new_warehouse_id.id
                     )
-            self.sale_order_id.write({"warehouse_id": self.new_warehouse_id.id})
+            self.sale_order_id.warehouse_id = self.new_warehouse_id.id
         else:
             raise ValidationError(
                 _(

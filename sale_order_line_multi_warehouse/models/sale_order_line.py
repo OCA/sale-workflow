@@ -1,7 +1,7 @@
 # Copyright 2024 Manuel Regidor <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import Command, _, api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools import float_compare
 
@@ -63,6 +63,7 @@ class SaleOrderLine(models.Model):
         ).unlink()
         return ret_vals
 
+    @api.model_create_multi
     def create(self, vals_list):
         lines = super().create(vals_list)
         # Automatically create a warehouse distributions line when the
@@ -79,7 +80,7 @@ class SaleOrderLine(models.Model):
                         "warehouse_id": line.move_ids[
                             0
                         ].picking_id.location_id.warehouse_id.id,
-                        "move_ids": [line.move_ids[0].id],
+                        "move_ids": [Command.set(line.move_ids.ids)],
                     }
                 )
             else:
@@ -140,7 +141,7 @@ class SaleOrderLine(models.Model):
                     )
                     < 0
                 ):
-                    reduce_line[0].write(
+                    reduce_line[0].update(
                         {
                             "product_uom_qty": reduce_line[0].product_uom_qty
                             - pending_qty
@@ -149,7 +150,7 @@ class SaleOrderLine(models.Model):
                     pending_qty = 0.0
                 else:
                     pending_qty -= reduce_line[0].product_uom_qty
-                    reduce_line[0].write({"product_uom_qty": 0.0})
+                    reduce_line[0].update({"product_uom_qty": 0.0})
                 reduce_line = self.sale_order_line_warehouse_ids.filtered(
                     lambda a: float_compare(
                         a.product_uom_qty,
@@ -161,9 +162,9 @@ class SaleOrderLine(models.Model):
             else:
                 raise ValidationError(
                     _(
-                        "Amount for sale order line with product %(product)s could not be "
-                        "reduced when automatically adjusting quantitiy as no warehouse "
-                        "line could be selected.",
+                        "Amount for sale order line with product %(product)s could "
+                        "not be reduced when automatically adjusting quantity "
+                        "as no warehouse line could be selected.",
                         product=self.product_id.name,
                     )
                 )
@@ -202,7 +203,7 @@ class SaleOrderLine(models.Model):
                     delivered_line[0].qty_delivered - delivered_line[0].product_uom_qty,
                     pending_qty,
                 )
-                delivered_line[0].write({"product_uom_qty": qty_to_add})
+                delivered_line[0].product_uom_qty = qty_to_add
                 pending_qty -= qty_to_add
                 delivered_line = self.sale_order_line_warehouse_ids.filtered(
                     lambda a: float_compare(
@@ -221,7 +222,7 @@ class SaleOrderLine(models.Model):
             > 0
         ):
             if default_warehouse_lines:
-                default_warehouse_lines.write(
+                default_warehouse_lines.update(
                     {
                         "product_uom_qty": default_warehouse_lines.product_uom_qty
                         + pending_qty

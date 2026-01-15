@@ -33,11 +33,12 @@ class SaleOrder(models.Model):
 
     def _action_confirm(self):
         for order in self:
-            if order.get_incompatible_multi_warehouse_lines(self.warehouse_id):
+            if order.get_incompatible_multi_warehouse_lines(order.warehouse_id):
                 raise ValidationError(
                     _(
                         "Some sale order line assignment lines are not compatible with "
-                        "the selected warehouse. Quotation %(order)s could not be validated.",
+                        "the selected warehouse. Quotation %(order)s "
+                        "could not be validated.",
                         order=order.name,
                     )
                 )

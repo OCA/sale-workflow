@@ -1,14 +1,14 @@
-- To split a sale order line into multiple warehouses you need to click on the tree graph icon in a sale order line. A popup will open, where warehouses and quantities can be selected. Only the warehouses set in the "Alternative Warehouses" field in the warehouse set in the sale order can be selected. Sale order line quantity and its warehouse distributions line quantities are synchronized as follows:  
-  - When quantity is increased in a sale order line:  
+- To split a sale order line into multiple warehouses you need to click on the tree graph icon in a sale order line. A popup will open, where warehouses and quantities can be selected. Only the warehouses set in the "Alternative Warehouses" field in the warehouse set in the sale order can be selected. Sale order line quantity and its warehouse distributions line quantities are synchronized as follows:
+  - When quantity is increased in a sale order line:
     - In case there is a warehouse distribution line related to the
       warehouse set in the sale order, the increased quantity is added
-      to the quantity in this warehouse fistribution line.
+      to the quantity in this warehouse distribution line.
     - In case there is not a warehouse distribution line related to the
       warehouse set in the sale order, a new warehouse distribution line
       related to the warehouse set in the sale order is created
       containing the increased amount.
 
-  - When quantity is decreased in a sale order line:  
+  - When quantity is decreased in a sale order line:
     - In case there is a warehouse distribution line related to the
       warehouse set in the sale order, the decreased quantity is
       substracted from the quantity amount in this warehouse

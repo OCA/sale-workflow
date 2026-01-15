@@ -37,6 +37,14 @@ warehouses selected in the lines.
 .. contents::
    :local:
 
+Installation
+============
+
+- Module sale_procurement_group_by_line should not be used along with
+  this module as it provides the base to split sale order lines
+  depending on different criteria, which might make
+  sale_order_line_multi_warehouse module malfunction.
+
 Configuration
 =============
 
@@ -74,7 +82,7 @@ Usage
 
     - In case there is a warehouse distribution line related to the
       warehouse set in the sale order, the increased quantity is added
-      to the quantity in this warehouse fistribution line.
+      to the quantity in this warehouse distribution line.
     - In case there is not a warehouse distribution line related to the
       warehouse set in the sale order, a new warehouse distribution line
       related to the warehouse set in the sale order is created
@@ -117,12 +125,8 @@ Known issues / Roadmap
 ======================
 
 - The warehouse distribution lines display could be improved in the
-  future so it looks similar to the pop up used for analytic
+  future so it looks similar to the pop-up used for analytic
   distribution.
-- Module sale_procurement_group_by_line should not be used along with
-  this module as it provides the base to split sale order lines
-  depending on different criteria, which might make
-  sale_order_line_multi_warehouse module malfunction.
 
 Bug Tracker
 ===========
@@ -147,6 +151,7 @@ Contributors
 
 - Manuel Regidor <manuel.regidor@sygel.es>
 - Valentín Vinagre <valentin.vinagre@sygel.es>
+- Edilio Escalona <e.escalona@binhex.cloud>
 
 Maintainers
 -----------

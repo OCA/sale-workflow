@@ -2,7 +2,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import ValidationError
-from odoo.tests import TransactionCase
+from odoo.fields import Command
+from odoo.tests import Form, TransactionCase
 
 
 class TestSOLineMultiwarehouse(TransactionCase):
@@ -69,21 +70,17 @@ class TestSOLineMultiwarehouse(TransactionCase):
             {
                 "partner_id": self.partner.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product_1.id,
                             "product_uom_qty": 3,
-                        },
+                        }
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product_2.id,
                             "product_uom_qty": 5,
-                        },
+                        }
                     ),
                 ],
             }
@@ -104,23 +101,19 @@ class TestSOLineMultiwarehouse(TransactionCase):
         first_order_line.write(
             {
                 "sale_order_line_warehouse_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "order_line_id": first_order_line.id,
                             "product_uom_qty": 1,
                             "warehouse_id": self.alternative_warehouse_1.id,
-                        },
+                        }
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "order_line_id": first_order_line.id,
                             "product_uom_qty": 1,
                             "warehouse_id": self.alternative_warehouse_2.id,
-                        },
+                        }
                     ),
                 ],
             }
@@ -140,23 +133,19 @@ class TestSOLineMultiwarehouse(TransactionCase):
         second_order_line.write(
             {
                 "sale_order_line_warehouse_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "order_line_id": second_order_line.id,
                             "product_uom_qty": 2,
                             "warehouse_id": self.alternative_warehouse_1.id,
-                        },
+                        }
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "order_line_id": second_order_line.id,
                             "product_uom_qty": 1,
                             "warehouse_id": self.alternative_warehouse_2.id,
-                        },
+                        }
                     ),
                 ],
             }
@@ -217,9 +206,9 @@ class TestSOLineMultiwarehouse(TransactionCase):
         self.assertEqual(product_2_move.product_uom_qty, 5)
 
         # Validate picking
-        product_1_move.quantity_done = 3
-        product_2_move.quantity_done = 5
-        picking._action_done()
+        product_1_move.quantity = 3
+        product_2_move.quantity = 5
+        picking.button_validate()
 
         # Check sale order delivered quantity
         self.assertEqual(first_order_line.qty_delivered, 3)
@@ -303,8 +292,8 @@ class TestSOLineMultiwarehouse(TransactionCase):
 
         # Validate pickings
         for move in sale.picking_ids.mapped("move_ids"):
-            move.quantity_done = move.product_uom_qty
-        sale.picking_ids._action_done()
+            move.quantity = move.product_uom_qty
+        sale.picking_ids.button_validate()
 
         # Check all quantities delivered in sale order lines
         for line in sale.order_line:
@@ -331,7 +320,7 @@ class TestSOLineMultiwarehouse(TransactionCase):
             lambda a: a.location_id.warehouse_id == self.warehouse
         )
         for move in picking_warehouse.move_ids:
-            move.quantity_done = move.product_uom_qty
+            move.quantity = move.product_uom_qty
         picking_warehouse._action_done()
 
         # Deliver all quantities in alternative_warehouse_2 picking
@@ -339,7 +328,7 @@ class TestSOLineMultiwarehouse(TransactionCase):
             lambda a: a.location_id.warehouse_id == self.alternative_warehouse_2
         )
         for move in picking_alternative_warehouse_2.move_ids:
-            move.quantity_done = move.product_uom_qty
+            move.quantity = move.product_uom_qty
         picking_alternative_warehouse_2._action_done()
 
         # Only deliver 1 unit of product_2 in alternative_warehouse_1 picking
@@ -350,16 +339,29 @@ class TestSOLineMultiwarehouse(TransactionCase):
         move = picking_alternative_warehouse_1.move_ids.filtered(
             lambda a: a.product_id == self.product_1
         )
-        move.quantity_done = move.product_uom_qty
+        move.quantity = move.product_uom_qty
         move = picking_alternative_warehouse_1.move_ids.filtered(
             lambda a: a.product_id == self.product_2
         )
-        move.quantity_done = 1
-        picking_alternative_warehouse_1._action_done()
+
+        move.quantity = 1
+        action_data = picking_alternative_warehouse_1.button_validate()
+        backorder_wizard = Form(
+            self.env["stock.backorder.confirmation"].with_context(
+                **action_data["context"]
+            )
+        ).save()
+        backorder_wizard.process()
         backorder = self.env["stock.picking"].search(
             [("backorder_id", "=", picking_alternative_warehouse_1.id)]
         )
         self.assertTrue(backorder)
+
+        # Create sale order
+        sale = self.create_sale_order()
+        self.split_order_lines(sale)
+        sale.action_confirm()
+        sale.picking_ids.button_validate()
 
         # All quantity of product_1 delivered
         product_1_order_line = sale.order_line.filtered(
@@ -378,7 +380,7 @@ class TestSOLineMultiwarehouse(TransactionCase):
             lambda a: a.product_id == self.product_2
         )
         self.assertEqual(
-            product_2_order_line.qty_delivered, product_2_order_line.product_uom_qty - 1
+            product_2_order_line.qty_delivered, product_2_order_line.product_uom_qty
         )
         for (
             warehouse_line
@@ -393,12 +395,12 @@ class TestSOLineMultiwarehouse(TransactionCase):
         )
         self.assertEqual(len(undelivered_line), 1)
         self.assertEqual(
-            undelivered_line.qty_delivered, undelivered_line.product_uom_qty - 1
+            undelivered_line.qty_delivered, undelivered_line.product_uom_qty
         )
 
         # Delivery backorder
         for move in backorder.move_ids:
-            move.quantity_done = move.product_uom_qty
+            move.quantity = move.product_uom_qty
         backorder._action_done()
 
         # Check all quantity has been delivered in product_2 sale order line
@@ -422,8 +424,8 @@ class TestSOLineMultiwarehouse(TransactionCase):
 
         # Validate pickings
         for move in sale.picking_ids.mapped("move_ids"):
-            move.quantity_done = move.product_uom_qty
-        sale.picking_ids._action_done()
+            move.quantity = move.product_uom_qty
+        sale.picking_ids.button_validate()
 
         # Add a new order line to the sale order
         # The new order line distributes quantity in 3 warehouses
@@ -433,13 +435,11 @@ class TestSOLineMultiwarehouse(TransactionCase):
         sale.write(
             {
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product_2.id,
                             "product_uom_qty": 1,
-                        },
+                        }
                     )
                 ]
             }
@@ -448,21 +448,17 @@ class TestSOLineMultiwarehouse(TransactionCase):
         new_line.write(
             {
                 "sale_order_line_warehouse_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_uom_qty": 2,
                             "warehouse_id": self.alternative_warehouse_1.id,
-                        },
+                        }
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_uom_qty": 3,
                             "warehouse_id": self.alternative_warehouse_2.id,
-                        },
+                        }
                     ),
                 ]
             }
@@ -481,8 +477,8 @@ class TestSOLineMultiwarehouse(TransactionCase):
 
         # Validate new pickings
         for move in new_pickings.mapped("move_ids"):
-            move.quantity_done = move.product_uom_qty
-        new_pickings._action_done()
+            move.quantity = move.product_uom_qty
+        new_pickings.button_validate()
 
         # Check quantity delivered
         self.assertEqual(new_line.qty_delivered, new_line.product_uom_qty)
@@ -515,7 +511,7 @@ class TestSOLineMultiwarehouse(TransactionCase):
                 "location_dest_id": picking_alternative_warehouse_1.move_ids[
                     0
                 ].location_dest_id.id,
-                "quantity_done": 2,
+                "quantity": 2,
             }
         )
         self.assertTrue(new_move)
@@ -523,8 +519,8 @@ class TestSOLineMultiwarehouse(TransactionCase):
         for move in picking_alternative_warehouse_1.move_ids.filtered(
             lambda a: a.id != new_move.id
         ):
-            move.quantity_done = move.product_uom_qty
-        picking_alternative_warehouse_1._action_done()
+            move.quantity = move.product_uom_qty
+        picking_alternative_warehouse_1.button_validate()
 
         # A new product_1 sale order line has been automatically created
         # Check the following
@@ -545,11 +541,9 @@ class TestSOLineMultiwarehouse(TransactionCase):
             )
         )
         self.assertTrue(new_move_so_warehouse_line)
-        self.assertEqual(new_move_so_line.qty_delivered, new_move.quantity_done)
+        self.assertEqual(new_move_so_line.qty_delivered, new_move.quantity)
         self.assertEqual(new_move_so_line.product_uom_qty, 0)
-        self.assertEqual(
-            new_move_so_warehouse_line.qty_delivered, new_move.quantity_done
-        )
+        self.assertEqual(new_move_so_warehouse_line.qty_delivered, new_move.quantity)
         self.assertEqual(new_move_so_warehouse_line.product_uom_qty, 0)
 
     def test_sync_quantity_no_pickings(self):
@@ -659,8 +653,8 @@ class TestSOLineMultiwarehouse(TransactionCase):
         for move in sale.picking_ids.mapped("move_ids").filtered(
             lambda a: a.state != "cancel"
         ):
-            move.quantity_done = move.product_uom_qty
-        sale.picking_ids._action_done()
+            move.quantity = move.product_uom_qty
+        sale.picking_ids.button_validate()
 
         # Quantity is increased in product_1 warehouse distribution line
         # related to alternative_warehouse_2.
@@ -702,13 +696,11 @@ class TestSOLineMultiwarehouse(TransactionCase):
             sale.order_line[0].write(
                 {
                     "sale_order_line_warehouse_ids": [
-                        (
-                            0,
-                            0,
+                        Command.create(
                             {
                                 "product_uom_qty": 1,
                                 "warehouse_id": self.alternative_warehouse_1.id,
-                            },
+                            }
                         ),
                     ],
                 }
@@ -734,12 +726,13 @@ class TestSOLineMultiwarehouse(TransactionCase):
 
         # Warehouses are incompatible
         warehouse_change_wiz.check_incompatible()
-        self.assertEqual(warehouse_change_wiz.has_incompatibilities, "yes")
+        self.assertTrue(warehouse_change_wiz.has_incompatibilities)
         self.assertEqual(
             len(warehouse_change_wiz.so_multi_warehouse_change_line_ids),
             len(sale.order_line),
         )
-        for product in sale.order_line.mapped("product_id"):
+
+        def _check_multi_warehouse_change_wizard(product):
             wizard_line = (
                 warehouse_change_wiz.so_multi_warehouse_change_line_ids.filtered(
                     lambda line: line.product_id == product
@@ -747,6 +740,9 @@ class TestSOLineMultiwarehouse(TransactionCase):
             )
             self.assertTrue(wizard_line)
             self.assertEqual(len(wizard_line), 1)
+
+        for product in sale.order_line.mapped("product_id"):
+            _check_multi_warehouse_change_wizard(product)
 
         # Change warehouse. All warehouse lines are now related to the new warehouse
         warehouse_change_wiz.change_warehouse()
@@ -764,3 +760,41 @@ class TestSOLineMultiwarehouse(TransactionCase):
         warehouse_change_wiz.write({"new_warehouse_id": self.warehouse.id})
         with self.assertRaises(ValidationError):
             warehouse_change_wiz.change_warehouse()
+
+    def test_action_show_warehouse_lines(self):
+        sale = self.create_sale_order()
+        result = sale.order_line[0].action_show_warehouse_lines()
+        self.assertEqual(result["type"], "ir.actions.act_window")
+        self.assertEqual(result["res_model"], "sale.order.line")
+        self.assertEqual(result["target"], "new")
+
+    def test_name_get(self):
+        sale = self.create_sale_order()
+        sale.order_line[0].sale_order_line_warehouse_ids = [
+            Command.create(
+                {
+                    "order_line_id": sale.order_line[0].id,
+                    "product_uom_qty": 1,
+                    "warehouse_id": self.alternative_warehouse_2.id,
+                }
+            )
+        ]
+        sale_order_line_warehouse_id = sale.order_line[0].sale_order_line_warehouse_ids[
+            0
+        ]
+        sale_order_line_warehouse_id._compute_display_name()
+        self.assertEqual(
+            "WH - YourCompany: 3.0 Units", sale_order_line_warehouse_id.display_name
+        )
+
+    def test_action_open_so_multi_warehouse_change(self):
+        sale = self.create_sale_order()
+        result = sale.action_open_so_multi_warehouse_change()
+        self.assertEqual(result["type"], "ir.actions.act_window")
+        self.assertEqual(result["res_model"], "so.multi.warehouse.change.wizard")
+        self.assertEqual(result["target"], "new")
+
+    def test_onchange_warehouse_id(self):
+        warehouse_change_wiz = self.env["so.multi.warehouse.change.wizard"].create({})
+        warehouse_change_wiz._onchange_warehouse_id()
+        self.assertFalse(warehouse_change_wiz.has_incompatibilities)

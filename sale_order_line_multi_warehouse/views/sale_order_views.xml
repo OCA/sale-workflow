@@ -23,26 +23,24 @@
                     type="object"
                     icon="fa-sitemap"
                     title="Warehouses"
-                    attrs="{'column_invisible': [('parent.allow_sale_multi_warehouse', '=', False)]}"
+                    column_invisible="not parent.allow_sale_multi_warehouse"
                     width="0.1"
                 />
                 <field
                     name="sale_order_line_warehouse_ids"
-                    widget="many2many_tags"
-                    attrs="{'column_invisible': [('parent.allow_sale_multi_warehouse', '=', False)]}"
+                    widget="one2many"
+                    column_invisible="not parent.allow_sale_multi_warehouse"
                 />
             </xpath>
             <xpath expr="//field[@name='warehouse_id'][2]" position="attributes">
-                <attribute
-                    name="attrs"
-                >{'readonly':[('allow_sale_multi_warehouse', '=', True)]}</attribute>
+                <attribute name="readonly">allow_sale_multi_warehouse</attribute>
             </xpath>
             <xpath expr="//field[@name='warehouse_id'][2]" position="after">
                 <label
                     for="action_open_so_multi_warehouse_change"
                     string=""
                     groups="stock.group_stock_multi_warehouses"
-                    attrs="{'invisible':['|', ('allow_sale_multi_warehouse', '=', False), ('state', 'in', ['sale', 'done'])]}"
+                    invisible="not allow_sale_multi_warehouse or state == 'sale'"
                 />
                 <button
                     type='object'
@@ -50,7 +48,7 @@
                     name="action_open_so_multi_warehouse_change"
                     string="Change Warehouse"
                     groups="stock.group_stock_multi_warehouses"
-                    attrs="{'invisible':['|', ('allow_sale_multi_warehouse', '=', False), ('state', 'in', ['sale', 'done'])]}"
+                    invisible="not allow_sale_multi_warehouse or state == 'sale'"
                 />
             </xpath>
         </field>

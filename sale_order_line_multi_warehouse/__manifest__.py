@@ -4,7 +4,7 @@
 {
     "name": "Sale Order Line Multi Warehouse",
     "summary": "Sale Order Line Multi Warehouse",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "development_status": "Beta",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
