@@ -14,7 +14,7 @@ from odoo import fields, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    commitment_date = fields.Datetime("Delivery Date")
+    commitment_date = fields.Datetime("Delivery Date", copy=False)
 
     def _prepare_procurement_values(self, group_id=False):
         vals = super(SaleOrderLine, self)._prepare_procurement_values(group_id)
