@@ -16,9 +16,48 @@ class TestProductCustomerInfoSale(BaseCommon):
         cls.pricelist_item_model = cls.env["product.pricelist.item"]
         cls.pricelist_model = cls.env["product.pricelist"]
         cls.customer = cls._create_customer("customer1")
-        cls.product = cls.env.ref("product.product_product_4")
-        cls.product_variant_1 = cls.env.ref("product.product_product_4b")
-        cls.product_variant_2 = cls.env.ref("product.product_product_4c")
+        attribute = cls.env["product.attribute"].create(
+            {
+                "name": "Test Attribute",
+            }
+        )
+        attribute_values = cls.env["product.attribute.value"].create(
+            [
+                {
+                    "name": "Value 1",
+                    "attribute_id": attribute.id,
+                    "sequence": 1,
+                },
+                {
+                    "name": "Value 2",
+                    "attribute_id": attribute.id,
+                    "sequence": 2,
+                },
+                {
+                    "name": "Value 3",
+                    "attribute_id": attribute.id,
+                    "sequence": 3,
+                },
+            ]
+        )
+        template = cls.env["product.template"].create(
+            {
+                "name": "Test Product",
+                "attribute_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "attribute_id": attribute.id,
+                            "value_ids": [(6, 0, attribute_values.ids)],
+                        },
+                    )
+                ],
+            }
+        )
+        cls.product = template.product_variant_ids[0]
+        cls.product_variant_1 = template.product_variant_ids[1]
+        cls.product_variant_2 = template.product_variant_ids[2]
         cls.customerinfo = cls._create_partnerinfo(
             "customer", cls.customer, cls.product
         )
@@ -43,7 +82,7 @@ class TestProductCustomerInfoSale(BaseCommon):
         cls.pricelist_template = cls._create_pricelist(
             "Test Pricelist Template", cls.product_template.product_variant_ids[:1]
         )
-        cls.env.user.groups_id |= cls.env.ref("product.group_product_pricelist")
+        cls.env.user.group_ids |= cls.env.ref("product.group_product_pricelist")
 
     @classmethod
     def _create_customer(cls, name):
@@ -58,7 +97,7 @@ class TestProductCustomerInfoSale(BaseCommon):
         vals = {
             "partner_id": partner.id,
             "product_id": product.id,
-            "product_name": "product4",
+            "product_name": product.name,
             "product_code": "00001",
             "price": 100.0,
             "min_qty": 15.0,
