@@ -1,2 +1,4 @@
-- ForgeFlow S.L. \<contact@forgeflow.com\>  
+- ForgeFlow S.L. \<contact@forgeflow.com\>
   - Oriol Miranda \<oriol.miranda@forgeflow.com\>
+- Binhex \<https://www.binhex.cloud\>
+  - Edilio Escalona Amira \<e.escalona@binhex.cloud\>

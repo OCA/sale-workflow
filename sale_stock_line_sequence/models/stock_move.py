@@ -10,10 +10,11 @@ class StockMove(models.Model):
 
     @api.onchange("sequence")
     def _onchange_sequence(self):
-        if self.sale_line_id:
-            raise UserError(
-                _(
-                    "Not allowed to change the sequence of moves from the picking, "
-                    "you can do it from the SO."
+        for move in self:
+            if move.sale_line_id:
+                raise UserError(
+                    _(
+                        "Not allowed to change the sequence of moves from the picking, "
+                        "you can do it from the SO."
+                    )
                 )
-            )

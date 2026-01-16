@@ -1,10 +1,13 @@
 # Copyright 2023 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import TransactionCase
+from odoo import Command
+from odoo.exceptions import UserError
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleOrderLineSequence(TransactionCase):
+class TestSaleOrderLineSequence(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -21,9 +24,7 @@ class TestSaleOrderLineSequence(TransactionCase):
         vals = {
             "partner_id": self.partner.id,
             "order_line": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "product_id": self.product.id,
                         "name": self.product.name,
@@ -31,14 +32,10 @@ class TestSaleOrderLineSequence(TransactionCase):
                         "price_unit": self.product.lst_price,
                     },
                 ),
-                (
-                    0,
-                    0,
+                Command.create(
                     {"name": "Section 1", "display_type": "line_section"},
                 ),
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "product_id": self.product.id,
                         "name": self.product.name,
@@ -46,14 +43,10 @@ class TestSaleOrderLineSequence(TransactionCase):
                         "price_unit": self.product.lst_price,
                     },
                 ),
-                (
-                    0,
-                    0,
+                Command.create(
                     {"name": "Note 1", "display_type": "line_note"},
                 ),
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "product_id": self.product.id,
                         "name": self.product.name,
@@ -72,13 +65,11 @@ class TestSaleOrderLineSequence(TransactionCase):
         for move in moves:
             self.assertEqual(move.sequence, move.sale_line_id.visible_sequence)
 
-    def test_write_purchase_order_line(self):
+    def create_sale_order(self):
         vals = {
             "partner_id": self.partner.id,
             "order_line": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "product_id": self.product.id,
                         "name": self.product.name,
@@ -88,16 +79,17 @@ class TestSaleOrderLineSequence(TransactionCase):
                 ),
             ],
         }
-        so = self.sale_order.create(vals)
+        return self.sale_order.create(vals)
+
+    def test_write_purchase_order_line(self):
+        so = self.create_sale_order()
         so.action_confirm()
 
         so.write(
             {
                 "order_line": [
-                    (0, 0, {"name": "Note 1", "display_type": "line_note"}),
-                    (
-                        0,
-                        0,
+                    Command.create({"name": "Note 1", "display_type": "line_note"}),
+                    Command.create(
                         {
                             "product_id": self.product.id,
                             "name": self.product.name,
@@ -112,3 +104,10 @@ class TestSaleOrderLineSequence(TransactionCase):
         moves = so.picking_ids[0].move_ids_without_package
         for move in moves:
             self.assertEqual(move.sequence, move.sale_line_id.visible_sequence)
+
+    def test_onchange_sequence(self):
+        so = self.create_sale_order()
+        so.action_confirm()
+        so.picking_ids[0].move_ids_without_package[0].sequence = 6
+        with self.assertRaises(UserError):
+            so.picking_ids[0].move_ids_without_package[0]._onchange_sequence()

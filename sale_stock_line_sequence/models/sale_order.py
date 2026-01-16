@@ -10,16 +10,11 @@ class SaleOrder(models.Model):
     def _update_moves_sequence(self):
         for order in self:
             if any(
-                [
-                    ptype in ["product", "consu"]
-                    for ptype in order.order_line.mapped("product_id.type")
-                ]
+                ptype in ["product", "consu"]
+                for ptype in order.order_line.mapped("product_id.type")
             ):
-                for picking in order.picking_ids:
-                    for move in picking.move_ids:
-                        if move.sale_line_id.display_type:
-                            continue
-                        move.write({"sequence": move.sale_line_id.visible_sequence})
+                for move in order.mapped("picking_ids.move_ids"):
+                    move.sequence = move.sale_line_id.visible_sequence
 
     def action_confirm(self):
         res = super().action_confirm()
