@@ -33,6 +33,10 @@ application. This can be completed by the
 'sale_report_crossed_out_original_price' module to display crossed
 prices on sale order report.
 
+In some cases, prices are based on several pricelists based on formulas
+and we want to display the base price in that case too. This beahaviour
+is configurable.
+
 |image|
 
 .. |image| image:: https://raw.githubusercontent.com/OCA/sale-workflow/18.0/sale_order_line_base_price_and_has_discount/static/description/base_price.png
@@ -53,6 +57,10 @@ Configuration
 =============
 
 - In the Sale Order form, enable the display of 'Base Price' field.
+- Go to Sales > Configuration > Settings > Pricing > Pricelists and
+  choose a base price computation method.
+- By default, the base price will reflect the computation from discount
+  list price only.
 
 Bug Tracker
 ===========

@@ -13,5 +13,5 @@
     "depends": [
         "sale",
     ],
-    "data": ["views/sale_order.xml"],
+    "data": ["views/sale_order.xml", "views/res_config_settings.xml"],
 }

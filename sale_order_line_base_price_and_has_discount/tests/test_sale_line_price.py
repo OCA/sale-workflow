@@ -38,6 +38,24 @@ class TestSaleOrderLine(BaseCommon):
             }
         )
 
+        cls.pricelist_pro = cls.env["product.pricelist"].create(
+            {
+                "name": "Pro",
+                "item_ids": [
+                    Command.create(
+                        {
+                            "applied_on": "3_global",
+                            # "product_id": cls.product.id,
+                            "compute_price": "formula",
+                            "base": "pricelist",
+                            "price_discount": 10,
+                            "base_pricelist_id": cls.pricelist.id,
+                        }
+                    )
+                ],
+            }
+        )
+
     def test_sale_price(self):
         order = self.env["sale.order"].create(
             {
@@ -55,6 +73,28 @@ class TestSaleOrderLine(BaseCommon):
         self.assertEqual(10.0, order.order_line.base_price)
         self.assertEqual(
             9.0,
+            order.order_line.price_unit,
+        )
+        self.assertTrue(order.order_line.has_discount_price)
+
+    def test_sale_price_on_pricelist_pro(self):
+        self.env.company.display_base_price_method = "discount_formula"
+        order = self.env["sale.order"].create(
+            {
+                "pricelist_id": self.pricelist_pro.id,
+                "partner_id": self.partner.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.product.id,
+                        }
+                    )
+                ],
+            }
+        )
+        self.assertEqual(10.0, order.order_line.base_price)
+        self.assertEqual(
+            8.1,
             order.order_line.price_unit,
         )
         self.assertTrue(order.order_line.has_discount_price)
