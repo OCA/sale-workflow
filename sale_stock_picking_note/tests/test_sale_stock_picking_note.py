@@ -76,7 +76,7 @@ class TestSaleStockPickingNote(BaseCommon):
         picking_out_form = Form(self.env["stock.picking"])
         picking_out_form.picking_type_id = self.env.ref("stock.picking_type_out")
         picking_out_form.partner_id = self.partner
-        with picking_out_form.move_ids_without_package.new() as move:
+        with picking_out_form.move_ids.new() as move:
             move.product_id = self.product
             move.product_uom_qty = 1
         self.assertEqual(picking_out_form.note, self.partner.picking_note)
@@ -95,7 +95,7 @@ class TestSaleStockPickingNote(BaseCommon):
         picking_in_form = Form(self.env["stock.picking"])
         picking_in_form.picking_type_id = self.env.ref("stock.picking_type_in")
         picking_in_form.partner_id = self.partner
-        with picking_out_form.move_ids_without_package.new() as move:
+        with picking_out_form.move_ids.new() as move:
             move.product_id = self.product
             move.product_uom_qty = 1
         self.assertNotEqual(picking_in_form.note, self.partner.picking_note)
