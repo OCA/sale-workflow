@@ -15,7 +15,7 @@ class SaleOrderLine(models.Model):
         compute="_compute_product_customer_code",
     )
 
-    @api.depends("product_id")
+    @api.depends("product_id", "order_partner_id")
     def _compute_product_customer_code(self):
         for line in self:
             if line.product_id:
@@ -31,7 +31,7 @@ class SaleOrderLine(models.Model):
         """We need to override the method with product_id is set so that the product
         code is not added and add custom code of customerinfo."""
         empty_lines = self.filtered(lambda x: not x.product_id)
-        super(SaleOrderLine, empty_lines)._compute_name()
+        res = super(SaleOrderLine, empty_lines)._compute_name()
         for item in self - empty_lines:
             customerinfo = item.product_id._select_customerinfo(
                 partner=item.order_partner_id
@@ -42,12 +42,12 @@ class SaleOrderLine(models.Model):
             super(SaleOrderLine, item)._compute_name()
             if customerinfo.product_code:
                 item.name = f"[{customerinfo.product_code}] {item.name}"
-        return
+        return res
 
     @api.onchange("product_id")
-    def _onchange_product_id_warning(self):
+    def _onchange_product_id(self):
         """Assign the mininum quantity if set."""
-        res = super()._onchange_product_id_warning()
+        res = super()._onchange_product_id()
         for line in self:
             if line.product_id:
                 customerinfo = line.product_id._select_customerinfo(
