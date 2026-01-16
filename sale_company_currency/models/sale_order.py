@@ -48,7 +48,9 @@ class SaleOrder(models.Model):
         store=True,
     )
 
-    @api.depends("amount_total", "currency_rate")
+    @api.depends(
+        "amount_total", "currency_rate", "amount_untaxed", "amount_tax", "margin"
+    )
     def _compute_amount_company(self):
         for order in self:
             if order.currency_id.id == order.company_id.currency_id.id:
