@@ -76,6 +76,7 @@ class TestSaleOrderLine(BaseCommon):
             order.order_line.price_unit,
         )
         self.assertTrue(order.order_line.has_discount_price)
+        self.assertEqual(order.order_line.base_price_discount, 10.0)
 
     def test_sale_price_on_pricelist_pro(self):
         self.env.company.display_base_price_method = "discount_formula"
@@ -98,3 +99,5 @@ class TestSaleOrderLine(BaseCommon):
             order.order_line.price_unit,
         )
         self.assertTrue(order.order_line.has_discount_price)
+        # Check the dubble discount
+        self.assertEqual(order.order_line.base_price_discount, 19.0)

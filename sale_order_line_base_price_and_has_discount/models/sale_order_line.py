@@ -10,6 +10,20 @@ class SaleOrderLine(models.Model):
         compute="_compute_has_discount_price",
     )
     base_price = fields.Float(compute="_compute_base_price")
+    base_price_discount = fields.Float(
+        digits="Discount", compute="_compute_base_price_discount"
+    )
+
+    @api.depends("base_price", "has_discount_price")
+    def _compute_base_price_discount(self):
+        lines_with_product = self.filtered("has_discount_price")
+        for line in lines_with_product:
+            line.base_price_discount = (
+                ((line.base_price - line._get_pricelist_price()) / line.base_price)
+                if line.base_price
+                else 0.0
+            )
+        (self - lines_with_product).base_price_discount = 0.0
 
     @api.depends("product_id", "order_id.pricelist_id", "base_price")
     def _compute_has_discount_price(self):

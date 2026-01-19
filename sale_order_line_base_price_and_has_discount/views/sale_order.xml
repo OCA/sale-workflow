@@ -16,6 +16,12 @@
                     invisible="not has_discount_price"
                     optional="hide"
                 />
+                <field
+                    name="base_price_discount"
+                    invisible="not has_discount_price"
+                    optional="hide"
+                    widget="percentage"
+                />
             </xpath>
         </field>
     </record>
