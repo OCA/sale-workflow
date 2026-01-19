@@ -21,7 +21,7 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/list/field[@name='qty_to_invoice']"
+                expr="//field[@name='order_line']/list/field[@name='qty_invoiced']"
                 position="after"
             >
                 <field
@@ -31,6 +31,17 @@
                     widget="many2many_tags"
                 />
             </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_line_view_form_readonly_add_tag" model="ir.ui.view">
+        <field name="name">sale.order.line.form.add.tag</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
+        <field name="arch" type="xml">
+            <field name="qty_invoiced" position="after">
+                <field name="tag_ids" widget="many2many_tags" />
+            </field>
         </field>
     </record>
 
