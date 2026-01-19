@@ -18,9 +18,9 @@
                 />
                 <field
                     name="base_price_discount"
-                    invisible="not has_discount_price"
+                    groups="product.group_product_pricelist"
+                    class="oe_inline"
                     optional="hide"
-                    widget="percentage"
                 />
             </xpath>
         </field>

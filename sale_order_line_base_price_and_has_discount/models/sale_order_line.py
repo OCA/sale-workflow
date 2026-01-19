@@ -11,7 +11,9 @@ class SaleOrderLine(models.Model):
     )
     base_price = fields.Float(compute="_compute_base_price")
     base_price_discount = fields.Float(
-        digits="Discount", compute="_compute_base_price_discount"
+        string="Base Price Disc. %",
+        digits="Discount",
+        compute="_compute_base_price_discount",
     )
 
     @api.depends("base_price", "has_discount_price")
@@ -20,6 +22,7 @@ class SaleOrderLine(models.Model):
         for line in lines_with_product:
             line.base_price_discount = (
                 ((line.base_price - line._get_pricelist_price()) / line.base_price)
+                * 100
                 if line.base_price
                 else 0.0
             )
