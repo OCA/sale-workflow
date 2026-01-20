@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Moduon Team S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="priority" eval="999" />
+        <field name="arch" type="xml">
+            <!-- Form -->
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='price_subtotal']/.."
+                position="inside"
+            >
+                <div class="o_row" name="price_compliance">
+                    <field name="price_compliance_data" invisible="1" />
+                    <field name="price_compliance_tier" invisible="1" />
+                    <div class="o_row">
+                        <label
+                            for="price_compliance_tier"
+                            string="Price Compliance Tier"
+                            class="o_form_label"
+                        />
+                        <widget
+                            name="price_compliance_tier_widget"
+                            attrs="{'invisible': [('price_compliance_tier', '=', False)]}"
+                            class="ms-2"
+                        />
+                    </div>
+                </div>
+            </xpath>
+
+            <!-- Tree -->
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='sequence']"
+                position="before"
+            >
+                <field name="price_compliance_data" invisible="1" />
+                <field name="price_compliance_tier" invisible="1" />
+                <widget name="price_compliance_tier_widget" width="20px" />
+            </xpath>
+
+            <!-- Kanban -->
+            <xpath
+                expr="//field[@name='order_line']/kanban//strong[@t-out='line_price']"
+                position="before"
+            >
+                <field name="price_compliance_data" invisible="1" />
+                <field name="price_compliance_tier" invisible="1" />
+                <div class="float-end mr8 ms-2">
+                    <widget
+                        name="price_compliance_tier_widget"
+                        attrs="{'invisible': [('price_compliance_tier', '=', False)]}"
+                    />
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

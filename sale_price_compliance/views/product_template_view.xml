@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Moduon Team S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.common.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="sale.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales']/group[@name='sale']" position="inside">
+                <group
+                    name="group_sale_price_compliance_threshold"
+                    string="Sale Price Compliance Thresholds"
+                    groups="sale_price_compliance.price_compliance_threshold_manager"
+                >
+                    <field
+                        name="use_price_compliance_threshold"
+                        widget="boolean_toggle"
+                    />
+                    <field
+                        name="price_compliance_threshold_t1"
+                        widget="percentage"
+                        attrs="{'invisible': [('use_price_compliance_threshold', '=', False)]}"
+                        class="w-25"
+                    />
+                    <field
+                        name="price_compliance_threshold_t2"
+                        widget="percentage"
+                        attrs="{'invisible': [('use_price_compliance_threshold', '=', False)]}"
+                        class="w-25"
+                    />
+                    <field
+                        name="price_compliance_threshold_t3"
+                        widget="percentage"
+                        attrs="{'invisible': [('use_price_compliance_threshold', '=', False)]}"
+                        class="w-25"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_search_view" model="ir.ui.view">
+        <field name="name">product.template.search</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='favorites']" position="after">
+                <separator />
+                <filter
+                    string="Uses Price Compliant Threshold"
+                    name="flt_use_price_compliance_threshold"
+                    domain="[('use_price_compliance_threshold', '=', True)]"
+                    groups="sale_price_compliance.price_compliance_threshold_manager"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 Moduon Team S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
+<template id="template" xml:space="preserve">
+
+    <t t-name="sale_price_compliance.PriceComplianceTier" owl="1">
+        <div t-att-class="!props.record.data.price_compliance_tier ? 'invisible' : ''">
+            <a
+                t-att-tabindex="props.record.data.price_compliance_tier ? '0' : '-1'"
+                t-on-click="showPopup"
+                class="cursor-pointer"
+            >
+                <t t-out="calcData.price_compliance_tier_display" />
+            </a>
+        </div>
+    </t>
+
+    <t t-name="sale_price_compliance.PriceComplianceTierPopover" owl="1">
+        <div class="px-3 py-2">
+            <div class="pb-2 border-bottom">
+                <strong>Price Compliance Thresholds</strong>
+                <div
+                    class="float-end text-muted ms-3"
+                    t-if="props.calcData.currency_symbol or props.calcData.product_base_uom"
+                >
+                    <span
+                        t-if="props.calcData.product_base_uom"
+                        t-out="props.calcData.product_base_uom"
+                    />
+                    <span t-if="props.calcData.product_base_uom" class="mx-1">•</span>
+                    <span
+                        t-if="props.calcData.product_price_in_base_uom"
+                        t-out="props.calcData.product_price_in_base_uom"
+                    />
+                    <span
+                        t-if="props.calcData.currency_symbol"
+                        t-out="props.calcData.currency_symbol"
+                        class="ms-1"
+                    />
+                </div>
+            </div>
+            <table class="table table-borderless table-sm m-0">
+                <thead>
+                    <tr class="smaller">
+                        <th />
+                        <th
+                            class="ps-3 fst-italic ps-3 smaller text-muted"
+                        >Discount</th>
+                        <th
+                            class="ps-3 fst-italic ps-3 smaller text-muted"
+                        >Unit Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t
+                        t-foreach="props.record.data.price_compliance_data"
+                        t-as="tier_data"
+                        t-key="tier_data['tier']"
+                    >
+                        <tr
+                            t-attf-class="smaller {{ tier_data.tier == props.record.data.price_compliance_tier ? 'fw-bolder bg-info-light' : '' }}"
+                        >
+                            <td class="text-start">
+                                <!-- tier name -->
+                                <span t-out="tier_data.display[0]" />
+                                <span
+                                    class="ml4"
+                                    t-if="tier_data.display[0] != tier_data.display[1]"
+                                    t-out="tier_data.display[1]"
+                                />
+                                <span
+                                    class="d-block fw-normal fst-italic text-muted smaller"
+                                    t-if="tier_data.extra_description"
+                                    t-out="tier_data.extra_description"
+                                />
+                            </td>
+                            <td class="ps-3">
+                                <!-- Discount range -->
+                                <t t-if="tier_data.tier != 'pricelist'">
+                                    <span t-out="tier_data.discount[0] * 100.0" />
+                                    <span>%</span>
+                                    <i
+                                        class="fa fa-long-arrow-right mx-1"
+                                        aria-hidden="true"
+                                    />
+                                    <t t-if="tier_data.discount[1] != 1.0">
+                                        <span t-out="tier_data.discount[1] * 100.0" />
+                                        <span>%</span>
+                                    </t>
+                                    <t t-else="">
+                                        <span>∞</span>
+                                    </t>
+                                </t>
+                            </td>
+                            <td class="ps-3">
+                                <!-- Price range -->
+                                <t t-if="tier_data.tier != 'pricelist'">
+                                    <span t-out="tier_data.price[0]" />
+                                    <span
+                                        t-if="tier_data.tier == 'non_compliant'"
+                                        class="ms-1"
+                                    >-</span>
+                                    <i
+                                        class="fa fa-long-arrow-right mx-1"
+                                        aria-hidden="true"
+                                    />
+                                    <span t-out="tier_data.price[1]" />
+                                </t>
+                                <t t-else="">
+                                    <span t-out="tier_data.price[0]" />
+                                </t>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </div>
+    </t>
+</template>
