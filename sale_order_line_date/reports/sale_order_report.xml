@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_saleorder_document"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath expr="//table/thead//tr[1]//th[@name='th_quantity']" position="before">
+            <th name="th_commitment_date" class="text-start">Commitment Date</th>
+        </xpath>
+        <xpath
+            expr="//table/tbody[hasclass('sale_tbody')]//td[@name='td_product_quantity']"
+            position="before"
+        >
+            <td name="td_commitment_date" class="text-start">
+                <span t-field="line.commitment_date" t-options="{'widget': 'date'}" />
+            </td>
+        </xpath>
+    </template>
+</odoo>
