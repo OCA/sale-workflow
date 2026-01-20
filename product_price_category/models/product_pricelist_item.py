@@ -28,7 +28,7 @@ class ProductPricelistItem(models.Model):
         readonly=False,
     )
 
-    @api.depends("applied_on", "categ_id", "product_tmpl_id", "product_id")
+    @api.depends("price_category_id")
     def _compute_name(self):
         result = super()._compute_name()
         for item in self:
