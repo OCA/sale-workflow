@@ -14,4 +14,5 @@
         "sale",
     ],
     "data": ["views/sale_order.xml", "views/res_config_settings.xml"],
+    "pre_init_hook": "pre_init_hook",
 }
