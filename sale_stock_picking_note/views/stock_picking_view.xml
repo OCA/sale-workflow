@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2021 Tecnativa - Víctor Martínez
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='note']" position="attributes">
+                <attribute name="string">Comments</attribute>
+            </xpath>
+            <field name="note" position="after">
+                <field
+                    name="customer_note"
+                    readonly="state in ('done','cancel')"
+                    placeholder="Comments that will be printed in the delivery slip"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
