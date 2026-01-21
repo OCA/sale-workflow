@@ -8,11 +8,11 @@ class SaleAdvancePaymentInv(models.TransientModel):
     _description = "Wizard when create invoice by plan"
 
     def create_invoices_by_plan(self):
-        sale = self.env["sale.order"].browse(self._context.get("active_id"))
+        sale = self.env["sale.order"].browse(self.env.context.get("active_id"))
         sale.ensure_one()
         MakeInvoice = self.env["sale.advance.payment.inv"]
         invoice_plans = (
-            self._context.get("all_remain_invoices")
+            self.env.context.get("all_remain_invoices")
             and sale.invoice_plan_ids.filtered(lambda plan: not plan.invoiced)
             or sale.invoice_plan_ids.filtered("to_invoice")
         )

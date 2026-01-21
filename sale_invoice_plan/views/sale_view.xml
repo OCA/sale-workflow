@@ -4,9 +4,8 @@
         <field name="name">view.sale.invoice.plan.tree</field>
         <field name="model">sale.invoice.plan</field>
         <field name="arch" type="xml">
-            <tree editable="bottom">
+            <list editable="bottom">
                 <field name="no_edit" column_invisible="1" />
-                <field name="analytic_account_id" />
                 <field name="installment" readonly="no_edit" />
                 <field name="plan_date" readonly="no_edit" />
                 <field name="invoice_type" readonly="no_edit" />
@@ -22,7 +21,7 @@
                     readonly="1"
                 />
                 <field name="last" column_invisible="1" />
-            </tree>
+            </list>
         </field>
     </record>
     <record model="ir.ui.view" id="view_sale_invoice_plan_form">
@@ -65,7 +64,6 @@
                 </div>
             </xpath>
             <xpath expr="//button[@name='payment_action_capture']" position="before">
-                <field name="invoice_plan_process" invisible="1" />
                 <button
                     name="%(action_view_sale_make_planned_invoice)d"
                     string="Create Invoice by Plan"
@@ -109,7 +107,7 @@
                     />
                     <field
                         name="invoice_plan_ids"
-                        context="{'tree_view_ref': 'sale_invoice_plan.view_sale_invoice_plan_tree'}"
+                        context="{'list_view_ref': 'sale_invoice_plan.view_sale_invoice_plan_tree'}"
                         invisible="not invoice_plan_ids"
                     />
                     <group class="oe_subtotal_footer oe_right">
@@ -125,10 +123,9 @@
         <field name="name">view.sale.invoice.plan.filter</field>
         <field name="model">sale.invoice.plan</field>
         <field name="arch" type="xml">
-            <search string="Search Sales Invoice Plan Lines">
+            <search>
                 <field name="partner_id" />
                 <field name="sale_id" />
-                <field name="analytic_account_id" />
                 <field name="installment" />
                 <separator />
                 <filter
@@ -152,10 +149,10 @@
                     domain="[
                         ('state', 'in', ('sale','done')),
                         ('invoiced', '=', False),
-                        ('plan_date', '&lt;=', context_today().strftime('%Y-%m-%d'))
+                        ('plan_date', '&lt;=', 'today'),
                     ]"
                 />
-                <group expand="0" string="Group By">
+                <group>
                     <filter
                         string="Customer"
                         name="groupby_customer"
@@ -167,12 +164,6 @@
                         name="groupby_sale"
                         domain="[]"
                         context="{'group_by':'sale_id'}"
-                    />
-                    <filter
-                        string="Analytic Account"
-                        name="groupby_analytic_account_id"
-                        domain="[]"
-                        context="{'group_by':'analytic_account_id'}"
                     />
                     <filter
                         string="Installment"
@@ -194,9 +185,8 @@
         <field name="name">view.sale.invoice.plan.tree</field>
         <field name="model">sale.invoice.plan</field>
         <field name="arch" type="xml">
-            <tree edit="0" create="0" delete="0">
+            <list edit="0" create="0" delete="0">
                 <field name="sale_id" />
-                <field name="analytic_account_id" />
                 <field name="installment" />
                 <field name="plan_date" />
                 <field name="invoice_type" />
@@ -206,14 +196,15 @@
                 <field name="to_invoice" />
                 <field name="invoiced" />
                 <field name="invoice_move_ids" widget="many2many_tags" />
-            </tree>
+            </list>
         </field>
     </record>
     <record id="action_sale_invoice_plan" model="ir.actions.act_window">
         <field name="name">Sales Invoice Plan</field>
         <field name="type">ir.actions.act_window</field>
+        <field name="path">sale-invoice-plan</field>
         <field name="res_model">sale.invoice.plan</field>
-        <field name="view_mode">tree</field>
+        <field name="view_mode">list</field>
         <field name="view_id" ref="view_sale_invoice_plan_tree_readonly" />
         <field name="search_view_id" ref="view_sale_invoice_plan_filter" />
         <field
