@@ -2,11 +2,12 @@
 # Copyright 2018 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # Copyright 2023 ACSONE SA/NV
 # Copyright 2025 Michael Tietz (MT Software) <mtietz@mt-software.de>
+# Copyright 2026 Paulius Gaizauskas <paulius.gaizauskas@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
     "name": "Sale Order Line Cancel",
-    "version": "16.0.2.0.0",
+    "version": "17.0.1.0.0",
     "author": "Okia, BCIM, Camptocamp, ACSONE SA/NV, "
     "MT Software, Odoo Community Association (OCA)",
     "license": "AGPL-3",

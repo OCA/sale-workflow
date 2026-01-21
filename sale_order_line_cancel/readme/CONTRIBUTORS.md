@@ -3,3 +3,4 @@
 - Souheil Bejaoui \<souheil.bejaoui@acsone.eu.com\>
 - Laurent Mignon \<laurent.mignon@acsone.eu\>
 - Michael Tietz (MT Software) \<mtietz@mt-software.de\>
+- Paulius Gaizauskas \<paulius.gaizauskas@gmail.com\>

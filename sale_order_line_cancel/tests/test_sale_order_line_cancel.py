@@ -21,6 +21,8 @@ class TestSaleOrderLineCancel(TestSaleOrderLineCancelBase):
         self.sale.order_line.cancel_remaining_qty()
         self.assertEqual(self.sale.order_line.product_qty_canceled, 10)
         self.assertEqual(self.sale.order_line.product_qty_remains_to_deliver, 0)
+        # Unlock the order before canceling (Odoo 17 auto-locks confirmed orders)
+        self.sale.action_unlock()
         self.sale.with_context(disable_cancel_warning=True).action_cancel()
         self.assertEqual(self.sale.order_line.product_qty_canceled, 10)
         self.assertEqual(self.sale.order_line.product_qty_remains_to_deliver, 0)
@@ -32,6 +34,8 @@ class TestSaleOrderLineCancel(TestSaleOrderLineCancelBase):
         sale = self.sale
         line = sale.order_line
         sale.company_id.on_sale_line_cancel_decrease_line_qty = True
+        # Unlock the order before canceling (Odoo 17 auto-locks confirmed orders)
+        sale.action_unlock()
         sale.with_context(disable_cancel_warning=True).action_cancel()
         sale.action_draft()
         sale.action_confirm()
@@ -44,6 +48,8 @@ class TestSaleOrderLineCancel(TestSaleOrderLineCancelBase):
     def test_ensure_no_decrease_product_uom_qty_on_so_cancel(self):
         sale = self.sale
         line = sale.order_line
+        # Unlock the order before canceling (Odoo 17 auto-locks confirmed orders)
+        sale.action_unlock()
         sale.with_context(disable_cancel_warning=True).action_cancel()
         sale.company_id.on_sale_line_cancel_decrease_line_qty = True
         sale.action_cancel()
