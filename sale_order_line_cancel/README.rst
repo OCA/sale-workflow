@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ======================
 Sale Order Line Cancel
 ======================
@@ -17,33 +13,35 @@ Sale Order Line Cancel
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_order_line_cancel
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_order_line_cancel
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_order_line_cancel
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_order_line_cancel
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows you to cancel the remaining quantity on sale order by adding
-a dedicated action to sale lines. It also add two new fields to track canceled
-and remaining to deliver quantities.
+This module allows you to cancel the remaining quantity on sale order by
+adding a dedicated action to sale lines. It also add two new fields to
+track canceled and remaining to deliver quantities.
 
-This module differs from the original odoo behavior in the following way:
+This module differs from the original odoo behavior in the following
+way:
 
-* In odoo, if the update of the quantity ordered is allowed on the sale order at
-  the confirmed state, odoo will recompute the required stock operations
-  according to the new quantity. This change is possible
-  even the stock operations are started for this sale order line.
-* In this module, you can either decide if only the canceled quantity gets tracked
-  or if it also should decrease the original ordered quantity.
+- In odoo, if the update of the quantity ordered is allowed on the sale
+  order at the confirmed state, odoo will recompute the required stock
+  operations according to the new quantity. This change is possible even
+  the stock operations are started for this sale order line.
+- In this module, you can either decide if only the canceled quantity
+  gets tracked or if it also should decrease the original ordered
+  quantity.
 
 **Table of contents**
 
@@ -56,7 +54,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_line_cancel%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_line_cancel%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -64,7 +62,7 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Okia
 * BCIM
@@ -73,16 +71,17 @@ Authors
 * MT Software
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sylvain Van Hoof <sylvain@okia.be>
-* Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
-* Souheil Bejaoui <souheil.bejaoui@acsone.eu.com>
-* Laurent Mignon <laurent.mignon@acsone.eu>
-* Michael Tietz (MT Software) <mtietz@mt-software.de>
+- Sylvain Van Hoof <sylvain@okia.be>
+- Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
+- Souheil Bejaoui <souheil.bejaoui@acsone.eu.com>
+- Laurent Mignon <laurent.mignon@acsone.eu>
+- Michael Tietz (MT Software) <mtietz@mt-software.de>
+- Paulius Gaizauskas <paulius.gaizauskas@gmail.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -94,6 +93,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_order_line_cancel>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_order_line_cancel>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
