@@ -13,8 +13,11 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
     def setUpClass(cls, chart_template_ref=None):
         super().setUpClass()
         cls.chart_template = chart_template_ref
-        cls.env.ref("base_global_discount.group_global_discount").write(
-            {"users": [(4, cls.env.user.id)]}
+        cls.env.ref("base_global_discount.group_global_discount").sudo().write(
+            {"user_ids": [(4, cls.env.user.id)]}
+        )
+        cls.env.ref("sales_team.group_sale_manager").sudo().write(
+            {"user_ids": [(4, cls.env.user.id)]}
         )
         cls.main_company = cls.env.ref("base.main_company")
         cls.account = cls.env["account.account"].create(
@@ -92,16 +95,16 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         sale_form.partner_id = cls.partner_1
         with sale_form.order_line.new() as order_line:
             order_line.product_id = cls.product_1
-            order_line.tax_id.clear()
-            order_line.tax_id.add(cls.tax_1)
-            order_line.tax_id.add(cls.tax_2)
+            order_line.tax_ids.clear()
+            order_line.tax_ids.add(cls.tax_1)
+            order_line.tax_ids.add(cls.tax_2)
             order_line.product_uom_qty = 2
             order_line.price_unit = 75
         with sale_form.order_line.new() as order_line:
             order_line.product_id = cls.product_2
-            order_line.tax_id.clear()
-            order_line.tax_id.add(cls.tax_1)
-            order_line.tax_id.add(cls.tax_2)
+            order_line.tax_ids.clear()
+            order_line.tax_ids.add(cls.tax_1)
+            order_line.tax_ids.add(cls.tax_2)
             order_line.product_uom_qty = 3
             order_line.price_unit = 33.33
         cls.sale = sale_form.save()
@@ -218,13 +221,13 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
     def test_04_incompatible_taxes(self):
         # Line 1 with tax 1 and tax 2
         # Line 2 with only tax 2
-        self.sale.order_line[1].tax_id = [(6, 0, self.tax_1.ids)]
+        self.sale.order_line[1].tax_ids = [(6, 0, self.tax_1.ids)]
         with self.assertRaises(exceptions.UserError):
             self.sale.global_discount_ids = self.global_discount_1
             self.sale._compute_amounts()
 
     def test_05_no_taxes(self):
-        self.sale.order_line[1].tax_id = False
+        self.sale.order_line[1].tax_ids = False
         with self.assertRaises(exceptions.UserError):
             self.sale.global_discount_ids = self.global_discount_1
             self.sale._compute_amounts()
@@ -260,7 +263,7 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
             }
         )
         for line in self.sale.order_line:
-            line.tax_id = [(6, 0, tax_included.ids)]
+            line.tax_ids = [(6, 0, tax_included.ids)]
         self.sale._compute_tax_totals()
         self.sale.global_discount_ids = self.global_discount_1
         self.sale._compute_tax_totals()

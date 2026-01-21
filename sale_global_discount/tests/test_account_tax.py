@@ -1,5 +1,5 @@
 # Copyright 2025 Studio73 - Eugenio Micó <eugenio@studio73.es>
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.addons.base.tests.common import BaseCommon
 

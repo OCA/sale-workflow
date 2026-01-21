@@ -75,19 +75,19 @@ class SaleOrder(models.Model):
             and _line.product_id
             and not _line.product_id.bypass_global_discount
         ):
-            if not line.tax_id:
+            if not line.tax_ids:
                 raise exceptions.UserError(
                     self.env._("With global discounts, taxes in lines are required.")
                 )
             for key in taxes_keys:
-                if key == line.tax_id:
+                if key == line.tax_ids:
                     break
-                elif key & line.tax_id:
+                elif key & line.tax_ids:
                     raise exceptions.UserError(
                         self.env._("Incompatible taxes found for global discounts.")
                     )
             else:
-                taxes_keys[line.tax_id] = True
+                taxes_keys[line.tax_ids] = True
 
     @api.depends(
         "order_line.product_id.bypass_global_discount",
@@ -99,6 +99,8 @@ class SaleOrder(models.Model):
     def _compute_amounts(self):
         res = super()._compute_amounts()
         for order in self:
+            if not order.global_discount_ids:
+                continue
             order._check_global_discounts_sanity()
             amount_untaxed_before_global_discounts = order.amount_untaxed
             amount_total_before_global_discounts = order.amount_total
@@ -111,7 +113,7 @@ class SaleOrder(models.Model):
                         line.price_subtotal, discounts.copy()
                     )
                 amount_discounted_untaxed += discounted_subtotal
-                discounted_tax = line.tax_id.with_context(
+                discounted_tax = line.tax_ids.with_context(
                     force_price_include=False
                 ).compute_all(
                     discounted_subtotal,
@@ -167,7 +169,7 @@ class SaleOrder(models.Model):
                 base_amount += discounted_price_subtotal
                 # Calculate tax amounts for each tax group based on the discounted
                 # subtotal
-                for tax in line.tax_id:
+                for tax in line.tax_ids:
                     tax_group_id = tax.tax_group_id.id
                     if tax_group_id not in amount_discount_by_group:
                         amount_discount_by_group[tax_group_id] = 0.0

@@ -7,7 +7,7 @@ from odoo import api, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.depends("product_uom_qty", "discount", "price_unit", "tax_id")
+    @api.depends("product_uom_qty", "discount", "price_unit", "tax_ids")
     def _compute_amount(self):
         return super(
             SaleOrderLine, self.with_context(from_tax_calculation=False)

@@ -101,6 +101,7 @@ Contributors
 
    -  Miguel Gandia
    -  Eugenio Micó
+   -  Arantxa Gandia
 
 Maintainers
 -----------
