@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 from dateutil.relativedelta import relativedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.float_utils import float_round
 
@@ -13,7 +13,6 @@ class SaleOrder(models.Model):
     invoice_plan_ids = fields.One2many(
         comodel_name="sale.invoice.plan",
         inverse_name="sale_id",
-        string="Inovice Plan",
         copy=False,
     )
     use_invoice_plan = fields.Boolean(
@@ -31,7 +30,6 @@ class SaleOrder(models.Model):
     )
     invoice_plan_total_amount = fields.Monetary(
         compute="_compute_invoice_plan_total",
-        string="Total Amount",
     )
     invoice_plan_pending = fields.Integer(
         compute="_compute_invoice_plan_pending",
@@ -71,7 +69,9 @@ class SaleOrder(models.Model):
             installments = rec.invoice_plan_ids.filtered("installment")
             invoice_plan_total_percent = sum(installments.mapped("percent"))
             if float_round(invoice_plan_total_percent, 0) > 100:
-                raise UserError(_("Invoice plan total percentage must not exceed 100%"))
+                raise UserError(
+                    self.env._("Invoice plan total percentage must not exceed 100%")
+                )
 
     @api.constrains("state")
     def _check_invoice_plan(self):
@@ -79,12 +79,14 @@ class SaleOrder(models.Model):
             if rec.state != "draft":
                 if rec.invoice_plan_ids.filtered(lambda plan: not plan.percent):
                     raise ValidationError(
-                        _("Please fill percentage for all invoice plan lines")
+                        self.env._("Please fill percentage for all invoice plan lines")
                     )
 
     def action_confirm(self):
         if self.filtered(lambda r: r.use_invoice_plan and not r.invoice_plan_ids):
-            raise UserError(_("Use Invoice Plan selected, but no plan created"))
+            raise UserError(
+                self.env._("Use Invoice Plan selected, but no plan created")
+            )
         return super().action_confirm()
 
     def create_invoice_plan(
@@ -146,7 +148,7 @@ class SaleOrder(models.Model):
 
     def _create_invoices(self, grouped=False, final=False, date=None):
         moves = super()._create_invoices(grouped=grouped, final=final, date=date)
-        invoice_plan_id = self._context.get("invoice_plan_id")
+        invoice_plan_id = self.env.context.get("invoice_plan_id")
         if invoice_plan_id:
             plan = self.env["sale.invoice.plan"].browse(invoice_plan_id)
             for move in moves:
