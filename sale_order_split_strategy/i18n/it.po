@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-03 11:06+0000\n"
+"PO-Revision-Date: 2026-01-21 08:49+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.2\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_order_split_strategy
 #. odoo-python
@@ -37,12 +37,12 @@ msgstr ""
 #. module: sale_order_split_strategy
 #: model:ir.model,name:sale_order_split_strategy.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: sale_order_split_strategy
 #: model:ir.model,name:sale_order_split_strategy.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: sale_order_split_strategy
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__copy_notes
@@ -72,12 +72,12 @@ msgstr "Nome visualizzato"
 #. module: sale_order_split_strategy
 #: model:ir.model.fields.selection,name:sale_order_split_strategy.selection__res_company__sale_order_split_strategy_errors__do_nothing
 msgid "Do nothing"
-msgstr ""
+msgstr "Non fare nulla"
 
 #. module: sale_order_split_strategy
 #: model_terms:ir.ui.view,arch_db:sale_order_split_strategy.res_config_settings_view_form_sale_exception
 msgid "How split errors are to be reported"
-msgstr ""
+msgstr "Come devono essere segnalati gli errori separati"
 
 #. module: sale_order_split_strategy
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__id
@@ -112,12 +112,12 @@ msgstr "Ordine strategia suddivisione"
 #. module: sale_order_split_strategy
 #: model:ir.model.fields.selection,name:sale_order_split_strategy.selection__res_company__sale_order_split_strategy_errors__post_message
 msgid "Post message"
-msgstr ""
+msgstr "Invia messaggio"
 
 #. module: sale_order_split_strategy
 #: model:ir.model.fields.selection,name:sale_order_split_strategy.selection__res_company__sale_order_split_strategy_errors__raise_errors
 msgid "Raise errors"
-msgstr ""
+msgstr "Segnala errori"
 
 #. module: sale_order_split_strategy
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__remove_empty_sections_after_split
@@ -128,7 +128,7 @@ msgstr "Rimuovere sezioni vuote dopo la divisione"
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_res_company__sale_order_split_strategy_errors
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_res_config_settings__sale_order_split_strategy_errors
 msgid "Sale Order Split Strategy Errors"
-msgstr ""
+msgstr "Errori strategia divisione ordine vendita"
 
 #. module: sale_order_split_strategy
 #: model:ir.model,name:sale_order_split_strategy.model_sale_order
@@ -161,7 +161,7 @@ msgstr "Strategia suddivisione"
 #. module: sale_order_split_strategy
 #: model:ir.model.fields,help:sale_order_split_strategy.field_sale_order__split_strategy_id
 msgid "The strategy that will be used to split the sales order"
-msgstr ""
+msgstr "La strategia che verrà usata per dividere l'ordine di vendita"
 
 #. module: sale_order_split_strategy
 #: model_terms:ir.ui.view,arch_db:sale_order_split_strategy.split_to
