@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-08-15 22:30+0000\n"
-"PO-Revision-Date: 2023-02-01 16:47+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2026-01-21 09:05+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
 "Language: it\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_validity
 #: help:res.company,default_sale_order_validity_days:0
@@ -61,4 +61,4 @@ msgstr ""
 #. module: sale_validity
 #: field:sale.order,date_validity:0
 msgid "Valid Until"
-msgstr "Valido fino"
+msgstr "Valido fino a"
