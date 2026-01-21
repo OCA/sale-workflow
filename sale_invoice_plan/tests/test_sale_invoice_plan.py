@@ -2,8 +2,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 import logging
 
-from odoo import Command, _, fields
+from odoo import Command
 from odoo.exceptions import UserError, ValidationError
+from odoo.orm.domains import Domain
 from odoo.tests import Form, tagged
 
 from odoo.addons.sale.tests import common
@@ -16,11 +17,6 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        context_no_mail = {
-            "no_reset_password": True,
-            "mail_create_nosubscribe": True,
-            "mail_create_nolog": True,
-        }
 
         # Create base account to simulate a chart of account for payable account
         user_type_payable = cls.company_data["default_account_payable"]
@@ -42,7 +38,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
             }
         )
 
-        Partner = cls.env["res.partner"].with_context(**context_no_mail)
+        Partner = cls.env["res.partner"]
         cls.partner_customer_usd = Partner.create(
             {
                 "name": "Customer from the North",
@@ -84,7 +80,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
                                 "name": cls.product_order.name,
                                 "product_id": cls.product_order.id,
                                 "product_uom_qty": 1,
-                                "product_uom": cls.product_order.uom_id.id,
+                                "product_uom_id": cls.product_order.uom_id.id,
                                 "price_unit": cls.product_order.list_price,
                             }
                         )
@@ -120,7 +116,6 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
                 "list_price": 280.0,
                 "type": "consu",
                 "uom_id": uom_unit.id,
-                "uom_po_id": uom_unit.id,
                 "invoice_policy": "order",
                 "expense_policy": "no",
                 "default_code": "PROD_ORDER",
@@ -131,11 +126,12 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         )
         # Advance Product
         deposit_account = cls.env["account.account"].search(
-            [("internal_group", "=", "income"), ("deprecated", "=", False)], limit=1
+            Domain([("internal_group", "=", "income")]),
+            limit=1,
         )
         cls.product_advance = cls.env["product.product"].create(
             {
-                "name": _("Down payment"),
+                "name": cls.env._("Down payment"),
                 "type": "service",
                 "invoice_policy": "order",
                 "property_account_income_id": deposit_account.id,
@@ -157,7 +153,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         try:  # UserError if no installment
             plan = f.save()
         except ValidationError as e:
-            _logger.info(_("No installment raises following error : %s"), e.args[0])
+            _logger.info("No installment raises following error : %s", e.args[0])
         # Create Invoice Plan 3 installment
         num_installment = 5
         f.num_installment = num_installment
@@ -323,7 +319,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
             "active_ids": [self.so_service.id],
             "all_remain_invoices": False,
         }
-        first_order_line = fields.first(self.so_service.order_line)
+        first_order_line = self.so_service.order_line[0]
         first_order_line.product_uom_qty = 10
         f = Form(self.env["sale.create.invoice.plan"])
         # Create Invoice Plan 5 installment
@@ -353,7 +349,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
                                 "name": "SO-Product-NEW",
                                 "product_id": self.product_order.id,
                                 "product_uom_qty": 1,
-                                "product_uom": self.product_order.uom_id.id,
+                                "product_uom_id": self.product_order.uom_id.id,
                                 "price_unit": 280.0,
                             }
                         )
@@ -367,3 +363,29 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
         self.so_service.invoice_plan_ids._compute_amount()
         self.assertEqual(first_install.amount, 280.0)
         self.assertEqual(first_install.percent, 9.090909)
+
+    def test_invoice_plan_keeps_subsections(self):
+        ctx = {
+            "active_id": self.so_service.id,
+            "active_ids": [self.so_service.id],
+            "all_remain_invoices": False,
+        }
+        self.so_service.order_line = [
+            Command.create(
+                {"name": "Section", "display_type": "line_section", "sequence": 1}
+            ),
+            Command.create(
+                {"name": "Subsection", "display_type": "line_subsection", "sequence": 2}
+            ),
+        ]
+        f = Form(self.env["sale.create.invoice.plan"])
+        f.num_installment = 2
+        f.save().with_context(**ctx).sale_create_invoice_plan()
+        self.so_service.action_confirm()
+        self.env["sale.make.planned.invoice"].create({}).with_context(
+            **ctx
+        ).create_invoices_by_plan()
+        self.assertEqual(
+            self.so_service.invoice_ids.invoice_line_ids.mapped("display_type"),
+            ["line_section", "line_subsection", "product"],
+        )
