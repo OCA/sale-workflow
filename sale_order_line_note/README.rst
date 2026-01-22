@@ -1,5 +1,5 @@
 ====================
-sale_order_line_note
+Sale Order Line Note
 ====================
 
 .. 
