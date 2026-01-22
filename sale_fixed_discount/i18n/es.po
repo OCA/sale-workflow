@@ -1,0 +1,78 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_fixed_discount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-14 17:32+0000\n"
+"PO-Revision-Date: 2024-04-23 08:39+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_fixed_discount
+#: model_terms:ir.ui.view,arch_db:sale_fixed_discount.report_saleorder_document
+msgid "<span class=\"text-nowrap\"> %)</span>"
+msgstr ""
+
+#. module: sale_fixed_discount
+#: model_terms:ir.ui.view,arch_db:sale_fixed_discount.report_saleorder_document
+msgid "<span class=\"text-nowrap\"> (or</span>"
+msgstr ""
+
+#. module: sale_fixed_discount
+#: model_terms:ir.ui.view,arch_db:sale_fixed_discount.sale_order_portal_content
+msgid "<span>Disc. Fixed Amount</span>"
+msgstr "<span>Desc. Monto fijo</span>"
+
+#. module: sale_fixed_discount
+#: model_terms:ir.ui.view,arch_db:sale_fixed_discount.report_saleorder_document
+msgid "<span>Discount Amount (%)</span>"
+msgstr "<span>Importe del descuento (%)</span>"
+
+#. module: sale_fixed_discount
+#: model:ir.model.fields,field_description:sale_fixed_discount.field_sale_order_line__discount_fixed
+msgid "Discount (Fixed)"
+msgstr "Descuento (Fijo)"
+
+#. module: sale_fixed_discount
+#: model:ir.model.fields,help:sale_fixed_discount.field_sale_order_line__discount_fixed
+msgid "Fixed amount discount."
+msgstr "Importe fijo de descuento."
+
+#. module: sale_fixed_discount
+#: model:ir.model,name:sale_fixed_discount.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea Pedido de Venta"
+
+#. module: sale_fixed_discount
+#. odoo-python
+#: code:addons/sale_fixed_discount/models/sale_order_line.py:0
+#, python-format
+msgid ""
+"The fixed discount %(fixed)s does not match the calculateddiscount "
+"%(discount)s %%.Please correct one of the discounts."
+msgstr ""
+"El descuento fijo %(fixed)s no coincide con el descuento calculado "
+"%(discount)s %%.Por favor, corrija uno de los descuentos."
+
+#~ msgid "(or"
+#~ msgstr "(o"
+
+#~ msgid "<span>Disc. %</span>"
+#~ msgstr "<span>Desc. %</span>"
+
+#, python-format
+#~ msgid ""
+#~ "The fixed discount %(fixed)s does not match the calculated discount "
+#~ "%(discount)s %%. Please correct one of the discounts."
+#~ msgstr ""
+#~ "El descuento fijo %(fixed)s no coincide con el descuento calculado "
+#~ "%(discount)s %%. Por favor, corrija uno de los descuentos."
