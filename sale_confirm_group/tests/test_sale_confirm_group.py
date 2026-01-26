@@ -73,8 +73,7 @@ class TestSaleConfirmGroup(TestSaleConfirmGroupCommon):
             sale.action_confirm()
         self.assertEqual(
             error.exception.args[0],
-            f"User {self.env.user.name} cannot confirm"
-            f" Sale(s) '{sale.display_name}'",
+            f"User {self.env.user.name} cannot confirm Sale(s) '{sale.display_name}'",
         )
         # Add the sale users as allowed group: the current user can now confirm
         self.env.company.sudo().sale_confirmation_group_ids += self.group_sale_user
@@ -89,8 +88,7 @@ class TestSaleConfirmGroup(TestSaleConfirmGroupCommon):
             sale.action_confirm()
         self.assertEqual(
             error.exception.args[0],
-            f"User {self.env.user.name} cannot confirm"
-            f" Sale(s) '{sale.display_name}'",
+            f"User {self.env.user.name} cannot confirm Sale(s) '{sale.display_name}'",
         )
         # Add the current user to the "Sales / Administrator" group: the current user
         # can now confirm
@@ -107,8 +105,7 @@ class TestSaleConfirmGroup(TestSaleConfirmGroupCommon):
             sale.action_confirm()
         self.assertEqual(
             error.exception.args[0],
-            f"User {self.env.user.name} cannot confirm"
-            f" Sale(s) '{sale.display_name}'",
+            f"User {self.env.user.name} cannot confirm Sale(s) '{sale.display_name}'",
         )
 
     @users("test-sale-confirm-group-user")
@@ -121,8 +118,7 @@ class TestSaleConfirmGroup(TestSaleConfirmGroupCommon):
             sale.action_confirm()
         self.assertEqual(
             error.exception.args[0],
-            f"User {self.env.user.name} cannot confirm"
-            f" Sale(s) '{sale.display_name}'",
+            f"User {self.env.user.name} cannot confirm Sale(s) '{sale.display_name}'",
         )
         # Add the "skip_check_user_can_confirm" context key to skip user permission
         # checks: the curren user can confirm
