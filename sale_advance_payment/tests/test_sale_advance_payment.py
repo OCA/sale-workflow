@@ -1,6 +1,8 @@
 # Copyright (C) 2021 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 
+from unittest.mock import patch
+
 from odoo import fields
 from odoo.exceptions import ValidationError
 
@@ -534,3 +536,20 @@ class TestSaleAdvancePayment(BaseCommon):
         dummy_invoice.action_post()
 
         _ = sale_order_usd.amount_residual
+
+    def test_07_action_post_interrupted_by_wizard(self):
+        self.sale_order_1.action_confirm()
+        invoice = self.sale_order_1._create_invoices()
+        fake_wizard_action = {
+            "type": "ir.actions.act_window",
+            "name": "Simulated Wizard",
+            "res_model": "test.wizard",
+            "view_mode": "form",
+        }
+        with patch(
+            "odoo.addons.account.models.account_move.AccountMove.action_post",
+            return_value=fake_wizard_action,
+        ):
+            res = invoice.action_post()
+            self.assertEqual(res, fake_wizard_action)
+            self.assertNotEqual(invoice.state, "posted")
