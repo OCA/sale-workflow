@@ -1,10 +1,10 @@
 # Copyright 2021 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo.tests import Form
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
-class TestSaleOrderMassAction(SavepointCase):
+class TestSaleOrderMassAction(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -48,3 +48,17 @@ class TestSaleOrderMassAction(SavepointCase):
             wizard_form.confirm = True
         self.wizard.apply_button()
         self.assertEqual("cancel", self.sale.state)
+
+    def test_sale_draft(self):
+        # Cancel the Sale Order
+        # Launch the wizard on Sale Order
+        # Set Draft
+        # Check if the sale order is in draft
+        self.sale.write({"state": "cancel"})
+        self.wizard = self.wizard_obj.with_context(
+            active_model="sale.order", active_ids=[self.sale.id]
+        ).create({})
+        with Form(self.wizard) as wizard_form:
+            wizard_form.draft = True
+        self.wizard.apply_button()
+        self.assertEqual("draft", self.sale.state)
