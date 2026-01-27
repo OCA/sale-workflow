@@ -14,11 +14,11 @@
                 </group>
                 <footer>
                     <button
-                        name="apply_button"
-                        string="Apply"
-                        type="object"
-                        class="oe_highlight"
-                    />
+                    name="apply_button"
+                    string="Apply"
+                    type="object"
+                    class="oe_highlight"
+                />
                     or
                     <button string="Cancel" class="oe_link" special="cancel" />
                 </footer>
