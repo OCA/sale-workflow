@@ -13,11 +13,21 @@ class SaleOrderMassActionWizard(models.TransientModel):
     confirm = fields.Boolean(
         help="Check this box if you want to confirm all the selected quotations."
     )
+    draft = fields.Boolean(
+        help="Check this box if you want to set to quotation "
+        "all the selected sale orders."
+    )
 
     def _get_sale_order_confirm_domain(self):
         return [
             ("id", "in", self.env.context.get("active_ids")),
             ("state", "in", ("draft", "sent")),
+        ]
+
+    def _get_sale_order_draft_domain(self):
+        return [
+            ("id", "in", self.env.context.get("active_ids")),
+            ("state", "=", "cancel"),
         ]
 
     @api.model
@@ -36,5 +46,9 @@ class SaleOrderMassActionWizard(models.TransientModel):
         for wizard in self.filtered("confirm"):
             sale_orders = sale_order_obj.search(wizard._get_sale_order_confirm_domain())
             sale_orders.action_confirm()
+            self._notify_success(sale_orders)
+        for wizard in self.filtered("draft"):
+            sale_orders = sale_order_obj.search(wizard._get_sale_order_draft_domain())
+            sale_orders.action_draft()
             self._notify_success(sale_orders)
         return True
