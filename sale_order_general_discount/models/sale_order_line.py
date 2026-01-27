@@ -24,6 +24,4 @@ class SaleOrderLine(models.Model):
                 line.order_id.general_discount or line.order_id._origin.general_discount
             ):
                 line.discount = line.order_id.general_discount
-            else:
-                line.discount = 0
         return res
