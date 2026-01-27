@@ -7,7 +7,6 @@ from odoo import _, api, fields, models
 
 
 class SaleOrderMassActionWizard(models.TransientModel):
-
     _name = "sale.order.mass.action.wizard"
     _description = "Sale Order Mass Action"
 
