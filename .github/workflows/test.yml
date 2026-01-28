@@ -36,10 +36,10 @@ jobs:
       matrix:
         include:
           - container: ghcr.io/oca/oca-ci/py3.6-odoo14.0:latest
-            include: "sale_order_line_sequence"
+            include: "sale_order_line_sequence,sale_line_service_qty_delivered"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.6-ocb14.0:latest
-            include: "sale_order_line_sequence"
+            include: "sale_order_line_sequence,sale_line_service_qty_delivered"
             name: test with OCB
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.6-odoo14.0:latest
@@ -50,10 +50,10 @@ jobs:
             name: test with OCB
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.6-odoo14.0:latest
-            exclude: "sale_order_line_sequence,sale_procurement_group_by_commitment_date"
+            exclude: "sale_order_line_sequence,sale_procurement_group_by_commitment_date,sale_line_service_qty_delivered"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.6-ocb14.0:latest
-            exclude: "sale_order_line_sequence,sale_procurement_group_by_commitment_date"
+            exclude: "sale_order_line_sequence,sale_procurement_group_by_commitment_date,sale_line_service_qty_delivered"
             name: test with OCB
             makepot: "true"
     services:
