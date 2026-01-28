@@ -6,7 +6,7 @@
     "summary": "Changes the Delivered Quantity (qty_delivered) of a service sale.order.line"
     "if one other sale.order.line is delivered the qty_delivered of the service line"
     "is changed to its Quantity (product_uom_qty)",
-    "version": "14.0.1.0.0",
+    "version": "14.0.1.0.1",
     "license": "AGPL-3",
     "author": "Michael Tietz (MT Software) <mtietz@mt-software.de>,"
     "Odoo Community Association (OCA)",
