@@ -51,6 +51,19 @@ msgstr ""
 msgid "Sales Order Line"
 msgstr "Postavka prodajnega naloga"
 
+#. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_stock_move
+msgid "Stock Move"
+msgstr "Premik zaloge"
+
+#. module: sale_order_lot_selection
+#. odoo-python
+#: code:addons/sale_order_lot_selection/models/sale_order_line.py:0
+msgid ""
+"You can't modify the Lot/Serial number because some stock move has already "
+"been done."
+msgstr ""
+
 #, python-format
 #~ msgid "Can't reserve products for lot %s"
 #~ msgstr "Ni mogoče rezervirati proizvodov za lot %s"
@@ -62,6 +75,3 @@ msgstr "Postavka prodajnega naloga"
 #, fuzzy
 #~ msgid "Sales Order"
 #~ msgstr "Prodajni nalog"
-
-#~ msgid "Stock Move"
-#~ msgstr "Premik zaloge"
