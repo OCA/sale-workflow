@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form_with_carrier" model="ir.ui.view">
+        <field name="name">delivery.sale.order.form.view.with_carrier</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="delivery.view_order_form_with_carrier" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='delivery_set']" position="after">
+                <!-- carrier_id must exist in view to be able to be wrote it in onchange -->
+                <field name="carrier_id" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

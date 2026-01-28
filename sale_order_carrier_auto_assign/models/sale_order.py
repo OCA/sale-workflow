@@ -73,16 +73,20 @@ class SaleOrder(models.Model):
         for order in self:
             if not order.order_line:
                 continue
-            if order.delivery_set:
+            # Preserve the carrier only if explicitly set on the attribute
+            if preserve_order_carrier and order.delivery_set:
                 continue
             delivery_wiz_action = order.action_open_delivery_wizard()
             delivery_wiz_context = delivery_wiz_action.get("context", {})
             if not delivery_wiz_context.get("default_carrier_id"):
                 continue
+            # Use the real order because can be an onchange
+            if isinstance(delivery_wiz_context.get("default_order_id"), models.NewId):
+                delivery_wiz_context["default_order_id"] = order._origin.id or order.id
             delivery_wiz_model = self.env[
                 delivery_wiz_action.get("res_model")
             ].with_context(**delivery_wiz_context)
-            if self._origin:
+            if order._origin:
                 delivery_wiz = delivery_wiz_model.create({})
             else:
                 delivery_wiz = delivery_wiz_model.new({})
