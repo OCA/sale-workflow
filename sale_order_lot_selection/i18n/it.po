@@ -51,8 +51,18 @@ msgstr "Resoconto analisi vendite"
 msgid "Sales Order Line"
 msgstr "Riga ordine di vendita"
 
+#. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_stock_move
+msgid "Stock Move"
+msgstr "Movimenti magazzino"
+
+#. module: sale_order_lot_selection
+#. odoo-python
+#: code:addons/sale_order_lot_selection/models/sale_order_line.py:0
+msgid ""
+"You can't modify the Lot/Serial number because some stock move has already "
+"been done."
+msgstr ""
+
 #~ msgid "Sales Order"
 #~ msgstr "Ordine di vendita"
-
-#~ msgid "Stock Move"
-#~ msgstr "Movimenti magazzino"
