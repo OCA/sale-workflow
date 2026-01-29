@@ -5,7 +5,7 @@
     "name": "Sale Confirmation Group",
     "summary": "Allows configuring a list of groups per-company who are granted"
     " permission to confirm sale orders",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "author": "Camptocamp, Odoo Community Association (OCA) ",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sale",

@@ -20,7 +20,7 @@ class SaleOrder(models.Model):
         #   whether a user can actually confirm a sale order (to avoid using an outdated
         #   value for this field, since settings may have been updated in the meanwhile)
         "company_id.use_sale_confirmation_groups",
-        "company_id.sale_confirmation_group_ids.users",
+        "company_id.sale_confirmation_group_ids.user_ids",
     )
     @api.depends_context("uid")
     def _compute_user_can_confirm(self):
@@ -32,7 +32,7 @@ class SaleOrder(models.Model):
                 sales.user_can_confirm = True
             else:
                 sales.user_can_confirm = (
-                    user in groups.with_context(active_test=False).users
+                    user in groups.with_context(active_test=False).user_ids
                 )
 
     def action_confirm(self):
@@ -50,9 +50,11 @@ class SaleOrder(models.Model):
         # 3- at least 1 SO cannot be confirmed by the user
         raise exceptions.ValidationError(
             self.env._(
-                "User %s cannot confirm Sale(s) %s",
-                self.env.user.name,
-                ", ".join((self - can_confirm).mapped(lambda s: f"'{s.display_name}'")),
+                "User %(user)s cannot confirm Sale(s) %(sales)s",
+                user=self.env.user.name,
+                sales=", ".join(
+                    (self - can_confirm).mapped(lambda s: f"'{s.display_name}'")
+                ),
             )
         )
 
