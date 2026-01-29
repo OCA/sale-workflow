@@ -14,7 +14,6 @@ class SaleInvoicePlan(models.Model):
         index=True,
         ondelete="cascade",
     )
-    # analytic_account_id = fields.Many2one(related="sale_id.analytic_account_id")
     partner_id = fields.Many2one(
         comodel_name="res.partner",
         string="Customer",

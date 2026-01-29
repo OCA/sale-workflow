@@ -154,7 +154,7 @@ class TestSaleInvoicePlan(common.TestSaleCommon):
             plan = f.save()
         except ValidationError as e:
             _logger.info(
-                self.env._("No installment raises following error : %s"), e.args[0]
+                self.env._("No installment raises following error : %s", e.args[0])
             )
         # Create Invoice Plan 3 installment
         num_installment = 5
