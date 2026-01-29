@@ -4,10 +4,10 @@
 from odoo.tests.common import new_test_user
 
 from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
-from odoo.addons.sale.tests.common import TestSaleCommonBase
+from odoo.addons.sale.tests.common import TestSaleCommon
 
 
-class TestSaleConfirmGroupCommon(TestSaleCommonBase):
+class TestSaleConfirmGroupCommon(TestSaleCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

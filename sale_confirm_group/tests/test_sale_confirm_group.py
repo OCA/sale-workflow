@@ -16,6 +16,14 @@ class TestSaleConfirmGroup(TestSaleConfirmGroupCommon):
         super().setUpClass()
         # Dummy customer for SO creation
         cls.customer = cls.env["res.partner"].create({"name": "Customer"})
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "Test Product",
+                "type": "consu",
+                "sale_ok": True,
+                "standard_price": 50,
+            }
+        )
 
     def _create_sale(self):
         return self.env["sale.order"].create(
@@ -25,7 +33,7 @@ class TestSaleConfirmGroup(TestSaleConfirmGroupCommon):
                     fields.Command.create(
                         {
                             "name": "Product",
-                            "product_id": self.env.ref("product.consu_delivery_01").id,
+                            "product_id": self.product.id,
                             "product_uom_qty": 1,
                             "price_unit": 50.00,
                         }
@@ -92,14 +100,14 @@ class TestSaleConfirmGroup(TestSaleConfirmGroupCommon):
         )
         # Add the current user to the "Sales / Administrator" group: the current user
         # can now confirm
-        self.test_user.groups_id += self.group_sale_admin
+        self.test_user.group_ids += self.group_sale_admin
         self.assertTrue(sale.user_can_confirm)
         sale.action_confirm()
         self.assertEqual(sale.state, "sale")
         # Remove the current user from the "Sales / Administrator" group: the current
         # user cannot confirm
         sale = self._create_sale()
-        self.test_user.groups_id -= self.group_sale_admin
+        self.test_user.group_ids -= self.group_sale_admin
         self.assertFalse(sale.user_can_confirm)
         with self.assertRaises(ValidationError) as error:
             sale.action_confirm()
