@@ -99,7 +99,8 @@ class SaleOrder(models.Model):
             order.advance_payment_status = payment_state
 
     def _has_to_be_paid(self):
-        # If an order 'has to be paid' it will show the "Accept & Pay" button in the portal
-        # This prevents that, as you do't want customers payign for orders that are already paid
+        # If an order 'has to be paid' it will show the "Accept & Pay" button in the
+        # portal. This prevents that, as you do't want customers payign for orders that
+        # are already paid
         res = super()._has_to_be_paid()
         return res and self.amount_residual > 0
