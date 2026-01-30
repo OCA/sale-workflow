@@ -15,7 +15,10 @@ class SaleOrder(models.Model):
         )
         if general_discount != "no_apply":
             for record in self:
-                record.order_line.update({general_discount: record.general_discount})
+                record.order_line.filtered(
+                    lambda line: not line.display_type
+                    and not line.product_id.bypass_general_discount
+                ).update({general_discount: record.general_discount})
 
     def _create_delivery_line(self, carrier, price_unit):
         res = super()._create_delivery_line(carrier, price_unit)

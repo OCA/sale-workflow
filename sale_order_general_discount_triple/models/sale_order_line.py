@@ -12,69 +12,80 @@ class SaleOrderLine(models.Model):
         compute="_compute_discount3", store=True, readonly=False, precompute=True
     )
 
-    @api.depends("product_id", "product_uom", "product_uom_qty")
+    @api.depends(
+        "product_id",
+        "product_uom_id",
+        "product_uom_qty",
+        "order_id.general_discount",
+        "display_type",
+    )
     def _compute_discount1(self):
         pricelist_discount = self._get_discount_field_position("pricelist_discount")
         general_discount = self._get_discount_field_position("general_discount")
-        if "discount1" not in [pricelist_discount, general_discount]:
-            for line in self:
-                if line._check_is_reward_line():
-                    continue
-                line.update({"discount1": 0.0})
-            return
         for line in self:
-            if line._check_is_reward_line():
+            if line._check_is_reward_line() or line.display_type:
+                line.discount1 = 0.0
                 continue
+            val = 0.0
             if pricelist_discount == "discount1":
-                line.update({"discount1": line._get_pricelist_discount()})
+                val = line._get_pricelist_discount()
             elif (
                 general_discount == "discount1"
+                and line.product_id
                 and not line.product_id.bypass_general_discount
             ):
-                line.update({"discount1": line.order_id.general_discount})
-        return
+                val = line.order_id.general_discount
+            line.discount1 = val
 
-    @api.depends("product_id", "product_uom", "product_uom_qty")
+    @api.depends(
+        "product_id",
+        "product_uom_id",
+        "product_uom_qty",
+        "order_id.general_discount",
+        "display_type",
+    )
     def _compute_discount2(self):
         pricelist_discount = self._get_discount_field_position("pricelist_discount")
         general_discount = self._get_discount_field_position("general_discount")
-        if "discount2" not in [pricelist_discount, general_discount]:
-            for line in self:
-                if line._check_is_reward_line():
-                    continue
-                line.update({"discount2": 0.0})
-            return
         for line in self:
-            if line._check_is_reward_line():
+            if line._check_is_reward_line() or line.display_type:
+                line.discount2 = 0.0
                 continue
+            val = 0.0
             if pricelist_discount == "discount2":
-                line.update({"discount2": line._get_pricelist_discount()})
+                val = line._get_pricelist_discount()
             elif (
                 general_discount == "discount2"
+                and line.product_id
                 and not line.product_id.bypass_general_discount
             ):
-                line.update({"discount2": line.order_id.general_discount})
+                val = line.order_id.general_discount
+            line.discount2 = val
 
-    @api.depends("product_id", "product_uom", "product_uom_qty")
+    @api.depends(
+        "product_id",
+        "product_uom_id",
+        "product_uom_qty",
+        "order_id.general_discount",
+        "display_type",
+    )
     def _compute_discount3(self):
         pricelist_discount = self._get_discount_field_position("pricelist_discount")
         general_discount = self._get_discount_field_position("general_discount")
-        if "discount3" not in [pricelist_discount, general_discount]:
-            for line in self:
-                if line._check_is_reward_line():
-                    continue
-                line.update({"discount3": 0.0})
-            return
         for line in self:
-            if line._check_is_reward_line():
+            if line._check_is_reward_line() or line.display_type:
+                line.discount3 = 0.0
                 continue
+            val = 0.0
             if pricelist_discount == "discount3":
-                line.update({"discount3": line._get_pricelist_discount()})
+                val = line._get_pricelist_discount()
             elif (
                 general_discount == "discount3"
+                and line.product_id
                 and not line.product_id.bypass_general_discount
             ):
-                line.update({"discount3": line.order_id.general_discount})
+                val = line.order_id.general_discount
+            line.discount3 = val
 
     def _check_is_reward_line(self):
         self.ensure_one()

@@ -1,2 +1,4 @@
 - [Ooops](https://www.ooops404.com):
   - Ashish Hirpara
+- [Studio73](https://www.studio73.es/):
+  - Pablo Cortés
