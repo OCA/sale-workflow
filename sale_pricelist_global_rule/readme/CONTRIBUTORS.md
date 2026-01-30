@@ -1,3 +1,5 @@
 - [Tecnativa](https://www.tecnativa.com)
   - Pedro M. Baeza
   - Carlos López
+- [Komit-consulting](https://komit-consulting.com/)
+  - Duc Truong

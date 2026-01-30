@@ -1,4 +1,4 @@
-from odoo.addons.base.tests.common import TransactionCase
+from odoo.tests import TransactionCase
 
 
 class TestPricelistGlobal(TransactionCase):
@@ -94,7 +94,9 @@ class TestPricelistGlobal(TransactionCase):
         cls.pricelist_item_by_product = cls.PricelistItem.create(
             {
                 "pricelist_id": cls.pricelist_global.id,
-                "applied_on": "3_1_global_product_template",
+                "display_applied_on": "3_global",
+                "applied_on": "3_global",
+                "global_applied_on": "3_1_global_product_template",
                 "global_product_tmpl_id": cls.t_shirt.id,
                 "compute_price": "percentage",
                 "percent_price": 10,
@@ -104,7 +106,9 @@ class TestPricelistGlobal(TransactionCase):
         cls.pricelist_item_by_categ = cls.PricelistItem.create(
             {
                 "pricelist_id": cls.pricelist_global.id,
-                "applied_on": "3_2_global_product_category",
+                "display_applied_on": "3_global",
+                "applied_on": "3_global",
+                "global_applied_on": "3_2_global_product_category",
                 "global_categ_id": cls.categ_1.id,
                 "compute_price": "percentage",
                 "percent_price": 10,
@@ -114,6 +118,7 @@ class TestPricelistGlobal(TransactionCase):
         cls.pricelist_item_base = cls.PricelistItem.create(
             {
                 "pricelist_id": cls.pricelist_base.id,
+                "display_applied_on": "1_product",
                 "applied_on": "1_product",
                 "product_tmpl_id": cls.t_shirt.id,
                 "compute_price": "percentage",
@@ -163,7 +168,7 @@ class TestPricelistGlobal(TransactionCase):
                 "price_unit": 300,
             }
         )
-        cls.env.user.groups_id += cls.env.ref("product.group_discount_per_so_line")
+        cls.env.user.groups_id += cls.env.ref("sale.group_discount_per_so_line")
 
     def test_01_by_product_less_min_quantity(self):
         """
@@ -220,16 +225,16 @@ class TestPricelistGlobal(TransactionCase):
         """
         Only product_m_red and product_m_black have 10% discount
         After apply the global pricelist: min_quantity=15, Total qty=15
-        product_m_red: qty=7, price=90
-        product_m_black: qty=8, price=90
+        product_m_red: qty=7, price=100, discount=10
+        product_m_black: qty=8, price=100, discount=10
         product_2: qty=1, price=200(unchanged)
         product_3: qty=1, price=300(unchanged)
         """
         self.sale_line_m_red.product_uom_qty = 7
         self.sale_line_m_black.product_uom_qty = 8
         self.sale_order1.button_compute_pricelist_global_rule()
-        self.assertEqual(self.sale_line_m_red.price_unit, 90)
-        self.assertEqual(self.sale_line_m_black.price_unit, 90)
+        self.assertEqual(self.sale_line_m_red.discount, 10)
+        self.assertEqual(self.sale_line_m_black.discount, 10)
         self.assertEqual(self.sale_line_2.price_unit, 200)
         self.assertEqual(self.sale_line_3.price_unit, 300)
         self.assertEqual(
@@ -322,8 +327,8 @@ class TestPricelistGlobal(TransactionCase):
         self.sale_line_m_red.product_uom_qty = 4
         self.sale_line_m_black.product_uom_qty = 4
         self.sale_order1.button_compute_pricelist_global_rule()
-        self.assertEqual(self.sale_line_m_red.price_unit, 100)
-        self.assertEqual(self.sale_line_m_black.price_unit, 100)
+        self.assertEqual(self.sale_line_m_red.discount, 0)
+        self.assertEqual(self.sale_line_m_black.discount, 0)
         self.assertEqual(self.sale_line_2.price_unit, 200)
         self.assertEqual(self.sale_line_3.price_unit, 300)
         self.assertFalse(self.sale_line_m_red.pricelist_item_id)
@@ -332,8 +337,8 @@ class TestPricelistGlobal(TransactionCase):
         self.sale_line_m_red.product_uom_qty = 4
         self.sale_line_m_black.product_uom_qty = 11
         self.sale_order1.button_compute_pricelist_global_rule()
-        self.assertEqual(self.sale_line_m_red.price_unit, 90)
-        self.assertEqual(self.sale_line_m_black.price_unit, 72)
+        self.assertEqual(self.sale_line_m_red.discount, 10)
+        self.assertEqual(self.sale_line_m_black.discount, 28)
         self.assertEqual(self.sale_line_2.price_unit, 200)
         self.assertEqual(self.sale_line_3.price_unit, 300)
         self.assertEqual(
@@ -346,8 +351,8 @@ class TestPricelistGlobal(TransactionCase):
         self.sale_line_m_red.product_uom_qty = 8
         self.sale_line_m_black.product_uom_qty = 8
         self.sale_order1.button_compute_pricelist_global_rule()
-        self.assertEqual(self.sale_line_m_red.price_unit, 72)
-        self.assertEqual(self.sale_line_m_black.price_unit, 72)
+        self.assertEqual(self.sale_line_m_red.discount, 28)
+        self.assertEqual(self.sale_line_m_black.discount, 28)
         self.assertEqual(self.sale_line_2.price_unit, 200)
         self.assertEqual(self.sale_line_3.price_unit, 300)
         self.assertEqual(
@@ -368,12 +373,14 @@ class TestPricelistGlobal(TransactionCase):
         - global pricelist:
             - base_price = 100 * 20% discount (from base pricelist)
             - final_price = 80 * 10% discount = 72
-
+            discount = 28%
         """
         self.pricelist_item_base.write(
             {
-                "applied_on": "3_1_global_product_template",
+                "display_applied_on": "3_global",
+                "global_applied_on": "3_1_global_product_template",
                 "global_product_tmpl_id": self.t_shirt.id,
+                "applied_on": "3_global",
             }
         )
         self.pricelist_item_by_product.write(
@@ -386,8 +393,8 @@ class TestPricelistGlobal(TransactionCase):
         self.sale_line_m_red.product_uom_qty = 4
         self.sale_line_m_black.product_uom_qty = 4
         self.sale_order1.button_compute_pricelist_global_rule()
-        self.assertEqual(self.sale_line_m_red.price_unit, 100)
-        self.assertEqual(self.sale_line_m_black.price_unit, 100)
+        self.assertEqual(self.sale_line_m_red.discount, 0)
+        self.assertEqual(self.sale_line_m_black.discount, 0)
         self.assertEqual(self.sale_line_2.price_unit, 200)
         self.assertEqual(self.sale_line_3.price_unit, 300)
         self.assertFalse(self.sale_line_m_red.pricelist_item_id)
@@ -396,8 +403,8 @@ class TestPricelistGlobal(TransactionCase):
         self.sale_line_m_red.product_uom_qty = 8
         self.sale_line_m_black.product_uom_qty = 8
         self.sale_order1.button_compute_pricelist_global_rule()
-        self.assertEqual(self.sale_line_m_red.price_unit, 72)
-        self.assertEqual(self.sale_line_m_black.price_unit, 72)
+        self.assertEqual(self.sale_line_m_red.discount, 28)
+        self.assertEqual(self.sale_line_m_black.discount, 28)
         self.assertEqual(self.sale_line_2.price_unit, 200)
         self.assertEqual(self.sale_line_3.price_unit, 300)
         self.assertEqual(
@@ -462,20 +469,20 @@ class TestPricelistGlobal(TransactionCase):
         """
         Only product_m_red and product_m_black, product_2 have 10% discount
         After apply global pricelist: min_quantity=20, Total qty=24
-        product_m_red: qty=4, price=90
-        product_m_black: qty=5, price=90
-        product_2: qty=15, price=180
-        product_3: qty=10, price=300(unchanged)
+        product_m_red: qty=4, price=100,discount=10
+        product_m_black: qty=5, price=100,discount=10
+        product_2: qty=15, price=180,discount=10
+        product_3: qty=10, price=300(unchanged),discount=0
         """
         self.sale_line_m_red.product_uom_qty = 4
         self.sale_line_m_black.product_uom_qty = 5
         self.sale_line_2.product_uom_qty = 15
         self.sale_line_3.product_uom_qty = 10
         self.sale_order1.button_compute_pricelist_global_rule()
-        self.assertEqual(self.sale_line_m_red.price_unit, 90)
-        self.assertEqual(self.sale_line_m_black.price_unit, 90)
-        self.assertEqual(self.sale_line_2.price_unit, 180)
-        self.assertEqual(self.sale_line_3.price_unit, 300)
+        self.assertEqual(self.sale_line_m_red.discount, 10)
+        self.assertEqual(self.sale_line_m_black.discount, 10)
+        self.assertEqual(self.sale_line_2.discount, 10)
+        self.assertEqual(self.sale_line_3.discount, 0)
         self.assertEqual(
             self.sale_line_m_red.pricelist_item_id, self.pricelist_item_by_categ
         )
@@ -582,10 +589,10 @@ class TestPricelistGlobal(TransactionCase):
         self.sale_line_2.product_uom_qty = 8
         self.sale_line_3.product_uom_qty = 10
         self.sale_order1.button_compute_pricelist_global_rule()
-        self.assertEqual(self.sale_line_m_red.price_unit, 90)
-        self.assertEqual(self.sale_line_m_black.price_unit, 72)
-        self.assertEqual(self.sale_line_2.price_unit, 180)
-        self.assertEqual(self.sale_line_3.price_unit, 300)
+        self.assertEqual(self.sale_line_m_red.discount, 10)
+        self.assertEqual(self.sale_line_m_black.discount, 28)
+        self.assertEqual(self.sale_line_2.discount, 10)
+        self.assertEqual(self.sale_line_3.discount, 0)
         self.assertEqual(
             self.sale_line_m_red.pricelist_item_id, self.pricelist_item_by_categ
         )
@@ -601,10 +608,10 @@ class TestPricelistGlobal(TransactionCase):
         self.sale_line_m_black.product_uom_qty = 8
         self.sale_line_2.product_uom_qty = 8
         self.sale_order1.button_compute_pricelist_global_rule()
-        self.assertEqual(self.sale_line_m_red.price_unit, 72)
-        self.assertEqual(self.sale_line_m_black.price_unit, 72)
-        self.assertEqual(self.sale_line_2.price_unit, 180)
-        self.assertEqual(self.sale_line_3.price_unit, 300)
+        self.assertEqual(self.sale_line_m_red.discount, 28)
+        self.assertEqual(self.sale_line_m_black.discount, 28)
+        self.assertEqual(self.sale_line_2.discount, 10)
+        self.assertEqual(self.sale_line_3.discount, 0)
         self.assertEqual(
             self.sale_line_m_red.pricelist_item_id, self.pricelist_item_by_categ
         )
@@ -640,8 +647,10 @@ class TestPricelistGlobal(TransactionCase):
         """
         self.pricelist_item_base.write(
             {
-                "applied_on": "3_2_global_product_category",
+                "display_applied_on": "3_global",
+                "global_applied_on": "3_2_global_product_category",
                 "global_categ_id": self.categ_1.id,
+                "applied_on": "3_global",
             }
         )
         self.pricelist_item_by_categ.write(
@@ -670,10 +679,10 @@ class TestPricelistGlobal(TransactionCase):
         self.sale_line_2.product_uom_qty = 7
         self.sale_line_3.product_uom_qty = 10
         self.sale_order1.button_compute_pricelist_global_rule()
-        self.assertEqual(self.sale_line_m_red.price_unit, 72)
-        self.assertEqual(self.sale_line_m_black.price_unit, 72)
-        self.assertEqual(self.sale_line_2.price_unit, 144)
-        self.assertEqual(self.sale_line_3.price_unit, 300)
+        self.assertEqual(self.sale_line_m_red.discount, 28)
+        self.assertEqual(self.sale_line_m_black.discount, 28)
+        self.assertEqual(self.sale_line_2.discount, 28)
+        self.assertEqual(self.sale_line_3.discount, 0)
         self.assertEqual(
             self.sale_line_m_red.pricelist_item_id, self.pricelist_item_by_categ
         )
@@ -724,10 +733,10 @@ class TestPricelistGlobal(TransactionCase):
         # case 3
         self.sale_order1.date_order = "2024-12-31 00:00:00"
         self.sale_order1.button_compute_pricelist_global_rule()
-        self.assertEqual(self.sale_line_m_red.price_unit, 90)
-        self.assertEqual(self.sale_line_m_black.price_unit, 90)
-        self.assertEqual(self.sale_line_2.price_unit, 200)
-        self.assertEqual(self.sale_line_3.price_unit, 300)
+        self.assertEqual(self.sale_line_m_red.discount, 10)
+        self.assertEqual(self.sale_line_m_black.discount, 10)
+        self.assertEqual(self.sale_line_2.discount, 0)
+        self.assertEqual(self.sale_line_3.discount, 0)
         self.assertEqual(
             self.sale_line_m_red.pricelist_item_id, self.pricelist_item_by_product
         )
@@ -746,8 +755,8 @@ class TestPricelistGlobal(TransactionCase):
             - product_m_black: uom=Units, qty=1, price=100
         Case 2:
             - Total qty=13 Units(global pricelist not applied)
-            - product_m_red: uom=Dozen, qty=1, price=100
-            - product_m_black: uom=Units, qty=1, price=100
+            - product_m_red: uom=Dozen, qty=1, price=100,discount=0
+            - product_m_black: uom=Units, qty=1, price=100,discount=0
         Case 3:
             - Total qty=18 Units(global pricelist applied)
             - product_m_red: uom=Dozen, qty=1, price=90
@@ -783,8 +792,8 @@ class TestPricelistGlobal(TransactionCase):
         self.sale_line_m_red.product_uom = self.env.ref("uom.product_uom_dozen")
         self.sale_line_m_black.product_uom_qty = 6
         self.sale_order1.button_compute_pricelist_global_rule()
-        self.assertEqual(self.sale_line_m_red.price_unit, 1080)
-        self.assertEqual(self.sale_line_m_black.price_unit, 90)
+        self.assertEqual(self.sale_line_m_red.discount, 10)
+        self.assertEqual(self.sale_line_m_black.discount, 10)
         self.assertEqual(self.sale_line_2.price_unit, 200)
         self.assertEqual(self.sale_line_3.price_unit, 300)
         self.assertEqual(
@@ -841,14 +850,13 @@ class TestPricelistGlobal(TransactionCase):
             - product_m_black: price=100, discount=28
         """
         # case 1
-        self.pricelist_global.write({"discount_policy": "with_discount"})
         self.sale_line_m_red.product_uom_qty = 8
         self.sale_line_m_black.product_uom_qty = 8
         self.sale_order1.button_compute_pricelist_global_rule()
-        self.assertEqual(self.sale_line_m_red.price_unit, 90)
-        self.assertEqual(self.sale_line_m_red.discount, 0)
-        self.assertEqual(self.sale_line_m_black.price_unit, 90)
-        self.assertEqual(self.sale_line_m_black.discount, 0)
+        self.assertEqual(self.sale_line_m_red.discount, 10)
+        self.assertEqual(self.sale_line_m_red.discount, 10)
+        self.assertEqual(self.sale_line_m_black.discount, 10)
+        self.assertEqual(self.sale_line_m_black.discount, 10)
         self.assertEqual(self.sale_line_2.price_unit, 200)
         self.assertEqual(self.sale_line_2.discount, 0)
         self.assertEqual(self.sale_line_3.price_unit, 300)
@@ -862,7 +870,6 @@ class TestPricelistGlobal(TransactionCase):
         self.assertFalse(self.sale_line_2.pricelist_item_id)
         self.assertFalse(self.sale_line_3.pricelist_item_id)
         # case 2
-        self.pricelist_global.write({"discount_policy": "without_discount"})
         self.sale_order1.button_compute_pricelist_global_rule()
         self.assertEqual(self.sale_line_m_red.price_unit, 100)
         self.assertEqual(self.sale_line_m_red.discount, 10)
@@ -887,16 +894,14 @@ class TestPricelistGlobal(TransactionCase):
                 "base_pricelist_id": self.pricelist_base.id,
             }
         )
-        self.pricelist_global.write({"discount_policy": "with_discount"})
-        self.pricelist_base.write({"discount_policy": "with_discount"})
         self.sale_order1.button_compute_pricelist_global_rule()
-        self.assertEqual(self.sale_line_m_red.price_unit, 72)
-        self.assertEqual(self.sale_line_m_red.discount, 0)
-        self.assertEqual(self.sale_line_m_black.price_unit, 72)
-        self.assertEqual(self.sale_line_m_black.discount, 0)
-        self.assertEqual(self.sale_line_2.price_unit, 200)
+        self.assertEqual(self.sale_line_m_red.discount, 28)
+        self.assertEqual(self.sale_line_m_red.discount, 28)
+        self.assertEqual(self.sale_line_m_black.discount, 28)
+        self.assertEqual(self.sale_line_m_black.discount, 28)
         self.assertEqual(self.sale_line_2.discount, 0)
-        self.assertEqual(self.sale_line_3.price_unit, 300)
+        self.assertEqual(self.sale_line_2.discount, 0)
+        self.assertEqual(self.sale_line_3.discount, 0)
         self.assertEqual(self.sale_line_3.discount, 0)
         self.assertEqual(
             self.sale_line_m_red.pricelist_item_id, self.pricelist_item_by_product
@@ -907,13 +912,11 @@ class TestPricelistGlobal(TransactionCase):
         self.assertFalse(self.sale_line_2.pricelist_item_id)
         self.assertFalse(self.sale_line_3.pricelist_item_id)
         # case 4
-        self.pricelist_global.write({"discount_policy": "without_discount"})
-        self.pricelist_base.write({"discount_policy": "with_discount"})
         self.sale_order1.button_compute_pricelist_global_rule()
-        self.assertEqual(self.sale_line_m_red.price_unit, 80)
-        self.assertEqual(self.sale_line_m_red.discount, 10)
-        self.assertEqual(self.sale_line_m_black.price_unit, 80)
-        self.assertEqual(self.sale_line_m_black.discount, 10)
+        self.assertEqual(self.sale_line_m_red.discount, 28)
+        self.assertEqual(self.sale_line_m_red.discount, 28)
+        self.assertEqual(self.sale_line_m_black.discount, 28)
+        self.assertEqual(self.sale_line_m_black.discount, 28)
         self.assertEqual(self.sale_line_2.price_unit, 200)
         self.assertEqual(self.sale_line_2.discount, 0)
         self.assertEqual(self.sale_line_3.price_unit, 300)
@@ -927,13 +930,11 @@ class TestPricelistGlobal(TransactionCase):
         self.assertFalse(self.sale_line_2.pricelist_item_id)
         self.assertFalse(self.sale_line_3.pricelist_item_id)
         # case 5
-        self.pricelist_global.write({"discount_policy": "with_discount"})
-        self.pricelist_base.write({"discount_policy": "without_discount"})
         self.sale_order1.button_compute_pricelist_global_rule()
-        self.assertEqual(self.sale_line_m_red.price_unit, 72)
-        self.assertEqual(self.sale_line_m_red.discount, 0)
-        self.assertEqual(self.sale_line_m_black.price_unit, 72)
-        self.assertEqual(self.sale_line_m_black.discount, 0)
+        self.assertEqual(self.sale_line_m_red.discount, 28)
+        self.assertEqual(self.sale_line_m_red.discount, 28)
+        self.assertEqual(self.sale_line_m_black.discount, 28)
+        self.assertEqual(self.sale_line_m_black.discount, 28)
         self.assertEqual(self.sale_line_2.price_unit, 200)
         self.assertEqual(self.sale_line_2.discount, 0)
         self.assertEqual(self.sale_line_3.price_unit, 300)
@@ -947,8 +948,6 @@ class TestPricelistGlobal(TransactionCase):
         self.assertFalse(self.sale_line_2.pricelist_item_id)
         self.assertFalse(self.sale_line_3.pricelist_item_id)
         # case 6
-        self.pricelist_global.write({"discount_policy": "without_discount"})
-        self.pricelist_base.write({"discount_policy": "without_discount"})
         self.sale_order1.button_compute_pricelist_global_rule()
         self.assertEqual(self.sale_line_m_red.price_unit, 100)
         self.assertEqual(self.sale_line_m_red.discount, 28)

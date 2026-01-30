@@ -12,9 +12,15 @@ class SaleOrderLine(models.Model):
         sale_data = {}
         res = None
         for line in self:
-            if line.order_id not in sale_data:
-                sale_data[line.order_id] = line.order_id._get_cummulative_quantity()
-            qty_data = sale_data[line.order_id]
+            order = line.order_id
+            if not order:
+                # The line is not linked to an order (yet): there is nothing to
+                # accumulate, fall back to the standard per-line computation.
+                res = super(SaleOrderLine, line)._compute_pricelist_item_id()
+                continue
+            if order not in sale_data:
+                sale_data[order] = order._get_cummulative_quantity()
+            qty_data = sale_data[order]
             res = super(
                 SaleOrderLine,
                 line.with_context(pricelist_global_cummulative_quantity=qty_data),
