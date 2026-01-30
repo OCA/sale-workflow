@@ -4,8 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-30 09:59+0000\n"
+"PO-Revision-Date: 2026-10-30 09:59+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,31 +16,60 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_pricelist_global_rule
-#: model:ir.model.fields,field_description:sale_pricelist_global_rule.field_product_pricelist_item__applied_on
-msgid "Apply On"
-msgstr ""
-
-#. module: sale_pricelist_global_rule
-#: model:ir.model.fields.selection,name:sale_pricelist_global_rule.selection__product_pricelist_item__applied_on__3_2_global_product_category
-msgid "Global - Product category"
-msgstr ""
-
-#. module: sale_pricelist_global_rule
-#: model:ir.model.fields.selection,name:sale_pricelist_global_rule.selection__product_pricelist_item__applied_on__3_1_global_product_template
-msgid "Global - Product template"
+#: model:ir.model.fields,field_description:sale_pricelist_global_rule.field_product_pricelist_item__ancestor_product_category_id
+msgid "Ancestor Product Category"
 msgstr ""
 
 #. module: sale_pricelist_global_rule
 #. odoo-python
 #: code:addons/sale_pricelist_global_rule/models/product_pricelist.py:0
-#, python-format
+msgid "Ancestor product category: %s"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: model:ir.model.fields,field_description:sale_pricelist_global_rule.field_product_pricelist_item__display_applied_on
+msgid "Display Applied On"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: model:ir.model.fields.selection,name:sale_pricelist_global_rule.selection__product_pricelist_item__display_applied_on__3_global
+msgid "Global"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: model:ir.model.fields.selection,name:sale_pricelist_global_rule.selection__product_pricelist_item__global_applied_on__3_3_global_product_ancestor_category
+msgid "Global - Ancestor Product Category"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: model:ir.model.fields.selection,name:sale_pricelist_global_rule.selection__product_pricelist_item__global_applied_on__3_2_global_product_category
+msgid "Global - Product category"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: model:ir.model.fields.selection,name:sale_pricelist_global_rule.selection__product_pricelist_item__global_applied_on__3_1_global_product_template
+msgid "Global - Product template"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: model:ir.model.fields,field_description:sale_pricelist_global_rule.field_product_pricelist_item__global_applied_on
+msgid "Global Apply On"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: model:ir.model.fields,field_description:sale_pricelist_global_rule.field_product_pricelist_item__global_product_tmpl_id
+msgid "Global Product Template"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#. odoo-python
+#: code:addons/sale_pricelist_global_rule/models/product_pricelist.py:0
 msgid "Global category: %s"
 msgstr ""
 
 #. module: sale_pricelist_global_rule
 #. odoo-python
 #: code:addons/sale_pricelist_global_rule/models/product_pricelist.py:0
-#, python-format
 msgid "Global product: %s"
 msgstr ""
 
@@ -55,7 +86,6 @@ msgstr ""
 #. module: sale_pricelist_global_rule
 #. odoo-python
 #: code:addons/sale_pricelist_global_rule/models/product_pricelist.py:0
-#, python-format
 msgid ""
 "Please specify the category for which this global rule should be applied"
 msgstr ""
@@ -63,24 +93,26 @@ msgstr ""
 #. module: sale_pricelist_global_rule
 #. odoo-python
 #: code:addons/sale_pricelist_global_rule/models/product_pricelist.py:0
-#, python-format
+msgid ""
+"Please specify the product ancestor category for which this global rule "
+"should be applied"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#. odoo-python
+#: code:addons/sale_pricelist_global_rule/models/product_pricelist.py:0
 msgid ""
 "Please specify the product for which this global rule should be applied"
 msgstr ""
 
 #. module: sale_pricelist_global_rule
-#: model:ir.model.fields,help:sale_pricelist_global_rule.field_product_pricelist_item__applied_on
+#: model:ir.model.fields,help:sale_pricelist_global_rule.field_product_pricelist_item__display_applied_on
 msgid "Pricelist Item applicable on selected option"
 msgstr ""
 
 #. module: sale_pricelist_global_rule
 #: model:ir.model,name:sale_pricelist_global_rule.model_product_pricelist_item
 msgid "Pricelist Rule"
-msgstr ""
-
-#. module: sale_pricelist_global_rule
-#: model:ir.model.fields,field_description:sale_pricelist_global_rule.field_product_pricelist_item__global_product_tmpl_id
-msgid "Product"
 msgstr ""
 
 #. module: sale_pricelist_global_rule
