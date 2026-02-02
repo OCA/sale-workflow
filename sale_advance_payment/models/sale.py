@@ -83,7 +83,9 @@ class SaleOrder(models.Model):
                     advance_amount += line_amount
             # Consider payments in related invoices.
             invoice_paid_amount = 0.0
-            for inv in order.invoice_ids.filtered(lambda x: x.state != "cancel" and x.move_type == "out_invoice"):
+            for inv in order.invoice_ids.filtered(
++                lambda x: x.state != "cancel" and x.move_type == "out_invoice"
++            ):
                 paid_amount = inv.amount_total_in_currency_signed - inv.amount_residual
                 if inv.currency_id != order.currency_id:
                     paid_amount = inv.currency_id._convert(
