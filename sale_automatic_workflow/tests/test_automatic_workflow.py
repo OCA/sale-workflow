@@ -216,6 +216,7 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         )
         self.assertTrue(payment_id)
         self.assertEqual(invoice.currency_id.id, payment_id.currency_id.id)
+        self.assertEqual(invoice.payment_state, invoice._get_invoice_in_payment_state())
 
     def test_create_payment_with_specified_payment_journal(self):
         workflow = self.create_full_automatic()
