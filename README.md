@@ -60,6 +60,7 @@ addon | version | maintainers | summary
 [sale_missing_tracking](sale_missing_tracking/) | 15.0.1.0.2 | <a href='https://github.com/carlosdauden'><img src='https://github.com/carlosdauden.png' width='32' height='32' style='border-radius:50%;' alt='carlosdauden'/></a> | Tracking sale missing products
 [sale_missing_tracking_tier_validation](sale_missing_tracking_tier_validation/) | 15.0.1.0.0 |  | Extends the functionality of Sale missing tracking exceptions to support a tier validation process.
 [sale_mrp_bom](sale_mrp_bom/) | 15.0.1.0.0 |  | Allows define a BOM in the sales lines.
+[sale_order_amount_to_invoice](sale_order_amount_to_invoice/) | 15.0.1.0.0 |  | Show total amount to invoice in quotations/sales orders
 [sale_order_archive](sale_order_archive/) | 15.0.1.0.1 |  | Archive Sale Orders
 [sale_order_carrier_auto_assign](sale_order_carrier_auto_assign/) | 15.0.1.0.1 |  | Auto assign delivery carrier on sale order confirmation
 [sale_order_discount_invoicing](sale_order_discount_invoicing/) | 15.0.1.0.0 |  | Sale Discount Invoicing

@@ -47,6 +47,7 @@ setuptools.setup(
         'odoo-addon-sale_missing_tracking>=15.0dev,<15.1dev',
         'odoo-addon-sale_missing_tracking_tier_validation>=15.0dev,<15.1dev',
         'odoo-addon-sale_mrp_bom>=15.0dev,<15.1dev',
+        'odoo-addon-sale_order_amount_to_invoice>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_archive>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_carrier_auto_assign>=15.0dev,<15.1dev',
         'odoo-addon-sale_order_discount_invoicing>=15.0dev,<15.1dev',
