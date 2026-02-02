@@ -166,7 +166,11 @@ class AutomaticWorkflowJob(models.Model):
         payment.action_post()
 
         domain = [
-            ("account_type", "in", ("asset_receivable", "liability_payable")),
+            (
+                "account_type",
+                "in",
+                self.env["account.payment"]._get_valid_payment_account_types(),
+            ),
             ("reconciled", "=", False),
         ]
         payment_lines = payment.move_id.line_ids.filtered_domain(domain)
@@ -175,6 +179,7 @@ class AutomaticWorkflowJob(models.Model):
             (payment_lines + lines).filtered_domain(
                 [("account_id", "=", account.id), ("reconciled", "=", False)]
             ).reconcile()
+        lines.move_id.matched_payment_ids += payment
         return payment
 
     @api.model
