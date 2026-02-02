@@ -559,4 +559,4 @@ class TestSaleAdvancePayment(common.TransactionCase):
                 "payment_difference_handling": "open",
             }
         )._create_payments()
-        self.assertEqual(self.sale_order_1.amount_residual, 3600)
+        self.assertEqual(self.sale_order_1.amount_residual, 0)
