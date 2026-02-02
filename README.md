@@ -88,6 +88,7 @@ addon | version | maintainers | summary
 [sale_product_multi_add](sale_product_multi_add/) | 17.0.1.0.1 |  | Sale Product Multi Add
 [sale_product_set](sale_product_set/) | 17.0.1.0.0 |  | Sale product set
 [sale_promotion_rule](sale_promotion_rule/) | 17.0.1.0.0 |  | Module to manage promotion rule on sale order
+[sale_purchase_procurement_group_by_line](sale_purchase_procurement_group_by_line/) | 17.0.1.0.0 |  | Glue module between 'MTO Sale <-> Purchase' and 'Sale Procurement Group by Line'
 [sale_quotation_number](sale_quotation_number/) | 17.0.1.1.2 |  | Different sequence for sale quotations
 [sale_readonly_security](sale_readonly_security/) | 17.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Sale Readonly Security
 [sale_resource_booking](sale_resource_booking/) | 17.0.1.0.0 | <a href='https://github.com/Yajo'><img src='https://github.com/Yajo.png' width='32' height='32' style='border-radius:50%;' alt='Yajo'/></a> | Link resource bookings with sales
