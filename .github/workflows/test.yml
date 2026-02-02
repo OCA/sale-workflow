@@ -36,8 +36,24 @@ jobs:
       matrix:
         include:
           - container: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
+            include: "sale_fixed_discount"
+            name: Fixed discount (Odoo)
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb19.0:latest
+            include: "sale_fixed_discount"
+            name: Fixed discount (OCB)
+            makepot: "true"
+          - container: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
+            include: "sale_triple_discount"
+            name: Triple discount (Odoo)
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb19.0:latest
+            include: "sale_triple_discount"
+            name: Triple discount (OCB)
+            makepot: "true"
+          - container: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
+            exclude: "sale_fixed_discount,sale_triple_discount"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb19.0:latest
+            exclude: "sale_fixed_discount,sale_triple_discount"
             name: test with OCB
             makepot: "true"
     services:
@@ -50,11 +66,20 @@ jobs:
         ports:
           - 5432:5432
     env:
+      INCLUDE: "${{ matrix.include }}"
+      EXCLUDE: "${{ matrix.exclude }}"
       OCA_ENABLE_CHECKLOG_ODOO: "1"
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+      - name: Keep general triple discount in the triple discount test group
+        run: |
+          if [ "$INCLUDE" = "sale_triple_discount" ]; then
+            echo "INCLUDE=sale_triple_discount,sale_order_general_discount_triple" >> "$GITHUB_ENV"
+          elif [ -z "$INCLUDE" ]; then
+            echo "EXCLUDE=$EXCLUDE,sale_order_general_discount_triple" >> "$GITHUB_ENV"
+          fi
       - name: Install addons and dependencies
         run: oca_install_addons
       - name: Check licenses
