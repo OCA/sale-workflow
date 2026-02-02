@@ -7,5 +7,7 @@ class ProductProduct(models.Model):
     _inherit = "product.product"
 
     elaboration_profile_id = fields.Many2one(
-        comodel_name="product.elaboration.profile", ondelete="restrict"
+        comodel_name="product.elaboration.profile",
+        ondelete="restrict",
+        help="Keep this field empty to use the default value from the product category.",
     )

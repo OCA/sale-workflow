@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record
+        id="res_config_settings_view_form_inherited_sale_order_minimum_amount"
+        model="ir.ui.view"
+    >
+        <field
+            name="name"
+        >res.config.settings.view.form.inherited.sale.order.minimum.amount</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='discount_sale_order_lines']" position="after">
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    id="sale_min_order_limit_container"
+                    title="Minimum total amount required to confirm a sales order."
+                >
+                    <div class="o_setting_right_pane">
+                        <label for="sale_min_order_limit" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <div
+                            class="text-muted"
+                        >Minimum total amount to confirm a sales order</div>
+                        <field name="sale_min_order_limit" />
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

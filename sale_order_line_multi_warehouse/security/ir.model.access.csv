@@ -1,0 +1,8 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_sale_order_line_warehouse_portal,sale.order.line.warehouse.portal,model_sale_order_line_warehouse,base.group_portal,1,0,0,0
+access_sale_order_line_warehouse_readonly,sale.order.line.warehouse accountant,model_sale_order_line_warehouse,account.group_account_readonly,1,0,0,0
+access_sale_order_line_warehouse_invoicing_payments,sale.order.line.warehouse,model_sale_order_line_warehouse,account.group_account_invoice,1,1,0,0
+access_sale_order_line_warehouse_accountant,sale.order.line.warehouse accountant,model_sale_order_line_warehouse,account.group_account_user,1,1,0,0
+access_sale_order_line_warehouse,sale.order.line.warehouse,model_sale_order_line_warehouse,sales_team.group_sale_salesman,1,1,1,1
+access_so_multi_warehouse_change_wizard,access.so.multi.warehouse.change.wizard,model_so_multi_warehouse_change_wizard,sales_team.group_sale_salesman,1,1,1,1
+access_so_multi_warehouse_change_line_wizard,access.so.multi.warehouse.change.line.wizard,model_so_multi_warehouse_change_line_wizard,sales_team.group_sale_salesman,1,1,1,1

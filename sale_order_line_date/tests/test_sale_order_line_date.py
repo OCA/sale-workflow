@@ -166,3 +166,23 @@ class TestSaleOrderLineDates(TransactionCase):
         self._assert_equal_dates(
             self.sale_line1.commitment_date, self.sale_line1.move_ids.date_deadline
         )
+
+    def test_04_line_commitment_date_removal(self):
+        self.sale1.commitment_date = False
+        self.sale1.action_confirm()
+        self._assert_equal_dates(
+            self.sale_line1.commitment_date, self.sale_line1.move_ids.date_deadline
+        )
+        self.sale_line1.commitment_date = False
+        self._assert_equal_dates(
+            self.sale_line1._expected_date(), self.sale_line1.move_ids.date_deadline
+        )
+
+    def test_05_commitment_date_duplication(self):
+        """
+        Test if commitment_date field is empty when duplicating a sale order line.
+        """
+        self._assert_equal_dates(self.sale_line1.commitment_date, self.dt1)
+        duplicated_order = self.sale1.copy()
+        for duplicated_line in duplicated_order.order_line:
+            self.assertFalse(duplicated_line.commitment_date)

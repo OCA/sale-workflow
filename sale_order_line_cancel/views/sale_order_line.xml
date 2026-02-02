@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+  <record id="sale_order_line_tree_view" model="ir.ui.view">
+    <field name="model">sale.order.line</field>
+    <field name="inherit_id" ref="sale.view_order_line_tree" />
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='qty_delivered']" position="after">
+        <field name="product_qty_canceled" string="Canceled" />
+        <field name="product_qty_remains_to_deliver" string="To Deliver" />
+        <field name="can_cancel_remaining_qty" invisible="1" />
+        <button
+                    name="%(sale_order_line_cancel.action_sale_order_line_cancel)d"
+                    type="action"
+                    icon="fa-ban"
+                    title="Cancel remaining qty"
+                    attrs="{'invisible': [('can_cancel_remaining_qty', '!=', True)]}"
+                />
+      </xpath>
+    </field>
+  </record>
+</odoo>

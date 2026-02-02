@@ -12,6 +12,7 @@ class ProductTemplate(models.Model):
         compute="_compute_elaboration_profile_id",
         inverse="_inverse_elaboration_profile_id",
         store=True,
+        help="Keep this field empty to use the default value from the product category.",
     )
 
     @api.depends("product_variant_ids", "product_variant_ids.elaboration_profile_id")

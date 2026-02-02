@@ -14,8 +14,14 @@ class SaleOrder(models.Model):
         string="Delivery Block Reason",
         compute="_compute_delivery_block_id",
         store=True,
+        precompute=True,
         states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
     )
+
+    def action_done(self):
+        return super(
+            SaleOrder, self.filtered(lambda s: not s.delivery_block_id)
+        ).action_done()
 
     @api.depends("partner_id", "payment_term_id")
     def _compute_delivery_block_id(self):
@@ -36,6 +42,8 @@ class SaleOrder(models.Model):
         )
         order_to_unblock.write({"delivery_block_id": False})
         order_to_unblock.order_line._action_launch_stock_rule()
+        if self.user_has_groups("sale.group_auto_done_setting"):
+            order_to_unblock.action_done()
         return True
 
     @api.returns("self", lambda value: value.id)

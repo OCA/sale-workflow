@@ -19,17 +19,18 @@ class SalePlannerCalendarWizard(models.TransientModel):
     )
     week_list = fields.Selection(
         [
-            ("MON", "Monday"),
-            ("TUE", "Tuesday"),
-            ("WED", "Wednesday"),
-            ("THU", "Thursday"),
-            ("FRI", "Friday"),
-            ("SAT", "Saturday"),
-            ("SUN", "Sunday"),
+            ("mon", "Monday"),
+            ("tue", "Tuesday"),
+            ("wed", "Wednesday"),
+            ("thu", "Thursday"),
+            ("fri", "Friday"),
+            ("sat", "Saturday"),
+            ("sun", "Sunday"),
         ],
         string="Weekday",
     )
-    calendar_event_ids = fields.Many2many(
+    # Special hack One2many field to manage and save records directly
+    calendar_event_ids = fields.One2many(
         comodel_name="calendar.event",
         compute="_compute_calendar_event_ids",
         readonly=False,
@@ -42,13 +43,14 @@ class SalePlannerCalendarWizard(models.TransientModel):
                 ("recurrency", "=", True),
                 ("recurrence_id.until", ">", fields.Date.today()),
                 ("is_base_recurrent_event", "=", True),
+                ("target_partner_id", "!=", False),
             ]
             if rec.user_id:
                 domain.append(("user_id", "=", rec.user_id.id))
             if rec.event_type_id:
                 domain.append(("categ_ids", "in", rec.event_type_id.ids))
             if rec.week_list:
-                domain.append(("recurrence_id." + rec.week_list.lower(), "=", True))
+                domain.append(("recurrence_id." + rec.week_list, "=", True))
             rec.calendar_event_ids = (
                 self.env["calendar.event"].search(domain).sorted("hour")
             )

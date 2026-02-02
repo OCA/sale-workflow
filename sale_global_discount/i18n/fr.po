@@ -1,0 +1,88 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_global_discount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-12-17 18:06+0000\n"
+"Last-Translator: Rémi <remi@le-filament.com>\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: sale_global_discount
+#: model_terms:ir.ui.view,arch_db:sale_global_discount.report_saleorder_document
+msgid ""
+"<strong>Global Discounts</strong>\n"
+"                        <br/>"
+msgstr ""
+"<strong>Remises Globales</strong>\n"
+"                        <br/>"
+
+#. module: sale_global_discount
+#: model_terms:ir.ui.view,arch_db:sale_global_discount.report_saleorder_document
+msgid "<strong>Subtl. before disc.</strong>"
+msgstr "<strong>Sous-total avant remises</strong>"
+
+#. module: sale_global_discount
+#: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__amount_total_before_global_discounts
+msgid "Amount Total Before Discounts"
+msgstr "Montant total avant remises"
+
+#. module: sale_global_discount
+#: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__amount_untaxed_before_global_discounts
+msgid "Amount Untaxed Before Discounts"
+msgstr "Montant HT avant remises"
+
+#. module: sale_global_discount
+#. odoo-python
+#: code:addons/sale_global_discount/models/sale_order.py:0
+#, python-format
+msgid "Incompatible taxes found for global discounts."
+msgstr "Certaines taxes sont incompatibles avec les remises globales."
+
+#. module: sale_global_discount
+#: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__global_discount_ids
+#: model_terms:ir.ui.view,arch_db:sale_global_discount.view_order_form
+msgid "Sale Global Discounts"
+msgstr "Remises globales sur les Ventes"
+
+#. module: sale_global_discount
+#: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__global_discount_ids_readonly
+msgid "Sale Global Discounts (readonly)"
+msgstr "Remises globales sur les ventes (lecture seule)"
+
+#. module: sale_global_discount
+#: model:ir.model,name:sale_global_discount.model_sale_order
+msgid "Sales Order"
+msgstr "Bons de commande"
+
+#. module: sale_global_discount
+#: model:ir.model,name:sale_global_discount.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Ligne de bon de commande"
+
+#. module: sale_global_discount
+#: model:ir.model,name:sale_global_discount.model_account_tax
+msgid "Tax"
+msgstr "Taxe"
+
+#. module: sale_global_discount
+#: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__amount_global_discount
+msgid "Total Global Discounts"
+msgstr "Total des remises globales"
+
+#. module: sale_global_discount
+#. odoo-python
+#: code:addons/sale_global_discount/models/sale_order.py:0
+#, python-format
+msgid "With global discounts, taxes in lines are required."
+msgstr ""
+"Avec les remises globales, il est obligatoire de définir des taxes sur les "
+"lignes."

@@ -1,5 +1,6 @@
 # Copyright 2018 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from odoo import Command
 from odoo.tests import Form, tagged
 
 from odoo.addons.account.tests.common import AccountTestInvoicingCommon
@@ -11,9 +12,21 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
     def setUpClass(cls):
         super().setUpClass()
         cls.Elaboration = cls.env["product.elaboration"]
+        cls.ElaborationProfile = cls.env["product.elaboration.profile"]
+        cls.category_1 = cls.env["product.category"].create({"name": "Meat"})
+        cls.category_2 = cls.env["product.category"].create({"name": "Fish"})
         cls.product = cls.env["product.product"].create(
             {"name": "test", "tracking": "none", "list_price": 1000}
         )
+        cls.product_2 = cls.env["product.product"].create(
+            {"name": "test 2", "tracking": "none", "list_price": 1000}
+        )
+        cls.product_3 = cls.env["product.product"].create(
+            {"name": "test 2", "tracking": "none", "list_price": 1000}
+        )
+        cls.product.categ_id = cls.category_1
+        cls.product_2.categ_id = cls.category_2
+        cls.product_3.categ_id = cls.category_1
         cls.product_elaboration_A = cls.env["product.product"].create(
             {
                 "name": "Product Elaboration A",
@@ -65,9 +78,25 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
                 "product_id": cls.product_elaboration_B.id,
             }
         )
+        cls.elaboration_profile_a = cls.ElaborationProfile.create(
+            {
+                "name": "Elaboration Profile A",
+                "elaboration_ids": [
+                    Command.set([cls.elaboration_a.id, cls.elaboration_b.id])
+                ],
+            }
+        )
+        cls.elaboration_profile_b = cls.ElaborationProfile.create(
+            {
+                "name": "Elaboration Profile B",
+                "elaboration_ids": [Command.set(cls.elaboration_a.ids)],
+            }
+        )
+        cls.product.elaboration_profile_id = cls.elaboration_profile_a
         cls.order = cls._create_sale_order(
             cls, [(cls.product, 10, [cls.elaboration_a])]
         )
+        cls.category_1.elaboration_profile_id = cls.elaboration_profile_b
 
     def _create_sale_order(self, products_info):
         order_form = Form(self.env["sale.order"])

@@ -22,7 +22,12 @@
                 <field name="target_partner_id" optional="hide" />
                 <field name="start" string="Start Date" optional="show" />
                 <field name="until" optional="hide" />
-                <field name="categ_ids" widget="many2many_tags" optional="show" />
+                <field
+                    name="categ_ids"
+                    widget="many2many_tags"
+                    optional="show"
+                    options="{'color_field': 'color', 'no_create_edit': True}"
+                />
                 <field name="location" optional="hide" />
                 <field name="duration" widget="float_time" optional="hide" />
                 <field name="recurrency" optional="hide" />
@@ -43,7 +48,7 @@
             'choose_unlink_method': True,
         }</field>
         <field name="domain">[('recurrency', '=', True),
-            ("is_base_recurrent_event", "=", True), '|', ('recurrence_id.until', '>=', datetime.date.today().strftime("%Y-%m-%d")), ('recurrence_id.until', '=', False)]</field>
+            ("is_base_recurrent_event", "=", True), ('target_partner_id', '!=', False), '|', ('recurrence_id.until', '>=', datetime.date.today().strftime("%Y-%m-%d")), ('recurrence_id.until', '=', False)]</field>
     </record>
 
     <record id="view_calendar_event_search" model="ir.ui.view">
@@ -67,6 +72,20 @@
                 />
                 <separator />
             </filter>
+            <filter name="responsible" position="after">
+                <filter
+                    string="Sale planner partner"
+                    name="group_by_target_partner"
+                    domain="[]"
+                    context="{'group_by': 'target_partner_id'}"
+                />
+                <filter
+                    string="Tags"
+                    name="group_by_tags"
+                    domain="[]"
+                    context="{'group_by': 'categ_ids'}"
+                />
+            </filter>
         </field>
     </record>
 
@@ -77,7 +96,6 @@
             <field name="user_id" position="after">
                 <label for="target_partner_id" string="Sale planner partner" />
                 <field name="target_partner_id" nolabel="1" />
-                <field name="calendar_event_profile_id" />
             </field>
             <field name="recurrence_id" position="after">
                 <group attrs="{'invisible': [('recurrency', '=', False)]}">
@@ -114,12 +132,9 @@
                 <field name="start" />
                 <field name="start_date" />
                 <field name="target_partner_mobile" />
-                <field name="sale_planner_calendar_event_id" />
                 <templates>
                     <t t-name="kanban-box">
-                        <div
-                            t-attf-class="oe_kanban_card oe_kanban_global_click #{record.sale_planner_calendar_event_id.raw_value ? 'bg-light' : ''}"
-                        >
+                        <div class="oe_kanban_card oe_kanban_global_click">
                             <div class="row mb4">
                                 <div class="col-8">
                                     <strong><span><t
@@ -127,7 +142,11 @@
                                             /></span></strong>
                                 </div>
                                 <div class="col-4 text-end">
-                                    <field name="categ_ids" widget="many2many_tags" />
+                                    <field
+                                        name="categ_ids"
+                                        widget="many2many_tags"
+                                        options="{'color_field': 'color'}"
+                                    />
                                 </div>
                             </div>
                             <div class="row">
@@ -148,19 +167,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt8">
-                                <div class="col-4">
-                                    <button
-                                        class="btn btn-secondary "
-                                        string="Planner event"
-                                        name="action_create_event_planner"
-                                        type="object"
-                                    >
-                                        <i class="fa fa-pencil-square-o" />
-                                        <span>Event</span>
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                     </t>
                 </templates>
@@ -171,16 +177,22 @@
     <record id="action_calendar_event" model="ir.actions.act_window">
         <field name="name">My Calendar</field>
         <field name="res_model">calendar.event</field>
-        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_mode">calendar,tree,kanban,form</field>
         <field name="help" type="html">
           <p class="o_view_nocontent_smiling_face">
             Schedule a new calendar event
           </p>
         </field>
+        <field
+            name="search_view_id"
+            ref="sale_planner_calendar.view_calendar_event_search"
+        />
         <field name="context">{
             'search_default_start_today': 1,
             'choose_unlink_method': True,
         }</field>
-        <field name="domain">[('user_id', '=', uid)]</field>
+        <field
+            name="domain"
+        >[('user_id', '=', uid), ('target_partner_id', '!=', False)]</field>
     </record>
 </odoo>

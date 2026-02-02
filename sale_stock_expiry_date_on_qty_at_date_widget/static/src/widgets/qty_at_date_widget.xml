@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2025 Moduon Team S.L. <info@moduon.team>
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<template id="template" xml:space="preserve">
+    <!-- TODO: rename this to QtyAtDatePopover in Odoo 17 -->
+    <t
+        t-name="sale_stock_expiry_date_on_qty_at_date_widget.QtyDetailPopOver"
+        t-inherit="sale_stock.QtyDetailPopOver"
+        t-inherit-mode="extension"
+        owl="1"
+    >
+        <xpath
+            expr="//b[@t-out='props.record.data.free_qty_today']/../.."
+            position="after"
+        >
+            <tr t-if="props.record.data.predicted_first_expiration_date">
+                <td>
+                    <strong>Next Expiry Date</strong>
+                    <br />
+                    <small><t
+                            t-out="props.calcData.predicted_first_expiration_date"
+                        /></small>
+                </td>
+            </tr>
+        </xpath>
+
+        <xpath expr="//div" position="inside">
+            <button
+                class="text-start btn btn-link"
+                type="button"
+                t-if="props.calcData.predicted_first_expiration_date"
+                t-on-click="openViewExpiryDates"
+            >
+                <i class="fa fa-fw o_button_icon fa-cubes" />
+                View Stock
+            </button>
+        </xpath>
+    </t>
+</template>

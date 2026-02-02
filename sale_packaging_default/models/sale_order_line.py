@@ -1,6 +1,5 @@
 # Copyright 2023 Moduon Team S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
-from contextlib import suppress
 
 from odoo import api, fields, models
 
@@ -37,12 +36,16 @@ class SaleOrderLine(models.Model):
         ):
             return result
         for line in self:
-            with suppress(ZeroDivisionError):
-                if (
-                    line.product_uom_qty
-                    and line.product_uom_qty % line.product_packaging_id.qty
-                ):
-                    line.product_packaging_id = False
+            if (
+                line.product_uom_qty
+                and line.product_packaging_id
+                and line.product_uom
+                and line.product_uom_qty
+                != line.product_packaging_id._check_qty(
+                    line.product_uom_qty, line.product_uom
+                )
+            ):
+                line.product_packaging_id = False
         return result
 
     @api.model

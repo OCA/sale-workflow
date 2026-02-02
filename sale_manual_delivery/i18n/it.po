@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-06-05 12:36+0000\n"
+"PO-Revision-Date: 2025-03-03 18:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.2\n"
 
 #. module: sale_manual_delivery
 #: model_terms:ir.ui.view,arch_db:sale_manual_delivery.manual_delivery_wizard_form
@@ -109,7 +109,7 @@ msgid ""
 "If enabled, the deliveries are not created at SO confirmation. You need to "
 "use the Create Delivery button in order to reserve and ship the goods."
 msgstr ""
-"Se abilitata, le consegne non vengono create alla conferma del SO. È "
+"Se abilitata, le consegne non vengono create alla conferma del OV. È "
 "necessario utilizzare il pulsante Crea consegna per prenotare e spedire la "
 "merce."
 
@@ -171,7 +171,7 @@ msgstr "Si prega di selezionare un partner alla volta"
 #. module: sale_manual_delivery
 #: model_terms:ir.ui.view,arch_db:sale_manual_delivery.manual_delivery_wizard_form
 msgid "Procured"
-msgstr "Approggigionato"
+msgstr "Approvvigionato"
 
 #. module: sale_manual_delivery
 #: model:ir.model,name:sale_manual_delivery.model_procurement_group

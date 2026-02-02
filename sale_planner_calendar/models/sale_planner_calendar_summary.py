@@ -22,7 +22,7 @@ class SalePlannerCalendarSummary(models.Model):
     )
     date = fields.Date(default=fields.Date.context_today)
     sale_planner_calendar_event_ids = fields.One2many(
-        comodel_name="sale.planner.calendar.event",
+        comodel_name="calendar.event",
         inverse_name="calendar_summary_id",
     )
     user_id = fields.Many2one(
@@ -70,7 +70,7 @@ class SalePlannerCalendarSummary(models.Model):
 
     @api.depends(
         "sale_planner_calendar_event_ids",
-        "sale_planner_calendar_event_ids.state",
+        "sale_planner_calendar_event_ids.sale_planner_state",
         "sale_planner_calendar_event_ids.sale_ids",
         "sale_planner_calendar_event_ids.off_planning",
     )
@@ -84,7 +84,7 @@ class SalePlannerCalendarSummary(models.Model):
             payment_amount = 0.0
             for event in summary.sale_planner_calendar_event_ids:
                 event_total_count += 1
-                if event.state == "done":
+                if event.sale_planner_state == "done":
                     event_done_count += 1
                 if event.sale_ids:
                     event_effective_count += 1
@@ -215,53 +215,56 @@ class SalePlannerCalendarSummary(models.Model):
             ),
             ("user_id", "=", self.user_id.id),
             ("target_partner_id", "!=", False),
+            ("calendar_summary_id", "=", False),
         ]
         if self.event_type_id:
             calendar_event_domain.append(("categ_ids", "in", self.event_type_id.ids))
         calendar_events = self.env["calendar.event"].search(calendar_event_domain)
+        calendar_events.calendar_summary_id = self
+        #
+        # event_planner_domain = [
+        #     (
+        #         "start",
+        #         ">=",
+        #         self._get_datetime_from_date_tz_hour(self.date, "00:00:00"),
+        #     ),
+        #     (
+        #         "start",
+        #         "<=",
+        #         self._get_datetime_from_date_tz_hour(self.date, "23:59:59"),
+        #     ),
+        #     ("user_id", "=", self.user_id.id),
+        #     "|",
+        #     ("calendar_summary_id", "=", False),
+        #     ("calendar_summary_id", "=", self.id),
+        # ]
+        # events_planner = self.env["calendar.event"].search(
+        #     event_planner_domain
+        # )
+        # # We can not do a typical search due to returned virtual ids like this
+        # # ("calendar_event_id.categ_ids", "in", self.event_type_id.ids)
+        # if self.event_type_id:
+        #     events_planner = events_planner.filtered(
+        #         lambda p: self.event_type_id.id in p.calendar_event_id.categ_ids.ids
+        #     )
+        #
+        # for calendar_event in calendar_events:
+        #     event_planner = events_planner.filtered(
+        #         lambda r: r.start
+        #         == fields.Datetime.to_datetime(calendar_event.start)
+        #         and r.partner_id == calendar_event.target_partner_id
+        #         and r.user_id == calendar_event.user_id
+        #     )
+        #     if event_planner:
+        #         if event_planner.calendar_summary_id != self:
+        #             event_planner.calendar_summary_id = self
+        #             event_planner.off_planning = True
+        #     else:
+        #         calendar_event.with_context(
+        #             default_calendar_summary_id=self.id,
+        #             default_date=calendar_event.start,
+        #         )._create_event_planner()
 
-        event_planner_domain = [
-            (
-                "calendar_event_date",
-                ">=",
-                self._get_datetime_from_date_tz_hour(self.date, "00:00:00"),
-            ),
-            (
-                "calendar_event_date",
-                "<=",
-                self._get_datetime_from_date_tz_hour(self.date, "23:59:59"),
-            ),
-            ("user_id", "=", self.user_id.id),
-            "|",
-            ("calendar_summary_id", "=", False),
-            ("calendar_summary_id", "=", self.id),
-        ]
-        events_planner = self.env["sale.planner.calendar.event"].search(
-            event_planner_domain
-        )
-        # We can not do a typical search due to returned virtual ids like this
-        # ("calendar_event_id.categ_ids", "in", self.event_type_id.ids)
-        if self.event_type_id:
-            events_planner = events_planner.filtered(
-                lambda p: self.event_type_id.id in p.calendar_event_id.categ_ids.ids
-            )
-
-        for calendar_event in calendar_events:
-            event_planner = events_planner.filtered(
-                lambda r: r.calendar_event_date
-                == fields.Datetime.to_datetime(calendar_event.start)
-                and r.partner_id == calendar_event.target_partner_id
-                and r.user_id == calendar_event.user_id
-            )
-            if event_planner:
-                if event_planner.calendar_summary_id != self:
-                    event_planner.calendar_summary_id = self
-                    event_planner.off_planning = True
-            else:
-                calendar_event.with_context(
-                    default_calendar_summary_id=self.id,
-                    default_date=calendar_event.start,
-                )._create_event_planner()
         # Search sale orders off planning
         date_from = self._get_datetime_from_date_tz_hour(
             self.date, self.env.company.sale_planner_order_cut_hour
@@ -295,8 +298,7 @@ class SalePlannerCalendarSummary(models.Model):
         return time_utc
 
     def action_event_planner(self):
-        if not self.sale_planner_calendar_event_ids:
-            self.action_process()
+        self.action_process()
         action = self.env["ir.actions.act_window"]._for_xml_id(
             "sale_planner_calendar.action_sale_planner_calendar_event"
         )

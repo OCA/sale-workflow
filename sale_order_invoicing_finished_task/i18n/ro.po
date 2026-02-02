@@ -54,11 +54,6 @@ msgid "Product"
 msgstr ""
 
 #. module: sale_order_invoicing_finished_task
-#: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order
-msgid "Sales Order"
-msgstr ""
-
-#. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Linie comandă vânzare"

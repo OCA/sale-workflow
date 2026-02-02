@@ -24,3 +24,9 @@ class SaleOrder(models.Model):
             line._compute_discount2()
             line._compute_discount3()
         return res
+
+    @api.model
+    def _get_discount_field_to_replace(self):
+        return self.env["sale.order.line"]._get_discount_field_position(
+            "general_discount"
+        )

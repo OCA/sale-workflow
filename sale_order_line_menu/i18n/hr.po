@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-07-08 15:58+0000\n"
-"Last-Translator: uvid-gordana <gordana@uvid.hr>\n"
+"PO-Revision-Date: 2024-12-23 16:06+0000\n"
+"Last-Translator: vladimiruvid <vladimir@uvid.hr>\n"
 "Language-Team: none\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -34,11 +34,13 @@ msgid ""
 "Creation date of draft/sent orders,\n"
 "Confirmation date of confirmed orders."
 msgstr ""
+"Datum kreiranja Ponuda,\n"
+"Datum potvrde Prodajnih naloga."
 
 #. module: sale_order_line_menu
 #: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__date_order
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
@@ -63,25 +65,24 @@ msgstr "Ništa za izdavanje računa"
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
 msgid "Order Date"
-msgstr ""
+msgstr "Datum narudžbe"
 
 #. module: sale_order_line_menu
 #: model:ir.actions.act_window,name:sale_order_line_menu.action_orders_lines
 #: model:ir.ui.menu,name:sale_order_line_menu.sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sale_order_line_pivot
-#, fuzzy
 msgid "Order Lines"
 msgstr "Stavke ponuda"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_tree
 msgid "Price Subtotal"
-msgstr ""
+msgstr "Podzbroj"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_tree
 msgid "Price Tax"
-msgstr ""
+msgstr "Porez"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_tree
@@ -101,12 +102,12 @@ msgstr "Ponuda poslana"
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search
 msgid "Sales Order"
-msgstr ""
+msgstr "Prodajni nalog"
 
 #. module: sale_order_line_menu
 #: model:ir.model,name:sale_order_line_menu.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Stavka prodajnog naloga"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_search

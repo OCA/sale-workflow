@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-13 12:34+0000\n"
+"PO-Revision-Date: 2025-01-30 15:06+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #. module: sale_order_currency_rate
 #: model_terms:ir.ui.view,arch_db:sale_order_currency_rate.res_config_settings_view
@@ -49,7 +49,7 @@ msgstr "Inverso"
 #. module: sale_order_currency_rate
 #: model:ir.model.fields,field_description:sale_order_currency_rate.field_sale_order__inverse_currency_rate
 msgid "Inverse Currency Rate"
-msgstr "Inverti tasso valuta"
+msgstr "Tasso di cambio inverso"
 
 #. module: sale_order_currency_rate
 #: model:ir.model.fields.selection,name:sale_order_currency_rate.selection__res_company__sale_show_currency_rate__no
@@ -75,15 +75,15 @@ msgid ""
 "                            <b>Inverse:</b> Company currency to foreign currency.<br/>\n"
 "                            <b>Both:</b> Show both currency rates."
 msgstr ""
-"Selezionare come vsualizzare il tasso di cambio negli ordini di vendita.<br/>"
-"\n"
+"Selezionare come visualizzare il tasso di cambio negli ordini di vendita.<br/"
+">\n"
 "                            <b>No:</b> non visualizza il tasso di cambio.<br/"
 ">\n"
 "                            <b>Normale:</b> valuta estera a valuta azienda.<"
 "br/>\n"
 "                            <b>Inverso:</b> valuta azienda a valuta estera.<"
 "br/>\n"
-"                            <b>Entrambi:</b> vsualizza entrambi i tassi di "
+"                            <b>Entrambi:</b> visualizza entrambi i tassi di "
 "cambio."
 
 #. module: sale_order_currency_rate
@@ -91,4 +91,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_currency_rate.field_res_config_settings__sale_show_currency_rate
 #: model:ir.model.fields,field_description:sale_order_currency_rate.field_sale_order__sale_show_currency_rate
 msgid "Show Currency Rate"
-msgstr "Visualizza tasso valuta"
+msgstr "Visualizza tasso di cambio"

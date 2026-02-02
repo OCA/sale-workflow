@@ -77,13 +77,7 @@ class SaleOrder(models.Model):
         incoming_invoice_vals_list = []
         for order in self:
             for code in ["outgoing", "incoming"]:
-                move_ids = (
-                    pickings.filtered(
-                        lambda a: a.sale_id == order and a.picking_type_code == code
-                    )
-                    .mapped("move_ids")
-                    .filtered("sale_line_id")
-                )
+                move_ids = pickings._get_moves_order_picking_invoicing(order, code)
                 if move_ids:
                     invoice_vals = order._prepare_invoice()
                     invoice_line_vals = []

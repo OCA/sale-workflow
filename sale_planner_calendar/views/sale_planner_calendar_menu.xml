@@ -78,9 +78,9 @@
         sequence="20"
     />
     <menuitem
-        id="menu_sale_planner_calendar_event_profile"
+        id="menu_calendar_event_type"
         parent="menu_calendar_event_configuration_root"
-        action="action_sale_planner_calendar_event_profile"
+        action="calendar.action_calendar_event_type"
         sequence="30"
     />
     <menuitem

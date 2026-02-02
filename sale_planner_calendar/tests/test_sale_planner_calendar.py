@@ -1,7 +1,7 @@
 # Copyright 2021 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from datetime import timedelta
+from datetime import date, timedelta
 
 from freezegun import freeze_time
 
@@ -34,7 +34,7 @@ class TestSalePlannerCalendar(TransactionCase):
         cls.AccountInvoiceLine = cls.env["account.move.line"]
         cls.AccountJournal = cls.env["account.journal"]
         cls.SaleOrder = cls.env["sale.order"]
-        cls.SalePlannerCalendarEvent = cls.env["sale.planner.calendar.event"]
+        cls.SalePlannerCalendarEvent = cls.env["calendar.event"]
 
         account_group = cls.env.ref("account.group_account_user")
         cls.env.user.write({"groups_id": [(4, account_group.id)]})
@@ -170,7 +170,7 @@ class TestSalePlannerCalendar(TransactionCase):
             self.SaleOrder.with_context(
                 default_user_id=event_planner_id.user_id.id,
                 default_sale_planner_calendar_event_id=event_planner_id.id,
-                default_partner_id=event_planner_id.partner_id.id,
+                default_partner_id=event_planner_id.target_partner_id.id,
             )
         )
         with so_form.order_line.new() as line_form:
@@ -197,7 +197,10 @@ class TestSalePlannerCalendar(TransactionCase):
         event = self.planned_events[0]
         self.assertTrue(event.user_id in self.commercial_users)
         self.assertEqual(event.rrule_type, "weekly")
-        self.assertEqual(event.location, event.target_partner_id._display_address())
+        self.assertEqual(
+            event.location,
+            event.target_partner_id._display_address(True).replace("\n", " "),
+        )
 
     def test_planner_calendar_wizard(self):
         wiz_form = Form(self.env["sale.planner.calendar.wizard"])
@@ -226,7 +229,7 @@ class TestSalePlannerCalendar(TransactionCase):
         self.assertEqual(summary.sale_order_count, 2)
         self.assertEqual(summary.sale_order_subtotal, 200)
         # Create a new invoice from planner event
-        self.invoice1 = self._create_invoice(event_planner_id.partner_id)
+        self.invoice1 = self._create_invoice(event_planner_id.target_partner_id)
         self.invoice1.action_post()
         self.assertEqual(event_planner_id.invoice_amount_residual, 100)
         # Set event to done state
@@ -238,6 +241,7 @@ class TestSalePlannerCalendar(TransactionCase):
     def test_reassign_wizard(self):
         wiz_form = Form(self.env["sale.planner.calendar.reassign.wiz"])
         wiz_form.user_id = self.commercial_user_1
+        wiz_form.new_start = date.today()
         record = wiz_form.save()
         # Recover all planned event lines for commercial user 1
         record.action_get_lines()
@@ -246,14 +250,14 @@ class TestSalePlannerCalendar(TransactionCase):
         wiz_form.new_user_id = self.commercial_user_2
         record = wiz_form.save()
         record.select_all_lines()
-        record.action_assign_new_salesperson()
+        record.action_assign_new_values()
         self.assertEqual(len(record.line_ids.mapped("new_user_id")), 1)
         wiz_form.new_user_id = self.commercial_user_2
         record = wiz_form.save()
         record.line_ids = False
         record.action_get_lines()
         record.line_ids[0].selected = True
-        record.action_assign_new_salesperson()
+        record.action_assign_new_values()
         self.assertEqual(len(record.line_ids.filtered(lambda ln: ln.new_user_id)), 1)
 
     def test_reassign_wizard_apply(self):
@@ -263,7 +267,7 @@ class TestSalePlannerCalendar(TransactionCase):
         wiz_form = Form(self.env["sale.planner.calendar.reassign.wiz"])
         wiz_form.user_id = self.commercial_user_1
         wiz_form.assign_new_salesperson_to_partner = True
-        wiz_form.new_start = wiz_form.new_start + timedelta(days=8)
+        wiz_form.new_start = date.today() + timedelta(days=8)
         wiz_form.new_end = wiz_form.new_start + timedelta(days=20)
         record = wiz_form.save()
         record.action_get_lines()
@@ -324,6 +328,7 @@ class TestSalePlannerCalendar(TransactionCase):
 
         wiz_form = Form(self.env["sale.planner.calendar.reassign.wiz"])
         wiz_form.user_id = self.commercial_user_1
+        wiz_form.new_start = date.today()
         record = wiz_form.save()
         # Recover all planned event lines for commercial user 1
         record.action_get_lines()
@@ -333,7 +338,7 @@ class TestSalePlannerCalendar(TransactionCase):
             lambda ln: ln.partner_id == self.partner_1
         )
         event_planner_partner_1.selected = True
-        record.action_assign_new_salesperson()
+        record.action_assign_new_values()
         record.apply()
         # Check document permissions based on followers
         # Sale order
@@ -355,15 +360,9 @@ class TestSalePlannerCalendar(TransactionCase):
         """User can setup a system parameter to create sale order from a event planner
         for a event planner partner or commercial partner
         """
-        calendar_event = self.planned_events.filtered(
+        sale_planned_event = self.planned_events.filtered(
             lambda p: p.target_partner_id == self.partner_3
         )[:1]
-        sale_planned_event = self.SalePlannerCalendarEvent.create(
-            {
-                "partner_id": self.partner_3.id,
-                "calendar_event_id": calendar_event.id,
-            }
-        )
         so_action = sale_planned_event.action_open_sale_order()
         self.assertEqual(so_action["context"]["default_partner_id"], self.partner_3.id)
         # Set parameter to create sale order to commercial partner

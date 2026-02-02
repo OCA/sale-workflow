@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <field name="name" position="after">
                 <field name="duration" />
+                <field name="icon" />
             </field>
         </field>
     </record>
