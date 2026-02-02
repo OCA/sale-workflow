@@ -112,3 +112,28 @@ class TestSaleFixedDiscount(TransactionCase):
                 self.assertEqual(line.discount, 0.0)
                 self.assertEqual(line.price_subtotal, 0.0)
         self.assertEqual(self.sale.amount_total, 0.0)
+
+    def test_05_discount_fixed_when_created_by_api(self):
+            partner = self.env['res.partner'].create({
+                'name': 'Test Partner',
+            })
+
+            product = self.env['product.product'].create({
+                'name': 'Test Product',
+                'list_price': 100,
+            })
+
+            order = self.env['sale.order'].create({
+                'partner_id': partner.id,
+                'order_line': [(0, 0, {
+                    'product_id': product.id,
+                    'product_uom_qty': 1,
+                    'discount_fixed': 10,
+                })],
+            })
+
+            line = order.order_line[0]
+
+            self.assertEqual(line.discount_fixed, 10)
+            self.assertEqual(line.price_subtotal, 90)
+            self.assertAlmostEqual(line.discount, 10.0, places=2)
