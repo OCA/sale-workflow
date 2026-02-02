@@ -48,7 +48,8 @@ class SaleOrderLine(models.Model):
     date_order = fields.Datetime(related="order_id.date_order", string="Date")
     route_id = fields.Many2one(compute="_compute_route_id", store=True, readonly=False)
     elaboration_profile_id = fields.Many2one(
-        related="product_id.elaboration_profile_id"
+        comodel_name="product.elaboration.profile",
+        compute="_compute_elaboration_profile_id",
     )
     elaboration_price_unit = fields.Float(
         "Elab. Price", compute="_compute_elaboration_price_unit", store=True
@@ -58,6 +59,16 @@ class SaleOrderLine(models.Model):
         search="_search_is_prepared",
         help=("Dummy field to be able to find prepared lines"),
     )
+
+    @api.depends("product_id")
+    def _compute_elaboration_profile_id(self):
+        """Order of applicability: product profile > category profile > no profile"""
+        self.elaboration_profile_id = False
+        for line in self.filtered("product_id"):
+            line.elaboration_profile_id = (
+                line.product_id.elaboration_profile_id
+                or line.product_id.categ_id.elaboration_profile_id
+            )
 
     def get_elaboration_stock_route(self):
         self.ensure_one()

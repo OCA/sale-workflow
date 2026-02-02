@@ -196,10 +196,10 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             }
         )
         test_invoice.action_post()
-        self.assertAlmostEqual(
+        self.assertEqual(
             self.sale_order_1.invoiced_amount,
-            242.0,
-            delta=1,
+            242.11,
+            "Invoiced Amount should be 242.11.",
         )
         self.assertEqual(
             self.sale_order_1.uninvoiced_amount,
@@ -311,10 +311,10 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             }
         )
         test_invoice.action_post()
-        self.assertAlmostEqual(
+        self.assertEqual(
             self.sale_order_1.invoiced_amount,
-            242.0,
-            delta=40,
+            242.13,
+            "Invoiced Amount should be 242.13.",
         )
         self.assertEqual(
             self.sale_order_1.uninvoiced_amount,
@@ -387,10 +387,10 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             ]
         )
         test_invoice.action_post()
-        self.assertAlmostEqual(
+        self.assertEqual(
             self.sale_order_1.invoiced_amount,
-            363.0,
-            delta=100,
+            363.06,
+            "Invoiced Amount should be 363.06.",
         )
         self.assertEqual(
             self.sale_order_1.uninvoiced_amount,

@@ -261,12 +261,34 @@ class TestSaleAdvancePayment(common.TransactionCase):
         invoice = self.sale_order_1._create_invoices()
         invoice.action_post()
 
-        # Compare payments
+        # Verify that advance payments are reconciled with the invoice
         rate = self.currency_rate.rate
-        payment_list = [100 * rate, 200, 250 * rate, 400]
-        payments = invoice.invoice_outstanding_credits_debits_widget
-        result = [d["amount"] for d in payments["content"]]
-        self.assertEqual(set(payment_list), set(result))
+        expected_payment_amounts = [100 * rate, 200, 250 * rate, 400]
+
+        # Get all payment lines that should have been reconciled
+        payment_lines = self.env["account.move.line"].search(
+            [
+                ("move_id", "in", self.sale_order_1.account_payment_ids.move_id.ids),
+                (
+                    "account_id.account_type",
+                    "in",
+                    ("asset_receivable", "liability_payable"),
+                ),
+                ("parent_state", "=", "posted"),
+            ]
+        )
+
+        # Check that all payments are reconciled
+        self.assertTrue(all(line.reconciled for line in payment_lines))
+
+        # Verify the payment amounts match
+        actual_payment_amounts = []
+        for line in payment_lines:
+            actual_payment_amounts.append(abs(line.balance))
+
+        actual_payment_amounts_sorted = sorted(actual_payment_amounts)
+        expected_payment_amounts_sorted = sorted(expected_payment_amounts)
+        self.assertEqual(actual_payment_amounts_sorted, expected_payment_amounts_sorted)
 
     def test_02_residual_amount_with_invoice(self):
         self.assertEqual(
@@ -319,6 +341,10 @@ class TestSaleAdvancePayment(common.TransactionCase):
             }
         )._create_payments()
         self.assertEqual(self.sale_order_1.amount_residual, 2200)
+        # Cancel invoice and check residual amount
+        invoice.button_draft()
+        invoice.button_cancel()
+        self.assertEqual(self.sale_order_1.amount_residual, 3400)
 
     def test_03_residual_amount_big_pre_payment(self):
         self.assertEqual(
@@ -476,9 +502,61 @@ class TestSaleAdvancePayment(common.TransactionCase):
         self.assertEqual(invoice.state, "posted")
         self.assertEqual(invoice.payment_state, "partial")
 
-        # Compare payments
+        # Verify that advance payments are reconciled with the invoice
         rate = self.currency_rate.rate
-        payment_list = [100 * rate, 200, 250 * rate, 400]
-        payments = invoice.invoice_outstanding_credits_debits_widget
-        result = [d["amount"] for d in payments["content"]]
-        self.assertEqual(set(payment_list), set(result))
+        expected_payment_amounts = [100 * rate, 200, 250 * rate, 400]
+
+        # Get all payment lines that should have been reconciled
+        payment_lines = self.env["account.move.line"].search(
+            [
+                ("move_id", "in", self.sale_order_1.account_payment_ids.move_id.ids),
+                (
+                    "account_id.account_type",
+                    "in",
+                    ("asset_receivable", "liability_payable"),
+                ),
+                ("parent_state", "=", "posted"),
+            ]
+        )
+
+        # Check that all payments are reconciled
+        self.assertTrue(all(line.reconciled for line in payment_lines))
+
+        # Verify the payment amounts match
+        actual_payment_amounts = []
+        for line in payment_lines:
+            actual_payment_amounts.append(abs(line.balance))
+
+        actual_payment_amounts_sorted = sorted(actual_payment_amounts)
+        expected_payment_amounts_sorted = sorted(expected_payment_amounts)
+        self.assertEqual(actual_payment_amounts_sorted, expected_payment_amounts_sorted)
+
+    def test_05_residual_amount_credit_note(self):
+        self.sale_order_1.action_confirm()
+        self.sale_order_1._create_invoices()
+        invoice = self.sale_order_1.invoice_ids[0]
+        invoice.invoice_date = fields.Date.today()
+        invoice.action_post()
+        self.env["account.payment.register"].with_context(
+            active_model="account.move", active_ids=invoice.ids
+        ).create(
+            {
+                "amount": 3600.0,
+                "group_payment": True,
+                "payment_difference_handling": "open",
+            }
+        )._create_payments()
+        self.assertEqual(self.sale_order_1.amount_residual, 0)
+        credit_note = invoice._reverse_moves()
+        credit_note.invoice_date = fields.Date.today()
+        credit_note.action_post()
+        self.env["account.payment.register"].with_context(
+            active_model="account.move", active_ids=credit_note.ids
+        ).create(
+            {
+                "amount": 3600.0,
+                "group_payment": True,
+                "payment_difference_handling": "open",
+            }
+        )._create_payments()
+        self.assertEqual(self.sale_order_1.amount_residual, 3600)

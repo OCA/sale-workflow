@@ -1,26 +1,9 @@
 # Copyright 2017 Tecnativa - Sergio Teruel
 # Copyright 2017 Tecnativa - Carlos Dauden
+# Copyright 2025 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
-
-
-class SaleOrder(models.Model):
-    _inherit = "sale.order"
-
-    @api.depends(
-        "state", "order_line.invoice_status", "order_line.task_ids.invoiceable"
-    )
-    def _get_invoiced(self):
-        result = super()._get_invoiced()
-        for order in self.filtered(lambda o: o.invoice_status != "no"):
-            if not all(
-                t.invoiceable
-                for t in order.mapped("order_line.task_ids")
-                if t.invoicing_finished_task
-            ):
-                order.update({"invoice_status": "no"})
-        return result
 
 
 class SaleOrderLine(models.Model):
@@ -32,14 +15,18 @@ class SaleOrderLine(models.Model):
         string="Tasks",
     )
 
-    @api.depends(
-        "qty_invoiced",
-        "qty_delivered",
-        "product_uom_qty",
-        "order_id.state",
-        "task_ids.invoiceable",
-    )
-    def _get_to_invoice_qty(self):
+    @api.depends("task_ids.invoiceable")
+    def _compute_invoice_status(self):
+        res = super()._compute_invoice_status()
+        for item in self.filtered(lambda x: x.task_ids and x.invoice_status != "no"):
+            if not all(
+                t.invoiceable for t in item.task_ids if t.invoicing_finished_task
+            ):
+                item.invoice_status = "no"
+        return res
+
+    @api.depends("task_ids.invoiceable")
+    def _compute_qty_to_invoice(self):
         lines = self.filtered(
             lambda x: (
                 x.product_id.type == "service"
@@ -51,7 +38,7 @@ class SaleOrderLine(models.Model):
         )
         if lines:
             lines.update({"qty_to_invoice": 0.0})
-        return super(SaleOrderLine, self - lines)._get_to_invoice_qty()
+        return super(SaleOrderLine, self - lines)._compute_qty_to_invoice()
 
     def _timesheet_compute_delivered_quantity_domain(self):
         vals = super()._timesheet_compute_delivered_quantity_domain()

@@ -57,10 +57,17 @@ jobs:
             name: test with OCB
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
-            exclude: "sale_packaging_default,sale_order_product_recommendation,sale_order_product_recommendation_packaging_default,sale_order_product_recommendation_elaboration,sale_order_general_discount_triple,sale_pricelist_triple_discount,sale_triple_discount,sale_fixed_discount"
+            include: "sale_order_safe_commitment_date"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
-            exclude: "sale_packaging_default,sale_order_product_recommendation,sale_order_product_recommendation_packaging_default,sale_order_product_recommendation_elaboration,sale_order_general_discount_triple,sale_pricelist_triple_discount,sale_triple_discount,sale_fixed_discount"
+            include: "sale_order_safe_commitment_date"
+            name: test with OCB
+            makepot: "true"
+          - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
+            exclude: "sale_packaging_default,sale_order_product_recommendation,sale_order_product_recommendation_packaging_default,sale_order_product_recommendation_elaboration,sale_order_general_discount_triple,sale_pricelist_triple_discount,sale_triple_discount,sale_fixed_discount,sale_order_safe_commitment_date"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
+            exclude: "sale_packaging_default,sale_order_product_recommendation,sale_order_product_recommendation_packaging_default,sale_order_product_recommendation_elaboration,sale_order_general_discount_triple,sale_pricelist_triple_discount,sale_triple_discount,sale_fixed_discount,sale_order_safe_commitment_date"
             name: test with OCB
             makepot: "true"
     services:

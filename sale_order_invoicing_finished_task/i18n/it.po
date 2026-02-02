@@ -29,15 +29,16 @@ msgid ""
 msgstr ""
 "<span class=\"text-success\" attrs=\"{'invisible': [('invoiceable', '=', "
 "False)]}\">Fatturabile</span>\n"
-"                    <span class=\"text-danger\" attrs=\"{'invisible': [("
-"'invoiceable', '!=', False)]}\">Non fatturabile</span>"
+"                    <span class=\"text-danger\" attrs=\"{'invisible': "
+"[('invoiceable', '!=', False)]}\">Non fatturabile</span>"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_template__invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_project_task__invoicing_finished_task
 msgid "Invoice the order lines only when the task is set to invoiceable"
-msgstr "Fattura le righe ordine solo quando il lavoro è impostato a fatturabile"
+msgstr ""
+"Fattura le righe ordine solo quando il lavoro è impostato a fatturabile"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model.fields,field_description:sale_order_invoicing_finished_task.field_project_task__invoiceable
@@ -56,11 +57,6 @@ msgstr "Controllo fatturazione da lavori"
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_product_template
 msgid "Product"
 msgstr "Prodotto"
-
-#. module: sale_order_invoicing_finished_task
-#: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order
-msgid "Sales Order"
-msgstr "Ordine di vendita"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order_line
@@ -92,6 +88,9 @@ msgid ""
 msgstr ""
 "Non si può creare/modificare un lavoro relativo ad una riga ordine "
 "fatturata, eseguita o annullata. "
+
+#~ msgid "Sales Order"
+#~ msgstr "Ordine di vendita"
 
 #, fuzzy
 #~ msgid "Sale Order"

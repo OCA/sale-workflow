@@ -9,8 +9,8 @@ class SaleOrderTag(models.Model):
     _order = "name"
     _description = "Sale Order Tag"
 
-    name = fields.Char(required=True)
-    description = fields.Text()
+    name = fields.Char(required=True, translate=True)
+    description = fields.Text(translate=True)
     color = fields.Integer(string="Color Index")
     team_ids = fields.Many2many("crm.team", string="Sales Teams")
     active = fields.Boolean(default=True)

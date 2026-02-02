@@ -674,13 +674,6 @@ msgid "Price"
 msgstr "Preis"
 
 #. module: sale_blanket_order
-#. odoo-python
-#: code:addons/sale_blanket_order/models/blanket_orders.py:0
-#, python-format
-msgid "Price must be greater than zero"
-msgstr "Der Preis muss größer als 0 sein"
-
-#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__pricelist_id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__pricelist_id
 msgid "Pricelist"
@@ -859,6 +852,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__price_subtotal
 msgid "Subtotal"
 msgstr "Zwischensumme"
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__tag_ids
+msgid "Tags"
+msgstr ""
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__price_tax
@@ -1055,6 +1053,10 @@ msgstr "Sie müssen Zeilen desselben Unternehmens auswählen."
 #, python-format
 msgid "remaining"
 msgstr "verbleibend"
+
+#, python-format
+#~ msgid "Price must be greater than zero"
+#~ msgstr "Der Preis muss größer als 0 sein"
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Anzahl der Nachrichten die eine Aktion erfordern"

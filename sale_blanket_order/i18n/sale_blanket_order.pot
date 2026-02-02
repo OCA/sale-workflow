@@ -661,13 +661,6 @@ msgid "Price"
 msgstr ""
 
 #. module: sale_blanket_order
-#. odoo-python
-#: code:addons/sale_blanket_order/models/blanket_orders.py:0
-#, python-format
-msgid "Price must be greater than zero"
-msgstr ""
-
-#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__pricelist_id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__pricelist_id
 msgid "Pricelist"
@@ -840,6 +833,11 @@ msgstr ""
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__price_subtotal
 msgid "Subtotal"
+msgstr ""
+
+#. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__tag_ids
+msgid "Tags"
 msgstr ""
 
 #. module: sale_blanket_order
