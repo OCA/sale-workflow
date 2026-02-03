@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-02-03 16:06+0000\n"
+"Last-Translator: epanisset <emeric.panisset@camptocamp.com>\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_substate
 #: model:mail.template,body_html:sale_substate.mail_template_data_sale_substate_wait_docs
@@ -68,91 +70,91 @@ msgstr ""
 #. module: sale_substate
 #: model:ir.model.fields,field_description:sale_substate.field_base_substate_type__model
 msgid "Apply on"
-msgstr ""
+msgstr "S'applique à"
 
 #. module: sale_substate
 #: model:ir.model,name:sale_substate.model_base_substate_type
 msgid "Base Substate Type"
-msgstr ""
+msgstr "Type de Sous-étape"
 
 #. module: sale_substate
 #: model:base.substate,name:sale_substate.base_substate_delivered
 msgid "Delivered"
-msgstr ""
+msgstr "Livré"
 
 #. module: sale_substate
 #: model:base.substate,name:sale_substate.base_substate_in_delivery
 msgid "In delivering"
-msgstr ""
+msgstr "En livraison"
 
 #. module: sale_substate
 #: model:mail.template,name:sale_substate.mail_template_data_sale_substate_delivery
 msgid "In delivery"
-msgstr ""
+msgstr "En Livraison"
 
 #. module: sale_substate
 #: model:base.substate,name:sale_substate.base_substate_under_nego
 msgid "In negotiation"
-msgstr ""
+msgstr "En négociation"
 
 #. module: sale_substate
 #: model:base.substate,name:sale_substate.base_substate_lost
 msgid "Lost"
-msgstr ""
+msgstr "Perdu"
 
 #. module: sale_substate
 #: model:target.state.value,name:sale_substate.target_state_value_draft
 msgid "Quotation"
-msgstr ""
+msgstr "Devis"
 
 #. module: sale_substate
 #: model:mail.template,subject:sale_substate.mail_template_data_sale_substate_delivery
 #: model:mail.template,subject:sale_substate.mail_template_data_sale_substate_wait_docs
 msgid "Reception of {{object.name}}"
-msgstr ""
+msgstr "Réception de {{object.name}}"
 
 #. module: sale_substate
 #: model:target.state.value,name:sale_substate.target_state_value_sale
 msgid "Sale"
-msgstr ""
+msgstr "Vente"
 
 #. module: sale_substate
 #: model:ir.model.fields.selection,name:sale_substate.selection__base_substate_type__model__sale_order
 msgid "Sale order"
-msgstr ""
+msgstr "Bon de commande"
 
 #. module: sale_substate
 #: model:base.substate.type,name:sale_substate.base_substate_type_sale
 msgid "Sale order Substate"
-msgstr ""
+msgstr "Sous-état du bon de commande"
 
 #. module: sale_substate
 #: model:ir.model,name:sale_substate.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Bons de commande"
 
 #. module: sale_substate
 #: model:ir.model.fields,field_description:sale_substate.field_sale_order__substate_id
 msgid "Sub State"
-msgstr ""
+msgstr "Sous état"
 
 #. module: sale_substate
 #: model_terms:ir.ui.view,arch_db:sale_substate.view_sales_order_filter
 msgid "Substate"
-msgstr ""
+msgstr "Sous-état"
 
 #. module: sale_substate
 #: model:base.substate,name:sale_substate.base_substate_valid_docs
 msgid "To validate legal documents"
-msgstr ""
+msgstr "Valider les documents légaux"
 
 #. module: sale_substate
 #: model:base.substate,name:sale_substate.base_substate_wait_docs
 #: model:mail.template,name:sale_substate.mail_template_data_sale_substate_wait_docs
 msgid "Waiting for legal documents"
-msgstr ""
+msgstr "Attente des documents légaux"
 
 #. module: sale_substate
 #: model:base.substate,name:sale_substate.base_substate_won
 msgid "Won"
-msgstr ""
+msgstr "Gagné"
