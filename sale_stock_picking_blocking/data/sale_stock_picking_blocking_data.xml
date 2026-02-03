@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 ForgeFlow S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo noupdate="1">
+    <record id="pay_before_delivery" model="sale.delivery.block.reason">
+        <field name="name">Pay Before Delivery</field>
+        <field
+            name="description"
+        >Used to block the creation of deliveries until the customer pays.
+Since you are not creating any procurement nor move, no demand will be generated or stock assigned to fulfill this sales order.
+        </field>
+    </record>
+</odoo>
