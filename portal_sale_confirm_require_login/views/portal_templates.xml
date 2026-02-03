@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="portal_my_details_fields"
+        inherit_id="portal.portal_my_details_fields"
+    >
+        <xpath expr="//select[@name='country_id']" position="attributes">
+            <attribute
+                name="t-att-disabled"
+            >None if partner_can_edit_country else '1'</attribute>
+        </xpath>
+        <xpath expr="//select[@name='country_id']/../small" position="attributes">
+            <attribute name="t-if">not partner_can_edit_country</attribute>
+        </xpath>
+    </template>
+</odoo>
