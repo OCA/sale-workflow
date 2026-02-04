@@ -2,7 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-from odoo.tests.common import Form
+from odoo import Command
+from odoo.tests import Form
 
 from odoo.addons.base.tests.common import BaseCommon
 
@@ -20,8 +21,8 @@ class TestProductTaskRecurrency(BaseCommon):
             {
                 "name": "Template",
                 "sale_order_template_line_ids": [
-                    (0, 0, {"product_id": cls.product_1.id, "sequence": 20}),
-                    (0, 0, {"product_id": cls.product_2.id, "sequence": 30}),
+                    Command.create({"product_id": cls.product_1.id, "sequence": 20}),
+                    Command.create({"product_id": cls.product_2.id, "sequence": 30}),
                 ],
             }
         )
@@ -29,7 +30,7 @@ class TestProductTaskRecurrency(BaseCommon):
             {
                 "name": "Template",
                 "sale_order_template_line_ids": [
-                    (0, 0, {"product_id": cls.product_3.id, "sequence": 40})
+                    Command.create({"product_id": cls.product_3.id, "sequence": 40})
                 ],
             }
         )
