@@ -40,6 +40,7 @@ class SaleOrderLine(models.Model):
         other_lines = self.filtered(
             lambda line: line.product_id.type == "service"
             or line.order_id.invoice_policy == "product"
+            or not line.order_id.invoice_policy
         )
         super(SaleOrderLine, other_lines)._compute_qty_to_invoice()
         for line in self - other_lines:

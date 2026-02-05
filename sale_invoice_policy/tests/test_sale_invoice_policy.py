@@ -166,3 +166,33 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
             "the same invoice policy",
             exc.exception.args[0],
         )
+
+    def test_sale_order_invoice_order_when_policy_is_not_required(self):
+        """Test invoicing based on ordered qty when invoice policy is not required."""
+        settings = self.env["res.config.settings"].create({})
+        settings.sale_invoice_policy_required = False
+        settings.execute()
+        so = self.env["sale.order"].create(
+            {
+                "partner_id": self.env.ref("base.res_partner_2").id,
+                "order_line": [
+                    (0, 0, {"product_id": self.product.id, "product_uom_qty": 2.0}),
+                    (0, 0, {"product_id": self.product2.id, "product_uom_qty": 3.0}),
+                ],
+            }
+        )
+        self.assertFalse(so.invoice_policy_required)
+        self.assertTrue(so.invoice_policy == "order")
+        so.action_confirm()
+        self.assertEqual(len(so.picking_ids), 1)
+        picking = so.picking_ids
+        picking.action_assign()
+        self.assertEqual(picking.state, "assigned")
+        so_line = so.order_line[0]
+        self.assertEqual(so_line.qty_to_invoice, 2)
+        self.assertEqual(so_line.invoice_status, "to invoice")
+        self.assertEqual(so_line.product_id.invoice_policy, "order")
+        so_line = so.order_line[1]
+        self.assertEqual(so_line.qty_to_invoice, 3)
+        self.assertEqual(so_line.invoice_status, "to invoice")
+        self.assertEqual(so_line.product_id.invoice_policy, "order")
