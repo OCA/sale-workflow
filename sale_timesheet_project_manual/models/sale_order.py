@@ -6,7 +6,6 @@ from odoo.exceptions import ValidationError
 
 
 class SaleOrder(models.Model):
-
     _inherit = "sale.order"
 
     action_project_manual_allowed = fields.Boolean(

@@ -8,7 +8,7 @@ from odoo.tests.common import TransactionCase
 class TestSaleTimesheetProjectManual(TransactionCase):
     @classmethod
     def setUpClass(cls):
-        super(TestSaleTimesheetProjectManual, cls).setUpClass()
+        super().setUpClass()
         cls.Product = cls.env["product.product"]
         cls.SaleOrder = cls.env["sale.order"]
 

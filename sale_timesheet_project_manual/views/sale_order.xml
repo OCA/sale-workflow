@@ -2,13 +2,11 @@
 <!-- Copyright 2018 ACSONE SA/NV
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-
     <record model="ir.ui.view" id="sale_order_form_view">
         <field name="name">sale.order.form (in sale_timesheet_project_manual)</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-
             <xpath
                 expr="//button[@name='action_view_project_ids']"
                 position="attributes"
@@ -27,8 +25,6 @@
                     attrs="{'invisible': [('action_project_manual_allowed', '=', False)]}"
                 />
             </button>
-
         </field>
     </record>
-
 </odoo>
