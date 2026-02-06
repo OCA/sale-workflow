@@ -73,6 +73,10 @@ Contributors
   - Benjamin Willig <benjamin.willig@acsone.eu>
   - Maxime Franco <maxime.franco@acsone.eu>
 
+- `Ecosoft <https://ecosoft.co.th>`__
+
+  - Saran Lim. <saranl@ecosoft.co.th>>
+
 Maintainers
 -----------
 

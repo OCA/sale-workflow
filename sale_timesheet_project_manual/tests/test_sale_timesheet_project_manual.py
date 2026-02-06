@@ -1,6 +1,7 @@
 # Copyright 2018 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo import Command
 from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
 
@@ -11,6 +12,7 @@ class TestSaleTimesheetProjectManual(TransactionCase):
         super().setUpClass()
         cls.Product = cls.env["product.product"]
         cls.SaleOrder = cls.env["sale.order"]
+        cls.AnalyticAccount = cls.env["account.analytic.account"]
 
         cls.partner_agrolait = cls.env.ref("base.res_partner_2")
         cls.uom_unit_wt = cls.env.ref("uom.uom_categ_wtime")
@@ -42,9 +44,7 @@ class TestSaleTimesheetProjectManual(TransactionCase):
             {
                 "partner_id": self.partner_agrolait.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product_service_task.id,
                             "name": "Task 1",
@@ -52,9 +52,7 @@ class TestSaleTimesheetProjectManual(TransactionCase):
                             "product_uom": self.uom_unit_wt.id,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product_service_task.id,
                             "name": "Task 2",
@@ -62,9 +60,7 @@ class TestSaleTimesheetProjectManual(TransactionCase):
                             "product_uom": self.uom_unit_wt.id,
                         },
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product_service_project.id,
                             "name": "Task (Misc)",
@@ -91,9 +87,19 @@ class TestSaleTimesheetProjectManual(TransactionCase):
 
         order.action_draft()
         self.assertTrue(order.action_project_manual_allowed)
+        self.assertEqual(
+            list(set(order.order_line.mapped("analytic_distribution"))), [False]
+        )
 
         order.action_project_manual()
-        analytic_account = order.analytic_account_id
+
+        self.assertEqual(
+            len(order.order_line.mapped("analytic_distribution")), len(order.order_line)
+        )
+
+        analytic_distribution = order.order_line[0].analytic_distribution
+        analytic_account_ids = [int(id) for id in analytic_distribution.keys()]
+        analytic_account = self.AnalyticAccount.browse(analytic_account_ids)
         self.assertTrue(order.name in analytic_account.name)
 
         projects = analytic_account.project_ids
@@ -108,7 +114,9 @@ class TestSaleTimesheetProjectManual(TransactionCase):
         self.assertFalse(order.action_project_manual_allowed)
         order.invalidate_recordset()
 
-        analytic_account_1 = order.analytic_account_id
+        analytic_distribution_1 = order.order_line[0].analytic_distribution
+        analytic_account_ids_1 = [int(id) for id in analytic_distribution_1.keys()]
+        analytic_account_1 = self.AnalyticAccount.browse(analytic_account_ids_1)
         projects_1 = analytic_account.project_ids
         line_tasks_1 = order.order_line.mapped("task_id")
 
