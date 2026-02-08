@@ -1,5 +1,5 @@
 <odoo>
-<!-- Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
+    <!-- Copyright 2023 Manuel Regidor <manuel.regidor@sygel.es>
  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
     <record
         id="sale_order_invoicing_picking_filter_view_picking_form"
@@ -10,7 +10,7 @@
         <field name="inherit_id" ref="stock.view_picking_form" />
         <field name="arch" type="xml">
             <group name="other_infos" position="inside">
-               <field
+                <field
                     name="invoiced"
                     attrs="{'invisible': [('picking_type_code', 'not in', ['incoming', 'outgoing'])]}"
                 />

@@ -1,0 +1,2 @@
+This modules allows to create invoices from sale orders based on the
+products in pickings related to the order.

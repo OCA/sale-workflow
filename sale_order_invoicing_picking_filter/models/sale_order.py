@@ -64,9 +64,9 @@ class SaleOrder(models.Model):
                 Command.create(line._prepare_invoice_line()),
             )
         if service_invoice_line_vals and outgoing_invoice_vals_list:
-            outgoing_invoice_vals_list[0][
-                "invoice_line_ids"
-            ] += service_invoice_line_vals
+            outgoing_invoice_vals_list[0]["invoice_line_ids"] += (
+                service_invoice_line_vals
+            )
         elif service_invoice_line_vals:
             invoice_vals = order._prepare_invoice()
             invoice_vals["invoice_line_ids"] = service_invoice_line_vals

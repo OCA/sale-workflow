@@ -40,7 +40,6 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         )
 
     def test_invoice_single_sale_single_picking(self):
-
         # Create and validate sale order
         sale_order = self.create_sale_order(self.partner_1, 2, 2)
         sale_order.action_confirm()
@@ -64,7 +63,6 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         self.assertTrue(picking.invoiced)
 
     def test_invoice_single_sale_multiple_picking(self):
-
         # Create and validate sale order
         sale_order = sale_order = self.create_sale_order(self.partner_1, 2, 2)
         sale_order.action_confirm()
@@ -103,7 +101,6 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
             self.assertEqual(invoice.amount_untaxed, 2)
 
     def test_invoice_multiple_sales(self):
-
         # Create and validate the first sale order
         sale_order_1 = self.create_sale_order(self.partner_1, 2, 2)
         sale_order_1.action_confirm()
@@ -142,7 +139,6 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         self.assertEqual(sale_order_1.invoice_ids.amount_untaxed, 10.0)
 
     def test_invoice_multiple_sales_multiple_clients(self):
-
         # Create and validate the first sales order
         sale_order_1 = self.create_sale_order(self.partner_1, 6, 1)
         sale_order_1.action_confirm()
@@ -334,7 +330,6 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         self.assertFalse(sale_order.picking_ids.filtered(lambda a: not a.invoiced))
 
     def test_invoice_pickings_services_return(self):
-
         # Create and validate sale order containing a service product
         so_form = Form(self.env["sale.order"])
         so_form.partner_id = self.partner_2
@@ -392,7 +387,6 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         self.assertEqual(out_refund_invoice.amount_untaxed, 14.0)
 
     def test_invoice_pickings_services_return_generate_invoice(self):
-
         # Create and validate sale order containing a service product
         so_form = Form(self.env["sale.order"])
         so_form.partner_id = self.partner_2
