@@ -56,7 +56,7 @@ class SaleOrder(models.Model):
     def _invoice_from_picking_services(self, order, outgoing_invoice_vals_list):
         service_lines = order.mapped("order_line").filtered(
             lambda x: x.invoice_status == "to invoice"
-            and x.product_id.detailed_type == "service"
+            and x.product_id.type == "service"
         )
         service_invoice_line_vals = []
         for line in service_lines:
@@ -119,9 +119,12 @@ class SaleOrder(models.Model):
             moves += self.env["account.move"].sudo().create(incoming_invoice_vals_list)
 
         for move in moves:
-            move.message_post_with_view(
+            move.message_post_with_source(
                 "mail.message_origin_link",
-                values={"self": move, "origin": move.line_ids.sale_line_ids.order_id},
+                render_values={
+                    "self": move,
+                    "origin": move.line_ids.sale_line_ids.order_id,
+                },
                 subtype_id=self.env["ir.model.data"]._xmlid_to_res_id("mail.mt_note"),
             )
         return moves

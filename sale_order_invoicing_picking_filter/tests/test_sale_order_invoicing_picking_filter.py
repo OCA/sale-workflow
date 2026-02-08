@@ -10,7 +10,7 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         super().setUpClass()
         cls.company = cls.env.ref("base.main_company")
         cls.product = cls.env["product.product"].create(
-            {"name": "Product test", "type": "product"}
+            {"name": "Product test", "type": "consu"}
         )
         cls.product_service = cls.env["product.product"].create(
             {"name": "Product Service Test", "type": "service"}
@@ -39,6 +39,13 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
             }
         )
 
+    def _validate_picking(self, picking, skip_backorder=False):
+        res = picking.with_context(skip_backorder=skip_backorder).button_validate()
+        if isinstance(res, dict):
+            self.env["stock.backorder.confirmation"].with_context(
+                **res["context"]
+            ).process()
+
     def test_invoice_single_sale_single_picking(self):
         # Create and validate sale order
         sale_order = self.create_sale_order(self.partner_1, 2, 2)
@@ -47,8 +54,8 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         # Validate picking
         picking = sale_order.picking_ids
         self.assertTrue(picking)
-        picking.move_ids.write({"quantity_done": 2})
-        picking._action_done()
+        picking.move_line_ids.write({"quantity": 2})
+        self._validate_picking(picking, skip_backorder=True)
 
         # Create invoicing wizard related to the sale order
         # containing its picking.
@@ -70,8 +77,8 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         self.assertTrue(picking)
 
         # Validate picking and generate backorder
-        picking.move_ids.write({"quantity_done": 1})
-        picking._action_done()
+        picking.move_line_ids.write({"quantity": 1})
+        self._validate_picking(picking, skip_backorder=True)
         self.assertEqual(len(sale_order.picking_ids), 2)
 
         # Create invoicing wizard related to the sale order
@@ -89,8 +96,8 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         # Generate invoice
         picking = sale_order.picking_ids.filtered(lambda a: not a.invoiced)
         self.assertEqual(len(picking), 1)
-        picking.move_ids.write({"quantity_done": 1})
-        picking._action_done()
+        picking.move_line_ids.write({"quantity": 1})
+        self._validate_picking(picking)
         wizard_2 = self.create_invoicing_wizard([sale_order.id], [picking.id])
         wizard_2.create_invoices()
         sale_order.invoice_ids._compute_picking_ids()
@@ -108,8 +115,8 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         self.assertTrue(picking_1)
 
         # Validate the picking related to the first order
-        picking_1.move_ids.write({"quantity_done": 2})
-        picking_1._action_done()
+        picking_1.move_line_ids.write({"quantity": 2})
+        self._validate_picking(picking_1)
 
         # Create and validate the second sale order
         sale_order_2 = self.create_sale_order(self.partner_1, 2, 3)
@@ -118,8 +125,8 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         self.assertTrue(picking_2)
 
         # Validate the picking related to the second order
-        picking_2.move_ids.write({"quantity_done": 2})
-        picking_2._action_done()
+        picking_2.move_line_ids.write({"quantity": 2})
+        self._validate_picking(picking_2)
 
         # Generate wizard related to both sale orders
         # containint the pickings from them.
@@ -146,8 +153,8 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         self.assertTrue(picking_1)
 
         # Validate picking from the first sale order and generate backorder
-        picking_1.move_ids.write({"quantity_done": 2})
-        picking_1._action_done()
+        picking_1.move_line_ids.write({"quantity": 2})
+        self._validate_picking(picking_1)
         self.assertEqual(len(sale_order_1.picking_ids), 2)
 
         # Create and validate the second sales order
@@ -157,8 +164,8 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         self.assertTrue(picking_2)
 
         # Validate picking from the second sale order and generate backorder
-        picking_2.move_ids.write({"quantity_done": 3})
-        picking_2._action_done()
+        picking_2.move_line_ids.write({"quantity": 3})
+        self._validate_picking(picking_2)
         self.assertEqual(len(sale_order_2.picking_ids), 2)
 
         # Create and validate the third sales order
@@ -168,8 +175,8 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         self.assertTrue(picking_3)
 
         # Validate picking from the third sale order and generate backorder
-        picking_3.move_ids.write({"quantity_done": 4})
-        picking_3._action_done()
+        picking_3.move_line_ids.write({"quantity": 4})
+        self._validate_picking(picking_3)
         self.assertEqual(len(sale_order_3.picking_ids), 2)
 
         # Create and validate the fourth sales order
@@ -179,8 +186,8 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         self.assertTrue(picking_4)
 
         # Validate picking from the fourth sale order and generate backorder
-        picking_4.move_ids.write({"quantity_done": 5})
-        picking_4._action_done()
+        picking_4.move_line_ids.write({"quantity": 5})
+        self._validate_picking(picking_4)
         self.assertEqual(len(sale_order_4.picking_ids), 2)
 
         # Generate wizard related to all sale orders
@@ -226,14 +233,14 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         self.assertTrue(picking_backorder_4)
 
         # Validate backorder pickings
-        picking_backorder_1.move_ids.write({"quantity_done": 4})
-        picking_backorder_1._action_done()
-        picking_backorder_2.move_ids.write({"quantity_done": 4})
-        picking_backorder_2._action_done()
-        picking_backorder_3.move_ids.write({"quantity_done": 4})
-        picking_backorder_3._action_done()
-        picking_backorder_4.move_ids.write({"quantity_done": 4})
-        picking_backorder_4._action_done()
+        picking_backorder_1.move_line_ids.write({"quantity": 4})
+        self._validate_picking(picking_backorder_1, skip_backorder=True)
+        picking_backorder_2.move_line_ids.write({"quantity": 4})
+        self._validate_picking(picking_backorder_2, skip_backorder=True)
+        picking_backorder_3.move_line_ids.write({"quantity": 4})
+        self._validate_picking(picking_backorder_3, skip_backorder=True)
+        picking_backorder_4.move_line_ids.write({"quantity": 4})
+        self._validate_picking(picking_backorder_4, skip_backorder=True)
 
         # Generate wizard related to all sale orders
         # containint all the backorder pickings.
@@ -248,6 +255,8 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
             ],
         )
         wizard.create_invoices()
+        sale_order_1.invoice_ids._compute_picking_ids()
+        sale_order_3.invoice_ids._compute_picking_ids()
 
         self.assertEqual(len(sale_order_1.invoice_ids), 2)
         self.assertEqual(len(sale_order_2.invoice_ids), 2)
@@ -289,8 +298,8 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         self.assertTrue(picking_1)
 
         # Validate picking of the sale order and generate backorder
-        picking_1.move_ids.write({"quantity_done": 3})
-        picking_1._action_done()
+        picking_1.move_line_ids.write({"quantity": 3})
+        self._validate_picking(picking_1)
         self.assertEqual(len(sale_order.picking_ids), 2)
 
         # Generate wizard related to the sale order
@@ -314,8 +323,8 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         self.assertTrue(picking_backorder)
 
         # Validate backorder pickings
-        picking_backorder.move_ids.write({"quantity_done": 4})
-        picking_backorder._action_done()
+        picking_backorder.move_line_ids.write({"quantity": 4})
+        self._validate_picking(picking_backorder, skip_backorder=True)
 
         # Generate wizard related to all sale orders
         # containint all the backorder pickings.
@@ -324,6 +333,7 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
             [sale_order.id], [picking_backorder.id], True
         )
         wizard.create_invoices()
+        sale_order.invoice_ids._compute_picking_ids()
 
         self.assertEqual(len(sale_order.invoice_ids), 2)
         self.assertEqual(sum(sale_order.invoice_ids.mapped("amount_untaxed")), 22.0)
@@ -346,8 +356,8 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
 
         # Validate picking
         picking_1 = sale_order.picking_ids
-        picking_1.move_ids.write({"quantity_done": 7})
-        picking_1._action_done()
+        picking_1.move_line_ids.write({"quantity": 7})
+        self._validate_picking(picking_1)
 
         # Return picking and validate
         stock_return_picking_form = Form(
@@ -359,12 +369,12 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         )
         stock_return_picking = stock_return_picking_form.save()
         stock_return_picking.product_return_moves.quantity = 7.0
-        stock_return_picking_action = stock_return_picking.create_returns()
+        stock_return_picking_action = stock_return_picking.action_create_returns()
         picking_2 = self.env["stock.picking"].browse(
             stock_return_picking_action["res_id"]
         )
-        picking_2.move_ids.write({"quantity_done": 7})
-        picking_2._action_done()
+        picking_2.move_line_ids.write({"quantity": 7})
+        self._validate_picking(picking_2)
 
         # Generate invoices containing both pickings
         # Services are invoiced
@@ -403,8 +413,8 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
 
         # Validate picking
         picking_1 = sale_order.picking_ids
-        picking_1.move_ids.write({"quantity_done": 7})
-        picking_1._action_done()
+        picking_1.move_line_ids.write({"quantity": 7})
+        self._validate_picking(picking_1)
 
         # Return picking and validate
         stock_return_picking_form = Form(
@@ -416,12 +426,12 @@ class TesSaleOrderInvoicingPickingFilter(TransactionCase):
         )
         stock_return_picking = stock_return_picking_form.save()
         stock_return_picking.product_return_moves.quantity = 7.0
-        stock_return_picking_action = stock_return_picking.create_returns()
+        stock_return_picking_action = stock_return_picking.action_create_returns()
         picking_2 = self.env["stock.picking"].browse(
             stock_return_picking_action["res_id"]
         )
-        picking_2.move_ids.write({"quantity_done": 7})
-        picking_2._action_done()
+        picking_2.move_line_ids.write({"quantity": 7})
+        self._validate_picking(picking_2)
 
         # Generate invoices containing only the return picking
         # Services are invoiced

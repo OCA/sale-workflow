@@ -12,7 +12,7 @@
             <group name="other_infos" position="inside">
                 <field
                     name="invoiced"
-                    attrs="{'invisible': [('picking_type_code', 'not in', ['incoming', 'outgoing'])]}"
+                    invisible="picking_type_code not in ['incoming', 'outgoing']"
                 />
             </group>
         </field>

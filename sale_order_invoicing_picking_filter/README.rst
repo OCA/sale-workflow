@@ -98,6 +98,10 @@ Contributors
   - Harald Panten <harald.panten@sygel.es>
   - Valentín Vinagre <valentin.vinagre@sygel.es>
 
+- `Tessera <https://tesseratech.es>`__:
+
+  - Abraham Anes <abraham@tesseratech.es>
+
 Maintainers
 -----------
 

@@ -12,19 +12,17 @@
                         name="stock_picking_ids"
                         widget="many2many_tags"
                         options="{'no_create_edit': True, 'no_create': True}"
-                        attrs="{'invisible': [('advance_payment_method', '!=', 'delivered')]}"
+                        invisible="advance_payment_method != 'delivered'"
                     />
                 </group>
                 <group>
                     <field
                         name="inv_service_products"
-                        attrs="{'invisible': [('stock_picking_ids', '=', [])]}"
+                        invisible="not stock_picking_ids"
                     />
                     <field name="there_are_service_product" invisible="1" />
                 </group>
-                <span
-                    attrs="{'invisible': [('there_are_service_product', '=', False)]}"
-                >
+                <span invisible="not there_are_service_product">
                         There are any non-invoiced service products among the selected pickings
                     </span>
             </group>
