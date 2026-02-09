@@ -29,7 +29,10 @@
                 separator=", "
             />
         </xpath>
-        <xpath expr="//p[span[@t-field='move.description_picking']]" position="after">
+        <xpath
+            expr="//p[span[@t-out='move._get_report_description_picking()']]"
+            position="after"
+        >
             <t
                 t-if="move.picking_code != 'incoming'"
                 t-call="sale_elaboration.elaboration_notes"
