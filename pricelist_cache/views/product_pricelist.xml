@@ -7,15 +7,13 @@
         <field name="model">product.pricelist</field>
         <field name="inherit_id" ref="product.product_pricelist_view" />
         <field name="arch" type="xml">
-            <xpath expr="//sheet" position="before">
-                <header>
-                    <button
+            <xpath expr="//header" position="inside">
+                <button
                         name="button_open_pricelist_cache_tree"
                         string="Display Pricelist Prices"
                         class="btn-primary"
                         type="object"
                     />
-                </header>
             </xpath>
         </field>
     </record>
