@@ -9,11 +9,11 @@
         <field name="arch" type="xml">
             <xpath expr="//header" position="inside">
                 <button
-                        name="button_open_pricelist_cache_tree"
-                        string="Display Pricelist Prices"
-                        class="btn-primary"
-                        type="object"
-                    />
+                    name="button_open_pricelist_cache_tree"
+                    string="Display Pricelist Prices"
+                    class="btn-primary"
+                    type="object"
+                />
             </xpath>
         </field>
     </record>
