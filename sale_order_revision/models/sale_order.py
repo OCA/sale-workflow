@@ -41,3 +41,14 @@ class SaleOrder(models.Model):
             "default_current_revision_id": self.id,
         }
         return result
+
+    def action_back_to_current(self):
+        self.ensure_one()
+        target_id = self.current_revision_id.id
+        return {
+            "type": "ir.actions.act_window",
+            "res_model": self._name,
+            "res_id": target_id,
+            "view_mode": "form",
+            "target": "current",
+        }

@@ -39,10 +39,16 @@
                     />
                 </button>
             </xpath>
-            <field name="client_order_ref" position="after">
-                <field name="current_revision_id" invisible="not current_revision_id" />
-                <field name="has_old_revisions" invisible="1" />
-            </field>
+            <xpath expr="//button[@name='action_view_invoice']" position="after">
+                <button
+                    name="action_back_to_current"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-reply"
+                    string="Current Revision"
+                    invisible="not current_revision_id"
+                />
+            </xpath>
         </field>
     </record>
 </odoo>
