@@ -13,8 +13,9 @@ class SaleOrder(models.Model):
         )
         if archived_products:
             raise exceptions.ValidationError(
-                _("You can't duplicate sale orders with archived products: {}").format(
-                    ", ".join(archived_products.mapped("name"))
+                _(
+                    "You can't duplicate sale orders with archived products: %(product_names)s",
+                    product_names=", ".join(archived_products.mapped("name")),
                 )
             )
         return super().copy(default)
