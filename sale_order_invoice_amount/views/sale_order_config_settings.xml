@@ -8,13 +8,13 @@
         <field name="inherit_id" ref="sale.res_config_settings_view_form" />
         <field name="arch" type="xml">
             <block name="invoicing_setting_container" position="inside">
-                    <setting
+                <setting
                     name="enable_amount_invoiced_based_on_quantity"
                     string="Amount invoiced based on quantity"
                     title="Enable calculating amount invoiced based on quantity"
                     help="Enable calculating amount invoiced based on quantity"
                 >
-                        <field name="enable_amount_invoiced_based_on_quantity" />
+                    <field name="enable_amount_invoiced_based_on_quantity" />
                 </setting>
             </block>
         </field>
