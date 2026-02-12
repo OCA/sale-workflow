@@ -10,7 +10,7 @@
                 <td class="o_td_label">
                     <label
                         class="o_form_label o_tax_total_label"
-                    >Already invoiced</label>
+                    >Amount Invoiced</label>
                 </td>
                 <td>
                     <span
@@ -23,7 +23,7 @@
                 <td class="o_td_label">
                     <label
                         class="o_form_label o_tax_total_label"
-                    >Amount to invoice</label>
+                    >Amount to Invoice</label>
                 </td>
                 <td>
                     <span
