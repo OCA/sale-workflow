@@ -1,0 +1,90 @@
+<odoo>
+    <!-- Unit price: add UoM and secondary price ('secondary' and 'both' modes) -->
+    <template id="sale_uom_price">
+        <t t-if="line.report_show_price_uom('primary_uom')">
+            / <span t-field="line.product_uom" groups="uom.group_uom" />
+        </t>
+        <t t-if="line.get_secondary_uom_display_mode() == 'secondary'">
+            <span t-field="line.secondary_uom_unit_price" />
+            <t t-if="line.report_show_price_uom()">
+                / <span t-field="line.secondary_uom_id" groups="uom.group_uom" />
+            </t>
+        </t>
+        <t t-if="line.get_secondary_uom_display_mode() == 'both'">
+            <br />
+            <span id="secondary_uom_price" class="text-muted">
+                (<span t-field="line.secondary_uom_unit_price" />
+                / <span t-field="line.secondary_uom_id" groups="uom.group_uom" />)
+            </span>
+        </t>
+    </template>
+    <template
+        id="sale_order_portal_content_secondary_uom"
+        inherit_id="sale.sale_order_portal_content"
+    >
+        <xpath expr="//th[@id='product_qty_header']" position="before">
+            <th
+                class="text-end"
+                t-if="not sale_order.company_id.hide_secondary_uom_column(sale_order)"
+            >
+                <strong>Second Qty</strong>
+            </th>
+        </xpath>
+        <xpath expr="//td[@id='quote_qty_td']" position="before">
+            <td
+                class="text-end"
+                t-if="not sale_order.company_id.hide_secondary_uom_column(sale_order)"
+            >
+                <span t-field="line.secondary_uom_qty" />
+                <span t-field="line.secondary_uom_id" groups="uom.group_uom" />
+            </td>
+        </xpath>
+        <xpath expr="//span[@t-field='line.product_uom_qty']" position="attributes">
+            <attribute
+                name="t-if"
+            >line.get_secondary_uom_display_mode() != 'secondary'</attribute>
+        </xpath>
+
+        <xpath expr="//span[@t-field='line.product_uom']" position="attributes">
+            <attribute
+                name="t-if"
+            >line.get_secondary_uom_display_mode() != 'secondary'</attribute>
+        </xpath>
+        <xpath expr="//td[@id='quote_qty_td']" position="inside">
+            <t t-if="line.get_secondary_uom_display_mode() == 'secondary'">
+                <span t-field="line.secondary_uom_qty" />
+                <span t-field="line.secondary_uom_id" groups="uom.group_uom" />
+            </t>
+            <t t-if="line.get_secondary_uom_display_mode() == 'both'">
+                <br />
+                <span id="secondary_uom_qty" class="text-muted">
+                    (<span t-field="line.secondary_uom_qty" />
+                    <span t-field="line.secondary_uom_id" groups="uom.group_uom" />)
+                </span>
+            </t>
+        </xpath>
+        <xpath expr="//div[@t-field='line.price_unit']" position="attributes">
+            <attribute name="t-att-class">
+                (line.discount and 'text-danger' or '') + ' text-end d-inline'
+            </attribute>
+            <attribute name="t-if">
+                line.discount &gt;= 0 and line.get_secondary_uom_display_mode() != 'secondary'
+            </attribute>
+        </xpath>
+        <xpath
+            expr="//div[@t-field='line.price_unit']/following-sibling::div[1]"
+            position="attributes"
+        >
+            <attribute name="class">text-end d-inline</attribute>
+            <attribute
+                name="t-if"
+            >line.discount and line.get_secondary_uom_display_mode() != 'secondary'</attribute>
+        </xpath>
+        <xpath
+            expr="//div[@t-field='line.price_unit']/following-sibling::div[1]"
+            position="after"
+        >
+            <t t-call="sale_order_secondary_unit.sale_uom_price" />
+        </xpath>
+    </template>
+</odoo>
