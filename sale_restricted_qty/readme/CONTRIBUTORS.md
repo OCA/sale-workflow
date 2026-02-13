@@ -1,5 +1,9 @@
-- Mourad EL HADJ MIMOUN \<mourad.elhadj.mimoune@akretion.com\>
+- Mourad EL HADJ MIMOUN \<<mourad.elhadj.mimoune@akretion.com>\>
 - [Ooops](https://www.ooops404.com/):
-  - Ashish Hirpara \<https://ashish-hirpara.com\>
+  - Ashish Hirpara \<<https://ashish-hirpara.com>\>
 - [Aion Tech](https://aiontech.company/):
-  - Simone Rubino \<simone.rubino@aion-tech.it\>
+  - Simone Rubino \<<simone.rubino@aion-tech.it>\>
+- [CorporateHub](https://corporatehub.eu/)
+  - Alexey Pelykh \<<alexey.pelykh@corphub.eu>\>
+- [Apik](https://apik.cloud/)
+  - Thomas HERBIN \<<the@apik.cloud>\>

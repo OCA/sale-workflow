@@ -4,13 +4,13 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-03 12:00+0000\n"
-"PO-Revision-Date: 2023-11-03 13:40+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"PO-Revision-Date: 2024-01-16 18:36+0000\n"
+"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
 "Language-Team: none\n"
-"Language: it\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -19,15 +19,15 @@ msgstr ""
 
 #. module: sale_restricted_qty
 msgid "%(order_name)s - Product \"%(product_name)s\": %(failed_constraints)s"
-msgstr "%(order_name)s - Prodotto \"%(product_name)s\": %(failed_constraints)s"
+msgstr "%(order_name)s - Producto \"%(product_name)s\": %(failed_constraints)s"
 
 #. module: sale_restricted_qty
 msgid "Blocking"
-msgstr "Bloccante"
+msgstr "Bloqueo"
 
 #. module: sale_restricted_qty
 msgid "Check quantity for these products:\n"
-msgstr "Controlla la quantità per questi prodotti:\n"
+msgstr "Verifique la cantidad de estos productos:\n"
 
 #. module: sale_restricted_qty
 msgid ""
@@ -49,36 +49,36 @@ msgstr ""
 
 #. module: sale_restricted_qty
 msgid "Max Qty"
-msgstr "Quantità Massima"
+msgstr "Ctd Máx"
 
 #. module: sale_restricted_qty
 msgid "Max Quantity Exceeded"
-msgstr "Quantità Massima Superata"
+msgstr "Cantidad Máxima Excedida"
 
 #. module: sale_restricted_qty
 msgid "Max Quantity Recommended"
-msgstr "Q.tà massima consigliata"
+msgstr "Cantidad Máx. Recomendada"
 
 #. module: sale_restricted_qty
 msgid "Min Qty"
-msgstr "Q.tà minima"
+msgstr "Ctd Mín"
 
 #. module: sale_restricted_qty
 msgid "Min Quantity Recommended"
-msgstr "Q.tà minima consigliata"
+msgstr "Cantidad Mín Recomendada"
 
 #. module: sale_restricted_qty
 msgid "Min Quantity Required"
-msgstr "Q.tà minima richiesta"
+msgstr "Cantidad Mín Requerida"
 
 #. module: sale_restricted_qty
 msgid "Multiple Quantity Required"
-msgstr "Quantità Multipla Richiesta"
+msgstr "Cantidad Múltiple Requerida"
 
 #. module: sale_restricted_qty
 #, fuzzy
 msgid "Multiple-Of Qty"
-msgstr "Q.tà multiple"
+msgstr "Ctd Múltiple"
 
 #. module: sale_restricted_qty
 msgid "Restrict"
@@ -86,40 +86,40 @@ msgstr ""
 
 #. module: sale_restricted_qty
 msgid "Sale Max qty"
-msgstr "Q.tà massima di vendita"
+msgstr "Venta ctd. Máx"
 
 #. module: sale_restricted_qty
 #, fuzzy
 msgid "Sale Miltiple qty"
-msgstr "Q.tà multipla di vendita"
+msgstr "Venta cant. Múltiple"
 
 #. module: sale_restricted_qty
 msgid "Sale Min qty"
-msgstr "Q.tà minima di vendita"
+msgstr "Venta ctd Min"
 
 #. module: sale_restricted_qty
 #, fuzzy
 msgid "Sale Restricted Qty"
-msgstr "Quantità di vendita limitata"
+msgstr "Ctd. de venta restringida"
 
 #. module: sale_restricted_qty
 msgid "Sale restricted qty"
-msgstr "Quantità di vendita limitata"
+msgstr "Ctd. de venta restringida"
 
 #. module: sale_restricted_qty
 #, fuzzy
 msgid "The maximum quantity of product that can be sold."
-msgstr "Controlla la quantità di vendita massima per questi prodotti: * \n"
+msgstr "Compruebe la cantidad máxima de pedido para estos productos: * \n"
 
 #. module: sale_restricted_qty
 #, fuzzy
 msgid "The minimum quantity of product that can be sold."
-msgstr "Controlla la quantità di vendita minima per questi prodotti: * \n"
+msgstr "Verifique la cantidad mínima de pedido para estos productos: * \n"
 
 #. module: sale_restricted_qty
 #, fuzzy
 msgid "The multiple-of quantity of product that can be sold."
-msgstr "Controlla la quantità di vendita multipla per questi prodotti: * \n"
+msgstr "Compruebe la cantidad de pedidos múltiples para estos productos: * \n"
 
 #. module: sale_restricted_qty
 msgid "Value"
@@ -127,19 +127,19 @@ msgstr ""
 
 #. module: sale_restricted_qty
 msgid "Warning"
-msgstr "Avvertimento"
+msgstr "Advertencia"
 
 #. module: sale_restricted_qty
 msgid "maximal quantity is %(max_qty)s"
-msgstr "la quantità massima è %(max_qty)s"
+msgstr "la cantidad máxima es %(max_qty)s"
 
 #. module: sale_restricted_qty
 msgid "minimal quantity is %(min_qty)s"
-msgstr "la quantità minima è %(min_qty)s"
+msgstr "la cantidad mínima es %(min_qty)s"
 
 #. module: sale_restricted_qty
 msgid "quantity should be multiple of %(multiple_of_qty)s"
-msgstr "la quantità deve essere un multiplo di %(multiple_of_qty)s"
+msgstr "la cantidad debe ser múltiplo de %(multiple_of_qty)s"
 
 #, python-format
 #~ msgid ""
@@ -147,7 +147,7 @@ msgstr "la quantità deve essere un multiplo di %(multiple_of_qty)s"
 #~ "* If you want sell quantity bigger than max Quantity,Check \"force max quatity\" on product"
 #~ msgstr ""
 #~ "\n"
-#~ "* se vuoi vendere una quantità maggiore della Quantità massima, Seleziona \"forza quantità massima\" nel prodotto"
+#~ "* Si desea vender una cantidad superior a la cantidad máxima, marque \"forzar cantidad máxima\" en el producto"
 
 #, python-format
 #~ msgid ""
@@ -155,7 +155,7 @@ msgstr "la quantità deve essere un multiplo di %(multiple_of_qty)s"
 #~ "* If you want sell quantity less than Min Quantity,Check \"force min quatity\" on product"
 #~ msgstr ""
 #~ "\n"
-#~ "* se vuoi vendere una quantità inferiore alla Quantità Minima, Seleziona \"forza quantità minima\" nel prodotto"
+#~ "* Si desea vender una cantidad inferior a la cantidad mínima, marque la \"cantidad mínima forzada\" en el producto"
 
 #, python-format
 #~ msgid ""
@@ -163,69 +163,71 @@ msgstr "la quantità deve essere un multiplo di %(multiple_of_qty)s"
 #~ "* If you want sell quantity not multiple Quantity,Set multiple quantity to 0 on product or product template or product category"
 #~ msgstr ""
 #~ "\n"
-#~ "* se vuoi vendere quantità non multiple, Imposta quantità multiple a 0 nella Prodotto o Modello Prodotto o Categoria Prodotto"
+#~ "* Si usted quiere vender cantidad no múltiple Cantidad, Establecer cantidad múltiple a 0 en el producto o plantilla de producto o categoría de producto"
 
 #~ msgid ""
 #~ "Define if user can force sale max qty 'If not set', Odoo will use the value "
 #~ "defined in the parent object.Hierarchy is in this order :Product/product "
 #~ "Template/product category/parent categories "
 #~ msgstr ""
-#~ "Definisci se l'utente può forzare la quantità massima di vendita 'Se non "
-#~ "impostato', Odoo utilizzerà il valore definito nell'oggetto padre. La "
-#~ "gerarchia è in questo ordine: Prodotto/Modello prodotto/categoria "
-#~ "prodotto/categorie padre "
+#~ "Defina si el usuario puede forzar la cantidad máxima de venta 'Si no se "
+#~ "establece', Odoo usará el valor definido en el objeto parental. La jerarquía"
+#~ " es en este orden :Producto/Plantilla de producto/Categoría de "
+#~ "producto/Categorías parentales "
 
 #~ msgid ""
 #~ "Define if user can force sale min qty 'If not set', Odoo will use the value "
 #~ "defined in the parent object.Hierarchy is in this order :Product/product "
 #~ "Template/product category/parent categories "
 #~ msgstr ""
-#~ "Definisci se l'utente può forzare la quantità minima di vendita 'Se non "
-#~ "impostato', Odoo utilizzerà il valore definito nell'oggetto padre. La "
-#~ "gerarchia è in questo ordine: Prodotto/Modello prodotto/categoria "
-#~ "prodotto/categorie padre "
+#~ "Definir si el usuario puede forzar la venta de la cantidad min. 'Si no se "
+#~ "establece', Odoo utilizará el valor definido en el objeto parental .La "
+#~ "jerarquía es en este orden :Producto/Plantilla de producto/Categoría de "
+#~ "producto/Categorías parentales "
 
 #~ msgid ""
 #~ "Define sale max qty 'If not set, Odoo will use the value defined in the "
 #~ "parent object.Hierarchy is in this order :Product/product Template/product "
 #~ "category/parent categories "
 #~ msgstr ""
-#~ "Definisci la q.tà massima di vendita 'Se non impostato', Odoo utilizzerà il "
-#~ "valore definito nell'oggetto padre. La gerarchia è in questo ordine: "
-#~ "Prodotto/Modello prodotto/categoria prodotto/categorie padre "
+#~ "Definir cantidad máxima de venta 'Si no se establece, Odoo utilizará el "
+#~ "valor definido en el objeto parental. la jerarquía es en este orden "
+#~ ":Producto/Plantilla de producto/Categoría de producto/Categorías parentales "
 
 #~ msgid ""
 #~ "Define sale min qty 'If not set, Odoo will use the value defined in the "
 #~ "parent object.Hierarchy is in this order :Product/product Template/product "
 #~ "category/parent categories "
 #~ msgstr ""
-#~ "Definisci la q.tà minima di vendita 'Se non impostato', Odoo utilizzerà il "
-#~ "valore definito nell'oggetto padre. La gerarchia è in questo ordine: "
-#~ "Prodotto/Modello prodotto/categoria prodotto/categorie padre "
+#~ "Definir venta min cant. 'Si no se establece, Odoo utilizará el valor "
+#~ "definido en el objeto principal. La jerarquía es en este orden "
+#~ ":Producto/plantilla de producto/categoría de producto/categorías principales"
+#~ " "
 
 #~ msgid ""
 #~ "Define sale multiple qty 'If not set', Odoo will use the value defined in "
 #~ "the parent object.Hierarchy is in this order :Product/product "
 #~ "Template/product category/parent categories "
 #~ msgstr ""
-#~ "Definisci la q.tà multipla di vendita 'Se non impostato', Odoo utilizzerà il"
-#~ " valore definito nell'oggetto padre. La gerarchia è in questo ordine: "
-#~ "Prodotto/Modello prodotto/categoria prodotto/categorie padre "
+#~ "Definir cantidad de venta múltiple 'Si no se establece', Odoo utilizará el "
+#~ "valor definido en el objeto primario. La jerarquía es en este orden: "
+#~ "Producto / Plantilla de producto / categoría de producto / categorías "
+#~ "primarias. "
 
 #~ msgid "Display Name"
-#~ msgstr "Nome visualizzato"
+#~ msgstr "Mostrar Nombre"
 
 #~ msgid "Force Max Qty"
-#~ msgstr "Forza q.tà massima"
+#~ msgstr "Forzar Cant Máx"
 
 #~ msgid "Force Min Qty"
-#~ msgstr "Forza q.tà minima"
+#~ msgstr "Forzar Cntd Mín"
 
 #~ msgid "Force Sale Max Qty"
-#~ msgstr "Forza q.tà minima di vendita"
+#~ msgstr "Forzar Venta Cntd Máx"
 
 #~ msgid "Force Sale Min Qty"
-#~ msgstr "Forza q.tà massima di vendita"
+#~ msgstr "Forzar Vender Cntd Min"
 
 #~ msgid "ID"
 #~ msgstr ""
@@ -234,80 +236,80 @@ msgstr "la quantità deve essere un multiplo di %(multiple_of_qty)s"
 #~ "If force max qty is checked, the max quantity is only indicative value.If is"
 #~ " not test we check parent value"
 #~ msgstr ""
-#~ "Se forza q.tà massima è selezionata, la quantità massima è solo un valore "
-#~ "indicativo. Se non è test controlliamo il valore genitore"
+#~ "Si se marca la forzar cantidad máxima, la cantidad máxima es solo un valor "
+#~ "indicativo. Si no es una prueba, verificamos el valor principal"
 
 #~ msgid ""
 #~ "If force min qty is checked, the min quantity is only indicative value.If is"
 #~ " not test we check parent value"
 #~ msgstr ""
-#~ "Se forza q.tà minima è selezionata, la quantità minima è solo un valore "
-#~ "indicativo. Se non è test controlliamo il valore genitore"
+#~ "Si se marca forzar cantidad mínima , la cantidad mínima es solo un valor "
+#~ "indicativo. Si no es una prueba, verificamos el valor principal"
 
 #~ msgid "Last Modified on"
-#~ msgstr "Ultima modifica il"
+#~ msgstr "Última Modificación el"
 
 #~ msgid "Manual Force Max Qty"
-#~ msgstr "Forza manualmente q.tà massima"
+#~ msgstr "Forzar Manualmente Ctd. Máx"
 
 #~ msgid "Manual Force Min Qty"
-#~ msgstr "Forza manualmente q.tà minima"
+#~ msgstr "Forzar Manualmente Ctd. Min"
 
 #~ msgid "Max Sale Qty"
-#~ msgstr "Q.tà di vendita massima"
+#~ msgstr "Cantidad Máx. Venta"
 
 #~ msgid "Min Sale Qty"
-#~ msgstr "Q.tà di vendita minima"
+#~ msgstr "Cantidad Mín de Venta"
 
 #~ msgid "Multiple Sale Qty"
-#~ msgstr "Quantità di Vendita Multipla"
+#~ msgstr "Ctd. de Venta Múltiple"
 
 #~ msgid "No"
 #~ msgstr ""
 
 #~ msgid "Not Multiple Qty"
-#~ msgstr "Q.tà non multipla"
+#~ msgstr "No Ctd. Múltiple"
 
 #~ msgid "Product"
-#~ msgstr "Prodotto"
+#~ msgstr "Producto"
 
 #, python-format
 #~ msgid "Product \"%(product_name)s\": Max Quantity %(sale_own_max_qty)s."
-#~ msgstr "Prodotto \"%(product_name)s\": Quantità Massima %(sale_own_max_qty)s."
+#~ msgstr "Producto \"%(product_name)s\": Cantidad Máx %(sale_own_max_qty)s."
 
 #, python-format
 #~ msgid "Product \"%(product_name)s\": multiple Quantity %(sale_multiple_qty)s."
-#~ msgstr "prodotto \"%(product_name)s\": Quantità Multipla %(sale_multiple_qty)s."
+#~ msgstr "Producto \"%(product_name)s\": Cantidad múltiple %(sale_multiple_qty)s."
 
 #~ msgid "Product Category"
-#~ msgstr "Categoria prodotto"
+#~ msgstr "Categoría de Producto"
 
 #~ msgid "Product Restrict Qty Mixin"
-#~ msgstr "Mixin Limite di Quantità Prodotto"
+#~ msgstr "Mezcla de Cntd Restringida de Productos"
 
 #~ msgid "Product Template"
-#~ msgstr "Modello prodotto"
+#~ msgstr "Plantilla Producto"
 
 #~ msgid "Qty < Min Qty"
-#~ msgstr "Q.tà < q.tà minima"
+#~ msgstr "Cant. < Cant. Mín"
 
 #~ msgid "Qty > max Qty"
-#~ msgstr "Q.tà > q.tà massima"
+#~ msgstr "Ctd. > Ctd. máx"
 
 #~ msgid "Sale Max Qty"
-#~ msgstr "Q.tà massima di vendita"
+#~ msgstr "Venta Ctd. Máx"
 
 #~ msgid "Sale Min Qty"
-#~ msgstr "Q.tà minima di vendita"
+#~ msgstr "Venta Ctd Min"
 
 #~ msgid "Sale Multiple Qty"
-#~ msgstr "Q.tà multipla di vendita"
+#~ msgstr "Venta Cant. Múltiple"
 
 #~ msgid "Sales Order Line"
-#~ msgstr "Riga ordine di vendita"
+#~ msgstr "Línea de Orden de Venta"
 
 #~ msgid "Use Parent Setting"
-#~ msgstr "Usa Impostazioni Genitore"
+#~ msgstr "Usar Configuración Parental"
 
 #~ msgid "Yes"
-#~ msgstr "Sì"
+#~ msgstr "Si"
