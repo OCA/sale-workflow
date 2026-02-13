@@ -1,0 +1,2 @@
+- [Sygel](https://sygel.es):
+  - Manuel Regidor \<manuel.regidor@sygel.es\>
