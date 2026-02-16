@@ -18,6 +18,13 @@ msgstr ""
 "X-Generator: Poedit 3.8\n"
 
 #. module: sale_automatic_workflow_force_invoiced
+#. odoo-python
+#: code:addons/sale_automatic_workflow_force_invoiced/models/sale_workflow_process.py:0
+#, fuzzy
+msgid "Create Invoice"
+msgstr "Forzar factura"
+
+#. module: sale_automatic_workflow_force_invoiced
 #: model:ir.model.fields,field_description:sale_automatic_workflow_force_invoiced.field_sale_workflow_process__force_invoice
 msgid "Force Invoice"
 msgstr "Forzar factura"
@@ -35,12 +42,14 @@ msgstr "Dominio del filtro de pedidos para forzar factura"
 #. module: sale_automatic_workflow_force_invoiced
 #. odoo-python
 #: code:addons/sale_automatic_workflow_force_invoiced/models/sale_workflow_process.py:0
-msgid ""
-"Force invoice option is not compatible with Create Invoice, Validate "
-"Invoice and Register Payment options."
+msgid "Force invoice option is not compatible with: %s"
 msgstr ""
-"La opción ‘Forzar factura’ no es compatible con las opciones Crear factura, "
-"Validar factura y Registrar pago."
+
+#. module: sale_automatic_workflow_force_invoiced
+#. odoo-python
+#: code:addons/sale_automatic_workflow_force_invoiced/models/sale_workflow_process.py:0
+msgid "Register Payment"
+msgstr ""
 
 #. module: sale_automatic_workflow_force_invoiced
 #: model:ir.model,name:sale_automatic_workflow_force_invoiced.model_sale_workflow_process
@@ -60,3 +69,17 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow_force_invoiced.sale_workflow_process_force_invoice_view_form
 msgid "Set selection based on a search filter:"
 msgstr "Seleccionar mediante filtro de búsqueda:"
+
+#. module: sale_automatic_workflow_force_invoiced
+#. odoo-python
+#: code:addons/sale_automatic_workflow_force_invoiced/models/sale_workflow_process.py:0
+#, fuzzy
+msgid "Validate Invoice"
+msgstr "Forzar factura"
+
+#~ msgid ""
+#~ "Force invoice option is not compatible with Create Invoice, Validate "
+#~ "Invoice and Register Payment options."
+#~ msgstr ""
+#~ "La opción ‘Forzar factura’ no es compatible con las opciones Crear "
+#~ "factura, Validar factura y Registrar pago."
