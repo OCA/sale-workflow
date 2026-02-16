@@ -117,9 +117,15 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
             if not line.new_user_id:
                 continue
             if self.assign_new_salesperson_to_partner:
+                old_salesperson = line.partner_id.user_id.partner_id
                 line.partner_id.with_context(
                     skip_sale_planner_check=True
                 ).user_id = line.new_user_id
+                if self.unsuscribe_old_salesperson and not self.new_end:
+                    # When the salesperson is assigned to the partner and
+                    # the option to unsubscribe is selected, the old one
+                    # should be removed from the partner followers.
+                    line.partner_id.message_unsubscribe(partner_ids=old_salesperson.ids)
             # If new_start is empty only update partner user_id
             if not self.new_start:
                 continue

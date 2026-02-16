@@ -26,3 +26,7 @@ Finally on *Calendar planner > Wizards* you will have again two options:
 
 #. You can change the salesperson assigned to events related to a period of time by using
    the wizard *Reassignment of salesperson*.
+
+   #. By checking the options "Assign New Salesperson To Partner" and "Unsuscribe Old
+      Salesperson" the old salesperson of the partner will be unsubscribed from the mail
+      followers.
