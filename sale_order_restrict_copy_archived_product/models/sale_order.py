@@ -8,13 +8,13 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     def copy(self, default=None):
-        archived_products = self.mapped("order_line.product_id").filtered(
-            lambda p: not p.active
-        )
-        if archived_products:
-            raise exceptions.ValidationError(
-                _("You can't duplicate sale orders with archived products: {}").format(
-                    ", ".join(archived_products.mapped("name"))
-                )
+        for order in self:
+            archived_products = order.order_line.mapped("product_id").filtered(
+                lambda p: not p.active
             )
+            if archived_products:
+                raise exceptions.ValidationError(
+                    _("You can't duplicate sale orders with archived products: %s")
+                    % ", ".join(archived_products.mapped("name"))
+                )
         return super().copy(default)
