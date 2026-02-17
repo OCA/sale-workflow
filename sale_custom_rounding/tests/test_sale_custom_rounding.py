@@ -38,68 +38,109 @@ class TestSaleCustomRounding(TestAccountInvoiceCustomRoundingCommon):
         )
         return sale_order
 
+    def test_onchange_partner_rounding(self):
+        self.partner.write({"tax_calculation_rounding_method": "round_per_line"})
+        sale_order = self.env["sale.order"].new(
+            {
+                "company_id": self.company.id,
+                "partner_id": self.partner.id,
+            }
+        )
+        sale_order._onchange_partner_rounding()
+        self.assertEqual(
+            sale_order.tax_calculation_rounding_method_override,
+            "round_per_line",
+        )
+        self.partner.write({"tax_calculation_rounding_method": False})
+        sale_order = self.env["sale.order"].new(
+            {
+                "company_id": self.company.id,
+                "partner_id": self.partner.id,
+            }
+        )
+        sale_order._onchange_partner_rounding()
+        self.assertFalse(sale_order.tax_calculation_rounding_method_override)
+
     def test_base_case_company_globally(self):
         self.company.write({"tax_calculation_rounding_method": "round_globally"})
         sale_order = self.create_sale_order()
-        self.assertFalse(sale_order.tax_calculation_rounding_method)
+        self.assertFalse(sale_order.tax_calculation_rounding_method_override)
         self.assertAlmostEqual(sale_order.amount_total, 15086.96, places=2)
         sale_order.action_confirm()
         invoice = sale_order._create_invoices()
-        self.assertFalse(invoice.tax_calculation_rounding_method)
+        self.assertEqual(
+            invoice.tax_calculation_rounding_method,
+            "round_globally",
+        )
         self.assertAlmostEqual(invoice.amount_total, 15086.96, places=2)
 
     def test_base_case_company_per_line(self):
         self.company.write({"tax_calculation_rounding_method": "round_per_line"})
         sale_order = self.create_sale_order()
-        self.assertFalse(sale_order.tax_calculation_rounding_method)
+        self.assertFalse(sale_order.tax_calculation_rounding_method_override)
         self.assertAlmostEqual(sale_order.amount_total, 15086.95, places=2)
         sale_order.action_confirm()
         invoice = sale_order._create_invoices()
-        self.assertFalse(invoice.tax_calculation_rounding_method)
+        self.assertEqual(
+            invoice.tax_calculation_rounding_method,
+            "round_per_line",
+        )
         self.assertAlmostEqual(invoice.amount_total, 15086.95, places=2)
 
     def test_custom_rounding_company_globally(self):
         self.company.write({"tax_calculation_rounding_method": "round_globally"})
         self.partner.write({"tax_calculation_rounding_method": "round_per_line"})
         sale_order = self.create_sale_order()
-        self.assertEqual(sale_order.tax_calculation_rounding_method, "round_per_line")
+        sale_order._onchange_partner_rounding()
+        self.assertEqual(
+            sale_order.tax_calculation_rounding_method_override,
+            "round_per_line",
+        )
         self.assertAlmostEqual(sale_order.amount_total, 15086.95, places=2)
-        sale_order.write({"tax_calculation_rounding_method": False})
+        sale_order.write({"tax_calculation_rounding_method_override": "round_globally"})
         self.assertAlmostEqual(sale_order.amount_total, 15086.96, places=2)
-        sale_order.write({"tax_calculation_rounding_method": "round_per_line"})
+        sale_order.write({"tax_calculation_rounding_method_override": "round_per_line"})
         self.assertAlmostEqual(sale_order.amount_total, 15086.95, places=2)
-        sale_order.write({"tax_calculation_rounding_method": "round_globally"})
-        self.assertAlmostEqual(sale_order.amount_total, 15086.96, places=2)
-        sale_order.write({"tax_calculation_rounding_method": "round_per_line"})
         sale_order.action_confirm()
         invoice = sale_order._create_invoices()
-        self.assertEqual(invoice.tax_calculation_rounding_method, "round_per_line")
+        self.assertEqual(
+            invoice.tax_calculation_rounding_method,
+            "round_per_line",
+        )
         self.assertAlmostEqual(invoice.amount_total, 15086.95, places=2)
 
     def test_custom_rounding_company_per_line(self):
         self.company.write({"tax_calculation_rounding_method": "round_per_line"})
         self.partner.write({"tax_calculation_rounding_method": "round_globally"})
         sale_order = self.create_sale_order()
-        self.assertEqual(sale_order.tax_calculation_rounding_method, "round_globally")
+        sale_order._onchange_partner_rounding()
+        self.assertEqual(
+            sale_order.tax_calculation_rounding_method_override,
+            "round_globally",
+        )
         self.assertAlmostEqual(sale_order.amount_total, 15086.96, places=2)
-        sale_order.write({"tax_calculation_rounding_method": False})
+        sale_order.write({"tax_calculation_rounding_method_override": "round_per_line"})
         self.assertAlmostEqual(sale_order.amount_total, 15086.95, places=2)
-        sale_order.write({"tax_calculation_rounding_method": "round_globally"})
+        sale_order.write({"tax_calculation_rounding_method_override": "round_globally"})
         self.assertAlmostEqual(sale_order.amount_total, 15086.96, places=2)
-        sale_order.write({"tax_calculation_rounding_method": "round_per_line"})
-        self.assertAlmostEqual(sale_order.amount_total, 15086.95, places=2)
-        sale_order.write({"tax_calculation_rounding_method": "round_globally"})
         sale_order.action_confirm()
         invoice = sale_order._create_invoices()
-        self.assertEqual(invoice.tax_calculation_rounding_method, "round_globally")
+        self.assertEqual(
+            invoice.tax_calculation_rounding_method,
+            "round_globally",
+        )
         self.assertAlmostEqual(invoice.amount_total, 15086.96, places=2)
 
     def test_split_invoices(self):
         self.partner.write({"tax_calculation_rounding_method": False})
         sale_order_1 = self.create_sale_order()
         sale_order_2 = self.create_sale_order()
-        sale_order_1.write({"tax_calculation_rounding_method": "round_per_line"})
-        sale_order_2.write({"tax_calculation_rounding_method": "round_globally"})
+        sale_order_1.write(
+            {"tax_calculation_rounding_method_override": "round_per_line"}
+        )
+        sale_order_2.write(
+            {"tax_calculation_rounding_method_override": "round_globally"}
+        )
         sale_order_1.action_confirm()
         sale_order_2.action_confirm()
         invoices = (sale_order_1 + sale_order_2)._create_invoices()

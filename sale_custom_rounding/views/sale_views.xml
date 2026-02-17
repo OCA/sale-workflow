@@ -7,13 +7,15 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <field name="fiscal_position_id" position="before">
+            <xpath
+                expr="//group[@name='sale_info']/div[hasclass('o_row')]"
+                position="after"
+            >
                 <field
-                    name="tax_calculation_rounding_method"
-                    class="oe_inline"
-                    attrs="{'readonly': [('state', 'not in', ['draft', 'sent'])]}"
+                    name="tax_calculation_rounding_method_override"
+                    readonly="state not in ['draft', 'sent']"
                 />
-            </field>
+            </xpath>
         </field>
     </record>
 </odoo>
