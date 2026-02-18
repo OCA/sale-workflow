@@ -1,0 +1,11 @@
+# Copyright 2026 Quartile (https://www.quartile.co)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+from odoo import fields, models
+
+
+class ResCompany(models.Model):
+    _inherit = "res.company"
+
+    sale_require_commitment_date = fields.Boolean()
+    sale_commitment_date_in_header = fields.Boolean()

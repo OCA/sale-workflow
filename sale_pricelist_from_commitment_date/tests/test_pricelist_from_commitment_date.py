@@ -1,6 +1,7 @@
 # Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo import Command
 from odoo.tests import TransactionCase
 
 
@@ -145,3 +146,43 @@ class PricelistFromCommitmentDate(TransactionCase):
                 "order_line/price_unit": "300.00",
             }
         )
+
+    def test_03_sale_require_commitment_date(self):
+        """Test sale_require_commitment_date computed field"""
+        company = self.env.company
+        partner = self.env["res.partner"].create({"name": "Test Partner"})
+        product = self.env["product.product"].create({"name": "Test Product 1"})
+        product2 = self.env["product.product"].create({"name": "Test Product 2"})
+        company.sale_require_commitment_date = False
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": partner.id,
+                "order_line": [
+                    Command.create({"product_id": product.id, "product_uom_qty": 10})
+                ],
+            }
+        )
+        self.assertFalse(order.sale_require_commitment_date)
+        company.sale_require_commitment_date = True
+        self.assertTrue(order.sale_require_commitment_date)
+        order.locked = True
+        self.assertFalse(order.sale_require_commitment_date)
+        order.locked = False
+        order.order_line[0].qty_delivered = 5
+        self.assertTrue(order.sale_require_commitment_date)
+        order.order_line[0].qty_delivered = 10
+        self.assertFalse(order.sale_require_commitment_date)
+        order.order_line[0].qty_delivered = 15
+        self.assertFalse(order.sale_require_commitment_date)
+        order.write(
+            {
+                "order_line": [
+                    Command.create({"product_id": product2.id, "product_uom_qty": 5})
+                ]
+            }
+        )
+        order.order_line[0].qty_delivered = 10
+        order.order_line[1].qty_delivered = 2
+        self.assertTrue(order.sale_require_commitment_date)
+        order.order_line[1].qty_delivered = 5
+        self.assertFalse(order.sale_require_commitment_date)
