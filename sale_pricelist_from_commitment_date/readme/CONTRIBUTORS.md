@@ -1,1 +1,4 @@
 - Julien Coux \<<julien.coux@camptocamp.com>\>
+- Quartile \<<https://www.quartile.co>\>
+  - Yoshi Tashiro
+  - Aung Ko Ko Lin
