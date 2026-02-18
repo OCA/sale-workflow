@@ -9,5 +9,9 @@
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "depends": ["sale"],
+    "data": [
+        "views/res_config_settings_views.xml",
+        "views/sale_order_views.xml",
+    ],
     "installable": True,
 }
