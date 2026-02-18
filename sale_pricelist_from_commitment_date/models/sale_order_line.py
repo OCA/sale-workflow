@@ -8,25 +8,24 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     @api.depends(
-        "product_id", "product_uom", "product_uom_qty", "order_id.commitment_date"
+        "product_id",
+        "product_uom",
+        "product_uom_qty",
+        "order_id.commitment_date",
     )
     def _compute_price_unit(self):
-        for line in self:
-            date = self.env.context.get(
-                "force_pricelist_date", line.order_id.commitment_date
-            )
-            line = line.with_context(force_pricelist_date=date)
-            super(SaleOrderLine, line)._compute_price_unit()
-        return True
+        return super()._compute_price_unit()
 
     @api.depends(
-        "product_id", "product_uom", "product_uom_qty", "order_id.commitment_date"
+        "product_id",
+        "product_uom",
+        "product_uom_qty",
+        "order_id.commitment_date",
     )
     def _compute_pricelist_item_id(self):
-        for line in self:
-            date = self.env.context.get(
-                "force_pricelist_date", line.order_id.commitment_date
-            )
-            line = line.with_context(force_pricelist_date=date)
-            super(SaleOrderLine, line)._compute_pricelist_item_id()
-        return True
+        return super()._compute_pricelist_item_id()
+
+    def _get_order_date(self):
+        if self.order_id.commitment_date:
+            return self.order_id.commitment_date
+        return super()._get_order_date()
