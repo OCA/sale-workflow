@@ -5,7 +5,6 @@ from odoo import models
 
 
 class ProductPricelistItem(models.Model):
-
     _inherit = "product.pricelist.item"
 
     def _compute_price(self, product, quantity, uom, date, currency=None):

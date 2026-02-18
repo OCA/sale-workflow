@@ -5,7 +5,6 @@ from odoo import models
 
 
 class ProductPricelist(models.Model):
-
     _inherit = "product.pricelist"
 
     def _get_product_rule(self, product, quantity, uom=None, date=False, **kwargs):
