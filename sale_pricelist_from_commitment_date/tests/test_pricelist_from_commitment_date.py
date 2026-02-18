@@ -11,7 +11,6 @@ class PricelistFromCommitmentDate(TransactionCase):
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
 
         # Pricelists.
-        cls.pricelist_default = cls.env.ref("product.list0")
         cls.pricelist_parent = cls._create_price_list("Parent Pricelist")
         cls.pricelist = cls._create_price_list("Simple Pricelist")
         cls.env["product.pricelist.item"].create(
