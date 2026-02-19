@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="delivery_request_split_qty_view_form" model="ir.ui.view">
+        <field name="name">sale.delivery.request.split.qty.form</field>
+        <field name="model">sale.delivery.request.split.qty</field>
+        <field name="arch" type="xml">
+            <form string="Split Quantity">
+                <group>
+                    <field name="delivery_request_line_id" invisible="1" />
+                    <field name="original_qty" readonly="1" />
+                    <field name="split_qty" />
+                </group>
+                <footer>
+                    <button
+                        name="action_split"
+                        string="Split"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="delivery_request_assign_date_view_form" model="ir.ui.view">
+        <field name="name">sale.delivery.request.assign.date.form</field>
+        <field name="model">sale.delivery.request.assign.date</field>
+        <field name="arch" type="xml">
+            <form string="Assign Date to All Lines">
+                <group>
+                    <field name="delivery_request_id" invisible="1" />
+                    <field name="promised_date" />
+                </group>
+                <footer>
+                    <button
+                        name="action_assign"
+                        string="Assign"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

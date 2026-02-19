@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="sale_delivery_request_view_tree" model="ir.ui.view">
+        <field name="name">sale.delivery.request.tree</field>
+        <field name="model">sale.delivery.request</field>
+        <field name="arch" type="xml">
+            <tree
+                decoration-danger="state == 'expired'"
+                decoration-info="is_priority_request"
+            >
+                <field name="priority" widget="priority" nolabel="1" />
+                <field name="name" />
+                <field name="sale_order_id" />
+                <field name="user_id" widget="many2one_avatar_user" />
+                <field name="request_datetime" />
+                <field name="response_datetime" />
+                <field name="response_delay_hours" widget="float_time" />
+                <field name="expiration_date" />
+                <field name="is_priority_request" column_invisible="1" />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-info="state == 'pending'"
+                    decoration-success="state == 'confirmed'"
+                    decoration-danger="state == 'expired'"
+                />
+            </tree>
+        </field>
+    </record>
+
+    <record id="sale_delivery_request_view_form" model="ir.ui.view">
+        <field name="name">sale.delivery.request.form</field>
+        <field name="model">sale.delivery.request</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_send_request"
+                        string="Send to Planning"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'draft'"
+                    />
+                    <button
+                        name="action_assign_date_all"
+                        string="Assign Date to All Lines"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'pending'"
+                    />
+                    <button
+                        name="action_confirm"
+                        string="Confirm"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'pending'"
+                    />
+                    <button
+                        name="action_set_expired"
+                        string="Set Expired"
+                        type="object"
+                        invisible="state != 'confirmed'"
+                        confirm="Are you sure you want to mark this request as expired?"
+                    />
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,pending,confirmed"
+                    />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box" />
+                    <widget
+                        name="web_ribbon"
+                        title="Expired"
+                        bg_color="text-bg-warning"
+                        invisible="state != 'expired'"
+                    />
+                    <div class="oe_title">
+                        <h1>
+                            <div class="d-flex align-items-center gap-2">
+                                <field name="priority" widget="priority" nolabel="1" />
+                                <field name="name" readonly="1" />
+                            </div>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="sale_order_id" readonly="state != 'draft'" />
+                            <field name="is_priority_request" invisible="1" />
+                            <field name="user_id" widget="many2one_avatar_user" />
+                        </group>
+                        <group>
+                            <field name="request_datetime" />
+                            <field name="response_datetime" />
+                            <field
+                                name="response_delay_hours"
+                                widget="float_time"
+                                invisible="state != 'confirmed'"
+                            />
+                            <field
+                                name="expiration_date"
+                                invisible="state != 'confirmed'"
+                            />
+                            <field name="company_id" invisible="1" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Request Lines" name="lines">
+                            <field
+                                name="line_ids"
+                                readonly="state not in ('draft', 'pending')"
+                            >
+                                <tree editable="bottom">
+                                    <field name="sequence" widget="handle" />
+                                    <field
+                                        name="sale_order_line_id"
+                                        readonly="state != 'draft'"
+                                    />
+                                    <field name="product_id" readonly="1" />
+                                    <field name="quantity" />
+                                    <field
+                                        name="sol_remaining_qty"
+                                        column_invisible="1"
+                                    />
+                                    <field name="product_uom" readonly="1" />
+                                    <field name="promised_date_absolute" />
+                                    <field name="business_days_offset" readonly="1" />
+                                    <field name="state" column_invisible="1" />
+                                    <field name="can_be_merged" column_invisible="1" />
+                                    <button
+                                        name="action_split_quantity"
+                                        string="Split"
+                                        type="object"
+                                        icon="fa-scissors"
+                                        invisible="state != 'pending' or quantity &lt;= 1"
+                                    />
+                                    <button
+                                        name="action_merge_lines"
+                                        string="Merge"
+                                        type="object"
+                                        icon="fa-compress"
+                                        invisible="state != 'pending' or not can_be_merged"
+                                    />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_delivery_request_view_search" model="ir.ui.view">
+        <field name="name">sale.delivery.request.search</field>
+        <field name="model">sale.delivery.request</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="sale_order_id" />
+                <field name="priority" />
+                <separator />
+                <filter
+                    name="filter_pending"
+                    string="Pending"
+                    domain="[('state', '=', 'pending')]"
+                />
+                <filter
+                    name="filter_confirmed"
+                    string="Confirmed"
+                    domain="[('state', '=', 'confirmed')]"
+                />
+                <filter
+                    name="filter_expired"
+                    string="Expired"
+                    domain="[('state', '=', 'expired')]"
+                />
+                <filter
+                    name="filter_priority"
+                    string="Favorite"
+                    domain="[('priority', '=', '1')]"
+                />
+                <separator />
+                <filter
+                    name="filter_not_expired_confirmed"
+                    string="Valid Confirmed"
+                    domain="[('state', '=', 'confirmed')]"
+                />
+                <group expand="0" string="Group By">
+                    <filter
+                        name="groupby_state"
+                        string="Status"
+                        context="{'group_by': 'state'}"
+                    />
+                    <filter
+                        name="groupby_sale_order"
+                        string="Sales Order"
+                        context="{'group_by': 'sale_order_id'}"
+                    />
+                    <filter
+                        name="groupby_request_date"
+                        string="Request Date"
+                        context="{'group_by': 'request_datetime:month'}"
+                    />
+                    <filter
+                        name="groupby_priority"
+                        string="Favorite"
+                        context="{'group_by': 'priority'}"
+                    />
+                    <filter
+                        name="groupby_user"
+                        string="Responsible"
+                        context="{'group_by': 'user_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="sale_delivery_request_action" model="ir.actions.act_window">
+        <field name="name">Delivery Requests</field>
+        <field name="res_model">sale.delivery.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="sale_delivery_request_view_search" />
+        <field name="context">{'search_default_filter_pending': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No delivery requests yet.
+            </p>
+            <p>
+                Delivery requests are created from Sales Orders to request
+                delivery date confirmations from Planning.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_delivery_request_root"
+        name="Delivery Requests"
+        parent="sale.sale_menu_root"
+        sequence="49"
+        groups="group_sale_delivery_request_manager"
+    />
+    <menuitem
+        id="menu_delivery_request_all"
+        name="All Requests"
+        parent="menu_delivery_request_root"
+        action="sale_delivery_request_action"
+        sequence="10"
+        groups="group_sale_delivery_request_manager"
+    />
+
+</odoo>

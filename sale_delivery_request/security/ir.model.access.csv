@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_delivery_request_internal,sale.delivery.request.internal,model_sale_delivery_request,base.group_user,1,1,1,0
+access_sale_delivery_request_user,sale.delivery.request.user,model_sale_delivery_request,group_sale_delivery_request_manager,1,1,1,1
+access_sale_delivery_request_line_internal,sale.delivery.request.line.internal,model_sale_delivery_request_line,base.group_user,1,1,1,0
+access_sale_delivery_request_line_user,sale.delivery.request.line.user,model_sale_delivery_request_line,group_sale_delivery_request_manager,1,1,1,1
+access_sale_delivery_request_split_qty,sale.delivery.request.split.qty,model_sale_delivery_request_split_qty,group_sale_delivery_request_manager,1,1,1,1
+access_sale_delivery_request_assign_date,sale.delivery.request.assign.date,model_sale_delivery_request_assign_date,group_sale_delivery_request_manager,1,1,1,1

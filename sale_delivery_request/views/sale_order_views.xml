@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="sale_order_form_inherit_delivery_request" model="ir.ui.view">
+        <field name="name">sale.order.form - sale_delivery_request</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_view_delivery_requests"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-clock-o"
+                    invisible="delivery_request_count == 0"
+                >
+                    <field
+                        name="delivery_request_count"
+                        widget="statinfo"
+                        string="Delivery Requests"
+                    />
+                </button>
+            </xpath>
+            <xpath expr="//form/sheet" position="inside">
+                <field name="has_valid_delivery_request" invisible="1" />
+                <field name="has_delivery_request" invisible="1" />
+            </xpath>
+            <xpath expr="//button[@name='action_confirm']" position="before">
+                <button
+                    name="action_request_delivery_date"
+                    string="Request Delivery Date"
+                    type="object"
+                    class="btn-secondary"
+                    invisible="state not in ('draft', 'sent') or has_delivery_request"
+                />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
