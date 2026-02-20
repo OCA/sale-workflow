@@ -36,7 +36,7 @@ class TestPartnerAccess(AccountTestInvoicingCommon):
             {
                 "name": f"User {letter}",
                 "login": f"user_{letter}",
-                "groups_id": [(6, 0, [self.group_portal.id])],
+                "group_ids": [(6, 0, [self.group_portal.id])],
             }
         )
 
@@ -49,7 +49,7 @@ class TestPartnerAccess(AccountTestInvoicingCommon):
         )
 
     def _create_sale_order(self, partner):
-        sale_form = Form(self.env["sale.order"])
+        sale_form = Form(self.env["sale.order"].sudo())
         sale_form.partner_id = partner
         with sale_form.order_line.new() as line_form:
             line_form.product_id = self.product
@@ -73,6 +73,7 @@ class TestPartnerAccess(AccountTestInvoicingCommon):
         self.assertTrue(self.order_c in orders_c)
 
     def test_access_sale_order_followers(self):
+        # Being a follower grants access in addition to being the direct customer
         self.order_a.message_subscribe(partner_ids=self.partner_b.ids)
         orders_b = self.env["sale.order"].with_user(self.user_b).search([])
         self.assertTrue(self.order_a in orders_b)
