@@ -3,6 +3,7 @@
   - David Vidal
   - Víctor Martínez
   - Stefan Ungureanu
+  - Cristina Hidalgo
 - Moaad Bourhim \<<moaad.bourhim@gmail.com>\>
 - Jairo Llopis ([Moduon](https://www.moduon.team/))
 - SodexisTeam \<<dev@sodexis.com>\>
