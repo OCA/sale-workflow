@@ -5,12 +5,15 @@ from odoo.addons.base_revision.tests import test_base_revision
 
 
 class TestSaleOrderRevision(test_base_revision.TestBaseRevision):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.revision_model = cls.env["sale.order"]
-        cls.partner = cls.env["res.partner"].create({"name": "Mr Odoo"})
-        cls.product = cls.env["product.product"].create({"name": "Test product"})
+    def setUp(self):
+        super().setUp()
+        self.revision_model = self.env["sale.order"]
+        self.partner = self.env["res.partner"].create({"name": "Mr Odoo"})
+        self.product = self.env["product.product"].create({"name": "Test product"})
+
+    def tearDown(self):
+        self.loader.restore_registry()
+        return super().tearDown()
 
     def _create_tester(self, vals_list=None):
         if not vals_list:
