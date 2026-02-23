@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form - sale_stock_delivery_address</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/list" position="inside">
+                <field
+                    name="dest_address_id"
+                    readonly="context.get('product_updatable')"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='route_ids']"
+                position="after"
+            >
+                <field
+                    name="dest_address_id"
+                    readonly="context.get('product_updatable')"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
