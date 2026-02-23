@@ -8,11 +8,11 @@ class ProductProduct(models.Model):
     _inherit = "product.product"
 
     @api.model_create_multi
-    def create(self, vals):
+    def create(self, vals_list):
         """Create a cache record for each newly created product, for each global
         pricelist.
         """
-        res = super().create(vals)
+        res = super().create(vals_list)
         pricelist_model = self.env["product.pricelist"]
         global_pricelist_ids = pricelist_model._get_global_pricelist_ids()
         if global_pricelist_ids and res:
