@@ -148,6 +148,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_form
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.product_elaboration_profile_form_view
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.product_template_form_view
+#: model_terms:ir.ui.view,arch_db:sale_elaboration.sale_order_line_view_form_readonly
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_order_form
 msgid "Elaborations"
 msgstr ""
