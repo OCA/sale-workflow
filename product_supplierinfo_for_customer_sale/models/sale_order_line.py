@@ -12,7 +12,7 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     product_customer_code = fields.Char(
-        compute="_compute_product_customer_code",
+        compute="_compute_product_customer_code", string="Cust. Code"
     )
 
     @api.depends("product_id")
