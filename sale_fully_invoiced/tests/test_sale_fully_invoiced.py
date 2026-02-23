@@ -13,8 +13,14 @@ class TestSaleFullyDelivered(common.TransactionCase):
 
         # ENVIRONMENTS
         cls.sale_order = cls.env["sale.order"]
-        cls.partner_id = cls.env.ref("base.res_partner_1")
-        cls.product_id_1 = cls.env.ref("product.product_product_8")
+        cls.partner_id = cls.env["res.partner"].create({"name": "Test Partner"})
+        cls.product_id_1 = cls.env["product.product"].create(
+            {
+                "name": "Test Product 1",
+                "list_price": 500.0,
+                "uom_id": cls.env.ref("uom.product_uom_unit").id,
+            }
+        )
         cls.account_model = cls.env["account.account"]
         cls.product_id_1.write({"invoice_policy": "order"})
         cls.so_vals = {
@@ -27,7 +33,6 @@ class TestSaleFullyDelivered(common.TransactionCase):
                         "name": cls.product_id_1.name,
                         "product_id": cls.product_id_1.id,
                         "product_uom_qty": 5.0,
-                        "product_uom": cls.product_id_1.uom_po_id.id,
                         "price_unit": 500.0,
                     },
                 ),
