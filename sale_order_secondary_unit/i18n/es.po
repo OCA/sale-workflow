@@ -75,12 +75,12 @@ msgstr "Variante de Producto"
 #, python-format
 msgid ""
 "Product variants have distinct sale secondary uom:\n"
-"{secondary_uom}\n"
+"%(secondary_uom)s\n"
 "All variants will be written with new secondary uom"
 msgstr ""
 "Las variantes de producto tienen unidades de medida secundarias de venta "
 "distinto:\n"
-"{secondary_uom}\n"
+"%(secondary_uom)s\n"
 "Todas las variantes se escribirán con la nueva unidad de medida secundaria"
 
 #. module: sale_order_secondary_unit

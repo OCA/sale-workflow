@@ -56,13 +56,13 @@ class TestProductTemplate(BaseCommon):
                     Command.create(
                         {
                             "attribute_id": cls.color_attribute.id,
-                            "value_ids": [(6, 0, cls.color_values.ids)],
+                            "value_ids": [Command.set(cls.color_values.ids)],
                         },
                     ),
                     Command.create(
                         {
                             "attribute_id": cls.size_attribute.id,
-                            "value_ids": [(6, 0, cls.size_values.ids)],
+                            "value_ids": [Command.set(cls.size_values.ids)],
                         },
                     ),
                 ],
