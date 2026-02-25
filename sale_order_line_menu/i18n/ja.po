@@ -6,18 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-02-25 06:09+0000\n"
+"Last-Translator: Tatsuki Kanda <kanda@quartile.co>\n"
 "Language-Team: none\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Cancelled"
-msgstr ""
+msgstr "取消"
 
 #. module: sale_order_line_menu
 #: model:ir.model.fields,help:sale_order_line_menu.field_sale_order_line__date_order
@@ -29,81 +31,81 @@ msgstr ""
 #. module: sale_order_line_menu
 #: model:ir.model.fields,field_description:sale_order_line_menu.field_sale_order_line__date_order
 msgid "Date"
-msgstr ""
+msgstr "日付"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Fully Invoiced"
-msgstr ""
+msgstr "完全請求済"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Invoice Status"
-msgstr ""
+msgstr "請求ステータス"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Locked"
-msgstr ""
+msgstr "ロック済"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Nothing to Invoice"
-msgstr ""
+msgstr "請求対象なし"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Order Date"
-msgstr ""
+msgstr "オーダ日"
 
 #. module: sale_order_line_menu
 #: model:ir.actions.act_window,name:sale_order_line_menu.action_orders_lines
 #: model:ir.ui.menu,name:sale_order_line_menu.sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sale_order_line_pivot
 msgid "Order Lines"
-msgstr ""
+msgstr "オーダ明細"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_tree
 msgid "Price Subtotal"
-msgstr ""
+msgstr "小計"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_tree
 msgid "Price Tax"
-msgstr ""
+msgstr "税"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.sale_order_line_tree
 msgid "Price Total"
-msgstr ""
+msgstr "合計"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Quotation"
-msgstr ""
+msgstr "見積"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Quotation Sent"
-msgstr ""
+msgstr "見積提出済"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Sales Order"
-msgstr ""
+msgstr "販売オーダ"
 
 #. module: sale_order_line_menu
 #: model:ir.model,name:sale_order_line_menu.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "販売オーダ明細"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "To Invoice"
-msgstr ""
+msgstr "未請求"
 
 #. module: sale_order_line_menu
 #: model_terms:ir.ui.view,arch_db:sale_order_line_menu.view_sales_order_line_filter
 msgid "Upselling Opportunity"
-msgstr ""
+msgstr "アップセリングの機会"
