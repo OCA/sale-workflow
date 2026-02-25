@@ -20,7 +20,6 @@ class TestSaleOrder(BaseCommon):
             {
                 "name": "test",
                 "uom_id": cls.product_uom_kg.id,
-                "uom_po_id": cls.product_uom_kg.id,
                 "list_price": 1000,
             }
         )
@@ -64,14 +63,14 @@ class TestSaleOrder(BaseCommon):
         self.assertEqual(self.order.order_line.secondary_uom_qty, 7.0)
 
     def test_default_secondary_unit(self):
-        self.order.order_line._onchange_product_id_warning()
+        self.order.order_line._onchange_product_id_secondary_uom()
         self.assertEqual(self.order.order_line.secondary_uom_id, self.secondary_unit)
 
     def test_onchange_order_product_uom(self):
         self.order.order_line.update(
             {
                 "secondary_uom_id": self.secondary_unit.id,
-                "product_uom": self.product_uom_gram.id,
+                "product_uom_id": self.product_uom_gram.id,
                 "product_uom_qty": 3500.00,
             }
         )

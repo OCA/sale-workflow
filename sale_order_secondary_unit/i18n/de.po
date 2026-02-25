@@ -71,7 +71,7 @@ msgstr ""
 #, python-format
 msgid ""
 "Product variants have distinct sale secondary uom:\n"
-"{secondary_uom}\n"
+"%(secondary_uom)s\n"
 "All variants will be written with new secondary uom"
 msgstr ""
 

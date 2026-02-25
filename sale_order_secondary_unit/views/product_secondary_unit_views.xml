@@ -8,7 +8,7 @@
                 <field name="product_tmpl_id" />
                 <field name="code" />
                 <field name="name" />
-                <group expand="1" string="Group By">
+                <group>
                     <filter
                         string="Product Template"
                         name="product_tmpl_id"
@@ -56,7 +56,8 @@
         id="product_secondary_unit_menu"
         name="Secondary Units of Measure"
         action="product_secondary_unit_action"
-        parent="sale.next_id_16"
+        parent="sale.prod_config_main"
+        sequence="36"
         groups="uom.group_uom"
     />
 </odoo>

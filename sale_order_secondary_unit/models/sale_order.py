@@ -8,7 +8,7 @@ class SaleOrderLine(models.Model):
     _name = "sale.order.line"
     _secondary_unit_fields = {
         "qty_field": "product_uom_qty",
-        "uom_field": "product_uom",
+        "uom_field": "product_uom_id",
     }
 
     secondary_uom_unit_price = fields.Float(
@@ -22,7 +22,6 @@ class SaleOrderLine(models.Model):
     @api.depends(
         "display_type",
         "product_id",
-        "product_packaging_qty",
         "secondary_uom_qty",
         "secondary_uom_id",
         "product_uom_qty",
@@ -34,21 +33,19 @@ class SaleOrderLine(models.Model):
         return res
 
     @api.depends("product_id")
-    def _compute_product_uom(self):
-        res = super()._compute_product_uom()
+    def _compute_product_uom_id(self):
+        res = super()._compute_product_uom_id()
         for line in self:
             line._onchange_helper_product_uom_for_secondary()
         return res
 
     @api.onchange("product_id")
-    def _onchange_product_id_warning(self):
-        res = super()._onchange_product_id_warning()
+    def _onchange_product_id_secondary_uom(self):
         if self.product_id and not self.env.context.get("skip_secondary_uom_default"):
             self.secondary_uom_id = self.product_id.sale_secondary_uom_id
             if self.product_uom_qty == 1.0:
                 self.secondary_uom_qty = 1.0
                 self._onchange_helper_product_uom_for_secondary()
-        return res
 
     @api.depends("secondary_uom_qty", "product_uom_qty", "price_unit")
     def _compute_secondary_uom_unit_price(self):

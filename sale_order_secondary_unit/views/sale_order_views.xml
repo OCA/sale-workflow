@@ -8,16 +8,14 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/form//field[@name='price_subtotal']"
-                position="after"
+                expr="//field[@name='order_line']/form//label[@for='product_uom_qty']"
+                position="before"
             >
                 <label for="secondary_uom_qty" groups="uom.group_uom" />
                 <div class="o_row" name="secondary_uom_qty" groups="uom.group_uom">
                     <field
                         name="secondary_uom_qty"
                         class="oe_inline oe_no_button"
-                        widget="numeric_step"
-                        options="{'auto_select': True}"
                         readonly="state in ['done', 'cancel']"
                     />
 

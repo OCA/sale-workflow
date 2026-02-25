@@ -47,14 +47,13 @@ class ProductTemplate(models.Model):
                     "title": self.env._("Warning"),
                     "message": self.env._(
                         "Product variants have distinct sale secondary uom:"
-                        "\n{secondary_uom}\n"
-                        "All variants will be written with new secondary uom"
-                    ).format(
+                        "\n%(secondary_uom)s\n"
+                        "All variants will be written with new secondary uom",
                         secondary_uom="\n".join(
                             self.product_variant_ids.mapped(
                                 "sale_secondary_uom_id.name"
                             )
-                        )
+                        ),
                     ),
                 }
             }
