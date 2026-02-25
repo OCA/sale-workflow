@@ -63,7 +63,7 @@ msgstr ""
 #: code:addons/sale_order_secondary_unit/models/product_template.py:0
 msgid ""
 "Product variants have distinct sale secondary uom:\n"
-"{secondary_uom}\n"
+"%(secondary_uom)s\n"
 "All variants will be written with new secondary uom"
 msgstr ""
 
