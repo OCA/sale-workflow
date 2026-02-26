@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,19 +14,19 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_custom_rounding
-#: model:ir.model.fields,help:sale_custom_rounding.field_sale_order__tax_calculation_rounding_method
+#: model:ir.model.fields,help:sale_custom_rounding.field_sale_order__tax_calculation_rounding_method_override
 msgid ""
 "How total tax amount is computed. If no value selected, the method defined "
 "in the company is used."
 msgstr ""
 
 #. module: sale_custom_rounding
-#: model:ir.model.fields.selection,name:sale_custom_rounding.selection__sale_order__tax_calculation_rounding_method__round_globally
+#: model:ir.model.fields.selection,name:sale_custom_rounding.selection__sale_order__tax_calculation_rounding_method_override__round_globally
 msgid "Round Globally"
 msgstr ""
 
 #. module: sale_custom_rounding
-#: model:ir.model.fields.selection,name:sale_custom_rounding.selection__sale_order__tax_calculation_rounding_method__round_per_line
+#: model:ir.model.fields.selection,name:sale_custom_rounding.selection__sale_order__tax_calculation_rounding_method_override__round_per_line
 msgid "Round per Line"
 msgstr ""
 
@@ -41,6 +41,11 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_custom_rounding
-#: model:ir.model.fields,field_description:sale_custom_rounding.field_sale_order__tax_calculation_rounding_method
-msgid "Tax Calculation Rounding Method"
+#: model:ir.model,name:sale_custom_rounding.model_account_tax
+msgid "Tax"
+msgstr ""
+
+#. module: sale_custom_rounding
+#: model:ir.model.fields,field_description:sale_custom_rounding.field_sale_order__tax_calculation_rounding_method_override
+msgid "Tax Calculation Rounding Method Override"
 msgstr ""
