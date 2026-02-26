@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Manuel Regidor <manuel.regidor@sygel.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="invoice_custom_rounding_view_order_form" model="ir.ui.view">
+        <field name="name">invoice.custom.rounding.view.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group[@name='sale_info']/div[hasclass('o_row')]"
+                position="after"
+            >
+                <field
+                    name="tax_calculation_rounding_method_override"
+                    readonly="state not in ['draft', 'sent']"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
