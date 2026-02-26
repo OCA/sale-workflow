@@ -12,7 +12,7 @@
                 <span>Second. Qty</span>
             </th>
         </xpath>
-        <xpath expr="//span[@t-field='line.product_uom_qty']/.." position="before">
+        <xpath expr="//td[@name='td_product_quantity']" position="before">
             <td name="td_secondary_uom_id" class="text-end" groups="uom.group_uom">
                 <t t-if="line.secondary_uom_id">
                     <span t-field="line.secondary_uom_qty" />
