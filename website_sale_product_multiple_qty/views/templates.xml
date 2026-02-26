@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="multiple_product_quantity"
+        inherit_id="website_sale.product_quantity"
+        name="Multiple quantity"
+    >
+        <xpath expr="//input[@name='add_qty']" position="attributes">
+            <attribute name="t-att-data-is-multiple">
+                1 if combination_info['is_multiple'] else 0
+            </attribute>
+            <attribute name="t-att-data-sale-multiple-qty">
+                combination_info['sale_multiple_qty'] or 1
+            </attribute>
+        </xpath>
+    </template>
+    <template
+        id="cart_lines_quantity_multiple"
+        inherit_id="website_sale.cart_lines_quantity"
+        name="Cart Lines Multiple quantity"
+    >
+        <xpath expr="//input[hasclass('js_quantity')]" position="attributes">
+            <attribute name="t-att-data-is-multiple">
+                1 if line.product_id.sale_multiple_uom_id else 0
+            </attribute>
+            <attribute name="t-att-data-sale-multiple-qty">
+                (line.product_id.sale_multiple_uom_id and line.product_id.sale_multiple_uom_id.factor) or 1
+            </attribute>
+        </xpath>
+    </template>
+</odoo>
