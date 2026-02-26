@@ -56,6 +56,12 @@ class SaleOrderLine(models.Model):
         # Thanks to the new flush of odoo 13.0, queries will be optimized
         # together at the end even if we update the exception_ids many times.
         # On previous versions, this could be unoptimized.
-        (self - records).exception_ids = [Command.unlink(rule.id)]
-        records.exception_ids = [Command.link(rule.id)]
+        lines_to_remove_exception = (self - records).filtered(
+            lambda line: rule.id in line.exception_ids.ids
+        )
+        lines_to_remove_exception.exception_ids = [Command.unlink(rule.id)]
+        lines_to_add_exception = records.filtered(
+            lambda line: rule.id not in line.exception_ids.ids
+        )
+        lines_to_add_exception.exception_ids = [Command.link(rule.id)]
         return records.mapped("order_id")
