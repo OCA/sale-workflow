@@ -1,0 +1,1 @@
+odoo-addon-sale_product_multiple_qty @ git+https://github.com/OCA/sale-workflow.git@refs/pull/4143/head#subdirectory=sale_product_multiple_qty
