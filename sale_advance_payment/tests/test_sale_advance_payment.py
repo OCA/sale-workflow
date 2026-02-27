@@ -454,3 +454,83 @@ class TestSaleAdvancePayment(BaseCommon):
             }
         )._create_payments()
         self.assertEqual(self.sale_order_1.amount_residual, 3600)
+
+    def test_06_multicurrency_residual_amount(self):
+        sale_order_usd = self.env["sale.order"].create(
+            {
+                "partner_id": self.res_partner_1.id,
+                "currency_id": self.currency_usd.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product_1.id,
+                            "product_uom_qty": 1.0,
+                            "price_unit": 100.0,
+                        },
+                    )
+                ],
+            }
+        )
+
+        total_amount = sale_order_usd.amount_total
+        self.assertEqual(sale_order_usd.amount_residual, total_amount)
+
+        sale_order_usd.action_confirm()
+
+        context_payment = {
+            "active_ids": [sale_order_usd.id],
+            "active_id": sale_order_usd.id,
+        }
+        advance_payment = (
+            self.env["account.voucher.wizard"]
+            .with_context(**context_payment)
+            .create(
+                {
+                    "journal_id": self.journal_usd_bank.id,
+                    "payment_type": "inbound",
+                    "amount_advance": 40.0,
+                    "order_id": sale_order_usd.id,
+                }
+            )
+        )
+        advance_payment.make_advance_payment()
+
+        self.assertEqual(sale_order_usd.amount_residual, total_amount - 40.0)
+
+        invoice = sale_order_usd._create_invoices()
+        invoice.invoice_date = fields.Date.today()
+        invoice.action_post()
+
+        self.assertEqual(sale_order_usd.amount_residual, total_amount - 40.0)
+
+        credit_note = invoice._reverse_moves()
+        credit_note.invoice_date = fields.Date.today()
+        credit_note.action_post()
+
+        self.assertEqual(sale_order_usd.amount_residual, total_amount - 40.0)
+
+        dummy_invoice = self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": self.res_partner_1.id,
+                "currency_id": self.currency_euro.id,
+                "invoice_date": fields.Date.today(),
+                "invoice_line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "Dummy for coverage",
+                            "price_unit": 0.0,
+                            "quantity": 1.0,
+                            "sale_line_ids": [(6, 0, sale_order_usd.order_line.ids)],
+                        },
+                    )
+                ],
+            }
+        )
+        dummy_invoice.action_post()
+
+        _ = sale_order_usd.amount_residual
