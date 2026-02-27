@@ -1,6 +1,6 @@
 from markupsafe import Markup
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 from odoo.tools import groupby
 
 
@@ -61,11 +61,11 @@ class SaleOrderBlockWizard(models.TransientModel):
         """Confirm the sale orders ignoring next possible wizards."""
         if not all(self.mapped("confirmation_allowed")):
             raise exceptions.UserError(
-                _("You are not allowed to confirm these orders.")
+                self.env._("You are not allowed to confirm these orders.")
             )
         orders = self.mapped("sale_line_block_ids.order_id")
         orders.message_post(
-            body=_("Order confirmed with errors by %s.", self.env.user.name),
+            body=self.env._("Order confirmed with errors by %s.", self.env.user.name),
             subtype_id=self.env.ref("mail.mt_note").id,
         )
         return orders.with_context(skip_block_no_stock_check=True).action_confirm()
@@ -93,7 +93,7 @@ class SaleOrderBlockWizard(models.TransientModel):
             )
             if len(companies) > 1:
                 raise exceptions.UserError(
-                    _(
+                    self.env._(
                         """Cannot launch wizard from sale orders
                     from different companies."""
                     )
