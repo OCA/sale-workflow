@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-08 00:49+0000\n"
-"PO-Revision-Date: 2026-02-28 12:04+0000\n"
+"PO-Revision-Date: 2026-02-28 14:09+0000\n"
 "Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
 "Language-Team: Dutch (Netherlands) (https://www.transifex.com/oca/teams/"
 "23907/nl_NL/)\n"
@@ -23,7 +23,7 @@ msgstr ""
 #. module: sale_order_line_sequence
 #: model_terms:ir.ui.view,arch_db:sale_order_line_sequence.report_saleorder_document_sequence
 msgid "<strong>Line Number</strong>"
-msgstr "<strong>Regelnummer</strong>"
+msgstr "<strong>Regel #</strong>"
 
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,help:sale_order_line_sequence.field_sale_order_line__visible_sequence
