@@ -24,8 +24,8 @@ msgstr "Kundenpreise"
 
 #. module: product_supplierinfo_for_customer_sale
 #: model:ir.model.fields,field_description:product_supplierinfo_for_customer_sale.field_sale_order_line__product_customer_code
-msgid "Product Customer Code"
-msgstr "Kundencode des Produkts"
+msgid "Cust. Code"
+msgstr "Kundencode"
 
 #. module: product_supplierinfo_for_customer_sale
 #: model:ir.model,name:product_supplierinfo_for_customer_sale.model_sale_order_line
