@@ -1,5 +1,5 @@
 # Copyright 2021 Akretion
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import models
 
@@ -7,13 +7,15 @@ from odoo import models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    def _notify_get_groups(self, msg_vals=None):
+    def _notify_get_recipients_groups(self, message, model_description, msg_vals=None):
         """
-        Reverse base behaviour from Odoo core. We don't always want
+        Reverse base behavior from Odoo core. We don't always want
         portal_customer to access the ERP
         partner_id evaluates to portal_customer !
         """
-        groups = super()._notify_get_groups(msg_vals=msg_vals)
+        groups = super()._notify_get_recipients_groups(
+            message=message, model_description=model_description, msg_vals=msg_vals
+        )
         if self.state not in ("draft", "cancel"):
             for group_name, _group_method, group_data in groups:
                 if group_name == "portal_customer":
