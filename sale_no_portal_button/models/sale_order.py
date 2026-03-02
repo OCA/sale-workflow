@@ -13,7 +13,7 @@ class SaleOrder(models.Model):
         portal_customer to access the ERP
         partner_id evaluates to portal_customer !
         """
-        groups = super(SaleOrder, self)._notify_get_groups(msg_vals=msg_vals)
+        groups = super()._notify_get_groups(msg_vals=msg_vals)
         if self.state not in ("draft", "cancel"):
             for group_name, _group_method, group_data in groups:
                 if group_name == "portal_customer":
