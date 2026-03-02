@@ -1,10 +1,10 @@
 # Copyright 2023 Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests import Form, SavepointCase
+from odoo.tests import Form, TransactionCase
 
 
-class TestSaleInvoiceDeliveryState(SavepointCase):
+class TestSaleInvoiceDeliveryState(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -19,13 +19,17 @@ class TestSaleInvoiceDeliveryState(SavepointCase):
         sale.action_confirm()
         self.assertTrue(sale.picking_ids)
         pick = sale.picking_ids
-        pick.move_lines.write({"quantity_done": 7})
+        pick.move_ids._set_quantity_done(7.0)
         wiz_act = pick.button_validate()
         wiz = Form(
-            self.env[wiz_act["res_model"]].with_context(wiz_act["context"])
+            self.env[wiz_act["res_model"]].with_context(**wiz_act["context"])
         ).save()
         wiz.process()
         self.assertEqual(sale.invoice_status, "no")
+        backorder = sale.picking_ids.filtered("backorder_id")
+        backorder.move_ids._set_quantity_done(3.0)
+        wiz_act = backorder.button_validate()
+        self.assertEqual(sale.invoice_status, "to invoice")
 
     def _create_sale_order(self, partner, product):
         order_form = Form(self.env["sale.order"])
