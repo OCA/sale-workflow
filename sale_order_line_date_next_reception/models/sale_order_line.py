@@ -3,18 +3,21 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import fields, models
+from odoo.tools import float_compare
 
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    date_next_reception = fields.Date(compute="_compute_date_next_reception")
+    next_reception_date = fields.Date(compute="_compute_next_reception_date")
 
-    def _compute_date_next_reception(self):
+    def _compute_next_reception_date(self):
         for line in self:
-            line.date_next_reception = False
+            line.next_reception_date = False
             qty_available = line.product_id.with_context(
                 warehouse=line.order_id.warehouse_id.id
             ).qty_available
-            if qty_available <= 0 and line.state not in ["done", "cancel"]:
-                line.date_next_reception = line.product_id.date_next_reception
+            if float_compare(
+                qty_available, 0, precision_rounding=line.product_uom.rounding
+            ) > 0 and line.state not in ["done", "cancel"]:
+                line.next_reception_date = line.product_id.next_reception_date

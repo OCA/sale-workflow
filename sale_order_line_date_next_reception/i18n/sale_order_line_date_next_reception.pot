@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_line_date_next_reception
-#: model:ir.model.fields,field_description:sale_order_line_date_next_reception.field_sale_order_line__date_next_reception
+#: model:ir.model.fields,field_description:sale_order_line_date_next_reception.field_sale_order_line__next_reception_date
 msgid "Date Next Reception"
 msgstr ""
 
