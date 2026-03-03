@@ -88,7 +88,7 @@ class SaleResourceBookingsCase(TransactionCase):
         else:
             self.assertEqual(bookings.mapped("combination_auto_assign"), [True] * 2)
         # Cancel SO, bookings canceled
-        order._action_cancel()
+        order.with_context(disable_cancel_warning=True)._action_cancel()
         self.assertEqual(bookings.mapped("state"), ["canceled"] * 2)
         # Delete SO lines, bookings deleted
         order.order_line.unlink()
@@ -123,7 +123,7 @@ class SaleResourceBookingsCase(TransactionCase):
         self.assertTrue(booking)
         self.assertEqual(booking.state, "pending")
         # Cancel order; booking canceled
-        order._action_cancel()
+        order.with_context(disable_cancel_warning=True)._action_cancel()
         self.assertEqual(booking.state, "canceled")
         # Manually set order and booking to pending
         order.action_draft()
@@ -139,3 +139,80 @@ class SaleResourceBookingsCase(TransactionCase):
         # Confirming order, the booking is confirmed too
         order.action_confirm()
         self.assertEqual(booking.state, "confirmed")
+
+    def test_product_variant_booking_type(self):
+        """
+        FROM PRODUCT ATTRIBUTE VALUE
+        Create product attribute 1 with values 1A and 1B.
+        Create product attribute 2 with value 2A.
+        Create resource booking type and link to 1A and 2A.
+        Create product template with attribute values.
+        Check that only the variant with 1A and 2A got the booking type.
+
+        Remove attribute 2 from template.
+        Check that this does not affect the booking type on the variants.
+
+        FROM PRODUCT TEMPLATE
+        Set booking type on template.
+        Check it propagates to both variants (with / without previous booking type).
+        """
+        pa1 = self.env["product.attribute"].create({"name": "Attribute 1"})
+        pa2 = self.env["product.attribute"].create({"name": "Attribute 2"})
+        pav1a = self.env["product.attribute.value"].create(
+            {"attribute_id": pa1.id, "name": "1A"}
+        )
+        pav1b = self.env["product.attribute.value"].create(
+            {"attribute_id": pa1.id, "name": "1B"}
+        )
+        pav2a = self.env["product.attribute.value"].create(
+            {"attribute_id": pa2.id, "name": "2A"}
+        )
+        rbt = self.env["resource.booking.type"].create(
+            {
+                "name": "1A and 2A",
+                "product_attribute_value_ids": [Command.set([pav1a.id, pav2a.id])],
+            }
+        )
+        product_tmpl = self.env["product.template"].create(
+            {
+                "name": "Test Product",
+                "attribute_line_ids": [
+                    Command.create(
+                        {
+                            "attribute_id": pa1.id,
+                            "value_ids": [Command.set([pav1a.id, pav1b.id])],
+                        }
+                    ),
+                    Command.create(
+                        {"attribute_id": pa2.id, "value_ids": [Command.set([pav2a.id])]}
+                    ),
+                ],
+            }
+        )
+        # Test product with and without booking type
+        pp_pav_field = "product_template_attribute_value_ids.product_attribute_value_id"
+        pp1a = self.env["product.product"].search([(pp_pav_field, "in", pav1a.ids)])
+        self.assertEqual(pp1a.resource_booking_type_id.id, rbt.id)
+        pp1b = self.env["product.product"].search([(pp_pav_field, "in", pav1b.ids)])
+        self.assertEqual(pp1b.resource_booking_type_id.id, False)
+
+        # Remove pa2 from product_tmpl, check that booking type is not affected.
+        product_tmpl.write(
+            {
+                "attribute_line_ids": [
+                    Command.unlink(
+                        product_tmpl.attribute_line_ids.filtered(
+                            lambda l: l.attribute_id == pa2
+                        ).id
+                    )
+                ]
+            }
+        )
+        self.assertEqual(pp1a.resource_booking_type_id.id, rbt.id)
+        self.assertEqual(pp1b.resource_booking_type_id.id, False)
+
+        # Set booking type on template, check it propagates to variants
+        rbt2 = self.env["resource.booking.type"].create({"name": "Second RBT"})
+        product_tmpl.resource_booking_type_id = rbt2
+        self.assertEqual(pp1a.resource_booking_type_id.id, rbt2.id)
+        self.assertEqual(pp1b.resource_booking_type_id.id, rbt2.id)

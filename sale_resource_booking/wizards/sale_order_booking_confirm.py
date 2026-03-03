@@ -2,7 +2,6 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo import Command, api, fields, models
-from odoo.tests.common import Form
 
 
 class SaleOrderBookingConfirm(models.TransientModel):
@@ -34,17 +33,15 @@ class SaleOrderBookingConfirm(models.TransientModel):
     def action_invite(self):
         """Invite booking requesters."""
         for booking in self.resource_booking_ids:
-            share_f = Form(
-                self.env["portal.share"].with_context(
-                    active_id=booking.id,
-                    active_ids=booking.ids,
-                    active_model="resource.booking",
-                    default_note=booking.requester_advice,
-                    default_partner_ids=[Command.link(booking.partner_id.id)],
-                )
+            portal_share = self.env["portal.share"].create(
+                {
+                    "res_id": booking.id,
+                    "res_model": "resource.booking",
+                    "note": booking.requester_advice,
+                    "partner_ids": [Command.link(booking.partner_id.id)],
+                }
             )
-            share = share_f.save()
-            share.action_send_mail()
+            portal_share.action_send_mail()
         return {"type": "ir.actions.client", "tag": "reload"}
 
     def action_noop(self):

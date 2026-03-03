@@ -29,6 +29,12 @@ class ResourceBooking(models.Model):
             "the booking will not be able to become confirmed."
         ),
     )
+    product_id = fields.Many2one(
+        "product.product",
+        string="Product",
+        context="{'default_resource_booking_type_id': type_id}",
+        domain="[('resource_booking_type_id', '=', type_id)]",
+    )
 
     @api.depends(
         "active", "meeting_id.attendee_ids.state", "sale_order_line_id.order_id.state"

@@ -2,3 +2,5 @@
 
   * Jairo Llopis
   * Stefan Ungureanu
+
+* Henrik Norlin

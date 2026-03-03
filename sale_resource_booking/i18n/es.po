@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-22 10:26+0000\n"
+"POT-Creation-Date: 2026-03-03 17:43+0000\n"
 "PO-Revision-Date: 2021-04-22 11:29+0100\n"
 "Last-Translator: Jairo Llopis <jairo.llopis@tecnativa.com>\n"
 "Language-Team: \n"
@@ -31,14 +31,34 @@ msgstr ""
 "recursos faltantes en estado pendiente, o cancelará las sobrantes."
 
 #. module: sale_resource_booking
+#: model:ir.model,name:sale_resource_booking.model_product_attribute_value
+msgid "Attribute Value"
+msgstr ""
+
+#. module: sale_resource_booking
+#: model_terms:ir.ui.view,arch_db:sale_resource_booking.product_product_tree_view
+#, fuzzy
+msgid "Book"
+msgstr "Reservas/citas"
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_product_product__resource_booking_count
+#, fuzzy
+msgid "Booking Count"
+msgstr "Tipo de reserva/cita"
+
+#. module: sale_resource_booking
 #: model:ir.model.fields,field_description:sale_resource_booking.field_product_product__resource_booking_type_id
-#: model:ir.model.fields,field_description:sale_resource_booking.field_product_template__resource_booking_type_id
 #: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_sale__type_id
 msgid "Booking type"
 msgstr "Tipo de reserva/cita"
 
 #. module: sale_resource_booking
-#: code:addons/sale_resource_booking/models/sale_order.py:39
+#. odoo-python
+#: code:addons/sale_resource_booking/models/sale_order.py:0
+#: model:ir.model.fields,field_description:sale_resource_booking.field_product_product__resource_booking_ids
+#: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order_booking_confirm__resource_booking_ids
+#: model_terms:ir.ui.view,arch_db:sale_resource_booking.product_normal_form_view
 #: model_terms:ir.ui.view,arch_db:sale_resource_booking.view_order_form
 #, python-format
 msgid "Bookings"
@@ -99,9 +119,15 @@ msgid "Generate quotation"
 msgstr "Generar presupuesto"
 
 #. module: sale_resource_booking
-#: model_terms:ir.ui.view,arch_db:sale_resource_booking.resource_booking_type_form
+#: model_terms:ir.ui.view,arch_db:sale_resource_booking.resource_booking_type_view_form
 msgid "Generate quotation."
 msgstr "Generar presupuesto."
+
+#. module: sale_resource_booking
+#: model_terms:ir.ui.view,arch_db:sale_resource_booking.product_template_search_view
+#, fuzzy
+msgid "Has booking type"
+msgstr "Tipo de reserva/cita"
 
 #. module: sale_resource_booking
 #: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_sale__id
@@ -111,14 +137,12 @@ msgstr "ID (identificación)"
 
 #. module: sale_resource_booking
 #: model:ir.model.fields,help:sale_resource_booking.field_product_product__resource_booking_type_id
-#: model:ir.model.fields,help:sale_resource_booking.field_product_template__resource_booking_type_id
 msgid "If set, one pending booking will be generated when sold."
 msgstr ""
 "Si se establece, una reserva/cita pendiente se generará al ser vendido."
 
 #. module: sale_resource_booking
 #: model:ir.model.fields,help:sale_resource_booking.field_product_product__resource_booking_type_combination_rel_id
-#: model:ir.model.fields,help:sale_resource_booking.field_product_template__resource_booking_type_combination_rel_id
 msgid ""
 "If set, the booking will be created with this resource combination. "
 "Otherwise, the combination will be assigned automatically later, when the "
@@ -166,14 +190,51 @@ msgid "Order Reference"
 msgstr "Referencia del pedido"
 
 #. module: sale_resource_booking
+#: model:ir.model,name:sale_resource_booking.model_product_template
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking__product_id
 #: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_sale__product_id
 msgid "Product"
 msgstr "Producto"
 
 #. module: sale_resource_booking
-#: model:ir.model,name:sale_resource_booking.model_product_template
-msgid "Product Template"
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_type__product_attribute_value_ids
+msgid "Product Attribute Value"
+msgstr ""
+
+#. module: sale_resource_booking
+#: model:ir.actions.act_window,name:sale_resource_booking.product_attribute_action
+#: model:ir.ui.menu,name:sale_resource_booking.product_attribute_menu
+msgid "Product Attributes"
+msgstr ""
+
+#. module: sale_resource_booking
+#: model:ir.model,name:sale_resource_booking.model_product_product
+#, fuzzy
+msgid "Product Variant"
 msgstr "Plantilla de producto"
+
+#. module: sale_resource_booking
+#: model:ir.ui.menu,name:sale_resource_booking.product_product_menu
+#, fuzzy
+msgid "Product Variants"
+msgstr "Plantilla de producto"
+
+#. module: sale_resource_booking
+#: model:ir.actions.act_window,name:sale_resource_booking.product_product_action
+msgid "Product variants with a resource type"
+msgstr ""
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_type__product_ids
+#: model:ir.ui.menu,name:sale_resource_booking.product_template_menu
+#, fuzzy
+msgid "Products"
+msgstr "Producto"
+
+#. module: sale_resource_booking
+#: model:ir.actions.act_window,name:sale_resource_booking.product_template_action
+msgid "Products with a resource type"
+msgstr ""
 
 #. module: sale_resource_booking
 #: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_sale__product_uom_qty
@@ -181,7 +242,7 @@ msgid "Quantity"
 msgstr "Cantidad"
 
 #. module: sale_resource_booking
-#: model_terms:ir.ui.view,arch_db:sale_resource_booking.resource_booking_type_form
+#: model_terms:ir.ui.view,arch_db:sale_resource_booking.resource_booking_type_view_form
 msgid "Quote"
 msgstr "Presupuestar"
 
@@ -193,7 +254,15 @@ msgstr "Reserva de recursos"
 
 #. module: sale_resource_booking
 #: model:ir.model,name:sale_resource_booking.model_resource_booking_type
+#: model:ir.model.fields,field_description:sale_resource_booking.field_product_attribute_value__resource_booking_type_ids
+#: model:ir.model.fields,field_description:sale_resource_booking.field_product_template__resource_booking_type_id
 msgid "Resource Booking Type"
+msgstr "Tipo de reserva de recursos"
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_product_template__resource_booking_type_combination_rel_id
+#, fuzzy
+msgid "Resource Booking Type Combination Rel"
 msgstr "Tipo de reserva de recursos"
 
 #. module: sale_resource_booking
@@ -202,7 +271,6 @@ msgid "Resource Bookings"
 msgstr "Reservas de recursos"
 
 #. module: sale_resource_booking
-#: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order_booking_confirm__resource_booking_ids
 #: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order_line__resource_booking_ids
 #: model_terms:ir.ui.view,arch_db:sale_resource_booking.sale_order_booking_confirm_view_form
 msgid "Resource bookings"
@@ -215,14 +283,8 @@ msgstr "Cuenta de reservas de recursos"
 
 #. module: sale_resource_booking
 #: model:ir.model.fields,field_description:sale_resource_booking.field_product_product__resource_booking_type_combination_rel_id
-#: model:ir.model.fields,field_description:sale_resource_booking.field_product_template__resource_booking_type_combination_rel_id
 msgid "Resource combination"
 msgstr "Combinación de recursos"
-
-#. module: sale_resource_booking
-#: model:ir.model,name:sale_resource_booking.model_sale_order
-msgid "Sale Order"
-msgstr "Pedido de venta"
 
 #. module: sale_resource_booking
 #: model:ir.model,name:sale_resource_booking.model_resource_booking_sale
@@ -250,6 +312,12 @@ msgid "Sales"
 msgstr "Ventas"
 
 #. module: sale_resource_booking
+#: model:ir.model,name:sale_resource_booking.model_sale_order
+#, fuzzy
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_resource_booking
 #: model:ir.model,name:sale_resource_booking.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
@@ -263,3 +331,11 @@ msgstr "Guardar sin enviar invitaciones"
 #: model_terms:ir.ui.view,arch_db:sale_resource_booking.view_order_form
 msgid "Sync bookings"
 msgstr "Sincronizar reservas/citas"
+
+#. module: sale_resource_booking
+#: model:ir.model.fields,help:sale_resource_booking.field_resource_booking_type__product_attribute_value_ids
+msgid ""
+"The booking type will be set on new product variants which have this "
+"combination of attribute values. The combination must be unique per booking "
+"type."
+msgstr ""
