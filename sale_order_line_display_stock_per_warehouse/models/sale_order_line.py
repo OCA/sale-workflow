@@ -13,7 +13,7 @@ class SaleOrderLine(models.Model):
     )
 
     def _get_display_stock_qty(self, product, warehouse, stock_field):
-        return product.with_context(warehouse=warehouse.id)[stock_field]
+        return product.with_context(warehouse_id=warehouse.id)[stock_field]
 
     @api.depends("product_id")
     def _compute_stock_per_warehouse_info(self):
