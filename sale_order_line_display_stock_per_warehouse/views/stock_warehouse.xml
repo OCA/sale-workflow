@@ -3,15 +3,18 @@
 @author Kévin Roche <kevin.roche@akretion.com>
 License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 <odoo>
-<record id="view_warehouse" model="ir.ui.view">
-    <field name="model">stock.warehouse</field>
-    <field name="inherit_id" ref="stock.view_warehouse" />
-    <field name="arch" type="xml">
-        <xpath expr="//page[@name='warehouse_config']/group[last()]" position="after">
-            <group name="misc_configuration">
-                <field name="display_stock_on_sol" />
-            </group>
-        </xpath>
-    </field>
-</record>
+    <record id="view_warehouse" model="ir.ui.view">
+        <field name="model">stock.warehouse</field>
+        <field name="inherit_id" ref="stock.view_warehouse" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='warehouse_config']/group[last()]"
+                position="after"
+            >
+                <group name="misc_configuration">
+                    <field name="display_stock_on_sol" />
+                </group>
+            </xpath>
+        </field>
+    </record>
 </odoo>
