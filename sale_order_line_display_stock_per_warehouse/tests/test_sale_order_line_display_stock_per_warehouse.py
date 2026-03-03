@@ -2,13 +2,16 @@
 # @author Kévin Roche <kevin.roche@akretion.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import SavepointCase
+from odoo.tests import TransactionCase
+
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
 
 
-class TestSaleOrderLineDisplayStockPerWarehouse(SavepointCase):
+class TestSaleOrderLineDisplayStockPerWarehouse(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.company = cls.env.ref("base.main_company")
 
         cls.warehouse_1 = cls.env["stock.warehouse"].create(
@@ -31,23 +34,21 @@ class TestSaleOrderLineDisplayStockPerWarehouse(SavepointCase):
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Test Product",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
             }
         )
 
-        cls.env["stock.quant"].create(
-            {
-                "product_id": cls.product.id,
-                "location_id": cls.warehouse_1.lot_stock_id.id,
-                "quantity": 11,
-            }
+        cls.env["stock.quant"]._update_available_quantity(
+            cls.product,
+            cls.warehouse_1.lot_stock_id,
+            11,
         )
-        cls.env["stock.quant"].create(
-            {
-                "product_id": cls.product.id,
-                "location_id": cls.warehouse_2.lot_stock_id.id,
-                "quantity": 22,
-            }
+
+        cls.env["stock.quant"]._update_available_quantity(
+            cls.product,
+            cls.warehouse_2.lot_stock_id,
+            22,
         )
 
         cls.sale_order = cls.env["sale.order"].create(
@@ -112,10 +113,10 @@ class TestSaleOrderLineDisplayStockPerWarehouse(SavepointCase):
         self.env["ir.config_parameter"].sudo().set_param(
             "sale_order_line_stock_info.stock_field_on_sol", "virtual_available"
         )
-        self.sale_order_line.invalidate_cache(fnames=["stock_per_warehouse_info"])
+        self.sale_order_line.invalidate_recordset(["stock_per_warehouse_info"])
         self.assertIn("WH1: 16.0", self.sale_order_line.stock_per_warehouse_info)
         self.env["ir.config_parameter"].sudo().set_param(
             "sale_order_line_stock_info.stock_field_on_sol", "qty_available"
         )
-        self.sale_order_line.invalidate_cache(fnames=["stock_per_warehouse_info"])
+        self.sale_order_line.invalidate_recordset(["stock_per_warehouse_info"])
         self.assertIn("WH1: 11.0", self.sale_order_line.stock_per_warehouse_info)
