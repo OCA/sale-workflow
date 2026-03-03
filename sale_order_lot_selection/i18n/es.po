@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2020-07-27 10:19+0000\n"
-"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"PO-Revision-Date: 2026-03-03 18:45+0000\n"
+"Last-Translator: Víctor Martínez <victor.martinez@tecnativa.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.10\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_order_lot_selection
 #: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__domain_lot_id
@@ -34,7 +34,7 @@ msgstr "Lote"
 #. module: sale_order_lot_selection
 #: model_terms:ir.ui.view,arch_db:sale_order_lot_selection.view_order_tree_lot
 msgid "Lot:"
-msgstr ""
+msgstr "Lote:"
 
 #. module: sale_order_lot_selection
 #: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__product_tracking
@@ -63,6 +63,8 @@ msgid ""
 "You can't modify the Lot/Serial number because some stock move has already "
 "been done."
 msgstr ""
+"No se puede modificar el número de lote/serie porque ya se ha realizado "
+"algún movimiento de stock."
 
 #, python-format
 #~ msgid "Can't reserve products for lot %s"
