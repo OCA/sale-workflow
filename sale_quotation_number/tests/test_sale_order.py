@@ -26,13 +26,9 @@ class TestSaleOrder(TransactionCase):
         )
 
     def test_enumeration(self):
-        order1 = self.sale_order_model.create(
-            {"partner_id": self.env.ref("base.res_partner_1").id}
-        )
+        order1 = self.sale_order_model.create({"partner_id": self.partner.id})
         quotation1_name = order1.name
-        order2 = self.sale_order_model.create(
-            {"partner_id": self.env.ref("base.res_partner_1").id}
-        )
+        order2 = self.sale_order_model.create({"partner_id": self.partner.id})
         quotation2_name = order2.name
 
         self.assertRegex(quotation1_name, "SQ")
@@ -52,7 +48,7 @@ class TestSaleOrder(TransactionCase):
     def test_with_origin(self):
         origin = "origin"
         order1 = self.sale_order_model.create(
-            {"origin": origin, "partner_id": self.env.ref("base.res_partner_1").id}
+            {"origin": origin, "partner_id": self.partner.id}
         )
         quotation1_name = order1.name
         order1.action_confirm()
@@ -61,9 +57,7 @@ class TestSaleOrder(TransactionCase):
         self.assertEqual(order1.origin, ", ".join([origin, quotation1_name]))
 
     def test_copy_no_origin(self):
-        order1 = self.sale_order_model.create(
-            {"partner_id": self.env.ref("base.res_partner_1").id}
-        )
+        order1 = self.sale_order_model.create({"partner_id": self.partner.id})
         order_copy = order1.copy()
 
         self.assertEqual(order1.name, order_copy.origin)
@@ -71,7 +65,7 @@ class TestSaleOrder(TransactionCase):
     def test_copy_with_origin(self):
         origin = "origin"
         order1 = self.sale_order_model.create(
-            {"origin": origin, "partner_id": self.env.ref("base.res_partner_1").id}
+            {"origin": origin, "partner_id": self.partner.id}
         )
         order_copy = order1.copy()
 
@@ -79,7 +73,7 @@ class TestSaleOrder(TransactionCase):
 
     def test_error_confirmation_sequence(self):
         order = self.sale_order_model.create(
-            {"partner_id": self.env.ref("base.res_partner_1").id, "state": "sale"}
+            {"partner_id": self.partner.id, "state": "sale"}
         )
         # An exception is forced
         sequence_id = self.env["ir.sequence"].search(
@@ -109,6 +103,6 @@ class TestSaleOrder(TransactionCase):
 
     def test_create_with_specific_name(self):
         order = self.sale_order_model.create(
-            {"name": "CustomName", "partner_id": self.env.ref("base.res_partner_1").id}
+            {"name": "CustomName", "partner_id": self.partner.id}
         )
         self.assertEqual(order.name, "CustomName")
