@@ -1,1 +1,0 @@
-This module displays the date of receipt of the product on the sale order line when the product is no longer in stock and there is a purchase in progress
