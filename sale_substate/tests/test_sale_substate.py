@@ -61,6 +61,15 @@ class TestBaseSubstate(TransactionCase):
         self.assertTrue(so_test1.state == "sale")
         self.assertTrue(so_test1.substate_id == self.substate_valid_docs)
 
+        # manually change the substate; this one has a mail template
+        self.env.cr.flush()  # this is to post the messages (it's in after commit hook)
+        messages = so_test1.message_ids
+        so_test1.write({"substate_id": self.substate_in_delivery.id})
+        self.env.cr.flush()  # this is to post the messages (again)
+        new_messages = so_test1.message_ids - messages
+        expected_msg = "You order is being prepared for delivery."
+        self.assertTrue(expected_msg in "".join(new_messages.mapped("body")))
+
         # Test that substate_id is set to false if
         # there is not substate corresponding to state
         so_test1._action_cancel()
