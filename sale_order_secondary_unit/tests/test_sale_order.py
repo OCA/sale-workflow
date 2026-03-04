@@ -83,7 +83,9 @@ class TestSaleOrder(BaseCommon):
         self.order.order_line.secondary_uom_id.write({"dependency_type": "independent"})
 
         # Remember previous UoM quantity for avoiding interactions with other modules
-        previous_uom_qty = self.order.order_line.product_uom_qty
+        # Force product_uom_qty too to avoid that product_secondary_unit
+        # _compute_helper_target_field_qty break process when product_uom_qty == 0
+        previous_uom_qty = self.order.order_line.product_uom_qty = 9
         self.order.order_line.write({"secondary_uom_qty": 2})
         self.assertEqual(self.order.order_line.product_uom_qty, previous_uom_qty)
         self.assertEqual(self.order.order_line.secondary_uom_qty, 2)
