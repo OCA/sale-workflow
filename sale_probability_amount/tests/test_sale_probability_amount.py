@@ -2,14 +2,13 @@
 # @author Matthieu SAISON <matthieu.saison@akretion.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests import SavepointCase
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleProbabilityAmount(SavepointCase):
+class TestSaleProbabilityAmount(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.partner = cls.env["res.partner"].create({"name": "Test"})
         cls.product = cls.env["product.product"].create(
             {"name": "test_product", "type": "service"}
         )

@@ -5,7 +5,12 @@
         <field name="inherit_id" ref="sale.view_quotation_tree" />
         <field name="arch" type="xml">
             <field name="amount_total" position="after">
-                <field name="expected_amount_cur" sum="Total" widget="monetary" />
+                <field
+                    name="expected_amount_cur"
+                    sum="Total"
+                    widget="monetary"
+                    optional="hide"
+                />
                 <field name="probability" optional="hide" />
             </field>
         </field>
@@ -16,10 +21,7 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="order_line" position="after">
-                <group
-                    colspan="4"
-                    attrs="{'invisible':[('state', 'not in', ['draft', 'sent'])]}"
-                >
+                <group colspan="4" invisible="state not in ['draft', 'sent']">
                     <field name="probability" />
                 </group>
             </field>
