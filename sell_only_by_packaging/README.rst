@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ======================
 Sell Only By Packaging
 ======================
@@ -13,7 +17,7 @@ Sell Only By Packaging
 .. |badge1| image:: https://img.shields.io/badge/maturity-Alpha-red.png
     :target: https://odoo-community.org/page/development-status
     :alt: Alpha
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -37,12 +41,11 @@ sale.order.line does not fit with the configuration of the product's packagings.
 It's also possible to force the quantity to sell/return during creation/modification of the sale order line
 if the "Force sale quantity" is ticked on the packaging and the "Sell only by packaging" is ticked on product.
 
-For example, 
-- To sell packaging (fill positive product quantities), if your packaging is set to sell by 5 units and the employee fill
-the quantity with 3, the quantity will be automatically replaced by 5 (it always rounds up to the nearest multiple of the packaging quantity).
+For example,
 
-- To return packaging (fill negative product quantities), if your packaging is set with -5 units and the employee fill
-the quantity with -3, the quantity will be automatically replaced by -5 (it always rounds down to the nearest multiple of the packaging quantity).
+-   To sell packaging (fill positive product quantities), if your packaging is set to sell by 5 units and the employee fill the quantity with 3, the quantity will be automatically replaced by 5 (it always rounds up to the nearest multiple of the packaging quantity).
+
+-   To return packaging (fill negative product quantities), if your packaging is set with -5 units and the employee fill the quantity with -3, the quantity will be automatically replaced by -5 (it always rounds down to the nearest multiple of the packaging quantity).
 
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
