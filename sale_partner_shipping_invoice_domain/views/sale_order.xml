@@ -8,10 +8,6 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <field name="partner_shipping_id" position="after">
-                <field name="partner_invoice_id_domain" invisible="True" />
-                <field name="partner_shipping_id_domain" invisible="True" />
-            </field>
             <field name="partner_invoice_id" position="attributes">
                 <attribute name="domain">partner_invoice_id_domain</attribute>
             </field>
