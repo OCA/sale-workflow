@@ -21,8 +21,12 @@ class SaleOrder(models.Model):
         res = super()._create_delivery_line(carrier, price_unit)
         for line in self.order_line:
             line._compute_discount1()
-            line._compute_discount2()
-            line._compute_discount3()
+        return res
+
+    def _recompute_prices(self):
+        res = super()._recompute_prices()
+        lines_to_recompute = self._get_update_prices_lines()
+        lines_to_recompute._compute_discount1()
         return res
 
     @api.model
