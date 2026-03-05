@@ -318,3 +318,129 @@ class TestSaleDeliveryRequest(TransactionCase):
 
         dr.action_set_expired()
         self.assertFalse(so.has_valid_delivery_request)
+
+    # Post-confirmation delivery request (stock rescheduling)
+    def _confirm_so_with_dr(self, so, promised_date=None):
+        """Helper: create DR, confirm it, then confirm SO. Returns (dr, sol)."""
+        dr = self._create_delivery_request(so)
+        if promised_date is None:
+            promised_date = date.today() + timedelta(days=20)
+        dr.line_ids.write({"promised_date_absolute": promised_date})
+        dr.action_confirm()
+        so.action_confirm()
+        sol = so.order_line.filtered(lambda x: not x.display_type)
+        return dr, sol
+
+    def test_16_post_confirm_dr_reschedules_picking(self):
+        """A DR created after SO confirmation reschedules the picking."""
+        so = self._create_sale_order([(self.product1, 10)])
+        _dr, _sol = self._confirm_so_with_dr(so)
+
+        self.assertEqual(so.state, "sale")
+        original_picking = so.picking_ids.filtered(lambda p: p.state != "cancel")
+        self.assertTrue(original_picking)
+        original_date = original_picking.scheduled_date.date()
+
+        # Create a post-confirmation DR with a different date
+        new_promised = original_date + timedelta(days=15)
+        dr2 = self._create_delivery_request(so)
+        dr2.line_ids.write({"promised_date_absolute": new_promised})
+        dr2.action_confirm()
+
+        # The old picking should be cancelled, a new one created
+        active_pickings = so.picking_ids.filtered(lambda p: p.state != "cancel")
+        self.assertTrue(active_pickings)
+        self.assertNotEqual(
+            active_pickings[0].scheduled_date.date(),
+            original_date,
+        )
+
+    def test_17_post_confirm_dr_skips_if_same_date(self):
+        """Post-confirmation DR with same date and qty does not reschedule."""
+        so = self._create_sale_order([(self.product1, 10)])
+        promised = date.today() + timedelta(days=20)
+        _dr, _sol = self._confirm_so_with_dr(so, promised_date=promised)
+
+        original_picking = so.picking_ids.filtered(lambda p: p.state != "cancel")
+        original_picking_ids = original_picking.ids
+
+        # Create a post-confirmation DR with the same date
+        dr2 = self._create_delivery_request(so)
+        dr2.line_ids.write({"promised_date_absolute": promised})
+        dr2.action_confirm()
+
+        # Pickings should remain the same (no cancel+relaunch)
+        active_pickings = so.picking_ids.filtered(lambda p: p.state != "cancel")
+        self.assertEqual(active_pickings.ids, original_picking_ids)
+
+    def test_18_post_confirm_dr_split_creates_new_sols_and_pickings(self):
+        """Post-confirmation DR with split creates new SOLs and pickings."""
+        so = self._create_sale_order([(self.product1, 20)])
+        _dr, sol = self._confirm_so_with_dr(so)
+        self.assertEqual(len(sol), 1)
+
+        # Create post-confirmation DR and split
+        dr2 = self._create_delivery_request(so)
+        line = dr2.line_ids
+        action = line.action_split_quantity()
+        wizard = (
+            self.env[action["res_model"]]
+            .with_context(**action["context"])
+            .create({"split_qty": 8})
+        )
+        wizard.action_split()
+
+        sorted_lines = dr2.line_ids.sorted("quantity")
+        date1 = date.today() + timedelta(days=10)
+        date2 = date.today() + timedelta(days=30)
+        sorted_lines[0].promised_date_absolute = date1
+        sorted_lines[1].promised_date_absolute = date2
+
+        dr2.action_confirm()
+
+        # Should now have 2 SOLs (original + split)
+        sols = so.order_line.filtered(
+            lambda x: not x.display_type and x.product_id == self.product1
+        )
+        self.assertEqual(len(sols), 2)
+        sorted_sols = sols.sorted("product_uom_qty")
+        self.assertEqual(sorted_sols[0].product_uom_qty, 8)
+        self.assertEqual(sorted_sols[1].product_uom_qty, 12)
+
+        # Should have pickings with different dates
+        active_pickings = so.picking_ids.filtered(lambda p: p.state != "cancel")
+        self.assertEqual(len(active_pickings), 2)
+
+    def test_19_post_confirm_dr_skips_reserved_moves(self):
+        """Post-confirmation DR skips SOLs with reserved stock moves."""
+        so = self._create_sale_order([(self.product1, 10)])
+        _dr, _sol = self._confirm_so_with_dr(so)
+
+        # Put stock in and reserve the picking
+        self.env["stock.quant"]._update_available_quantity(
+            self.product1,
+            self.env.ref("stock.stock_location_stock"),
+            20,
+        )
+        active_picking = so.picking_ids.filtered(lambda p: p.state != "cancel")
+        active_picking.action_assign()
+        self.assertEqual(active_picking.state, "assigned")
+
+        # Create a post-confirmation DR. Should skip due to reserved moves
+        new_promised = date.today() + timedelta(days=40)
+        dr2 = self._create_delivery_request(so)
+        dr2.line_ids.write({"promised_date_absolute": new_promised})
+        dr2.action_confirm()
+
+        # The original picking should still be assigned (not cancelled)
+        self.assertEqual(active_picking.state, "assigned")
+
+    def test_20_post_confirm_dr_button_visible_on_confirmed_so(self):
+        """The Request Delivery Date button is available on confirmed SOs."""
+        so = self._create_sale_order([(self.product1, 10)])
+        _dr, _sol = self._confirm_so_with_dr(so)
+
+        # Should be able to create another DR
+        dr2 = self._create_delivery_request(so)
+        self.assertEqual(dr2.state, "pending")
+        self.assertEqual(dr2.sale_order_id, so)

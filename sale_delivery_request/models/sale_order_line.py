@@ -15,6 +15,19 @@ class SaleOrderLine(models.Model):
         "and should not be manually changed.",
     )
 
+    def _get_full_move_chain(self):
+        """
+        Return all stock moves in the full upstream move chain linked to this
+        sale order line.
+
+        ``move_ids`` only contains the moves directly linked via
+        ``sale_line_id``. Upstream moves are linked via ``move_orig_ids``.
+        ``_rollup_move_origs`` walks the full chain recursively.
+        """
+        self.ensure_one()
+        all_move_ids = self.move_ids._rollup_move_origs()
+        return self.env["stock.move"].browse(all_move_ids)
+
     def write(self, vals):
         if "commitment_date" in vals and not self.env.context.get(
             "from_delivery_request"

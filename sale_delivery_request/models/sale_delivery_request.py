@@ -257,8 +257,17 @@ class SaleDeliveryRequest(models.Model):
     def action_confirm(self):
         """
         Planning confirms all dates.
+
+        Pre-confirmation requests (SO not yet confirmed): apply dates to SO
+        lines and optionally auto-confirm the SO for priority requests.
+
+        Post-confirmation requests (SO already confirmed): apply dates and
+        reschedule stock moves via cancel+relaunch.
         """
-        for rec in self:
+        post_confirmation = self.filtered(lambda r: r.sale_order_id.state == "sale")
+        pre_confirmation = self - post_confirmation
+
+        for rec in pre_confirmation:
             if not rec.line_ids or not all(
                 line.promised_date_absolute for line in rec.line_ids
             ):
@@ -273,11 +282,34 @@ class SaleDeliveryRequest(models.Model):
             rec.state = "confirmed"
             rec.sale_order_id._apply_delivery_request_dates(rec)
             rec._notify_sale_order_followers()
-            # Auto-confirm the related SO when a priority request is confirmed
             if rec.is_priority_request:
                 order = rec.sale_order_id
                 if order.state in ("draft", "sent"):
                     order.action_confirm()
+
+        for rec in post_confirmation:
+            if not rec.line_ids or not all(
+                line.promised_date_absolute for line in rec.line_ids
+            ):
+                raise UserError(
+                    _(
+                        "All request lines must have a promised date "
+                        "before confirming."
+                    )
+                )
+            rec.response_datetime = fields.Datetime.now()
+            rec._compute_lines_offset()
+            rec.state = "confirmed"
+            rec.sale_order_id._apply_delivery_request_dates_stock(rec)
+            rec.sale_order_id.message_post(
+                body=_(
+                    "Delivery request %s confirmed. "
+                    "Commitment dates updated and stock pickings rescheduled.",
+                    rec.name,
+                ),
+                message_type="notification",
+                subtype_xmlid="mail.mt_comment",
+            )
 
     def _notify_sale_order_followers(self):
         """

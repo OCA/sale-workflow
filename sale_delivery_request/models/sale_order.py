@@ -2,6 +2,7 @@ from datetime import timedelta
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import float_compare
 
 
 class SaleOrder(models.Model):
@@ -107,7 +108,7 @@ class SaleOrder(models.Model):
         """
         notification_params = self._get_expired_dr_notification()
         if notification_params:
-            notification_params = {
+            notification_params["next"] = {
                 "type": "ir.actions.client",
                 "tag": "soft_reload",
             }
@@ -311,6 +312,223 @@ class SaleOrder(models.Model):
                     }
                 )
                 req_line.sale_order_line_id = new_sol
+
+    def _sol_needs_reschedule(self, sol, target_date, target_qty):
+        """
+        Return True if the SOL's existing active outbound move differs from the
+        target date or target quantity, meaning a cancel+relaunch is needed.
+
+        ``target_date`` is a ``date`` object (or False).
+        ``target_qty``  is a float in the SOL's UoM (or False to skip qty check).
+
+        Comparison rules:
+        - Date: compare at date level (ignore time component).
+        - Qty:  compare using Product Unit of Measure precision.
+        If no active outbound move exists, always reschedule (procurement not yet run).
+        """
+        precision = self.env["decimal.precision"].precision_get(
+            "Product Unit of Measure"
+        )
+        active_out_moves = sol.move_ids.filtered(
+            lambda m: m.state not in ("cancel", "done")
+            and m.location_dest_id.usage == "customer"
+        )
+        if not active_out_moves:
+            return True
+
+        if target_date:
+            for move in active_out_moves:
+                move_date = move.date_deadline.date() if move.date_deadline else False
+                if move_date != target_date:
+                    return True
+
+        if target_qty is not False:
+            total_out_qty = sum(
+                m.product_uom._compute_quantity(
+                    m.product_uom_qty, sol.product_uom, rounding_method="HALF-UP"
+                )
+                for m in active_out_moves
+            )
+            if (
+                float_compare(total_out_qty, target_qty, precision_digits=precision)
+                != 0
+            ):
+                return True
+
+        return False
+
+    def _cancel_move_chain(self, sol):
+        """
+        Cancel all cancellable moves in the full move chain of a SOL
+        and return the pickings that were affected.
+
+        Returns (True, affected_pickings) if the chain was clean, or
+        (False, empty) if reserved moves were found and the SOL must be skipped.
+        """
+        full_chain = sol._get_full_move_chain()
+        if full_chain.filtered(
+            lambda m: m.state in ("assigned", "partially_available")
+        ):
+            return False, self.env["stock.picking"]
+        cancellable = full_chain.filtered(
+            lambda m: m.state in ("draft", "waiting", "confirmed")
+        )
+        affected_pickings = cancellable.picking_id
+        if cancellable:
+            cancellable._action_cancel()
+        return True, affected_pickings
+
+    def _apply_delivery_request_dates_stock(self, delivery_request):
+        """
+        Apply new delivery dates from a post-confirmation delivery request.
+
+        Decision logic per SOL group:
+
+        No-split (1 DR line → 1 SOL):
+          - If the existing outbound move already has the same date AND qty → skip.
+          - Otherwise: cancel full move chain + update commitment_date + relaunch
+            into new pickings.
+
+        Split (multiple DR lines → same original SOL):
+          - The original SOL qty always changes, so always cancel the full chain.
+          - Keep the original SOL for the largest-qty group.
+          - Create new SOLs for every other group.
+          - Relaunch all resulting SOLs into new pickings.
+          - Exception: if a resulting SOL's date+qty already matches its existing
+            moves (e.g. the "keep" group is unchanged), skip relaunch for it.
+        """
+        self.ensure_one()
+        confirmation_dt = fields.Datetime.now()
+        lines_to_relaunch = self.env["sale.order.line"]
+        skipped_products = []
+
+        sol_groups = {}
+        for req_line in delivery_request.line_ids:
+            sol = req_line.sale_order_line_id
+            if not sol or sol.state != "sale":
+                continue
+            sol_groups.setdefault(sol.id, []).append(req_line)
+
+        pickings_to_fence = self.env["stock.picking"]
+
+        for _sol_id, req_lines in sol_groups.items():
+            sol = req_lines[0].sale_order_line_id
+
+            if sol._get_full_move_chain().filtered(
+                lambda m: m.state in ("assigned", "partially_available")
+            ):
+                skipped_products.append(sol.product_id.display_name)
+                continue
+
+            if len(req_lines) == 1:
+                req_line = req_lines[0]
+                final_date = self._compute_delivery_request_final_date(
+                    delivery_request,
+                    req_line.business_days_offset,
+                    confirmation_dt=confirmation_dt,
+                )
+                if not self._sol_needs_reschedule(sol, final_date, req_line.quantity):
+                    continue
+
+                ok, affected = self._cancel_move_chain(sol)
+                if not ok:
+                    skipped_products.append(sol.product_id.display_name)
+                    continue
+                pickings_to_fence |= affected
+
+                if final_date:
+                    sol.with_context(
+                        skip_sol_reschedule=True, from_delivery_request=True
+                    ).write(
+                        {"commitment_date": fields.Datetime.to_datetime(final_date)}
+                    )
+                lines_to_relaunch |= sol
+
+            else:
+                ok, affected = self._cancel_move_chain(sol)
+                if not ok:
+                    skipped_products.append(sol.product_id.display_name)
+                    continue
+                pickings_to_fence |= affected
+
+                req_lines_sorted = sorted(
+                    req_lines, key=lambda x: x.quantity, reverse=True
+                )
+                keep_req, split_reqs = req_lines_sorted[0], req_lines_sorted[1:]
+
+                keep_date = self._compute_delivery_request_final_date(
+                    delivery_request,
+                    keep_req.business_days_offset,
+                    confirmation_dt=confirmation_dt,
+                )
+                sol.with_context(
+                    skip_sol_reschedule=True,
+                    skip_procurement=True,
+                    from_delivery_request=True,
+                ).write(
+                    {
+                        "product_uom_qty": keep_req.quantity,
+                        "commitment_date": fields.Datetime.to_datetime(keep_date)
+                        if keep_date
+                        else False,
+                    }
+                )
+                lines_to_relaunch |= sol
+
+                for req_line in split_reqs:
+                    split_date = self._compute_delivery_request_final_date(
+                        delivery_request,
+                        req_line.business_days_offset,
+                        confirmation_dt=confirmation_dt,
+                    )
+                    new_sol = sol.with_context(
+                        skip_procurement=True, from_delivery_request=True
+                    ).copy(
+                        {
+                            "order_id": self.id,
+                            "product_uom_qty": req_line.quantity,
+                            "commitment_date": fields.Datetime.to_datetime(split_date)
+                            if split_date
+                            else False,
+                        }
+                    )
+                    req_line.sale_order_line_id = new_sol
+                    lines_to_relaunch |= new_sol
+
+        if skipped_products:
+            self.message_post(
+                body=_(
+                    "The following sale order lines could not be rescheduled "
+                    "because their stock moves are already reserved: %s. "
+                    "Please unreserve the related pickings first.",
+                    ", ".join(skipped_products),
+                ),
+                message_type="notification",
+                subtype_xmlid="mail.mt_note",
+            )
+
+        if lines_to_relaunch:
+            # Fence all open pickings in the procurement groups of the lines
+            # being relaunched. This prevents _search_picking_for_assignation
+            # from merging relaunched moves into existing pickings that have a
+            # different scheduled date.
+            relaunch_groups = lines_to_relaunch.mapped("order_id.procurement_group_id")
+            all_group_pickings = self.env["stock.picking"].search(
+                [
+                    ("group_id", "in", relaunch_groups.ids),
+                    ("state", "not in", ("cancel", "done")),
+                ]
+            )
+            open_to_fence = (pickings_to_fence | all_group_pickings).filtered(
+                lambda p: p.state not in ("cancel", "done")
+            )
+            if open_to_fence:
+                open_to_fence.write({"printed": True})
+            try:
+                lines_to_relaunch._action_launch_stock_rule()
+            finally:
+                if open_to_fence:
+                    open_to_fence.write({"printed": False})
 
     @staticmethod
     def _add_business_days_simple(start_date, days):

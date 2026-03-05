@@ -31,7 +31,7 @@
                     string="Request Delivery Date"
                     type="object"
                     class="btn-secondary"
-                    invisible="state not in ('draft', 'sent') or has_delivery_request"
+                    invisible="state not in ('draft', 'sent', 'sale') or (state in ('draft', 'sent') and has_delivery_request)"
                 />
             </xpath>
         </field>
