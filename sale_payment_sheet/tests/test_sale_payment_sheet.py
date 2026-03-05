@@ -63,8 +63,9 @@ class TestSaleInvoicePayment(AccountTestInvoicingCommon):
                 active_ids=(self.invoice1 + self.invoice2).ids,
             )
         )
-        wiz_form.amount = 150.00
         wiz = wiz_form.save()
+        wiz.wiz_line_ids.is_selected = True
+        wiz.amount = 150.00
         self.assertEqual(wiz.partner_id, self.partner)
         self.assertEqual(wiz.journal_id, self.journal_cash_user)
         self.assertEqual(len(wiz.wiz_line_ids), 2)

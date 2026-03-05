@@ -103,17 +103,17 @@ Authors
 Contributors
 ------------
 
--  `Tecnativa <https://www.tecnativa.com/>`__:
+- `Tecnativa <https://www.tecnativa.com/>`__:
 
-   -  Carlos Dauden
-   -  Sergio Teruel
-   -  César A. Sánchez
-   -  Carolina Fernandez
-   -  Víctor Martínez
+  - Carlos Dauden
+  - Sergio Teruel
+  - César A. Sánchez
+  - Carolina Fernandez
+  - Víctor Martínez
 
--  `APSL-Nagarro <https://apsl.tech>`__:
+- `APSL-Nagarro <https://apsl.tech>`__:
 
-   -  Antoni Marroig <amarroig@apsl.net>
+  - Antoni Marroig <amarroig@apsl.net>
 
 Maintainers
 -----------
