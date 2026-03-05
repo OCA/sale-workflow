@@ -4,49 +4,28 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    discount1 = fields.Float(compute="_compute_discount1", store=True, readonly=False)
-    discount2 = fields.Float(compute="_compute_discount2", store=True, readonly=False)
-    discount3 = fields.Float(compute="_compute_discount3", store=True, readonly=False)
+    discount1 = fields.Float(
+        compute="_compute_discount1", store=True, readonly=False, precompute=True
+    )
+    discount2 = fields.Float(
+        compute="_compute_discount1", store=True, readonly=False, precompute=True
+    )
+    discount3 = fields.Float(
+        compute="_compute_discount1", store=True, readonly=False, precompute=True
+    )
+    _set_general_discount_in_compute_discount = False
 
     @api.depends("product_id", "product_uom", "product_uom_qty")
     def _compute_discount1(self):
+        res = super()._compute_discount1()
         pricelist_discount = self._get_discount_field_position("pricelist_discount")
         general_discount = self._get_discount_field_position("general_discount")
-        if "discount1" not in [pricelist_discount, general_discount]:
-            self.update({"discount1": 0.0})
-            return
         for line in self:
-            if pricelist_discount == "discount1":
-                line.update({"discount1": line._get_pricelist_discount()})
-            elif general_discount == "discount1":
-                line.update({"discount1": line.order_id.general_discount})
-        return
-
-    @api.depends("product_id", "product_uom", "product_uom_qty")
-    def _compute_discount2(self):
-        pricelist_discount = self._get_discount_field_position("pricelist_discount")
-        general_discount = self._get_discount_field_position("general_discount")
-        if "discount2" not in [pricelist_discount, general_discount]:
-            self.update({"discount2": 0.0})
-            return
-        for line in self:
-            if pricelist_discount == "discount2":
-                line.update({"discount2": line._get_pricelist_discount()})
-            elif general_discount == "discount2":
-                line.update({"discount2": line.order_id.general_discount})
-
-    @api.depends("product_id", "product_uom", "product_uom_qty")
-    def _compute_discount3(self):
-        pricelist_discount = self._get_discount_field_position("pricelist_discount")
-        general_discount = self._get_discount_field_position("general_discount")
-        if "discount3" not in [pricelist_discount, general_discount]:
-            self.update({"discount3": 0.0})
-            return
-        for line in self:
-            if pricelist_discount == "discount3":
-                line.update({"discount3": line._get_pricelist_discount()})
-            elif general_discount == "discount3":
-                line.update({"discount3": line.order_id.general_discount})
+            if pricelist_discount:
+                line.update({pricelist_discount: line._get_pricelist_discount()})
+            if general_discount:
+                line.update({general_discount: line.order_id.general_discount})
+        return res
 
     def _get_pricelist_discount(self):
         if not self.product_id or self.display_type:
