@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2025 - TODAY, Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
+    License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
+-->
+<odoo>
+    <template
+        id="report_saleorder_document_invoice_plan"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <!-- Add invoice plan section after the main order table -->
+        <xpath
+            expr="//div[hasclass('clearfix') and @name='so_total_summary']"
+            position="before"
+        >
+            <t t-if="doc.use_invoice_plan and doc.invoice_plan_ids">
+                <div class="mt-4" name="invoice_plan_section">
+                    <h4>Invoice Plan</h4>
+                    <table class="table table-sm o_main_table table-borderless">
+                        <thead style="display: table-row-group">
+                            <tr>
+                                <th
+                                    name="th_installment"
+                                    class="text-start"
+                                >Installment</th>
+                                <th name="th_date" class="text-start">Date</th>
+                                <th
+                                    name="th_percentage"
+                                    class="text-end"
+                                >Percentage</th>
+                                <th name="th_amount" class="text-end">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="doc.invoice_plan_ids" t-as="plan_line">
+                                <tr>
+                                    <td name="td_installment" class="text-start">
+                                        <span t-field="plan_line.installment" />
+                                    </td>
+                                    <td name="td_date" class="text-start">
+                                        <span
+                                            t-field="plan_line.plan_date"
+                                            t-options='{"widget": "date"}'
+                                        />
+                                    </td>
+                                    <td name="td_percentage" class="text-end">
+                                        <span t-field="plan_line.percent" />% </td>
+                                    <td name="td_amount" class="text-end">
+                                        <span
+                                            t-field="plan_line.amount"
+                                            t-options='{"widget": "monetary", "display_currency": doc.pricelist_id.currency_id}'
+                                        />
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>
