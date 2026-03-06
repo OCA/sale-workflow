@@ -226,3 +226,13 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
                 },
             ],
         )
+
+    def test_sale_elaboration_done_move_changes(self):
+        self.order.action_confirm()
+        self.order.picking_ids.move_ids.quantity = 10.0
+        self.order.picking_ids.move_ids.picked = True
+        self.order.picking_ids._action_done()
+        self.order.picking_ids.move_ids.quantity = 15.0
+        elaboration_lines = self.order.order_line.filtered("is_elaboration")
+        self.assertEqual(len(elaboration_lines), 1)
+        self.assertEqual(elaboration_lines.product_uom_qty, 15.0)
