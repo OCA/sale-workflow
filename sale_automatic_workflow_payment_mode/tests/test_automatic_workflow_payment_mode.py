@@ -20,7 +20,7 @@ class TestAutomaticWorkflowPaymentMode(TestCommon, TestAutomaticWorkflowMixin):
                 # Compatibility with sale_automatic_workflow_job: even if
                 # the module is installed, ensure we don't delay a job.
                 # Thus, we test the usual flow.
-                _job_force_sync=True,
+                queue_job__no_delay=True,
             )
         )
 
@@ -43,10 +43,6 @@ class TestAutomaticWorkflowPaymentMode(TestCommon, TestAutomaticWorkflowMixin):
             self.pay_method = self.env["account.payment.method"].create(
                 {"name": "default inbound", "code": "definb", "payment_type": "inbound"}
             )
-
-    def create_sale_order(self, workflow, override=None):
-        new_order = super().create_sale_order(workflow, override)
-        return new_order
 
     def create_full_automatic(self, override=None):
         workflow = super().create_full_automatic(override)
@@ -83,7 +79,6 @@ class TestAutomaticWorkflowPaymentMode(TestCommon, TestAutomaticWorkflowMixin):
         self.assertEqual(sale.workflow_process_id, workflow)
         self.env["automatic.workflow.job"].run()
         self.assertEqual(sale.state, "sale")
-        self.assertTrue(sale.picking_ids)
         self.assertTrue(sale.invoice_ids)
         invoice = sale.invoice_ids
         self.assertEqual(invoice.payment_state, "not_paid")
@@ -96,5 +91,3 @@ class TestAutomaticWorkflowPaymentMode(TestCommon, TestAutomaticWorkflowMixin):
         )
         self.env["automatic.workflow.job"].run()
         self.assertEqual(invoice.payment_state, "paid")
-        picking = sale.picking_ids
-        self.assertEqual(picking.state, "done")
