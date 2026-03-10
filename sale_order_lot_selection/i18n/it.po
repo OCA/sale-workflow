@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-02-26 09:59+0000\n"
-"PO-Revision-Date: 2026-01-29 12:09+0000\n"
+"PO-Revision-Date: 2026-03-10 12:45+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/it/)\n"
@@ -54,7 +54,7 @@ msgstr "Riga ordine di vendita"
 #. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_stock_move
 msgid "Stock Move"
-msgstr "Movimenti magazzino"
+msgstr "Movimento di magazzino"
 
 #. module: sale_order_lot_selection
 #. odoo-python
