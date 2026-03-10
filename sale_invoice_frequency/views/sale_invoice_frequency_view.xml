@@ -6,7 +6,10 @@
         <field name="name">Invoicing frequency</field>
         <field name="res_model">sale.invoice.frequency</field>
         <field name="view_mode">list,form</field>
-        <field name="groups_id" eval="[(4, ref('account.group_account_invoice'))]" />
+        <field
+            name="group_ids"
+            eval="[(Command.link(ref('account.group_account_invoice')))]"
+        />
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
             Create a new invoicing frequency record
