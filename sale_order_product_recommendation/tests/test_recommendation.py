@@ -22,11 +22,9 @@ class RecommendationCaseTests(RecommendationCase):
                 {
                     "product_id": self.prod_1.id,
                     "product_uom_qty": 3,
-                    "qty_delivered_method": "manual",
                 },
             )
         ]
-        self.new_so.order_line._onchange_product_id_warning()
         wizard = self.wizard()
         # Order came in from context
         self.assertEqual(wizard.order_id, self.new_so)
@@ -154,7 +152,7 @@ class RecommendationCaseTests(RecommendationCase):
             self.browse_ref, ["uom.product_uom_unit", "uom.product_uom_dozen"]
         )
         # Salesperson needs uom access
-        self.env.user.groups_id |= self.env.ref("uom.group_uom")
+        self.env.user.group_ids |= self.env.ref("uom.group_uom")
         # Add 2 dozens of product 2
         wizard = self.wizard()
         with Form(wizard) as wizard_f:
@@ -170,7 +168,7 @@ class RecommendationCaseTests(RecommendationCase):
             [
                 {
                     "product_id": self.prod_2.id,
-                    "product_uom": dozen.id,
+                    "product_uom_id": dozen.id,
                     "product_uom_qty": 2,
                 }
             ],
@@ -190,7 +188,7 @@ class RecommendationCaseTests(RecommendationCase):
             [
                 {
                     "product_id": self.prod_2.id,
-                    "product_uom": unit.id,
+                    "product_uom_id": unit.id,
                     "product_uom_qty": 10,
                 }
             ],
@@ -222,7 +220,7 @@ class RecommendationCaseTests(RecommendationCase):
         wizard.action_accept()
         self.assertEqual(len(self.new_so.order_line), 1)
         self.assertEqual(self.new_so.order_line.product_id, self.prod_1)
-        self.assertEqual(self.new_so.order_line.product_uom, self.prod_1.uom_id)
+        self.assertEqual(self.new_so.order_line.product_uom_id, self.prod_1.uom_id)
         self.assertEqual(self.new_so.order_line.product_uom_qty, qty)
         # No we confirm the SO
         self.new_so.action_confirm()

@@ -5,9 +5,9 @@
 import logging
 from datetime import datetime, timedelta
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
-from odoo.osv import expression
+from odoo.fields import Domain
 from odoo.tools import float_compare
 from odoo.tools.safe_eval import safe_eval
 
@@ -103,7 +103,7 @@ class SaleOrderRecommendation(models.TransientModel):
         if "is_delivery" in self.env["sale.order.line"]._fields:
             domain.append(("is_delivery", "=", False))
         extended_domain = self._extended_recommendable_sale_order_lines_domain()
-        domain = expression.AND([domain, extended_domain])
+        domain = Domain.AND([domain, extended_domain])
         return domain
 
     def _prepare_recommendation_line_vals(self, group_line, so_line=False):
@@ -190,7 +190,9 @@ class SaleOrderRecommendation(models.TransientModel):
         )
         if not self.line_ids:
             raise UserError(
-                _("Nothing found! Modify your criteria or fill the order manually.")
+                self.env._(
+                    "Nothing found! Modify your criteria or fill the order manually."
+                )
             )
         # Reopen wizard
         return self._reopen_wizard()
@@ -250,9 +252,6 @@ class SaleOrderRecommendationLine(models.TransientModel):
         related="product_id.is_favorite", store=True, readonly=False
     )
     product_uom_readonly = fields.Boolean(related="sale_line_id.product_uom_readonly")
-    product_uom_category_id = fields.Many2one(
-        related="product_id.uom_id.category_id", depends=["product_id"]
-    )
     price_unit = fields.Monetary(compute="_compute_price_unit")
     pricelist_id = fields.Many2one(related="wizard_id.order_id.pricelist_id")
     times_delivered = fields.Integer(readonly=True)
@@ -272,13 +271,14 @@ class SaleOrderRecommendationLine(models.TransientModel):
         compute="_compute_sale_uom_id",
         store=True,
         readonly=False,
-        domain="[('category_id', '=', product_uom_category_id)]",
     )
 
     @api.depends("sale_line_id", "product_id")
     def _compute_sale_uom_id(self):
         for line in self:
-            line.sale_uom_id = line.sale_line_id.product_uom or line.product_id.uom_id
+            line.sale_uom_id = (
+                line.sale_line_id.product_uom_id or line.product_id.uom_id
+            )
 
     @api.depends(
         "partner_id",
@@ -292,7 +292,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
         Get product price unit from product list price or from last sale price
         """
         price_origin = (
-            fields.first(self).wizard_id.sale_recommendation_price_origin or "pricelist"
+            self[:1].wizard_id.sale_recommendation_price_origin or "pricelist"
         )
         for line in self:
             if price_origin == "pricelist":
@@ -307,7 +307,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
         wiz_qty = self.sale_uom_id._compute_quantity(
             self.units_included, self.product_id.uom_id
         )
-        so_qty = self.sale_line_id.product_uom._compute_quantity(
+        so_qty = self.sale_line_id.product_uom_id._compute_quantity(
             self.sale_line_id.product_uom_qty, self.product_id.uom_id
         )
         # Skip update if quantities are equal
@@ -320,7 +320,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
             return {}
         vals = {"product_uom_qty": self.units_included}
         if not self.product_uom_readonly:
-            vals["product_uom"] = self.sale_uom_id.id
+            vals["product_uom_id"] = self.sale_uom_id.id
         return vals
 
     def _prepare_new_so_line_vals(self, sequence):
@@ -331,7 +331,7 @@ class SaleOrderRecommendationLine(models.TransientModel):
             "order_id": self.wizard_id.order_id.id,
         }
         if not self.product_uom_readonly:
-            vals["product_uom"] = self.sale_uom_id.id
+            vals["product_uom_id"] = self.sale_uom_id.id
         if self.wizard_id.sale_recommendation_price_origin == "last_sale_price":
             vals["price_unit"] = self.price_unit
         return vals
