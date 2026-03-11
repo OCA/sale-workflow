@@ -28,6 +28,16 @@ class SaleDeliveryRequest(models.Model):
         ondelete="cascade",
         index=True,
     )
+    partner_id = fields.Many2one(
+        related="sale_order_id.partner_id",
+        store=True,
+        index=True,
+    )
+    sale_order_state = fields.Selection(
+        related="sale_order_id.state",
+        store=True,
+        string="Sale Order Status",
+    )
     company_id = fields.Many2one(
         related="sale_order_id.company_id",
         store=True,
@@ -79,20 +89,21 @@ class SaleDeliveryRequest(models.Model):
         store=True,
     )
     response_delay_hours = fields.Float(
-        string="Response Delay (hours)",
+        string="Response Delay",
         compute="_compute_response_delay_hours",
         store=True,
+        group_operator="avg",
     )
     line_ids = fields.One2many(
         comodel_name="sale.delivery.request.line",
         inverse_name="delivery_request_id",
         string="Request Lines",
     )
-    user_id = fields.Many2one(
+    user_ids = fields.Many2many(
         comodel_name="res.users",
-        string="Responsible",
+        relation="sale_delivery_request_user_rel",
+        string="Responsibles",
         tracking=True,
-        index=True,
     )
 
     @api.model_create_multi
@@ -113,7 +124,7 @@ class SaleDeliveryRequest(models.Model):
             )
             and not self.env.su
         ):
-            allowed = {"user_id"}
+            allowed = {"user_ids"}
             forbidden = set(vals.keys()) - allowed
             if forbidden:
                 raise UserError(
@@ -122,32 +133,46 @@ class SaleDeliveryRequest(models.Model):
                         ", ".join(sorted(forbidden)),
                     )
                 )
+        if "user_ids" in vals:
+            old_users = {rec.id: rec.user_ids for rec in self}
             res = super().write(vals)
+            for rec in self:
+                new_users = rec.user_ids - old_users.get(rec.id, self.env["res.users"])
+                if new_users:
+                    rec._notify_new_responsible(new_users)
         else:
             res = super().write(vals)
-        if "user_id" in vals:
-            self._notify_responsible()
         return res
 
     def _notify_responsible(self):
         """
-        Add the responsible as follower and send a notification.
+        Add all responsibles as followers and send a notification.
+        Called from create() to notify all assigned users.
         """
         for rec in self:
-            if not rec.user_id:
+            if not rec.user_ids:
                 continue
-            partner = rec.user_id.partner_id
-            if partner not in rec.message_partner_ids:
-                rec.message_subscribe(partner_ids=partner.ids)
-            rec.message_post(
-                body=_(
-                    "You have been assigned as responsible "
-                    "for this delivery request."
-                ),
-                partner_ids=partner.ids,
-                message_type="notification",
-                subtype_xmlid="mail.mt_note",
-            )
+            rec._notify_new_responsible(rec.user_ids)
+
+    def _notify_new_responsible(self, users):
+        """
+        Add the given users as followers and send them a notification.
+        Called from write() with only newly added users to avoid
+        re-notifying existing responsibles.
+        """
+        self.ensure_one()
+        partners = users.mapped("partner_id")
+        new_partners = partners - self.message_partner_ids
+        if new_partners:
+            self.message_subscribe(partner_ids=new_partners.ids)
+        self.message_post(
+            body=_(
+                "You have been assigned as responsible " "for this delivery request."
+            ),
+            partner_ids=partners.ids,
+            message_type="notification",
+            subtype_xmlid="mail.mt_note",
+        )
 
     @api.onchange("sale_order_id")
     def _onchange_sale_order_id(self):

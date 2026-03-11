@@ -80,13 +80,6 @@ class TestSaleDeliveryRequest(TransactionCase):
         with self.assertRaises(UserError):
             so.action_request_delivery_date()
 
-    def test_02_so_has_delivery_request_flag(self):
-        """has_delivery_request is set after creating a DR."""
-        so = self._create_sale_order()
-        self.assertFalse(so.has_delivery_request)
-        self._create_delivery_request(so)
-        self.assertTrue(so.has_delivery_request)
-
     # DR confirmation and commitment_date
     def test_03_confirm_dr_sets_commitment_date_on_sol(self):
         """When a DR is confirmed, commitment_date is populated on SOLs."""
@@ -301,23 +294,6 @@ class TestSaleDeliveryRequest(TransactionCase):
 
         dr.action_set_expired()
         self.assertEqual(dr.state, "expired")
-
-    # has_valid_delivery_request
-    def test_15_has_valid_delivery_request(self):
-        """has_valid_delivery_request reflects confirmed DR state."""
-        so = self._create_sale_order([(self.product1, 10)])
-        self.assertFalse(so.has_valid_delivery_request)
-
-        dr = self._create_delivery_request(so)
-        self.assertFalse(so.has_valid_delivery_request)
-
-        promised = date.today() + timedelta(days=20)
-        dr.line_ids.write({"promised_date_absolute": promised})
-        dr.action_confirm()
-        self.assertTrue(so.has_valid_delivery_request)
-
-        dr.action_set_expired()
-        self.assertFalse(so.has_valid_delivery_request)
 
     # Post-confirmation delivery request (stock rescheduling)
     def _confirm_so_with_dr(self, so, promised_date=None):

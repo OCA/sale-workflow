@@ -12,7 +12,9 @@
                 <field name="priority" widget="priority" nolabel="1" />
                 <field name="name" />
                 <field name="sale_order_id" />
-                <field name="user_id" widget="many2one_avatar_user" />
+                <field name="sale_order_state" optional="show" />
+                <field name="partner_id" />
+                <field name="user_ids" widget="many2many_avatar_user" />
                 <field name="request_datetime" />
                 <field name="response_datetime" />
                 <field name="response_delay_hours" widget="float_time" />
@@ -89,7 +91,7 @@
                         <group>
                             <field name="sale_order_id" readonly="state != 'draft'" />
                             <field name="is_priority_request" invisible="1" />
-                            <field name="user_id" widget="many2one_avatar_user" />
+                            <field name="user_ids" widget="many2many_avatar_user" />
                         </group>
                         <group>
                             <field name="request_datetime" />
@@ -164,6 +166,8 @@
             <search>
                 <field name="name" />
                 <field name="sale_order_id" />
+                <field name="partner_id" />
+                <field name="user_ids" />
                 <field name="priority" />
                 <separator />
                 <filter
@@ -214,9 +218,14 @@
                         context="{'group_by': 'priority'}"
                     />
                     <filter
-                        name="groupby_user"
-                        string="Responsible"
-                        context="{'group_by': 'user_id'}"
+                        name="groupby_partner"
+                        string="Customer"
+                        context="{'group_by': 'partner_id'}"
+                    />
+                    <filter
+                        name="groupby_sale_order_state"
+                        string="Sale Order Status"
+                        context="{'group_by': 'sale_order_state'}"
                     />
                 </group>
             </search>

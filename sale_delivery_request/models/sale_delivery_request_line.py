@@ -73,7 +73,99 @@ class SaleDeliveryRequestLine(models.Model):
                 lambda x, sol=sol, line_id=line_id: x.sale_order_line_id == sol
                 and x.id != line_id
             )
-            line.can_be_merged = bool(siblings)
+            if siblings:
+                line.can_be_merged = True
+            elif (
+                line.state in ("draft", "pending")
+                and line.sale_order_id.state != "sale"
+            ):
+                # Cross-DR merge is only available when the SO is not
+                # confirmed, because merging requires deleting split SOLs.
+                line.can_be_merged = line._has_cross_dr_siblings()
+            else:
+                line.can_be_merged = False
+
+    def _has_cross_dr_siblings(self):
+        """
+        Check if this line's SOL was split from an original SOL and there
+        are sibling SOLs in confirmed DRs that can be merged back.
+        """
+        sol = self.sale_order_line_id
+        if not sol:
+            return False
+        original = sol.original_line_id or sol
+        if original == sol and not self.env["sale.order.line"].search_count(
+            [("original_line_id", "=", sol.id), ("order_id", "=", sol.order_id.id)],
+            limit=1,
+        ):
+            return False
+        sibling_sols = self.env["sale.order.line"].search(
+            [
+                ("original_line_id", "=", original.id),
+                ("id", "!=", sol.id),
+                ("order_id", "=", sol.order_id.id),
+            ]
+        )
+        if not sibling_sols and sol.original_line_id:
+            sibling_sols = original
+        elif not sibling_sols:
+            return False
+        return bool(
+            self.env["sale.delivery.request.line"].search(
+                [
+                    ("sale_order_line_id", "in", sibling_sols.ids),
+                    ("delivery_request_id.state", "=", "confirmed"),
+                    ("delivery_request_id.sale_order_id", "=", sol.order_id.id),
+                ],
+                limit=1,
+            )
+        )
+
+    def _merge_cross_dr(self):
+        """
+        Merge DR lines that reference SOLs split from the same original SOL.
+
+        Consolidates DR lines and cleans up old confirmed DR lines.
+        SOL quantity adjustment is deferred to DR confirmation via
+        _apply_delivery_request_dates / _apply_delivery_request_dates_stock.
+        """
+        sol = self.sale_order_line_id
+        original = sol.original_line_id or sol
+        order = sol.order_id
+
+        all_sibling_sols = self.env["sale.order.line"].search(
+            [
+                ("original_line_id", "=", original.id),
+                ("order_id", "=", order.id),
+            ]
+        )
+        all_related_sols = all_sibling_sols | original
+
+        confirmed_dr_lines = self.env["sale.delivery.request.line"].search(
+            [
+                ("sale_order_line_id", "in", (all_related_sols - sol).ids),
+                ("delivery_request_id.state", "=", "confirmed"),
+            ]
+        )
+        if not confirmed_dr_lines:
+            raise UserError(_("No sibling lines found in confirmed requests to merge."))
+
+        confirmed_dr_lines.unlink()
+
+        current_dr_siblings = self.delivery_request_id.line_ids.filtered(
+            lambda x: x.id != self.id and x.sale_order_line_id in all_related_sols
+        )
+
+        total_qty = self.quantity + sum(current_dr_siblings.mapped("quantity"))
+        if current_dr_siblings:
+            current_dr_siblings.unlink()
+
+        self.with_context(skip_qty_check=True).write(
+            {
+                "sale_order_line_id": original.id,
+                "quantity": total_qty,
+            }
+        )
 
     @api.depends(
         "sale_order_line_id.product_uom_qty",
@@ -99,6 +191,8 @@ class SaleDeliveryRequestLine(models.Model):
         Ensure total quantity across all request lines for the same
         sale order line does not exceed the remaining quantity.
         """
+        if self.env.context.get("skip_qty_check"):
+            return
         for line in self:
             sol = line.sale_order_line_id
             request = line.delivery_request_id
@@ -147,8 +241,12 @@ class SaleDeliveryRequestLine(models.Model):
 
     def action_merge_lines(self):
         """
-        Merge this line back into its siblings that share the same
-        sale order line within the same delivery request.
+        Merge this line back into its siblings.
+
+        Two scenarios:
+        1. Same-DR merge: siblings sharing the same SOL within the same DR.
+        2. Cross-DR merge: siblings from confirmed DRs referencing SOLs
+           split from the same original SOL.
         """
         self.ensure_one()
         if self.state != "pending":
@@ -156,16 +254,19 @@ class SaleDeliveryRequestLine(models.Model):
         siblings = self.delivery_request_id.line_ids.filtered(
             lambda x: x.sale_order_line_id == self.sale_order_line_id
         )
-        if len(siblings) < 2:
-            raise UserError(_("No sibling lines to merge with."))
-        # Keep the first line (by sequence/id), sum quantities, remove the rest
-        keep = siblings[0]
-        total_qty = sum(siblings.mapped("quantity"))
-        (siblings - keep).unlink()
-        keep.write(
-            {
-                "quantity": total_qty,
-                "promised_date_absolute": False,
-            }
-        )
-        return True
+        if len(siblings) >= 2:
+            keep = siblings[0]
+            total_qty = sum(siblings.mapped("quantity"))
+            (siblings - keep).unlink()
+            keep.write(
+                {
+                    "quantity": total_qty,
+                    "promised_date_absolute": False,
+                }
+            )
+            return True
+        if self._has_cross_dr_siblings():
+            self._merge_cross_dr()
+            self._compute_can_be_merged()
+            return True
+        raise UserError(_("No sibling lines to merge with."))

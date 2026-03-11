@@ -43,11 +43,18 @@ class SaleDeliveryRequestSplitQty(models.TransientModel):
         line = self.delivery_request_line_id
         remaining = line.quantity - self.split_qty
 
-        # Update original line
-        line.quantity = remaining
+        ctx_line = line.with_context(skip_qty_check=True)
+        ctx_line.quantity = remaining
 
-        # Create new line with the split quantity
-        self.env["sale.delivery.request.line"].create(
+        later_lines = line.delivery_request_id.line_ids.filtered(
+            lambda x, seq=line.sequence, lid=line.id: x.sequence > seq
+            or (x.sequence == seq and x.id > lid)
+        )
+        if later_lines:
+            for later in later_lines:
+                later.sequence = later.sequence + 1
+
+        self.env["sale.delivery.request.line"].with_context(skip_qty_check=True).create(
             {
                 "delivery_request_id": line.delivery_request_id.id,
                 "sale_order_line_id": line.sale_order_line_id.id,

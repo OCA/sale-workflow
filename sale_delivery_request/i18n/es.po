@@ -6,14 +6,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-19 07:49+0000\n"
-"PO-Revision-Date: 2026-02-19 07:49+0000\n"
+"POT-Creation-Date: 2026-03-11 09:44+0000\n"
+"PO-Revision-Date: 2026-03-11 09:44+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: sale_delivery_request
+#. odoo-python
+#: code:addons/sale_delivery_request/models/sale_order.py:0
+#, python-format
+msgid "%(order)s → %(request)s"
+msgstr ""
 
 #. module: sale_delivery_request
 #: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request__message_needaction
@@ -41,11 +48,6 @@ msgid "Activity Type Icon"
 msgstr "Icono del tipo de actividad"
 
 #. module: sale_delivery_request
-#: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request__all_lines_dated
-msgid "All Lines Dated"
-msgstr "Todas las líneas con fecha"
-
-#. module: sale_delivery_request
 #: model:ir.ui.menu,name:sale_delivery_request.menu_delivery_request_all
 msgid "All Requests"
 msgstr "Todas las solicitudes"
@@ -53,9 +55,12 @@ msgstr "Todas las solicitudes"
 #. module: sale_delivery_request
 #. odoo-python
 #: code:addons/sale_delivery_request/models/sale_delivery_request.py:0
+#: code:addons/sale_delivery_request/models/sale_delivery_request.py:0
 #, python-format
 msgid "All request lines must have a promised date before confirming."
-msgstr "Todas las líneas de la solicitud deben tener una fecha prometida antes de confirmar."
+msgstr ""
+"Todas las líneas de la solicitud deben tener una fecha prometida antes de "
+"confirmar."
 
 #. module: sale_delivery_request
 #: model_terms:ir.ui.view,arch_db:sale_delivery_request.sale_delivery_request_view_form
@@ -92,6 +97,11 @@ msgid "Business Days Offset"
 msgstr "Desfase en días laborables"
 
 #. module: sale_delivery_request
+#: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request_line__can_be_merged
+msgid "Can Be Merged"
+msgstr "Puede fusionarse"
+
+#. module: sale_delivery_request
 #: model_terms:ir.ui.view,arch_db:sale_delivery_request.delivery_request_assign_date_view_form
 #: model_terms:ir.ui.view,arch_db:sale_delivery_request.delivery_request_split_qty_view_form
 msgid "Cancel"
@@ -104,7 +114,20 @@ msgstr "Cancelar"
 msgid ""
 "Cannot confirm the order: there are pending delivery requests (%(names)s). "
 "Please wait for Planning confirmation."
-msgstr "No se puede confirmar el pedido: hay solicitudes de entrega pendientes (%(names)s). Por favor, espere la confirmación de Planning."
+msgstr ""
+"No se puede confirmar el pedido: hay solicitudes de entrega pendientes "
+"(%(names)s). Por favor, espere la confirmación de Planning."
+
+#. module: sale_delivery_request
+#. odoo-python
+#: code:addons/sale_delivery_request/models/sale_delivery_request_line.py:0
+#, python-format
+msgid ""
+"Cannot merge: stock moves for '%(product)s' are already reserved. Please "
+"unreserve the related pickings first."
+msgstr ""
+"No se puede fusionar: los movimientos de stock para '%(product)s' ya están "
+"reservados. Por favor, desreserve los albaranes relacionados primero."
 
 #. module: sale_delivery_request
 #. odoo-python
@@ -112,6 +135,11 @@ msgstr "No se puede confirmar el pedido: hay solicitudes de entrega pendientes (
 #, python-format
 msgid "Cannot send a request without lines."
 msgstr "No se puede enviar una solicitud sin líneas."
+
+#. module: sale_delivery_request
+#: model:ir.model.fields,field_description:sale_delivery_request.field_sale_order_line__commitment_date_from_dr
+msgid "Commitment Date From Dr"
+msgstr ""
 
 #. module: sale_delivery_request
 #: model:ir.model,name:sale_delivery_request.model_res_company
@@ -151,11 +179,19 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: sale_delivery_request
+#: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request__partner_id
+#: model_terms:ir.ui.view,arch_db:sale_delivery_request.sale_delivery_request_view_search
+msgid "Customer"
+msgstr "Cliente"
+
+#. module: sale_delivery_request
 #: model:ir.model.fields,help:sale_delivery_request.field_sale_delivery_request_line__promised_date_absolute
 msgid ""
 "Date entered by Planning. Stored for reference. The actual delivery date is "
 "recalculated at SO confirmation."
-msgstr "Fecha introducida por Planning. Se almacena como referencia. La fecha real de entrega se recalcula al confirmar el pedido."
+msgstr ""
+"Fecha introducida por Planning. Se almacena como referencia. La fecha real "
+"de entrega se recalcula al confirmar el pedido."
 
 #. module: sale_delivery_request
 #: model:ir.model,name:sale_delivery_request.model_sale_delivery_request
@@ -225,11 +261,24 @@ msgid "Delivery request"
 msgstr "Solicitud de entrega"
 
 #. module: sale_delivery_request
+#. odoo-python
+#: code:addons/sale_delivery_request/models/sale_delivery_request.py:0
+#, python-format
+msgid ""
+"Delivery request %s confirmed. Commitment dates updated and stock pickings "
+"rescheduled."
+msgstr ""
+"La solicitud de entrega %s ha sido confirmada. Las fechas de compromiso han "
+"sido actualizadas y los albaranes reprogramados."
+
+#. module: sale_delivery_request
 #: model_terms:ir.actions.act_window,help:sale_delivery_request.sale_delivery_request_action
 msgid ""
 "Delivery requests are created from Sales Orders to request\n"
 "                delivery date confirmations from Planning."
-msgstr "Las solicitudes de entrega se crean desde los pedidos de venta para solicitar confirmaciones de fecha de entrega a Planning."
+msgstr ""
+"Las solicitudes de entrega se crean desde los pedidos de venta para "
+"solicitar confirmaciones de fecha de entrega a Planning."
 
 #. module: sale_delivery_request
 #: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request__display_name
@@ -289,24 +338,9 @@ msgid "Group By"
 msgstr "Agrupar por"
 
 #. module: sale_delivery_request
-#: model:ir.model.fields,field_description:sale_delivery_request.field_sale_order__has_delivery_request
-msgid "Has Delivery Request"
-msgstr "Tiene solicitud de entrega"
-
-#. module: sale_delivery_request
 #: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request__has_message
 msgid "Has Message"
 msgstr "Tiene mensaje"
-
-#. module: sale_delivery_request
-#: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request_line__has_siblings
-msgid "Has Siblings"
-msgstr "Tiene líneas relacionadas"
-
-#. module: sale_delivery_request
-#: model:ir.model.fields,field_description:sale_delivery_request.field_sale_order__has_valid_delivery_request
-msgid "Has Valid Delivery Request"
-msgstr "Tiene solicitud de entrega válida"
 
 #. module: sale_delivery_request
 #: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request__id
@@ -338,6 +372,15 @@ msgid "If checked, some messages have a delivery error."
 msgstr "Si está marcado, algunos mensajes tienen un error de entrega."
 
 #. module: sale_delivery_request
+#: model:ir.model.fields,help:sale_delivery_request.field_sale_order_line__commitment_date_from_dr
+msgid ""
+"Indicates the commitment date was set by a delivery request and should not "
+"be manually changed."
+msgstr ""
+"Indica que la fecha de compromiso fue establecida por una solicitud de "
+"entrega y no debe cambiarse manualmente."
+
+#. module: sale_delivery_request
 #: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request__message_is_follower
 msgid "Is Follower"
 msgstr "Es seguidor"
@@ -357,6 +400,11 @@ msgstr "Última actualización por"
 #: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request_split_qty__write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
+
+#. module: sale_delivery_request
+#: model:res.groups,name:sale_delivery_request.group_sale_delivery_request_manager
+msgid "Manager"
+msgstr "Responsable"
 
 #. module: sale_delivery_request
 #: model_terms:ir.ui.view,arch_db:sale_delivery_request.sale_delivery_request_view_form
@@ -380,6 +428,9 @@ msgstr "Fecha límite de mi actividad"
 
 #. module: sale_delivery_request
 #. odoo-python
+#: code:addons/sale_delivery_request/models/sale_delivery_request.py:0
+#: code:addons/sale_delivery_request/models/sale_delivery_request.py:0
+#: code:addons/sale_delivery_request/models/sale_delivery_request.py:0
 #: code:addons/sale_delivery_request/models/sale_delivery_request.py:0
 #, python-format
 msgid "New"
@@ -421,6 +472,15 @@ msgstr "No hay líneas con cantidad pendiente para solicitar."
 #. odoo-python
 #: code:addons/sale_delivery_request/models/sale_delivery_request_line.py:0
 #, python-format
+msgid "No sibling lines found in confirmed requests to merge."
+msgstr ""
+"No se encontraron líneas relacionadas en solicitudes confirmadas para "
+"fusionar."
+
+#. module: sale_delivery_request
+#. odoo-python
+#: code:addons/sale_delivery_request/models/sale_delivery_request_line.py:0
+#, python-format
 msgid "No sibling lines to merge with."
 msgstr "No hay líneas relacionadas con las que fusionar."
 
@@ -439,7 +499,10 @@ msgstr "Número de acciones"
 msgid ""
 "Number of business days between request date and the promised absolute date."
 " Used to recalculate the final promised date at SO confirmation."
-msgstr "Número de días laborables entre la fecha de solicitud y la fecha absoluta prometida. Se utiliza para recalcular la fecha final prometida al confirmar el pedido."
+msgstr ""
+"Número de días laborables entre la fecha de solicitud y la fecha absoluta "
+"prometida. Se utiliza para recalcular la fecha final prometida al confirmar "
+"el pedido."
 
 #. module: sale_delivery_request
 #: model:ir.model.fields,help:sale_delivery_request.field_res_company__delivery_request_expiration_days
@@ -448,7 +511,9 @@ msgstr "Número de días laborables entre la fecha de solicitud y la fecha absol
 msgid ""
 "Number of calendar days after the response date before a confirmed delivery "
 "request expires."
-msgstr "Número de días naturales después de la fecha de respuesta antes de que una solicitud de entrega confirmada expire."
+msgstr ""
+"Número de días naturales después de la fecha de respuesta antes de que una "
+"solicitud de entrega confirmada expire."
 
 #. module: sale_delivery_request
 #: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request__message_has_error_counter
@@ -464,6 +529,21 @@ msgstr "Número de mensajes que requieren acción"
 #: model:ir.model.fields,help:sale_delivery_request.field_sale_delivery_request__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Número de mensajes con error de entrega"
+
+#. module: sale_delivery_request
+#. odoo-python
+#: code:addons/sale_delivery_request/models/sale_delivery_request.py:0
+#, python-format
+msgid ""
+"Only expired delivery requests can be used to create a new priority request."
+msgstr ""
+"Solo se pueden usar solicitudes de entrega expiradas para crear una nueva "
+"solicitud prioritaria."
+
+#. module: sale_delivery_request
+#: model:ir.model.fields,field_description:sale_delivery_request.field_sale_order_line__original_line_id
+msgid "Original Line"
+msgstr "Línea original"
 
 #. module: sale_delivery_request
 #: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request_split_qty__original_qty
@@ -525,6 +605,15 @@ msgid "Reference"
 msgstr "Referencia"
 
 #. module: sale_delivery_request
+#: model:ir.model.fields,help:sale_delivery_request.field_sale_order_line__original_line_id
+msgid ""
+"Reference to the original sale order line before splitting by a delivery "
+"request."
+msgstr ""
+"Referencia a la línea original del pedido de venta antes de dividirla por "
+"una solicitud de entrega."
+
+#. module: sale_delivery_request
 #: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request_line__sol_remaining_qty
 msgid "Remaining Qty"
 msgstr "Cantidad restante"
@@ -558,19 +647,18 @@ msgstr "Fecha de respuesta"
 
 #. module: sale_delivery_request
 #: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request__response_delay_hours
-msgid "Response Delay (hours)"
-msgstr "Retraso de respuesta (horas)"
-
-#. module: sale_delivery_request
-#: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request__user_id
-#: model_terms:ir.ui.view,arch_db:sale_delivery_request.sale_delivery_request_view_search
-msgid "Responsible"
-msgstr "Responsable"
+msgid "Response Delay"
+msgstr "Tiempo de respuesta"
 
 #. module: sale_delivery_request
 #: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request__activity_user_id
 msgid "Responsible User"
 msgstr "Usuario responsable"
+
+#. module: sale_delivery_request
+#: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request__user_ids
+msgid "Responsibles"
+msgstr "Responsables"
 
 #. module: sale_delivery_request
 #: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request__message_has_sms_error
@@ -581,6 +669,12 @@ msgstr "Error de entrega de SMS"
 #: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request_line__sale_order_line_id
 msgid "Sale Order Line"
 msgstr "Línea de pedido de venta"
+
+#. module: sale_delivery_request
+#: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request__sale_order_state
+#: model_terms:ir.ui.view,arch_db:sale_delivery_request.sale_delivery_request_view_search
+msgid "Sale Order Status"
+msgstr "Estado del pedido"
 
 #. module: sale_delivery_request
 #: model:ir.model,name:sale_delivery_request.model_sale_order
@@ -636,7 +730,9 @@ msgstr "Dividir cantidad"
 msgid ""
 "Split quantity (%(split)s) must be less than the original quantity "
 "(%(original)s)."
-msgstr "La cantidad a dividir (%(split)s) debe ser menor que la cantidad original (%(original)s)."
+msgstr ""
+"La cantidad a dividir (%(split)s) debe ser menor que la cantidad original "
+"(%(original)s)."
 
 #. module: sale_delivery_request
 #. odoo-python
@@ -659,7 +755,11 @@ msgid ""
 "Overdue: Due date is already passed\n"
 "Today: Activity date is today\n"
 "Planned: Future activities."
-msgstr "Estado basado en actividades\nAtrasada: la fecha límite ya ha pasado\nHoy: la actividad es hoy\nPlanificada: actividades futuras."
+msgstr ""
+"Estado basado en actividades\n"
+"Atrasada: la fecha límite ya ha pasado\n"
+"Hoy: la actividad es hoy\n"
+"Planificada: actividades futuras."
 
 #. module: sale_delivery_request
 #. odoo-python
@@ -669,8 +769,8 @@ msgid ""
 "The commitment date on the following lines was set by a delivery request and"
 " cannot be changed manually: %s"
 msgstr ""
-"La fecha de compromiso en las siguientes líneas fue establecida por una solicitud de entrega y"
-" no puede ser cambiada manualmente: %s"
+"La fecha de compromiso en las siguientes líneas fue establecida por una "
+"solicitud de entrega y no puede ser cambiada manualmente: %s"
 
 #. module: sale_delivery_request
 #. odoo-python
@@ -680,8 +780,8 @@ msgid ""
 "The delivery date confirmation has expired. A new priority request "
 "(%(name)s) has been created."
 msgstr ""
-"La confirmación de la fecha de entrega ha expirado. Se ha creado una nueva solicitud prioritaria "
-"(%(name)s)."
+"La confirmación de la fecha de entrega ha expirado. Se ha creado una nueva "
+"solicitud prioritaria (%(name)s)."
 
 #. module: sale_delivery_request
 #. odoo-python
@@ -699,16 +799,21 @@ msgstr ""
 #: code:addons/sale_delivery_request/models/sale_order.py:0
 #, python-format
 msgid ""
-"The delivery date confirmation has expired. A new priority request "
-"(%(name)s) has been created. Please wait for Planning confirmation."
-msgstr "La confirmación de la fecha de entrega ha expirado. Se ha creado una nueva solicitud prioritaria (%(name)s). Por favor, espere la confirmación de Planning."
+"The following sale order lines could not be rescheduled because their stock "
+"moves are already reserved: %s. Please unreserve the related pickings first."
+msgstr ""
+"Las siguientes líneas de pedido de venta no se pudieron reprogramar porque "
+"sus movimientos de stock ya están reservados: %s. Por favor, desreserve los "
+"albaranes relacionados primero."
 
 #. module: sale_delivery_request
 #: model:ir.model.fields,help:sale_delivery_request.field_sale_delivery_request_line__sol_remaining_qty
 msgid ""
 "Total remaining quantity on the sale order line minus quantities already "
 "assigned in other request lines."
-msgstr "Cantidad total restante en la línea del pedido menos las cantidades ya asignadas en otras líneas de solicitud."
+msgstr ""
+"Cantidad total restante en la línea del pedido menos las cantidades ya "
+"asignadas en otras líneas de solicitud."
 
 #. module: sale_delivery_request
 #. odoo-python
@@ -717,7 +822,9 @@ msgstr "Cantidad total restante en la línea del pedido menos las cantidades ya 
 msgid ""
 "Total requested quantity (%(total)s) for product '%(product)s' exceeds the "
 "remaining quantity (%(remaining)s) on the sale order line."
-msgstr "La cantidad total solicitada (%(total)s) para el producto '%(product)s' supera la cantidad pendiente (%(remaining)s) en la línea del pedido."
+msgstr ""
+"La cantidad total solicitada (%(total)s) para el producto '%(product)s' "
+"supera la cantidad pendiente (%(remaining)s) en la línea del pedido."
 
 #. module: sale_delivery_request
 #: model:ir.model.fields,help:sale_delivery_request.field_sale_delivery_request__activity_exception_decoration
@@ -728,11 +835,6 @@ msgstr "Tipo de actividad de excepción en el registro."
 #: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request_line__product_uom
 msgid "Unit of Measure"
 msgstr "Unidad de medida"
-
-#. module: sale_delivery_request
-#: model:res.groups,name:sale_delivery_request.group_sale_delivery_request_manager
-msgid "Manager"
-msgstr "Responsable"
 
 #. module: sale_delivery_request
 #: model_terms:ir.ui.view,arch_db:sale_delivery_request.sale_delivery_request_view_search
@@ -784,4 +886,6 @@ msgstr "Se le ha asignado como responsable de esta solicitud de entrega."
 msgid ""
 "has been confirmed. Delivery dates have been set. The sales order can now be"
 " confirmed."
-msgstr "Se ha confirmado. Las fechas de entrega se han establecido. El pedido de venta ahora puede confirmarse."
+msgstr ""
+"Se ha confirmado. Las fechas de entrega se han establecido. El pedido de "
+"venta ahora puede confirmarse."

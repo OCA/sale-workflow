@@ -10,6 +10,14 @@ class SaleOrderLine(models.Model):
         inverse_name="sale_order_line_id",
         string="Delivery Request Lines",
     )
+    original_line_id = fields.Many2one(
+        comodel_name="sale.order.line",
+        string="Original Line",
+        help="Reference to the original sale order line before splitting "
+        "by a delivery request.",
+        copy=False,
+        index=True,
+    )
     commitment_date_from_dr = fields.Boolean(
         help="Indicates the commitment date was set by a delivery request "
         "and should not be manually changed.",

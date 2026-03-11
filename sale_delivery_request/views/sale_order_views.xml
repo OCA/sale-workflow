@@ -22,8 +22,7 @@
                 </button>
             </xpath>
             <xpath expr="//form/sheet" position="inside">
-                <field name="has_valid_delivery_request" invisible="1" />
-                <field name="has_delivery_request" invisible="1" />
+                <field name="has_pending_delivery_request" invisible="1" />
             </xpath>
             <xpath expr="//button[@name='action_confirm']" position="before">
                 <button
@@ -31,7 +30,7 @@
                     string="Request Delivery Date"
                     type="object"
                     class="btn-secondary"
-                    invisible="state not in ('draft', 'sent', 'sale') or (state in ('draft', 'sent') and has_delivery_request)"
+                    invisible="state == 'cancel' or has_pending_delivery_request"
                 />
             </xpath>
         </field>

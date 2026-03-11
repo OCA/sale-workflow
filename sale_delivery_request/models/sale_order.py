@@ -16,11 +16,8 @@ class SaleOrder(models.Model):
     delivery_request_count = fields.Integer(
         compute="_compute_delivery_request_count",
     )
-    has_valid_delivery_request = fields.Boolean(
-        compute="_compute_has_valid_delivery_request",
-    )
-    has_delivery_request = fields.Boolean(
-        compute="_compute_has_delivery_request",
+    has_pending_delivery_request = fields.Boolean(
+        compute="_compute_has_pending_delivery_request",
     )
 
     @api.depends("delivery_request_ids")
@@ -29,16 +26,11 @@ class SaleOrder(models.Model):
             order.delivery_request_count = len(order.delivery_request_ids)
 
     @api.depends("delivery_request_ids.state")
-    def _compute_has_valid_delivery_request(self):
+    def _compute_has_pending_delivery_request(self):
         for order in self:
-            order.has_valid_delivery_request = any(
-                req.state == "confirmed" for req in order.delivery_request_ids
+            order.has_pending_delivery_request = any(
+                req.state in ("draft", "pending") for req in order.delivery_request_ids
             )
-
-    @api.depends("delivery_request_ids")
-    def _compute_has_delivery_request(self):
-        for order in self:
-            order.has_delivery_request = bool(order.delivery_request_ids)
 
     def action_request_delivery_date(self):
         """
@@ -268,14 +260,48 @@ class SaleOrder(models.Model):
                     req_line.business_days_offset,
                     confirmation_dt=confirmation_dt,
                 )
+                sol_vals = {"commitment_date_from_dr": True}
                 if final_date:
-                    sol.with_context(from_delivery_request=True).write(
-                        {
-                            "commitment_date": fields.Datetime.to_datetime(final_date),
-                            "commitment_date_from_dr": True,
-                        }
+                    sol_vals["commitment_date"] = fields.Datetime.to_datetime(
+                        final_date
                     )
+                # After a cross-DR merge the DR line qty may exceed the
+                # SOL qty — sync it before confirmation creates procurements.
+                precision = self.env["decimal.precision"].precision_get(
+                    "Product Unit of Measure"
+                )
+                if (
+                    float_compare(
+                        req_line.quantity,
+                        sol.product_uom_qty,
+                        precision_digits=precision,
+                    )
+                    != 0
+                ):
+                    sol_vals["product_uom_qty"] = req_line.quantity
+                    # Clean up orphaned split SOLs from previous DRs
+                    # that have been merged back into the original.
+                    orphan_sols = self.env["sale.order.line"].search(
+                        [
+                            ("original_line_id", "=", sol.id),
+                            ("order_id", "=", self.id),
+                        ]
+                    )
+                    if orphan_sols:
+                        orphan_sols.unlink()
+                sol.with_context(from_delivery_request=True).write(sol_vals)
                 continue
+
+            # Clean up orphaned split SOLs from previous DRs (cross-DR merge
+            # scenario) before creating new splits.
+            orphan_sols = self.env["sale.order.line"].search(
+                [
+                    ("original_line_id", "=", sol.id),
+                    ("order_id", "=", self.id),
+                ]
+            )
+            if orphan_sols:
+                orphan_sols.unlink()
 
             req_lines_sorted = sorted(req_lines, key=lambda x: x.quantity, reverse=True)
             keep_line, split_lines = req_lines_sorted[0], req_lines_sorted[1:]
@@ -309,6 +335,7 @@ class SaleOrder(models.Model):
                         if split_date
                         else False,
                         "commitment_date_from_dr": True,
+                        "original_line_id": sol.id,
                     }
                 )
                 req_line.sale_order_line_id = new_sol
@@ -378,6 +405,154 @@ class SaleOrder(models.Model):
             cancellable._action_cancel()
         return True, affected_pickings
 
+    def _group_delivery_request_lines_for_stock(self, delivery_request):
+        sol_groups = {}
+        for req_line in delivery_request.line_ids:
+            sol = req_line.sale_order_line_id
+            if not sol or sol.state != "sale":
+                continue
+            sol_groups.setdefault(sol.id, []).append(req_line)
+        return sol_groups
+
+    def _get_orphan_split_sols(self, sol):
+        return self.env["sale.order.line"].search(
+            [
+                ("original_line_id", "=", sol.id),
+                ("order_id", "=", self.id),
+            ]
+        )
+
+    def _has_reserved_move_chain(self, sol):
+        return bool(
+            sol._get_full_move_chain().filtered(
+                lambda m: m.state in ("assigned", "partially_available")
+            )
+        )
+
+    def _cancel_orphan_split_sols(self, sol, pickings_to_fence, skipped_products):
+        orphan_sols = self._get_orphan_split_sols(sol)
+        for orphan in orphan_sols:
+            ok_orphan, affected_orphan = self._cancel_move_chain(orphan)
+            if ok_orphan:
+                pickings_to_fence |= affected_orphan
+            else:
+                skipped_products.append(orphan.product_id.display_name)
+        orphan_sols.filtered(lambda s: not self._has_reserved_move_chain(s)).unlink()
+        return pickings_to_fence
+
+    def _apply_delivery_request_stock_single(
+        self,
+        delivery_request,
+        req_line,
+        confirmation_dt,
+        lines_to_relaunch,
+        pickings_to_fence,
+        skipped_products,
+    ):
+        sol = req_line.sale_order_line_id
+        final_date = self._compute_delivery_request_final_date(
+            delivery_request,
+            req_line.business_days_offset,
+            confirmation_dt=confirmation_dt,
+        )
+        if not self._sol_needs_reschedule(sol, final_date, req_line.quantity):
+            return lines_to_relaunch, pickings_to_fence
+
+        ok, affected = self._cancel_move_chain(sol)
+        if not ok:
+            skipped_products.append(sol.product_id.display_name)
+            return lines_to_relaunch, pickings_to_fence
+        pickings_to_fence |= affected
+
+        sol_vals = {}
+        if final_date:
+            sol_vals["commitment_date"] = fields.Datetime.to_datetime(final_date)
+        precision = self.env["decimal.precision"].precision_get(
+            "Product Unit of Measure"
+        )
+        if (
+            float_compare(
+                req_line.quantity,
+                sol.product_uom_qty,
+                precision_digits=precision,
+            )
+            != 0
+        ):
+            sol_vals["product_uom_qty"] = req_line.quantity
+            pickings_to_fence = self._cancel_orphan_split_sols(
+                sol, pickings_to_fence, skipped_products
+            )
+        if sol_vals:
+            sol.with_context(
+                skip_sol_reschedule=True, from_delivery_request=True
+            ).write(sol_vals)
+        lines_to_relaunch |= sol
+        return lines_to_relaunch, pickings_to_fence
+
+    def _apply_delivery_request_stock_split(
+        self,
+        delivery_request,
+        req_lines,
+        confirmation_dt,
+        lines_to_relaunch,
+        pickings_to_fence,
+        skipped_products,
+    ):
+        sol = req_lines[0].sale_order_line_id
+        ok, affected = self._cancel_move_chain(sol)
+        if not ok:
+            skipped_products.append(sol.product_id.display_name)
+            return lines_to_relaunch, pickings_to_fence
+        pickings_to_fence |= affected
+
+        pickings_to_fence = self._cancel_orphan_split_sols(
+            sol, pickings_to_fence, skipped_products
+        )
+
+        req_lines_sorted = sorted(req_lines, key=lambda x: x.quantity, reverse=True)
+        keep_req, split_reqs = req_lines_sorted[0], req_lines_sorted[1:]
+
+        keep_date = self._compute_delivery_request_final_date(
+            delivery_request,
+            keep_req.business_days_offset,
+            confirmation_dt=confirmation_dt,
+        )
+        sol.with_context(
+            skip_sol_reschedule=True,
+            skip_procurement=True,
+            from_delivery_request=True,
+        ).write(
+            {
+                "product_uom_qty": keep_req.quantity,
+                "commitment_date": fields.Datetime.to_datetime(keep_date)
+                if keep_date
+                else False,
+            }
+        )
+        lines_to_relaunch |= sol
+
+        for req_line in split_reqs:
+            split_date = self._compute_delivery_request_final_date(
+                delivery_request,
+                req_line.business_days_offset,
+                confirmation_dt=confirmation_dt,
+            )
+            new_sol = sol.with_context(
+                skip_procurement=True, from_delivery_request=True
+            ).copy(
+                {
+                    "order_id": self.id,
+                    "product_uom_qty": req_line.quantity,
+                    "commitment_date": fields.Datetime.to_datetime(split_date)
+                    if split_date
+                    else False,
+                    "original_line_id": sol.id,
+                }
+            )
+            req_line.sale_order_line_id = new_sol
+            lines_to_relaunch |= new_sol
+        return lines_to_relaunch, pickings_to_fence
+
     def _apply_delivery_request_dates_stock(self, delivery_request):
         """
         Apply new delivery dates from a post-confirmation delivery request.
@@ -402,98 +577,41 @@ class SaleOrder(models.Model):
         lines_to_relaunch = self.env["sale.order.line"]
         skipped_products = []
 
-        sol_groups = {}
-        for req_line in delivery_request.line_ids:
-            sol = req_line.sale_order_line_id
-            if not sol or sol.state != "sale":
-                continue
-            sol_groups.setdefault(sol.id, []).append(req_line)
+        sol_groups = self._group_delivery_request_lines_for_stock(delivery_request)
 
         pickings_to_fence = self.env["stock.picking"]
 
-        for _sol_id, req_lines in sol_groups.items():
+        for req_lines in sol_groups.values():
             sol = req_lines[0].sale_order_line_id
-
-            if sol._get_full_move_chain().filtered(
-                lambda m: m.state in ("assigned", "partially_available")
-            ):
+            if self._has_reserved_move_chain(sol):
                 skipped_products.append(sol.product_id.display_name)
                 continue
 
             if len(req_lines) == 1:
-                req_line = req_lines[0]
-                final_date = self._compute_delivery_request_final_date(
+                (
+                    lines_to_relaunch,
+                    pickings_to_fence,
+                ) = self._apply_delivery_request_stock_single(
                     delivery_request,
-                    req_line.business_days_offset,
-                    confirmation_dt=confirmation_dt,
+                    req_lines[0],
+                    confirmation_dt,
+                    lines_to_relaunch,
+                    pickings_to_fence,
+                    skipped_products,
                 )
-                if not self._sol_needs_reschedule(sol, final_date, req_line.quantity):
-                    continue
+                continue
 
-                ok, affected = self._cancel_move_chain(sol)
-                if not ok:
-                    skipped_products.append(sol.product_id.display_name)
-                    continue
-                pickings_to_fence |= affected
-
-                if final_date:
-                    sol.with_context(
-                        skip_sol_reschedule=True, from_delivery_request=True
-                    ).write(
-                        {"commitment_date": fields.Datetime.to_datetime(final_date)}
-                    )
-                lines_to_relaunch |= sol
-
-            else:
-                ok, affected = self._cancel_move_chain(sol)
-                if not ok:
-                    skipped_products.append(sol.product_id.display_name)
-                    continue
-                pickings_to_fence |= affected
-
-                req_lines_sorted = sorted(
-                    req_lines, key=lambda x: x.quantity, reverse=True
-                )
-                keep_req, split_reqs = req_lines_sorted[0], req_lines_sorted[1:]
-
-                keep_date = self._compute_delivery_request_final_date(
-                    delivery_request,
-                    keep_req.business_days_offset,
-                    confirmation_dt=confirmation_dt,
-                )
-                sol.with_context(
-                    skip_sol_reschedule=True,
-                    skip_procurement=True,
-                    from_delivery_request=True,
-                ).write(
-                    {
-                        "product_uom_qty": keep_req.quantity,
-                        "commitment_date": fields.Datetime.to_datetime(keep_date)
-                        if keep_date
-                        else False,
-                    }
-                )
-                lines_to_relaunch |= sol
-
-                for req_line in split_reqs:
-                    split_date = self._compute_delivery_request_final_date(
-                        delivery_request,
-                        req_line.business_days_offset,
-                        confirmation_dt=confirmation_dt,
-                    )
-                    new_sol = sol.with_context(
-                        skip_procurement=True, from_delivery_request=True
-                    ).copy(
-                        {
-                            "order_id": self.id,
-                            "product_uom_qty": req_line.quantity,
-                            "commitment_date": fields.Datetime.to_datetime(split_date)
-                            if split_date
-                            else False,
-                        }
-                    )
-                    req_line.sale_order_line_id = new_sol
-                    lines_to_relaunch |= new_sol
+            (
+                lines_to_relaunch,
+                pickings_to_fence,
+            ) = self._apply_delivery_request_stock_split(
+                delivery_request,
+                req_lines,
+                confirmation_dt,
+                lines_to_relaunch,
+                pickings_to_fence,
+                skipped_products,
+            )
 
         if skipped_products:
             self.message_post(
