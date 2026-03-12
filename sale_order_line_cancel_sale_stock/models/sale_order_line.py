@@ -11,8 +11,8 @@ class SaleOrderLine(models.Model):
 
     def _get_moves_to_cancel(self):
         lines = self.filtered(
-            lambda l: l.qty_delivered_method == "stock_move"
-            and l.can_cancel_remaining_qty
+            lambda line: line.qty_delivered_method == "stock_move"
+            and line.can_cancel_remaining_qty
         )
         return lines.move_ids.filtered(lambda m: m.state not in ("done", "cancel"))
 
