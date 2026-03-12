@@ -18,7 +18,11 @@ class TestSaleOrderLineCancelBase(Base):
     @classmethod
     def _prepare_product_vals(cls):
         vals = super()._prepare_product_vals()
-        vals["type"] = "product"
+        vals.update(
+            {
+                "is_storable": True,
+            }
+        )
         return vals
 
     @classmethod
