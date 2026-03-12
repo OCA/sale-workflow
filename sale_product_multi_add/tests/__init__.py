@@ -1,3 +1,2 @@
-from . import test_enhanced_coverage
 from . import test_sale
-from . import test_coverage_improvement
+from . import test_sale_import_products

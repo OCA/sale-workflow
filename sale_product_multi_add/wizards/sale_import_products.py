@@ -35,7 +35,6 @@ class SaleImportProducts(models.TransientModel):
 
     @api.model
     def _get_line_values(self, sale, item):
-        # Create sale order line record
         sale_line = self.env["sale.order.line"].new(
             {
                 "order_id": sale.id,
@@ -44,25 +43,6 @@ class SaleImportProducts(models.TransientModel):
                 "product_uom": item.product_id.uom_id.id,
             }
         )
-
-        # Use Odoo's product price calculation method
-        # First get the product's base price
-        price = item.product_id.list_price
-
-        # Get applicable pricelist and calculate price
-        # (considering quantity and customer)
-
-        if sale.pricelist_id:
-            price = sale.pricelist_id._get_product_price(
-                item.product_id, item.quantity, sale.partner_id
-            )
-
-        # Set correctly calculated price
-        sale_line.price_unit = price
-
-        # Ensure correct product unit of measure
-        sale_line.product_uom = item.product_id.uom_id
-
         line_values = sale_line._convert_to_write(sale_line._cache)
         return line_values
 
