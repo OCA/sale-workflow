@@ -10,6 +10,10 @@ class TestSaleOrderLineCancelBase(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        # https://www.odoo.com/documentation/18.0/th/developer/reference/backend/mixins.html
+        # tracking_disable: at create and write, perform no MailThread features
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+
         cls.partner = cls.env["res.partner"].create({"name": "Partner"})
         cls.product_1 = cls._create_product()
         cls.sale = cls._add_done_sale_order()
@@ -58,5 +62,7 @@ class TestSaleOrderLineCancelBase(TransactionCase):
     def _add_done_sale_order(cls, **kwargs):
         so = cls._create_sale_order(**kwargs)
         so.action_confirm()
-        so.action_done()
+        # We don't need to lock
+        # We just need to test state changes
+        # so.action_lock()  # Replaced action_done in V17
         return so

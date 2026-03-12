@@ -5,21 +5,13 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="sale.res_config_settings_view_form" />
         <field name="arch" type="xml">
-            <xpath expr="//div[@id='proforma_configuration']" position="after">
-                <div
-                    class="col-12 col-lg-6 o_setting_box"
+            <xpath expr="//setting[@id='proforma_configuration']" position="after">
+                <setting
                     id="line_cancel_decrease_qty_configuration"
+                    help="On canceling the remaining qty to deliver of an order line it decreases the initial quantity"
                 >
-                    <div class="o_setting_left_pane">
-                        <field name="on_sale_line_cancel_decrease_line_qty" />
-                    </div>
-                    <div class="o_setting_right_pane">
-                        <label for="on_sale_line_cancel_decrease_line_qty" />
-                        <div class="text-muted">
-                            On canceling the remaining qty to deliver of an order line it decreases the initial quantity
-                        </div>
-                    </div>
-                </div>
+                    <field name="on_sale_line_cancel_decrease_line_qty" />
+                </setting>
             </xpath>
         </field>
     </record>

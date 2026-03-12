@@ -2,7 +2,7 @@
 # Copyright 2023 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, models
+from odoo import models
 from odoo.exceptions import UserError
 
 
@@ -14,7 +14,7 @@ class SaleOrderLineCancel(models.TransientModel):
         active_id = self.env.context.get("active_id")
         active_model = self.env.context.get("active_model")
         if not active_id or active_model != "sale.order.line":
-            raise UserError(_("No sale order line ID found"))
+            raise UserError(self.env._("No sale order line ID found"))
         return self.env[active_model].browse(active_id)
 
     def cancel_remaining_qty(self):
