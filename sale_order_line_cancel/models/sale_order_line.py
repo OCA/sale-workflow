@@ -3,7 +3,7 @@
 # Copyright 2020 ACSONE SA/NV
 # Copyright 2025 Michael Tietz (MT Software) <mtietz@mt-software.de>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.tools import float_compare
 
 
@@ -57,11 +57,11 @@ class SaleOrderLine(models.Model):
             line.write(vals)
 
     def cancel_remaining_qty(self):
-        lines = self.filtered(lambda l: l.can_cancel_remaining_qty)
+        lines = self.filtered(lambda line: line.can_cancel_remaining_qty)
         lines._update_qty_canceled()
         for line in lines:
             line.order_id.message_post(
-                body=_(
+                body=self.env._(
                     "<b>%(product)s</b>: The order line has been canceled",
                     product=line.product_id.display_name,
                 )
