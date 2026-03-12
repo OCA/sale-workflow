@@ -1,14 +1,17 @@
 from psycopg2.errors import UniqueViolation
 
+from odoo import Command
 from odoo.exceptions import UserError
-from odoo.tests.common import TransactionCase, mute_logger
+from odoo.tests.common import mute_logger
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleInvoiceBlocking(TransactionCase):
+class TestSaleInvoiceBlocking(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.sale_order_model = cls.env["sale.order"]
+        cls.InvBlockingReason = cls.env["invoice.blocking.reason"]
         cls.sale_order_line_model = cls.env["sale.order.line"]
 
         # Data
@@ -16,6 +19,26 @@ class TestSaleInvoiceBlocking(TransactionCase):
         cls.service_1 = cls._create_product("test_product1", product_ctg)
         cls.service_2 = cls._create_product("test_product2", product_ctg)
         cls.customer = cls._create_customer("Test Customer")
+        cls.sale = cls.env["sale.order"].create(
+            {
+                "partner_id": cls.customer.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": cls.service_1.id,
+                            "product_uom_qty": 1,
+                        },
+                    ),
+                    Command.create(
+                        {
+                            "product_id": cls.service_2.id,
+                            "product_uom_qty": 2,
+                        },
+                    ),
+                ],
+            }
+        )
+        cls.sale.action_confirm()
 
     @classmethod
     def _create_customer(cls, name):
@@ -43,21 +66,14 @@ class TestSaleInvoiceBlocking(TransactionCase):
 
     @mute_logger("odoo.sql_db")
     def test_duplicate_reason(self):
-        self.env["invoice.blocking.reason"].create({"name": "Test Reason"})
+        self.InvBlockingReason.create({"name": "Test Reason"})
         with self.assertRaises(UniqueViolation):
-            self.env["invoice.blocking.reason"].create({"name": "Test Reason"})
+            self.InvBlockingReason.create({"name": "Test Reason"})
 
     def test_sales_order_invoicing(self):
-        so = self.sale_order_model.create({"partner_id": self.customer.id})
-        sol1 = self.sale_order_line_model.create(
-            {"product_id": self.service_1.id, "product_uom_qty": 1, "order_id": so.id}
-        )
-        sol2 = self.sale_order_line_model.create(
-            {"product_id": self.service_2.id, "product_uom_qty": 2, "order_id": so.id}
-        )
+        so = self.sale
+        sol1, sol2 = so.order_line
 
-        # confirm quotation
-        so.action_confirm()
         # update quantities delivered
         sol1.qty_delivered = 1
         sol2.qty_delivered = 2
@@ -66,7 +82,7 @@ class TestSaleInvoiceBlocking(TransactionCase):
             so.invoice_status, "to invoice", "The invoice status should be To Invoice"
         )
 
-        so.invoice_blocking_reason_id = self.env["invoice.blocking.reason"].create(
+        so.invoice_blocking_reason_id = self.InvBlockingReason.create(
             {"name": "Test Reason"}
         )
 
