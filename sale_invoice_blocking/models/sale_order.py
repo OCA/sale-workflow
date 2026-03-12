@@ -1,6 +1,6 @@
 # Copyright 2021 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -31,6 +31,8 @@ class SaleOrder(models.Model):
 
     def _nothing_to_invoice_error_message(self):
         error = super()._nothing_to_invoice_error_message()
-        error += _("\n- You may have an invoice blocking reason on the sale order")
+        error += self.env._(
+            "\n- You may have an invoice blocking reason on the sale order"
+        )
 
         return UserError(error)
