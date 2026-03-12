@@ -227,6 +227,11 @@
                         string="Sale Order Status"
                         context="{'group_by': 'sale_order_state'}"
                     />
+                    <filter
+                        name="groupby_user_ids"
+                        string="Responsibles"
+                        context="{'group_by': 'user_ids'}"
+                    />
                 </group>
             </search>
         </field>

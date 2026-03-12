@@ -657,6 +657,7 @@ msgstr "Usuario responsable"
 
 #. module: sale_delivery_request
 #: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request__user_ids
+#: model_terms:ir.ui.view,arch_db:sale_delivery_request.sale_delivery_request_view_search
 msgid "Responsibles"
 msgstr "Responsables"
 
