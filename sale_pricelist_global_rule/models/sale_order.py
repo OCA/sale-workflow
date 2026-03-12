@@ -14,7 +14,6 @@ class SaleOrder(models.Model):
             by_categ: {product.category: qty}}
         }
         """
-        self.ensure_one()
         qty_data = {
             "by_template": {},
             "by_categ": {},

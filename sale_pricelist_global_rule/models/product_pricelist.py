@@ -155,8 +155,10 @@ class ProductPricelistItem(models.Model):
         :rtype: bool
         """
         self.ensure_one()
-        qty_data = self.env.context.get("pricelist_global_cummulative_quantity", {})
-        if not qty_data or self.applied_on not in [
+        qty_data = self.env.context.get(
+            "pricelist_global_cummulative_quantity", {"by_template": {}, "by_categ": {}}
+        )
+        if self.applied_on not in [
             "3_1_global_product_template",
             "3_2_global_product_category",
         ]:
