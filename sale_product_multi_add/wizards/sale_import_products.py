@@ -35,6 +35,7 @@ class SaleImportProducts(models.TransientModel):
 
     @api.model
     def _get_line_values(self, sale, item):
+        # Create a new sale order line with basic information
         sale_line = self.env["sale.order.line"].new(
             {
                 "order_id": sale.id,
@@ -43,6 +44,11 @@ class SaleImportProducts(models.TransientModel):
                 "product_uom": item.product_id.uom_id.id,
             }
         )
+        
+        # Trigger the product_id change to compute the price with pricelist
+        sale_line.product_id_change()
+        
+        # Convert the cached values to write format
         line_values = sale_line._convert_to_write(sale_line._cache)
         return line_values
 
