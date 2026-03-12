@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =================================
 Sale Order Line Cancel Sale Stock
 =================================
@@ -17,38 +13,39 @@ Sale Order Line Cancel Sale Stock
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_order_line_cancel_sale_stock
+    :target: https://github.com/OCA/sale-workflow/tree/18.0/sale_order_line_cancel_sale_stock
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_order_line_cancel_sale_stock
+    :target: https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-sale_order_line_cancel_sale_stock
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module cancels only the stock moves for the remaining qty to deliver.
-Also it will track the canceled qty if a order line's stock move is canceled
-but only if there are not other started operations for this sale order line.
+This module cancels only the stock moves for the remaining qty to
+deliver. Also it will track the canceled qty if a order line's stock
+move is canceled but only if there are not other started operations for
+this sale order line.
 
-When the base addon is configured to also decrease the original ordered qty
-it ensures that there are now new moves created. Because by default,
-odoo will recompute the required stock operations if the ordered qty is changed.
-By canceling the operations for the remaining qty before the ordered qty is changed,
-odoo will not recompute the required stock operations, because the qty done by moves
-is the same as the ordered qty.
-
+When the base addon is configured to also decrease the original ordered
+qty it ensures that there are now new moves created. Because by default,
+odoo will recompute the required stock operations if the ordered qty is
+changed. By canceling the operations for the remaining qty before the
+ordered qty is changed, odoo will not recompute the required stock
+operations, because the qty done by moves is the same as the ordered
+qty.
 
 .. warning::
 
-    It's not recommended to use this module if the update of the quantity ordered
-    on the sale order line is allowed the confirmed state. This could lead to
-    unpredictable behavior.
+   It's not recommended to use this module if the update of the quantity
+   ordered on the sale order line is allowed the confirmed state. This
+   could lead to unpredictable behavior.
 
 **Table of contents**
 
@@ -61,7 +58,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_line_cancel_sale_stock%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_line_cancel_sale_stock%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -69,7 +66,7 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Okia
 * BCIM
@@ -78,16 +75,16 @@ Authors
 * MT Software
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Sylvain Van Hoof <sylvain@okia.be>
-* Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
-* Souheil Bejaoui <souheil.bejaoui@acsone.eu.com>
-* Laurent Mignon <laurent.mignon@acsone.eu>
-* Michael Tietz (MT Software) <mtietz@mt-software.de>
+- Sylvain Van Hoof <sylvain@okia.be>
+- Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
+- Souheil Bejaoui <souheil.bejaoui@acsone.eu.com>
+- Laurent Mignon <laurent.mignon@acsone.eu>
+- Michael Tietz (MT Software) <mtietz@mt-software.de>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -99,6 +96,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_order_line_cancel_sale_stock>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/18.0/sale_order_line_cancel_sale_stock>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
