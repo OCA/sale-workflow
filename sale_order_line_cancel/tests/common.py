@@ -58,5 +58,7 @@ class TestSaleOrderLineCancelBase(TransactionCase):
     def _add_done_sale_order(cls, **kwargs):
         so = cls._create_sale_order(**kwargs)
         so.action_confirm()
-        so.action_done()
+        # We don't need to lock
+        # We just need to test state changes
+        # so.action_lock()  # Replaced action_done in V17
         return so
