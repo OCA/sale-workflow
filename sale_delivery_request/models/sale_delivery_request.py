@@ -48,6 +48,7 @@ class SaleDeliveryRequest(models.Model):
             ("pending", "Pending"),
             ("confirmed", "Confirmed"),
             ("expired", "Expired"),
+            ("cancel", "Cancelled"),
         ],
         string="Status",
         default="draft",
@@ -364,6 +365,11 @@ class SaleDeliveryRequest(models.Model):
                 message_type="notification",
                 subtype_xmlid="mail.mt_comment",
             )
+
+    def action_cancel(self):
+        for rec in self:
+            if rec.state not in ("confirmed", "expired"):
+                rec.state = "cancel"
 
     def action_set_expired(self):
         for rec in self:

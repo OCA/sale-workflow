@@ -190,6 +190,14 @@ class SaleOrder(models.Model):
             "sticky": True,
         }
 
+    def _action_cancel(self):
+        for order in self:
+            active_requests = order.delivery_request_ids.filtered(
+                lambda r: r.state not in ("cancel", "confirmed", "expired")
+            )
+            active_requests.action_cancel()
+        return super()._action_cancel()
+
     def _action_confirm(self):
         """
         Blocks confirmation if any delivery request is still pending.

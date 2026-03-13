@@ -7,6 +7,7 @@
         <field name="arch" type="xml">
             <tree
                 decoration-danger="state == 'expired'"
+                decoration-muted="state == 'cancel'"
                 decoration-info="is_priority_request"
             >
                 <field name="priority" widget="priority" nolabel="1" />
@@ -25,7 +26,7 @@
                     widget="badge"
                     decoration-info="state == 'pending'"
                     decoration-success="state == 'confirmed'"
-                    decoration-danger="state == 'expired'"
+                    decoration-danger="state in ('expired', 'cancel')"
                 />
             </tree>
         </field>
@@ -65,6 +66,13 @@
                         invisible="state != 'confirmed'"
                         confirm="Are you sure you want to mark this request as expired?"
                     />
+                    <button
+                        name="action_cancel"
+                        string="Cancel"
+                        type="object"
+                        invisible="state in ('confirmed', 'expired', 'cancel')"
+                        confirm="Are you sure you want to cancel this delivery request?"
+                    />
                     <field
                         name="state"
                         widget="statusbar"
@@ -78,6 +86,12 @@
                         title="Expired"
                         bg_color="text-bg-warning"
                         invisible="state != 'expired'"
+                    />
+                    <widget
+                        name="web_ribbon"
+                        title="Cancelled"
+                        bg_color="text-bg-danger"
+                        invisible="state != 'cancel'"
                     />
                     <div class="oe_title">
                         <h1>
@@ -184,6 +198,11 @@
                     name="filter_expired"
                     string="Expired"
                     domain="[('state', '=', 'expired')]"
+                />
+                <filter
+                    name="filter_cancel"
+                    string="Cancelled"
+                    domain="[('state', '=', 'cancel')]"
                 />
                 <filter
                     name="filter_priority"

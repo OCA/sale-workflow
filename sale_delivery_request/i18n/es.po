@@ -108,6 +108,11 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #. module: sale_delivery_request
+#: model:ir.model.fields.selection,name:sale_delivery_request.selection__sale_delivery_request__state__cancel
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#. module: sale_delivery_request
 #. odoo-python
 #: code:addons/sale_delivery_request/models/sale_order.py:0
 #, python-format
@@ -341,6 +346,11 @@ msgstr "Agrupar por"
 #: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request__has_message
 msgid "Has Message"
 msgstr "Tiene mensaje"
+
+#. module: sale_delivery_request
+#: model:ir.model.fields,field_description:sale_delivery_request.field_sale_order__has_pending_delivery_request
+msgid "Has Pending Delivery Request"
+msgstr "Tiene solicitud de entrega pendiente"
 
 #. module: sale_delivery_request
 #: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request__id
