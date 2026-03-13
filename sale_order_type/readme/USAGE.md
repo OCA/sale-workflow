@@ -7,7 +7,7 @@
 2.  You can also define a type for a particular partner if you go to
     *Sales & Purchases* tab of the partner and set a sale order type:
 
-![alt text](../static/description/Sale_type_usage_2.png)
+![Sale type for a partner](../static/description/Sale_type_usage_2.png)
 
 Scroll down to find the "Sale order Type" field:
 ![alt text](../static/description/Sale_type_usage_3.png)
