@@ -9,7 +9,7 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     def _prepare_procurement_group_vals(self):
-        values = super(SaleOrderLine, self)._prepare_procurement_group_vals()
+        values = super()._prepare_procurement_group_vals()
         com_datetime = self.commitment_date
         com_date = fields.Date.to_string(com_datetime)
         if com_datetime and self._get_procurement_group_key()[0] == 12:
@@ -17,9 +17,7 @@ class SaleOrderLine(models.Model):
         return values
 
     def _prepare_procurement_values(self, group_id=False):
-        values = super(SaleOrderLine, self)._prepare_procurement_values(
-            group_id=group_id
-        )
+        values = super()._prepare_procurement_values(group_id=group_id)
         com_datetime = self.commitment_date
         com_date = fields.Date.to_string(com_datetime)
         if com_datetime:
@@ -32,7 +30,7 @@ class SaleOrderLine(models.Model):
         preference the criteria has.
         """
         priority = 12
-        key = super(SaleOrderLine, self)._get_procurement_group_key()
+        key = super()._get_procurement_group_key()
         # Check priority
         if key[0] >= priority:
             return key
