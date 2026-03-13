@@ -26,6 +26,7 @@ class SaleOrder(models.Model):
                 # auto invoice, invoice sending.
                 tx.operation = "validation"
                 tx._post_process()
+                tx._check_amount_and_confirm_order()
                 # recover invoice creation to allow manual payment reconciliation
                 if auto_invoice:
                     # Invoice the sales orders of confirmed transactions
