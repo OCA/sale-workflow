@@ -4,7 +4,7 @@
 import logging
 import threading
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
@@ -64,9 +64,9 @@ class AccountTax(models.Model):
                         taxes |= record.equivalent_tax_inc_id
                     else:
                         raise UserError(
-                            _(
-                                "Equivalent tax include for '%s' is missing"
-                                % record.name
+                            self.env._(
+                                "Equivalent tax include for '%s' is missing",
+                                record.name,
                             )
                         )
                 else:
@@ -74,9 +74,9 @@ class AccountTax(models.Model):
                         taxes |= record.equivalent_tax_exc_id
                     else:
                         raise UserError(
-                            _(
-                                "Equivalent tax exclude for '%s' is missing"
-                                % record.name
+                            self.env._(
+                                "Equivalent tax exclude for '%s' is missing",
+                                record.name,
                             )
                         )
         return taxes

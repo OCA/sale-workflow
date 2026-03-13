@@ -15,12 +15,12 @@ class SaleOrder(models.Model):
     _description = "Sale Order"
     _inherit = ["sale.order", "price.include.tax.mixin"]
 
-    def update_prices(self):
-        for record in self:
-            record.order_line._compute_tax_id()
-            super(
-                SaleOrder, record.with_context(pricelist=record.pricelist_id.id)
-            ).update_prices()
+    # def update_prices(self):
+    #     for record in self:
+    #         record.order_line._compute_tax_id()
+    #         super(
+    #             SaleOrder, record.with_context(pricelist=record.pricelist_id.id)
+    #         ).update_prices()
 
     @api.depends("order_line", "order_line.tax_id", "order_line.tax_id.price_include")
     def _compute_price_tax_state(self):
@@ -41,7 +41,7 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    def _compute_tax_id(self):
+    def _compute_tax_id(self):  # pylint: disable=missing-return
         for line in self:
             line = line.with_context(
                 price_include_taxes=line.order_id.pricelist_id.price_include_taxes
@@ -58,7 +58,8 @@ class SaleOrderLine(models.Model):
                 raise UserError(
                     _(
                         "Tax with include price with pricelist b2b '%s' "
-                        "is not supported" % pricelist.name
+                        "is not supported",
+                        pricelist.name,
                     )
                 )
 

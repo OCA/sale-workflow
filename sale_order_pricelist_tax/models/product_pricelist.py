@@ -1,11 +1,7 @@
 # © 2018  Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, fields, models
-
-HELP = _(
-    "Only price items with 'Based on' field set to " "'Public Price' are supported.\n"
-)
+from odoo import fields, models
 
 
 class ProductPricelist(models.Model):
@@ -19,11 +15,13 @@ class ProductPricelist(models.Model):
     )
 
     def name_get(self):
-        res = super(ProductPricelist, self).name_get()
+        res = super().name_get()
         pricelist_ids = [x[0] for x in res]
         pricelists = self.env["product.pricelist"].browse(pricelist_ids)
         suffix = {
-            x.id: _(" (tax include)") for x in pricelists if x.price_include_taxes
+            x.id: self.env._(" (tax include)")
+            for x in pricelists
+            if x.price_include_taxes
         }
         names = []
         for elm in res:
