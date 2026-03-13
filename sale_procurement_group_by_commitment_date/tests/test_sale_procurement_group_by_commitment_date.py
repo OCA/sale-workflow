@@ -22,7 +22,7 @@ class TestSaleMultiPickingByCommitmentDate(TransactionCase):
         cls.proc_group_obj = cls.env["procurement.group"]
         order_line = cls.env["sale.order.line"]
         Product = cls.env["product.product"]
-        p1 = Product.create({"name": "p1", "type": "product"}).id
+        p1 = Product.create({"name": "p1", "type": "consu"}).id
         today = datetime.datetime.now()
         cls.dt1 = today
         cls.dt2 = today + datetime.timedelta(days=1)
@@ -95,7 +95,7 @@ class TestSaleMultiPickingByCommitmentDate(TransactionCase):
             }
         )
 
-        cls.route = cls.env["stock.location.route"].create(
+        cls.route = cls.env["stock.route"].create(
             {
                 "sale_selectable": True,
                 "name": "test_route",
@@ -108,7 +108,7 @@ class TestSaleMultiPickingByCommitmentDate(TransactionCase):
             {
                 "name": "test_rule",
                 "action": "pull",
-                "location_id": sale1_cust_loc.id,
+                "location_dest_id": sale1_cust_loc.id,
                 "location_src_id": sale1_wh.view_location_id.id,
                 "route_id": cls.route.id,
                 "picking_type_id": sale1_wh.out_type_id.id,
