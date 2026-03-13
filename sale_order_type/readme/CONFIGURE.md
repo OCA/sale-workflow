@@ -9,4 +9,4 @@ To configure Sale Order Types you need to:
 
 3. Create a new Sale Order type with all the settings you want using the available fields:
 
-![Alt text](../static/description/Sale_type_config_3.png)
+![Sale type creation](../static/description/Sale_type_config_3.png)
