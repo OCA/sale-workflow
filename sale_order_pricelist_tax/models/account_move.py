@@ -2,7 +2,7 @@
 # @author Kévin Roche <kevin.roche@akretion.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import UserError
 
 
@@ -25,7 +25,7 @@ class AccountMove(models.Model):
                 and move.price_tax_state == "exception"
             ):
                 raise UserError(
-                    _(
+                    self.env._(
                         "Invoice lines must have the same kind of taxes "
                         "(price include or exclude)."
                     )

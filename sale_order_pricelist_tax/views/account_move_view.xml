@@ -18,7 +18,7 @@
             <xpath expr="//field[@name='invoice_date']" position="after">
                 <field name="price_tax_state" invisible="1" />
             </xpath>
-           <xpath expr="//tree/field[@name='price_subtotal']" position="attributes">
+            <xpath expr="//tree/field[@name='price_subtotal']" position="attributes">
                 <attribute
                     name="attrs"
                 >{'column_invisible': [('parent.price_tax_state', '=', 'include')]}</attribute>
