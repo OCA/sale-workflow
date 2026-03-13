@@ -10,4 +10,4 @@
 ![Sale type for a partner](../static/description/Sale_type_usage_2.png)
 
 Scroll down to find the "Sale order Type" field:
-![alt text](../static/description/Sale_type_usage_3.png)
+![Setting the sale type on a partner](../static/description/Sale_type_usage_3.png)
