@@ -36,7 +36,9 @@ class TestActionPaid(PaymentCommon):
             "sale.automatic_invoice", "True"
         )
         self.sale_order.action_paid()
+        self.assertEqual(len(tx), 1)
         self.assertEqual(tx.state, "done")
+        self.assertTrue(tx.is_post_processed)
         self.assertEqual(self.sale_order.state, "sale")
         # Check the policy changed to "order" and the invoice is generated
         self.assertEqual(len(tx.invoice_ids), 1)
@@ -46,12 +48,28 @@ class TestActionPaid(PaymentCommon):
         """Mark a manual SO without a pending transaction as paid"""
         tx = self.sale_order.transaction_ids
         self.assertFalse(tx)
+        tx = self.sale_order._action_paid_create_transaction()
+        self.sale_order._action_paid(tx, force_invoice=True)
+        self.assertEqual(len(tx), 1)
+        self.assertEqual(tx.state, "done")
+        self.assertTrue(tx.is_post_processed)
+        self.assertEqual(self.sale_order.state, "sale")
+        # Check the policy changed to "order" and the invoice is generated
+        self.assertEqual(len(tx.invoice_ids), 1)
+        self.assertEqual(tx.invoice_ids.state, "posted")
+
+    def test_action_paid_confirmed_order(self):
+        """Mark a manual confirmed SO as paid"""
+        tx = self.sale_order.transaction_ids
+        self.assertFalse(tx)
         tx = self.sale_order._action_paid_create_transaction(
             payment_method_id=self.payment_method_id
         )
-        self.sale_order._action_paid(tx, auto_invoice=True)
+        self.sale_order.action_confirm()
+        self.sale_order._action_paid(tx, force_invoice=True)
         self.assertEqual(len(tx), 1)
         self.assertEqual(tx.state, "done")
+        self.assertTrue(tx.is_post_processed)
         self.assertEqual(self.sale_order.state, "sale")
         # Check the policy changed to "order" and the invoice is generated
         self.assertEqual(len(tx.invoice_ids), 1)
