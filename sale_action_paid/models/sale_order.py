@@ -22,8 +22,9 @@ class SaleOrder(models.Model):
 
     def _action_paid_create_transaction(self, **values):
         order = fields.first(self)
+        amount = order.amount_total - order.amount_invoiced
         default_values = {
-            "amount": order.amount_total,
+            "amount": amount,
             "currency_id": order.currency_id.id,
             "provider_id": self.env.ref("payment.payment_provider_transfer").id,
             "operation": "offline",
