@@ -54,32 +54,26 @@ class TestActionPaid(PaymentCommon):
         """Mark a manual SO without a pending transaction as paid"""
         tx = self.sale_order.transaction_ids
         self.assertFalse(tx)
-        tx = self.sale_order._action_paid_create_transaction()
-        self.sale_order._action_paid(tx, force_invoice=True)
-        self.assertEqual(len(tx), 1)
-        self.assertEqual(tx.state, "done")
-        self.assertTrue(tx.is_post_processed)
+        self.sale_order._action_paid(force_invoice=True)
+        self.assertFalse(tx)
         self.assertEqual(self.sale_order.state, "sale")
+        invoice = self.sale_order.invoice_ids
         # Check the policy changed to "order" and the invoice is generated
-        self.assertEqual(len(tx.invoice_ids), 1)
-        self.assertEqual(tx.invoice_ids.state, "posted")
+        self.assertEqual(len(invoice), 1)
+        self.assertEqual(invoice.state, "posted")
 
     def test_action_paid_confirmed_order(self):
         """Mark a manual confirmed SO as paid"""
         tx = self.sale_order.transaction_ids
         self.assertFalse(tx)
-        tx = self.sale_order._action_paid_create_transaction(
-            payment_method_id=self.payment_method_id
-        )
         self.sale_order.action_confirm()
-        self.sale_order._action_paid(tx, force_invoice=True)
-        self.assertEqual(len(tx), 1)
-        self.assertEqual(tx.state, "done")
-        self.assertTrue(tx.is_post_processed)
+        self.sale_order._action_paid(force_invoice=True)
+        self.assertFalse(tx)
         self.assertEqual(self.sale_order.state, "sale")
+        invoice = self.sale_order.invoice_ids
         # Check the policy changed to "order" and the invoice is generated
-        self.assertEqual(len(tx.invoice_ids), 1)
-        self.assertEqual(tx.invoice_ids.state, "posted")
+        self.assertEqual(len(invoice), 1)
+        self.assertEqual(invoice.state, "posted")
 
     def test_action_paid_downpayment_order(self):
         """Mark a manual confirmed SO with downpayment as paid"""
@@ -95,15 +89,11 @@ class TestActionPaid(PaymentCommon):
         self.assertEqual(down_invoice.state, "posted")
         tx = self.sale_order.transaction_ids
         self.assertFalse(tx)
-        tx = self.sale_order._action_paid_create_transaction(
-            payment_method_id=self.payment_method_id
-        )
         self.sale_order.action_confirm()
-        self.sale_order._action_paid(tx, force_invoice=True)
-        self.assertEqual(len(tx), 1)
-        self.assertEqual(tx.state, "done")
-        self.assertTrue(tx.is_post_processed)
+        self.sale_order._action_paid(force_invoice=True)
+        self.assertFalse(tx)
         self.assertEqual(self.sale_order.state, "sale")
+        invoice = self.sale_order.invoice_ids - down_invoice
         # Check the policy changed to "order" and the invoice is generated
-        self.assertEqual(len(tx.invoice_ids), 1)
-        self.assertEqual(tx.invoice_ids.state, "posted")
+        self.assertEqual(len(invoice), 1)
+        self.assertEqual(invoice.state, "posted")
