@@ -21,14 +21,14 @@ class SaleOrderLine(models.Model):
         index=True,
     )
 
-    @api.depends("production_ids", "production_ids.state")
+    @api.depends("mrp_production_ids", "mrp_production_ids.state")
     def _compute_production_state(self):
         for line in self:
-            if not line.production_ids:
+            if not line.mrp_production_ids:
                 line.production_state = "no"
-            elif all(x.state in ["done", "cancel"] for x in line.production_ids):
+            elif all(x.state in ["done", "cancel"] for x in line.mrp_production_ids):
                 line.production_state = "done"
-            elif any(x.state == "done" for x in line.production_ids):
+            elif any(x.state == "done" for x in line.mrp_production_ids):
                 line.production_state = "partially"
             else:
                 line.production_state = "unprocessed"

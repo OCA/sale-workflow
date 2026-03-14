@@ -5,7 +5,7 @@
 {
     "name": "Sale production State",
     "summary": "Show the production state on the sale order",
-    "version": "14.0.1.0.1",
+    "version": "18.0.1.0.0",
     "category": "Product",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Akretion, Odoo Community Association (OCA)",
@@ -14,6 +14,7 @@
     "depends": ["mrp_sale_info"],
     "data": [
         "views/sale_order.xml",
+        "views/sale_order_line_views.xml",
     ],
     "demo": [],
 }

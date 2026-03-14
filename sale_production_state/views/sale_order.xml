@@ -8,11 +8,23 @@
             <field name='date_order' position="after">
                 <field name="production_state" readonly="True" />
             </field>
+            <xpath
+                expr="//field[@name='order_line']/form/group/group/div[@name='invoiced_qty']"
+                position="after"
+            >
+                <field name="production_state" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/list/field[@name='qty_invoiced']"
+                position="after"
+            >
+                <field name="production_state" optional="hide" />
+            </xpath>
         </field>
     </record>
 
     <record id="view_order_tree_inherit_production_state" model="ir.ui.view">
-        <field name="name">sale.order.tree</field>
+        <field name="name">sale.order.list</field>
         <field name="inherit_id" ref="sale.view_order_tree" />
         <field name="model">sale.order</field>
         <field name="arch" type="xml">

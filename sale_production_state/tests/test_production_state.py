@@ -3,10 +3,10 @@
 # Copyright 2018 Camptocamp
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests import Form, SavepointCase
+from odoo.tests import Form, TransactionCase
 
 
-class TestSaleProductionState(SavepointCase):
+class TestSaleProductionState(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -16,7 +16,8 @@ class TestSaleProductionState(SavepointCase):
         cls.product_1 = cls.env["product.product"].create(
             {
                 "name": "Test sale production state product 1",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "route_ids": [
                     (4, route_manufacture_1.id),
                     (4, route_manufacture_2.id),
@@ -26,7 +27,8 @@ class TestSaleProductionState(SavepointCase):
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Test sale production state product",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
             }
         )
         cls.bom_1 = cls.env["mrp.bom"].create(
@@ -40,7 +42,8 @@ class TestSaleProductionState(SavepointCase):
         cls.product_2 = cls.env["product.product"].create(
             {
                 "name": "Test sale production state product 2",
-                "type": "product",
+                "type": "consu",
+                "is_storable": True,
                 "route_ids": [
                     (4, route_manufacture_1.id),
                     (4, route_manufacture_2.id),
@@ -91,11 +94,11 @@ class TestSaleProductionState(SavepointCase):
         self.order.action_confirm()
         self.assertEqual(self.order.order_line[0].production_state, "unprocessed")
         self.assertEqual(self.order.production_state, "unprocessed")
-        self.assertTrue(self.order.order_line[0].production_ids)
+        self.assertTrue(self.order.order_line[0].mrp_production_ids)
 
     def test_partially(self):
         self.order.action_confirm()
-        mrp = self.order.order_line[0].production_ids
+        mrp = self.order.order_line[0].mrp_production_ids
         mrp.action_confirm()
         mo_form = Form(mrp)
         mo_form.qty_producing = 1
@@ -107,7 +110,7 @@ class TestSaleProductionState(SavepointCase):
     def test_production_done(self):
         self.order.action_confirm()
         for line in self.order.order_line:
-            mrp = line.production_ids
+            mrp = line.mrp_production_ids
             mrp.action_confirm()
             mo_form = Form(mrp)
             mo_form.qty_producing = 1
