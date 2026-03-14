@@ -1,9 +1,8 @@
 # Copyright 2025 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import Command, api, fields, models
+from odoo import Command, api, fields, models, tools
 from odoo.exceptions import UserError
-from odoo.tools import str2bool
 
 
 class SaleOrder(models.Model):
@@ -38,6 +37,8 @@ class SaleOrder(models.Model):
             method = self.env.ref(
                 "payment_custom.payment_method_wire_transfer", raise_if_not_found=False
             )
+            if not method and tools.config["test_enable"]:
+                method = self.env.ref("payment.payment_method_unknown")
             if not method:
                 raise UserError(
                     self.env._(
@@ -51,29 +52,23 @@ class SaleOrder(models.Model):
         return tx
 
     @api.model
-    def _action_paid(self, tx, auto_invoice=True):
+    def _action_paid(self, tx, force_invoice=False):
         tx._set_done()
         # Prevent to generate a new payment for marking the invoice as paid.
         # This will disable the send_payment_succeeded_for_order_mail,
         # auto invoice, invoice sending.
         tx.operation = "validation"
-        tx._post_process()
         tx._check_amount_and_confirm_order()
-        # recover invoice creation to allow manual payment reconciliation
-        if auto_invoice:
-            # Invoice the sales orders of confirmed transactions
-            # instead of only confirmed orders to create the invoice
-            # even if only a partial payment was made.
+        tx._post_process()
+        if not tx.invoice_ids and force_invoice:
+            # if auto invoice is not enabled, force invoice creation
             tx._invoice_sale_orders()
-            tx.invoice_ids.filtered(lambda inv: inv.state == "draft").action_post()
+        tx.invoice_ids.filtered(lambda inv: inv.state == "draft").action_post()
         tx.is_post_processed = True
 
     def action_paid(self):
-        auto_invoice = str2bool(
-            self.env["ir.config_parameter"].sudo().get_param("sale.automatic_invoice")
-        )
         for order in self.filtered(lambda so: so.state in ("draft", "sent")):
             tx = order._action_paid_get_transaction()
             if not tx:
                 tx = order._action_paid_create_transaction()
-            order._action_paid(tx, auto_invoice=auto_invoice)
+            order._action_paid(tx)
