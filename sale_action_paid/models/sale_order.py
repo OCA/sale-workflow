@@ -1,8 +1,7 @@
 # Copyright 2025 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import Command, api, fields, models, tools
-from odoo.exceptions import UserError
+from odoo import models, tools
 
 
 class SaleOrder(models.Model):
@@ -20,56 +19,42 @@ class SaleOrder(models.Model):
             tx = txs.sorted()[:1]
         return tx
 
-    def _action_paid_create_transaction(self, **values):
-        order = fields.first(self)
-        amount = order.amount_total - order.amount_invoiced
-        default_values = {
-            "amount": amount,
-            "currency_id": order.currency_id.id,
-            "provider_id": self.env.ref("payment.payment_provider_transfer").id,
-            "operation": "offline",
-            "partner_id": order.partner_id.id,
-            "partner_lang": order.partner_id.lang,
-            "sale_order_ids": [Command.set(self.ids)],
-        }
-        transaction_vals = dict(default_values, **values)
-        if not transaction_vals.get("payment_method_id"):
-            # default to Wire transfer
-            method = self.env.ref(
-                "payment_custom.payment_method_wire_transfer", raise_if_not_found=False
-            )
-            if not method and tools.config["test_enable"]:
-                method = self.env.ref("payment.payment_method_unknown")
-            if not method:
-                raise UserError(
-                    self.env._(
-                        "Cannot mark as paid as there are no pending transaction. "
-                        "Install payment_custom module to allow the creation of a "
-                        "transaction."
-                    )
+    def _action_paid(self, force_invoice=False):
+        self.ensure_one()
+        tx = self._action_paid_get_transaction()
+        if tx:
+            tx._set_done()
+            # Prevent to generate a new payment for marking the invoice as paid.
+            # This will disable the send_payment_succeeded_for_order_mail,
+            # auto invoice, invoice sending.
+            tx.operation = "validation"
+            tx._check_amount_and_confirm_order()
+            tx._post_process()
+            if not tx.invoice_ids and force_invoice:
+                # if auto invoice is not enabled, force invoice creation
+                tx._invoice_sale_orders()
+            tx.invoice_ids.filtered(lambda inv: inv.state == "draft").action_post()
+            tx.is_post_processed = True
+            return tx.invoice_ids
+        if self.state in ("draft", "sent"):
+            self.with_context(send_email=True).action_confirm()
+        if force_invoice:
+            self._force_lines_to_invoice_policy_order()
+            invoice = self._create_invoices(final=True)
+            invoice.action_post()
+            if not self.env.context.get("skip_sale_auto_invoice_send"):
+                invoice.is_move_sent = True
+                send_context = {"allow_raising": False, "allow_fallback_pdf": True}
+                self.env["account.move.send"]._generate_and_send_invoices(
+                    invoice,
+                    **send_context,
                 )
-            transaction_vals["payment_method_id"] = method.id
-        tx = self.env["payment.transaction"].sudo().create(transaction_vals)
-        return tx
-
-    @api.model
-    def _action_paid(self, tx, force_invoice=False):
-        tx._set_done()
-        # Prevent to generate a new payment for marking the invoice as paid.
-        # This will disable the send_payment_succeeded_for_order_mail,
-        # auto invoice, invoice sending.
-        tx.operation = "validation"
-        tx._check_amount_and_confirm_order()
-        tx._post_process()
-        if not tx.invoice_ids and force_invoice:
-            # if auto invoice is not enabled, force invoice creation
-            tx._invoice_sale_orders()
-        tx.invoice_ids.filtered(lambda inv: inv.state == "draft").action_post()
-        tx.is_post_processed = True
+            return invoice
+        return self.env["account.move"]
 
     def action_paid(self):
+        auto_invoice = tools.str2bool(
+            self.env["ir.config_parameter"].sudo().get_param("sale.automatic_invoice")
+        )
         for order in self.filtered(lambda so: so.state in ("draft", "sent")):
-            tx = order._action_paid_get_transaction()
-            if not tx:
-                tx = order._action_paid_create_transaction()
-            order._action_paid(tx)
+            order._action_paid(force_invoice=auto_invoice)
