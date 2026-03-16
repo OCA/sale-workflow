@@ -13,5 +13,14 @@
         "views/res_config_settings_views.xml",
         "views/sale_order_views.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "sale_pricelist_from_commitment_date/static/src/js/sale_product_field.esm.js",
+        ],
+        "web.assets_unit_tests": [
+            "sale_pricelist_from_commitment_date/static/src/js/sale_product_field.esm.js",
+            "sale_pricelist_from_commitment_date/static/tests/**/*",
+        ],
+    },
     "installable": True,
 }
