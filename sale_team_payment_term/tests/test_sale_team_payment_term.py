@@ -8,7 +8,7 @@ from odoo.tests.common import SavepointCase
 class TestSaleTeamPaymentTerm(SavepointCase):
     @classmethod
     def setUpClass(cls):
-        super(TestSaleTeamPaymentTerm, cls).setUpClass()
+        super().setUpClass()
         cls.sale = cls.env.ref("sale.sale_order_1")
 
         cls.team = cls.env.ref("sales_team.team_sales_department")
