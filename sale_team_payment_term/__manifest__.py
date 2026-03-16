@@ -5,7 +5,7 @@
 {
     "name": "Sale Team Payment Term",
     "summary": "add payment term on sale team",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "sale-workflow",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Akretion, Odoo Community Association (OCA)",

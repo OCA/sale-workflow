@@ -28,7 +28,7 @@ Sale Team Payment Term
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows to set payment term by sales team, if no one exist on
+This module allows to set payment term by sales team, if none is set on
 partner.
 
 **Table of contents**
