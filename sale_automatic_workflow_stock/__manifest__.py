@@ -20,4 +20,5 @@
         "data/automatic_workflow_data.xml",
     ],
     "auto_install": True,
+    "pre_init_hook": "pre_init_hook",
 }
