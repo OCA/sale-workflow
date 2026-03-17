@@ -2,20 +2,17 @@
 <!-- Copyright 2026 Moduon Team S.L.
      License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
 <template id="template" xml:space="preserve">
-
-    <t t-name="sale_price_compliance.PriceComplianceTier" owl="1">
-        <div t-att-class="!props.record.data.price_compliance_tier ? 'invisible' : ''">
-            <a
-                t-att-tabindex="props.record.data.price_compliance_tier ? '0' : '-1'"
-                t-on-click="showPopup"
-                class="cursor-pointer"
-            >
-                <t t-out="calcData.price_compliance_tier_display" />
-            </a>
-        </div>
+    <t t-name="sale_price_compliance.PriceComplianceTier">
+        <a
+            tabindex="-2"
+            t-on-click="showPopup"
+            t-att-class="!props.record.data.price_compliance_tier ? 'invisible' : 'cursor-pointer'"
+        >
+            <t t-out="calcData.price_compliance_tier_display" />
+        </a>
     </t>
 
-    <t t-name="sale_price_compliance.PriceComplianceTierPopover" owl="1">
+    <t t-name="sale_price_compliance.PriceComplianceTierPopover">
         <div class="px-3 py-2">
             <div class="pb-2 border-bottom">
                 <strong>Price Compliance Thresholds</strong>

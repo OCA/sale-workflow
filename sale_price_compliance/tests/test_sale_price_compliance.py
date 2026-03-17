@@ -2,17 +2,18 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
 from odoo.fields import Command
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestPriceCompliance(TransactionCase):
+class TestPriceCompliance(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.partner = cls.env["res.partner"].create({"name": "SPC Partner"})
         # Enable groups Pricelist and discount groups
         cls.env.user.groups_id += cls.env.ref("product.group_product_pricelist")
-        cls.env.user.groups_id += cls.env.ref("product.group_discount_per_so_line")
+        cls.env.user.groups_id += cls.env.ref("sale.group_discount_per_so_line")
         # Company
         cls.env.company.write(
             {
@@ -36,7 +37,7 @@ class TestPriceCompliance(TransactionCase):
         cls.product_pct = cls.env["product.product"].create(
             {
                 "name": "PCT Product",
-                "detailed_type": "service",
+                "type": "service",
                 "list_price": 10.0,
                 "use_price_compliance_threshold": True,
                 "price_compliance_threshold_t1": 0.35,
@@ -48,7 +49,7 @@ class TestPriceCompliance(TransactionCase):
         cls.product_company_pct = cls.env["product.product"].create(
             {
                 "name": "PCT Company Product",
-                "detailed_type": "service",
+                "type": "service",
                 "list_price": 10.0,
             }
         )
@@ -56,7 +57,7 @@ class TestPriceCompliance(TransactionCase):
         cls.product_categ_pct = cls.env["product.product"].create(
             {
                 "name": "PCT Categ Product",
-                "detailed_type": "service",
+                "type": "service",
                 "list_price": 10.0,
                 "categ_id": cls.product_category.id,
             }
@@ -65,12 +66,22 @@ class TestPriceCompliance(TransactionCase):
         cls.product_pricelist_pct = cls.env["product.product"].create(
             {
                 "name": "PCT Pricelist Product",
-                "detailed_type": "service",
+                "type": "service",
                 "list_price": 10.0,
                 "categ_id": cls.product_category.id,
             }
         )
         # Pricelist
+        cls.default_pricelist = (
+            cls.env["product.pricelist"]
+            .with_company(cls.env.company)
+            .create(
+                {
+                    "name": "Default Pricelist",
+                    "currency_id": cls.env.company.currency_id.id,
+                }
+            )
+        )
         cls.pricelist = (
             cls.env["product.pricelist"]
             .with_company(cls.env.company)
@@ -96,12 +107,13 @@ class TestPriceCompliance(TransactionCase):
         sale = self.env["sale.order"].create(
             {
                 "partner_id": self.partner.id,
+                "pricelist_id": self.default_pricelist.id,
                 "order_line": [Command.create({"product_id": product.id})],
             }
         )
         if pricelist:
             sale.write({"pricelist_id": pricelist.id})
-            sale._recompute_prices()
+            sale.with_context(force_price_recomputation=True)._recompute_prices()
         return sale.order_line[0]
 
     def _test_price_compliance_discount_tiers(self, sale_line, **tier_data):
@@ -157,12 +169,17 @@ class TestPriceCompliance(TransactionCase):
 
     def test_product_pricelist_threshold(self):
         """Test product pricelist thresholds"""
-        # Because pricelist applies 50% discount directly inside the price,
-        # any discount should go out of Tier ranges and be Non Compliant
         self._test_price_compliance_discount_tiers(
             self._create_sale_order_line(
                 self.product_pricelist_pct, pricelist=self.pricelist
             ),
-            pricelist=(0.0,),  # Initial price
-            non_compliant=(1.0,),  # Any extra discount
+            # Product Category Thresholds (standard)
+            t1=(0.0, 20.0),
+            t2=(20.1, 25.0),
+            t3=(25.1, 30.0),
+            # Pricelist is between t3 ceil and pricelist discount
+            # Would be non_compliant if no pricelist is defined
+            pricelist=(30.1, 50.0),
+            # Non compliant is above pricelist discount
+            non_compliant=(50.1,),
         )

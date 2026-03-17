@@ -3,16 +3,17 @@
 
 from psycopg2 import IntegrityError
 
-from odoo.tests.common import TransactionCase, tagged
+from odoo.tests.common import tagged
 from odoo.tools import mute_logger
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @tagged("post_install", "-at_install")
-class TestPriceComplianceConstraints(TransactionCase):
+class TestPriceComplianceConstraints(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # Create a clean company for testing
         cls.company = cls.env["res.company"].create(
             {
                 "name": "Test Company SQL Constraints",
@@ -154,8 +155,12 @@ class TestPriceComplianceConstraints(TransactionCase):
         self.assertEqual(selection_icons[3][1], default_icons[3][1])
         self.assertEqual(selection_icons[4][1], "🟣")
 
+    @mute_logger(
+        "odoo.addons.sale_price_compliance.models.price_compliance_threshold_tier_mixin"
+    )
     def test_custom_texts_wrong_parameter(self):
         """Check if custom texts are used if parameter is not correctly set."""
+        # Logger is muted because we are going to check it against default texts
         # Set custom texts
         self.env["ir.config_parameter"].sudo().set_param(
             "sale_price_compliance.price_compliance_selection_tiers_text",

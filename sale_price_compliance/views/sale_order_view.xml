@@ -13,45 +13,45 @@
                 expr="//field[@name='order_line']/form//field[@name='price_subtotal']/.."
                 position="inside"
             >
-                <div class="o_row" name="price_compliance">
-                    <field name="price_compliance_data" invisible="1" />
+                <div
+                    class="o_row"
+                    name="price_compliance"
+                    invisible="not price_compliance_tier"
+                >
                     <field name="price_compliance_tier" invisible="1" />
+                    <field name="price_compliance_data" invisible="1" />
                     <div class="o_row">
                         <label
                             for="price_compliance_tier"
                             string="Price Compliance Tier"
                             class="o_form_label"
                         />
-                        <widget
-                            name="price_compliance_tier_widget"
-                            attrs="{'invisible': [('price_compliance_tier', '=', False)]}"
-                            class="ms-2"
-                        />
+                        <widget name="price_compliance_tier_widget" class="ms-2" />
                     </div>
                 </div>
             </xpath>
 
-            <!-- Tree -->
+            <!-- List -->
             <xpath
-                expr="//field[@name='order_line']/tree/field[@name='sequence']"
+                expr="//field[@name='order_line']/list/field[@name='sequence']"
                 position="before"
             >
-                <field name="price_compliance_data" invisible="1" />
-                <field name="price_compliance_tier" invisible="1" />
+                <field name="price_compliance_tier" column_invisible="1" />
+                <field name="price_compliance_data" column_invisible="1" />
                 <widget name="price_compliance_tier_widget" width="20px" />
             </xpath>
 
             <!-- Kanban -->
             <xpath
-                expr="//field[@name='order_line']/kanban//strong[@t-out='line_price']"
+                expr="//field[@name='order_line']/kanban/templates//field[@name='price_subtotal']"
                 position="before"
             >
                 <field name="price_compliance_data" invisible="1" />
                 <field name="price_compliance_tier" invisible="1" />
-                <div class="float-end mr8 ms-2">
+                <div class="float-end mr8 ms-1">
                     <widget
                         name="price_compliance_tier_widget"
-                        attrs="{'invisible': [('price_compliance_tier', '=', False)]}"
+                        invisible="not price_compliance_tier"
                     />
                 </div>
             </xpath>

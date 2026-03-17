@@ -1,26 +1,29 @@
-/** @odoo-module **/
-
+import {Component, onWillRender} from "@odoo/owl";
 import {registry} from "@web/core/registry";
+import {standardWidgetProps} from "@web/views/widgets/standard_widget_props";
 import {usePopover} from "@web/core/popover/popover_hook";
 import {useService} from "@web/core/utils/hooks";
 
-const {Component, EventBus, onWillRender} = owl;
-
 export class PriceComplianceTierPopover extends Component {
+    static template = "sale_price_compliance.PriceComplianceTierPopover";
+    static props = {
+        record: Object,
+        calcData: Object,
+        close: Function,
+    };
     setup() {
         this.actionService = useService("action");
     }
 }
 
-PriceComplianceTierPopover.template =
-    "sale_price_compliance.PriceComplianceTierPopover";
-PriceComplianceTierPopover.position = "right";
-
 export class PriceComplianceTierWidget extends Component {
+    static components = {Popover: PriceComplianceTierPopover};
+    static template = "sale_price_compliance.PriceComplianceTier";
+    static props = {...standardWidgetProps};
     setup() {
-        this.bus = new EventBus();
-        this.popover = usePopover();
-        this.closePopover = null;
+        this.popover = usePopover(this.constructor.components.Popover, {
+            position: "right",
+        });
         this.calcData = {};
         onWillRender(() => {
             this.updateCalcData();
@@ -53,27 +56,16 @@ export class PriceComplianceTierWidget extends Component {
 
     showPopup(ev) {
         this.updateCalcData();
-        this.closePopover = this.popover.add(
-            ev.currentTarget,
-            this.constructor.components.Popover,
-            {
-                bus: this.bus,
-                record: this.props.record,
-                calcData: this.calcData,
-            },
-            {
-                position: "top",
-                // Ensure popup full width on kanban
-                popoverClass: "mw-100",
-            }
-        );
-        this.bus.addEventListener("close-popover", this.closePopover);
+        this.popover.open(ev.currentTarget, {
+            record: this.props.record,
+            calcData: this.calcData,
+        });
     }
 }
 
-PriceComplianceTierWidget.components = {Popover: PriceComplianceTierPopover};
-PriceComplianceTierWidget.template = "sale_price_compliance.PriceComplianceTier";
-
+export const priceComplianceTierWidget = {
+    component: PriceComplianceTierWidget,
+};
 registry
     .category("view_widgets")
-    .add("price_compliance_tier_widget", PriceComplianceTierWidget);
+    .add("price_compliance_tier_widget", priceComplianceTierWidget);

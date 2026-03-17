@@ -36,7 +36,8 @@ class PriceComplianceThresholdTierMixin(models.AbstractModel):
         try:
             st_dict = safe_eval(icp_st)
         except Exception:
-            _logger.warning("Wrong parameter value for %s", param)
+            if icp_st:  # Skip this warning if it's False
+                _logger.warning("Wrong parameter value for %s", param)
             return default_selection
         if st_dict and isinstance(st_dict, dict):
             return [

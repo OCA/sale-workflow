@@ -103,7 +103,6 @@ class PriceComplianceThresholdConfigMixin(models.AbstractModel):
             .sudo()
             .get_param(
                 "sale_price_compliance.price_compliance_selection_tiers_text",
-                default=False,
             )
         ):
             return result

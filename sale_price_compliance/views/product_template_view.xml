@@ -20,19 +20,19 @@
                     <field
                         name="price_compliance_threshold_t1"
                         widget="percentage"
-                        attrs="{'invisible': [('use_price_compliance_threshold', '=', False)]}"
+                        invisible="not use_price_compliance_threshold"
                         class="w-25"
                     />
                     <field
                         name="price_compliance_threshold_t2"
                         widget="percentage"
-                        attrs="{'invisible': [('use_price_compliance_threshold', '=', False)]}"
+                        invisible="not use_price_compliance_threshold"
                         class="w-25"
                     />
                     <field
                         name="price_compliance_threshold_t3"
                         widget="percentage"
-                        attrs="{'invisible': [('use_price_compliance_threshold', '=', False)]}"
+                        invisible="not use_price_compliance_threshold"
                         class="w-25"
                     />
                 </group>
