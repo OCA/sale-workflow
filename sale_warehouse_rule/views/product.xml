@@ -48,7 +48,7 @@
                 expr="//notebook/page[@name='warehouse_rule_ids']"
                 position="attributes"
             >
-                 <attribute name="attrs">{'invisible': True}</attribute>
+                <attribute name="attrs">{'invisible': True}</attribute>
             </xpath>
             <xpath expr="//notebook/page[@name='inventory']" position="inside">
                 <group

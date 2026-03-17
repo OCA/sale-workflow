@@ -38,7 +38,6 @@
                 <attribute
                     name="attrs"
                 >{'readonly': [('parent.state', '!=', 'draft')], 'column_invisible': [('parent.show_sale_line_warehouse_column', '=', 'False')]}</attribute>
-
             </xpath>
         </field>
     </record>
