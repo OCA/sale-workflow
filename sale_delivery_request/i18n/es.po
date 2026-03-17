@@ -49,8 +49,8 @@ msgstr "Icono del tipo de actividad"
 
 #. module: sale_delivery_request
 #: model:ir.ui.menu,name:sale_delivery_request.menu_delivery_request_all
-msgid "All Requests"
-msgstr "Todas las solicitudes"
+msgid "Pending Requests"
+msgstr "Solicitudes pendientes"
 
 #. module: sale_delivery_request
 #. odoo-python
@@ -109,6 +109,8 @@ msgstr "Cancelar"
 
 #. module: sale_delivery_request
 #: model:ir.model.fields.selection,name:sale_delivery_request.selection__sale_delivery_request__state__cancel
+#: model_terms:ir.ui.view,arch_db:sale_delivery_request.sale_delivery_request_view_form
+#: model_terms:ir.ui.view,arch_db:sale_delivery_request.sale_delivery_request_view_search
 msgid "Cancelled"
 msgstr "Cancelado"
 
@@ -166,6 +168,12 @@ msgstr "Confirmar"
 #: model_terms:ir.ui.view,arch_db:sale_delivery_request.sale_delivery_request_view_search
 msgid "Confirmed"
 msgstr "Confirmado"
+
+#. module: sale_delivery_request
+#: model:ir.actions.act_window,name:sale_delivery_request.sale_delivery_request_action_confirmed
+#: model:ir.ui.menu,name:sale_delivery_request.menu_delivery_request_confirmed
+msgid "Confirmed Requests"
+msgstr "Solicitudes confirmadas"
 
 #. module: sale_delivery_request
 #: model:ir.model.fields,field_description:sale_delivery_request.field_sale_delivery_request__create_uid

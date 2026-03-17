@@ -282,10 +282,27 @@
     />
     <menuitem
         id="menu_delivery_request_all"
-        name="All Requests"
+        name="Pending Requests"
         parent="menu_delivery_request_root"
         action="sale_delivery_request_action"
         sequence="10"
+        groups="group_sale_delivery_request_manager"
+    />
+
+    <record id="sale_delivery_request_action_confirmed" model="ir.actions.act_window">
+        <field name="name">Confirmed Requests</field>
+        <field name="res_model">sale.delivery.request</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="sale_delivery_request_view_search" />
+        <field name="context">{'search_default_filter_confirmed': 1}</field>
+    </record>
+
+    <menuitem
+        id="menu_delivery_request_confirmed"
+        name="Confirmed Requests"
+        parent="menu_delivery_request_root"
+        action="sale_delivery_request_action_confirmed"
+        sequence="20"
         groups="group_sale_delivery_request_manager"
     />
 
