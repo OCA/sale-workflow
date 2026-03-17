@@ -41,11 +41,6 @@ msgid "Available Attribute Value Domain"
 msgstr ""
 
 #. module: sale_warehouse_rule
-#: model:ir.model.fields,field_description:sale_warehouse_rule.field_sale_warehouse_rule__available_product_ids
-msgid "Available Products"
-msgstr ""
-
-#. module: sale_warehouse_rule
 #: model:ir.model.fields,field_description:sale_warehouse_rule.field_sale_warehouse_rule__company_id
 msgid "Company"
 msgstr "Société"
@@ -147,8 +142,8 @@ msgstr ""
 #. module: sale_warehouse_rule
 #: code:addons/sale_warehouse_rule/models/sale_order.py:0
 #, python-format
-msgid "The delivery will be sent from multiple warehouses: , "
-msgstr "La livraison va se faire depuis plusieurs entrepôts: , "
+msgid "The delivery will be sent from multiple warehouses: %s"
+msgstr "La livraison va se faire depuis plusieurs entrepôts : %s"
 
 #. module: sale_warehouse_rule
 #: model:ir.model.fields,field_description:sale_warehouse_rule.field_sale_warehouse_rule__warehouse_id

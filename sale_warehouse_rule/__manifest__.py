@@ -3,14 +3,14 @@
 
 {
     "name": "Sale Warehouse Rule",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Akretion, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "depends": [
         "sale_stock",
-        "product_attribute_value_dependant_mixin",
+        "product_attribute_value_dependent_mixin",
     ],
     "data": [
         "security/ir.model.access.csv",

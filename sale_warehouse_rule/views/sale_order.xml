@@ -13,7 +13,7 @@
                     class="alert alert-danger alert-dismissable"
                     role="alert"
                     style="margin-bottom:0px;"
-                    attrs="{'invisible':[('warehouse_rule_need_change','=', False)]}"
+                    invisible="not warehouse_rule_need_change"
                 >
                     <field name="warehouse_rule_need_change" />
                 </div>
@@ -21,23 +21,21 @@
                     class="alert alert-info alert-dismissable"
                     role="alert"
                     style="margin-bottom:0px;"
-                    attrs="{'invisible':[('warehouse_rule_info','=', False)]}"
+                    invisible="not warehouse_rule_info"
                 >
                     <field name="warehouse_rule_info" />
                 </div>
             </sheet>
-            <xpath expr="//field[@name='order_line']" position="before">
-                <field name="show_sale_line_warehouse_column" invisible="1" />
-            </xpath>
 
             <xpath
-                expr="//field[@name='order_line']/tree/field[@name='warehouse_id']"
+                expr="//field[@name='order_line']/list/field[@name='warehouse_id']"
                 position="attributes"
             >
                 <attribute name="invisible">0</attribute>
+                <attribute name="readonly">parent.state != 'draft'</attribute>
                 <attribute
-                    name="attrs"
-                >{'readonly': [('parent.state', '!=', 'draft')], 'column_invisible': [('parent.show_sale_line_warehouse_column', '=', 'False')]}</attribute>
+                    name="column_invisible"
+                >not parent.show_sale_line_warehouse_column</attribute>
             </xpath>
         </field>
     </record>
