@@ -13,7 +13,7 @@
     </t>
 
     <t t-name="sale_price_compliance.PriceComplianceTierPopover">
-        <div class="px-3 py-2">
+        <div class="px-3 py-2" t-on-click="() => this.props.close()">
             <div class="pb-2 border-bottom">
                 <strong>Price Compliance Thresholds</strong>
                 <div
