@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="res_config_settings_form_view" model="ir.ui.view">
+        <field name="name">res.config.settings.form.view.sale.order.line.cancel</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="20" />
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='user_default_rights']" position="after">
+
+                <setting
+                    id="line_cancel_decrease_qty_configuration"
+                    title="When canceling the remaining quantity to deliver on a sale order line, automatically reduce the initial ordered quantity to match the delivered quantity"
+                >
+                    <field name="on_sale_line_cancel_decrease_line_qty" />
+                    <div class="content-group">
+                        <div class="text-muted">
+                            On canceling the remaining qty to deliver of an order line it decreases the initial quantity
+                        </div>
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
