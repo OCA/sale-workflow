@@ -414,6 +414,14 @@ class SaleOrder(models.Model):
         affected_pickings = cancellable.picking_id
         if cancellable:
             cancellable._action_cancel()
+            # Detach cancelled moves from pickings that remain active
+            # so they don't appear alongside live operations.
+            for picking in affected_pickings:
+                if picking.state not in ("cancel", "done"):
+                    picking_cancelled = cancellable.filtered(
+                        lambda m, p=picking: m.picking_id == p
+                    )
+                    picking_cancelled.write({"picking_id": False})
         return True, affected_pickings
 
     def _group_delivery_request_lines_for_stock(self, delivery_request):
@@ -477,7 +485,14 @@ class SaleOrder(models.Model):
 
         sol_vals = {}
         if final_date:
-            sol_vals["commitment_date"] = fields.Datetime.to_datetime(final_date)
+            new_commitment = fields.Datetime.to_datetime(final_date)
+            sol_vals["commitment_date"] = new_commitment
+            if (
+                "procurement_group_id" in sol._fields
+                and sol.commitment_date
+                and sol.commitment_date.date() != final_date
+            ):
+                sol_vals["procurement_group_id"] = False
         precision = self.env["decimal.precision"].precision_get(
             "Product Unit of Measure"
         )
@@ -528,18 +543,19 @@ class SaleOrder(models.Model):
             keep_req.business_days_offset,
             confirmation_dt=confirmation_dt,
         )
+        split_vals = {
+            "product_uom_qty": keep_req.quantity,
+            "commitment_date": fields.Datetime.to_datetime(keep_date)
+            if keep_date
+            else False,
+        }
+        if "procurement_group_id" in sol._fields:
+            split_vals["procurement_group_id"] = False
         sol.with_context(
             skip_sol_reschedule=True,
             skip_procurement=True,
             from_delivery_request=True,
-        ).write(
-            {
-                "product_uom_qty": keep_req.quantity,
-                "commitment_date": fields.Datetime.to_datetime(keep_date)
-                if keep_date
-                else False,
-            }
-        )
+        ).write(split_vals)
         lines_to_relaunch |= sol
 
         for req_line in split_reqs:
@@ -637,16 +653,18 @@ class SaleOrder(models.Model):
             )
 
         if lines_to_relaunch:
-            # Fence all open pickings in the procurement groups of the lines
-            # being relaunched. This prevents _search_picking_for_assignation
-            # from merging relaunched moves into existing pickings that have a
-            # different scheduled date.
-            relaunch_groups = lines_to_relaunch.mapped("order_id.procurement_group_id")
-            all_group_pickings = self.env["stock.picking"].search(
-                [
-                    ("group_id", "in", relaunch_groups.ids),
-                    ("state", "not in", ("cancel", "done")),
-                ]
+            relaunch_groups = lines_to_relaunch.filtered("procurement_group_id").mapped(
+                "procurement_group_id"
+            )
+            all_group_pickings = (
+                self.env["stock.picking"].search(
+                    [
+                        ("group_id", "in", relaunch_groups.ids),
+                        ("state", "not in", ("cancel", "done")),
+                    ]
+                )
+                if relaunch_groups
+                else self.env["stock.picking"]
             )
             open_to_fence = (pickings_to_fence | all_group_pickings).filtered(
                 lambda p: p.state not in ("cancel", "done")
