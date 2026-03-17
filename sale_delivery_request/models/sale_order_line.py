@@ -23,6 +23,16 @@ class SaleOrderLine(models.Model):
         "and should not be manually changed.",
     )
 
+    def _compute_price_unit(self):
+        if self.env.context.get("from_delivery_request"):
+            return
+        return super()._compute_price_unit()
+
+    def _compute_discount(self):
+        if self.env.context.get("from_delivery_request"):
+            return
+        return super()._compute_discount()
+
     def _get_full_move_chain(self):
         """
         Return all stock moves in the full upstream move chain linked to this
