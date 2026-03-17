@@ -184,6 +184,7 @@ class SaleDeliveryRequest(models.Model):
             self.line_ids = [(5, 0, 0)]
             return
         lines = [(5, 0, 0)]
+        seq = 10
         for sol in self.sale_order_id.order_line.filtered(
             lambda x: not x.display_type and x.product_id.type in ("consu", "product")
         ):
@@ -196,9 +197,11 @@ class SaleDeliveryRequest(models.Model):
                         {
                             "sale_order_line_id": sol.id,
                             "quantity": remaining,
+                            "sequence": seq,
                         },
                     )
                 )
+                seq += 10
         self.line_ids = lines
 
     @api.depends("response_datetime")

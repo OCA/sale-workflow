@@ -43,6 +43,7 @@ class SaleOrder(models.Model):
             "state": "pending",
         }
         line_vals = []
+        seq = 10
         for sol in self.order_line.filtered(
             lambda x: not x.display_type and x.product_id.type in ("consu", "product")
         ):
@@ -55,9 +56,11 @@ class SaleOrder(models.Model):
                         {
                             "sale_order_line_id": sol.id,
                             "quantity": remaining,
+                            "sequence": seq,
                         },
                     )
                 )
+                seq += 10
         if not line_vals:
             raise UserError(_("No lines with remaining quantity to request."))
         request_vals["line_ids"] = line_vals
