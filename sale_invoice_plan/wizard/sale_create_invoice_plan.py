@@ -34,7 +34,7 @@ class SaleCreateInvoicePlan(models.TransientModel):
     @api.constrains("num_installment")
     def _check_num_installment(self):
         for rec in self:
-            if rec.num_installment <= 1:
+            if rec.num_installment <= 1 and not rec.advance:
                 raise ValidationError(
                     self.env._("Number Installment must greater than 1")
                 )
