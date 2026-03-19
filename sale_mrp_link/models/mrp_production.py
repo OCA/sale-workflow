@@ -14,7 +14,7 @@ class MrpProduction(models.Model):
 
     @api.model
     def create(self, values):
-        if "origin" in values:
+        if "origin" in values and not values.get("sale_order_id"):
             # Checking first if this comes from a 'sale.order'
             sale_id = self.env["sale.order"].search(
                 [("name", "=", values["origin"])], limit=1
