@@ -6,47 +6,49 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-03-19 07:17+0000\n"
+"Last-Translator: Betül Öğmen <betulo@eska.biz>\n"
 "Language-Team: none\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_product_multi_add
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.sale_order_mass_import_form
 msgid "Add multiple products"
-msgstr ""
+msgstr "Toplu ürün ekleme"
 
 #. module: sale_product_multi_add
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
 msgid "Cancel"
-msgstr ""
+msgstr "İptal"
 
 #. module: sale_product_multi_add
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
 msgid "Confirm"
-msgstr ""
+msgstr "Onayla"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__create_uid
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Oluşturan"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__create_date
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Oluşturulma"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__display_name
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Görünüm Adı"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__id
@@ -57,64 +59,64 @@ msgstr ""
 #. module: sale_product_multi_add
 #: model:ir.actions.act_window,name:sale_product_multi_add.action_import_product_to_sale
 msgid "Import Products"
-msgstr ""
+msgstr "Ürünleri İçe Aktar"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__items
 msgid "Items"
-msgstr ""
+msgstr "Kalemler"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__write_uid
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Son Güncelleyen"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__write_date
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Son Güncelleme"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__product_id
 msgid "Product"
-msgstr ""
+msgstr "Ürün"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products__products
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
 msgid "Products"
-msgstr ""
+msgstr "Ürünler"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__quantity
 msgid "Quantity"
-msgstr ""
+msgstr "Miktar"
 
 #. module: sale_product_multi_add
 #: model:ir.model,name:sale_product_multi_add.model_sale_import_products
 msgid "Sale Import Products"
-msgstr ""
+msgstr "Ürünleri Satış İçine Aktar"
 
 #. module: sale_product_multi_add
 #: model:ir.model,name:sale_product_multi_add.model_sale_import_products_items
 msgid "Sale Import Products Items"
-msgstr ""
+msgstr "Ürün Kalemlerini Satış İçine Aktar"
 
 #. module: sale_product_multi_add
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
 msgid "Set quantities"
-msgstr ""
+msgstr "Miktarları Ayarla"
 
 #. module: sale_product_multi_add
 #: model:ir.model.fields,field_description:sale_product_multi_add.field_sale_import_products_items__wizard_id
 msgid "Wizard"
-msgstr ""
+msgstr "Sihirbaz"
 
 #. module: sale_product_multi_add
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale
 #: model_terms:ir.ui.view,arch_db:sale_product_multi_add.view_import_product_to_sale2
 msgid "or"
-msgstr ""
+msgstr "veya"
