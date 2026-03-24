@@ -15,4 +15,4 @@ class SaleReport(models.Model):
         fields = fields or {}
         fields["last_delivery_date"] = ", l.last_delivery_date AS" " last_delivery_date"
         groupby += ", l.last_delivery_date"
-        return super(SaleReport, self)._query(with_clause, fields, groupby, from_clause)
+        return super()._query(with_clause, fields, groupby, from_clause)
