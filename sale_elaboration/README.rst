@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ================
 Sale Elaboration
 ================
@@ -17,7 +13,7 @@ Sale Elaboration
 .. |badge1| image:: https://img.shields.io/badge/maturity-Production%2FStable-green.png
     :target: https://odoo-community.org/page/development-status
     :alt: Production/Stable
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -74,6 +70,11 @@ To configure this module you need to:
 
 You can define elaboration profiles to limit the elaborations that can
 be selected for each product.
+
+If you want to prevent the elaboration note from being filled
+automatically from the selected elaborations, set the system parameter
+``sale_elaboration.auto_notes`` to a falsey value in *Settings >
+Technical > Parameters > System Parameters*.
 
 To set the profile globally for a product category:
 
