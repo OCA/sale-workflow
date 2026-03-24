@@ -11,8 +11,12 @@ class SaleReport(models.Model):
         string="Last delivery date",
     )
 
-    def _query(self, with_clause="", fields=None, groupby="", from_clause=""):
-        fields = fields or {}
-        fields["last_delivery_date"] = ", l.last_delivery_date AS" " last_delivery_date"
-        groupby += ", l.last_delivery_date"
-        return super()._query(with_clause, fields, groupby, from_clause)
+    def _select_additional_fields(self):
+        res = super()._select_additional_fields()
+        res["last_delivery_date"] = "l.last_delivery_date"
+        return res
+
+    def _group_by_sale(self):
+        res = super()._group_by_sale()
+        res += ", l.last_delivery_date"
+        return res

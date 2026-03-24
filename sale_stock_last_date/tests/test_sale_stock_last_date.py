@@ -10,7 +10,7 @@ class TestSaleStockLastDate(TransactionCase):
         super().setUpClass()
         cls.warehouse = cls.env.ref("stock.warehouse0")
         cls.product = cls.env["product.product"].create(
-            {"name": "test", "type": "product"}
+            {"name": "test", "type": "consu", "is_storable": True}
         )
         cls.env["stock.quant"].create(
             {
@@ -39,17 +39,17 @@ class TestSaleStockLastDate(TransactionCase):
             )
         )
         return_wiz = return_wiz_form.save()
-        return_wiz.product_return_moves.quantity = picking.move_lines.quantity_done
+        return_wiz.product_return_moves.quantity = picking.move_ids[0].quantity
         return_wiz.product_return_moves.to_refund = to_refund
-        res = return_wiz.create_returns()
+        res = return_wiz.action_create_returns()
         return_picking = self.env["stock.picking"].browse(res["res_id"])
         self._validate_picking(return_picking)
 
     def _validate_picking(self, picking):
         """Helper method to confirm the pickings"""
-        for line in picking.move_lines:
-            line.quantity_done = line.product_uom_qty
-        picking._action_done()
+        for line in picking.move_ids:
+            line.write({"quantity": line.product_uom_qty, "picked": True})
+        picking.move_ids._action_done()
 
     def test_last_delivery_date(self):
         self.order.action_confirm()
@@ -57,19 +57,21 @@ class TestSaleStockLastDate(TransactionCase):
         # Partial delivery one
         picking = self.order.picking_ids
         picking.action_assign()
-        picking.move_lines.quantity_done = 2.0
-        picking._action_done()
+        # Set the quantity_done and mark move as done directly
+        picking.move_ids.write({"quantity": 2.0, "picked": True})
+        picking.move_ids._action_done()
         # Discard any so line like as delivery line for tests in travis
         so_line = self.order.order_line.filtered(
             lambda ln: ln.product_id == self.product
         )
-        self.assertEqual(so_line.last_delivery_date, picking.move_lines.date)
+        self.assertEqual(so_line.last_delivery_date, picking.move_ids.date)
         # Partial delivery two
         backorder = self.order.picking_ids.filtered(lambda p: p.state != "done")
         backorder.action_assign()
-        backorder.move_lines.quantity_done = 2.0
-        backorder._action_done()
-        self.assertEqual(so_line.last_delivery_date, backorder.move_lines.date)
+        # Set the quantity_done and mark move as done directly
+        backorder.move_ids.write({"quantity": 2.0, "picked": True})
+        backorder.move_ids._action_done()
+        self.assertEqual(so_line.last_delivery_date, backorder.move_ids.date)
         # Make a return. This movement does not affect
         self._return_whole_picking(picking, to_refund=True)
-        self.assertEqual(so_line.last_delivery_date, backorder.move_lines.date)
+        self.assertEqual(so_line.last_delivery_date, backorder.move_ids.date)

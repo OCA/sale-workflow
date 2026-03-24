@@ -72,6 +72,10 @@ Contributors
      - Sergio Teruel
      - Stefan Ungureanu
 
+- `Netkia <https://www.netkia.es>`__:
+
+     - Jorge Valmala
+
 Maintainers
 -----------
 
