@@ -120,6 +120,17 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
         self.order.order_line.elaboration_ids = self.elaboration_b
         self.assertEqual(self.order.order_line.elaboration_note, "Some details")
 
+    def test_sale_elaboration_onchange_disallow_auto_notes(self):
+        self.env["ir.config_parameter"].sudo().set_param(
+            "sale_elaboration.auto_notes", "0"
+        )
+        order_form = Form(self.order)
+        with order_form.order_line.new() as line_form:
+            line_form.product_id = self.product
+            line_form.product_uom_qty = 1
+            line_form.elaboration_ids.add(self.elaboration_a)
+            self.assertFalse(line_form.elaboration_note)
+
     def test_sale_elaboration(self):
         self.order.action_confirm()
         self.order.picking_ids.move_ids.quantity = 10.0
