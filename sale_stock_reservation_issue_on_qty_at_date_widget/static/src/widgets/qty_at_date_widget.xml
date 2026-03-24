@@ -10,7 +10,7 @@
         <xpath expr="//a[@t-on-click='showPopup']" position="attributes">
             <attribute
                 name="t-attf-class"
-            >fa fa-area-chart cursor-pointer {{ calcData.forecasted_issue ? 'text-danger' : calcData.reservation_issue ? 'text-warning' : 'text-primary' }}</attribute>
+            >fa fa-area-chart cursor-pointer {{ calcData.forecasted_issue ? 'text-danger' : calcData.reservation_issue ? 'text-warning' : '' }}</attribute>
         </xpath>
     </t>
 
