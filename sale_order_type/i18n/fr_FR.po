@@ -226,6 +226,7 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_bank_statement_line__sale_type_id
 #: model:ir.model.fields,field_description:sale_order_type.field_account_move__sale_type_id
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_invoice_search
 msgid "Sale Type"
 msgstr "Type de vente"
 
