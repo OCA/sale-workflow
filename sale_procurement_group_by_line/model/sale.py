@@ -59,9 +59,7 @@ class SaleOrderLine(models.Model):
                 == 0
             ):
                 continue
-
             group_id = line._get_procurement_group()
-
             # Simplified loop into dictionary comprehension to reduce complexity (C901)
             groups.update(
                 {
@@ -70,7 +68,6 @@ class SaleOrderLine(models.Model):
                     if ol.procurement_group_id
                 }
             )
-
             if not group_id:
                 group_id = groups.get(line._get_procurement_group_key())
 
@@ -101,7 +98,7 @@ class SaleOrderLine(models.Model):
                 if line.order_id.client_order_ref
                 else line.order_id.name
             )
-            
+
             # Wrapped lines to fix E501 errors
             product_qty, procurement_uom = line_uom._adjust_uom_quantities(
                 product_qty, quant_uom
