@@ -31,13 +31,16 @@ class SaleOrderLine(models.Model):
         """
         if self._context.get("skip_procurement"):
             return True
-        precision = self.env["decimal.precision"].precision_get(
-            "Product Unit of Measure"
-        )
+            
+        precision = self.env["decimal.precision"].precision_get("Product Unit of Measure")
         procurements = []
         groups = {}
         if not previous_product_uom_qty:
             previous_product_uom_qty = {}
+            
+        # 1. Create an empty recordset to track which lines we process here
+        processed_lines = self.env['sale.order.line'] 
+
         for line in self:
             line = line.with_company(line.company_id)
             if (
@@ -46,17 +49,13 @@ class SaleOrderLine(models.Model):
                 or line.product_id.type != "consu"
             ):
                 continue
+                
             qty = line._get_qty_procurement(previous_product_uom_qty) or 0.0
-            if (
-                float_compare(qty, line.product_uom_qty, precision_digits=precision)
-                == 0
-            ):
+            if float_compare(qty, line.product_uom_qty, precision_digits=precision) == 0:
                 continue
 
             group_id = line._get_procurement_group()
 
-            # Group the sales order lines with same procurement group
-            # according to the group key
             for order_line in line.order_id.order_line:
                 g_id = order_line.procurement_group_id or False
                 if g_id:
@@ -68,14 +67,9 @@ class SaleOrderLine(models.Model):
                 vals = line._prepare_procurement_group_vals()
                 group_id = self.env["procurement.group"].create(vals)
             else:
-                # In case the procurement group is already created and the
-                # order was cancelled, we need to update certain values
-                # of the group.
                 updated_vals = {}
                 if group_id.partner_id != line.order_id.partner_shipping_id:
-                    updated_vals.update(
-                        {"partner_id": line.order_id.partner_shipping_id.id}
-                    )
+                    updated_vals.update({"partner_id": line.order_id.partner_shipping_id.id})
                 if group_id.move_type != line.order_id.picking_policy:
                     updated_vals.update({"move_type": line.order_id.picking_policy})
                 if updated_vals:
@@ -92,27 +86,32 @@ class SaleOrderLine(models.Model):
                 if line.order_id.client_order_ref
                 else line.order_id.name
             )
-            product_qty, procurement_uom = line_uom._adjust_uom_quantities(
-                product_qty, quant_uom
-            )
-            procurements += line._create_procurements(
-                product_qty, procurement_uom, origin, values
-            )
-            # We store the procured quantity in the UoM of the line to avoid
-            # duplicated procurements, specially for dropshipping and kits.
+            product_qty, procurement_uom = line_uom._adjust_uom_quantities(product_qty, quant_uom)
+            procurements += line._create_procurements(product_qty, procurement_uom, origin, values)
+            
             previous_product_uom_qty[line.id] = line.product_uom_qty
+            
+            # 2. Mark this line as processed so super() doesn't touch it
+            processed_lines |= line 
+
         if procurements:
             self.env["procurement.group"].run(procurements)
-        # This next block is currently needed only because the scheduler trigger is done
-        # by picking confirmation rather than stock.move confirmation
+            
         orders = self.mapped("order_id")
         for order in orders:
             pickings_to_confirm = order.picking_ids.filtered(
                 lambda p: p.state not in ["cancel", "done"]
             )
             if pickings_to_confirm:
-                # Trigger the Scheduler for Pickings
                 pickings_to_confirm.action_confirm()
-        return super(
-            SaleOrderLine, self.with_context(sale_group_by_line=True)
-        )._action_launch_stock_rule(previous_product_uom_qty=previous_product_uom_qty)
+                
+        # 3. Filter out the lines we already processed
+        remaining_lines = self - processed_lines
+        
+        # 4. Only call super() if there are actually lines left to process (like storable products)
+        if remaining_lines:
+            return super(
+                SaleOrderLine, remaining_lines.with_context(sale_group_by_line=True)
+            )._action_launch_stock_rule(previous_product_uom_qty=previous_product_uom_qty)
+            
+        return True
