@@ -40,7 +40,7 @@ addon | version | maintainers | summary
 [sale_automatic_workflow_stock_job](sale_automatic_workflow_stock_job/) | 18.0.1.0.0 |  | Sale Automatic Workflow Stock Job
 [sale_block_no_stock](sale_block_no_stock/) | 18.0.1.0.0 | <a href='https://github.com/Shide'><img src='https://github.com/Shide.png' width='32' height='32' style='border-radius:50%;' alt='Shide'/></a> | Block Sales if products has not enough Quantity based on a chosen field
 [sale_cancel_reason](sale_cancel_reason/) | 18.0.1.0.0 |  | Sale Cancel Reason
-[sale_commercial_partner](sale_commercial_partner/) | 18.0.1.0.1 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Add stored related field 'Commercial Entity' on sale orders
+[sale_commercial_partner](sale_commercial_partner/) | 18.0.1.1.0 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Add stored related field 'Commercial Entity' on sale orders
 [sale_company_currency](sale_company_currency/) | 18.0.1.0.0 |  | Company Currency in Sale Orders
 [sale_confirm_group](sale_confirm_group/) | 18.0.1.0.0 |  | Allows configuring a list of groups per-company who are granted permission to confirm sale orders
 [sale_custom_rounding](sale_custom_rounding/) | 18.0.1.0.0 |  | Custom taxes rounding method in sale orders
