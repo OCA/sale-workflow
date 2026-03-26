@@ -18,6 +18,16 @@ msgstr ""
 "X-Generator: Weblate 4.3.2\n"
 
 #. module: sale_commercial_partner
+#: model:ir.model,name:sale_commercial_partner.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_commercial_partner
+#: model:ir.model,name:sale_commercial_partner.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_commercial_partner
 #: model:ir.model.fields,field_description:sale_commercial_partner.field_sale_order__commercial_partner_id
 #: model_terms:ir.ui.view,arch_db:sale_commercial_partner.sale_report_search
 #: model_terms:ir.ui.view,arch_db:sale_commercial_partner.view_sales_order_filter
@@ -25,9 +35,55 @@ msgid "Customer Entity"
 msgstr ""
 
 #. module: sale_commercial_partner
+#: model_terms:ir.ui.view,arch_db:sale_commercial_partner.res_config_settings_view_form
+msgid "Filter Invoice Address by Customer’s Commercial Partner"
+msgstr ""
+
+#. module: sale_commercial_partner
+#: model_terms:ir.ui.view,arch_db:sale_commercial_partner.res_config_settings_view_form
+msgid "Filter Shipping Address by Customer’s Commercial Partner"
+msgstr ""
+
+#. module: sale_commercial_partner
+#: model_terms:ir.ui.view,arch_db:sale_commercial_partner.res_config_settings_view_form
+msgid ""
+"If enabled, the delivery address can only be selected from partners whose "
+"commercial partner is the same as the sales order’s customer."
+msgstr ""
+
+#. module: sale_commercial_partner
+#: model_terms:ir.ui.view,arch_db:sale_commercial_partner.res_config_settings_view_form
+msgid ""
+"If enabled, the invoice address can only be selected from partners whose "
+"commercial partner is the same as the sales order’s customer."
+msgstr ""
+
+#. module: sale_commercial_partner
+#: model:ir.model.fields,field_description:sale_commercial_partner.field_sale_order__partner_invoice_domain
+msgid "Partner Invoice Domain"
+msgstr ""
+
+#. module: sale_commercial_partner
+#: model:ir.model.fields,field_description:sale_commercial_partner.field_sale_order__partner_shipping_domain
+msgid "Partner Shipping Domain"
+msgstr ""
+
+#. module: sale_commercial_partner
 #: model:ir.model,name:sale_commercial_partner.model_sale_order
 msgid "Sales Order"
 msgstr "Verkaufsauftrag"
+
+#. module: sale_commercial_partner
+#: model:ir.model.fields,field_description:sale_commercial_partner.field_res_company__use_invoice_commercial_partner_filter
+#: model:ir.model.fields,field_description:sale_commercial_partner.field_res_config_settings__use_invoice_commercial_partner_filter
+msgid "Use Invoice Commercial Partner Filter"
+msgstr ""
+
+#. module: sale_commercial_partner
+#: model:ir.model.fields,field_description:sale_commercial_partner.field_res_company__use_shipping_commercial_partner_filter
+#: model:ir.model.fields,field_description:sale_commercial_partner.field_res_config_settings__use_shipping_commercial_partner_filter
+msgid "Use Shipping Commercial Partner Filter"
+msgstr ""
 
 #~ msgid "Commercial Entity"
 #~ msgstr "Kommerzielle Entität"
