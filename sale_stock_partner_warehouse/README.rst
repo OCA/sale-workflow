@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =============================
 sale stock partner wharehouse
 =============================
@@ -17,7 +13,7 @@ sale stock partner wharehouse
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -46,6 +42,12 @@ the standard default warehouse.
 
 Configuration
 =============
+
+To set a company-wide default that prioritizes the shipping address’s
+warehouse (falling back to the customer’s):
+
+-  Go to Sales → Configuration → Settings
+-  Enable "Prioritize Shipping Partner in Sale Warehouse Proposal"
 
 On the partner, choose the default warehouse.
 
@@ -79,8 +81,11 @@ Authors
 Contributors
 ------------
 
-   - Telmo Santos <telmo.santos@camptocamp.com>
-   - Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
+-  Telmo Santos <telmo.santos@camptocamp.com>
+-  Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
+-  Quartile <https://www.quartile.co>
+
+   -  Aung Ko Ko Lin
 
 Maintainers
 -----------
