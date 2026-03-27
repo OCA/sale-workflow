@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_saleorder_document_sequence"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath
+            expr="//table[hasclass('table')]/thead/tr/th[@name='th_description']"
+            position="before"
+        >
+            <th name="th_visible_sequence">
+                <span>Line Number</span>
+            </th>
+        </xpath>
+        <xpath
+            expr="//tbody[hasclass('sale_tbody')]//td[@name='td_product_name']/span[@t-field='line.name']/.."
+            position="before"
+        >
+            <td name="td_visible_sequence">
+                <span t-field="line.visible_sequence" />
+            </td>
+        </xpath>
+    </template>
+</odoo>
