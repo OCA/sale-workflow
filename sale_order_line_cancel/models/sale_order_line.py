@@ -29,9 +29,13 @@ class SaleOrderLine(models.Model):
             "Product Unit of Measure"
         )
         for rec in self:
-            rec.can_cancel_remaining_qty = float_compare(
-                rec.product_qty_remains_to_deliver, 0, precision_digits=precision
-            ) == 1 and rec.state in ("sale", "done")
+            rec.can_cancel_remaining_qty = (
+                float_compare(
+                    rec.product_qty_remains_to_deliver, 0, precision_digits=precision
+                )
+                == 1
+                and rec.state == "sale"
+            )
 
     @api.depends(
         "product_uom_qty",
