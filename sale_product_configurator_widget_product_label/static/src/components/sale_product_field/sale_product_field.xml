@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t
+        t-name="sale_product_configurator_widget_product_label.SaleProductField"
+        t-inherit="sale.SaleProductField"
+        t-inherit-mode="extension"
+    >
+        <xpath expr="//t[@t-if='props.readonly']//span" position="attributes">
+            <attribute
+                name="class"
+            >d-flex align-items-center justify-content-between</attribute>
+        </xpath>
+        <xpath expr="//t[@t-if='props.readonly']//a" position="attributes">
+            <attribute
+                name="class"
+            >d-flex align-items-center justify-content-between</attribute>
+        </xpath>
+        <xpath expr="//t[@t-if='props.readonly']" position="inside">
+            <t t-if="!isSectionOrNote">
+                <ProductLabel
+                    t-if="(columnIsProductAndLabel.value and label) or (!columnIsProductAndLabel.value and !productName and label)"
+                    label="() => this.label"
+                    updateLabel="(value) => this.updateLabel(value)"
+                    field_name="this.props.name"
+                    readonly="true"
+                    record="this.props.record"
+                />
+            </t>
+            <t t-else="">
+                <ProductLabel
+                    field_name="this.props.name"
+                    label="() => this.label"
+                    updateLabel="(value) => this.updateLabel(value)"
+                    record="this.props.record"
+                />
+            </t>
+        </xpath>
+        <xpath expr="//button[@t-if='hasBarcodeButton']" position="after">
+            <t t-if="!isSectionOrNote">
+                <ProductLabelVisibilityButton
+                    t-if="columnIsProductAndLabel.value"
+                    label="() => this.label"
+                    isProductVisible="this.isProductVisible.value"
+                    switchLabelVisibility="() => this.switchLabelVisibility()"
+                    switchProductVisibility="() => this.switchProductVisibility()"
+                />
+            </t>
+        </xpath>
+        <xpath expr="//div[hasclass('o_field_many2one_selection')]" position="after">
+            <t t-if="!isSectionOrNote">
+                <t
+                    t-if="columnIsProductAndLabel.value and (label or labelVisibility.value)"
+                >
+                    <ProductLabel
+                        label="() => this.label"
+                        field_name="this.props.name"
+                        updateLabel="(value) => this.updateLabel(value)"
+                        record="this.props.record"
+                    />
+                </t>
+            </t>
+            <t t-else="">
+                <ProductLabel
+                    field_name="this.props.name"
+                    label="() => this.label"
+                    updateLabel="(value) => this.updateLabel(value)"
+                    record="this.props.record"
+                />
+            </t>
+        </xpath>
+        <xpath
+            expr="//div[hasclass('o_field_many2one_selection')]"
+            position="attributes"
+        >
+            <attribute
+                name="class"
+                separator=" "
+                remove="o_field_many2one_selection"
+                add="d-flex align-items-center justify-content-between"
+            />
+            <attribute name="t-if">!isSectionOrNote</attribute>
+        </xpath>
+    </t>
+
+</templates>
