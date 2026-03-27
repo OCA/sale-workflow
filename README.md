@@ -89,6 +89,7 @@ addon | version | maintainers | summary
 [sale_payment_sheet](sale_payment_sheet/) | 17.0.1.0.0 | <a href='https://github.com/sergio-teruel'><img src='https://github.com/sergio-teruel.png' width='32' height='32' style='border-radius:50%;' alt='sergio-teruel'/></a> | Allow to create invoice payments to commercial users without accounting permissions
 [sale_pricelist_global_rule](sale_pricelist_global_rule/) | 17.0.1.0.2 |  | Apply a global rule to all sale order
 [sale_procurement_group_by_line](sale_procurement_group_by_line/) | 17.0.1.0.2 |  | Base module for multiple procurement group by Sale order
+[sale_product_configurator_widget_product_label](sale_product_configurator_widget_product_label/) | 17.0.1.0.0 | <a href='https://github.com/carlos-lopez-tecnativa'><img src='https://github.com/carlos-lopez-tecnativa.png' width='32' height='32' style='border-radius:50%;' alt='carlos-lopez-tecnativa'/></a> | Sale product configurator widget product label
 [sale_product_multi_add](sale_product_multi_add/) | 17.0.1.0.1 |  | Sale Product Multi Add
 [sale_product_set](sale_product_set/) | 17.0.1.0.0 |  | Sale product set
 [sale_promotion_rule](sale_promotion_rule/) | 17.0.1.0.0 |  | Module to manage promotion rule on sale order
