@@ -35,8 +35,12 @@
                 expr="//field[@name='order_line']/list//field[@name='qty_delivered']"
                 position="after"
             >
-                <field name="product_qty_canceled" string="Canceled" />
-                <field name="product_qty_remains_to_deliver" string="To Deliver" />
+                <field name="product_qty_canceled" string="Canceled" optional="hide" />
+                <field
+                    name="product_qty_remains_to_deliver"
+                    string="To Deliver"
+                    optional="hide"
+                />
             </xpath>
         </field>
     </record>
