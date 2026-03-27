@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -15,7 +15,14 @@ msgstr ""
 
 #. module: sale_order_line_sequence
 #: model_terms:ir.ui.view,arch_db:sale_order_line_sequence.report_saleorder_document_sequence
-msgid "<strong>Line Number</strong>"
+msgid "<span>Line Number</span>"
+msgstr ""
+
+#. module: sale_order_line_sequence
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line__display_name
+msgid "Display Name"
 msgstr ""
 
 #. module: sale_order_line_sequence
@@ -26,6 +33,13 @@ msgstr ""
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,help:sale_order_line_sequence.field_sale_order_line__sequence
 msgid "Gives the sequence of this line when displaying the sale order."
+msgstr ""
+
+#. module: sale_order_line_sequence
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_account_move_line__id
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line__id
+msgid "ID"
 msgstr ""
 
 #. module: sale_order_line_sequence
