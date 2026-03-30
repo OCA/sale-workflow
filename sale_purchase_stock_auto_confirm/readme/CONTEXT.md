@@ -1,0 +1,1 @@
+In some cases, a sale order can automatically generate a purchase order when the products use a Dropship or MTO logistic route, and the user expects these purchase orders to be confirmed automatically.

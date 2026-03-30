@@ -1,0 +1,1 @@
+This module adds a company-level option to automatically confirm purchase orders generated from sale orders (by Dropship or MTO rules).
