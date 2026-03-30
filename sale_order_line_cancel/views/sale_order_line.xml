@@ -5,8 +5,12 @@
         <field name="inherit_id" ref="sale.view_order_line_tree" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='qty_delivered']" position="after">
-                <field name="product_qty_canceled" string="Canceled" />
-                <field name="product_qty_remains_to_deliver" string="To Deliver" />
+                <field name="product_qty_canceled" string="Canceled" optional="hide" />
+                <field
+                    name="product_qty_remains_to_deliver"
+                    string="To Deliver"
+                    optional="hide"
+                />
                 <field name="can_cancel_remaining_qty" column_invisible="1" />
                 <button
                     title="Cancel remaining qty"
