@@ -99,6 +99,7 @@ setuptools.setup(
         'odoo-addon-sale_readonly_security>=15.0dev,<15.1dev',
         'odoo-addon-sale_rental>=15.0dev,<15.1dev',
         'odoo-addon-sale_resource_booking>=15.0dev,<15.1dev',
+        'odoo-addon-sale_semaphore>=15.0dev,<15.1dev',
         'odoo-addon-sale_shipping_info_helper>=15.0dev,<15.1dev',
         'odoo-addon-sale_sourced_by_line>=15.0dev,<15.1dev',
         'odoo-addon-sale_start_end_dates>=15.0dev,<15.1dev',
