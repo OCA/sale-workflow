@@ -7,41 +7,42 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-18 05:49+0000\n"
-"PO-Revision-Date: 2018-01-18 05:49+0000\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2026-03-31 07:47+0000\n"
+"Last-Translator: Betül Öğmen <betulo@eska.biz>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_commercial_partner
 #: model:ir.model,name:sale_commercial_partner.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Şirketler"
 
 #. module: sale_commercial_partner
 #: model:ir.model,name:sale_commercial_partner.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Yapılandırma Ayarları"
 
 #. module: sale_commercial_partner
 #: model:ir.model.fields,field_description:sale_commercial_partner.field_sale_order__commercial_partner_id
 #: model_terms:ir.ui.view,arch_db:sale_commercial_partner.sale_report_search
 #: model_terms:ir.ui.view,arch_db:sale_commercial_partner.view_sales_order_filter
 msgid "Customer Entity"
-msgstr ""
+msgstr "Müşteri Varlığı"
 
 #. module: sale_commercial_partner
 #: model_terms:ir.ui.view,arch_db:sale_commercial_partner.res_config_settings_view_form
 msgid "Filter Invoice Address by Customer’s Commercial Partner"
-msgstr ""
+msgstr "Fatura Adresini Müşterinin Ticari Ortağına Göre Filtrele"
 
 #. module: sale_commercial_partner
 #: model_terms:ir.ui.view,arch_db:sale_commercial_partner.res_config_settings_view_form
 msgid "Filter Shipping Address by Customer’s Commercial Partner"
-msgstr ""
+msgstr "Müşterinin Ticari Ortağına Göre Gönderim Adresini Filtrele"
 
 #. module: sale_commercial_partner
 #: model_terms:ir.ui.view,arch_db:sale_commercial_partner.res_config_settings_view_form
@@ -49,6 +50,8 @@ msgid ""
 "If enabled, the delivery address can only be selected from partners whose "
 "commercial partner is the same as the sales order’s customer."
 msgstr ""
+"Etkinleştirilirse, teslimat adresi yalnızca ticari ortağı satış siparişinin "
+"müşterisiyle aynı olan iş ortakları arasından seçilebilir."
 
 #. module: sale_commercial_partner
 #: model_terms:ir.ui.view,arch_db:sale_commercial_partner.res_config_settings_view_form
@@ -56,33 +59,35 @@ msgid ""
 "If enabled, the invoice address can only be selected from partners whose "
 "commercial partner is the same as the sales order’s customer."
 msgstr ""
+"Etkinleştirilirse, fatura adresi yalnızca ticari ortağı satış siparişinin "
+"müşterisiyle aynı olan iş ortakları arasından seçilebilir."
 
 #. module: sale_commercial_partner
 #: model:ir.model.fields,field_description:sale_commercial_partner.field_sale_order__partner_invoice_domain
 msgid "Partner Invoice Domain"
-msgstr ""
+msgstr "İş Ortağı Fatura Alanı"
 
 #. module: sale_commercial_partner
 #: model:ir.model.fields,field_description:sale_commercial_partner.field_sale_order__partner_shipping_domain
 msgid "Partner Shipping Domain"
-msgstr ""
+msgstr "İş Ortağı Nakliye Alanı"
 
 #. module: sale_commercial_partner
 #: model:ir.model,name:sale_commercial_partner.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Satış Siparişi"
 
 #. module: sale_commercial_partner
 #: model:ir.model.fields,field_description:sale_commercial_partner.field_res_company__use_invoice_commercial_partner_filter
 #: model:ir.model.fields,field_description:sale_commercial_partner.field_res_config_settings__use_invoice_commercial_partner_filter
 msgid "Use Invoice Commercial Partner Filter"
-msgstr ""
+msgstr "Fatura Ticari İş Ortağı Filtresini Kullan"
 
 #. module: sale_commercial_partner
 #: model:ir.model.fields,field_description:sale_commercial_partner.field_res_company__use_shipping_commercial_partner_filter
 #: model:ir.model.fields,field_description:sale_commercial_partner.field_res_config_settings__use_shipping_commercial_partner_filter
 msgid "Use Shipping Commercial Partner Filter"
-msgstr ""
+msgstr "Nakliye Ticari İş Ortağı Filtresini Kullanın"
 
 #~ msgid "Commercial Entity"
 #~ msgstr "Commercial Entity"
