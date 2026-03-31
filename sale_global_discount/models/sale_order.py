@@ -100,6 +100,9 @@ class SaleOrder(models.Model):
         res = super()._compute_amounts()
         for order in self:
             if not order.global_discount_ids:
+                order.amount_untaxed_before_global_discounts = order.amount_untaxed
+                order.amount_total_before_global_discounts = order.amount_total
+                order.amount_global_discount = 0.0
                 continue
             order._check_global_discounts_sanity()
             amount_untaxed_before_global_discounts = order.amount_untaxed
