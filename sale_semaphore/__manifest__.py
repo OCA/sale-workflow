@@ -4,7 +4,7 @@
 {
     "name": "Sale Semaphore",
     "summary": "Adds a semaphore for commercial purposes",
-    "version": "15.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Sale",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
@@ -22,11 +22,7 @@
     "auto_install": False,
     "assets": {
         "web.assets_backend": [
-            "sale_semaphore/static/src/semaphore/semaphore.esm.js",
-            "sale_semaphore/static/src/semaphore/semaphore.scss",
-        ],
-        "web.assets_qweb": [
-            "sale_semaphore/static/src/semaphore/semaphore.xml",
+            "sale_semaphore/static/src/semaphore/*",
         ],
     },
     "pre_init_hook": "pre_init_hook",

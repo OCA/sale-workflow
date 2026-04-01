@@ -10,26 +10,22 @@
                 <field name="semaphore" readonly="1" />
             </xpath>
             <xpath
-                expr="//field[@name='invoice_line_ids']/tree/field[@name='price_unit']"
+                expr="//field[@name='invoice_line_ids']/list/field[@name='price_unit']"
                 position="after"
             >
                 <field
                     name="semaphore"
                     readonly="1"
-                    attrs="{'column_invisible': [('parent.move_type', 'not in', ['out_invoice', 'out_refund', 'out_receipt'])]}"
+                    column_invisible="parent.move_type not in ['out_invoice', 'out_refund', 'out_receipt']"
                 />
             </xpath>
             <xpath
-                expr="//field[@name='invoice_line_ids']/kanban/field[@name='price_unit']"
+                expr="//field[@name='invoice_line_ids']/kanban//field[@name='price_unit']"
                 position="after"
             >
-                <field name="semaphore" />
-            </xpath>
-            <xpath
-                expr="//field[@name='invoice_line_ids']/kanban//t[@t-esc='record.price_unit.value']"
-                position="after"
-            >
-                <span><field name="semaphore" /></span>
+                <span>
+                    <field name="semaphore" />
+                </span>
             </xpath>
         </field>
     </record>
