@@ -84,7 +84,7 @@ class TestSaleOrder(common.TransactionCase):
         # sale tax total (multiplicative)
         tax_totals = self.order.tax_totals
         self.assertAlmostEqual(
-            tax_totals["groups_by_subtotal"]["Untaxed Amount"][0]["tax_group_amount"],
+            tax_totals["subtotals"][0]["tax_groups"][0]["tax_amount_currency"],
             67.5,
         )
         # set discount_type to additive
@@ -98,7 +98,7 @@ class TestSaleOrder(common.TransactionCase):
         # sale tax total (additive)
         tax_totals = self.order.tax_totals
         self.assertAlmostEqual(
-            tax_totals["groups_by_subtotal"]["Untaxed Amount"][0]["tax_group_amount"],
+            tax_totals["subtotals"][0]["tax_groups"][0]["tax_amount_currency"],
             63.0,
         )
         # set discount over 100%
@@ -161,24 +161,17 @@ class TestSaleOrder(common.TransactionCase):
             self.order.action_confirm()
         self.order._create_invoices()
         invoice = self.order.invoice_ids[0]
-        self.assertAlmostEqual(
-            self.so_line1.discount, invoice.invoice_line_ids[0].discount
-        )
-        self.assertAlmostEqual(
-            self.so_line1.discount2, invoice.invoice_line_ids[0].discount2
-        )
-        self.assertAlmostEqual(
-            self.so_line1.discount3, invoice.invoice_line_ids[0].discount3
-        )
-        self.assertAlmostEqual(
-            self.so_line1.price_subtotal, invoice.invoice_line_ids[0].price_subtotal
-        )
-        self.assertAlmostEqual(
-            self.so_line2.discount3, invoice.invoice_line_ids[1].discount3
-        )
-        self.assertAlmostEqual(
-            self.so_line2.price_subtotal, invoice.invoice_line_ids[1].price_subtotal
-        )
+        inv_line1 = invoice.invoice_line_ids[0]
+        inv_line2 = invoice.invoice_line_ids[1]
+        # In v18, account_invoice_triple_discount makes 'discount'
+        # a computed field (aggregated from discount1/2/3).
+        # SO discount is mapped to invoice discount1.
+        self.assertAlmostEqual(self.so_line1.discount, inv_line1.discount1)
+        self.assertAlmostEqual(self.so_line1.discount2, inv_line1.discount2)
+        self.assertAlmostEqual(self.so_line1.discount3, inv_line1.discount3)
+        self.assertAlmostEqual(self.so_line1.price_subtotal, inv_line1.price_subtotal)
+        self.assertAlmostEqual(self.so_line2.discount3, inv_line2.discount3)
+        self.assertAlmostEqual(self.so_line2.price_subtotal, inv_line2.price_subtotal)
         self.assertAlmostEqual(self.order.amount_total, invoice.amount_total)
 
     def test_05_round_globally(self):
