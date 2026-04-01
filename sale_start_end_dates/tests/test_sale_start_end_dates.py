@@ -26,7 +26,6 @@ class TestSaleStartEndDates(TransactionCase):
                 "partner_shipping_id": self.partner.id,
                 "default_start_date": self.default_start_date,
                 "default_end_date": self.default_end_date,
-                "pricelist_id": self.env.ref("product.list0").id,
             }
         )
         self.order_line = self.env["sale.order.line"].create(

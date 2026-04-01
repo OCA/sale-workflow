@@ -30,8 +30,9 @@ class SaleOrder(models.Model):
             ):
                 raise ValidationError(
                     _(
-                        "Default Start Date (%(start_date)s) should be before or be the "
-                        "same as Default End Date (%(end_date)s) for sale order '%(name)s'."
+                        "Default Start Date (%(start_date)s) should be before "
+                        "or be the same as Default End Date (%(end_date)s) "
+                        "for sale order '%(name)s'."
                     )
                     % {
                         "start_date": format_date(self.env, order.default_start_date),
@@ -67,12 +68,12 @@ class SaleOrderLine(models.Model):
     start_date = fields.Date(
         compute="_compute_start_date",
         store=True,
-        states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
+        readonly=False,
     )
     end_date = fields.Date(
         compute="_compute_end_date",
         store=True,
-        states={"draft": [("readonly", False)], "sent": [("readonly", False)]},
+        readonly=False,
     )
     number_of_days = fields.Integer(
         compute="_compute_number_of_days",
@@ -136,8 +137,9 @@ class SaleOrderLine(models.Model):
                 if line.start_date > line.end_date:
                     raise ValidationError(
                         _(
-                            "Start Date (%(start_date)s) should be before or "
-                            "be the same as End Date (%(end_date)s) for sale order line "
+                            "Start Date (%(start_date)s) should be before "
+                            "or be the same as End Date (%(end_date)s) "
+                            "for sale order line "
                             "with Product '%(product_name)s'."
                         )
                         % {
