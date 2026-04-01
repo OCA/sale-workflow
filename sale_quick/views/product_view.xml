@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-
     <!-- Inherit to customize according to your own needs -->
     <record id="product_tree_view4sale" model="ir.ui.view">
         <field name="model">product.product</field>
@@ -19,7 +18,6 @@
                 <field name="qty_available" />
                 <button name="button_quick_open_product" string="Open" type="object" />
             </tree>
-       </field>
+        </field>
     </record>
-
 </odoo>
