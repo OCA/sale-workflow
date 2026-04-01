@@ -2,7 +2,7 @@
 # @author: Damien Crier <damien.crier@camptocamp.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, models
+from odoo import models
 from odoo.exceptions import ValidationError
 from odoo.tools.safe_eval import safe_eval
 
@@ -38,7 +38,7 @@ class SaleOrder(models.Model):
         if domain:
             res["domain"] = domain
         commercial = self.partner_id.commercial_partner_id.name
-        res["name"] = "🔙 {} ({})".format(_("Product Variants"), commercial)
+        res["name"] = "🔙 {} ({})".format(self.env._("Product Variants"), commercial)
         res["view_id"] = (self.env.ref("sale_quick.product_tree_view4sale").id,)
         return res
 
@@ -48,10 +48,11 @@ class SaleOrder(models.Model):
         nr_lines = len(result.ids)
         if nr_lines > 1:
             raise ValidationError(
-                _(
+                self.env._(
                     "Must have only 1 line per product for mass addition, but "
-                    "there are %s lines for the product %s"
-                    % (nr_lines, product.display_name),
+                    "there are %s lines for the product %s",
+                    nr_lines,
+                    product.display_name,
                 )
             )
         return result
@@ -68,6 +69,7 @@ class SaleOrder(models.Model):
             {
                 "order_id": self.id,
                 "order_partner_id": self.partner_id.id,
+                "company_id": self.company_id.id,
             }
         )
         return super()._complete_quick_line_vals(vals, lines_key="order_line")

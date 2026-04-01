@@ -2,34 +2,40 @@
 # @author: Damien Crier <damien.crier@camptocamp.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
+from odoo import Command
 from odoo.exceptions import AccessError, ValidationError
-from odoo.tests.common import Form, SavepointCase
+from odoo.tests import Form, TransactionCase
 
 
-class TestQuickSale(SavepointCase):
+class TestQuickSale(TransactionCase):
     @classmethod
     def _setUpBasicSaleOrder(cls):
         cls.so = cls.env["sale.order"].create({"partner_id": cls.partner.id})
         with Form(cls.so, "sale.view_order_form") as so_form:
             so_form.partner_id = cls.partner
         ctx = {"parent_id": cls.so.id, "parent_model": "sale.order"}
-        cls.product_1 = cls.product_1.with_context(ctx)
-        cls.product_2 = cls.product_2.with_context(ctx)
+        cls.product_1 = cls.product_1.with_context(**ctx)
+        cls.product_2 = cls.product_2.with_context(**ctx)
         cls.product_1.qty_to_process = 5.0
         cls.product_2.qty_to_process = 6.0
 
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.partner = cls.env.ref("base.res_partner_1")
         cls.uom_unit = cls.env.ref("uom.product_uom_unit")
         cls.uom_dozen = cls.env.ref("uom.product_uom_dozen")
         cls.user = cls.env.ref("base.user_demo")
         # make demo user member of "Sales / User: All Documents" group
+        # but not "Product Creation" group
         cls.user.write(
             {
                 "groups_id": [
-                    (4, cls.env.ref("sales_team.group_sale_salesman_all_leads").id)
+                    Command.unlink(cls.env.ref("product.group_product_manager").id),
+                    Command.link(
+                        cls.env.ref("sales_team.group_sale_salesman_all_leads").id
+                    ),
                 ]
             }
         )
@@ -57,8 +63,8 @@ class TestQuickSale(SavepointCase):
         with Form(so, "sale.view_order_form") as so_form:
             so_form.partner_id = self.partner
         ctx = {"parent_id": so.id, "parent_model": "sale.order"}
-        self.product_1 = self.product_1.with_context(ctx)
-        self.product_2 = self.product_2.with_context(ctx)
+        self.product_1 = self.product_1.with_context(**ctx)
+        self.product_2 = self.product_2.with_context(**ctx)
         self.product_1.write({"qty_to_process": 5.0, "quick_uom_id": self.uom_unit.id})
         self.product_2.write({"qty_to_process": 6.0, "quick_uom_id": self.uom_dozen.id})
 
@@ -129,7 +135,7 @@ class TestQuickSale(SavepointCase):
         product_act_from_so = self.so.add_product()
         self.assertEqual(product_act_from_so["type"], "ir.actions.act_window")
         self.assertEqual(product_act_from_so["res_model"], "product.product")
-        self.assertEqual(product_act_from_so["view_mode"], "tree")
+        self.assertEqual(product_act_from_so["view_mode"], "list")
         self.assertEqual(product_act_from_so["target"], "current")
         self.assertEqual(
             product_act_from_so["view_id"][0],
@@ -148,9 +154,9 @@ class TestQuickSale(SavepointCase):
         with self.assertRaises(ValidationError):
             self.product_1.qty_to_process = 3.0
 
-    def test_saler_can_edit_products(self):
+    def test_seller_can_edit_products(self):
         """
-        While in the quick sale interface, a saler with no edit rights
+        While in the quick sale interface, a seller with no edit rights
         on product.product can still edit product.product quick quantities
         """
         so = self.env["sale.order"].create({"partner_id": self.partner.id})
@@ -164,7 +170,7 @@ class TestQuickSale(SavepointCase):
             product.with_user(self.user).write(
                 {"qty_to_process": 5.0, "quick_uom_id": self.uom_unit.id}
             )
-        product_in_quick_edit = product.with_context(ctx).with_user(self.user)
+        product_in_quick_edit = product.with_context(**ctx).with_user(self.user)
         product_in_quick_edit.write(
             {"qty_to_process": 5.0, "quick_uom_id": self.uom_unit.id}
         )

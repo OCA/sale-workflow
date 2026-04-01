@@ -9,7 +9,7 @@
                     name="add_product"
                     string="Add"
                     type="object"
-                    attrs="{'invisible': [('state', 'not in', ('draft', 'sent'))]}"
+                    invisible="state not in ('draft', 'sent')"
                     class="oe_highlight"
                 />
             </field>
