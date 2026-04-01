@@ -1,0 +1,27 @@
+<odoo>
+    <template
+        id="custom_portal_my_orders"
+        inherit_id="sale.portal_my_orders"
+        name="My Sale Orders (in portal_sale_client_order_ref_and_amount_untaxed)"
+    >
+        <xpath expr="//thead/tr[hasclass('active')]/th[1]" position="after">
+            <th>Client Order Ref.</th>
+        </xpath>
+
+        <xpath expr="//thead/tr[hasclass('active')]/th[3]" position="after">
+            <th class="text-end">Amount Untaxed</th>
+        </xpath>
+
+        <xpath expr="//t[@t-foreach='orders']/tr/td[1]" position="after">
+            <td>
+                <span t-field="order.client_order_ref" />
+            </td>
+        </xpath>
+
+        <xpath expr="//t[@t-foreach='orders']/tr/td[3]" position="after">
+            <td class="text-end">
+                <span t-field="order.amount_untaxed" />
+            </td>
+        </xpath>
+    </template>
+</odoo>
