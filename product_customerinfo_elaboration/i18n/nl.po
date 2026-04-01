@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-04-01 13:13+0000\n"
+"PO-Revision-Date: 2026-04-01 15:45+0000\n"
 "Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
 "Language-Team: none\n"
 "Language: nl\n"
@@ -19,7 +19,7 @@ msgstr ""
 #. module: product_customerinfo_elaboration
 #: model:ir.model,name:product_customerinfo_elaboration.model_product_customerinfo
 msgid "Customer Pricelist"
-msgstr ""
+msgstr "Klantprijslijst"
 
 #. module: product_customerinfo_elaboration
 #: model:ir.model.fields,field_description:product_customerinfo_elaboration.field_product_customerinfo__elaboration_ids
