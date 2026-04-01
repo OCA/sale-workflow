@@ -1,11 +1,13 @@
 # Copyright 2026
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests import common, tagged
+from odoo.tests import tagged
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @tagged("post_install", "-at_install")
-class TestSaleSemaphore(common.SavepointCase):
+class TestSaleSemaphore(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

@@ -24,11 +24,13 @@ class SaleOderLine(models.Model):
             so.price_below_semaphore for so in self
         ):
             lines_price_below_pricelist = self.order_line.filtered(
-                lambda l: l.price_below_semaphore
+                lambda line: line.price_below_semaphore
                 and float_compare(
-                    l.price_reduce,
-                    l.order_id.pricelist_id.get_product_price(
-                        l.product_id, l.product_uom_qty, l.order_id.partner_id
+                    line.price_reduce_taxinc
+                    if line.company_id.account_price_include == "tax_included"
+                    else line.price_reduce_taxexcl,
+                    line.order_id.pricelist_id.get_product_price(
+                        line.product_id, line.product_uom_qty, line.order_id.partner_id
                     ),
                     precision_digits=dp,
                 )

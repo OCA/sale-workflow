@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.tools import SQL
 
 
 class AccountInvoiceReport(models.Model):
@@ -17,6 +18,5 @@ class AccountInvoiceReport(models.Model):
     )
 
     @api.model
-    def _select(self):
-        res = super()._select()
-        return res + ", line.semaphore as semaphore"
+    def _select(self) -> SQL:
+        return SQL("%s, line.semaphore as semaphore", super()._select())

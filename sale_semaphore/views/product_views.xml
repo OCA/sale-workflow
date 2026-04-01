@@ -10,20 +10,20 @@
                 <group
                     string="Semaphore"
                     name="semaphore_discounts"
-                    attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"
+                    invisible="product_variant_count &gt; 1 and not is_product_variant"
                 >
                     <field name="semaphore_active" string="Active" />
                     <field
                         name="semaphore_discount_success"
-                        attrs="{'invisible': [('semaphore_active', '=', False)]}"
+                        invisible="not semaphore_active"
                     />
                     <field
                         name="semaphore_discount_warning"
-                        attrs="{'invisible': [('semaphore_active', '=', False)]}"
+                        invisible="not semaphore_active"
                     />
                     <field
                         name="semaphore_discount_danger"
-                        attrs="{'invisible': [('semaphore_active', '=', False)]}"
+                        invisible="not semaphore_active"
                     />
                 </group>
             </xpath>

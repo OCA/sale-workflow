@@ -23,7 +23,9 @@ class SaleOderLine(models.Model):
     )
     price_below_semaphore = fields.Boolean(compute="_compute_price_below_semaphore")
 
-    @api.depends("product_id", "price_reduce", "product_uom")
+    @api.depends(
+        "product_id", "price_reduce_taxinc", "price_reduce_taxexcl", "product_uom"
+    )
     def _compute_semaphore(self):
         self.semaphore_active = False
         for record in self:
@@ -33,8 +35,13 @@ class SaleOderLine(models.Model):
             if not semaphore_data:
                 continue
             record.semaphore_active = True
+            price_reduce = (
+                record.price_reduce_taxinc
+                if record.company_id.account_price_include == "tax_included"
+                else record.price_reduce_taxexcl
+            )
             price_reduce = record.product_uom._compute_price(
-                record.price_reduce, record.product_id.uom_id
+                price_reduce, record.product_id.uom_id
             )
             if (
                 record.product_id.lst_price * ((100 - semaphore_data["success"]) / 100)
@@ -51,9 +58,9 @@ class SaleOderLine(models.Model):
 
     @api.depends("product_id", "product_uom")
     def _compute_semaphore_max_prices(self):
-        self.semaphore_max_price_success = (
-            self.semaphore_max_price_warning
-        ) = self.semaphore_max_price_danger = 0
+        self.semaphore_max_price_success = self.semaphore_max_price_warning = (
+            self.semaphore_max_price_danger
+        ) = 0
         for record in self:
             if not record.product_id or not record.product_uom:
                 continue
@@ -73,32 +80,25 @@ class SaleOderLine(models.Model):
                 (100 - semaphore_data["danger"]) / 100
             )
 
-    def get_reset_price_unit(self):
-        self.ensure_one()
-        return self.product_id._get_tax_included_unit_price(
-            self.company_id or self.order_id.company_id,
-            self.order_id.currency_id,
-            self.order_id.date_order,
-            "sale",
-            fiscal_position=self.order_id.fiscal_position_id,
-            product_price_unit=self._get_display_price(self.product_id),
-            product_currency=self.order_id.currency_id,
-        )
-
     def _prepare_invoice_line(self, **optional_values):
         vals = super()._prepare_invoice_line(**optional_values)
         vals["semaphore"] = self.semaphore
         return vals
 
-    @api.depends("price_reduce")
+    @api.depends("price_reduce_taxinc", "price_reduce_taxexcl")
     def _compute_price_below_semaphore(self):
         dp = self.env["decimal.precision"].precision_get("Product Price")
         self.price_below_semaphore = False
         for record in self.filtered(lambda line: line.product_id.semaphore_active):
+            price_reduce = (
+                record.price_reduce_taxinc
+                if record.company_id.account_price_include == "tax_included"
+                else record.price_reduce_taxexcl
+            )
             record.price_below_semaphore = (
                 float_compare(
                     record.semaphore_max_price_danger,
-                    record.price_reduce,
+                    price_reduce,
                     precision_digits=dp,
                 )
                 > 0
@@ -116,10 +116,14 @@ class SaleOderLine(models.Model):
             )
             if lines_below_semaphore:
                 lines_price_below_pricelist = lines_below_semaphore.filtered(
-                    lambda l: float_compare(
-                        l.price_reduce,
-                        l.order_id.pricelist_id.get_product_price(
-                            l.product_id, l.product_uom_qty, l.order_id.partner_id
+                    lambda line: float_compare(
+                        line.price_reduce_taxinc
+                        if line.company_id.account_price_include == "tax_included"
+                        else line.price_reduce_taxexcl,
+                        line.order_id.pricelist_id.get_product_price(
+                            line.product_id,
+                            line.product_uom_qty,
+                            line.order_id.partner_id,
                         ),
                         precision_digits=dp,
                     )
@@ -129,8 +133,9 @@ class SaleOderLine(models.Model):
                     raise UserError(
                         _(
                             "There's a line with price below semaphore's accepted.\n\n"
-                            "Please set the prices in a way that they are accepted by the "
-                            "semaphore, or contact the purchasing administrators."
+                            "Please set the prices in a way that they are accepted "
+                            "by the semaphore, or contact the purchasing "
+                            "administrators."
                         )
                     )
         return res

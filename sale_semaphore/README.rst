@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ==============
 Sale Semaphore
 ==============
@@ -17,38 +13,38 @@ Sale Semaphore
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/15.0/sale_semaphore
+    :target: https://github.com/OCA/sale-workflow/tree/18.0/sale_semaphore
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-15-0/sale-workflow-15-0-sale_semaphore
+    :target: https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-sale_semaphore
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=15.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds a commercial semaphore to help sales teams assess whether a
-quoted price stays within the discount policy defined for a product or product
-category.
+This module adds a commercial semaphore to help sales teams assess
+whether a quoted price stays within the discount policy defined for a
+product or product category.
 
-For each product you can define three discount thresholds, expressed as a
-percentage over the public sale price:
+For each product you can define three discount thresholds, expressed as
+a percentage over the public sale price:
 
-* **Green**: price is within the preferred commercial margin.
-* **Yellow**: price is still acceptable, but already close to the limit.
-* **Red**: price is below the warning threshold and should be reviewed.
+- **Green**: price is within the preferred commercial margin.
+- **Yellow**: price is still acceptable, but already close to the limit.
+- **Red**: price is below the warning threshold and should be reviewed.
 
-The semaphore is displayed directly on sales order lines and propagated to
-customer invoice lines and reporting models, so the same visual indicator is
-available during the full sales flow.
+The semaphore is displayed directly on sales order lines and propagated
+to customer invoice lines and reporting models, so the same visual
+indicator is available during the full sales flow.
 
-When no product-specific configuration exists, the module can also reuse the
-thresholds defined on the product category.
+When no product-specific configuration exists, the module can also reuse
+the thresholds defined on the product category.
 
 **Table of contents**
 
@@ -60,33 +56,40 @@ Usage
 
 To use this module:
 
-#. Go to **Sales > Products > Products** and open a product.
-#. In the **Sales** tab, enable **Semaphore**.
-#. Define the allowed discount percentages for the three thresholds:
+1. Go to **Sales > Products > Products** and open a product.
+2. In the **Sales** tab, enable **Semaphore**.
+3. Define the allowed discount percentages for the three thresholds:
 
-   * **Discount Success**: upper band for a green result.
-   * **Discount Warning**: upper band for a yellow result.
-   * **Discount Danger**: final accepted limit.
+   - **Discount Success**: upper band for a green result.
+   - **Discount Warning**: upper band for a yellow result.
+   - **Discount Danger**: final accepted limit.
 
-#. Optionally, configure the same values on the product category to provide
-   default thresholds for all products in that category.
+4. Optionally, configure the same values on the product category to
+   provide default thresholds for all products in that category.
 
-Once configured, the semaphore is evaluated automatically on each sales order
-line according to the effective unit price:
+Once configured, the semaphore is evaluated automatically on each sales
+order line according to the effective unit price:
 
-* **Green** when the price stays above the success threshold.
-* **Yellow** when the price falls below the success threshold but remains above
-  the warning threshold.
-* **Red** when the price falls below the warning threshold.
+- **Green** when the price stays above the success threshold.
+- **Yellow** when the price falls below the success threshold but
+  remains above the warning threshold.
+- **Red** when the price falls below the warning threshold.
 
 Additional behavior:
 
-* The line is highlighted when the price goes below the **danger** threshold.
-* The semaphore value is copied to invoice lines.
-* Non-manager users are prevented from confirming or updating confirmed sales
-  orders when the effective price is below both the configured semaphore limit
-  and the applicable pricelist price.
-* Product-level settings take precedence over category-level settings.
+- The line is highlighted when the price goes below the **danger**
+  threshold.
+- The semaphore value is copied to invoice lines.
+- Non-manager users are prevented from confirming or updating confirmed
+  sales orders when the effective price is below both the configured
+  semaphore limit and the applicable pricelist price.
+- Product-level settings take precedence over category-level settings.
+
+Known issues / Roadmap
+======================
+
+- Propagate category semaphore recursively to child categories
+- Use pricelist price as the base for calculations
 
 Bug Tracker
 ===========
@@ -94,7 +97,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_semaphore%0Aversion:%2015.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_semaphore%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -102,20 +105,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`_:
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Carlos Dauden
-  * Carlos Roca
+  - Carlos Dauden
+  - Carlos Roca
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -127,6 +130,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/15.0/sale_semaphore>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/18.0/sale_semaphore>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

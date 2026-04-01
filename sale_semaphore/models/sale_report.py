@@ -15,12 +15,12 @@ class SaleReport(models.Model):
         ],
     )
 
-    def _select_sale(self, fields=None):
-        if not fields:
-            fields = {}
-        fields["semaphore"] = ", l.semaphore as semaphore"
-        return super()._select_sale(fields=fields)
+    def _select_additional_fields(self):
+        fields = super()._select_additional_fields()
+        fields["semaphore"] = "l.semaphore"
+        return fields
 
-    def _group_by_sale(self, groupby=""):
-        groupby += ", l.semaphore"
-        return super()._group_by_sale(groupby)
+    def _group_by_sale(self):
+        res = super()._group_by_sale()
+        res += ", l.semaphore"
+        return res
