@@ -65,7 +65,6 @@ class SaleOrder(models.Model):
             "res_model": "sale.order",
             "context": {"default_order_sequence": True, "order_sequence": True},
             "type": "ir.actions.act_window",
-            "nodestroy": True,
             "target": "current",
             "domain": "[('order_sequence', '=', True)]",
             "res_id": self.order_id and self.order_id.id or False,
