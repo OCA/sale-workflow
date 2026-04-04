@@ -3,9 +3,12 @@
 
 from datetime import date, timedelta
 
+from freezegun import freeze_time
+
 from .common import TestCommon
 
 
+@freeze_time("2025-04-01 12:00:00")
 class TestResPartnerPrimeship(TestCommon):
     def test_compute_active_primeship(self):
         active_primeship = self.make_primeship(
