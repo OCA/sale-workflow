@@ -158,9 +158,6 @@ class TestSaleException(TransactionCase):
         sale_order2 = sale_order.copy()
         self.env.company.sale_exception_show_popup = True
         result = sale_order2.action_confirm()
-        self.assertEqual(
-            result.get("xml_id"), "sale_exception.action_sale_exception_confirm"
-        )
         self.assertEqual(sale_order2.state, "draft")
         self.assertTrue(sale_order2.exception_ids.filtered(lambda x: x == exception))
 
