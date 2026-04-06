@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -51,20 +51,13 @@ msgid "Journal Item"
 msgstr ""
 
 #. module: sale_semaphore
-#. openerp-web
-#: code:addons/sale_semaphore/static/src/semaphore/semaphore.esm.js:0
-#, python-format
-msgid "Please save to be able to reset the price."
-msgstr ""
-
-#. module: sale_semaphore
 #: model:ir.model.fields,field_description:sale_semaphore.field_sale_order__price_below_semaphore
 #: model:ir.model.fields,field_description:sale_semaphore.field_sale_order_line__price_below_semaphore
 msgid "Price Below Semaphore"
 msgstr ""
 
 #. module: sale_semaphore
-#: model:ir.model,name:sale_semaphore.model_product_product
+#: model:ir.model,name:sale_semaphore.model_product_template
 msgid "Product"
 msgstr ""
 
@@ -74,14 +67,13 @@ msgid "Product Category"
 msgstr ""
 
 #. module: sale_semaphore
-#: model:ir.model,name:sale_semaphore.model_product_template
-msgid "Product Template"
+#: model:ir.model,name:sale_semaphore.model_product_product
+msgid "Product Variant"
 msgstr ""
 
 #. module: sale_semaphore
-#. openerp-web
+#. odoo-javascript
 #: code:addons/sale_semaphore/static/src/semaphore/semaphore.xml:0
-#, python-format
 msgid "Reset"
 msgstr ""
 
@@ -101,8 +93,6 @@ msgid "Sales Order Line"
 msgstr ""
 
 #. module: sale_semaphore
-#. openerp-web
-#: code:addons/sale_semaphore/static/src/semaphore/semaphore.esm.js:0
 #: model:ir.model.fields,field_description:sale_semaphore.field_account_invoice_report__semaphore
 #: model:ir.model.fields,field_description:sale_semaphore.field_account_move_line__semaphore
 #: model:ir.model.fields,field_description:sale_semaphore.field_sale_order_line__semaphore
@@ -111,7 +101,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_semaphore.product_template_form_view
 #: model_terms:ir.ui.view,arch_db:sale_semaphore.view_account_invoice_report_search
 #: model_terms:ir.ui.view,arch_db:sale_semaphore.view_order_product_search
-#, python-format
 msgid "Semaphore"
 msgstr ""
 
@@ -139,23 +128,21 @@ msgid "Semaphore Max Price Warning"
 msgstr ""
 
 #. module: sale_semaphore
-#. openerp-web
+#. odoo-javascript
 #: code:addons/sale_semaphore/static/src/semaphore/semaphore.esm.js:0
-#, python-format
 msgid "The product or its category has not the semaphore activated."
 msgstr ""
 
 #. module: sale_semaphore
-#. openerp-web
+#. odoo-javascript
 #: code:addons/sale_semaphore/static/src/semaphore/semaphore.esm.js:0
-#, python-format
 msgid "The semaphore assignation does not work in this model."
 msgstr ""
 
 #. module: sale_semaphore
+#. odoo-python
 #: code:addons/sale_semaphore/models/sale_order.py:0
 #: code:addons/sale_semaphore/models/sale_order_line.py:0
-#, python-format
 msgid ""
 "There's a line with price below semaphore's accepted.\n"
 "\n"
