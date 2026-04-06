@@ -40,6 +40,11 @@ msgstr ""
 "diferent de les comandes de venda"
 
 #. module: sale_quotation_number
+#: model:ir.model.fields,field_description:sale_quotation_number.field_sale_order__quotation_seq_used
+msgid "Quotation Sequence Used"
+msgstr ""
+
+#. module: sale_quotation_number
 #: model:ir.model,name:sale_quotation_number.model_sale_order
 msgid "Sales Order"
 msgstr "Comandes de venda"

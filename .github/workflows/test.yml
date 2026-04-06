@@ -43,15 +43,36 @@ jobs:
             name: test with OCB
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
-            exclude: "sale_packaging_default,sale_order_product_recommendation,sale_order_product_recommendation_packaging_default,sale_order_product_recommendation_elaboration"
+            include: "sale_order_general_discount_triple,sale_pricelist_triple_discount,sale_triple_discount"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
-            exclude: "sale_packaging_default,sale_order_product_recommendation,sale_order_product_recommendation_packaging_default,sale_order_product_recommendation_elaboration"
+            include: "sale_order_general_discount_triple,sale_pricelist_triple_discount,sale_triple_discount"
+            name: test with OCB
+            makepot: "true"
+          - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
+            include: "sale_fixed_discount"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
+            include: "sale_fixed_discount"
+            name: test with OCB
+            makepot: "true"
+          - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
+            include: "sale_order_safe_commitment_date"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
+            include: "sale_order_safe_commitment_date"
+            name: test with OCB
+            makepot: "true"
+          - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
+            exclude: "sale_packaging_default,sale_order_product_recommendation,sale_order_product_recommendation_packaging_default,sale_order_product_recommendation_elaboration,sale_order_general_discount_triple,sale_pricelist_triple_discount,sale_triple_discount,sale_fixed_discount,sale_order_safe_commitment_date"
+            name: test with Odoo
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
+            exclude: "sale_packaging_default,sale_order_product_recommendation,sale_order_product_recommendation_packaging_default,sale_order_product_recommendation_elaboration,sale_order_general_discount_triple,sale_pricelist_triple_discount,sale_triple_discount,sale_fixed_discount,sale_order_safe_commitment_date"
             name: test with OCB
             makepot: "true"
     services:
       postgres:
-        image: postgres:12.0
+        image: postgres:12
         env:
           POSTGRES_USER: odoo
           POSTGRES_PASSWORD: odoo
@@ -75,6 +96,13 @@ jobs:
         run: oca_init_test_database
       - name: Run tests
         run: oca_run_tests
+      - name: Upload screenshots from JS tests
+        uses: actions/upload-artifact@v4
+        if: ${{ failure() }}
+        with:
+          name: Screenshots of failed JS tests - ${{ matrix.name }}${{ join(matrix.include) }}
+          path: /tmp/odoo_tests/${{ env.PGDATABASE }}
+          if-no-files-found: ignore
       - uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}

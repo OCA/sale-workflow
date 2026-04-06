@@ -1,0 +1,122 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_seasonality
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_seasonality
+#: model_terms:ir.ui.view,arch_db:sale_seasonality.view_order_product_search
+msgid "Campaign"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:ir.model.fields.selection,name:sale_seasonality.selection__seasonality__granularity__date
+msgid "Date"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:ir.model.fields,help:sale_seasonality.field_product_product__next_campaign_ids
+msgid "Define which campaigns concern this product"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:ir.model.fields,field_description:sale_seasonality.field_utm_campaign__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:ir.model.fields,field_description:sale_seasonality.field_utm_campaign__display_seasonality_name
+msgid "Display Seasonality Name"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:ir.model.fields,field_description:sale_seasonality.field_utm_campaign__end_date
+msgid "End Date"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:utm.campaign,title:sale_seasonality.campaign_fall_2023
+msgid "Fall 2023"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:utm.campaign,title:sale_seasonality.campaign_fall_2024
+msgid "Fall 2024"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:ir.model.fields,field_description:sale_seasonality.field_seasonality__granularity
+msgid "Granularity"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:ir.model.fields.selection,name:sale_seasonality.selection__seasonality__granularity__month
+msgid "Month"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:ir.model.fields,field_description:sale_seasonality.field_product_product__next_campaign_ids
+msgid "Next Campaign"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:ir.model,name:sale_seasonality.model_product_product
+msgid "Product Variant"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:ir.model,name:sale_seasonality.model_sale_report
+msgid "Sales Analysis Report"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:ir.ui.menu,name:sale_seasonality.seasonality_sale_menu_act
+msgid "Seasonalities"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:ir.model,name:sale_seasonality.model_seasonality
+#: model:ir.model.fields,field_description:sale_seasonality.field_sale_report__seasonality_id
+#: model:ir.model.fields,field_description:sale_seasonality.field_utm_campaign__seasonality_id
+#: model_terms:ir.ui.view,arch_db:sale_seasonality.view_order_product_search
+msgid "Seasonality"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:utm.campaign,title:sale_seasonality.campaign_spring_2023
+msgid "Spring 2023"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:utm.campaign,title:sale_seasonality.campaign_spring_2024
+msgid "Spring 2024"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:ir.model.fields,field_description:sale_seasonality.field_utm_campaign__start_date
+msgid "Start Date"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:ir.model.fields,field_description:sale_seasonality.field_utm_campaign__start_date_year
+msgid "Start Date Year"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:ir.model,name:sale_seasonality.model_utm_campaign
+msgid "UTM Campaign"
+msgstr ""
+
+#. module: sale_seasonality
+#: model:ir.model.fields.selection,name:sale_seasonality.selection__seasonality__granularity__year
+msgid "Year"
+msgstr ""

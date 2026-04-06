@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Moduon Team S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >res.config.settings.view.form.inherit.price.compliance</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='show_margins']" position="after">
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    id="price_compliance_threshold_settings"
+                >
+                    <div class="o_setting_left_pane">
+                        <field name="use_price_compliance_threshold" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="use_price_compliance_threshold" />
+                        <span
+                            class="fa fa-lg fa-building-o"
+                            title="Values set here are company-specific."
+                            aria-label="Values set here are company-specific."
+                            groups="base.group_multi_company"
+                            role="img"
+                        />
+                        <div class="text-muted">
+                            Enable Default Price Compliance Thresholds for the Company.
+                            Prices under last filled Tier are considered non-compliant and will be blocked.
+                        </div>
+                        <div
+                            class="content-group"
+                            attrs="{'invisible': [('use_price_compliance_threshold','=',False)]}"
+                        >
+                            <div class="oe_row mt16">
+                                <label
+                                    for="price_compliance_threshold_t1"
+                                    class="o_light_label mr16"
+                                    string="Tier 1 🟩"
+                                />
+                                <field
+                                    name="price_compliance_threshold_t1"
+                                    widget="percentage"
+                                    class="oe_inline"
+                                />
+                                <span
+                                    class="text-muted fst-italic ml16"
+                                >(High-yield: Fully compliant)</span>
+                            </div>
+                            <div class="oe_row">
+                                <label
+                                    for="price_compliance_threshold_t2"
+                                    class="o_light_label mr16"
+                                    string="Tier 2 🟨"
+                                />
+                                <field
+                                    name="price_compliance_threshold_t2"
+                                    widget="percentage"
+                                    class="oe_inline"
+                                />
+                                <span
+                                    class="text-muted fst-italic ml16"
+                                >(Medium-yield: Moderately compliant)</span>
+                            </div>
+                            <div class="oe_row">
+                                <label
+                                    for="price_compliance_threshold_t3"
+                                    class="o_light_label mr16"
+                                    string="Tier 3 🟧"
+                                />
+                                <field
+                                    name="price_compliance_threshold_t3"
+                                    widget="percentage"
+                                    class="oe_inline"
+                                />
+                                <span
+                                    class="text-muted fst-italic ml16"
+                                >(Low-yield: Low compliant)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

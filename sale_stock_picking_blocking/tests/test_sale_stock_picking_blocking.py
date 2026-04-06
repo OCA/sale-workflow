@@ -49,6 +49,40 @@ class TestSaleDeliveryBlock(common.TransactionCase):
         }
         cls.sale_order_line = cls.sol_model.with_user(cls.user_test).create(sol_dict)
 
+    def test_block_with_auto_done_enabled(self):
+        # Set active auto done configuration
+        config = self.env["res.config.settings"].create(
+            {"group_auto_done_setting": True}
+        )
+        config.execute()
+        block_reason = self.block_model.with_user(self.user_test).create(
+            {"name": "Test Block."}
+        )
+        so = self.sale_order
+        so.write({"delivery_block_id": block_reason.id})
+        so.action_confirm()
+        self.assertEqual(so.state, "sale")
+        self._picking_comp(so)
+        pick = self._picking_comp(so)
+        self.assertEqual(pick, 0, "The delivery should have been blocked")
+        # Remove block
+        so.action_remove_delivery_block()
+        pick = self._picking_comp(so)
+        self.assertNotEqual(pick, 0, "A delivery should have been made")
+        self.assertEqual(so.state, "done")
+
+    def test_no_block_with_auto_done_enabled(self):
+        """Tests if normal behaviour without block."""
+        config = self.env["res.config.settings"].create(
+            {"group_auto_done_setting": True}
+        )
+        config.execute()
+        so = self.sale_order
+        so.action_confirm()
+        pick = self._picking_comp(so)
+        self.assertNotEqual(pick, 0, "A delivery should have been made")
+        self.assertEqual(so.state, "done")
+
     def _picking_comp(self, so):
         """count created pickings"""
         count = len(so.picking_ids)

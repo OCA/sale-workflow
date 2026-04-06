@@ -1,0 +1,64 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_ordered_weight
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_ordered_weight
+#: model_terms:ir.ui.view,arch_db:sale_order_ordered_weight.report_saleorder_document
+msgid "<strong>Total Weight</strong>"
+msgstr ""
+
+#. module: sale_order_ordered_weight
+#: model:ir.model,name:sale_order_ordered_weight.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_order_ordered_weight
+#: model:ir.model,name:sale_order_ordered_weight.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_ordered_weight
+#: model:ir.model.fields,field_description:sale_order_ordered_weight.field_res_company__display_line_weight_on_sale_report
+#: model:ir.model.fields,field_description:sale_order_ordered_weight.field_res_config_settings__display_line_weight_on_sale_report
+msgid "Display Line Weight On Sale Report"
+msgstr ""
+
+#. module: sale_order_ordered_weight
+#: model:ir.model.fields,field_description:sale_order_ordered_weight.field_res_company__display_order_weight_on_sale_report
+#: model:ir.model.fields,field_description:sale_order_ordered_weight.field_res_config_settings__display_order_weight_on_sale_report
+msgid "Display Order Weight On Sale Report"
+msgstr ""
+
+#. module: sale_order_ordered_weight
+#: model:ir.model.fields,field_description:sale_order_ordered_weight.field_sale_order__total_ordered_weight
+#: model:ir.model.fields,field_description:sale_order_ordered_weight.field_sale_order_line__total_ordered_weight
+#: model_terms:ir.ui.view,arch_db:sale_order_ordered_weight.sale_order_view_tree
+#: model_terms:ir.ui.view,arch_db:sale_order_ordered_weight.sale_order_view_tree_quotation
+msgid "Ordered Weight"
+msgstr ""
+
+#. module: sale_order_ordered_weight
+#: model:ir.model,name:sale_order_ordered_weight.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_ordered_weight
+#: model:ir.model,name:sale_order_ordered_weight.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_ordered_weight
+#: model_terms:ir.ui.view,arch_db:sale_order_ordered_weight.report_saleorder_document
+msgid "Weight"
+msgstr ""

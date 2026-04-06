@@ -126,6 +126,7 @@ class SaleOrderLinePriceHistoryline(models.TransientModel):
     )
     sale_order_date_order = fields.Datetime(
         related="sale_order_line_id.order_id.date_order",
+        store=True,
     )
     product_uom_qty = fields.Float(
         related="sale_order_line_id.product_uom_qty",

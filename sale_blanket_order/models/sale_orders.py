@@ -13,7 +13,10 @@ class SaleOrder(models.Model):
     blanket_order_id = fields.Many2one(
         "sale.blanket.order",
         string="Origin blanket order",
-        related="order_line.blanket_order_line.order_id",
+        compute="_compute_blanket_order_id",
+    )
+    disable_adding_lines = fields.Boolean(
+        compute="_compute_disable_adding_lines",
     )
 
     @api.model
@@ -46,6 +49,22 @@ class SaleOrder(models.Model):
                             "blanket order lines customer"
                         )
                     )
+
+    @api.depends("order_line.blanket_order_line.order_id")
+    def _compute_blanket_order_id(self):
+        for order in self:
+            blanket_order = order.order_line.mapped("blanket_order_line.order_id")
+            order.blanket_order_id = blanket_order[:1]
+
+    @api.depends("blanket_order_id")
+    @api.depends_context("uid")
+    def _compute_disable_adding_lines(self):
+        self.disable_adding_lines = False
+        if self.env.user.has_group(
+            "sale_blanket_order.blanket_orders_disable_adding_lines"
+        ):
+            for order in self:
+                order.disable_adding_lines = order.blanket_order_id
 
 
 class SaleOrderLine(models.Model):

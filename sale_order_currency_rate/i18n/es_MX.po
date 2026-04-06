@@ -37,11 +37,6 @@ msgid "Config Settings"
 msgstr "Ajustes de configuración"
 
 #. module: sale_order_currency_rate
-#: model:ir.model.fields,field_description:sale_order_currency_rate.field_sale_order__currency_rate
-msgid "Currency Rate"
-msgstr "Tipo de cambio"
-
-#. module: sale_order_currency_rate
 #: model:ir.model.fields.selection,name:sale_order_currency_rate.selection__res_company__sale_show_currency_rate__inverse
 msgid "Inverse"
 msgstr "Inverso"
@@ -91,3 +86,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_currency_rate.field_sale_order__sale_show_currency_rate
 msgid "Show Currency Rate"
 msgstr "Mostrar tipo de cambio"
+
+#~ msgid "Currency Rate"
+#~ msgstr "Tipo de cambio"

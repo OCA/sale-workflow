@@ -24,12 +24,7 @@ class SaleOrder(models.Model):
     def _compute_delivery_pending(self):
         for rec in self:
             lines_pending = rec.order_line.filtered(
-                lambda x: x.product_id.type != "service"
-                and x.qty_to_procure > 0
-                and (
-                    not x.move_ids
-                    or all(state in ("cancel",) for state in x.move_ids.mapped("state"))
-                )
+                lambda x: x.product_id.type != "service" and x.qty_to_procure > 0
             )
             rec.has_pending_delivery = bool(lines_pending)
 
@@ -39,8 +34,8 @@ class SaleOrder(models.Model):
 
     def action_manual_delivery_wizard(self):
         self.ensure_one()
-        action = self.env.ref("sale_manual_delivery.action_wizard_manual_delivery")
-        [action] = action.read()
+        xmlid = "sale_manual_delivery.action_wizard_manual_delivery"
+        action = self.env["ir.actions.actions"]._for_xml_id(xmlid)
         action["context"] = {"default_carrier_id": self.carrier_id.id}
         return action
 

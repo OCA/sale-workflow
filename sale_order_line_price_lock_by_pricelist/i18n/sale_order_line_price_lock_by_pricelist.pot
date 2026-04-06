@@ -1,0 +1,86 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_price_lock_by_pricelist
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields.selection,name:sale_order_line_price_lock_by_pricelist.selection__product_pricelist__lock_product_prices_applied_on__3_global
+msgid "All products"
+msgstr ""
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields,help:sale_order_line_price_lock_by_pricelist.field_product_pricelist__lock_product_prices_applied_on
+msgid ""
+"Avoid that salesmen change prices based on this scope. Rules applied on base"
+" pricelist take into account the items of those pricelists with the rule of "
+"the pricelist applied on the sale order"
+msgstr ""
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields,field_description:sale_order_line_price_lock_by_pricelist.field_product_pricelist__lock_product_prices_applied_on
+msgid "Lock price when rule is applied on"
+msgstr ""
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model_terms:ir.ui.view,arch_db:sale_order_line_price_lock_by_pricelist.product_pricelist_view
+msgid "Lock prices"
+msgstr ""
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields,field_description:sale_order_line_price_lock_by_pricelist.field_sale_order_line__origin_pricelist_item_id
+msgid "Origin Pricelist Item"
+msgstr ""
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields,field_description:sale_order_line_price_lock_by_pricelist.field_sale_order_line__price_locked
+msgid "Price Locked"
+msgstr ""
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model,name:sale_order_line_price_lock_by_pricelist.model_product_pricelist
+msgid "Pricelist"
+msgstr ""
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields.selection,name:sale_order_line_price_lock_by_pricelist.selection__product_pricelist__lock_product_prices_applied_on__1_product
+msgid "Product"
+msgstr ""
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields.selection,name:sale_order_line_price_lock_by_pricelist.selection__product_pricelist__lock_product_prices_applied_on__2_product_category
+msgid "Product Category"
+msgstr ""
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields.selection,name:sale_order_line_price_lock_by_pricelist.selection__product_pricelist__lock_product_prices_applied_on__0_product_variant
+msgid "Product Variant"
+msgstr ""
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model,name:sale_order_line_price_lock_by_pricelist.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields,help:sale_order_line_price_lock_by_pricelist.field_sale_order_line__origin_pricelist_item_id
+msgid ""
+"Technical field to get the base pricelist item that has the origin price "
+"calculation"
+msgstr ""
+
+#. module: sale_order_line_price_lock_by_pricelist
+#: model:ir.model.fields,help:sale_order_line_price_lock_by_pricelist.field_sale_order_line__price_locked
+msgid ""
+"This flag will make the price_unit and discount readonly based on the "
+"pricelist locking criterias"
+msgstr ""

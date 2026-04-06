@@ -60,12 +60,23 @@ class SaleOrder(models.Model):
     def _get_partner_picker_field(self):
         # HACK: To avoid installation error when get default value to be used in a
         # depends of a computed field
-        if "sale_order_product_picker" in self.env.registry._init_modules and self.env[
-            "ir.default"
-        ].get("sale.order", "use_delivery_address"):
-            return "partner_shipping_id"
-        else:
-            return "partner_id"
+        if "sale_order_product_picker" in self.env.registry._init_modules:
+            use_delivery_address_defined = self.env["ir.default"].get(
+                "sale.order", "use_delivery_address"
+            )
+            # accessing the registry into the initialization phase is a really bad
+            # idea and could lead to a lot of issues. For example, it will load the
+            # cache of the field's id of the model. That means that starting from this
+            # new field added to the model will not be returned by the method
+            # _get_ids of 'ir.model.fields' model and therefore will break the
+            # installation of other modules that extend the model that has been
+            # loaded here.
+            # We must invalidate the cache of this method now to avoid this issue.
+            IMF = self.env["ir.model.fields"]
+            IMF._get_ids.clear_cache(IMF)
+            if use_delivery_address_defined:
+                return "partner_shipping_id"
+        return "partner_id"
 
     def _get_picker_trigger_search_fields(self):
         return [

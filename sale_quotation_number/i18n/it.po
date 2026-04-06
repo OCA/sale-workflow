@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-22 10:25+0000\n"
-"PO-Revision-Date: 2023-12-01 15:35+0000\n"
+"PO-Revision-Date: 2025-07-07 09:25+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: \n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: sale_quotation_number
 #: model:ir.model,name:sale_quotation_number.model_res_company
@@ -36,6 +36,11 @@ msgid ""
 msgstr ""
 "Se disattivato, i preventivi utilizzano una sequenza diversa dagli ordini di "
 "vendita"
+
+#. module: sale_quotation_number
+#: model:ir.model.fields,field_description:sale_quotation_number.field_sale_order__quotation_seq_used
+msgid "Quotation Sequence Used"
+msgstr "Sequenza preventivo usata"
 
 #. module: sale_quotation_number
 #: model:ir.model,name:sale_quotation_number.model_sale_order

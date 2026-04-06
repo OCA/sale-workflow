@@ -1,0 +1,48 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_safe_commitment_date
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_safe_commitment_date
+#: model_terms:ir.ui.view,arch_db:sale_order_safe_commitment_date.view_order_form
+msgid ""
+", but it's not possible based on current lead times. Odoo will adjust the "
+"date automatically. Contact your sales manager if it’s urgent."
+msgstr ""
+
+#. module: sale_order_safe_commitment_date
+#: model_terms:ir.ui.view,arch_db:sale_order_safe_commitment_date.view_order_form
+msgid "<i class=\"fa fa-warning\"/> You requested delivery on"
+msgstr ""
+
+#. module: sale_order_safe_commitment_date
+#: model:ir.model.fields,field_description:sale_order_safe_commitment_date.field_sale_order__date_for_commitment
+msgid "Delivery date"
+msgstr ""
+
+#. module: sale_order_safe_commitment_date
+#: model:ir.model.fields,field_description:sale_order_safe_commitment_date.field_sale_order__is_commitment_date_unsafe
+msgid "Is Commitment Date Unsafe"
+msgstr ""
+
+#. module: sale_order_safe_commitment_date
+#: model:ir.model,name:sale_order_safe_commitment_date.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_safe_commitment_date
+#: model:ir.model.fields,help:sale_order_safe_commitment_date.field_sale_order__date_for_commitment
+msgid ""
+"This is the delivery date promised to the customer. If set, the delivery "
+"order will be scheduled based on this date rather than product lead times."
+msgstr ""

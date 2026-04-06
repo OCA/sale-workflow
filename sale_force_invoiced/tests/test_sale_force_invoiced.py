@@ -2,14 +2,25 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo.exceptions import UserError
+from odoo.tests import tagged
 from odoo.tests.common import TransactionCase
 
 
+@tagged("post_install", "-at_install")
 class TestSaleForceInvoiced(TransactionCase):
     def setUp(self):
         super(TestSaleForceInvoiced, self).setUp()
         self.sale_order_model = self.env["sale.order"]
         self.sale_order_line_model = self.env["sale.order.line"]
+        if not self.env.company.chart_template_id:
+            # Load a CoA if there's none in current company
+            coa = self.env.ref("l10n_generic_coa.configurable_chart_template", False)
+            if not coa:
+                # Load the first available CoA
+                coa = self.env["account.chart.template"].search(
+                    [("visible", "=", True)], limit=1
+                )
+            coa.try_loading(company=self.env.company, install_demo=False)
 
         # Data
         product_ctg = self._create_product_category()

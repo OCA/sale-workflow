@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_product_recommendation_packaging_default
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-05-16 10:23+0000\n"
+"Last-Translator: MDgrap <michael.duc@grap.coop>\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: sale_order_product_recommendation_packaging_default
+#: model:ir.model.fields,field_description:sale_order_product_recommendation_packaging_default.field_sale_order_recommendation_line__product_packaging_id
+msgid "Packaging"
+msgstr "Emballage"
+
+#. module: sale_order_product_recommendation_packaging_default
+#: model:ir.model.fields,field_description:sale_order_product_recommendation_packaging_default.field_sale_order_recommendation_line__product_packaging_qty
+msgid "Packaging Qty."
+msgstr "Qté d'emballage."
+
+#. module: sale_order_product_recommendation_packaging_default
+#: model:ir.model.fields,help:sale_order_product_recommendation_packaging_default.field_sale_order_recommendation_line__product_packaging_id
+msgid "Packaging used for selling this product."
+msgstr "Emballage utilisé avec ce produit."
+
+#. module: sale_order_product_recommendation_packaging_default
+#: model:ir.model.fields,help:sale_order_product_recommendation_packaging_default.field_sale_order_recommendation_line__product_packaging_qty
+msgid "Quantity of packagings to sell."
+msgstr "Quantité d'emballages à vendre."
+
+#. module: sale_order_product_recommendation_packaging_default
+#: model:ir.model,name:sale_order_product_recommendation_packaging_default.model_sale_order_recommendation_line
+msgid "Recommended product for current sale order"
+msgstr "Produit recommandé pour la commande client en cours"

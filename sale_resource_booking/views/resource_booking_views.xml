@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Tecnativa - Jairo Llopis
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<data>
+    <record id="resource_booking_form" model="ir.ui.view">
+        <field name="name">Display sale order info in booking form</field>
+        <field name="model">resource.booking</field>
+        <field name="inherit_id" ref="resource_booking.resource_booking_view_form" />
+        <field name="arch" type="xml">
+            <group name='main' position='inside'>
+                <group
+                    name="sale"
+                    string="Sales"
+                    groups_id="[(4, ref('sales_team.group_sale_salesman'), 0)]"
+                >
+                    <field name="sale_order_line_id" invisible="1" />
+                    <field name="sale_order_id" />
+                    <field name="sale_order_state" />
+                </group>
+            </group>
+        </field>
+    </record>
+</data>

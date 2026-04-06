@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Akretion
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+    <record model="ir.ui.view" id="seasonality_form_view">
+        <field name="name">seasonality.form (in sale_seasonality)</field>
+        <field name="model">seasonality</field>
+        <field
+            name="inherit_id"
+            ref="product_simple_seasonality.seasonality_form_view"
+        />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="granularity" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="seasonality_search_view">
+        <field name="name">seasonality.search (in sale_seasonality)</field>
+        <field name="model">seasonality</field>
+        <field
+            name="inherit_id"
+            ref="product_simple_seasonality.seasonality_search_view"
+        />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="granularity" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="seasonality_tree_view">
+        <field name="name">seasonality.tree (in sale_seasonality)</field>
+        <field name="model">seasonality</field>
+        <field
+            name="inherit_id"
+            ref="product_simple_seasonality.seasonality_tree_view"
+        />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="granularity" />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.menu" id="seasonality_sale_menu_act">
+        <field name="name">Seasonalities</field>
+        <field name="parent_id" ref="sale.menu_sale_config" />
+        <field name="action" ref="product_simple_seasonality.seasonality_act_window" />
+        <field name="sequence" eval="20" />
+    </record>
+</odoo>

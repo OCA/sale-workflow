@@ -9,18 +9,20 @@ from odoo.addons.sale.tests.common import TestSaleCommonBase
 
 
 class TestSaleStock(TestSaleCommonBase):
-    def setUp(self):
-        super().setUp()
-        self.partner = self.env.ref("base.res_partner_1")
-        self.product = self.env.ref("product.product_delivery_01")
-        self.product2 = self.env.ref("product.product_delivery_02")
-        self.product3 = self.env.ref("product.product_order_01")
-        self.carrier1 = self.env.ref("delivery.delivery_carrier")
-        self.carrier2 = self.env.ref("delivery.delivery_local_delivery")
-        self.stock_location = self.env.ref("stock.stock_location_stock")
-        self.env["stock.quant"]._update_available_quantity(
-            self.product, self.stock_location, 100
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.partner = cls.env.ref("base.res_partner_1")
+        cls.product = cls.env.ref("product.product_delivery_01")
+        cls.product2 = cls.env.ref("product.product_delivery_02")
+        cls.product3 = cls.env.ref("product.product_order_01")
+        cls.carrier1 = cls.env.ref("delivery.delivery_carrier")
+        cls.carrier2 = cls.env.ref("delivery.delivery_local_delivery")
+        cls.stock_location = cls.env.ref("stock.stock_location_stock")
+        cls.env["stock.quant"]._update_available_quantity(
+            cls.product, cls.stock_location, 100
         )
+        cls.env.user_demo = cls.env.ref("base.user_demo")
 
     def _manual_delivery_wizard(self, records, vals=None):
         if not vals:
@@ -36,9 +38,10 @@ class TestSaleStock(TestSaleCommonBase):
 
     def test_00_sale_manual_delivery(self):
         """
-        Test SO's manual delivery
+        Test SO's manual delivery; we do it with a user without admin rights
         """
-        order = self.env["sale.order"].create(
+        model_user_order = self.env["sale.order"].with_user(self.env.user_demo)
+        order = model_user_order.create(
             {
                 "partner_id": self.partner.id,
                 "partner_invoice_id": self.partner.id,

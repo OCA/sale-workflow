@@ -2,9 +2,9 @@
 /* Copyright 2024 Tecnativa - Carlos Roca
  * License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
  */
+import {FormController} from "@web/views/form/form_controller";
 import {_lt} from "@web/core/l10n/translation";
 import {patch} from "@web/core/utils/patch";
-import {FormController} from "@web/views/form/form_controller";
 import {useService} from "@web/core/utils/hooks";
 
 patch(FormController.prototype, "sale_order_product_picker.FormController", {

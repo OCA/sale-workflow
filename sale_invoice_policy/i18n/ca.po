@@ -17,11 +17,24 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: sale_invoice_policy
+#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
+msgid ""
+"<span>Choose the default policy that will be applied for new sale orders "
+"(the 'Invoicing Policy' configuration is the policy for new products).</span>"
+msgstr ""
+
+#. module: sale_invoice_policy
+#: model:ir.model,name:sale_invoice_policy.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_res_config_settings
 msgid "Config Settings"
 msgstr "Configuració"
 
 #. module: sale_invoice_policy
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__res_company__sale_default_invoice_policy__delivery
 #: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__delivery
 msgid "Delivered quantities"
 msgstr "Quantitats entregades"
@@ -32,40 +45,35 @@ msgid "Invoice Policy"
 msgstr "Política de Facturació"
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order__invoice_policy_required
-msgid "Invoice Policy Required"
-msgstr "Política de Facturació"
-
-#. module: sale_invoice_policy
-#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
-msgid "Invoice Policy required in Sale Orders"
-msgstr "Política de Facturació"
-
-#. module: sale_invoice_policy
 #: model:ir.model.fields,help:sale_invoice_policy.field_sale_order__invoice_policy
 msgid ""
 "Ordered Quantity: Invoice based on the quantity the customer ordered.\n"
 "Delivered Quantity: Invoiced based on the quantity the vendor delivered "
-"(time or deliveries)."
+"(time or deliveries). This applies for storable products only."
 msgstr ""
-"Quantitat demanada: Factura basada en la quantitat demanada pel client.\n"
-"Quantitat entregada: Factura basada en funció de la quantitat entregada pel "
-"proveïdor ( temps o entregues)."
 
 #. module: sale_invoice_policy
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__res_company__sale_default_invoice_policy__order
 #: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__order
 msgid "Ordered quantities"
 msgstr "Quantitats Demanades"
 
 #. module: sale_invoice_policy
-#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
-msgid "Sale Invoice Policy"
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__res_company__sale_default_invoice_policy__product
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__product
+msgid "Products Invoice Policy"
 msgstr ""
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
-msgid "Sale Invoice Policy Required"
-msgstr "Política de Facturació"
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_company__sale_default_invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_default_invoice_policy
+msgid "Sale Default Invoice Policy"
+msgstr ""
+
+#. module: sale_invoice_policy
+#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
+msgid "Sale Invoice Policy"
+msgstr ""
 
 #. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_sale_order
@@ -78,9 +86,31 @@ msgid "Sales Order Line"
 msgstr "Línia de comanda de venda"
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
-msgid "This makes Invoice Policy required on Sale Orders"
-msgstr "La política de facturació és necessària a les comandes de venda"
+#: model:ir.model.fields,help:sale_invoice_policy.field_res_company__sale_default_invoice_policy
+#: model:ir.model.fields,help:sale_invoice_policy.field_res_config_settings__sale_default_invoice_policy
+msgid "This will be the default invoice policy for sale orders."
+msgstr ""
+
+#~ msgid "Invoice Policy Required"
+#~ msgstr "Política de Facturació"
+
+#~ msgid "Invoice Policy required in Sale Orders"
+#~ msgstr "Política de Facturació"
+
+#~ msgid ""
+#~ "Ordered Quantity: Invoice based on the quantity the customer ordered.\n"
+#~ "Delivered Quantity: Invoiced based on the quantity the vendor delivered "
+#~ "(time or deliveries)."
+#~ msgstr ""
+#~ "Quantitat demanada: Factura basada en la quantitat demanada pel client.\n"
+#~ "Quantitat entregada: Factura basada en funció de la quantitat entregada "
+#~ "pel proveïdor ( temps o entregues)."
+
+#~ msgid "Sale Invoice Policy Required"
+#~ msgstr "Política de Facturació"
+
+#~ msgid "This makes Invoice Policy required on Sale Orders"
+#~ msgstr "La política de facturació és necessària a les comandes de venda"
 
 #~ msgid "Default Invoicing Policy"
 #~ msgstr "Política de Facturació"

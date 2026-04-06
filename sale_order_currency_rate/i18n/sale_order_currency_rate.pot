@@ -34,11 +34,6 @@ msgid "Config Settings"
 msgstr ""
 
 #. module: sale_order_currency_rate
-#: model:ir.model.fields,field_description:sale_order_currency_rate.field_sale_order__currency_rate
-msgid "Currency Rate"
-msgstr ""
-
-#. module: sale_order_currency_rate
 #: model:ir.model.fields.selection,name:sale_order_currency_rate.selection__res_company__sale_show_currency_rate__inverse
 msgid "Inverse"
 msgstr ""

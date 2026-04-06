@@ -1,0 +1,71 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_safe_commitment_date
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-22 07:27+0000\n"
+"PO-Revision-Date: 2025-08-13 17:25+0000\n"
+"Last-Translator: David Vidal <david.vidal@tecnativa.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: sale_order_safe_commitment_date
+#: model_terms:ir.ui.view,arch_db:sale_order_safe_commitment_date.view_order_form
+msgid ""
+", but it's not possible based on current lead times. Odoo will adjust the "
+"date automatically. Contact your sales manager if it’s urgent."
+msgstr ""
+", pero no es posible según los plazos actuales. Odoo ajustará la fecha "
+"automáticamente. Contacta con tu responsable si es urgente."
+
+#. module: sale_order_safe_commitment_date
+#: model_terms:ir.ui.view,arch_db:sale_order_safe_commitment_date.view_order_form
+msgid "<i class=\"fa fa-warning\"/> You requested delivery on"
+msgstr "<i class=\"fa fa-warning\"/> Has solicitado entregar el pedido el"
+
+#. module: sale_order_safe_commitment_date
+#: model:ir.model.fields,field_description:sale_order_safe_commitment_date.field_sale_order__date_for_commitment
+msgid "Delivery date"
+msgstr "Fecha de entrega"
+
+#. module: sale_order_safe_commitment_date
+#: model:ir.model.fields,field_description:sale_order_safe_commitment_date.field_sale_order__is_commitment_date_unsafe
+msgid "Is Commitment Date Unsafe"
+msgstr "La fecha de entrega es insegura"
+
+#. module: sale_order_safe_commitment_date
+#: model:ir.model,name:sale_order_safe_commitment_date.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_order_safe_commitment_date
+#: model:ir.model.fields,help:sale_order_safe_commitment_date.field_sale_order__date_for_commitment
+msgid ""
+"This is the delivery date promised to the customer. If set, the delivery "
+"order will be scheduled based on this date rather than product lead times."
+msgstr ""
+"Es la fecha de entrega prometida al cliente. Si se establece, la orden de "
+"entrega se programará en función de esta fecha en lugar de los plazos de "
+"entrega del producto."
+
+#~ msgid ""
+#~ "<i class=\"fa fa-warning text-warning\" attrs=\"{'invisible': "
+#~ "[('is_commitment_date_unsafe', '=', False)]}\" alt=\"The delivery date is "
+#~ "sooner than the expected date. You may be unable to honor the delivery "
+#~ "date.\"/> Expected:"
+#~ msgstr ""
+#~ "<i class=\"fa fa-warning text-warning\" attrs=\"{'invisible': "
+#~ "[('is_commitment_date_unsafe', '=', False)]}\" alt=\"La fecha de entrega "
+#~ "es anterior a la fecha esperada. Es posible que no pueda respetar la "
+#~ "fecha de entrega.\"/> Previsto:"
+
+#~ msgid "Delivery Date"
+#~ msgstr "Fecha de entrega"

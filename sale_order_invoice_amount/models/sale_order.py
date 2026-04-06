@@ -37,7 +37,7 @@ class SaleOrder(models.Model):
                             and rec.currency_id != invoice.company_currency_id
                         ):
                             rec.invoiced_amount += invoice.currency_id._convert(
-                                invoice.amount_total_signed,
+                                invoice.amount_total_in_currency_signed,
                                 rec.currency_id,
                                 invoice.company_id,
                                 invoice.invoice_date or fields.Date.today(),

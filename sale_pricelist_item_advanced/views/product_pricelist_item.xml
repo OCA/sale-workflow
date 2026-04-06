@@ -1,0 +1,229 @@
+<odoo>
+    <record id="product_pricelist_item_form_view" model="ir.ui.view">
+        <field name="name">product.pricelist.item.form</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="arch" type="xml">
+            <form string="Pricelist Items">
+                <field name="company_id" invisible="1" />
+                <sheet>
+                    <h1>
+                        <field name="name" />
+                    </h1>
+                    <group name="pricelist_left">
+                        <group name="pricelist_id" string="Pricelist">
+                            <field name="pricelist_id" />
+                        </group>
+                        <group name="pricelist_rule_limits">
+                            <field name="min_quantity" />
+                            <field name="date_start" />
+                            <field name="date_end" />
+                        </group>
+                    </group>
+                    <group name="pricelist_right">
+                        <group name="pricelist_rule_target">
+                            <field name="applied_on" widget="radio" />
+                            <field
+                                name="categ_id"
+                                attrs="{
+                            'invisible':[('applied_on', '!=', '2_product_category')],
+                            'required':[('applied_on', '=', '2_product_category')]}"
+                                options="{'no_create':1}"
+                            />
+                            <field
+                                name="product_tmpl_id"
+                                attrs="{
+                            'invisible':[('applied_on', '!=', '1_product')],
+                            'required':[('applied_on', '=', '1_product')]}"
+                                options="{'no_create':1}"
+                            />
+                            <field
+                                name="product_id"
+                                attrs="{
+                            'invisible':[('applied_on', '!=', '0_product_variant')],
+                            'required':[('applied_on', '=', '0_product_variant')]}"
+                                options="{'no_create':1}"
+                            />
+                        </group>
+                        <group name="pricelist_rule_related" groups="base.group_no_one">
+                            <!-- Infos from the pricelist for UI rendering (monetary fields, ...) -->
+                            <field name="pricelist_id" invisible="1" />
+                            <field
+                                name="currency_id"
+                                groups="base.group_multi_currency"
+                            />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                    </group>
+                    <group
+                        string="Price Computation"
+                        name="pricelist_rule_computation"
+                        groups="product.group_sale_pricelist"
+                    >
+                        <group name="pricelist_rule_method">
+                            <field
+                                name="compute_price"
+                                string="Compute Price"
+                                widget="radio"
+                            />
+                        </group>
+                        <group name="pricelist_rule_base">
+                            <field
+                                name="fixed_price"
+                                attrs="{'invisible':[('compute_price', '!=', 'fixed')]}"
+                            />
+                            <label
+                                for="percent_price"
+                                attrs="{'invisible':[('compute_price', '!=', 'percentage')]}"
+                            />
+                            <div
+                                attrs="{'invisible':[('compute_price', '!=', 'percentage')]}"
+                            >
+                                <field
+                                    name="percent_price"
+                                    class="oe_inline"
+                                    attrs="{'invisible':[('compute_price', '!=', 'percentage')]}"
+                                />
+                                %%
+                            </div>
+                            <field
+                                name="base"
+                                attrs="{'invisible':[('compute_price', '!=', 'formula')]}"
+                            />
+                            <field
+                                name="base_pricelist_id"
+                                attrs="{
+                            'invisible': ['|', ('compute_price', '!=', 'formula'), ('base', '!=', 'pricelist')],
+                            'required': [('compute_price', '=', 'formula'), ('base', '=', 'pricelist')],
+                            'readonly': [('base', '!=', 'pricelist')]}"
+                            />
+                        </group>
+                    </group>
+                    <div class="oe_grey" groups="uom.group_uom">
+                        <p>
+                            The computed price is expressed in the default Unit of
+                            Measure of the product.
+                        </p>
+                    </div>
+                    <group
+                        name="pricelist_rule_advanced"
+                        col="6"
+                        attrs="{'invisible':[('compute_price', '!=', 'formula')]}"
+                        groups="product.group_sale_pricelist"
+                    >
+                        <label for="base" string="New Price = " />
+                        <div>
+                            <span attrs="{'invisible':[('base', '!=', 'list_price')]}">
+                                Sales Price  -
+                            </span>
+                            <span
+                                attrs="{'invisible':[('base', '!=', 'standard_price')]}"
+                            >
+                                Cost  -
+                            </span>
+                            <span attrs="{'invisible':[('base', '!=', 'pricelist')]}">
+                                Other Pricelist  -
+                            </span>
+                        </div>
+                        <label for="price_discount" />
+                        <div class="o_row">
+                            <field name="price_discount" />
+                            <span>%%</span>
+                        </div>
+                        <label string=" + " for="price_surcharge" />
+                        <field name="price_surcharge" nolabel="1" />
+                        <field name="price_round" string="Rounding Method" />
+                        <field name="price_min_margin" string="Min. Margin" />
+                        <field name="price_max_margin" string="Max. Margin" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="product_product_pricelist_view" model="ir.ui.view">
+        <field name="name">product.pricelist.form</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view" />
+        <field name="arch" type="xml">
+            <data>
+                <xpath
+                    expr="//field[@name='item_ids']/tree/field[@name='date_start']"
+                    position="before"
+                >
+                    <field name="base_pricelist_id" />
+                </xpath>
+            </data>
+        </field>
+    </record>
+    <record id="product_pricelist_item_view_search_inherit" model="ir.ui.view">
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_view_search" />
+        <field name="arch" type="xml">
+            <field name="pricelist_id" position="after">
+                <field name="product_tmpl_id" />
+                <field name="categ_id" />
+                <field name="product_id" />
+                <field name="base_pricelist_id" />
+            </field>
+        </field>
+    </record>
+    <record id="product_pricelist_item_revision_tree_view" model="ir.ui.view">
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_tree_view" />
+        <field name="arch" type="xml">
+            <field name="pricelist_id" position="attributes">
+                <attribute name="optional">show</attribute>
+            </field>
+            <field name="name" position="attributes">
+                <attribute name="optional">show</attribute>
+            </field>
+            <field name="price" position="attributes">
+                <attribute name="optional">show</attribute>
+            </field>
+            <field name="price" position="after">
+                <field name="base_pricelist_id" />
+            </field>
+            <field name="min_quantity" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="company_id" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="min_quantity" position="after">
+                <field name="compute_price" readonly="1" optional="hide" />
+                <field
+                    name="fixed_price"
+                    attrs="{'invisible': [('compute_price', '!=', 'fixed')]}"
+                    optional="hide"
+                />
+                <field
+                    name="percent_price"
+                    string="Percent"
+                    attrs="{'invisible': [('compute_price', '!=', 'percentage')]}"
+                    optional="hide"
+                />
+            </field>
+        </field>
+    </record>
+    <record id="product_pricelist_item_action" model="ir.actions.act_window">
+        <field name="name">Pricelist Items</field>
+        <field name="res_model">product.pricelist.item</field>
+        <field name="view_mode">tree,form</field>
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('product.product_pricelist_item_tree_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sale_pricelist_item_advanced.product_pricelist_item_form_view')})]"
+        />
+        <field name="context" />
+    </record>
+    <menuitem
+        action="product_pricelist_item_action"
+        id="menu_product_pricelist_item_action"
+        parent="sale.product_menu_catalog"
+        sequence="4"
+        groups="product.group_sale_pricelist"
+    />
+</odoo>

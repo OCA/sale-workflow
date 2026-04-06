@@ -37,11 +37,6 @@ msgid "Config Settings"
 msgstr "Impostazioni configurazione"
 
 #. module: sale_order_currency_rate
-#: model:ir.model.fields,field_description:sale_order_currency_rate.field_sale_order__currency_rate
-msgid "Currency Rate"
-msgstr "Tasso di cambio"
-
-#. module: sale_order_currency_rate
 #: model:ir.model.fields.selection,name:sale_order_currency_rate.selection__res_company__sale_show_currency_rate__inverse
 msgid "Inverse"
 msgstr "Inverso"
@@ -71,18 +66,20 @@ msgstr "Ordine di vendita"
 msgid ""
 "Select how to show exchange rate in sale orders.<br/>\n"
 "                            <b>No:</b> Don't show the exchange rate.<br/>\n"
-"                            <b>Normal:</b> Foreing currency to company currency.<br/>\n"
-"                            <b>Inverse:</b> Company currency to foreign currency.<br/>\n"
+"                            <b>Normal:</b> Foreing currency to company "
+"currency.<br/>\n"
+"                            <b>Inverse:</b> Company currency to foreign "
+"currency.<br/>\n"
 "                            <b>Both:</b> Show both currency rates."
 msgstr ""
 "Selezionare come visualizzare il tasso di cambio negli ordini di vendita.<br/"
 ">\n"
 "                            <b>No:</b> non visualizza il tasso di cambio.<br/"
 ">\n"
-"                            <b>Normale:</b> valuta estera a valuta azienda.<"
-"br/>\n"
-"                            <b>Inverso:</b> valuta azienda a valuta estera.<"
-"br/>\n"
+"                            <b>Normale:</b> valuta estera a valuta azienda."
+"<br/>\n"
+"                            <b>Inverso:</b> valuta azienda a valuta estera."
+"<br/>\n"
 "                            <b>Entrambi:</b> visualizza entrambi i tassi di "
 "cambio."
 
@@ -92,3 +89,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_currency_rate.field_sale_order__sale_show_currency_rate
 msgid "Show Currency Rate"
 msgstr "Visualizza tasso di cambio"
+
+#~ msgid "Currency Rate"
+#~ msgstr "Tasso di cambio"

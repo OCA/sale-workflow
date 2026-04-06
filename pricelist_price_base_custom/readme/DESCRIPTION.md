@@ -1,0 +1,1 @@
+This module add a new "Custom Value" to the list of pricelist base price options.

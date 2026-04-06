@@ -18,11 +18,24 @@ msgstr ""
 "X-Generator: Weblate 3.10\n"
 
 #. module: sale_invoice_policy
+#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
+msgid ""
+"<span>Choose the default policy that will be applied for new sale orders "
+"(the 'Invoicing Policy' configuration is the policy for new products).</span>"
+msgstr ""
+
+#. module: sale_invoice_policy
+#: model:ir.model,name:sale_invoice_policy.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_res_config_settings
 msgid "Config Settings"
 msgstr "Paramètres de configuration"
 
 #. module: sale_invoice_policy
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__res_company__sale_default_invoice_policy__delivery
 #: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__delivery
 msgid "Delivered quantities"
 msgstr "Quantités Livrées"
@@ -33,41 +46,35 @@ msgid "Invoice Policy"
 msgstr "Politique de facturation"
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_sale_order__invoice_policy_required
-msgid "Invoice Policy Required"
-msgstr "Politique de facturation requise"
-
-#. module: sale_invoice_policy
-#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
-msgid "Invoice Policy required in Sale Orders"
-msgstr "Politique de facturation requise dans les commandes de vente"
-
-#. module: sale_invoice_policy
 #: model:ir.model.fields,help:sale_invoice_policy.field_sale_order__invoice_policy
 msgid ""
 "Ordered Quantity: Invoice based on the quantity the customer ordered.\n"
 "Delivered Quantity: Invoiced based on the quantity the vendor delivered "
-"(time or deliveries)."
+"(time or deliveries). This applies for storable products only."
 msgstr ""
-"Quantités commandées : facturation basée sur les quantités commandées par le "
-"client.\n"
-"Quantités livrées : facturation basée sur les quantités que le fournisseur a "
-"livré (temps passé dans le cas de prestations)."
 
 #. module: sale_invoice_policy
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__res_company__sale_default_invoice_policy__order
 #: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__order
 msgid "Ordered quantities"
 msgstr "Quantités Commandées"
 
 #. module: sale_invoice_policy
-#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
-msgid "Sale Invoice Policy"
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__res_company__sale_default_invoice_policy__product
+#: model:ir.model.fields.selection,name:sale_invoice_policy.selection__sale_order__invoice_policy__product
+msgid "Products Invoice Policy"
 msgstr ""
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
-msgid "Sale Invoice Policy Required"
-msgstr "Politique de facturation des ventes requise"
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_company__sale_default_invoice_policy
+#: model:ir.model.fields,field_description:sale_invoice_policy.field_res_config_settings__sale_default_invoice_policy
+msgid "Sale Default Invoice Policy"
+msgstr ""
+
+#. module: sale_invoice_policy
+#: model_terms:ir.ui.view,arch_db:sale_invoice_policy.view_sales_config
+msgid "Sale Invoice Policy"
+msgstr ""
 
 #. module: sale_invoice_policy
 #: model:ir.model,name:sale_invoice_policy.model_sale_order
@@ -80,9 +87,32 @@ msgid "Sales Order Line"
 msgstr "Ligne de bon de commande"
 
 #. module: sale_invoice_policy
-#: model:ir.model.fields,help:sale_invoice_policy.field_res_config_settings__sale_invoice_policy_required
-msgid "This makes Invoice Policy required on Sale Orders"
-msgstr "La politique de facturation est requise sur les bons de commandes"
+#: model:ir.model.fields,help:sale_invoice_policy.field_res_company__sale_default_invoice_policy
+#: model:ir.model.fields,help:sale_invoice_policy.field_res_config_settings__sale_default_invoice_policy
+msgid "This will be the default invoice policy for sale orders."
+msgstr ""
+
+#~ msgid "Invoice Policy Required"
+#~ msgstr "Politique de facturation requise"
+
+#~ msgid "Invoice Policy required in Sale Orders"
+#~ msgstr "Politique de facturation requise dans les commandes de vente"
+
+#~ msgid ""
+#~ "Ordered Quantity: Invoice based on the quantity the customer ordered.\n"
+#~ "Delivered Quantity: Invoiced based on the quantity the vendor delivered "
+#~ "(time or deliveries)."
+#~ msgstr ""
+#~ "Quantités commandées : facturation basée sur les quantités commandées par "
+#~ "le client.\n"
+#~ "Quantités livrées : facturation basée sur les quantités que le "
+#~ "fournisseur a livré (temps passé dans le cas de prestations)."
+
+#~ msgid "Sale Invoice Policy Required"
+#~ msgstr "Politique de facturation des ventes requise"
+
+#~ msgid "This makes Invoice Policy required on Sale Orders"
+#~ msgstr "La politique de facturation est requise sur les bons de commandes"
 
 #~ msgid "Default Invoicing Policy"
 #~ msgstr "Politique de facturation par défaut"

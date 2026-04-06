@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-08-20 09:58+0000\n"
+"PO-Revision-Date: 2025-09-04 10:49+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: sale_blanket_order
 #. odoo-python
@@ -23,13 +23,14 @@ msgstr ""
 msgid ""
 "\n"
 "                    You cannot change the type of a sale order line.\n"
-"                    Instead you should delete the current line and create a new line\n"
+"                    Instead you should delete the current line and create a "
+"new line\n"
 "                    of the proper type.\n"
 "                    "
 msgstr ""
 "\n"
-"                    Non si può cambiare il tipo della riga ordine di vendita."
-"\n"
+"                    Non si può cambiare il tipo della riga ordine di "
+"vendita.\n"
 "                    Bisogna cancellare la riga attuale e crearne una nuova\n"
 "                    del tipo appropriato.\n"
 "                    "
@@ -37,12 +38,12 @@ msgstr ""
 #. module: sale_blanket_order
 #: model:ir.actions.report,print_report_name:sale_blanket_order.report_blanket_order
 msgid "'Blanket Order - %s' % object.name"
-msgstr "'Ordine aperto - %s' % object.name"
+msgstr "'Ordine quadro - %s' % object.name"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
 msgid "<span>Blanket Order # </span>"
-msgstr "<span>Ordine aperto #</span>"
+msgstr "<span>Ordine quadro #</span>"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
@@ -173,40 +174,40 @@ msgstr "Riga ordine aperto"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard__blanket_order_id
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.view_blanket_order_form
 msgid "Blanket Order"
-msgstr "Ordine aperto"
+msgstr "Ordine quadro"
 
 #. module: sale_blanket_order
 #: model:ir.model,name:sale_blanket_order.model_sale_blanket_order_line
 msgid "Blanket Order Line"
-msgstr "Riga ordine aperto"
+msgstr "Riga ordine quadro"
 
 #. module: sale_blanket_order
 #: model:ir.actions.act_window,name:sale_blanket_order.act_open_sale_blanket_order_lines_view_tree
 #: model:ir.ui.menu,name:sale_blanket_order.menu_sale_blanket_order_line
 msgid "Blanket Order Lines"
-msgstr "Righe ordine aperto"
+msgstr "Righe ordine quadro"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_order_line__blanket_order_line
 msgid "Blanket Order line"
-msgstr "Riga ordine aperto"
+msgstr "Riga ordine quadro"
 
 #. module: sale_blanket_order
 #: model:ir.actions.act_window,name:sale_blanket_order.act_open_blanket_order_view
 #: model:ir.ui.menu,name:sale_blanket_order.menu_blanket_order_config
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_config_settings_form_view
 msgid "Blanket Orders"
-msgstr "Ordini aperti"
+msgstr "Ordini quadro"
 
 #. module: sale_blanket_order
 #: model:ir.model,name:sale_blanket_order.model_sale_blanket_order_wizard
 msgid "Blanket order wizard"
-msgstr "Procedura guidata ordine aperto"
+msgstr "Procedura guidata ordine quadro"
 
 #. module: sale_blanket_order
 #: model:ir.model,name:sale_blanket_order.model_sale_blanket_order_wizard_line
 msgid "Blanket order wizard line"
-msgstr "Riga procedura guidata ordine aperto"
+msgstr "Riga procedura guidata ordine quadro"
 
 #. module: sale_blanket_order
 #. odoo-python
@@ -215,7 +216,7 @@ msgstr "Riga procedura guidata ordine aperto"
 msgid ""
 "Can not create Sale Order from Blanket Order lines with different currencies"
 msgstr ""
-"Non si possono creare ordini di vendita da righe ordine aperto con valute "
+"Non si possono creare ordini di vendita da righe ordine quadro con valute "
 "diverse"
 
 #. module: sale_blanket_order
@@ -233,14 +234,14 @@ msgid ""
 "has no remaining quantity."
 msgstr ""
 "Non è possibile confermare l'ordine %s in quanto una delle righe si "
-"riferisce ad un ordine aperto che non ha quantità rimanenti."
+"riferisce ad un ordine quadro che non ha quantità rimanenti."
 
 #. module: sale_blanket_order
 #: model_terms:ir.actions.act_window,help:sale_blanket_order.act_open_blanket_order_view
 msgid ""
 "Click to create a blanket order that can be converted into a sale order."
 msgstr ""
-"Cliccare per creare un ordine aperto che può essere convertito in un ordine "
+"Cliccare per creare un ordine quadro che può essere convertito in un ordine "
 "di vendita."
 
 #. module: sale_blanket_order
@@ -333,6 +334,11 @@ msgid "Description"
 msgstr "Descrizione"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_order__disable_adding_lines
+msgid "Disable Adding Lines"
+msgstr "Disabilita aggiunta righe"
+
+#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_res_config_settings__group_blanket_disable_adding_lines
 msgid "Disable adding more lines to SOs"
 msgstr "Disabilita l'aggiunta di altre righe negli OV"
@@ -341,7 +347,7 @@ msgstr "Disabilita l'aggiunta di altre righe negli OV"
 #: model:res.groups,name:sale_blanket_order.blanket_orders_disable_adding_lines
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_config_settings_form_view
 msgid "Disable adding more lines to SOs from Blanket Orders"
-msgstr "Disabilita l'aggiunta di altre righe negli OV da ordini aperti"
+msgstr "Disabilita l'aggiunta di altre righe negli OV da ordini quadro"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__display_name
@@ -370,7 +376,7 @@ msgstr "Bozza"
 #: model:ir.actions.server,name:sale_blanket_order.expired_blanket_orders_cron_ir_actions_server
 #: model:ir.cron,cron_name:sale_blanket_order.expired_blanket_orders_cron
 msgid "Expire Blanket Orders"
-msgstr "Scadenza ordini aperti"
+msgstr "Scadenza ordini quadro"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order__state__expired
@@ -625,7 +631,7 @@ msgstr "Quantità ordinata"
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_order__blanket_order_id
 msgid "Origin blanket order"
-msgstr "Origine ordine aperto"
+msgstr "Origine ordine quadro"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
@@ -671,13 +677,6 @@ msgid "Price"
 msgstr "Prezzo"
 
 #. module: sale_blanket_order
-#. odoo-python
-#: code:addons/sale_blanket_order/models/blanket_orders.py:0
-#, python-format
-msgid "Price must be greater than zero"
-msgstr "Il prezzo deve essere maggiore di zero"
-
-#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__pricelist_id
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__pricelist_id
 msgid "Pricelist"
@@ -718,7 +717,7 @@ msgstr "Q.tà rimanente"
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__remaining_uom_qty
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__remaining_uom_qty
 msgid "Remaining quantity"
-msgstr "Quantità rimanente"
+msgstr "Quantità residua"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__remaining_qty
@@ -741,17 +740,17 @@ msgstr "Utente responsabile"
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "Sale Blanket Order %s is not open"
-msgstr "L'ordine di vendita aperto %s non è aperto"
+msgstr "L'ordine quadro di vendita %s non è aperto"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_form
 msgid "Sale Blanket Order Line"
-msgstr "Riga ordine di vendita aperto"
+msgstr "Riga ordine quadro di vendita"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__line_count
 msgid "Sale Blanket Order Line count"
-msgstr "Numero righe ordine di vendita aperto"
+msgstr "Numero righe ordine quadro di vendita"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__sale_count
@@ -815,7 +814,7 @@ msgstr "Data schedulata"
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.sale_blanket_order_line_search
 msgid "Search Sale Blanket Order Line"
-msgstr "Cerca riga ordine di vendita aperto"
+msgstr "Cerca riga ordine quadro di vendita"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields.selection,name:sale_blanket_order.selection__sale_blanket_order_line__display_type__line_section
@@ -858,6 +857,11 @@ msgid "Subtotal"
 msgstr "Subtotale"
 
 #. module: sale_blanket_order
+#: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order__tag_ids
+msgid "Tags"
+msgstr "Etichette"
+
+#. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_line__price_tax
 msgid "Tax"
 msgstr "Imposta"
@@ -887,7 +891,7 @@ msgstr "Termini e condizioni"
 msgid ""
 "The currency of the blanket order must match with that of the sale order."
 msgstr ""
-"La valuta dell'ordine aperto deve corrispondere con quella dell'ordine di "
+"La valuta dell'ordine quadro deve corrispondere con quella dell'ordine di "
 "vendita."
 
 #. module: sale_blanket_order
@@ -895,7 +899,7 @@ msgstr ""
 #: code:addons/sale_blanket_order/models/sale_orders.py:0
 #, python-format
 msgid "The customer must be equal to the blanket order lines customer"
-msgstr "Il cliente deve essere lo stesso delle righe dell'ordine aperto"
+msgstr "Il cliente deve essere lo stesso delle righe dell'ordine quadro"
 
 #. module: sale_blanket_order
 #. odoo-python
@@ -903,7 +907,7 @@ msgstr "Il cliente deve essere lo stesso delle righe dell'ordine aperto"
 #, python-format
 msgid "The product in the blanket order and in the sales order must match"
 msgstr ""
-"Il prodotto nell'ordine aperto e nell'ordine di vendita deve corrispondere"
+"Il prodotto nell'ordine quadro e nell'ordine di vendita deve corrispondere"
 
 #. module: sale_blanket_order
 #. odoo-python
@@ -949,11 +953,12 @@ msgstr "Imponibile"
 #: model_terms:ir.actions.act_window,help:sale_blanket_order.act_open_blanket_order_view
 msgid ""
 "Use this menu to search within your blanket orders. For each blanket order,\n"
-"                you can track the related discussion with the customer, control\n"
+"                you can track the related discussion with the customer, "
+"control\n"
 "                the products delivered and control the vendor bills."
 msgstr ""
-"Usa questo menu per ricercare nel tuo ordine aperto. Per ogni ordine aperto,"
-"\n"
+"Usa questo menu per ricercare nel tuo ordine quadro. Per ogni ordine "
+"quadro,\n"
 "                puoi tracciare le relative conversazioni con il cliente, "
 "controllare\n"
 "                i prodotti spediti e controllare le fatture del venditore."
@@ -1012,7 +1017,7 @@ msgid ""
 "You can not delete a blanket order with opened sale orders! Try to cancel "
 "them before."
 msgstr ""
-"Non puoi annullare un ordine aperto con ordini di vendita aperti! Prova ad "
+"Non puoi annullare un ordine quadro con ordini di vendita aperti! Prova ad "
 "annullarli prima."
 
 #. module: sale_blanket_order
@@ -1020,8 +1025,8 @@ msgstr ""
 #: code:addons/sale_blanket_order/models/blanket_orders.py:0
 #, python-format
 msgid ""
-"You can not delete an open blanket or with active sale orders! Try to cancel"
-" it before."
+"You can not delete an open blanket or with active sale orders! Try to cancel "
+"it before."
 msgstr ""
 "Non puoi eliminare un ordine aperto o con ordini di vendita attivi! Prova "
 "prima ad annullarlo."
@@ -1031,7 +1036,7 @@ msgstr ""
 #: code:addons/sale_blanket_order/wizard/create_sale_orders.py:0
 #, python-format
 msgid "You can't create a sale order from an expired blanket order!"
-msgstr "Non puoi creare un ordine di vendita da un ordine aperto scaduto!"
+msgstr "Non puoi creare un ordine di vendita da un ordine quadro scaduto!"
 
 #. module: sale_blanket_order
 #. odoo-python
@@ -1053,3 +1058,7 @@ msgstr "Bisogna selezionare le righe della stessa azienda."
 #, python-format
 msgid "remaining"
 msgstr "rimanenti"
+
+#, python-format
+#~ msgid "Price must be greater than zero"
+#~ msgstr "Il prezzo deve essere maggiore di zero"

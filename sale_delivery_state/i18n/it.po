@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-10-03 18:06+0000\n"
+"PO-Revision-Date: 2025-05-10 10:23+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #. module: sale_delivery_state
 #: model:ir.model.fields,help:sale_delivery_state.field_sale_order__force_delivery_state
@@ -24,6 +24,16 @@ msgid ""
 msgstr ""
 "Consente di forzare lo stato di consegna ad evasa, ad esempio se alcune "
 "quantità sono state annullate"
+
+#. module: sale_delivery_state
+#: model:ir.model,name:sale_delivery_state.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: sale_delivery_state
+#: model:ir.model,name:sale_delivery_state.model_res_config_settings
+msgid "Config Settings"
+msgstr "Impostazioni configurazione"
 
 #. module: sale_delivery_state
 #: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order__delivery_status
@@ -46,6 +56,15 @@ msgid "Fully Delivered"
 msgstr "Consegnata comletamente"
 
 #. module: sale_delivery_state
+#: model_terms:ir.ui.view,arch_db:sale_delivery_state.sale_delivery_state_res_config_settings_view_form
+msgid ""
+"If active, sale order lines containing Service products will not be "
+"evaluated by default when determining the Delivery State."
+msgstr ""
+"Se attivo, le righe ordine di vendita che contengono prodotti servizio non "
+"saranno prese in considerazione per determinare lo stato di consegna."
+
+#. module: sale_delivery_state
 #: model:ir.model.fields.selection,name:sale_delivery_state.selection__sale_order__delivery_status__pending
 msgid "Not Delivered"
 msgstr "Non consegnata"
@@ -59,6 +78,22 @@ msgstr "Consegnata parzialmente"
 #: model:ir.model,name:sale_delivery_state.model_sale_order
 msgid "Sales Order"
 msgstr "Ordine di vendita"
+
+#. module: sale_delivery_state
+#: model:ir.model,name:sale_delivery_state.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Riga ordine di vendita"
+
+#. module: sale_delivery_state
+#: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order_line__skip_sale_delivery_state
+msgid "Skip Delivery State"
+msgstr "Ignora stato di consegna"
+
+#. module: sale_delivery_state
+#: model:ir.model.fields,field_description:sale_delivery_state.field_res_company__skip_service_sale_delivery_state
+#: model:ir.model.fields,field_description:sale_delivery_state.field_res_config_settings__skip_service_sale_delivery_state
+msgid "Skip Service products for Sale Delivery State"
+msgstr "Ignora i prodotti servizio per lo stato di consegna nelle vendite"
 
 #. module: sale_delivery_state
 #: model_terms:ir.ui.view,arch_db:sale_delivery_state.view_order_form_inherit_delivery_state

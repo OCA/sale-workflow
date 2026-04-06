@@ -19,13 +19,80 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: sale_order_lot_selection
+#: model_terms:ir.ui.view,arch_db:sale_order_lot_selection.res_config_settings_view_form
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" role=\"img\" aria-label=\"Values set here are company-specific."
+"\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model_terms:ir.ui.view,arch_db:sale_order_lot_selection.res_config_settings_view_form
+msgid "Allow Lot/Serial Numbers changes after sale confirmation"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model_terms:ir.ui.view,arch_db:sale_order_lot_selection.res_config_settings_view_form
+msgid ""
+"Allow lot/serial numbers to be updated after\n"
+"                            confirmation and propagate changes to stock moves"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_res_company__allow_to_change_lot_on_confirmed_so
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_res_config_settings__allow_to_change_lot_on_confirmed_so
+msgid "Allow to change lot on confirmed sale order"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model_terms:ir.ui.view,arch_db:sale_order_lot_selection.res_config_settings_view_form
+msgid "Choose between two strategies :"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model.fields,help:sale_order_lot_selection.field_res_company__allow_to_change_lot_on_confirmed_so
+#: model:ir.model.fields,help:sale_order_lot_selection.field_res_config_settings__allow_to_change_lot_on_confirmed_so
+msgid ""
+"If checked, it will allow to change the lot on the confirmed sale order."
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model_terms:ir.ui.view,arch_db:sale_order_lot_selection.res_config_settings_view_form
+msgid ""
+"Lock lot/serial numbers in sales orders lines after\n"
+"                            confirmation"
+msgstr ""
+
+#. module: sale_order_lot_selection
 #: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__lot_id
 msgid "Lot"
 msgstr "Lote"
 
 #. module: sale_order_lot_selection
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__lot_id_readonly
+msgid "Lot Id Readonly"
+msgstr ""
+
+#. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
 msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#. odoo-python
+#: code:addons/sale_order_lot_selection/models/sale_order_line.py:0
+#, python-format
+msgid "You can't change the lot on confirmed sale order."
 msgstr ""
 
 #~ msgid "Stock Move"

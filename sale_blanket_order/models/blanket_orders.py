@@ -112,6 +112,13 @@ class BlanketOrder(models.Model):
         default=lambda self: self.env["crm.team"]._get_default_team_id(),
         states=READONLY_FIELD_STATES,
     )
+    tag_ids = fields.Many2many(
+        comodel_name="crm.tag",
+        relation="sale_blanket_order_tag_rel",
+        column1="blanket_order_id",
+        column2="tag_id",
+        string="Tags",
+    )
     company_id = fields.Many2one(
         comodel_name="res.company",
         required=True,
@@ -659,9 +666,6 @@ class BlanketOrderLine(models.Model):
     def _validate(self):
         try:
             for line in self:
-                assert (
-                    not line.display_type and line.price_unit > 0.0
-                ) or line.display_type, _("Price must be greater than zero")
                 assert (
                     not line.display_type and line.original_uom_qty > 0.0
                 ) or line.display_type, _("Quantity must be greater than zero")

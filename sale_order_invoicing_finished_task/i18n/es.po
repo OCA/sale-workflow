@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 "<span class=\"text-success\" attrs=\"{'invisible': [('invoiceable', '=', "
 "False)]}\">Facturable</span>\n"
-"                                         <span class=\"text-danger\" attrs=\""
-"{'invisible': [('invoiceable', '!=', False)]}\">No Facturable</span>"
+"                                         <span class=\"text-danger\" "
+"attrs=\"{'invisible': [('invoiceable', '!=', False)]}\">No Facturable</span>"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model.fields,help:sale_order_invoicing_finished_task.field_product_product__invoicing_finished_task
@@ -56,11 +56,6 @@ msgstr "Control de facturación por tarea"
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_product_template
 msgid "Product"
 msgstr "Producto"
-
-#. module: sale_order_invoicing_finished_task
-#: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order
-msgid "Sales Order"
-msgstr "Pedido de venta"
 
 #. module: sale_order_invoicing_finished_task
 #: model:ir.model,name:sale_order_invoicing_finished_task.model_sale_order_line
@@ -92,6 +87,9 @@ msgid ""
 msgstr ""
 "No puede crear/modificar una tarea relacionada con una línea de pedido "
 "facturada, realizada o cancelada "
+
+#~ msgid "Sales Order"
+#~ msgstr "Pedido de venta"
 
 #~ msgid "Product Template"
 #~ msgstr "Plantilla de producto"

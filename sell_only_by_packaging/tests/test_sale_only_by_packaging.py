@@ -89,6 +89,31 @@ class TestSaleProductByPackagingOnly(Common):
                 self.assertAlmostEqual(
                     so_line.product_uom_qty, 220, places=self.precision
                 )
+                # Check with negative quantity
+                so_line.product_uom_qty = -52
+                self.assertAlmostEqual(
+                    so_line.product_uom_qty, -60, places=self.precision
+                )
+                so_line.product_uom_qty = -40
+                self.assertAlmostEqual(
+                    so_line.product_uom_qty, -40, places=self.precision
+                )
+                so_line.product_uom_qty = -38
+                self.assertAlmostEqual(
+                    so_line.product_uom_qty, -40, places=self.precision
+                )
+                so_line.product_uom_qty = -22
+                self.assertAlmostEqual(
+                    so_line.product_uom_qty, -40, places=self.precision
+                )
+                so_line.product_uom_qty = -72
+                self.assertAlmostEqual(
+                    so_line.product_uom_qty, -80, places=self.precision
+                )
+                so_line.product_uom_qty = -209.98
+                self.assertAlmostEqual(
+                    so_line.product_uom_qty, -220, places=self.precision
+                )
 
     def test_onchange_qty_is_not_pack_multiple(self):
         """Check package when qantity is not a multiple of package quantity.

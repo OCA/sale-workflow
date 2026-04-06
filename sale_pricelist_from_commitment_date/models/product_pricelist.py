@@ -13,3 +13,11 @@ class ProductPricelist(models.Model):
         if force_pricelist_date:
             date = force_pricelist_date
         return super()._get_product_rule(product, quantity, uom, date, **kwargs)
+
+    def _compute_price_rule(self, products, quantity, uom=None, date=False, **kwargs):
+        force_pricelist_date = self.env.context.get("force_pricelist_date")
+        if force_pricelist_date:
+            date = force_pricelist_date
+        return super()._compute_price_rule(
+            products, quantity, uom=uom, date=date, **kwargs
+        )

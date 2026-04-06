@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Moduon Team S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
+<data>
+    <record id="price_compliance_threshold_manager" model="res.groups">
+        <field name="name">Manage Price Compliance</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+        <field
+            name="comment"
+        >The user will be able to manage Price Compliance Thresholds.</field>
+    </record>
+</data>

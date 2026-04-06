@@ -100,6 +100,16 @@ class PricelistFromCommitmentDate(TransactionCase):
         self.assertEqual(order_line.price_unit, product.list_price)
         # Test with commitment date
         sale.commitment_date = "2020-03-08"
+        self.assertEqual(
+            sale.pricelist_id.with_context(
+                force_pricelist_date=sale.commitment_date
+            )._compute_price_rule(product, 1.0, date=order_line.order_id.date_order)[
+                product.id
+            ][
+                0
+            ],
+            10,
+        )
         self.assertEqual(order_line.price_unit, 10)
         sale.commitment_date = "2020-03-12"
         self.assertEqual(order_line.price_unit, 20)

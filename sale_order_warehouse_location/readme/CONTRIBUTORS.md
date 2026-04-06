@@ -1,0 +1,2 @@
+- Manuel Regidor \<<manuel.regidor@sygel.es>\>
+- Valentín Vinadre \<<valentin.vinagre@sygel.es>\>

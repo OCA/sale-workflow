@@ -2,13 +2,13 @@
 /* Copyright 2023 Tecnativa - Carlos Roca
  * License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
  */
-import {X2ManyField} from "@web/views/fields/x2many/x2many_field";
-import {patch} from "@web/core/utils/patch";
 import {
     useActiveActions,
     useOpenX2ManyRecord,
     useX2ManyCrud,
 } from "@web/views/fields/relational_utils";
+import {X2ManyField} from "@web/views/fields/x2many/x2many_field";
+import {patch} from "@web/core/utils/patch";
 patch(X2ManyField.prototype, "sale_order_product_picker.X2ManyField", {
     /**
      * We override the setup to intercept changes in the order lines, and in the event
@@ -47,7 +47,7 @@ patch(X2ManyField.prototype, "sale_order_product_picker.X2ManyField", {
                 const disc_size = discounts.size;
                 var disc = 0;
                 var price = 0;
-                if (disc_size == 1) {
+                if (disc_size === 1) {
                     [disc] = discounts;
                 }
                 if (prices.size === 1) {

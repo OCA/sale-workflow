@@ -39,18 +39,7 @@ export class PickerChangeProcessor {
         const lineChanges = [];
         for (var key in this.changes) {
             var change = this.changes[key];
-            if (!change.orderLines.length) {
-                var ctx = change.ctx;
-                Object.assign(ctx, {
-                    default_product_uom_qty:
-                        change.qty * change.pickerRecord.data.unit_factor,
-                });
-                lineChanges.push({
-                    operation: "CREATE",
-                    editable: "bottom",
-                    context: [ctx],
-                });
-            } else {
+            if (change.orderLines.length) {
                 const pickedRecord = change.orderLines[0];
                 const data = {};
                 Object.assign(data, {
@@ -62,6 +51,17 @@ export class PickerChangeProcessor {
                     operation: "UPDATE",
                     id: pickedRecord.__bm_handle__,
                     data,
+                });
+            } else {
+                var ctx = change.ctx;
+                Object.assign(ctx, {
+                    default_product_uom_qty:
+                        change.qty * change.pickerRecord.data.unit_factor,
+                });
+                lineChanges.push({
+                    operation: "CREATE",
+                    editable: "bottom",
+                    context: [ctx],
                 });
             }
         }
@@ -78,16 +78,16 @@ export class PickerChangeProcessor {
                 this.x2mList.model.root.__syncData();
                 this.x2mList.model.notify();
                 const pickerChanges = [];
-                for (var key in this.changes) {
-                    const change = this.changes[key];
+                for (var pickerKey in this.changes) {
+                    const pickerChange = this.changes[pickerKey];
                     const orderLine = this.x2mList.records.filter(
                         (line) =>
                             line.data.product_id[0] ===
-                            change.pickerRecord.data.product_id[0]
+                            pickerChange.pickerRecord.data.product_id[0]
                     )[0];
                     pickerChanges.push({
                         operation: "UPDATE",
-                        record: change.pickerRecord,
+                        record: pickerChange.pickerRecord,
                         data: {
                             to_process: false,
                             is_in_order: true,

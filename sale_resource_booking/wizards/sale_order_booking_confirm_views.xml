@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2021 Tecnativa - Jairo Llopis
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<data>
+    <record id="sale_order_booking_confirm_view_form" model="ir.ui.view">
+        <field name="name">sale.order.booking.confirm.view.form</field>
+        <field name="model">sale.order.booking.confirm</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="order_id" />
+                        <field name="resource_booking_ids">
+                            <tree
+                                string="Resource bookings"
+                                create="false"
+                                delete="false"
+                                editable="bottom"
+                            >
+                                <field name="meeting_id" invisible="1" />
+                                <field name="sale_order_id" invisible="1" />
+                                <field name="state" />
+                                <field name="type_id" />
+                                <field name="combination_id" />
+                                <field name="partner_id" />
+                                <field name="start" />
+                                <field name="stop" />
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        name="action_invite"
+                        type="object"
+                        string="Enqueue invitation emails"
+                        class="oe_highlight"
+                        context="{'mail_notify_force_send': False}"
+                    />
+                    <button
+                        name="action_noop"
+                        type="object"
+                        string="Save without sending invitations"
+                        class="oe_highlight"
+                    />
+                    <button special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="sale_order_booking_confirm_action" model="ir.actions.act_window">
+        <field name="name">Fill booking values</field>
+        <field name="res_model">sale.order.booking.confirm</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</data>

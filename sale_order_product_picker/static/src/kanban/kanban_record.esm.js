@@ -6,10 +6,10 @@ import {Component, useSubEnv, xml} from "@odoo/owl";
 
 import {Dialog} from "@web/core/dialog/dialog";
 import {KanbanRecord} from "@web/views/kanban/kanban_record";
+import {PickerChangeProcessor} from "../utils/picker_change_processor.esm";
 import {X2ManyField} from "@web/views/fields/x2many/x2many_field";
 import {patch} from "@web/core/utils/patch";
 import {useService} from "@web/core/utils/hooks";
-import {PickerChangeProcessor} from "../utils/picker_change_processor.esm";
 
 /**
  * Dialog used to show the images of products bigger than showed on kanban

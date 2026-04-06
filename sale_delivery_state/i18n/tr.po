@@ -1,0 +1,101 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_delivery_state
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-02-26 16:09+0000\n"
+"Last-Translator: Betül Öğmen <betulo@eska.biz>\n"
+"Language-Team: none\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: sale_delivery_state
+#: model:ir.model.fields,help:sale_delivery_state.field_sale_order__force_delivery_state
+msgid ""
+"Allow to enforce done state of delivery, for instance if some quantities "
+"were cancelled"
+msgstr ""
+"Örneğin bazı miktarlar iptal edilmişse, teslimatın tamamlanmış halini "
+"zorlamaya izin verin"
+
+#. module: sale_delivery_state
+#: model:ir.model,name:sale_delivery_state.model_res_company
+msgid "Companies"
+msgstr "Şirketler"
+
+#. module: sale_delivery_state
+#: model:ir.model,name:sale_delivery_state.model_res_config_settings
+msgid "Config Settings"
+msgstr "Yapılandırma Ayarları"
+
+#. module: sale_delivery_state
+#: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order__delivery_status
+msgid "Delivery Status"
+msgstr "Teslim Durumu"
+
+#. module: sale_delivery_state
+#: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order__force_delivery_state
+msgid "Force Delivery State"
+msgstr "Teslimat Durumunu Zorla"
+
+#. module: sale_delivery_state
+#: model_terms:ir.ui.view,arch_db:sale_delivery_state.view_order_form_inherit_delivery_state
+msgid "Force delivery done"
+msgstr "Zorla teslimat yapıldı"
+
+#. module: sale_delivery_state
+#: model:ir.model.fields.selection,name:sale_delivery_state.selection__sale_order__delivery_status__full
+msgid "Fully Delivered"
+msgstr "Tam Teslim"
+
+#. module: sale_delivery_state
+#: model_terms:ir.ui.view,arch_db:sale_delivery_state.sale_delivery_state_res_config_settings_view_form
+msgid ""
+"If active, sale order lines containing Service products will not be "
+"evaluated by default when determining the Delivery State."
+msgstr ""
+"Etkinleştirildiğinde, Servis ürünlerini içeren satış siparişi satırları, "
+"Teslimat Durumu belirlenirken varsayılan olarak değerlendirilmeyecektir."
+
+#. module: sale_delivery_state
+#: model:ir.model.fields.selection,name:sale_delivery_state.selection__sale_order__delivery_status__pending
+msgid "Not Delivered"
+msgstr "Teslim Edilmedi"
+
+#. module: sale_delivery_state
+#: model:ir.model.fields.selection,name:sale_delivery_state.selection__sale_order__delivery_status__partial
+msgid "Partially Delivered"
+msgstr "Kısmen Teslim Edildi"
+
+#. module: sale_delivery_state
+#: model:ir.model,name:sale_delivery_state.model_sale_order
+msgid "Sales Order"
+msgstr "Satış Siparişi"
+
+#. module: sale_delivery_state
+#: model:ir.model,name:sale_delivery_state.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Satış Sipariş Satırı"
+
+#. module: sale_delivery_state
+#: model:ir.model.fields,field_description:sale_delivery_state.field_sale_order_line__skip_sale_delivery_state
+msgid "Skip Delivery State"
+msgstr "Teslimat Durumunu Atla"
+
+#. module: sale_delivery_state
+#: model:ir.model.fields,field_description:sale_delivery_state.field_res_company__skip_service_sale_delivery_state
+#: model:ir.model.fields,field_description:sale_delivery_state.field_res_config_settings__skip_service_sale_delivery_state
+msgid "Skip Service products for Sale Delivery State"
+msgstr "Skip Service ürünleri Satış Teslimat Durumu"
+
+#. module: sale_delivery_state
+#: model_terms:ir.ui.view,arch_db:sale_delivery_state.view_order_form_inherit_delivery_state
+msgid "Unforce delivery done"
+msgstr "Teslimat zorlamadan tamamlandı"
