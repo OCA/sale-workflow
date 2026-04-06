@@ -1,0 +1,61 @@
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='price_unit']"
+                position="after"
+            >
+                <field name="semaphore" widget="semaphore" />
+                <field name="semaphore_active" invisible="1" />
+                <field name="semaphore_max_price_success" invisible="1" />
+                <field name="semaphore_max_price_warning" invisible="1" />
+                <field name="semaphore_max_price_danger" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/list/field[@name='price_unit']"
+                position="after"
+            >
+                <field name="semaphore" widget="semaphore" />
+                <field name="semaphore_active" column_invisible="1" />
+                <field name="semaphore_max_price_success" column_invisible="1" />
+                <field name="semaphore_max_price_warning" column_invisible="1" />
+                <field name="semaphore_max_price_danger" column_invisible="1" />
+                <field name="price_below_semaphore" column_invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']/list" position="attributes">
+                <attribute name="decoration-danger">price_below_semaphore</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='price_unit']"
+                position="after"
+            >
+                <field name="price_below_semaphore" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//t[@t-if='!record.display_type.raw_value']/.."
+                position="attributes"
+            >
+                <attribute
+                    name="t-attf-class"
+                    add="{{ record.price_below_semaphore.raw_value ? 'text-danger' : '' }}"
+                    separator=" "
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/kanban//field[@name='price_unit']"
+                position="after"
+            >
+                <field name="semaphore_active" invisible="1" />
+                <field name="semaphore_max_price_success" invisible="1" />
+                <field name="semaphore_max_price_warning" invisible="1" />
+                <field name="semaphore_max_price_danger" invisible="1" />
+                <field name="price_below_semaphore" invisible="1" />
+                <span>
+                    <field name="semaphore" />
+                </span>
+            </xpath>
+        </field>
+    </record>
+</odoo>
