@@ -47,11 +47,11 @@ class SaleOrder(models.Model):
         if orders:
             orders._check_exception()
 
+    def _must_popup_exception(self):
+        return self.env.company.sale_exception_show_popup
+
     def action_confirm(self):
-        if self.detect_exceptions():
-            if not self.env.company.sale_exception_show_popup:
-                return
-            return self._popup_exceptions()
+        self.detect_exceptions()
         return super().action_confirm()
 
     def action_draft(self):
