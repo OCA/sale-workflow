@@ -61,6 +61,7 @@ msgstr "Importe"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__amount_residual
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.sale_invoice_payment_wiz
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_invoice_tree
 msgid "Amount Due"
 msgstr "Importe adeudado"
@@ -263,14 +264,6 @@ msgid "Label"
 msgstr "Etiqueta"
 
 #. module: sale_payment_sheet
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz____last_update
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz____last_update
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet____last_update
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line____last_update
-msgid "Last Modified on"
-msgstr "Última modificación en"
-
-#. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__write_uid
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__write_uid
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__write_uid
@@ -285,11 +278,6 @@ msgstr "Última actualización de"
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__write_date
 msgid "Last Updated on"
 msgstr "Última actualización en"
-
-#. module: sale_payment_sheet
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Adjuntos principales"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_has_error
@@ -357,6 +345,11 @@ msgstr "Hoja de pagos"
 #: model:ir.ui.menu,name:sale_payment_sheet.sale_payment_sheet_menu
 msgid "Payments"
 msgstr "Pagos"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__rating_ids
+msgid "Ratings"
+msgstr ""
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__ref
@@ -437,8 +430,8 @@ msgstr "Hoja"
 #. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
 #, python-format
-msgid "Sheet %s confirmed, bank statement were created."
-msgstr "Hoja %s confirmada, se crearon los extractos bancarios."
+msgid "Sheet %(statement_name)s confirmed, bank statement were created."
+msgstr ""
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__line_ids
@@ -490,6 +483,7 @@ msgstr ""
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__amount_total
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__amount_total
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.sale_invoice_payment_wiz
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_invoice_tree
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_form
 msgid "Total"
@@ -590,6 +584,16 @@ msgstr "Resumen de pagos de facturas"
 #: model:ir.actions.report,name:sale_payment_sheet.action_report_sale_payment_sheet
 msgid "sale payment sheet summary"
 msgstr "Resumen de pagos de facturas"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Última modificación en"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Adjuntos principales"
+
+#, python-format
+#~ msgid "Sheet %s confirmed, bank statement were created."
+#~ msgstr "Hoja %s confirmada, se crearon los extractos bancarios."
 
 #~ msgid "Number of messages which requires an action"
 #~ msgstr "Número de mensajes que requieren una acción"

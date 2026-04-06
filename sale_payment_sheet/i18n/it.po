@@ -57,6 +57,7 @@ msgstr "Importo"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__amount_residual
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.sale_invoice_payment_wiz
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_invoice_tree
 msgid "Amount Due"
 msgstr "Importo dovuto"
@@ -175,8 +176,7 @@ msgstr "Pagamento completo"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,help:sale_payment_sheet.field_sale_payment_sheet_line__sequence
-msgid ""
-"Gives the sequence order when displaying a list of payment sheet lines."
+msgid "Gives the sequence order when displaying a list of payment sheet lines."
 msgstr ""
 "Da l'ordine di sequenza quando si visualizza un elenco di righe ricevuta "
 "pagamento."
@@ -260,14 +260,6 @@ msgid "Label"
 msgstr "Etichetta"
 
 #. module: sale_payment_sheet
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz____last_update
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz____last_update
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet____last_update
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line____last_update
-msgid "Last Modified on"
-msgstr "Ultima modifica il"
-
-#. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__write_uid
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__write_uid
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__write_uid
@@ -282,11 +274,6 @@ msgstr "Ultimo aggiornamento di"
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet_line__write_date
 msgid "Last Updated on"
 msgstr "Ultimo aggiornamento il"
-
-#. module: sale_payment_sheet
-#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_main_attachment_id
-msgid "Main Attachment"
-msgstr "Allegato principale"
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__message_has_error
@@ -354,6 +341,11 @@ msgstr "Ricevuta pagamento"
 #: model:ir.ui.menu,name:sale_payment_sheet.sale_payment_sheet_menu
 msgid "Payments"
 msgstr "Pagamenti"
+
+#. module: sale_payment_sheet
+#: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__rating_ids
+msgid "Ratings"
+msgstr ""
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_wiz__ref
@@ -434,8 +426,8 @@ msgstr "Foglio"
 #. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
 #, python-format
-msgid "Sheet %s confirmed, bank statement were created."
-msgstr "Ricevuta %s confermata, rendiconto bancario creato."
+msgid "Sheet %(statement_name)s confirmed, bank statement were created."
+msgstr ""
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__line_ids
@@ -472,7 +464,8 @@ msgstr "Il valore di una transizione di cassa non può essere 0."
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
 #, python-format
 msgid ""
-"This invoice already has been included in other payment sheet or the amount payed is greather than residual invoice amount.\n"
+"This invoice already has been included in other payment sheet or the amount "
+"payed is greather than residual invoice amount.\n"
 " Invoice: %(invoice_name)s\n"
 " Amount payed: %(amount_payed)s\n"
 "  Payment sheets: %(payment_lines_name)s"
@@ -486,6 +479,7 @@ msgstr ""
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__amount_total
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__amount_total
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.sale_invoice_payment_wiz
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_invoice_tree
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_form
 msgid "Total"
@@ -587,3 +581,13 @@ msgstr "riepilogo ricevuta pagamento vendita"
 #: model:ir.actions.report,name:sale_payment_sheet.action_report_sale_payment_sheet
 msgid "sale payment sheet summary"
 msgstr "riepilogo ricevuta pagamento vendita"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
+
+#~ msgid "Main Attachment"
+#~ msgstr "Allegato principale"
+
+#, python-format
+#~ msgid "Sheet %s confirmed, bank statement were created."
+#~ msgstr "Ricevuta %s confermata, rendiconto bancario creato."
