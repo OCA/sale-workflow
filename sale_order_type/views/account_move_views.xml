@@ -41,7 +41,7 @@
         <field name="inherit_id" ref="account.view_invoice_tree" />
         <field name="arch" type="xml">
             <field name='name' position="after">
-                <field name="sale_type_id" />
+                <field name="sale_type_id" optional="show" />
             </field>
         </field>
     </record>
