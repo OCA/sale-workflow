@@ -2,12 +2,10 @@
 # License AGPL-3 - See https://www.gnu.org/licenses/agpl-3.0.html
 
 {
-    "name": "Portal Sale Add Client Order Ref and Amount Untaxed",
-    "summary": """
-        Adds additional fields 'client_order_ref' and 'amount_untaxed'
-        to the portal view.
-        It also makes it easier to add other fields in the future.
-    """,
+    "name": "Portal Sale List Extra Info",
+    "summary": "Adds additional fields 'client_order_ref' and 'amount_untaxed' "
+    "to the portal view. "
+    "It also makes it easier to add other fields in the future.",
     "category": "Sale",
     "version": "18.0.1.0.0",
     "depends": ["sale"],
