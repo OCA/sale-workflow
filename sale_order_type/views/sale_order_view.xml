@@ -39,7 +39,7 @@
         <field name="inherit_id" ref="sale.view_order_tree" />
         <field name="arch" type="xml">
             <field name='name' position="after">
-                <field name="type_id" />
+                <field name="type_id" optional="show" />
             </field>
         </field>
     </record>
