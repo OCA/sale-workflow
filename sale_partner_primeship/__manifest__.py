@@ -4,7 +4,7 @@
     "name": "Sale Partner Primeship",
     "summary": """Allow you to manage time limited prime memberships
     and prime membership activation products.""",
-    "version": "18.0.1.0.1",
+    "version": "18.0.1.0.2",
     "author": "Akretion, Odoo Community Association (OCA)",
     "maintainers": ["nayatec", "paradoxxxzero"],
     "website": "https://github.com/OCA/sale-workflow",
