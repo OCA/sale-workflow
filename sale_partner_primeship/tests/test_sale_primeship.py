@@ -4,6 +4,7 @@
 from datetime import date, timedelta
 
 import psycopg2
+from freezegun import freeze_time
 
 from odoo import fields
 from odoo.exceptions import ValidationError
@@ -12,6 +13,7 @@ from odoo.tools.misc import mute_logger
 from .common import TestCommon
 
 
+@freeze_time("2025-04-01 12:00:00")
 class TestSalePrimeship(TestCommon):
     def test_compute_name(self):
         primeship = self.make_primeship("2024-01-01", "2024-12-31")
