@@ -4,10 +4,12 @@
 from datetime import date
 
 from dateutil.relativedelta import relativedelta
+from freezegun import freeze_time
 
 from .common import TestCommon
 
 
+@freeze_time("2025-04-01 12:00:00")
 class TestSaleOrderPrimeship(TestCommon):
     def test_action_confirm_creates_primeship(self):
         order_line = self.make_order_line()
