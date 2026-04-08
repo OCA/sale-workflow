@@ -52,24 +52,7 @@ class SaleOrderLinePriceHistory(models.TransientModel):
     @api.onchange("partner_id", "include_quotations", "include_commercial_partner")
     def _onchange_partner_id(self):
         self.line_ids = False
-        states = ["sale", "done"]
-        if self.include_quotations:
-            states += ["draft", "sent"]
-        domain = [
-            ("product_id", "=", self.product_id.id),
-            ("state", "in", states),
-        ]
-        if self.partner_id:
-            if self.include_commercial_partner:
-                domain += [
-                    (
-                        "order_partner_id",
-                        "child_of",
-                        self.partner_id.commercial_partner_id.ids,
-                    )
-                ]
-            else:
-                domain += [("order_partner_id", "child_of", self.partner_id.ids)]
+        domain = self._determine_domain()
 
         vals = []
         sol_limit = (
@@ -92,6 +75,33 @@ class SaleOrderLinePriceHistory(models.TransientModel):
                 )
             )
         self.line_ids = vals
+
+    def _determine_domain(self):
+        """
+        Determine the search domain for which sale lines should be included in
+        the history.
+
+        Designed to be extended in other modules.
+        """
+        states = ["sale", "done"]
+        if self.include_quotations:
+            states += ["draft", "sent"]
+        domain = [
+            ("product_id", "=", self.product_id.id),
+            ("state", "in", states),
+        ]
+        if self.partner_id:
+            if self.include_commercial_partner:
+                domain += [
+                    (
+                        "order_partner_id",
+                        "child_of",
+                        self.partner_id.commercial_partner_id.ids,
+                    )
+                ]
+            else:
+                domain += [("order_partner_id", "child_of", self.partner_id.ids)]
+        return domain
 
 
 class SaleOrderLinePriceHistoryline(models.TransientModel):
