@@ -155,6 +155,7 @@ class AutomaticWorkflowJob(models.Model):
         return
 
     def _register_payment_invoice(self, invoice):
+        self = self.with_company(invoice.company_id)
         payment = self.env["account.payment"].create(
             self._prepare_dict_account_payment(invoice)
         )

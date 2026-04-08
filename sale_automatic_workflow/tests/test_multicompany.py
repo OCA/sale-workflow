@@ -47,3 +47,22 @@ class TestMultiCompany(TestMultiCompanyCommon):
         self.assertEqual(
             invoice_fr_daughter.journal_id.company_id, order_fr_daughter.company_id
         )
+
+        # Test payment register
+        self.auto_wkf.register_payment = True
+        self.env["automatic.workflow.job"].run()
+        self.assertIn(invoice_fr.payment_state, ["in_payment", "paid"])
+        self.assertIn(invoice_ch.payment_state, ["in_payment", "paid"])
+        self.assertIn(invoice_be.payment_state, ["in_payment", "paid"])
+        self.assertIn(invoice_fr_daughter.payment_state, ["in_payment", "paid"])
+        # Check payment journal company matches the order company
+        payment_fr = invoice_fr.matched_payment_ids
+        payment_ch = invoice_ch.matched_payment_ids
+        payment_be = invoice_be.matched_payment_ids
+        payment_fr_daughter = invoice_fr_daughter.matched_payment_ids
+        self.assertEqual(payment_fr.journal_id.company_id, order_fr.company_id)
+        self.assertEqual(payment_ch.journal_id.company_id, order_ch.company_id)
+        self.assertEqual(payment_be.journal_id.company_id, order_be.company_id)
+        self.assertEqual(
+            payment_fr_daughter.journal_id.company_id, order_fr_daughter.company_id
+        )
