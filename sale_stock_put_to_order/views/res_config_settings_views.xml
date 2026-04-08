@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >res.config.settings.view.form.inherit.sale_stock_put_to_order</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="stock.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='product_setting_container']" position="after">
+                <block title="Put to Order" name="pto_settings">
+                    <setting
+                        string="Auto-select PTO destination"
+                        help="Automatically assign the proposed put-to-order bin as destination during reservation."
+                    >
+                        <field name="pto_auto_select_location" />
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
