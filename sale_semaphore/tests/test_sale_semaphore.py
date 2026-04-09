@@ -1,6 +1,7 @@
 # Copyright 2026
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from odoo.exceptions import UserError
 from odoo.tests import tagged
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -132,6 +133,8 @@ class TestSaleSemaphore(BaseCommon):
         self.assertFalse(warning_line.price_below_semaphore)
         self.assertFalse(danger_line.price_below_semaphore)
         self.assertTrue(below_limit_line.price_below_semaphore)
+        with self.assertRaises(UserError):
+            self.order.with_user(self.env.ref("base.user_demo")).action_confirm()
 
     def test_sale_line_uses_category_configuration(self):
         self.product.write(
