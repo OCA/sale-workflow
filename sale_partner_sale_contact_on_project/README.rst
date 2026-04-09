@@ -21,30 +21,32 @@ Sale Partner Sale Contact on Project
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_partner_sale_contact_on_project
+    :target: https://github.com/OCA/sale-workflow/tree/19.0/sale_partner_sale_contact_on_project
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_partner_sale_contact_on_project
+    :target: https://translation.odoo-community.org/projects/sale-workflow-19-0/sale-workflow-19-0-sale_partner_sale_contact_on_project
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module extends **Sale Partner Sale Contact** to propagate the sale contact field to projects.
+This module extends **Sale Partner Sale Contact** to propagate the sale
+contact field to projects.
 
-When a sale order with a sale contact creates a project (via service products),
-the contact person is automatically propagated to the project. This ensures the
-same named commercial contact (procurement manager, project lead, etc.) visible
-on the sale order and its invoices is also recorded on the resulting project,
-without affecting project or task addresses.
+When a sale order with a sale contact creates a project (via service
+products), the contact person is automatically propagated to the
+project. This ensures the same named commercial contact (procurement
+manager, project lead, etc.) visible on the sale order and its invoices
+is also recorded on the resulting project, without affecting project or
+task addresses.
 
 This allows you to:
 
-* Track the contact person for each project
-* Maintain consistency between sale orders and related projects
-* Display the sale contact on project forms
+-  Track the contact person for each project
+-  Maintain consistency between sale orders and related projects
+-  Display the sale contact on project forms
 
 **Table of contents**
 
@@ -56,22 +58,28 @@ Usage
 
 To use this module:
 
-#. Install both **Sale Partner Sale Contact** and **Sale Partner Sale Contact on Project**
-#. Create a sale order with a customer that has child contacts
-#. Select a **Sale Contact** from the customer's child contacts
-#. Add a service product configured to create a project or task
-#. Confirm the sale order
-#. The created project will automatically have the same sale contact
-#. You can also manually set or change the sale contact on any project form
+1. Install both **Sale Partner Sale Contact** and **Sale Partner Sale
+   Contact on Project**
+2. Create a sale order with a customer that has child contacts
+3. Select a **Sale Contact** from the customer's child contacts
+4. Add a service product configured to create a project or task
+5. Confirm the sale order
+6. The created project will automatically have the same sale contact
+7. You can also manually set or change the sale contact on any project
+   form
 
-The sale contact field is visible on the project form, right after the customer field.
+The sale contact field is visible on the project form, right after the
+customer field.
 
-**Auto-switch behavior**: If you select a contact person in the customer field and that person has a parent company, the system will automatically:
+**Auto-switch behavior**: If you select a contact person in the customer
+field and that person has a parent company, the system will
+automatically:
 
-* Set the customer field to the parent company
-* Set the sale contact field to the person you selected
+-  Set the customer field to the parent company
+-  Set the sale contact field to the person you selected
 
-This behavior only applies when the restriction modules (\*_partner_id_company_only) are not installed.
+This behavior only applies when the restriction modules
+(\*_partner_id_company_only) are not installed.
 
 Bug Tracker
 ===========
@@ -79,7 +87,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_partner_sale_contact_on_project%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_partner_sale_contact_on_project%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -87,17 +95,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * OpenStudio SAS
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Simon Maillard (maisim) <simon@ogesta.fr>
+-  Simon Maillard (maisim) <simon@ogesta.fr>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -117,6 +125,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-maisim| 
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_partner_sale_contact_on_project>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/19.0/sale_partner_sale_contact_on_project>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
