@@ -69,7 +69,7 @@ class TestSalePartnerSaleContact(TransactionCase):
                 "name": "Test Income Account",
                 "code": "TEST400",
                 "account_type": "income",
-                "company_id": cls.env.company.id,
+                "company_ids": [(6, 0, cls.env.company.ids)],
             }
         )
         cls.sale_journal = cls.env["account.journal"].create(
@@ -96,7 +96,7 @@ class TestSalePartnerSaleContact(TransactionCase):
                 "code": "TEST130",
                 "account_type": "asset_receivable",
                 "reconcile": True,
-                "company_id": cls.env.company.id,
+                "company_ids": [(6, 0, cls.env.company.ids)],
             }
         )
         cls.partner_company.write(

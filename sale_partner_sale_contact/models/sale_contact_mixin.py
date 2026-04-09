@@ -71,7 +71,8 @@ class SaleContactMixin(models.AbstractModel):
 
     @api.onchange("partner_id")
     def _onchange_partner_id_clear_sale_contact(self):
-        """Clear sale contact when the partner changes and the contact is no longer valid."""
+        """Clear sale contact when the partner changes
+        and the contact is no longer valid."""
         # Clear sale contact if it no longer belongs to the new partner's hierarchy.
         # We compare commercial_partner_id (the root company) rather than parent_id
         # (direct parent only), to match the domain's use of child_of which includes
