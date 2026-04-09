@@ -12,7 +12,7 @@
                     name="sale_contact_partner_id"
                     options="{'no_create': True, 'no_create_edit': True}"
                     context="{'show_address': 1}"
-                    attrs="{'readonly': [('state', 'not in', ('draft', 'sent'))]}"
+                    readonly="state not in ('draft', 'sent')"
                 />
             </field>
         </field>

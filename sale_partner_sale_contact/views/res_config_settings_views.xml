@@ -10,7 +10,7 @@
         <field name="inherit_id" ref="sale.res_config_settings_view_form" />
         <field name="arch" type="xml">
             <xpath
-                expr="//div[@name='quotation_order_setting_container']"
+                expr="//block[@name='quotation_order_setting_container']"
                 position="inside"
             >
                 <div class="col-12 col-lg-6 o_setting_box">
@@ -24,7 +24,6 @@
                         </div>
                     </div>
                 </div>
-
             </xpath>
         </field>
     </record>

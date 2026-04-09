@@ -4,7 +4,7 @@
 {
     "name": "Sale Partner Sale Contact",
     "summary": "Add sale contact person field to quotations, orders, and invoices",
-    "version": "16.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "OpenStudio SAS, Odoo Community Association (OCA)",

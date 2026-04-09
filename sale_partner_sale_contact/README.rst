@@ -21,38 +21,42 @@ Sale Partner Sale Contact
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_partner_sale_contact
+    :target: https://github.com/OCA/sale-workflow/tree/19.0/sale_partner_sale_contact
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_partner_sale_contact
+    :target: https://translation.odoo-community.org/projects/sale-workflow-19-0/sale-workflow-19-0-sale_partner_sale_contact
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds a **Sale Contact** field to quotations, sale orders, and invoices.
+This module adds a **Sale Contact** field to quotations, sale orders,
+and invoices.
 
 **Key concept — not another address field**
 
-Odoo already supports invoice and delivery addresses on partners, and the sale
-order form exposes those as distinct fields. This module addresses a *different
-need*: tracking a named **commercial contact person** (e.g. procurement
-manager, project lead, key account contact) who is the day-to-day point of
-contact for a deal. That person travels consistently across the sale order, its
-invoices, and (with the companion module) any generated projects — while the
-billing and shipping addresses remain independent and unaffected.
+Odoo already supports invoice and delivery addresses on partners, and
+the sale order form exposes those as distinct fields. This module
+addresses a *different need*: tracking a named **commercial contact
+person** (e.g. procurement manager, project lead, key account contact)
+who is the day-to-day point of contact for a deal. That person travels
+consistently across the sale order, its invoices, and (with the
+companion module) any generated projects — while the billing and
+shipping addresses remain independent and unaffected.
 
-This distinction is also fully **compatible with B2C**: when the customer is
-an individual without child contacts, the field simply remains empty and the
-ordinary Odoo workflow is unchanged.
+This distinction is also fully **compatible with B2C**: when the
+customer is an individual without child contacts, the field simply
+remains empty and the ordinary Odoo workflow is unchanged.
 
 The sale contact field allows you to:
 
-* Select a specific contact person for a sale order or quotation
-* Automatically propagate the contact from sale order to generated invoices
-* Display the contact person on PDF reports (quotations, orders, invoices)
+-  Select a specific contact person for a sale order or quotation
+-  Automatically propagate the contact from sale order to generated
+   invoices
+-  Display the contact person on PDF reports (quotations, orders,
+   invoices)
 
 The contact must be a child contact (person) of the selected customer.
 
@@ -66,33 +70,43 @@ Configuration
 
 To configure the module:
 
-#. Go to **Settings > Sales > Quotations & Orders**
-#. Enable/disable **Display sale contact on reports**
-#. This option is enabled by default
-#. When enabled, the sale contact will appear on PDF reports for sale orders and invoices
+1. Go to **Settings > Sales > Quotations & Orders**
+2. Enable/disable **Display sale contact on reports**
+3. This option is enabled by default
+4. When enabled, the sale contact will appear on PDF reports for sale
+   orders and invoices
 
 Usage
 =====
 
 To use this module, follow these steps:
 
-#. Go to *Settings > Sales > Quotations & Orders*
-#. Enable the **Display sale contact on reports** option to show the sale contact on PDF reports (enabled by default)
-#. Go to *Sales > Orders > Quotations* or *Sales > Orders > Orders*
-#. Create or open a sale order
-#. After selecting a customer, you can select a **Sale Contact** from the customer's child contacts
-#. If the configuration option is enabled, the sale contact will appear on the printed quotation/order PDF
-#. When you create an invoice from the sale order, the sale contact will be automatically copied to the invoice
-#. If the configuration option is enabled, the sale contact will also appear on the printed invoice PDF
+1. Go to *Settings > Sales > Quotations & Orders*
+2. Enable the **Display sale contact on reports** option to show the
+   sale contact on PDF reports (enabled by default)
+3. Go to *Sales > Orders > Quotations* or *Sales > Orders > Orders*
+4. Create or open a sale order
+5. After selecting a customer, you can select a **Sale Contact** from
+   the customer's child contacts
+6. If the configuration option is enabled, the sale contact will appear
+   on the printed quotation/order PDF
+7. When you create an invoice from the sale order, the sale contact will
+   be automatically copied to the invoice
+8. If the configuration option is enabled, the sale contact will also
+   appear on the printed invoice PDF
 
-**Note**: Only contacts that are people (not companies) and are direct children of the selected customer will be available for selection.
+**Note**: Only contacts that are people (not companies) and are direct
+children of the selected customer will be available for selection.
 
-**Auto-switch behavior**: If you select a contact person in the customer field and that person has a parent company, the system will automatically:
+**Auto-switch behavior**: If you select a contact person in the customer
+field and that person has a parent company, the system will
+automatically:
 
-* Set the customer field to the parent company
-* Set the sale contact field to the person you selected
+-  Set the customer field to the parent company
+-  Set the sale contact field to the person you selected
 
-This behavior only applies when the restriction modules (\*_partner_id_company_only) are not installed.
+This behavior only applies when the restriction modules
+(\*_partner_id_company_only) are not installed.
 
 Bug Tracker
 ===========
@@ -100,7 +114,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_partner_sale_contact%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_partner_sale_contact%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -108,17 +122,17 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * OpenStudio SAS
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Simon Maillard (maisim) <simon@ogesta.fr>
+-  Simon Maillard (maisim) <simon@ogesta.fr>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -138,6 +152,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-maisim| 
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_partner_sale_contact>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/19.0/sale_partner_sale_contact>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
