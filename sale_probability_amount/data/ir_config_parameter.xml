@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="quotation_default_probability" model="ir.config_parameter">
+        <field name="key">quotation_default_probability</field>
+        <field name="value">50</field>
+    </record>
+</odoo>
