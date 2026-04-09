@@ -1,4 +1,22 @@
 <odoo>
+    <record id="sot_invoice_search" model="ir.ui.view">
+        <field name="name">account.invoice.search.sot</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter" />
+        <field name="arch" type="xml">
+            <field name='journal_id' position="after">
+                <field name="sale_type_id" />
+            </field>
+            <filter name="groupy_by_journal" position="after">
+                <filter
+                    name="group_by_sale_type"
+                    string="Sale Type"
+                    context="{'group_by': 'sale_type_id'}"
+                />
+            </filter>
+        </field>
+    </record>
+
     <record id="sot_invoice_form" model="ir.ui.view">
         <field name="name">account.move.form.sot</field>
         <field name="model">account.move</field>
@@ -14,6 +32,17 @@
             <xpath expr="//notebook//list//field[@name='sequence']" position="before">
                 <field name="account_id" column_invisible="True" />
             </xpath>
+        </field>
+    </record>
+
+    <record id="sot_invoice_list" model="ir.ui.view">
+        <field name="name">account.invoice.list.sot</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree" />
+        <field name="arch" type="xml">
+            <field name='name' position="after">
+                <field name="sale_type_id" optional="show" />
+            </field>
         </field>
     </record>
 </odoo>
