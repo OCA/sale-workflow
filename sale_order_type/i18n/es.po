@@ -92,7 +92,17 @@ msgid "Description"
 msgstr "Descripción"
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_report__display_name
+#: model:ir.model.fields,field_description:sale_order_type.field_account_move__display_name
+#: model:ir.model.fields,field_description:sale_order_type.field_res_company__display_name
+#: model:ir.model.fields,field_description:sale_order_type.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sale_order_type.field_res_currency__display_name
+#: model:ir.model.fields,field_description:sale_order_type.field_res_partner__display_name
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_advance_payment_inv__display_name
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_line__display_name
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__display_name
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_report__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
@@ -103,12 +113,17 @@ msgid "Entry Sequence"
 msgstr "Secuencia de entrada"
 
 #. module: sale_order_type
-#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
-msgid "Group By"
-msgstr "Agrupar por"
-
-#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_report__id
+#: model:ir.model.fields,field_description:sale_order_type.field_account_move__id
+#: model:ir.model.fields,field_description:sale_order_type.field_res_company__id
+#: model:ir.model.fields,field_description:sale_order_type.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sale_order_type.field_res_currency__id
+#: model:ir.model.fields,field_description:sale_order_type.field_res_partner__id
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_advance_payment_inv__id
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_line__id
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__id
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_report__id
 msgid "ID"
 msgstr "ID"
 
@@ -204,10 +219,10 @@ msgid "Quotation Validity (Days)"
 msgstr "Validez de la oferta (días)"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_line__route_id
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__route_id
-msgid "Route"
-msgstr "Ruta"
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_line__route_ids
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__route_ids
+msgid "Routes"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_report__sale_type_id
@@ -228,6 +243,7 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_bank_statement_line__sale_type_id
 #: model:ir.model.fields,field_description:sale_order_type.field_account_move__sale_type_id
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_invoice_search
 msgid "Sale Type"
 msgstr "Tipo de venta"
 
@@ -283,6 +299,12 @@ msgstr "Tipo de pedido de venta"
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr "Almacén"
+
+#~ msgid "Group By"
+#~ msgstr "Agrupar por"
+
+#~ msgid "Route"
+#~ msgstr "Ruta"
 
 #~ msgid "Analytic Account"
 #~ msgstr "Cuenta Analítica"
