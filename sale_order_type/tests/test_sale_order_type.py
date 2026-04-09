@@ -43,8 +43,13 @@ class TestSaleOrderType(BaseCommon):
                 "padding": 3,
             }
         )
+        # Ensure that get sale journal has the same company that environment
         cls.journal = cls.env["account.journal"].search(
-            [("type", "=", "sale")], limit=1
+            [
+                ("company_id", "=", cls.env.company.id),
+                ("type", "=", "sale"),
+            ],
+            limit=1,
         )
         cls.default_sale_type_id = cls.env["sale.order.type"].search([], limit=1)
         cls.default_sale_type_id.sequence_id = False
