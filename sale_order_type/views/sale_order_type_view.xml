@@ -34,7 +34,8 @@
                             <field name="route_ids" groups="stock.group_adv_location" />
                             <field name="sequence_id" />
                             <field
-                                name="analytic_account_id"
+                                name="analytic_distribution"
+                                widget="analytic_distribution"
                                 groups="analytic.group_analytic_accounting"
                             />
                         </group>

@@ -7,6 +7,7 @@ class SaleOrderTypology(models.Model):
     _name = "sale.order.type"
     _description = "Type of sale order"
     _check_company_auto = True
+    _inherit = ["analytic.mixin"]
 
     name = fields.Char(required=True, translate=True)
     description = fields.Text(translate=True)
@@ -49,11 +50,6 @@ class SaleOrderTypology(models.Model):
         string="Routes",
         domain=[("sale_selectable", "=", True)],
         ondelete="restrict",
-        check_company=True,
-    )
-    analytic_account_id = fields.Many2one(
-        comodel_name="account.analytic.account",
-        string="Analytic account",
         check_company=True,
     )
     active = fields.Boolean(default=True)
