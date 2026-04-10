@@ -1,0 +1,1 @@
+from . import test_sale_invoice_partial_with_down_payment
