@@ -24,8 +24,13 @@ msgid "Active"
 msgstr ""
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_account_id
-msgid "Analytic account"
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_distribution
+msgid "Analytic Distribution"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_precision
+msgid "Analytic Precision"
 msgstr ""
 
 #. module: sale_order_type
@@ -104,6 +109,11 @@ msgstr "รายละเอียด"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_report__display_name
 msgid "Display Name"
 msgstr "ชื่อที่ใช้แสดง"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__distribution_analytic_account_ids
+msgid "Distribution Analytic Account"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__sequence_id
