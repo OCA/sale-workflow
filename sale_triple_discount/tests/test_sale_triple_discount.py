@@ -195,7 +195,22 @@ class TestSaleOrder(common.TransactionCase):
         self.assertEqual(self.order.amount_untaxed, 375.0)
         self.assertEqual(self.order.amount_tax, 56.25)
 
-    def test_06_discount_0(self):
+    def test_06_invoice_discount1_propagation(self):
+        self.so_line2.unlink()
+        self.so_line1.discount = 15.0
+        self.so_line1.discount2 = 10.0
+        self.so_line1.discount3 = 5.0
+        self.order.action_confirm()
+        if self.order.state == "waiting_approval":
+            self.order.action_approve()
+            self.order.action_confirm()
+        self.order._create_invoices()
+        invoice_line = self.order.invoice_ids[0].invoice_line_ids[0]
+        self.assertEqual(invoice_line.discount1, 15.0)
+        self.assertEqual(invoice_line.discount2, 10.0)
+        self.assertEqual(invoice_line.discount3, 5.0)
+
+    def test_07_discount_0(self):
         self.so_line1.discounting_type = "additive"
         self.so_line1.discount = 0.0
         self.so_line1.discount2 = 0.0

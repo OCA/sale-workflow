@@ -93,7 +93,13 @@ class SaleOrderLine(models.Model):
         more discount fields to the invoice lines
         """
         res = super()._prepare_invoice_line(**kwargs)
-        res.update({"discount2": self.discount2, "discount3": self.discount3})
+        res.update(
+            {
+                "discount1": self.discount,
+                "discount2": self.discount2,
+                "discount3": self.discount3,
+            }
+        )
         return res
 
     @contextmanager
