@@ -203,6 +203,33 @@ class TestSaleOrderType(BaseCommon):
         self.assertEqual(invoice.invoice_payment_term_id, sale_type.payment_term_id)
         self.assertEqual(invoice.journal_id, sale_type.journal_id)
 
+    def test_invoice_change_journal_keeps_manual_payment_term(self):
+        partner = self.env["res.partner"].create(
+            {
+                "name": "Invoice Term Test Partner",
+                "property_payment_term_id": self.immediate_payment.id,
+            }
+        )
+        manual_payment_term = self.env.ref("account.account_payment_term_30days")
+        sale_type_without_payment_term = self.sale_type.copy(
+            {"name": "Sale Type Without Payment Term", "payment_term_id": False}
+        )
+        other_journal = self.env["account.journal"].create(
+            {
+                "name": "Alternative Sales Journal",
+                "code": "ASJ1",
+                "type": "sale",
+                "company_id": self.env.company.id,
+            }
+        )
+        invoice = self.invoice_model.new()
+        invoice.partner_id = partner
+        invoice.sale_type_id = sale_type_without_payment_term
+        invoice.invoice_payment_term_id = manual_payment_term
+        invoice.journal_id = other_journal
+        self.assertEqual(invoice.journal_id, other_journal)
+        self.assertEqual(invoice.invoice_payment_term_id, manual_payment_term)
+
     def test_invoice_change_partner(self):
         invoice = self.create_invoice()
         self.assertEqual(invoice.sale_type_id, self.sale_type)
