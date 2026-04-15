@@ -5,7 +5,7 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="sale.res_partner_view_buttons" />
         <field name="arch" type="xml">
-            <button name="action_view_sale_order" position="before">
+            <button name="sale.act_res_partner_2_sale_order" position="before">
                 <button
                     class="oe_stat_button"
                     type="action"
