@@ -12,17 +12,37 @@ class TestSplitStrategy(BaseCommon):
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-        cls.product_consu_1 = cls.env["product.product"].search(
-            [("type", "!=", "service")], limit=1
+        cls.product_consu_1 = cls.env["product.product"].create(
+            {
+                "name": "Consu 1",
+                "type": "consu",
+                "sale_ok": True,
+                "list_price": 10,
+            }
         )
-        cls.product_consu_2 = cls.env["product.product"].search(
-            [("type", "!=", "service")], offset=1, limit=1
+        cls.product_consu_2 = cls.env["product.product"].create(
+            {
+                "name": "Consu 2",
+                "type": "consu",
+                "sale_ok": True,
+                "list_price": 20,
+            }
         )
-        cls.product_service_1 = cls.env["product.product"].search(
-            [("type", "=", "service")], limit=1
+        cls.product_service_1 = cls.env["product.product"].create(
+            {
+                "name": "Service 1",
+                "type": "service",
+                "sale_ok": True,
+                "list_price": 10,
+            }
         )
-        cls.product_service_2 = cls.env["product.product"].search(
-            [("type", "=", "service")], offset=1, limit=1
+        cls.product_service_2 = cls.env["product.product"].create(
+            {
+                "name": "Service 2",
+                "type": "service",
+                "sale_ok": True,
+                "list_price": 20,
+            }
         )
 
         cls.product_type_not_service_filter = cls.env["ir.filters"].create(
