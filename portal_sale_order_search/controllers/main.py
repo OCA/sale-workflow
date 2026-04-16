@@ -1,9 +1,8 @@
 # Copyright 2025 Tecnativa - Pilar Vargas
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _
+from odoo.fields import Domain
 from odoo.http import request
-from odoo.osv import expression
 
 from odoo.addons.portal.controllers import portal
 
@@ -11,17 +10,17 @@ from odoo.addons.portal.controllers import portal
 class CustomerPortalSaleOrderSearch(portal.CustomerPortal):
     def _get_searchbar_order_inputs(self):
         return {
-            "all": {"label": _("All"), "input": "all"},
-            "name": {"label": _("Order Ref"), "input": "name"},
-            "ref": {"label": _("Order Customer Ref"), "input": "ref"},
-            "partner": {"label": _("Customer"), "input": "partner"},
+            "all": {"label": request.env._("All"), "input": "all"},
+            "name": {"label": request.env._("Order Ref"), "input": "name"},
+            "ref": {"label": request.env._("Order Customer Ref"), "input": "ref"},
+            "partner": {"label": request.env._("Customer"), "input": "partner"},
         }
 
     def _get_search_order_domain(self, search):
         search_in = request.params.get("search_in", "all")
         search_domain = []
         if search_in == "all":
-            search_domain = expression.OR(
+            search_domain = Domain.OR(
                 [
                     [("name", "ilike", search)],
                     [("client_order_ref", "ilike", search)],
@@ -41,7 +40,7 @@ class CustomerPortalSaleOrderSearch(portal.CustomerPortal):
         search = request.params.get("search", "").strip()
         if search:
             search_domain = self._get_search_order_domain(search)
-            domain = expression.AND([domain, search_domain])
+            domain = Domain.AND([domain, search_domain])
         return domain
 
     def _prepare_orders_domain(self, partner):
@@ -49,7 +48,7 @@ class CustomerPortalSaleOrderSearch(portal.CustomerPortal):
         search = request.params.get("search", "").strip()
         if search:
             search_domain = self._get_search_order_domain(search)
-            domain = expression.AND([domain, search_domain])
+            domain = Domain.AND([domain, search_domain])
         return domain
 
     def _prepare_sale_portal_rendering_values(
