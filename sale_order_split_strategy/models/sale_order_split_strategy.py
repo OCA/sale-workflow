@@ -1,7 +1,7 @@
 # Copyright 2024 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 from odoo import fields, models
-from odoo.osv.expression import AND
+from odoo.fields import Domain
 from odoo.tools.safe_eval import safe_eval
 
 
@@ -32,4 +32,4 @@ class SaleOrderSplitStrategy(models.Model):
 
     def _get_lines_to_split_domain(self, orders):
         domain = safe_eval(self.line_filter_id.domain)
-        return AND([domain, [("order_id", "in", orders.ids)]])
+        return Domain.AND([domain, [("order_id", "in", orders.ids)]])
