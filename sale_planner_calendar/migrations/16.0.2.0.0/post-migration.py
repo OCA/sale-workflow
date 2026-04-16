@@ -67,6 +67,10 @@ def _profiles_to_calendar_event_type(env):
         """
         INSERT INTO calendar_event_type (name, icon, old_sale_planner_profile_id)
             SELECT name, icon, id FROM sale_planner_calendar_event_profile
+        ON CONFLICT (name)
+        DO UPDATE SET
+            icon = EXCLUDED.icon,
+            old_sale_planner_profile_id = EXCLUDED.old_sale_planner_profile_id;
     """,
     )
 
@@ -101,8 +105,14 @@ def _remove_renamed_selection_values(env):
         )
 
 
+def parse_version(version):
+    return tuple(int(x) for x in version.split("."))
+
+
 @openupgrade.migrate()
 def migrate(env, version):
+    if version and parse_version(version) >= parse_version("15.0.3.0.0"):
+        return
     _sale_planner_calendar_event_to_calendar_event(env)
     _sale_order_to_calendar_event(env)
     _payment_sheet_to_calendar_event(env)

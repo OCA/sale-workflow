@@ -30,8 +30,14 @@ def _add_event_profile_helper_column(env):
     )
 
 
+def parse_version(version):
+    return tuple(int(x) for x in version.split("."))
+
+
 @openupgrade.migrate()
 def migrate(env, version):
+    if version and parse_version(version) >= parse_version("15.0.3.0.0"):
+        return
     openupgrade.rename_columns(env.cr, _column_renames)
     _remove_selection_field_values(env)
     _add_event_profile_helper_column(env)
