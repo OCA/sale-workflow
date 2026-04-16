@@ -4,7 +4,7 @@
     "name": "Product customer info elaboration",
     "summary": "Allows to define default elaborations and elaboration notes on product"
     " customerinfos",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "development_status": "Beta",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
