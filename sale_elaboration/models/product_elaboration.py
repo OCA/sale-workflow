@@ -35,10 +35,14 @@ class Elaboration(models.Model):
         column2="profile_id",
     )
 
-    _sql_constraints = [
-        ("name_uniq", "unique(name)", "Name must be unique!"),
-        ("code_uniq", "unique(code)", "Code must be unique!"),
-    ]
+    _name_uniq = models.Constraint(
+        "UNIQUE(name)",
+        "Name must be unique!",
+    )
+    _code_uniq = models.Constraint(
+        "UNIQUE(code)",
+        "Code must be unique!",
+    )
 
     @api.model
     def name_search(self, name, args=None, operator="ilike", limit=100):

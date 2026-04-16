@@ -45,7 +45,12 @@ class SaleOrderLine(models.Model):
     _name = "sale.order.line"
 
     date_order = fields.Datetime(related="order_id.date_order", string="Date")
-    route_id = fields.Many2one(compute="_compute_route_id", store=True, readonly=False)
+    route_id = fields.Many2one(
+        comodel_name="stock.route",
+        compute="_compute_route_id",
+        store=True,
+        readonly=False,
+    )
     elaboration_profile_id = fields.Many2one(
         comodel_name="product.elaboration.profile",
         compute="_compute_elaboration_profile_id",

@@ -11,6 +11,9 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env.user.group_ids += cls.env.ref(
+            "sales_team.group_sale_manager"
+        ) + cls.env.ref("sales_team.group_sale_salesman")
         cls.Elaboration = cls.env["product.elaboration"]
         cls.ElaborationProfile = cls.env["product.elaboration.profile"]
         cls.category_1 = cls.env["product.category"].create({"name": "Meat"})
@@ -49,9 +52,7 @@ class TestSaleElaboration(AccountTestInvoicingCommon):
             {
                 "name": "Test pricelist",
                 "item_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "applied_on": "3_global",
                             "compute_price": "formula",

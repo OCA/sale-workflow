@@ -4,15 +4,15 @@
 <data>
     <template id="report_picking" inherit_id="stock.report_picking">
         <xpath
-            expr="//td[span[@t-field='ml.product_id.display_name']]"
+            expr="//table[hasclass('o_main_table')]/tbody/t/tr/td[1]"
             position="inside"
         >
             <t
-                t-if="ml.picking_code != 'incoming'"
+                t-if="move.picking_type_id.code != 'incoming'"
                 t-call="sale_elaboration.elaboration_notes"
                 groups="sale_elaboration.group_elaboration_note_on_picking_operations"
             >
-                <t t-set="record" t-value="ml" />
+                <t t-set="record" t-value="move" />
             </t>
         </xpath>
     </template>
