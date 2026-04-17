@@ -10,3 +10,4 @@
   - Pilar Vargas
   - Juan Carlos Oñate
 - Nils Coenen \<<nils.coenen@nico-solutions.de>\>
+- Christopher Rogos \<<crogos@gmail.com>\>

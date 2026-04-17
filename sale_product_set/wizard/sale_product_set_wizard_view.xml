@@ -35,6 +35,8 @@
                             />
                             <field name="display_type" column_invisible="True" />
                             <field name="name" widget="section_and_note_text" />
+                            <field name="product_uom_id" groups="uom.group_uom" />
+
                             <control>
                                 <create name="add_line_control" string="Add a line" />
                                 <create
