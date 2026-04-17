@@ -48,10 +48,17 @@ class SaleOrderLine(models.Model):
         # A NewId is needed to set the product for the parent method to set
         # the language correctly. Empty id leads to error in ‘_get_lang’.
         for line in self:
-            if not line.order_id and line.product_id:
-                SaleOrder = self.env["sale.order"]
-                line.order_id = SaleOrder.new({})
+            if not line.order_id:
+                line.order_id = self.env["sale.order"].new({})
         return super()._compute_name()
+
+    def _compute_translated_product_name(self):
+        # A NewId is needed to set the product for the parent method to set
+        # the language correctly. Empty id leads to error in ‘_get_lang’.
+        for line in self:
+            if not line.order_id:
+                line.order_id = self.env["sale.order"].new({})
+        return super()._compute_translated_product_name()
 
     @api.onchange("force_company_id")
     def _onchange_force_company_id(self):

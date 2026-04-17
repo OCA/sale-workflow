@@ -10,7 +10,6 @@ class TestSaleOrderLineInput(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.partner = cls.env["res.partner"].create({"name": "Test"})
         cls.partner_2 = cls.env["res.partner"].create({"name": "Test 2"})
         cls.product = cls.env["product.product"].create(
             {"name": "test_product", "type": "service"}
@@ -28,7 +27,7 @@ class TestSaleOrderLineInput(BaseCommon):
         line_form.order_id = sale_order
         line_form.product_id = self.product
         line_form.price_unit = 190.50
-        line_form.product_uom = self.uom_unit
+        line_form.product_uom_id = self.uom_unit
         line_form.product_uom_qty = 8.0
         line_form.name = "Test line description"
         line = line_form.save()
@@ -37,7 +36,7 @@ class TestSaleOrderLineInput(BaseCommon):
             {
                 "product_id": self.product.id,
                 "product_uom_qty": 1.0,
-                "product_uom": self.uom_unit.id,
+                "product_uom_id": self.uom_unit.id,
                 "name": "New Test Sale Order Line",
             }
         )
