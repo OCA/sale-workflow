@@ -30,7 +30,7 @@ class SaleOrder(models.Model):
         """
         if any(order.locked for order in self):
             raise UserError(
-                _(
+                self.env._(
                     "You cannot cancel a locked order. \
                 Please unlock it first."
                 )
