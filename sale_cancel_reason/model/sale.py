@@ -22,7 +22,7 @@ class SaleOrder(models.Model):
         return res
 
     def action_cancel(self):
-        """ Cancel SO after showing the cancel wizard when needed. 
+        """ Cancel SO after showing the cancel wizard when needed.
         (cfr :meth:`_show_cancel_wizard`)
         For post-cancel operations, please only override :meth:`_action_cancel`.
         note: self.ensure_one() if the wizard is shown.
@@ -38,7 +38,9 @@ class SaleOrder(models.Model):
                 "name": _("Cancel %s", self.type_name),
                 "view_mode": "form",
                 "res_model": "sale.order.cancel",
-                "view_id": self.env.ref("sale_cancel_reason.sale_order_cancel_view_form").id,
+                "view_id": self.env.ref(
+                    "sale_cancel_reason.sale_order_cancel_view_form"
+                ).id,
                 "type": "ir.actions.act_window",
                 "target": "new",
                 "context": {
@@ -53,7 +55,7 @@ class SaleOrder(models.Model):
             return self._action_cancel()
 
     def _show_cancel_wizard(self):
-        """ Decide whether the sale.order.cancel wizard 
+        """ Decide whether the sale.order.cancel wizard
         should be shown to cancel specified orders.
         :return: True if there is any non-draft order in the given orders
         :rtype: bool
