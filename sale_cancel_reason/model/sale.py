@@ -23,14 +23,14 @@ class SaleOrder(models.Model):
         return res
     
     def action_cancel(self):
-        """ Cancel SO after showing the cancel wizard when needed. (cfr :meth:`_show_cancel_wizard`)
-
+        """ Cancel SO after showing the cancel wizard when needed. 
+        (cfr :meth:`_show_cancel_wizard`)
         For post-cancel operations, please only override :meth:`_action_cancel`.
-
         note: self.ensure_one() if the wizard is shown.
         """
         if any(order.locked for order in self):
-            raise UserError(_("You cannot cancel a locked order. Please unlock it first."))
+            raise UserError(_("You cannot cancel a locked order. \
+                Please unlock it first."))
         cancel_warning = self._show_cancel_wizard()
         if cancel_warning:
             self.ensure_one()

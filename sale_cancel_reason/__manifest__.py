@@ -7,7 +7,7 @@
     "name": "Sale Cancel Reason",
     "version": "19.0.1.0.0",
     "author": "Camptocamp, Gravitai, Odoo Community Association (OCA)",
-    "maintainer" : "Gravitai, Odoo Community Association (OCA) / indra.panchal@gravitai.com",
+    "maintainer" : "Gravitai/indra.panchal@gravitai.com",
     "maintainers": ["Gravitai"],
     "category": "Sale",
     "license": "AGPL-3",
@@ -16,8 +16,8 @@
     "depends": ["sale"],
     "data": [
         "wizard/cancel_reason_view.xml",
-        "wizard/mass_cancel_orders_view.xml"
-,        "view/sale_view.xml",
+        "wizard/mass_cancel_orders_view.xml",
+        "view/sale_view.xml",
         "security/ir.model.access.csv",
         "data/sale_order_cancel_reason.xml",
     ],

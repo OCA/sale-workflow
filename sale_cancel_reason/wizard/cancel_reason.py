@@ -10,11 +10,14 @@ class SaleOrderCancel(models.TransientModel):
     _name = 'sale.order.cancel'
     _description = "Sales Order Cancel"
 
-    order_id = fields.Many2one('sale.order', string='Sale Order', required=True, ondelete='cascade')
-    reason_id = fields.Many2one(
-        "sale.order.cancel.reason", string="Reason", required=True
+    order_id = fields.Many2one('sale.order', string='Sale Order', 
+        required=True, 
+        ondelete='cascade')
+    reason_id = fields.Many2one("sale.order.cancel.reason", 
+        string="Reason", required=True
     )
-    display_invoice_alert = fields.Boolean('Invoice Alert', compute='_compute_display_invoice_alert')
+    display_invoice_alert = fields.Boolean('Invoice Alert', 
+        compute='_compute_display_invoice_alert')
 
     @api.model
     def default_get(self, fields_list):
@@ -28,7 +31,9 @@ class SaleOrderCancel(models.TransientModel):
     @api.depends('order_id')
     def _compute_display_invoice_alert(self):
         for wizard in self:
-            wizard.display_invoice_alert = bool(wizard.order_id.invoice_ids.filtered(lambda inv: inv.state == 'draft'))
+            wizard.display_invoice_alert = bool(wizard.order_id.invoice_ids.filtered(
+                lambda inv: inv.state == 'draft')
+            )
 
     def action_cancel(self):
         self.order_id.update({
