@@ -1,7 +1,7 @@
 # Copyright 2023 ForgeFlow, S.L. (https://www.forgeflow.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, models
+from odoo import models
 from odoo.exceptions import UserError
 
 
@@ -27,7 +27,9 @@ class SaleOrderLine(models.Model):
             )
             if invoiced_lines:
                 raise UserError(
-                    _("You can not remove an order line that has been invoiced")
+                    self.env._(
+                        "You can not remove an order line that has been invoiced"
+                    )
                 )
             delivered_lines = self.sudo().filtered(
                 lambda line: line.state in ("sale", "done")
@@ -35,7 +37,9 @@ class SaleOrderLine(models.Model):
             )
             if delivered_lines:
                 raise UserError(
-                    _("You can not remove an order line that has been delivered")
+                    self.env._(
+                        "You can not remove an order line that has been delivered"
+                    )
                 )
             return non_removable_lines - removable_lines
 
@@ -55,6 +59,6 @@ class SaleOrderLine(models.Model):
                 )._action_cancel()
                 line.move_ids.filtered(lambda move: move.state != "done").unlink()
                 for picking in related_pickings:
-                    if not picking.move_ids_without_package:
+                    if not picking.move_ids:
                         picking.unlink()
             return super().unlink()
