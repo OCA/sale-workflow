@@ -16,21 +16,19 @@
                     sale order.
                 </p>
                 <group>
-                    <field 
+                    <field
                         name="reason_id" 
                         options="{'no_create': True, 'no_open': True}"
                     />
                 </group>
                 <footer>
-                    <button 
+                    <button
                         string="Confirm" 
                         name="action_cancel" 
                         type="object" 
-                        class="oe_highlight" />
-                    <button 
-                        string="Cancel" 
-                        class="btn btn-default" 
-                        special="cancel" />
+                        class="oe_highlight"
+                    />
+                    <button string="Cancel" class="btn btn-default" special="cancel" />
                 </footer>
             </form>
         </field>
