@@ -9,9 +9,9 @@
             ref="sale_elaboration.report_stock_move_elaboration_view_tree"
         />
         <field name="arch" type="xml">
-                <field name="elaboration_note" position="before">
-                    <field name="product_brand_id" optional="hide" />
-                </field>
+            <field name="elaboration_note" position="before">
+                <field name="product_brand_id" optional="hide" />
+            </field>
         </field>
     </record>
 </odoo>
