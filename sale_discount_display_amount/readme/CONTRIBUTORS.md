@@ -7,3 +7,5 @@
   - Jonathan Oscategui Taza \<<info@pesol.es>\>
 - [Trobz](https://www.trobz.com):
   - Nhan Tran \<<nhant@trobz.com>\>
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia
