@@ -2,16 +2,19 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo.exceptions import UserError
-from odoo.tests import TransactionCase
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleOrderLine(TransactionCase):
-    def setUp(cls):
-        super().setUp()
+class TestSaleOrderLine(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
         cls.SaleOrder = cls.env["sale.order"]
         cls.SaleOrderLine = cls.env["sale.order.line"]
-        cls.partner = cls.env.ref("base.res_partner_2")
-        cls.product = cls.env.ref("product.product_product_4")
+        cls.product = cls.env["product.product"].create(
+            {"name": "Test Product", "type": "consu"}
+        )
         cls.uom = cls.env.ref("uom.product_uom_unit")
         cls.config_param = cls.env["ir.config_parameter"].sudo()
         cls.config_param.set_param("sale.order.line.remove", True)
@@ -24,7 +27,7 @@ class TestSaleOrderLine(TransactionCase):
                 "order_id": sale_order.id,
                 "product_id": self.product.id,
                 "product_uom_qty": 1,
-                "product_uom": self.uom.id,
+                "product_uom_id": self.uom.id,
             }
         )
         non_removable_lines = sale_order_line._check_line_unlink()
@@ -38,7 +41,7 @@ class TestSaleOrderLine(TransactionCase):
                 "order_id": sale_order.id,
                 "product_id": self.product.id,
                 "product_uom_qty": 1,
-                "product_uom": self.uom.id,
+                "product_uom_id": self.uom.id,
             }
         )
         sale_order_line.unlink()
@@ -52,13 +55,13 @@ class TestSaleOrderLine(TransactionCase):
                 "order_id": sale_order.id,
                 "product_id": self.product.id,
                 "product_uom_qty": 1,
-                "product_uom": self.uom.id,
+                "product_uom_id": self.uom.id,
             }
         )
         picking = sale_order.picking_ids[0]
         picking.action_confirm()
         picking.action_assign()
-        for move in picking.move_ids_without_package:
+        for move in picking.move_ids:
             move.quantity = move.product_uom_qty
         picking.button_validate()
         with self.assertRaises(UserError):
@@ -72,13 +75,13 @@ class TestSaleOrderLine(TransactionCase):
                 "order_id": sale_order.id,
                 "product_id": self.product.id,
                 "product_uom_qty": 1,
-                "product_uom": self.uom.id,
+                "product_uom_id": self.uom.id,
             }
         )
         picking = sale_order.picking_ids[0]
         picking.action_confirm()
         picking.action_assign()
-        for move in picking.move_ids_without_package:
+        for move in picking.move_ids:
             move.quantity = move.product_uom_qty
         picking.button_validate()
         with self.assertRaises(UserError):
@@ -92,13 +95,13 @@ class TestSaleOrderLine(TransactionCase):
                 "order_id": sale_order.id,
                 "product_id": self.product.id,
                 "product_uom_qty": 1,
-                "product_uom": self.uom.id,
+                "product_uom_id": self.uom.id,
             }
         )
         picking = sale_order.picking_ids[0]
         picking.action_confirm()
         picking.action_assign()
-        for move in picking.move_ids_without_package:
+        for move in picking.move_ids:
             move.quantity = move.product_uom_qty
         picking.button_validate()
         with self.assertRaises(UserError):
@@ -112,13 +115,13 @@ class TestSaleOrderLine(TransactionCase):
                 "order_id": sale_order.id,
                 "product_id": self.product.id,
                 "product_uom_qty": 1,
-                "product_uom": self.uom.id,
+                "product_uom_id": self.uom.id,
             }
         )
         picking = sale_order.picking_ids[0]
         picking.action_confirm()
         picking.action_assign()
-        for move in picking.move_ids_without_package:
+        for move in picking.move_ids:
             move.quantity = move.product_uom_qty
         picking.button_validate()
         sale_order._create_invoices()
@@ -133,7 +136,7 @@ class TestSaleOrderLine(TransactionCase):
                 "order_id": sale_order.id,
                 "product_id": self.product.id,
                 "product_uom_qty": 1,
-                "product_uom": self.uom.id,
+                "product_uom_id": self.uom.id,
             }
         )
         sale_order_line2 = self.SaleOrderLine.create(
@@ -141,7 +144,7 @@ class TestSaleOrderLine(TransactionCase):
                 "order_id": sale_order.id,
                 "product_id": self.product.id,
                 "product_uom_qty": 1,
-                "product_uom": self.uom.id,
+                "product_uom_id": self.uom.id,
             }
         )
         picking = sale_order.picking_ids[0]
