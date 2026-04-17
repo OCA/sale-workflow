@@ -1,7 +1,7 @@
 # Copyright 2013 Guewen Baconnier, Camptocamp SA
 # Copyright 2022 Aritz Olea, Landoo SL
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import fields, models, api, _
+from odoo import _, fields, models
 from odoo.exceptions import UserError
 
 class SaleOrder(models.Model):
@@ -16,12 +16,11 @@ class SaleOrder(models.Model):
         copy=False,
     )
 
-
     def action_draft(self):
         res = super().action_draft()
         self.write({"cancel_reason_id": False})
         return res
-    
+
     def action_cancel(self):
         """ Cancel SO after showing the cancel wizard when needed. 
         (cfr :meth:`_show_cancel_wizard`)
@@ -36,33 +35,33 @@ class SaleOrder(models.Model):
             self.ensure_one()
 
             return {
-                'name': _('Cancel %s', self.type_name),
-                'view_mode': 'form',
-                'res_model': 'sale.order.cancel',
-                'view_id': self.env.ref('sale_cancel_reason.sale_order_cancel_view_form').id,
-                'type': 'ir.actions.act_window',
-                'target': 'new',
-                'context': {
+                "name": _("Cancel %s", self.type_name),
+                "view_mode": "form",
+                "res_model": "sale.order.cancel",
+                "view_id": self.env.ref("sale_cancel_reason.sale_order_cancel_view_form").id,
+                "type": "ir.actions.act_window",
+                "target": "new",
+                "context": {
                     **self.env.context,
-                    'default_order_id': self.id,
-                    # 'active_id': self.id,
-                    # 'active_ids': self.ids,
-                    # 'active_model': 'sale.order',
+                    "default_order_id": self.id,
+                    # "active_id": self.id,
+                    # "active_ids": self.ids,
+                    # "active_model": "sale.order",
                 },
             }
         else:
             return self._action_cancel()
 
     def _show_cancel_wizard(self):
-        """ Decide whether the sale.order.cancel wizard should be shown to cancel specified orders.
-
+        """ Decide whether the sale.order.cancel wizard 
+        should be shown to cancel specified orders.
         :return: True if there is any non-draft order in the given orders
         :rtype: bool
         """
-        if self.env.context.get('disable_cancel_warning'):
+        if self.env.context.get("disable_cancel_warning"):
             return False
-        return any(so.state != 'draft' for so in self)
-    
+        return any(so.state != "draft" for so in self)
+
 
 class SaleOrderCancelReason(models.Model):
     _name = "sale.order.cancel.reason"

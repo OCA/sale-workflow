@@ -28,7 +28,7 @@ class SaleOrderCancel(models.TransientModel):
                 "active_id"
             )
             if order_id and self.env.context.get("active_model") in (
-                None, 
+                None,
                 "sale.order"
             ):
                 values["order_id"] = order_id
