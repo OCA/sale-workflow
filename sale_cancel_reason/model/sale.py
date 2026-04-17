@@ -1,7 +1,7 @@
 # Copyright 2013 Guewen Baconnier, Camptocamp SA
 # Copyright 2022 Aritz Olea, Landoo SL
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import UserError
 
 class SaleOrder(models.Model):
@@ -39,7 +39,7 @@ class SaleOrder(models.Model):
             self.ensure_one()
 
             return {
-                "name": _("Cancel %s", self.type_name),
+                "name": self.env._("Cancel %s", self.type_name),
                 "view_mode": "form",
                 "res_model": "sale.order.cancel",
                 "view_id": self.env.ref(
