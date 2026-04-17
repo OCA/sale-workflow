@@ -1,7 +1,7 @@
 # Copyright 2025 Patryk Pyczko (APSL-Nagarro)<ppyczko@apsl.net>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, models
+from odoo import models
 
 
 class SaleOrderLine(models.Model):
@@ -11,7 +11,9 @@ class SaleOrderLine(models.Model):
         self.ensure_one()
         return {
             "type": "ir.actions.act_window",
-            "name": _("Stock Moves History for %s") % self.product_id.display_name,
+            "name": self.env._(
+                "Stock Moves History for %s", self.product_id.display_name
+            ),
             "res_model": "stock.move.line",
             "view_mode": "list",
             "views": [

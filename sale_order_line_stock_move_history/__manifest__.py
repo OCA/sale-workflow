@@ -3,7 +3,7 @@
 
 {
     "name": "Sale Order Line Stock Moves History",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "summary": "Show stock moves history for sale order lines",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales Management",
