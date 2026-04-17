@@ -2,7 +2,7 @@
 # Copyright 2016-2020 Camptocamp SA
 # @author Simone Orsi <simahawk@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo import api, exceptions, fields, models
+from odoo import Command, api, exceptions, fields, models
 
 
 class SaleProductSetWizard(models.TransientModel):
@@ -51,9 +51,10 @@ class SaleProductSetWizard(models.TransientModel):
         if self.order_id.partner_id not in allowed_partners:
             raise exceptions.ValidationError(
                 self.env._(
-                    "You can use a sale order assigned "
-                    "only to following partner(s): {}"
-                ).format(", ".join(allowed_partners.mapped("name")))
+                    "You can use a sale order assigned only to following partner(s): "
+                    "%s",
+                    ", ".join(allowed_partners.mapped("name")),
+                )
             )
         return super()._check_partner()
 
@@ -78,13 +79,10 @@ class SaleProductSetWizard(models.TransientModel):
         max_sequence = self._get_max_sequence()
         order_lines = []
         for seq, set_line in enumerate(self._get_lines(), start=1):
-            values = self.prepare_sale_order_line_data(set_line)
-            # When we play with sequence widget on a set of product,
-            # it's possible to have a negative sequence.
-            # In this case, the line is not added at the correct place.
-            # So we have to force it with the order of the line.
-            values.update({"sequence": max_sequence + seq})
-            order_lines.append((0, 0, values))
+            values = set_line.prepare_sale_order_line_values(
+                self.order_id, self.quantity, max_sequence + seq
+            )
+            order_lines.append(Command.create(values))
         return order_lines
 
     def _get_max_sequence(self):
@@ -101,15 +99,3 @@ class SaleProductSetWizard(models.TransientModel):
             if self.skip_existing_products and set_line.product_id.id in so_product_ids:
                 continue
             yield set_line
-
-    def prepare_sale_order_line_data(self, set_line, max_sequence=0):
-        self.ensure_one()
-        line_values = set_line.prepare_sale_order_line_values(
-            self.order_id, self.quantity, max_sequence=max_sequence
-        )
-        if set_line.display_type:
-            line_values.update(
-                {"name": set_line.name, "display_type": set_line.display_type}
-            )
-
-        return line_values
