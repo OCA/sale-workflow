@@ -9,5 +9,7 @@ class SaleMassCancelOrders(models.TransientModel):
     )
 
     def action_mass_cancel(self):
-        self.sale_order_ids.write({"cancel_reason_id": self.reason_id.id})
+        self.sale_order_ids.write(
+            {"cancel_reason_id": self.reason_id.id}
+        )
         return super().action_mass_cancel()
