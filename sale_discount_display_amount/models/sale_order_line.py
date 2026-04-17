@@ -40,7 +40,7 @@ class SaleOrderLine(models.Model):
                 line.price_total_no_discount = line.price_total
                 continue
             price = line.price_unit
-            taxes = line.tax_id.compute_all(
+            taxes = line.tax_ids.compute_all(
                 price,
                 line.order_id.currency_id,
                 line.product_uom_qty,
@@ -64,7 +64,7 @@ class SaleOrderLine(models.Model):
 
     @api.model
     def _get_compute_amount_depends(self):
-        return ["product_uom_qty", "discount", "price_unit", "tax_id"]
+        return ["product_uom_qty", "discount", "price_unit", "tax_ids"]
 
     @api.depends(lambda self: self._get_compute_amount_depends())
     def _compute_amount(self):
