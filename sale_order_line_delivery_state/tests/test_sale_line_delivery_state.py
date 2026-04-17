@@ -3,17 +3,19 @@
 
 from unittest import mock
 
-from odoo.tests import TransactionCase
+from odoo import Command
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleLineDeliveryState(TransactionCase):
+class TestSaleLineDeliveryState(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         # Base data
-        partner = cls.env.ref("base.res_partner_2")
-        product = cls.env.ref("product.product_product_25")
+        product = cls.env["product.product"].create(
+            {"name": "Test Product", "type": "consu"}
+        )
         pricelist = cls.env["product.pricelist"].create({"name": "Test Pricelist"})
         cls.uom = cls.env.ref("uom.product_uom_unit")
         # Create delivery product
@@ -23,15 +25,13 @@ class TestSaleLineDeliveryState(TransactionCase):
         # Create sales order
         cls.order = cls.env["sale.order"].create(
             {
-                "partner_id": partner.id,
+                "partner_id": cls.partner.id,
                 "pricelist_id": pricelist.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": product.id,
-                            "product_uom": cls.uom.id,
+                            "product_uom_id": cls.uom.id,
                             "product_uom_qty": 3,
                             "price_unit": 2950.00,
                             "name": product.name,
@@ -56,7 +56,7 @@ class TestSaleLineDeliveryState(TransactionCase):
                 "name": "Delivery cost",
                 "product_id": self.delivery_cost.id,
                 "product_uom_qty": 1,
-                "product_uom": self.uom.id,
+                "product_uom_id": self.uom.id,
                 "price_unit": 10.0,
             }
         )
