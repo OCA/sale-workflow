@@ -7,7 +7,7 @@
     "name": "Sale Cancel Reason",
     "version": "19.0.1.0.0",
     "author": "Camptocamp, Gravitai, Odoo Community Association (OCA)",
-    "maintainer" : "Gravitai/indra.panchal@gravitai.com",
+    "maintainer": "Gravitai/indra.panchal@gravitai.com",
     "maintainers": ["Gravitai"],
     "category": "Sale",
     "license": "AGPL-3",
