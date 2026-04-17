@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="sale_order_cancel_view_form" model="ir.ui.view">
         <field name="name">sale.order.cancel.form</field>
@@ -16,12 +16,21 @@
                     sale order.
                 </p>
                 <group>
-                    <field name="reason_id" options="{'no_create': True, 'no_open': True}"
+                    <field 
+                        name="reason_id" 
+                        options="{'no_create': True, 'no_open': True}"
                     />
                 </group>
                 <footer>
-                    <button string="Confirm" name="action_cancel" type="object" class="oe_highlight" />
-                    <button string="Cancel" class="btn btn-default" special="cancel" />
+                    <button 
+                        string="Confirm" 
+                        name="action_cancel" 
+                        type="object" 
+                        class="oe_highlight" />
+                    <button 
+                        string="Cancel" 
+                        class="btn btn-default" 
+                        special="cancel" />
                 </footer>
             </form>
         </field>
