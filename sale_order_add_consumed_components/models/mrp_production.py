@@ -133,7 +133,9 @@ class MrpProduction(models.Model):
                             "product_uom_qty": total_qty,
                             "product_uom": product.uom_id.id,
                             "price_unit": price,
-                            "name": product.display_name,
+                            "name": product.with_context(
+                                lang=sale_order.partner_id.lang
+                            ).get_product_multiline_description_sale(),
                             "qty_delivered_method": "manual",
                             "is_mrp_component_line": True,
                         }
