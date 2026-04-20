@@ -9,12 +9,6 @@
                 expr="//group[@name='note_group']/group/field[@name='note']"
                 position="before"
             >
-                <field
-                    name="terms_template_id"
-                    placeholder="Terms and conditions template"
-                    nolabel="1"
-                    colspan="4"
-                />
                 <group name="terms_group" string="Terms and Conditions">
                     <field
                         name="terms_template_id"
