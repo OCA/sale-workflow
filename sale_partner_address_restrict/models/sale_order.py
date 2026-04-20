@@ -1,4 +1,4 @@
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -42,7 +42,7 @@ class SaleOrder(models.Model):
                 )
             ):
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "Invoice and shipping addresses must be child addresses"
                         " of the selected partner or the selected partner itself."
                     )
