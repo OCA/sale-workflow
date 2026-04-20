@@ -31,14 +31,10 @@ class SalePrimeship(models.Model):
 
     current = fields.Boolean(string="Currently Active", compute="_compute_current")
 
-    _sql_constraints = [
-        # Constraint for One2one impl of "sale.order.line".primeship_id
-        (
-            "unique_order_line",
-            "UNIQUE(order_line_id)",
-            "A sale order line can only have one primeship!",
-        )
-    ]
+    _unique_order_line = models.Constraint(
+        "unique(order_line_id)",
+        "A sale order line can only have one primeship!",
+    )
 
     @api.depends("start_date", "end_date")
     def _compute_name(self):
@@ -59,8 +55,8 @@ class SalePrimeship(models.Model):
                 < record.end_date
             )
 
-    @api.constrains("end_date")
-    def _check_end_date(self):
+    @api.constrains("start_date", "end_date", "partner_id")
+    def _check_dates(self):
         for record in self:
             if record.end_date < record.start_date:
                 raise ValidationError(

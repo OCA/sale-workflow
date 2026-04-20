@@ -2,3 +2,5 @@
   - Florian Mounier
   - Kevin Roche
   - Olivier Nibart
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia

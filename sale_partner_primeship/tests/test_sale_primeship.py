@@ -43,6 +43,12 @@ class TestSalePrimeship(TestCommon):
         with self.assertRaises(ValidationError):
             self.make_primeship("2023-06-01", "2023-12-31")
 
+    def test_update_start_date_overlapping(self):
+        self.make_primeship("2023-01-01", "2023-06-30")
+        primeship2 = self.make_primeship("2023-07-01", "2023-12-31")
+        with self.assertRaises(ValidationError):
+            primeship2.write({"start_date": fields.Date.to_date("2023-06-15")})
+
     def test_non_overlapping_primeships(self):
         primeship1 = self.make_primeship("2023-01-01", "2023-06-30")
         primeship2 = self.make_primeship("2023-07-01", "2023-12-31")
