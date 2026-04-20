@@ -60,12 +60,10 @@ class SaleOrder(models.Model):
                     continue
                 rec.requested_delivery_period_display = f"{start_date} - {end_date}"
             elif start_date and not end_date:
-                rec.requested_delivery_period_display = (
-                    self.env._("From %s") % start_date
+                rec.requested_delivery_period_display = self.env._(
+                    "From %s", start_date
                 )
             elif not start_date and end_date:
-                rec.requested_delivery_period_display = (
-                    self.env._("Until %s") % end_date
-                )
+                rec.requested_delivery_period_display = self.env._("Until %s", end_date)
             else:
                 rec.requested_delivery_period_display = self.env._("N/A")
