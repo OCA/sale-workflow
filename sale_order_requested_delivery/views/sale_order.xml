@@ -23,7 +23,7 @@
                 />
             </xpath>
             <xpath
-                expr="//field[@name='order_line']/list/field[@name='company_id']"
+                expr="//field[@name='order_line']/list/field[@name='name']"
                 position="after"
             >
                 <field

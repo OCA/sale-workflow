@@ -1,5 +1,5 @@
-# Copyright 2025 Camptocamp SA
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html)
+# Copyright 2024 CamptoCamp SA
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo.exceptions import ValidationError
 
@@ -10,9 +10,16 @@ class TestSaleOrderLineRequestedDelivery(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.sale_order_line = cls.env.ref("sale.sale_order_line_1")
-        cls.sale_order_line.write(
+        cls.product = cls.env["product.product"].create({"name": "Test Product"})
+        cls.sale_order = cls.env["sale.order"].create(
             {
+                "partner_id": cls.partner.id,
+            }
+        )
+        cls.sale_order_line = cls.env["sale.order.line"].create(
+            {
+                "order_id": cls.sale_order.id,
+                "product_id": cls.product.id,
                 "requested_delivery_period_start": "2024-01-21 10:00:00",
                 "requested_delivery_period_end": "2024-02-13 18:00:00",
             }

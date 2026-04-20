@@ -10,9 +10,9 @@ class TestSaleOrderRequestedDelivery(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.sale_order = cls.env.ref("sale.sale_order_1")
-        cls.sale_order.write(
+        cls.sale_order = cls.env["sale.order"].create(
             {
+                "partner_id": cls.partner.id,
                 "requested_delivery_period_start": "2024-01-21 10:00:00",
                 "requested_delivery_period_end": "2024-02-13 18:00:00",
             }

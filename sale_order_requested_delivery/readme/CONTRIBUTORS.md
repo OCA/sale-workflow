@@ -2,3 +2,5 @@
 -  Simone Orsi <simone.orsi@camptocamp.com>
 -  Henry Backman <henry.backman@camptocamp.com>
 -  Tomasz Walter <tomasz.walter@camptocamp.com>
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia
