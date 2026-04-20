@@ -1,7 +1,7 @@
 # Copyright 2025 Binhex <https://www.binhex.cloud>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import Command, _, models
+from odoo import Command, models
 from odoo.exceptions import ValidationError
 
 
@@ -27,7 +27,7 @@ class SaleOrder(models.Model):
         """
         message_error = ""
         for order in self:
-            message_error = _("%(order)s%(message)s") % {
+            message_error = self.env._("%(order)s%(message)s") % {
                 "order": f"\n{order.name}" if len(self) > 1 else "",
                 "message": self.env[
                     "res.partner.id_number"
@@ -46,7 +46,7 @@ class SaleOrder(models.Model):
     def _action_generate_confirm_identification(self, message):
         view = self.env.ref("sale_product_identification.confirm_identification_view")
         return {
-            "name": _("Confirm identification"),
+            "name": self.env._("Confirm identification"),
             "type": "ir.actions.act_window",
             "view_mode": "form",
             "res_model": "confirm.identification",
@@ -74,7 +74,10 @@ class SaleOrder(models.Model):
             .mapped("category_id")
         )
         if products_opt_identification_ids:
-            message = _(
+            self.order_line.mapped(
+                "product_template_id"
+            )._eval_expression_identification(self)
+            message = self.env._(
                 "The following identifications require verification, "
                 "please validate before continuing:\n %(identifications)s"
             ) % {
@@ -95,7 +98,7 @@ class SaleOrder(models.Model):
         if products_identification_ids:
             diff_identification = self._diff_identification(products_identification_ids)
             if diff_identification:
-                message = _(
+                message = self.env._(
                     "The following identifications are required for "
                     "partner, please verify.\n %(identifications)s"
                 ) % {
@@ -104,6 +107,9 @@ class SaleOrder(models.Model):
                     )
                 }
                 raise ValidationError(message)
+            self.order_line.mapped(
+                "product_template_id"
+            )._eval_expression_identification(self)
 
     def action_confirm(self):
         for order in self:
