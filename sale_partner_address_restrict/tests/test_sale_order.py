@@ -19,7 +19,7 @@ class TestSaleOrder(BaseCommon):
         cls.partner2 = cls.env["res.partner"].create({"name": "Test Partner 2"})
         cls.partner3 = cls.env["res.partner"].create({"name": "Test Partner 3"})
 
-        cls.env.user.groups_id += cls.env.ref("account.group_delivery_invoice_address")
+        cls.env.user.group_ids += cls.env.ref("account.group_delivery_invoice_address")
         cls.env.company.sale_partner_address_restriction = True
 
     def test_sale_order_address_domain(self):
