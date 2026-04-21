@@ -8,9 +8,7 @@
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
-    "depends": ["sale_order_lot_selection"],
-    "data": [
-        "views/stock_lot_views.xml",
-    ],
+    "depends": ["sale_order_lot_selection", "stock_lot_list_price"],
+    "data": [],
     "maintainers": ["victoralmau"],
 }
