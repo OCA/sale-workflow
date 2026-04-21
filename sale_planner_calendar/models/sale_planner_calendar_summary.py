@@ -123,9 +123,7 @@ class SalePlannerCalendarSummary(models.Model):
         res = []
         DateField = self.env["ir.qweb.field.date"]
         for line in self:
-            name = "{} {}".format(
-                DateField.value_to_html(line.date, {}), line.user_id.name
-            )
+            name = f"{DateField.value_to_html(line.date, {})} {line.user_id.name}"
             res.append((line.id, name))
         return res
 
@@ -290,7 +288,7 @@ class SalePlannerCalendarSummary(models.Model):
             hour_str = hour_float
         else:
             hour_str = str(timedelta(hours=hour_float)).zfill(8)
-        date_str = "{} {}".format(fields.Date.to_string(date), hour_str)
+        date_str = f"{fields.Date.to_string(date)} {hour_str}"
         date_time = fields.Datetime.to_datetime(date_str)
         user_tz = pytz.timezone(self.env.user.tz or "UTC")
         utc_tz = pytz.timezone("UTC")

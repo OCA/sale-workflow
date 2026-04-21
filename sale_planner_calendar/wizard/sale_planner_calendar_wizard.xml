@@ -8,9 +8,9 @@
             <form>
                 <sheet>
                     <group>
-                    <field name="user_id" />
-                    <field name="event_type_id" widget="selection" />
-                    <field name="week_list" />
+                        <field name="user_id" />
+                        <field name="event_type_id" widget="selection" />
+                        <field name="week_list" />
                     </group>
                     <field name="calendar_event_ids">
                         <tree
@@ -38,7 +38,6 @@
                                 optional="hide"
                                 widget="float_time"
                             />
-
                         </tree>
                     </field>
                     <button
@@ -52,5 +51,4 @@
             </form>
         </field>
     </record>
-
 </odoo>

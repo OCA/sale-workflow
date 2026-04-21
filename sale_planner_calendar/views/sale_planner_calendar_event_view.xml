@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="view_sale_planner_calendar_search" model="ir.ui.view">
         <field name="name">sale.planner.calendar.event</field>
         <field name="model">calendar.event</field>
@@ -132,8 +131,7 @@
                             type="object"
                             attrs="{'invisible':[('sale_planner_state', 'not in', ['pending'])]}"
                             icon="fa-check"
-                        >
-                        </button>
+                        />
                         <button
                             class="oe_stat_button border-end"
                             name="action_cancel"
@@ -465,9 +463,8 @@
                                             <i class="fa fa-user fa-fw" />
                                         </div>
                                         <div class="col">
-                                            <field name="partner_ref" />  <field
-                                                name="partner_name"
-                                            />
+                                            <field name="partner_ref" />
+                                            <field name="partner_name" />
                                         </div>
                                         <div
                                             class="col-2"

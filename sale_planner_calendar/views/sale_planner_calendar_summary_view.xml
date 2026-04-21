@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="view_sale_planner_calendar_summary_search" model="ir.ui.view">
         <field name="name">sale.planner.calendar.summary</field>
         <field name="model">sale.planner.calendar.summary</field>
@@ -120,8 +119,7 @@
                             />
                         </group>
                     </group>
-                    <group string="Totals">
-                    </group>
+                    <group string="Totals" />
                     <div name="Totals">
                         <div class="row">
                             <div class="col" />
@@ -132,14 +130,18 @@
                         </div>
                         <div class="row">
                             <div class="col h5">Events</div>
-                            <div class="col"><field name="event_total_count" /></div>
-                            <div class="col"><field name="event_done_count" /></div>
-                            <div class="col"><field
-                                    name="event_effective_count"
-                                /></div>
-                            <div class="col"><field
-                                    name="event_off_planning_count"
-                                /></div>
+                            <div class="col">
+                                <field name="event_total_count" />
+                            </div>
+                            <div class="col">
+                                <field name="event_done_count" />
+                            </div>
+                            <div class="col">
+                                <field name="event_effective_count" />
+                            </div>
+                            <div class="col">
+                                <field name="event_off_planning_count" />
+                            </div>
                         </div>
                         <hr />
                         <div class="row">
@@ -151,8 +153,12 @@
                         </div>
                         <div class="row">
                             <div class="col h5">Orders</div>
-                            <div class="col"><field name="sale_order_count" /></div>
-                            <div class="col"><field name="sale_order_subtotal" /></div>
+                            <div class="col">
+                                <field name="sale_order_count" />
+                            </div>
+                            <div class="col">
+                                <field name="sale_order_subtotal" />
+                            </div>
                             <div class="col" />
                             <div class="col" />
                         </div>
@@ -166,8 +172,12 @@
                         </div>
                         <div class="row">
                             <div class="col h5">Payments</div>
-                            <div class="col"><field name="payment_count" /></div>
-                            <div class="col"><field name="payment_amount" /></div>
+                            <div class="col">
+                                <field name="payment_count" />
+                            </div>
+                            <div class="col">
+                                <field name="payment_amount" />
+                            </div>
                             <div class="col" />
                             <div class="col" />
                         </div>
@@ -201,9 +211,11 @@
                         <div t-attf-class="oe_kanban_card w-100 oe_kanban_global_click">
                             <div class="row mb4">
                                 <div class="col-6">
-                                    <strong><span><t
-                                                t-esc="record.date.value"
-                                            /></span></strong>
+                                    <strong>
+                                        <span>
+                                            <t t-esc="record.date.value" />
+                                        </span>
+                                    </strong>
                                 </div>
                                 <div class="col-6 text-end">
                                     <field
@@ -216,8 +228,8 @@
                             <div class="row">
                                 <div class="col-6">
                                     <span>Total orders: <field
-                                            name="sale_order_subtotal"
-                                        /></span>
+                                        name="sale_order_subtotal"
+                                    /></span>
                                 </div>
                                 <div class="col-6">
                                     <div class="float-end">

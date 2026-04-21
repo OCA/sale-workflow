@@ -98,9 +98,9 @@ class CalendarEvent(models.Model):
     # Adding code \uFE0E to force monochrome emoji. Not supported with 🙁 and 🙂 emojis
     sale_planner_rating = fields.Selection(
         [
-            ("1", "😞\uFE0E"),
-            ("3", "😐\uFE0E"),
-            ("5", "😊\uFE0E"),
+            ("1", "😞\ufe0e"),
+            ("3", "😐\ufe0e"),
+            ("5", "😊\ufe0e"),
         ],
     )
 
@@ -265,9 +265,7 @@ class CalendarEvent(models.Model):
             return {
                 "warning": {
                     "title": "Max duration exceeded",
-                    "message": "Max duration set in config parameters is {} hours".format(
-                        max_duration
-                    ),
+                    "message": f"Max duration set in config parameters is {max_duration} hours",
                     "type": "notification",
                 }
             }

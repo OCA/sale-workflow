@@ -28,5 +28,4 @@ action['context']['control_panel_hidden'] = True
             records.action_set_planner_calendar_event()
         </field>
     </record>
-
 </odoo>

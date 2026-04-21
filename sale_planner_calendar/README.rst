@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =====================
 Sale planner calendar
 =====================
@@ -17,22 +13,23 @@ Sale planner calendar
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_planner_calendar
+    :target: https://github.com/OCA/sale-workflow/tree/18.0/sale_planner_calendar
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_planner_calendar
+    :target: https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-sale_planner_calendar
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows to manage commercial visits to partners by using recurrence events.
+This module allows to manage commercial visits to partners by using
+recurrence events.
 
 **Table of contents**
 
@@ -44,57 +41,60 @@ Configuration
 
 You can find the following configurations in the settings:
 
-#. **Subscriptions Backward Days**: Backward days to search documents to update
-   subscriptions.
-
-#. **Sale Planner Forward Months**: Forward months to create calendar events.
-
-#. **Send invitation to attendees**: Send invitations to attendees when a planner event
-   is created.
-
-#. **Sale planner order cut hour**: Time of the next day until which orders of the
-   current day are assigned.
-
-#. **Calendar event max duration**: Show a warning message when duration is more than
-   this time. Set 00:00 to disable warning.
+1. **Subscriptions Backward Days**: Backward days to search documents to
+   update subscriptions.
+2. **Sale Planner Forward Months**: Forward months to create calendar
+   events.
+3. **Send invitation to attendees**: Send invitations to attendees when
+   a planner event is created.
+4. **Sale planner order cut hour**: Time of the next day until which
+   orders of the current day are assigned.
+5. **Calendar event max duration**: Show a warning message when duration
+   is more than this time. Set 00:00 to disable warning.
 
 Other setting are available with system parameters
 
-#. **Sale order partner** when a so is created from a event planned. You can create or
-   update the system parameter **sale_planner_calendar.create_so_to_commercial_partner**
-   with True value to create the sale order to commercial partner instead of partner
+1. **Sale order partner** when a so is created from a event planned. You
+   can create or update the system parameter
+   **sale_planner_calendar.create_so_to_commercial_partner** with True
+   value to create the sale order to commercial partner instead of
+   partner
 
 Usage
 =====
 
-You can create now the recurrent events directly from the partners by clicking next
-smart button:
+You can create now the recurrent events directly from the partners by
+clicking next smart button:
 
-.. image:: https://raw.githubusercontent.com/OCA/sale-workflow/16.0/sale_planner_calendar/static/img/smart_button.png
+|image|
 
-By default the end of the recurrence is set by the settings field
-**Sale Planner Forward Months**.
+By default the end of the recurrence is set by the settings field **Sale
+Planner Forward Months**.
 
-You can manage this new recurrent events from *Calendar planner* menu entry.
+You can manage this new recurrent events from *Calendar planner* menu
+entry.
 
-.. image:: https://raw.githubusercontent.com/OCA/sale-workflow/16.0/sale_planner_calendar/static/img/menu_entry.png
+|image1|
 
-On the first window, you will find a summary of the events that the user has to do
-today.
+On the first window, you will find a summary of the events that the user
+has to do today.
 
-By going to *Calendar planner > Calendar events* you will have two options:
+By going to *Calendar planner > Calendar events* you will have two
+options:
 
-#. View the calendar events related to your user (*My Calendar*).
-
-#. View your base events related to the recurrences (*Recurrent calendar events*).
+1. View the calendar events related to your user (*My Calendar*).
+2. View your base events related to the recurrences (*Recurrent calendar
+   events*).
 
 Finally on *Calendar planner > Wizards* you will have again two options:
 
-#. You can change the hour of the start of all the events related to a recurrency by using
-   *Sale planner calendar wizard*.
+1. You can change the hour of the start of all the events related to a
+   recurrency by using *Sale planner calendar wizard*.
+2. You can change the salesperson assigned to events related to a period
+   of time by using the wizard *Reassignment of salesperson*.
 
-#. You can change the salesperson assigned to events related to a period of time by using
-   the wizard *Reassignment of salesperson*.
+.. |image| image:: https://raw.githubusercontent.com/OCA/sale-workflow/18.0/sale_planner_calendar/static/img/smart_button.png
+.. |image1| image:: https://raw.githubusercontent.com/OCA/sale-workflow/18.0/sale_planner_calendar/static/img/menu_entry.png
 
 Bug Tracker
 ===========
@@ -102,7 +102,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_planner_calendar%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_planner_calendar%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -110,22 +110,22 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Tecnativa
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* `Tecnativa <https://www.tecnativa.com>`__:
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-  * Sergio Teruel
-  * Carlos Dauden
-  * Carlos Roca
-  * Pilar Vargas
+  - Sergio Teruel
+  - Carlos Dauden
+  - Carlos Roca
+  - Pilar Vargas
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -137,6 +137,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_planner_calendar>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/18.0/sale_planner_calendar>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-
     <record id="view_calendar_event_type_tree" model="ir.ui.view">
         <field name="name">calendar.event.type</field>
         <field name="model">calendar.event.type</field>
@@ -12,5 +11,4 @@
             </field>
         </field>
     </record>
-
 </odoo>
