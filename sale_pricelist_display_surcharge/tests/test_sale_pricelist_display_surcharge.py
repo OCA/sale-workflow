@@ -1,11 +1,12 @@
 # Copyright 2025 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import fields
-from odoo.tests import common
+from odoo import Command, fields
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestModule(common.TransactionCase):
+class TestModule(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -27,9 +28,7 @@ class TestModule(common.TransactionCase):
             {
                 "name": "pricelist",
                 "item_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "applied_on": "1_product",
                             "compute_price": "percentage",
@@ -57,7 +56,7 @@ class TestModule(common.TransactionCase):
                 "order_id": sale_order.id,
                 "product_id": self.product.id,
                 "product_uom_qty": 10,
-                "product_uom": self.env.ref("uom.product_uom_unit").id,
+                "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             }
         )
         self.assertEqual(line.discount, 0.0)
@@ -79,7 +78,7 @@ class TestModule(common.TransactionCase):
                 "order_id": sale_order.id,
                 "product_id": self.product.id,
                 "product_uom_qty": 10,
-                "product_uom": self.env.ref("uom.product_uom_unit").id,
+                "product_uom_id": self.env.ref("uom.product_uom_unit").id,
             }
         )
         self.assertEqual(line.discount, -10.0)

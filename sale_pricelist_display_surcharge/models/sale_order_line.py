@@ -7,7 +7,7 @@ from odoo import api, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.depends("product_id", "product_uom", "product_uom_qty")
+    @api.depends("product_id", "product_uom_id", "product_uom_qty")
     def _compute_discount(self):
         res = super()._compute_discount()
         for line in self:
