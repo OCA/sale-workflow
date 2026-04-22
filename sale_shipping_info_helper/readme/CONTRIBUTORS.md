@@ -5,3 +5,5 @@
 - [Pesol](https://www.pesol.es):
   - Jonathan Oscategui Taza \<<info@pesol.es>\>
 - Khoi (Kien Kim) \<<khoikk@trobz.com>\>
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia
