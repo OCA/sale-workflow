@@ -1,2 +1,0 @@
-- [Tecnativa](https://www.tecnativa.com):
-  - Eduardo Ezerouali
