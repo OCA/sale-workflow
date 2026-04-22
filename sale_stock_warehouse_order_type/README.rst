@@ -28,7 +28,7 @@ Sale Stock Warehouse Order Type
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module extends sale_stock_warehouse_partner functionality to
+This module extends sale_stock_partner_warehouse functionality to
 control interactions with sale_order_type.
 
 .. IMPORTANT::
@@ -78,6 +78,14 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-eduezerouali-tecnativa| image:: https://github.com/eduezerouali-tecnativa.png?size=40px
+    :target: https://github.com/eduezerouali-tecnativa
+    :alt: eduezerouali-tecnativa
+
+Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-eduezerouali-tecnativa| 
 
 This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/18.0/sale_stock_warehouse_order_type>`_ project on GitHub.
 
