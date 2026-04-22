@@ -9,11 +9,15 @@ class TestSale(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.product_9 = cls.env.ref("product.product_product_9")
-        cls.product_11 = cls.env.ref("product.product_product_11")
+        cls.product_9 = cls.env["product.product"].create(
+            {"name": "Test Product 9", "type": "consu"}
+        )
+        cls.product_11 = cls.env["product.product"].create(
+            {"name": "Test Product 11", "type": "consu"}
+        )
         cls.so = cls.env["sale.order"].create(
             {
-                "partner_id": cls.env.ref("base.res_partner_2").id,
+                "partner_id": cls.partner.id,
                 "picking_policy": "one",
             }
         )

@@ -12,13 +12,10 @@
                     style="margin:12px 0px 12px 0px;"
                     string="Add multiple products"
                     icon="fa-plus-circle"
-                    Help="Select Products to Import"
+                    help="Select Products to Import"
                     type="action"
                     invisible="state not in ['draft', 'sent']"
                 />
-            </field>
-            <field name="order_line" position="attributes">
-                <attribute name="options">{'always_reload':true}</attribute>
             </field>
         </field>
     </record>

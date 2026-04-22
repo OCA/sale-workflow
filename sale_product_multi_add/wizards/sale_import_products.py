@@ -25,7 +25,6 @@ class SaleImportProducts(models.TransientModel):
         return {
             "type": "ir.actions.act_window",
             "res_model": self._name,
-            "view_type": "form",
             "view_mode": "form",
             "views": [(view.id, "form")],
             "target": "new",
@@ -40,7 +39,7 @@ class SaleImportProducts(models.TransientModel):
                 "order_id": sale.id,
                 "product_id": item.product_id.id,
                 "product_uom_qty": item.quantity,
-                "product_uom": item.product_id.uom_id.id,
+                "product_uom_id": item.product_id.uom_id.id,
                 "price_unit": item.product_id.list_price,
             }
         )
