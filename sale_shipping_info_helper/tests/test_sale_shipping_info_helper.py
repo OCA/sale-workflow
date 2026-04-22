@@ -2,22 +2,35 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
-from odoo.tests import Form, TransactionCase
+from odoo import Command
+from odoo.tests import Form
 from odoo.tools import float_compare
 
+from odoo.addons.base.tests.common import BaseCommon
 
-class TestDeliveryCost(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.tax_model = self.env["account.tax"]
-        self.SaleOrder = self.env["sale.order"]
-        self.SaleOrderLine = self.env["sale.order.line"]
 
-        self.partner_18 = self.env.ref("base.res_partner_18")
-        self.pricelist = self.env["product.pricelist"].create({"name": "Test PL"})
-        self.product_4 = self.env.ref("product.product_product_4")
-        self.product_uom_unit = self.env.ref("uom.product_uom_unit")
-        self.normal_delivery = self.env.ref("delivery.delivery_local_delivery")
+class TestDeliveryCost(BaseCommon):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.tax_model = cls.env["account.tax"]
+        cls.SaleOrder = cls.env["sale.order"]
+        cls.SaleOrderLine = cls.env["sale.order.line"]
+        cls.pricelist = cls.env["product.pricelist"].create({"name": "Test PL"})
+        cls.product_4 = cls.env["product.product"].create(
+            {"name": "Test Product", "type": "consu"}
+        )
+        cls.product_uom_unit = cls.env.ref("uom.product_uom_unit")
+        cls.normal_delivery = cls.env["delivery.carrier"].create(
+            {
+                "name": "Normal Delivery Charges",
+                "fixed_price": 10.0,
+                "delivery_type": "fixed",
+                "product_id": cls.env["product.product"]
+                .create({"name": "Delivery Product", "type": "service"})
+                .id,
+            }
+        )
 
     def test_00_shipping_info(self):
         # Create sale order with Normal Delivery Charges
@@ -35,21 +48,19 @@ class TestDeliveryCost(TransactionCase):
         self.normal_delivery.fixed_price = 10.0
         self.sale = self.SaleOrder.create(
             {
-                "partner_id": self.partner_18.id,
-                "partner_invoice_id": self.partner_18.id,
-                "partner_shipping_id": self.partner_18.id,
+                "partner_id": self.partner.id,
+                "partner_invoice_id": self.partner.id,
+                "partner_shipping_id": self.partner.id,
                 "pricelist_id": self.pricelist.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "name": "PC Assamble + 2GB RAM",
                             "product_id": self.product_4.id,
                             "product_uom_qty": 1,
-                            "product_uom": self.product_uom_unit.id,
+                            "product_uom_id": self.product_uom_unit.id,
                             "price_unit": 750.00,
-                            "tax_id": [(4, self.percent_tax.id, 0)],
+                            "tax_ids": [Command.link(self.percent_tax.id)],
                         },
                     )
                 ],
