@@ -7,8 +7,8 @@ from odoo import api, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.onchange("type_id")
-    def onchange_type_id(self):
+    @api.depends("type_id")
+    def _compute_warehouse_id(self):
         """
         The order to apply default warehouse in a sale order is
         1 - Shipping address
@@ -17,20 +17,15 @@ class SaleOrder(models.Model):
         4 - Sale order type setting
         The inherit method already checks if the sale order type has not warehouse.
         """
-        res = super().onchange_type_id()
-        for order in self:
+        res = super()._compute_warehouse_id()
+        for order in self.filtered("type_id"):
             order_type = order.type_id
-            vals = {}
             if order.partner_shipping_id.sale_warehouse_id:
-                vals.update(
-                    {"warehouse_id": order.partner_shipping_id.sale_warehouse_id.id}
-                )
+                order.warehouse_id = order.partner_shipping_id.sale_warehouse_id
             elif order.partner_id.sale_warehouse_id:
-                vals.update({"warehouse_id": order.partner_id.sale_warehouse_id.id})
+                order.warehouse_id = order.partner_id.sale_warehouse_id
             elif order.user_id.property_warehouse_id:
-                vals.update({"warehouse_id": order.user_id.property_warehouse_id.id})
+                order.warehouse_id = order.user_id.property_warehouse_id
             elif order_type.warehouse_id:
-                vals.update({"warehouse_id": order_type.warehouse_id.id})
-            if vals:
-                order.update(vals)
+                order.warehouse_id = order.type_id.warehouse_id
         return res

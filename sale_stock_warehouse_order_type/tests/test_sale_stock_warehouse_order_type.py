@@ -1,10 +1,13 @@
 # Copyright 2025 Tecnativa - Eduardo Ezerouali
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
-from odoo.tests import Form, TransactionCase, tagged
+from odoo import Command
+from odoo.tests import tagged
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @tagged("post_install", "-at_install")
-class TestSaleStockWarehouseOrderType(TransactionCase):
+class TestSaleStockWarehouseOrderType(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -61,61 +64,58 @@ class TestSaleStockWarehouseOrderType(TransactionCase):
                 "name": "Test User",
                 "login": "test_user@example.com",
                 "company_id": cls.company.id,
-                "company_ids": [(6, 0, [cls.company.id])],
+                "company_ids": [Command.set([cls.company.id])],
+                "property_warehouse_id": cls.warehouse_user.id,
             }
         )
-        cls.user.property_warehouse_id = cls.warehouse_user
         cls.default_company_wh = cls.env["stock.warehouse"].search(
             [("company_id", "=", cls.company.id)], limit=1
         )
 
-    def _new_form(self):
+    def create_order(self):
         """Helper to open a Sale Order Form with the base fields pre-filled.
         We rely on Form to trigger onchanges automatically when fields change.
         """
-        form = Form(self.env["sale.order"])
-        form.company_id = self.company
-        form.partner_id = self.partner
-        form.user_id = self.user
-        form.partner_shipping_id = self.partner_shipping
-        return form
+        sale = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "partner_shipping_id": self.partner_shipping.id,
+                "user_id": self.user.id,
+                "type_id": self.sale_order_type.id,
+            }
+        )
+        return sale
 
     def test_priority_1_shipping_address(self):
-        f = self._new_form()
-        f.type_id = self.sale_order_type
-        so = f.save()
-        self.assertEqual(so.warehouse_id, self.warehouse_shipping)
+        sale = self.create_order()
+        sale.type_id = self.sale_order_type
+        self.assertEqual(sale.warehouse_id, self.warehouse_shipping)
 
     def test_priority_2_partner_when_shipping_missing(self):
         self.partner_shipping.sale_warehouse_id = False
-        f = self._new_form()
-        f.type_id = self.sale_order_type
-        so = f.save()
-        self.assertEqual(so.warehouse_id, self.warehouse_partner)
+        sale = self.create_order()
+        sale.type_id = self.sale_order_type
+        self.assertEqual(sale.warehouse_id, self.warehouse_partner)
 
     def test_priority_3_user_when_shipping_and_partner_missing(self):
         self.partner_shipping.sale_warehouse_id = False
         self.partner.sale_warehouse_id = False
-        f = self._new_form()
-        f.type_id = self.sale_order_type
-        so = f.save()
-        self.assertEqual(so.warehouse_id, self.warehouse_user)
+        sale = self.create_order()
+        sale.type_id = self.sale_order_type
+        self.assertEqual(sale.warehouse_id, self.warehouse_user)
 
     def test_priority_4_type_when_others_missing(self):
         self.partner_shipping.sale_warehouse_id = False
         self.partner.sale_warehouse_id = False
         self.user.property_warehouse_id = False
-        f = self._new_form()
-        f.type_id = self.sale_order_type
-        so = f.save()
-        self.assertEqual(so.warehouse_id, self.warehouse_type)
+        sale = self.create_order()
+        sale.type_id = self.sale_order_type
+        self.assertEqual(sale.warehouse_id, self.warehouse_type)
 
     def test_no_override_when_vals_not_found(self):
         self.partner_shipping.sale_warehouse_id = False
         self.partner.sale_warehouse_id = False
         self.user.property_warehouse_id = False
         self.sale_order_type.warehouse_id = False
-        f = self._new_form()
-        f.type_id = self.sale_order_type
-        so = f.save()
-        self.assertEqual(so.warehouse_id, self.default_company_wh)
+        sale = self.create_order()
+        self.assertEqual(sale.warehouse_id, self.default_company_wh)

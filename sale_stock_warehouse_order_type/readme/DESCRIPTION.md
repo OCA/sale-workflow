@@ -1,2 +1,2 @@
-This module extends sale_stock_warehouse_partner functionality to
+This module extends sale_stock_partner_warehouse functionality to
 control interactions with sale_order_type.
