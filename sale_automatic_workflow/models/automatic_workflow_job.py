@@ -1,6 +1,7 @@
 # Copyright 2011 Akretion Sébastien BEAU <sebastien.beau@akretion.com>
 # Copyright 2013 Camptocamp SA (author: Guewen Baconnier)
 # Copyright 2016 Sodexis
+# Copyright 2026 Muslim Foda <muslimfoda09@gmail.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 import logging
@@ -36,7 +37,7 @@ class AutomaticWorkflowJob(models.Model):
     )
 
     def _do_validate_sale_order(self, sale, domain_filter):
-        """Validate a sales order, filter ensure no duplication"""
+        """Validate a sales order, filter ensure no duplication."""
         if not self.env["sale.order"].search_count(
             [("id", "=", sale.id)] + domain_filter
         ):
@@ -45,8 +46,11 @@ class AutomaticWorkflowJob(models.Model):
         return "{} {} confirmed successfully".format(sale.display_name, sale)
 
     def _do_send_order_confirmation_mail(self, sale):
-        """Send order confirmation mail, while filtering to make sure the order is
-        confirmed with _do_validate_sale_order() function"""
+        """Send order confirmation mail.
+
+        Filter to make sure the order is confirmed with
+        _do_validate_sale_order() before sending.
+        """
         if not self.env["sale.order"].search_count(
             [("id", "=", sale.id), ("state", "=", "sale")]
         ):
@@ -72,11 +76,37 @@ class AutomaticWorkflowJob(models.Model):
                     self._do_send_order_confirmation_mail(sale)
 
     def _do_create_invoice(self, sale, domain_filter):
-        """Create an invoice for a sales order, filter ensure no duplication"""
+        """Create an invoice for a sales order, filter ensure no duplication.
+
+        Skips creation if a posted invoice already exists, or if that
+        invoice has already been reversed by a credit note (refund).
+        """
         if not self.env["sale.order"].search_count(
             [("id", "=", sale.id)] + domain_filter
         ):
             return "{} {} job bypassed".format(sale.display_name, sale)
+
+        posted_invoices = sale.invoice_ids.filtered(
+            lambda move: move.state == "posted"
+            and move.move_type == "out_invoice"
+        )
+
+        if posted_invoices:
+            refunds = self.env["account.move"].search(
+                [
+                    ("reversed_entry_id", "in", posted_invoices.ids),
+                    ("move_type", "=", "out_refund"),
+                    ("state", "=", "posted"),
+                ]
+            )
+            if refunds:
+                return "{} {} skipped (invoice already refunded)".format(
+                    sale.display_name, sale
+                )
+            return "{} {} skipped (posted invoice already exists)".format(
+                sale.display_name, sale
+            )
+
         payment = self.env["sale.advance.payment.inv"].create(
             {"sale_order_ids": sale.ids}
         )
@@ -95,7 +125,7 @@ class AutomaticWorkflowJob(models.Model):
                 )
 
     def _do_validate_invoice(self, invoice, domain_filter):
-        """Validate an invoice, filter ensure no duplication"""
+        """Validate an invoice, filter ensure no duplication."""
         if not self.env["account.move"].search_count(
             [("id", "=", invoice.id)] + domain_filter
         ):
@@ -113,17 +143,18 @@ class AutomaticWorkflowJob(models.Model):
         for invoice in invoices:
             with savepoint(self.env.cr):
                 self._do_validate_invoice(
-                    invoice.with_company(invoice.company_id), validate_invoice_filter
+                    invoice.with_company(invoice.company_id),
+                    validate_invoice_filter,
                 )
 
     def _do_send_invoice(self, invoice, domain_filter):
-        """Validate an invoice, filter ensure no duplication"""
+        """Send an invoice by email, filter ensure no duplication."""
         if not self.env["account.move"].search_count(
             [("id", "=", invoice.id)] + domain_filter
         ):
             return "{} {} job bypassed".format(invoice.display_name, invoice)
 
-        # take the context from the actual action_invoice_sent method
+        # Take the context from the actual action_invoice_sent method
         action = invoice.action_invoice_sent()
         action_context = action["context"]
 
@@ -145,10 +176,8 @@ class AutomaticWorkflowJob(models.Model):
                 }
             )
         )
-
         invoice_send_wizard.onchange_is_email()
         invoice_send_wizard._send_email()
-
         return "{} {} sent invoice successfully".format(invoice.display_name, invoice)
 
     @api.model
@@ -163,7 +192,7 @@ class AutomaticWorkflowJob(models.Model):
                 )
 
     def _do_validate_picking(self, picking, domain_filter):
-        """Validate a stock.picking, filter ensure no duplication"""
+        """Validate a stock.picking, filter ensure no duplication."""
         if not self.env["stock.picking"].search_count(
             [("id", "=", picking.id)] + domain_filter
         ):
@@ -183,7 +212,7 @@ class AutomaticWorkflowJob(models.Model):
                 self._do_validate_picking(picking, picking_filter)
 
     def _do_sale_done(self, sale, domain_filter):
-        """Set a sales order to done, filter ensure no duplication"""
+        """Set a sales order to done, filter ensure no duplication."""
         if not self.env["sale.order"].search_count(
             [("id", "=", sale.id)] + domain_filter
         ):
@@ -198,7 +227,9 @@ class AutomaticWorkflowJob(models.Model):
         _logger.debug("Sale Orders to done: %s", sales.ids)
         for sale in sales:
             with savepoint(self.env.cr):
-                self._do_sale_done(sale.with_company(sale.company_id), sale_done_filter)
+                self._do_sale_done(
+                    sale.with_company(sale.company_id), sale_done_filter
+                )
 
     def _prepare_dict_account_payment(self, invoice):
         partner_type = (
@@ -222,14 +253,12 @@ class AutomaticWorkflowJob(models.Model):
         for invoice in invoices:
             with savepoint(self.env.cr):
                 self._register_payment_invoice(invoice)
-        return
 
     def _register_payment_invoice(self, invoice):
         payment = self.env["account.payment"].create(
             self._prepare_dict_account_payment(invoice)
         )
         payment.action_post()
-
         domain = [
             ("account_type", "in", ("asset_receivable", "liability_payable")),
             ("reconciled", "=", False),
@@ -246,7 +275,9 @@ class AutomaticWorkflowJob(models.Model):
         workflow_domain = [("workflow_process_id", "=", sale_workflow.id)]
         if sale_workflow.validate_order:
             self.with_context(
-                send_order_confirmation_mail=sale_workflow.send_order_confirmation_mail
+                send_order_confirmation_mail=(
+                    sale_workflow.send_order_confirmation_mail
+                )
             )._validate_sale_orders(
                 safe_eval(sale_workflow.order_filter_id.domain) + workflow_domain
             )
@@ -266,13 +297,13 @@ class AutomaticWorkflowJob(models.Model):
             )
         if sale_workflow.send_invoice:
             self._send_invoices(
-                safe_eval(sale_workflow.send_invoice_filter_id.domain) + workflow_domain
+                safe_eval(sale_workflow.send_invoice_filter_id.domain)
+                + workflow_domain
             )
         if sale_workflow.sale_done:
             self._sale_done(
                 safe_eval(sale_workflow.sale_done_filter_id.domain) + workflow_domain
             )
-
         if sale_workflow.register_payment:
             self._register_payments(
                 safe_eval(sale_workflow.payment_filter_id.domain) + workflow_domain
@@ -280,7 +311,7 @@ class AutomaticWorkflowJob(models.Model):
 
     @api.model
     def run(self):
-        """Must be called from ir.cron"""
+        """Must be called from ir.cron."""
         sale_workflow_process = self.env["sale.workflow.process"]
         for sale_workflow in sale_workflow_process.search([]):
             self.run_with_workflow(sale_workflow)
