@@ -17,7 +17,7 @@ class SaleOrder(models.Model):
         4 - Sale order type setting
         The inherit method already checks if the sale order type has not warehouse.
         """
-        res = super(SaleOrder, self).onchange_type_id()
+        res = super().onchange_type_id()
         for order in self:
             order_type = order.type_id
             vals = {}
