@@ -7,7 +7,7 @@
                 expr="//group[@name='sale_shipping']/field[@name='delivery_status']"
                 position="attributes"
             >
-                <attribute name="invisible">1</attribute>
+                <attribute name="invisible">True</attribute>
             </xpath>
         </field>
     </record>
