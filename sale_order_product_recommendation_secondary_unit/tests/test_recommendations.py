@@ -60,19 +60,14 @@ class RecommendationCaseTests(test_recommendation_common.RecommendationCase):
         wl_prod1 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
         self.assertEqual(wl_prod1.secondary_uom_id, self.secondary_unit_p1)
         wl_prod1.units_included = 25
-        wl_prod1._onchange_units_included_sale_order_secondary_unit()
         self.assertAlmostEqual(wl_prod1.secondary_uom_qty, 2.5)
         wl_prod1.secondary_uom_qty = 3
-        wl_prod1._onchange_secondary_uom()
         self.assertAlmostEqual(wl_prod1.units_included, 30)
         # Product 2 has a secondary units, but no default ones
         wl_prod2 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_2)
         self.assertFalse(wl_prod2.secondary_uom_id)
         # Product 3 has no secondary units
         wl_prod3 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_3)
-        self.assertFalse(wl_prod3.secondary_uom_id)
-        wl_prod3._onchange_secondary_uom()
-        wl_prod3._onchange_units_included_sale_order_secondary_unit()
         self.assertFalse(wl_prod3.secondary_uom_id)
 
     def test_transfer_of_secondary_unit(self):
@@ -81,10 +76,8 @@ class RecommendationCaseTests(test_recommendation_common.RecommendationCase):
         wl_prod1 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
         wl_prod2 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_2)
         wl_prod1.secondary_uom_qty = 2  # 20 units
-        wl_prod1._onchange_secondary_uom()
         wl_prod2.secondary_uom_id = self.secondary_unit_p2
         wl_prod2.secondary_uom_qty = 2  # 48 units
-        wl_prod2._onchange_secondary_uom()
         wizard.action_accept()
         self.assertEqual(len(self.new_so.order_line), 2)
         sl_p1 = self.new_so.order_line.filtered(lambda x: x.product_id == self.prod_1)
@@ -99,7 +92,6 @@ class RecommendationCaseTests(test_recommendation_common.RecommendationCase):
         wizard = self.wizard()
         wl_prod1 = wizard.line_ids.filtered(lambda x: x.product_id == self.prod_1)
         wl_prod1.secondary_uom_qty = 1  # 10 units
-        wl_prod1._onchange_secondary_uom()
         wizard.action_accept()
         sl_p1 = self.new_so.order_line.filtered(lambda x: x.product_id == self.prod_1)
         self.assertEqual(sl_p1.secondary_uom_qty, 1)

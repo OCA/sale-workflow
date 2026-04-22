@@ -24,7 +24,9 @@
                 <field
                     name="secondary_uom_id"
                     groups="uom.group_uom"
-                    domain="[('product_tmpl_id', '=', product_tmpl_id)]"
+                    domain="product_id and ['|', ('product_id', '=', product_id),
+                                    '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
+                                            ('product_id', '=', False)] or [(0, '=', 1)]"
                     readonly="product_uom_readonly"
                     options="{'no_create': True}"
                     optional="show"
@@ -39,7 +41,9 @@
                 <field
                     name="secondary_uom_id"
                     groups="uom.group_uom"
-                    domain="[('product_tmpl_id', '=', product_tmpl_id)]"
+                    domain="product_id and ['|', ('product_id', '=', product_id),
+                                    '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
+                                            ('product_id', '=', False)] or [(0, '=', 1)]"
                     options="{'no_create': True}"
                 />
                 <field name="secondary_uom_name" groups="uom.group_uom" />
@@ -73,7 +77,9 @@
                     readonly="product_uom_readonly"
                     options="{'no_create': True}"
                     invisible="not secondary_uom_id"
-                    domain="[('product_tmpl_id', '=', product_tmpl_id)]"
+                    domain="product_id and ['|', ('product_id', '=', product_id),
+                                    '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
+                                            ('product_id', '=', False)] or [(0, '=', 1)]"
                 />
             </xpath>
         </field>

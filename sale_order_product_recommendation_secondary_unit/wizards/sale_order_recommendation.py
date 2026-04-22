@@ -4,7 +4,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
-from odoo.tools.float_utils import float_compare, float_round
 
 
 class SaleOrderRecommendation(models.TransientModel):
@@ -24,14 +23,17 @@ class SaleOrderRecommendation(models.TransientModel):
 
 
 class SaleOrderRecommendationLine(models.TransientModel):
-    _inherit = "sale.order.recommendation.line"
+    _inherit = ["sale.order.recommendation.line", "product.secondary.unit.mixin"]
+    _name = "sale.order.recommendation.line"
 
-    secondary_uom_id = fields.Many2one(comodel_name="product.secondary.unit")
+    _secondary_unit_fields = {
+        "qty_field": "units_included",
+        "uom_field": "sale_uom_id",
+    }
+    _product_uom_field = "uom_id"
+
     secondary_uom_name = fields.Char(
         string="Secondary Unit", related="secondary_uom_id.name"
-    )
-    secondary_uom_qty = fields.Float(
-        string="Secondary Qty", digits="Product Unit of Measure"
     )
     product_tmpl_id = fields.Many2one(
         related="product_id.product_tmpl_id",
@@ -39,44 +41,21 @@ class SaleOrderRecommendationLine(models.TransientModel):
         help="To filter secondary uom available",
     )
     product_uom_readonly = fields.Boolean(related="sale_line_id.product_uom_readonly")
+    units_included = fields.Float(
+        store=True,
+        readonly=False,
+        compute="_compute_units_included",
+        copy=True,
+        precompute=True,
+    )
 
-    @api.onchange("secondary_uom_id", "secondary_uom_qty")
-    def _onchange_secondary_uom(self):
-        if not self.secondary_uom_id:
-            return
-        factor = self.secondary_uom_id.factor * self.product_id.uom_id.factor
-        qty = float_round(
-            self.secondary_uom_qty * factor,
-            precision_rounding=self.product_id.uom_id.rounding,
-        )
-        if (
-            float_compare(
-                self.units_included,
-                qty,
-                precision_rounding=self.product_id.uom_id.rounding,
-            )
-            != 0
-        ):
-            self.units_included = qty
+    @api.depends("secondary_uom_qty", "secondary_uom_id")
+    def _compute_units_included(self):
+        self._compute_helper_target_field_qty()
 
-    @api.onchange("units_included")
-    def _onchange_units_included_sale_order_secondary_unit(self):
-        if not self.secondary_uom_id:
-            return
-        factor = self.secondary_uom_id.factor * self.product_id.uom_id.factor
-        qty = float_round(
-            self.units_included / (factor or 1.0),
-            precision_rounding=self.secondary_uom_id.uom_id.rounding,
-        )
-        if (
-            float_compare(
-                self.secondary_uom_qty,
-                qty,
-                precision_rounding=self.secondary_uom_id.uom_id.rounding,
-            )
-            != 0
-        ):
-            self.secondary_uom_qty = qty
+    @api.onchange("sale_uom_id")
+    def onchange_sale_uom_id_for_secondary(self):
+        self._onchange_helper_product_uom_for_secondary()
 
     def _prepare_update_so_line_vals(self):
         vals = super()._prepare_update_so_line_vals()
