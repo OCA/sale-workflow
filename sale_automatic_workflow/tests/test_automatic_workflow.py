@@ -25,7 +25,6 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
                 cls.env.context,
                 tracking_disable=True,
                 queue_job__no_delay=True,
-
             )
         )
 
@@ -50,9 +49,7 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         sale = self.create_sale_order(workflow)
         sale._onchange_workflow_process_id()
         self.assertEqual(sale.picking_policy, "one")
-        workflow2 = self.create_full_automatic(
-            override={"picking_policy": "direct"}
-        )
+        workflow2 = self.create_full_automatic(override={"picking_policy": "direct"})
         sale.workflow_process_id = workflow2.id
         sale._onchange_workflow_process_id()
         self.assertEqual(sale.picking_policy, "direct")
@@ -81,9 +78,7 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         self.assertEqual(line.qty_delivered, 0.0)
         self.assertFalse(sale.delivery_status)
         self.assertFalse(sale.all_qty_delivered)
-        mock_path = (
-            "odoo.addons.sale.models.sale_order.SaleOrder._create_invoices"
-        )
+        mock_path = "odoo.addons.sale.models.sale_order.SaleOrder._create_invoices"
         with mock.patch(mock_path) as mocked:
             sale._create_invoices()
             mocked.assert_called()
@@ -222,15 +217,11 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
             ("workflow_process_id", "=", sale.workflow_process_id.id),
         ]
         order_filter = safe_eval(workflow.order_filter_id.domain)
-        validate_invoice_filter = safe_eval(
-            workflow.validate_invoice_filter_id.domain
-        )
+        validate_invoice_filter = safe_eval(workflow.validate_invoice_filter_id.domain)
         send_invoice_filter = safe_eval(workflow.send_invoice_filter_id.domain)
         self.run_job()
         invoice = sale.invoice_ids
-        res_so_validate = workflow_job._do_validate_sale_order(
-            sale, order_filter
-        )
+        res_so_validate = workflow_job._do_validate_sale_order(sale, order_filter)
         workflow_job._do_send_order_confirmation_mail(sale)
         res_create_invoice = workflow_job._do_create_invoice(
             sale, create_invoice_filter
@@ -238,13 +229,10 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         res_validate_invoice = workflow_job._do_validate_invoice(
             invoice, validate_invoice_filter
         )
-        res_send_invoice = workflow_job._do_send_invoice(
-            invoice, send_invoice_filter
-        )
+        res_send_invoice = workflow_job._do_send_invoice(invoice, send_invoice_filter)
         self.assertIn("job bypassed", res_so_validate)
         self.assertTrue(
-            "job bypassed" in res_create_invoice
-            or "skipped" in res_create_invoice
+            "job bypassed" in res_create_invoice or "skipped" in res_create_invoice
         )
         self.assertIn("job bypassed", res_validate_invoice)
         self.assertIn("job bypassed", res_send_invoice)
@@ -336,9 +324,7 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         result = workflow_job._do_create_invoice(sale, domain_filter)
         self.assertIn("invoice already refunded", result)
         # Credit note is included in invoice_ids, filter for out_invoice only
-        out_invoices = sale.invoice_ids.filtered(
-            lambda m: m.move_type == "out_invoice"
-        )
+        out_invoices = sale.invoice_ids.filtered(lambda m: m.move_type == "out_invoice")
         self.assertEqual(len(out_invoices), 1)
 
     def test_do_create_invoice_success(self):

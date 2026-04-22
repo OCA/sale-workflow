@@ -87,8 +87,7 @@ class AutomaticWorkflowJob(models.Model):
             return "{} {} job bypassed".format(sale.display_name, sale)
 
         posted_invoices = sale.invoice_ids.filtered(
-            lambda move: move.state == "posted"
-            and move.move_type == "out_invoice"
+            lambda move: move.state == "posted" and move.move_type == "out_invoice"
         )
 
         if posted_invoices:
@@ -227,9 +226,7 @@ class AutomaticWorkflowJob(models.Model):
         _logger.debug("Sale Orders to done: %s", sales.ids)
         for sale in sales:
             with savepoint(self.env.cr):
-                self._do_sale_done(
-                    sale.with_company(sale.company_id), sale_done_filter
-                )
+                self._do_sale_done(sale.with_company(sale.company_id), sale_done_filter)
 
     def _prepare_dict_account_payment(self, invoice):
         partner_type = (
@@ -297,8 +294,7 @@ class AutomaticWorkflowJob(models.Model):
             )
         if sale_workflow.send_invoice:
             self._send_invoices(
-                safe_eval(sale_workflow.send_invoice_filter_id.domain)
-                + workflow_domain
+                safe_eval(sale_workflow.send_invoice_filter_id.domain) + workflow_domain
             )
         if sale_workflow.sale_done:
             self._sale_done(
