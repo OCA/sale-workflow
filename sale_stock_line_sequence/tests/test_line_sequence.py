@@ -1,17 +1,20 @@
 # Copyright 2023 ForgeFlow S.L.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import TransactionCase
+from odoo.fields import Command
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleOrderLineSequence(TransactionCase):
+class TestSaleOrderLineSequence(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.sale_order = cls.env["sale.order"]
         cls.sale_order_line = cls.env["sale.order.line"]
-        cls.partner = cls.env.ref("base.res_partner_1")
-        cls.product = cls.env.ref("product.product_product_4")
+        cls.product = cls.env["product.product"].create(
+            {"name": "Test Product", "type": "consu"}
+        )
 
     def test_sale_order_moves_line_sequence(self):
         """
@@ -21,9 +24,7 @@ class TestSaleOrderLineSequence(TransactionCase):
         vals = {
             "partner_id": self.partner.id,
             "order_line": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "product_id": self.product.id,
                         "name": self.product.name,
@@ -31,14 +32,10 @@ class TestSaleOrderLineSequence(TransactionCase):
                         "price_unit": self.product.lst_price,
                     },
                 ),
-                (
-                    0,
-                    0,
+                Command.create(
                     {"name": "Section 1", "display_type": "line_section"},
                 ),
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "product_id": self.product.id,
                         "name": self.product.name,
@@ -46,14 +43,10 @@ class TestSaleOrderLineSequence(TransactionCase):
                         "price_unit": self.product.lst_price,
                     },
                 ),
-                (
-                    0,
-                    0,
+                Command.create(
                     {"name": "Note 1", "display_type": "line_note"},
                 ),
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "product_id": self.product.id,
                         "name": self.product.name,
@@ -66,7 +59,7 @@ class TestSaleOrderLineSequence(TransactionCase):
         so = self.sale_order.create(vals)
         so.action_confirm()
 
-        moves = so.picking_ids[0].move_ids_without_package
+        moves = so.picking_ids[0].move_ids
         self.assertNotEqual(len(so.order_line), len(moves))
 
         for move in moves:
@@ -76,9 +69,7 @@ class TestSaleOrderLineSequence(TransactionCase):
         vals = {
             "partner_id": self.partner.id,
             "order_line": [
-                (
-                    0,
-                    0,
+                Command.create(
                     {
                         "product_id": self.product.id,
                         "name": self.product.name,
@@ -94,10 +85,8 @@ class TestSaleOrderLineSequence(TransactionCase):
         so.write(
             {
                 "order_line": [
-                    (0, 0, {"name": "Note 1", "display_type": "line_note"}),
-                    (
-                        0,
-                        0,
+                    Command.create({"name": "Note 1", "display_type": "line_note"}),
+                    Command.create(
                         {
                             "product_id": self.product.id,
                             "name": self.product.name,
@@ -109,6 +98,6 @@ class TestSaleOrderLineSequence(TransactionCase):
             }
         )
 
-        moves = so.picking_ids[0].move_ids_without_package
+        moves = so.picking_ids[0].move_ids
         for move in moves:
             self.assertEqual(move.sequence, move.sale_line_id.visible_sequence)
