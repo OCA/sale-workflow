@@ -4,7 +4,9 @@
 import html
 
 from odoo import api, fields, models
+from odoo.api import Environment
 from odoo.fields import Command
+from odoo.tools import config
 
 
 class SaleOrderLine(models.Model):
@@ -53,15 +55,31 @@ class SaleOrderLine(models.Model):
 
     def _detect_exceptions(self, rule):
         records = super()._detect_exceptions(rule)
-        # Thanks to the new flush of odoo 13.0, queries will be optimized
-        # together at the end even if we update the exception_ids many times.
-        # On previous versions, this could be unoptimized.
-        lines_to_remove_exception = (self - records).filtered(
-            lambda line: rule.id in line.exception_ids.ids
+        test_mode = config["test_enable"] and not self.env.context.get(
+            "test_base_exception"
         )
-        lines_to_remove_exception.exception_ids = [Command.unlink(rule.id)]
-        lines_to_add_exception = records.filtered(
-            lambda line: rule.id not in line.exception_ids.ids
-        )
-        lines_to_add_exception.exception_ids = [Command.link(rule.id)]
+        # Write exceptions in a new transaction to be committed so that we can
+        #  rollback the ongoing one while keeping the exceptions stored
+        with self.env.registry.cursor() as new_cr:
+            new_env = (
+                Environment(new_cr, self.env.uid, self.env.context)
+                if not test_mode
+                else self.env
+            )
+            lines_to_remove_exception = (self - records).filtered(
+                lambda line: rule.id in line.exception_ids.ids
+            )
+            lines_to_remove_exception.with_env(new_env).exception_ids = [
+                Command.unlink(rule.id)
+            ]
+            lines_to_add_exception = records.filtered(
+                lambda line: rule.id not in line.exception_ids.ids
+            )
+            lines_to_add_exception.with_env(new_env).exception_ids = [
+                Command.link(rule.id)
+            ]
         return records.mapped("order_id")
+
+    def _detect_exception_get_exc_class_values(self):
+        res = super()._detect_exception_get_exc_class_values()
+        return dict(res, target_model="sale.order")
