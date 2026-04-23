@@ -5,6 +5,13 @@ from unittest import mock
 from odoo import Command
 from odoo.tests import TransactionCase
 
+from odoo.addons.base_exception.tests.common import (
+    patch_base_exception_method_env,
+    swallow_base_exception_error,
+)
+
+from .common import patch_detect_exception_method_env
+
 
 class TestSaleExceptionMultiRecord(TransactionCase):
     @classmethod
@@ -66,6 +73,9 @@ class TestSaleExceptionMultiRecord(TransactionCase):
             }
         )
 
+    @patch_base_exception_method_env
+    @patch_detect_exception_method_env
+    @swallow_base_exception_error
     def test_sale_order_exception(self):
         exceptions = self.excep_no_sol + self.excep_no_free + self.excep_no_dumping
         exceptions.write({"active": True})
