@@ -4,16 +4,31 @@
 # Copyright 2021 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import Command
+
+from odoo import SUPERUSER_ID, Command
+from odoo.api import Environment
 from odoo.exceptions import UserError, ValidationError
 from odoo.tests import Form, TransactionCase
+
+from odoo.addons.base_exception.exceptions import BaseExceptionError
+from odoo.addons.base_exception.tests.common import (
+    mock_base_exception_method_env,
+    patch_base_exception_method_env,
+    swallow_base_exception_error,
+)
+
+from .common import mock_detect_exception_method_env, patch_detect_exception_method_env
 
 
 class TestSaleException(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
+        cls.env = cls.env(
+            context=dict(
+                cls.env.context, test_base_exception=True, tracking_disable=True
+            )
+        )
         cls.default_pl = cls.env["product.pricelist"].create(
             {
                 "name": "Public Pricelist",
@@ -83,6 +98,9 @@ class TestSaleException(TransactionCase):
             }
         )
 
+    @patch_base_exception_method_env
+    @patch_detect_exception_method_env
+    @swallow_base_exception_error
     def test_sale_order_exception(self):
         self.sale_exception_confirm = self.env["sale.exception.confirm"]
 
@@ -206,6 +224,9 @@ class TestSaleException(TransactionCase):
             line_form.product_id = product
         return order_form.save()
 
+    @patch_base_exception_method_env
+    @patch_detect_exception_method_env
+    @swallow_base_exception_error
     def test_exception_partner_sale_warning(self):
         self.exception_partner_sale_warning.active = True
         sale_order = self._create_sale_order(
@@ -215,7 +236,7 @@ class TestSaleException(TransactionCase):
         self.partner.sale_warn_msg = "warning"
         sale_order2 = sale_order.copy()
         self.env.company.sale_exception_show_popup = True
-        result = sale_order2.action_confirm()
+        sale_order2.action_confirm()
         self.assertEqual(sale_order2.state, "draft")
         self.assertTrue(
             sale_order2.exception_ids.filtered(
@@ -223,6 +244,9 @@ class TestSaleException(TransactionCase):
             )
         )
 
+    @patch_base_exception_method_env
+    @patch_detect_exception_method_env
+    @swallow_base_exception_error
     def test_exception_partner_sale_warning_no_popup(self):
         self.exception_partner_sale_warning.active = True
         sale_order = self._create_sale_order(
@@ -241,6 +265,9 @@ class TestSaleException(TransactionCase):
             )
         )
 
+    @patch_base_exception_method_env
+    @patch_detect_exception_method_env
+    @swallow_base_exception_error
     def test_exception_product_sale_warning(self):
         self.exception_product_sale_warning.active = True
         sale_order = self._create_sale_order(
@@ -256,6 +283,9 @@ class TestSaleException(TransactionCase):
             )
         )
 
+    @patch_base_exception_method_env
+    @patch_detect_exception_method_env
+    @swallow_base_exception_error
     def test_exception_no_free(self):
         # No allow ignoring exceptions if the "is_blocking" field is checked
         self.sale_exception_confirm = self.env["sale.exception.confirm"]
@@ -294,3 +324,32 @@ class TestSaleException(TransactionCase):
             so_except_confirm.action_confirm()
         self.assertFalse(sale_order.ignore_exception)
         self.assertTrue(sale_order.state == "draft")
+
+    def test_sale_order_line_exception_stored(self):
+        exception = self.env.ref("sale_exception.excep_no_dumping").sudo()
+        exception.active = True
+        partner = self.env.ref("base.res_partner_1")
+        product = self.env.ref("product.product_product_6")
+        product.standard_price = 10.0
+        sale_order = self._create_sale_order(partner=partner, product=product)
+        sale_order.order_line.price_unit = 5.0
+        self.registry.enter_test_mode(self.cr)
+        self.addCleanup(self.registry.leave_test_mode)
+        with (
+            self.registry.cursor() as new_cr,
+        ):
+            new_env = Environment(new_cr, SUPERUSER_ID, {"module": "sale_exception"})
+            with (
+                # Use new_env created here instead of the one in base_exception_method
+                mock_base_exception_method_env(self, env=new_env),
+                mock_detect_exception_method_env(self, env=new_env),
+                self.assertRaises(BaseExceptionError),
+            ):
+                sale_order.action_confirm()
+            new_cr._savepoint = None
+            self.assertFalse(sale_order.exception_ids)
+            self.assertTrue(sale_order.with_env(new_env).exception_ids)
+            self.assertFalse(sale_order.order_line.exception_ids)
+            self.assertTrue(sale_order.order_line.with_env(new_env).exception_ids)
+            self.assertNotEqual(sale_order.state, "sale")
+            self.assertNotEqual(sale_order.with_env(new_env).state, "sale")
