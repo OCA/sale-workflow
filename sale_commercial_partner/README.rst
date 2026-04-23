@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =======================
 Sale Commercial Partner
 =======================
@@ -17,7 +13,7 @@ Sale Commercial Partner
 .. |badge1| image:: https://img.shields.io/badge/maturity-Production%2FStable-green.png
     :target: https://odoo-community.org/page/development-status
     :alt: Production/Stable
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -32,8 +28,10 @@ Sale Commercial Partner
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds a related stored field *Commercial Entity* on sale
-orders.
+This module adds 2 hidden fields on sale orders:
+
+-  a related stored field *Customer Entity*,
+-  a related stored field *Invoice Entity*.
 
 This module is the twin brother of the OCA module
 *purchase_commercial_partner* located in the `purchase-workflow
@@ -50,14 +48,14 @@ Configuration
 To restrict the invoice address selection to partners whose commercial
 partner matches the sales order’s customer:
 
-- Go to *Sales → Configuration → Settings*, and enable **Filter Invoice
-  Address by Customer’s Commercial Partner**.
+-  Go to *Sales → Configuration → Settings*, and enable **Filter Invoice
+   Address by Customer’s Commercial Partner**.
 
 To restrict the shipping address selection to partners whose commercial
 partner matches the sales order’s customer:
 
-- Go to *Sales → Configuration → Settings*, and enable **Filter Shipping
-  Address by Customer’s Commercial Partner**.
+-  Go to *Sales → Configuration → Settings*, and enable **Filter
+   Shipping Address by Customer’s Commercial Partner**.
 
 Note: These options are not compatible with the
 sale_partner_address_restrict module. Do not enable them together, as
@@ -68,9 +66,9 @@ Usage
 
 You can group by *Commercial Entity*:
 
-- in *Sales > Orders > Quotations*,
-- in *Sales > Orders > Orders*,
-- in *Sales > Reporting > Sales* (it is a native feature in this menu)
+-  in *Sales > Orders > Quotations*,
+-  in *Sales > Orders > Orders*,
+-  in *Sales > Reporting > Sales* (it is a native feature in this menu)
 
 Bug Tracker
 ===========
@@ -93,25 +91,25 @@ Authors
 Contributors
 ------------
 
-- Alexis de Lattre <alexis.delattre@akretion.com>
-- Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
-- Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
-- Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
-- `APSL <https://apsl.tech>`__:
+-  Alexis de Lattre <alexis.delattre@akretion.com>
+-  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+-  Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
+-  Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
+-  `APSL <https://apsl.tech>`__:
 
-  - Antoni Marroig <amarroig@apsl.net>
+   -  Antoni Marroig <amarroig@apsl.net>
 
-- `Dynapps <https://www.dynapps.eu>`__:
+-  `Dynapps <https://www.dynapps.eu>`__:
 
-  - Bert Van Groenendael <bert.vangroenendael@dynapps.eu>
+   -  Bert Van Groenendael <bert.vangroenendael@dynapps.eu>
 
-- `Trobz <https://www.trobz.com>`__:
+-  `Trobz <https://www.trobz.com>`__:
 
-  - Nhan Tran <nhant@trobz.com>
+   -  Nhan Tran <nhant@trobz.com>
 
-- `Quartile <https://www.quartile.co>`__:
+-  `Quartile <https://www.quartile.co>`__:
 
-  - Aung Ko Ko Lin
+   -  Aung Ko Ko Lin
 
 Other credits
 -------------
