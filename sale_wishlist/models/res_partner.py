@@ -13,12 +13,10 @@ class ResPartner(models.Model):
 
     def _compute_wishlists_count(self):
         # do just one query for all records
-        data = self.env["product.set"].read_group(
-            self._wishlist_domain(), ["partner_id"], ["partner_id"]
+        groups = self.env["product.set"]._read_group(
+            self._wishlist_domain(), ["partner_id"], ["__count"]
         )
-        data_mapped = {
-            count["partner_id"][0]: count["partner_id_count"] for count in data
-        }
+        data_mapped = {partner.id: count for partner, count in groups}
         for rec in self:
             rec.wishlists_count = data_mapped.get(rec.id, 0)
 
