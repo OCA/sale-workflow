@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-04-27 09:35+0000\n"
+"Last-Translator: David Moreno <david.moreno@braintec.com>\n"
 "Language-Team: none\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
@@ -22,23 +24,23 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Accept"
-msgstr ""
+msgstr "Akzeptieren"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,help:sale_order_product_recommendation.field_res_config_settings__force_zero_units_included
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
 msgid "Add recomented products in so even if units included is zero."
-msgstr ""
+msgstr "Füge empfohlene Produkte hinzu, selbst wenn die Menge null sind."
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
 msgid "Add recommended with zero units included"
-msgstr ""
+msgstr "Fügt die Einheiten mit Menge 0 hinzu"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_uom_category_id
@@ -53,12 +55,12 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model,name:sale_order_product_recommendation.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Unternehmen"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model,name:sale_order_product_recommendation.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Konfigurationseinstellungen"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation__months
@@ -87,7 +89,7 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Währung"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__partner_id
@@ -117,13 +119,13 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Delivered:"
-msgstr ""
+msgstr "Geliefert:"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__display_name
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Anzeigename"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
@@ -138,7 +140,7 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_is_favorite
 msgid "Favorite"
-msgstr ""
+msgstr "Favorit"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_company__force_zero_units_included
@@ -155,7 +157,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__id
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
@@ -169,16 +171,18 @@ msgstr ""
 #: model:ir.model.fields,help:sale_order_product_recommendation.field_sale_order_recommendation_line__pricelist_id
 msgid "If you change the pricelist, only newly added lines will be affected."
 msgstr ""
+"Wenn Sie die Preisliste ändern, sind nur die neu hinzugefügten Zeilen "
+"betroffen."
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__image_128
 msgid "Image 128"
-msgstr ""
+msgstr "Bild 128"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_default_code
 msgid "Internal Reference"
-msgstr ""
+msgstr "Interne Referenz"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__write_uid
@@ -201,7 +205,7 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__months
 msgid "Months"
-msgstr ""
+msgstr "Monate"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_name
@@ -222,7 +226,7 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__price_unit
 msgid "Price Unit"
-msgstr ""
+msgstr "Preiseinheit"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_config_settings__default_sale_recommendation_price_origin
@@ -232,41 +236,41 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Price:"
-msgstr ""
+msgstr "Preis:"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__pricelist_id
 #: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__res_config_settings__default_sale_recommendation_price_origin__pricelist
 #: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__sale_recommendation_price_origin__pricelist
 msgid "Pricelist"
-msgstr ""
+msgstr "Preisliste"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_id
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
 msgid "Product"
-msgstr ""
+msgstr "Produkt"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_uom_readonly
 msgid "Product Uom Readonly"
-msgstr ""
+msgstr "Produkt Einheit Readonly"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__product_categ_complete_name
 #: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__product_categ_complete_name_asc
 msgid "Product category"
-msgstr ""
+msgstr "Produktkategorie"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__product_default_code_asc
 msgid "Product code"
-msgstr ""
+msgstr "Produktcode"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__product_name_asc
 msgid "Product name"
-msgstr ""
+msgstr "Produktname"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__sale_recommendation_price_origin
@@ -281,7 +285,7 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__line_ids
 msgid "Products"
-msgstr ""
+msgstr "Produkte"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__recommendations_order
@@ -291,7 +295,7 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.view_order_form
 msgid "Recommended Products"
-msgstr ""
+msgstr "Empfohlene Produkte"
 
 #. module: sale_order_product_recommendation
 #: model:ir.actions.act_window,name:sale_order_product_recommendation.sale_order_recommendation_action
@@ -311,7 +315,7 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__sale_line_id
 msgid "Sale Line"
-msgstr ""
+msgstr "Verkaufsauftragszeile"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_res_company__sale_line_recommendation_domain
@@ -322,7 +326,7 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation__order_id
 msgid "Sale Order"
-msgstr ""
+msgstr "Verkausauftrag"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.res_config_settings_view_form_sale
@@ -353,7 +357,7 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields.selection,name:sale_order_product_recommendation.selection__sale_order_recommendation__recommendations_order__times_delivered_desc
 msgid "Times delivered"
-msgstr ""
+msgstr "Anzahl Lieferungen"
 
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__sale_uom_id
@@ -385,7 +389,7 @@ msgstr ""
 #. module: sale_order_product_recommendation
 #: model:ir.model.fields,field_description:sale_order_product_recommendation.field_sale_order_recommendation_line__wizard_id
 msgid "Wizard"
-msgstr ""
+msgstr "Assistent"
 
 #. module: sale_order_product_recommendation
 #: model_terms:ir.ui.view,arch_db:sale_order_product_recommendation.sale_order_recommendation_view_form
