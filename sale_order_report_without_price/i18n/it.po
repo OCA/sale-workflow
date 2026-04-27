@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-05-08 09:37+0000\n"
+"PO-Revision-Date: 2026-04-27 13:45+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_order_report_without_price
 #: model:ir.actions.report,print_report_name:sale_order_report_without_price.action_report_saleorder_without_price
@@ -22,8 +22,8 @@ msgid ""
 "(object.state in ('draft', 'sent') and 'Quotation - %s without price' % "
 "(object.name)) or 'Order - %s without price' % (object.name)"
 msgstr ""
-"(object.state in ('draft', 'sent') e 'Preventivo - %s senza prezzo' % (object"
-".name)) o 'Ordine - %s senza prezzo' % (object.name)"
+"(object.state in ('draft', 'sent') e 'Preventivo - %s senza prezzo' % "
+"(object.name)) or 'Ordine - %s senza prezzo' % (object.name)"
 
 #. module: sale_order_report_without_price
 #: model:ir.actions.report,name:sale_order_report_without_price.action_report_saleorder_without_price
