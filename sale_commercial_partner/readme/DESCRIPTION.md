@@ -1,5 +1,7 @@
-This module adds a related stored field *Commercial Entity* on sale
-orders.
+This module adds 2 hidden fields on sale orders:
+
+- a related stored field *Customer Entity*,
+- a related stored field *Invoice Entity*.
 
 This module is the twin brother of the OCA module
 *purchase_commercial_partner* located in the [purchase-workflow

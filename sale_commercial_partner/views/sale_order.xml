@@ -20,6 +20,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_invoice_id']" position="before">
                 <field name="commercial_partner_id" invisible="1" />
+                <field name="commercial_partner_invoice_id" invisible="1" />
                 <field name="partner_invoice_domain" invisible="1" />
                 <field name="partner_shipping_domain" invisible="1" />
             </xpath>
