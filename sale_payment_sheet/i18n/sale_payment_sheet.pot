@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -54,6 +54,7 @@ msgstr ""
 
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__amount_residual
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.sale_invoice_payment_wiz
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_invoice_tree
 msgid "Amount Due"
 msgstr ""
@@ -420,7 +421,6 @@ msgstr ""
 #. module: sale_payment_sheet
 #. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
-#, python-format
 msgid "Sheet %(statement_name)s confirmed, bank statement were created."
 msgstr ""
 
@@ -450,14 +450,12 @@ msgstr ""
 #. module: sale_payment_sheet
 #. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
-#, python-format
 msgid "The amount of a cash transaction cannot be 0."
 msgstr ""
 
 #. module: sale_payment_sheet
 #. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
-#, python-format
 msgid ""
 "This invoice already has been included in other payment sheet or the amount payed is greather than residual invoice amount.\n"
 " Invoice: %(invoice_name)s\n"
@@ -468,6 +466,7 @@ msgstr ""
 #. module: sale_payment_sheet
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_invoice_payment_line_wiz__amount_total
 #: model:ir.model.fields,field_description:sale_payment_sheet.field_sale_payment_sheet__amount_total
+#: model_terms:ir.ui.view,arch_db:sale_payment_sheet.sale_invoice_payment_wiz
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_invoice_tree
 #: model_terms:ir.ui.view,arch_db:sale_payment_sheet.view_sale_payment_sheet_form
 msgid "Total"
@@ -526,28 +525,24 @@ msgstr ""
 #. module: sale_payment_sheet
 #. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
-#, python-format
 msgid "You can not delete a sheet if has related journal items."
 msgstr ""
 
 #. module: sale_payment_sheet
 #. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
-#, python-format
 msgid "You can not delete payment lines if have related statement lines."
 msgstr ""
 
 #. module: sale_payment_sheet
 #. odoo-python
 #: code:addons/sale_payment_sheet/models/sale_payment_sheet.py:0
-#, python-format
 msgid "You can not reopen a sheet that has any reconciled line."
 msgstr ""
 
 #. module: sale_payment_sheet
 #. odoo-python
 #: code:addons/sale_payment_sheet/wizards/sale_invoice_payment.py:0
-#, python-format
 msgid "You have to select at least an invoice to make a payment."
 msgstr ""
 
