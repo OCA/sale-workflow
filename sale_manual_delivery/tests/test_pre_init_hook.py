@@ -86,7 +86,7 @@ class TestPreInitHook(TransactionCase):
         self.env.invalidate_all()
 
     def test_pre_init_hook_fully_delivered(self):
-        """Tout livré: standard order, picking validated for the full qty.
+        """Fully delivered: standard order, picking validated for the full qty.
 
         Expected: qty_procured = ordered qty, qty_to_procure = 0.
         """
@@ -108,7 +108,7 @@ class TestPreInitHook(TransactionCase):
         self.assertEqual(qty_to_procure, 0.0)
 
     def test_pre_init_hook_partially_delivered(self):
-        """Partiellement livré: stock move qty manually reduced below the
+        """Partially delivered: stock move qty manually reduced below the
         SOL qty (mimics a real-world partial state - cancelled partial
         moves, edited moves, etc. - using only standard flows).
 
@@ -129,14 +129,18 @@ class TestPreInitHook(TransactionCase):
         self.assertEqual(qty_to_procure, 6.0)
 
     def test_pre_init_hook_nothing_delivered(self):
-        """Rien livré: a service line has no stock_move at all.
+        """Nothing delivered: a service line has no stock_move at all.
 
-        Order with two lines (one service, one storable) so the test
-        observes the hook on both a no-move line and a control line:
+        With the INNER JOIN on stock_move, the hook does not touch such
+        lines. The test pairs it with a *control* storable line (in the
+        same order) which the hook *should* update, so the test fails
+        in two distinct regression scenarios:
 
-        - The control line proves the hook's UPDATE actually ran.
-        - The service line is set to a sentinel so we can see whether
-          the hook touched it or not.
+        - If the hook stops running its UPDATE entirely, the control
+          line stays at the sentinel and the assertion below fails.
+        - If the INNER JOIN is reverted to a LEFT JOIN, the service
+          line's sentinel is overwritten with 0 and that assertion
+          fails instead.
         """
         order = self.env["sale.order"].create(
             {
@@ -179,17 +183,17 @@ class TestPreInitHook(TransactionCase):
         self.assertFalse(service_line.move_ids)
         self.assertTrue(control_line.move_ids)
 
+        # Sentinel on the service line; NULL on the control to give the
+        # hook something visibly different to write back.
         self._set_qty(service_line, 42.0, 99.0)
         self._set_qty(control_line, None, None)
 
         pre_init_hook(self.env)
 
-        # Service line: the current SQL updates *every* SOL (the inner-
-        # join-on-self pattern doesn't filter), so the sentinel is
-        # overwritten with qty_procured=0 and qty_to_procure=ordered.
+        # Service line: hook's INNER JOIN must skip it -> sentinel kept.
         s_procured, s_to_procure = self._read_qty(service_line)
-        self.assertEqual(s_procured, 0.0)
-        self.assertEqual(s_to_procure, 5.0)
+        self.assertEqual(s_procured, 42.0)
+        self.assertEqual(s_to_procure, 99.0)
         # Control line: proves the hook actually executed its UPDATE.
         c_procured, c_to_procure = self._read_qty(control_line)
         self.assertEqual(c_procured, 8.0)
