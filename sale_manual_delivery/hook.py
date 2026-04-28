@@ -1,7 +1,13 @@
+import logging
+
+_logger = logging.getLogger(__name__)
+
+
 def pre_init_hook(env):
     cr = env.cr
     product_unit_precision = env["decimal.precision"].precision_get("Product Unit")
     product_unit_rounding = 10 ** (-product_unit_precision)
+    _logger.info("Pre-creating fields in SQL")
     cr.execute(
         """
         ALTER TABLE sale_order_line ADD COLUMN IF NOT EXISTS qty_procured numeric;
@@ -22,12 +28,10 @@ def pre_init_hook(env):
     # - Add outgoing moves toward customers
     # - Substract to_refund returns
     # - Ignore the rest: cancelled, scrapped, non-refund returns
-    cr.execute("""\
-UPDATE sale_order_line AS sol
-SET
-    qty_procured = r.qty_procured,
-    qty_to_procure = sol.product_uom_qty - r.qty_procured
-FROM (
+    _logger.info("Pre-populating fields in SQL")
+    cr.execute(
+        """\
+WITH sol_qty_procured AS (
     SELECT
         sol.id,
         SUM(
@@ -44,48 +48,45 @@ FROM (
                     )
                 ) THEN
                     ROUND(
-                        ((sm.product_uom_qty / sm_product_uom.factor) * sol_product_uom.factor),
+                        ((sm.product_uom_qty / sm_product_uom.factor)
+                        * sol_product_uom.factor),
                         SCALE(%s)
                         )
                 WHEN (
                     sl.usage != 'customer'
                     AND sm.to_refund
                 ) THEN
-                ROUND(
-                        ((sm.product_uom_qty / sm_product_uom.factor) * sol_product_uom.factor),
+                    ROUND(
+                        ((sm.product_uom_qty / sm_product_uom.factor)
+                        * sol_product_uom.factor),
                         SCALE(%s)
-                        ) * -1
+                    ) * -1
                 ELSE 0
             END
         ) AS qty_procured
     FROM
     sale_order_line AS sol
-    INNER JOIN (
-        SELECT
-            sol.id,
-            sm.id AS move_id,
-            sm.location_id,
-            sm.location_dest_id
-        FROM sale_order_line AS sol
-        LEFT JOIN stock_move AS sm ON (
-            sm.state != 'cancel'
-            AND sm.scrap_id IS NULL
-            AND sol.product_id = sm.product_id
-            AND sm.sale_line_id = sol.id
-            )
-    ) AS q ON q.id = sol.id
-    LEFT JOIN stock_move AS sm ON sm.id = q.move_id
-    LEFT JOIN product_product AS pp ON pp.id = sol.product_id
-    LEFT JOIN product_template AS pt ON pt.id = pp.product_tmpl_id
-    LEFT JOIN stock_location AS sl ON sl.id = q.location_dest_id
-    LEFT JOIN uom_uom sm_product_uom ON sm.product_uom = sm_product_uom.id
-    LEFT JOIN uom_uom sol_product_uom ON sol.product_uom_id = sol_product_uom.id
+    INNER JOIN stock_move AS sm ON (
+        sm.state != 'cancel'
+        AND sm.scrap_id IS NULL
+        AND sol.product_id = sm.product_id
+        AND sm.sale_line_id = sol.id
+    )
+    LEFT JOIN stock_location AS sl ON sl.id = sm.location_dest_id
+    LEFT JOIN uom_uom sm_product_uom ON sm_product_uom.id = sm.product_uom
+    LEFT JOIN uom_uom sol_product_uom ON sol_product_uom.id = sol.product_uom_id
     GROUP BY
         sol.id,
         sm.product_uom,
         sol.product_uom_id
-) AS r
-WHERE r.id = sol.id
+)
+UPDATE sale_order_line AS sol
+SET
+    qty_procured = sol_qty_procured.qty_procured,
+    qty_to_procure = sol.product_uom_qty - sol_qty_procured.qty_procured
+FROM sol_qty_procured
+WHERE sol_qty_procured.id = sol.id
     """,
         (product_unit_rounding, product_unit_rounding),
     )
+    _logger.info("Finished pre-populating fields")
