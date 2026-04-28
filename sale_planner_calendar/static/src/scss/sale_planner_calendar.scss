@@ -1,0 +1,7 @@
+.o_sale_planner_calendar_kanban article {
+    width: 100% !important;
+}
+
+.o_kanban_renderer.o_sale_planner_calendar_kanban {
+    --KanbanRecord-width: 100%;
+}

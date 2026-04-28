@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="event_type_commercial_visit" model="calendar.event.type">
+        <field name="name">Commercial visit</field>
+        <field name="duration">0.25</field>
+        <field name="icon">fa-car</field>
+    </record>
+    <record id="event_type_remote_selling" model="calendar.event.type">
+        <field name="name">Remote selling</field>
+        <field name="duration">0.25</field>
+        <field name="icon">fa-phone</field>
+    </record>
+    <record id="event_type_delivery" model="calendar.event.type">
+        <field name="name">Delivery</field>
+        <field name="duration">0.25</field>
+        <field name="icon">fa-truck</field>
+    </record>
+    <record id="event_type_message" model="calendar.event.type">
+        <field name="name">Message</field>
+        <field name="duration">0.25</field>
+        <field name="icon">fa-envelope</field>
+    </record>
+
+    <!-- Event planner issue types -->
+    <record
+        id="event_planner_issue_type_missing"
+        model="sale.planner.calendar.issue.type"
+    >
+        <field name="name">Missing</field>
+    </record>
+    <record
+        id="event_planner_issue_type_close"
+        model="sale.planner.calendar.issue.type"
+    >
+        <field name="name">Closed</field>
+    </record>
+
+    <record id="config_parameter_partner_name_field" model="ir.config_parameter">
+        <field name="key">sale_planner_calendar.partner_name_field</field>
+        <field name="value">name</field>
+    </record>
+    <record id="config_parameter_max_duration" model="ir.config_parameter">
+        <field name="key">sale_planner_calendar.max_duration</field>
+        <field name="value">4.0</field>
+    </record>
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+    <t t-name="sale_planner_calendar.MoveBaseWidget">
+        <button
+            class="btn btn-secondary"
+            t-attf-title="Move to {{type}}"
+            t-on-click="onClickMove"
+        >
+            <i
+                t-attf-class="fa fa-2x {{type === 'previous' ? 'fa-arrow-up' : 'fa-arrow-down'}}"
+            />
+        </button>
+    </t>
+</templates>
