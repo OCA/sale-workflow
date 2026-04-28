@@ -1,5 +1,7 @@
 def pre_init_hook(env):
     cr = env.cr
+    product_unit_precision = env["decimal.precision"].precision_get("Product Unit")
+    product_unit_rounding = 10 ** (-product_unit_precision)
     cr.execute(
         """
         ALTER TABLE sale_order_line ADD COLUMN IF NOT EXISTS qty_procured numeric;
@@ -27,7 +29,7 @@ from (select sol.id, sum(
         )) then
             ROUND(
                 ((sm.product_uom_qty / sm_product_uom.factor) * sol_product_uom.factor),
-                SCALE(sol_product_uom.rounding)
+                SCALE(%s)
                 )
         when (
         sl.usage != 'customer'
@@ -35,7 +37,7 @@ from (select sol.id, sum(
         ) then
         ROUND(
                 ((sm.product_uom_qty / sm_product_uom.factor) * sol_product_uom.factor),
-                SCALE(sol_product_uom.rounding)
+                SCALE(%s)
                 ) * -1
         else 0
     end)
@@ -47,7 +49,7 @@ inner join (
     from sale_order_line as sol
     left join stock_move as sm on (
         sm.state != 'cancel'
-        and sm.scrapped = false
+        and sm.scrap_id is null
         and sol.product_id = sm.product_id
         and sm.sale_line_id = sol.id
         )
@@ -57,9 +59,10 @@ left join product_product as pp on pp.id = sol.product_id
 left join product_template as pt on pt.id = pp.product_tmpl_id
 left join stock_location as sl on sl.id = q.location_dest_id
 LEFT JOIN uom_uom sm_product_uom ON sm.product_uom = sm_product_uom.id
-LEFT JOIN uom_uom sol_product_uom ON sol.product_uom = sol_product_uom.id
-group by sol.id, sm.product_uom, sol.product_uom
+LEFT JOIN uom_uom sol_product_uom ON sol.product_uom_id = sol_product_uom.id
+group by sol.id, sm.product_uom, sol.product_uom_id
 ) as r
 where r.id = sol.id
-    """
+    """,
+        (product_unit_rounding, product_unit_rounding),
     )

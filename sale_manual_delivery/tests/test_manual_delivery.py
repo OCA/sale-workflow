@@ -3,26 +3,58 @@ from datetime import datetime
 
 from dateutil.relativedelta import relativedelta
 
+from odoo import Command
 from odoo.exceptions import UserError
+from odoo.tests import users
 
-from odoo.addons.sale.tests.common import TestSaleCommonBase
+from odoo.addons.delivery.tests.common import DeliveryCommon
+from odoo.addons.sale.tests.common import SaleCommon
+from odoo.addons.stock.tests.common import TestStockCommon
 
 
-class TestSaleStock(TestSaleCommonBase):
+class TestSaleStock(SaleCommon, DeliveryCommon, TestStockCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.partner = cls.env.ref("base.res_partner_1")
-        cls.product = cls.env.ref("product.product_delivery_01")
-        cls.product2 = cls.env.ref("product.product_delivery_02")
-        cls.product3 = cls.env.ref("product.product_order_01")
-        cls.carrier1 = cls.env.ref("delivery.delivery_carrier")
-        cls.carrier2 = cls.env.ref("delivery.delivery_local_delivery")
-        cls.stock_location = cls.env.ref("stock.stock_location_stock")
+        product_vals = {
+            "type": "consu",
+            "list_price": 20.0,
+            "categ_id": cls.product_category.id,
+            "is_storable": True,
+        }
+        cls.product, cls.product2, cls.product3 = cls.env["product.product"].create(
+            [
+                {
+                    **product_vals,
+                    "name": "Test Product",
+                    "invoice_policy": "delivery",
+                },
+                {
+                    **product_vals,
+                    "name": "Test Product 2",
+                    "invoice_policy": "delivery",
+                },
+                {
+                    **product_vals,
+                    "name": "Test Product 3",
+                    "invoice_policy": "order",
+                },
+            ]
+        )
+        cls.carrier1 = cls.carrier
+        cls.carrier2 = cls._prepare_carrier(
+            product=cls._prepare_carrier_product(
+                name="Normal Delivery Charges",
+                list_price=10.0,
+            ),
+            name="Normal Delivery Charges",
+            delivery_type="fixed",
+            fixed_price=10.0,
+        )
         cls.env["stock.quant"]._update_available_quantity(
             cls.product, cls.stock_location, 100
         )
-        cls.env.user_demo = cls.env.ref("base.user_demo")
+        cls.sale_user.group_ids += cls.env.ref("stock.group_stock_user")
 
     def _manual_delivery_wizard(self, records, vals=None):
         if not vals:
@@ -36,32 +68,44 @@ class TestSaleStock(TestSaleCommonBase):
             .create(vals)
         )
 
+    def _get_order_line_vals(self, qty=5, product=False):
+        if not product:
+            product = self.product
+        return Command.create(
+            {
+                "name": product.name,
+                "product_id": product.id,
+                "product_uom_qty": qty,
+                "product_uom_id": product.uom_id.id,
+                "price_unit": product.list_price,
+            }
+        )
+
+    def _create_order(
+        self, qty=5, product=False, manual_delivery=True, order_line_vals=False
+    ):
+        if not order_line_vals:
+            order_line_vals = [self._get_order_line_vals(qty, product)]
+        return (
+            self.env["sale.order"]
+            .with_user(self.sale_user)
+            .create(
+                {
+                    "partner_id": self.partner.id,
+                    "partner_invoice_id": self.partner.id,
+                    "partner_shipping_id": self.partner.id,
+                    "order_line": order_line_vals,
+                    "manual_delivery": manual_delivery,
+                }
+            )
+        )
+
+    @users("salesman")
     def test_00_sale_manual_delivery(self):
         """
         Test SO's manual delivery; we do it with a user without admin rights
         """
-        model_user_order = self.env["sale.order"].with_user(self.env.user_demo)
-        order = model_user_order.create(
-            {
-                "partner_id": self.partner.id,
-                "partner_invoice_id": self.partner.id,
-                "partner_shipping_id": self.partner.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.product.name,
-                            "product_id": self.product.id,
-                            "product_uom_qty": 5.0,
-                            "product_uom": self.product.uom_id.id,
-                            "price_unit": self.product.list_price,
-                        },
-                    )
-                ],
-                "manual_delivery": True,
-            }
-        )
+        order = self._create_order()
         # confirm our standard so, check the picking
         order.action_confirm()
         self.assertFalse(
@@ -97,27 +141,7 @@ class TestSaleStock(TestSaleCommonBase):
         """
         Test SO's standard delivery
         """
-        order = self.env["sale.order"].create(
-            {
-                "partner_id": self.partner.id,
-                "partner_invoice_id": self.partner.id,
-                "partner_shipping_id": self.partner.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.product.name,
-                            "product_id": self.product.id,
-                            "product_uom_qty": 5.0,
-                            "product_uom": self.product.uom_id.id,
-                            "price_unit": self.product.list_price,
-                        },
-                    )
-                ],
-                "manual_delivery": False,
-            }
-        )
+        order = self._create_order(manual_delivery=False)
         # confirm our standard so, check the picking
         order.action_confirm()
         self.assertTrue(
@@ -137,27 +161,7 @@ class TestSaleStock(TestSaleCommonBase):
         """
         Test SO's various manual delivery
         """
-        order = self.env["sale.order"].create(
-            {
-                "partner_id": self.partner.id,
-                "partner_invoice_id": self.partner.id,
-                "partner_shipping_id": self.partner.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.product.name,
-                            "product_id": self.product.id,
-                            "product_uom_qty": 5.0,
-                            "product_uom": self.product.uom_id.id,
-                            "price_unit": self.product.list_price,
-                        },
-                    )
-                ],
-                "manual_delivery": True,
-            }
-        )
+        order = self._create_order()
         # confirm our standard so, check the picking
         order.action_confirm()
         self.assertFalse(
@@ -214,69 +218,9 @@ class TestSaleStock(TestSaleCommonBase):
         """
         Test SO's various manual delivery
         """
-        order1 = self.env["sale.order"].create(
-            {
-                "partner_id": self.partner.id,
-                "partner_invoice_id": self.partner.id,
-                "partner_shipping_id": self.partner.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.product.name,
-                            "product_id": self.product.id,
-                            "product_uom_qty": 1.0,
-                            "product_uom": self.product.uom_id.id,
-                            "price_unit": self.product.list_price,
-                        },
-                    )
-                ],
-                "manual_delivery": True,
-            }
-        )
-        order2 = self.env["sale.order"].create(
-            {
-                "partner_id": self.partner.id,
-                "partner_invoice_id": self.partner.id,
-                "partner_shipping_id": self.partner.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.product2.name,
-                            "product_id": self.product2.id,
-                            "product_uom_qty": 2.0,
-                            "product_uom": self.product2.uom_id.id,
-                            "price_unit": self.product2.list_price,
-                        },
-                    )
-                ],
-                "manual_delivery": True,
-            }
-        )
-        order3 = self.env["sale.order"].create(
-            {
-                "partner_id": self.partner.id,
-                "partner_invoice_id": self.partner.id,
-                "partner_shipping_id": self.partner.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.product3.name,
-                            "product_id": self.product.id,
-                            "product_uom_qty": 3.0,
-                            "product_uom": self.product3.uom_id.id,
-                            "price_unit": self.product3.list_price,
-                        },
-                    )
-                ],
-                "manual_delivery": True,
-            }
-        )
+        order1 = self._create_order(qty=1)
+        order2 = self._create_order(qty=2, product=self.product2)
+        order3 = self._create_order(qty=3, product=self.product3)
         # confirm our standard so, check the picking
         order1.action_confirm()
         order2.action_confirm()
@@ -319,38 +263,11 @@ class TestSaleStock(TestSaleCommonBase):
         self.env["stock.quant"]._update_available_quantity(
             self.product2, self.stock_location, 100
         )
-        order = self.env["sale.order"].create(
-            {
-                "partner_id": self.partner.id,
-                "partner_invoice_id": self.partner.id,
-                "partner_shipping_id": self.partner.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.product.name,
-                            "product_id": self.product.id,
-                            "product_uom_qty": 10.0,
-                            "product_uom": self.product.uom_id.id,
-                            "price_unit": self.product.list_price,
-                        },
-                    ),
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.product2.name,
-                            "product_id": self.product2.id,
-                            "product_uom_qty": 10.0,
-                            "product_uom": self.product2.uom_id.id,
-                            "price_unit": self.product2.list_price,
-                        },
-                    ),
-                ],
-                "manual_delivery": True,
-            }
-        )
+        line_vals = [
+            self._get_order_line_vals(qty=10),
+            self._get_order_line_vals(qty=10, product=self.product2),
+        ]
+        order = self._create_order(order_line_vals=line_vals)
 
         # confirm our standard so, check the picking
         order.action_confirm()
@@ -423,38 +340,11 @@ class TestSaleStock(TestSaleCommonBase):
         """
         Test SO's various manual delivery
         """
-        order = self.env["sale.order"].create(
-            {
-                "partner_id": self.partner.id,
-                "partner_invoice_id": self.partner.id,
-                "partner_shipping_id": self.partner.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.product.name,
-                            "product_id": self.product.id,
-                            "product_uom_qty": 1.0,
-                            "product_uom": self.product.uom_id.id,
-                            "price_unit": self.product.list_price,
-                        },
-                    ),
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.product2.name,
-                            "product_id": self.product2.id,
-                            "product_uom_qty": 2.0,
-                            "product_uom": self.product2.uom_id.id,
-                            "price_unit": self.product2.list_price,
-                        },
-                    ),
-                ],
-                "manual_delivery": True,
-            }
-        )
+        line_vals = [
+            self._get_order_line_vals(qty=1),
+            self._get_order_line_vals(qty=2, product=self.product2),
+        ]
+        order = self._create_order(order_line_vals=line_vals)
         # confirm our standard so, check the picking
         order.action_confirm()
         # create a manual delivery for part of ordered quantity
@@ -465,28 +355,8 @@ class TestSaleStock(TestSaleCommonBase):
         )
 
     def test_05_sale_multi_carrier(self):
-        order = self.env["sale.order"].create(
-            {
-                "partner_id": self.partner.id,
-                "partner_invoice_id": self.partner.id,
-                "partner_shipping_id": self.partner.id,
-                "order_line": [
-                    (
-                        0,
-                        0,
-                        {
-                            "name": self.product.name,
-                            "product_id": self.product.id,
-                            "product_uom_qty": 10.0,
-                            "product_uom": self.product.uom_id.id,
-                            "price_unit": self.product.list_price,
-                        },
-                    ),
-                ],
-                "manual_delivery": True,
-                "carrier_id": self.carrier1.id,
-            }
-        )
+        order = self._create_order(qty=10)
+        order.carrier_id = self.carrier1
         # confirm our standard so, check the picking
         order.action_confirm()
         # create a manual delivery for part of ordered quantity

@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import models
+from odoo.fields import Domain
 
 
 class StockMove(models.Model):
@@ -29,9 +30,7 @@ class StockMove(models.Model):
             domain = self._search_picking_for_assignation_domain()
             # Filter on carrier
             if manual_delivery.carrier_id:
-                domain += [
-                    ("carrier_id", "=", manual_delivery.carrier_id.id),
-                ]
+                domain += Domain("carrier_id", "=", manual_delivery.carrier_id.id)
             return self.env["stock.picking"].search(domain, limit=1)
         else:
             return super()._search_picking_for_assignation()

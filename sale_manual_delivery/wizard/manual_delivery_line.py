@@ -2,7 +2,7 @@
 # Copyright 2021 Iván Todorovich, Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 from odoo.tools import float_compare
 
@@ -39,17 +39,18 @@ class ManualDeliveryLine(models.TransientModel):
     @api.constrains("quantity")
     def _check_quantity(self):
         """Prevent delivering more than the ordered quantity"""
+        precision = self.env["decimal.precision"].precision_get("Product Unit")
         if any(
             float_compare(
                 line.quantity,
                 line.qty_ordered - line.qty_procured,
-                precision_rounding=line.product_id.uom_id.rounding,
+                precision_digits=precision,
             )
             > 0.00
             for line in self
         ):
             raise ValidationError(
-                _(
+                self.env._(
                     "You can not deliver more than the remaining quantity. "
                     "If you need to do so, please edit the sale order first."
                 )

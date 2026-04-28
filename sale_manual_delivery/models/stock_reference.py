@@ -5,7 +5,8 @@
 from odoo import fields, models
 
 
-class ProcurementGroup(models.Model):
-    _inherit = "procurement.group"
+class StockReference(models.Model):
+    _inherit = "stock.reference"
 
+    partner_id = fields.Many2one("res.partner")
     date_planned = fields.Date()

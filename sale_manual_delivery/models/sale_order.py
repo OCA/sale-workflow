@@ -2,7 +2,7 @@
 # Copyright 2021 Iván Todorovich, Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 
@@ -16,7 +16,7 @@ class SaleOrder(models.Model):
     )
 
     has_pending_delivery = fields.Boolean(
-        string="Delivery pending?",
+        "Delivery Pending",
         compute="_compute_delivery_pending",
     )
 
@@ -42,7 +42,7 @@ class SaleOrder(models.Model):
     def _check_manual_delivery(self):
         if any(rec.state not in ["draft", "sent"] for rec in self):
             raise UserError(
-                _(
+                self.env._(
                     "You can only change to/from manual delivery"
                     " in a quote, not a confirmed order"
                 )
