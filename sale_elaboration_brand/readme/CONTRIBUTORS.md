@@ -1,0 +1,3 @@
+- [Tecnativa](https://www.tecnativa.com):
+  - Sergio Teruel
+  - Andrii Kompaniiets
