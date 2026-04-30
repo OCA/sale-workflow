@@ -5,18 +5,19 @@ from odoo import Command
 from odoo.tests.common import HttpCase, tagged
 
 
-@tagged("post_install", "-at_install")
+@tagged("post_install", "-at_install", "test_portal")
 class TestPortalMyOrders(HttpCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
 
         cls.portal_user = cls.env["res.users"].create(
             {
                 "name": "Portal User Test",
                 "login": "portal_user_test",
                 "password": "portal_password",
-                "groups_id": [Command.set([cls.env.ref("base.group_portal").id])],
+                "group_ids": [Command.set([cls.env.ref("base.group_portal").id])],
             }
         )
         cls.portal_partner = cls.portal_user.partner_id
