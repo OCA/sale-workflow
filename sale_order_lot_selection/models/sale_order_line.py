@@ -104,7 +104,7 @@ class SaleOrderLine(models.Model):
             lambda x: x.product_id and x.product_tracking != "none" and x.move_ids
         ):
             moves = item.move_ids.filtered(lambda x: x.restrict_lot_id)
-            if all(move.state in ("cancel", "done") for move in moves):
+            if all(move.state == "done" for move in moves):
                 raise ValidationError(
                     self.env._(
                         "You can't modify the Lot/Serial number "
@@ -112,5 +112,13 @@ class SaleOrderLine(models.Model):
                     )
                 )
             pending_moves = moves.filtered(lambda x: x.state not in ("cancel", "done"))
+            # It is important to exclude pending return stock moves if the source move
+            # is no longer pending; otherwise, a "lot incompatibility" error will occur
+            # in stock_restrict_lot
+            moves_to_exclude = self.env["stock.move"]
+            for move in pending_moves.filtered(lambda x: x.origin_returned_move_id):
+                if move.origin_returned_move_id not in pending_moves:
+                    moves_to_exclude = move
+            pending_moves -= moves_to_exclude
             if pending_moves:
                 pending_moves._set_restrict_lot_id_from_sol(item.lot_id)
