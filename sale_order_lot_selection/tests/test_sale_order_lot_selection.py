@@ -400,7 +400,7 @@ class TestSaleOrderLotSelection(BaseCommon):
         self.assertEqual(picking.state, "done")
         msg = (
             "You can't modify the Lot/Serial number "
-            "because all stock move has already been done."
+            "because all the stock moves have already been done."
         )
         with self.assertRaisesRegex(ValidationError, msg):
             line_0.lot_id = lot_extra_2
