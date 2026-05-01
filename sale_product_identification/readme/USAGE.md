@@ -2,7 +2,7 @@ Add identifications to the product
 -----------------------------
 
 1. Go to Sales -> Products -> Products
-2. Create a new product
+2. Create a new product.
 3. Go to the Sales tab and select the Required Identification option.
 4. A tree will be enabled in which you must configure the required identification
    category (ies) for the product without repeating them.
@@ -11,7 +11,20 @@ Add identifications to the product
 
 5. If you define any category as optional, a wizard will appear when
    confirming the order to confirm whether the identifications are correct and continue with the process.
-6. Save
+6. Save.
+
+Add additional validations using expression
+-------------------------------
+1. Perform steps 1-4 of section [Add identifications to the product](#add-identifications-to-the-product)
+2. Define a category and add the expression with which you want to perform extra validation.
+
+   ![IDENTIFICATION_EXPRESSION](../static/img/readme/IDENTIFICATION_EXPRESSION.png)
+
+3. When confirming a sales order, all expressions are validated.
+4. Save.
+
+Note: If you don't want extra validation, leave the value field blank.
+
 
 Validate order with identification products
 ---------------------------------------------
