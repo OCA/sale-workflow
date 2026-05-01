@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Dixmit
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="view_order_form">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <field name="finished_sale_order" invisible="1" />
+                <button
+                    name="action_finish_sale_order"
+                    type="object"
+                    string="Mark as Finished"
+                    invisible="state != 'sale' or finished_sale_order"
+                    class="oe_highlight"
+                />
+                <button
+                    name="action_unfinish_sale_order"
+                    type="object"
+                    string="Unmark as Finished"
+                    invisible="state != 'sale' or not finished_sale_order"
+                    class="oe_highlight"
+                />
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_sales_order_filter">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <filter name="activities_upcoming_all" position="after">
+                <separator />
+                <filter
+                    name="finished_sale_order"
+                    string="Finished"
+                    domain="[('finished_sale_order', '=', True)]"
+                />
+                <filter
+                    name="unfinished_sale_order"
+                    string="Unfinished"
+                    domain="[('finished_sale_order', '=', False)]"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
