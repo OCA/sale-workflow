@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===============
 Sale Order Type
 ===============
@@ -17,7 +13,7 @@ Sale Order Type
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -41,6 +37,17 @@ You can see sale types as lines of business.
 
 You are able to select a sales order type by partner so that when you
 add a partner to a sales order it will get the related info to it.
+
+Additionally, it adds a warning message to notify users when there is a
+mismatch between the partner's default pricelist and the effective
+pricelist set by the sales order type. This ensures clarity when
+creating sales orders, as the effective pricelist (determined by the
+sales order type) will take precedence over the partner's default
+pricelist. The warning is only visible for companies without a parent
+and when there is a mismatch between the two pricelists.
+
+.. image:: https://raw.githubusercontent.com/OCA/sale-workflow/18.0/sale_order_type/static/description/pricelist_conflict_warning_note.png
+   :alt: Pricelist Conflict Warning Note
 
 **Table of contents**
 
@@ -89,50 +96,50 @@ Authors
 Contributors
 ------------
 
-- `Vermon <http://www.grupovermon.com>`__
+-  `Vermon <http://www.grupovermon.com>`__
 
-  - Carlos Sánchez Cifuentes <csanchez@grupovermon.com>
+   -  Carlos Sánchez Cifuentes <csanchez@grupovermon.com>
 
-- `AvanzOsc <http://avanzosc.es>`__
+-  `AvanzOsc <http://avanzosc.es>`__
 
-  - Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
-  - Ana Juaristi <anajuaristi@avanzosc.es>
-  - Daniel Campos <danielcampos@avanzosc.es>
-  - Ainara Galdona <ainaragaldona@avanzosc.es>
+   -  Oihane Crucelaegui <oihanecrucelaegi@avanzosc.es>
+   -  Ana Juaristi <anajuaristi@avanzosc.es>
+   -  Daniel Campos <danielcampos@avanzosc.es>
+   -  Ainara Galdona <ainaragaldona@avanzosc.es>
 
-- `Agile Business Group <https://www.agilebg.com>`__
+-  `Agile Business Group <https://www.agilebg.com>`__
 
-  - Lorenzo Battistini <lorenzo.battistini@agilebg.com>
+   -  Lorenzo Battistini <lorenzo.battistini@agilebg.com>
 
-- `Niboo <https://www.niboo.be/>`__
+-  `Niboo <https://www.niboo.be/>`__
 
-  - Samuel Lefever <sam@niboo.be>
-  - Pierre Faniel <pierre@niboo.be>
+   -  Samuel Lefever <sam@niboo.be>
+   -  Pierre Faniel <pierre@niboo.be>
 
-- `Tecnativa <https://www.tecnativa.com>`__
+-  `Tecnativa <https://www.tecnativa.com>`__
 
-  - Pedro M. Baeza
-  - David Vidal
-  - Carlos Dauden
-  - Sergio Teruel
+   -  Pedro M. Baeza
+   -  David Vidal
+   -  Carlos Dauden
+   -  Sergio Teruel
 
-- `Pesol <https://www.pesol.es>`__
+-  `Pesol <https://www.pesol.es>`__
 
-  - Angel Moya Pardo <angel.moya@pesol.es>
-  - Antonio J Rubio Lorente <antonio.rubio@pesol.es>
+   -  Angel Moya Pardo <angel.moya@pesol.es>
+   -  Antonio J Rubio Lorente <antonio.rubio@pesol.es>
 
-- Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
-- `Druidoo <https://www.druidoo.io>`__
+-  Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
+-  `Druidoo <https://www.druidoo.io>`__
 
-  - Iván Todorovich <ivan.todorovich@druidoo.io>
+   -  Iván Todorovich <ivan.todorovich@druidoo.io>
 
-- `GSLab.it <https://www.gslab.it>`__
+-  `GSLab.it <https://www.gslab.it>`__
 
-  - Giovanni Serra <giovanni@gslab.it>
+   -  Giovanni Serra <giovanni@gslab.it>
 
-- Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
-- Isaac Gallart <igallart@puntsistemes.es>
-- Denis Rousse <denis.roussel@acsone.eu>
+-  Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
+-  Isaac Gallart <igallart@puntsistemes.es>
+-  Denis Rousse <denis.roussel@acsone.eu>
 
 Do not contact contributors directly about support or help with
 technical issues.
