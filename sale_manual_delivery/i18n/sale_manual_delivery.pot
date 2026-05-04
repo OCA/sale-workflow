@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -58,7 +58,7 @@ msgstr ""
 
 #. module: sale_manual_delivery
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__date_planned
-#: model:ir.model.fields,field_description:sale_manual_delivery.field_procurement_group__date_planned
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_stock_reference__date_planned
 msgid "Date Planned"
 msgstr ""
 
@@ -74,7 +74,7 @@ msgstr ""
 
 #. module: sale_manual_delivery
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_sale_order__has_pending_delivery
-msgid "Delivery pending?"
+msgid "Delivery Pending"
 msgstr ""
 
 #. module: sale_manual_delivery
@@ -83,8 +83,13 @@ msgid "Description"
 msgstr ""
 
 #. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_crm_team__display_name
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__display_name
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__display_name
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_stock_move__display_name
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_stock_reference__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -94,8 +99,13 @@ msgid "Here is a list of each sales order line to be invoiced."
 msgstr ""
 
 #. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_crm_team__id
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__id
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__id
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_sale_order_line__id
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_stock_move__id
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_stock_reference__id
 msgid "ID"
 msgstr ""
 
@@ -148,6 +158,11 @@ msgid "Ordered"
 msgstr ""
 
 #. module: sale_manual_delivery
+#: model:ir.model.fields,field_description:sale_manual_delivery.field_stock_reference__partner_id
+msgid "Partner"
+msgstr ""
+
+#. module: sale_manual_delivery
 #. odoo-python
 #: code:addons/sale_manual_delivery/wizard/manual_delivery.py:0
 msgid "Please select one partner at a time"
@@ -156,11 +171,6 @@ msgstr ""
 #. module: sale_manual_delivery
 #: model_terms:ir.ui.view,arch_db:sale_manual_delivery.manual_delivery_wizard_form
 msgid "Procured"
-msgstr ""
-
-#. module: sale_manual_delivery
-#: model:ir.model,name:sale_manual_delivery.model_procurement_group
-msgid "Procurement Group"
 msgstr ""
 
 #. module: sale_manual_delivery
@@ -193,6 +203,11 @@ msgstr ""
 #. module: sale_manual_delivery
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_sale_order_line__qty_to_procure
 msgid "Quantity to Procure"
+msgstr ""
+
+#. module: sale_manual_delivery
+#: model:ir.model,name:sale_manual_delivery.model_stock_reference
+msgid "Reference between stock documents"
 msgstr ""
 
 #. module: sale_manual_delivery
