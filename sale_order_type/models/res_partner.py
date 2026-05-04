@@ -13,6 +13,12 @@ class ResPartner(models.Model):
         copy=True,
     )
 
+    effective_pricelist_id = fields.Many2one(
+        comodel_name="product.pricelist",
+        string="Sale Effective Pricelist",
+        related="sale_type.pricelist_id",
+    )
+
     def copy_data(self, default=None):
         result = super().copy_data(default=default)
         for idx, partner in enumerate(self):

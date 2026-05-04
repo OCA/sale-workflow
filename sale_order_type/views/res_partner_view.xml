@@ -3,10 +3,31 @@
         <field name="name">res.partner.sale_type.form</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="priority" eval="116" />
+        <!-- to ensure div alert is after property product pricelist "above"-->
         <field name="arch" type="xml">
             <group name="sale" position="inside">
                 <field name="sale_type" />
             </group>
+            <field name="property_product_pricelist" position="after">
+                <div
+                    name="pricelists_mismatch"
+                    groups="product.group_product_pricelist"
+                    colspan="2"
+                    class="alert alert-warning"
+                    role="alert"
+                    invisible="not is_company or parent_id or not effective_pricelist_id or effective_pricelist_id == property_product_pricelist"
+                >
+                    <p>
+                        When creating a Sales Order, above pricelist will be replaced by the one set on the sales order type:
+                        <field
+                        name="effective_pricelist_id"
+                        class="oe_inline"
+                        nolabel="1"
+                    />
+                    </p>
+                </div>
+            </field>
         </field>
     </record>
 </odoo>
