@@ -54,6 +54,7 @@ addon | version | maintainers | summary
 [sale_order_type](sale_order_type/) | 19.0.1.3.0 |  | Sale Order Type
 [sale_partner_delay](sale_partner_delay/) | 19.0.1.0.0 |  | Add customer-specific delivery lead time
 [sale_partner_incoterm](sale_partner_incoterm/) | 19.0.1.0.0 |  | Set the customer preferred incoterm on each sales order
+[sale_product_multi_add](sale_product_multi_add/) | 19.0.1.0.0 |  | Sale Product Multi Add
 [sale_require_po_doc](sale_require_po_doc/) | 19.0.1.0.0 |  | Sale Orders Require PO or Sales Documentation
 [sale_stock_delivery_address](sale_stock_delivery_address/) | 19.0.1.0.0 |  | Sale Stock Delivery Address
 [sale_stock_picking_blocking](sale_stock_picking_blocking/) | 19.0.1.0.0 |  | Allow you to block the creation of deliveries from a sale order.
