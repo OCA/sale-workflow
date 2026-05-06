@@ -1,0 +1,26 @@
+# Spanish translation of sale_order_show_currency_rate.
+# This file contains the translation of the following modules:
+# 	* sale_order_show_currency_rate
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-06 17:44+0000\n"
+"PO-Revision-Date: 2026-05-06 17:44+0000\n"
+"Last-Translator: Cristina Hidalgo <cristina.hidalgo@tecnativa.com>\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_order_show_currency_rate
+#: model_terms:ir.ui.view,arch_db:sale_order_show_currency_rate.report_saleorder_document_currency_rate
+msgid ""
+"<strong>Informative Exchange Rate</strong><br/>\n"
+"                            1"
+msgstr ""
+"<strong>Tipo de cambio informativo</strong><br/>\n"
+"                            1"
