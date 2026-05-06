@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===========================
 Default packaging for sales
 ===========================
@@ -17,7 +13,7 @@ Default packaging for sales
 .. |badge1| image:: https://img.shields.io/badge/maturity-Alpha-red.png
     :target: https://odoo-community.org/page/development-status
     :alt: Alpha
-.. |badge2| image:: https://img.shields.io/badge/license-LGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-LGPL--3-blue.png
     :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
     :alt: License: LGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -39,6 +35,8 @@ orders.
   fields.
 - When selecting a product to sell, its default packaging is added
   automatically.
+- You can make packaging mandatory if the product has available
+  packagings for Sales.
 
 .. IMPORTANT::
    This is an alpha version, the data model and design can change at any time without warning.
@@ -75,6 +73,13 @@ To configure this module, you need to:
 1. Go to *Sales > Configuration > Settings*.
 2. Under *Product Catalog*, enable *Product Packagings*.
 
+If you want to make packaging mandatory if the product has available
+packagings for Sales:
+
+1. Go to *Settings > Technical > Parameters > System parameters*.
+2. Create ``sale_packaging_default.packaging_required`` parameter with
+   value ``1``.
+
 Usage
 =====
 
@@ -102,6 +107,11 @@ You will notice that:
   units, we now keep the packaging qty, and the UoM qty is recomputed
   accordingly.
 
+Known issues / Roadmap
+======================
+
+- Add compatibility with the Odoo Product Catalog feature
+
 Bug Tracker
 ===========
 
@@ -126,6 +136,7 @@ Contributors
 - Jairo Llopis (`Moduon <https://www.moduon.team/>`__)
 - Emilio Pascual (`Moduon <https://www.moduon.team/>`__)
 - Sabrina Rodriguez (`Moduon <https://www.moduon.team/>`__)
+- Eduardo de Miguel (`Moduon <https://www.moduon.team/>`__)
 
 Maintainers
 -----------
