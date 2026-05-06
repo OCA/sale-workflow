@@ -5,3 +5,4 @@ orders.
   fields.
 - When selecting a product to sell, its default packaging is added
   automatically.
+- You can make packaging mandatory if the product has available packagings for Sales.

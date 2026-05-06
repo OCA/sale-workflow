@@ -1,6 +1,6 @@
 # Copyright 2023 Moduon Team S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
-from odoo import fields
+from odoo import exceptions, fields
 from odoo.tests import Form
 
 from odoo.addons.product.tests.common import ProductCommon
@@ -10,6 +10,9 @@ class SalePackagingDefaultCase(ProductCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env["ir.config_parameter"].set_param(
+            "sale_packaging_default.packaging_required", "0"
+        )
         cls.env.user.groups_id |= cls.env.ref("product.group_stock_packaging")
         with Form(cls.product) as product_f:
             with product_f.packaging_ids.new() as packaging_f:
@@ -60,6 +63,12 @@ class SalePackagingDefaultCase(ProductCommon):
             }
         )
         cls.packaging = cls.product_packaging_qty_no_integer.packaging_ids
+        cls.product_without_packaging = cls.env["product.product"].create(
+            {
+                "name": "Product Without Packaging",
+                "type": "consu",
+            }
+        )
 
     def test_default_packaging_sale_order(self):
         """Check is packaging usage in sale order."""
@@ -163,3 +172,50 @@ class SalePackagingDefaultCase(ProductCommon):
             line_f.product_packaging_qty = 5
             self.assertEqual(line_f.product_packaging_id, self.packaging)
             self.assertEqual(line_f.product_uom_qty, 8)
+
+    def test_has_packaging_available(self):
+        """Check product_packaging_id is required when product has packaging."""
+        self.env["ir.config_parameter"].set_param(
+            "sale_packaging_default.packaging_required", "1"
+        )
+        self.assertTrue(self.product.packaging_ids)
+        so_f = Form(self.env["sale.order"])
+        so_f.partner_id = self.partner
+        with self.assertRaises(AssertionError):
+            # AssertionError comes from product_packaging_id being required
+            with so_f.order_line.new() as line:
+                line.product_id = self.product
+                line.product_packaging_id = False
+                self.assertFalse(line.product_packaging_id)
+                self.assertTrue(line.is_packaging_required)
+
+    def test_required_packaging_error_on_sale_order_confirm(self):
+        """Check error is raised when packaging is required but not set."""
+        self.env["ir.config_parameter"].set_param(
+            "sale_packaging_default.packaging_required", "1"
+        )
+        self.assertTrue(self.product.packaging_ids)
+        sale = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [(0, 0, {"product_id": self.product.id})],
+            }
+        )
+        self.assertTrue(sale.order_line[:1].is_packaging_required)
+        sale.order_line[:1].product_packaging_id = False
+        with self.assertRaisesRegex(
+            exceptions.UserError, "Some packaging is required but not set"
+        ):
+            sale.action_confirm()
+
+    def test_has_not_packaging_available(self):
+        """Check is_packaging_required is False when product has no packaging."""
+        self.env["ir.config_parameter"].set_param(
+            "sale_packaging_default.packaging_required", "1"
+        )
+        so_f = Form(self.env["sale.order"])
+        so_f.partner_id = self.partner
+        with so_f.order_line.new() as line:
+            line.product_id = self.product_without_packaging
+            self.assertFalse(line.is_packaging_required)
+        so_f.save()
