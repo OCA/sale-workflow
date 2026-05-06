@@ -7,20 +7,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-10-10 15:40+0000\n"
-"PO-Revision-Date: 2019-10-10 17:44+0200\n"
-"Last-Translator: <>\n"
+"PO-Revision-Date: 2026-05-06 12:45+0000\n"
+"Last-Translator: alexmorel-tecnativa <alex.morel@tecnativa.com>\n"
 "Language-Team: \n"
-"Language: en\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 2.2.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_stock_return_request
 #: model_terms:ir.ui.view,arch_db:sale_stock_return_request.view_order_form
 msgid "Create Return Request"
-msgstr ""
+msgstr "Crear solicitud de devolución"
 
 #. module: sale_stock_return_request
 #: model:ir.model.fields,field_description:sale_stock_return_request.field_stock_return_request__sale_order_ids
