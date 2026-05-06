@@ -15,11 +15,8 @@ class ResCompany(models.Model):
         " days since the expiration date.",
     )
 
-    _sql_constraints = [
-        (
-            "sale_validity_auto_cancel_days_positive",
-            "CHECK (sale_validity_auto_cancel_days >= 0)",
-            "The value of the field 'Auto-cancel expired quotations after' "
-            "must be positive or 0.",
-        ),
-    ]
+    _check_sale_validity_auto_cancel_days_positive = models.Constraint(
+        "CHECK (sale_validity_auto_cancel_days >= 0)",
+        "The value of the field 'Auto-cancel expired quotations after' "
+        "must be positive or 0.",
+    )

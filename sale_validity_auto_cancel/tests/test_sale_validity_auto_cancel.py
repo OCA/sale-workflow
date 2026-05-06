@@ -18,8 +18,7 @@ class TestSaleValidityAutoCancel(BaseCommon):
         cls.company = cls.env.ref("base.main_company")
         cls.company.sale_validity_auto_cancel_days = 10
         cls.other_company = cls.env["res.company"].create({"name": "Other Company"})
-        cls.partner = cls.env.ref("base.res_partner_2")
-        cls.product = cls.env.ref("product.product_product_7")
+        cls.product = cls.env["product.product"].create({"name": "Test Product"})
 
     def create_so(self, company=None):
         if company is None:

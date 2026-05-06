@@ -48,7 +48,7 @@ class SaleOrder(models.Model):
         """
         company_domain = []
         if company_ids:
-            company_domain = [("id", "in", company_ids)]
+            company_domain.append(("id", "in", company_ids))
         companies = self.env["res.company"].search(company_domain)
         for company in companies:
             orders = self.env["sale.order"].search(
