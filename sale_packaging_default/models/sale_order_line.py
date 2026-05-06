@@ -2,10 +2,17 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
 
 from odoo import api, fields, models
+from odoo.tools import str2bool
 
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
+
+    is_packaging_required = fields.Boolean(
+        compute="_compute_is_packaging_required",
+        store=True,
+        readonly=True,
+    )
 
     def onchange(self, values, field_name, field_onchange):
         """Record which field was being changed."""
@@ -87,3 +94,22 @@ class SaleOrderLine(models.Model):
         _self = self.with_context(keep_product_packaging=True)
         result = super(SaleOrderLine, _self)._compute_product_uom_qty()
         return result
+
+    @api.depends("product_id.packaging_ids", "company_id")
+    def _compute_is_packaging_required(self):
+        self.is_packaging_required = False
+        packaging_required_param = self.env["ir.config_parameter"].get_param(
+            "sale_packaging_default.packaging_required", default="0"
+        )
+        if not str2bool(packaging_required_param):
+            return
+        for record in self:
+            sale_packagings = record.product_id.packaging_ids.filtered_domain(
+                [
+                    ("sales", "=", True),
+                    "|",
+                    ("company_id", "=", record.company_id.id),
+                    ("company_id", "=", False),
+                ]
+            )
+            record.is_packaging_required = bool(sale_packagings)
