@@ -285,6 +285,26 @@ class TestSaleOrderType(BaseCommon):
         new_partner = self.partner.copy()
         self.assertEqual(self.partner.sale_type, new_partner.sale_type)
 
+    def test_effective_pricelist_id_with_pricelist(self):
+        """effective_pricelist_id resolves to sale_type.pricelist_id when set."""
+        self.partner.sale_type = self.sale_type
+        self.assertEqual(
+            self.partner.effective_pricelist_id, self.sale_type.pricelist_id
+        )
+
+    def test_effective_pricelist_id_without_pricelist(self):
+        """effective_pricelist_id is empty when sale_type has no pricelist set."""
+        sale_type_no_pricelist = self.sale_type_model.create(
+            {"name": "Type without pricelist"}
+        )
+        self.partner.sale_type = sale_type_no_pricelist
+        self.assertFalse(self.partner.effective_pricelist_id)
+
+    def test_effective_pricelist_id_without_sale_type(self):
+        """effective_pricelist_id is empty when the partner has no sale_type."""
+        self.partner.sale_type = False
+        self.assertFalse(self.partner.effective_pricelist_id)
+
     def test_sale_order_type_required(self):
         sale_form = Form(self.env["sale.order"])
         sale_form.partner_id = self.partner
