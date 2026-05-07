@@ -231,6 +231,12 @@ msgid "Routes"
 msgstr ""
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_res_partner__effective_pricelist_id
+#: model:ir.model.fields,field_description:sale_order_type.field_res_users__effective_pricelist_id
+msgid "Sale Effective Pricelist"
+msgstr ""
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_report__sale_type_id
 #: model:ir.model.fields,field_description:sale_order_type.field_res_partner__sale_type
 #: model:ir.model.fields,field_description:sale_order_type.field_res_users__sale_type
@@ -307,6 +313,13 @@ msgstr "Tip prodajnega naloga"
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Warehouse"
 msgstr "Skladišče"
+
+#. module: sale_order_type
+#: model_terms:ir.ui.view,arch_db:sale_order_type.res_partner_sale_type_form_view
+msgid ""
+"When creating a Sales Order, above pricelist will be replaced by the one set "
+"on the sales order type:"
+msgstr ""
 
 #~ msgid "Group By"
 #~ msgstr "Združi po"
