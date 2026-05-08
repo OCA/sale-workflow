@@ -62,13 +62,13 @@ Authors
 Contributors
 ------------
 
-- ForgeFlow S.L. <contact@forgeflow.com>
-- Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
-- Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
-- Marcin Chechłacz <marcin.chechlacz@braintec.com>
-- `Heliconia Solutions Pvt. Ltd. <https://www.heliconia.io>`__
+-  ForgeFlow S.L. <contact@forgeflow.com>
+-  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+-  Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
+-  Marcin Chechłacz <marcin.chechlacz@braintec.com>
+-  `Heliconia Solutions Pvt. Ltd. <https://www.heliconia.io>`__
 
-  - Bhavesh Heliconia
+   -  Bhavesh Heliconia
 
 Other credits
 -------------
@@ -76,8 +76,8 @@ Other credits
 Images
 ~~~~~~
 
-- Odoo Community Association:
-  `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`__.
+-  Odoo Community Association:
+   `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`__.
 
 Maintainers
 -----------
