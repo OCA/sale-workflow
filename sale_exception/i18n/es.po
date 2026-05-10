@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2023-11-29 04:58+0000\n"
-"Last-Translator: kikopeiro <francisco.peiro@factorlibre.com>\n"
+"PO-Revision-Date: 2026-05-10 16:52+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
@@ -80,12 +80,12 @@ msgstr ""
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Empresas"
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Ajustes de configuración"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_sale_exception_confirm
@@ -118,6 +118,8 @@ msgid ""
 "Display popup at confirm or simply rely on the red alert already visible on "
 "top of the order."
 msgstr ""
+"Mostrar una ventana emergente al confirmar o simplemente depender de la "
+"alerta roja ya visible en la parte superior del pedido."
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_exception_rule
@@ -144,7 +146,7 @@ msgstr "Excepciones a resolver"
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__ignore
@@ -215,7 +217,7 @@ msgstr "Venta"
 #: model:ir.model.fields,field_description:sale_exception.field_res_company__sale_exception_show_popup
 #: model:ir.model.fields,field_description:sale_exception.field_res_config_settings__sale_exception_show_popup
 msgid "Sale Exception Popup"
-msgstr ""
+msgstr "Ventana emergente de excepción de venta"
 
 #. module: sale_exception
 #: model:ir.actions.act_window,name:sale_exception.action_sale_test_tree
