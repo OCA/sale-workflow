@@ -9,20 +9,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-27 03:52+0000\n"
-"PO-Revision-Date: 2021-03-26 10:46+0000\n"
-"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"PO-Revision-Date: 2026-05-10 16:52+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.3.2\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_pricelist_item__applied_on
 msgid "Apply On"
-msgstr ""
+msgstr "Aplicar en"
 
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_price_category__create_uid
@@ -87,22 +87,22 @@ msgstr "Tarifa"
 #. module: product_price_category
 #: model:ir.model.fields,help:product_price_category.field_product_pricelist_item__applied_on
 msgid "Pricelist Item applicable on selected option"
-msgstr ""
+msgstr "Elemento de tarifa aplicable en la opción seleccionada"
 
 #. module: product_price_category
 #: model:ir.model,name:product_price_category.model_product_pricelist_item
 msgid "Pricelist Rule"
-msgstr ""
+msgstr "Regla de tarifa"
 
 #. module: product_price_category
 #: model:ir.model,name:product_price_category.model_product_template
 msgid "Product"
-msgstr ""
+msgstr "Producto"
 
 #. module: product_price_category
 #: model:ir.model,name:product_price_category.model_product_price_category
 msgid "Product Price Category"
-msgstr ""
+msgstr "Categoría de precio de producto"
 
 #. module: product_price_category
 #: model:ir.model.fields,help:product_price_category.field_product_pricelist_item__price_category_id
