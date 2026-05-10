@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-16 01:31+0000\n"
-"PO-Revision-Date: 2025-09-16 01:31+0000\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2026-05-10 16:52+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: \n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_product_identification
 #. odoo-python
@@ -24,12 +25,14 @@ msgid ""
 "%(product)s\n"
 "%(categories)s"
 msgstr ""
+"\n"
+"%(product)s %(categories)s"
 
 #. module: sale_product_identification
 #. odoo-python
 #: code:addons/sale_product_identification/models/sale_order.py:0
 msgid "%(order)s%(message)s"
-msgstr ""
+msgstr "%(order)s%(message)s"
 
 #. module: sale_product_identification
 #. odoo-python
@@ -83,17 +86,16 @@ msgstr "Confirmar identificaciones"
 #: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__create_uid
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__create_date
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado el"
 
 #. module: sale_product_identification
 #: model:ir.model.fields,help:sale_product_identification.field_product_template_id_category__is_mandatory
-#, fuzzy
 msgid "Defines whether identification is mandatory."
 msgstr "Define si la identificación es requerida."
 
@@ -101,13 +103,13 @@ msgstr "Define si la identificación es requerida."
 #: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__display_name
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre a mostrar"
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__id
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_product_identification
 #: model_terms:ir.ui.view,arch_db:sale_product_identification.product_template_only_form_view
@@ -117,19 +119,19 @@ msgstr "Identificación"
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__is_mandatory
 msgid "Is Mandatory"
-msgstr ""
+msgstr "Es obligatorio"
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__write_uid
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__write_date
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualización el"
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__message
@@ -155,18 +157,18 @@ msgstr "Producto"
 #. module: sale_product_identification
 #: model:ir.model,name:sale_product_identification.model_product_template_id_category
 msgid "Product Template Identification Category"
-msgstr ""
+msgstr "Categoría de identificación de plantilla de producto"
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__product_tmpl_id
 msgid "Product Tmpl"
-msgstr ""
+msgstr "Plantilla de producto"
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_product__product_tmpl_category_ids
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template__product_tmpl_category_ids
 msgid "Product Tmpl Category"
-msgstr ""
+msgstr "Categoría de plantilla de producto"
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_product__required_identification
