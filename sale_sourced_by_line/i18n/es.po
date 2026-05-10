@@ -10,20 +10,20 @@ msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-02-28 03:43+0000\n"
-"PO-Revision-Date: 2023-12-18 20:10+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"PO-Revision-Date: 2026-05-10 16:52+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_sourced_by_line
 #: model:ir.model.fields,field_description:sale_sourced_by_line.field_sale_order__warehouse_id
 msgid "Default Warehouse"
-msgstr ""
+msgstr "Almacén predeterminado"
 
 #. module: sale_sourced_by_line
 #: model:ir.model.fields,help:sale_sourced_by_line.field_sale_order__warehouse_id
@@ -31,6 +31,8 @@ msgid ""
 "If no source warehouse is selected on line, this warehouse is used as "
 "default. "
 msgstr ""
+"Si no se selecciona ningún almacén de origen en la línea, este almacén se "
+"utiliza como predeterminado. "
 
 #. module: sale_sourced_by_line
 #: model:ir.model,name:sale_sourced_by_line.model_sale_order
