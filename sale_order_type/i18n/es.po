@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-19 21:55+0000\n"
-"PO-Revision-Date: 2023-10-19 23:59+0200\n"
-"Last-Translator: Carlos Dauden <carlos.dauden@tecnativa.com>\n"
+"PO-Revision-Date: 2026-05-10 16:52+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__active
@@ -45,6 +45,8 @@ msgstr "Diario de facturación"
 msgid ""
 "Check this if you want the sale order type required on sale order forms."
 msgstr ""
+"Marque esto si desea que el tipo de pedido de venta sea obligatorio en los "
+"formularios de pedido de venta."
 
 #. module: sale_order_type
 #: model_terms:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
@@ -54,7 +56,7 @@ msgstr "Pulse para establecer un nuevo tipo de pedido de ventas."
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Empresas"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__company_id
@@ -64,7 +66,7 @@ msgstr "Compañía"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Ajustes de configuración"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_partner
@@ -117,7 +119,7 @@ msgstr "ID"
 #: model:ir.model.fields,help:sale_order_type.field_res_config_settings__sale_order_type_required
 #: model:ir.model.fields,help:sale_order_type.field_sale_order__order_type_required
 msgid "If checked, the sale orders will require a type."
-msgstr ""
+msgstr "Si está marcado, los pedidos de venta requerirán un tipo."
 
 #. module: sale_order_type
 #: model:ir.model.fields,help:sale_order_type.field_sale_order__picking_policy
@@ -223,7 +225,7 @@ msgstr "Tipo de pedido de venta"
 #: model:ir.model.fields,field_description:sale_order_type.field_res_config_settings__sale_order_type_required
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order__order_type_required
 msgid "Sale Order Type Required"
-msgstr ""
+msgstr "Tipo de pedido de venta requerido"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_bank_statement_line__sale_type_id
