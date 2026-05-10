@@ -7,25 +7,25 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-18 05:45+0000\n"
-"PO-Revision-Date: 2023-07-25 12:10+0000\n"
-"Last-Translator: Ivorra78 <informatica@totmaterial.es>\n"
+"PO-Revision-Date: 2026-05-10 16:52+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_commercial_partner
 #: model:ir.model,name:sale_commercial_partner.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Empresas"
 
 #. module: sale_commercial_partner
 #: model:ir.model,name:sale_commercial_partner.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Configuración"
 
 #. module: sale_commercial_partner
 #: model:ir.model.fields,field_description:sale_commercial_partner.field_sale_order__commercial_partner_id
@@ -37,12 +37,12 @@ msgstr "Entidad del Cliente"
 #. module: sale_commercial_partner
 #: model_terms:ir.ui.view,arch_db:sale_commercial_partner.res_config_settings_view_form
 msgid "Filter Invoice Address by Customer’s Commercial Partner"
-msgstr ""
+msgstr "Filtrar dirección de factura por partner comercial del cliente"
 
 #. module: sale_commercial_partner
 #: model_terms:ir.ui.view,arch_db:sale_commercial_partner.res_config_settings_view_form
 msgid "Filter Shipping Address by Customer’s Commercial Partner"
-msgstr ""
+msgstr "Filtrar dirección de envío por partner comercial del cliente"
 
 #. module: sale_commercial_partner
 #: model_terms:ir.ui.view,arch_db:sale_commercial_partner.res_config_settings_view_form
@@ -50,6 +50,9 @@ msgid ""
 "If enabled, the delivery address can only be selected from partners whose "
 "commercial partner is the same as the sales order’s customer."
 msgstr ""
+"Si está habilitado, la dirección de entrega solo se puede seleccionar entre "
+"los partners cuyo partner comercial sea el mismo que el cliente del pedido "
+"de venta."
 
 #. module: sale_commercial_partner
 #: model_terms:ir.ui.view,arch_db:sale_commercial_partner.res_config_settings_view_form
@@ -57,21 +60,24 @@ msgid ""
 "If enabled, the invoice address can only be selected from partners whose "
 "commercial partner is the same as the sales order’s customer."
 msgstr ""
+"Si está habilitado, la dirección de factura solo se puede seleccionar entre "
+"los partners cuyo partner comercial sea el mismo que el cliente del pedido "
+"de venta."
 
 #. module: sale_commercial_partner
 #: model:ir.model.fields,field_description:sale_commercial_partner.field_sale_order__commercial_partner_invoice_id
 msgid "Invoice Entity"
-msgstr ""
+msgstr "Entidad de facturación"
 
 #. module: sale_commercial_partner
 #: model:ir.model.fields,field_description:sale_commercial_partner.field_sale_order__partner_invoice_domain
 msgid "Partner Invoice Domain"
-msgstr ""
+msgstr "Dominio de facturación del contacto"
 
 #. module: sale_commercial_partner
 #: model:ir.model.fields,field_description:sale_commercial_partner.field_sale_order__partner_shipping_domain
 msgid "Partner Shipping Domain"
-msgstr ""
+msgstr "Dominio de envío del contacto"
 
 #. module: sale_commercial_partner
 #: model:ir.model,name:sale_commercial_partner.model_sale_order
@@ -82,13 +88,13 @@ msgstr "Órdenes de venta"
 #: model:ir.model.fields,field_description:sale_commercial_partner.field_res_company__use_invoice_commercial_partner_filter
 #: model:ir.model.fields,field_description:sale_commercial_partner.field_res_config_settings__use_invoice_commercial_partner_filter
 msgid "Use Invoice Commercial Partner Filter"
-msgstr ""
+msgstr "Usar filtro de socio comercial de factura"
 
 #. module: sale_commercial_partner
 #: model:ir.model.fields,field_description:sale_commercial_partner.field_res_company__use_shipping_commercial_partner_filter
 #: model:ir.model.fields,field_description:sale_commercial_partner.field_res_config_settings__use_shipping_commercial_partner_filter
 msgid "Use Shipping Commercial Partner Filter"
-msgstr ""
+msgstr "Usar filtro de socio comercial de envío"
 
 #~ msgid "Commercial Entity"
 #~ msgstr "Commercial Entity"
