@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-02-05 09:41+0000\n"
+"PO-Revision-Date: 2026-05-11 16:28+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_advance_payment
 #: model:ir.model,name:sale_advance_payment.model_account_voucher_wizard
@@ -57,7 +57,7 @@ msgstr "L'importo dell'anticipo deve essere positivo."
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__available_payment_method_line_ids
 msgid "Available Payment Method Line"
-msgstr ""
+msgstr "Riga metodo di pagamento disponibile"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
@@ -159,6 +159,20 @@ msgid ""
 "SEPA Direct Debit: Get paid in the SEPA zone thanks to a mandate your "
 "partner will have granted to you. Module account_sepa is necessary.\n"
 msgstr ""
+"Manuale: pagare o ricevere pagamenti con qualsiasi metodo al di fuori di "
+"Odoo.\n"
+"Fornitori di pagamento: ogni fornitore di pagamento ha il proprio metodo di "
+"pagamento. Richiedere una transazione su/verso una carta grazie a un token "
+"di pagamento salvato dal partner al momento dell'acquisto o dell'abbonamento "
+"online.\n"
+"Assegno: pagare le fatture tramite assegno e stampato da Odoo.\n"
+"Accredito batch: raccogliere più assegni dei clienti contemporaneamente "
+"generando e inviando un accredito batch alla propria banca. È necessario il "
+"modulo account_batch_payment.\n"
+"Bonifico SEPA: pagare nell'area SEPA inviando un file di bonifico SEPA alla "
+"tua banca. È necessario il modulo account_sepa.\n"
+"Addebito diretto SEPA: ricevere pagamenti nell'area SEPA grazie a un mandato "
+"che il tuo partner ti avrà concesso. È necessario il modulo account_sepa.\n"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__sale_order__advance_payment_status__not_paid
