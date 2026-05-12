@@ -1,5 +1,6 @@
 # Copyright 2020 Camptocamp (https://www.camptocamp.com)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+import functools
 import logging
 
 from odoo import api, models
@@ -103,16 +104,25 @@ class AutomaticWorkflowJob(models.Model):
         return super(AutomaticWorkflowJob, with_context)._sale_done(domain_filter)
 
     def _register_hook(self):
-        mapping = {
+        mapping = self._get_register_hook_mapping()
+        for method_name, context_key in mapping.items():
+            patched = self._patch_job_auto_delay(method_name, context_key=context_key)
+            setattr(
+                type(self),
+                method_name,
+                functools.update_wrapper(
+                    patched,
+                    getattr(type(self), method_name),
+                ),
+            )
+
+        return super()._register_hook()
+
+    def _get_register_hook_mapping(self) -> dict[str, str]:
+        return {
             "_do_validate_sale_order": "auto_delay_do_validation",
             "_do_send_order_confirmation_mail": "auto_delay_do_send_mail",
             "_do_create_invoice": "auto_delay_do_create_invoice",
             "_do_validate_invoice": "auto_delay_do_validation",
             "_do_sale_done": "auto_delay_do_sale_done",
         }
-        for method_name, context_key in mapping.items():
-            self._patch_method(
-                method_name,
-                self._patch_job_auto_delay(method_name, context_key=context_key),
-            )
-        return super()._register_hook()
