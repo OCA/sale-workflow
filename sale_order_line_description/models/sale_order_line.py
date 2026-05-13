@@ -10,7 +10,7 @@ class SaleOrderLine(models.Model):
     def _compute_name(self):
         res = super()._compute_name()
         has_group = self.env.user.has_group(
-            "sale_order_line_description." "group_use_product_description_per_so_line"
+            "sale_order_line_description.group_use_product_description_per_so_line"
         )
         for line in self:
             if not line.product_id:
