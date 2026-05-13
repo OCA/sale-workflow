@@ -1,5 +1,6 @@
-1.  Go to **Sales \> Settings \> Quotations & Orders** and check
-    "Product Sale description\* to use only product sale description on
+1.  Go to **Sales \> Configuration \> Settings \> Quotations & Orders** and check
+    "Allow using only the product sale description on the sales order lines"\*
+    to use only product sale description on
     the sales order lines.
 2.  Go to **Setting \> Users & Companies \> Users** and check you have
     checked the "Use only product purchase description on order lines"

@@ -39,15 +39,15 @@ class TestSaleOrderLineDescriptionChange(common.TransactionCase):
         )
 
     def _create_user(self, name, group=None):
-        groups_id = self.env.user.groups_id
+        groups = self.env.user.group_ids
         if group:
-            groups_id += group
+            groups += group
         return self.user_model.create(
             {
                 "name": name,
                 "login": name,
                 "email": name + "@example.com",
-                "groups_id": groups_id,
+                "group_ids": groups,
             }
         )
 
