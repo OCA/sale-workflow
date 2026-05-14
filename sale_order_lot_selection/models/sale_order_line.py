@@ -72,7 +72,22 @@ class SaleOrderLine(models.Model):
                     )
                     >= 0
                 )
-                domain = [("id", "in", available_quants.mapped("lot_id").ids)]
+                available_lots = available_quants.mapped("lot_id")
+                if sol.product_tracking == "serial":
+                    available_lots -= (
+                        self.env["sale.order.line"]
+                        .sudo()
+                        .search(
+                            [
+                                ("state", "in", ("draft", "sent")),
+                                ("lot_id", "!=", False),
+                                ("product_uom_qty", ">", 0),
+                                ("id", "!=", sol._origin.id or 0),
+                            ]
+                        )
+                        .mapped("lot_id")
+                    )
+                domain = [("id", "in", available_lots.ids)]
             sol.domain_lot_id = domain
 
     @api.depends("product_id")

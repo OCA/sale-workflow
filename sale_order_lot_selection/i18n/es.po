@@ -47,6 +47,11 @@ msgid "Sales Analysis Report"
 msgstr "Informe de análisis de ventas"
 
 #. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
@@ -58,6 +63,12 @@ msgstr "Movimiento de existencia"
 
 #. module: sale_order_lot_selection
 #. odoo-python
+#: code:addons/sale_order_lot_selection/models/sale_order.py:0
+msgid "The serial number %(serial)s is not available"
+msgstr "El número de serie %(serial)s no está disponible"
+
+#. module: sale_order_lot_selection
+#. odoo-python
 #: code:addons/sale_order_lot_selection/models/sale_order_line.py:0
 msgid ""
 "You can't modify the Lot/Serial number because some stock move has already "
@@ -65,17 +76,3 @@ msgid ""
 msgstr ""
 "No se puede modificar el número de lote/serie porque ya se ha realizado "
 "algún movimiento de stock."
-
-#, python-format
-#~ msgid "Can't reserve products for lot %s"
-#~ msgstr "No puede reservar productos para el lote %s"
-
-#, python-format
-#~ msgid "Can't retrieve lot on stock"
-#~ msgstr "No se puede obtener el lote en las existencias"
-
-#~ msgid "Sales Order"
-#~ msgstr "Órdenes de venta"
-
-#~ msgid "Procurement Group"
-#~ msgstr "Grupo de Abastecimiento"
