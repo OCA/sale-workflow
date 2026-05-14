@@ -3,3 +3,4 @@
 
 from . import sale_order_line
 from . import project_project
+from . import res_partner
