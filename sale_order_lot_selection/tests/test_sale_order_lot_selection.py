@@ -1,7 +1,7 @@
 # © 2015 Agile Business Group
 # Copyright 2026 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError, ValidationError
 from odoo.fields import Command
 from odoo.tools import mute_logger
 
@@ -404,3 +404,68 @@ class TestSaleOrderLotSelection(BaseCommon):
         )
         with self.assertRaisesRegex(ValidationError, msg):
             line_0.lot_id = lot_extra_2
+
+    def test_04_sale_order_lot_selection_confirm_lot_qty_check(self):
+        self.prd_cable.tracking = "serial"
+        sale = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.prd_cable.id,
+                            "product_uom_qty": 1.0,
+                            "lot_id": self.lot_cable.id,
+                        }
+                    ),
+                ],
+            }
+        )
+        # The order cannot be processed if lot is out of stock
+        with self.assertRaisesRegex(
+            UserError,
+            "The serial number cable test lot is not available",
+        ):
+            sale.action_confirm()
+        # Update lot quantity and confirm
+        self._update_stock_quantity(self.prd_cable, self.lot_cable, 1)
+        sale.action_confirm()
+        self.assertEqual(sale.state, "sale")
+        # Create an additional order linked to the same lot
+        sale_extra = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.prd_cable.id,
+                            "product_uom_qty": 1.0,
+                            "lot_id": self.lot_cable.id,
+                        }
+                    ),
+                ],
+            }
+        )
+        # We cannot confirm the additional order if lot is out of stock
+        with self.assertRaisesRegex(
+            UserError,
+            "The serial number cable test lot is not available",
+        ):
+            sale_extra.action_confirm()
+        # Create an additional lot and linked it to the order
+        lot_cable_extra = self.env["stock.lot"].create(
+            {
+                "name": "cable test lot extra",
+                "product_id": self.prd_cable.id,
+            }
+        )
+        sale_extra.order_line.lot_id = lot_cable_extra
+        with self.assertRaisesRegex(
+            UserError,
+            "The serial number cable test lot extra is not available",
+        ):
+            sale_extra.action_confirm()
+        # Update lot quantity and confirm
+        self._update_stock_quantity(self.prd_cable, lot_cable_extra, 1)
+        sale_extra.action_confirm()
+        self.assertEqual(sale_extra.state, "sale")
