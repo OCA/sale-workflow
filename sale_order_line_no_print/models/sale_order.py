@@ -3,6 +3,14 @@
 from odoo import fields, models
 
 
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    def _get_order_lines_to_report(self):
+        # Return the lines to be printed in the sale reports and portal
+        return super()._get_order_lines_to_report().filtered("display_in_report")
+
+
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 

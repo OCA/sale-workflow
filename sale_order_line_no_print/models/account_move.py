@@ -3,6 +3,14 @@
 from odoo import fields, models
 
 
+class AccountMove(models.Model):
+    _inherit = "account.move"
+
+    def _get_move_lines_to_report(self):
+        # Return the lines to be printed in the invoice reports and portal
+        return super()._get_move_lines_to_report().filtered("display_in_report")
+
+
 class AccountMoveLine(models.Model):
     _inherit = "account.move.line"
 
