@@ -39,6 +39,19 @@ class SaleOrderLine(models.Model):
         for sol in self:
             sol.product_tracking = sol.product_id.tracking or sol.product_tracking
 
+    def _domain_lot_id_quant_domain(self):
+        """This method defines the domain that will be used to obtain the appropriate
+        stock.quant values and is useful for extending to other modules.
+        """
+        self.ensure_one()
+        return [
+            ("product_id", "=", self.product_id.id),
+            ("quantity", ">=", self.product_uom_qty),
+            ("lot_id", "!=", False),
+            ("location_id.usage", "=", "internal"),
+            ("location_id.warehouse_id", "=", self.warehouse_id.id),
+        ]
+
     @api.depends("product_id", "product_uom_qty", "warehouse_id")
     def _compute_domain_lot_id(self):
         dp = self.env["decimal.precision"].precision_get("Product Unit of Measure")
@@ -49,13 +62,7 @@ class SaleOrderLine(models.Model):
                 # corresponding stock.quant record is selected directly, so we
                 # use the same filters that are used.
                 quants = self.env["stock.quant"].search(
-                    [
-                        ("product_id", "=", sol.product_id.id),
-                        ("quantity", ">=", sol.product_uom_qty),
-                        ("lot_id", "!=", False),
-                        ("location_id.usage", "=", "internal"),
-                        ("location_id.warehouse_id", "=", sol.warehouse_id.id),
-                    ]
+                    sol._domain_lot_id_quant_domain()
                 )
                 available_quants = quants.filtered(
                     lambda x, qty=sol.product_uom_qty: float_compare(
