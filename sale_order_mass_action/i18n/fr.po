@@ -32,6 +32,11 @@ msgid "Check this box if you want to confirm all the selected quotations."
 msgstr ""
 
 #. module: sale_order_mass_action
+#: model:ir.model.fields,help:sale_order_mass_action.field_sale_order_mass_action_wizard__draft
+msgid "Check this box if you want to set all the selected sale orders to quotation."
+msgstr "Cochez cette case si vous voulez que les bons de commande sélectionnés redeviennent devis."
+
+#. module: sale_order_mass_action
 #: model:ir.model.fields,field_description:sale_order_mass_action.field_sale_order_mass_action_wizard__confirm
 msgid "Confirm"
 msgstr "Confirmer"
