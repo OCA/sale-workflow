@@ -27,7 +27,7 @@
         <xpath expr="//div[@t-field='line.price_unit']" position="attributes">
             <attribute
                 name="t-if"
-            >line.discount &gt;= 0 or line.fixed_discount &gt;= 0</attribute>
+            >line.discount &gt;= 0 or line.discount_fixed &gt;= 0</attribute>
             <attribute
                 name="t-att-style"
             >(line.discount or line.discount_fixed) and 'text-decoration: line-through' or None</attribute>
@@ -35,8 +35,13 @@
                 name="t-att-class"
             >((line.discount or line.discount_fixed) and 'text-danger' or '') + ' text-right'</attribute>
         </xpath>
-        <xpath expr="//div[@t-if='line.discount']/t" position="attributes">
-            <attribute name="t-out">line.price_unit - line.discount_fixed</attribute>
+        <xpath expr="//div[@t-if='line.discount']" position="after">
+            <div t-elif="line.discount_fixed">
+                <t
+                    t-out="line.price_unit - line.discount_fixed"
+                    t-options='{"widget": "float", "decimal_precision": "Product Price"}'
+                />
+            </div>
         </xpath>
         <xpath expr="//td[@t-if='display_discount']" position="before">
             <td
