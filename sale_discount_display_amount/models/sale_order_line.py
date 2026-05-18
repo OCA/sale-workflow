@@ -35,6 +35,7 @@ class SaleOrderLine(models.Model):
             line.price_subtotal_no_discount = 0
             line.price_total_no_discount = 0
             line.discount_total = 0
+            line.discount_subtotal = 0
             if not line.discount:
                 line.price_subtotal_no_discount = line.price_subtotal
                 line.price_total_no_discount = line.price_total

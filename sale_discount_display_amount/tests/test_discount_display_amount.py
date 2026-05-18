@@ -40,3 +40,47 @@ class TestDiscountDisplay(TransactionCase):
         )
         first_line = so2.order_line[0]
         self.assertEqual(first_line.price_total_no_discount, first_line.price_total)
+
+    def test_discount_subtotal_no_discount(self):
+        """
+        Regression test: ensure `discount_subtotal` is always assigned when
+        discount = 0.
+        Context
+        -------
+        In Odoo, computed fields must be assigned for every record during their compute
+        method execution. Failing to do so raises a runtime error:
+            ValueError: Compute method failed to assign <field>
+        A bug in `sale_discount_display_amount` caused `discount_subtotal` not to be
+        assigned when `discount = 0`, because the computation branch skipped it.
+        This resulted in crashes when:
+            - opening sale orders
+            - triggering onchange
+            - loading views
+        What this test validates
+        ------------------------
+        - The compute method `_compute_amount` does not crash when discount = 0
+        - The field `discount_subtotal` is properly assigned
+        - The assigned value is consistent with business logic (0)
+        This is a regression test to prevent future changes from reintroducing
+        the issue.
+        """
+        product = self.env["product.product"].create(
+            {"name": "Product TEST", "type": "consu"}
+        )
+        customer = self.env["res.partner"].create(
+            {"name": "Customer TEST", "email": "test@test.com"}
+        )
+        so = self.env["sale.order"].create({"partner_id": customer.id})
+        line = self.env["sale.order.line"].create(
+            {
+                "order_id": so.id,
+                "product_id": product.id,
+                "price_unit": 100,
+                "product_uom_qty": 1,
+                "discount": 0,
+            }
+        )
+        # Trigger compute explicitly (defensive: ensures execution in test context)
+        line._compute_amount()
+        # Core assertion: field must be assigned and correct
+        self.assertEqual(line.discount_subtotal, 0)
