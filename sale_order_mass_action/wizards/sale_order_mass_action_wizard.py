@@ -3,7 +3,7 @@
 # Copyright 2022 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 
 
 class SaleOrderMassActionWizard(models.TransientModel):
@@ -14,8 +14,8 @@ class SaleOrderMassActionWizard(models.TransientModel):
         help="Check this box if you want to confirm all the selected quotations."
     )
     draft = fields.Boolean(
-        help="Check this box if you want to set to quotation "
-        "all the selected sale orders."
+        help="Check this box if you want to set all the selected sale orders "
+        "to quotation."
     )
 
     def _get_sale_order_confirm_domain(self):
@@ -33,7 +33,7 @@ class SaleOrderMassActionWizard(models.TransientModel):
     @api.model
     def _notify_success(self, sale_orders):
         order_names = "\n".join(sale_orders.mapped("name"))
-        message = _(
+        message = self.env._(
             "The following orders has been updated : %(order_names)s",
             order_names=order_names,
         )

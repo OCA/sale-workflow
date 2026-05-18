@@ -30,7 +30,7 @@ msgstr "Marque esta casilla si desea confirmar todos los presupuestos selecciona
 
 #. module: sale_order_mass_action
 #: model:ir.model.fields,help:sale_order_mass_action.field_sale_order_mass_action_wizard__draft
-msgid "Check this box if you want to set to quotation all the selected sale orders."
+msgid "Check this box if you want to set all the selected sale orders to quotation."
 msgstr "Marque esta casilla si desea establecer a borrador todos los pedidos seleccionados."
 
 #. module: sale_order_mass_action

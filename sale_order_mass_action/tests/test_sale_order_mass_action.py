@@ -1,17 +1,25 @@
 # Copyright 2021 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo.tests import Form
-from odoo.tests.common import TransactionCase
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleOrderMassAction(TransactionCase):
+class TestSaleOrderMassAction(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
         cls.sale_order_obj = cls.env["sale.order"]
-        cls.partner = cls.env.ref("base.res_partner_2")
-        cls.product = cls.env.ref("product.product_product_2")
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "Virtual Interior Design",
+                "categ_id": cls.env.ref("product.product_category_services").id,
+                "standard_price": 20.5,
+                "list_price": 30.75,
+                "type": "service",
+                "uom_id": cls.env.ref("uom.product_uom_hour").id,
+            }
+        )
         cls.wizard_obj = cls.env["sale.order.mass.action.wizard"]
         vals = {
             "name": "sale Order Mass 1",
