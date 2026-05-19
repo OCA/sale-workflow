@@ -46,6 +46,11 @@ msgid "Sales Analysis Report"
 msgstr ""
 
 #. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
 msgid "Sales Order Line"
 msgstr ""
@@ -54,6 +59,12 @@ msgstr ""
 #: model:ir.model,name:sale_order_lot_selection.model_stock_move
 msgid "Stock Move"
 msgstr "Movemento de existencias"
+
+#. module: sale_order_lot_selection
+#. odoo-python
+#: code:addons/sale_order_lot_selection/models/sale_order.py:0
+msgid "The serial number %(serial)s is not available"
+msgstr ""
 
 #. module: sale_order_lot_selection
 #. odoo-python
