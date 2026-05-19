@@ -12,6 +12,7 @@ _logger = logging.getLogger(__name__)
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    force_split = fields.Boolean()
     split_strategy_id = fields.Many2one(
         comodel_name="sale.order.split.strategy",
         help="The strategy that will be used to split the sales order",
@@ -173,3 +174,10 @@ class SaleOrder(models.Model):
 
     def _postprocess_split_to(self, origin_order):
         self.ensure_one()
+
+    def action_confirm(self):
+        orders_to_confirm = self
+        for order in self:
+            if order.force_split:
+                orders_to_confirm += order.action_split()
+        return super(SaleOrder, orders_to_confirm).action_confirm()

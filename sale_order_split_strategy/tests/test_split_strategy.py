@@ -223,3 +223,23 @@ class TestSplitStrategy(BaseCommon):
         ):
             new_orders = order.action_split()
             self.assertFalse(message_capture.records)
+
+    def test_force_split(self):
+        order = self._create_order()
+        order.force_split = False
+        order.split_strategy_id = self.product_type_not_service_strategy
+        self.assertEqual(len(order.order_line), 4)
+        with RecordCapturer(self.env["sale.order"], []) as order_capture:
+            order.action_confirm()
+        self.assertFalse(order_capture.records)
+        self.assertEqual(len(order.order_line), 4)
+
+        order = self._create_order()
+        order.force_split = True
+        order.split_strategy_id = self.product_type_not_service_strategy
+        self.assertEqual(len(order.order_line), 4)
+        with RecordCapturer(self.env["sale.order"], []) as order_capture:
+            order.action_confirm()
+        self.assertEqual(len(order.order_line), 2)
+        new_order = order_capture.records
+        self.assertEqual(len(new_order.order_line), 2)

@@ -399,12 +399,15 @@ Only for development or testing purpose, do not use in production.
 <p>To use this module you first need to create splitting strategies to
 apply on sales order.</p>
 <pre class="literal-block">
-Sales -&gt; Configuration -&gt; Split Startegies
+Sales -&gt; Configuration -&gt; Split Strategies
 </pre>
 <p>The splitting is based on an ir.filter applied on sale.order.line.</p>
 <p>Then on sales order, the Split Strategy field allows to select the
 corresponding strategy. After which a button <tt class="docutils literal">Split</tt> is available on
 the form to split an order.</p>
+<p>If the field “Force split” on the SO is checked, the split will occur
+automatically on order confirmation. All orders (the original and the
+split ones) will be confirmed all at once</p>
 </div>
 <div class="section" id="bug-tracker">
 <h1><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h1>
