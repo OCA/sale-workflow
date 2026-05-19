@@ -58,7 +58,7 @@ msgstr ""
 #. module: sale_order_lot_selection
 #. odoo-python
 #: code:addons/sale_order_lot_selection/models/sale_order.py:0
-msgid "The serial number %(serial)s is not available."
+msgid "The serial number %(serial)s is not available"
 msgstr ""
 
 #. module: sale_order_lot_selection
