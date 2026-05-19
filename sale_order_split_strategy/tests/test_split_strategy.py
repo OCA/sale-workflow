@@ -243,3 +243,21 @@ class TestSplitStrategy(BaseCommon):
         self.assertEqual(len(order.order_line), 2)
         new_order = order_capture.records
         self.assertEqual(len(new_order.order_line), 2)
+
+    def test_assign_fields_from_partner(self):
+        partner_1, partner_2 = self.env["res.partner"].search([], limit=2)
+        partner_1.so_force_split = False
+        partner_1.so_split_strategy_id = False
+        partner_2.so_force_split = True
+        partner_2.so_split_strategy_id = self.product_type_not_service_strategy
+        order_form = Form(self.env["sale.order"])
+
+        order_form.partner_id = partner_1
+        self.assertFalse(order_form.force_split)
+        self.assertFalse(order_form.split_strategy_id)
+
+        order_form.partner_id = partner_2
+        self.assertTrue(order_form.force_split)
+        self.assertEqual(
+            order_form.split_strategy_id, self.product_type_not_service_strategy
+        )

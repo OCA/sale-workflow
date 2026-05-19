@@ -3,7 +3,7 @@
 import logging
 from collections import defaultdict
 
-from odoo import fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
@@ -12,11 +12,27 @@ _logger = logging.getLogger(__name__)
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    force_split = fields.Boolean()
+    force_split = fields.Boolean(
+        compute="_compute_split_strategy_id",
+        store=True,
+        readonly=False,
+    )
     split_strategy_id = fields.Many2one(
         comodel_name="sale.order.split.strategy",
+        compute="_compute_split_strategy_id",
+        store=True,
+        readonly=False,
         help="The strategy that will be used to split the sales order",
     )
+
+    @api.depends("partner_id")
+    def _compute_split_strategy_id(self):
+        for order in self:
+            partner = order.partner_id
+            if not partner:
+                continue
+            order.force_split = partner.so_force_split
+            order.split_strategy_id = partner.so_split_strategy_id
 
     def action_split(self, silent_errors=False):
         # TODO: Remove silent_errors arg on next major migration and rely on company

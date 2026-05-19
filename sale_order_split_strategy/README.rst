@@ -65,6 +65,9 @@ If the field "Force split" on the SO is checked, the split will occur
 automatically on order confirmation. All orders (the original and the
 split ones) will be confirmed all at once
 
+Default values for "Force split" and "Split Strategy" can be set on the
+contact and will be copied on the Sales Order when the customer is set.
+
 Bug Tracker
 ===========
 

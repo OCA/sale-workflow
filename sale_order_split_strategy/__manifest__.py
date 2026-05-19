@@ -17,6 +17,7 @@
         "security/ir.model.access.csv",
         "views/mail_message_template.xml",
         "views/res_config.xml",
+        "views/res_partner_views.xml",
         "views/sale_order_split_strategy.xml",
         "views/sale_order.xml",
     ],
