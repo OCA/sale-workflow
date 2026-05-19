@@ -48,6 +48,12 @@ msgid "Sales Analysis Report"
 msgstr "Satış Analizi Raporu"
 
 #. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_sale_order
+#, fuzzy
+msgid "Sales Order"
+msgstr "Sipariş Emri"
+
+#. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Satış Siparişi Hattı"
@@ -59,6 +65,12 @@ msgstr "Stok Taşı"
 
 #. module: sale_order_lot_selection
 #. odoo-python
+#: code:addons/sale_order_lot_selection/models/sale_order.py:0
+msgid "The serial number %(serial)s is not available"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#. odoo-python
 #: code:addons/sale_order_lot_selection/models/sale_order_line.py:0
 msgid ""
 "You can't modify the Lot/Serial number because some stock move has already "
@@ -66,7 +78,3 @@ msgid ""
 msgstr ""
 "Stokta zaten bir işlem gerçekleştiği için parti/seri numarasını "
 "değiştiremezsiniz."
-
-#, fuzzy
-#~ msgid "Sales Order"
-#~ msgstr "Sipariş Emri"
