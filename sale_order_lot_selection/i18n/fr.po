@@ -47,6 +47,12 @@ msgid "Sales Analysis Report"
 msgstr ""
 
 #. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_sale_order
+#, fuzzy
+msgid "Sales Order"
+msgstr "Bon de commande"
+
+#. module: sale_order_lot_selection
 #: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Sales Order Line"
@@ -55,6 +61,12 @@ msgstr "Sales Order Line"
 #: model:ir.model,name:sale_order_lot_selection.model_stock_move
 msgid "Stock Move"
 msgstr "Mouvement de stock"
+
+#. module: sale_order_lot_selection
+#. odoo-python
+#: code:addons/sale_order_lot_selection/models/sale_order.py:0
+msgid "The serial number %(serial)s is not available"
+msgstr ""
 
 #. module: sale_order_lot_selection
 #. odoo-python
@@ -71,7 +83,3 @@ msgstr ""
 #, python-format
 #~ msgid "Can't retrieve lot on stock"
 #~ msgstr "Impossible de récupérer le lot en stock"
-
-#, fuzzy
-#~ msgid "Sales Order"
-#~ msgstr "Bon de commande"
