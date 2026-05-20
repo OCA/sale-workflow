@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -58,6 +58,9 @@ msgid "Created on"
 msgstr ""
 
 #. module: sale_order_split_strategy
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_res_company__display_name
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__display_name
 msgid "Display Name"
 msgstr ""
@@ -73,6 +76,9 @@ msgid "How split errors are to be reported"
 msgstr ""
 
 #. module: sale_order_split_strategy
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_res_company__id
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__id
 msgid "ID"
 msgstr ""
