@@ -279,10 +279,8 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         self.sale._compute_amounts()
         self.assertEqual(self.sale.amount_global_discount, 0.0)
         self.assertEqual(
-            self.sale.amount_untaxed, 
-            self.sale.amount_untaxed_before_global_discounts
+            self.sale.amount_untaxed, self.sale.amount_untaxed_before_global_discounts
         )
         self.assertEqual(
-            self.sale.amount_total, 
-            self.sale.amount_total_before_global_discounts
+            self.sale.amount_total, self.sale.amount_total_before_global_discounts
         )
