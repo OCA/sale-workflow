@@ -11,7 +11,7 @@
     "author": "Akretion, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "installable": True,
-    "depends": ["mrp_sale_info"],
+    "depends": ["sale_mrp"],
     "data": [
         "views/sale_order.xml",
         "views/sale_order_line_views.xml",

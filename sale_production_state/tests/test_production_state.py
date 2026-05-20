@@ -94,11 +94,11 @@ class TestSaleProductionState(TransactionCase):
         self.order.action_confirm()
         self.assertEqual(self.order.order_line[0].production_state, "unprocessed")
         self.assertEqual(self.order.production_state, "unprocessed")
-        self.assertTrue(self.order.order_line[0].mrp_production_ids)
+        self.assertTrue(self.order.order_line[0].move_ids.created_production_id)
 
     def test_partially(self):
         self.order.action_confirm()
-        mrp = self.order.order_line[0].mrp_production_ids
+        mrp = self.order.order_line[0].move_ids.created_production_id
         mrp.action_confirm()
         mo_form = Form(mrp)
         mo_form.qty_producing = 1
@@ -110,7 +110,7 @@ class TestSaleProductionState(TransactionCase):
     def test_production_done(self):
         self.order.action_confirm()
         for line in self.order.order_line:
-            mrp = line.mrp_production_ids
+            mrp = line.move_ids.created_production_id
             mrp.action_confirm()
             mo_form = Form(mrp)
             mo_form.qty_producing = 1
