@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-20 10:19+0000\n"
+"Last-Translator: Betül Öğmen <betulo@eska.biz>\n"
 "Language-Team: none\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_invoice_blocking
 #. odoo-python
@@ -21,26 +23,28 @@ msgid ""
 "\n"
 "- You may have an invoice blocking reason on the sale order"
 msgstr ""
+"\n"
+"- Satış siparişinde bir fatura engelleme nedeniniz olabilir"
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_sale_order__invoice_blocking_reason_id
 msgid "Blocking for invoicing"
-msgstr ""
+msgstr "Faturalama için engelleme"
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Oluşturan"
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Oluşturulma"
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Görünen İsim"
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__id
@@ -51,34 +55,34 @@ msgstr ""
 #: model:ir.actions.act_window,name:sale_invoice_blocking.invoice_blocking_reason_action
 #: model:ir.ui.menu,name:sale_invoice_blocking.menu_invoice_blocking_reason
 msgid "Invoicing block reasons"
-msgstr ""
+msgstr "Faturalama engelleme nedenleri"
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "En son güncelleyen"
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "En son güncelleme"
 
 #. module: sale_invoice_blocking
 #: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__name
 msgid "Reason"
-msgstr ""
+msgstr "Sebep"
 
 #. module: sale_invoice_blocking
 #: model:ir.model,name:sale_invoice_blocking.model_invoice_blocking_reason
 msgid "Sale invoice blocking reason"
-msgstr ""
+msgstr "Satış faturası engelleme nedeni"
 
 #. module: sale_invoice_blocking
 #: model:ir.model,name:sale_invoice_blocking.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Satış Siparişi"
 
 #. module: sale_invoice_blocking
 #: model:ir.model.constraint,message:sale_invoice_blocking.constraint_invoice_blocking_reason_name_uniq
 msgid "You cannot have two invoice blocking reasons with the same name."
-msgstr ""
+msgstr "Aynı ada sahip iki fatura engelleme nedeniniz olamaz."
