@@ -271,3 +271,18 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         self.assertAlmostEqual(
             self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
         )
+
+    def test_09_no_discount_no_ghost_amount(self):
+        """Verify that without discounts, amount_global_discount is exactly 0
+        and no re-computation happens (ghost amount fix)."""
+        self.sale.global_discount_ids = False
+        self.sale._compute_amounts()
+        self.assertEqual(self.sale.amount_global_discount, 0.0)
+        self.assertEqual(
+            self.sale.amount_untaxed, 
+            self.sale.amount_untaxed_before_global_discounts
+        )
+        self.assertEqual(
+            self.sale.amount_total, 
+            self.sale.amount_total_before_global_discounts
+        )
