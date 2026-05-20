@@ -1,3 +1,5 @@
 - [Cetmix](https://www.cetmix.com):
   - Ivan Sokolov
   - Dessan Hemrayev
+- [Apik](https://www.apik.cloud):
+  - Michel Guiheneuf <mgu@apik.cloud>

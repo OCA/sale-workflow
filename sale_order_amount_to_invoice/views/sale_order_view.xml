@@ -7,7 +7,7 @@
         <field name="priority">99</field>
         <field name="arch" type="xml">
             <xpath
-                expr="//field[@name='order_line']/list//field[@name='company_id']"
+                expr="//field[@name='order_line']/list//field[@name='price_subtotal']"
                 position="after"
             >
                 <field
