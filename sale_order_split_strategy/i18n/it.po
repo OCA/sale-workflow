@@ -1,0 +1,200 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_split_strategy
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-01-21 08:49+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: sale_order_split_strategy
+#. odoo-python
+#: code:addons/sale_order_split_strategy/models/sale_order.py:0
+msgid ""
+"Cannot split order %(order_name)s according to its strategy because there "
+"are no matching lines"
+msgstr ""
+"Non è possibile dividere l'ordine %(order_name)s in accordo alla sua "
+"strategia perché non ci sono righe corrispondenti"
+
+#. module: sale_order_split_strategy
+#. odoo-python
+#: code:addons/sale_order_split_strategy/models/sale_order.py:0
+msgid "Cannot split orders %(order_names)s without any split strategy defined"
+msgstr ""
+"Non si può dividere l'ordine %(order_names)s senza una strategia di "
+"suddivisione definita"
+
+#. module: sale_order_split_strategy
+#: model:ir.model,name:sale_order_split_strategy.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: sale_order_split_strategy
+#: model:ir.model,name:sale_order_split_strategy.model_res_config_settings
+msgid "Config Settings"
+msgstr "Impostazioni configurazione"
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__copy_notes
+msgid "Copy Notes"
+msgstr "Copia note"
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__copy_sections
+msgid "Copy Sections"
+msgstr "Copia sezioni"
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields.selection,name:sale_order_split_strategy.selection__res_company__sale_order_split_strategy_errors__do_nothing
+msgid "Do nothing"
+msgstr "Non fare nulla"
+
+#. module: sale_order_split_strategy
+#: model_terms:ir.ui.view,arch_db:sale_order_split_strategy.res_config_settings_view_form_sale_exception
+msgid "How split errors are to be reported"
+msgstr "Come devono essere segnalati gli errori separati"
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__line_filter_id
+msgid "Line Filter"
+msgstr "Filtro riga"
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__name
+msgid "Name"
+msgstr "Nome"
+
+#. module: sale_order_split_strategy
+#: model:ir.model,name:sale_order_split_strategy.model_sale_order_split_strategy
+msgid "Order split strategy"
+msgstr "Ordine strategia suddivisione"
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields.selection,name:sale_order_split_strategy.selection__res_company__sale_order_split_strategy_errors__post_message
+msgid "Post message"
+msgstr "Invia messaggio"
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields.selection,name:sale_order_split_strategy.selection__res_company__sale_order_split_strategy_errors__raise_errors
+msgid "Raise errors"
+msgstr "Segnala errori"
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__remove_empty_sections_after_split
+msgid "Remove Empty Sections After Split"
+msgstr "Rimuovere sezioni vuote dopo la divisione"
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_res_company__sale_order_split_strategy_errors
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_res_config_settings__sale_order_split_strategy_errors
+msgid "Sale Order Split Strategy Errors"
+msgstr "Errori strategia divisione ordine vendita"
+
+#. module: sale_order_split_strategy
+#: model:ir.model,name:sale_order_split_strategy.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order_split_strategy__sequence
+msgid "Sequence"
+msgstr "Sequenza"
+
+#. module: sale_order_split_strategy
+#: model_terms:ir.ui.view,arch_db:sale_order_split_strategy.view_order_form
+msgid "Split"
+msgstr "Dividi"
+
+#. module: sale_order_split_strategy
+#: model:ir.actions.act_window,name:sale_order_split_strategy.sale_order_split_strategy_action
+#: model:ir.ui.menu,name:sale_order_split_strategy.sale_order_split_strategy_menu
+#: model_terms:ir.ui.view,arch_db:sale_order_split_strategy.sale_order_split_strategy_view_tree
+msgid "Split Strategies"
+msgstr "Strategie suddivisione"
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields,field_description:sale_order_split_strategy.field_sale_order__split_strategy_id
+#: model_terms:ir.ui.view,arch_db:sale_order_split_strategy.sale_order_split_strategy_view_form
+msgid "Split Strategy"
+msgstr "Strategia suddivisione"
+
+#. module: sale_order_split_strategy
+#: model:ir.model.fields,help:sale_order_split_strategy.field_sale_order__split_strategy_id
+msgid "The strategy that will be used to split the sales order"
+msgstr "La strategia che verrà usata per dividere l'ordine di vendita"
+
+#. module: sale_order_split_strategy
+#: model_terms:ir.ui.view,arch_db:sale_order_split_strategy.split_to
+msgid "This sale order had some of its lines split to"
+msgstr "Questo ordine ha alcune righe suddivise in"
+
+#. module: sale_order_split_strategy
+#: model_terms:ir.ui.view,arch_db:sale_order_split_strategy.split_from
+msgid "This sale order was created after splitting lines from"
+msgstr ""
+"Questo ordine di vendita è stato creato dopo la suddivisione delle righe da"
+
+#. module: sale_order_split_strategy
+#. odoo-python
+#: code:addons/sale_order_split_strategy/models/sale_order.py:0
+msgid ""
+"This sale order was not split using strategy %(strategy)s because there "
+"would not be any lines left on this order."
+msgstr ""
+"Questo ordine di vendita non è stato suddiviso utilizzando la strategia %"
+"(strategy)s perché non c'erano righe nell'ordine."
+
+#. module: sale_order_split_strategy
+#: model_terms:ir.ui.view,arch_db:sale_order_split_strategy.split_from
+#: model_terms:ir.ui.view,arch_db:sale_order_split_strategy.split_to
+msgid "strategy."
+msgstr "strategia."
+
+#. module: sale_order_split_strategy
+#: model_terms:ir.ui.view,arch_db:sale_order_split_strategy.split_from
+#: model_terms:ir.ui.view,arch_db:sale_order_split_strategy.split_to
+msgid "using"
+msgstr "usando"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Ultima modifica il"
