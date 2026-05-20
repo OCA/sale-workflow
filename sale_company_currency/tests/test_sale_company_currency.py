@@ -139,11 +139,15 @@ class TestSaleOrder(TransactionCase):
         """Test rate change triggers recomputation of amount_total_curr."""
         self.sale_order.currency_id = self.currency_eur
         self._set_currency_rate(self.currency_eur, 0.5)
+        # Invalidate currency_rate to force Odoo to look up the new rate record
+        self.sale_order.invalidate_recordset(["currency_rate"])
         self.sale_order.flush_recordset(["amount_total_curr"])
         first_total_curr = self.sale_order.amount_total_curr
 
         # Change the rate and check if amount_total_curr is updated automatically
         self._set_currency_rate(self.currency_eur, 0.25)
+        # Invalidate again for the second change
+        self.sale_order.invalidate_recordset(["currency_rate"])
         self.sale_order.flush_recordset(["amount_total_curr"])
 
         self.assertNotEqual(self.sale_order.amount_total_curr, first_total_curr)
