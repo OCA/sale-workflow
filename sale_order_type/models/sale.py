@@ -115,6 +115,24 @@ class SaleOrder(models.Model):
         return res
 
     @api.depends("type_id")
+    def _compute_user_id(self):
+        res = super()._compute_user_id()
+        for order in self.filtered("type_id"):
+            order_type = order.type_id
+            if order_type.user_id:
+                order.user_id = order_type.user_id
+        return res
+
+    @api.depends("type_id")
+    def _compute_team_id(self):
+        res = super()._compute_team_id()
+        for order in self.filtered("type_id"):
+            order_type = order.type_id
+            if order_type.team_id:
+                order.team_id = order_type.team_id
+        return res
+
+    @api.depends("type_id")
     def _compute_incoterm(self):
         res = None
         if hasattr(super(), "_compute_incoterm"):
