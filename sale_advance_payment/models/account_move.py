@@ -10,6 +10,8 @@ class AccountMove(models.Model):
     def action_post(self):
         # Automatic reconciliation of payment when invoice confirmed.
         res = super().action_post()
+        if isinstance(res, dict):
+            return res
         sale_orders = self.mapped("line_ids.sale_line_ids.order_id")
         all_payment_move_ids = sale_orders.mapped("account_payment_ids.move_id").ids
         all_payment_lines = self.env["account.move.line"].search(
