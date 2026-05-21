@@ -6,17 +6,18 @@
     >
         <xpath expr="//div[@name='so_total_summary']" position="after">
             <t t-if="doc._show_currency_rate_in_report()">
-                <t t-set="inverse_rate" t-value="1.0 / doc.currency_rate" />
                 <div class="row mt-2">
                     <div class="col-auto ms-auto">
                         <small
                             class="text-muted border border-secondary rounded p-2 d-block"
                         >
                             <strong>Informative Exchange Rate</strong><br />
-                            1&#160;<t t-out="doc.currency_id.name" /> =
-                            <t t-out="'%.4f' % inverse_rate" />&#160;<t
-                            t-out="doc.company_id.currency_id.name"
-                        /><br />
+                            1&#160;<t
+                            t-out="doc._get_report_rate_from_currency().name"
+                        /> =
+                            <t
+                            t-out="'%.4f' % doc._get_report_display_rate()"
+                        />&#160;<t t-out="doc.company_id.currency_id.name" /><br />
                             <span
                             t-field="doc.date_order"
                             t-options='{"widget": "date"}'

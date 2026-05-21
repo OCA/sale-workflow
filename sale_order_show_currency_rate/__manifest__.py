@@ -7,6 +7,9 @@
     "category": "Sale",
     "summary": "Show informative exchange rate on sale order PDF reports",
     "depends": ["sale"],
-    "data": ["report/sale_order_report.xml"],
+    "data": [
+        "report/sale_order_report.xml",
+        "views/res_config_settings_views.xml",
+    ],
     "installable": True,
 }
