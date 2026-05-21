@@ -8,6 +8,7 @@
     "depends": ["sale_stock", "stock_restrict_lot"],
     "data": [
         "security/ir.model.access.csv",
+        "views/res_config_settings_views.xml",
         "views/sale_order_views.xml",
         "reports/sale_report_views.xml",
     ],
