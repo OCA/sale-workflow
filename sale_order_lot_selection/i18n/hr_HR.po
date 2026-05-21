@@ -21,8 +21,34 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_lot_selection
 #: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__domain_lot_id
 msgid "Domain Lot"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_res_company__sale_order_lot_selection_exclude_pending_orders
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_res_config_settings__sale_order_lot_selection_exclude_pending_orders
+#: model_terms:ir.ui.view,arch_db:sale_order_lot_selection.res_config_settings_view_form
+msgid "Exclude pending orders from the lot selection"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model.fields,help:sale_order_lot_selection.field_res_company__sale_order_lot_selection_exclude_pending_orders
+#: model:ir.model.fields,help:sale_order_lot_selection.field_res_config_settings__sale_order_lot_selection_exclude_pending_orders
+#: model_terms:ir.ui.view,arch_db:sale_order_lot_selection.res_config_settings_view_form
+msgid ""
+"If this checkbox is selected, serials that can be selected with pending "
+"sales orders will be excluded"
 msgstr ""
 
 #. module: sale_order_lot_selection
