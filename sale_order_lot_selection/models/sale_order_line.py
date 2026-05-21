@@ -73,7 +73,10 @@ class SaleOrderLine(models.Model):
                     >= 0
                 )
                 available_lots = available_quants.mapped("lot_id")
-                if sol.product_tracking == "serial":
+                if (
+                    sol.company_id.sale_order_lot_selection_exclude_pending_orders
+                    and sol.product_tracking == "serial"
+                ):
                     available_lots -= (
                         self.env["sale.order.line"]
                         .sudo()
