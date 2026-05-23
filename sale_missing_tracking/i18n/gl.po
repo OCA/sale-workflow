@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 18:46+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_missing_tracking
 #: model:mail.template,body_html:sale_missing_tracking.missing_tracking_notification_template
@@ -22,55 +24,59 @@ msgid ""
 "<p>Thank you,</p>\n"
 "\n"
 msgstr ""
+"\n"
+"<p>Tes avisos de perda de vendas</p>\n"
+"<p>Grazas.</p>\n"
+"\n"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_kanban
 msgid "<i class=\"fa fa-exclamation-circle\" title=\"Create exception\"/>"
-msgstr ""
+msgstr "<i class=\"fa fa-exclamation-circle\" title=\"Create exception\"/>"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__message_needaction
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Acción requirida"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__active
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__active
 msgid "Active"
-msgstr ""
+msgstr "Activo"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__activity_ids
 msgid "Activities"
-msgstr ""
+msgstr "Actividades"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__activity_exception_decoration
 msgid "Activity Exception Decoration"
-msgstr ""
+msgstr "Decoración de Actividade de Excepción"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__activity_state
 msgid "Activity State"
-msgstr ""
+msgstr "Estado da actividade"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__activity_type_icon
 msgid "Activity Type Icon"
-msgstr ""
+msgstr "Icona de tipo de actvidad"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_exception_form
 msgid "Approve"
-msgstr ""
+msgstr "Aprobar"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields.selection,name:sale_missing_tracking.selection__sale_missing_tracking__state__approved
 #: model:ir.model.fields.selection,name:sale_missing_tracking.selection__sale_missing_tracking_exception__state__approved
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_exception_search
 msgid "Approved"
-msgstr ""
+msgstr "Aprobado"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_exception_form
@@ -78,66 +84,66 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_form
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_search
 msgid "Archived"
-msgstr ""
+msgstr "Arquivado"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__message_attachment_count
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Cálculo de arquivos adxuntos"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.sale_missing_tracking_wiz
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields.selection,name:sale_missing_tracking.selection__sale_missing_tracking__state__cancel
 msgid "Cancelled"
-msgstr ""
+msgstr "Cancelado"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__commercial_partner_id
 msgid "Commercial Entity"
-msgstr ""
+msgstr "Entidade comercial"
 
 #. module: sale_missing_tracking
 #: model:ir.model,name:sale_missing_tracking.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Compañías"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__company_id
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__company_id
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: sale_missing_tracking
 #: model:ir.model,name:sale_missing_tracking.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Axustes de configuración"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.sale_missing_tracking_wiz
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmar"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__consumption
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__consumption
 msgid "Consumption"
-msgstr ""
+msgstr "Consumo"
 
 #. module: sale_missing_tracking
 #: model:ir.model,name:sale_missing_tracking.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: sale_missing_tracking
 #: model:ir.actions.server,name:sale_missing_tracking.missing_tracking_create_exception
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_tree
 msgid "Create exception"
-msgstr ""
+msgstr "Crear excepción"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__create_uid
@@ -145,7 +151,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_reason__create_uid
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_wiz__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__create_date
@@ -153,7 +159,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_reason__create_date
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_wiz__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado o"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking__date_order
@@ -161,51 +167,53 @@ msgid ""
 "Creation date of draft/sent orders,\n"
 "Confirmation date of confirmed orders."
 msgstr ""
+"Data de creación das ordes viradas/enviadas,\n"
+"Data de confirmación das ordes confirmadas."
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__currency_id
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Moeda"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__partner_id
 msgid "Customer"
-msgstr ""
+msgstr "Cliente"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__date
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_exception_search
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_search
 msgid "Date order"
-msgstr ""
+msgstr "Data pedido"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_res_company__sale_missing_days_from
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_res_config_settings__sale_missing_days_from
 msgid "Days from"
-msgstr ""
+msgstr "Dias desde"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_res_company__sale_missing_days_notification
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_res_config_settings__sale_missing_days_notification
 msgid "Days notification"
-msgstr ""
+msgstr "Dias notificación"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_res_company__sale_missing_days_to
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_res_config_settings__sale_missing_days_to
 msgid "Days to"
-msgstr ""
+msgstr "Dias ata"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.sale_missing_tracking_wiz
 msgid "Delay advice and confirm sale order"
-msgstr ""
+msgstr "Aprazar Aviso e Confirmar Pedido"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__display_name
@@ -213,59 +221,59 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_reason__display_name
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_wiz__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome mostrado"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_tree
 msgid "Do you want create an exception?"
-msgstr ""
+msgstr "Quere crear unha excepción?"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.sale_missing_tracking_wiz
 msgid ""
 "Do you want to postpone this advice of                                      "
 "sale missing tracking?"
-msgstr ""
+msgstr "Queres aprazar este aviso de Perda de Venda?"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields.selection,name:sale_missing_tracking.selection__sale_missing_tracking__state__draft
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_search
 msgid "Draft"
-msgstr ""
+msgstr "Borrador"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__message_follower_ids
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Seguidores"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__message_partner_ids
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguidores (Socios)"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking_exception__activity_type_icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Icona de fonte impresionante, por exemplo fa-tasks"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_exception_search
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_search
 msgid "Group By"
-msgstr ""
+msgstr "Agrupar por"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__has_message
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Ten mensaxe"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_wiz__has_pending_lines
 msgid "Has Pending Lines"
-msgstr ""
+msgstr "Ten liñas pendentes"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__id
@@ -273,17 +281,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_reason__id
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_wiz__id
 msgid "ID"
-msgstr ""
+msgstr "ID (identificación)"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__activity_exception_icon
 msgid "Icon"
-msgstr ""
+msgstr "Icona"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking_exception__activity_exception_icon
 msgid "Icon to indicate an exception activity."
-msgstr ""
+msgstr "Icona para indicar unha actividade de excepción."
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking__message_needaction
@@ -291,19 +299,19 @@ msgstr ""
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking_exception__message_needaction
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking_exception__message_unread
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Se está marcado hai novas mensaxes que requiren a súa atención."
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking__message_has_error
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking_exception__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Se se atopa marcado, algunhas mensaxes teñen erro de envío."
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__message_is_follower
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "É un seguidor"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking____last_update
@@ -311,12 +319,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_reason____last_update
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_wiz____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación en"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__last_sale_line_id
 msgid "Last Sale Line"
-msgstr ""
+msgstr "Último liña de venda"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__write_uid
@@ -324,7 +332,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_reason__write_uid
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_wiz__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__write_date
@@ -332,142 +340,142 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_reason__write_date
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_wiz__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualización o"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__message_main_attachment_id
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Adxuntos principais"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_res_company__sale_missing_max_delay_times
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_res_config_settings__sale_missing_max_delay_times
 msgid "Max delay times"
-msgstr ""
+msgstr "Máximo de veces atrasada"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__message_has_error
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Erro de Envío de Mensaxe"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__message_ids
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Mensaxes"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_res_company__sale_missing_minimal_consumption
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_res_config_settings__sale_missing_minimal_consumption
 msgid "Minimal consumption"
-msgstr ""
+msgstr "Consumo mínimo"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,help:sale_missing_tracking.field_res_company__sale_missing_minimal_consumption
 #: model:ir.model.fields,help:sale_missing_tracking.field_res_config_settings__sale_missing_minimal_consumption
 msgid "Minimal consumption in months consumption"
-msgstr ""
+msgstr "Consumo mínimo en meses de consumo"
 
 #. module: sale_missing_tracking
 #: model:ir.ui.menu,name:sale_missing_tracking.sale_missing_tracking_menu
 msgid "Missing Sales Tracking"
-msgstr ""
+msgstr "Seguimento de perda de vendas"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_wiz__missing_tracking_ids
 msgid "Missing Tracking"
-msgstr ""
+msgstr "Seguimento de perdas"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_order__missing_tracking_count
 msgid "Missing Tracking Count"
-msgstr ""
+msgstr "Número de avisos"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.res_config_settings_view_form_sale
 msgid "Missing products tracking"
-msgstr ""
+msgstr "Seguimento de produtos perdidos"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__missing_tracking_ids
 msgid "Missing sales tracking"
-msgstr ""
+msgstr "Seguimento de perda de vendas"
 
 #. module: sale_missing_tracking
 #: model:ir.ui.menu,name:sale_missing_tracking.sale_missing_tracking_exception_menu
 msgid "Missing sales tracking exception"
-msgstr ""
+msgstr "Excepción de seguimento de perda de vendas"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__tracking_exception_ids
 msgid "Missing sales tracking exceptions"
-msgstr ""
+msgstr "Excepcións de seguimento de perda de vendas"
 
 #. module: sale_missing_tracking
 #: model:ir.ui.menu,name:sale_missing_tracking.sale_missing_tracking_reason_menu
 msgid "Missing sales tracking reason"
-msgstr ""
+msgstr "Motivos de perda de vendas"
 
 #. module: sale_missing_tracking
 #: model:ir.ui.menu,name:sale_missing_tracking.sale_missing_tracking_menu_root
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_order_form
 msgid "Missing tracking"
-msgstr ""
+msgstr "Perda de vendas"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_pivot
 msgid "Missing tracking pivot"
-msgstr ""
+msgstr "Vista pivot de vendas perdas"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_res_company__sale_missing_months_consumption
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_res_config_settings__sale_missing_months_consumption
 msgid "Months consumption"
-msgstr ""
+msgstr "Meses de consumo"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__my_activity_date_deadline
 msgid "My Activity Deadline"
-msgstr ""
+msgstr "Data límite da miña actividade"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_reason__name
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_reason_search
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__activity_calendar_event_id
 msgid "Next Activity Calendar Event"
-msgstr ""
+msgstr "Próximo evento do calendario de actividades"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__activity_date_deadline
 msgid "Next Activity Deadline"
-msgstr ""
+msgstr "Seguinte prazo de actividade"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__activity_summary
 msgid "Next Activity Summary"
-msgstr ""
+msgstr "Resumo da seguinte actividade"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__activity_type_id
 msgid "Next Activity Type"
-msgstr ""
+msgstr "Seguinte tipo de actividade"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_reason__note
 msgid "Note"
-msgstr ""
+msgstr "Nota"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__message_needaction_counter
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Número de accións"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,help:sale_missing_tracking.field_res_company__sale_missing_days_from
@@ -476,6 +484,8 @@ msgid ""
 "Number of days before to today to take into account the beginning of the "
 "period to obtain sold products"
 msgstr ""
+"Número de días anteriores a hoxe a ter en conta como inicio do período para "
+"obter produtos vendidos"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,help:sale_missing_tracking.field_res_company__sale_missing_days_to
@@ -484,36 +494,38 @@ msgid ""
 "Number of days before to today to take into account the ending of the period"
 " to obtain sold products"
 msgstr ""
+"Número de días anteriores a hoxe a ter en conta como fin do período para "
+"obter produtos vendidos"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,help:sale_missing_tracking.field_res_company__sale_missing_days_notification
 #: model:ir.model.fields,help:sale_missing_tracking.field_res_config_settings__sale_missing_days_notification
 msgid "Number of days from the first advice to create a notification"
-msgstr ""
+msgstr "Número de días desde o primeiro aviso para crear unha notificación"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__message_has_error_counter
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Numero de erros"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking__message_needaction_counter
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking_exception__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr ""
+msgstr "Número de mensaxes que requiren unha acción"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking__message_has_error_counter
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking_exception__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Número de mensaxes con erro de envío"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,help:sale_missing_tracking.field_res_company__sale_missing_months_consumption
 #: model:ir.model.fields,help:sale_missing_tracking.field_res_config_settings__sale_missing_months_consumption
 msgid "Number of months to compute product consumption"
-msgstr ""
+msgstr "Número de meses para calcular o consumo dun produto"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,help:sale_missing_tracking.field_res_company__sale_missing_max_delay_times
@@ -522,29 +534,30 @@ msgid ""
 "Number of times that a salesperson can postpone the response to the follow-"
 "up"
 msgstr ""
+"Número de veces que un comercial pode pospoñer o seguimento de perda de venda"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking__message_unread_counter
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking_exception__message_unread_counter
 msgid "Number of unread messages"
-msgstr ""
+msgstr "Número de mensaxes non leidos"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__date_order
 msgid "Order Date"
-msgstr ""
+msgstr "Data de pedido"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__partner_id
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_exception_search
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_search
 msgid "Partner"
-msgstr ""
+msgstr "Empresa"
 
 #. module: sale_missing_tracking
 #: model:ir.ui.menu,name:sale_missing_tracking.pending_missing_tracking_reason_menu
 msgid "Pending missing cart tracking reason"
-msgstr ""
+msgstr "Avisos de perda de vendas pendentes"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__product_id
@@ -553,12 +566,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_kanban
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_search
 msgid "Product"
-msgstr ""
+msgstr "Produto"
 
 #. module: sale_missing_tracking
 #: model:ir.model,name:sale_missing_tracking.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Modelo de produto"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__reason_id
@@ -566,79 +579,79 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_wiz__reason_id
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_search
 msgid "Reason"
-msgstr ""
+msgstr "Motivo"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__reason_note
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__reason_note
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_wiz__reason_note
 msgid "Reason Note"
-msgstr ""
+msgstr "Nota motivo"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_search
 msgid "Reason pending"
-msgstr ""
+msgstr "Motivo pendente"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields.selection,name:sale_missing_tracking.selection__sale_missing_tracking__state__recovered
 #: model:ir.model.fields.selection,name:sale_missing_tracking.selection__sale_missing_tracking_exception__state__recovered
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_exception_search
 msgid "Recovered"
-msgstr ""
+msgstr "Recuperado"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_exception_form
 msgid "Refuse"
-msgstr ""
+msgstr "Rexeitar"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields.selection,name:sale_missing_tracking.selection__sale_missing_tracking__state__refused
 #: model:ir.model.fields.selection,name:sale_missing_tracking.selection__sale_missing_tracking_exception__state__refused
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_exception_search
 msgid "Refused"
-msgstr ""
+msgstr "Rexeitado"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__request_date
 msgid "Request date"
-msgstr ""
+msgstr "Data solicitude"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields.selection,name:sale_missing_tracking.selection__sale_missing_tracking__state__request
 #: model:ir.model.fields.selection,name:sale_missing_tracking.selection__sale_missing_tracking_exception__state__request
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_exception_search
 msgid "Requested"
-msgstr ""
+msgstr "Solicitado"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__activity_user_id
 msgid "Responsible User"
-msgstr ""
+msgstr "Usuario responsable"
 
 #. module: sale_missing_tracking
 #: model:ir.actions.act_window,name:sale_missing_tracking.action_sale_missing_tracking
 #: model:ir.model,name:sale_missing_tracking.model_sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_form
 msgid "Sale Missing Cart Tracking"
-msgstr ""
+msgstr "Seguimento de perda de vendas"
 
 #. module: sale_missing_tracking
 #: model:ir.model,name:sale_missing_tracking.model_sale_missing_tracking_exception
 msgid "Sale Missing Cart Tracking Exceptions"
-msgstr ""
+msgstr "Excepcións de seguimento de perda de vendas"
 
 #. module: sale_missing_tracking
 #: model:ir.actions.server,name:sale_missing_tracking.missing_tracking_notification_cron_ir_actions_server
 #: model:ir.cron,cron_name:sale_missing_tracking.missing_tracking_notification_cron
 #: model:ir.cron,name:sale_missing_tracking.missing_tracking_notification_cron
 msgid "Sale Missing Cart Tracking Notification"
-msgstr ""
+msgstr "Notificación de seguimento de perda de vendas"
 
 #. module: sale_missing_tracking
 #: model:ir.model,name:sale_missing_tracking.model_sale_missing_tracking_reason
 msgid "Sale Missing Cart Tracking Reason"
-msgstr ""
+msgstr "Motivos de perda de vendas"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_product_product__sale_missing_tracking
@@ -646,105 +659,105 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_res_partner__sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_res_users__sale_missing_tracking
 msgid "Sale Missing Tracking"
-msgstr ""
+msgstr "Seguimento de perda de vendas"
 
 #. module: sale_missing_tracking
 #: model:ir.actions.act_window,name:sale_missing_tracking.action_sale_missing_tracking_wiz
 #: model:mail.message.subtype,name:sale_missing_tracking.mt_sale_missing_tracking_notification
 #: model:mail.template,subject:sale_missing_tracking.missing_tracking_notification_template
 msgid "Sale missing cart tracking"
-msgstr ""
+msgstr "Seguimento de perda de vendas"
 
 #. module: sale_missing_tracking
 #: model:mail.template,name:sale_missing_tracking.missing_tracking_notification_template
 msgid "Sale missing cart tracking - Send by Email"
-msgstr ""
+msgstr "Seguimento da cesta perdida - Enviar por correo electrónico"
 
 #. module: sale_missing_tracking
 #: model:ir.actions.act_window,name:sale_missing_tracking.action_sale_missing_tracking_exception
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_exception_form
 msgid "Sale missing cart tracking exception"
-msgstr ""
+msgstr "Excepción de seguimento de perda de vendas"
 
 #. module: sale_missing_tracking
 #: model:res.groups,name:sale_missing_tracking.group_sale_missing_tracking_manager
 msgid "Sale missing cart tracking manager"
-msgstr ""
+msgstr "Responsable de seguimento de perda de vendas"
 
 #. module: sale_missing_tracking
 #: model:ir.actions.act_window,name:sale_missing_tracking.action_sale_missing_tracking_reason
 msgid "Sale missing cart tracking reason"
-msgstr ""
+msgstr "Motivos de perda de vendas"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.sale_missing_tracking_wiz
 msgid "Sale missing cart tracking wizard"
-msgstr ""
+msgstr "Asistente de seguimento de perda de vendas"
 
 #. module: sale_missing_tracking
 #: code:addons/sale_missing_tracking/wizards/sale_missing_tracking_wiz.py:0
 #, python-format
 msgid "Sale missing tracking"
-msgstr ""
+msgstr "Seguimento de vendas perdidas"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.sale_missing_tracking_wiz
 msgid "Sale missing tracking advice"
-msgstr ""
+msgstr "Aviso de perda de vendas"
 
 #. module: sale_missing_tracking
 #: model:ir.model,name:sale_missing_tracking.model_sale_missing_tracking_wiz
 msgid "Sale missing tracking wizard"
-msgstr ""
+msgstr "Asistente de seguimento de perda de vendas"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__order_id
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_form
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_search
 msgid "Sale order"
-msgstr ""
+msgstr "Pedido de venda"
 
 #. module: sale_missing_tracking
 #: model:ir.model,name:sale_missing_tracking.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Pedido de venda"
 
 #. module: sale_missing_tracking
 #: model:ir.model,name:sale_missing_tracking.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Liña de pedido"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__team_id
 msgid "Sales Team"
-msgstr ""
+msgstr "Equipo de vendas"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__user_id
 msgid "Salesperson"
-msgstr ""
+msgstr "Comercial"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_search
 msgid "Search Sale missing cart tracking"
-msgstr ""
+msgstr "Buscar perda de vendas"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_exception_search
 msgid "Search Sale missing cart tracking exception"
-msgstr ""
+msgstr "Buscar excepcións de perda de vendas"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_reason_search
 msgid "Search Sale missing cart tracking reason"
-msgstr ""
+msgstr "Buscar motivos de perda de vendas"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__state
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__state
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_exception_search
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking_exception__activity_state
@@ -754,62 +767,66 @@ msgid ""
 "Today: Activity date is today\n"
 "Planned: Future activities."
 msgstr ""
+"Estado baseado en actividades\n"
+"Vencida: a data tope xa pasou\n"
+"Hoxe: A data tope é hoxe\n"
+"Planificada: futuras actividades."
 
 #. module: sale_missing_tracking
 #: model:mail.activity.type,name:sale_missing_tracking.mail_activity_data_todo
 msgid "To Do"
-msgstr ""
+msgstr "Por facer"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking_exception__activity_exception_decoration
 msgid "Type of the exception activity on record."
-msgstr ""
+msgstr "Tipo de actividade de excepción rexistrada."
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__message_unread
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__message_unread
 msgid "Unread Messages"
-msgstr ""
+msgstr "Mensaxes sen ler"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__message_unread_counter
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr ""
+msgstr "Contador de mensaxes sen ler"
 
 #. module: sale_missing_tracking
 #: model:ir.actions.server,name:sale_missing_tracking.pending_missing_tracking_reason_action
 msgid "Update pending missing tracking reason"
-msgstr ""
+msgstr "Informar avisos de perda de vendas pendentes"
 
 #. module: sale_missing_tracking
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.sale_missing_tracking_wiz
 msgid "Update reason"
-msgstr ""
+msgstr "Actualizar motivo"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__user_id
 #: model_terms:ir.ui.view,arch_db:sale_missing_tracking.view_sale_missing_tracking_exception_search
 msgid "User"
-msgstr ""
+msgstr "Usuario"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking__website_message_ids
 #: model:ir.model.fields,field_description:sale_missing_tracking.field_sale_missing_tracking_exception__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Mensaxes do sitio web"
 
 #. module: sale_missing_tracking
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking__website_message_ids
 #: model:ir.model.fields,help:sale_missing_tracking.field_sale_missing_tracking_exception__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Historial de comunicacións do sitio web"
 
 #. module: sale_missing_tracking
 #: code:addons/sale_missing_tracking/models/sale_missing_tracking_exception.py:0
 #, python-format
 msgid "You already have exceptions for"
-msgstr ""
+msgstr "Xa existen excepcións para"
 
 #. module: sale_missing_tracking
 #: code:addons/sale_missing_tracking/wizards/sale_missing_tracking_wiz.py:0
@@ -818,3 +835,5 @@ msgid ""
 "You cannot postpone this advice any more times.Why doesn't the customer buy "
 "these products?\n"
 msgstr ""
+"Non podes aprazar este aviso máis veces. Por que xa non compra estes "
+"produtos o cliente?\n"
