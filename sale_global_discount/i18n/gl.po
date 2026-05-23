@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 18:46+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_global_discount
 #: model_terms:ir.ui.view,arch_db:sale_global_discount.report_saleorder_document
@@ -20,51 +22,53 @@ msgid ""
 "<strong>Global Discounts</strong>\n"
 "                        <br/>"
 msgstr ""
+"<strong>Descontos Globais</strong>\n"
+"                        <br/>"
 
 #. module: sale_global_discount
 #: model_terms:ir.ui.view,arch_db:sale_global_discount.report_saleorder_document
 msgid "<strong>Subtl. before disc.</strong>"
-msgstr ""
+msgstr "<strong>Subtl. antes desc.</strong>"
 
 #. module: sale_global_discount
 #: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__amount_total_before_global_discounts
 msgid "Amount Total Before Discounts"
-msgstr ""
+msgstr "Base Impoñible sen Descontos"
 
 #. module: sale_global_discount
 #: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__amount_untaxed_before_global_discounts
 msgid "Amount Untaxed Before Discounts"
-msgstr ""
+msgstr "Base Impoñible sen Descontos"
 
 #. module: sale_global_discount
 #: code:addons/sale_global_discount/models/sale_order.py:0
 #, python-format
 msgid "Incompatible taxes found for global discounts."
-msgstr ""
+msgstr "Atopáronse impostos incompatibles para descontos globais."
 
 #. module: sale_global_discount
 #: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__global_discount_ids
 #: model_terms:ir.ui.view,arch_db:sale_global_discount.view_order_form
 msgid "Sale Global Discounts"
-msgstr ""
+msgstr "Descontos de venda globais"
 
 #. module: sale_global_discount
 #: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__global_discount_ids_readonly
 msgid "Sale Global Discounts (readonly)"
-msgstr ""
+msgstr "Venda Descontos Globais (só lectura)"
 
 #. module: sale_global_discount
 #: model:ir.model,name:sale_global_discount.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Orde de Venda"
 
 #. module: sale_global_discount
 #: model:ir.model.fields,field_description:sale_global_discount.field_sale_order__amount_global_discount
 msgid "Total Global Discounts"
-msgstr ""
+msgstr "Total Descontos Globais"
 
 #. module: sale_global_discount
 #: code:addons/sale_global_discount/models/sale_order.py:0
 #, python-format
 msgid "With global discounts, taxes in lines are required."
-msgstr ""
+msgstr "Con descontos globais, requírense impostos en liñas."
