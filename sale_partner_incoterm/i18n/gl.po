@@ -6,18 +6,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 18:47+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_partner_incoterm
 #: model:ir.model,name:sale_partner_incoterm.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: sale_partner_incoterm
 #: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_partner__sale_incoterm_address_id
@@ -30,7 +32,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_partner_incoterm.field_res_users__sale_incoterm_id
 #: model_terms:ir.ui.view,arch_db:sale_partner_incoterm.view_partner_property_form
 msgid "Default Sales Incoterm"
-msgstr ""
+msgstr "Incoterm de venda por defecto"
 
 #. module: sale_partner_incoterm
 #: model:ir.model.fields,field_description:sale_partner_incoterm.field_sale_order__incoterm_address_id
@@ -40,10 +42,10 @@ msgstr ""
 #. module: sale_partner_incoterm
 #: model:ir.model,name:sale_partner_incoterm.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordes de venda"
 
 #. module: sale_partner_incoterm
 #: model:ir.model.fields,help:sale_partner_incoterm.field_res_partner__sale_incoterm_id
 #: model:ir.model.fields,help:sale_partner_incoterm.field_res_users__sale_incoterm_id
 msgid "The default incoterm for new sales orders for this customer."
-msgstr ""
+msgstr "Incoterm por defecto para novos pedidos deste cliente."
