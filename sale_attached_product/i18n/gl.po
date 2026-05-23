@@ -6,60 +6,62 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 18:47+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_attached_product
 #: model:ir.model.fields,field_description:sale_attached_product.field_sale_order_line__attached_from_line_id
 msgid "Attached From Line"
-msgstr ""
+msgstr "Adxunto desde a liña"
 
 #. module: sale_attached_product
 #: model:ir.model.fields,field_description:sale_attached_product.field_sale_order_line__attached_line_ids
 msgid "Attached Line"
-msgstr ""
+msgstr "Liña adxunta"
 
 #. module: sale_attached_product
 #: model:ir.model.fields,field_description:sale_attached_product.field_product_product__attached_product_ids
 #: model:ir.model.fields,field_description:sale_attached_product.field_product_template__attached_product_ids
 #: model_terms:ir.ui.view,arch_db:sale_attached_product.product_template_form_view
 msgid "Attached Products"
-msgstr ""
+msgstr "Produtos adxuntos"
 
 #. module: sale_attached_product
 #: model:ir.model.fields,help:sale_attached_product.field_sale_order_line__is_attached_line
 msgid "Flag products that are attached to their main counterpart"
-msgstr ""
+msgstr "Marcar produtos que están unidos ao seu contraparte principal"
 
 #. module: sale_attached_product
 #: model:ir.model.fields,field_description:sale_attached_product.field_sale_order_line__is_attached_line
 msgid "Is Attached Line"
-msgstr ""
+msgstr "é liña adxunta"
 
 #. module: sale_attached_product
 #: model:ir.model,name:sale_attached_product.model_sale_attached_product_mixin
 msgid "Mixin class for sale attached product features"
-msgstr ""
+msgstr "Clase Mixta para a venda de produtos adxuntos"
 
 #. module: sale_attached_product
 #: model:ir.model,name:sale_attached_product.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Modelo do Produto"
 
 #. module: sale_attached_product
 #: model:ir.model,name:sale_attached_product.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordes de venda"
 
 #. module: sale_attached_product
 #: model:ir.model,name:sale_attached_product.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Liña de Orde de Venda"
 
 #. module: sale_attached_product
 #: model:ir.model.fields,help:sale_attached_product.field_product_product__attached_product_ids
@@ -68,3 +70,6 @@ msgid ""
 "Similar to optional products, although they're added automatically to "
 "thesale order and optionally removed when the main product goes away."
 msgstr ""
+"Similares aos produtos opcionais, aínda que se engaden automaticamente ao "
+"pedido de venda e elimínanse opcionalmente cando desaparece o produto "
+"principal."
