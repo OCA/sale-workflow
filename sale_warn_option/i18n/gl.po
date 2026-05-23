@@ -6,63 +6,65 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 18:47+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_warn_option
 #: model:ir.model.fields.selection,name:sale_warn_option.selection__warn_option__allowed_warning_usage__partner_sale_warn
 msgid "(Partner) Warning on the Sales Order"
-msgstr ""
+msgstr "(Contacto) Advertencia no pedido de venda"
 
 #. module: sale_warn_option
 #: model:ir.model.fields.selection,name:sale_warn_option.selection__warn_option__allowed_warning_usage__product_sale_warn
 msgid "(Product) Warning when Selling this Product"
-msgstr ""
+msgstr "(Produto) Aviso cando vende este produto"
 
 #. module: sale_warn_option
 #: model:ir.model.fields,field_description:sale_warn_option.field_warn_option__allowed_warning_usage
 msgid "Allowed Warning Usage"
-msgstr ""
+msgstr "Uso da alerta permitida"
 
 #. module: sale_warn_option
 #: model:ir.model.fields,help:sale_warn_option.field_warn_option__allowed_warning_usage
 msgid "Allows to choose where the message can be selected"
-msgstr ""
+msgstr "Permite elixir onde pode ser seleccionado a mensaxe"
 
 #. module: sale_warn_option
 #: model:ir.model,name:sale_warn_option.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: sale_warn_option
 #: model:ir.model,name:sale_warn_option.model_product_template
 msgid "Product Template"
-msgstr ""
+msgstr "Modelo de produto"
 
 #. module: sale_warn_option
 #: model:ir.model.fields,field_description:sale_warn_option.field_product_product__sale_line_warn_option
 #: model:ir.model.fields,field_description:sale_warn_option.field_product_template__sale_line_warn_option
 msgid "Sale Line Warn Option"
-msgstr ""
+msgstr "Opción de alerta en liñas de vendas"
 
 #. module: sale_warn_option
 #: model:ir.model.fields,field_description:sale_warn_option.field_res_partner__sale_warn_option
 #: model:ir.model.fields,field_description:sale_warn_option.field_res_users__sale_warn_option
 msgid "Sale Warn Option"
-msgstr ""
+msgstr "Opción de alerta en vendas"
 
 #. module: sale_warn_option
 #: model_terms:ir.ui.view,arch_db:sale_warn_option.sale_warn_option_partner_form
 #: model_terms:ir.ui.view,arch_db:sale_warn_option.sale_warn_option_product_form
 msgid "Select a warning option"
-msgstr ""
+msgstr "Selecciona unha opción de alerta"
 
 #. module: sale_warn_option
 #: model:ir.model,name:sale_warn_option.model_warn_option
 msgid "Warn Option"
-msgstr ""
+msgstr "Opción de alerta"
