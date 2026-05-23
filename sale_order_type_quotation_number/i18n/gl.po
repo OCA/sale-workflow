@@ -6,34 +6,36 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 18:47+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_order_type_quotation_number
 #: model:ir.model.fields,field_description:sale_order_type_quotation_number.field_sale_order__applied_quotation_seq_id
 msgid "Applied Quotation Seq"
-msgstr ""
+msgstr "Secuencia de orzamento aplicada"
 
 #. module: sale_order_type_quotation_number
 #: model:ir.model.fields,field_description:sale_order_type_quotation_number.field_sale_order_type__quotation_sequence_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type_quotation_number.quotation_sot_sale_order_type_search_view
 msgid "Quotation Sequence"
-msgstr ""
+msgstr "Secuencia de orzamento"
 
 #. module: sale_order_type_quotation_number
 #: model:ir.model.fields,field_description:sale_order_type_quotation_number.field_sale_order__recompute_quotation_seq
 msgid "Recompute Quotation Seq"
-msgstr ""
+msgstr "Recomputar secuencia presuposto"
 
 #. module: sale_order_type_quotation_number
 #: model_terms:ir.ui.view,arch_db:sale_order_type_quotation_number.quotation_sot_view_order_form
 msgid "Recompute Quotation Seq."
-msgstr ""
+msgstr "Recomputar secuencia presuposto"
 
 #. module: sale_order_type_quotation_number
 #: model_terms:ir.ui.view,arch_db:sale_order_type_quotation_number.quotation_sot_view_order_form
@@ -41,13 +43,15 @@ msgid ""
 "Recomputing the quotation sequence will generate a gap in the previous "
 "sequence. Would you like to proceed?"
 msgstr ""
+"Recomputar a secuencia de orzamento xerará saltos na secuencia anterior. "
+"Desexa continuar?"
 
 #. module: sale_order_type_quotation_number
 #: model:ir.model,name:sale_order_type_quotation_number.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Pedido de venda"
 
 #. module: sale_order_type_quotation_number
 #: model:ir.model,name:sale_order_type_quotation_number.model_sale_order_type
 msgid "Type of sale order"
-msgstr ""
+msgstr "Tipo de pedido de venda"
