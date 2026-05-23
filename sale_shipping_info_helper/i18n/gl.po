@@ -6,45 +6,47 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 18:47+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_shipping_info_helper
 #: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__item_amount_tax
 msgid "Item Amount Tax"
-msgstr ""
+msgstr "Artigo Importe Imposto"
 
 #. module: sale_shipping_info_helper
 #: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__item_amount_total
 msgid "Item Amount Total"
-msgstr ""
+msgstr "Artigo Importe Total"
 
 #. module: sale_shipping_info_helper
 #: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__item_amount_untaxed
 msgid "Item Amount Untaxed"
-msgstr ""
+msgstr "Artigo Importe Sen Impostos"
 
 #. module: sale_shipping_info_helper
 #: model:ir.model,name:sale_shipping_info_helper.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordes de venda"
 
 #. module: sale_shipping_info_helper
 #: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__shipping_amount_tax
 msgid "Shipping Amount Tax"
-msgstr ""
+msgstr "Imposto do importe do envío"
 
 #. module: sale_shipping_info_helper
 #: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__shipping_amount_total
 msgid "Shipping Amount Total"
-msgstr ""
+msgstr "Importe total do envío"
 
 #. module: sale_shipping_info_helper
 #: model:ir.model.fields,field_description:sale_shipping_info_helper.field_sale_order__shipping_amount_untaxed
 msgid "Shipping Amount Untaxed"
-msgstr ""
+msgstr "Importe sen impostos do envío"
