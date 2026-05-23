@@ -6,23 +6,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 18:46+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_quotation_number
 #: model:ir.model,name:sale_quotation_number.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Compañías"
 
 #. module: sale_quotation_number
 #: model:ir.model,name:sale_quotation_number.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Config Axustes"
 
 #. module: sale_quotation_number
 #: model:ir.model.fields,help:sale_quotation_number.field_res_company__keep_name_so
@@ -31,19 +33,21 @@ msgstr ""
 msgid ""
 "If this is unchecked, quotations use a different sequence from sale orders"
 msgstr ""
+"Se non está marcado, as cotizacións utilizan unha secuencia diferente ás "
+"ordes de venda"
 
 #. module: sale_quotation_number
 #: model:ir.model.fields,field_description:sale_quotation_number.field_sale_order__quotation_seq_used
 msgid "Quotation Sequence Used"
-msgstr ""
+msgstr "Secuencia de Cotización Utilizada"
 
 #. module: sale_quotation_number
 #: model:ir.model,name:sale_quotation_number.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Pedido de venda"
 
 #. module: sale_quotation_number
 #: model:ir.model.fields,field_description:sale_quotation_number.field_res_company__keep_name_so
 #: model:ir.model.fields,field_description:sale_quotation_number.field_res_config_settings__keep_name_so
 msgid "Use Same Enumeration"
-msgstr ""
+msgstr "Usar a mesma enumeración"
