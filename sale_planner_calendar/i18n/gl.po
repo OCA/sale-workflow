@@ -6,13 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-05-23 18:47+0000\n"
+"Last-Translator: Pablo Castelo <pablocv@gmx.es>\n"
 "Language-Team: none\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_kanban
@@ -20,36 +22,38 @@ msgid ""
 "<i class=\"fa fa-dollar\"/>\n"
 "                                            <span>Order</span>"
 msgstr ""
+"<i class=\"fa fa-dollar\"/>\n"
+"                                            <span>Pedido</span>"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_form
 msgid "<span class=\"o_stat_text\">Invoices</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Facturas</span>"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_partner_form
 msgid "<span class=\"o_stat_text\">Planner</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Rutero</span>"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_form
 msgid "<span class=\"o_stat_text\">Sales</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Vendas</span>"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_form
 msgid "<span class=\"o_stat_text\">Subtotal</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Base impoñible</span>"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_needaction
 msgid "Action Needed"
-msgstr ""
+msgstr "Acción requirida"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__advanced_cycle
 msgid "Advanced Cycle"
-msgstr ""
+msgstr "Ciclo avanzado"
 
 #. module: sale_planner_calendar
 #: code:addons/sale_planner_calendar/models/sale_planner_calendar_summary.py:0
@@ -58,27 +62,29 @@ msgid ""
 "Already exists a summary with same user, date and event type)\n"
 "Access with 'Sale planner calendar summary' menu option"
 msgstr ""
+"Xa existe un resumo para o mesmo usuario, día e tipo de evento\n"
+"Acceda coa opción de menú 'Resumos de rutero'"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_form
 msgid "Amount"
-msgstr ""
+msgstr "Importe"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_change_hour_form
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_issue_form
 msgid "Apply"
-msgstr ""
+msgstr "Aplicar"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid "Apply changes"
-msgstr ""
+msgstr "Aplicar cambios"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__assign_new_salesperson_to_partner
 msgid "Assign New Salesperson To Partner"
-msgstr ""
+msgstr "Asignar novo comercial ao cliente"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
@@ -88,12 +94,14 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_attachment_count
 msgid "Attachment Count"
-msgstr ""
+msgstr "Cálculo de arquivos adxuntos"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.res_config_settings_view_form
 msgid "Backward days to search documents to update subscriptions"
 msgstr ""
+"Días anteriores para a procura de documentos aos que actualizar as "
+"subscricións"
 
 #. module: sale_planner_calendar
 #: model:ir.model,name:sale_planner_calendar.model_calendar_attendee
@@ -105,32 +113,32 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__calendar_event_id
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_wizard__calendar_event_ids
 msgid "Calendar Event"
-msgstr ""
+msgstr "Evento calendario"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__calendar_issue_type_id
 msgid "Calendar Issue Type"
-msgstr ""
+msgstr "Tipo incidencia rutero"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__calendar_summary_id
 msgid "Calendar Summary"
-msgstr ""
+msgstr "Resumo rutero"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_config_settings__sale_planner_calendar_max_duration
 msgid "Calendar event max duration"
-msgstr ""
+msgstr "Duración máxima evento calendario"
 
 #. module: sale_planner_calendar
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_calendar_event_root
 msgid "Calendar events"
-msgstr ""
+msgstr "Eventos de calendario"
 
 #. module: sale_planner_calendar
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_root
 msgid "Calendar planner"
-msgstr ""
+msgstr "Rutero"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_change_hour_form
@@ -139,13 +147,13 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__calendar_event__sale_planner_state__cancel
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_summary__state__cancel
 msgid "Cancelled"
-msgstr ""
+msgstr "Cancelado"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
@@ -156,54 +164,54 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__partner_city
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
 msgid "City"
-msgstr ""
+msgstr "Ciudad"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
 msgid "Clock"
-msgstr ""
+msgstr "Reloxo"
 
 #. module: sale_planner_calendar
 #: model:sale.planner.calendar.issue.type,name:sale_planner_calendar.event_planner_issue_type_close
 msgid "Closed"
-msgstr ""
+msgstr "Pechado"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__comment
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__comment
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_form
 msgid "Comment"
-msgstr ""
+msgstr "Comentario"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
 msgid "Commercial name"
-msgstr ""
+msgstr "Nome comercial"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__partner_commercial_name
 msgid "Commercial partner name"
-msgstr ""
+msgstr "Nomee entidade comercial"
 
 #. module: sale_planner_calendar
 #: model:ir.model,name:sale_planner_calendar.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Compañías"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__company_id
 msgid "Company"
-msgstr ""
+msgstr "Compañía"
 
 #. module: sale_planner_calendar
 #: model:ir.model,name:sale_planner_calendar.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Opcións de Configuración"
 
 #. module: sale_planner_calendar
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_calendar_event_configuration_root
 msgid "Configuration"
-msgstr ""
+msgstr "Configuración"
 
 #. module: sale_planner_calendar
 #. openerp-web
@@ -215,7 +223,7 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model:ir.model,name:sale_planner_calendar.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_issue_type__create_uid
@@ -224,7 +232,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__create_uid
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_wizard__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_issue_type__create_date
@@ -233,33 +241,33 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__create_date
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_wizard__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado o"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__sale_planner_currency_id
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__currency_id
 msgid "Currency"
-msgstr ""
+msgstr "Moeda"
 
 #. module: sale_planner_calendar
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_customers
 msgid "Customers"
-msgstr ""
+msgstr "Clientes"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__cycle_number
 msgid "Cycle Number"
-msgstr ""
+msgstr "Número de ciclos"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__cycle_skip
 msgid "Cycle Skip"
-msgstr ""
+msgstr "Saltar ciclos"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__date
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_issue_type__display_name
@@ -268,12 +276,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__display_name
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_wizard__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome a mostrar"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_form
 msgid "Documents"
-msgstr ""
+msgstr "Documentos"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__calendar_event__sale_planner_state__done
@@ -282,12 +290,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_form
 msgid "Done"
-msgstr ""
+msgstr "Feito"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
 msgid "Due"
-msgstr ""
+msgstr "Débeda"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__invoice_date_due
@@ -297,7 +305,7 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event_type__duration
 msgid "Duration"
-msgstr ""
+msgstr "Duración"
 
 #. module: sale_planner_calendar
 #. openerp-web
@@ -309,37 +317,37 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_form
 msgid "Effective"
-msgstr ""
+msgstr "Efectivo"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__event_done_count
 msgid "Event Done Count"
-msgstr ""
+msgstr "Conta evento realizado"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__event_effective_count
 msgid "Event Effective Count"
-msgstr ""
+msgstr "Conta evento efectivo"
 
 #. module: sale_planner_calendar
 #: model:ir.model,name:sale_planner_calendar.model_calendar_event_type
 msgid "Event Meeting Type"
-msgstr ""
+msgstr "Tipo de Reunión"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__event_off_planning_count
 msgid "Event Off Planning Count"
-msgstr ""
+msgstr "Conta evento non planeado"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__event_start
 msgid "Event Start"
-msgstr ""
+msgstr "Inicio do evento"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__event_total_count
 msgid "Event Total Count"
-msgstr ""
+msgstr "Conta evento total"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_company__sale_planner_done_on_sale_confirm
@@ -351,7 +359,7 @@ msgstr ""
 #: model:ir.actions.server,name:sale_planner_calendar.action_sale_planner_calendar_summary_today
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_summary_today
 msgid "Event planner summary today"
-msgstr ""
+msgstr "Resumo para hoxe"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__event_type_id
@@ -359,43 +367,43 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_wizard__event_type_id
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_search
 msgid "Event type"
-msgstr ""
+msgstr "Tipo de evento"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_form
 msgid "Events"
-msgstr ""
+msgstr "Eventos"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid "Events to update"
-msgstr ""
+msgstr "Eventos a actualizar"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid "Fill events from filter values"
-msgstr ""
+msgstr "Encher eventos a partir dos valores de filtrado"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid "Filter values"
-msgstr ""
+msgstr "Valores de filtrado"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_follower_ids
 msgid "Followers"
-msgstr ""
+msgstr "Seguidores"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_partner_ids
 msgid "Followers (Partners)"
-msgstr ""
+msgstr "Seguidores (Socios)"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,help:sale_planner_calendar.field_calendar_event__profile_icon
 #: model:ir.model.fields,help:sale_planner_calendar.field_calendar_event_type__icon
 msgid "Font awesome icon e.g. fa-tasks"
-msgstr ""
+msgstr "Icona font awesome ej: fa-tasks"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,help:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__new_event_categ_ids
@@ -407,13 +415,13 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.res_config_settings_view_form
 msgid "Forward months to create calendar events"
-msgstr ""
+msgstr "Meses posteriores para crear eventos de calendario"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__fri
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__fri
 msgid "Friday"
-msgstr ""
+msgstr "Venres"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
@@ -424,17 +432,17 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_search
 msgid "Group By"
-msgstr ""
+msgstr "Agrupar por"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Ten mensaxe"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__hour
 msgid "Hour"
-msgstr ""
+msgstr "Hora"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_issue_type__id
@@ -443,24 +451,24 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__id
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_wizard__id
 msgid "ID"
-msgstr ""
+msgstr "ID (identificación)"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__profile_icon
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event_type__icon
 msgid "Icon"
-msgstr ""
+msgstr "Icona"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,help:sale_planner_calendar.field_sale_planner_calendar_summary__message_needaction
 #: model:ir.model.fields,help:sale_planner_calendar.field_sale_planner_calendar_summary__message_unread
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Se está marcado hai novas mensaxes que requiren a súa atención."
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,help:sale_planner_calendar.field_sale_planner_calendar_summary__message_has_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Se se atopa marcado, algunhas mensaxes teñen erro de envío."
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
@@ -468,63 +476,67 @@ msgid ""
 "If the new end field is set, in addition to creating the recurring event assigned to the new commercial,\n"
 "                                a new recurring event will be created from the end date associated with the current commercial."
 msgstr ""
+"Se o campo novo fin esta establecido, ademas de crear o evento recorrente "
+"asignado ao novo comercial,\n"
+"                                creásese un novo evento recorrente a partir "
+"de dátaa fin asociado ao comercial actual."
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
 msgid "Info"
-msgstr ""
+msgstr "Información"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__invoice_amount_residual
 msgid "Invoice amount due"
-msgstr ""
+msgstr "Importe debido"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
 msgid "Invoices"
-msgstr ""
+msgstr "Facturas"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__is_base_recurrent_event
 msgid "Is Base Recurrent Event"
-msgstr ""
+msgstr "É evento recorrente base"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__is_dynamic_end_date
 msgid "Is Dynamic End Date"
-msgstr ""
+msgstr "É data final dinámica"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "É un seguidor"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_partner__is_sale_planner_contact
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_users__is_sale_planner_contact
 msgid "Is Sale Planner Contact"
-msgstr ""
+msgstr "Contacto rutero"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,help:sale_planner_calendar.field_calendar_event__target_partner_id
 msgid "Is the partner used in planner"
-msgstr ""
+msgstr "O contacto é usado no rutero"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
 msgid "Issue"
-msgstr ""
+msgstr "Incidencia"
 
 #. module: sale_planner_calendar
 #: model:ir.actions.act_window,name:sale_planner_calendar.action_sale_planner_calendar_issue_type
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_issue_type
 msgid "Issue types"
-msgstr ""
+msgstr "Tipos de Incidencias"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_form
 msgid "Issues"
-msgstr ""
+msgstr "Incidencias"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_issue_type____last_update
@@ -533,7 +545,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary____last_update
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_wizard____last_update
 msgid "Last Modified on"
-msgstr ""
+msgstr "Última modificación o"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_issue_type__write_uid
@@ -542,7 +554,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__write_uid
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_wizard__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_issue_type__write_date
@@ -551,17 +563,17 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__write_date
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_wizard__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualización o"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__line_ids
 msgid "Line"
-msgstr ""
+msgstr "Linea"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
 msgid "Location"
-msgstr ""
+msgstr "Localización"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__location_url
@@ -571,7 +583,7 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Adxunto principal"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
@@ -586,30 +598,30 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Erro de Envío de Mensaxe"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Mensaxes"
 
 #. module: sale_planner_calendar
 #: model:sale.planner.calendar.issue.type,name:sale_planner_calendar.event_planner_issue_type_missing
 msgid "Missing"
-msgstr ""
+msgstr "Ausente"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__target_partner_mobile
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_calendar_event_kanban
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
 msgid "Mobile"
-msgstr ""
+msgstr "Móbil"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__mon
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__mon
 msgid "Monday"
-msgstr ""
+msgstr "Luns"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
@@ -625,54 +637,54 @@ msgstr ""
 #: model:ir.actions.act_window,name:sale_planner_calendar.action_calendar_event
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_event_calendar
 msgid "My Calendar"
-msgstr ""
+msgstr "O meu calendario"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
 msgid "My events"
-msgstr ""
+msgstr "Os meus eventos"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_search
 msgid "My summaries"
-msgstr ""
+msgstr "Os meus resumos"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_issue_type__name
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__new_end
 msgid "New End"
-msgstr ""
+msgstr "Novo fin"
 
 #. module: sale_planner_calendar
 #. openerp-web
 #: code:addons/sale_planner_calendar/static/src/xml/sale_planner_calendar_event_sales.xml:0
 #, python-format
 msgid "New Quotation"
-msgstr ""
+msgstr "Crear pedido"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__new_start
 msgid "New Start"
-msgstr ""
+msgstr "Novo inicio"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__new_user_id
 msgid "New User"
-msgstr ""
+msgstr "Novo comercial"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_kanban
 msgid "New order"
-msgstr ""
+msgstr "Novo pedido"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__new_user_id
 msgid "New salesperson"
-msgstr ""
+msgstr "Novo comercial"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__new_event_categ_ids
@@ -683,91 +695,91 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid "New values"
-msgstr ""
+msgstr "Novos valores"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Número de accións"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Numero de erros"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,help:sale_planner_calendar.field_sale_planner_calendar_summary__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr ""
+msgstr "Número de mensaxes que requiren unha acción"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,help:sale_planner_calendar.field_sale_planner_calendar_summary__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Número de mensaxes con erro de envío"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,help:sale_planner_calendar.field_sale_planner_calendar_summary__message_unread_counter
 msgid "Number of unread messages"
-msgstr ""
+msgstr "Número de mensaxes non leidos"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_wizard
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__off_planning
 msgid "Off Planning"
-msgstr ""
+msgstr "Non planeado"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_form
 msgid "Off planning"
-msgstr ""
+msgstr "Non planeado"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid "Optional actions"
-msgstr ""
+msgstr "Accións opcionais"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
 msgid "Order"
-msgstr ""
+msgstr "Pedido"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_form
 msgid "Orders"
-msgstr ""
+msgstr "Pedidos"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__partner_id
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__partner_id
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
 msgid "Partner"
-msgstr ""
+msgstr "Empresa"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__partner_contact_name
 msgid "Partner Contact Name"
-msgstr ""
+msgstr "Nome do contacto"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__partner_mobile
 msgid "Partner Mobile"
-msgstr ""
+msgstr "Móbil de contacto"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__partner_name
 msgid "Partner Name"
-msgstr ""
+msgstr "Nome do cliente"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__partner_user_id
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__partner_user_id
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__partner_user_id
 msgid "Partner salesperson"
-msgstr ""
+msgstr "Comercial do cliente"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
@@ -777,27 +789,27 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__payment_amount
 msgid "Payment Amount"
-msgstr ""
+msgstr "Importe pago"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__payment_count
 msgid "Payment Count"
-msgstr ""
+msgstr "Conta pagos"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_form
 msgid "Payment Sheet"
-msgstr ""
+msgstr "Folla de pagos"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__payment_sheet_line_ids
 msgid "Payment Sheet Line"
-msgstr ""
+msgstr "Liñas da folla de pagos"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_form
 msgid "Payments"
-msgstr ""
+msgstr "Pagos"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__calendar_event__sale_planner_state__pending
@@ -805,12 +817,12 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_form
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
 msgid "Pending"
-msgstr ""
+msgstr "Pendente"
 
 #. module: sale_planner_calendar
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_summary_general
 msgid "Planner"
-msgstr ""
+msgstr "Rutero"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__event_user_id
@@ -834,51 +846,51 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__reassign_wiz_id
 msgid "Reassign Wiz"
-msgstr ""
+msgstr "Asistente reatribución"
 
 #. module: sale_planner_calendar
 #: model:ir.actions.act_window,name:sale_planner_calendar.action_sale_planner_calendar_reassign_wiz
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_reassign_wiz
 msgid "Reassignment of salesperson"
-msgstr ""
+msgstr "Reatribución de comercial"
 
 #. module: sale_planner_calendar
 #: model:ir.actions.act_window,name:sale_planner_calendar.calendar_event_tree_primary_only_action
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_calendar_event_tree_primary_only
 msgid "Recurrent calendar events"
-msgstr ""
+msgstr "Eventos de calendario recorrentes"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__partner_ref
 msgid "Reference"
-msgstr ""
+msgstr "Referencia"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__sale_ids
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__sale_ids
 msgid "Sale"
-msgstr ""
+msgstr "Venda"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__sale_order_count
 msgid "Sale Order Count"
-msgstr ""
+msgstr "Conta pedido venda"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__sale_order_subtotal
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__sale_order_subtotal
 msgid "Sale Order Subtotal"
-msgstr ""
+msgstr "Base impoñible pedido"
 
 #. module: sale_planner_calendar
 #: model:ir.model,name:sale_planner_calendar.model_sale_payment_sheet_line
 msgid "Sale Payment Sheet Line"
-msgstr ""
+msgstr "Liñas da folla de pagos"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.res_config_settings_view_form
 msgid "Sale Planner Calendar"
-msgstr ""
+msgstr "Rutero"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_invoice_payment_wiz__sale_planner_calendar_event_id
@@ -886,19 +898,19 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_payment_sheet_line__sale_planner_calendar_event_id
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__sale_planner_calendar_event_ids
 msgid "Sale Planner Calendar Event"
-msgstr ""
+msgstr "Eventos rutero"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_company__sale_planner_forward_months
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_config_settings__sale_planner_forward_months
 msgid "Sale Planner Forward Months"
-msgstr ""
+msgstr "Meses seguintes rutero"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_company__sale_planner_order_cut_hour
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_config_settings__sale_planner_order_cut_hour
 msgid "Sale Planner Order Cut Hour"
-msgstr ""
+msgstr "Hora de corte pedidos rutero"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__sale_planner_state
@@ -908,52 +920,52 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model:ir.model,name:sale_planner_calendar.model_sale_invoice_payment_wiz
 msgid "Sale invoice payment wizard"
-msgstr ""
+msgstr "Asistente pago factura de venda"
 
 #. module: sale_planner_calendar
 #: code:addons/sale_planner_calendar/models/sale_order.py:0
 #, python-format
 msgid "Sale off planning"
-msgstr ""
+msgstr "Non planeado"
 
 #. module: sale_planner_calendar
 #: model:ir.model,name:sale_planner_calendar.model_sale_planner_calendar_wizard
 msgid "Sale planner calendar Wizard"
-msgstr ""
+msgstr "Asistente de planificación"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_change_hour_form
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_form
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_issue_form
 msgid "Sale planner calendar event"
-msgstr ""
+msgstr "Eventos de rutero"
 
 #. module: sale_planner_calendar
 #: model:ir.actions.act_window,name:sale_planner_calendar.action_sale_planner_calendar_event
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_event
 msgid "Sale planner calendar events"
-msgstr ""
+msgstr "Eventos de rutero"
 
 #. module: sale_planner_calendar
 #: model:ir.actions.act_window,name:sale_planner_calendar.action_sale_planner_calendar_issue
 #: model:ir.actions.act_window,name:sale_planner_calendar.action_sale_planner_calendar_issue_tree
 msgid "Sale planner calendar issue"
-msgstr ""
+msgstr "Incidencia rutero"
 
 #. module: sale_planner_calendar
 #: model:ir.model,name:sale_planner_calendar.model_sale_planner_calendar_issue_type
 msgid "Sale planner calendar issue type"
-msgstr ""
+msgstr "Tipo incidencia rutero"
 
 #. module: sale_planner_calendar
 #: model:ir.model,name:sale_planner_calendar.model_sale_planner_calendar_reassign_line_wiz
 msgid "Sale planner calendar reassign lines wizard"
-msgstr ""
+msgstr "Asistente reatribución liñas rutero"
 
 #. module: sale_planner_calendar
 #: model:ir.model,name:sale_planner_calendar.model_sale_planner_calendar_reassign_wiz
 msgid "Sale planner calendar reassign wizard"
-msgstr ""
+msgstr "Asistente reatribución rutero"
 
 #. module: sale_planner_calendar
 #: model:ir.actions.act_window,name:sale_planner_calendar.action_sale_planner_calendar_summary
@@ -962,27 +974,27 @@ msgstr ""
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_summary_today_non_commercial
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_form
 msgid "Sale planner calendar summary"
-msgstr ""
+msgstr "Resumos de rutero"
 
 #. module: sale_planner_calendar
 #: model:ir.actions.server,name:sale_planner_calendar.sale_planner_calendar_wizard_action
 #: model:ir.ui.menu,name:sale_planner_calendar.menu_sale_planner_calendar_wizard
 msgid "Sale planner calendar wizard"
-msgstr ""
+msgstr "Asistente de planificación"
 
 #. module: sale_planner_calendar
 #: model:ir.actions.server,name:sale_planner_calendar.sale_planner_calendar_cron_unsubscribe_ir_actions_server
 #: model:ir.cron,cron_name:sale_planner_calendar.sale_planner_calendar_cron_unsubscribe
 #: model:ir.cron,name:sale_planner_calendar.sale_planner_calendar_cron_unsubscribe
 msgid "Sale planner calendar: Unsubscribe documents"
-msgstr ""
+msgstr "Rutero: Desuscripción de documentos"
 
 #. module: sale_planner_calendar
 #: model:ir.actions.server,name:sale_planner_calendar.cron_update_dynamic_final_date_ir_actions_server
 #: model:ir.cron,cron_name:sale_planner_calendar.cron_update_dynamic_final_date
 #: model:ir.cron,name:sale_planner_calendar.cron_update_dynamic_final_date
 msgid "Sale planner calendar: Update dynamic event final date"
-msgstr ""
+msgstr "Sae planner calendar: Actualizar data final dos eventos dinámicos"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__target_partner_id
@@ -990,18 +1002,18 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_calendar_event_search
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
 msgid "Sale planner partner"
-msgstr ""
+msgstr "Empresa rutero"
 
 #. module: sale_planner_calendar
 #: model:ir.model,name:sale_planner_calendar.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Pedido de venda"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__user_id
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_wizard__user_id
 msgid "Salesperson"
-msgstr ""
+msgstr "Comercial"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__sanitized_partner_mobile
@@ -1012,43 +1024,45 @@ msgstr ""
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__sat
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__sat
 msgid "Saturday"
-msgstr ""
+msgstr "Sábado"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.actions.act_window,help:sale_planner_calendar.action_calendar_event
 msgid "Schedule a new calendar event"
-msgstr ""
+msgstr "Planificar un novo evento"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
 msgid "Search sale planner calendar events"
-msgstr ""
+msgstr "Procura eventos rutero"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_search
 msgid "Search sale planner calendar summary"
-msgstr ""
+msgstr "Procura resumen rutero"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid "Select all lines"
-msgstr ""
+msgstr "Seleccionar todas as liñas"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__selected
 msgid "Selected"
-msgstr ""
+msgstr "Seleccionado"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_company__sale_planner_mail_to_attendees
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_config_settings__sale_planner_mail_to_attendees
 msgid "Send invitation to attendees"
-msgstr ""
+msgstr "Enviar un correo de invitación aos asistentes"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.res_config_settings_view_form
 msgid "Send invitations to attendees when a planner event is created"
 msgstr ""
+"Enviar un correo de invitación aos asistentes cando unha planificación é "
+"creada"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.res_config_settings_view_form
@@ -1058,7 +1072,7 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model:ir.actions.server,name:sale_planner_calendar.action_set_planner_calendar_event
 msgid "Set planner calendar event"
-msgstr ""
+msgstr "Establecer evento de rutero"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.res_config_settings_view_form
@@ -1066,6 +1080,8 @@ msgid ""
 "Show a warning message when duration is more than this time.\n"
 "                                Set 00:00 to disable warning."
 msgstr ""
+"Mostrar unha mensaxe de aviso cando a duración sexa maior que este tempo.\n"
+"                                Establecer 00:00 para desactivar aviso."
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
@@ -1075,35 +1091,35 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_calendar_event_tree_primary_only
 msgid "Start Date"
-msgstr ""
+msgstr "Data inicio"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__state
 msgid "State"
-msgstr ""
+msgstr "Estado"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__partner_street
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
 msgid "Street"
-msgstr ""
+msgstr "Rúa"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_calendar_event_tree_primary_only
 msgid "Subject"
-msgstr ""
+msgstr "Asunto"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__sun
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__sun
 msgid "Sunday"
-msgstr ""
+msgstr "Domingo"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_company__susbscriptions_backward_days
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_res_config_settings__susbscriptions_backward_days
 msgid "Susbscriptions Backward Days"
-msgstr ""
+msgstr "Subscricións días anteriores"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__event_categ_ids
@@ -1117,12 +1133,12 @@ msgstr ""
 msgid ""
 "The changes will be applied to event records with new commercial user "
 "filled."
-msgstr ""
+msgstr "Os cambios aplicaranse aos eventos co campo \"Novo comercial\" enchido."
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,help:sale_planner_calendar.field_calendar_event__partner_user_id
 msgid "The internal user in charge of this contact."
-msgstr ""
+msgstr "O usuario interno a cargo deste contacto."
 
 #. module: sale_planner_calendar
 #: code:addons/sale_planner_calendar/models/res_partner.py:0
@@ -1131,115 +1147,117 @@ msgid ""
 "This partner has sale planned events\n"
 "You must change salesperson from the planner wizard"
 msgstr ""
+"Este contacto ten eventos de rutero planificados\n"
+"Debes de realizar o cambio de comercial desde o asistente de reatribución"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__thu
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__thu
 msgid "Thursday"
-msgstr ""
+msgstr "Xoves"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.res_config_settings_view_form
 msgid ""
 "Time of the next day until which orders of the current day are assigned"
-msgstr ""
+msgstr "Hora do día seguinte ata a cal os pedidos do día actual serán asignados"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_calendar_event_search
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_search
 msgid "Today"
-msgstr ""
+msgstr "Hoxe"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_calendar_event_search
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_search
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_search
 msgid "Tomorrow"
-msgstr ""
+msgstr "Mañá"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_form
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_kanban
 msgid "Total orders:"
-msgstr ""
+msgstr "Total pedidos:"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_summary_form
 msgid "Totals"
-msgstr ""
+msgstr "Totais"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__tue
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__tue
 msgid "Tuesday"
-msgstr ""
+msgstr "Martes"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_unread
 msgid "Unread Messages"
-msgstr ""
+msgstr "Mensaxes sen ler"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr ""
+msgstr "Contador de mensaxes sen ler"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid "Unselect all lines"
-msgstr ""
+msgstr "Deseleccionar todas as liñas"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__unsubscribe_date
 msgid "Unsubscribe Date"
-msgstr ""
+msgstr "Data de desuscripción"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__unsuscribe_old_salesperson
 msgid "Unsuscribe Old Salesperson"
-msgstr ""
+msgstr "Desuscribir ao antigo comercial"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_line_wiz__until
 msgid "Until"
-msgstr ""
+msgstr "Ata"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__user_id
 msgid "User"
-msgstr ""
+msgstr "Usuario"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,help:sale_planner_calendar.field_calendar_event__sale_planner_currency_id
 msgid "Utility field to express amount currency"
-msgstr ""
+msgstr "Campo útil para expresar importe en divisa"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_summary__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Mensaxes do sitio web"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,help:sale_planner_calendar.field_sale_planner_calendar_summary__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Historial de comunicacións do sitio web"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_reassign_wiz__week_list__wed
 #: model:ir.model.fields.selection,name:sale_planner_calendar.selection__sale_planner_calendar_wizard__week_list__wed
 msgid "Wednesday"
-msgstr ""
+msgstr "Mércores"
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_reassign_wiz__week_list
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_sale_planner_calendar_wizard__week_list
 msgid "Weekday"
-msgstr ""
+msgstr "Día da semana"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_kanban
@@ -1249,4 +1267,4 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid "or"
-msgstr ""
+msgstr "ou"
