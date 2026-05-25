@@ -36,6 +36,19 @@
                     position="move"
                 />
             </xpath>
+            <!-- Packaging required -->
+            <xpath
+                expr="//page/field[@name='order_line']/list/field[@name='product_packaging_id']"
+                position="attributes"
+            >
+                <attribute name="required">is_packaging_required</attribute>
+            </xpath>
+            <xpath
+                expr="//page/field[@name='order_line']/form//field[@name='product_packaging_id']"
+                position="attributes"
+            >
+                <attribute name="required">is_packaging_required</attribute>
+            </xpath>
         </field>
     </record>
 </data>
