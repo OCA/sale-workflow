@@ -46,6 +46,7 @@ addon | version | maintainers | summary
 [sale_order_line_date](sale_order_line_date/) | 19.0.1.0.0 |  | Adds a commitment date to each sale order line.
 [sale_order_line_description](sale_order_line_description/) | 19.0.1.0.1 |  | Sale order line description
 [sale_order_line_menu](sale_order_line_menu/) | 19.0.1.0.0 |  | Adds a Sale Order Lines Menu
+[sale_order_line_no_print](sale_order_line_no_print/) | 19.0.1.0.1 | <a href='https://github.com/chienandalu'><img src='https://github.com/chienandalu.png' width='32' height='32' style='border-radius:50%;' alt='chienandalu'/></a> <a href='https://github.com/rafaelbn'><img src='https://github.com/rafaelbn.png' width='32' height='32' style='border-radius:50%;' alt='rafaelbn'/></a> | Hide order lines in reports
 [sale_order_line_note](sale_order_line_note/) | 19.0.1.0.0 |  | Note on sale order line
 [sale_order_line_price_history](sale_order_line_price_history/) | 19.0.1.0.0 | <a href='https://github.com/CarlosRoca13'><img src='https://github.com/CarlosRoca13.png' width='32' height='32' style='border-radius:50%;' alt='CarlosRoca13'/></a> <a href='https://github.com/Shide'><img src='https://github.com/Shide.png' width='32' height='32' style='border-radius:50%;' alt='Shide'/></a> | Sale order line price history
 [sale_order_line_price_source](sale_order_line_price_source/) | 19.0.1.0.0 |  | Track the source and provenance of sale order line prices
