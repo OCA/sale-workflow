@@ -1,0 +1,5 @@
+<odoo>
+    <record id="group_use_product_description_per_so_line" model="res.groups">
+        <field name="name">Use only product sale description on order lines</field>
+    </record>
+</odoo>
