@@ -1,0 +1,48 @@
+<odoo>
+    <record id="view_order_form_inherit_warehouse_header" model="ir.ui.view">
+        <field name="name">sale.order.form (sale_order_warehouse_header)</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_stock.view_order_form_inherit_sale_stock" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='warehouse_id'][@force_save='1']"
+                position="attributes"
+            >
+                <attribute name="invisible">True</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_order_view_form_inherit_warehouse_header" model="ir.ui.view">
+        <field name="name">sale.order.form (sale_order_warehouse_header)</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field
+                    name="warehouse_id"
+                    groups="stock.group_stock_multi_warehouses"
+                    readonly="state == 'sale'"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sales_order_filter_inherit_warehouse_header" model="ir.ui.view">
+        <field name="name">sale.order.search (sale_order_warehouse_header)</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']" position="after">
+                <field name="warehouse_id" />
+            </xpath>
+            <xpath expr="//filter[@name='customer']" position="after">
+                <filter
+                    name="warehouse_id"
+                    string="Warehouse"
+                    context="{'group_by': 'warehouse_id'}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
