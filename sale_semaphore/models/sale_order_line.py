@@ -90,11 +90,11 @@ class SaleOderLine(models.Model):
         vals["semaphore"] = self.semaphore
         return vals
 
-    @api.depends("price_reduce")
+    @api.depends("semaphore_active", "price_reduce")
     def _compute_price_below_semaphore(self):
         dp = self.env["decimal.precision"].precision_get("Product Price")
         self.price_below_semaphore = False
-        for record in self.filtered(lambda line: line.product_id.semaphore_active):
+        for record in self.filtered(lambda line: line.semaphore_active):
             record.price_below_semaphore = (
                 float_compare(
                     record.semaphore_max_price_danger,

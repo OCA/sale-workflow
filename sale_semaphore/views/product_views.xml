@@ -15,15 +15,15 @@
                     <field name="semaphore_active" string="Active" />
                     <field
                         name="semaphore_discount_success"
-                        attrs="{'invisible': [('semaphore_active', '=', False)]}"
+                        attrs="{'invisible': [('semaphore_active', '=', 'no')]}"
                     />
                     <field
                         name="semaphore_discount_warning"
-                        attrs="{'invisible': [('semaphore_active', '=', False)]}"
+                        attrs="{'invisible': [('semaphore_active', '=', 'no')]}"
                     />
                     <field
                         name="semaphore_discount_danger"
-                        attrs="{'invisible': [('semaphore_active', '=', False)]}"
+                        attrs="{'invisible': [('semaphore_active', '=', 'no')]}"
                     />
                 </group>
             </xpath>

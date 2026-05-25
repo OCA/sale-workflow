@@ -6,6 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-01 05:59+0000\n"
+"PO-Revision-Date: 2026-06-01 05:59+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -41,6 +43,12 @@ msgid "Discount Warning"
 msgstr ""
 
 #. module: sale_semaphore
+#: model:ir.model.fields,help:sale_semaphore.field_product_product__semaphore_active
+#: model:ir.model.fields,help:sale_semaphore.field_product_template__semaphore_active
+msgid "If the value is blank, it will be inherited from the category."
+msgstr ""
+
+#. module: sale_semaphore
 #: model:ir.model,name:sale_semaphore.model_account_invoice_report
 msgid "Invoices Statistics"
 msgstr ""
@@ -48,6 +56,12 @@ msgstr ""
 #. module: sale_semaphore
 #: model:ir.model,name:sale_semaphore.model_account_move_line
 msgid "Journal Item"
+msgstr ""
+
+#. module: sale_semaphore
+#: model:ir.model.fields.selection,name:sale_semaphore.selection__product_product__semaphore_active__no
+#: model:ir.model.fields.selection,name:sale_semaphore.selection__product_template__semaphore_active__no
+msgid "No"
 msgstr ""
 
 #. module: sale_semaphore
@@ -160,4 +174,10 @@ msgid ""
 "There's a line with price below semaphore's accepted.\n"
 "\n"
 "Please set the prices in a way that they are accepted by the semaphore, or contact the purchasing administrators."
+msgstr ""
+
+#. module: sale_semaphore
+#: model:ir.model.fields.selection,name:sale_semaphore.selection__product_product__semaphore_active__yes
+#: model:ir.model.fields.selection,name:sale_semaphore.selection__product_template__semaphore_active__yes
+msgid "Yes"
 msgstr ""
