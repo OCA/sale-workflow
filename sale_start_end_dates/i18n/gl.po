@@ -33,8 +33,8 @@ msgid ""
 "Default Start Date ({start_date}) should be before or be the same as Default"
 " End Date ({end_date}) for sale order '{name}'."
 msgstr ""
-"Data inicial por defecto ({start_dáche}) debe ser anterior ou igual a data "
-"final por defecto ({end_dáche}) para o pedido de venda '{name}'."
+"Data inicial por defecto ({start_date}) debe ser anterior ou igual a data "
+"final por defecto ({end_date}) para o pedido de venda '{name}'."
 
 #. module: sale_start_end_dates
 #: model:ir.model.fields,field_description:sale_start_end_dates.field_sale_order_line__end_date
@@ -107,8 +107,8 @@ msgid ""
 "Start Date ({start_date}) should be before or be the same as End Date "
 "({end_date}) for sale order line with Product '{product_name}'."
 msgstr ""
-"A data de inicio ({start_dáche}) debe ser anterior ou igual á data de "
-"finalización ({end_dáche}) para a liña de pedido de venda co produto '"
+"A data de inicio ({start_date}) debe ser anterior ou igual á data de "
+"finalización ({end_date}) para a liña de pedido de venda co produto '"
 "{product_name}'."
 
 #. module: sale_start_end_dates
