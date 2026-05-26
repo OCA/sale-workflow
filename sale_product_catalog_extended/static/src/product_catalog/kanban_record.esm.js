@@ -1,67 +1,92 @@
 /* Copyright 2025 Tecnativa - Carlos Roca
  * License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). */
 import {ProductCatalogKanbanRecord} from "@product/product_catalog/kanban_record";
+import {useSubEnv} from "@odoo/owl";
 import {patch} from "@web/core/utils/patch";
 import {rpc} from "@web/core/network/rpc";
 import {useService} from "@web/core/utils/hooks";
-import {useSubEnv} from "@odoo/owl";
+import {ImageZoomDialog} from "./image_zoom_dialog.esm";
 
 patch(ProductCatalogKanbanRecord.prototype, {
     setup() {
         super.setup();
         this.action = useService("action");
+        this.dialog = useService("dialog");
         useSubEnv({
             openOrderLine: this.onClickEditOrderLine.bind(this),
+            addNewOrderLine: this.onClickAddNewOrderLine.bind(this),
+            lineId: this.props.record.productCatalogData.lineId,
         });
     },
-    async onClickEditOrderLine() {
-        const order_line_ids = await rpc("/product/catalog/sale/open_order_line", {
-            order_id: this.env.orderId,
-            product_id: this.env.productId,
-        });
-        if (!this.productCatalogData.multiLine) {
-            const action = await this.action.loadAction(
-                "sale_product_catalog_extended.action_open_editable_sale_order_line"
-            );
-            return this.action.doAction(
-                {
-                    ...action,
-                    res_id: order_line_ids[0],
-                },
-                {
-                    onClose: () => {
-                        this.updateRecordData(order_line_ids);
-                    },
-                }
-            );
-        }
+    async onClickAddNewOrderLine() {
         const action = await this.action.loadAction(
-            "sale_product_catalog_extended.action_open_editable_sale_order_line_multi"
+            "sale_product_catalog_extended.action_open_editable_sale_order_line"
         );
         return this.action.doAction(
             {
                 ...action,
-                domain: [["id", "in", order_line_ids]],
+                context: {
+                    default_order_id: this.env.orderId,
+                    default_product_id: this.env.productId,
+                },
             },
             {
-                onClose: () => {
-                    this.updateRecordData(order_line_ids);
-                },
+                onClose: () => this.props.list.model.load(),
             }
         );
     },
-    updateQuantity() {
-        if (!this.productCatalogData.readOnly && this.productCatalogData.multiLine) {
+    onGlobalClick(ev) {
+        if (ev.target.closest(".o_field_image")) {
+            const src = `/web/image/product.product/${this.env.productId}/image_1920`;
+            this.dialog.add(ImageZoomDialog, {
+                src,
+                title: this.props.record.data.name,
+            });
             return;
         }
-        super.updateQuantity(...arguments);
+        super.onGlobalClick(ev);
     },
-    async updateRecordData(order_line_ids) {
-        this.props.record.productCatalogData = await rpc(
-            "/product/catalog/sale/get_order_line_data",
-            {
-                order_line_ids,
-            }
+    async onClickEditOrderLine() {
+        const lineId = this.props.record.productCatalogData.lineId;
+        if (lineId) {
+            const action = await this.action.loadAction(
+                "sale_product_catalog_extended.action_open_editable_sale_order_line"
+            );
+            return this.action.doAction(
+                {...action, res_id: lineId},
+                {onClose: () => this.props.list.model.load()}
+            );
+        }
+        const order_line_ids = await rpc("/product/catalog/sale/open_order_line", {
+            order_id: this.env.orderId,
+            product_id: this.env.productId,
+        });
+        const action = await this.action.loadAction(
+            "sale_product_catalog_extended.action_open_editable_sale_order_line"
         );
+        return this.action.doAction(
+            {...action, res_id: order_line_ids[0]},
+            {onClose: () => this.props.list.model.load()}
+        );
+    },
+    async _updateQuantity() {
+        const lineId = this.props.record.productCatalogData.lineId;
+        if (lineId) {
+            await rpc("/product/catalog/sale/update_line_qty", {
+                line_id: lineId,
+                quantity: this.productCatalogData.quantity,
+            });
+            await this.props.list.model.load();
+            return;
+        }
+        return super._updateQuantity(...arguments);
+    },
+    _getUpdateQuantityAndGetPriceParams() {
+        return {
+            ...super._getUpdateQuantityAndGetPriceParams(),
+            catalog_show_last_price: Boolean(
+                this.props.record.productCatalogData.catalogShowLastPrice
+            ),
+        };
     },
 });

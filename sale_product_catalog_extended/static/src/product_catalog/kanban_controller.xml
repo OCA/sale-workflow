@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-inherit="ProductCatalogKanbanController" t-inherit-mode="extension">
+        <xpath expr="//button[hasclass('o-kanban-button-back')]" position="after">
+            <button
+                t-if="this.isSaleOrder &amp;&amp; ['draft', 'sent'].includes(this.saleOrderState.state)"
+                type="button"
+                class="btn btn-primary"
+                t-on-click.stop="this.onClickConfirm"
+            >Confirm</button>
+        </xpath>
+    </t>
+</templates>

@@ -30,4 +30,35 @@ class SaleProductCatalogController(ProductCatalogController):
         :rtype: dict
         """
         order_lines = request.env["sale.order.line"].browse(order_line_ids)
-        return order_lines._get_product_catalog_lines_data(**kwargs)
+        res = order_lines._get_product_catalog_lines_data(**kwargs)
+        if order_lines:
+            res["productType"] = order_lines[0].product_id.type
+        return res
+
+    @route("/product/catalog/sale/update_line_qty", auth="user", type="json")
+    def product_catalog_update_line_qty(self, line_id, quantity, **kwargs):
+        """Update the quantity of a specific sale order line.
+
+        When quantity is 0 and the order is in draft/sent state, the line is
+        unlinked. Returns the updated discounted price (or pricelist price if
+        the line was deleted).
+
+        :param int line_id: The sale order line id to update.
+        :param float quantity: The new quantity.
+        :return: The unit price after the update.
+        :rtype: float
+        """
+        line = request.env["sale.order.line"].browse(line_id)
+        order = line.order_id.with_company(line.company_id)
+        request.update_context(catalog_skip_tracking=True)
+        if quantity == 0 and order.state in ["draft", "sent"]:
+            price_unit = order.pricelist_id._get_product_price(
+                product=line.product_id,
+                quantity=1.0,
+                currency=order.currency_id,
+                date=order.date_order,
+            )
+            line.unlink()
+            return price_unit
+        line.product_uom_qty = quantity
+        return line._get_discounted_price()

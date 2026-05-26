@@ -6,6 +6,7 @@
         <field name="arch" type="xml">
             <xpath expr="//searchpanel/field[@name='categ_id']" position="before">
                 <field name="catalog_origin_data" string="Origin" expand="1" />
+                <field name="catalog_price_mode" string="Price" expand="1" />
             </xpath>
         </field>
     </record>
