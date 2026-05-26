@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="sale_product_catalog_extended.ImageZoomDialog">
+        <Dialog size="'xl'" footer="false" title="props.title or ''">
+            <img t-att-src="props.src" class="img-fluid d-block mx-auto" alt="" />
+        </Dialog>
+    </t>
+</templates>

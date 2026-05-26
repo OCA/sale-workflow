@@ -370,22 +370,55 @@ ul.auto-toc {
 !! source digest: sha256:3249e0d34a64863dab34dadb18eb4d322761bd559ec506bc3ceb92d6efc3f22d
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/licence-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/sale-workflow/tree/18.0/sale_product_catalog_extended"><img alt="OCA/sale-workflow" src="https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-sale_product_catalog_extended"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module extends the product catalog to allow quick editing of lines
-without needing to access the sales order.</p>
+<p>This module extends the standard Odoo product catalog available from
+sale orders with the following additions:</p>
+<div class="section" id="multi-line-product-cards">
+<h1>Multi-line product cards</h1>
+<p>When a product has more than one order line in the current sale order,
+the catalog renders one card per line instead of a single aggregated
+card. Each card shows the individual quantity and unit price for that
+specific line, allowing independent editing without opening the order
+form.</p>
+</div>
+<div class="section" id="per-line-actions">
+<h1>Per-line actions</h1>
+<p>Each in-order card exposes three inline actions:</p>
+<ul class="simple">
+<li><strong>New line</strong> – adds a new order line for the same product.</li>
+<li><strong>Edit</strong> – opens the specific order line form directly from the
+catalog.</li>
+<li><strong>Remove</strong> – removes that individual line from the order.</li>
+</ul>
+</div>
+<div class="section" id="last-sale-price">
+<h1>Last sale price</h1>
+<p>A <em>Price</em> filter panel is added to the catalog search panel with a
+<strong>Last sale</strong> option. When active, products not yet in the order show
+the unit price from the most recent confirmed delivery to the same
+shipping address (last 6 months) instead of the pricelist price. When a
+new line is added with this mode enabled, that last-sale price is
+automatically applied as the unit price.</p>
+</div>
+<div class="section" id="origin-filter">
+<h1>Origin filter</h1>
+<p>An <em>Origin</em> filter panel is added to the catalog search panel with a
+<strong>Last sales</strong> option. When active, the catalog displays only products
+that were previously sold to the same shipping address (last 6 months),
+ordered by frequency and delivered quantity.</p>
+</div>
+<div class="section" id="image-zoom">
+<h1>Image zoom</h1>
+<p>Clicking on a product image in the catalog opens a full-size zoom
+dialog.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><a class="reference internal" href="#bug-tracker" id="toc-entry-1">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-2">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-3">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-4">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-5">Maintainers</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#credits" id="toc-entry-2">Credits</a></li>
 </ul>
 </div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#toc-entry-1">Bug Tracker</a></h1>
+<h2><a class="toc-backref" href="#toc-entry-1">Bug Tracker</a></h2>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/sale-workflow/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -393,15 +426,17 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#toc-entry-2">Credits</a></h1>
+<h2><a class="toc-backref" href="#toc-entry-2">Credits</a></h2>
+</div>
+</div>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#toc-entry-3">Authors</a></h2>
+<h1>Authors</h1>
 <ul class="simple">
 <li>Tecnativa</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#toc-entry-4">Contributors</a></h2>
+<h1>Contributors</h1>
 <ul class="simple">
 <li><a class="reference external" href="https://www.tecnativa.com">Tecnativa</a>:<ul>
 <li>Carlos Dauden</li>
@@ -411,7 +446,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#toc-entry-5">Maintainers</a></h2>
+<h1>Maintainers</h1>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
@@ -421,7 +456,6 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>This module is part of the <a class="reference external" href="https://github.com/OCA/sale-workflow/tree/18.0/sale_product_catalog_extended">OCA/sale-workflow</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
-</div>
 </div>
 </div>
 </body>
