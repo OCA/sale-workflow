@@ -1,14 +1,24 @@
 # Copyright (C) 2021 ForgeFlow S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html)
 from odoo import fields
-from odoo.tests import common, tagged
+from odoo.fields import Command, Domain
+from odoo.tests import tagged
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @tagged("post_install", "-at_install")
-class TestSaleOrderInvoiceAmount(common.TransactionCase):
+class TestSaleOrderInvoiceAmount(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env.user.write(
+            {
+                "group_ids": [
+                    Command.link(cls.env.ref("sales_team.group_sale_manager").id)
+                ]
+            }
+        )
 
         # Partners
         partner_model = cls.env["res.partner"]
@@ -33,7 +43,7 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
         cls.currency_cad = cls.env.ref("base.CAD")
         cls.currency_cad.active = True
         cls.env["res.currency.rate"].search(
-            [("currency_id", "in", [cls.currency_eur.id, cls.currency_cad.id])]
+            Domain([("currency_id", "in", [cls.currency_eur.id, cls.currency_cad.id])])
         ).unlink()
         cls.env["res.currency.rate"].create(
             [
@@ -50,9 +60,18 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             ]
         )
         cls.res_partner_2 = cls.env["res.partner"].create({"name": "Partner 12"})
-        # Sale Order
+        country = cls.env.company.account_fiscal_country_id
+        tax_group = cls.env["account.tax.group"].create(
+            {"name": "Test Tax Group", "country_id": country.id}
+        )
         cls.tax = cls.env["account.tax"].create(
-            {"name": "Tax 15", "type_tax_use": "sale", "amount": 21}
+            {
+                "name": "Tax 15",
+                "type_tax_use": "sale",
+                "amount": 21,
+                "tax_group_id": tax_group.id,
+                "country_id": country.id,
+            }
         )
         cls.sale_order_1 = cls.env["sale.order"].create(
             {"partner_id": cls.res_partner_1.id}
@@ -62,30 +81,30 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             {
                 "order_id": cls.sale_order_1.id,
                 "product_id": cls.product_1.id,
-                "product_uom": cls.product_1.uom_id.id,
+                "product_uom_id": cls.product_1.uom_id.id,
                 "product_uom_qty": 10.0,
                 "price_unit": 10.0,
-                "tax_id": cls.tax,
+                "tax_ids": [Command.set(cls.tax.ids)],
             }
         )
         cls.order_line_2 = sale_order_line_model.create(
             {
                 "order_id": cls.sale_order_1.id,
                 "product_id": cls.product_2.id,
-                "product_uom": cls.product_2.uom_id.id,
+                "product_uom_id": cls.product_2.uom_id.id,
                 "product_uom_qty": 25.0,
                 "price_unit": 4.0,
-                "tax_id": cls.tax,
+                "tax_ids": [Command.set(cls.tax.ids)],
             }
         )
         cls.order_line_3 = sale_order_line_model.create(
             {
                 "order_id": cls.sale_order_1.id,
                 "product_id": cls.product_3.id,
-                "product_uom": cls.product_3.uom_id.id,
+                "product_uom_id": cls.product_3.uom_id.id,
                 "product_uom_qty": 20.0,
                 "price_unit": 5.0,
-                "tax_id": cls.tax,
+                "tax_ids": [Command.set(cls.tax.ids)],
             }
         )
 
@@ -106,14 +125,10 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
                 "date": fields.Date.from_string("2024-01-01"),
                 "partner_id": self.res_partner_1.id,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         aml1,
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         aml2,
                     ),
                 ],
@@ -187,14 +202,10 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
                 "date": fields.Date.from_string("2024-01-01"),
                 "partner_id": self.res_partner_1.id,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         aml1,
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         aml2,
                     ),
                 ],
@@ -222,10 +233,10 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             {
                 "order_id": self.sale_order_1.id,
                 "product_id": self.product_1.id,
-                "product_uom": self.product_1.uom_id.id,
+                "product_uom_id": self.product_1.uom_id.id,
                 "product_uom_qty": 10.0,
                 "price_unit": 10.0,
-                "tax_id": self.tax,
+                "tax_ids": [Command.set(self.tax.ids)],
                 "currency_id": self.currency_eur.id,
             }
         )
@@ -233,10 +244,10 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             {
                 "order_id": self.sale_order_1.id,
                 "product_id": self.product_2.id,
-                "product_uom": self.product_2.uom_id.id,
+                "product_uom_id": self.product_2.uom_id.id,
                 "product_uom_qty": 25.0,
                 "price_unit": 4.0,
-                "tax_id": self.tax,
+                "tax_ids": [Command.set(self.tax.ids)],
                 "currency_id": self.currency_eur.id,
             }
         )
@@ -244,10 +255,10 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             {
                 "order_id": self.sale_order_1.id,
                 "product_id": self.product_3.id,
-                "product_uom": self.product_3.uom_id.id,
+                "product_uom_id": self.product_3.uom_id.id,
                 "product_uom_qty": 20.0,
                 "price_unit": 5.0,
-                "tax_id": self.tax,
+                "tax_ids": [Command.set(self.tax.ids)],
                 "currency_id": self.currency_eur.id,
             }
         )
@@ -290,14 +301,10 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
                 "date": fields.Date.from_string("2024-01-01"),
                 "partner_id": self.res_partner_1.id,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         aml1,
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         aml2,
                     ),
                 ],
@@ -356,19 +363,13 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
                     "date": fields.Date.from_string("2024-01-01"),
                     "partner_id": self.res_partner_1.id,
                     "line_ids": [
-                        (
-                            0,
-                            0,
+                        Command.create(
                             aml1,
                         ),
-                        (
-                            0,
-                            0,
+                        Command.create(
                             aml2,
                         ),
-                        (
-                            0,
-                            0,
+                        Command.create(
                             aml3,
                         ),
                     ],
@@ -403,14 +404,10 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
                 "date": fields.Date.from_string("2024-01-01"),
                 "partner_id": self.res_partner_1.id,
                 "line_ids": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         aml1,
                     ),
-                    (
-                        0,
-                        0,
+                    Command.create(
                         aml2,
                     ),
                 ],
