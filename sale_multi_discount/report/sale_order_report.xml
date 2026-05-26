@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_saleorder_document_multi_discount"
+        inherit_id="sale.report_saleorder_document"
+        priority="99"
+    >
+        <!-- Override display_discount to check discount_distribution -->
+        <xpath expr="//t[@t-set='display_discount']" position="replace">
+            <t
+                t-set="display_discount"
+                t-value="any(l.discount_distribution for l in lines_to_report)"
+            />
+        </xpath>
+
+        <!-- Replace discount cell with multi-discount display -->
+        <xpath expr="//td[contains(@t-if,'display_discount')]" position="replace">
+            <td t-if="display_discount" class="text-end text-nowrap">
+                <t
+                    t-if="line.discount_distribution and len(line.discount_distribution) > 1"
+                >
+                    <t t-foreach="line.discount_distribution" t-as="d" t-key="d_index">
+                        <span
+                        t-out="d"
+                        t-options='{"widget": "float", "decimal_precision": "Discount"}'
+                    />%<t t-if="not d_last"> + </t>
+                    </t>
+                </t>
+                <t
+                    t-elif="line.discount_distribution and len(line.discount_distribution) == 1"
+                >
+                    <span
+                    t-out="line.discount_distribution[0]"
+                    t-options='{"widget": "float", "decimal_precision": "Discount"}'
+                />%
+                </t>
+                <t t-else="">-</t>
+            </td>
+        </xpath>
+    </template>
+</odoo>
