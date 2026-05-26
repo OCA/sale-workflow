@@ -1,0 +1,23 @@
+// When a product has multiple order lines, each card uses a per-line price
+// portal target (#line-X-price) placed outside the card content flex container.
+// Without this override the card content's flex-grow-1 pushes the price div to
+// the bottom of the card. Removing flex-grow on the content makes the price
+// appear right below the product name/ref, matching the position in white cards.
+article.o_product_added {
+    > div.d-flex.flex-column.h-100 {
+        > .d-flex.flex-grow-1.m-2 {
+            flex-grow: 0 !important;
+            margin-bottom: 0 !important;
+            margin-right: 0 !important;
+            > div:first-child {
+                padding-bottom: 0 !important;
+            }
+        }
+        // Price portal target is outside the content wrapper; align it to match
+        // the white-card price indentation (m-2 left + p-2 left = 16px).
+        > [id^="line-"][id$="-price"] {
+            padding-left: 16px;
+            padding-right: 8px;
+        }
+    }
+}

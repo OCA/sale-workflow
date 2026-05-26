@@ -14,7 +14,13 @@
         "views/sale_order_line_views.xml",
     ],
     "assets": {
-        "web.assets_backend": ["sale_product_catalog_extended/static/src/**/*"],
+        "web.assets_backend": [
+            (
+                "after",
+                "product/static/src/product_catalog/order_line/order_line.js",
+                "sale_product_catalog_extended/static/src/**/*",
+            ),
+        ],
     },
     "installable": True,
 }

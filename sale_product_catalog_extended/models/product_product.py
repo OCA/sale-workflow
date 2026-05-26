@@ -13,6 +13,11 @@ class ProductProduct(models.Model):
         store=False,
         search="_search_catalog_origin_data",
     )
+    catalog_price_mode = fields.Selection(
+        selection=[("last_price", "Last sale")],
+        store=False,
+        search="_search_catalog_price_mode",
+    )
 
     @api.model
     def search_fetch(self, domain, field_names, offset=0, limit=None, order=None):
@@ -34,6 +39,11 @@ class ProductProduct(models.Model):
     @api.model
     def _search_catalog_origin_data(self, operator, value):
         # Hack to be able to filter by catalog_origin_data
+        return []
+
+    @api.model
+    def _search_catalog_price_mode(self, operator, value):
+        # Display-only field: selecting it does not filter products
         return []
 
     @api.model

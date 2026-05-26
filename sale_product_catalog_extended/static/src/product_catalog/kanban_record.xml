@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-inherit="ProductCatalogKanbanRecord" t-inherit-mode="extension">
+        <!-- Insert a unique price portal target for per-line cards so that
+             each line's price portal has its own destination div instead of
+             all lines sharing the product-level #product-{id}-price div. -->
+        <xpath expr="//t[@t-component='orderLineComponent']" position="before">
+            <div t-if="env.lineId" t-att-id="`line-${env.lineId}-price`" />
+        </xpath>
+    </t>
+</templates>
