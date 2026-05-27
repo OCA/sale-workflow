@@ -1,5 +1,10 @@
 This module allows to do mass operations on Sale Orders.
 
-Supported operations:
+Supported state operations:
 
-- Confirmation
+* Confirmation
+* Quotation sent
+* Cancel
+* Lock (more a flag than a state)
+* Unlock (more a flag than a state)
+* Draft

@@ -376,9 +376,14 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/sale-workflow/tree/19.0/sale_order_mass_action"><img alt="OCA/sale-workflow" src="https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/sale-workflow-19-0/sale-workflow-19-0-sale_order_mass_action"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&amp;target_branch=19.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
 <p>This module allows to do mass operations on Sale Orders.</p>
-<p>Supported operations:</p>
+<p>Supported state operations:</p>
 <ul class="simple">
 <li>Confirmation</li>
+<li>Quotation sent</li>
+<li>Cancel</li>
+<li>Lock (more a flag than a state)</li>
+<li>Unlock (more a flag than a state)</li>
+<li>Draft</li>
 </ul>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
@@ -405,8 +410,8 @@ ul.auto-toc {
 <li>Go to Sale &gt; Quotations</li>
 <li>Check several quotations and click on Action menu.</li>
 <li>Select Mass Action</li>
-<li>Check ‘Confirm’ and click on ‘Apply’ button.</li>
-<li>Only ‘Draft’ and ‘Sent’ orders will be impacted.</li>
+<li>Choose the desired target state and click on ‘Apply’ button.</li>
+<li>A notification is displayed with the impacted sale orders.</li>
 </ul>
 </div>
 </div>
