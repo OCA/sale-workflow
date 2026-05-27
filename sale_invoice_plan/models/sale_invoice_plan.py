@@ -1,3 +1,5 @@
+# Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 from odoo import api, fields, models
 from odoo.exceptions import UserError, ValidationError
 from odoo.tools.float_utils import float_compare, float_round

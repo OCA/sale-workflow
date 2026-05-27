@@ -12,7 +12,7 @@
                 <footer>
                     <button
                         name="create_invoices_by_plan"
-                        string="Create Next Inovice"
+                        string="Create Next Invoice"
                         type="object"
                         class="btn-primary"
                     />

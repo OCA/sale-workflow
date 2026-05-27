@@ -3,7 +3,7 @@
 from odoo import models
 
 
-class SaleAdvancePaymentInv(models.TransientModel):
+class SaleMakePlannedInvoice(models.TransientModel):
     _name = "sale.make.planned.invoice"
     _description = "Wizard when create invoice by plan"
 

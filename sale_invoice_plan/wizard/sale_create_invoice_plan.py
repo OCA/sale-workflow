@@ -6,7 +6,7 @@ from odoo.exceptions import ValidationError
 
 class SaleCreateInvoicePlan(models.TransientModel):
     _name = "sale.create.invoice.plan"
-    _description = "Fillig invoice planning criteria"
+    _description = "Filling invoice planning criteria"
 
     advance = fields.Boolean(
         string="Advance on 1st Invoice",

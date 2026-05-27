@@ -13,7 +13,6 @@ class SaleOrder(models.Model):
     invoice_plan_ids = fields.One2many(
         comodel_name="sale.invoice.plan",
         inverse_name="sale_id",
-        string="Inovice Plan",
         copy=False,
     )
     use_invoice_plan = fields.Boolean(
