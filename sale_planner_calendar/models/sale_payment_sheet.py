@@ -7,4 +7,6 @@ from odoo import fields, models
 class SalePaymentSheetLine(models.Model):
     _inherit = "sale.payment.sheet.line"
 
-    sale_planner_calendar_event_id = fields.Many2one(comodel_name="calendar.event")
+    sale_planner_calendar_event_id = fields.Many2one(
+        comodel_name="calendar.event", index=True
+    )

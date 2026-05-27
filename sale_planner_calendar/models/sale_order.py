@@ -10,7 +10,9 @@ from odoo import _, api, fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    sale_planner_calendar_event_id = fields.Many2one(comodel_name="calendar.event")
+    sale_planner_calendar_event_id = fields.Many2one(
+        comodel_name="calendar.event", index=True
+    )
 
     def _action_confirm(self):
         event_obj = self.env["calendar.event"]
