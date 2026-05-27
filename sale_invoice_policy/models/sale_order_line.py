@@ -15,9 +15,15 @@ class SaleOrderLine(models.Model):
         "order_id.invoice_policy",
     )
     def _compute_qty_to_invoice(self):
+        # Preload the parent's computed field in batch. Evaluating
+        # invoice_policy_required inside the lambda would trigger a per-record
+        # compute that cascades across the prefetch group during _recompute_all
+        # and saturates RAM.
+        self.mapped("order_id.invoice_policy")
+        self.mapped("order_id.invoice_policy_required")
         other_lines = self.filtered(
-            lambda l: not l.order_id.invoice_policy
-            or not l.order_id.invoice_policy_required
+            lambda line: not line.order_id.invoice_policy
+            or not line.order_id.invoice_policy_required
         )
         super(SaleOrderLine, other_lines)._compute_qty_to_invoice()
         for line in self - other_lines:
