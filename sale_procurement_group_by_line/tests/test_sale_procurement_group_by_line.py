@@ -64,6 +64,28 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         )
         return self.sale
 
+    def _create_kit_product(self, name, components):
+        """Create a storable product with a phantom (kit) BoM."""
+        kit_product = self.product_model.create(
+            {
+                "name": name,
+                "categ_id": self.product_ctg.id,
+                "type": "product",
+            }
+        )
+        self.env["mrp.bom"].create(
+            {
+                "product_id": kit_product.id,
+                "product_tmpl_id": kit_product.product_tmpl_id.id,
+                "type": "phantom",
+                "bom_line_ids": [
+                    (0, 0, {"product_id": comp.id, "product_qty": 1.0})
+                    for comp in components
+                ],
+            }
+        )
+        return kit_product
+
     def test_01_procurement_group_by_line(self):
         self.sale.action_confirm()
         self.assertEqual(
@@ -137,3 +159,71 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         self.sale.order_line[1].product_uom_qty += 1
         self.assertEqual(self.sale.order_line[1].procurement_group_id, proc_group)
         self.assertEqual(len(self.line1.move_ids), 1)
+
+    def test_07_nested_kit_no_double_procurement(self):
+        """Selling a kit whose BoM contains a component that is itself a kit
+        should create exactly one stock move per leaf component, not doubled.
+        """
+        leaf1 = self.product_model.create(
+            {
+                "name": "leaf_component_1",
+                "categ_id": self.product_ctg.id,
+                "type": "product",
+            }
+        )
+        leaf2 = self.product_model.create(
+            {
+                "name": "leaf_component_2",
+                "categ_id": self.product_ctg.id,
+                "type": "product",
+            }
+        )
+        inner_kit = self._create_kit_product("inner_kit", [leaf1, leaf2])
+        plain = self.product_model.create(
+            {
+                "name": "plain_component",
+                "categ_id": self.product_ctg.id,
+                "type": "product",
+            }
+        )
+        outer_kit = self._create_kit_product("outer_kit", [plain, inner_kit])
+        sale = self.sale_model.create(
+            {
+                "partner_id": self.customer.id,
+                "warehouse_id": self.warehouse_id.id,
+                "picking_policy": "direct",
+            }
+        )
+        self.order_line_model.create(
+            {
+                "order_id": sale.id,
+                "product_id": outer_kit.id,
+                "product_uom_qty": 1.0,
+                "name": "Nested kit sale line",
+            }
+        )
+        # Simulate the sale_mrp _get_qty_procurement bug: for any product with
+        # a phantom BoM, return 0 — as if component moves don't match.
+        # This is what causes super() to re-run procurement on nested kits.
+        original = self.env["sale.order.line"].__class__._get_qty_procurement
+
+        def broken_get_qty_procurement(self_line, previous_product_uom_qty=False):
+            bom = self_line.env["mrp.bom"]._bom_find(
+                product=self_line.product_id, bom_type="phantom"
+            )
+            if bom:
+                return 0.0
+            return original(self_line, previous_product_uom_qty)
+
+        self.env[
+            "sale.order.line"
+        ].__class__._get_qty_procurement = broken_get_qty_procurement
+        try:
+            sale.action_confirm()
+        finally:
+            self.env["sale.order.line"].__class__._get_qty_procurement = original
+        all_moves = sale.picking_ids.mapped("move_lines")
+        self.assertEqual(len(all_moves), 3)
+        for move in all_moves:
+            # without fix quantity is 2
+            self.assertEqual(move.product_uom_qty, 1.0)
