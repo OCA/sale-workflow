@@ -101,6 +101,7 @@ class SaleOrderLine(models.Model):
             previous_product_uom_qty[line.id] = line.product_uom_qty
         if procurements:
             self.env["procurement.group"].run(procurements)
+            return True
         return super(
             SaleOrderLine, self.with_context(sale_group_by_line=True)
         )._action_launch_stock_rule(previous_product_uom_qty=previous_product_uom_qty)
