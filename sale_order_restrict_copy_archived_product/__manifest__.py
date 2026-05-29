@@ -3,7 +3,7 @@
 {
     "name": "Sale Order Restrict Copy Archived Product",
     "summary": "Restrict dulpication of sales order if they have archived products",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Sygel, Odoo Community Association (OCA)",
