@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-01 06:52+0000\n"
+"PO-Revision-Date: 2026-06-01 07:02+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
@@ -40,88 +40,90 @@ msgid ""
 "Creation date of draft/sent orders,\n"
 "Confirmation date of confirmed orders."
 msgstr ""
+"Datum ustvarjanja osnutkov/poslanih naročil,\n"
+"Datum potrditve potrjenih naročil."
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line__order_partner_id
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__partner_id
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__partner_id
 msgid "Customer"
-msgstr ""
+msgstr "Kupec"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__discount
 msgid "Discount (%)"
-msgstr ""
+msgstr "Popust (%)"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__display_name
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__history_id
 msgid "History"
-msgstr ""
+msgstr "Zgodovina"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__line_ids
 msgid "History lines"
-msgstr ""
+msgstr "Vrstice zgodovine"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__id
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
 msgid "Include Quotations"
-msgstr ""
+msgstr "Vključi ponudbe"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__include_commercial_partner
 msgid "Include commercial entity"
-msgstr ""
+msgstr "Vključi komercialno entiteto"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history__include_commercial_partner
 msgid "Include commercial entity and its contacts in the sale history"
-msgstr ""
+msgstr "Vključi komercialno entiteto in njene kontakte v zgodovino prodaje"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,help:sale_order_line_price_history.field_sale_order_line_price_history__include_quotations
 msgid "Include quotations lines in the sale history"
-msgstr ""
+msgstr "Vključi vrstice ponudb v zgodovino prodaje"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__write_uid
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Zadnji posodobil"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__write_date
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Zadnjič posodobljeno"
 
 #. module: sale_order_line_price_history
 #. odoo-python
 #: code:addons/sale_order_line_price_history/wizards/sale_order_line_price_history.py:0
 msgid "Not found historical sale order line for this action!"
-msgstr ""
+msgstr "Za to dejanje ni najdena zgodovinska postavka prodajnega naloga!"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_date_order
 msgid "Order Date"
-msgstr ""
+msgstr "Datum naročila"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__order_id
 msgid "Order Reference"
-msgstr ""
+msgstr "Sklic naročila"
 
 #. module: sale_order_line_price_history
 #. odoo-javascript
@@ -129,71 +131,71 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
 #: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.view_order_form
 msgid "Price History"
-msgstr ""
+msgstr "Zgodovina cen"
 
 #. module: sale_order_line_price_history
 #: model:ir.actions.act_window,name:sale_order_line_price_history.sale_order_line_price_history_action
 msgid "Price history per customer"
-msgstr ""
+msgstr "Zgodovina cen po kupcu"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__product_id
 msgid "Product"
-msgstr ""
+msgstr "Proizvod"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__product_uom_qty
 msgid "Quantity"
-msgstr ""
+msgstr "Količina"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__sale_order_line_id
 msgid "Sale Order Line"
-msgstr ""
+msgstr "Postavka prodajnega naloga"
 
 #. module: sale_order_line_price_history
 #: model_terms:ir.ui.view,arch_db:sale_order_line_price_history.sale_order_line_price_history_view_form
 msgid "Sale history"
-msgstr ""
+msgstr "Zgodovina prodaje"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history__sale_order_line_id
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__target_sale_order_line_id
 msgid "Sale order line"
-msgstr ""
+msgstr "Postavka prodajnega naloga"
 
 #. module: sale_order_line_price_history
 #: model:ir.model,name:sale_order_line_price_history.model_sale_order_line_price_history
 msgid "Sale order line price history"
-msgstr ""
+msgstr "Zgodovina cen postavke prodajnega naloga"
 
 #. module: sale_order_line_price_history
 #: model:ir.model,name:sale_order_line_price_history.model_sale_order_line_price_history_line
 msgid "Sale order line price history line"
-msgstr ""
+msgstr "Vrstica zgodovine cen postavke prodajnega naloga"
 
 #. module: sale_order_line_price_history
 #: model:ir.model,name:sale_order_line_price_history.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Postavka prodajnega naloga"
 
 #. module: sale_order_line_price_history
 #. odoo-javascript
 #: code:addons/sale_order_line_price_history/static/src/xml/set_price_to_line_widget.xml:0
 msgid "Set Historic Price"
-msgstr ""
+msgstr "Nastavi zgodovinsko ceno"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__order_state
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__price_unit
 msgid "Unit Price"
-msgstr ""
+msgstr "Cena enote"
 
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__history_sale_order_line_id
 msgid "history sale order line"
-msgstr ""
+msgstr "zgodovinska postavka prodajnega naloga"
