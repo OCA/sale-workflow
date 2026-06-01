@@ -2,12 +2,8 @@
 # Copyright 2025 Openforce Srls Unipersonale (www.openforce.it)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-import logging
-
 from odoo import _, api, models
-from odoo.exceptions import UserError
-
-_logger = logging.getLogger(__name__)
+from odoo.exceptions import ValidationError
 
 
 class SaleOrder(models.Model):
@@ -15,19 +11,26 @@ class SaleOrder(models.Model):
 
     @api.constrains("name")
     def _check_unique_name_in_company(self):
-        so_obj = self.env["sale.order"]
-        for so in self:
-            domain = [
-                ("name", "=", so.name),
-                ("company_id", "=", so.company_id.id),
-                ("id", "!=", so.id),
-            ]
-            if so_obj.search_count(domain):
-                _logger.error(
-                    "Sale Order name %(so_name)s exists for company:" " %(company)s",
-                    {
-                        "so_name": so.name,
-                        "company": so.company_id.name,
-                    },
+        orders = self.filtered(lambda so: so.name and so.company_id)
+        if not orders:
+            return
+
+        grouped_orders = self.env["sale.order"].read_group(
+            domain=[
+                ("name", "in", orders.mapped("name")),
+                ("company_id", "in", orders.mapped("company_id").ids),
+            ],
+            fields=["name", "company_id"],
+            groupby=["name", "company_id"],
+            lazy=False,
+        )
+        duplicate_keys = {
+            (group["name"], group["company_id"][0])
+            for group in grouped_orders
+            if group.get("__count", 0) > 1
+        }
+        for so in orders:
+            if (so.name, so.company_id.id) in duplicate_keys:
+                raise ValidationError(
+                    _("Sale Order name must be unique within a company!")
                 )
-                raise UserError(_("Sale Order name must be unique within a company!"))

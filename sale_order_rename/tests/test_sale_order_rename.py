@@ -1,7 +1,7 @@
 # Copyright 2018 Brainbean Apps (https://brainbeanapps.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from odoo.exceptions import UserError
+from odoo.exceptions import ValidationError
 from odoo.tests import common
 
 
@@ -56,7 +56,7 @@ class TestSaleOrderRename(common.TransactionCase):
                 }
             ]
         )
-        with self.assertRaises(UserError):
+        with self.assertRaises(ValidationError):
             self.sale_order.create(
                 [
                     {
@@ -90,7 +90,7 @@ class TestSaleOrderRename(common.TransactionCase):
                 "name": "Test #1",
             }
         )
-        with self.assertRaises(UserError):
+        with self.assertRaises(ValidationError):
             so2.write(
                 {
                     "name": "Test #1",
@@ -127,3 +127,12 @@ class TestSaleOrderRename(common.TransactionCase):
                 "name": "Test #1",
             }
         )
+
+    def test_05_raise_exception_batch_create_with_same_name_in_same_company(self):
+        so_vals = {
+            "name": "Test #2",
+            "partner_id": self.env.ref("base.res_partner_1").id,
+            "company_id": self.base_company.id,
+        }
+        with self.assertRaises(ValidationError):
+            self.sale_order.create([so_vals, so_vals])
