@@ -15,15 +15,15 @@
                     <field name="semaphore_active" string="Active" />
                     <field
                         name="semaphore_discount_success"
-                        invisible="not semaphore_active"
+                        invisible="semaphore_active == 'no'"
                     />
                     <field
                         name="semaphore_discount_warning"
-                        invisible="not semaphore_active"
+                        invisible="semaphore_active == 'no'"
                     />
                     <field
                         name="semaphore_discount_danger"
-                        invisible="not semaphore_active"
+                        invisible="semaphore_active == 'no'"
                     />
                 </group>
             </xpath>

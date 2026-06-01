@@ -58,4 +58,13 @@
             </xpath>
         </field>
     </record>
+    <record id="sale_order_line_view_form_readonly" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
+        <field name="arch" type="xml">
+            <field name="product_uom" position="after">
+                <field name="semaphore" widget="semaphore" />
+            </field>
+        </field>
+    </record>
 </odoo>
