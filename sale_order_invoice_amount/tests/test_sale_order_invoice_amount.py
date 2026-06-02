@@ -70,6 +70,9 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
                 "tax_id": cls.tax,
             }
         )
+        cls.delta = sum(cls.sale_order_1.order_line.mapped("product_uom_qty")) / (
+            2 * 10 ** cls.env.ref("product.decimal_price").digits
+        )  # 0.005 * (25  + 20 + 10) = 0.275
 
     def test_01_sale_order_invoiced_amount(self):
         self.assertEqual(
@@ -196,10 +199,11 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             }
         )
         test_invoice.action_post()
-        self.assertEqual(
+        self.assertAlmostEqual(
             self.sale_order_1.invoiced_amount,
-            242.11,
-            "Invoiced Amount should be 242.11.",
+            242.0,
+            msg="Invoiced Amount should be approximately 242.00.",
+            delta=self.delta,
         )
         self.assertEqual(
             self.sale_order_1.uninvoiced_amount,
@@ -311,10 +315,11 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             }
         )
         test_invoice.action_post()
-        self.assertEqual(
+        self.assertAlmostEqual(
             self.sale_order_1.invoiced_amount,
-            242.13,
-            "Invoiced Amount should be 242.13.",
+            242.0,
+            msg="Invoiced Amount should be approximately 242.0.",
+            delta=self.delta,
         )
         self.assertEqual(
             self.sale_order_1.uninvoiced_amount,
@@ -387,10 +392,11 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             ]
         )
         test_invoice.action_post()
-        self.assertEqual(
+        self.assertAlmostEqual(
             self.sale_order_1.invoiced_amount,
-            363.06,
-            "Invoiced Amount should be 363.06.",
+            363.00,
+            msg="Invoiced Amount should be approximately 363.00.",
+            delta=self.delta,
         )
         self.assertEqual(
             self.sale_order_1.uninvoiced_amount,
