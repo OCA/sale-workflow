@@ -403,3 +403,53 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             0.0,
             "Uninvoiced Amount should be calculated.",
         )
+
+    def test_04_sale_order_invoiced_amount_different_currencies_company(self):
+        """Test when SO and invoices share a foreign currency"""
+        pricelist_eur = self.env["product.pricelist"].create(
+            {"name": "EUR Pricelist", "currency_id": self.currency_eur.id}
+        )
+        # Setting this pricelist sets the currency of the sale to eur
+        self.sale_order_1.pricelist_id = pricelist_eur
+        self.sale_order_1.action_confirm()
+        aml1 = self.order_line_1._prepare_invoice_line(
+            **{
+                "currency_id": self.currency_eur.id,
+            }
+        )
+        aml2 = self.order_line_2._prepare_invoice_line(
+            **{
+                "currency_id": self.currency_eur.id,
+            }
+        )
+        self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "invoice_date": fields.Date.from_string("2024-01-01"),
+                "date": fields.Date.from_string("2024-01-01"),
+                "partner_id": self.res_partner_1.id,
+                "currency_id": self.currency_eur.id,
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        aml1,
+                    ),
+                    (
+                        0,
+                        0,
+                        aml2,
+                    ),
+                ],
+            }
+        )
+        self.assertEqual(
+            self.sale_order_1.invoiced_amount,
+            242.0,
+            "Invoiced Amount should be 242",
+        )
+        self.assertEqual(
+            self.sale_order_1.uninvoiced_amount,
+            121.0,
+            "Uninvoiced Amount should be 121, as the lines keep uninvoiced.",
+        )
