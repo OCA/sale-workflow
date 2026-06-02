@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ForgeFlow
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0). -->
+<odoo>
+    <record id="view_partner_invoice_to_form" model="ir.ui.view">
+        <field name="name">res.partner.form.invoice.to.partner</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form" />
+        <field name="arch" type="xml">
+            <field name="invoice_sending_method" position="before">
+                <field name="invoice_to_partner_id" options="{'no_create': True}" />
+            </field>
+        </field>
+    </record>
+</odoo>
