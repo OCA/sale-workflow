@@ -25,6 +25,7 @@ class SaleOderLine(models.Model):
 
     @api.depends("product_id", "price_reduce", "product_uom")
     def _compute_semaphore(self):
+        dp = self.env["decimal.precision"].precision_get("Product Price")
         self.semaphore_active = False
         for record in self:
             if not record.product_id or not record.product_uom:
@@ -37,13 +38,23 @@ class SaleOderLine(models.Model):
                 record.price_reduce, record.product_id.uom_id
             )
             if (
-                record.product_id.lst_price * ((100 - semaphore_data["success"]) / 100)
-                <= price_reduce
+                float_compare(
+                    record.product_id.lst_price
+                    * ((100 - semaphore_data["success"]) / 100),
+                    price_reduce,
+                    precision_digits=dp,
+                )
+                <= 0
             ):
                 record.semaphore = "success"
             elif (
-                record.product_id.lst_price * ((100 - semaphore_data["warning"]) / 100)
-                <= price_reduce
+                float_compare(
+                    record.product_id.lst_price
+                    * ((100 - semaphore_data["warning"]) / 100),
+                    price_reduce,
+                    precision_digits=dp,
+                )
+                <= 0
             ):
                 record.semaphore = "warning"
             else:
