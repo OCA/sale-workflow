@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-25 11:21+0000\n"
-"PO-Revision-Date: 2026-05-25 11:21+0000\n"
+"POT-Creation-Date: 2026-06-04 07:20+0000\n"
+"PO-Revision-Date: 2026-06-04 07:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,31 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/kanban_controller.esm.js:0
+msgid "Back to Order"
+msgstr ""
+
+#. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/kanban_controller.esm.js:0
+msgid "Back to Quotation"
+msgstr ""
+
+#. module: sale_product_catalog_extended
 #: model:ir.model.fields,field_description:sale_product_catalog_extended.field_product_product__catalog_origin_data
 msgid "Catalog Origin Data"
+msgstr ""
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_product_product__catalog_price_mode
+msgid "Catalog Price Mode"
+msgstr ""
+
+#. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/kanban_controller.xml:0
+msgid "Confirm"
 msgstr ""
 
 #. module: sale_product_catalog_extended
@@ -27,9 +50,8 @@ msgid "Edit"
 msgstr ""
 
 #. module: sale_product_catalog_extended
-#. odoo-javascript
-#: code:addons/sale_product_catalog_extended/static/src/product_catalog/order_line/order_line.xml:0
-msgid "Edit Lines"
+#: model:ir.model.fields.selection,name:sale_product_catalog_extended.selection__product_product__catalog_price_mode__last_price
+msgid "Last sale"
 msgstr ""
 
 #. module: sale_product_catalog_extended
@@ -38,8 +60,25 @@ msgid "Last sales"
 msgstr ""
 
 #. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/order_line/order_line.xml:0
+msgid "New line"
+msgstr ""
+
+#. module: sale_product_catalog_extended
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.product_view_search_catalog
 msgid "Origin"
+msgstr ""
+
+#. module: sale_product_catalog_extended
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.product_view_search_catalog
+msgid "Price"
+msgstr ""
+
+#. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/search_panel.esm.js:0
+msgid "Pricelist"
 msgstr ""
 
 #. module: sale_product_catalog_extended
@@ -54,13 +93,5 @@ msgstr ""
 
 #. module: sale_product_catalog_extended
 #: model:ir.actions.act_window,name:sale_product_catalog_extended.action_open_editable_sale_order_line
-#: model:ir.actions.act_window,name:sale_product_catalog_extended.action_open_editable_sale_order_line_multi
-#: model:ir.model,name:sale_product_catalog_extended.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
-
-#. module: sale_product_catalog_extended
-#. odoo-javascript
-#: code:addons/sale_product_catalog_extended/static/src/product_catalog/order_line/order_line.xml:0
-msgid "Total quantity:"
 msgstr ""
