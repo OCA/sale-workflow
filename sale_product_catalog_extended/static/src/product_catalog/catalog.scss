@@ -21,3 +21,12 @@ article.o_product_added {
         }
     }
 }
+
+// The kanban options menu (three-dots dropdown) is pinned to the top-right
+// corner of the card (position-absolute end-0 top-0), overlapping the product
+// image, which is also right-aligned. Push the image down a bit so its
+// clickable area clears the menu button, making it easier to tap the image to
+// open the zoom dialog (specially on small screens).
+.o_kanban_record .d-flex.flex-grow-1.m-2 > .o_field_image.ms-auto {
+    margin-top: 1.5rem;
+}
