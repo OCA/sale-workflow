@@ -110,7 +110,17 @@ class SaleOrder(models.Model):
 
     def _get_action_add_from_catalog_extra_context(self):
         # TODO: partner_id or shipping_partner_id?
-        return {
+        context = {
             **super()._get_action_add_from_catalog_extra_context(),
             "product_catalog_partner_id": self.partner_shipping_id.id,
         }
+        default_origin = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("sale_product_catalog_extended.catalog_default_origin")
+        )
+        if default_origin:
+            # Preselect the origin defined in system parameters in the catalog
+            # search panel
+            context["searchpanel_default_catalog_origin_data"] = default_origin
+        return context
