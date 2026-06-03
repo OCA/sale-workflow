@@ -30,7 +30,8 @@ as the unit price.
 An *Origin* filter panel is added to the catalog search panel with a
 **Last sales** option. When active, the catalog displays only products
 that were previously sold to the same shipping address (last 6 months),
-ordered by frequency and delivered quantity.
+ordered by frequency and delivered quantity. This origin can be
+preselected automatically through a system parameter (see *Configuration*).
 
 ## Image zoom
 
