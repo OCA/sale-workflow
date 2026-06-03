@@ -66,7 +66,9 @@ Origin filter
 An *Origin* filter panel is added to the catalog search panel with a
 **Last sales** option. When active, the catalog displays only products
 that were previously sold to the same shipping address (last 6 months),
-ordered by frequency and delivered quantity.
+ordered by frequency and delivered quantity. This origin can be
+preselected automatically through a system parameter (see
+*Configuration*).
 
 Image zoom
 ----------
@@ -78,6 +80,31 @@ dialog.
 
 .. contents::
    :local:
+
+Configuration
+=============
+
+Default catalog origin
+----------------------
+
+By default the catalog opens with no origin preselected. You can make it
+open directly on a specific origin by setting a system parameter:
+
+1. Go to *Settings > Technical > Parameters > System Parameters*.
+2. Create a new parameter with:
+
+   - **Key:** ``sale_product_catalog_extended.catalog_default_origin``
+   - **Value:** the technical value of the origin to preselect. This
+     module provides ``sale_order`` (the **Last sales** option). Other
+     modules may add further origins; use the corresponding selection
+     value here.
+
+When this parameter is set, opening the catalog from a sale order will
+preselect the matching option in the *Origin* search panel
+automatically. For example, set the value to ``sale_order`` to always
+open the catalog on the **Last sales** origin. Leaving the parameter
+empty or removing it restores the default behaviour (no origin
+preselected).
 
 Bug Tracker
 ===========
