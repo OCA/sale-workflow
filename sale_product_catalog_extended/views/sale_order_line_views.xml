@@ -9,6 +9,9 @@
             <xpath expr="//form" position="attributes">
                 <attribute name="edit">True</attribute>
             </xpath>
+            <field name="product_uom_qty" position="attributes">
+                <attribute name="widget">numeric_step</attribute>
+            </field>
         </field>
     </record>
     <record id="action_open_editable_sale_order_line" model="ir.actions.act_window">
@@ -16,24 +19,5 @@
         <field name="target">new</field>
         <field name="view_mode">form</field>
         <field name="view_id" ref="sale_order_line_view_form_editable" />
-    </record>
-    <record
-        id="action_open_editable_sale_order_line_multi"
-        model="ir.actions.act_window"
-    >
-        <field name="res_model">sale.order.line</field>
-        <!-- TODO: Change to target new. Right now it will not work
-         https://github.com/odoo/odoo/blob/70448ce068e55d7c76a360b9c19d3d667cd3baa3
-         /addons/web/static/src/webclient/actions/action_service.js#L650-L663
-         -->
-        <field name="target">current</field>
-        <field name="view_mode">list,kanban,form</field>
-        <field
-            name="view_ids"
-            eval="[(5, 0, 0),
-                (0, 0, {'view_mode': 'list', 'view_id': ref('sale.view_order_line_tree')}),
-                (0, 0, {'view_mode': 'kanban', 'view_id': ref('sale.sale_order_line_view_kanban')}),
-                (0, 0, {'view_mode': 'form', 'view_id': ref('sale_order_line_view_form_editable')})]"
-        />
     </record>
 </odoo>
