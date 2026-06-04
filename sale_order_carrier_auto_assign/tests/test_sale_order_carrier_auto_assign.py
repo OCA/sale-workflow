@@ -175,6 +175,7 @@ class TestSaleOrderCarrierAutoAssignOnCreate(TestSaleOrderCarrierAutoAssignCommo
         self.assertFalse(sale_order.carrier_id)
 
     def test_sale_order_add_delivery_carrier_on_partner_change(self):
+        self.settings.carrier_auto_assign = True
         # enable to change delivery address
         self.env.user.groups_id += self.env.ref(
             "account.group_delivery_invoice_address"
@@ -187,7 +188,7 @@ class TestSaleOrderCarrierAutoAssignOnCreate(TestSaleOrderCarrierAutoAssignCommo
         sale_order_form.partner_shipping_id = self.partner_delivery
         so = sale_order_form.save()
         self.assertEqual(so.carrier_id, self.delivery_local_delivery2)
-        with Form(so.with_context(foo=1)) as so_form:
+        with Form(so) as so_form:
             so_form.partner_shipping_id = self.partner
         self.assertEqual(so.carrier_id, self.delivery_local_delivery)
 
