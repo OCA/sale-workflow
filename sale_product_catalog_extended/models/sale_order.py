@@ -1,10 +1,66 @@
 # Copyright 2025 Tecnativa - Carlos Roca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import api, models
+import json
+
+from odoo import api, fields, models
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
+
+    # Not stored, only used to know which partner the catalog history is
+    # matched against. Its default can be set per user/company through
+    # Default Values (ir.default).
+    use_delivery_address = fields.Boolean(store=False, default=False)
+
+    def _get_use_delivery_address_default_value(self):
+        """Return the user/company default value set for ``use_delivery_address``
+        through Default Values (ir.default).
+        """
+        field = self.env["ir.model.fields"].search(
+            [
+                ("model", "=", "sale.order"),
+                ("name", "=", "use_delivery_address"),
+            ]
+        )
+        default = self.env["ir.default"].search(
+            [
+                ("field_id", "=", field.id),
+                ("user_id", "=", self.env.user.id),
+                ("company_id", "=", self.env.company.id),
+                ("condition", "=", False),
+            ],
+            limit=1,
+        )
+        return json.loads(default.json_value) if default else False
+
+    def _catalog_use_delivery_address(self):
+        """Whether the catalog history (last sales origin / last price) is
+        matched by the order delivery address instead of the commercial
+        partner. Defaults to the commercial partner and is configurable
+        through Default Values.
+        """
+        if self.use_delivery_address:
+            return True
+        return bool(self._get_use_delivery_address_default_value())
+
+    def _catalog_history_partner(self):
+        """Partner used to look for the customer sale history in the catalog."""
+        self.ensure_one()
+        if self._catalog_use_delivery_address():
+            return self.partner_shipping_id
+        return self.partner_id.commercial_partner_id
+
+    def _get_catalog_history_context(self):
+        """Context passed to the catalog domain so it knows which
+        partner and which partner field to match the sale history against.
+        """
+        use_delivery_address = self._catalog_use_delivery_address()
+        return {
+            "product_catalog_partner_id": self._catalog_history_partner().id,
+            "product_catalog_use_delivery_address": use_delivery_address,
+            "product_catalog_order_id": self.id,
+        }
 
     def _get_catalog_last_prices(self, product_ids):
         """Return {product_id: last_price} from previous confirmed orders for
@@ -14,10 +70,7 @@ class SaleOrder(models.Model):
             return {}
         domain = (
             self.env["product.product"]
-            .with_context(
-                product_catalog_partner_id=self.partner_shipping_id.id,
-                product_catalog_order_id=self.id,
-            )
+            .with_context(**self._get_catalog_history_context())
             ._product_picker_data_sale_order_domain()
         )
         domain += [("product_id", "in", product_ids)]
@@ -109,10 +162,9 @@ class SaleOrder(models.Model):
         ).ids
 
     def _get_action_add_from_catalog_extra_context(self):
-        # TODO: partner_id or shipping_partner_id?
         context = {
             **super()._get_action_add_from_catalog_extra_context(),
-            "product_catalog_partner_id": self.partner_shipping_id.id,
+            **self._get_catalog_history_context(),
         }
         default_origin = (
             self.env["ir.config_parameter"]

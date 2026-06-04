@@ -54,6 +54,13 @@ class ProductProduct(models.Model):
         start = fields.Datetime.to_string(start)
         catalog_partner_id = self.env.context.get("product_catalog_partner_id", False)
         catalog_order_id = self.env.context.get("product_catalog_order_id", False)
+        # Match the history against the delivery address or the commercial
+        # partner (with its children) depending on the catalog configuration.
+        partner_field = (
+            "partner_shipping_id"
+            if self.env.context.get("product_catalog_use_delivery_address")
+            else "partner_id"
+        )
         # Search with sudo for get sale order from other commercials users
         other_sales = (
             self.env["sale.order"]
@@ -62,7 +69,7 @@ class ProductProduct(models.Model):
                 [
                     ("id", "!=", catalog_order_id),
                     ("company_id", "=", self.env.company.id),
-                    ("partner_shipping_id", "=", catalog_partner_id),
+                    (partner_field, "child_of", catalog_partner_id),
                     ("date_order", ">=", start),
                 ]
             )
@@ -81,11 +88,20 @@ class ProductProduct(models.Model):
             .sudo()
             .get_param("sale_order_product_picker.product_picker_last_order_limit", "0")
         )
-        sol_groups = self.env["sale.order.line"]._read_group(
+        found_lines = self.env["sale.order.line"].read_group(
             self._product_picker_data_sale_order_domain(),
-            groupby=["product_id"],
-            aggregates=["__count", "qty_delivered:sum"],
-            limit=limit,
-            order="__count desc, qty_delivered:sum desc",
+            ["product_id", "qty_delivered"],
+            ["product_id"],
+            lazy=False,
         )
-        return [g[0].id for g in sol_groups]
+        # Manual ordering that circumvents ORM limitations
+        found_lines = sorted(
+            found_lines,
+            key=lambda res: (
+                res["__count"],
+                res["qty_delivered"],
+            ),
+            reverse=True,
+        )
+        product_ids = [res["product_id"][0] for res in found_lines if res["product_id"]]
+        return limit and product_ids[:limit] or product_ids
