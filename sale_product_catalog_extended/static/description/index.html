@@ -443,6 +443,29 @@ automatically. For example, set the value to <tt class="docutils literal">sale_o
 open the catalog on the <strong>Last sales</strong> origin. Leaving the parameter
 empty or removing it restores the default behaviour (no origin
 preselected).</p>
+</div>
+<div class="section" id="default-catalog-price-mode">
+<h1>Default catalog price mode</h1>
+<p>By default the catalog opens with no price mode preselected. You can
+make it open directly on a specific price mode by setting a system
+parameter:</p>
+<ol class="arabic simple">
+<li>Go to <em>Settings &gt; Technical &gt; Parameters &gt; System Parameters</em>.</li>
+<li>Create a new parameter with:<ul>
+<li><strong>Key:</strong>
+<tt class="docutils literal">sale_product_catalog_extended.catalog_default_price_mode</tt></li>
+<li><strong>Value:</strong> the technical value of the price mode to preselect. This
+module provides <tt class="docutils literal">last_price</tt> (the <strong>Last sale</strong> option). Other
+modules may add further price modes; use the corresponding
+selection value here.</li>
+</ul>
+</li>
+</ol>
+<p>When this parameter is set, opening the catalog from a sale order will
+preselect the matching option in the <em>Price</em> search panel automatically.
+For example, set the value to <tt class="docutils literal">last_price</tt> to always open the catalog
+on the <strong>Last sale</strong> price mode. Leaving the parameter empty or removing
+it restores the default behaviour (no price mode preselected).</p>
 <div class="section" id="bug-tracker">
 <h2>Bug Tracker</h2>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/sale-workflow/issues">GitHub Issues</a>.
