@@ -119,8 +119,17 @@ class SaleOrder(models.Model):
             .sudo()
             .get_param("sale_product_catalog_extended.catalog_default_origin")
         )
+        default_price_mode = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("sale_product_catalog_extended.catalog_default_price_mode")
+        )
         if default_origin:
             # Preselect the origin defined in system parameters in the catalog
             # search panel
             context["searchpanel_default_catalog_origin_data"] = default_origin
+        if default_price_mode:
+            # Preselect the price defined in system parameters in the catalog
+            # search panel
+            context["searchpanel_default_catalog_price_mode"] = default_price_mode
         return context
