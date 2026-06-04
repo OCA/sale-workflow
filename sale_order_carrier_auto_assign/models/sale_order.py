@@ -36,9 +36,13 @@ class SaleOrder(models.Model):
         return res
 
     def _is_auto_set_carrier_on_write(self, vals):
-        return self.state in ("draft", "sent") and bool(
-            not vals.get("carrier_id")
-            and (vals.get("partner_id") or vals.get("partner_shipping_id"))
+        return (
+            self.company_id.carrier_auto_assign
+            and self.state in ("draft", "sent")
+            and bool(
+                not vals.get("carrier_id")
+                and (vals.get("partner_id") or vals.get("partner_shipping_id"))
+            )
         )
 
     def _is_auto_set_carrier_on_confirm(self):
