@@ -18,17 +18,67 @@ class TestSaleOrderLotSelection(TransactionCase):
 
         """
         super().setUpClass()
-        cls.prd_cable = cls.env.ref("stock.product_cable_management_box")
-        cls.prd_cable.tracking = "lot"
-        cls.product_46 = cls.env.ref("product.product_product_13")
-        cls.product_12 = cls.env.ref("product.product_product_12")
+        cls.prd_cable = cls.env["product.product"].create(
+            {
+                "name": "Test Cable",
+                "type": "consu",
+                "is_storable": True,
+                "tracking": "lot",
+            }
+        )
+        cls.product_46 = cls.env["product.product"].create(
+            {
+                "name": "Test Product 46",
+                "type": "consu",
+                "is_storable": True,
+                "tracking": "lot",
+            }
+        )
+        cls.product_12 = cls.env["product.product"].create(
+            {
+                "name": "Test Product 12",
+                "type": "consu",
+                "is_storable": True,
+                "tracking": "lot",
+            }
+        )
         cls.supplier_location = cls.env.ref("stock.stock_location_suppliers")
         cls.customer_location = cls.env.ref("stock.stock_location_customers")
         cls.stock_location = cls.env.ref("stock.stock_location_stock")
         cls.product_model = cls.env["product.product"]
         cls.lot_model = cls.env["stock.lot"]
-        cls.lot_cable = cls.env.ref("sale_order_lot_selection.lot_cable_demo")
-        cls.sale = cls.env.ref("sale_order_lot_selection.sale_order_demo")
+
+        cls.lot_cable = cls.env["stock.lot"].create(
+            {
+                "name": "lot_cable_demo",
+                "product_id": cls.prd_cable.id,
+                "company_id": cls.env.company.id,
+            }
+        )
+        cls.partner = cls.env["res.partner"].create({"name": "Test Partner"})
+        cls.sale = cls.env["sale.order"].create(
+            {
+                "partner_id": cls.partner.id,
+            }
+        )
+        cls.env["sale.order.line"].create(
+            {
+                "name": "sol_test_init",
+                "order_id": cls.sale.id,
+                "product_id": cls.prd_cable.id,
+                "product_uom_qty": 1,
+                "lot_id": cls.lot_cable.id,
+            }
+        )
+        cls.env["sale.order.line"].create(
+            {
+                "name": "sol_test_init_2",
+                "order_id": cls.sale.id,
+                "product_id": cls.prd_cable.id,
+                "product_uom_qty": 1,
+                "lot_id": cls.lot_cable.id,
+            }
+        )
 
     def _retrieve_stock_quantity(self, product, lot, location):
         return product.with_context(lot_id=lot.id, location=location.id).qty_available
@@ -81,7 +131,6 @@ class TestSaleOrderLotSelection(TransactionCase):
         )
         self.env["stock.move"].create(
             {
-                "name": self.product_12.name,
                 "product_id": self.product_12.id,
                 "product_uom_qty": self.product_12.qty_available,
                 "product_uom": self.product_12.uom_id.id,
@@ -92,7 +141,6 @@ class TestSaleOrderLotSelection(TransactionCase):
         )
         self.env["stock.move"].create(
             {
-                "name": self.product_46.name,
                 "product_id": self.product_46.id,
                 "product_uom_qty": self.product_46.qty_available,
                 "product_uom": self.product_46.uom_id.id,
@@ -105,13 +153,13 @@ class TestSaleOrderLotSelection(TransactionCase):
         picking_out.action_assign()
         picking_out._action_done()
 
-        self.product_46.write({"tracking": "lot", "type": "product"})
-        self.product_12.write({"tracking": "lot", "type": "product"})
+        self.product_46.write({"tracking": "lot", "is_storable": True})
+        self.product_12.write({"tracking": "lot", "is_storable": True})
 
         # make products enter
         picking_in = self.env["stock.picking"].create(
             {
-                "partner_id": self.env.ref("base.res_partner_1").id,
+                "partner_id": self.partner.id,
                 "picking_type_id": self.env.ref("stock.picking_type_in").id,
                 "location_id": self.supplier_location.id,
                 "location_dest_id": self.stock_location.id,
@@ -119,7 +167,6 @@ class TestSaleOrderLotSelection(TransactionCase):
         )
         self.env["stock.move"].create(
             {
-                "name": self.prd_cable.name,
                 "product_id": self.prd_cable.id,
                 "product_uom_qty": 1,
                 "product_uom": self.prd_cable.uom_id.id,
@@ -130,7 +177,6 @@ class TestSaleOrderLotSelection(TransactionCase):
         )
         self.env["stock.move"].create(
             {
-                "name": self.product_12.name,
                 "product_id": self.product_12.id,
                 "product_uom_qty": 1,
                 "product_uom": self.product_12.uom_id.id,
@@ -141,7 +187,6 @@ class TestSaleOrderLotSelection(TransactionCase):
         )
         self.env["stock.move"].create(
             {
-                "name": self.product_46.name,
                 "product_id": self.product_46.id,
                 "product_uom_qty": 2,
                 "product_uom": self.product_46.uom_id.id,
@@ -158,7 +203,7 @@ class TestSaleOrderLotSelection(TransactionCase):
         lot10 = False
         lot11 = False
         lot12 = False
-        for move in picking_in.move_ids_without_package:
+        for move in picking_in.move_ids:
             if move.product_id == self.prd_cable:
                 lot10 = self.lot_model.create(
                     {
@@ -212,9 +257,7 @@ class TestSaleOrderLotSelection(TransactionCase):
         self.assertEqual(lot12_qty_available, 1)
 
         # create order
-        self.order1 = self.env["sale.order"].create(
-            {"partner_id": self.env.ref("base.res_partner_1").id}
-        )
+        self.order1 = self.env["sale.order"].create({"partner_id": self.partner.id})
         self.sol1 = self.env["sale.order.line"].create(
             {
                 "name": "sol1",
@@ -224,9 +267,7 @@ class TestSaleOrderLotSelection(TransactionCase):
                 "product_uom_qty": 1,
             }
         )
-        self.order2 = self.env["sale.order"].create(
-            {"partner_id": self.env.ref("base.res_partner_1").id}
-        )
+        self.order2 = self.env["sale.order"].create({"partner_id": self.partner.id})
         self.sol2a = self.env["sale.order.line"].create(
             {
                 "name": "sol2a",
@@ -245,9 +286,7 @@ class TestSaleOrderLotSelection(TransactionCase):
                 "product_uom_qty": 1,
             }
         )
-        self.order3 = self.env["sale.order"].create(
-            {"partner_id": self.env.ref("base.res_partner_1").id}
-        )
+        self.order3 = self.env["sale.order"].create({"partner_id": self.partner.id})
         self.sol3 = self.env["sale.order.line"].create(
             {
                 "name": "sol_test_1",
@@ -257,9 +296,7 @@ class TestSaleOrderLotSelection(TransactionCase):
                 "product_uom_qty": 1,
             }
         )
-        self.order4 = self.env["sale.order"].create(
-            {"partner_id": self.env.ref("base.res_partner_1").id}
-        )
+        self.order4 = self.env["sale.order"].create({"partner_id": self.partner.id})
         self.sol4 = self.env["sale.order.line"].create(
             {
                 "name": "sol4",
@@ -274,7 +311,7 @@ class TestSaleOrderLotSelection(TransactionCase):
         self.order1.action_confirm()
         picking = self.order1.picking_ids
 
-        picking_move_line_ids = picking.move_ids_without_package[0].move_line_ids
+        picking_move_line_ids = picking.move_ids[0].move_line_ids
         picking_move_line_ids[0].quantity = 1
         picking_move_line_ids[0].location_id = self.stock_location
         picking.button_validate()
@@ -297,7 +334,7 @@ class TestSaleOrderLotSelection(TransactionCase):
         picking = self.order2.picking_ids
         picking.action_assign()
 
-        picking.move_ids_without_package.mapped("move_line_ids").write({"quantity": 1})
+        picking.move_ids.mapped("move_line_ids").write({"quantity": 1})
         picking.button_validate()
 
         # check quantities
