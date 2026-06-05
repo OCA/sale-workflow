@@ -51,6 +51,11 @@ msgid "Action Needed"
 msgstr "Acción requirida"
 
 #. module: sale_planner_calendar
+#: model:ir.model,name:sale_planner_calendar.model_mail_activity
+msgid "Activity"
+msgstr ""
+
+#. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__advanced_cycle
 msgid "Advanced Cycle"
 msgstr "Ciclo avanzado"
@@ -119,6 +124,11 @@ msgstr "Evento calendario"
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__calendar_issue_type_id
 msgid "Calendar Issue Type"
 msgstr "Tipo incidencia rutero"
+
+#. module: sale_planner_calendar
+#: model:ir.model.fields,field_description:sale_planner_calendar.field_mail_activity__calendar_event_id
+msgid "Calendar Meeting"
+msgstr ""
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__calendar_summary_id
@@ -473,8 +483,10 @@ msgstr "Se se atopa marcado, algunhas mensaxes teñen erro de envío."
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid ""
-"If the new end field is set, in addition to creating the recurring event assigned to the new commercial,\n"
-"                                a new recurring event will be created from the end date associated with the current commercial."
+"If the new end field is set, in addition to creating the recurring event "
+"assigned to the new commercial,\n"
+"                                a new recurring event will be created from "
+"the end date associated with the current commercial."
 msgstr ""
 "Se o campo novo fin esta establecido, ademas de crear o evento recorrente "
 "asignado ao novo comercial,\n"
@@ -1131,9 +1143,9 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_sale_planner_calendar_reassign_wiz
 msgid ""
-"The changes will be applied to event records with new commercial user "
-"filled."
-msgstr "Os cambios aplicaranse aos eventos co campo \"Novo comercial\" enchido."
+"The changes will be applied to event records with new commercial user filled."
+msgstr ""
+"Os cambios aplicaranse aos eventos co campo \"Novo comercial\" enchido."
 
 #. module: sale_planner_calendar
 #: model:ir.model.fields,help:sale_planner_calendar.field_calendar_event__partner_user_id
@@ -1158,9 +1170,9 @@ msgstr "Xoves"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.res_config_settings_view_form
-msgid ""
-"Time of the next day until which orders of the current day are assigned"
-msgstr "Hora do día seguinte ata a cal os pedidos do día actual serán asignados"
+msgid "Time of the next day until which orders of the current day are assigned"
+msgstr ""
+"Hora do día seguinte ata a cal os pedidos do día actual serán asignados"
 
 #. module: sale_planner_calendar
 #: model_terms:ir.ui.view,arch_db:sale_planner_calendar.view_calendar_event_search
