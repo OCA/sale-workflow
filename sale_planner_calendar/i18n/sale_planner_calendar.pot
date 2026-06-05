@@ -46,6 +46,11 @@ msgid "Action Needed"
 msgstr ""
 
 #. module: sale_planner_calendar
+#: model:ir.model,name:sale_planner_calendar.model_mail_activity
+msgid "Activity"
+msgstr ""
+
+#. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__advanced_cycle
 msgid "Advanced Cycle"
 msgstr ""
@@ -109,6 +114,11 @@ msgstr ""
 #. module: sale_planner_calendar
 #: model:ir.model.fields,field_description:sale_planner_calendar.field_calendar_event__calendar_issue_type_id
 msgid "Calendar Issue Type"
+msgstr ""
+
+#. module: sale_planner_calendar
+#: model:ir.model.fields,field_description:sale_planner_calendar.field_mail_activity__calendar_event_id
+msgid "Calendar Meeting"
 msgstr ""
 
 #. module: sale_planner_calendar
