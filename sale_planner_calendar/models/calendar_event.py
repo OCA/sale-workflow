@@ -444,4 +444,4 @@ class CalendarEvent(models.Model):
         new_date = fields.Date.today() + relativedelta(
             months=self.env.company.sale_planner_forward_months, day=31
         )
-        events_to_update.until = new_date
+        events_to_update.write({"until": new_date, "recurrence_update": "all_events"})
