@@ -108,6 +108,11 @@ automatically:
 This behavior only applies when the restriction modules
 (\*_partner_id_company_only) are not installed.
 
+**Portal access**: Portal users can always see the quotations and orders
+on which they are the sale contact in *My Account > Quotations / Sales
+Orders* (read-only), in addition to the documents they can already see
+through the standard portal access rules.
+
 Bug Tracker
 ===========
 
