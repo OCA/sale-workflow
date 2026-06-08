@@ -47,7 +47,7 @@ class TestModule(common.TransactionCase):
     def test_01_surcharge_computation(self):
         sale_order = self.env["sale.order"].create(
             {
-                "name": "Sale order",
+                "name": "Sale order 1",
                 "partner_id": self.env.user.partner_id.id,
                 "pricelist_id": self.pricelist.id,
             }
@@ -69,7 +69,7 @@ class TestModule(common.TransactionCase):
 
         sale_order = self.env["sale.order"].create(
             {
-                "name": "Sale order",
+                "name": "Sale order 2",
                 "partner_id": self.env.user.partner_id.id,
                 "pricelist_id": self.pricelist.id,
             }
