@@ -259,6 +259,18 @@ msgid "Sales Order Types"
 msgstr "Typer av försäljningsorder"
 
 #. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__team_id
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+msgid "Sales Team"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__user_id
+#: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
+msgid "Salesperson"
+msgstr ""
+
+#. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order__picking_policy
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__picking_policy
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
