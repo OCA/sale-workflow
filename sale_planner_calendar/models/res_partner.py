@@ -49,6 +49,7 @@ class ResPartner(models.Model):
                 )
             ],
             "choose_unlink_method": True,
+            "force_user_can_edit_event": True,
         }
         if not self.env.company.sale_planner_mail_to_attendees:
             action["context"].update(
