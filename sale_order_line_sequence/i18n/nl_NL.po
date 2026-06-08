@@ -44,6 +44,7 @@ msgstr "Journaalregel"
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line__visible_sequence
 #: model_terms:ir.ui.view,arch_db:sale_order_line_sequence.report_invoice_document_inherit_sale_sequence
+#: model_terms:ir.ui.view,arch_db:sale_order_line_sequence.sale_order_portal_content_sequence
 msgid "Line Number"
 msgstr "Regel #"
 
