@@ -64,6 +64,16 @@ class TestSaleOrderType(BaseCommon):
             {"name": "Public Pricelist", "sequence": 1}
         )
         cls.free_carrier = cls.env.ref("account.incoterm_FCA")
+        cls.salesperson = cls.env["res.users"].create(
+            {
+                "name": "Test SOT Salesperson",
+                "login": "test_sot_salesperson",
+                "groups_id": [
+                    (4, cls.env.ref("sales_team.group_sale_salesman").id),
+                ],
+            }
+        )
+        cls.sales_team = cls.env["crm.team"].create({"name": "Test SOT Team"})
         cls.sale_type = cls.sale_type_model.create(
             {
                 "name": "Test Sale Order Type",
@@ -75,6 +85,8 @@ class TestSaleOrderType(BaseCommon):
                 "pricelist_id": cls.sale_pricelist.id,
                 "incoterm_id": cls.free_carrier.id,
                 "quotation_validity_days": 10,
+                "user_id": cls.salesperson.id,
+                "team_id": cls.sales_team.id,
             }
         )
         cls.sale_type_quot = cls.sale_type_model.create(
@@ -166,10 +178,23 @@ class TestSaleOrderType(BaseCommon):
         self.assertEqual(order.payment_term_id, sale_type.payment_term_id)
         self.assertEqual(order.pricelist_id, sale_type.pricelist_id)
         self.assertEqual(order.incoterm, sale_type.incoterm_id)
+        self.assertEqual(order.user_id, sale_type.user_id)
+        self.assertEqual(order.team_id, sale_type.team_id)
         order.action_confirm()
         invoice = order._create_invoices()
         self.assertEqual(invoice.sale_type_id, sale_type)
         self.assertEqual(invoice.journal_id, sale_type.journal_id)
+
+    def test_sale_order_type_user_team_fallback(self):
+        self.assertFalse(self.sale_type_quot.user_id)
+        self.assertFalse(self.sale_type_quot.team_id)
+        partner = self.env["res.partner"].create(
+            {"name": "Partner SOT Quot", "sale_type": self.sale_type_quot.id}
+        )
+        order = self.create_sale_order(partner=partner)
+        self.assertEqual(order.type_id, self.sale_type_quot)
+        self.assertNotEqual(order.user_id, self.salesperson)
+        self.assertNotEqual(order.team_id, self.sales_team)
 
     def test_sale_order_change_partner(self):
         order = self.create_sale_order()

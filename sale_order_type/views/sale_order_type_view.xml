@@ -49,6 +49,8 @@
                                 groups="product.group_product_pricelist"
                             />
                             <field name="incoterm_id" />
+                            <field name="user_id" />
+                            <field name="team_id" />
                         </group>
                     </group>
                     <group>
@@ -75,6 +77,8 @@
                 <field name="payment_term_id" />
                 <field name="pricelist_id" groups="product.group_product_pricelist" />
                 <field name="incoterm_id" />
+                <field name="user_id" />
+                <field name="team_id" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <field name="description" />
             </list>
@@ -97,6 +101,8 @@
                 <field name="payment_term_id" />
                 <field name="pricelist_id" groups="product.group_product_pricelist" />
                 <field name="incoterm_id" />
+                <field name="user_id" />
+                <field name="team_id" />
                 <field name="company_id" groups="base.group_multi_company" />
                 <group expand="0" string="Group By">
                     <filter
@@ -142,6 +148,18 @@
                         string="Incoterm"
                         domain="[]"
                         context="{'group_by':'incoterm_id'}"
+                    />
+                    <filter
+                        name="salesperson"
+                        string="Salesperson"
+                        domain="[]"
+                        context="{'group_by':'user_id'}"
+                    />
+                    <filter
+                        name="sales_team"
+                        string="Sales Team"
+                        domain="[]"
+                        context="{'group_by':'team_id'}"
                     />
                 </group>
             </search>

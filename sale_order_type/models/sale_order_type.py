@@ -52,6 +52,21 @@ class SaleOrderTypology(models.Model):
         ondelete="restrict",
         check_company=True,
     )
+    user_id = fields.Many2one(
+        comodel_name="res.users",
+        string="Salesperson",
+        check_company=True,
+        domain=lambda self: (
+            "[('groups_id', 'in', {}), ('share', '=', False)]".format(
+                self.env.ref("sales_team.group_sale_salesman").ids
+            )
+        ),
+    )
+    team_id = fields.Many2one(
+        comodel_name="crm.team",
+        string="Sales Team",
+        check_company=True,
+    )
     analytic_account_id = fields.Many2one(
         comodel_name="account.analytic.account",
         string="Analytic account",
