@@ -27,7 +27,7 @@
         <xpath expr="//div[@t-field='line.price_unit']" position="attributes">
             <attribute
                 name="t-if"
-            >line.discount &gt;= 0 or line.fixed_discount &gt;= 0</attribute>
+            >line.discount &gt;= 0 or line.discount_fixed &gt;= 0</attribute>
             <attribute
                 name="t-att-style"
             >(line.discount or line.discount_fixed) and 'text-decoration: line-through' or None</attribute>
