@@ -32,7 +32,7 @@ addon | version | maintainers | summary
 [sale_delivery_split_date](sale_delivery_split_date/) | 19.0.1.0.0 |  | Sale Deliveries split by date
 [sale_delivery_state](sale_delivery_state/) | 19.0.1.0.0 |  | Show the delivery state on the sale order
 [sale_exception](sale_exception/) | 19.0.1.0.0 |  | Custom exceptions on sale order
-[sale_fixed_discount](sale_fixed_discount/) | 19.0.1.0.0 |  | Allows to apply fixed amount discounts in sales orders.
+[sale_fixed_discount](sale_fixed_discount/) | 19.0.1.0.1 |  | Allows to apply fixed amount discounts in sales orders.
 [sale_force_invoiced](sale_force_invoiced/) | 19.0.1.0.0 |  | Allows to force the invoice status of the sales order to Invoiced
 [sale_fully_invoiced](sale_fully_invoiced/) | 19.0.1.0.0 | <a href='https://github.com/AaronHForgeFlow'><img src='https://github.com/AaronHForgeFlow.png' width='32' height='32' style='border-radius:50%;' alt='AaronHForgeFlow'/></a> | Useful filters in Sales to know the actual status of invoices.
 [sale_global_discount](sale_global_discount/) | 19.0.1.0.1 |  | Sale Global Discount
