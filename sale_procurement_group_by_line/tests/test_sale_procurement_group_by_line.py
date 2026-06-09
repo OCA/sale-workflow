@@ -164,6 +164,10 @@ class TestSaleProcurementGroupByLine(TransactionCase):
         """Selling a kit whose BoM contains a component that is itself a kit
         should create exactly one stock move per leaf component, not doubled.
         """
+        # if the model does not exist in db
+        # do not run the test
+        if "mrp.bom" not in self.env:
+            self.skipTest("mrp not installed — cannot create kit BoMs")
         leaf1 = self.product_model.create(
             {
                 "name": "leaf_component_1",
