@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-27 03:52+0000\n"
-"PO-Revision-Date: 2026-01-22 17:04+0000\n"
+"PO-Revision-Date: 2026-06-09 05:44+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -23,7 +23,7 @@ msgstr ""
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_pricelist_item__applied_on
 msgid "Apply On"
-msgstr ""
+msgstr "Uporabi pri"
 
 #. module: product_price_category
 #: model:ir.model.fields,field_description:product_price_category.field_product_price_category__create_uid
@@ -71,14 +71,14 @@ msgstr "Naziv"
 #: model:ir.model.fields,field_description:product_price_category.field_product_template__price_category_id
 #: model:ir.model.fields.selection,name:product_price_category.selection__product_pricelist_item__applied_on__2b_product_price_category
 msgid "Price Category"
-msgstr ""
+msgstr "Kategorija cene"
 
 #. module: product_price_category
 #. odoo-python
 #: code:addons/product_price_category/models/product_pricelist_item.py:0
 #, python-format
 msgid "Price Category: %s"
-msgstr ""
+msgstr "Kategorija cene: %s"
 
 #. module: product_price_category
 #: model:ir.model,name:product_price_category.model_product_pricelist
@@ -88,22 +88,22 @@ msgstr "Cenik"
 #. module: product_price_category
 #: model:ir.model.fields,help:product_price_category.field_product_pricelist_item__applied_on
 msgid "Pricelist Item applicable on selected option"
-msgstr ""
+msgstr "Postavka cenika, ki velja za izbrano možnost"
 
 #. module: product_price_category
 #: model:ir.model,name:product_price_category.model_product_pricelist_item
 msgid "Pricelist Rule"
-msgstr ""
+msgstr "Pravilo cenika"
 
 #. module: product_price_category
 #: model:ir.model,name:product_price_category.model_product_template
 msgid "Product"
-msgstr ""
+msgstr "Proizvod"
 
 #. module: product_price_category
 #: model:ir.model,name:product_price_category.model_product_price_category
 msgid "Product Price Category"
-msgstr ""
+msgstr "Kategorija cene proizvoda"
 
 #. module: product_price_category
 #: model:ir.model.fields,help:product_price_category.field_product_pricelist_item__price_category_id
@@ -111,3 +111,5 @@ msgid ""
 "Specify a product price category if this rule only applies to one price "
 "category. Keep empty otherwise."
 msgstr ""
+"Določite kategorijo cen proizvoda, če to pravilo velja le za eno kategorijo "
+"cen. V nasprotnem primeru polje pustite prazno."
