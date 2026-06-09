@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2026-06-09 05:44+0000\n"
+"PO-Revision-Date: 2026-06-09 05:53+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -23,7 +23,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_order__all_qty_delivered
 msgid "All quantities delivered"
-msgstr ""
+msgstr "Vse količine dobavljene"
 
 #. module: sale_automatic_workflow
 #: model:ir.actions.act_window,name:sale_automatic_workflow.act_sale_workflow_process_form
@@ -37,12 +37,12 @@ msgstr "Samodejni delotok"
 #. module: sale_automatic_workflow
 #: model:ir.actions.server,name:sale_automatic_workflow.ir_cron_automatic_workflow_job_ir_actions_server
 msgid "Automatic Workflow Job"
-msgstr ""
+msgstr "Opravilo samodejnega delotoka"
 
 #. module: sale_automatic_workflow
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_order_view_form
 msgid "Automation Information"
-msgstr "Samodejne informacije"
+msgstr "Informacije o avtomatizaciji"
 
 #. module: sale_automatic_workflow
 #: model:sale.workflow.process,warning:sale_automatic_workflow.automatic_validation
@@ -61,12 +61,12 @@ msgstr "Ustvari račun"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__create_invoice_filter_id
 msgid "Create Invoice Filter"
-msgstr ""
+msgstr "Filter za ustvarjanje računa"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__create_invoice_filter_domain
 msgid "Create Invoice Filter Domain"
-msgstr ""
+msgstr "Domena filtra za ustvarjanje računa"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_automatic_workflow_job__create_uid
@@ -107,6 +107,8 @@ msgstr "ID"
 msgid ""
 "If set, displays the message when an userselects the process on a sale order"
 msgstr ""
+"Če je nastavljeno, se sporočilo prikaže, ko uporabnik izbere proces na "
+"prodajnem nalogu"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__invoice_service_delivery
@@ -114,16 +116,18 @@ msgid ""
 "If this box is checked, when the first invoice is created The service sale "
 "order lines will be included and will be marked as delivered"
 msgstr ""
+"Če je to polje označeno, se ob ustvarjanju prvega računa vključijo postavke "
+"storitev prodajnega naloga in se označijo kot dobavljene"
 
 #. module: sale_automatic_workflow
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
 msgid "Invoice Options"
-msgstr ""
+msgstr "Možnosti računa"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__invoice_service_delivery
 msgid "Invoice Service on delivery"
-msgstr ""
+msgstr "Računaj storitev ob dobavi"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_account_move
@@ -155,37 +159,37 @@ msgstr "Nastavitve naloga"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__order_filter_id
 msgid "Order Filter"
-msgstr ""
+msgstr "Filter naročil"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__order_filter_domain
 msgid "Order Filter Domain"
-msgstr ""
+msgstr "Domena filtra naročil"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__register_payment
 msgid "Register Payment"
-msgstr ""
+msgstr "Zabeleži plačilo"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__payment_filter_id
 msgid "Register Payment Invoice Filter"
-msgstr ""
+msgstr "Filter računov za zabeležitev plačila"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__sale_done
 msgid "Sale Done"
-msgstr ""
+msgstr "Prodaja zaključena"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__sale_done_filter_id
 msgid "Sale Done Filter"
-msgstr ""
+msgstr "Filter zaključenih prodaj"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__sale_done_filter_domain
 msgid "Sale Done Filter Domain"
-msgstr ""
+msgstr "Domena filtra zaključenih prodaj"
 
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_sale_workflow_process
@@ -214,12 +218,12 @@ msgstr "Prodajna ekipa"
 msgid ""
 "Scheduler that will play automatically the validation of invoices, "
 "pickings..."
-msgstr ""
+msgstr "Načrtovalnik, ki samodejno izvaja potrjevanje računov in prevzemov ..."
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__send_order_confirmation_mail
 msgid "Send Order Confirmation Mail"
-msgstr ""
+msgstr "Pošlji e-pošto za potrditev naročila"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__property_journal_id
@@ -229,7 +233,7 @@ msgstr "Določi privzeti prodajni dnevnik za izdajo računov"
 #. module: sale_automatic_workflow
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
 msgid "Set selection based on a search filter:"
-msgstr ""
+msgstr "Nastavi izbiro na podlagi iskalnega filtra:"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__validate_invoice
@@ -239,12 +243,12 @@ msgstr "Potrdi račun"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__validate_invoice_filter_id
 msgid "Validate Invoice Filter"
-msgstr ""
+msgstr "Filter za potrjevanje računov"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__validate_invoice_filter_domain
 msgid "Validate Invoice Filter Domain"
-msgstr ""
+msgstr "Domena filtra za potrjevanje računov"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__validate_order
@@ -262,6 +266,8 @@ msgid ""
 "When checked, after order confirmation, a confirmation email will be sent "
 "(if not already sent)."
 msgstr ""
+"Ko je označeno, se po potrditvi naročila pošlje potrditveno e-poštno "
+"sporočilo (če še ni bilo poslano)."
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__invoice_date_is_order_date
