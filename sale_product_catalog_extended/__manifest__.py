@@ -8,7 +8,7 @@
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "version": "18.0.1.0.0",
     "website": "https://github.com/OCA/sale-workflow",
-    "depends": ["sale"],
+    "depends": ["sale", "onchange_helper"],
     "data": [
         "views/product_views.xml",
         "views/sale_order_line_views.xml",

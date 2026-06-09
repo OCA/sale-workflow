@@ -115,36 +115,51 @@ class SaleOrder(models.Model):
                     line_data["lastPrice"] = last_price
         return result
 
+    def _get_catalog_line_onchange_fields(self):
+        """Trigger fields whose ``@api.onchange`` methods must be replayed when
+        a line is created from the catalog.
+        """
+        return ["product_id"]
+
+    def _play_catalog_line_onchanges(self, line):
+        """Replay on ``line`` the ``@api.onchange`` methods that adding a
+        product from the catalog skips.
+        """
+        line.ensure_one()
+        values = line.play_onchanges({}, self._get_catalog_line_onchange_fields())
+        if values:
+            line.write(values)
+
     def _update_order_line_info(
         self, product_id, quantity, catalog_show_last_price=False, **kwargs
     ):
-        is_new_line = (
-            quantity > 0
-            and catalog_show_last_price
-            and not self.order_line.filtered(
-                lambda line: line.product_id.id == product_id
-            )
+        is_new_line = quantity > 0 and not self.order_line.filtered(
+            lambda line: line.product_id.id == product_id
         )
         result = super()._update_order_line_info(product_id, quantity, **kwargs)
-        if is_new_line:
+        if not is_new_line:
+            return result
+        sol = self.order_line.filtered(lambda line: line.product_id.id == product_id)
+        if not sol:
+            return result
+        # Replay the line onchanges that the base catalog ``create`` skips.
+        self._play_catalog_line_onchanges(sol)
+        result = sol._get_discounted_price()
+        if catalog_show_last_price:
             last_price = self._get_catalog_last_prices([product_id]).get(
                 product_id, 0.0
             )
             if last_price:
-                sol = self.order_line.filtered(
-                    lambda line: line.product_id.id == product_id
+                # Keep technical_price_unit (pricelist price) so that
+                # _compute_price_unit recognises this as a manual override
+                # and does not reset it on subsequent recomputations.
+                sol.write(
+                    {
+                        "price_unit": last_price,
+                        "technical_price_unit": sol.technical_price_unit,
+                    }
                 )
-                if sol:
-                    # Keep technical_price_unit (pricelist price) so that
-                    # _compute_price_unit recognises this as a manual override
-                    # and does not reset it on subsequent recomputations.
-                    sol.write(
-                        {
-                            "price_unit": last_price,
-                            "technical_price_unit": sol.technical_price_unit,
-                        }
-                    )
-                    result = sol._get_discounted_price()
+                result = sol._get_discounted_price()
         return result
 
     @api.model
