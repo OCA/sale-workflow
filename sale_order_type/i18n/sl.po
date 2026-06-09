@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-20 22:37+0000\n"
-"PO-Revision-Date: 2026-02-01 10:10+0000\n"
+"PO-Revision-Date: 2026-06-09 05:44+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -23,17 +23,17 @@ msgstr ""
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__active
 msgid "Active"
-msgstr ""
+msgstr "Aktivno"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_account_id
 msgid "Analytic account"
-msgstr ""
+msgstr "Analitični konto"
 
 #. module: sale_order_type
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
 msgid "Archived"
-msgstr ""
+msgstr "Arhivirano"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__journal_id
@@ -46,16 +46,18 @@ msgstr "Dnevnik obračuna"
 msgid ""
 "Check this if you want the sale order type required on sale order forms."
 msgstr ""
+"To polje označite, če želite, da je tip prodajnega naloga obvezno polje v "
+"prodajnih nalogih."
 
 #. module: sale_order_type
 #: model_terms:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
 msgid "Click to set a new type for sale order."
-msgstr ""
+msgstr "Nastavi nov tip prodajnega naloga."
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Družbe"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__company_id
@@ -65,12 +67,12 @@ msgstr "Družba"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Nastavitve"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Stik"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__create_uid
@@ -85,7 +87,7 @@ msgstr "Ustvarjeno"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_currency
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__description
@@ -118,7 +120,7 @@ msgstr "ID"
 #: model:ir.model.fields,help:sale_order_type.field_res_config_settings__sale_order_type_required
 #: model:ir.model.fields,help:sale_order_type.field_sale_order__order_type_required
 msgid "If checked, the sale orders will require a type."
-msgstr ""
+msgstr "Če je to polje označeno, je treba pri prodajnih nalogih navesti tip."
 
 #. module: sale_order_type
 #: model:ir.model.fields,help:sale_order_type.field_sale_order__picking_policy
@@ -127,6 +129,9 @@ msgid ""
 "based on the greatest product lead time. Otherwise, it will be based on the "
 "shortest."
 msgstr ""
+"Če dostavljate vse proizvode naenkrat, bo rok dostave določen glede na "
+"najdaljši dobavni rok. V nasprotnem primeru bo upoštevan najkrajši dobavni "
+"rok."
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order__incoterm
@@ -141,16 +146,18 @@ msgid ""
 "International Commercial Terms are a series of predefined commercial terms "
 "used in international transactions."
 msgstr ""
+"Mednarodni komercialni termini \"incoterms\" so zbirka terminov v uporabi "
+"pri mednarodnih transakcijah."
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_account_invoice_report
 msgid "Invoices Statistics"
-msgstr ""
+msgstr "Statistika računov"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Temeljnica"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__write_uid
@@ -171,7 +178,7 @@ msgstr "Naziv"
 #. odoo-python
 #: code:addons/sale_order_type/models/sale.py:0
 msgid "New"
-msgstr ""
+msgstr "Novo"
 
 #. module: sale_order_type
 #: model:sale.order.type,name:sale_order_type.normal_sale_type
@@ -197,13 +204,13 @@ msgstr "Cenik"
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__quotation_validity_days
 msgid "Quotation Validity (Days)"
-msgstr ""
+msgstr "Veljavnost ponudbe (dni)"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_line__route_id
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__route_id
 msgid "Route"
-msgstr ""
+msgstr "Proga"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_report__sale_type_id
@@ -219,7 +226,7 @@ msgstr "Tip prodajnega naloga"
 #: model:ir.model.fields,field_description:sale_order_type.field_res_config_settings__sale_order_type_required
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order__order_type_required
 msgid "Sale Order Type Required"
-msgstr ""
+msgstr "Tip prodajnega naloga zahtevan"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_bank_statement_line__sale_type_id
@@ -231,24 +238,22 @@ msgstr "Tip prodaje"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_advance_payment_inv
 msgid "Sales Advance Payment Invoice"
-msgstr ""
+msgstr "Prodajni račun za predplačilo"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_report
 msgid "Sales Analysis Report"
-msgstr ""
+msgstr "Poročilo prodajne analize"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order
-#, fuzzy
 msgid "Sales Order"
 msgstr "Prodajni nalog"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_order_line
-#, fuzzy
 msgid "Sales Order Line"
-msgstr "Prodajni nalog"
+msgstr "Prodajna postavka"
 
 #. module: sale_order_type
 #: model:ir.actions.act_window,name:sale_order_type.sot_sale_order_type_action
@@ -260,13 +265,13 @@ msgstr "Tipi prodajnega naloga"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__team_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Sales Team"
-msgstr ""
+msgstr "Prodajna ekipa"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__user_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Salesperson"
-msgstr ""
+msgstr "Prodajalec"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order__picking_policy
