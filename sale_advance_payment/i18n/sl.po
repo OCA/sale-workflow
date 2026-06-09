@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-09 06:41+0000\n"
+"PO-Revision-Date: 2026-06-09 06:43+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. module: sale_advance_payment
 #: model:ir.model,name:sale_advance_payment.model_account_voucher_wizard
 msgid "Account Voucher Wizard"
-msgstr ""
+msgstr "Čarovnik za računovodski prejemek"
 
 #. module: sale_advance_payment
 #: model:ir.actions.act_window,name:sale_advance_payment.action_view_account_voucher_wizard
@@ -31,28 +31,28 @@ msgstr "Predplačilo"
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_sale_order__advance_payment_status
 msgid "Advance Payment Status"
-msgstr ""
+msgstr "Status predplačila"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__amount_total
 msgid "Amount Total"
-msgstr ""
+msgstr "Skupni znesek"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__amount_advance
 msgid "Amount advanced"
-msgstr ""
+msgstr "Znesek predplačila"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Amount in Order Currency"
-msgstr ""
+msgstr "Znesek v valuti naloga"
 
 #. module: sale_advance_payment
 #. odoo-python
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
 msgid "Amount of advance must be positive."
-msgstr ""
+msgstr "Znesek predplačila mora biti pozitiven."
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
@@ -72,7 +72,7 @@ msgstr "Ustvarjeno"
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__currency_amount
 msgid "Curr. amount"
-msgstr ""
+msgstr "Znesek valute"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__currency_id
@@ -104,7 +104,7 @@ msgstr "Vhodno"
 #. odoo-python
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
 msgid "Inbound amount of advance is greater than residual amount on sale"
-msgstr ""
+msgstr "Vhodni znesek predplačila je večji od preostalega zneska prodaje"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__journal_id
@@ -134,12 +134,12 @@ msgstr "Zadnja posodobitev"
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Make advance payment"
-msgstr ""
+msgstr "Izvedi predplačilo"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__sale_order__advance_payment_status__not_paid
 msgid "Not Paid"
-msgstr ""
+msgstr "Ni plačano"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
@@ -159,7 +159,7 @@ msgstr "Valuta naloga"
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Order Due Amount"
-msgstr ""
+msgstr "Zapadli znesek naloga"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__outbound
@@ -170,7 +170,7 @@ msgstr "Izhodno"
 #. odoo-python
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
 msgid "Outbound amount of advance is greater than the advanced paid amount"
-msgstr ""
+msgstr "Izhodni znesek predplačila je večji od že plačanega zneska predplačila"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__sale_order__advance_payment_status__paid
@@ -186,7 +186,7 @@ msgstr "Delno plačano"
 #: model:ir.model.fields,field_description:sale_advance_payment.field_sale_order__account_payment_ids
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_order_form
 msgid "Pay sale advanced"
-msgstr ""
+msgstr "Plačaj predplačilo prodaje"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
@@ -201,12 +201,12 @@ msgstr "Tip plačila"
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_order_form
 msgid "Payment advances"
-msgstr ""
+msgstr "Predplačila"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_sale_order__payment_line_ids
 msgid "Payment move lines"
-msgstr ""
+msgstr "Postavke knjižb plačil"
 
 #. module: sale_advance_payment
 #: model:ir.model,name:sale_advance_payment.model_account_payment
@@ -240,3 +240,5 @@ msgid ""
 "The amount to advance must always be positive. Please use the payment type "
 "to indicate if this is an inbound or an outbound payment."
 msgstr ""
+"Znesek predplačila mora biti vedno pozitiven. Z uporabo tipa plačila "
+"označite, ali gre za vhodno ali izhodno plačilo."
