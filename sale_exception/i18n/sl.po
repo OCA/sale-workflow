@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-16 11:37+0000\n"
-"PO-Revision-Date: 2026-06-09 05:44+0000\n"
+"PO-Revision-Date: 2026-06-09 05:53+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -26,6 +26,8 @@ msgid ""
 "<strong>There are exceptions blocking the confirmation of this Sale Order:</"
 "strong>"
 msgstr ""
+"<strong>Obstajajo izjeme, ki blokirajo potrditev tega prodajnega naloga:</"
+"strong>"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_order_form
@@ -33,11 +35,13 @@ msgid ""
 "<strong>There are exceptions on this line blocking the confirmation of this "
 "quotation:</strong>"
 msgstr ""
+"<strong>Na tej postavki so izjeme, ki blokirajo potrditev te ponudbe:</"
+"strong>"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_dumping
 msgid "A product is sold cheaper than his cost."
-msgstr ""
+msgstr "Izdelek se prodaja ceneje od lastne cene."
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_exception_rule__model
@@ -47,7 +51,7 @@ msgstr "Uporabi pri"
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_sol
 msgid "At least one order line should be present in the sale"
-msgstr ""
+msgstr "V prodaji mora biti prisotna vsaj ena postavka naročila"
 
 #. module: sale_exception
 #: model_terms:ir.ui.view,arch_db:sale_exception.view_sales_order_filter
@@ -71,6 +75,7 @@ msgid ""
 "Click here to be able to confirm this Sale Orders regardless of the "
 "exceptions."
 msgstr ""
+"Kliknite tukaj, da lahko potrdite te prodajne naloge ne glede na izjeme."
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_res_company
@@ -100,7 +105,7 @@ msgstr "Ustvarjeno"
 #. module: sale_exception
 #: model:exception.rule,name:sale_exception.exception_partner_sale_warning
 msgid "Customer sale warning"
-msgstr ""
+msgstr "Prodajno opozorilo stranke"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__display_name
@@ -113,11 +118,13 @@ msgid ""
 "Display popup at confirm or simply rely on the red alert already visible on "
 "top of the order."
 msgstr ""
+"Prikaži pojavno okno ob potrditvi ali se preprosto zanašaj na rdeče "
+"opozorilo, ki je že vidno na vrhu prodajnega naloga."
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_exception_rule
 msgid "Exception Rule"
-msgstr ""
+msgstr "Pravilo izjeme"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order__exception_ids
@@ -152,7 +159,7 @@ msgstr "Prezri izjeme"
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_order_line__is_exception_danger
 msgid "Is Exception Danger"
-msgstr ""
+msgstr "Nevarna izjema"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__write_uid
@@ -178,17 +185,17 @@ msgstr "Destinacija nima poštne številke"
 #. module: sale_exception
 #: model:exception.rule,name:sale_exception.excep_no_dumping
 msgid "No dumping"
-msgstr ""
+msgstr "Brez dumpinga"
 
 #. module: sale_exception
 #: model:exception.rule,name:sale_exception.excep_no_free
 msgid "No free order"
-msgstr ""
+msgstr "Brez brezplačnega naročila"
 
 #. module: sale_exception
 #: model:exception.rule,name:sale_exception.excep_no_sol
 msgid "No order lines"
-msgstr ""
+msgstr "Brez postavk naročila"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_stock
@@ -199,7 +206,7 @@ msgstr "Ni dovolj navidezne zaloge"
 #. module: sale_exception
 #: model:exception.rule,name:sale_exception.exception_product_sale_warning
 msgid "Product warning"
-msgstr ""
+msgstr "Opozorilo za izdelek"
 
 #. module: sale_exception
 #: model:ir.model.fields,field_description:sale_exception.field_sale_exception_confirm__related_model_id
@@ -210,18 +217,18 @@ msgstr "Prodaja"
 #: model:ir.model.fields,field_description:sale_exception.field_res_company__sale_exception_show_popup
 #: model:ir.model.fields,field_description:sale_exception.field_res_config_settings__sale_exception_show_popup
 msgid "Sale Exception Popup"
-msgstr ""
+msgstr "Pojavno okno izjem prodaje"
 
 #. module: sale_exception
 #: model:ir.actions.act_window,name:sale_exception.action_sale_test_tree
 #: model:ir.ui.menu,name:sale_exception.menu_sale_test
 msgid "Sale Exception Rules"
-msgstr ""
+msgstr "Pravila izjem prodaje"
 
 #. module: sale_exception
 #: model:ir.model,name:sale_exception.model_sale_exception_confirm
 msgid "Sale exception confirm wizard"
-msgstr ""
+msgstr "Čarovnik za potrditev izjem prodaje"
 
 #. module: sale_exception
 #: model:ir.model.fields.selection,name:sale_exception.selection__exception_rule__model__sale_order
@@ -251,22 +258,22 @@ msgstr "Prodajna postavka"
 #. module: sale_exception
 #: model:ir.actions.server,name:sale_exception.ir_cron_test_orders_ir_actions_server
 msgid "Test Draft Orders"
-msgstr ""
+msgstr "Testiraj osnutke naročil"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.exception_partner_sale_warning
 msgid "The customer has a sale warning in his form"
-msgstr ""
+msgstr "Stranka ima na svojem obrazcu prodajno opozorilo"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.exception_product_sale_warning
 msgid "The product has a warning in his form"
-msgstr ""
+msgstr "Izdelek ima na svojem obrazcu opozorilo"
 
 #. module: sale_exception
 #: model:exception.rule,description:sale_exception.excep_no_free
 msgid "The total can't be 0"
-msgstr ""
+msgstr "Skupni znesek ne more biti 0"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Zadnjič spremenjeno"
