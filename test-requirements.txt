@@ -1,0 +1,1 @@
+odoo-addon-stock_return_request @ git+https://github.com/OCA/stock-logistics-request.git@refs/pull/95/head#subdirectory=stock_return_request
