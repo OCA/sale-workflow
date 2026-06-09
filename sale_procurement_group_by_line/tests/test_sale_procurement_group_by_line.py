@@ -3,6 +3,7 @@
 # © 2016 Serpent Consulting Services Pvt. Ltd.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+
 from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
@@ -163,11 +164,24 @@ class TestSaleProcurementGroupByLine(TransactionCase):
     def test_07_nested_kit_no_double_procurement(self):
         """Selling a kit whose BoM contains a component that is itself a kit
         should create exactly one stock move per leaf component, not doubled.
+
+        Without the fix, _action_launch_stock_rule() runs procurements and
+        then calls super(). When sale_mrp is installed, its
+        _get_qty_procurement() override ignores previous_product_uom_qty for
+        kit products, returning 0 for nested kit components. Super then
+        re-runs procurement, doubling all moves.
+
+        The fix overrides _get_qty_procurement() in this module to check
+        previous_product_uom_qty first, so super() sees the full qty already
+        procured and skips re-running procurement.
+
+        The broken _get_qty_procurement behavior is simulated by patching at
+        the sale_stock level (below this module in the MRO), so our fix still
+        intercepts correctly — just as it would with sale_mrp installed.
         """
-        # if the model does not exist in db
-        # do not run the test
         if "mrp.bom" not in self.env:
             self.skipTest("mrp not installed — cannot create kit BoMs")
+
         leaf1 = self.product_model.create(
             {
                 "name": "leaf_component_1",
@@ -191,6 +205,7 @@ class TestSaleProcurementGroupByLine(TransactionCase):
             }
         )
         outer_kit = self._create_kit_product("outer_kit", [plain, inner_kit])
+
         sale = self.sale_model.create(
             {
                 "partner_id": self.customer.id,
@@ -206,10 +221,17 @@ class TestSaleProcurementGroupByLine(TransactionCase):
                 "name": "Nested kit sale line",
             }
         )
-        # Simulate the sale_mrp _get_qty_procurement bug: for any product with
-        # a phantom BoM, return 0 — as if component moves don't match.
-        # This is what causes super() to re-run procurement on nested kits.
-        original = self.env["sale.order.line"].__class__._get_qty_procurement
+
+        # Patch _get_qty_procurement at the sale_stock level — below this
+        # module in the MRO — to simulate sale_mrp's broken behavior:
+        # for any product with a phantom BoM, return 0 as if no moves match.
+        # Our _get_qty_procurement fix intercepts above this in the MRO,
+        # returning the correct qty from previous_product_uom_qty instead.
+        from odoo.addons.sale_stock.models.sale_order import (
+            SaleOrderLine as SaleStockLine,
+        )
+
+        original = SaleStockLine._get_qty_procurement
 
         def broken_get_qty_procurement(self_line, previous_product_uom_qty=False):
             bom = self_line.env["mrp.bom"]._bom_find(
@@ -219,15 +241,29 @@ class TestSaleProcurementGroupByLine(TransactionCase):
                 return 0.0
             return original(self_line, previous_product_uom_qty)
 
-        self.env[
-            "sale.order.line"
-        ].__class__._get_qty_procurement = broken_get_qty_procurement
+        SaleStockLine._get_qty_procurement = broken_get_qty_procurement
         try:
             sale.action_confirm()
         finally:
-            self.env["sale.order.line"].__class__._get_qty_procurement = original
+            SaleStockLine._get_qty_procurement = original
+
         all_moves = sale.picking_ids.mapped("move_lines")
-        self.assertEqual(len(all_moves), 3)
+
+        # Without fix: 6 moves (plain + leaf1 + leaf2 each procured twice)
+        # With fix: 3 moves (plain + leaf1 + leaf2 each procured once)
+        self.assertEqual(
+            len(all_moves),
+            3,
+            "Expected 3 stock moves (plain + 2 inner kit components), got %d: %s"
+            % (
+                len(all_moves),
+                all_moves.mapped(lambda m: (m.product_id.name, m.product_uom_qty)),
+            ),
+        )
         for move in all_moves:
-            # without fix quantity is 2
-            self.assertEqual(move.product_uom_qty, 1.0)
+            self.assertEqual(
+                move.product_uom_qty,
+                1.0,
+                "Move for %s should have qty 1.0, got %s"
+                % (move.product_id.name, move.product_uom_qty),
+            )
