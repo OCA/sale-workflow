@@ -9,20 +9,21 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:51+0000\n"
-"PO-Revision-Date: 2017-11-23 01:51+0000\n"
-"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
+"PO-Revision-Date: 2026-06-09 05:44+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
-"n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_sourced_by_line
 #: model:ir.model.fields,field_description:sale_sourced_by_line.field_sale_order__warehouse_id
 msgid "Default Warehouse"
-msgstr ""
+msgstr "Privzeto skladišče"
 
 #. module: sale_sourced_by_line
 #: model:ir.model.fields,help:sale_sourced_by_line.field_sale_order__warehouse_id
@@ -30,6 +31,8 @@ msgid ""
 "If no source warehouse is selected on line, this warehouse is used as "
 "default. "
 msgstr ""
+"Če v vrstici ni izbrano nobeno izhodiščno skladišče, se kot privzeto uporabi "
+"to skladišče. "
 
 #. module: sale_sourced_by_line
 #: model:ir.model,name:sale_sourced_by_line.model_sale_order
