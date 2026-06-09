@@ -25,6 +25,22 @@ class SaleOrderLine(models.Model):
         """
         return 8, self.order_id.id
 
+    def _get_qty_procurement(self, previous_product_uom_qty=False):
+        """Override to respect previous_product_uom_qty for lines already
+        processed by _action_launch_stock_rule.
+
+        Without this, modules like sale_mrp override _get_qty_procurement for
+        kit products and ignore previous_product_uom_qty, returning 0 for
+        nested kit components. This causes super()._action_launch_stock_rule
+        to run procurement a second time, doubling all stock moves.
+        """
+        self.ensure_one()
+        if previous_product_uom_qty and self.id in previous_product_uom_qty:
+            return previous_product_uom_qty[self.id]
+        return super()._get_qty_procurement(
+            previous_product_uom_qty=previous_product_uom_qty
+        )
+
     def _action_launch_stock_rule(self, previous_product_uom_qty=False):
         """
         Launch procurement group run method.
@@ -36,9 +52,6 @@ class SaleOrderLine(models.Model):
         groups = {}
         if not previous_product_uom_qty:
             previous_product_uom_qty = {}
-
-        processed_lines = self.env["sale.order.line"]
-
         for line in self:
             line = line.with_company(line.company_id)
             if line.state != "sale" or line.product_id.type not in ("consu", "product"):
@@ -80,6 +93,7 @@ class SaleOrderLine(models.Model):
             line.procurement_group_id = group_id
             # Also keep the sale order synched
             line.order_id.procurement_group_id = group_id
+
             values = line._prepare_procurement_values(group_id=group_id)
             product_qty = line.product_uom_qty - qty
 
@@ -104,21 +118,8 @@ class SaleOrderLine(models.Model):
             # duplicated procurements, specially for dropshipping and kits.
             previous_product_uom_qty[line.id] = line.product_uom_qty
 
-            processed_lines |= line
-
         if procurements:
             self.env["procurement.group"].run(procurements)
-
-        # Only call super() for lines not handled above (e.g. service lines,
-        # lines already fully procured, or lines skipped for other reasons).
-        # Calling super() on processed lines would re-run procurement via
-        # native _action_launch_stock_rule, causing doubled moves on nested
-        # kits when sale_mrp is installed (see OCA/sale-workflow#4372).
-        remaining_lines = self - processed_lines
-        if remaining_lines:
-            return super(
-                SaleOrderLine, remaining_lines.with_context(sale_group_by_line=True)
-            )._action_launch_stock_rule(
-                previous_product_uom_qty=previous_product_uom_qty
-            )
-        return True
+        return super(
+            SaleOrderLine, self.with_context(sale_group_by_line=True)
+        )._action_launch_stock_rule(previous_product_uom_qty=previous_product_uom_qty)
