@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-09 06:23+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,41 +15,42 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: product_form_sale_link
 #: model:ir.model,name:product_form_sale_link.model_product_template
 msgid "Product"
-msgstr ""
+msgstr "Proizvod"
 
 #. module: product_form_sale_link
 #: model:ir.model,name:product_form_sale_link.model_product_product
 msgid "Product Variant"
-msgstr ""
+msgstr "Različica proizvoda"
 
 #. module: product_form_sale_link
 #: model_terms:ir.ui.view,arch_db:product_form_sale_link.view_sales_order_line_filter
 msgid "Quotations"
-msgstr ""
+msgstr "Predračuni"
 
 #. module: product_form_sale_link
 #: model:ir.model.fields,field_description:product_form_sale_link.field_product_product__sale_lines_count
 #: model:ir.model.fields,field_description:product_form_sale_link.field_product_template__sale_lines_count
 msgid "Sale Lines Count"
-msgstr ""
+msgstr "Št. prodajnih postavk"
 
 #. module: product_form_sale_link
 #: model:ir.actions.act_window,name:product_form_sale_link.action_product_product_sale_list
 #: model:ir.actions.act_window,name:product_form_sale_link.action_product_template_sale_list
 msgid "Sale Order Lines"
-msgstr ""
+msgstr "Prodajne postavke"
 
 #. module: product_form_sale_link
 #: model_terms:ir.ui.view,arch_db:product_form_sale_link.product_product_form_view
 #: model_terms:ir.ui.view,arch_db:product_form_sale_link.product_template_form_view
 msgid "Sales"
-msgstr ""
+msgstr "Prodaja"
 
 #. module: product_form_sale_link
 #: model_terms:ir.ui.view,arch_db:product_form_sale_link.view_sales_order_line_filter
 msgid "Sales Orders"
-msgstr ""
+msgstr "Prodajni nalogi"
