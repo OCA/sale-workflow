@@ -9,31 +9,31 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-16 03:41+0000\n"
-"PO-Revision-Date: 2023-03-31 21:25+0000\n"
+"PO-Revision-Date: 2026-06-09 05:44+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
-"%100==4 ? 2 : 3;\n"
-"X-Generator: Weblate 4.14.1\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 msgid "Add a line"
-msgstr ""
+msgstr "Dodaj vrstico"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 msgid "Add a note"
-msgstr ""
+msgstr "Dodaj opombo"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
 msgid "Add a section"
-msgstr ""
+msgstr "Dodaj sekcijo"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
@@ -54,7 +54,7 @@ msgstr "Dodaj sklop v postavko prodajnega naloga"
 #. module: sale_product_set
 #: model:ir.actions.act_window,name:sale_product_set.act_open_wizard_product_set_add_from_set
 msgid "Add set to sale order"
-msgstr ""
+msgstr "Dodaj nabor v prodajni nalog"
 
 #. module: sale_product_set
 #: model_terms:ir.ui.view,arch_db:sale_product_set.product_set_add_form_view
@@ -74,12 +74,12 @@ msgstr "Ustvarjeno"
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__partner_id
 msgid "Customer"
-msgstr ""
+msgstr "Kupec"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_product_set_line__discount
 msgid "Discount (%)"
-msgstr ""
+msgstr "Popust (%)"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__display_name
@@ -91,6 +91,8 @@ msgstr "Prikazani naziv"
 msgid ""
 "Enable this to not add new lines for products already included in SO lines."
 msgstr ""
+"To možnost vklopite, če ne želite dodajati novih vrstic za proizvode, ki so "
+"že zajeti v prodajnih postavkah."
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__id
@@ -132,17 +134,17 @@ msgstr "Količina"
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__order_id
 msgid "Sale Order"
-msgstr ""
+msgstr "Prodajni nalog"
 
 #. module: sale_product_set
 #: model:ir.model.fields,field_description:sale_product_set.field_sale_product_set_wizard__skip_existing_products
 msgid "Skip Existing Products"
-msgstr ""
+msgstr "Preskoči obstoječe proizvode"
 
 #. module: sale_product_set
 #: model:ir.model,name:sale_product_set.model_sale_product_set_wizard
 msgid "Wizard model to add product set into a quotation"
-msgstr ""
+msgstr "Čarovnik za dodajanje nabora proizvodov v ponudbo"
 
 #. module: sale_product_set
 #. odoo-python
@@ -150,6 +152,7 @@ msgstr ""
 #, python-format
 msgid "You can use a sale order assigned only to following partner(s): {}"
 msgstr ""
+"Uporabite lahko prodajni nalog dodeljen izključno naslednjim partnerjem: {}"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Zadnjič spremenjeno"
