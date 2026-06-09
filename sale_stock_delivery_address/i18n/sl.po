@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-09 06:22+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,11 +15,12 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_stock_delivery_address
 #: model:ir.model.fields,field_description:sale_stock_delivery_address.field_sale_order_line__dest_address_id
 msgid "Destination Address"
-msgstr ""
+msgstr "Ciljni naslov"
 
 #. module: sale_stock_delivery_address
 #: model:ir.model.fields,help:sale_stock_delivery_address.field_sale_order_line__dest_address_id
@@ -26,13 +28,15 @@ msgid ""
 "If set this address will be the delivery address instead of the one "
 "specified in the Sales Order header."
 msgstr ""
+"Če je ta naslov nastavljen, bo veljal kot naslov za dostavo namesto naslova, "
+"navedenega v glavi prodajnega naročila."
 
 #. module: sale_stock_delivery_address
 #: model:ir.model,name:sale_stock_delivery_address.model_procurement_group
 msgid "Procurement Group"
-msgstr ""
+msgstr "Oskrbovalna skupina"
 
 #. module: sale_stock_delivery_address
 #: model:ir.model,name:sale_stock_delivery_address.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Prodajna postavka"
