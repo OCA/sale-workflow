@@ -48,6 +48,7 @@ class RecommendationCase(BaseCommon):
                 "type": "service",
                 "list_price": 25.00,
                 "categ_id": cls.cat_b.id,
+                "default_code": False,
             }
         )
         cls.prod_2 = cls.product_obj.create(
@@ -56,6 +57,7 @@ class RecommendationCase(BaseCommon):
                 "type": "service",
                 "list_price": 50.00,
                 "categ_id": cls.cat_b.id,
+                "default_code": False,
             }
         )
         cls.prod_3 = cls.product_obj.create(
