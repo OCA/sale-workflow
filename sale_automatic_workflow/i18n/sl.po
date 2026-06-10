@@ -167,6 +167,11 @@ msgid "Order Filter Domain"
 msgstr "Domena filtra naročil"
 
 #. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__property_payment_journal_id
+msgid "Payment Journal"
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__register_payment
 msgid "Register Payment"
 msgstr "Zabeleži plačilo"
@@ -229,6 +234,11 @@ msgstr "Pošlji e-pošto za potrditev naročila"
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__property_journal_id
 msgid "Set default journal to use on invoice"
 msgstr "Določi privzeti prodajni dnevnik za izdajo računov"
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__property_payment_journal_id
+msgid "Set default journal to use on payment"
+msgstr ""
 
 #. module: sale_automatic_workflow
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form

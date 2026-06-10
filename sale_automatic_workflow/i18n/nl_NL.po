@@ -167,6 +167,11 @@ msgid "Order Filter Domain"
 msgstr "Order Filter Domein"
 
 #. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__property_payment_journal_id
+msgid "Payment Journal"
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__register_payment
 msgid "Register Payment"
 msgstr "Betaling Registreren"
@@ -233,6 +238,11 @@ msgid "Set default journal to use on invoice"
 msgstr "Stel standaardjournaal in voor gebruik op factuur"
 
 #. module: sale_automatic_workflow
+#: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__property_payment_journal_id
+msgid "Set default journal to use on payment"
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
 msgid "Set selection based on a search filter:"
 msgstr "Selectie instellen op basis van een zoekfilter:"
@@ -268,8 +278,8 @@ msgid ""
 "When checked, after order confirmation, a confirmation email will be sent "
 "(if not already sent)."
 msgstr ""
-"Indien aangevinkt, wordt na orderbevestiging een bevestigingsmail verstuurd ("
-"indien nog niet verstuurd)."
+"Indien aangevinkt, wordt na orderbevestiging een bevestigingsmail verstuurd "
+"(indien nog niet verstuurd)."
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__invoice_date_is_order_date
