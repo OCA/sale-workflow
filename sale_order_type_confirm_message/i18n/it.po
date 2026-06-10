@@ -1,0 +1,99 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_type_confirm_message
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-12-20 18:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: sale_order_type_confirm_message
+#: model_terms:ir.ui.view,arch_db:sale_order_type_confirm_message.sale_order_type_confirm_message_wizard_view
+msgid "Cancel"
+msgstr "Annulla"
+
+#. module: sale_order_type_confirm_message
+#: model_terms:ir.ui.view,arch_db:sale_order_type_confirm_message.sale_order_type_confirm_message_wizard_view
+msgid "Confirm"
+msgstr "Conferma"
+
+#. module: sale_order_type_confirm_message
+#. odoo-python
+#: code:addons/sale_order_type_confirm_message/models/sale_order.py:0
+#, python-format
+msgid "Confirm Order"
+msgstr "Conferma ordine"
+
+#. module: sale_order_type_confirm_message
+#: model:ir.model.fields,field_description:sale_order_type_confirm_message.field_sale_order_type__confirmation_message
+msgid "Confirmation Message"
+msgstr "Messaggio di conferma"
+
+#. module: sale_order_type_confirm_message
+#: model:ir.model.fields,field_description:sale_order_type_confirm_message.field_sale_order_type_confirm_wizard__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: sale_order_type_confirm_message
+#: model:ir.model.fields,field_description:sale_order_type_confirm_message.field_sale_order_type_confirm_wizard__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: sale_order_type_confirm_message
+#: model:ir.model.fields,field_description:sale_order_type_confirm_message.field_sale_order_type_confirm_wizard__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_order_type_confirm_message
+#: model:ir.model.fields,field_description:sale_order_type_confirm_message.field_sale_order_type__has_confirmation_message
+msgid "Has Confirmation Message"
+msgstr "Ha messaggio di conferma"
+
+#. module: sale_order_type_confirm_message
+#: model:ir.model.fields,field_description:sale_order_type_confirm_message.field_sale_order_type_confirm_wizard__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_type_confirm_message
+#: model:ir.model.fields,field_description:sale_order_type_confirm_message.field_sale_order_type_confirm_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: sale_order_type_confirm_message
+#: model:ir.model.fields,field_description:sale_order_type_confirm_message.field_sale_order_type_confirm_wizard__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: sale_order_type_confirm_message
+#: model:ir.model.fields,field_description:sale_order_type_confirm_message.field_sale_order_type_confirm_wizard__message
+msgid "Message"
+msgstr "Messaggio"
+
+#. module: sale_order_type_confirm_message
+#: model:ir.model.fields,field_description:sale_order_type_confirm_message.field_sale_order_type_confirm_wizard__order_id
+msgid "Order"
+msgstr "Ordine"
+
+#. module: sale_order_type_confirm_message
+#: model:ir.model,name:sale_order_type_confirm_message.model_sale_order_type_confirm_wizard
+msgid "Sale Order Type Confirm Message Wizard"
+msgstr "Procedura guidata messaggio di conferma tipo ordine di vendita"
+
+#. module: sale_order_type_confirm_message
+#: model:ir.model,name:sale_order_type_confirm_message.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: sale_order_type_confirm_message
+#: model:ir.model,name:sale_order_type_confirm_message.model_sale_order_type
+msgid "Type of sale order"
+msgstr "Tipo di ordine di vendita"
