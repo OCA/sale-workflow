@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<templates>
+    <t
+        t-name="sale_order_invoice_amount.TaxTotalsField"
+        t-inherit="account.TaxTotalsField"
+        t-inherit-mode="extension"
+    >
+        <xpath expr="//table/tbody/tr[last()]" position="after">
+            <tr t-if="totals.formatted_amount_invoiced">
+                <td class="o_td_label">
+                    <label
+                        class="o_form_label o_tax_total_label"
+                    >Amount Invoiced</label>
+                </td>
+                <td>
+                    <span
+                        style="white-space: nowrap;"
+                        t-esc="totals.formatted_amount_invoiced"
+                    />
+                </td>
+            </tr>
+            <tr t-if="totals.formatted_amount_to_invoice">
+                <td class="o_td_label">
+                    <label
+                        class="o_form_label o_tax_total_label"
+                    >Amount to Invoice</label>
+                </td>
+                <td>
+                    <span
+                        style="white-space: nowrap; "
+                        t-esc="totals.formatted_amount_to_invoice"
+                    />
+                </td>
+            </tr>
+        </xpath>
+    </t>
+</templates>
