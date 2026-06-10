@@ -382,6 +382,8 @@ payment term, a pricelist and an incoterm.</p>
 <p>You can see sale types as lines of business.</p>
 <p>You are able to select a sales order type by partner so that when you
 add a partner to a sales order it will get the related info to it.</p>
+<p>When no partner or context default applies, the first available sale
+order type by sequence is used as the default.</p>
 <p>Additionally, it adds a warning message to notify users when there is a
 mismatch between the partner’s default pricelist and the effective
 pricelist set by the sales order type. This ensures clarity when
@@ -410,6 +412,9 @@ and when there is a mismatch between the two pricelists.</p>
 <ol class="arabic simple">
 <li>Go to <strong>Sales &gt; Configuration &gt; Sales Orders Types</strong></li>
 <li>Create a new sale order type with all the settings you want</li>
+<li>Use the drag handle in the list view to define the priority of the
+sale order types. The first matching type for the current company is
+used as the default when no partner or context default applies.</li>
 </ol>
 </div>
 <div class="section" id="usage">
@@ -420,6 +425,9 @@ the new type you have created before and all settings will be
 propagated.</li>
 <li>You can also define a type for a particular partner if you go to
 <em>Sales &amp; Purchases</em> and set a sale order type.</li>
+<li>When no type is set on the partner and no default is provided in the
+context, the sale order uses the first available type according to
+the sequence configured on sale order types.</li>
 </ol>
 </div>
 <div class="section" id="bug-tracker">
@@ -489,6 +497,10 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <li>Tharathip Chaweewongphan &lt;<a class="reference external" href="mailto:tharathipc&#64;ecosoft.co.th">tharathipc&#64;ecosoft.co.th</a>&gt;</li>
 <li>Isaac Gallart &lt;<a class="reference external" href="mailto:igallart&#64;puntsistemes.es">igallart&#64;puntsistemes.es</a>&gt;</li>
 <li>Denis Rousse &lt;<a class="reference external" href="mailto:denis.roussel&#64;acsone.eu">denis.roussel&#64;acsone.eu</a>&gt;</li>
+<li><a class="reference external" href="https://www.camptocamp.com">Camptocamp</a><ul>
+<li>Maksym Yankin</li>
+</ul>
+</li>
 </ul>
 <p>Do not contact contributors directly about support or help with
 technical issues.</p>

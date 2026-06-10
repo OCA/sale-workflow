@@ -42,6 +42,9 @@ You can see sale types as lines of business.
 You are able to select a sales order type by partner so that when you
 add a partner to a sales order it will get the related info to it.
 
+When no partner or context default applies, the first available sale
+order type by sequence is used as the default.
+
 Additionally, it adds a warning message to notify users when there is a
 mismatch between the partner's default pricelist and the effective
 pricelist set by the sales order type. This ensures clarity when
@@ -66,6 +69,9 @@ To configure Sale Order Types you need to:
 
 1. Go to **Sales > Configuration > Sales Orders Types**
 2. Create a new sale order type with all the settings you want
+3. Use the drag handle in the list view to define the priority of the
+   sale order types. The first matching type for the current company is
+   used as the default when no partner or context default applies.
 
 Usage
 =====
@@ -75,6 +81,9 @@ Usage
    propagated.
 2. You can also define a type for a particular partner if you go to
    *Sales & Purchases* and set a sale order type.
+3. When no type is set on the partner and no default is provided in the
+   context, the sale order uses the first available type according to
+   the sequence configured on sale order types.
 
 Bug Tracker
 ===========
@@ -145,6 +154,9 @@ Contributors
 - Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
 - Isaac Gallart <igallart@puntsistemes.es>
 - Denis Rousse <denis.roussel@acsone.eu>
+- `Camptocamp <https://www.camptocamp.com>`__
+
+  - Maksym Yankin
 
 Do not contact contributors directly about support or help with
 technical issues.

@@ -6,10 +6,12 @@ from odoo import api, fields, models
 class SaleOrderTypology(models.Model):
     _name = "sale.order.type"
     _description = "Type of sale order"
+    _order = "sequence, id"
     _check_company_auto = True
     _inherit = ["analytic.mixin"]
 
     name = fields.Char(required=True, translate=True)
+    sequence = fields.Integer(default=10)
     description = fields.Text(translate=True)
     sequence_id = fields.Many2one(
         comodel_name="ir.sequence",

@@ -65,6 +65,7 @@
         <field name="model">sale.order.type</field>
         <field name="arch" type="xml">
             <list>
+                <field name="sequence" widget="handle" />
                 <field name="name" />
                 <field
                     name="warehouse_id"

@@ -222,6 +222,16 @@ class TestSaleOrderType(BaseCommon):
         )
         self.assertEqual(sale_order.type_id, sale_type)
 
+    def test_sale_order_default_type_sequence(self):
+        high_sequence_type = self.default_sale_type_id
+        high_sequence_type.sequence = 20
+        low_sequence_type = self.sale_type_quot
+        low_sequence_type.sequence = 1
+
+        sale_order = self.sale_order_model.new()
+
+        self.assertEqual(sale_order.type_id, low_sequence_type)
+
     def test_invoice_onchange_type(self):
         sale_type = self.sale_type
         invoice = self.create_invoice()
