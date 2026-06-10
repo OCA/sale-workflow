@@ -17,10 +17,16 @@ class SaleOrder(models.Model):
         store=True,
     )
 
+    @property
+    def _user_has_auto_done_setting_group(self):
+        """Whether the current user has the "auto_done_setting" group."""
+        return self.env.user.has_group("sale.group_auto_done_setting")
+
     @api.constrains("delivery_block_id")
     def _check_not_auto_done(self):
-        auto_done = self.env.user.has_group("sale.group_auto_done_setting")
-        if auto_done and any(so.delivery_block_id for so in self):
+        if self._user_has_auto_done_setting_group and any(
+            so.delivery_block_id for so in self
+        ):
             raise ValidationError(
                 self.env._(
                     'You cannot block a sale order with "auto_done_setting" active.'
@@ -32,7 +38,11 @@ class SaleOrder(models.Model):
         """Add the 'Default Delivery Block Reason' if set in the partner
         or in the payment term."""
         for so in self:
-            if so.partner_id.default_delivery_block:
+            if so._user_has_auto_done_setting_group:
+                # Delivery blocks are incompatible with "auto_done_setting"
+                # (see _check_not_auto_done), so do not auto-apply any default.
+                so.delivery_block_id = False
+            elif so.partner_id.default_delivery_block:
                 so.delivery_block_id = so.partner_id.default_delivery_block
             else:
                 so.delivery_block_id = (
