@@ -134,7 +134,7 @@ class AutomaticWorkflowJob(models.Model):
             and "customer"
             or "supplier"
         )
-        return {
+        res = {
             "reconciled_invoice_ids": [(6, 0, invoice.ids)],
             "amount": invoice.amount_residual,
             "partner_id": invoice.partner_id.id,
@@ -142,6 +142,12 @@ class AutomaticWorkflowJob(models.Model):
             "date": fields.Date.context_today(self),
             "currency_id": invoice.currency_id.id,
         }
+        property_payment_journal_id = (
+            invoice.workflow_process_id.property_payment_journal_id
+        )
+        if property_payment_journal_id:
+            res["journal_id"] = property_payment_journal_id.id
+        return res
 
     @api.model
     def _register_payments(self, payment_filter):
@@ -160,7 +166,11 @@ class AutomaticWorkflowJob(models.Model):
         payment.action_post()
 
         domain = [
-            ("account_type", "in", ("asset_receivable", "liability_payable")),
+            (
+                "account_type",
+                "in",
+                self.env["account.payment"]._get_valid_payment_account_types(),
+            ),
             ("reconciled", "=", False),
         ]
         payment_lines = payment.move_id.line_ids.filtered_domain(domain)
@@ -169,6 +179,7 @@ class AutomaticWorkflowJob(models.Model):
             (payment_lines + lines).filtered_domain(
                 [("account_id", "=", account.id), ("reconciled", "=", False)]
             ).reconcile()
+        lines.move_id.matched_payment_ids += payment
         return payment
 
     @api.model

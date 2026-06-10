@@ -214,3 +214,16 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         )
         self.assertTrue(payment_id)
         self.assertEqual(invoice.currency_id.id, payment_id.currency_id.id)
+        self.assertEqual(invoice.payment_state, invoice._get_invoice_in_payment_state())
+
+    def test_create_payment_with_specified_payment_journal(self):
+        workflow = self.create_full_automatic()
+        workflow.register_payment = True
+        payment_journal = self.env["account.journal"].create(
+            {"name": "Payment Journal Test", "code": "TESTJOURNAL", "type": "bank"}
+        )
+        workflow.property_payment_journal_id = payment_journal
+        self.create_sale_order(workflow)
+        self.run_job()
+        payment = self.env["account.payment"].search([], limit=1, order="id desc")
+        self.assertEqual(payment.journal_id, payment_journal)
