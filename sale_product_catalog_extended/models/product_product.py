@@ -3,6 +3,7 @@
 from datetime import timedelta
 
 from odoo import api, fields, models
+from odoo.osv import expression
 
 
 class ProductProduct(models.Model):
@@ -31,6 +32,20 @@ class ProductProduct(models.Model):
                 self,
                 f"_get_product_picker_data_{domain[catalog_orig_data_bool_list.index(True)][2]}",
             )()
+            # Apply the rest of the catalog filters (category, name, etc.) on top
+            # of the products coming from the chosen origin. The catalog_origin_data
+            # and catalog_price_mode leaves are no-ops on search, so the original
+            # domain can be kept as is while restricting to the origin products.
+            matching_ids = set(
+                super()
+                .search_fetch(
+                    expression.AND([domain, [("id", "in", product_ids)]]),
+                    field_names,
+                )
+                .ids
+            )
+            # Keep the ordering provided by the origin method.
+            product_ids = [pid for pid in product_ids if pid in matching_ids]
             return self.browse(product_ids)
         return super().search_fetch(
             domain, field_names, offset=offset, limit=limit, order=order
