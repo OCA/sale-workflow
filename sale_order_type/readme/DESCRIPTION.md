@@ -8,6 +8,9 @@ You can see sale types as lines of business.
 You are able to select a sales order type by partner so that when you
 add a partner to a sales order it will get the related info to it.
 
+When no partner or context default applies, the first available sale
+order type by sequence is used as the default.
+
 Additionally, it adds a warning message to notify users when there is a mismatch between the partner's default pricelist
 and the effective pricelist set by the sales order type. This ensures clarity when creating sales orders, as the
 effective pricelist (determined by the sales order type) will take precedence over the partner's default pricelist.
