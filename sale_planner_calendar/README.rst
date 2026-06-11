@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =====================
 Sale planner calendar
 =====================
@@ -17,7 +13,7 @@ Sale planner calendar
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -95,6 +91,10 @@ Finally on *Calendar planner > Wizards* you will have again two options:
 
 #. You can change the salesperson assigned to events related to a period of time by using
    the wizard *Reassignment of salesperson*.
+
+   #. By checking the options "Assign New Salesperson To Partner" and "Unsuscribe Old
+      Salesperson" the old salesperson of the partner will be unsubscribed from the mail
+      followers.
 
 Bug Tracker
 ===========
