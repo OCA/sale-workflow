@@ -35,8 +35,18 @@ msgid "Loyalty Reward"
 msgstr ""
 
 #. module: sale_loyalty_exclude
+#: model:ir.model,name:sale_loyalty_exclude.model_loyalty_rule
+msgid "Loyalty Rule"
+msgstr ""
+
+#. module: sale_loyalty_exclude
 #: model:ir.model,name:sale_loyalty_exclude.model_product_template
 msgid "Product"
+msgstr ""
+
+#. module: sale_loyalty_exclude
+#: model:ir.model.fields,field_description:sale_loyalty_exclude.field_loyalty_rule__product_ids
+msgid "Products"
 msgstr ""
 
 #. module: sale_loyalty_exclude
