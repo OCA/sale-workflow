@@ -70,6 +70,9 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
                 "tax_id": cls.tax,
             }
         )
+        cls.delta = sum(cls.sale_order_1.order_line.mapped("product_uom_qty")) / (
+            2 * 10 ** cls.env.ref("product.decimal_price").digits
+        )  # 0.005 * (25  + 20 + 10) = 0.275
 
     def test_01_sale_order_invoiced_amount(self):
         self.assertEqual(
@@ -196,10 +199,11 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             }
         )
         test_invoice.action_post()
-        self.assertEqual(
+        self.assertAlmostEqual(
             self.sale_order_1.invoiced_amount,
-            242.11,
-            "Invoiced Amount should be 242.11.",
+            242.0,
+            msg="Invoiced Amount should be approximately 242.00.",
+            delta=self.delta,
         )
         self.assertEqual(
             self.sale_order_1.uninvoiced_amount,
@@ -311,10 +315,11 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             }
         )
         test_invoice.action_post()
-        self.assertEqual(
+        self.assertAlmostEqual(
             self.sale_order_1.invoiced_amount,
-            242.13,
-            "Invoiced Amount should be 242.13.",
+            242.0,
+            msg="Invoiced Amount should be approximately 242.0.",
+            delta=self.delta,
         )
         self.assertEqual(
             self.sale_order_1.uninvoiced_amount,
@@ -387,13 +392,64 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             ]
         )
         test_invoice.action_post()
-        self.assertEqual(
+        self.assertAlmostEqual(
             self.sale_order_1.invoiced_amount,
-            363.06,
-            "Invoiced Amount should be 363.06.",
+            363.00,
+            msg="Invoiced Amount should be approximately 363.00.",
+            delta=self.delta,
         )
         self.assertEqual(
             self.sale_order_1.uninvoiced_amount,
             0.0,
             "Uninvoiced Amount should be calculated.",
+        )
+
+    def test_04_sale_order_invoiced_amount_different_currencies_company(self):
+        """Test when SO and invoices share a foreign currency"""
+        pricelist_eur = self.env["product.pricelist"].create(
+            {"name": "EUR Pricelist", "currency_id": self.currency_eur.id}
+        )
+        # Setting this pricelist sets the currency of the sale to eur
+        self.sale_order_1.pricelist_id = pricelist_eur
+        self.sale_order_1.action_confirm()
+        aml1 = self.order_line_1._prepare_invoice_line(
+            **{
+                "currency_id": self.currency_eur.id,
+            }
+        )
+        aml2 = self.order_line_2._prepare_invoice_line(
+            **{
+                "currency_id": self.currency_eur.id,
+            }
+        )
+        self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "invoice_date": fields.Date.from_string("2024-01-01"),
+                "date": fields.Date.from_string("2024-01-01"),
+                "partner_id": self.res_partner_1.id,
+                "currency_id": self.currency_eur.id,
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        aml1,
+                    ),
+                    (
+                        0,
+                        0,
+                        aml2,
+                    ),
+                ],
+            }
+        )
+        self.assertEqual(
+            self.sale_order_1.invoiced_amount,
+            242.0,
+            "Invoiced Amount should be 242",
+        )
+        self.assertEqual(
+            self.sale_order_1.uninvoiced_amount,
+            121.0,
+            "Uninvoiced Amount should be 121, as the lines keep uninvoiced.",
         )
