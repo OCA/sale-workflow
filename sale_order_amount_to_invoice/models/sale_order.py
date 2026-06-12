@@ -14,13 +14,11 @@ class SaleOrder(models.Model):
     @api.depends("order_line.untaxed_amount_to_invoice")
     def _compute_untaxed_amount_to_invoice(self):
         """Compute the total invoice amount for each sales order."""
-        result = self.env["sale.order.line"].read_group(
+        result = self.env["sale.order.line"]._read_group(
             [("order_id", "in", self.ids)],
-            ["untaxed_amount_to_invoice:sum", "order_id"],
-            ["order_id"],
+            groupby=["order_id"],
+            aggregates=["untaxed_amount_to_invoice:sum"],
         )
-        amounts = {
-            item["order_id"][0]: item["untaxed_amount_to_invoice"] for item in result
-        }
+        amounts = {item[0].id: item[1] for item in result}
         for order in self:
             order.untaxed_amount_to_invoice = amounts.get(order.id, 0)
