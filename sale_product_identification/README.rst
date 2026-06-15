@@ -151,6 +151,8 @@ Contributors
 
   - Edilio Escalona Almira e.escalona@binhex.cloud
 
+- Ariel Barreiros (arielbarreiros96)
+
 Maintainers
 -----------
 

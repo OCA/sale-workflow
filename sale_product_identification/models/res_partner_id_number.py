@@ -3,10 +3,9 @@
 
 from datetime import datetime
 
-import pytz
-
 from odoo import api, models
 from odoo.exceptions import ValidationError
+from odoo.fields import Domain
 
 
 class ResPartnerIdNumber(models.Model):
@@ -32,55 +31,45 @@ class ResPartnerIdNumber(models.Model):
                 and x.category_id.id in diff_identification_ids
             )
             if identifications:
-                message += self.env._("\n%(product)s\n%(categories)s") % {
-                    "product": product.name,
-                    "categories": "\n".join(
+                message += self.env._(
+                    "\n%(product)s\n%(categories)s",
+                    product=product.name,
+                    categories="\n".join(
                         identifications.mapped(
                             lambda x: f"\u2003\u2022\u2009"
                             f"{x.category_id.name}\u2009"
                             f"{f'({x.message})' if x.message else ''}"
                         )
                     ),
-                }
+                )
         return message
 
     def _identification_domain(self, **params):
         """
         Build a domain to filter valid identifications
         :param params: Dictionary of expected parameters
-        :return: list: List of tuples representing the search domain
+        :return: Domain: Domain representing the search conditions
         """
-        user_tz = self.env.user.tz or self.env.context.get("tz")
-        user_pytz = pytz.timezone(user_tz) if user_tz else pytz.utc
-        now_dt = datetime.now().astimezone(user_pytz).date()
+        now_dt = datetime.now().astimezone(self.env.tz).date()
         if not params.get("partner_id", False):
-            return []
-        return [
-            ("partner_id", "=", params.get("partner_id")),
-            "|",
-            "|",
-            "|",
-            "&",
-            ("valid_from", "=", False),
-            ("valid_until", "=", False),
-            "&",
-            "&",
-            ("valid_from", "!=", False),
-            ("valid_until", "=", False),
-            ("valid_from", "<=", now_dt),
-            "&",
-            "&",
-            "&",
-            ("valid_from", "!=", False),
-            ("valid_until", "!=", False),
-            ("valid_from", "<=", now_dt),
-            ("valid_until", ">=", now_dt),
-            "&",
-            "&",
-            ("valid_from", "=", False),
-            ("valid_until", "!=", False),
-            ("valid_until", ">=", now_dt),
-        ]
+            return Domain.TRUE
+
+        no_valid_from = Domain("valid_from", "=", False)
+        no_valid_until = Domain("valid_until", "=", False)
+        valid_from_started = Domain("valid_from", "<=", now_dt)
+        valid_until_not_reached = Domain("valid_until", ">=", now_dt)
+
+        return Domain("partner_id", "=", params.get("partner_id")) & Domain.OR(
+            [
+                no_valid_from & no_valid_until,
+                ~no_valid_from & no_valid_until & valid_from_started,
+                ~no_valid_from
+                & ~no_valid_until
+                & valid_from_started
+                & valid_until_not_reached,
+                no_valid_from & ~no_valid_until & valid_until_not_reached,
+            ]
+        )
 
     @api.model
     def validate_identification(self, **params):

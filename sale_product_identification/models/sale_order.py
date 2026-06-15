@@ -3,6 +3,7 @@
 
 from odoo import Command, models
 from odoo.exceptions import ValidationError
+from odoo.fields import Domain
 
 
 class SaleOrder(models.Model):
@@ -27,11 +28,10 @@ class SaleOrder(models.Model):
         """
         message_error = ""
         for order in self:
-            message_error = self.env._("%(order)s%(message)s") % {
-                "order": f"\n{order.name}" if len(self) > 1 else "",
-                "message": self.env[
-                    "res.partner.id_number"
-                ].message_error_identifications(
+            message_error = self.env._(
+                "%(order)s%(message)s",
+                order=f"\n{order.name}" if len(self) > 1 else "",
+                message=self.env["res.partner.id_number"].message_error_identifications(
                     order.mapped("order_line.product_template_id").filtered(
                         lambda product: product.required_identification
                         and product.product_tmpl_category_ids
@@ -39,7 +39,7 @@ class SaleOrder(models.Model):
                     diff_identification,
                     required,
                 ),
-            }
+            )
 
         return message_error
 
@@ -60,11 +60,11 @@ class SaleOrder(models.Model):
         }
 
     def _get_domain_identifications(self, is_mandatory=False):
-        return [
-            ("product_tmpl_id", "in", self.order_line.product_template_id.ids),
-            ("product_tmpl_id.required_identification", "=", True),
-            ("is_mandatory", "=", is_mandatory),
-        ]
+        return (
+            Domain("product_tmpl_id", "in", self.order_line.product_template_id.ids)
+            & Domain("product_tmpl_id.required_identification", "=", True)
+            & Domain("is_mandatory", "=", is_mandatory)
+        )
 
     def _validate_opt_identification(self):
         self.ensure_one()
@@ -79,12 +79,11 @@ class SaleOrder(models.Model):
             )._eval_expression_identification(self)
             message = self.env._(
                 "The following identifications require verification, "
-                "please validate before continuing:\n %(identifications)s"
-            ) % {
-                "identifications": self._message_error_identifications(
+                "please validate before continuing:\n %(identifications)s",
+                identifications=self._message_error_identifications(
                     products_opt_identification_ids.ids
-                )
-            }
+                ),
+            )
             return self._action_generate_confirm_identification(message)
         return True
 
@@ -100,12 +99,11 @@ class SaleOrder(models.Model):
             if diff_identification:
                 message = self.env._(
                     "The following identifications are required for "
-                    "partner, please verify.\n %(identifications)s"
-                ) % {
-                    "identifications": self._message_error_identifications(
+                    "partner, please verify.\n %(identifications)s",
+                    identifications=self._message_error_identifications(
                         diff_identification.ids, True
-                    )
-                }
+                    ),
+                )
                 raise ValidationError(message)
             self.order_line.mapped(
                 "product_template_id"
@@ -114,7 +112,9 @@ class SaleOrder(models.Model):
     def action_confirm(self):
         for order in self:
             order._validate_identification()
-        if not self.env.context.get("not_verify_optional_identification", False):
+        if self and not self.env.context.get(
+            "not_verify_optional_identification", False
+        ):
             res = self[:1]._validate_opt_identification()
             if res is not True:
                 return res

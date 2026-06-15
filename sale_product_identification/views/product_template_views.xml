@@ -12,6 +12,7 @@
                         name="product_tmpl_category_ids"
                         invisible="not required_identification"
                         nolabel="1"
+                        colspan="2"
                     >
                         <list>
                             <field name="category_id" />

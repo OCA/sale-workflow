@@ -109,23 +109,17 @@ class ProductTemplateIdcategory(models.Model):
             message_error = self.env._(
                 "An error occurred while evaluating "
                 "the expression for product %(product)s and "
-                "identification category %(category)s: \n\n"
-            ) % {
-                "product": self.product_tmpl_id.name,
-                "category": self.category_id.name,
-            }
+                "identification category %(category)s: \n\n",
+                product=self.product_tmpl_id.name,
+                category=self.category_id.name,
+            )
             try:
                 context = self._get_eval_context(
                     eval_context={
                         "order": record,
                     }
                 )
-                safe_eval(
-                    self.value,
-                    context,
-                    mode="exec",
-                    nocopy=True,
-                )
+                safe_eval(self.value, context, mode="exec")
                 return context.get("result", False)
             except Exception as ex:
                 raise ValidationError(message_error + str(ex).split("\n")[0]) from ex

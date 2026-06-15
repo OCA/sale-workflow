@@ -6,6 +6,7 @@ from unittest.mock import patch
 
 from odoo import Command, fields
 from odoo.exceptions import ValidationError
+from odoo.fields import Domain
 from odoo.tests import Form
 
 from .sale_product_identification_common import TestSaleOrderIdentificationCommon
@@ -105,7 +106,7 @@ class TestSaleOrderIdentification(TestSaleOrderIdentificationCommon):
         self.assertEqual(len(category_ids), 0)
 
     def test_validate_identification_uses_validity_dates(self):
-        today = fields.Date.today()
+        today = fields.Date.context_today(self.env.user)
         expired_category = self.env["res.partner.id_category"].create(
             {"code": "id_expired", "name": "Expired"}
         )
@@ -302,3 +303,172 @@ class TestSaleOrderIdentification(TestSaleOrderIdentificationCommon):
         product_tmpl, _ = self.valid_extra_identification("# result = False")
 
         self.assertTrue(product_tmpl.product_tmpl_category_ids._eval_value(self.order))
+
+    def test_eval_value_without_expression(self):
+        product_tmpl, _ = self.valid_extra_identification(False)
+
+        prod_category = product_tmpl.product_tmpl_category_ids
+        self.assertFalse(prod_category.value)
+        self.assertTrue(prod_category._test_python_expr())
+        self.assertTrue(prod_category._eval_value(self.order))
+
+    def test_identification_domain_without_partner(self):
+        ResPartnerIdNumber = self.env["res.partner.id_number"]
+
+        self.assertEqual(ResPartnerIdNumber._identification_domain(), Domain.TRUE)
+        self.assertEqual(
+            ResPartnerIdNumber._identification_domain(partner_id=False), Domain.TRUE
+        )
+
+    def test_identification_domain_with_partner(self):
+        other_partner = self.env["res.partner"].create(
+            {
+                "name": "Other Partner",
+                "id_numbers": [
+                    Command.create(
+                        {
+                            "name": "Other ID",
+                            "category_id": self.category_corrosive.id,
+                        }
+                    )
+                ],
+            }
+        )
+        ResPartnerIdNumber = self.env["res.partner.id_number"]
+
+        id_numbers = ResPartnerIdNumber.search(
+            ResPartnerIdNumber._identification_domain(partner_id=self.partner_id.id)
+        )
+
+        self.assertEqual(id_numbers, self.partner_id.id_numbers)
+        self.assertNotIn(other_partner.id_numbers, id_numbers)
+
+    def test_message_error_identifications_without_matching_category(self):
+        message = self.env["res.partner.id_number"].message_error_identifications(
+            self.product_tmpl_with_iden, [self.category_explosive.id], True
+        )
+
+        self.assertEqual(message, "")
+
+    def test_message_error_identifications_required(self):
+        self.product_tmpl_with_iden.product_tmpl_category_ids.filtered(
+            lambda x: x.category_id == self.category_corrosive
+        ).message = "Handle with care"
+
+        message = self.env["res.partner.id_number"].message_error_identifications(
+            self.product_tmpl_with_iden
+            + self.product_tmpl_with_iden_opt
+            + self.product_tmpl_without_iden,
+            [self.category_corrosive.id, self.category_bilogical.id],
+            required=True,
+        )
+
+        self.assertEqual(
+            message,
+            "\nProduct Test Iden"
+            "\n • Corrosive (Handle with care)"
+            "\n • Bilogical "
+            "\nProduct Test optional"
+            "\n • Bilogical ",
+        )
+
+    def test_message_error_identifications_optional(self):
+        message = self.env["res.partner.id_number"].message_error_identifications(
+            self.product_tmpl_with_iden + self.product_tmpl_with_iden_opt,
+            [self.category_corrosive.id, self.category_explosive.id],
+        )
+
+        self.assertEqual(
+            message,
+            "\nProduct Test optional\n • Corrosive \n • Explosive ",
+        )
+
+    def test_validate_identification_partner_without_id_numbers(self):
+        partner = self.env["res.partner"].create({"name": "Partner Without IDs"})
+        ResPartnerIdNumber = self.env["res.partner.id_number"]
+
+        self.assertFalse(
+            ResPartnerIdNumber.validate_identification(partner_id=partner.id)
+        )
+        requested_categories = self.category_corrosive + self.category_explosive
+        self.assertEqual(
+            ResPartnerIdNumber.validate_identification(
+                partner_id=partner.id,
+                compare_identification_ids=requested_categories,
+            ),
+            requested_categories,
+        )
+
+    def test_validate_identification_validity_boundaries(self):
+        today = fields.Date.context_today(self.env.user)
+        IdCategory = self.env["res.partner.id_category"]
+        started_category = IdCategory.create({"code": "id_started", "name": "Started"})
+        not_expired_category = IdCategory.create(
+            {"code": "id_not_expired", "name": "Not expired"}
+        )
+        expired_range_category = IdCategory.create(
+            {"code": "id_expired_range", "name": "Expired range"}
+        )
+        partner = self.env["res.partner"].create(
+            {
+                "name": "Partner Validity Boundaries",
+                "id_numbers": [
+                    Command.create(
+                        {
+                            "name": "Started ID",
+                            "category_id": started_category.id,
+                            "valid_from": today - timedelta(days=1),
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "name": "Not Expired ID",
+                            "category_id": not_expired_category.id,
+                            "valid_until": today + timedelta(days=1),
+                        }
+                    ),
+                    Command.create(
+                        {
+                            "name": "Expired Range ID",
+                            "category_id": expired_range_category.id,
+                            "valid_from": today - timedelta(days=10),
+                            "valid_until": today - timedelta(days=1),
+                        }
+                    ),
+                ],
+            }
+        )
+
+        valid_categories = self.env["res.partner.id_number"].validate_identification(
+            partner_id=partner.id
+        )
+
+        self.assertEqual(valid_categories, started_category + not_expired_category)
+
+    def test_validate_identification_invalid_id_number(self):
+        self.category_corrosive.validation_code = "failed = True"
+
+        with self.assertRaises(ValidationError):
+            self.env["res.partner.id_number"].validate_identification(
+                partner_id=self.partner_id.id
+            )
+
+    def test_action_confirm_without_identifications(self):
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner_id.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "name": self.product_tmpl_without_iden.name,
+                            "product_id": self.product_without_iden.id,
+                            "product_uom_qty": 1,
+                        }
+                    )
+                ],
+            }
+        )
+
+        order.action_confirm()
+
+        self.assertEqual(order.state, "sale")
