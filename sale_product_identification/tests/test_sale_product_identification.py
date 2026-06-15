@@ -12,10 +12,10 @@ from .sale_product_identification_common import TestSaleOrderIdentificationCommo
 
 PATH_MODELS = "odoo.addons.sale_product_identification.models."
 PATH_NORMALIZE_VALUE = PATH_MODELS + (
-    "product_template_id_category." "ProductTemplateIdcategory._normalize_value"
+    "product_template_id_category.ProductTemplateIdcategory._normalize_value"
 )
 PATH_TEST_EXPRESSION = PATH_MODELS + (
-    "product_template_id_category." "ProductTemplateIdcategory._test_python_expr"
+    "product_template_id_category.ProductTemplateIdcategory._test_python_expr"
 )
 
 

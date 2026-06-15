@@ -6,31 +6,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-<<<<<<< HEAD
-<<<<<<< HEAD
 "PO-Revision-Date: 2025-10-02 17:04+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
-=======
 "Last-Translator: Automatically generated\n"
->>>>>>> Added translation using Weblate (Italian)
-=======
-"PO-Revision-Date: 2025-10-02 17:04+0000\n"
-"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
->>>>>>> Translated using Weblate (Italian)
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-<<<<<<< HEAD
-<<<<<<< HEAD
 "X-Generator: Weblate 5.10.4\n"
-=======
->>>>>>> Added translation using Weblate (Italian)
-=======
-"X-Generator: Weblate 5.10.4\n"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #. odoo-python
@@ -40,46 +25,21 @@ msgid ""
 "%(product)s\n"
 "%(categories)s"
 msgstr ""
-<<<<<<< HEAD
-<<<<<<< HEAD
 "\n"
 "%(product)s\n"
 "%(categories)s"
-=======
->>>>>>> Added translation using Weblate (Italian)
-=======
-"\n"
-"%(product)s\n"
-"%(categories)s"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #. odoo-python
 #: code:addons/sale_product_identification/models/sale_order.py:0
 msgid "%(order)s%(message)s"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "%(order)s%(message)s"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "%(order)s%(message)s"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #. odoo-python
 #: code:addons/sale_product_identification/models/res_partner_id_number.py:0
 msgid "A client is required to verify identifications."
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Il cliente è tenuto a verificare i documenti d'identità."
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Il cliente è tenuto a verificare i documenti d'identità."
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model.fields,help:sale_product_identification.field_product_template_id_category__message
@@ -87,340 +47,139 @@ msgid ""
 "Allows you to define a description of why this identification is being added.\n"
 "Example: Asking the customer for identification"
 msgstr ""
-<<<<<<< HEAD
-<<<<<<< HEAD
 "Consente di definire una descrizione del motivo per cui viene aggiunto "
 "questo identificativo.\n"
 "Esempio: richiesta di identificazione al cliente"
-=======
->>>>>>> Added translation using Weblate (Italian)
-=======
-"Consente di definire una descrizione del motivo per cui viene aggiunto "
-"questo identificativo.\n"
-"Esempio: richiesta di identificazione al cliente"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model_terms:ir.ui.view,arch_db:sale_product_identification.confirm_identification_view
 msgid "Cancel"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Annulla"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Annulla"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__category_id
 msgid "Category"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Categoria"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Categoria"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model_terms:ir.ui.view,arch_db:sale_product_identification.confirm_identification_view
 msgid "Confirm"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Conferma"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Conferma"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model,name:sale_product_identification.model_confirm_identification
 msgid "Confirm Identification Wizard"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Procedura guidata conferma identificazione"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Procedura guidata conferma identificazione"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #. odoo-python
 #: code:addons/sale_product_identification/models/sale_order.py:0
 msgid "Confirm identification"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Conferma identificazione"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Conferma identificazione"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model_terms:ir.ui.view,arch_db:sale_product_identification.confirm_identification_view
 msgid "Confirm identifications"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Conferma identificazioni"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Conferma identificazioni"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__create_uid
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__create_uid
 msgid "Created by"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Creato da"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Creato da"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__create_date
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__create_date
 msgid "Created on"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Creato il"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Creato il"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model.fields,help:sale_product_identification.field_product_template_id_category__is_mandatory
 msgid "Defines whether identification is mandatory."
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Definisce quando è obbligatoria l'identificazione."
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Definisce quando è obbligatoria l'identificazione."
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__display_name
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__display_name
 msgid "Display Name"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Nome visualizzato"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Nome visualizzato"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__id
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__id
 msgid "ID"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "ID"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "ID"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model_terms:ir.ui.view,arch_db:sale_product_identification.product_template_only_form_view
 msgid "Identification"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Identificazione"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Identificazione"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__is_mandatory
 msgid "Is Mandatory"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "È obbligatorio"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "È obbligatorio"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__write_uid
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__write_uid
 msgid "Last Updated by"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Ultimo aggiornamento di"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Ultimo aggiornamento di"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__write_date
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__write_date
 msgid "Last Updated on"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Ultimo aggiornamento il"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Ultimo aggiornamento il"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__message
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__message
 msgid "Message"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Messaggio"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Messaggio"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_confirm_identification__order_ids
 msgid "Orders"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Ordini"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Ordini"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model,name:sale_product_identification.model_res_partner_id_number
 msgid "Partner ID Number"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Numero ID partner"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Numero ID partner"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model,name:sale_product_identification.model_product_template
 msgid "Product"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Prodotto"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Prodotto"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model,name:sale_product_identification.model_product_template_id_category
 msgid "Product Template Identification Category"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Categoria identificazione modello prodotto"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Categoria identificazione modello prodotto"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template_id_category__product_tmpl_id
 msgid "Product Tmpl"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Modello prodotto"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Modello prodotto"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_product__product_tmpl_category_ids
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template__product_tmpl_category_ids
 msgid "Product Tmpl Category"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Categoria modello prodotto"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Categoria modello prodotto"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_product__required_identification
 #: model:ir.model.fields,field_description:sale_product_identification.field_product_template__required_identification
 msgid "Required Identification"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Identificazione richiesta"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Identificazione richiesta"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #: model:ir.model,name:sale_product_identification.model_sale_order
 msgid "Sales Order"
-<<<<<<< HEAD
-<<<<<<< HEAD
 msgstr "Ordine di vendita"
-=======
-msgstr ""
->>>>>>> Added translation using Weblate (Italian)
-=======
-msgstr "Ordine di vendita"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #. odoo-python
@@ -429,16 +188,8 @@ msgid ""
 "The following identifications are required for partner, please verify.\n"
 " %(identifications)s"
 msgstr ""
-<<<<<<< HEAD
-<<<<<<< HEAD
 "L'identificazione seguente è richiesta per il partner, verificare.\n"
 " %(identifications)s"
-=======
->>>>>>> Added translation using Weblate (Italian)
-=======
-"L'identificazione seguente è richiesta per il partner, verificare.\n"
-" %(identifications)s"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #. odoo-python
@@ -447,18 +198,9 @@ msgid ""
 "The following identifications require verification, please validate before continuing:\n"
 " %(identifications)s"
 msgstr ""
-<<<<<<< HEAD
-<<<<<<< HEAD
 "L'identificazione seguente richiede la verifica, verificare prima di "
 "continuare:\n"
 " %(identifications)s"
-=======
->>>>>>> Added translation using Weblate (Italian)
-=======
-"L'identificazione seguente richiede la verifica, verificare prima di "
-"continuare:\n"
-" %(identifications)s"
->>>>>>> Translated using Weblate (Italian)
 
 #. module: sale_product_identification
 #. odoo-python
@@ -467,15 +209,6 @@ msgid ""
 "There are repeated categories in the identifications configuration, the quantities are shown below.\n"
 "%(categories)s"
 msgstr ""
-<<<<<<< HEAD
-<<<<<<< HEAD
 "Ci sono delle categorie ripetute nella configurazione delle identificazioni, "
 "le quantità sono visualizzate in calce.\n"
 "%(categories)s"
-=======
->>>>>>> Added translation using Weblate (Italian)
-=======
-"Ci sono delle categorie ripetute nella configurazione delle identificazioni, "
-"le quantità sono visualizzate in calce.\n"
-"%(categories)s"
->>>>>>> Translated using Weblate (Italian)
