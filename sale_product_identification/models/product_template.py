@@ -31,14 +31,13 @@ class ProductTemplate(models.Model):
                 raise ValidationError(
                     self.env._(
                         "There are repeated categories in the identifications "
-                        "configuration, the quantities are shown below.\n%(categories)s"
-                    )
-                    % {
-                        "categories": "\n".join(
+                        "configuration, the quantities are "
+                        "shown below.\n%(categories)s",
+                        categories="\n".join(
                             f"{category[0].name}:\u2009{category[1]}"
                             for category in category_ids
-                        )
-                    }
+                        ),
+                    )
                 )
 
     def _eval_expression_identification(self, record=None):
@@ -50,24 +49,27 @@ class ProductTemplate(models.Model):
                     failed_categories |= prod_category
             if failed_categories:
                 categories = "\n".join(
-                    self.env._("\u2003\u2022\u2009%(category)s%(details)s")
-                    % {
-                        "category": category.category_id.name,
-                        "details": f" ({category.message})" if category.message else "",
-                    }
+                    self.env._(
+                        "\u2003\u2022\u2009%(category)s%(details)s",
+                        category=category.category_id.name,
+                        details=f" ({category.message})" if category.message else "",
+                    )
                     for category in failed_categories
                 )
                 messages.append(
-                    self.env._("\n%(product)s\n%(categories)s")
-                    % {"product": product.name, "categories": categories}
+                    self.env._(
+                        "\n%(product)s\n%(categories)s",
+                        product=product.name,
+                        categories=categories,
+                    )
                 )
         if messages:
             raise ValidationError(
                 self.env._(
                     "Some identifications were detected that could not be validated. "
                     "\nWe recommend reviewing your settings and the data you entered "
-                    "to correct the problem. %(details)s"
+                    "to correct the problem. %(details)s",
+                    details="".join(messages),
                 )
-                % {"details": "".join(messages)}
             )
         return True
