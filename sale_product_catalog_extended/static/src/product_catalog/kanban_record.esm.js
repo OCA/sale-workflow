@@ -69,6 +69,16 @@ patch(ProductCatalogKanbanRecord.prototype, {
             {onClose: () => this.props.list.model.load()}
         );
     },
+    updateQuantity(quantity) {
+        // Optimistically show the last sale price as soon as the product is
+        // added, so the displayed unit price does not flash from the pricelist
+        // price to the last sale price while the (debounced) RPC is in flight.
+        const data = this.props.record.productCatalogData;
+        if (quantity && data.catalogShowLastPrice && data.lastPrice) {
+            data.price = data.lastPrice;
+        }
+        return super.updateQuantity(quantity);
+    },
     async _updateQuantity() {
         const lineId = this.props.record.productCatalogData.lineId;
         if (lineId) {
