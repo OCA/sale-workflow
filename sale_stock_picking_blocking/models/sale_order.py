@@ -15,6 +15,8 @@ class SaleOrder(models.Model):
         string="Delivery Block Reason",
         compute="_compute_delivery_block_id",
         store=True,
+        readonly=False,
+        precompute=True,
     )
 
     @api.constrains("delivery_block_id")
@@ -27,11 +29,23 @@ class SaleOrder(models.Model):
                 )
             )
 
-    @api.depends("partner_id", "payment_term_id")
+    @api.depends(
+        "partner_id",
+        "partner_id.default_delivery_block",
+        "payment_term_id",
+        "payment_term_id.default_delivery_block_reason_id",
+    )
     def _compute_delivery_block_id(self):
         """Add the 'Default Delivery Block Reason' if set in the partner
-        or in the payment term."""
+        or in the payment term.
+
+        Only seed the default when no reason is set yet: a manually chosen
+        reason must never be wiped by a later recompute (e.g. on module
+        upgrade/redeploy), otherwise blocked orders would get deliveries.
+        """
         for so in self:
+            if so.delivery_block_id:
+                continue
             if so.partner_id.default_delivery_block:
                 so.delivery_block_id = so.partner_id.default_delivery_block
             else:
