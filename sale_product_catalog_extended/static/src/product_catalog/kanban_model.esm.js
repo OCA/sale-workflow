@@ -6,6 +6,12 @@ import {patch} from "@web/core/utils/patch";
 patch(ProductCatalogKanbanModel.prototype, {
     _getOrderLinesInfoParams(params, productIds) {
         const baseParams = super._getOrderLinesInfoParams(params, productIds);
+        // The last price feature is sale specific. Other catalogs (e.g. purchase)
+        // would forward this kwarg down to methods that do not accept it
+        // (PurchaseOrder._get_product_catalog_record_lines).
+        if (baseParams.res_model !== "sale.order") {
+            return baseParams;
+        }
         const catalogShowLastPrice = (params.domain || []).some(
             (cond) =>
                 Array.isArray(cond) &&
