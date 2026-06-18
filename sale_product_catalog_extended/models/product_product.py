@@ -21,17 +21,36 @@ class ProductProduct(models.Model):
     )
 
     @api.model
+    def _get_catalog_origin_product_ids(self, domain):
+        """Return the ordered product ids for the ``catalog_origin_data`` leaf
+        found in ``domain`` (e.g. last sales), or ``None`` if the domain has no
+        such leaf.
+
+        The ``catalog_origin_data`` field is a display-only filter: its search
+        method is a no-op, so the actual restriction to the origin products has
+        to be resolved here through the matching ``_get_product_picker_data_*``
+        method.
+        """
+        for leaf in domain:
+            if (
+                isinstance(leaf, list | tuple)
+                and len(leaf) == 3
+                and leaf[0] == "catalog_origin_data"
+            ):
+                method_name = f"_get_product_picker_data_{leaf[2]}"
+                # The origin value may be a leftover (e.g. a saved filter or a
+                # default) of a module that provided it but is no longer loaded.
+                # In that case ignore the origin instead of crashing the catalog.
+                if not hasattr(self, method_name):
+                    return None
+                return getattr(self, method_name)()
+        return None
+
+    @api.model
     def search_fetch(self, domain, field_names, offset=0, limit=None, order=None):
-        catalog_orig_data_bool_list = [
-            "catalog_origin_data" in subdomain for subdomain in domain
-        ]
-        if any(catalog_orig_data_bool_list):
-            # Get value of catalog_origin_data from domain to know which method throw.
-            # Then browse the ids to respect the order.
-            product_ids = getattr(
-                self,
-                f"_get_product_picker_data_{domain[catalog_orig_data_bool_list.index(True)][2]}",
-            )()
+        # Browse the ids to respect the order given by the origin method.
+        product_ids = self._get_catalog_origin_product_ids(domain)
+        if product_ids is not None:
             # Apply the rest of the catalog filters (category, name, etc.) on top
             # of the products coming from the chosen origin. The catalog_origin_data
             # and catalog_price_mode leaves are no-ops on search, so the original
@@ -49,6 +68,43 @@ class ProductProduct(models.Model):
             return self.browse(product_ids)
         return super().search_fetch(
             domain, field_names, offset=offset, limit=limit, order=order
+        )
+
+    @api.model
+    def _catalog_origin_search_panel_kwargs(self, kwargs):
+        """Restrict the search panel computation (categories, filters and their
+        counters) to the products of the selected catalog origin.
+
+        The origin leaf may arrive through any of the search panel domains
+        (``search_domain`` for the base search, ``category_domain`` and
+        ``filter_domain`` for the other sections). Since its search method is a
+        no-op, without this the panel would be computed over the whole catalog
+        instead of over the products actually shown for the chosen origin.
+        """
+        domain = (
+            kwargs.get("search_domain", [])
+            + kwargs.get("category_domain", [])
+            + kwargs.get("filter_domain", [])
+        )
+        product_ids = self._get_catalog_origin_product_ids(domain)
+        if product_ids is None:
+            return kwargs
+        kwargs = dict(kwargs)
+        kwargs["search_domain"] = expression.AND(
+            [kwargs.get("search_domain", []), [("id", "in", product_ids)]]
+        )
+        return kwargs
+
+    @api.model
+    def search_panel_select_range(self, field_name, **kwargs):
+        return super().search_panel_select_range(
+            field_name, **self._catalog_origin_search_panel_kwargs(kwargs)
+        )
+
+    @api.model
+    def search_panel_select_multi_range(self, field_name, **kwargs):
+        return super().search_panel_select_multi_range(
+            field_name, **self._catalog_origin_search_panel_kwargs(kwargs)
         )
 
     @api.model
