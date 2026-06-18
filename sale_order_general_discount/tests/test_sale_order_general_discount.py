@@ -180,3 +180,57 @@ class TestSaleOrderLineInput(TransactionCase):
             .id,
             self.product2.product_tmpl_id.id,
         )
+
+    def test_downpayment_line_does_not_get_general_discount(self):
+        sale_order = self.env["sale.order"].create(
+            [
+                {
+                    "partner_id": self.partner.id,
+                    "order_line": [
+                        (
+                            0,
+                            0,
+                            {
+                                "name": self.product.name,
+                                "product_id": self.product.id,
+                                "product_uom_qty": 1,
+                                "product_uom_id": self.product.uom_id.id,
+                                "price_unit": 100.0,
+                            },
+                        )
+                    ],
+                }
+            ]
+        )
+        sale_order.general_discount = 10.0
+        sale_order.action_confirm()
+
+        wizard = (
+            self.env["sale.advance.payment.inv"]
+            .with_context(
+                active_model="sale.order",
+                active_ids=sale_order.ids,
+                active_id=sale_order.id,
+            )
+            .create(
+                [
+                    {
+                        "advance_payment_method": "fixed",
+                        "fixed_amount": 50.0,
+                    }
+                ]
+            )
+        )
+        wizard.create_invoices()
+
+        downpayment_line = sale_order.order_line.filtered(
+            lambda line: line.is_downpayment and not line.display_type
+        )
+        self.assertEqual(len(downpayment_line), 1)
+        self.assertEqual(downpayment_line.discount, 0.0)
+        self.assertEqual(
+            sale_order.order_line.filtered(
+                lambda line: not line.is_downpayment
+            ).discount,
+            10.0,
+        )
