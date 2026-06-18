@@ -3,7 +3,6 @@
 
 from odoo import _, fields, models
 from odoo.exceptions import UserError
-from odoo.tools import float_compare
 
 
 class SaleOderLine(models.Model):
@@ -19,22 +18,12 @@ class SaleOderLine(models.Model):
             )
 
     def action_confirm(self):
-        dp = self.env["decimal.precision"].precision_get("Product Price")
         if not self.env.user.has_group("sales_team.group_sale_manager") and any(
             so.price_below_semaphore for so in self
         ):
             lines_price_below_pricelist = self.order_line.filtered(
                 lambda line: line.price_below_semaphore
-                and float_compare(
-                    line.price_reduce_taxinc
-                    if line.company_id.account_price_include == "tax_included"
-                    else line.price_reduce_taxexcl,
-                    line.order_id.pricelist_id._get_product_price(
-                        line.product_id, line.product_uom_qty
-                    ),
-                    precision_digits=dp,
-                )
-                < 0
+                and line._is_price_below_pricelist()
             )
             if lines_price_below_pricelist:
                 raise UserError(

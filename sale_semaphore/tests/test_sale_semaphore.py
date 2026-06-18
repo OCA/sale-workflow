@@ -30,13 +30,22 @@ class TestSaleSemaphore(BaseCommon):
                 "standard_price": 50.0,
                 "type": "consu",
                 "sale_ok": True,
-                "semaphore_active": True,
+                "semaphore_active": "yes",
                 "semaphore_discount_success": 0.0,
                 "semaphore_discount_warning": 10.0,
                 "semaphore_discount_danger": 20.0,
             }
         )
         cls.order = cls.env["sale.order"].create({"partner_id": cls.partner.id})
+        cls.salesperson = cls.env["res.users"].create(
+            {
+                "name": "Semaphore Salesperson",
+                "login": "semaphore_salesperson",
+                "groups_id": [
+                    (6, 0, [cls.env.ref("sales_team.group_sale_salesman").id])
+                ],
+            }
+        )
 
     def _create_line(self, price_unit):
         return self.env["sale.order.line"].create(
@@ -54,17 +63,17 @@ class TestSaleSemaphore(BaseCommon):
         template = self.product.product_tmpl_id
         template.write(
             {
-                "semaphore_active": True,
+                "semaphore_active": "yes",
                 "semaphore_discount_success": 5.0,
                 "semaphore_discount_warning": 12.0,
                 "semaphore_discount_danger": 20.0,
             }
         )
-        self.assertTrue(self.product.semaphore_active)
+        self.assertEqual(self.product.semaphore_active, "yes")
         self.assertEqual(self.product.semaphore_discount_success, 5.0)
         self.assertEqual(self.product.semaphore_discount_warning, 12.0)
         self.assertEqual(self.product.semaphore_discount_danger, 20.0)
-        self.assertTrue(template.semaphore_active)
+        self.assertEqual(template.semaphore_active, "yes")
         self.assertEqual(template.semaphore_discount_success, 5.0)
         self.assertEqual(template.semaphore_discount_warning, 12.0)
         self.assertEqual(template.semaphore_discount_danger, 20.0)
@@ -106,19 +115,9 @@ class TestSaleSemaphore(BaseCommon):
             data,
             {"success": 0.0, "warning": 10.0, "danger": 20.0},
         )
-        self.product.write(
-            {
-                "semaphore_active": False,
-                "semaphore_discount_success": 99.0,
-                "semaphore_discount_warning": 99.0,
-                "semaphore_discount_danger": 99.0,
-            }
-        )
+        self.product.write({"semaphore_active": "no"})
         data = self.product._get_semaphore_data()
-        self.assertEqual(
-            data,
-            {"success": 0.0, "warning": 10.0, "danger": 20.0},
-        )
+        self.assertFalse(data)
 
     def test_sale_line_computes_semaphore_and_below_limit_flag(self):
         success_line = self._create_line(100.0)
@@ -134,7 +133,7 @@ class TestSaleSemaphore(BaseCommon):
         self.assertFalse(danger_line.price_below_semaphore)
         self.assertTrue(below_limit_line.price_below_semaphore)
         with self.assertRaises(UserError):
-            self.order.with_user(self.env.ref("base.user_demo")).action_confirm()
+            self.order.with_user(self.salesperson).action_confirm()
 
     def test_sale_line_uses_category_configuration(self):
         self.product.write(
@@ -156,3 +155,75 @@ class TestSaleSemaphore(BaseCommon):
         line = self._create_line(95.0)
         invoice_vals = line._prepare_invoice_line()
         self.assertEqual(invoice_vals["semaphore"], "warning")
+
+    def _create_fixed_price_pricelist(self, name, price):
+        return self.env["product.pricelist"].create(
+            {
+                "name": name,
+                "item_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "applied_on": "1_product",
+                            "product_tmpl_id": self.product.product_tmpl_id.id,
+                            "compute_price": "fixed",
+                            "fixed_price": price,
+                        },
+                    )
+                ],
+            }
+        )
+
+    def test_pricelist_price_in_red_zone_does_not_block(self):
+        """A line priced exactly at the pricelist must confirm even if the
+        pricelist price falls in the red zone and has more decimals than the
+        currency (regression: rounding made it look below the pricelist)."""
+        # Danger threshold = 100 * (1 - 20%) = 80, so 79.9902 is in the red zone.
+        pricelist = self._create_fixed_price_pricelist("Semaphore Pricelist", 79.9902)
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "pricelist_id": pricelist.id,
+                "user_id": self.salesperson.id,
+            }
+        )
+        line = self.env["sale.order.line"].create(
+            {
+                "order_id": order.id,
+                "product_id": self.product.id,
+                "name": self.product.name,
+                "product_uom_qty": 1.0,
+                "product_uom": self.product.uom_id.id,
+            }
+        )
+        # Price comes straight from the pricelist (salesperson did not touch it).
+        self.assertEqual(line.price_unit, 79.9902)
+        self.assertTrue(line.price_below_semaphore)
+        self.assertFalse(line._is_price_below_pricelist())
+        # Must not raise for a regular salesperson.
+        order.with_user(self.salesperson).action_confirm()
+        self.assertEqual(order.state, "sale")
+
+    def test_price_below_pricelist_blocks(self):
+        """Lowering the price below the pricelist still blocks confirmation."""
+        pricelist = self._create_fixed_price_pricelist(
+            "Semaphore Pricelist Block", 79.9902
+        )
+        order = self.env["sale.order"].create(
+            {"partner_id": self.partner.id, "pricelist_id": pricelist.id}
+        )
+        line = self.env["sale.order.line"].create(
+            {
+                "order_id": order.id,
+                "product_id": self.product.id,
+                "name": self.product.name,
+                "product_uom_qty": 1.0,
+                "product_uom": self.product.uom_id.id,
+                "price_unit": 70.0,
+            }
+        )
+        self.assertTrue(line.price_below_semaphore)
+        self.assertTrue(line._is_price_below_pricelist())
+        with self.assertRaises(UserError):
+            order.with_user(self.salesperson).action_confirm()
