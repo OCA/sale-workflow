@@ -292,7 +292,7 @@ class SalePlannerCalendarSummary(models.Model):
             hour_str = str(timedelta(hours=hour_float)).zfill(8)
         date_str = "{} {}".format(fields.Date.to_string(date), hour_str)
         date_time = fields.Datetime.to_datetime(date_str)
-        user_tz = pytz.timezone(self.env.user.tz)
+        user_tz = pytz.timezone(self.env.user.tz or "UTC")
         utc_tz = pytz.timezone("UTC")
         time_utc = user_tz.localize(date_time).astimezone(utc_tz).replace(tzinfo=None)
         return time_utc

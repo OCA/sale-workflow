@@ -219,6 +219,34 @@
         </field>
     </record>
 
+    <record id="view_sale_planner_calendar_change_hour_form" model="ir.ui.view">
+        <field name="name">sale.planner.calendar.change.hour.form</field>
+        <field name="model">calendar.event</field>
+        <field name="priority" eval="999" />
+        <field name="arch" type="xml">
+            <form string="Sale planner calendar event">
+                <sheet>
+                    <group>
+                        <field name="hour" widget="float_time" />
+                    </group>
+                    <footer invisible="context.get('hide_footer', False)">
+                        <button
+                            name="action_apply_change_hour_wiz"
+                            type="object"
+                            string="Apply"
+                            class="btn-primary"
+                        />
+                        <button
+                            string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"
+                        />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
     <record id="view_sale_planner_calendar_issue_form" model="ir.ui.view">
         <field name="name">sale.planner.calendar.issue.form</field>
         <field name="model">calendar.event</field>
@@ -289,6 +317,15 @@
           'hide_footer': True
           }</field>
     </record>
+    <record id="action_sale_planner_calendar_change_hour" model="ir.actions.act_window">
+        <field name="name">Sale planner calendar change hour</field>
+        <field name="res_model">calendar.event</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field
+            name="context"
+        >{'form_view_ref': 'sale_planner_calendar.view_sale_planner_calendar_change_hour_form'}</field>
+    </record>
 
     <record id="view_sale_planner_calendar_rating_form" model="ir.ui.view">
         <field name="name">sale.planner.calendar.rating.form</field>
@@ -358,6 +395,8 @@
                 <field name="calendar_issue_type_id" />
                 <field name="sale_planner_currency_id" />
                 <field name="comment" />
+                <field name="hour" />
+                <field name="duration" />
                 <field name="sale_planner_rating" />
                 <templates>
                     <t t-name="kanban-box">
@@ -365,8 +404,19 @@
                             <div class="row align-items-center">
                                 <div class="col col-lg-2 col-xl-2 pe-0 text-center">
                                     <div class="row" title="Clock">
-                                        <div class="col text-center">
-                                            <i class="fa fa-clock-o fa-2x" />
+                                        <div
+                                            class="col text-center d-flex justify-content-center"
+                                        >
+                                            <widget name="move_previous_record" />
+                                            <button
+                                                class="btn btn-secondary"
+                                                name="action_open_change_hour_wiz"
+                                                title="Change hour"
+                                                type="object"
+                                            >
+                                                <i class="fa fa-clock-o fa-2x" />
+                                            </button>
+                                            <widget name="move_after_record" />
                                         </div>
                                     </div>
                                     <div class="row">
@@ -557,6 +607,15 @@
                                                     name="invoice_amount_residual"
                                                 />
                                             </div>
+                                            <div
+                                                t-if="record.invoice_date_due.raw_value "
+                                                class="text-center"
+                                            >
+                                                <field
+                                                    class="text-center"
+                                                    name="invoice_date_due"
+                                                />
+                                            </div>
                                         </div>
                                         <div
                                             t-if="record.sanitized_partner_mobile.value"
@@ -604,6 +663,15 @@
                                                 />
                                                 <div class="o_stat_text">Issue</div>
                                             </button>
+                                            <div
+                                                t-if="record.calendar_issue_type_id.raw_value "
+                                                class="text-center mt4"
+                                            >
+                                                <field
+                                                    class="text-center"
+                                                    name="calendar_issue_type_id"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

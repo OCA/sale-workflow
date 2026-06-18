@@ -29,6 +29,8 @@ class SaleOrder(models.Model):
             )
             if delivery_event:
                 order.commitment_date = delivery_event.start
+            if order.company_id.sale_planner_done_on_sale_confirm:
+                order.sale_planner_calendar_event_id.action_done()
         return super()._action_confirm()
 
     def _prepare_calendar_event_planner(self):

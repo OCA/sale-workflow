@@ -68,6 +68,11 @@ class CalendarEvent(models.Model):
         compute_sudo=True,
         currency_field="sale_planner_currency_id",
     )
+    invoice_date_due = fields.Date(
+        string="Due Date",
+        compute="_compute_invoice_amount_residual",
+        compute_sudo=True,
+    )
     off_planning = fields.Boolean(copy=False)
     payment_sheet_line_ids = fields.One2many(
         comodel_name="sale.payment.sheet.line",
@@ -99,12 +104,10 @@ class CalendarEvent(models.Model):
         ],
     )
 
-    @api.depends("recurrence_id", "recurrence_id.calendar_event_ids")
+    @api.depends("recurrence_id.base_event_id")
     def _compute_is_base_recurrent_event(self):
-        for record in self:
-            record.is_base_recurrent_event = (
-                record == record.recurrence_id.calendar_event_ids.sorted("start")[:1]
-            )
+        for event in self:
+            event.is_base_recurrent_event = event == event.recurrence_id.base_event_id
 
     @api.depends("start")
     def _compute_hour(self):
@@ -126,20 +129,29 @@ class CalendarEvent(models.Model):
                 ("payment_state", "!=", "paid"),
                 ("partner_id", "in", partner_ids),
             ],
-            fields=["amount_residual_signed"],
+            fields=["amount_residual_signed", "invoice_date_due:min"],
             groupby=["partner_id"],
         )
-        invoice_dic = {g["partner_id"][0]: g["amount_residual_signed"] for g in groups}
+        invoice_dic = {
+            g["partner_id"][0]: {
+                "amount_residual_signed": g["amount_residual_signed"],
+                "invoice_date_due": g["invoice_date_due"],
+            }
+            for g in groups
+        }
         for rec in self:
-            amount_residual = invoice_dic.get(
-                rec.target_partner_id.commercial_partner_id.id, 0.0
+            partner_vals = invoice_dic.get(
+                rec.target_partner_id.commercial_partner_id.id,
+                {"amount_residual_signed": 0.0, "invoice_date_due": False},
             )
+            amount_residual = partner_vals["amount_residual_signed"]
             payment_amount = sum(
                 rec.payment_sheet_line_ids.filtered(
                     lambda p: p.sheet_id.state == "open"
                 ).mapped("amount")
             )
             rec.invoice_amount_residual = amount_residual - payment_amount
+            rec.invoice_date_due = partner_vals["invoice_date_due"]
 
     @api.depends("target_partner_id")
     def _compute_partner_name(self):
@@ -214,14 +226,23 @@ class CalendarEvent(models.Model):
         for rec in self:
             duration = rec.duration
             date = self._get_hour_tz_offset()
+            days_diff = 0
+            if rec.hour < 0:
+                days_diff = -1
+                rec.hour += 24
+            elif rec.hour > 23:
+                days_diff = 1
+                rec.hour -= 24
             new_time = date.replace(
                 hour=int(rec.hour), minute=int(round((rec.hour % 1) * 60))
             )
+            if days_diff:
+                new_time += timedelta(days=days_diff)
             # Force to onchange get correct value
             new_time = new_time.astimezone(pytz.utc).replace(tzinfo=None)
             rec.write(
                 {
-                    "recurrence_update": "all_events",
+                    "recurrence_update": rec.recurrence_update,
                     "start": new_time,
                     "stop": new_time + timedelta(minutes=round((duration or 0.5) * 60)),
                 }
@@ -373,6 +394,16 @@ class CalendarEvent(models.Model):
         return action
 
     def action_apply_issue(self):
+        pass
+
+    def action_open_change_hour_wiz(self):
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "sale_planner_calendar.action_sale_planner_calendar_change_hour"
+        )
+        action["res_id"] = self.id
+        return action
+
+    def action_apply_change_hour_wiz(self):
         pass
 
     def action_open_rating(self):
