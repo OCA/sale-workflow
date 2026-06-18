@@ -939,7 +939,6 @@ msgstr "Asistente de planificación"
 #. module: sale_planner_calendar
 #: model:ir.actions.act_window,name:sale_planner_calendar.action_sale_planner_calendar_change_hour
 #, fuzzy
-#| msgid "Sale planner calendar Wizard"
 msgid "Sale planner calendar change hour"
 msgstr "Asistente de planificación"
 
