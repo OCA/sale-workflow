@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_team_payment_term
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+
+#. module: sale_team_payment_term
+#: model:ir.model.fields,field_description:sale_team_payment_term.field_sale_order__payment_term_id
+msgid "Payment Terms"
+msgstr ""
+
+#. module: sale_team_payment_term
+#: model:ir.model.fields,field_description:sale_team_payment_term.field_crm_team__team_payment_term_id
+msgid "Payment term"
+msgstr ""
+
+#. module: sale_team_payment_term
+#: model:ir.model,name:sale_team_payment_term.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_team_payment_term
+#: model:ir.model,name:sale_team_payment_term.model_crm_team
+msgid "Sales Team"
+msgstr ""
+
+#. module: sale_team_payment_term
+#: model:ir.model.fields,help:sale_team_payment_term.field_crm_team__team_payment_term_id
+msgid ""
+"This payment method will be used if none is indicated on the customer "
+"profil, and will apply on sale orders and invoices."
+msgstr ""
