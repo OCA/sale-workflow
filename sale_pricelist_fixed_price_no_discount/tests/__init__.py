@@ -1,0 +1,1 @@
+from . import test_sale_pricelist_fixed_price_no_discount
