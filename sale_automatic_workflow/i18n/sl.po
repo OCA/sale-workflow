@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2026-06-09 05:53+0000\n"
+"PO-Revision-Date: 2026-06-22 17:11+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -169,7 +169,7 @@ msgstr "Domena filtra naročil"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__property_payment_journal_id
 msgid "Payment Journal"
-msgstr ""
+msgstr "Dnevnik plačil"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__register_payment
@@ -238,7 +238,7 @@ msgstr "Določi privzeti prodajni dnevnik za izdajo računov"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_sale_workflow_process__property_payment_journal_id
 msgid "Set default journal to use on payment"
-msgstr ""
+msgstr "Nastavi privzeti dnevnik za plačila"
 
 #. module: sale_automatic_workflow
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.sale_workflow_process_view_form
