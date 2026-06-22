@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-22 17:17+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,27 +15,28 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: portal_sale_order_search
 #. odoo-python
 #: code:addons/portal_sale_order_search/controllers/main.py:0
 msgid "All"
-msgstr ""
+msgstr "Vse"
 
 #. module: portal_sale_order_search
 #. odoo-python
 #: code:addons/portal_sale_order_search/controllers/main.py:0
 msgid "Customer"
-msgstr ""
+msgstr "Kupec"
 
 #. module: portal_sale_order_search
 #. odoo-python
 #: code:addons/portal_sale_order_search/controllers/main.py:0
 msgid "Order Customer Ref"
-msgstr ""
+msgstr "Sklic kupca"
 
 #. module: portal_sale_order_search
 #. odoo-python
 #: code:addons/portal_sale_order_search/controllers/main.py:0
 msgid "Order Ref"
-msgstr ""
+msgstr "Sklic"
