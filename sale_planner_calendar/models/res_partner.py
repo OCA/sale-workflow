@@ -17,11 +17,11 @@ class ResPartner(models.Model):
     def _get_planner_calendar_event_domain(self):
         return [
             ("target_partner_id", "in", self.ids),
-            ("recurrency", "!=", False),
+            ("recurrency", "=", True),
             ("is_base_recurrent_event", "=", True),
             "|",
-            ("recurrence_id.end_type", "=", "forever"),
-            ("recurrence_id.until", ">", fields.Date.today()),
+            ("recurrence_id.until", "=", False),
+            ("recurrence_id.until", ">=", fields.Date.today()),
         ]
 
     def action_calendar_planner(self):

@@ -154,6 +154,25 @@ class TestSalePlannerCalendar(AccountTestInvoicingCommon):
             event.target_partner_id._display_address(True).replace("\n", " "),
         )
 
+    def test_partner_calendar_planner_active_recurrent_event_domain(self):
+        event = self.planned_events.filtered(
+            lambda planner_event: planner_event.target_partner_id == self.partner_1
+        )[:1]
+        action = self.partner_1.action_calendar_planner()
+        self.assertIn(event, self.CalendarEvent.search(action["domain"]))
+
+        event.recurrence_id.until = fields.Date.today()
+        action = self.partner_1.action_calendar_planner()
+        self.assertIn(event, self.CalendarEvent.search(action["domain"]))
+
+        event.recurrence_id.until = fields.Date.today() - timedelta(days=1)
+        action = self.partner_1.action_calendar_planner()
+        self.assertNotIn(event, self.CalendarEvent.search(action["domain"]))
+
+        event.recurrence_id.write({"end_type": "forever", "until": False})
+        action = self.partner_1.action_calendar_planner()
+        self.assertIn(event, self.CalendarEvent.search(action["domain"]))
+
     def test_planner_calendar_wizard(self):
         wiz_form = Form(self.env["sale.planner.calendar.wizard"])
         # This user has three planned events
