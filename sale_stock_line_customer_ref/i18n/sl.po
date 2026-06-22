@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-22 17:40+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,71 +15,72 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_move__customer_ref
 #: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_move_line__customer_ref
 msgid "Customer Ref"
-msgstr ""
+msgstr "Sklic kupca"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_sale_order_line__customer_ref
 #: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_quant_package__customer_ref
 msgid "Customer Ref."
-msgstr ""
+msgstr "Sklic kupca"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model.fields,help:sale_stock_line_customer_ref.field_stock_quant_package__customer_ref
 msgid "Customer reference coming from the sale order line."
-msgstr ""
+msgstr "Sklic kupca iz prodajne postavke."
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_package_level__has_customer_ref
 #: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_picking__has_customer_ref
 msgid "Has Customer Ref"
-msgstr ""
+msgstr "Ima sklic kupca"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model,name:sale_stock_line_customer_ref.model_stock_quant_package
 msgid "Packages"
-msgstr ""
+msgstr "Pakiranj"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model,name:sale_stock_line_customer_ref.model_stock_move_line
 msgid "Product Moves (Stock Move Line)"
-msgstr ""
+msgstr "Premiki izdelkov (postavke premika zalog)"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model.fields,field_description:sale_stock_line_customer_ref.field_stock_move__customer_ref_sale_line_id
 msgid "Sale Line With Customer Ref."
-msgstr ""
+msgstr "Prodajna postavka s sklicem kupca"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model,name:sale_stock_line_customer_ref.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Postavka prodajnega naloga"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model,name:sale_stock_line_customer_ref.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Premik zaloge"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model,name:sale_stock_line_customer_ref.model_stock_package_level
 msgid "Stock Package Level"
-msgstr ""
+msgstr "Nivo pakiranja zalog"
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model.fields,help:sale_stock_line_customer_ref.field_stock_package_level__has_customer_ref
 msgid "Technical field to display 'Customer Ref' column in a package level."
-msgstr ""
+msgstr "Tehnično polje za prikaz stolpca 'Sklic kupca' na nivoju pakiranja."
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model.fields,help:sale_stock_line_customer_ref.field_stock_picking__has_customer_ref
 msgid "Technical field to display 'Customer Ref' column on moves."
-msgstr ""
+msgstr "Tehnično polje za prikaz stolpca 'Sklic kupca' na premikih."
 
 #. module: sale_stock_line_customer_ref
 #: model:ir.model,name:sale_stock_line_customer_ref.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Premestitev"
