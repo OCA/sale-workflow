@@ -5,6 +5,7 @@
 from datetime import timedelta
 
 from odoo import Command, api, fields, models
+from odoo.osv import expression
 
 
 class SalePlannerCalendarReassignWiz(models.TransientModel):
@@ -73,15 +74,21 @@ class SalePlannerCalendarReassignWiz(models.TransientModel):
             ("target_partner_id", "!=", False),
         ]
         if self.user_id:
-            domain.append(("user_id", "=", self.user_id.id))
+            domain = expression.AND([domain, [("user_id", "=", self.user_id.id)]])
         if self.partner_user_id:
-            domain.append(("target_partner_id.user_id", "=", self.partner_user_id.id))
+            domain = expression.AND(
+                [domain, [("target_partner_id.user_id", "=", self.partner_user_id.id)]]
+            )
         if self.partner_id:
-            domain.append(("target_partner_id", "=", self.partner_id.id))
+            domain = expression.AND(
+                [domain, [("target_partner_id", "=", self.partner_id.id)]]
+            )
         if self.event_type_id:
-            domain.append(("categ_ids", "in", self.event_type_id.ids))
+            domain = expression.AND(
+                [domain, [("categ_ids", "in", self.event_type_id.ids)]]
+            )
         if self.week_list:
-            domain.append((self.week_list, "=", True))
+            domain = expression.AND([domain, [(self.week_list, "=", True)]])
         calendar_events = self.env["calendar.event"].search(domain)
         self.line_ids = False
         for calendar_event in calendar_events:

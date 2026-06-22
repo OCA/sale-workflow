@@ -6,12 +6,23 @@ from dateutil.relativedelta import relativedelta
 
 from odoo import Command, fields, models
 from odoo.exceptions import ValidationError
+from odoo.osv import expression
 
 
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
     is_sale_planner_contact = fields.Boolean()
+
+    def _get_planner_calendar_event_domain(self):
+        return [
+            ("target_partner_id", "in", self.ids),
+            ("recurrency", "!=", False),
+            ("is_base_recurrent_event", "=", True),
+            "|",
+            ("recurrence_id.end_type", "=", "forever"),
+            ("recurrence_id.until", ">", fields.Date.today()),
+        ]
 
     def action_calendar_planner(self):
         categ = self.env.ref("sale_planner_calendar.event_type_commercial_visit")
@@ -60,14 +71,7 @@ class ResPartner(models.Model):
         action["view_mode"] = "list,form"
         action["view_id"] = False
         action["views"] = []
-        action["domain"] = [
-            ("target_partner_id", "=", self.id),
-            ("recurrency", "=", True),
-            ("is_base_recurrent_event", "=", True),
-            "|",
-            ("recurrence_id.end_type", "=", "forever"),
-            ("recurrence_id.until", ">", fields.Date.today()),
-        ]
+        action["domain"] = self._get_planner_calendar_event_domain()
         return action
 
     def write(self, vals):
@@ -76,14 +80,13 @@ class ResPartner(models.Model):
             and vals.get("user_id")
             and not self.env.context.get("skip_sale_planner_check", False)
         ):
-            calendar_events = self.env["calendar.event"].search(
+            domain = expression.AND(
                 [
-                    ("target_partner_id", "in", self.ids),
-                    ("recurrency", "!=", False),
-                    ("user_id", "!=", vals["user_id"]),
-                    ("is_base_recurrent_event", "=", True),
+                    self._get_planner_calendar_event_domain(),
+                    [("user_id", "!=", vals["user_id"])],
                 ]
             )
+            calendar_events = self.env["calendar.event"].search(domain)
             if calendar_events:
                 msg = self.env._(
                     "This partner has sale planned events\n"
