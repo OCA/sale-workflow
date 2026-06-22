@@ -39,6 +39,7 @@
                     optional="show"
                 />
                 <field name="currency_id" column_invisible="1" />
+                <field name="company_currency_id" column_invisible="1" />
             </list>
         </field>
     </record>
