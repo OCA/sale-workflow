@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-22 17:53+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,6 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sell_only_by_packaging
 #: model:ir.model.fields,help:sell_only_by_packaging.field_product_packaging__force_sale_qty
@@ -23,22 +25,28 @@ msgid ""
 "You sell a product by packaging of 5 products.\n"
 "When the user will put 3 as quantity, the system can force the quantity to the superior unit (5 for this example)."
 msgstr ""
+"Določite, ali naj se pri ustvarjanju postavke prodajnega naloga količina "
+"prisilno prilagodi tako, da je večkratnik pakirne enote.\n"
+"Primer:\n"
+"Izdelek prodajate v pakiranjih po 5 kosov.\n"
+"Ko uporabnik vpiše količino 3, lahko sistem količino prisilno prilagodi na "
+"višjo enoto (v tem primeru 5)."
 
 #. module: sell_only_by_packaging
 #: model:ir.model.fields,field_description:sell_only_by_packaging.field_product_packaging__force_sale_qty
 msgid "Force sale quantity"
-msgstr ""
+msgstr "Vsili prodajno količino"
 
 #. module: sell_only_by_packaging
 #: model:ir.model,name:sell_only_by_packaging.model_product_packaging_level
 msgid "Level management for product.packaging"
-msgstr ""
+msgstr "Upravljanje nivojev za product.packaging"
 
 #. module: sell_only_by_packaging
 #: model:ir.model.fields,field_description:sell_only_by_packaging.field_product_product__min_sellable_qty
 #: model:ir.model.fields,field_description:sell_only_by_packaging.field_product_template__min_sellable_qty
 msgid "Min Sellable Qty"
-msgstr ""
+msgstr "Min. prodajna kol"
 
 #. module: sell_only_by_packaging
 #: model:ir.model.fields,help:sell_only_by_packaging.field_product_product__min_sellable_qty
@@ -47,12 +55,14 @@ msgid ""
 "Minimum sellable quantity, according to the available packagings, if Only "
 "Sell by Packaging is set."
 msgstr ""
+"Najmanjša količina za prodajo, glede na pakiranja, ki so na voljo, če je "
+"nastavljena možnost 'Prodaja samo po pakiranju'."
 
 #. module: sell_only_by_packaging
 #: model:ir.model.fields,field_description:sell_only_by_packaging.field_product_product__sell_only_by_packaging
 #: model:ir.model.fields,field_description:sell_only_by_packaging.field_product_template__sell_only_by_packaging
 msgid "Only sell by packaging"
-msgstr ""
+msgstr "Le prodaja po pakiranjih"
 
 #. module: sell_only_by_packaging
 #. odoo-python
@@ -61,17 +71,22 @@ msgid ""
 "Packaging level %s must stay with \"Can be sold\", at least one product "
 "configured as \"sell only by packaging\" is using it."
 msgstr ""
+"Nivo pakiranja %s mora ostati nastavljen na \"Lahko se prodaja\", saj ga "
+"uporablja vsaj en proizvod, ki je nastavljen kot \"Le prodaja po "
+"pakiranjih\"."
 
 #. module: sell_only_by_packaging
 #: model:ir.model,name:sell_only_by_packaging.model_product_template
 msgid "Product"
-msgstr ""
+msgstr "Proizvod"
 
 #. module: sell_only_by_packaging
 #. odoo-python
 #: code:addons/sell_only_by_packaging/models/sale_order_line.py:0
 msgid "Product %s can only be sold with a packaging and a packaging quantity."
 msgstr ""
+"Proizvod %s se lahko prodaja le s pakiranjem in v določeni količini v "
+"pakiranju."
 
 #. module: sell_only_by_packaging
 #. odoo-python
@@ -80,6 +95,8 @@ msgid ""
 "Product %s cannot be defined to be sold only by packaging if it cannot be "
 "sold."
 msgstr ""
+"Proizvoda %s ni mogoče opredeliti kot proizvod, ki se prodaja izključno s "
+"pakiranjem, če se ne more prodajati."
 
 #. module: sell_only_by_packaging
 #. odoo-python
@@ -88,16 +105,18 @@ msgid ""
 "Product %s cannot be defined to be sold only by packaging if it does not "
 "have any packaging that can be sold defined."
 msgstr ""
+"Proizvoda %s ni mogoče opredeliti kot proizvod, ki se prodaja izključno s "
+"pakiranjem, če zanj ni opredeljeno nobeno pakiranje, ki se lahko prodaja."
 
 #. module: sell_only_by_packaging
 #: model:ir.model,name:sell_only_by_packaging.model_product_packaging
 msgid "Product Packaging"
-msgstr ""
+msgstr "Pakiranje proizvoda"
 
 #. module: sell_only_by_packaging
 #: model:ir.model,name:sell_only_by_packaging.model_product_product
 msgid "Product Variant"
-msgstr ""
+msgstr "Različica proizvoda"
 
 #. module: sell_only_by_packaging
 #: model:ir.model.fields,help:sell_only_by_packaging.field_product_product__sell_only_by_packaging
@@ -106,8 +125,10 @@ msgid ""
 "Restrict the usage of this product on sale order lines without packaging "
 "defined"
 msgstr ""
+"Uporabo tega proizvoda omejite na prodajne postavke, za katere ni določeno "
+"pakiranje"
 
 #. module: sell_only_by_packaging
 #: model:ir.model,name:sell_only_by_packaging.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Prodajna postavka"
