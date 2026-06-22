@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-22 17:47+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,34 +15,35 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_mrp_bom
 #: model:res.groups,name:sale_mrp_bom.sale_mrp_bom_group
 msgid "Allows to define a BOM on sale order lines"
-msgstr ""
+msgstr "Omogoči določanje kosovnice na prodajnih postavkah"
 
 #. module: sale_mrp_bom
 #: model:ir.model.fields,field_description:sale_mrp_bom.field_sale_order_line__bom_id
 msgid "BoM"
-msgstr ""
+msgstr "Kosovnica"
 
 #. module: sale_mrp_bom
 #. odoo-python
 #: code:addons/sale_mrp_bom/models/sale_order_line.py:0
 msgid "Please select a BoM that matches the product %(product)s"
-msgstr ""
+msgstr "Izberite kosovnico (BoM), ki ustreza proizvodu %(product)s"
 
 #. module: sale_mrp_bom
 #: model:ir.model,name:sale_mrp_bom.model_procurement_group
 msgid "Procurement Group"
-msgstr ""
+msgstr "Oskrbovalna skupina"
 
 #. module: sale_mrp_bom
 #: model:ir.model,name:sale_mrp_bom.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Postavka prodajnega naloga"
 
 #. module: sale_mrp_bom
 #: model:ir.model,name:sale_mrp_bom.model_stock_move
 msgid "Stock Move"
-msgstr ""
+msgstr "Premik zaloge"
