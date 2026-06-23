@@ -37,6 +37,25 @@ class SaleOrder(models.Model):
                 for line in order.order_line
             )
 
+    def _get_sale_workflow_copy_mode(self):
+        return (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("sale_automatic_workflow.sale_workflow_copy_mode", "no_copy")
+        )
+
+    def copy_data(self, default=None):
+        vals_list = super().copy_data(default=default)
+        # ``workflow_process_id`` has ``copy=False`` by default.
+        # When the global ``sale_workflow_copy_mode`` setting is "copy"
+        #   -> propagate the origin workflow on duplication
+        #   (this also covers sale order splits, which go through ``copy``).
+        mode = self._get_sale_workflow_copy_mode()
+        if mode == "copy":
+            for order, vals in zip(self, vals_list, strict=False):
+                vals.setdefault("workflow_process_id", order.workflow_process_id.id)
+        return vals_list
+
     def _prepare_invoice(self):
         invoice_vals = super()._prepare_invoice()
         workflow = self.workflow_process_id
