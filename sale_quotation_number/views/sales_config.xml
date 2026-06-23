@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<!-- Copyright 2026 Openred
-     Copyright 2018 Simone Rubino - Agile Business Group
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
     <record id="res_config_settings_view_form_quotation_number" model="ir.ui.view">

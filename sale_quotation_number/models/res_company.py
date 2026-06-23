@@ -1,15 +1,10 @@
-# Copyright 2026 Openred
 # © 2010-2012 Andy Lu <andy.lu@elico-corp.com> (Elico Corp)
 # © 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 # © 2017 valentin vinagre  <valentin.vinagre@qubiq.es> (QubiQ)
 # © 2020 Manuel Regidor  <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-import logging
-
 from odoo import fields, models
-
-_logger = logging.getLogger(__name__)
 
 
 class ResCompany(models.Model):
@@ -30,13 +25,3 @@ class ResConfigSettings(models.TransientModel):
         related="company_id.keep_name_so",
         readonly=False,
     )
-
-    def set_values(self):
-        for settings in self:
-            if settings.company_id.keep_name_so != settings.keep_name_so:
-                # openred: log pruebas
-                _logger.info(
-                    "Configuración actualizada, misma enumeración: %s",
-                    settings.keep_name_so,
-                )
-        return super().set_values()

@@ -1,15 +1,10 @@
-# Copyright 2026 Openred
 # © 2010-2012 Andy Lu <andy.lu@elico-corp.com> (Elico Corp)
 # © 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 # © 2017 valentin vinagre  <valentin.vinagre@qubiq.es> (QubiQ)
 # © 2020 Manuel Regidor  <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-import logging
-
 from odoo import _, api, models
-
-_logger = logging.getLogger(__name__)
 
 
 class SaleOrder(models.Model):
@@ -17,7 +12,7 @@ class SaleOrder(models.Model):
 
     @api.model
     def _is_placeholder_order_name(self, name):
-        # openred: v19 usa _('New') como nombre provisional antes de asignar secuencia
+        # Odoo 19 uses _("New") as placeholder before sequence assignment
         return not name or name == _("New")
 
     @api.model_create_multi
@@ -32,8 +27,6 @@ class SaleOrder(models.Model):
                         .next_by_code("sale.quotation")
                     )
                     vals["name"] = sequence or "/"
-                    # openred: log pruebas
-                    _logger.info("Presupuesto creado: %s", vals["name"])
         return super().create(vals_list)
 
     @api.model
@@ -53,8 +46,6 @@ class SaleOrder(models.Model):
             default["origin"] = self.origin + ", " + self.name
         else:
             default["origin"] = self.name
-        # openred: log pruebas
-        _logger.info("Presupuesto duplicado, origen: %s", default["origin"])
         return super().copy(default)
 
     def action_confirm(self):
@@ -70,19 +61,14 @@ class SaleOrder(models.Model):
                 continue
             if order.state not in ("draft", "sent") or order.company_id.keep_name_so:
                 continue
-            quotation_name = order.name
             if order.origin and order.origin != "":
                 quo = order.origin + ", " + order.name
             else:
                 quo = order.name
-            order_sequence = (
+            sequence = (
                 self.with_company(order.company_id.id)
                 .env["ir.sequence"]
                 .next_by_code("sale.order")
             )
-            # openred: log pruebas
-            _logger.info(
-                "Presupuesto confirmado: %s -> %s", quotation_name, order_sequence
-            )
-            order.write({"origin": quo, "name": order_sequence})
+            order.write({"origin": quo, "name": sequence})
         return super().action_confirm()
