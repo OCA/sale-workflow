@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-23 06:21+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,19 +15,20 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_invoice_product_not_alone
 #: model:ir.model.fields,field_description:sale_invoice_product_not_alone.field_product_product__avoid_invoice_alone
 #: model:ir.model.fields,field_description:sale_invoice_product_not_alone.field_product_template__avoid_invoice_alone
 msgid "Avoid Invoice Alone"
-msgstr ""
+msgstr "Ne zaračunavaj samega"
 
 #. module: sale_invoice_product_not_alone
 #: model:ir.model,name:sale_invoice_product_not_alone.model_product_template
 msgid "Product"
-msgstr ""
+msgstr "Proizvod"
 
 #. module: sale_invoice_product_not_alone
 #: model:ir.model,name:sale_invoice_product_not_alone.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Prodajna postavka"
