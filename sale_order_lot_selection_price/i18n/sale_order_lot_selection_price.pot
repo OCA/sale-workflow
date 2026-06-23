@@ -14,11 +14,6 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_order_lot_selection_price
-#: model:ir.model,name:sale_order_lot_selection_price.model_stock_lot
-msgid "Lot/Serial"
-msgstr ""
-
-#. module: sale_order_lot_selection_price
 #: model:ir.model,name:sale_order_lot_selection_price.model_product_product
 msgid "Product Variant"
 msgstr ""
@@ -26,9 +21,4 @@ msgstr ""
 #. module: sale_order_lot_selection_price
 #: model:ir.model,name:sale_order_lot_selection_price.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
-
-#. module: sale_order_lot_selection_price
-#: model:ir.model.fields,field_description:sale_order_lot_selection_price.field_stock_lot__lst_price
-msgid "Sales Price"
 msgstr ""
