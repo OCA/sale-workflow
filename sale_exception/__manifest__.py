@@ -5,7 +5,7 @@
 {
     "name": "Sale Exception",
     "summary": "Custom exceptions on sale order",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "category": "Generic Modules/Sale",
     "author": "Akretion, Sodexis, Camptocamp, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
