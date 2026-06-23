@@ -62,12 +62,22 @@ class SaleContactMixin(models.AbstractModel):
             self.partner_id
             and self.partner_id.commercial_partner_id
             and self.partner_id.commercial_partner_id != self.partner_id
+            and self._sale_contact_should_auto_switch()
         ):
             contact = self.partner_id
             self.partner_id = contact.commercial_partner_id
             self.sale_contact_partner_id = contact
             return True
         return False
+
+    def _sale_contact_should_auto_switch(self):
+        """Hook to let inheriting models opt out of the auto-switch.
+
+        Returns True by default. Models can override this to skip the
+        contact-to-company promotion in situations where selecting a
+        non-company contact as ``partner_id`` is legitimate.
+        """
+        return True
 
     @api.onchange("partner_id")
     def _onchange_partner_id_clear_sale_contact(self):

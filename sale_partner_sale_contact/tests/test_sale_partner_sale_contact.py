@@ -36,6 +36,16 @@ class TestSalePartnerSaleContact(TransactionCase):
             }
         )
 
+        # Create an invoice-type address (billing address) of the company
+        cls.invoice_address = cls.env["res.partner"].create(
+            {
+                "name": "Billing Department",
+                "is_company": False,
+                "parent_id": cls.partner_company.id,
+                "type": "invoice",
+            }
+        )
+
         # Create another company (for testing domain restrictions)
         cls.other_company = cls.env["res.partner"].create(
             {
@@ -309,6 +319,55 @@ class TestSalePartnerSaleContact(TransactionCase):
             self.contact_person_1,
             "The selected contact should be stored in sale_contact_partner_id",
         )
+
+    def test_08b_no_auto_switch_invoice_address_on_account_move(self):
+        """Test that the auto-switch is skipped for invoice-type addresses.
+
+        On an account.move it is legitimate to bill a dedicated invoice
+        address (address type 'invoice') as partner_id rather than the root
+        company, so _sale_contact_apply_auto_switch() must NOT promote it.
+        """
+        invoice = self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": self.partner_company.id,
+            }
+        )
+        # Simulate user selecting the invoice-type address as partner_id
+        invoice.partner_id = self.invoice_address
+        switched = invoice._sale_contact_apply_auto_switch()
+
+        self.assertFalse(
+            switched, "Auto-switch should be skipped for invoice-type addresses"
+        )
+        self.assertEqual(
+            invoice.partner_id,
+            self.invoice_address,
+            "partner_id should keep the selected invoice address",
+        )
+        self.assertFalse(
+            invoice.sale_contact_partner_id,
+            "No contact should be stored when the switch is skipped",
+        )
+
+    def test_08c_auto_switch_contact_on_account_move(self):
+        """Test that the auto-switch still applies for contact-type addresses.
+
+        A regular contact person (address type 'contact') selected as
+        partner_id on an account.move must still be promoted to the company.
+        """
+        invoice = self.env["account.move"].create(
+            {
+                "move_type": "out_invoice",
+                "partner_id": self.partner_company.id,
+            }
+        )
+        invoice.partner_id = self.contact_person_1
+        switched = invoice._sale_contact_apply_auto_switch()
+
+        self.assertTrue(switched, "Auto-switch should apply for contact addresses")
+        self.assertEqual(invoice.partner_id, self.partner_company)
+        self.assertEqual(invoice.sale_contact_partner_id, self.contact_person_1)
 
     def test_09_prepare_invoice_without_contact_key_absent(self):
         """Test _prepare_invoice does not include key when contact is False.

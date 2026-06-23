@@ -16,3 +16,11 @@ class AccountMove(models.Model):
         help="Contact person for this invoice. "
         "Only child contacts of the partner can be selected.",
     )
+
+    def _sale_contact_should_auto_switch(self):
+        # On an invoice it is legitimate to bill a dedicated invoice address
+        # (address type 'invoice') as partner_id rather than the root company,
+        # so the contact-to-company auto-switch must not kick in for those.
+        if self.partner_id.type == "invoice":
+            return False
+        return super()._sale_contact_should_auto_switch()
