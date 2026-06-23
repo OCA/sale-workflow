@@ -6,86 +6,88 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-23 11:33+0000\n"
+"Last-Translator: Betül Öğmen <betulo@eska.biz>\n"
 "Language-Team: none\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_advance_payment
 #: model:ir.model,name:sale_advance_payment.model_account_voucher_wizard
 msgid "Account Voucher Wizard"
-msgstr ""
+msgstr "Hesap Fişi Sihirbazı"
 
 #. module: sale_advance_payment
 #: model:ir.actions.act_window,name:sale_advance_payment.action_view_account_voucher_wizard
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Advance Payment"
-msgstr ""
+msgstr "Avans Ödeme"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_sale_order__advance_payment_status
 msgid "Advance Payment Status"
-msgstr ""
+msgstr "Avans Ödeme Durumu"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__amount_total
 msgid "Amount Total"
-msgstr ""
+msgstr "Toplam Tutar"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__amount_advance
 msgid "Amount advanced"
-msgstr ""
+msgstr "Avans Tutarı"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Amount in Order Currency"
-msgstr ""
+msgstr "Sipariş Para Birimi Tutarı"
 
 #. module: sale_advance_payment
 #. odoo-python
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
 msgid "Amount of advance must be positive."
-msgstr ""
+msgstr "Avans tutarı pozitif olmalı."
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Cancel"
-msgstr ""
+msgstr "İptal"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Oluşturan"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Oluşturulma"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__currency_amount
 msgid "Curr. amount"
-msgstr ""
+msgstr "Döviz Tutarı"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__currency_id
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Currency"
-msgstr ""
+msgstr "Döviz"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__date
 msgid "Date"
-msgstr ""
+msgstr "Tarih"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Görünüm Adı"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__id
@@ -95,140 +97,140 @@ msgstr ""
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__inbound
 msgid "Inbound"
-msgstr ""
+msgstr "Gelen"
 
 #. module: sale_advance_payment
 #. odoo-python
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
 msgid "Inbound amount of advance is greater than residual amount on sale"
-msgstr ""
+msgstr "Gelen avans tutarı satışta kalan tutardan fazla"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__journal_id
 msgid "Journal"
-msgstr ""
+msgstr "Yevmiye"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__journal_currency_id
 msgid "Journal Currency"
-msgstr ""
+msgstr "Yevmiye Para Birimi"
 
 #. module: sale_advance_payment
 #: model:ir.model,name:sale_advance_payment.model_account_move
 msgid "Journal Entry"
-msgstr ""
+msgstr "Yevmiye Kaydı"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Son Güncelleyen"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Son Güncelleme"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Make advance payment"
-msgstr ""
+msgstr "Avans ödemesi yap"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__sale_order__advance_payment_status__not_paid
 msgid "Not Paid"
-msgstr ""
+msgstr "Ödenmemiş"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Operation"
-msgstr ""
+msgstr "Operasyon"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__order_id
 msgid "Order"
-msgstr ""
+msgstr "Sipariş"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Order Currency"
-msgstr ""
+msgstr "Sipariş Para Birimi"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Order Due Amount"
-msgstr ""
+msgstr "Sipariş Tutarı"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__account_voucher_wizard__payment_type__outbound
 msgid "Outbound"
-msgstr ""
+msgstr "Giden"
 
 #. module: sale_advance_payment
 #. odoo-python
 #: code:addons/sale_advance_payment/wizard/sale_advance_payment_wzd.py:0
 msgid "Outbound amount of advance is greater than the advanced paid amount"
-msgstr ""
+msgstr "Giden avans tutarı ödenen avans tutarından fazla"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__sale_order__advance_payment_status__paid
 msgid "Paid"
-msgstr ""
+msgstr "Ödenmiş"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields.selection,name:sale_advance_payment.selection__sale_order__advance_payment_status__partial
 msgid "Partially Paid"
-msgstr ""
+msgstr "Kısmen Ödenmiş"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_sale_order__account_payment_ids
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_order_form
 msgid "Pay sale advanced"
-msgstr ""
+msgstr "Avans Ödemesi"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_account_voucher_wizard
 msgid "Payment Method"
-msgstr ""
+msgstr "Ödeme Yolu"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__payment_type
 msgid "Payment Type"
-msgstr ""
+msgstr "Ödeme Türü"
 
 #. module: sale_advance_payment
 #: model_terms:ir.ui.view,arch_db:sale_advance_payment.view_order_form
 msgid "Payment advances"
-msgstr ""
+msgstr "Avans Ödemeleri"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_sale_order__payment_line_ids
 msgid "Payment move lines"
-msgstr ""
+msgstr "Ödeme hesap hareketleri"
 
 #. module: sale_advance_payment
 #: model:ir.model,name:sale_advance_payment.model_account_payment
 msgid "Payments"
-msgstr ""
+msgstr "Ödemeler"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_voucher_wizard__payment_ref
 msgid "Ref."
-msgstr ""
+msgstr "Referans"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_sale_order__amount_residual
 msgid "Residual amount"
-msgstr ""
+msgstr "Kalan miktar"
 
 #. module: sale_advance_payment
 #: model:ir.model.fields,field_description:sale_advance_payment.field_account_payment__sale_id
 msgid "Sale"
-msgstr ""
+msgstr "Satış"
 
 #. module: sale_advance_payment
 #: model:ir.model,name:sale_advance_payment.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Satış Siparişi"
 
 #. module: sale_advance_payment
 #. odoo-python
@@ -237,3 +239,5 @@ msgid ""
 "The amount to advance must always be positive. Please use the payment type "
 "to indicate if this is an inbound or an outbound payment."
 msgstr ""
+"Avans tutarı her zaman pozitif olmalıdır. Lütfen bunun gelen mi yoksa giden "
+"bir ödeme mi olduğunu belirtmek için ödeme türünü kullanın."
