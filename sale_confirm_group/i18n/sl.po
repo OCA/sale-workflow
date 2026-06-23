@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-23 06:38+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,16 +15,17 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_confirm_group
 #: model:ir.model,name:sale_confirm_group.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Družbe"
 
 #. module: sale_confirm_group
 #: model:ir.model,name:sale_confirm_group.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Nastavitve"
 
 #. module: sale_confirm_group
 #: model_terms:ir.ui.view,arch_db:sale_confirm_group.sale_res_config_settings_view_form_inherit
@@ -31,36 +33,38 @@ msgid ""
 "If the checkbox is flagged and at least 1 group is selected, SO confirmation"
 " will be allowed to such groups only. This is company-specific."
 msgstr ""
+"Če je polje označeno in je izbrana vsaj ena skupina, bo potrditev SO "
+"dovoljena le za te skupine. To velja za posamezno družbo."
 
 #. module: sale_confirm_group
 #: model:ir.model.fields,field_description:sale_confirm_group.field_res_company__sale_confirmation_group_ids
 #: model:ir.model.fields,field_description:sale_confirm_group.field_res_config_settings__sale_confirmation_group_ids
 msgid "Sale Confirmation Group"
-msgstr ""
+msgstr "Skupina za potrjevanje prodaje"
 
 #. module: sale_confirm_group
 #: model:ir.model,name:sale_confirm_group.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Prodajni nalog"
 
 #. module: sale_confirm_group
 #: model_terms:ir.ui.view,arch_db:sale_confirm_group.sale_res_config_settings_view_form_inherit
 msgid "Use SO Confirmation Groups"
-msgstr ""
+msgstr "Uporaba skupin za potrjevanje v SO"
 
 #. module: sale_confirm_group
 #: model:ir.model.fields,field_description:sale_confirm_group.field_res_company__use_sale_confirmation_groups
 #: model:ir.model.fields,field_description:sale_confirm_group.field_res_config_settings__use_sale_confirmation_groups
 msgid "Use Sale Confirmation Groups"
-msgstr ""
+msgstr "Uporaba skupin za potrjevanje prodaje"
 
 #. module: sale_confirm_group
 #. odoo-python
 #: code:addons/sale_confirm_group/models/sale_order.py:0
 msgid "User %s cannot confirm Sale(s) %s"
-msgstr ""
+msgstr "Uporabnik %s ne more potrditi prodaje %s"
 
 #. module: sale_confirm_group
 #: model:ir.model.fields,field_description:sale_confirm_group.field_sale_order__user_can_confirm
 msgid "User Can Confirm"
-msgstr ""
+msgstr "Uporabnik lahko potrdi"
