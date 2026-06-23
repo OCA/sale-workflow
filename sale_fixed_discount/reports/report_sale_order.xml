@@ -12,25 +12,36 @@
                 t-value="any([l.discount_fixed for l in doc.order_line])"
             />
         </xpath>
+        <xpath expr="//th[@name='th_discount']" position="attributes">
+            <attribute name="t-if" add="display_discount_fixed" separator=" or " />
+        </xpath>
         <xpath expr="//th[@name='th_discount']/span" position="attributes">
-            <attribute name="t-if">not display_discount_fixed</attribute>
+            <attribute name="t-if" add="not display_discount_fixed" separator=" or " />
         </xpath>
 
-        <xpath expr="//th[@t-if='display_discount']/span" position="before">
+        <xpath expr="//th[@name='th_discount']/span" position="before">
             <t t-if="display_discount_fixed">
                 <span>Discount Amount (%)</span>
             </t>
         </xpath>
 
-        <span t-field="line.discount" position="before">
-            <t t-if="display_discount_fixed">
+        <xpath expr="//span[@t-field='line.discount']/.." position="attributes">
+            <attribute name="t-if" add="display_discount_fixed" separator=" or " />
+        </xpath>
+        <xpath expr="//span[@t-field='line.discount']" position="attributes">
+            <attribute name="t-if" add="line.discount_fixed" separator=" or " />
+        </xpath>
+        <xpath expr="//span[@t-field='line.discount']" position="before">
+            <t t-if="display_discount_fixed and line.discount_fixed">
                 <span class="text-nowrap" t-field="line.discount_fixed" /><span
                     class="text-nowrap"
                 > (or</span>
             </t>
-        </span>
-        <span t-field="line.discount" position="after">
-            <t t-if="display_discount_fixed"><span class="text-nowrap"> %)</span></t>
-        </span>
+        </xpath>
+        <xpath expr="//span[@t-field='line.discount']" position="after">
+            <t t-if="display_discount_fixed and line.discount_fixed"><span
+                    class="text-nowrap"
+                > %)</span></t>
+        </xpath>
     </template>
 </odoo>

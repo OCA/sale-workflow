@@ -7,3 +7,4 @@
 * Pimolnat Suntian <pimolnats@ecosoft.co.th>
 * Denis Leemann <denis.leemann@camptocamp.com>
 * Manuel Regidor <manuel.regidor@sygel.es>
+* Akim Juillerat <akim.juillerat@camptocamp.com>

@@ -7,8 +7,20 @@
         <field name="arch" type="xml">
             <xpath
                 expr="//field[@name='order_line']//tree//field[@name='discount']"
+                position="attributes"
+            >
+                <attribute name="string">Total discount</attribute>
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//tree//field[@name='discount']"
                 position="after"
             >
+                <field
+                    name="discount1"
+                    optional="show"
+                    groups="product.group_discount_per_so_line"
+                />
                 <field
                     name="discount2"
                     optional="show"
@@ -29,6 +41,10 @@
                 expr="//field[@name='order_line']//form//div[@name='discount']"
                 position="after"
             >
+                <label for="discount1" groups="product.group_discount_per_so_line" />
+                <div name="discount1" groups="product.group_discount_per_so_line">
+                    <field name="discount1" class="oe_inline" /> %
+                </div>
                 <label for="discount2" groups="product.group_discount_per_so_line" />
                 <div name="discount2" groups="product.group_discount_per_so_line">
                     <field name="discount2" class="oe_inline" /> %
