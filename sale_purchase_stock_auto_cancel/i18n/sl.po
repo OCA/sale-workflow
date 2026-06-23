@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-23 06:58+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,6 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_purchase_stock_auto_cancel
 #: model_terms:ir.ui.view,arch_db:sale_purchase_stock_auto_cancel.res_config_settings_view_form
@@ -21,38 +23,40 @@ msgid ""
 "Automatically cancel purchase orders created from sales orders using MTO or "
 "Dropship rules when the sales order is canceled."
 msgstr ""
+"Samodejno prekliči nabavne naloge, ustvarjene na podlagi prodajnih nalogov "
+"po pravilih MTO ali Dropship, kadar je prodajni nalog preklican."
 
 #. module: sale_purchase_stock_auto_cancel
 #: model:ir.model,name:sale_purchase_stock_auto_cancel.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Družbe"
 
 #. module: sale_purchase_stock_auto_cancel
 #: model:ir.model,name:sale_purchase_stock_auto_cancel.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Nastavitve"
 
 #. module: sale_purchase_stock_auto_cancel
 #: model:ir.model.fields,field_description:sale_purchase_stock_auto_cancel.field_res_company__purchase_auto_cancel
 #: model:ir.model.fields,field_description:sale_purchase_stock_auto_cancel.field_res_config_settings__purchase_auto_cancel
 msgid "Propagate cancellation on MTO/Dropshipping"
-msgstr ""
+msgstr "Razširitev preklica na MTO/dropshipping"
 
 #. module: sale_purchase_stock_auto_cancel
 #: model_terms:ir.ui.view,arch_db:sale_purchase_stock_auto_cancel.res_config_settings_view_form
 msgid "Purchase Cancellation"
-msgstr ""
+msgstr "Preklic nabave"
 
 #. module: sale_purchase_stock_auto_cancel
 #. odoo-python
 #: code:addons/sale_purchase_stock_auto_cancel/tests/test_sale_purchase_stock_auto_cancel.py:0
 msgid "Replenish on Order (MTO)"
-msgstr ""
+msgstr "Dopolnjevanje po naročilu (MTO)"
 
 #. module: sale_purchase_stock_auto_cancel
 #: model:ir.model,name:sale_purchase_stock_auto_cancel.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Prodajni nalog"
 
 #. module: sale_purchase_stock_auto_cancel
 #: model:ir.model.fields,help:sale_purchase_stock_auto_cancel.field_res_company__purchase_auto_cancel
@@ -62,3 +66,6 @@ msgid ""
 "Dropship rule for this company, and the sale order is cancelled, it will be "
 "automatically cancelled."
 msgstr ""
+"Če se za to družbo iz prodajnega naloga ustvari nabavni nalog po pravilu MTO "
+"ali Dropship in se prodajni nalog prekliče, se bo tudi nabavni nalog "
+"samodejno preklical."
