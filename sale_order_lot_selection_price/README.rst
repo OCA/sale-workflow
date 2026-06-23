@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ==============================
 Sale Order Lot Selection Price
 ==============================
@@ -17,7 +13,7 @@ Sale Order Lot Selection Price
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -43,15 +39,15 @@ that price in sales order lines.
 Usage
 =====
 
-- Create a pricelist
-- Set Price type=Formula
-- Set Base Price=Sales Prices or Cost
-- Create a batch and set Sales Prices or Cost
-- Create a sales order
-- Use the price list created above
-- Add a line to the order and use the batch created above
-- The line price will be the corresponding price (Sales Prices or Cost)
-  + discount
+-  Create a pricelist
+-  Set Price type=Formula
+-  Set Base Price=Sales Prices or Cost
+-  Create a batch and set Sales Prices or Cost
+-  Create a sales order
+-  Use the price list created above
+-  Add a line to the order and use the batch created above
+-  The line price will be the corresponding price (Sales Prices or Cost)
+   + discount
 
 Bug Tracker
 ===========
@@ -74,10 +70,10 @@ Authors
 Contributors
 ------------
 
-- ``Tecnativa <https://www.tecnativa.com>``\ \_:
+-  ``Tecnativa <https://www.tecnativa.com>``\ \_:
 
-  - Pedro M. Baeza
-  - Víctor Martínez
+   -  Pedro M. Baeza
+   -  Víctor Martínez
 
 Maintainers
 -----------
