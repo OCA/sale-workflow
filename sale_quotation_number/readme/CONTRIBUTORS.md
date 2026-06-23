@@ -1,3 +1,4 @@
+- Openred \<<https://www.openred.es>\>
 - Andy Lu \<<andy.lu@elico-corp.com>\>
 - Lorenzo Battistini \<<lorenzo.battistini@agilebg.com>\>
 - Valentin Vinagre Urteaga \<<valentin.vinagre@qubiq.es>\>

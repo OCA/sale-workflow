@@ -1,3 +1,4 @@
+# Copyright 2026 Openred
 # Copyright 2010-2012 Andy Lu <andy.lu@elico-corp.com> (Elico Corp)
 # Copyright 2013 Agile Business Group sagl (<http://www.agilebg.com>)
 # Copyright 2017 valentin vinagre  <valentin.vinagre@qubiq.es> (QubiQ)
@@ -6,10 +7,11 @@
 {
     "name": "Sale Quotation Numeration",
     "summary": "Different sequence for sale quotations",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",
-    "author": "Elico Corp, "
+    "author": "OpenredSoluciones, "
+    "Elico Corp, "
     "Agile Business Group, "
     "Qubiq, "
     "Odoo Community Association (OCA)",

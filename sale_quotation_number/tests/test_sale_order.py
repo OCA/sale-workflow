@@ -1,3 +1,4 @@
+# Copyright 2026 Openred
 # Copyright 2018 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
