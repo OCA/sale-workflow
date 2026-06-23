@@ -6,7 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-06-23 06:51+0000\n"
+"Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -14,38 +15,39 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_order_line_effective_date
 #: model:ir.model.fields,field_description:sale_order_line_effective_date.field_sale_order_line__order_commitment_date
 msgid "Commitment Date"
-msgstr ""
+msgstr "Datum zaveze"
 
 #. module: sale_order_line_effective_date
 #: model:ir.model.fields,help:sale_order_line_effective_date.field_sale_order_line__order_commitment_date
 msgid "Commitment Date set on the Order"
-msgstr ""
+msgstr "Datum zaveze, določen v nalogu"
 
 #. module: sale_order_line_effective_date
 #: model:ir.model.fields,help:sale_order_line_effective_date.field_sale_order_line__effective_date
 msgid "Completion date of the first delivery order."
-msgstr ""
+msgstr "Datum izvedbe prvega dobavnega naloga."
 
 #. module: sale_order_line_effective_date
 #: model:ir.model.fields,help:sale_order_line_effective_date.field_sale_order_line__last_effective_date
 msgid "Completion date of the last delivery order."
-msgstr ""
+msgstr "Datum izvedbe zadnjega dobavnega naloga."
 
 #. module: sale_order_line_effective_date
 #: model:ir.model.fields,field_description:sale_order_line_effective_date.field_sale_order_line__effective_date
 msgid "Effective Date"
-msgstr ""
+msgstr "Dejanski datum"
 
 #. module: sale_order_line_effective_date
 #: model:ir.model.fields,field_description:sale_order_line_effective_date.field_sale_order_line__last_effective_date
 msgid "Last Effective Date"
-msgstr ""
+msgstr "Zadnji dejanski datum"
 
 #. module: sale_order_line_effective_date
 #: model:ir.model,name:sale_order_line_effective_date.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Postavka prodajnega naloga"
