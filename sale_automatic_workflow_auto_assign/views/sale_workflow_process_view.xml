@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_workflow_process_view_form" model="ir.ui.view">
+        <field name="name">sale.order.form.automatic.auto.assign</field>
+        <field
+            name="inherit_id"
+            ref="sale_automatic_workflow.sale_workflow_process_view_form"
+        />
+        <field name="model">sale.workflow.process</field>
+        <field name="arch" type="xml">
+            <div name="sale_order_confirm" position="before">
+                <br />
+                <div
+                    class="container"
+                    name="workflow_auto_assign_options"
+                    string="Workflow automatic assignation"
+                >
+                    <h3>
+                        <bold>Automatic assignation</bold>
+                    </h3>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="auto_assign" class="col-lg-7 o_light_label" />
+                            <span>
+                                <field name="auto_assign" nolabel="1" />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label
+                                for="auto_assign_domain"
+                                class="col-lg-7 o_light_label"
+                            />
+                            <span>
+                                <field
+                                    name="auto_assign_domain"
+                                    widget="domain"
+                                    invisible="not auto_assign"
+                                    options="{'model': 'sale.order'}"
+                                />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </field>
+    </record>
+</odoo>
