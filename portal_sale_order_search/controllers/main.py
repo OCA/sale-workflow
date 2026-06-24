@@ -15,6 +15,7 @@ class CustomerPortalSaleOrderSearch(portal.CustomerPortal):
             "name": {"label": _("Order Ref"), "input": "name"},
             "ref": {"label": _("Order Customer Ref"), "input": "ref"},
             "partner": {"label": _("Customer"), "input": "partner"},
+            "company": {"label": _("Customer Company"), "input": "company"},
         }
 
     def _get_search_order_domain(self, search):
@@ -26,6 +27,7 @@ class CustomerPortalSaleOrderSearch(portal.CustomerPortal):
                     [("name", "ilike", search)],
                     [("client_order_ref", "ilike", search)],
                     [("partner_id.name", "ilike", search)],
+                    [("partner_id.commercial_partner_id.name", "ilike", search)],
                 ]
             )
         elif search_in == "name":
@@ -34,6 +36,8 @@ class CustomerPortalSaleOrderSearch(portal.CustomerPortal):
             search_domain = [("client_order_ref", "ilike", search)]
         elif search_in == "partner":
             search_domain = [("partner_id.name", "ilike", search)]
+        elif search_in == "company":
+            search_domain = [("partner_id.commercial_partner_id.name", "ilike", search)]
         return search_domain
 
     def _prepare_quotations_domain(self, partner):
