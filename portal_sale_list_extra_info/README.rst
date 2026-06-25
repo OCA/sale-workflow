@@ -56,7 +56,7 @@ Credits
 Authors
 -------
 
-* Solvos Consultoría Informática
+* Solvos ConsultorÃ­a InformÃ¡tica
 
 Contributors
 ------------

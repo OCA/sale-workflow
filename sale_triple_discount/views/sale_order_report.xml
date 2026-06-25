@@ -22,7 +22,7 @@
             >
                 <span>Disc. 2 (%)</span>
             </th>
-           <th
+            <th
                 t-if="display_discount3"
                 class="text-right"
                 groups="product.group_discount_per_so_line"
