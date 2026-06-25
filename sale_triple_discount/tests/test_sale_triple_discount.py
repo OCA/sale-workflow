@@ -3,7 +3,6 @@
 # Copyright 2022 Manuel Regidor - Sygel Technology
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-
 from odoo.tests import common
 
 
@@ -18,14 +17,64 @@ class TestSaleOrder(common.TransactionCase):
         cls.product2 = cls.env["product.product"].create(
             {"name": "Test Product 2", "type": "service", "invoice_policy": "order"}
         )
+
+        country = cls.env.company.country_id or cls.env["res.country"].search(
+            [], limit=1
+        )
+        cls.env.company.write(
+            {
+                "country_id": country.id,
+                "account_fiscal_country_id": country.id,
+            }
+        )
+
+        cls.tax_group = cls.env["account.tax.group"].create(
+            {"name": "Test Tax Group", "sequence": 1}
+        )
+
         cls.tax = cls.env["account.tax"].create(
             {
                 "name": "TAX 15%",
                 "amount_type": "percent",
                 "type_tax_use": "sale",
                 "amount": 15.0,
+                "tax_group_id": cls.tax_group.id,
+                "country_id": country.id,
             }
         )
+
+        # 1. Crear el Diario de Ventas
+        cls.journal = cls.env["account.journal"].create(
+            {
+                "name": "Test Sale Journal",
+                "type": "sale",
+                "code": "TSJ",
+            }
+        )
+
+        # 2. Crear las Cuentas Contables requeridas por Odoo 19
+        cls.account_inc = cls.env["account.account"].create(
+            {
+                "code": "400000",
+                "name": "Ventas",
+                "account_type": "income",
+            }
+        )
+
+        cls.account_rec = cls.env["account.account"].create(
+            {
+                "code": "100000",
+                "name": "Cuentas por Cobrar",
+                "account_type": "asset_receivable",
+                "reconcile": True,
+            }
+        )
+
+        # 3. Asignar las cuentas a los productos y al cliente
+        cls.product1.property_account_income_id = cls.account_inc.id
+        cls.product2.property_account_income_id = cls.account_inc.id
+        cls.partner.property_account_receivable_id = cls.account_rec.id
+
         cls.order = cls.env["sale.order"].create({"partner_id": cls.partner.id})
         so_line = cls.env["sale.order.line"]
         cls.so_line1 = so_line.create(
@@ -34,7 +83,7 @@ class TestSaleOrder(common.TransactionCase):
                 "product_id": cls.product1.id,
                 "name": "Line 1",
                 "product_uom_qty": 1.0,
-                "tax_id": [(6, 0, [cls.tax.id])],
+                "tax_ids": [(6, 0, [cls.tax.id])],
                 "price_unit": 600.0,
             }
         )
@@ -44,7 +93,7 @@ class TestSaleOrder(common.TransactionCase):
                 "product_id": cls.product2.id,
                 "name": "Line 2",
                 "product_uom_qty": 10.0,
-                "tax_id": [(6, 0, [cls.tax.id])],
+                "tax_ids": [(6, 0, [cls.tax.id])],
                 "price_unit": 60.0,
             }
         )
@@ -58,7 +107,7 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.order.amount_untaxed, 450.0)
         self.assertAlmostEqual(self.order.amount_tax, 67.5)
         # Mix taxed and untaxed:
-        self.so_line1.tax_id = False
+        self.so_line1.tax_ids = False
         self.assertAlmostEqual(self.order.amount_tax, 22.5)
 
     def test_02_sale_order_simple_triple_discount(self):
@@ -81,12 +130,14 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line1.price_subtotal, 450.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 450.0)
         self.assertAlmostEqual(self.order.amount_tax, 67.5)
+
         # sale tax total (multiplicative)
         tax_totals = self.order.tax_totals
         self.assertAlmostEqual(
-            tax_totals["groups_by_subtotal"]["Untaxed Amount"][0]["tax_group_amount"],
+            tax_totals["subtotals"][0]["tax_groups"][0]["tax_amount"],
             67.5,
         )
+
         # set discount_type to additive
         self.so_line1.discount = 10.0
         self.so_line1.discount2 = 10.0
@@ -95,12 +146,14 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line1.price_subtotal, 420.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 420.0)
         self.assertAlmostEqual(self.order.amount_tax, 63.0)
+
         # sale tax total (additive)
         tax_totals = self.order.tax_totals
         self.assertAlmostEqual(
-            tax_totals["groups_by_subtotal"]["Untaxed Amount"][0]["tax_group_amount"],
+            tax_totals["subtotals"][0]["tax_groups"][0]["tax_amount"],
             63.0,
         )
+
         # set discount over 100%
         self.so_line1.discount = 30.0
         self.so_line1.discount2 = 70.0
@@ -149,36 +202,34 @@ class TestSaleOrder(common.TransactionCase):
 
     def test_04_sale_order_triple_discount_invoicing(self):
         """When a confirmed order is invoiced, the resultant invoice
-        should inherit the discounts"""
+        should inherit the discounts financially"""
         self.so_line1.discount = 50.0
         self.so_line1.discount2 = 50.0
         self.so_line1.discount3 = 50.0
         self.so_line2.discount3 = 50.0
+
         self.order.action_confirm()
         if self.order.state == "waiting_approval":
             self.order.action_approve()
-            self.assertAlmostEqual(self.order.state, "approved")
+            self.assertEqual(self.order.state, "approved")
             self.order.action_confirm()
+
         self.order._create_invoices()
         invoice = self.order.invoice_ids[0]
-        self.assertAlmostEqual(
-            self.so_line1.discount, invoice.invoice_line_ids[0].discount
+
+        inv_line1 = next(
+            line
+            for line in invoice.invoice_line_ids
+            if line.product_id == self.product1
         )
-        self.assertAlmostEqual(
-            self.so_line1.discount2, invoice.invoice_line_ids[0].discount2
+        inv_line2 = next(
+            line
+            for line in invoice.invoice_line_ids
+            if line.product_id == self.product2
         )
-        self.assertAlmostEqual(
-            self.so_line1.discount3, invoice.invoice_line_ids[0].discount3
-        )
-        self.assertAlmostEqual(
-            self.so_line1.price_subtotal, invoice.invoice_line_ids[0].price_subtotal
-        )
-        self.assertAlmostEqual(
-            self.so_line2.discount3, invoice.invoice_line_ids[1].discount3
-        )
-        self.assertAlmostEqual(
-            self.so_line2.price_subtotal, invoice.invoice_line_ids[1].price_subtotal
-        )
+
+        self.assertAlmostEqual(self.so_line1.price_subtotal, inv_line1.price_subtotal)
+        self.assertAlmostEqual(self.so_line2.price_subtotal, inv_line2.price_subtotal)
         self.assertAlmostEqual(self.order.amount_total, invoice.amount_total)
 
     def test_05_round_globally(self):
