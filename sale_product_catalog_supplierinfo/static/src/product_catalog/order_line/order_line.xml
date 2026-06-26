@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-inherit="product.ProductCatalogOrderLine" t-inherit-mode="extension">
+        <!-- Vendor cards (supplier origin) show the vendor and the price inline,
+             since the portalled price target is shared by every vendor card of
+             the same product. -->
+        <xpath expr="//t[@t-portal]" position="after">
+            <div
+                t-if="props.vendorId"
+                class="o_product_catalog_vendor m-2 pt-2 border-top"
+            >
+                <div class="text-truncate" t-att-title="props.vendorName">
+                    <i class="fa fa-truck me-1" />
+                    <span t-out="props.vendorName" />
+                </div>
+                <div
+                    t-if="props.vendorComment"
+                    class="o_product_catalog_vendor_comment text-muted small"
+                    t-att-title="props.vendorComment"
+                    t-out="props.vendorComment"
+                />
+                <div class="o_product_catalog_price">
+                    Unit price: <t t-out="price" />
+                </div>
+            </div>
+        </xpath>
+    </t>
+</templates>
