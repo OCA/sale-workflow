@@ -8,8 +8,8 @@ from odoo.tools import float_round
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    def _prepare_procurement_values(self, group_id=False):
-        values = super()._prepare_procurement_values(group_id)
+    def _prepare_procurement_values(self):
+        values = super()._prepare_procurement_values()
         values["secondary_uom_id"] = self.secondary_uom_id.id
         values["secondary_uom_qty"] = self.env.context.get(
             "procure_secondary_uom_qty", {}
