@@ -2,21 +2,14 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo.tests import TransactionCase, tagged
 
+from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
+
 
 @tagged("post_install", "-at_install")
 class TestSaleStockOrderSecondaryUnit(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        # Remove this variable in v16 and put instead:
-        # from odoo.addons.base.tests.common import DISABLED_MAIL_CONTEXT
-        DISABLED_MAIL_CONTEXT = {
-            "tracking_disable": True,
-            "mail_create_nolog": True,
-            "mail_create_nosubscribe": True,
-            "mail_notrack": True,
-            "no_reset_password": True,
-        }
         cls.env = cls.env(context=dict(cls.env.context, **DISABLED_MAIL_CONTEXT))
         cls.warehouse = cls.env.ref("stock.warehouse0")
         cls.product_uom_kg = cls.env.ref("uom.product_uom_kgm")
@@ -28,7 +21,6 @@ class TestSaleStockOrderSecondaryUnit(TransactionCase):
                 "type": "consu",
                 "is_storable": True,
                 "uom_id": cls.product_uom_kg.id,
-                "uom_po_id": cls.product_uom_kg.id,
             }
         )
         # Set secondary uom on product template
@@ -71,7 +63,7 @@ class TestSaleStockOrderSecondaryUnit(TransactionCase):
                             "name": cls.product.name,
                             "product_id": cls.product.id,
                             "product_uom_qty": 1,
-                            "product_uom": cls.product.uom_id.id,
+                            "product_uom_id": cls.product.uom_id.id,
                             "price_unit": 1000.00,
                         },
                     )
