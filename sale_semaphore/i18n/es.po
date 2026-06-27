@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-01 05:59+0000\n"
-"PO-Revision-Date: 2026-06-01 08:01+0200\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2026-06-27 05:28+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.9\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_semaphore
 #: model_terms:ir.ui.view,arch_db:sale_semaphore.product_category_form_view
@@ -85,7 +85,7 @@ msgstr "Categoría de producto"
 #. module: sale_semaphore
 #: model:ir.model,name:sale_semaphore.model_product_product
 msgid "Product Variant"
-msgstr ""
+msgstr "Variante de Producto"
 
 #. module: sale_semaphore
 #. odoo-javascript
