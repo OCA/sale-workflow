@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-06-01 07:02+0000\n"
+"PO-Revision-Date: 2026-06-27 11:46+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: none\n"
 "Language: sl\n"
@@ -123,7 +123,7 @@ msgstr "Datum naročila"
 #. module: sale_order_line_price_history
 #: model:ir.model.fields,field_description:sale_order_line_price_history.field_sale_order_line_price_history_line__order_id
 msgid "Order Reference"
-msgstr "Sklic naročila"
+msgstr "Sklic naloga"
 
 #. module: sale_order_line_price_history
 #. odoo-javascript
