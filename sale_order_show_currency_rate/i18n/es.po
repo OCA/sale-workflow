@@ -7,14 +7,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-06 17:44+0000\n"
-"PO-Revision-Date: 2026-05-06 17:44+0000\n"
-"Last-Translator: Cristina Hidalgo <cristina.hidalgo@tecnativa.com>\n"
+"PO-Revision-Date: 2026-06-27 05:28+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_order_show_currency_rate
 #: model_terms:ir.ui.view,arch_db:sale_order_show_currency_rate.report_saleorder_document_currency_rate
@@ -28,12 +29,13 @@ msgstr ""
 #. module: sale_order_show_currency_rate
 #: model:ir.model,name:sale_order_show_currency_rate.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Empresas"
 
 #. module: sale_order_show_currency_rate
 #: model:ir.model,name:sale_order_show_currency_rate.model_res_config_settings
+#, fuzzy
 msgid "Config Settings"
-msgstr ""
+msgstr "Ajustes de la configuración"
 
 #. module: sale_order_show_currency_rate
 #: model:ir.model.fields,help:sale_order_show_currency_rate.field_res_company__sale_order_currency_report_id
@@ -42,24 +44,28 @@ msgid ""
 "Currency shown as informative exchange rate on sale order PDF reports when "
 "the order currency matches the company currency."
 msgstr ""
+"Moneda mostrada como tipo de cambio informativo en los informes PDF de "
+"pedidos de venta cuando la moneda del pedido coincide con la moneda de la "
+"empresa."
 
 #. module: sale_order_show_currency_rate
 #: model_terms:ir.ui.view,arch_db:sale_order_show_currency_rate.res_config_settings_view_form
+#, fuzzy
 msgid "Exchange Rate"
-msgstr ""
+msgstr "Tipo de cambio"
 
 #. module: sale_order_show_currency_rate
 #: model_terms:ir.ui.view,arch_db:sale_order_show_currency_rate.res_config_settings_view_form
 msgid "Report Reference Currency"
-msgstr ""
+msgstr "Tipo de cambio"
 
 #. module: sale_order_show_currency_rate
 #: model:ir.model.fields,field_description:sale_order_show_currency_rate.field_res_company__sale_order_currency_report_id
 #: model:ir.model.fields,field_description:sale_order_show_currency_rate.field_res_config_settings__sale_order_currency_report_id
 msgid "Sale Order Report Reference Currency"
-msgstr ""
+msgstr "Moneda de referencia del informe de pedido de venta"
 
 #. module: sale_order_show_currency_rate
 #: model:ir.model,name:sale_order_show_currency_rate.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Órdenes de Venta"
