@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-21 09:29+0000\n"
-"PO-Revision-Date: 2026-05-10 16:52+0000\n"
+"PO-Revision-Date: 2026-06-27 05:36+0000\n"
 "Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
 "Language-Team: \n"
 "Language: es\n"
@@ -938,8 +938,6 @@ msgstr "Asistente de planificación"
 
 #. module: sale_planner_calendar
 #: model:ir.actions.act_window,name:sale_planner_calendar.action_sale_planner_calendar_change_hour
-#, fuzzy
-#| msgid "Sale planner calendar Wizard"
 msgid "Sale planner calendar change hour"
 msgstr "Cambio de hora en el calendario del planificador de ventas"
 
