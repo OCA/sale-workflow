@@ -7,5 +7,6 @@
 * Phuc (Tran Thanh) <phuc@trobz.com>
 * Manuel Regidor <manuel.regidor@sygel.es>
 * `Tecnativa <https://www.tecnativa.com>`_:
+* Will Keesler <wkeesler@xes-inc.com>
 
   * Pilar Vargas
