@@ -130,14 +130,16 @@ class SaleOrder(models.Model):
                 tax_groups[tax_key]["base"] += discounted_subtotal
             # Compute taxes once per group to avoid rounding accumulation
             for group in tax_groups.values():
-                discounted_tax = group["tax_ids"].with_context(
-                    force_price_include=False
-                ).compute_all(
-                    group["base"],
-                    group["currency"],
-                    1.0,
-                    product=group["product"],
-                    partner=group["partner"],
+                discounted_tax = (
+                    group["tax_ids"]
+                    .with_context(force_price_include=False)
+                    .compute_all(
+                        group["base"],
+                        group["currency"],
+                        1.0,
+                        product=group["product"],
+                        partner=group["partner"],
+                    )
                 )
                 amount_discounted_tax += sum(
                     t.get("amount", 0.0) for t in discounted_tax.get("taxes", [])
