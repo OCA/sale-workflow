@@ -1,0 +1,98 @@
+# Copyright 2018 Tecnativa - Sergio Teruel
+# Copyright 2019 Tecnativa - Pedro M. Baeza
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from odoo import api, fields, models
+
+
+def _execute_onchanges(records, field_name):
+    """Helper methods that executes all onchanges associated to a field."""
+    for onchange in records._onchange_methods.get(field_name, []):
+        for record in records:
+            onchange(record)
+
+
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    def _create_elaboration_line(self, product, qty):
+        """Create a sale order line from a elaboration product, search a line
+        with the same elaboration product to add qty
+        :param product:
+        :param qty:
+        :return: the sale order line record created
+        """
+        SaleOrderLine = self.env["sale.order.line"]
+        sol_for_product = self.order_line.filtered(lambda x: x.product_id == product)[
+            :1
+        ]
+        if sol_for_product:
+            sol_for_product.product_uom_qty += qty
+            return sol_for_product
+        sol = SaleOrderLine.new(
+            {"order_id": self.id, "product_id": product.id, "is_elaboration": True}
+        )
+        _execute_onchanges(sol, "product_id")
+        sol.update({"product_uom_qty": qty})
+        _execute_onchanges(sol, "product_uom_qty")
+        vals = sol._convert_to_write(sol._cache)
+        if self.order_line:
+            vals["sequence"] = self.order_line[-1].sequence + 1
+        return SaleOrderLine.sudo().create(vals)
+
+
+class SaleOrderLine(models.Model):
+    _inherit = ["sale.order.line", "product.elaboration.mixin"]
+    _name = "sale.order.line"
+
+    date_order = fields.Datetime(related="order_id.date_order", string="Date")
+    route_id = fields.Many2one(
+        comodel_name="stock.route",
+        compute="_compute_route_id",
+        store=True,
+        readonly=False,
+    )
+    elaboration_profile_id = fields.Many2one(
+        comodel_name="product.elaboration.profile",
+        compute="_compute_elaboration_profile_id",
+    )
+    elaboration_price_unit = fields.Float(
+        "Elab. Price", compute="_compute_elaboration_price_unit", store=True
+    )
+
+    @api.depends("product_id")
+    def _compute_elaboration_profile_id(self):
+        """Order of applicability: product profile > category profile > no profile"""
+        self.elaboration_profile_id = False
+        for line in self.filtered("product_id"):
+            line.elaboration_profile_id = (
+                line.product_id.elaboration_profile_id
+                or line.product_id.categ_id.elaboration_profile_id
+            )
+
+    def get_elaboration_stock_route(self):
+        self.ensure_one()
+        return self.elaboration_ids.route_ids[:1]
+
+    @api.depends("elaboration_ids")
+    def _compute_route_id(self):
+        for line in self:
+            line.route_id = line.get_elaboration_stock_route()
+
+    @api.depends("elaboration_ids", "order_id.pricelist_id")
+    def _compute_elaboration_price_unit(self):
+        for line in self:
+            if not line.order_id.pricelist_id:
+                line.elaboration_price_unit = 0
+            else:
+                line.elaboration_price_unit = sum(
+                    line.order_id.pricelist_id._get_products_price(
+                        line.elaboration_ids.product_id,
+                        quantity=1,
+                    ).values()
+                )
+
+    def _prepare_invoice_line(self, **optional_values):
+        vals = super()._prepare_invoice_line(**optional_values)
+        if self.is_elaboration:
+            vals["name"] = f"{self.order_id.name} - {self.name}"
+        return vals

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Tecnativa - Sergio Teruel
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="report_stock_move_elaboration_view_tree" model="ir.ui.view">
+        <field name="name">Elaborations</field>
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <list create="false" default_order="date desc">
+                <field name="sequence_code" />
+                <field name="order_date" />
+                <field name="date" widget="date" />
+                <field name="date_deadline" optional="hide" />
+                <field name="sale_id" />
+                <field name="salesman_id" />
+                <field name="partner_id" />
+                <field name="product_id" />
+                <field name="elaboration_ids" widget="many2many_tags" />
+                <field name="elaboration_note" />
+                <field name="product_uom_qty" />
+                <field name="product_uom" />
+                <field
+                    name="state"
+                    widget="badge"
+                    decoration-success="state == 'done'"
+                    decoration-info="state not in ('done', 'cancel')"
+                />
+            </list>
+        </field>
+    </record>
+    <record id="view_move_search" model="ir.ui.view">
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_search" />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <separator />
+                <field
+                    name="date"
+                    filter_domain="[('date','&gt;=', self)]"
+                    string="After Date"
+                />
+                <field name="elaboration_ids" />
+                <field name="elaboration_note" />
+                <filter
+                    string="Is Elaboration"
+                    domain="['|', ('elaboration_ids', '!=', False), ('elaboration_note', '!=', '')]"
+                    name="is_elaboration"
+                />
+                <separator />
+            </field>
+            <group position="inside">
+                <filter
+                    string="Elaboration"
+                    context="{'group_by':'elaboration_ids'}"
+                    name="elaboration_grouped"
+                />
+            </group>
+        </field>
+    </record>
+    <record id="stock_move_elaboration_report_action" model="ir.actions.act_window">
+        <field name="name">Elaborations Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.move</field>
+        <field name="view_mode">list</field>
+        <field
+            name="domain"
+        >[('state', 'not in', ['done', 'cancel']), ('origin_returned_move_id', '=', False)]</field>
+        <field name="context">{'search_default_is_elaboration':1}</field>
+        <field name="search_view_id" ref="view_move_search" />
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'list', 'view_id': ref('sale_elaboration.report_stock_move_elaboration_view_tree')}),
+                (0, 0, {'view_mode': 'pivot', 'view_id': ref('stock.view_move_pivot')}),
+                ]"
+        />
+    </record>
+    <menuitem
+        id="menu_sale_stock_move_elaboration_report"
+        action="stock_move_elaboration_report_action"
+        parent="sale.menu_sale_report"
+        sequence="70"
+    />
+    <!--  Allow inventory users to access to elaboration report  -->
+    <menuitem
+        id="menu_stock_sale_stock_move_elaboration_report"
+        action="stock_move_elaboration_report_action"
+        parent="stock.menu_warehouse_report"
+        sequence="160"
+    />
+</odoo>

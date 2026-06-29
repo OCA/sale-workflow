@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Moduon Team S.L.
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl-3.0) -->
+<data>
+    <template id="report_picking" inherit_id="stock.report_picking">
+        <xpath
+            expr="//table[hasclass('o_main_table')]/tbody/t/tr/td[1]"
+            position="inside"
+        >
+            <t
+                t-if="move.picking_type_id.code != 'incoming'"
+                t-call="sale_elaboration.elaboration_notes"
+                groups="sale_elaboration.group_elaboration_note_on_picking_operations"
+            >
+                <t t-set="record" t-value="move" />
+            </t>
+        </xpath>
+    </template>
+</data>

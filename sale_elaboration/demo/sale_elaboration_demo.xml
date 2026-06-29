@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="product_product_elaboration" model="product.product">
+        <field name="name">Elaboration</field>
+        <field name="categ_id" ref="product.product_category_all" />
+        <field name="type">service</field>
+        <field name="default_code">ELAB</field>
+    </record>
+    <record id="product_elaboration_assembly" model="product.elaboration">
+        <field name="code">AMB</field>
+        <field name="name">Assembly</field>
+        <field name="product_id" ref="product_product_elaboration" />
+    </record>
+</odoo>
