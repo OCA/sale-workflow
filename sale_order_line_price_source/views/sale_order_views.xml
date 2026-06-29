@@ -15,6 +15,7 @@
                     optional="hide"
                     readonly="1"
                 />
+                <field name="pricelist_id" optional="hide" readonly="1" />
             </xpath>
             <xpath expr="//field[@name='order_line']/list" position="attributes">
                 <attribute name="open_form_view">1</attribute>
@@ -30,6 +31,7 @@
             <xpath expr="//field[@name='price_unit']" position="after">
                 <field name="price_source" readonly="1" />
                 <field name="price_source_pricelist_item_id" readonly="1" />
+                <field name="pricelist_id" readonly="1" />
             </xpath>
         </field>
     </record>
@@ -46,6 +48,7 @@
                     optional="hide"
                     readonly="1"
                 />
+                <field name="pricelist_id" optional="hide" readonly="1" />
             </xpath>
         </field>
     </record>
