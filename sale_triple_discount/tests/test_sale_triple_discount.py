@@ -4,7 +4,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 
-from odoo.tests import common
+from odoo.tests import Form, common
 
 
 class TestSaleOrder(common.TransactionCase):
@@ -208,3 +208,30 @@ class TestSaleOrder(common.TransactionCase):
         self.assertAlmostEqual(self.so_line2.price_subtotal, 600.0)
         self.assertAlmostEqual(self.order.amount_untaxed, 1200.0)
         self.assertAlmostEqual(self.order.amount_tax, 180.0)
+
+    def test_07_form_discounts(self):
+        """Sale lines created with Form keep their discounts."""
+        # Arrange
+        self.env.user.groups_id += self.env.ref("product.group_discount_per_so_line")
+
+        # Act
+        order_form = Form(self.env["sale.order"])
+        order_form.partner_id = self.partner
+        with order_form.order_line.new() as line:
+            line.product_id = self.product1
+            line.discount = 10
+            line.discount2 = 10
+            line.discount3 = 10
+        order = order_form.save()
+
+        # Assert
+        self.assertRecordValues(
+            order.order_line,
+            [
+                {
+                    "discount": 10,
+                    "discount2": 10,
+                    "discount3": 10,
+                }
+            ],
+        )
