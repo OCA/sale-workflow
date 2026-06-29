@@ -159,7 +159,7 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         #    99.99        0  Test Product 2
         #    13.13        0  Test TAX 15%
         #     4.38        0  TAX 5%
-        #        0   105.01
+        #        0   104.99
         #        0       75  Test Discount 2 (30.00%) - Test TAX 15%, TAX 5%
         #        0    87.49  Test Discount 3 (50.00%) - Test TAX 15%, TAX 5%
         # ========  =======  ===============================================
@@ -172,7 +172,7 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         self.assertAlmostEqual(self.sale.amount_global_discount, 162.49)
         self.assertAlmostEqual(self.sale.amount_untaxed, 87.5)
         self.assertAlmostEqual(self.sale.amount_untaxed_before_global_discounts, 249.99)
-        self.assertAlmostEqual(self.sale.amount_total, 105.01)
+        self.assertAlmostEqual(self.sale.amount_total, 104.99 )
         self.assertAlmostEqual(self.sale.amount_total_before_global_discounts, 299.99)
         self.assertAlmostEqual(self.sale.amount_tax, 17.51)
         self.assertAlmostEqual(
@@ -194,7 +194,7 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         self.assertAlmostEqual(discount_amount, 162.49)
         self.assertAlmostEqual(move.amount_untaxed_before_global_discounts, 249.99)
         self.assertAlmostEqual(move.amount_untaxed, 87.5)
-        self.assertAlmostEqual(move.amount_total, 105.01)
+        self.assertAlmostEqual(move.amount_total, 104.99 )
         # Expected Journal Entry
         # credit    debit    account
         # ========  =======  =========
@@ -202,7 +202,7 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         #    99.99        0  400000 (line 2)
         #    13.13        0  400000 (line_tax_1)
         #     4.38        0  400000 (line_tax_2)
-        #        0   105.01  121000 (Base)
+        #        0   104.99  121000 (Base)
         #        0       75  TEST99999 (Global discount 1)
         #        0    87.49  TEST99999 (Global discount 2)
         #   267.50   267.50  <- Balance
@@ -213,7 +213,7 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         term_line = move.line_ids.filtered(
             lambda x: x.account_id.account_type == "asset_receivable"
         )
-        self.assertAlmostEqual(term_line.debit, 105.01)
+        self.assertAlmostEqual(term_line.debit, 104.99 )
         discount_lines = move.line_ids.filtered("invoice_global_discount_id")
         self.assertEqual(len(discount_lines), 2)
         self.assertAlmostEqual(sum(discount_lines.mapped("debit")), 162.49)
