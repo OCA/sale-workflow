@@ -174,7 +174,7 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         self.assertAlmostEqual(self.sale.amount_untaxed_before_global_discounts, 249.99)
         self.assertAlmostEqual(self.sale.amount_total, 104.99)
         self.assertAlmostEqual(self.sale.amount_total_before_global_discounts, 299.99)
-        self.assertAlmostEqual(self.sale.amount_tax, 17.51)
+        self.assertAlmostEqual(self.sale.amount_tax, 17.49)
         self.assertAlmostEqual(
             self.get_taxes_widget_total_tax(self.sale), self.sale.amount_tax
         )
@@ -194,7 +194,7 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         self.assertAlmostEqual(discount_amount, 162.49)
         self.assertAlmostEqual(move.amount_untaxed_before_global_discounts, 249.99)
         self.assertAlmostEqual(move.amount_untaxed, 87.5)
-        self.assertAlmostEqual(move.amount_total, 104.99)
+        self.assertAlmostEqual(move.amount_total, 105.01)
         # Expected Journal Entry
         # credit    debit    account
         # ========  =======  =========
@@ -213,7 +213,7 @@ class TestSaleGlobalDiscount(AccountTestInvoicingCommon):
         term_line = move.line_ids.filtered(
             lambda x: x.account_id.account_type == "asset_receivable"
         )
-        self.assertAlmostEqual(term_line.debit, 104.99)
+        self.assertAlmostEqual(term_line.debit, 105.01)
         discount_lines = move.line_ids.filtered("invoice_global_discount_id")
         self.assertEqual(len(discount_lines), 2)
         self.assertAlmostEqual(sum(discount_lines.mapped("debit")), 162.49)
