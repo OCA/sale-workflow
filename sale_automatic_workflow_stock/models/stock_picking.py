@@ -32,5 +32,7 @@ class StockPicking(models.Model):
                 ):
                     for move_line in move.move_line_ids:
                         move_line.quantity = move_line.quantity_product_uom
-            picking.with_context(skip_immediate=True, skip_sms=True).button_validate()
+            picking.with_context(
+                skip_immediate=True, skip_sms=True, skip_sanity_check=True
+            ).button_validate()
         return True
