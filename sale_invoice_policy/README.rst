@@ -28,23 +28,8 @@ Sale invoice Policy
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds an invoicing policy on sale order level in order to
-apply that invoicing policy on the whole sale order.
-
-That invoicing policy can take three values:
-
-- Products Invoicing Policy: The sale order will follow the standard
-  behavior and apply the policy depending on products configurations.
-- Ordered Quantities: The sale order will invoice the ordered quantities.
-- Delivered Quantities: The sale order will invoice the delivered quantities.
-
-Following the chosen policy, the quantity to invoice and the
-amount to invoice on each line will be computed accordingly.
-Note that the sale order policy will affect only storable products.
-
-You will be able also to define a default invoicing policy
-(globally per company)
-that can be different than the default invoicing policy for new products.
+This modules helps to get Invoicing Policy on Sale Order Level without
+breaking behaviour (as it is defined from >= v10 on product level).
 
 **Table of contents**
 
@@ -59,27 +44,28 @@ In Odoo, products have their own invoicing policy that can be:
 - Invoicing on ordered quantities
 - Invoicing on ordered quantities
 
-Following that configuration, when trying to create invoices from
-sale orders, each line of product will apply its invoicing policy.
+Following that configuration, when trying to create invoices from sale
+orders, each line of product will apply its invoicing policy.
 
-In some cases, user needs to apply an invoicing policy on a whole
-sale order.
+In some cases, user needs to apply an invoicing policy on a whole sale
+order.
 
-The solution proposed here is to add an invoicing policy on
-sale order level.
+The solution proposed here is to add an invoicing policy on sale order
+level.
 
 Configuration
 =============
 
-* Go to Sale > Configuration > Settings > Sale Invoice Policy
-* Choose the one that fits your needs.
+- Go to Sale > Configuration > Settings > Sale Invoice Policy
+- Choose the one that fits your needs.
 
 Usage
 =====
 
-* Create Sale Order
-* Select Invoicing Policy on Sale Order or let it on Products Invoicing Policy
-* The created invoices will use the configuration on sale order.
+- Create Sale Order
+- Select Invoicing Policy on Sale Order or let it void
+- Either the policy selected on Sale Order would be used, either if not
+  filled in, the policy would be chosen from product configuration
 
 Bug Tracker
 ===========
@@ -102,14 +88,13 @@ Authors
 Contributors
 ------------
 
-* Cédric Pigeon <cedric.pigeon@acsone.eu>
-* François Honoré <francois.honore@acsone.eu>
-* Denis Roussel <denis.roussel@acsone.eu>
-* Alexei Rivera <arivera@archeti.com>
-* Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
-* Alejandro Ji Cheung <alejandro.jicheung@factorlibre.com>
-* Ioan Galan <ioan@studio73.es>
-* Laurent Mignon <laurent.mignon@acsone.eu>
+- Cédric Pigeon <cedric.pigeon@acsone.eu>
+- François Honoré <francois.honore@acsone.eu>
+- Denis Roussel <denis.roussel@acsone.eu>
+- Alexei Rivera <arivera@archeti.com>
+- Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
+- Alejandro Ji Cheung <alejandro.jicheung@factorlibre.com>
+- Ioan Galan <ioan@studio73.es>
 
 Maintainers
 -----------

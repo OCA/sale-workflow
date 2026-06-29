@@ -130,7 +130,9 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         self.assertEqual(so.invoice_policy, "order")
 
     def test_context_manager_exception(self):
-        """Check the exception is well managed when called with several invoice policies"""
+        """
+        Check the exception is well managed when called with several invoice policies
+        """
         self.assertEqual("order", self.product.invoice_policy)
         so = self.env["sale.order"].create(
             {
