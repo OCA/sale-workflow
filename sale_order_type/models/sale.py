@@ -163,7 +163,9 @@ class SaleOrder(models.Model):
                 sale_type = self.env["sale.order.type"].browse(vals["type_id"])
                 if sale_type.sequence_id:
                     vals["name"] = sale_type.sequence_id.next_by_id(
-                        sequence_date=vals.get("date_order")
+                        sequence_date=fields.Datetime.to_datetime(
+                            vals.get("date_order")
+                        )
                     )
         return super().create(vals_list)
 
@@ -189,7 +191,9 @@ class SaleOrder(models.Model):
                     ):
                         new_vals = vals.copy()
                         new_vals["name"] = sale_type.sequence_id.next_by_id(
-                            sequence_date=vals.get("date_order")
+                            sequence_date=fields.Datetime.to_datetime(
+                                vals.get("date_order")
+                            )
                         )
                         super().write(new_vals)
                     else:
