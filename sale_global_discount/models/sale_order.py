@@ -109,6 +109,8 @@ class SaleOrder(models.Model):
             amount_total_before_global_discounts = order.amount_total
             discounts = order.global_discount_ids.mapped("discount")
             amount_discounted_untaxed = amount_discounted_tax = 0
+            # Group lines by tax combination to avoid accumulated rounding errors
+            tax_groups = {}
             for line in order.order_line:
                 discounted_subtotal = line.price_subtotal
                 if not line.product_id.bypass_global_discount:
@@ -116,14 +118,26 @@ class SaleOrder(models.Model):
                         line.price_subtotal, discounts.copy()
                     )
                 amount_discounted_untaxed += discounted_subtotal
-                discounted_tax = line.tax_ids.with_context(
+                tax_key = line.tax_ids
+                if tax_key not in tax_groups:
+                    tax_groups[tax_key] = {
+                        "tax_ids": line.tax_ids,
+                        "base": 0.0,
+                        "product": line.product_id,
+                        "partner": line.order_id.partner_shipping_id,
+                        "currency": line.order_id.currency_id,
+                    }
+                tax_groups[tax_key]["base"] += discounted_subtotal
+            # Compute taxes once per group to avoid rounding accumulation
+            for group in tax_groups.values():
+                discounted_tax = group["tax_ids"].with_context(
                     force_price_include=False
                 ).compute_all(
-                    discounted_subtotal,
-                    line.order_id.currency_id,
+                    group["base"],
+                    group["currency"],
                     1.0,
-                    product=line.product_id,
-                    partner=line.order_id.partner_shipping_id,
+                    product=group["product"],
+                    partner=group["partner"],
                 )
                 amount_discounted_tax += sum(
                     t.get("amount", 0.0) for t in discounted_tax.get("taxes", [])
