@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -29,11 +29,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.product_elaboration_profile_form_view
 msgid "Archived"
-msgstr ""
-
-#. module: sale_elaboration
-#: model:product.elaboration,name:sale_elaboration.product_elaboration_assembly
-msgid "Assembly"
 msgstr ""
 
 #. module: sale_elaboration
@@ -81,8 +76,19 @@ msgid "Display Elaboration notes on Picking Operations"
 msgstr ""
 
 #. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_category__display_name
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__display_name
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_mixin__display_name
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__display_name
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_product__display_name
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_template__display_name
+#: model:ir.model.fields,field_description:sale_elaboration.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:sale_elaboration.field_stock_move__display_name
+#: model:ir.model.fields,field_description:sale_elaboration.field_stock_move_line__display_name
+#: model:ir.model.fields,field_description:sale_elaboration.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:sale_elaboration.field_stock_rule__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -92,7 +98,6 @@ msgid "Elab. Price"
 msgstr ""
 
 #. module: sale_elaboration
-#: model:product.template,name:sale_elaboration.product_product_elaboration_product_template
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
 #: model_terms:ir.ui.view,arch_db:sale_elaboration.view_move_search
 msgid "Elaboration"
@@ -157,13 +162,19 @@ msgid "Elaborations Search"
 msgstr ""
 
 #. module: sale_elaboration
-#: model_terms:ir.ui.view,arch_db:sale_elaboration.elaboration_view_search
-msgid "Group By"
-msgstr ""
-
-#. module: sale_elaboration
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_category__id
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration__id
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_mixin__id
 #: model:ir.model.fields,field_description:sale_elaboration.field_product_elaboration_profile__id
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_product__id
+#: model:ir.model.fields,field_description:sale_elaboration.field_product_template__id
+#: model:ir.model.fields,field_description:sale_elaboration.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_elaboration.field_sale_order_line__id
+#: model:ir.model.fields,field_description:sale_elaboration.field_stock_move__id
+#: model:ir.model.fields,field_description:sale_elaboration.field_stock_move_line__id
+#: model:ir.model.fields,field_description:sale_elaboration.field_stock_picking__id
+#: model:ir.model.fields,field_description:sale_elaboration.field_stock_rule__id
 msgid "ID"
 msgstr ""
 
