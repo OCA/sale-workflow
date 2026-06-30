@@ -19,6 +19,7 @@
         "views/res_partner_view.xml",
         "views/account_payment_term_view.xml",
     ],
+    "maintainers": ["Ricardoalso"],
     "license": "AGPL-3",
     "installable": True,
     "application": False,
