@@ -12,5 +12,6 @@
         "security/ir.model.access.csv",
         "views/sale_order_views.xml",
     ],
+    "maintainers": ["yostashiro", "aungkokolin1997"],
     "installable": True,
 }
