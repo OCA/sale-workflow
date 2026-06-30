@@ -18,20 +18,19 @@ class SaleOrderLine(models.Model):
     )
 
     product_uom_qty = fields.Float(copy=True)
+    # Inverse (not a compute) to avoid a recursive dependency with the base
+    # packaging compute; it also covers write()/imports/EDI, unlike onchange.
+    secondary_uom_qty = fields.Float(inverse="_inverse_secondary_uom_qty")
 
-    @api.depends(
-        "display_type",
-        "product_id",
-        "product_packaging_qty",
-        "secondary_uom_qty",
-        "secondary_uom_id",
-        "product_uom_qty",
-    )
-    def _compute_product_uom_qty(self):
-        res = super()._compute_product_uom_qty()
+    def _inverse_secondary_uom_qty(self):
         for line in self:
             line._compute_helper_target_field_qty()
-        return res
+
+    @api.onchange("secondary_uom_qty")
+    def _onchange_secondary_uom_qty(self):
+        # The inverse only runs on write; mirror it for live feedback in the form.
+        for line in self:
+            line._compute_helper_target_field_qty()
 
     @api.depends("product_id")
     def _compute_product_uom(self):
