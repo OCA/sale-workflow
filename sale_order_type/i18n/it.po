@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-01-27 03:53+0000\n"
-"PO-Revision-Date: 2025-09-22 11:42+0000\n"
-"Last-Translator: Francesco Foresti <francesco.foresti@ooops404.com>\n"
+"PO-Revision-Date: 2026-06-30 08:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__active
@@ -199,7 +199,7 @@ msgstr "Tipo di ordine di vendita"
 #: model:ir.model.fields,field_description:sale_order_type.field_account_move__sale_type_id
 #: model:ir.model.fields,field_description:sale_order_type.field_account_payment__sale_type_id
 msgid "Sale Type"
-msgstr "Tipo ordine"
+msgstr "Tipo vendita"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_sale_advance_payment_inv
