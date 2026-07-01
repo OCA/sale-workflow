@@ -9,5 +9,13 @@
     "license": "AGPL-3",
     "depends": ["sale"],
     "data": ["security/sale_security.xml", "views/res_config_settings_views.xml"],
+    "assets": {
+        "web.assets_backend": [
+            "sale_order_line_description/static/src/js/sale_product_field.esm.js",
+        ],
+        "web.assets_tests": [
+            "sale_order_line_description/static/tests/tours/*.js",
+        ],
+    },
     "installable": True,
 }
