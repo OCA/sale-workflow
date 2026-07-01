@@ -42,9 +42,11 @@ class SaleTelegramNotification(models.Model):
         default="sale_confirmed",
     )
     message_template = fields.Text(
-        string="Message Template",
         required=True,
-        help="Use Odoo standard template syntax, e.g., {{ object.name }} for dynamic placeholders.",
+        help=(
+            "Use Odoo standard template syntax, e.g., {{ object.name }} "
+            "for dynamic placeholders."
+        ),
         default="Sales Order {{ object.name }} has been confirmed!",
     )
 

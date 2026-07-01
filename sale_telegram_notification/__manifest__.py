@@ -18,5 +18,5 @@
     ],
     "installable": True,
     "application": False,
-    "development_status": "Stable",
+    "development_status": "Production/Stable",
 }

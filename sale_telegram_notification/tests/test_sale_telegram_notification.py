@@ -37,7 +37,10 @@ class TestSaleTelegramNotification(TransactionCase):
                 "gateway_id": cls.gateway.id,
                 "chat_ids": [(4, cls.chat.id)],
                 "event_type": "sale_confirmed",
-                "message_template": "Order {{ object.name }} is confirmed for {{ object.partner_id.name }}.",
+                "message_template": (
+                    "Order {{ object.name }} is confirmed for "
+                    "{{ object.partner_id.name }}."
+                ),
             }
         )
 
@@ -75,7 +78,9 @@ class TestSaleTelegramNotification(TransactionCase):
             self.gateway.__class__, "send_message", return_value=True
         ) as mock_send:
             self.sale_order.action_confirm()
-            expected_msg = f"Order {self.sale_order.name} is confirmed for Test Customer."
+            expected_msg = (
+                f"Order {self.sale_order.name} is confirmed for Test Customer."
+            )
             mock_send.assert_called_once_with("-100123456789", expected_msg)
 
     def test_02_cancel_notification(self):
@@ -88,7 +93,7 @@ class TestSaleTelegramNotification(TransactionCase):
             mock_send.assert_called_once_with("-100123456789", expected_msg)
 
     def test_03_sent_notification(self):
-        """Test that Telegram notification is sent upon quotation state change to sent"""
+        """Test Telegram notification is sent upon quotation state change to sent."""
         with patch.object(
             self.gateway.__class__, "send_message", return_value=True
         ) as mock_send:
