@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Open Source Integrators -->
+<!-- License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html). -->
+<odoo>
+
+    <!-- Inherit Sale Order Form View -->
+    <record id="view_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.address.filter</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <!-- Add domain filtering to address fields -->
+            <field name="partner_shipping_id" position="attributes">
+                <attribute name="domain">address_domain</attribute>
+            </field>
+            <field name="partner_invoice_id" position="attributes">
+                <attribute name="domain">address_domain</attribute>
+            </field>
+            <!-- Add "Only Customer Addresses" checkbox after delivery address -->
+            <field name="partner_shipping_id" position="after">
+                <field name="address_domain" invisible="1" />
+                <field
+                    name="only_customer_addresses"
+                    widget="boolean_toggle"
+                    invisible="not partner_id"
+                />
+            </field>
+        </field>
+    </record>
+
+</odoo>
