@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_telegram_notification_tree" model="ir.ui.view">
+        <field name="name">sale.telegram.notification.list</field>
+        <field name="model">sale.telegram.notification</field>
+        <field name="arch" type="xml">
+            <list string="Telegram Notifications">
+                <field name="name" />
+                <field name="gateway_id" />
+                <field name="event_type" />
+                <field name="active" widget="boolean_toggle" />
+            </list>
+        </field>
+    </record>
+
+    <record id="view_sale_telegram_notification_form" model="ir.ui.view">
+        <field name="name">sale.telegram.notification.form</field>
+        <field name="model">sale.telegram.notification</field>
+        <field name="arch" type="xml">
+            <form string="Telegram Notification">
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        text="Archived"
+                        bg_color="bg-danger"
+                        invisible="active"
+                    />
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" placeholder="e.g. Confirm Order Alert" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="gateway_id" options="{'no_create': True}" />
+                            <field
+                                name="chat_ids"
+                                widget="many2many_tags"
+                                options="{'no_create': True}"
+                                context="{'default_gateway_id': gateway_id}"
+                            />
+                        </group>
+                        <group>
+                            <field name="event_type" />
+                            <field name="active" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Message Template" name="message_template_page">
+                            <group>
+                                <field
+                                    name="message_template"
+                                    placeholder="Enter your notification message. E.g.: Sales Order {{ object.name }} confirmed for client {{ object.partner_id.name }}!"
+                                    nolabel="1"
+                                />
+                            </group>
+                            <div class="alert alert-info" role="alert">
+                                <strong>Placeholders:</strong> You can use standard Odoo template
+                                formatting. Common variables available: <ul>
+                                    <li><code>{{ object.name }}</code>: The Sales Order Name (e.g.
+                                S00012)</li>
+                                    <li><code>{{ object.partner_id.name }}</code>: Customer Name</li>
+                                    <li><code>{{ object.amount_total }}</code>: Total Amount</li>
+                                    <li><code>{{ object.user_id.name }}</code>: Salesperson Name</li>
+                                </ul>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_sale_telegram_notification_search" model="ir.ui.view">
+        <field name="name">sale.telegram.notification.search</field>
+        <field name="model">sale.telegram.notification</field>
+        <field name="arch" type="xml">
+            <search string="Telegram Notifications">
+                <field name="name" />
+                <field name="gateway_id" />
+                <field name="event_type" />
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]" />
+                <group expand="0" string="Group By">
+                    <filter string="Telegram Bot" name="group_by_gateway"
+                        context="{'group_by': 'gateway_id'}" />
+                    <filter string="Trigger Event" name="group_by_event"
+                        context="{'group_by': 'event_type'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_sale_telegram_notification" model="ir.actions.act_window">
+        <field name="name">Telegram Notifications</field>
+        <field name="res_model">sale.telegram.notification</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_sale_telegram_notification_search" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new Telegram notification trigger!
+            </p>
+            <p>
+                Configure bots and map chat channels to automatically notify your team when Sales
+                Order events happen.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_sale_telegram_notification"
+        name="Telegram Notifications"
+        parent="sale.menu_sales_config"
+        action="action_sale_telegram_notification"
+        sequence="60"
+    />
+</odoo>
