@@ -17,6 +17,5 @@
         "views/sale_telegram_notification_views.xml",
     ],
     "installable": True,
-    "application": False,
-    "development_status": "Production/Stable",
+    "application": False
 }
