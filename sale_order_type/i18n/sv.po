@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-20 22:37+0000\n"
-"PO-Revision-Date: 2024-06-12 09:36+0000\n"
-"Last-Translator: jakobkrabbe <jakob@syscare.se>\n"
+"PO-Revision-Date: 2026-07-01 14:46+0000\n"
+"Last-Translator: Laura V <laura.valls@forgeflow.com>\n"
 "Language-Team: Swedish (https://www.transifex.com/oca/teams/23907/sv/)\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__active
@@ -27,12 +27,12 @@ msgstr "Aktiv"
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_distribution
 msgid "Analytic Distribution"
-msgstr ""
+msgstr "Analytisk fördelning"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_precision
 msgid "Analytic Precision"
-msgstr ""
+msgstr "Analytisk precision"
 
 #. module: sale_order_type
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
@@ -50,6 +50,8 @@ msgstr "Faktureringsjournal"
 msgid ""
 "Check this if you want the sale order type required on sale order forms."
 msgstr ""
+"Markera detta om du vill att ordertypen ska vara obligatorisk på "
+"försäljningsorderformulär."
 
 #. module: sale_order_type
 #: model_terms:ir.actions.act_window,help:sale_order_type.sot_sale_order_type_action
@@ -59,7 +61,7 @@ msgstr "Klicka för att ange en ny typ av försäljningsorder."
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Företag"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__company_id
@@ -69,7 +71,7 @@ msgstr "Bolag"
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Konfigurationsinställningar"
 
 #. module: sale_order_type
 #: model:ir.model,name:sale_order_type.model_res_partner
@@ -114,7 +116,7 @@ msgstr "Visa namn"
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__distribution_analytic_account_ids
 msgid "Distribution Analytic Account"
-msgstr ""
+msgstr "Analytiskt konto för fördelning"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__sequence_id
@@ -142,7 +144,7 @@ msgstr "ID"
 #: model:ir.model.fields,help:sale_order_type.field_res_config_settings__sale_order_type_required
 #: model:ir.model.fields,help:sale_order_type.field_sale_order__order_type_required
 msgid "If checked, the sale orders will require a type."
-msgstr ""
+msgstr "Om markerad krävs en typ för försäljningsordrar."
 
 #. module: sale_order_type
 #: model:ir.model.fields,help:sale_order_type.field_sale_order__picking_policy
@@ -232,13 +234,13 @@ msgstr "Kvotens giltighetstid (dagar)"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_line__route_ids
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__route_ids
 msgid "Routes"
-msgstr ""
+msgstr "Rutter"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_res_partner__effective_pricelist_id
 #: model:ir.model.fields,field_description:sale_order_type.field_res_users__effective_pricelist_id
 msgid "Sale Effective Pricelist"
-msgstr ""
+msgstr "Effektiv prislista för försäljning"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_report__sale_type_id
@@ -254,7 +256,7 @@ msgstr "Försäljning Ordertyp"
 #: model:ir.model.fields,field_description:sale_order_type.field_res_config_settings__sale_order_type_required
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order__order_type_required
 msgid "Sale Order Type Required"
-msgstr ""
+msgstr "Ordertyp krävs för försäljningsorder"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_bank_statement_line__sale_type_id
@@ -293,18 +295,18 @@ msgstr "Typer av försäljningsorder"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__team_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Sales Team"
-msgstr ""
+msgstr "Säljteam"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__user_id
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_search_view
 msgid "Salesperson"
-msgstr ""
+msgstr "Säljare"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__sequence
 msgid "Sequence"
-msgstr ""
+msgstr "Sekvens"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order__picking_policy
@@ -339,6 +341,8 @@ msgid ""
 "When creating a Sales Order, above pricelist will be replaced by the one set "
 "on the sales order type:"
 msgstr ""
+"När en försäljningsorder skapas ersätts ovanstående prislista med den som är "
+"inställd på försäljningsordertypen:"
 
 #~ msgid "Analytic account"
 #~ msgstr "Objektkonto"
