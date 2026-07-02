@@ -65,7 +65,7 @@ class SaleOrderRecommendation(models.TransientModel):
 
     def _extended_recommendable_sale_order_lines_domain(self):
         """Extra domain to include or exclude SO lines"""
-        return safe_eval(self.env.user.company_id.sale_line_recommendation_domain)
+        return safe_eval(self.env.company.sale_line_recommendation_domain)
 
     def _recommendable_sale_order_lines_domain(self):
         """Domain to find recent SO lines."""
@@ -201,7 +201,7 @@ class SaleOrderRecommendation(models.TransientModel):
         to_remove = []
         sale_order_line_obj = self.env["sale.order.line"].sudo()
         new_line_vals = []
-        force_zero_units_included = self.env.user.company_id.force_zero_units_included
+        force_zero_units_included = self.env.company.force_zero_units_included
         for wiz_line in self.line_ids:
             if (
                 not wiz_line.sale_line_id
