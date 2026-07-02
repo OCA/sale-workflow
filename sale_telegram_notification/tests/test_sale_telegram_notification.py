@@ -3,6 +3,7 @@
 from unittest.mock import patch
 
 from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 
 class TestSaleTelegramNotification(TransactionCase):
@@ -117,6 +118,9 @@ class TestSaleTelegramNotification(TransactionCase):
             {"active": True}
         )
 
+    @mute_logger(
+        "odoo.addons.sale_telegram_notification.models.sale_telegram_notification"
+    )
     def test_exception_rendering(self):
         """Test that exception during rendering is caught and handled."""
         with patch.object(
@@ -143,6 +147,9 @@ class TestSaleTelegramNotification(TransactionCase):
                 self.sale_order.action_confirm()
                 mock_send.assert_not_called()
 
+    @mute_logger(
+        "odoo.addons.sale_telegram_notification.models.sale_telegram_notification"
+    )
     def test_send_message_failure(self):
         """Test that send message failure is handled and logs an error."""
         with patch.object(
