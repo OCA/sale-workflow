@@ -5,6 +5,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
 from odoo import api, models
+from odoo.fields import Domain
 
 
 class SaleOrder(models.Model):
@@ -45,7 +46,7 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         sequence = self.env["ir.sequence"].search(
-            [("code", "=", "sale.quotation")], limit=1
+            Domain("code", "=", "sale.quotation"), limit=1
         )
         for order in self:
             if sequence and self.name[: len(sequence.prefix)] != sequence.prefix:
