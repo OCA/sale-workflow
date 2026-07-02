@@ -229,3 +229,83 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         self.run_job()
         payment = self.env["account.payment"].search([], limit=1, order="id desc")
         self.assertEqual(payment.journal_id, payment_journal)
+
+    def test_do_create_invoice_bypassed_by_domain(self):
+        """Invoice creation bypassed when sale order does not match domain."""
+        workflow = self.create_full_automatic()
+        sale = self.create_sale_order(workflow)
+        job = self.env["automatic.workflow.job"]
+        result = job._do_create_invoice(sale, [("id", "=", 0)])
+        self.assertIn("job bypassed", result)
+        self.assertFalse(sale.invoice_ids)
+
+    def test_do_create_invoice_skips_when_posted_invoice_exists(self):
+        """Invoice creation skipped when a posted invoice already exists."""
+        workflow = self.create_full_automatic()
+        sale = self.create_sale_order(workflow)
+        self.run_job()
+        self.assertTrue(sale.invoice_ids)
+        self.assertEqual(sale.invoice_ids.state, "posted")
+        job = self.env["automatic.workflow.job"]
+        domain = [
+            ("state", "in", ["sale", "done"]),
+            ("workflow_process_id", "=", sale.workflow_process_id.id),
+        ]
+        result = job._do_create_invoice(sale, domain)
+        self.assertIn("posted invoice already exists", result)
+        self.assertEqual(len(sale.invoice_ids), 1)
+
+    def test_do_create_invoice_skips_when_invoice_already_refunded(self):
+        """Invoice creation skipped when a credit note exists for the invoice."""
+        workflow = self.create_full_automatic()
+        sale = self.create_sale_order(workflow)
+        self.run_job()
+        invoice = sale.invoice_ids
+        self.assertTrue(invoice)
+        self.assertEqual(invoice.state, "posted")
+        # Create a credit note (reversal)
+        refund_wizard = (
+            self.env["account.move.reversal"]
+            .with_context(active_model="account.move", active_ids=invoice.ids)
+            .create({"reason": "Test refund", "journal_id": invoice.journal_id.id})
+        )
+        refund_wizard.reverse_moves()
+        refund = self.env["account.move"].search(
+            [
+                ("reversed_entry_id", "=", invoice.id),
+                ("move_type", "=", "out_refund"),
+            ],
+            limit=1,
+        )
+        self.assertTrue(refund, "Credit note was not created")
+        if refund.state != "posted":
+            refund.action_post()
+        job = self.env["automatic.workflow.job"]
+        domain = [
+            ("state", "in", ["sale", "done"]),
+            ("workflow_process_id", "=", sale.workflow_process_id.id),
+        ]
+        result = job._do_create_invoice(sale, domain)
+        self.assertIn("invoice already refunded", result)
+        out_invoices = sale.invoice_ids.filtered(lambda m: m.move_type == "out_invoice")
+        self.assertEqual(len(out_invoices), 1)
+
+    def test_do_create_invoice_success(self):
+        """Invoice creation succeeds when no posted invoice exists."""
+        workflow = self.create_full_automatic(
+            override={
+                "create_invoice": False,
+                "validate_invoice": False,
+            }
+        )
+        sale = self.create_sale_order(workflow)
+        sale.action_confirm()
+        job = self.env["automatic.workflow.job"]
+        domain = [
+            ("state", "in", ["sale", "done"]),
+            ("workflow_process_id", "=", sale.workflow_process_id.id),
+        ]
+        self.assertFalse(sale.invoice_ids)
+        result = job._do_create_invoice(sale, domain)
+        self.assertIn("create invoice successfully", result)
+        self.assertTrue(sale.invoice_ids)
