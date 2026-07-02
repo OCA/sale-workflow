@@ -72,7 +72,7 @@ class TestSaleTelegramNotification(TransactionCase):
             }
         )
 
-    def test_01_confirm_notification(self):
+    def test_confirm_notification(self):
         """Test that Telegram notification is sent upon order confirmation"""
         with patch.object(
             self.gateway.__class__, "send_message", return_value=True
@@ -83,7 +83,7 @@ class TestSaleTelegramNotification(TransactionCase):
             )
             mock_send.assert_called_once_with("-100123456789", expected_msg)
 
-    def test_02_cancel_notification(self):
+    def test_cancel_notification(self):
         """Test that Telegram notification is sent upon order cancellation"""
         with patch.object(
             self.gateway.__class__, "send_message", return_value=True
@@ -92,7 +92,7 @@ class TestSaleTelegramNotification(TransactionCase):
             expected_msg = f"Order {self.sale_order.name} cancelled."
             mock_send.assert_called_once_with("-100123456789", expected_msg)
 
-    def test_03_sent_notification(self):
+    def test_sent_notification(self):
         """Test Telegram notification is sent upon quotation state change to sent."""
         with patch.object(
             self.gateway.__class__, "send_message", return_value=True
@@ -101,3 +101,60 @@ class TestSaleTelegramNotification(TransactionCase):
             self.sale_order.write({"state": "sent"})
             expected_msg = f"Quotation {self.sale_order.name} sent."
             mock_send.assert_called_once_with("-100123456789", expected_msg)
+
+    def test_no_notification_found(self):
+        """Test that nothing happens if no active notifications exist."""
+        # Deactivate all notifications
+        self.env["sale.telegram.notification"].search([]).write({"active": False})
+        with patch.object(
+            self.gateway.__class__, "send_message", return_value=True
+        ) as mock_send:
+            self.sale_order.action_confirm()
+            mock_send.assert_not_called()
+
+        # Restore active state for other tests just in case
+        self.env["sale.telegram.notification"].search([("active", "=", False)]).write(
+            {"active": True}
+        )
+
+    def test_exception_rendering(self):
+        """Test that exception during rendering is caught and handled."""
+        with patch.object(
+            self.gateway.__class__, "send_message", return_value=True
+        ) as mock_send:
+            with patch.object(
+                self.notif_confirmed.__class__,
+                "_render_template",
+                side_effect=Exception("Test Exception"),
+            ):
+                self.sale_order.action_confirm()
+                mock_send.assert_not_called()
+
+    def test_empty_string_rendering(self):
+        """Test that empty string rendering is handled."""
+        with patch.object(
+            self.gateway.__class__, "send_message", return_value=True
+        ) as mock_send:
+            with patch.object(
+                self.notif_confirmed.__class__,
+                "_render_template",
+                return_value={self.sale_order.id: ""},
+            ):
+                self.sale_order.action_confirm()
+                mock_send.assert_not_called()
+
+    def test_send_message_failure(self):
+        """Test that send message failure is handled and logs an error."""
+        with patch.object(
+            self.gateway.__class__, "send_message", return_value=False
+        ) as mock_send:
+            self.sale_order.action_confirm()
+            mock_send.assert_called_once()
+
+    def test_write_no_state_change(self):
+        """Test write without state change to sent."""
+        with patch.object(
+            self.gateway.__class__, "send_message", return_value=True
+        ) as mock_send:
+            self.sale_order.write({"note": "Test Note"})
+            mock_send.assert_not_called()
