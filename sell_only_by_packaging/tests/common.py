@@ -12,3 +12,4 @@ class SellOnlyByPackagingCommon(Common):
     def setUpClass(cls):
         super().setUpClass()
         cls.env.user.groups_id += cls.env.ref("product.group_stock_packaging")
+        cls.order_line.write({"product_uom_qty": 0.0, "product_packaging_id": False})
