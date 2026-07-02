@@ -358,3 +358,65 @@ class TestSaleOrderLotSelection(test_common.SingleTransactionCase):
         self.assertEqual(
             m.exception.args[0], "You can't change the lot on confirmed sale order."
         )
+
+    def test_write_same_lot_on_confirmed_so_does_not_raise(self):
+        """Rewriting the very same lot_id on a confirmed order line must not
+        raise, since nothing actually changes. Only genuine changes should
+        be blocked when allow_to_change_lot_on_confirmed_so is False.
+        """
+        company = self.env.ref("base.main_company")
+        company.allow_to_change_lot_on_confirmed_so = False
+        self.sale.action_confirm()
+        line = self.sale.order_line[0]
+        current_lot = line.lot_id
+        self.assertTrue(current_lot)
+        # No exception expected: the lot value does not actually change,
+        # even though "lot_id" is present in the write values.
+        line.write({"lot_id": current_lot.id})
+        self.assertEqual(line.lot_id, current_lot)
+
+    def test_write_lot_id_false_no_change_does_not_propagate_to_done_move(self):
+        """Regression test for the fix that avoids propagating lot_id to
+        stock moves when it did not actually change.
+
+        Scenario: a sale order line without an initial lot_id, whose related
+        move ends up done and later carries a restrict_lot_id set
+        independently from the sale order line (e.g. by another process).
+        Saving the line again without changing the lot (still False, but
+        present in the write values) must not attempt to propagate
+        lot_id=False to the done move, which previously raised a
+        ValidationError from stock_restrict_lot.
+        """
+        self._inventory_products(self.prd_cable, self.lot_cable, 1)
+        order = self.env["sale.order"].create(
+            {"partner_id": self.env.ref("base.res_partner_1").id}
+        )
+        line = self.env["sale.order.line"].create(
+            {
+                "name": "sol_no_lot",
+                "order_id": order.id,
+                "product_id": self.prd_cable.id,
+                "product_uom_qty": 1,
+            }
+        )
+        self.assertFalse(line.lot_id)
+        order.action_confirm()
+        picking = order.picking_ids
+        picking.action_assign()
+        move = picking.move_ids
+        move.move_line_ids.write({"lot_id": self.lot_cable.id, "qty_done": 1})
+        picking.button_validate()
+        self.assertEqual(move.state, "done")
+        self.assertEqual(move.move_line_ids.lot_id, self.lot_cable)
+
+        # The move ends up with a restrict_lot_id, set independently from
+        # the sale order line lot_id (still False).
+        move.write({"restrict_lot_id": self.lot_cable.id})
+        self.assertEqual(move.restrict_lot_id, self.lot_cable)
+
+        # Saving the line again without actually changing lot_id (still
+        # False, but present in vals) must be a no-op regarding the move.
+        line.write({"lot_id": False})
+
+        self.assertFalse(line.lot_id)
+        self.assertEqual(move.restrict_lot_id, self.lot_cable)
