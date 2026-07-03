@@ -7,7 +7,6 @@ import logging
 from contextlib import contextmanager
 
 from odoo import api, fields, models
-from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
 
@@ -198,27 +197,27 @@ class AutomaticWorkflowJob(models.Model):
             self.with_context(
                 send_order_confirmation_mail=sale_workflow.send_order_confirmation_mail
             )._validate_sale_orders(
-                safe_eval(sale_workflow.order_filter_id.domain) + workflow_domain
+                sale_workflow.order_filter_id._get_eval_domain() + workflow_domain
             )
         self._handle_pickings(sale_workflow)
         if sale_workflow.create_invoice:
             self._create_invoices(
-                safe_eval(sale_workflow.create_invoice_filter_id.domain)
+                sale_workflow.create_invoice_filter_id._get_eval_domain()
                 + workflow_domain
             )
         if sale_workflow.validate_invoice:
             self._validate_invoices(
-                safe_eval(sale_workflow.validate_invoice_filter_id.domain)
+                sale_workflow.validate_invoice_filter_id._get_eval_domain()
                 + workflow_domain
             )
         if sale_workflow.sale_done:
             self._sale_done(
-                safe_eval(sale_workflow.sale_done_filter_id.domain) + workflow_domain
+                sale_workflow.sale_done_filter_id._get_eval_domain() + workflow_domain
             )
 
         if sale_workflow.register_payment:
             self._register_payments(
-                safe_eval(sale_workflow.payment_filter_id.domain) + workflow_domain
+                sale_workflow.payment_filter_id._get_eval_domain() + workflow_domain
             )
 
     @api.model
