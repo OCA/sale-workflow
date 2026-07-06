@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 Tecnativa - Carlos Roca
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<template id="template" xml:space="preserve">
+    <t
+        t-name="sale_stock_qty_at_date_widget_multi_warehouse.QtyAtDate"
+        t-inherit="sale_stock.QtyAtDate"
+        t-inherit-mode="extension"
+    >
+        <xpath expr="//a[@t-on-click='showPopup']" position="attributes">
+            <attribute
+                name="t-attf-class"
+            >fa fa-area-chart cursor-pointer {{ calcData.multi_warehouse_issue ? 'text-danger' : calcData.multi_warehouse_partial ? 'text-warning' : '' }}</attribute>
+        </xpath>
+    </t>
+
+    <t
+        t-name="sale_stock_qty_at_date_widget_multi_warehouse.QtyAtDatePopover"
+        t-inherit="sale_stock.QtyAtDatePopover"
+        t-inherit-mode="extension"
+    >
+        <xpath
+            expr="//table[@class='table table-borderless table-sm']"
+            position="after"
+        >
+            <t t-if="props.calcData.warehouse_breakdown">
+                <h6>Availability per Warehouse</h6>
+                <table class="table table-borderless table-sm">
+                    <tbody>
+                        <tr
+                            t-foreach="props.calcData.warehouse_breakdown"
+                            t-as="warehouse"
+                            t-key="warehouse.id"
+                        >
+                            <td>
+                                <span
+                                    t-att-class="warehouse.is_current ? 'fw-bold' : ''"
+                                    t-out="warehouse.name"
+                                />
+                            </td>
+                            <td class="text-end">
+                                <b
+                                    t-att-class="warehouse.qty > 0 ? '' : 'text-muted'"
+                                    t-out="warehouse.qty"
+                                />
+                                <t t-out="props.calcData.uom_name" />
+                            </td>
+                        </tr>
+                        <tr class="border-top">
+                            <td>
+                                <strong>Total</strong>
+                            </td>
+                            <td class="text-end">
+                                <b
+                                    t-att-class="props.calcData.fulfilled_all_warehouses ? '' : 'text-danger'"
+                                    t-out="props.calcData.total_all_warehouses"
+                                />
+                                <t t-out="props.calcData.uom_name" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </t>
+        </xpath>
+    </t>
+</template>

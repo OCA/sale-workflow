@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Tecnativa - Carlos Roca
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_order_form_inherit_qty_multi_warehouse" model="ir.ui.view">
+        <field name="name">sale.order.line.qty.multi.warehouse</field>
+        <field
+            name="inherit_id"
+            ref="sale_stock.view_order_form_inherit_sale_stock_qty"
+        />
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <!-- The qty_at_date_widget reads qty_at_date_per_warehouse from the
+                 record, so the field must be present in the view (even if
+                 invisible) to be loaded into the record data. Do not remove. -->
+            <xpath expr="//form//widget[@name='qty_at_date_widget']" position="before">
+                <field name="qty_at_date_per_warehouse" invisible="1" />
+            </xpath>
+            <xpath expr="//list//widget[@name='qty_at_date_widget']" position="before">
+                <field name="qty_at_date_per_warehouse" column_invisible="True" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
