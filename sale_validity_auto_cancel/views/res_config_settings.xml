@@ -25,6 +25,44 @@
                         </div>
                     </div>
                 </div>
+                <div
+                    class="col-12 col-lg-6 o_setting_box"
+                    id="sale_config_online_confirmation_sign"
+                >
+                    <div class="o_setting_left_pane">
+                        <field name="sale_validity_warning_enabled" />
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="sale_validity_warning_enabled" />
+                        <span
+                            class="fa fa-lg fa-building-o"
+                            title="Values set here are company-specific."
+                            groups="base.group_multi_company"
+                        />
+                        <div class="text-muted">
+                            Enable warning for sale automatic cancellation.
+                        </div>
+                        <div
+                            class="content-group"
+                            attrs="{'invisible': [('sale_validity_warning_enabled', '=', False)]}"
+                        >
+                            <div class="mt16">
+                                <label for="sale_validity_warning_days" />
+                                <div class="text-muted mt4 mb4">
+                                    Number of days before automatic cancellation to display a warning on quotations.
+                                </div>
+                                <div class="text-muted mt4 mb4">
+                                    <field name="sale_validity_warning_days" />
+                                    <label
+                                        for=""
+                                        string="Days"
+                                        style="margin-left: 5px;"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </xpath>
         </field>
     </record>
