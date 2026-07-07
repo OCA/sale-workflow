@@ -76,7 +76,7 @@ class SaleOrderLine(models.Model):
                 **kwargs,
             )
 
-        return super()._convert_to_tax_base_line_dict()
+        return super()._convert_to_tax_base_line_dict(**kwargs)
 
     @api.depends("discount_fixed", "price_unit")
     def _compute_discount(self):
