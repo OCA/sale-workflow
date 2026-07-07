@@ -2,10 +2,6 @@
 /* Copyright 2026 Tecnativa - Carlos Lopez
  * License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). */
 
-import {useEffect, useState} from "@odoo/owl";
-
-import {useRecordObserver} from "@web/model/relational_model/utils";
-import {SaleOrderLineProductField} from "@sale/js/sale_product_field";
 import {
     ProductLabel,
     ProductLabelSectionAndNoteFieldAutocomplete,
@@ -13,7 +9,10 @@ import {
     useIsNote,
     useIsSection,
 } from "@web_widget_product_label_section_and_note/components/product_label_section_and_note_field/product_label_section_and_note_field.esm";
+import {useEffect, useState} from "@odoo/owl";
+import {SaleOrderLineProductField} from "@sale/js/sale_product_field";
 import {patch} from "@web/core/utils/patch";
+import {useRecordObserver} from "@web/model/relational_model/utils";
 
 patch(SaleOrderLineProductField.prototype, {
     setup() {
