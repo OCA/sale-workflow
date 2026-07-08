@@ -192,7 +192,7 @@ class TestInvoicefinishedTask(BaseCommon):
         task = self.env["project.task"].create(
             {
                 "name": "Other Task",
-                "partner_id": self.manager.id,
+                "partner_id": self.manager.partner_id.id,
                 "user_ids": [Command.link(self.manager.id)],
                 "project_id": self.project.id,
                 "sale_line_id": self.sale_order.order_line.id,
