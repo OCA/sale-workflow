@@ -285,14 +285,12 @@
                                     />
                                 </group>
                                 <group name="invoicing" string="Invoicing">
-                                    <t groups="base.group_multi_company">
-                                        <field
-                                            name="analytic_account_id"
-                                            attrs="{'readonly': [('sale_count','!=',0),('state','!=','draft')]}"
-                                            groups="analytic.group_analytic_accounting"
-                                            force_save="1"
-                                        />
-                                    </t>
+                                    <field
+                                        name="analytic_account_id"
+                                        attrs="{'readonly': [('sale_count','!=',0),('state','!=','draft')]}"
+                                        groups="analytic.group_analytic_accounting"
+                                        force_save="1"
+                                    />
                                 </group>
                             </group>
                         </page>
