@@ -34,6 +34,30 @@ msgid "Discount (%)"
 msgstr "Descuento (%)"
 
 #. module: sale_order_general_discount
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_product_product__bypass_general_discount
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_product_template__bypass_general_discount
+msgid "Don't apply general discount"
+msgstr ""
+
+#. module: sale_order_general_discount
+#: model:ir.model.fields,help:sale_order_general_discount.field_product_product__bypass_general_discount
+#: model:ir.model.fields,help:sale_order_general_discount.field_product_template__bypass_general_discount
+msgid ""
+"If this checkbox is not ticked, it means changing general discount on sale "
+"order will impact sale order lines with this related product."
+msgstr ""
+
+#. module: sale_order_general_discount
+#: model:ir.model,name:sale_order_general_discount.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: sale_order_general_discount
+#: model:ir.model,name:sale_order_general_discount.model_product_product
+msgid "Product Variant"
+msgstr ""
+
+#. module: sale_order_general_discount
 #: model:ir.model,name:sale_order_general_discount.model_sale_order
 msgid "Sales Order"
 msgstr "Pedido de venta"
@@ -42,6 +66,11 @@ msgstr "Pedido de venta"
 #: model:ir.model,name:sale_order_general_discount.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea Pedido de Venta"
+
+#. module: sale_order_general_discount
+#: model:ir.model.fields,field_description:sale_order_general_discount.field_sale_order_line__discount
+msgid "Total discount"
+msgstr ""
 
 #~ msgid "Quotation"
 #~ msgstr "Presupuesto"
