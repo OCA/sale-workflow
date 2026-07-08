@@ -1,5 +1,5 @@
 # Copyright 2026 ForgeFlow S.L.
-# License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl).
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Sale Order Line Route Visible",
     "summary": "Show the Routes column by default on sale order lines",
@@ -7,7 +7,7 @@
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales Management",
-    "license": "LGPL-3",
+    "license": "AGPL-3",
     "development_status": "Beta",
     "maintainers": ["MarcGForgeFlow"],
     "depends": ["sale_stock"],
