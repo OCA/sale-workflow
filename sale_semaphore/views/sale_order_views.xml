@@ -62,7 +62,7 @@
         <field name="model">sale.order.line</field>
         <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
         <field name="arch" type="xml">
-            <field name="product_uom" position="after">
+            <field name="product_uom_id" position="after">
                 <field name="semaphore" widget="semaphore" />
             </field>
         </field>

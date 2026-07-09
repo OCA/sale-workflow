@@ -1,7 +1,7 @@
 # Copyright 2025 Tecnativa - Carlos Roca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, fields, models
+from odoo import fields, models
 from odoo.exceptions import UserError
 
 
@@ -27,7 +27,7 @@ class SaleOderLine(models.Model):
             )
             if lines_price_below_pricelist:
                 raise UserError(
-                    _(
+                    self.env._(
                         "There's a line with price below semaphore's accepted.\n\n"
                         "Please set the prices in a way that they are accepted by the "
                         "semaphore, or contact the purchasing administrators."

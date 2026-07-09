@@ -1,6 +1,6 @@
 # Copyright 2025 Tecnativa - Carlos Roca
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import float_compare
 
@@ -24,20 +24,20 @@ class SaleOderLine(models.Model):
     price_below_semaphore = fields.Boolean(compute="_compute_price_below_semaphore")
 
     @api.depends(
-        "product_id", "price_reduce_taxinc", "price_reduce_taxexcl", "product_uom"
+        "product_id", "price_reduce_taxinc", "price_reduce_taxexcl", "product_uom_id"
     )
     def _compute_semaphore(self):
         dp = self.env["decimal.precision"].precision_get("Product Price")
         self.semaphore_active = False
         for record in self:
-            if not record.product_id or not record.product_uom:
+            if not record.product_id or not record.product_uom_id:
                 continue
             semaphore_data = record.product_id._get_semaphore_data()
             if not semaphore_data:
                 continue
             record.semaphore_active = True
             price_reduce = record._get_semaphore_price_reduce()
-            price_reduce = record.product_uom._compute_price(
+            price_reduce = record.product_uom_id._compute_price(
                 price_reduce, record.product_id.uom_id
             )
             if (
@@ -63,19 +63,19 @@ class SaleOderLine(models.Model):
             else:
                 record.semaphore = "danger"
 
-    @api.depends("product_id", "product_uom")
+    @api.depends("product_id", "product_uom_id")
     def _compute_semaphore_max_prices(self):
         self.semaphore_max_price_success = self.semaphore_max_price_warning = (
             self.semaphore_max_price_danger
         ) = 0
         for record in self:
-            if not record.product_id or not record.product_uom:
+            if not record.product_id or not record.product_uom_id:
                 continue
             semaphore_data = record.product_id._get_semaphore_data()
             if not semaphore_data:
                 continue
             lst_price = record.product_id.uom_id._compute_price(
-                record.product_id.lst_price, record.product_uom
+                record.product_id.lst_price, record.product_uom_id
             )
             record.semaphore_max_price_success = lst_price * (
                 (100 - semaphore_data["success"]) / 100
@@ -121,10 +121,10 @@ class SaleOderLine(models.Model):
         """
         self.ensure_one()
         price = self.order_id.pricelist_id._get_product_price(
-            self.product_id, self.product_uom_qty, uom=self.product_uom
+            self.product_id, self.product_uom_qty, uom=self.product_uom_id
         )
         if self.company_id.account_price_include == "tax_included":
-            price = self.tax_id.compute_all(
+            price = self.tax_ids.compute_all(
                 price,
                 currency=self.currency_id,
                 quantity=1.0,
@@ -174,7 +174,7 @@ class SaleOderLine(models.Model):
                 lambda line: line._is_price_below_pricelist()
             ):
                 raise UserError(
-                    _(
+                    self.env._(
                         "There's a line with price below semaphore's accepted.\n\n"
                         "Please set the prices in a way that they are accepted "
                         "by the semaphore, or contact the purchasing "

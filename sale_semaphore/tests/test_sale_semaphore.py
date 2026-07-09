@@ -41,7 +41,7 @@ class TestSaleSemaphore(BaseCommon):
             {
                 "name": "Semaphore Salesperson",
                 "login": "semaphore_salesperson",
-                "groups_id": [
+                "group_ids": [
                     (6, 0, [cls.env.ref("sales_team.group_sale_salesman").id])
                 ],
             }
@@ -54,7 +54,7 @@ class TestSaleSemaphore(BaseCommon):
                 "product_id": self.product.id,
                 "name": self.product.name,
                 "product_uom_qty": 1.0,
-                "product_uom": self.product.uom_id.id,
+                "product_uom_id": self.product.uom_id.id,
                 "price_unit": price_unit,
             }
         )
@@ -194,7 +194,7 @@ class TestSaleSemaphore(BaseCommon):
                 "product_id": self.product.id,
                 "name": self.product.name,
                 "product_uom_qty": 1.0,
-                "product_uom": self.product.uom_id.id,
+                "product_uom_id": self.product.uom_id.id,
             }
         )
         # Price comes straight from the pricelist (salesperson did not touch it).
@@ -219,7 +219,7 @@ class TestSaleSemaphore(BaseCommon):
                 "product_id": self.product.id,
                 "name": self.product.name,
                 "product_uom_qty": 1.0,
-                "product_uom": self.product.uom_id.id,
+                "product_uom_id": self.product.uom_id.id,
                 "price_unit": 70.0,
             }
         )
@@ -227,3 +227,61 @@ class TestSaleSemaphore(BaseCommon):
         self.assertTrue(line._is_price_below_pricelist())
         with self.assertRaises(UserError):
             order.with_user(self.salesperson).action_confirm()
+
+    def test_semaphore_edge_cases_and_reporting(self):
+        p_no = self.env["product.product"].create(
+            {"name": "No", "categ_id": self.category.id, "semaphore_active": "no"}
+        )
+        lines = self.env["sale.order.line"].new(
+            {"order_id": self.order.id, "product_id": False}
+        ) | self.env["sale.order.line"].new(
+            {
+                "order_id": self.order.id,
+                "product_id": p_no.id,
+                "product_uom_id": p_no.uom_id.id,
+            }
+        )
+        lines._compute_semaphore()
+        lines._compute_semaphore_max_prices()
+        self.env.company.account_price_include = "tax_included"
+        line = self._create_line(100.0)
+        line._get_semaphore_pricelist_price()
+        pricelist = self._create_fixed_price_pricelist("Coverage Pricelist", 90.0)
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "pricelist_id": pricelist.id,
+                "user_id": self.salesperson.id,
+            }
+        )
+        write_line = self.env["sale.order.line"].create(
+            {
+                "order_id": order.id,
+                "product_id": self.product.id,
+                "name": self.product.name,
+                "product_uom_qty": 1.0,
+                "product_uom_id": self.product.uom_id.id,
+                "price_unit": 100.0,
+            }
+        )
+        order.action_confirm()
+        order.action_unlock()
+        write_line.with_user(self.salesperson).sudo().write({"price_unit": 95.0})
+        with self.assertRaises(UserError):
+            write_line.with_user(self.salesperson).sudo().write({"price_unit": 50.0})
+        self.env["sale.report"].search_read(
+            [("product_id", "=", self.product.id)], ["semaphore"]
+        )
+        self.product.write(
+            {
+                "semaphore_active": "yes",
+                "semaphore_discount_success": 5.0,
+                "semaphore_discount_warning": 15.0,
+                "semaphore_discount_danger": 25.0,
+            }
+        )
+        tmpl = self.product.product_tmpl_id
+        self.assertEqual(tmpl.semaphore_active, "yes")
+        self.env["account.invoice.report"].search_read(
+            [("product_id", "=", self.product.id)], ["semaphore"]
+        )

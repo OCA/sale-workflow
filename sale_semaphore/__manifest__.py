@@ -4,7 +4,7 @@
 {
     "name": "Sale Semaphore",
     "summary": "Adds a semaphore for commercial purposes",
-    "version": "18.0.1.0.2",
+    "version": "19.0.1.0.0",
     "category": "Sale",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
