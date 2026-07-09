@@ -2,7 +2,7 @@
 
 {
     "name": "Sale Order Lot Generator",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "author": "Akretion, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
