@@ -10,7 +10,7 @@ class SaleOrderLine(models.Model):
     def _prepare_vals_lot_number(self, index_lot):
         # Prepare values before creating a lot number
         self.ensure_one()
-        lot_number = "%s-%03d" % (self.order_id.name, index_lot)
+        lot_number = f"{self.order_id.name}-{index_lot:03d}"
         return {
             "name": lot_number,
             "product_id": self.product_id.id,
