@@ -130,7 +130,7 @@ class TestSaleOrderLotSelection(BaseCommon):
         )
         self.env["stock.move"].create(
             {
-                "name": self.product_12.name,
+                "inventory_name": self.product_12.name,
                 "product_id": self.product_12.id,
                 "product_uom_qty": self.product_12.qty_available,
                 "product_uom": self.product_12.uom_id.id,
@@ -141,7 +141,7 @@ class TestSaleOrderLotSelection(BaseCommon):
         )
         self.env["stock.move"].create(
             {
-                "name": self.product_46.name,
+                "inventory_name": self.product_46.name,
                 "product_id": self.product_46.id,
                 "product_uom_qty": self.product_46.qty_available,
                 "product_uom": self.product_46.uom_id.id,
@@ -168,7 +168,7 @@ class TestSaleOrderLotSelection(BaseCommon):
         )
         self.env["stock.move"].create(
             {
-                "name": self.prd_cable.name,
+                "inventory_name": self.prd_cable.name,
                 "product_id": self.prd_cable.id,
                 "product_uom_qty": 1,
                 "product_uom": self.prd_cable.uom_id.id,
@@ -179,7 +179,7 @@ class TestSaleOrderLotSelection(BaseCommon):
         )
         self.env["stock.move"].create(
             {
-                "name": self.product_12.name,
+                "inventory_name": self.product_12.name,
                 "product_id": self.product_12.id,
                 "product_uom_qty": 1,
                 "product_uom": self.product_12.uom_id.id,
@@ -190,7 +190,7 @@ class TestSaleOrderLotSelection(BaseCommon):
         )
         self.env["stock.move"].create(
             {
-                "name": self.product_46.name,
+                "inventory_name": self.product_46.name,
                 "product_id": self.product_46.id,
                 "product_uom_qty": 2,
                 "product_uom": self.product_46.uom_id.id,
@@ -207,7 +207,7 @@ class TestSaleOrderLotSelection(BaseCommon):
         lot10 = False
         lot11 = False
         lot12 = False
-        for move in picking_in.move_ids_without_package:
+        for move in picking_in.move_ids:
             if move.product_id == self.prd_cable:
                 lot10 = self.lot_model.create(
                     {
@@ -323,7 +323,7 @@ class TestSaleOrderLotSelection(BaseCommon):
         self.order1.action_confirm()
         picking = self.order1.picking_ids
 
-        picking_move_line_ids = picking.move_ids_without_package[0].move_line_ids
+        picking_move_line_ids = picking.move_ids[0].move_line_ids
         picking_move_line_ids[0].quantity = 1
         picking_move_line_ids[0].location_id = self.stock_location
         picking.button_validate()
@@ -346,7 +346,7 @@ class TestSaleOrderLotSelection(BaseCommon):
         picking = self.order2.picking_ids
         picking.action_assign()
 
-        picking.move_ids_without_package.mapped("move_line_ids").write({"quantity": 1})
+        picking.move_ids.mapped("move_line_ids").write({"quantity": 1})
         picking.button_validate()
 
         # check quantities
@@ -395,7 +395,7 @@ class TestSaleOrderLotSelection(BaseCommon):
         self.assertEqual(line_0.move_ids.state, "assigned")
         self.assertEqual(line_0.move_ids.restrict_lot_id, lot_extra_1)
         picking = self.sale.picking_ids
-        picking.move_ids_without_package.mapped("move_line_ids").write({"quantity": 1})
+        picking.move_ids.mapped("move_line_ids").write({"quantity": 1})
         picking.button_validate()
         self.assertEqual(picking.state, "done")
         msg = (

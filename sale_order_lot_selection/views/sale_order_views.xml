@@ -18,7 +18,7 @@
                 />
             </xpath>
             <xpath
-                expr="//field[@name='order_line']/form/group/group/field[@name='product_uom_readonly']"
+                expr="//field[@name='order_line']/form//div[@name='ordered_qty']"
                 position="after"
             >
                 <field
