@@ -160,7 +160,7 @@ class TestSaleOrderLotSelection(BaseCommon):
         # make products enter
         picking_in = self.env["stock.picking"].create(
             {
-                "partner_id": self.env.ref("base.res_partner_1").id,
+                "partner_id": self.partner.id,
                 "picking_type_id": self.env.ref("stock.picking_type_in").id,
                 "location_id": self.supplier_location.id,
                 "location_dest_id": self.stock_location.id,
@@ -261,9 +261,7 @@ class TestSaleOrderLotSelection(BaseCommon):
         self.assertEqual(lot12_qty_available, 1)
 
         # create order
-        self.order1 = self.env["sale.order"].create(
-            {"partner_id": self.env.ref("base.res_partner_1").id}
-        )
+        self.order1 = self.env["sale.order"].create({"partner_id": self.partner.id})
         self.sol1 = self.env["sale.order.line"].create(
             {
                 "name": "sol1",
@@ -273,9 +271,7 @@ class TestSaleOrderLotSelection(BaseCommon):
                 "product_uom_qty": 1,
             }
         )
-        self.order2 = self.env["sale.order"].create(
-            {"partner_id": self.env.ref("base.res_partner_1").id}
-        )
+        self.order2 = self.env["sale.order"].create({"partner_id": self.partner.id})
         self.sol2a = self.env["sale.order.line"].create(
             {
                 "name": "sol2a",
@@ -294,9 +290,7 @@ class TestSaleOrderLotSelection(BaseCommon):
                 "product_uom_qty": 1,
             }
         )
-        self.order3 = self.env["sale.order"].create(
-            {"partner_id": self.env.ref("base.res_partner_1").id}
-        )
+        self.order3 = self.env["sale.order"].create({"partner_id": self.partner.id})
         self.sol3 = self.env["sale.order.line"].create(
             {
                 "name": "sol_test_1",
@@ -306,9 +300,7 @@ class TestSaleOrderLotSelection(BaseCommon):
                 "product_uom_qty": 1,
             }
         )
-        self.order4 = self.env["sale.order"].create(
-            {"partner_id": self.env.ref("base.res_partner_1").id}
-        )
+        self.order4 = self.env["sale.order"].create({"partner_id": self.partner.id})
         self.sol4 = self.env["sale.order.line"].create(
             {
                 "name": "sol4",
@@ -469,3 +461,116 @@ class TestSaleOrderLotSelection(BaseCommon):
         self._update_stock_quantity(self.prd_cable, lot_cable_extra, 1)
         sale_extra.action_confirm()
         self.assertEqual(sale_extra.state, "sale")
+
+    def test_05_domain_lot_id_excludes_pending_orders_serial(self):
+        """Verify that a serial number already selected in a draft quotation
+        is excluded from the selection domain of other sale order lines.
+        """
+        # Enable the exclusion business rule
+        self.env.company.write(
+            {"sale_order_lot_selection_exclude_pending_orders": True}
+        )
+
+        # Ensure the product is configured with unique serial number tracking
+        self.prd_cable.write({"tracking": "serial"})
+
+        # Create a unique serial number with available stock
+        serial_number = self.env["stock.lot"].create(
+            {
+                "name": "SN-EXCLUSIVE-001",
+                "product_id": self.prd_cable.id,
+                "company_id": self.env.company.id,
+            }
+        )
+        self._update_stock_quantity(self.prd_cable, serial_number, 1)
+
+        # Create a first order (Draft) that reserves this serial number
+        order_1 = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+            }
+        )
+        self.env["sale.order.line"].create(
+            {
+                "order_id": order_1.id,
+                "product_id": self.prd_cable.id,
+                "product_uom_qty": 1,
+                "lot_id": serial_number.id,
+            }
+        )
+
+        # Create a second concurrent order for the same product
+        order_2 = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+            }
+        )
+        sol_2 = self.env["sale.order.line"].create(
+            {
+                "order_id": order_2.id,
+                "product_id": self.prd_cable.id,
+                "product_uom_qty": 1,
+            }
+        )
+
+        # Retrieve the calculated selection domain for line 2
+        domain_lot_ids = []
+        if sol_2.domain_lot_id:
+            domain_lot_ids = [d[2] for d in sol_2.domain_lot_id if d[0] == "id"][0]
+
+        # Business rule: The serial number from order 1 MUST be excluded
+        self.assertNotIn(serial_number.id, domain_lot_ids)
+
+    def test_06_lot_id_quant_domain_hooks(self):
+        """Verify the validity of the hooks used to filter stock locations
+        and build the quant search domain.
+        """
+        # 1. Create minimal data structure
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+            }
+        )
+        sol = self.env["sale.order.line"].create(
+            {
+                "order_id": order.id,
+                "product_id": self.prd_cable.id,
+                "product_uom_qty": 5.0,  # Put a distinct quantity to test the value
+            }
+        )
+
+        # 2. Test target location hook
+        location = sol._get_lot_id_quant_domain_locations()
+        self.assertEqual(location, sol.warehouse_id.lot_stock_id)
+
+        # 3. Test quant domain hook (Structure and Values)
+        quant_domain = sol._domain_lot_id_quant_domain()
+
+        # Convert the domain list of tuples into a dictionary for clean assertions
+        # This filters out operators like '&' or '|' automatically
+        domain_dict = {
+            criterion[0]: (criterion[1], criterion[2])
+            for criterion in quant_domain
+            if len(criterion) == 3
+        }
+
+        # Assert both keys presence and correctness of values
+        self.assertEqual(domain_dict.get("product_id"), ("=", sol.product_id.id))
+        self.assertEqual(domain_dict.get("quantity"), (">=", 5.0))
+        self.assertEqual(domain_dict.get("location_id"), ("child_of", location.ids))
+        self.assertEqual(domain_dict.get("lot_id"), ("!=", False))
+
+    def test_selection_product_tracking_values(self):
+        """Verify that the dynamic selection method correctly extracts
+        the tracking options from the product model.
+        """
+        # 1. Call the model's selection method
+        selection_options = self.env["sale.order.line"]._selection_product_tracking()
+
+        # 2. Convert directly to a dictionary to easily extract and map keys to labels
+        selection_dict = dict(selection_options)
+
+        # 3. Assert precise presence of core Odoo tracking options as keys
+        self.assertIn("serial", selection_dict)
+        self.assertIn("lot", selection_dict)
+        self.assertIn("none", selection_dict)
