@@ -200,3 +200,9 @@ class SomethingCase(TransactionCase):
                 }
             ],
         )
+
+    def test_compute_skip_on_install(self):
+        """Test compute skips when installing the module alone to avoid timeout"""
+        self.env["sale.order.line"].with_context(
+            module="sale_order_line_product_attribute_values"
+        )._compute_all_product_template_attribute_value_ids()
