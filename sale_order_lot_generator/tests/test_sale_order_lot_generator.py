@@ -9,18 +9,41 @@ class TestSaleOrderLotGenerator(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-        cls.prd_flipover = cls.env.ref("product.product_product_20")
-        cls.prd_desk = cls.env.ref("product.product_product_22")
-        cls.prd_acoustic = cls.env.ref("product.product_product_25")
-        cls.prd_flipover.write({"tracking": "lot", "auto_generate_prodlot": True})
-        cls.prd_desk.write({"tracking": "lot", "auto_generate_prodlot": True})
-        cls.prd_acoustic.write({"tracking": "lot", "auto_generate_prodlot": True})
+        cls.partner = cls.env["res.partner"].create(
+            {
+                "name": "Test Partner",
+            }
+        )
+        cls.prd_flipover = cls.env["product.product"].create(
+            {
+                "name": "Flipover Test Product",
+                "type": "consu",  # ou 'product' selon ton besoin
+                "tracking": "lot",
+                "auto_generate_prodlot": True,
+            }
+        )
+        cls.prd_desk = cls.env["product.product"].create(
+            {
+                "name": "Desk Test Product",
+                "type": "consu",
+                "tracking": "lot",
+                "auto_generate_prodlot": True,
+            }
+        )
+        cls.prd_acoustic = cls.env["product.product"].create(
+            {
+                "name": "Acoustic Test Product",
+                "type": "consu",
+                "tracking": "lot",
+                "auto_generate_prodlot": True,
+            }
+        )
 
     def test_sale_order_lot_generator(self):
         # create order
         self.order1 = self.env["sale.order"].create(
             # Lumber partner
-            {"partner_id": self.env.ref("base.res_partner_18").id}
+            {"partner_id": self.partner.id}
         )
         self.sol1 = self.env["sale.order.line"].create(
             {
@@ -32,7 +55,7 @@ class TestSaleOrderLotGenerator(TransactionCase):
         )
         # confirm orders
         self.order1.action_confirm()
-        lot_number = "%s-%03d" % (self.order1.name, 1)
+        lot_number = f"{self.order1.name}-{1:03d}"
         self.assertEqual(self.sol1.lot_id.name, lot_number)
         # add second line after order redraft
         self.order1._action_cancel()
@@ -46,7 +69,7 @@ class TestSaleOrderLotGenerator(TransactionCase):
             }
         )
         self.order1.action_confirm()
-        lot_number = "%s-%03d" % (self.order1.name, 2)
+        lot_number = f"{self.order1.name}-{2:03d}"
         self.assertEqual(self.sol2.lot_id.name, lot_number)
         # add third line after order confirm
         self.sol3 = self.env["sale.order.line"].create(
@@ -57,5 +80,5 @@ class TestSaleOrderLotGenerator(TransactionCase):
                 "product_uom_qty": 1,
             }
         )
-        lot_number = "%s-%03d" % (self.order1.name, 3)
+        lot_number = f"{self.order1.name}-{3:03d}"
         self.assertEqual(self.sol3.lot_id.name, lot_number)
