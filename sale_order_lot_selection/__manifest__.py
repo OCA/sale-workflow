@@ -1,6 +1,6 @@
 {
     "name": "Sale Order Lot Selection",
-    "version": "18.0.1.4.1",
+    "version": "19.0.1.0.0",
     "category": "Sales Management",
     "author": "Odoo Community Association (OCA), Agile Business Group",
     "website": "https://github.com/OCA/sale-workflow",
