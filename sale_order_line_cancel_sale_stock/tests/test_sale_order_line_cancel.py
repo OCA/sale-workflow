@@ -170,6 +170,51 @@ class TestSaleOrderLineCancel(TestSaleOrderLineCancelBase):
         self.assertEqual(line.qty_delivered, 4)
         self.assertEqual(line.product_uom_qty, 4)
 
+    def _confirm_sale_with_decrease_product_uom_qty(self):
+        sale = self.sale
+        sale.company_id.on_sale_line_cancel_decrease_line_qty = True
+        sale.with_context(disable_cancel_warning=True).action_cancel()
+        sale.picking_ids.unlink()
+        sale.action_draft()
+        sale.action_confirm()
+        return sale
+
+    def test_increase_product_uom_qty_after_cancel(self):
+        sale = self._confirm_sale_with_decrease_product_uom_qty()
+        line = sale.order_line
+        self.wiz.with_context(
+            active_id=line.id, active_model="sale.order.line"
+        ).cancel_remaining_qty()
+        self.assertEqual(line.product_uom_qty, 0)
+        self.assertEqual(line.product_qty_canceled, 10)
+        self.assertEqual(sale.picking_ids.state, "cancel")
+        line.product_uom_qty = 10
+        self.assertEqual(line.product_uom_qty, 10)
+        self.assertEqual(line.product_qty_canceled, 0)
+        self.assertEqual(line.product_qty_remains_to_deliver, 10)
+        self.assertEqual(line.qty_to_deliver, 10)
+        self.assertTrue(line.can_cancel_remaining_qty)
+        ship = sale.picking_ids.filtered(lambda p: p.state != "cancel")
+        self.assertEqual(ship.move_ids.product_uom_qty, 10)
+
+    def test_increase_product_uom_qty_after_cancel_in_steps(self):
+        sale = self._confirm_sale_with_decrease_product_uom_qty()
+        line = sale.order_line
+        self.wiz.with_context(
+            active_id=line.id, active_model="sale.order.line"
+        ).cancel_remaining_qty()
+        line.product_uom_qty = 5
+        self.assertEqual(line.product_uom_qty, 5)
+        # The re-added qty gives back the canceled qty by the same amount.
+        self.assertEqual(line.product_qty_canceled, 5)
+        self.assertEqual(line.product_qty_remains_to_deliver, 0)
+        line.product_uom_qty = 10
+        self.assertEqual(line.product_uom_qty, 10)
+        self.assertEqual(line.product_qty_canceled, 0)
+        self.assertEqual(line.product_qty_remains_to_deliver, 10)
+        moves = line.move_ids.filtered(lambda m: m.state != "cancel")
+        self.assertEqual(sum(moves.mapped("product_uom_qty")), 10)
+
     def test_ensure_no_decrease_product_uom_qty_on_so_cancel(self):
         sale = self.sale
         sale.with_context(disable_cancel_warning=True).action_cancel()
