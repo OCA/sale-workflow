@@ -28,8 +28,8 @@ class SaleOrderLine(models.Model):
         precompute=True,
     )
 
-    def _prepare_procurement_values(self, group_id=False):
-        vals = super()._prepare_procurement_values(group_id=group_id)
+    def _prepare_procurement_values(self):
+        vals = super()._prepare_procurement_values()
         if self.lot_id:
             vals["restrict_lot_id"] = self.lot_id.id
         return vals
