@@ -44,6 +44,31 @@ class SaleOrderLine(models.Model):
             qty_remaining = max(0, qty_to_deliver - line.product_qty_canceled)
             line.product_qty_remains_to_deliver = qty_remaining
 
+    def write(self, values):
+        # When the ordered qty is raised again after some qty was canceled,
+        # give the canceled qty back so the line becomes deliverable again.
+        # This must happen before super() so the qty is already restored when
+        # the procurement (and any resulting move merge/cancel) runs.
+        if "product_uom_qty" in values and "product_qty_canceled" not in values:
+            precision = self.env["decimal.precision"].precision_get(
+                "Product Unit of Measure"
+            )
+            new_qty = values["product_uom_qty"]
+            for line in self:
+                increase = new_qty - line.product_uom_qty
+                if (
+                    line.company_id.on_sale_line_cancel_decrease_line_qty
+                    and float_compare(
+                        line.product_qty_canceled, 0, precision_digits=precision
+                    )
+                    > 0
+                    and float_compare(increase, 0, precision_digits=precision) > 0
+                ):
+                    line.product_qty_canceled = max(
+                        0, line.product_qty_canceled - increase
+                    )
+        return super().write(values)
+
     def _update_qty_canceled(self):
         """Update SO line qty canceled only when all remaining moves are canceled"""
         for line in self:
