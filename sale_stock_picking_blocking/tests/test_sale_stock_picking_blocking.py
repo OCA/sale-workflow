@@ -132,6 +132,48 @@ class TestSaleDeliveryBlock(TransactionCase):
         self.assertEqual(so.delivery_block_id, block_reason)
         self.assertEqual(so.copy().delivery_block_id, block_reason)
 
+    def test_manual_block_survives_partner_change(self):
+        """A manually-set block must survive a recompute triggered by a
+        dependency change (here, switching to a partner without a default)."""
+        block_reason = self.block_model.with_user(self.user_test).create(
+            {"name": "Manual Block."}
+        )
+        partner_no_default = self.env["res.partner"].create({"name": "NoDefault"})
+        so = self.sale_order
+        so.write({"delivery_block_id": block_reason.id})
+        # Changing partner_id triggers a recompute of delivery_block_id.
+        so.write({"partner_id": partner_no_default.id})
+        self.assertEqual(
+            so.delivery_block_id,
+            block_reason,
+            "A manually-set block must survive a partner change",
+        )
+
+    def test_manual_block_survives_recompute_and_still_blocks(self):
+        """Regression: a manually-set block must not be wiped by a later
+        recompute of the stored computed field (as happens on module
+        upgrade/redeploy), which previously caused deliveries to be created
+        for blocked orders."""
+        block_reason = self.block_model.with_user(self.user_test).create(
+            {"name": "Manual Block."}
+        )
+        so = self.sale_order  # partner/payment term have no default block
+        so.write({"delivery_block_id": block_reason.id})
+        # Force the stored computed field to recompute, as on an upgrade.
+        self.env.add_to_compute(so._fields["delivery_block_id"], so)
+        so.flush_recordset()
+        self.assertEqual(
+            so.delivery_block_id,
+            block_reason,
+            "A manually-set block must survive a recompute",
+        )
+        so.action_confirm()
+        self.assertEqual(
+            self._picking_comp(so),
+            0,
+            "The delivery should still be blocked after a recompute",
+        )
+
     def test_commercial_fields(self):
         self.assertIn(
             "default_delivery_block",
