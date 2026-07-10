@@ -41,6 +41,35 @@ class TestSaleOrderLineCancel(TestSaleOrderLineCancelBase):
         self.assertEqual(line.qty_delivered, 0)
         self.assertEqual(line.product_uom_qty, 0)
 
+    def test_increase_product_uom_qty_after_cancel(self):
+        sale = self.sale
+        line = sale.order_line
+        sale.company_id.on_sale_line_cancel_decrease_line_qty = True
+        sale.with_context(disable_cancel_warning=True).action_cancel()
+        sale.action_draft()
+        sale.action_confirm()
+        line.cancel_remaining_qty()
+        self.assertEqual(line.product_uom_qty, 0)
+        self.assertEqual(line.product_qty_canceled, 10)
+        line.product_uom_qty = 10
+        self.assertEqual(line.product_uom_qty, 10)
+        self.assertEqual(line.product_qty_canceled, 0)
+        self.assertEqual(line.product_qty_remains_to_deliver, 10)
+
+    def test_no_decrease_qty_canceled_without_flag(self):
+        sale = self.sale
+        line = sale.order_line
+        sale.with_context(disable_cancel_warning=True).action_cancel()
+        sale.action_draft()
+        sale.action_confirm()
+        line.cancel_remaining_qty()
+        # flag off: the ordered qty is not lowered on cancel
+        self.assertEqual(line.product_uom_qty, 10)
+        self.assertEqual(line.product_qty_canceled, 10)
+        line.product_uom_qty = 12
+        # flag off: the canceled qty is not given back
+        self.assertEqual(line.product_qty_canceled, 10)
+
     def test_ensure_no_decrease_product_uom_qty_on_so_cancel(self):
         sale = self.sale
         line = sale.order_line
