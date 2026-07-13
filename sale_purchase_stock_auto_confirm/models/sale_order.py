@@ -9,13 +9,11 @@ class SaleOrder(models.Model):
 
     def _action_confirm(self):
         res = super()._action_confirm()
-        for order in self:
-            # Get the purchase orders using sudo,
-            # as a sales user may not have access to the purchase order lines
-            purchase_orders = order.sudo()._get_purchase_orders()
-            for purchase in purchase_orders.filtered(
-                lambda po: po.state == "draft"
-                and po.company_id.purchase_auto_validation
-            ):
-                purchase.button_confirm()
+
+        purchase_orders = self.sudo()._get_purchase_orders()
+        to_be_confirmed = purchase_orders.filtered(
+            lambda po: po.state == "draft" and po.company_id.purchase_auto_validation
+        )
+        to_be_confirmed.button_confirm()
+
         return res
