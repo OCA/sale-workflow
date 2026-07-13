@@ -225,8 +225,15 @@ class BlanketOrderWizardLine(models.TransientModel):
         "uom.uom", related="blanket_line_id.product_uom", string="Unit of Measure"
     )
     date_schedule = fields.Date(string="Scheduled Date")
-    remaining_uom_qty = fields.Float(related="blanket_line_id.remaining_uom_qty")
-    qty = fields.Float(string="Quantity to Order", required=True)
+    remaining_uom_qty = fields.Float(
+        related="blanket_line_id.remaining_uom_qty",
+        digits="Product Unit of Measure",
+    )
+    qty = fields.Float(
+        string="Quantity to Order",
+        required=True,
+        digits="Product Unit of Measure",
+    )
     price_unit = fields.Float(related="blanket_line_id.price_unit")
     currency_id = fields.Many2one("res.currency", related="blanket_line_id.currency_id")
     partner_id = fields.Many2one(
