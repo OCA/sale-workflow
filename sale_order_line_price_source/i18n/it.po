@@ -46,6 +46,11 @@ msgid "Price Source"
 msgstr "Sequenza prezzo"
 
 #. module: sale_order_line_price_source
+#: model:ir.model.fields,field_description:sale_order_line_price_source.field_sale_order_line__pricelist_id
+msgid "Price Source Pricelist"
+msgstr ""
+
+#. module: sale_order_line_price_source
 #: model:ir.model.fields,field_description:sale_order_line_price_source.field_sale_order_line__price_source_pricelist_item_id
 msgid "Price Source Pricelist Item"
 msgstr "Elemento prezzo origine listino prezzi"
@@ -73,3 +78,9 @@ msgid ""
 msgstr ""
 "La regola del listino prezzi che ha determinato il prezzo della riga (se "
 "l'origine è il listino prezzi)."
+
+#. module: sale_order_line_price_source
+#: model:ir.model.fields,help:sale_order_line_price_source.field_sale_order_line__pricelist_id
+msgid ""
+"The pricelist that determined this line's price (if source is Pricelist)."
+msgstr ""
