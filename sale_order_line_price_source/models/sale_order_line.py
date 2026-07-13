@@ -29,6 +29,14 @@ class SaleOrderLine(models.Model):
         "this line's price (if source is Pricelist).",
     )
 
+    pricelist_id = fields.Many2one(
+        "product.pricelist",
+        string="Price Source Pricelist",
+        related="price_source_pricelist_item_id.pricelist_id",
+        help="The pricelist that determined this "
+        "line's price (if source is Pricelist).",
+    )
+
     def _has_manual_price(self):
         """
         Mirror core manual-price detection from
