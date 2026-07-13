@@ -6,7 +6,7 @@ from unittest import mock
 
 from freezegun import freeze_time
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.tests import tagged
 
 from .common import TestAutomaticWorkflowMixin, TestCommon
@@ -135,6 +135,28 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         self.assertTrue(sale.invoice_ids)
         invoice = sale.invoice_ids
         self.assertEqual(invoice.journal_id.id, new_sale_journal.id)
+
+    def test_filter_domain_with_datetime(self):
+        workflow = self.create_full_automatic()
+        workflow.order_filter_id = self.env["ir.filters"].create(
+            {
+                "name": "Order filter using datetime",
+                "model_id": "sale.order",
+                "domain": (
+                    "[('state', '=', 'draft'), "
+                    "('date_order', '<=', "
+                    "context_today().strftime('%Y-%m-%d %H:%M:%S'))]"
+                ),
+                "user_ids": [Command.link(self.env.ref("base.user_root").id)],
+            }
+        )
+        sale = self.create_sale_order(workflow)
+        sale.date_order = fields.Datetime.now() + timedelta(days=1)
+        self.run_job()
+        self.assertEqual(sale.state, "draft")
+        sale.date_order = fields.Datetime.now() - timedelta(days=1)
+        self.run_job()
+        self.assertEqual(sale.state, "sale")
 
     def test_no_copy(self):
         workflow = self.create_full_automatic()
