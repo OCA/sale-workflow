@@ -460,3 +460,16 @@ class CalendarEvent(models.Model):
             months=self.env.company.sale_planner_forward_months, day=31
         )
         events_to_update.until = new_date
+
+    def _compute_user_can_edit(self):
+        # Allow sales managers to edit any non-private event, on top of the
+        # default editability rules computed by the parent method.
+        res = super()._compute_user_can_edit()
+        for event in self:
+            if (
+                event.target_partner_id
+                and self.env.context.get("force_user_can_edit_event")
+                and self.env.user.has_group("sales_team.group_sale_manager")
+            ):
+                event.user_can_edit = True
+        return res
