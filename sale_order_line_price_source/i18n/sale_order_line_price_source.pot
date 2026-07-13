@@ -41,6 +41,11 @@ msgid "Price Source"
 msgstr ""
 
 #. module: sale_order_line_price_source
+#: model:ir.model.fields,field_description:sale_order_line_price_source.field_sale_order_line__pricelist_id
+msgid "Price Source Pricelist"
+msgstr ""
+
+#. module: sale_order_line_price_source
 #: model:ir.model.fields,field_description:sale_order_line_price_source.field_sale_order_line__price_source_pricelist_item_id
 msgid "Price Source Pricelist Item"
 msgstr ""
@@ -65,4 +70,10 @@ msgstr ""
 msgid ""
 "The pricelist rule that determined this line's price (if source is "
 "Pricelist)."
+msgstr ""
+
+#. module: sale_order_line_price_source
+#: model:ir.model.fields,help:sale_order_line_price_source.field_sale_order_line__pricelist_id
+msgid ""
+"The pricelist that determined this line's price (if source is Pricelist)."
 msgstr ""
