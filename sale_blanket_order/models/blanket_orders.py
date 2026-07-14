@@ -141,30 +141,35 @@ class BlanketOrder(models.Model):
         string="Original quantity",
         compute="_compute_uom_qty",
         search="_search_original_uom_qty",
+        digits="Product Unit of Measure",
         default=0.0,
     )
     ordered_uom_qty = fields.Float(
         string="Ordered quantity",
         compute="_compute_uom_qty",
         search="_search_ordered_uom_qty",
+        digits="Product Unit of Measure",
         default=0.0,
     )
     invoiced_uom_qty = fields.Float(
         string="Invoiced quantity",
         compute="_compute_uom_qty",
         search="_search_invoiced_uom_qty",
+        digits="Product Unit of Measure",
         default=0.0,
     )
     remaining_uom_qty = fields.Float(
         string="Remaining quantity",
         compute="_compute_uom_qty",
         search="_search_remaining_uom_qty",
+        digits="Product Unit of Measure",
         default=0.0,
     )
     delivered_uom_qty = fields.Float(
         string="Delivered quantity",
         compute="_compute_uom_qty",
         search="_search_delivered_uom_qty",
+        digits="Product Unit of Measure",
         default=0.0,
     )
 
@@ -437,21 +442,34 @@ class BlanketOrderLine(models.Model):
         string="Original quantity", default=1, digits="Product Unit of Measure"
     )
     ordered_uom_qty = fields.Float(
-        string="Ordered quantity", compute="_compute_quantities", store=True
+        string="Ordered quantity",
+        compute="_compute_quantities",
+        store=True,
+        digits="Product Unit of Measure",
     )
     invoiced_uom_qty = fields.Float(
-        string="Invoiced quantity", compute="_compute_quantities", store=True
+        string="Invoiced quantity",
+        compute="_compute_quantities",
+        store=True,
+        digits="Product Unit of Measure",
     )
     remaining_uom_qty = fields.Float(
-        string="Remaining quantity", compute="_compute_quantities", store=True
+        string="Remaining quantity",
+        compute="_compute_quantities",
+        store=True,
+        digits="Product Unit of Measure",
     )
     remaining_qty = fields.Float(
         string="Remaining quantity in base UoM",
         compute="_compute_quantities",
         store=True,
+        digits="Product Unit of Measure",
     )
     delivered_uom_qty = fields.Float(
-        string="Delivered quantity", compute="_compute_quantities", store=True
+        string="Delivered quantity",
+        compute="_compute_quantities",
+        store=True,
+        digits="Product Unit of Measure",
     )
     sale_lines = fields.One2many(
         "sale.order.line",
