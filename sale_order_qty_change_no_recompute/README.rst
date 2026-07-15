@@ -17,25 +17,30 @@ Sale Order Qty change no recompute
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_order_qty_change_no_recompute
+    :target: https://github.com/OCA/sale-workflow/tree/18.0/sale_order_qty_change_no_recompute
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_order_qty_change_no_recompute
+    :target: https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-sale_order_qty_change_no_recompute
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-A lot of business don't set different prices according the quantity of
-the product to sell, and they see very annoying to set a manual price
-after the negotiation with the customer, and see it changed when they
-vary the demanded quantity.
+A lot of businesses don't set different prices according to the quantity
+of the product to sell, and they find it very annoying to set a manual
+discount after the negotiation with the customer, only to see it changed
+when they vary the demanded quantity.
 
-This module prevents this avoiding the recomputation of the price unit,
-discount and pricelist item fields if only the quantity has been changed
-in the sales order line.
+Since Odoo 18.0, the unit price is natively protected from recomputation
+when modified manually (via the ``technical_price_unit`` field).
+However, the ``discount`` and ``pricelist_item_id`` fields are still
+recomputed when the quantity or unit of measure changes.
+
+This module prevents this by avoiding the recomputation of the discount
+and pricelist item fields if only the quantity or unit of measure has
+been changed in the sales order line.
 
 **Table of contents**
 
@@ -48,17 +53,17 @@ Usage
 To use this module, you need to:
 
 1. Create a new sale order.
-2. Add product line and set custom unit price.
-3. Save sale order.
-4. Edit sale order and change quantity (custom unit price not been
-   reset).
+2. Add a product line and set a custom discount.
+3. Save the sale order.
+4. Edit the sale order and change the quantity (the custom discount will
+   not be reset).
 
 Known issues / Roadmap
 ======================
 
--  Having this module installed may alter test results of other modules
-   expecting to have the price fields recomputed when changing
-   quantities.
+- Having this module installed may alter test results of other modules
+  expecting to have the price fields recomputed when changing
+  quantities.
 
 Bug Tracker
 ===========
@@ -66,7 +71,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_qty_change_no_recompute%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_qty_change_no_recompute%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -81,11 +86,15 @@ Authors
 Contributors
 ------------
 
--  `Tecnativa <https://www.tecnativa.com>`__:
+- `Tecnativa <https://www.tecnativa.com>`__:
 
-   -  Víctor Martínez
-   -  Pedro M. Baeza
-   -  César A. Sánchez
+  - Víctor Martínez
+  - Pedro M. Baeza
+  - César A. Sánchez
+
+- `APSL-Nagarro <https://apsl.net>`__:
+
+  - Paloma González-Ripoll
 
 Maintainers
 -----------
@@ -108,6 +117,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-victoralmau| 
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_order_qty_change_no_recompute>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/18.0/sale_order_qty_change_no_recompute>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
