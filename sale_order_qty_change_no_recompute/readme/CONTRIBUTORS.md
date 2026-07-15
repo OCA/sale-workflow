@@ -1,0 +1,6 @@
+- [Tecnativa](https://www.tecnativa.com):
+  - Víctor Martínez
+  - Pedro M. Baeza
+  - César A. Sánchez
+- [APSL-Nagarro](https://apsl.net):
+  - Paloma González-Ripoll
