@@ -2,21 +2,18 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import Command
-from odoo.tests import Form
+from odoo.tests import Form, tagged
 from odoo.tests.common import TransactionCase
 
 
+@tagged("post_install", "-at_install")
 class TestSale(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         # activate advanced pricelist
-        cls.env.user.write(
-            {
-                "groups_id": [
-                    Command.link(cls.env.ref("product.group_product_pricelist").id)
-                ]
-            }
+        cls.env.ref("base.group_user")._apply_group(
+            cls.env.ref("product.group_product_pricelist")
         )
         cls.tax = cls.env["account.tax"].create(
             {"name": "Unittest tax", "amount_type": "percent", "amount": "0"}
@@ -85,7 +82,7 @@ class TestSale(TransactionCase):
                             "name": cls.p1.name,
                             "product_id": cls.p1.id,
                             "product_uom_qty": 1,
-                            "product_uom": cls.env.ref("uom.product_uom_unit").id,
+                            "product_uom_id": cls.env.ref("uom.product_uom_unit").id,
                         },
                     ),
                     Command.create(
@@ -93,7 +90,7 @@ class TestSale(TransactionCase):
                             "name": cls.p1.name,
                             "product_id": cls.p2.id,
                             "product_uom_qty": 1,
-                            "product_uom": cls.env.ref("uom.product_uom_unit").id,
+                            "product_uom_id": cls.env.ref("uom.product_uom_unit").id,
                         },
                     ),
                     Command.create(
@@ -101,7 +98,7 @@ class TestSale(TransactionCase):
                             "name": cls.p1.name,
                             "product_id": cls.p3.id,
                             "product_uom_qty": 1,
-                            "product_uom": cls.env.ref("uom.product_uom_unit").id,
+                            "product_uom_id": cls.env.ref("uom.product_uom_unit").id,
                         },
                     ),
                 ],
@@ -109,6 +106,7 @@ class TestSale(TransactionCase):
         )
 
     def test_sale_without_pricelist(self):
+        self.sale.pricelist_id = False
         self.sale._recompute_prices()
         self.assertEqual(10, self.sale.order_line[0].price_total)
         self.assertEqual(20, self.sale.order_line[1].price_total)
@@ -134,11 +132,14 @@ class TestSale(TransactionCase):
         self.assertEqual(70.8, self.sale.amount_total)
 
     def test_onchange_applied_on_price_category(self):
+        price_cat = self.pricelist.item_ids[0].price_category_id
         pricelist_form = Form(self.pricelist)
         with pricelist_form.item_ids.edit(0) as item_form:
             self.assertTrue(item_form.price_category_id)
             item_form.display_applied_on = "1_product"
             self.assertFalse(item_form.price_category_id)
+            item_form.display_applied_on = "2b_product_price_category"
+            item_form.price_category_id = price_cat
 
     def test_name(self):
         item = self.pricelist.item_ids[0]
