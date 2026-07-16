@@ -90,7 +90,7 @@ class BlanketOrder(models.Model):
         string="Customer Reference",
         copy=False,
     )
-    note = fields.Text(default=_default_note)
+    note = fields.Html(default=_default_note)
     user_id = fields.Many2one(
         "res.users",
         string="Salesperson",
