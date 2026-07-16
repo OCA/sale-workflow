@@ -10,14 +10,18 @@ class TestSaleOrder(TransactionCase):
         cls.currency_eur = cls.env.ref("base.EUR")
 
         # Customer
-        cls.partner = cls.env.ref("base.res_partner_2")
+        cls.partner = cls.env["res.partner"].create({"name": "Test Partner"})
 
         # Company
         cls.company = cls.env.ref("base.main_company")
 
         # Products
-        cls.product1 = cls.env.ref("product.product_product_4")
-        cls.product2 = cls.env.ref("product.product_product_5")
+        cls.product1 = cls.env["product.product"].create(
+            {"name": "Test Product 1", "type": "consu"}
+        )
+        cls.product2 = cls.env["product.product"].create(
+            {"name": "Test Product 2", "type": "consu"}
+        )
 
         # Create a sale order with the same currency as the company
         cls.sale_order = cls.env["sale.order"].create(
@@ -34,12 +38,16 @@ class TestSaleOrder(TransactionCase):
                             "product_uom_qty": 2,
                             "price_unit": 50.0,
                         },
+                    ),
+                    (
+                        0,
+                        0,
                         {
                             "product_id": cls.product2.id,
                             "product_uom_qty": 1,
                             "price_unit": 100.0,
                         },
-                    )
+                    ),
                 ],
             }
         )
