@@ -4,7 +4,7 @@
 {
     "name": "Sales Invoice Plan Report",
     "summary": "Add invoice plan to sales order/quotation PDF report",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "author": "Escodoo, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "website": "https://github.com/OCA/sale-workflow",
