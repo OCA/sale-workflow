@@ -4,10 +4,10 @@
 {
     "name": "Sale Automatic Workflow Periodicity",
     "summary": "Adds a period for the execution of a workflow.",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Sales Management",
     "license": "AGPL-3",
-    "author": "Camptocamp, " "Odoo Community Association (OCA)",
+    "author": "Camptocamp, Odoo Community Association (OCA)",
     "maintainers": ["TDu"],
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale_automatic_workflow"],
