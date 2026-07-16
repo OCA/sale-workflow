@@ -77,8 +77,8 @@ addon | version | maintainers | summary
 [sale_order_invoice_amount](sale_order_invoice_amount/) | 16.0.1.0.3 |  | Display the invoiced and uninvoiced total in the sale order
 [sale_order_invoicing_finished_task](sale_order_invoicing_finished_task/) | 16.0.2.0.0 |  | Control invoice order lines if their related task has been set to invoiceable
 [sale_order_invoicing_picking_filter](sale_order_invoicing_picking_filter/) | 16.0.1.1.0 |  | Create invoices from sale orders based on the products in pickings.
-[sale_order_line_cancel](sale_order_line_cancel/) | 16.0.2.0.0 |  | Sale cancel remaining
-[sale_order_line_cancel_sale_stock](sale_order_line_cancel_sale_stock/) | 16.0.2.0.0 |  | Sale cancel remaining stock
+[sale_order_line_cancel](sale_order_line_cancel/) | 16.0.2.0.1 |  | Sale cancel remaining
+[sale_order_line_cancel_sale_stock](sale_order_line_cancel_sale_stock/) | 16.0.2.0.1 |  | Sale cancel remaining stock
 [sale_order_line_date](sale_order_line_date/) | 16.0.1.1.2 |  | Adds a commitment date to each sale order line.
 [sale_order_line_delivery_state](sale_order_line_delivery_state/) | 16.0.1.0.0 |  | Show the delivery state on the sale order line
 [sale_order_line_description](sale_order_line_description/) | 16.0.1.0.0 |  | Sale order line description
