@@ -12,6 +12,15 @@ class TestProductTaskRecurrency(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env.user.write(
+            {
+                "group_ids": [
+                    Command.link(
+                        cls.env.ref("sale_management.group_sale_order_template").id
+                    )
+                ]
+            }
+        )
         cls.Product = cls.env["product.product"]
         cls.SaleTemplate = cls.env["sale.order.template"]
         cls.product_1 = cls.Product.create({"name": "Product 1"})
