@@ -58,7 +58,7 @@ class TestSaleForceInvoicedQTY(TransactionCase):
                 "product_uom_qty": 3,
                 "order_id": so.id,
                 "price_unit": 100,
-                "tax_id": [(6, 0, [])],
+                "tax_ids": [(6, 0, [])],
             }
         )
         sol2 = self.sale_order_line_obj.create(
@@ -67,7 +67,7 @@ class TestSaleForceInvoicedQTY(TransactionCase):
                 "product_uom_qty": 2,
                 "order_id": so.id,
                 "price_unit": 100,
-                "tax_id": [(6, 0, [])],
+                "tax_ids": [(6, 0, [])],
             }
         )
 
@@ -110,7 +110,7 @@ class TestSaleForceInvoicedQTY(TransactionCase):
                 "product_uom_qty": 3,
                 "order_id": so.id,
                 "price_unit": 100,
-                "tax_id": self.tax,
+                "tax_ids": self.tax,
             }
         )
         sol2 = self.sale_order_line_obj.create(
@@ -119,7 +119,7 @@ class TestSaleForceInvoicedQTY(TransactionCase):
                 "product_uom_qty": 2,
                 "order_id": so.id,
                 "price_unit": 100,
-                "tax_id": self.tax,
+                "tax_ids": self.tax,
             }
         )
 
@@ -162,7 +162,7 @@ class TestSaleForceInvoicedQTY(TransactionCase):
                 "product_uom_qty": 3,
                 "order_id": so.id,
                 "price_unit": 100,
-                "tax_id": self.tax,
+                "tax_ids": self.tax,
                 "discount": 15.0,
             }
         )
@@ -172,7 +172,7 @@ class TestSaleForceInvoicedQTY(TransactionCase):
                 "product_uom_qty": 2,
                 "order_id": so.id,
                 "price_unit": 100,
-                "tax_id": self.tax,
+                "tax_ids": self.tax,
                 "discount": 50.0,
             }
         )
@@ -220,7 +220,7 @@ class TestSaleForceInvoicedQTY(TransactionCase):
                 "product_uom_qty": 3,
                 "order_id": so.id,
                 "price_unit": 100,
-                "tax_id": self.excluded_tax,
+                "tax_ids": self.excluded_tax,
                 "discount": 15.0,
             }
         )
@@ -230,7 +230,7 @@ class TestSaleForceInvoicedQTY(TransactionCase):
                 "product_uom_qty": 2,
                 "order_id": so.id,
                 "price_unit": 100,
-                "tax_id": self.excluded_tax,
+                "tax_ids": self.excluded_tax,
                 "discount": 50.0,
             }
         )

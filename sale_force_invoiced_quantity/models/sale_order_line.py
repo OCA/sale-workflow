@@ -59,8 +59,8 @@ class SaleOrderLine(models.Model):
                 uom_qty_to_consider -= line.force_invoiced_quantity
                 price_reduce = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
                 price_subtotal = price_reduce * uom_qty_to_consider
-                if len(line.tax_id.filtered(lambda tax: tax.price_include)) > 0:
-                    price_subtotal = line.tax_id.compute_all(
+                if len(line.tax_ids.filtered(lambda tax: tax.price_include)) > 0:
+                    price_subtotal = line.tax_ids.compute_all(
                         price_reduce,
                         currency=line.currency_id,
                         quantity=uom_qty_to_consider,
