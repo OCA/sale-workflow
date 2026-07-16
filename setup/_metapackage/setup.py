@@ -46,6 +46,7 @@ setuptools.setup(
         'odoo-addon-sale_invoice_plan>=16.0dev,<16.1dev',
         'odoo-addon-sale_invoice_policy>=16.0dev,<16.1dev',
         'odoo-addon-sale_invoice_split_payment>=16.0dev,<16.1dev',
+        'odoo-addon-sale_isolated_quotation>=16.0dev,<16.1dev',
         'odoo-addon-sale_last_price_info>=16.0dev,<16.1dev',
         'odoo-addon-sale_loyalty_exclude>=16.0dev,<16.1dev',
         'odoo-addon-sale_manual_delivery>=16.0dev,<16.1dev',
