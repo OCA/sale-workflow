@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="view_sale_terms_template_search">
+        <field name="name">sale.terms_template.search</field>
+        <field name="model">sale.terms_template</field>
+        <field name="arch" type="xml">
+            <search string="Terms and conditions Templates">
+                <field name="name" string="Name" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_sale_terms_template_form">
+        <field name="name">sale.terms_template.form</field>
+        <field name="model">sale.terms_template</field>
+        <field name="arch" type="xml">
+            <form string="Terms and conditions Templates">
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        text="Archived"
+                        bg_color="bg-danger"
+                        invisible="active"
+                    />
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Name" />
+                        </h1>
+                    </div>
+                    <notebook>
+                        <page name="Terms and Conditions">
+                            <field name="text" nolabel="1" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_sale_terms_template_tree">
+        <field name="name">sale.terms_template.list</field>
+        <field name="model">sale.terms_template</field>
+        <field name="priority" eval="6" />
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" string="Name" />
+            </list>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_sale_terms_template">
+        <field name="name">Terms and conditions template</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.terms_template</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_sale_terms_template_tree" />
+    </record>
+    <menuitem
+        id="menu_sale_terms_template"
+        name="Terms and conditions Templates"
+        parent="sale.menu_sales_config"
+        action="action_sale_terms_template"
+        sequence="10"
+    />
+</odoo>
