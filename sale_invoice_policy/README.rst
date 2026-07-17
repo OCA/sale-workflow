@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===================
 Sale invoice Policy
 ===================
@@ -17,7 +13,7 @@ Sale invoice Policy
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -37,12 +33,12 @@ apply that invoicing policy on the whole sale order.
 
 That invoicing policy can take three values:
 
-- Products Invoicing Policy: The sale order will follow the standard
-  behavior and apply the policy depending on products configurations.
-- Ordered Quantities: The sale order will invoice the ordered
-  quantities.
-- Delivered Quantities: The sale order will invoice the delivered
-  quantities.
+-  Products Invoicing Policy: The sale order will follow the standard
+   behavior and apply the policy depending on products configurations.
+-  Ordered Quantities: The sale order will invoice the ordered
+   quantities.
+-  Delivered Quantities: The sale order will invoice the delivered
+   quantities.
 
 Following the chosen policy, the quantity to invoice and the amount to
 invoice on each line will be computed accordingly.
@@ -61,8 +57,8 @@ Use Cases / Context
 
 In Odoo, products have their own invoicing policy that can be:
 
-- Invoicing on ordered quantities
-- Invoicing on ordered quantities
+-  Invoicing on ordered quantities
+-  Invoicing on ordered quantities
 
 Following that configuration, when trying to create invoices from sale
 orders, each line of product will apply its invoicing policy.
@@ -76,16 +72,16 @@ level.
 Configuration
 =============
 
-- Go to Sale > Configuration > Settings > Sale Invoice Policy
-- Choose the one that fits your needs.
+-  Go to Sale > Configuration > Settings > Sale Invoice Policy
+-  Choose the one that fits your needs.
 
 Usage
 =====
 
-- Create Sale Order
-- Select Invoicing Policy on Sale Order or let it on Products Invoicing
-  Policy
-- The created invoices will use the configuration on sale order.
+-  Create Sale Order
+-  Select Invoicing Policy on Sale Order or let it on Products Invoicing
+   Policy
+-  The created invoices will use the configuration on sale order.
 
 Bug Tracker
 ===========
@@ -108,16 +104,16 @@ Authors
 Contributors
 ------------
 
-- Cédric Pigeon <cedric.pigeon@acsone.eu>
-- François Honoré <francois.honore@acsone.eu>
-- Denis Roussel <denis.roussel@acsone.eu>
-- Alexei Rivera <arivera@archeti.com>
-- Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
-- Alejandro Ji Cheung <alejandro.jicheung@factorlibre.com>
-- Ioan Galan <ioan@studio73.es>
-- Laurent Mignon <laurent.mignon@acsone.eu>
-- Marie Lejeune <marie.lejeune@acsone.eu>
-- Jacques-Etienne Baudoux (BCIM) <<je.bcim.be>>
+-  Cédric Pigeon <cedric.pigeon@acsone.eu>
+-  François Honoré <francois.honore@acsone.eu>
+-  Denis Roussel <denis.roussel@acsone.eu>
+-  Alexei Rivera <arivera@archeti.com>
+-  Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
+-  Alejandro Ji Cheung <alejandro.jicheung@factorlibre.com>
+-  Ioan Galan <ioan@studio73.es>
+-  Laurent Mignon <laurent.mignon@acsone.eu>
+-  Marie Lejeune <marie.lejeune@acsone.eu>
+-  Jacques-Etienne Baudoux (BCIM) <<je.bcim.be>>
 
 Maintainers
 -----------
