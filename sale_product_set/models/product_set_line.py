@@ -2,7 +2,6 @@
 # Copyright 2016-2018 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import fields, models
-from odoo.tools import float_compare
 
 
 class ProductSetLine(models.Model):
@@ -14,7 +13,11 @@ class ProductSetLine(models.Model):
         self.ensure_one()
 
         if self.display_type:
-            return {"name": self.name, "display_type": self.display_type}
+            return {
+                "name": self.name,
+                "display_type": self.display_type,
+                "sequence": sequence,
+            }
         res = {
             "order_id": order.id,
             "product_id": self.product_id.id,
@@ -28,11 +31,5 @@ class ProductSetLine(models.Model):
             "discount": self.discount,
             "company_id": self.company_id.id,
         }
-        precision = self.env["decimal.precision"].precision_get("Product Price")
-        if (
-            float_compare(self.product_id.list_price, 0.0, precision_digits=precision)
-            != 0
-        ):
-            res["price_unit"] = self.product_id.list_price
 
         return res
