@@ -6,7 +6,7 @@
     "category": "Sales",
     "license": "AGPL-3",
     "author": "Anybox, Odoo Community Association (OCA)",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale", "sale_management", "product_set"],
     "data": [
