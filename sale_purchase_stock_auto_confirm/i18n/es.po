@@ -1,0 +1,70 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_purchase_stock_auto_confirm
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-08 19:10+0000\n"
+"PO-Revision-Date: 2026-05-10 16:52+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: sale_purchase_stock_auto_confirm
+#: model_terms:ir.ui.view,arch_db:sale_purchase_stock_auto_confirm.res_config_settings_view_form
+msgid ""
+"Automatically validate purchase orders created from sales orders using MTO "
+"or Dropship rules."
+msgstr ""
+"Validar automáticamente los pedidos de compra creados a partir de pedidos "
+"de venta que usen reglas MTO o Dropship."
+
+#. module: sale_purchase_stock_auto_confirm
+#: model:ir.model,name:sale_purchase_stock_auto_confirm.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: sale_purchase_stock_auto_confirm
+#: model:ir.model,name:sale_purchase_stock_auto_confirm.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: sale_purchase_stock_auto_confirm
+#: model:ir.model.fields,field_description:sale_purchase_stock_auto_confirm.field_res_company__purchase_auto_validation
+#: model:ir.model.fields,field_description:sale_purchase_stock_auto_confirm.field_res_config_settings__purchase_auto_validation
+msgid "POs Auto Validation"
+msgstr "Auto validación de compras"
+
+#. module: sale_purchase_stock_auto_confirm
+#: model_terms:ir.ui.view,arch_db:sale_purchase_stock_auto_confirm.res_config_settings_view_form
+msgid "Purchase stock"
+msgstr "Compras/Stock"
+
+#. module: sale_purchase_stock_auto_confirm
+#. odoo-python
+#: code:addons/sale_purchase_stock_auto_confirm/tests/test_sale_purchase_stock_auto_confirm.py:0
+msgid "Replenish on Order (MTO)"
+msgstr "Reabastecer bajo pedido (MTO)"
+
+#. module: sale_purchase_stock_auto_confirm
+#: model:ir.model,name:sale_purchase_stock_auto_confirm.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_purchase_stock_auto_confirm
+#: model:ir.model.fields,help:sale_purchase_stock_auto_confirm.field_res_company__purchase_auto_validation
+#: model:ir.model.fields,help:sale_purchase_stock_auto_confirm.field_res_config_settings__purchase_auto_validation
+msgid ""
+"When a purchase order is created from a sales order using the MTO or "
+"Dropship rule for this company, it will be automatically validated."
+msgstr ""
+"Cuando se crea un pedido de compra a partir de un pedido de venta "
+"utilizando reglas MTO o Dropship para esta compañía, se validará "
+"automáticamente."
