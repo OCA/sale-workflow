@@ -113,8 +113,13 @@ class SaleOrderLine(models.Model):
 
     @api.depends("discount1", "discount2", "discount3", "discounting_type")
     def _compute_discount(self):
-        res = super()._compute_discount()
-        for rec in self:
+        # Defer combo items not linked to their parent yet: _get_linked_line() would
+        # raise during create() precompute; create() recomputes them once linked.
+        lines = self.filtered(
+            lambda line: line.linked_line_id or not line.combo_item_id
+        )
+        res = super(SaleOrderLine, lines)._compute_discount()
+        for rec in lines:
             rec.discount = rec._get_final_discount()
         return res
 
@@ -124,13 +129,17 @@ class SaleOrderLine(models.Model):
 
     @api.depends("discount")
     def _compute_discounts(self):
+        # Defer unlinked combo items (see _compute_discount).
+        lines = self.filtered(
+            lambda line: line.linked_line_id or not line.combo_item_id
+        )
         # We intentionally call super to avoid triggering the full compute logic,
         # which would recalculate 'discount' from the three discount fields
         # At this stage, those fields may not be updated yet, and calling
         # _compute_discount() directly would overwrite the current value
         # calling super ensures the cache is coherent before applying the inverse
-        super()._compute_discount()
-        self._inverse_discount()
+        super(SaleOrderLine, lines)._compute_discount()
+        lines._inverse_discount()
         return True
 
     _discount1_limit = models.Constraint(
