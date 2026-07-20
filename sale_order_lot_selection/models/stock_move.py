@@ -13,5 +13,5 @@ class StockMove(models.Model):
         self.restrict_lot_id = lot
         self._do_unreserve()
         self.filtered(
-            lambda move: move.state in ("confirmed', 'partially_available")
+            lambda move: move.state in ("confirmed", "partially_available")
         )._action_assign()
