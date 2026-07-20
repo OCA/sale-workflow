@@ -76,7 +76,7 @@ class TestInvoicefinishedTask(BaseCommon):
                         "name": product.name,
                         "product_id": product.id,
                         "product_uom_qty": 5,
-                        "product_uom": product.uom_id.id,
+                        "product_uom_id": product.uom_id.id,
                         "price_unit": product.list_price,
                     },
                 ),
@@ -96,7 +96,6 @@ class TestInvoicefinishedTask(BaseCommon):
             "invoicing_finished_task": True,
             "project_id": cls.project.id,
             "uom_id": cls.hour_uom.id,
-            "uom_po_id": cls.hour_uom.id,
         }
 
     def _prepare_timesheet_vals(self, task, unit_amount):
@@ -104,7 +103,7 @@ class TestInvoicefinishedTask(BaseCommon):
             "name": "Test Line",
             "project_id": self.project.id,
             "unit_amount": unit_amount,
-            "product_uom_id": task.sale_line_id.product_uom.id,
+            "product_uom_id": task.sale_line_id.product_uom_id.id,
             "user_id": self.manager.id,
             "task_id": task.id,
         }
@@ -192,7 +191,7 @@ class TestInvoicefinishedTask(BaseCommon):
         task = self.env["project.task"].create(
             {
                 "name": "Other Task",
-                "partner_id": self.manager.partner_id.id,
+                "partner_id": self.partner.id,
                 "user_ids": [Command.link(self.manager.id)],
                 "project_id": self.project.id,
                 "sale_line_id": self.sale_order.order_line.id,
