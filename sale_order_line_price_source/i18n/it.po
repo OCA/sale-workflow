@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-04-30 10:45+0000\n"
+"PO-Revision-Date: 2026-07-20 08:24+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -48,7 +48,7 @@ msgstr "Sequenza prezzo"
 #. module: sale_order_line_price_source
 #: model:ir.model.fields,field_description:sale_order_line_price_source.field_sale_order_line__pricelist_id
 msgid "Price Source Pricelist"
-msgstr ""
+msgstr "Listino origine prezzo"
 
 #. module: sale_order_line_price_source
 #: model:ir.model.fields,field_description:sale_order_line_price_source.field_sale_order_line__price_source_pricelist_item_id
@@ -84,3 +84,5 @@ msgstr ""
 msgid ""
 "The pricelist that determined this line's price (if source is Pricelist)."
 msgstr ""
+"Il listino che determina il prezzo di questa riga (se l'origine è il listino)"
+"."
