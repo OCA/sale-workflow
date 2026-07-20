@@ -31,6 +31,13 @@ msgstr ""
 #. odoo-python
 #: code:addons/portal_sale_order_search/controllers/main.py:0
 #, python-format
+msgid "Customer Company"
+msgstr ""
+
+#. module: portal_sale_order_search
+#. odoo-python
+#: code:addons/portal_sale_order_search/controllers/main.py:0
+#, python-format
 msgid "Order Customer Ref"
 msgstr ""
 
