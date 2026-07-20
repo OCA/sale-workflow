@@ -12,9 +12,7 @@ class TestSaleOrderLineEffectiveDates(TestStockCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.env["stock.picking.type"].browse(
-            cls.picking_type_out
-        ).create_backorder = "always"
+        cls.picking_type_out.write({"create_backorder": "always"})
         cls.env["stock.quant"].create(
             {
                 "product_id": cls.productA.id,
@@ -32,7 +30,7 @@ class TestSaleOrderLineEffectiveDates(TestStockCommon):
                         {
                             "product_id": cls.productA.id,
                             "product_uom_qty": 10.0,
-                            "product_uom": cls.productA.uom_id.id,
+                            "product_uom_id": cls.productA.uom_id.id,
                         },
                     )
                 ],
