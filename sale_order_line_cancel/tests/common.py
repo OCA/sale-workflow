@@ -39,7 +39,7 @@ class TestSaleOrderLineCancelBase(TransactionCase):
                     "name": cls.product_1.name,
                     "product_id": cls.product_1.id,
                     "product_uom_qty": 10,
-                    "product_uom": cls.product_1.uom_id.id,
+                    "product_uom_id": cls.product_1.uom_id.id,
                     "price_unit": 1,
                 }
             )
