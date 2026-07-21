@@ -5,7 +5,7 @@
     "name": "Web Widget Product Label Section And Note Full Label Sale",
     "summary": """Glue module between
     web_widget_product_label_section_and_note_full_label and sale.""",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "author": "ForgeFlow, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
