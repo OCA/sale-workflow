@@ -1,0 +1,76 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_purchase_stock_auto_confirm
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#. module: sale_purchase_stock_auto_confirm
+#: model_terms:ir.ui.view,arch_db:sale_purchase_stock_auto_confirm.res_config_settings_view_form
+msgid ""
+"Automatically validate purchase orders created from sales orders using MTO "
+"or Dropship rules."
+msgstr ""
+
+#. module: sale_purchase_stock_auto_confirm
+#: model:ir.model,name:sale_purchase_stock_auto_confirm.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_purchase_stock_auto_confirm
+#: model:ir.model,name:sale_purchase_stock_auto_confirm.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_purchase_stock_auto_confirm
+#: model:ir.model.fields,field_description:sale_purchase_stock_auto_confirm.field_res_company__display_name
+#: model:ir.model.fields,field_description:sale_purchase_stock_auto_confirm.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sale_purchase_stock_auto_confirm.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_purchase_stock_auto_confirm
+#: model:ir.model.fields,field_description:sale_purchase_stock_auto_confirm.field_res_company__id
+#: model:ir.model.fields,field_description:sale_purchase_stock_auto_confirm.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sale_purchase_stock_auto_confirm.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_purchase_stock_auto_confirm
+#: model:ir.model.fields,field_description:sale_purchase_stock_auto_confirm.field_res_company__purchase_auto_validation
+#: model:ir.model.fields,field_description:sale_purchase_stock_auto_confirm.field_res_config_settings__purchase_auto_validation
+msgid "POs Auto Validation"
+msgstr ""
+
+#. module: sale_purchase_stock_auto_confirm
+#: model_terms:ir.ui.view,arch_db:sale_purchase_stock_auto_confirm.res_config_settings_view_form
+msgid "Purchase stock"
+msgstr ""
+
+#. module: sale_purchase_stock_auto_confirm
+#. odoo-python
+#: code:addons/sale_purchase_stock_auto_confirm/tests/test_sale_purchase_stock_auto_confirm.py:0
+msgid "Replenish on Order (MTO)"
+msgstr ""
+
+#. module: sale_purchase_stock_auto_confirm
+#: model:ir.model,name:sale_purchase_stock_auto_confirm.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_purchase_stock_auto_confirm
+#: model:ir.model.fields,help:sale_purchase_stock_auto_confirm.field_res_company__purchase_auto_validation
+#: model:ir.model.fields,help:sale_purchase_stock_auto_confirm.field_res_config_settings__purchase_auto_validation
+msgid ""
+"When a purchase order is created from a sales order using the MTO or "
+"Dropship rule for this company, it will be automatically validated."
+msgstr ""
