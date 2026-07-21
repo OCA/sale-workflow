@@ -43,3 +43,18 @@ class TestSale(common.SavepointCase):
                 self.assertEqual(line.product_uom_qty, 4)
             else:
                 self.assertEqual(line.product_uom_qty, 6)
+
+    def test_multi_quantity(self):
+        """The same quantity can be set in multiple items at once."""
+        # Arrange
+        sot = self.sot
+        wizard = self._create_wizard_items(sot, [self.product_9, self.product_11])
+        wizard.multi_quantity = multi_quantity = 3
+        # pre-condition
+        self.assertRecordValues(wizard.item_ids, 2 * [{"quantity": 1}])
+
+        # Act
+        wizard.set_multi_quantity()
+
+        # Assert
+        self.assertRecordValues(wizard.item_ids, 2 * [{"quantity": multi_quantity}])
