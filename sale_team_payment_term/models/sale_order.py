@@ -11,7 +11,6 @@ class SaleOrder(models.Model):
     payment_term_id = fields.Many2one(
         compute="_compute_payment_term_id",
         inverse="_inverse_payment_term_id",
-        readonly=False,
         store=True,
     )
 
