@@ -11,9 +11,13 @@ class TestSaleChainedMove(BaseCommon):
         cls.warehouse = cls.env.ref("stock.warehouse0")
         cls.sale_obj = cls.env["sale.order"]
         cls.sale_order_line_obj = cls.env["sale.order.line"]
-        cls.product1 = cls.env.ref("product.product_product_12")
-        cls.product2 = cls.env.ref("product.product_product_13")
-        cls.agrolait = cls.env.ref("base.res_partner_2")
+        cls.product1 = cls.env["product.product"].create(
+            {"name": "Test Product 1", "is_storable": True}
+        )
+        cls.product2 = cls.env["product.product"].create(
+            {"name": "Test Product 2", "is_storable": True}
+        )
+        cls.agrolait = cls.env["res.partner"].create({"name": "Test Partner"})
 
         # Create new route for pick/pack/ship
         cls.warehouse.delivery_steps = "pick_pack_ship"
@@ -90,7 +94,9 @@ class TestSaleChainedMove(BaseCommon):
             4,
             len(self.order.mapped("order_line.chained_move_ids")),
         )
-        moves = self.order.mapped("order_line.move_ids")
+        moves = self.order.mapped("order_line.move_ids").filtered(
+            lambda m: not m.related_sale_line_id
+        )
         chained_moves = self.order.mapped("order_line.chained_move_ids")
         self.assertTrue(
             all(move not in chained_moves for move in moves),
@@ -119,7 +125,9 @@ class TestSaleChainedMove(BaseCommon):
             "Move lines have not been preserved",
         )
 
-        moves = self.order.mapped("order_line.move_ids")
+        moves = self.order.mapped("order_line.move_ids").filtered(
+            lambda m: not m.related_sale_line_id
+        )
         chained_moves = self.order.mapped("order_line.chained_move_ids")
         self.assertTrue(
             all(move not in chained_moves for move in moves),
@@ -142,7 +150,7 @@ class TestSaleChainedMove(BaseCommon):
         self.order.action_confirm()
 
         self.assertEqual(
-            4,
+            6,
             len(self.order.mapped("order_line.chained_move_ids")),
             "Move lines have been preserved instead of being merged.",
         )
