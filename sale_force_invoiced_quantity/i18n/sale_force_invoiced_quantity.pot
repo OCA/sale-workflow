@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_force_invoiced_quantity
+#: model:ir.model.fields,field_description:sale_force_invoiced_quantity.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_force_invoiced_quantity
 #: model_terms:ir.ui.view,arch_db:sale_force_invoiced_quantity.view_order_form
 msgid "Force Invoiced"
 msgstr ""
@@ -24,13 +29,8 @@ msgid "Force Invoiced Quantity"
 msgstr ""
 
 #. module: sale_force_invoiced_quantity
-#: model:product.template,name:sale_force_invoiced_quantity.demo_product_sale_force_invoiced_qty_1_product_template
-msgid "Sale Force Invoiced qty product 1"
-msgstr ""
-
-#. module: sale_force_invoiced_quantity
-#: model:product.template,name:sale_force_invoiced_quantity.demo_product_sale_force_invoiced_qty_2_product_template
-msgid "Sale Force Invoiced qty product 2"
+#: model:ir.model.fields,field_description:sale_force_invoiced_quantity.field_sale_order_line__id
+msgid "ID"
 msgstr ""
 
 #. module: sale_force_invoiced_quantity
