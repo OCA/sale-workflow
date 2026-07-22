@@ -123,6 +123,7 @@ addon | version | maintainers | summary
 [sale_order_transmit_method](sale_order_transmit_method/) | 18.0.1.0.0 |  | Set transmit method (email, post, portal, ...) in sale order and propagate it to invoices
 [sale_order_type](sale_order_type/) | 18.0.1.4.0 |  | Sale Order Type
 [sale_order_type_confirm_message](sale_order_type_confirm_message/) | 18.0.1.0.0 |  | Confirmation requirement when validating sale
+[sale_order_warehouse_header](sale_order_warehouse_header/) | 18.0.1.0.0 |  | Moves warehouse field in sales orders form to header, so it becomes more accessible. Improvements in the search view: - Filter by warehouse. - Group by warehouse.
 [sale_order_warn_message](sale_order_warn_message/) | 18.0.1.0.1 |  | Add a popup warning on sale to ensure warning is populated
 [sale_packaging_default](sale_packaging_default/) | 18.0.1.1.0 | <a href='https://github.com/yajo'><img src='https://github.com/yajo.png' width='32' height='32' style='border-radius:50%;' alt='yajo'/></a> | Simplify using products default packaging for sales
 [sale_partner_address_restrict](sale_partner_address_restrict/) | 18.0.1.0.0 |  | Restrict addresses domain in the sales order form taking into account the partner selected
