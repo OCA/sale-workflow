@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -24,8 +24,20 @@ msgid "Delivery Validation Blocked"
 msgstr ""
 
 #. module: sale_stock_picking_validation_blocking
+#: model:ir.model.fields,field_description:sale_stock_picking_validation_blocking.field_sale_order__hide_button_picking_validation_blocked
+msgid "Display the picking validation buttons"
+msgstr ""
+
+#. module: sale_stock_picking_validation_blocking
 #: model:ir.model,name:sale_stock_picking_validation_blocking.model_sale_order
 msgid "Sales Order"
+msgstr ""
+
+#. module: sale_stock_picking_validation_blocking
+#: model:ir.model.fields,help:sale_stock_picking_validation_blocking.field_sale_order__hide_button_picking_validation_blocked
+msgid ""
+"Technical field to determine whether the picking validation buttons should "
+"be displayed"
 msgstr ""
 
 #. module: sale_stock_picking_validation_blocking
@@ -44,6 +56,7 @@ msgid "Validation Blocked by SO"
 msgstr ""
 
 #. module: sale_stock_picking_validation_blocking
+#. odoo-python
 #: code:addons/sale_stock_picking_validation_blocking/models/stock_picking.py:0
 #, python-format
 msgid "Validation is blocked by SO for picking %s"
