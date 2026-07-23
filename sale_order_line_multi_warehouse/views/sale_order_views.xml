@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 Manuel Regidor <manuel.regidor@sygel.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="so_line_multi_warehouse_view_order_form" model="ir.ui.view">
+        <field name="name">so.line.multi.warehouse.view.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group[@name='sale_header']//field[@name='company_id']"
+                position="after"
+            >
+                <field name="allow_sale_multi_warehouse" invisible="1" />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//tree//field[@name='product_uom_qty']"
+                position="after"
+            >
+                <field name="allow_sale_multi_warehouse" invisible="1" />
+                <button
+                    name="action_show_warehouse_lines"
+                    type="object"
+                    icon="fa-sitemap"
+                    title="Warehouses"
+                    column_invisible="not parent.allow_sale_multi_warehouse"
+                    width="0.1"
+                />
+                <field
+                    name="sale_order_line_warehouse_ids"
+                    widget="one2many"
+                    column_invisible="not parent.allow_sale_multi_warehouse"
+                />
+            </xpath>
+            <xpath expr="//field[@name='warehouse_id'][2]" position="attributes">
+                <attribute name="readonly">allow_sale_multi_warehouse</attribute>
+            </xpath>
+            <xpath expr="//field[@name='warehouse_id'][2]" position="after">
+                <label
+                    for="action_open_so_multi_warehouse_change"
+                    string=""
+                    groups="stock.group_stock_multi_warehouses"
+                    invisible="not allow_sale_multi_warehouse or state == 'sale'"
+                />
+                <button
+                    type='object'
+                    class="oe_link"
+                    name="action_open_so_multi_warehouse_change"
+                    string="Change Warehouse"
+                    groups="stock.group_stock_multi_warehouses"
+                    invisible="not allow_sale_multi_warehouse or state == 'sale'"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
