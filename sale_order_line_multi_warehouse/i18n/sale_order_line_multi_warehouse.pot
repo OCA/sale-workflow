@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -31,15 +31,14 @@ msgstr ""
 #, python-format
 msgid ""
 "Amount for sale order line with product %(product)s could not be reduced "
-"when automatically adjusting quantitiy as no warehouse line could be "
+"when automatically adjusting quantity as no warehouse line could be "
 "selected."
 msgstr ""
 
 #. module: sale_order_line_multi_warehouse
 #: model_terms:ir.ui.view,arch_db:sale_order_line_multi_warehouse.so_multi_warehouse_change_wizard_view
 msgid ""
-"Are you sure? Some warehouse distribution lines' warehouses might be "
-"updated."
+"Are you sure? Some warehouse distribution lines warehouses might be updated."
 msgstr ""
 
 #. module: sale_order_line_multi_warehouse
@@ -128,13 +127,6 @@ msgid "Incompatibilities"
 msgstr ""
 
 #. module: sale_order_line_multi_warehouse
-#: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line_warehouse____last_update
-#: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_line_wizard____last_update
-#: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_wizard____last_update
-msgid "Last Modified on"
-msgstr ""
-
-#. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_sale_order_line_warehouse__write_uid
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_line_wizard__write_uid
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_wizard__write_uid
@@ -161,11 +153,6 @@ msgstr ""
 #. module: sale_order_line_multi_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_multi_warehouse.field_so_multi_warehouse_change_wizard__new_warehouse_id
 msgid "New Warehouse"
-msgstr ""
-
-#. module: sale_order_line_multi_warehouse
-#: model:ir.model.fields.selection,name:sale_order_line_multi_warehouse.selection__so_multi_warehouse_change_wizard__has_incompatibilities__no
-msgid "No"
 msgstr ""
 
 #. module: sale_order_line_multi_warehouse
@@ -337,9 +324,4 @@ msgstr ""
 #. module: sale_order_line_multi_warehouse
 #: model_terms:ir.ui.view,arch_db:sale_order_line_multi_warehouse.so_line_multi_warehouse_view_order_form
 msgid "Warehouses"
-msgstr ""
-
-#. module: sale_order_line_multi_warehouse
-#: model:ir.model.fields.selection,name:sale_order_line_multi_warehouse.selection__so_multi_warehouse_change_wizard__has_incompatibilities__yes
-msgid "Yes"
 msgstr ""
