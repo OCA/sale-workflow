@@ -19,13 +19,10 @@ class StockMove(models.Model):
     sequence_code = fields.Char(compute="_compute_sale_related_data")
 
     def _compute_sale_related_data(self):
-        # Get all chained moves to get sale line
         for move in self:
-            moves = self.browse(list(self._rollup_move_dests({move.id})))
-            move_sale = moves.filtered("sale_line_id")[:1]
-            move.sale_id = move_sale.sale_line_id.order_id
-            move.salesman_id = move_sale.sale_line_id.order_id.user_id
-            move.order_date = move_sale.sale_line_id.date_order
+            move.sale_id = move.sale_line_id.order_id
+            move.salesman_id = move.sale_line_id.order_id.user_id
+            move.order_date = move.sale_line_id.date_order
             move.sequence_code = move.picking_type_id.sequence_code
 
     @api.model
