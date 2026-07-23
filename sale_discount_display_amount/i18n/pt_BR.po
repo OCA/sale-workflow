@@ -18,8 +18,13 @@ msgstr ""
 
 #. module: sale_discount_display_amount
 #: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.sale_discount_display_amount_document
-msgid "<span>Total Discount</span>"
-msgstr "<span>Desconto Total</span>"
+msgid "<strong>Total Discount</strong>"
+msgstr ""
+
+#. module: sale_discount_display_amount
+#: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.sale_discount_display_amount_document
+msgid "<strong>Total</strong>"
+msgstr ""
 
 #. module: sale_discount_display_amount
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order__discount_total
@@ -42,3 +47,6 @@ msgstr "Linha do pedido de vendas"
 #: model:ir.model.fields,field_description:sale_discount_display_amount.field_sale_order_line__price_total_no_discount
 msgid "Subtotal Without Discount"
 msgstr "Subtotal sem Desconto"
+
+#~ msgid "<span>Total Discount</span>"
+#~ msgstr "<span>Desconto Total</span>"
