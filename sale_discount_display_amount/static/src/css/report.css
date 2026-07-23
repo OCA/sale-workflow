@@ -1,0 +1,11 @@
+.o_struck_price {
+    text-decoration: line-through;
+    color: #888;
+    font-size: 0.9em;
+}
+
+.o_struck_price_line {
+    text-decoration: line-through;
+    color: #c9302c;
+    font-size: 0.9em;
+}
