@@ -3,6 +3,9 @@
     "summary": """
         Feature to add multiple products to quotation template """,
     "author": "Ilyas, Ooops404, Odoo Community Association (OCA)",
+    "maintainers": [
+        "francesco-ooops",
+    ],
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sale Management",
     "version": "14.0.1.0.1",
