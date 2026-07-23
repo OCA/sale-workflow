@@ -135,6 +135,21 @@ class TestSaleSemaphore(BaseCommon):
         with self.assertRaises(UserError):
             self.order.with_user(self.salesperson).action_confirm()
 
+    def test_sale_line_zero_qty_uses_unit_price(self):
+        """With no quantity the qty-dependent ``price_reduce_*`` fields are 0;
+        the semaphore must instead evaluate the discounted unit price so it is
+        not wrongly forced to red."""
+        line = self._create_line(100.0)
+        line.product_uom_qty = 0.0
+        self.assertEqual(line.price_reduce_taxexcl, 0.0)
+        # 100 with no discount -> success zone (threshold 100).
+        self.assertEqual(line.semaphore, "success")
+        self.assertFalse(line.price_below_semaphore)
+        # A discounted price in the red zone is still detected without qty.
+        line.discount = 30.0
+        self.assertEqual(line.semaphore, "danger")
+        self.assertTrue(line.price_below_semaphore)
+
     def test_sale_line_uses_category_configuration(self):
         self.product.write(
             {

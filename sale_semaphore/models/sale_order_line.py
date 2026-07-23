@@ -24,7 +24,13 @@ class SaleOderLine(models.Model):
     price_below_semaphore = fields.Boolean(compute="_compute_price_below_semaphore")
 
     @api.depends(
-        "product_id", "price_reduce_taxinc", "price_reduce_taxexcl", "product_uom"
+        "product_id",
+        "price_reduce_taxinc",
+        "price_reduce_taxexcl",
+        "product_uom",
+        "price_unit",
+        "discount",
+        "product_uom_qty",
     )
     def _compute_semaphore(self):
         dp = self.env["decimal.precision"].precision_get("Product Price")
@@ -94,13 +100,32 @@ class SaleOderLine(models.Model):
 
     def _get_semaphore_price_reduce(self):
         """Net unit price used to evaluate the semaphore, on the company's tax
-        inclusion basis."""
+        inclusion basis.
+
+        ``price_reduce_taxinc``/``price_reduce_taxexcl`` are computed by Odoo
+        dividing the line subtotal by the quantity, so they collapse to ``0``
+        when the line has no quantity yet. That zero would be read as the
+        lowest possible price and wrongly trigger the red semaphore, so when
+        there is no quantity we fall back to the discounted unit price
+        (``price_unit`` with ``discount``), aligning taxes and rounding the
+        same way as the ``price_reduce_*`` fields.
+        """
         self.ensure_one()
-        return (
-            self.price_reduce_taxinc
-            if self.company_id.account_price_include == "tax_included"
-            else self.price_reduce_taxexcl
-        )
+        tax_included = self.company_id.account_price_include == "tax_included"
+        if self.product_uom_qty:
+            return (
+                self.price_reduce_taxinc if tax_included else self.price_reduce_taxexcl
+            )
+        price_reduce = self.price_unit * (1 - (self.discount or 0.0) / 100.0)
+        if tax_included:
+            price_reduce = self.tax_id.compute_all(
+                price_reduce,
+                currency=self.currency_id,
+                quantity=1.0,
+                product=self.product_id,
+                partner=self.order_id.partner_id,
+            )["total_included"]
+        return self.currency_id.round(price_reduce)
 
     def _get_semaphore_pricelist_price(self):
         """Pricelist price for this line expressed on the same basis as
@@ -147,7 +172,14 @@ class SaleOderLine(models.Model):
             < 0
         )
 
-    @api.depends("semaphore_active", "price_reduce_taxinc", "price_reduce_taxexcl")
+    @api.depends(
+        "semaphore_active",
+        "price_reduce_taxinc",
+        "price_reduce_taxexcl",
+        "price_unit",
+        "discount",
+        "product_uom_qty",
+    )
     def _compute_price_below_semaphore(self):
         dp = self.env["decimal.precision"].precision_get("Product Price")
         self.price_below_semaphore = False
