@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="sale_exception_line_tooltip.SaleExceptionLineTooltipField">
+        <span
+            t-if="props.record.data[props.name]"
+            class="fa fa-exclamation-triangle text-tooltip"
+            t-att-title="props.record.data.exceptions_tooltip"
+        />
+    </t>
+</templates>
