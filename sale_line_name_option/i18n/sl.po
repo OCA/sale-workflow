@@ -49,3 +49,8 @@ msgstr "Brez kode proizvoda v nazivu prodajne postavke"
 #: model:ir.model,name:sale_line_name_option.model_product_product
 msgid "Product Variant"
 msgstr "Različica proizvoda"
+
+#. module: sale_line_name_option
+#: model:ir.model,name:sale_line_name_option.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
