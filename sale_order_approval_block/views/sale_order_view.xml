@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_form_block_reason" model="ir.ui.view">
+        <field name="name">sale.order.form.block.reason</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <button name="action_cancel" position="attributes">
+                <attribute name="invisible">
+                    state not in ['sale', 'sent'] or not id or locked
+                </attribute>
+            </button>
+
+            <field name="date_order" position="after">
+                <field
+                    name="approval_block_id"
+                    force_save="1"
+                    readonly="approval_blocked or state != 'draft'"
+                />
+                <field name="approval_blocked" invisible="True" />
+            </field>
+
+            <xpath expr="//header/button[@name='action_confirm']" position="before">
+                <button
+                    name="button_release_approval_block"
+                    string="Release Approval Block"
+                    type="object"
+                    class="btn-primary"
+                    groups="sale_order_approval_block.group_quote_approval_block"
+                    invisible="not approval_block_id or state not in ['draft', 'sent']"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_order_filter" model="ir.ui.view">
+        <field name="name">sale.order.select.block.reason</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="approval_block_id" />
+            </field>
+
+            <filter name="my_sale_orders_filter" position="after">
+                <filter
+                    string="Blocked for Approval"
+                    name="blocked_so"
+                    domain="[('approval_block_id', '!=', False)]"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>

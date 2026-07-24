@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="group_quote_approval_block" model="res.groups">
+        <field name="name">Release Quote with approval block</field>
+        <field
+            name="user_ids"
+            eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"
+        />
+    </record>
+    <record id="sales_team.group_sale_manager" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('group_quote_approval_block'))]" />
+    </record>
+</odoo>
