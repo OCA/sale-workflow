@@ -43,3 +43,8 @@ msgstr ""
 #: model:ir.model,name:sale_line_name_option.model_product_product
 msgid "Product Variant"
 msgstr ""
+
+#. module: sale_line_name_option
+#: model:ir.model,name:sale_line_name_option.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
