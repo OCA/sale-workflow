@@ -34,9 +34,20 @@ odoo.define("sale_order_line_price_history.price_history_widget", function (requ
             if (this.data.id) {
                 additional_context = {active_id: this.data.id};
             } else {
+                var partner_id = false;
+                var product_id = false;
+
+                if (this.getParent().state.data.partner_id) {
+                    partner_id =
+                        this.getParent().state.data.partner_id.res_id ||
+                        this.getParent().state.data.partner_id[0];
+                }
+                if (this.data.product_id) {
+                    product_id = this.data.product_id.res_id || this.data.product_id[0];
+                }
                 additional_context = {
-                    default_partner_id: this.data.order_partner_id.res_id,
-                    default_product_id: this.data.product_id.res_id,
+                    default_partner_id: partner_id,
+                    default_product_id: product_id,
                 };
             }
             this.do_action(
