@@ -98,7 +98,7 @@ addon | version | maintainers | summary
 [sale_order_line_menu](sale_order_line_menu/) | 14.0.1.0.0 |  | Adds a Sale Order Lines Menu
 [sale_order_line_note](sale_order_line_note/) | 14.0.1.0.1 |  | Note on sale order line
 [sale_order_line_packaging_qty](sale_order_line_packaging_qty/) | 14.0.1.1.1 |  | Define quantities according to product packaging on sale order lines
-[sale_order_line_price_history](sale_order_line_price_history/) | 14.0.1.0.0 |  | Sale order line price history
+[sale_order_line_price_history](sale_order_line_price_history/) | 14.0.1.0.1 |  | Sale order line price history
 [sale_order_line_sequence](sale_order_line_sequence/) | 14.0.2.0.0 |  | Propagates SO line sequence to invoices and stock picking.
 [sale_order_lot_generator](sale_order_lot_generator/) | 14.0.1.0.2 | <a href='https://github.com/florian-dacosta'><img src='https://github.com/florian-dacosta.png' width='32' height='32' style='border-radius:50%;' alt='florian-dacosta'/></a> <a href='https://github.com/mourad-ehm'><img src='https://github.com/mourad-ehm.png' width='32' height='32' style='border-radius:50%;' alt='mourad-ehm'/></a> <a href='https://github.com/bealdav'><img src='https://github.com/bealdav.png' width='32' height='32' style='border-radius:50%;' alt='bealdav'/></a> | Sale Order Lot Generator
 [sale_order_lot_selection](sale_order_lot_selection/) | 14.0.1.2.1 | <a href='https://github.com/bodedra'><img src='https://github.com/bodedra.png' width='32' height='32' style='border-radius:50%;' alt='bodedra'/></a> | Sale Order Lot Selection
