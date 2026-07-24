@@ -1,0 +1,1 @@
+odoo-addon-sale_order_line_cancel  @ git+https://github.com/OCA/sale-workflow.git@refs/pull/4485/head#subdirectory=sale_order_line_cancel 
