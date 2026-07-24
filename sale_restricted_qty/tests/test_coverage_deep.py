@@ -46,24 +46,23 @@ class TestCoverageDeep(common.TransactionCase):
             setattr(template, own_set_field, False)
             getattr(template, onchange_val)()
 
-            # 2. Test Restrict logic
+            # 2. Test Restrict logic (mirrors the value logic above; a
+            # restriction only matters when a value is set).
             restrict_field = f"sale_restrict_{field_prefix}"
             own_restrict_field = f"sale_own_restrict_{field_prefix}"
             own_restrict_set_field = f"is_sale_own_restrict_{field_prefix}_set"
             onchange_restrict = f"_onchange_is_sale_restrict_{field_prefix}_set"
-            inverse_restrict_set = f"_inverse_is_sale_own_restrict_{field_prefix}_set"
 
-            # Inverse: Set restriction
+            setattr(template, val_field, 10.0)
+
+            # Inverse: Set restriction (differs from inherited -> pinned own)
             setattr(template, restrict_field, RESTRICTION_ENABLED)
             self.assertTrue(getattr(template, own_restrict_set_field))
             self.assertEqual(getattr(template, own_restrict_field), RESTRICTION_ENABLED)
 
-            # Test the boolean flag inverse explicitly
-            setattr(template, own_restrict_set_field, True)
-            getattr(template, inverse_restrict_set)()
-
-            setattr(template, own_restrict_set_field, False)
-            getattr(template, inverse_restrict_set)()
+            # Inverse: Reset to the inherited mode -> unsets (re-inherits)
+            setattr(template, restrict_field, RESTRICTION_DISABLED)
+            self.assertFalse(getattr(template, own_restrict_set_field))
 
             # Onchange: Set
             setattr(template, own_restrict_set_field, True)
@@ -71,6 +70,8 @@ class TestCoverageDeep(common.TransactionCase):
             # Onchange: Unset
             setattr(template, own_restrict_set_field, False)
             getattr(template, onchange_restrict)()
+
+            setattr(template, val_field, 0.0)
 
     def test_model_overrides_coverage(self):
         """Hit the 12 compute methods in each model by changing hierarchy."""
