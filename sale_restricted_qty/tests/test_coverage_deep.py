@@ -3,6 +3,11 @@
 
 from odoo.tests import common, tagged
 
+from odoo.addons.sale_restricted_qty.models.product_restricted_qty_mixin import (
+    RESTRICTION_DISABLED,
+    RESTRICTION_ENABLED,
+)
+
 
 @tagged("post_install", "-at_install")
 class TestCoverageDeep(common.TransactionCase):
@@ -49,9 +54,9 @@ class TestCoverageDeep(common.TransactionCase):
             inverse_restrict_set = f"_inverse_is_sale_own_restrict_{field_prefix}_set"
 
             # Inverse: Set restriction
-            setattr(template, restrict_field, "1")
+            setattr(template, restrict_field, RESTRICTION_ENABLED)
             self.assertTrue(getattr(template, own_restrict_set_field))
-            self.assertEqual(getattr(template, own_restrict_field), "1")
+            self.assertEqual(getattr(template, own_restrict_field), RESTRICTION_ENABLED)
 
             # Test the boolean flag inverse explicitly
             setattr(template, own_restrict_set_field, True)
@@ -77,11 +82,11 @@ class TestCoverageDeep(common.TransactionCase):
         parent.write(
             {
                 "sale_min_qty": 1.0,
-                "sale_restrict_min_qty": "1",
+                "sale_restrict_min_qty": RESTRICTION_ENABLED,
                 "sale_max_qty": 2.0,
-                "sale_restrict_max_qty": "1",
+                "sale_restrict_max_qty": RESTRICTION_ENABLED,
                 "sale_multiple_of_qty": 3.0,
-                "sale_restrict_multiple_of_qty": "1",
+                "sale_restrict_multiple_of_qty": RESTRICTION_ENABLED,
             }
         )
         self.assertEqual(child.sale_min_qty, 1.0)
@@ -110,11 +115,11 @@ class TestCoverageDeep(common.TransactionCase):
         parent.write(
             {
                 "sale_min_qty": 0.0,
-                "sale_restrict_min_qty": "0",
+                "sale_restrict_min_qty": RESTRICTION_DISABLED,
                 "sale_max_qty": 0.0,
-                "sale_restrict_max_qty": "0",
+                "sale_restrict_max_qty": RESTRICTION_DISABLED,
                 "sale_multiple_of_qty": 0.0,
-                "sale_restrict_multiple_of_qty": "0",
+                "sale_restrict_multiple_of_qty": RESTRICTION_DISABLED,
             }
         )
         # Also clear the template's own value, otherwise product
@@ -140,7 +145,7 @@ class TestCoverageDeep(common.TransactionCase):
             {
                 "name": "Product",
                 "sale_min_qty": 10.0,
-                "sale_restrict_min_qty": "1",
+                "sale_restrict_min_qty": RESTRICTION_ENABLED,
             }
         )
         line = self.env["sale.order.line"].new({"product_id": product.id})
@@ -161,7 +166,7 @@ class TestCoverageDeep(common.TransactionCase):
         self.assertEqual(line.product_uom_qty, 5.0)
 
         # Hits the "not enforced" branch
-        product.sale_restrict_min_qty = "0"
+        product.sale_restrict_min_qty = RESTRICTION_DISABLED
 
         # New line to pick up the change
         line2 = self.env["sale.order.line"].new({"product_id": product.id})

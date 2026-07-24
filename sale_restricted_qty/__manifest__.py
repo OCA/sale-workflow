@@ -5,7 +5,7 @@
 
 {
     "name": "Sale order restricted quantity: min, max, multiple-of",
-    "version": "18.0.1.0.0",
+    "version": "18.0.2.0.0",
     "category": "Sales Management",
     "author": "Akretion, Odoo Community Association (OCA)",
     "contributors": ["Ashish Hirpara"],

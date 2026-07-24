@@ -4,6 +4,11 @@
 from odoo.exceptions import ValidationError
 from odoo.tests import common, tagged
 
+from odoo.addons.sale_restricted_qty.models.product_restricted_qty_mixin import (
+    RESTRICTION_DISABLED,
+    RESTRICTION_ENABLED,
+)
+
 
 @tagged("post_install", "-at_install")
 class TestSaleOrderLine(common.TransactionCase):
@@ -28,7 +33,7 @@ class TestSaleOrderLine(common.TransactionCase):
             {
                 "name": "Product",
                 "sale_min_qty": 10.0,
-                "sale_restrict_min_qty": "1",  # Blocking
+                "sale_restrict_min_qty": RESTRICTION_ENABLED,  # Blocking
             }
         )
 
@@ -51,7 +56,7 @@ class TestSaleOrderLine(common.TransactionCase):
             )
 
         # 2. Warning: Should NOT raise ValidationError
-        product.sale_restrict_min_qty = "0"  # Warning
+        product.sale_restrict_min_qty = RESTRICTION_DISABLED  # Warning
         so = self.SaleOrder.create(
             {
                 "partner_id": self.partner.id,
@@ -75,7 +80,7 @@ class TestSaleOrderLine(common.TransactionCase):
             {
                 "name": "Product",
                 "sale_max_qty": 10.0,
-                "sale_restrict_max_qty": "1",  # Blocking
+                "sale_restrict_max_qty": RESTRICTION_ENABLED,  # Blocking
             }
         )
 
@@ -98,7 +103,7 @@ class TestSaleOrderLine(common.TransactionCase):
             )
 
         # 2. Warning
-        product.sale_restrict_max_qty = "0"
+        product.sale_restrict_max_qty = RESTRICTION_DISABLED
         so = self.SaleOrder.create(
             {
                 "partner_id": self.partner.id,
@@ -122,7 +127,7 @@ class TestSaleOrderLine(common.TransactionCase):
             {
                 "name": "Product",
                 "sale_multiple_of_qty": 5.0,
-                "sale_restrict_multiple_of_qty": "1",  # Blocking
+                "sale_restrict_multiple_of_qty": RESTRICTION_ENABLED,  # Blocking
             }
         )
 
@@ -145,7 +150,7 @@ class TestSaleOrderLine(common.TransactionCase):
             )
 
         # 2. Warning
-        product.sale_restrict_multiple_of_qty = "0"
+        product.sale_restrict_multiple_of_qty = RESTRICTION_DISABLED
         so = self.SaleOrder.create(
             {
                 "partner_id": self.partner.id,
@@ -169,7 +174,7 @@ class TestSaleOrderLine(common.TransactionCase):
             {
                 "name": "Parent Categ",
                 "sale_min_qty": 100.0,
-                "sale_restrict_min_qty": "1",
+                "sale_restrict_min_qty": RESTRICTION_ENABLED,
             }
         )
         child_categ = self.ProductCategory.create(
@@ -188,7 +193,7 @@ class TestSaleOrderLine(common.TransactionCase):
 
         # Verify initial inheritance
         self.assertEqual(product.sale_min_qty, 100.0)
-        self.assertEqual(product.sale_restrict_min_qty, "1")
+        self.assertEqual(product.sale_restrict_min_qty, RESTRICTION_ENABLED)
 
         # Override at Template level
         template.sale_min_qty = 50.0
@@ -205,7 +210,7 @@ class TestSaleOrderLine(common.TransactionCase):
             {
                 "name": "Product",
                 "sale_min_qty": 10.0,
-                "sale_restrict_min_qty": "1",
+                "sale_restrict_min_qty": RESTRICTION_ENABLED,
             }
         )
 
@@ -231,7 +236,7 @@ class TestSaleOrderLine(common.TransactionCase):
                 "name": "Product",
                 "uom_id": self.uom_unit.id,
                 "sale_min_qty": 24.0,  # 2 Dozen
-                "sale_restrict_min_qty": "1",
+                "sale_restrict_min_qty": RESTRICTION_ENABLED,
             }
         )
 
@@ -288,9 +293,9 @@ class TestSaleOrderLine(common.TransactionCase):
         self.assertEqual(product.sale_min_qty, 0.0)
 
         # Test restriction selection inverse
-        product.sale_restrict_min_qty = "1"
+        product.sale_restrict_min_qty = RESTRICTION_ENABLED
         self.assertTrue(product.is_sale_own_restrict_min_qty_set)
-        self.assertEqual(product.sale_own_restrict_min_qty, "1")
+        self.assertEqual(product.sale_own_restrict_min_qty, RESTRICTION_ENABLED)
 
     def test_historical_skip(self):
         """Ensure confirmed orders skip constraints."""
@@ -316,7 +321,7 @@ class TestSaleOrderLine(common.TransactionCase):
         product.write(
             {
                 "sale_min_qty": 10.0,
-                "sale_restrict_min_qty": "1",
+                "sale_restrict_min_qty": RESTRICTION_ENABLED,
             }
         )
         # This shouldn't crash or fail validation on re-read/write
