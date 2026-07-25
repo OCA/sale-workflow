@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Tecnativa - Eduardo Ezerouali
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/list/field[@name='price_unit']"
+                position="attributes"
+            >
+                <attribute
+                    name="readonly"
+                    separator="or"
+                    add="not price_edit_allowed"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/list/field[@name='discount']"
+                position="attributes"
+            >
+                <attribute
+                    name="readonly"
+                    separator="or"
+                    add="not price_edit_allowed"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/list/field[@name='discount']"
+                position="after"
+            >
+                <field name="price_edit_allowed" column_invisible="1" />
+                <field
+                    name="price_final"
+                    readonly="qty_invoiced &gt; 0"
+                    optional="show"
+                    groups="sale.group_discount_per_so_line"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='price_unit']"
+                position="attributes"
+            >
+                <attribute
+                    name="readonly"
+                    separator="or"
+                    add="not price_edit_allowed"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='discount']"
+                position="attributes"
+            >
+                <attribute
+                    name="readonly"
+                    separator="or"
+                    add="not price_edit_allowed"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='price_unit']"
+                position="after"
+            >
+                <field name="price_edit_allowed" invisible="1" />
+                <field name="price_final" readonly="qty_invoiced &gt; 0" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
