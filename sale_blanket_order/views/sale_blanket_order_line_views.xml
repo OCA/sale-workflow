@@ -166,6 +166,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">sale.blanket.order.line</field>
         <field name="view_mode">tree,form</field>
+        <field name="domain">[('display_type', '=', False)]</field>
         <field name="search_view_id" ref="sale_blanket_order_line_search" />
     </record>
 
