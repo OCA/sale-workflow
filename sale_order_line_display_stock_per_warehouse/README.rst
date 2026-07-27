@@ -32,17 +32,9 @@ Sale Order Line Display Stock Per Warehouse
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows to display available stock per warehouse in sale
-order line.
-
-- Go to *Sales > Configuration > Settings* and set *Stock field on Sale
-  Order Line* to choose which quantity is displayed per warehouse:
-
-  - On Hand (``qty_available``)
-  - Free To Use (``free_qty``)
-  - Forecast (``virtual_available``).
-
-This setting is global.
+This module displays, on each sale order line, the stock of the product
+broken down by warehouse, through a dedicated widget shown next to the
+*Quantity* column.
 
 **Table of contents**
 
@@ -52,9 +44,21 @@ This setting is global.
 Usage
 =====
 
-- Select the warehouses to display stock for in the Sales Order Lines by
-  enable "Display stock on Sale Order Line" option on the warehouse form
-  view.
+To display stock for a given warehouse, go to *Inventory > Configuration
+> Warehouses* and tick *Display stock on Sale Order Line* on that
+warehouse.
+
+To restrict a warehouse to part of its stock, fill in *Sale Order Line
+Stock Locations*. When left empty, the whole warehouse is used.
+
+To choose the quantity displayed, go to *Sales > Configuration >
+Settings* and set *Stock field on Sale Order Line*:
+
+- On Hand (``qty_available``)
+- Free To Use (``free_qty``)
+- Forecast (``virtual_available``)
+
+This setting is global and defaults to *On Hand*.
 
 Bug Tracker
 ===========
@@ -72,11 +76,15 @@ Credits
 Authors
 -------
 
+* ACSONE SA/NV
 * Akretion
 
 Contributors
 ------------
 
+- Bejaoui Souheil (ACSONE SA/NV) <bejaoui.souheil@acsone.eu>
+- Benjamin Willig (ACSONE SA/NV) <benjamin.willig@acsone.eu>
+- Guillaume Masson <guillaume.masson@akretion.com>
 - Kévin Roche <kevin.roche@akretion.com>
 
 Maintainers
