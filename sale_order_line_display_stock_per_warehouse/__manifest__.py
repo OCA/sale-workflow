@@ -7,7 +7,7 @@
     "version": "18.0.1.0.0",
     "category": "Hidden",
     "website": "https://github.com/OCA/sale-workflow",
-    "author": "Akretion, Odoo Community Association (OCA)",
+    "author": "ACSONE SA/NV, Akretion, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "maintainers": ["Kev-Roche"],
     "application": False,
@@ -20,4 +20,10 @@
         "views/sale_order.xml",
         "views/stock_warehouse.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            "sale_order_line_display_stock_per_warehouse/static/src/widgets/qty_per_warehouse_widget.esm.js",
+            "sale_order_line_display_stock_per_warehouse/static/src/widgets/qty_per_warehouse_widget.xml",
+        ],
+    },
 }

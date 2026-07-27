@@ -11,13 +11,20 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
                 expr="//field[@name='order_line']/form//field[@name='qty_delivered']"
                 position="after"
             >
-                <field name="stock_per_warehouse_info" />
+                <field name="display_qty_per_warehouse_widget" invisible="1" />
+                <field name="qty_per_warehouse_widget_data" invisible="1" />
+                <widget name="qty_per_warehouse_widget" />
             </xpath>
             <xpath
                 expr="//field[@name='order_line']/list/field[@name='qty_delivered']"
                 position="after"
             >
-                <field name="stock_per_warehouse_info" />
+                <field
+                    name="display_qty_per_warehouse_widget"
+                    column_invisible="True"
+                />
+                <field name="qty_per_warehouse_widget_data" column_invisible="True" />
+                <widget name="qty_per_warehouse_widget" width="20px" />
             </xpath>
         </field>
     </record>

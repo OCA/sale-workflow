@@ -72,11 +72,15 @@ Credits
 Authors
 -------
 
+* ACSONE SA/NV
 * Akretion
 
 Contributors
 ------------
 
+- Bejaoui Souheil (ACSONE SA/NV) <bejaoui.souheil@acsone.eu>
+- Benjamin Willig (ACSONE SA/NV) <benjamin.willig@acsone.eu>
+- Guillaume Masson <guillaume.masson@akretion.com>
 - Kévin Roche <kevin.roche@akretion.com>
 
 Maintainers

@@ -38,6 +38,12 @@ class TestSaleOrderLineDisplayStockPerWarehouse(TransactionCase):
                 "is_storable": True,
             }
         )
+        cls.service_product = cls.env["product.product"].create(
+            {
+                "name": "Test Service",
+                "type": "service",
+            }
+        )
 
         cls.env["stock.quant"]._update_available_quantity(
             cls.product,
@@ -63,21 +69,43 @@ class TestSaleOrderLineDisplayStockPerWarehouse(TransactionCase):
                             "product_id": cls.product.id,
                             "product_uom_qty": 1,
                         },
-                    )
+                    ),
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": cls.service_product.id,
+                            "product_uom_qty": 1,
+                        },
+                    ),
                 ],
             }
         )
 
-        cls.sale_order_line = cls.sale_order.order_line
+        cls.sale_order_line = cls.sale_order.order_line[0]
+        cls.service_order_line = cls.sale_order.order_line[1]
+
+    def test_display_widget_only_for_storable_products(self):
+        self.assertTrue(self.sale_order_line.display_qty_per_warehouse_widget)
+        self.assertFalse(self.service_order_line.display_qty_per_warehouse_widget)
+
+    def test_qty_per_warehouse_widget_data_empty_for_non_storable_product(self):
+        self.assertEqual(self.service_order_line.qty_per_warehouse_widget_data, [])
 
     def test_one_stock_per_warehouse_info(self):
-        self.assertIn("WH1: 11.0", self.sale_order_line.stock_per_warehouse_info)
-        self.assertNotIn("WH1: 22.0", self.sale_order_line.stock_per_warehouse_info)
+        data = self.sale_order_line.qty_per_warehouse_widget_data
+        self.assertEqual(
+            data[self.warehouse_1.id]["warehouse_name"],
+            self.warehouse_1.display_name,
+        )
+        self.assertEqual(data[self.warehouse_1.id]["qty"], 11.0)
+        self.assertNotIn(self.warehouse_2.id, data)
 
     def test_two_stock_per_warehouse_info(self):
         self.warehouse_2.display_stock_on_sol = True
-        self.assertIn("WH1: 11.0", self.sale_order_line.stock_per_warehouse_info)
-        self.assertIn("WH2: 22.0", self.sale_order_line.stock_per_warehouse_info)
+        data = self.sale_order_line.qty_per_warehouse_widget_data
+        self.assertEqual(data[self.warehouse_1.id]["qty"], 11.0)
+        self.assertEqual(data[self.warehouse_2.id]["qty"], 22.0)
 
     def test_third_stock_per_warehouse_info_with_zero_stock(self):
         self.warehouse_3 = self.env["stock.warehouse"].create(
@@ -95,8 +123,9 @@ class TestSaleOrderLineDisplayStockPerWarehouse(TransactionCase):
                 "quantity": 0,
             }
         )
-        self.assertIn("WH1: 11.0", self.sale_order_line.stock_per_warehouse_info)
-        self.assertIn("WH3: 0", self.sale_order_line.stock_per_warehouse_info)
+        data = self.sale_order_line.qty_per_warehouse_widget_data
+        self.assertEqual(data[self.warehouse_1.id]["qty"], 11.0)
+        self.assertEqual(data[self.warehouse_3.id]["qty"], 0)
 
     def test_stock_field_setting_virtual_available(self):
         move = self.env["stock.move"].create(
@@ -113,10 +142,12 @@ class TestSaleOrderLineDisplayStockPerWarehouse(TransactionCase):
         self.env["ir.config_parameter"].sudo().set_param(
             "sale_order_line_stock_info.stock_field_on_sol", "virtual_available"
         )
-        self.sale_order_line.invalidate_recordset(["stock_per_warehouse_info"])
-        self.assertIn("WH1: 16.0", self.sale_order_line.stock_per_warehouse_info)
+        self.sale_order_line.invalidate_recordset(["qty_per_warehouse_widget_data"])
+        data = self.sale_order_line.qty_per_warehouse_widget_data
+        self.assertEqual(data[self.warehouse_1.id]["qty"], 16.0)
         self.env["ir.config_parameter"].sudo().set_param(
             "sale_order_line_stock_info.stock_field_on_sol", "qty_available"
         )
-        self.sale_order_line.invalidate_recordset(["stock_per_warehouse_info"])
-        self.assertIn("WH1: 11.0", self.sale_order_line.stock_per_warehouse_info)
+        self.sale_order_line.invalidate_recordset(["qty_per_warehouse_widget_data"])
+        data = self.sale_order_line.qty_per_warehouse_widget_data
+        self.assertEqual(data[self.warehouse_1.id]["qty"], 11.0)

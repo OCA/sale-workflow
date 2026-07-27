@@ -13,6 +13,13 @@ License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
             >
                 <group name="misc_configuration">
                     <field name="display_stock_on_sol" />
+                    <field
+                        name="display_stock_location_ids"
+                        widget="many2many_tags"
+                        invisible="not display_stock_on_sol"
+                        domain="['|', ('id', 'child_of', view_location_id), '&amp;', ('usage', '=', 'transit'), ('company_id', 'in', [company_id, False])]"
+                        options="{'no_create': True}"
+                    />
                 </group>
             </xpath>
         </field>
