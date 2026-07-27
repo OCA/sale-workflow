@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/list/field[@name='product_template_id']"
+                position="before"
+            >
+                <field
+                    name="is_exception_danger"
+                    widget="sale_exception_line_tooltip"
+                    string=""
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
