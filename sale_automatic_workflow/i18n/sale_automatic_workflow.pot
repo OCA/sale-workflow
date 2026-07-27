@@ -45,6 +45,29 @@ msgid ""
 msgstr ""
 
 #. module: sale_automatic_workflow
+#: model:ir.model,name:sale_automatic_workflow.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,help:sale_automatic_workflow.field_res_config_settings__sale_workflow_copy_mode
+msgid ""
+"Controls whether the automatic workflow is propagated when a sale order is "
+"duplicated (this includes order splits)."
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__res_config_settings__sale_workflow_copy_mode__copy
+msgid "Copy"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields,field_description:sale_automatic_workflow.field_res_config_settings__sale_workflow_copy_mode
+#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.res_config_settings_view_form
+msgid "Copy workflow on duplication"
+msgstr ""
+
+#. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__create_invoice
 msgid "Create Invoice"
 msgstr ""
@@ -80,6 +103,11 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__payment_filter_domain
 msgid "Domain"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__res_config_settings__sale_workflow_copy_mode__no_copy
+msgid "Don't copy"
 msgstr ""
 
 #. module: sale_automatic_workflow
@@ -156,6 +184,13 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__property_payment_journal_id
 msgid "Payment Journal"
+msgstr ""
+
+#. module: sale_automatic_workflow
+#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.res_config_settings_view_form
+msgid ""
+"Propagate the automatic workflow when a sale order is duplicated (this "
+"includes order splits)."
 msgstr ""
 
 #. module: sale_automatic_workflow
