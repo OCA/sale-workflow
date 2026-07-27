@@ -7,7 +7,7 @@
             <field name="currency_id" position="after">
                 <field
                     name="type_id"
-                    required="1"
+                    required="state in ['draft', 'sent']"
                     readonly="state in ['sale', 'cancel'] or locked"
                 />
             </field>
