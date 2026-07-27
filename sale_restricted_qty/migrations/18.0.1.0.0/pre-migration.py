@@ -98,9 +98,10 @@ def migrate_selection_and_flags(cr, table):
 
 
 @openupgrade.migrate()
-def migrate(cr, version):
+def migrate(env, version):
     # 1. Migrate selections and flags while the legacy 'manual_*' value columns
     #    are still present.
+    cr = env.cr
     for table in ["product_category", "product_template", "product_product"]:
         migrate_selection_and_flags(cr, table)
 
