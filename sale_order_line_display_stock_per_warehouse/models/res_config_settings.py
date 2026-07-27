@@ -16,5 +16,5 @@ class ResConfigSettings(models.TransientModel):
         ],
         string="Stock field on Sale Order Line",
         default="qty_available",
-        config_parameter="sale_order_line_stock_info.stock_field_on_sol",
+        config_parameter="sale_order_line_display_stock_per_warehouse.stock_field_on_sol",
     )

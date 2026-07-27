@@ -375,18 +375,9 @@ ul.auto-toc {
 !! source digest: sha256:143faf47100d371d7c24b23ad8deac5b08c99f3cfb833cdd14d88f61d30e8eb4
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Beta" src="https://img.shields.io/badge/maturity-Beta-yellow.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/sale-workflow/tree/18.0/sale_order_line_display_stock_per_warehouse"><img alt="OCA/sale-workflow" src="https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-sale_order_line_display_stock_per_warehouse"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module allows to display available stock per warehouse in sale
-order line.</p>
-<ul class="simple">
-<li>Go to <em>Sales &gt; Configuration &gt; Settings</em> and set <em>Stock field on Sale
-Order Line</em> to choose which quantity is displayed per warehouse:<ul>
-<li>On Hand (<tt class="docutils literal">qty_available</tt>)</li>
-<li>Free To Use (<tt class="docutils literal">free_qty</tt>)</li>
-<li>Forecast (<tt class="docutils literal">virtual_available</tt>).</li>
-</ul>
-</li>
-</ul>
-<p>This setting is global.</p>
+<p>This module displays, on each sale order line, the stock of the product
+broken down by warehouse, through a dedicated widget shown next to the
+<em>Quantity</em> column.</p>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -402,11 +393,19 @@ Order Line</em> to choose which quantity is displayed per warehouse:<ul>
 </div>
 <div class="section" id="usage">
 <h2><a class="toc-backref" href="#toc-entry-1">Usage</a></h2>
+<p>To display stock for a given warehouse, go to <em>Inventory &gt; Configuration
+&gt; Warehouses</em> and tick <em>Display stock on Sale Order Line</em> on that
+warehouse.</p>
+<p>To restrict a warehouse to part of its stock, fill in <em>Sale Order Line
+Stock Locations</em>. When left empty, the whole warehouse is used.</p>
+<p>To choose the quantity displayed, go to <em>Sales &gt; Configuration &gt;
+Settings</em> and set <em>Stock field on Sale Order Line</em>:</p>
 <ul class="simple">
-<li>Select the warehouses to display stock for in the Sales Order Lines by
-enable “Display stock on Sale Order Line” option on the warehouse form
-view.</li>
+<li>On Hand (<tt class="docutils literal">qty_available</tt>)</li>
+<li>Free To Use (<tt class="docutils literal">free_qty</tt>)</li>
+<li>Forecast (<tt class="docutils literal">virtual_available</tt>)</li>
 </ul>
+<p>This setting is global and defaults to <em>On Hand</em>.</p>
 </div>
 <div class="section" id="bug-tracker">
 <h2><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h2>
@@ -421,12 +420,16 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <div class="section" id="authors">
 <h3><a class="toc-backref" href="#toc-entry-4">Authors</a></h3>
 <ul class="simple">
+<li>ACSONE SA/NV</li>
 <li>Akretion</li>
 </ul>
 </div>
 <div class="section" id="contributors">
 <h3><a class="toc-backref" href="#toc-entry-5">Contributors</a></h3>
 <ul class="simple">
+<li>Bejaoui Souheil (ACSONE SA/NV) &lt;<a class="reference external" href="mailto:bejaoui.souheil&#64;acsone.eu">bejaoui.souheil&#64;acsone.eu</a>&gt;</li>
+<li>Benjamin Willig (ACSONE SA/NV) &lt;<a class="reference external" href="mailto:benjamin.willig&#64;acsone.eu">benjamin.willig&#64;acsone.eu</a>&gt;</li>
+<li>Guillaume Masson &lt;<a class="reference external" href="mailto:guillaume.masson&#64;akretion.com">guillaume.masson&#64;akretion.com</a>&gt;</li>
 <li>Kévin Roche &lt;<a class="reference external" href="mailto:kevin.roche&#64;akretion.com">kevin.roche&#64;akretion.com</a>&gt;</li>
 </ul>
 </div>
