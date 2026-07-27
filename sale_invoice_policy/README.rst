@@ -36,13 +36,36 @@ breaking behaviour (as it is defined from >= v10 on product level).
 .. contents::
    :local:
 
+Use Cases / Context
+===================
+
+In Odoo, products have their own invoicing policy that can be:
+
+- Invoicing on ordered quantities
+- Invoicing on ordered quantities
+
+Following that configuration, when trying to create invoices from sale
+orders, each line of product will apply its invoicing policy.
+
+In some cases, user needs to apply an invoicing policy on a whole sale
+order.
+
+The solution proposed here is to add an invoicing policy on sale order
+level.
+
+Configuration
+=============
+
+- Go to Sale > Configuration > Settings > Sale Invoice Policy
+- Choose the one that fits your needs.
+
 Usage
 =====
 
--  Create Sale Order
--  Select Invoicing Policy on Sale Order or let it void
--  Either the policy selected on Sale Order would be used, either if not
-   filled in, the policy would be chosen from product configuration
+- Create Sale Order
+- Select Invoicing Policy on Sale Order or let it void
+- Either the policy selected on Sale Order would be used, either if not
+  filled in, the policy would be chosen from product configuration
 
 Bug Tracker
 ===========
@@ -65,13 +88,13 @@ Authors
 Contributors
 ------------
 
--  Cédric Pigeon <cedric.pigeon@acsone.eu>
--  François Honoré <francois.honore@acsone.eu>
--  Denis Roussel <denis.roussel@acsone.eu>
--  Alexei Rivera <arivera@archeti.com>
--  Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
--  Alejandro Ji Cheung <alejandro.jicheung@factorlibre.com>
--  Ioan Galan <ioan@studio73.es>
+- Cédric Pigeon <cedric.pigeon@acsone.eu>
+- François Honoré <francois.honore@acsone.eu>
+- Denis Roussel <denis.roussel@acsone.eu>
+- Alexei Rivera <arivera@archeti.com>
+- Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
+- Alejandro Ji Cheung <alejandro.jicheung@factorlibre.com>
+- Ioan Galan <ioan@studio73.es>
 
 Maintainers
 -----------

@@ -8,9 +8,9 @@
             <setting id="sales_settings_invoicing_policy" position="after">
                 <setting
                     id="sale_invoice_policy_setting"
-                    help="Invoice Policy required in Sale Orders"
+                    help="Choose the default policy that will be applied for new sale orders (the 'Invoicing Policy' configuration is the policy for new products)."
                 >
-                    <field name="sale_invoice_policy_required" />
+                    <field name="sale_default_invoice_policy" />
                 </setting>
             </setting>
         </field>

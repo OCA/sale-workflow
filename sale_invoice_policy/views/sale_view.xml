@@ -7,12 +7,7 @@
         <field name="priority">50</field>
         <field name="arch" type="xml">
             <field name="payment_term_id" position="after">
-                <field name="invoice_policy_required" invisible="1" />
-                <field
-                    name="invoice_policy"
-                    required="invoice_policy_required"
-                    readonly="state not in ('draft', 'sent')"
-                />
+                <field name="invoice_policy" />
             </field>
         </field>
     </record>

@@ -10,9 +10,11 @@
     "category": "Sales Management",
     "version": "17.0.1.0.0",
     "license": "AGPL-3",
-    "depends": ["sale_stock"],
+    "depends": ["sale_stock", "base_partition"],
+    "external_dependencies": {"python": ["openupgradelib"]},
     "data": [
         "views/res_config_settings_view.xml",
         "views/sale_view.xml",
     ],
+    "pre_init_hook": "pre_init_hook",
 }
