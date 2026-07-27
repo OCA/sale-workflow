@@ -29,7 +29,8 @@ msgstr "Cancelar"
 #. module: sale_order_mass_action
 #: model:ir.model.fields,help:sale_order_mass_action.field_sale_order_mass_action_wizard__confirm
 msgid "Check this box if you want to confirm all the selected quotations."
-msgstr "Marque esta casilla si desea confirmar todas las ofertas seleccionadas."
+msgstr ""
+"Marque esta casilla si desea confirmar todas las ofertas seleccionadas."
 
 #. module: sale_order_mass_action
 #: model:ir.model.fields,field_description:sale_order_mass_action.field_sale_order_mass_action_wizard__confirm

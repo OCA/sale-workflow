@@ -90,11 +90,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:sale_order_mass_action.view_sale_order_mass_action_wizard_form
 msgid "or"
 msgstr "ou"
-
-#~ msgid "check this box if you want to confirm all the selected quotations."
-#~ msgstr ""
-#~ "cochez cette case si vous souhaitez confirmer tous les devis sélectionnés."
-
-#, python-format
-#~ msgid "sale.order.mass.action.wizard"
-#~ msgstr "sale.order.mass.action.wizard"
