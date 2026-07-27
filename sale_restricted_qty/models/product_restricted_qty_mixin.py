@@ -4,8 +4,8 @@
 
 from odoo import api, fields, models
 
-RESTRICTION_ENABLED = "1"
-RESTRICTION_DISABLED = "0"
+RESTRICTION_ENABLED = "blocking"
+RESTRICTION_DISABLED = "warning"
 RESTRICTION_SELECTION = [
     (RESTRICTION_ENABLED, "Blocking"),
     (RESTRICTION_DISABLED, "Warning"),

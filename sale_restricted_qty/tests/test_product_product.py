@@ -4,6 +4,11 @@
 import odoo.tests.common as common
 from odoo.tests import tagged
 
+from odoo.addons.sale_restricted_qty.models.product_restricted_qty_mixin import (
+    RESTRICTION_DISABLED,
+    RESTRICTION_ENABLED,
+)
+
 
 @tagged("post_install", "-at_install")
 class TestProductTemplate(common.TransactionCase):
@@ -23,15 +28,15 @@ class TestProductTemplate(common.TransactionCase):
         self.assertEqual(template.is_sale_min_qty_set, False)
         self.assertEqual(template.sale_min_qty, 0.0)
         self.assertEqual(template.is_sale_restrict_min_qty_set, False)
-        self.assertEqual(template.sale_restrict_min_qty, "0")
+        self.assertEqual(template.sale_restrict_min_qty, RESTRICTION_DISABLED)
         self.assertEqual(template.is_sale_max_qty_set, False)
         self.assertEqual(template.sale_max_qty, 0.0)
         self.assertEqual(template.is_sale_restrict_max_qty_set, False)
-        self.assertEqual(template.sale_restrict_max_qty, "0")
+        self.assertEqual(template.sale_restrict_max_qty, RESTRICTION_DISABLED)
         self.assertEqual(template.is_sale_multiple_of_qty_set, False)
         self.assertEqual(template.sale_multiple_of_qty, 0.0)
         self.assertEqual(template.is_sale_restrict_multiple_of_qty_set, False)
-        self.assertEqual(template.sale_restrict_multiple_of_qty, "0")
+        self.assertEqual(template.sale_restrict_multiple_of_qty, RESTRICTION_DISABLED)
 
         product = template.product_variant_id
         product.write(
@@ -40,20 +45,20 @@ class TestProductTemplate(common.TransactionCase):
             }
         )
         self.assertEqual(product.sale_min_qty, 0.0)
-        self.assertEqual(product.sale_restrict_min_qty, "0")
+        self.assertEqual(product.sale_restrict_min_qty, RESTRICTION_DISABLED)
         self.assertEqual(product.sale_max_qty, 0.0)
-        self.assertEqual(product.sale_restrict_max_qty, "0")
+        self.assertEqual(product.sale_restrict_max_qty, RESTRICTION_DISABLED)
         self.assertEqual(product.sale_multiple_of_qty, 0.0)
-        self.assertEqual(product.sale_restrict_multiple_of_qty, "0")
+        self.assertEqual(product.sale_restrict_multiple_of_qty, RESTRICTION_DISABLED)
 
         template.update(
             {
                 "sale_min_qty": 10.0,
-                "sale_restrict_min_qty": "1",
+                "sale_restrict_min_qty": RESTRICTION_ENABLED,
                 "sale_max_qty": 100.0,
-                "sale_restrict_max_qty": "1",
+                "sale_restrict_max_qty": RESTRICTION_ENABLED,
                 "sale_multiple_of_qty": 5.0,
-                "sale_restrict_multiple_of_qty": "1",
+                "sale_restrict_multiple_of_qty": RESTRICTION_ENABLED,
             }
         )
         self.assertTrue(product.is_sale_min_qty_set)
@@ -69,35 +74,37 @@ class TestProductTemplate(common.TransactionCase):
         self.assertFalse(product.is_sale_own_multiple_of_qty_set)
         self.assertFalse(product.is_sale_own_restrict_multiple_of_qty_set)
         self.assertEqual(product.sale_min_qty, 10.0)
-        self.assertEqual(product.sale_restrict_min_qty, "1")
+        self.assertEqual(product.sale_restrict_min_qty, RESTRICTION_ENABLED)
         self.assertEqual(product.sale_max_qty, 100.0)
-        self.assertEqual(product.sale_restrict_max_qty, "1")
+        self.assertEqual(product.sale_restrict_max_qty, RESTRICTION_ENABLED)
         self.assertEqual(product.sale_multiple_of_qty, 5.0)
-        self.assertEqual(product.sale_restrict_multiple_of_qty, "1")
+        self.assertEqual(product.sale_restrict_multiple_of_qty, RESTRICTION_ENABLED)
 
         product.sale_min_qty = 20.0
         self.assertTrue(product.is_sale_own_min_qty_set)
         self.assertEqual(product.sale_own_min_qty, 20.0)
 
-        product.sale_restrict_min_qty = "0"
+        product.sale_restrict_min_qty = RESTRICTION_DISABLED
         self.assertTrue(product.is_sale_own_restrict_min_qty_set)
-        self.assertEqual(product.sale_own_restrict_min_qty, "0")
+        self.assertEqual(product.sale_own_restrict_min_qty, RESTRICTION_DISABLED)
 
         product.sale_max_qty = 200.0
         self.assertTrue(product.is_sale_own_max_qty_set)
         self.assertEqual(product.sale_own_max_qty, 200.0)
 
-        product.sale_restrict_max_qty = "0"
+        product.sale_restrict_max_qty = RESTRICTION_DISABLED
         self.assertTrue(product.is_sale_own_restrict_max_qty_set)
-        self.assertEqual(product.sale_own_restrict_max_qty, "0")
+        self.assertEqual(product.sale_own_restrict_max_qty, RESTRICTION_DISABLED)
 
         product.sale_multiple_of_qty = 10.0
         self.assertTrue(product.is_sale_own_multiple_of_qty_set)
         self.assertEqual(product.sale_own_multiple_of_qty, 10.0)
 
-        product.sale_restrict_multiple_of_qty = "0"
+        product.sale_restrict_multiple_of_qty = RESTRICTION_DISABLED
         self.assertTrue(product.is_sale_own_restrict_multiple_of_qty_set)
-        self.assertEqual(product.sale_own_restrict_multiple_of_qty, "0")
+        self.assertEqual(
+            product.sale_own_restrict_multiple_of_qty, RESTRICTION_DISABLED
+        )
 
         product.is_sale_own_min_qty_set = False
         product._onchange_is_sale_min_qty_set()
@@ -105,7 +112,7 @@ class TestProductTemplate(common.TransactionCase):
         self.assertEqual(product.sale_own_min_qty, 0.0)
 
         product.is_sale_own_restrict_min_qty_set = False
-        self.assertEqual(product.sale_restrict_min_qty, "1")
+        self.assertEqual(product.sale_restrict_min_qty, RESTRICTION_ENABLED)
         self.assertFalse(product.sale_own_restrict_min_qty)
 
         product.is_sale_own_max_qty_set = False
@@ -114,7 +121,7 @@ class TestProductTemplate(common.TransactionCase):
         self.assertEqual(product.sale_own_max_qty, 0.0)
 
         product.is_sale_own_restrict_max_qty_set = False
-        self.assertEqual(product.sale_restrict_max_qty, "1")
+        self.assertEqual(product.sale_restrict_max_qty, RESTRICTION_ENABLED)
         self.assertFalse(product.sale_own_restrict_max_qty)
 
         product.is_sale_own_multiple_of_qty_set = False
@@ -123,5 +130,5 @@ class TestProductTemplate(common.TransactionCase):
         self.assertEqual(product.sale_own_multiple_of_qty, 0.0)
 
         product.is_sale_own_restrict_multiple_of_qty_set = False
-        self.assertEqual(product.sale_restrict_multiple_of_qty, "1")
+        self.assertEqual(product.sale_restrict_multiple_of_qty, RESTRICTION_ENABLED)
         self.assertFalse(product.sale_own_restrict_multiple_of_qty)
