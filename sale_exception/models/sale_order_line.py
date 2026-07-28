@@ -39,7 +39,7 @@ class SaleOrderLine(models.Model):
 
     def _get_exception_summary(self):
         items = "".join(
-            f"<li>{html.escape(e.name)}: <i>{html.escape(e.description)}</i></li>"
+            f"<li>{html.escape(e.name)}: <i>{html.escape(e.description or '')}</i></li>"
             for e in self.exception_ids
         )
         return f"<ul>{items}</ul>"
