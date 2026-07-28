@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_customerinfo_elaboration
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-08-28 12:25+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: product_customerinfo_elaboration
+#: model:ir.model,name:product_customerinfo_elaboration.model_product_customerinfo
+msgid "Customer Pricelist"
+msgstr "Listino prezzi cliente"
+
+#. module: product_customerinfo_elaboration
+#: model:ir.model.fields,field_description:product_customerinfo_elaboration.field_product_customerinfo__elaboration_ids
+msgid "Elaboration"
+msgstr "Elaborazione"
+
+#. module: product_customerinfo_elaboration
+#: model:ir.model.fields,field_description:product_customerinfo_elaboration.field_product_customerinfo__elaboration_note
+msgid "Elaboration Note"
+msgstr "Nota elaborazione"
+
+#. module: product_customerinfo_elaboration
+#: model:ir.model.fields,field_description:product_customerinfo_elaboration.field_sale_order_line__elaboration_ids
+#: model_terms:ir.ui.view,arch_db:product_customerinfo_elaboration.product_customerinfo_form_view
+msgid "Elaborations"
+msgstr "Elaborazioni"
+
+#. module: product_customerinfo_elaboration
+#: model:ir.model,name:product_customerinfo_elaboration.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Riga ordine di vendita"

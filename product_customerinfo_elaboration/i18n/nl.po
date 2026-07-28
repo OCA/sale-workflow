@@ -1,0 +1,43 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_customerinfo_elaboration
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-04-01 15:45+0000\n"
+"Last-Translator: Bosd <c5e2fd43-d292-4c90-9d1f-74ff3436329a@anonaddy.me>\n"
+"Language-Team: none\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: product_customerinfo_elaboration
+#: model:ir.model,name:product_customerinfo_elaboration.model_product_customerinfo
+msgid "Customer Pricelist"
+msgstr "Klantprijslijst"
+
+#. module: product_customerinfo_elaboration
+#: model:ir.model.fields,field_description:product_customerinfo_elaboration.field_product_customerinfo__elaboration_ids
+msgid "Elaboration"
+msgstr "Bewerking"
+
+#. module: product_customerinfo_elaboration
+#: model:ir.model.fields,field_description:product_customerinfo_elaboration.field_product_customerinfo__elaboration_note
+msgid "Elaboration Note"
+msgstr "Bewerkingsnotitie"
+
+#. module: product_customerinfo_elaboration
+#: model:ir.model.fields,field_description:product_customerinfo_elaboration.field_sale_order_line__elaboration_ids
+#: model_terms:ir.ui.view,arch_db:product_customerinfo_elaboration.product_customerinfo_form_view
+msgid "Elaborations"
+msgstr "Bewerkingen"
+
+#. module: product_customerinfo_elaboration
+#: model:ir.model,name:product_customerinfo_elaboration.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Verkooporderregel"
