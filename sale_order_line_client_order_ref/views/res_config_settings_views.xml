@@ -14,6 +14,22 @@
                 >
                     <field name="show_client_order_ref_sale" />
                 </setting>
+                <setting
+                    id="client_order_ref_in_invoice_line_desc"
+                    company_dependent="1"
+                    string="Include Customer Order Reference in Invoice Line Description"
+                    help="When enabled, the invoice line description will begin with the customer order reference, followed by a new line and the original description."
+                >
+                    <field name="client_order_ref_in_invoice_line_desc" />
+                </setting>
+                <setting
+                    id="so_line_client_ref_policy"
+                    company_dependent="1"
+                    string="Sales Order Line Customer Order Ref Sync(chronization) Policy"
+                    help="Select the policy to sync the customer order reference from the sales order to its lines."
+                >
+                    <field name="so_line_client_ref_policy" widget="radio" />
+                </setting>
             </xpath>
         </field>
     </record>
