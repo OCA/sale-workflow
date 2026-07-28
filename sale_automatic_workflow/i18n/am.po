@@ -58,7 +58,11 @@ msgstr ""
 #: model:ir.model.fields,help:sale_automatic_workflow.field_res_config_settings__sale_workflow_copy_mode
 msgid ""
 "Controls whether the automatic workflow is propagated when a sale order is "
-"duplicated (this includes order splits)."
+"duplicated (this includes order splits):\n"
+"- Don't copy: the workflow is re-derived from the auto-assign rules only.\n"
+"- Copy: the origin workflow is always copied, auto-assign is not re-run.\n"
+"- Copy if auto-assign finds none: auto-assign runs first; the origin "
+"workflow is copied only when no workflow could be auto-assigned."
 msgstr ""
 
 #. module: sale_automatic_workflow
