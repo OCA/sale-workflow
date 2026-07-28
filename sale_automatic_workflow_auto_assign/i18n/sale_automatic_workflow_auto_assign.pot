@@ -1,0 +1,87 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_automatic_workflow_auto_assign
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_automatic_workflow_auto_assign
+#: model:ir.model.fields,field_description:sale_automatic_workflow_auto_assign.field_sale_workflow_process__auto_assign_priority
+msgid "Auto Assign Priority"
+msgstr ""
+
+#. module: sale_automatic_workflow_auto_assign
+#: model:ir.model.fields,field_description:sale_automatic_workflow_auto_assign.field_sale_workflow_process__auto_assign
+msgid "Auto assign"
+msgstr ""
+
+#. module: sale_automatic_workflow_auto_assign
+#: model:ir.model.fields,field_description:sale_automatic_workflow_auto_assign.field_sale_workflow_process__auto_assign_domain
+msgid "Auto assign domain"
+msgstr ""
+
+#. module: sale_automatic_workflow_auto_assign
+#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow_auto_assign.sale_workflow_process_view_form
+msgid "Automatic assignation"
+msgstr ""
+
+#. module: sale_automatic_workflow_auto_assign
+#: model:ir.model,name:sale_automatic_workflow_auto_assign.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_automatic_workflow_auto_assign
+#: model:ir.model.fields,help:sale_automatic_workflow_auto_assign.field_res_config_settings__sale_workflow_copy_mode
+msgid ""
+"Controls whether the automatic workflow is propagated when a sale order is duplicated (this includes order splits):\n"
+"- Don't copy: the workflow is re-derived from the auto-assign rules only.\n"
+"- Copy: the origin workflow is always copied, auto-assign is not re-run.\n"
+"- Copy if auto-assign finds none: auto-assign runs first; the origin workflow is copied only when no workflow could be auto-assigned."
+msgstr ""
+
+#. module: sale_automatic_workflow_auto_assign
+#: model:ir.model.fields.selection,name:sale_automatic_workflow_auto_assign.selection__res_config_settings__sale_workflow_copy_mode__copy_fallback
+msgid "Copy if auto-assign finds none"
+msgstr ""
+
+#. module: sale_automatic_workflow_auto_assign
+#: model:ir.model.fields,field_description:sale_automatic_workflow_auto_assign.field_res_config_settings__sale_workflow_copy_mode
+msgid "Copy workflow on duplication"
+msgstr ""
+
+#. module: sale_automatic_workflow_auto_assign
+#: model:ir.model.fields,help:sale_automatic_workflow_auto_assign.field_sale_workflow_process__auto_assign_priority
+msgid ""
+"Determines the priority of the workflow when auto-assigning. Lower numbers "
+"have higher priority."
+msgstr ""
+
+#. module: sale_automatic_workflow_auto_assign
+#: model:ir.model,name:sale_automatic_workflow_auto_assign.model_sale_workflow_process
+msgid "Sale Workflow Process"
+msgstr ""
+
+#. module: sale_automatic_workflow_auto_assign
+#: model:ir.model,name:sale_automatic_workflow_auto_assign.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_automatic_workflow_auto_assign
+#: model:ir.model.fields,help:sale_automatic_workflow_auto_assign.field_sale_workflow_process__auto_assign
+msgid ""
+"When enabled the workflow will be assigned at sales order creation, if the "
+"assignation domain below applies."
+msgstr ""
+
+#. module: sale_automatic_workflow_auto_assign
+#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow_auto_assign.sale_workflow_process_view_form
+msgid "Workflow automatic assignation"
+msgstr ""
