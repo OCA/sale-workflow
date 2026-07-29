@@ -27,7 +27,7 @@ class TestSaleSemaphore(common.SavepointCase):
                 "standard_price": 50.0,
                 "type": "consu",
                 "sale_ok": True,
-                "semaphore_active": True,
+                "semaphore_active": "yes",
                 "semaphore_discount_success": 0.0,
                 "semaphore_discount_warning": 10.0,
                 "semaphore_discount_danger": 20.0,
@@ -51,17 +51,17 @@ class TestSaleSemaphore(common.SavepointCase):
         template = self.product.product_tmpl_id
         template.write(
             {
-                "semaphore_active": True,
+                "semaphore_active": "yes",
                 "semaphore_discount_success": 5.0,
                 "semaphore_discount_warning": 12.0,
                 "semaphore_discount_danger": 20.0,
             }
         )
-        self.assertTrue(self.product.semaphore_active)
+        self.assertEqual(self.product.semaphore_active, "yes")
         self.assertEqual(self.product.semaphore_discount_success, 5.0)
         self.assertEqual(self.product.semaphore_discount_warning, 12.0)
         self.assertEqual(self.product.semaphore_discount_danger, 20.0)
-        self.assertTrue(template.semaphore_active)
+        self.assertEqual(template.semaphore_active, "yes")
         self.assertEqual(template.semaphore_discount_success, 5.0)
         self.assertEqual(template.semaphore_discount_warning, 12.0)
         self.assertEqual(template.semaphore_discount_danger, 20.0)
@@ -103,19 +103,9 @@ class TestSaleSemaphore(common.SavepointCase):
             data,
             {"success": 0.0, "warning": 10.0, "danger": 20.0},
         )
-        self.product.write(
-            {
-                "semaphore_active": False,
-                "semaphore_discount_success": 99.0,
-                "semaphore_discount_warning": 99.0,
-                "semaphore_discount_danger": 99.0,
-            }
-        )
+        self.product.write({"semaphore_active": "no"})
         data = self.product._get_semaphore_data()
-        self.assertEqual(
-            data,
-            {"success": 0.0, "warning": 10.0, "danger": 20.0},
-        )
+        self.assertFalse(data)
 
     def test_sale_line_computes_semaphore_and_below_limit_flag(self):
         success_line = self._create_line(100.0)
