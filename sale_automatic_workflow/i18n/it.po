@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2026-06-10 14:07+0000\n"
+"PO-Revision-Date: 2026-07-29 09:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -55,7 +55,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_res_config_settings__sale_workflow_copy_mode
@@ -67,17 +67,27 @@ msgid ""
 "- Copy if auto-assign finds none: auto-assign runs first; the origin "
 "workflow is copied only when no workflow could be auto-assigned."
 msgstr ""
+"Controlla se il flusso di lavoro automatico viene propagato quando un ordine "
+"di vendita viene duplicato (inclusi i casi di suddivisione dell'ordine):\n"
+"- Non copiare: il flusso di lavoro viene derivato nuovamente solo dalle "
+"regole di assegnazione automatica.\n"
+"- Copia: il flusso di lavoro originale viene sempre copiato, l'assegnazione "
+"automatica non viene eseguita nuovamente.\n"
+"- Copia se l'assegnazione automatica non trova alcun flusso di lavoro: "
+"l'assegnazione automatica viene eseguita per prima; il flusso di lavoro "
+"originale viene copiato solo se non è stato possibile assegnare "
+"automaticamente alcun flusso di lavoro."
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__res_config_settings__sale_workflow_copy_mode__copy
 msgid "Copy"
-msgstr ""
+msgstr "Copia"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_res_config_settings__sale_workflow_copy_mode
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.res_config_settings_view_form
 msgid "Copy workflow on duplication"
-msgstr ""
+msgstr "Copia il flusso di lavoro in duplica"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__create_invoice
@@ -120,7 +130,7 @@ msgstr "Dominio"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__res_config_settings__sale_workflow_copy_mode__no_copy
 msgid "Don't copy"
-msgstr ""
+msgstr "Non copiare"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__invoice_date_is_order_date
@@ -208,6 +218,8 @@ msgid ""
 "Propagate the automatic workflow when a sale order is duplicated (this "
 "includes order splits)."
 msgstr ""
+"Propaga il flusso di lavoro automatico quando un ordine di vendita viene "
+"duplicato (questo include la suddivisione ordine)."
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__register_payment
