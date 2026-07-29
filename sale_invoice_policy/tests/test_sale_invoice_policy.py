@@ -168,9 +168,9 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         )
 
     def test_sale_order_invoice_order_when_policy_is_not_required(self):
-        """Test invoicing based on ordered qty when invoice policy is not required."""
+        """Test invoicing based on ordered qty with default order policy."""
         settings = self.env["res.config.settings"].create({})
-        settings.sale_invoice_policy_required = False
+        settings.sale_default_invoice_policy = "order"
         settings.execute()
         so = self.env["sale.order"].create(
             {
@@ -181,7 +181,6 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
                 ],
             }
         )
-        self.assertFalse(so.invoice_policy_required)
         self.assertTrue(so.invoice_policy == "order")
         so.action_confirm()
         self.assertEqual(len(so.picking_ids), 1)
