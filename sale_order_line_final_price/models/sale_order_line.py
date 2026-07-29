@@ -84,5 +84,7 @@ class SaleOrderLine(models.Model):
         for vals in vals_list:
             if "price_unit" in vals and "technical_price_unit" not in vals:
                 # Absurd value to not match any of the possible creation values
-                vals["technical_price_unit"] = -9999999999
+                vals["technical_price_unit"] = (
+                    -9999999999 if vals.get("price_unit") != 0 else 0
+                )
         return super()._add_precomputed_values(vals_list)
