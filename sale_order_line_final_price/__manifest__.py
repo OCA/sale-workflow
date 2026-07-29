@@ -4,7 +4,7 @@
     "name": "Sale Order Line Final Price",
     "summary": "Set the final price of a sale order line, and lock its unit "
     "price and discount for non sales managers",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.0.1",
     "category": "Sales Management",
     "author": "Tecnativa,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
