@@ -350,6 +350,75 @@ class TestSaleBlanketOrders(common.TransactionCase):
         self.assertEqual(blanket_order.line_ids[0].remaining_qty, 12.0)
         self.assertEqual(sale_order.order_line[0].price_unit, 20.0)
 
+    def test_05b_remaining_qty_precision_survives_uom_rounding(self):
+        """remaining_qty must not be truncated by an extra, independent
+        rounding step against the product's reference UoM ``rounding``
+        (0.01 by default) on top of whatever precision the blanket
+        line's own UoM already uses - mirroring a fine-grained
+        measurement unit on the line versus a coarser generic
+        reference UoM on the product. It must always equal
+        remaining_uom_qty exactly: any mismatch can only come from
+        that extra rounding.
+        """
+        reference_uom = self.product.uom_id
+        reference_uom.rounding = 0.5
+        fine_uom = self.env["uom.uom"].create(
+            {
+                "name": "Test-Fine",
+                "category_id": reference_uom.category_id.id,
+                "uom_type": "smaller",
+                "factor": reference_uom.factor,
+                "rounding": 0.000001,
+            }
+        )
+        blanket_order = self.blanket_order_obj.create(
+            {
+                "partner_id": self.partner.id,
+                "validity_date": fields.Date.to_string(self.tomorrow),
+                "payment_term_id": self.payment_term.id,
+                "pricelist_id": self.sale_pricelist.id,
+                "line_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "product_uom": fine_uom.id,
+                            "original_uom_qty": 1.0,
+                            "price_unit": 30.0,
+                        },
+                    )
+                ],
+            }
+        )
+        blanket_order.sudo().onchange_partner_id()
+        blanket_order.sudo().action_confirm()
+
+        sale_order = self.so_obj.create(
+            {
+                "partner_id": self.partner.id,
+                "payment_term_id": self.payment_term.id,
+                "pricelist_id": self.sale_pricelist.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "product_uom": fine_uom.id,
+                            "product_uom_qty": 0.633,
+                            "price_unit": 30.0,
+                        },
+                    )
+                ],
+            }
+        )
+        sale_order.order_line[0].onchange_product_id()
+        sale_order.order_line[0].onchange_blanket_order_line()
+
+        line = blanket_order.line_ids[0]
+        self.assertEqual(line.remaining_qty, line.remaining_uom_qty)
+
     def test_06_create_sale_orders_from_blanket_order(self):
         """We create a blanket order and create three sale orders
         where the first two consume the first blanket order line
