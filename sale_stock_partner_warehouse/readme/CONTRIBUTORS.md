@@ -2,3 +2,5 @@
 - Jacques-Etienne Baudoux (BCIM) \<<je@bcim.be>\>
 - Quartile \<<https://www.quartile.co>\>
   - Aung Ko Ko Lin
+- CIT-Services \<<cit-services.eu>\>
+  - Prayag \<<prayag.k@cit-services.eu>\>
