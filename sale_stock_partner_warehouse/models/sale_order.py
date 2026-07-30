@@ -14,8 +14,13 @@ class SaleOrder(models.Model):
         for sale in draft_orders:
             warehouse = False
             if sale.company_id.sale_warehouse_by_partner_shipping:
-                warehouse = sale.partner_shipping_id.sale_warehouse_id
-            warehouse = warehouse or sale.partner_id.sale_warehouse_id
+                warehouse = sale.partner_shipping_id.with_company(
+                    sale.company_id
+                ).sale_warehouse_id
+            warehouse = (
+                warehouse
+                or sale.partner_id.with_company(sale.company_id).sale_warehouse_id
+            )
             if warehouse:
                 sale.warehouse_id = warehouse
                 continue
