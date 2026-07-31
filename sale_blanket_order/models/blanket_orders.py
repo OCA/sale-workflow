@@ -680,7 +680,7 @@ class BlanketOrderLine(models.Model):
             )
             line.remaining_uom_qty = line.original_uom_qty - line.ordered_uom_qty
             line.remaining_qty = line.product_uom._compute_quantity(
-                line.remaining_uom_qty, line.product_id.uom_id
+                line.remaining_uom_qty, line.product_id.uom_id, round=False
             )
 
     def _validate(self):
