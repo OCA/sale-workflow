@@ -89,7 +89,7 @@ class TestSaleTelegramNotification(TransactionCase):
         with patch.object(
             self.gateway.__class__, "send_message", return_value=True
         ) as mock_send:
-            self.sale_order.action_cancel()
+            self.sale_order.with_context(disable_cancel_warning=True).action_cancel()
             expected_msg = f"Order {self.sale_order.name} cancelled."
             mock_send.assert_called_once_with("-100123456789", expected_msg)
 
