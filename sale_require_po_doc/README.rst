@@ -62,14 +62,14 @@ Authors
 Contributors
 ------------
 
-- Daniel Reis <dreis@opensourceintegrators.com>
-- Chandresh Thakkar <cthakkar@opensourceintegrators.com>
-- Chau Le <chaulb@trobz.com>
+-  Daniel Reis <dreis@opensourceintegrators.com>
+-  Chandresh Thakkar <cthakkar@opensourceintegrators.com>
+-  Chau Le <chaulb@trobz.com>
 
 Other credits
 -------------
 
-- Open Source Integrators <contact@opensourceintegrators.com>
+-  Open Source Integrators <contact@opensourceintegrators.com>
 
 Maintainers
 -----------

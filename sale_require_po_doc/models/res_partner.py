@@ -10,9 +10,13 @@ class ResPartner(models.Model):
     customer_need_po = fields.Boolean(
         string="Customer Requires PO",
         tracking=True,
+        default=lambda self: self.env.company.customer_need_po_default
+        if self.env.context.get("default_customer_rank", 0) > 0
+        else False,
         help="A PO number will be required on the"
         " Sales Order field for Customer Reference",
     )
+
     sale_doc = fields.Text(
         string="Sales Require Documentation",
         tracking=True,
