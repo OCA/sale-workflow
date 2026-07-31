@@ -7,13 +7,16 @@
                 <page string="Warehouse Rules" name="warehouse_rule_ids">
                     <field name="warehouse_rule_ids" mode="tree">
                         <tree editable="bottom">
-                            <field name="available_product_ids" invisible="True" />
+                            <field name="available_product_domain" invisible="True" />
                             <field
                                 name="available_attribute_value_domain"
                                 invisible="True"
                             />
+                            <field name="product_tmpl_id" invisible="True" />
                             <field
                                 name="product_id"
+                                domain="available_product_domain"
+                                context="{'default_product_tmpl_id': product_tmpl_id}"
                                 attrs="{'invisible': [('attribute_value_ids', '!=', []), ('product_id', '=', False)]}"
                             />
                             <field

@@ -50,15 +50,16 @@ class SaleOrder(models.Model):
             ):
                 warehouses = warehouse_ids + rec.warehouse_id
                 rec.warehouse_rule_info = _(
-                    "The delivery will be sent from multiple warehouses: "
-                    + ", ".join(warehouses.mapped("name"))
+                    "The delivery will be sent from multiple warehouses: %(warehouses)s",
+                    warehouses=", ".join(warehouses.mapped("name")),
                 )
 
     def action_confirm(self):
         for rec in self:
             if rec.warehouse_rule_need_change:
-                warehouse_id = rec.order_line.mapped("product_id.variant_warehouse_id")
-                rec.warehouse_id = warehouse_id
+                warehouse_ids = rec.order_line.mapped("product_id.variant_warehouse_id")
+                if len(warehouse_ids) == 1:
+                    rec.warehouse_id = warehouse_ids
         return super().action_confirm()
 
 

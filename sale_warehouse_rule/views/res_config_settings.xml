@@ -14,7 +14,7 @@
                     <div class="o_setting_right_pane">
                         <label
                             for="show_sale_line_warehouse_column"
-                            string="Afficher la colonne entrepôt sur les lignes de commande"
+                            string="Show Warehouse Column on Sale Order Lines"
                         />
                     </div>
                 </div>
