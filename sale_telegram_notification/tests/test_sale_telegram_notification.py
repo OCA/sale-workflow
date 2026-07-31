@@ -134,6 +134,9 @@ class TestSaleTelegramNotification(TransactionCase):
                 self.sale_order.action_confirm()
                 mock_send.assert_not_called()
 
+    @mute_logger(
+        "odoo.addons.sale_telegram_notification.models.sale_telegram_notification"
+    )
     def test_empty_string_rendering(self):
         """Test that empty string rendering is handled."""
         with patch.object(
