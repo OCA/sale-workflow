@@ -95,7 +95,13 @@ class SaleInvoicePlan(models.Model):
     @api.depends("percent")
     def _compute_amount(self):
         for rec in self:
-            amount_untaxed = rec.sale_id._origin.amount_untaxed
+            amount_invoiced = sum(
+                line.qty_invoiced_before_plan
+                * line.price_unit
+                * (1 - (line.discount or 0.0) / 100.0)
+                for line in rec.sale_id._origin.order_line
+            )
+            amount_untaxed = rec.sale_id._origin.amount_untaxed - amount_invoiced
             # With invoice already created, no recompute
             if rec.invoiced:
                 rec.amount = rec.amount_invoiced
@@ -115,6 +121,13 @@ class SaleInvoicePlan(models.Model):
     def _inverse_amount(self):
         for rec in self:
             if rec.sale_id.amount_untaxed != 0:
+                amount_invoiced = sum(
+                    line.qty_invoiced_before_plan
+                    * line.price_unit
+                    * (1 - (line.discount or 0.0) / 100.0)
+                    for line in rec.sale_id.order_line
+                )
+                amount_untaxed = rec.sale_id.amount_untaxed - amount_invoiced
                 if rec.last:
                     installments = rec.sale_id.invoice_plan_ids.filtered(
                         lambda l: l.invoice_type == "installment"
@@ -122,7 +135,7 @@ class SaleInvoicePlan(models.Model):
                     prev_percent = sum((installments - rec).mapped("percent"))
                     rec.percent = 100 - prev_percent
                     continue
-                rec.percent = rec.amount / rec.sale_id.amount_untaxed * 100
+                rec.percent = rec.amount / amount_untaxed * 100
                 continue
             rec.percent = 0
 
@@ -210,7 +223,10 @@ class SaleInvoicePlan(models.Model):
 
     @api.model
     def _get_plan_qty(self, order_line, percent):
-        plan_qty = order_line.product_uom_qty * (percent / 100)
+        product_uom_qty = (
+            order_line.product_uom_qty - order_line.qty_invoiced_before_plan
+        )
+        plan_qty = product_uom_qty * (percent / 100)
         return plan_qty
 
     def unlink(self):

@@ -33,6 +33,13 @@ class SaleOrder(models.Model):
         compute="_compute_invoice_plan_total",
         string="Total Amount",
     )
+    amount_invoiced_before_plan = fields.Monetary(
+        compute="_compute_amount_invoiced_before_plan",
+        string="Already Invoiced (before plan)",
+        help="Untaxed amount already invoiced on this order before the invoice "
+        "plan was created. The plan installments only cover the remaining "
+        "amount, so: Untaxed Amount = Already Invoiced + Plan Total.",
+    )
 
     @api.depends("invoice_plan_ids")
     def _compute_invoice_plan_total(self):
@@ -40,6 +47,20 @@ class SaleOrder(models.Model):
             installments = rec.invoice_plan_ids.filtered("installment")
             rec.invoice_plan_total_percent = sum(installments.mapped("percent"))
             rec.invoice_plan_total_amount = sum(installments.mapped("amount"))
+
+    @api.depends(
+        "order_line.qty_invoiced_before_plan",
+        "order_line.price_unit",
+        "order_line.discount",
+    )
+    def _compute_amount_invoiced_before_plan(self):
+        for rec in self:
+            rec.amount_invoiced_before_plan = sum(
+                line.qty_invoiced_before_plan
+                * line.price_unit
+                * (1 - (line.discount or 0.0) / 100.0)
+                for line in rec.order_line
+            )
 
     def _compute_invoice_plan_process(self):
         for rec in self:
@@ -143,3 +164,12 @@ class SaleOrder(models.Model):
                 move._compute_date()
             plan.invoice_move_ids += moves
         return moves
+
+
+class SaleOrderLine(models.Model):
+    _inherit = "sale.order.line"
+
+    qty_invoiced_before_plan = fields.Float(
+        string="Invoiced Quantity Before Plan",
+        digits="Product Unit of Measure",
+    )
