@@ -27,6 +27,16 @@ msgstr ""
 "kundereference"
 
 #. module: sale_require_po_doc
+#: model:ir.model,name:sale_require_po_doc.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_require_po_doc
+#: model:ir.model,name:sale_require_po_doc.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_require_po_doc
 #: model:ir.model,name:sale_require_po_doc.model_res_partner
 msgid "Contact"
 msgstr "Kontakt"
@@ -39,14 +49,20 @@ msgid "Customer Requires PO"
 msgstr "Kunden kræver indkøbsordre"
 
 #. module: sale_require_po_doc
+#: model:ir.model.fields,field_description:sale_require_po_doc.field_res_company__customer_need_po_default
+#: model:ir.model.fields,field_description:sale_require_po_doc.field_res_config_settings__customer_need_po_default
+msgid "Default: Customer Requires PO"
+msgstr ""
+
+#. module: sale_require_po_doc
 #: model:ir.model.fields,help:sale_require_po_doc.field_res_partner__sale_doc
 #: model:ir.model.fields,help:sale_require_po_doc.field_res_users__sale_doc
 #: model:ir.model.fields,help:sale_require_po_doc.field_sale_order__sale_doc
 msgid ""
 "Details of the sales documentation required for this customer. Sales "
 "documentation notes field will be required on Sales Orders This is "
-"complementary to requiring a PO number, and can be used with or without that"
-" setting."
+"complementary to requiring a PO number, and can be used with or without that "
+"setting."
 msgstr ""
 "Detaljer om den salgsdokumentation, der kræves for denne kunde. Feltet for "
 "salgsdokumentationsnotater vil være påkrævet på salgsordrer. Dette er et "
@@ -54,6 +70,8 @@ msgstr ""
 "den indstilling."
 
 #. module: sale_require_po_doc
+#: model:ir.model.fields,field_description:sale_require_po_doc.field_res_company__display_name
+#: model:ir.model.fields,field_description:sale_require_po_doc.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:sale_require_po_doc.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_require_po_doc.field_sale_order__display_name
 msgid "Display Name"
@@ -65,10 +83,26 @@ msgid "Documentation required obtained and archived"
 msgstr "Krævet dokumentation indhentet og arkiveret"
 
 #. module: sale_require_po_doc
+#: model:ir.model.fields,field_description:sale_require_po_doc.field_res_company__id
+#: model:ir.model.fields,field_description:sale_require_po_doc.field_res_config_settings__id
 #: model:ir.model.fields,field_description:sale_require_po_doc.field_res_partner__id
 #: model:ir.model.fields,field_description:sale_require_po_doc.field_sale_order__id
 msgid "ID"
 msgstr "ID"
+
+#. module: sale_require_po_doc
+#: model:ir.model.fields,help:sale_require_po_doc.field_res_company__customer_need_po_default
+#: model:ir.model.fields,help:sale_require_po_doc.field_res_config_settings__customer_need_po_default
+msgid ""
+"If True, new customers will have 'Customer Requires PO' enabled by default."
+msgstr ""
+
+#. module: sale_require_po_doc
+#: model_terms:ir.ui.view,arch_db:sale_require_po_doc.res_config_settings_view_form_sale_require_po_doc
+msgid ""
+"If checked, new customers will have 'Customer Requires PO' enabled by "
+"default."
+msgstr ""
 
 #. module: sale_require_po_doc
 #: model:ir.model.fields.selection,name:sale_require_po_doc.selection__sale_order__sale_document_option__no_need
