@@ -1,0 +1,3 @@
+- Go to Sales / Customers
+- Open a customer
+- Set the field "Minimum Sale Amount"

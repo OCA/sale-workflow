@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_form_inherit_minimum_so_amount" model="ir.ui.view">
+        <field name="name">res.partner.form.minimum.so.amount</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//notebook/page[@name='sales_purchases']//group[@name='sale']"
+                position="inside"
+            >
+                <field name="minimum_so_amount" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
