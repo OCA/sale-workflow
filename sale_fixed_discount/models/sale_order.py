@@ -1,58 +1,69 @@
 # Copyright 2017-20 ForgeFlow S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
+from functools import partial
+
 from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
-from functools import partial
 from odoo.tools.misc import formatLang
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.depends('order_line.price_total')
     def _amount_by_group(self):
-        """Override to consider fixed discount in tax calculations."""
-        super(SaleOrder, self)._amount_by_group()
+        """Recompute the tax breakdown taking fixed discounts into account.
 
-        for order in self:
-            # Check if any line has a fixed discount
-            if not any(line.discount_fixed for line in order.order_line):
-                continue
-
-            # Recompute considering fixed discounts
+        The core computation rebuilds the per-tax-group amounts from
+        ``price_unit * (1 - discount / 100)``, ignoring ``discount_fixed``.
+        As a result the tax shown on the report (which relies on
+        ``amount_by_group``) is computed on the undiscounted price. We
+        recompute the affected orders using the reduced price instead.
+        """
+        super()._amount_by_group()
+        for order in self.filtered(
+            lambda o: any(line.discount_fixed for line in o.order_line)
+        ):
             currency = order.currency_id or order.company_id.currency_id
-            fmt = partial(formatLang, self.with_context(lang=order.partner_id.lang).env, currency_obj=currency)
+            fmt = partial(
+                formatLang,
+                self.with_context(lang=order.partner_id.lang).env,
+                currency_obj=currency,
+            )
             res = {}
-
             for line in order.order_line:
-                # Calculate price_reduce considering both percentage and fixed discounts
-                price_reduce = line.price_unit * (1.0 - line.discount / 100.0)
-                # Subtract fixed discount if present
-                if line.discount_fixed:
-                    price_reduce -= line.discount_fixed
-
+                price_reduce = line.price_unit * (1.0 - line.discount / 100.0) - (
+                    line.discount_fixed or 0.0
+                )
                 taxes = line.tax_id.compute_all(
                     price_reduce,
                     quantity=line.product_uom_qty,
                     product=line.product_id,
-                    partner=order.partner_shipping_id
-                )['taxes']
-
+                    partner=order.partner_shipping_id,
+                )["taxes"]
                 for tax in line.tax_id:
                     group = tax.tax_group_id
-                    res.setdefault(group, {'amount': 0.0, 'base': 0.0})
+                    res.setdefault(group, {"amount": 0.0, "base": 0.0})
                     for t in taxes:
-                        if t['id'] == tax.id or t['id'] in tax.children_tax_ids.ids:
-                            res[group]['amount'] += t['amount']
-                            res[group]['base'] += t['base']
-
+                        if t["id"] == tax.id or t["id"] in tax.children_tax_ids.ids:
+                            res[group]["amount"] += t["amount"]
+                            res[group]["base"] += t["base"]
             res = sorted(res.items(), key=lambda l: l[0].sequence)
-            order.amount_by_group = [(
-                l[0].name, l[1]['amount'], l[1]['base'],
-                fmt(l[1]['amount']), fmt(l[1]['base']),
-                len(res),
-            ) for l in res]
+            # round amount and prevent -0.00
+            for group_data in res:
+                group_data[1]["amount"] = currency.round(group_data[1]["amount"]) + 0.0
+                group_data[1]["base"] = currency.round(group_data[1]["base"]) + 0.0
+            order.amount_by_group = [
+                (
+                    entry[0].name,
+                    entry[1]["amount"],
+                    entry[1]["base"],
+                    fmt(entry[1]["amount"]),
+                    fmt(entry[1]["base"]),
+                    len(res),
+                )
+                for entry in res
+            ]
 
 
 class SaleOrderLine(models.Model):
