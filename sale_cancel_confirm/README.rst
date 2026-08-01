@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ====================
 Sales Cancel Confirm
 ====================
@@ -13,7 +17,7 @@ Sales Cancel Confirm
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -28,13 +32,29 @@ Sales Cancel Confirm
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-When user click to cancel sales order, a confirmation wizard will be
-show, with reason as optional.
+This module adds an optional free-text reason to Odoo's native sales
+order cancellation dialog. The reason, user, and date are stored on the
+cancelled sales order.
+
+Unlike ``sale_cancel_reason``, which uses a predefined list of reasons,
+this module lets the user enter the reason as free text. Normally only
+one of these modules is needed.
 
 **Table of contents**
 
 .. contents::
    :local:
+
+Configuration
+=============
+
+To ask for an optional cancellation reason, go to **Sales >
+Configuration > Settings** and enable **Sale Cancellation Reason** for
+each company where the feature is needed.
+
+This module adds a free-text reason to Odoo's native sales order
+cancellation dialog. The native option to send a cancellation email
+remains available.
 
 Bug Tracker
 ===========
@@ -57,7 +77,8 @@ Authors
 Contributors
 ------------
 
--  Kitti U. <kittiu@ecosoft.co.th>
+- Kitti U. <kittiu@ecosoft.co.th>
+- Saran Lim. <saranl@ecosoft.co.th>
 
 Maintainers
 -----------

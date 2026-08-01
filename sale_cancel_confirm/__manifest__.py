@@ -9,6 +9,10 @@
     "license": "AGPL-3",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["base_cancel_confirm", "sale"],
+    "data": [
+        "views/res_config_settings_views.xml",
+        "wizard/sale_order_cancel_views.xml",
+    ],
     "auto_install": False,
     "installable": True,
     "maintainers": ["kittiu"],

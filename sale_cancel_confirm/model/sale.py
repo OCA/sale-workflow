@@ -1,8 +1,7 @@
 # Copyright 2020 Ecosoft Co., Ltd. (http://ecosoft.co.th)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import models
-from odoo.tools import config
+from odoo import fields, models
 
 
 class SaleOrder(models.Model):
@@ -11,18 +10,16 @@ class SaleOrder(models.Model):
 
     _has_cancel_reason = "optional"  # ["no", "optional", "required"]
 
-    def _action_cancel(self):
-        test_condition = not config["test_enable"] or (
-            config["test_enable"]
-            and self.env.context.get("test_sale_order_cancel_confirm")
-        )
-        if not test_condition:
-            return super()._action_cancel()
+    cancel_confirm = fields.Boolean(default=False)
 
-        if not self.filtered("cancel_confirm"):
-            return self.open_cancel_confirm_wizard()
-        return super()._action_cancel()
+    def _show_cancel_wizard(self):
+        if self.env.context.get("disable_cancel_warning"):
+            return False
+        return super()._show_cancel_wizard() or any(
+            order.company_id.sale_cancel_confirm for order in self
+        )
 
     def action_draft(self):
+        res = super().action_draft()
         self.clear_cancel_confirm_data()
-        return super().action_draft()
+        return res
