@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_cancel_view_form" model="ir.ui.view">
+        <field name="name">sale.order.cancel.form.cancel.reason</field>
+        <field name="model">sale.order.cancel</field>
+        <field name="inherit_id" ref="sale.sale_order_cancel_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//footer" position="before">
+                <field name="sale_cancel_confirm" invisible="1" />
+                <group invisible="not sale_cancel_confirm">
+                    <field
+                        name="cancel_reason"
+                        placeholder="Reason for cancellation..."
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
