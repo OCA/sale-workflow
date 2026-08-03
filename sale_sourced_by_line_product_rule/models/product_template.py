@@ -8,7 +8,7 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     warehouse_rule_ids = fields.One2many(
-        comodel_name="sale.warehouse.rule",
+        comodel_name="sale.line.product.rule",
         inverse_name="product_tmpl_id",
-        string="Warehouse Rules",
+        string="Product Warehouse Rules",
     )

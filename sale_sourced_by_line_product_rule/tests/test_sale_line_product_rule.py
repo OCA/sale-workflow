@@ -5,7 +5,7 @@ from odoo.exceptions import ValidationError
 from odoo.tests import Form, TransactionCase
 
 
-class TestSaleWarehouseRule(TransactionCase):
+class TestSaleLineProductRule(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -26,20 +26,20 @@ class TestSaleWarehouseRule(TransactionCase):
                 "company_id": cls.warehouse0.company_id.id,
             }
         )
-        cls.warehouse_rule0 = cls.env["sale.warehouse.rule"].create(
+        cls.product_rule0 = cls.env["sale.line.product.rule"].create(
             {
                 "product_tmpl_id": cls.template_11.id,
                 "warehouse_id": cls.warehouse0.id,
             }
         )
-        cls.warehouse_rule1 = cls.env["sale.warehouse.rule"].create(
+        cls.product_rule1 = cls.env["sale.line.product.rule"].create(
             {
                 "product_tmpl_id": cls.template_11.id,
                 "warehouse_id": cls.warehouse1.id,
                 "product_id": cls.product_11.id,
             }
         )
-        cls.warehouse_rule2 = cls.env["sale.warehouse.rule"].create(
+        cls.product_rule2 = cls.env["sale.line.product.rule"].create(
             {"product_tmpl_id": cls.template_10.id, "warehouse_id": cls.warehouse0.id}
         )
 
@@ -52,18 +52,18 @@ class TestSaleWarehouseRule(TransactionCase):
         return order_form.save()
 
     def test_rule_applied_on(self):
-        self.assertEqual(self.warehouse_rule0.applied_on, "2_template")
-        self.assertEqual(self.warehouse_rule1.applied_on, "0_product")
-        self.warehouse_rule0.write(
+        self.assertEqual(self.product_rule0.applied_on, "2_template")
+        self.assertEqual(self.product_rule1.applied_on, "0_product")
+        self.product_rule0.write(
             {
                 "attribute_value_ids": [
                     (6, 0, self.product_11b.product_template_attribute_value_ids.ids)
                 ]
             }
         )
-        self.assertEqual(self.warehouse_rule0.applied_on, "1_attribute")
+        self.assertEqual(self.product_rule0.applied_on, "1_attribute")
 
-    def test_sale_line_warehouse_from_product_template_warehouse_rule(self):
+    def test_sale_line_warehouse_from_product_template_product_rule(self):
         sale = self._create_sale_order(self.partner, self.product_11 + self.product_10)
         sale.action_confirm()
         self.assertEqual(self.product_10.variant_warehouse_id, self.warehouse0)
@@ -80,8 +80,8 @@ class TestSaleWarehouseRule(TransactionCase):
         self.assertTrue(sale.warehouse_rule_info)
         self.assertFalse(sale.warehouse_rule_need_change)
 
-    def test_sale_line_warehouse_from_product_warehouse_rule(self):
-        self.warehouse_rule0.write({"product_id": self.product_11b.id})
+    def test_sale_line_warehouse_from_product_rule(self):
+        self.product_rule0.write({"product_id": self.product_11b.id})
         sale = self._create_sale_order(self.partner, self.product_11 + self.product_11b)
         sale.action_confirm()
         order_line_product_11 = sale.order_line.filtered(
@@ -95,17 +95,17 @@ class TestSaleWarehouseRule(TransactionCase):
         self.assertTrue(sale.warehouse_rule_info)
         self.assertFalse(sale.warehouse_rule_need_change)
 
-    def test_sale_line_warehouse_from_attribute_values_warehouse_rule(self):
+    def test_sale_line_warehouse_from_attribute_values_rule(self):
         ptav_product_11 = self.product_11.product_template_attribute_value_ids
         ptav_product_11b = self.product_11b.product_template_attribute_value_ids
-        self.warehouse_rule0.write(
+        self.product_rule0.write(
             {
                 "attribute_value_ids": [
                     (6, 0, ptav_product_11.product_attribute_value_id.ids)
                 ]
             }
         )
-        self.warehouse_rule1.write(
+        self.product_rule1.write(
             {
                 "attribute_value_ids": [
                     (6, 0, ptav_product_11b.product_attribute_value_id.ids)
@@ -141,9 +141,9 @@ class TestSaleWarehouseRule(TransactionCase):
         self.assertTrue(sale.warehouse_rule_info)
         self.assertFalse(sale.warehouse_rule_need_change)
 
-    def test_check_warehouse_rule_uniqueness_variant(self):
+    def test_check_product_rule_uniqueness_variant(self):
         with self.assertRaises(ValidationError) as m:
-            self.env["sale.warehouse.rule"].create(
+            self.env["sale.line.product.rule"].create(
                 {
                     "product_tmpl_id": self.template_11.id,
                     "warehouse_id": self.warehouse0.id,
@@ -154,9 +154,9 @@ class TestSaleWarehouseRule(TransactionCase):
             "A rule with the same product already exists.", m.exception.name
         )
 
-    def test_check_warehouse_rule_uniqueness_template(self):
+    def test_check_product_rule_uniqueness_template(self):
         with self.assertRaises(ValidationError) as m:
-            self.env["sale.warehouse.rule"].create(
+            self.env["sale.line.product.rule"].create(
                 {
                     "product_tmpl_id": self.template_10.id,
                     "warehouse_id": self.warehouse1.id,
