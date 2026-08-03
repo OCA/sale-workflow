@@ -5,10 +5,10 @@ from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
 
 
-class SaleWarehouseRule(models.Model):
-    _name = "sale.warehouse.rule"
+class SaleLineProductRule(models.Model):
+    _name = "sale.line.product.rule"
     _inherit = "attribute.value.dependent.mixin"
-    _description = "Sale Warehouse Rule"
+    _description = "Sale Line Product Rule"
     _order = "applied_on"
 
     warehouse_id = fields.Many2one(comodel_name="stock.warehouse", string="Warehouse")
