@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: sale-workflow (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-09 12:27+0000\n"
-"PO-Revision-Date: 2019-07-15 16:43+0000\n"
-"Last-Translator: Maria Sparenberg <maria.sparenberg@gmx.net>\n"
+"PO-Revision-Date: 2026-08-04 10:28+0000\n"
+"Last-Translator: MJD <maximilian@si-gmbh.de>\n"
 "Language-Team: German (http://www.transifex.com/oca/OCA-sale-workflow-8-0/"
 "language/de/)\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.7.1\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_order_price_recalculation
 #: model_terms:ir.ui.view,arch_db:sale_order_price_recalculation.view_order_form
@@ -32,7 +32,7 @@ msgstr "Beschreibung zurücksetzen"
 #. module: sale_order_price_recalculation
 #: model:ir.model,name:sale_order_price_recalculation.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Verkaufsauftrag"
 
 #~ msgid "Sale Order"
 #~ msgstr "Verkaufsauftrag"
