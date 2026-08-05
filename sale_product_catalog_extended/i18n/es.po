@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-04 07:20+0000\n"
-"PO-Revision-Date: 2026-06-04 09:22+0200\n"
+"POT-Creation-Date: 2026-08-05 05:52+0000\n"
+"PO-Revision-Date: 2026-08-05 07:52+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -46,10 +46,46 @@ msgid "Confirm"
 msgstr "Confirmar"
 
 #. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_sale_catalog_product_exclusion__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_sale_catalog_product_exclusion__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_sale_catalog_product_exclusion__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: sale_product_catalog_extended
 #. odoo-javascript
 #: code:addons/sale_product_catalog_extended/static/src/product_catalog/order_line/order_line.xml:0
 msgid "Edit"
 msgstr "Editar"
+
+#. module: sale_product_catalog_extended
+#. odoo-javascript
+#: code:addons/sale_product_catalog_extended/static/src/product_catalog/kanban_record.xml:0
+msgid "Exclude from last sales"
+msgstr "Excluir de últimas ventas"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_sale_catalog_product_exclusion__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_sale_catalog_product_exclusion__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_sale_catalog_product_exclusion__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
 
 #. module: sale_product_catalog_extended
 #: model:ir.model.fields.selection,name:sale_product_catalog_extended.selection__product_product__catalog_price_mode__last_price
@@ -73,6 +109,11 @@ msgid "Origin"
 msgstr "Origen"
 
 #. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_sale_catalog_product_exclusion__partner_id
+msgid "Partner"
+msgstr "Contacto"
+
+#. module: sale_product_catalog_extended
 #: model_terms:ir.ui.view,arch_db:sale_product_catalog_extended.product_view_search_catalog
 msgid "Price"
 msgstr "Precio"
@@ -84,9 +125,19 @@ msgid "Pricelist"
 msgstr "Tarifa"
 
 #. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_sale_catalog_product_exclusion__product_id
+msgid "Product"
+msgstr "Producto"
+
+#. module: sale_product_catalog_extended
 #: model:ir.model,name:sale_product_catalog_extended.model_product_product
 msgid "Product Variant"
 msgstr "Variante de producto"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model,name:sale_product_catalog_extended.model_sale_catalog_product_exclusion
+msgid "Product excluded from the catalog last sales origin"
+msgstr "Producto excluido del origen de últimas ventas del catálogo"
 
 #. module: sale_product_catalog_extended
 #: model:ir.model,name:sale_product_catalog_extended.model_sale_order
@@ -95,8 +146,19 @@ msgstr "Pedido de venta"
 
 #. module: sale_product_catalog_extended
 #: model:ir.actions.act_window,name:sale_product_catalog_extended.action_open_editable_sale_order_line
+#: model:ir.model,name:sale_product_catalog_extended.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.constraint,message:sale_product_catalog_extended.constraint_sale_catalog_product_exclusion_partner_product_uniq
+msgid "This product is already excluded from the last sales of this partner."
+msgstr "Este producto ya está excluido de las últimas ventas de este contacto."
+
+#. module: sale_product_catalog_extended
+#: model:ir.model.fields,field_description:sale_product_catalog_extended.field_sale_order__use_delivery_address
+msgid "Use Delivery Address"
+msgstr "Usar dirección de entrega"
 
 #~ msgid "Edit Lines"
 #~ msgstr "Editar líneas"

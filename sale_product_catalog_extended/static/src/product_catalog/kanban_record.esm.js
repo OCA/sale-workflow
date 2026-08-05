@@ -35,6 +35,21 @@ patch(ProductCatalogKanbanRecord.prototype, {
             }
         );
     },
+    /**
+     * The last sales origin is sale specific, so the menu entry is hidden on
+     * the other catalogs (e.g. purchase).
+     */
+    get displayExcludeFromLastSales() {
+        return this.env.orderResModel === "sale.order";
+    },
+    async onClickExcludeFromLastSales() {
+        await rpc("/product/catalog/sale/exclude_from_last_sales", {
+            order_id: this.env.orderId,
+            product_id: this.env.productId,
+        });
+        // Reload so the card disappears when the last sales origin is active.
+        await this.props.list.model.load();
+    },
     onGlobalClick(ev) {
         if (ev.target.closest(".o_field_image")) {
             const src = `/web/image/product.product/${this.env.productId}/image_1920`;
@@ -100,3 +115,8 @@ patch(ProductCatalogKanbanRecord.prototype, {
         };
     },
 });
+
+// Use our own dropdown menu template so the catalog specific entries can call
+// component methods, which the view arch is not allowed to do.
+ProductCatalogKanbanRecord.menuTemplate =
+    "sale_product_catalog_extended.KanbanRecordMenu";
