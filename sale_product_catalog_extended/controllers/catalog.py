@@ -21,6 +21,24 @@ class SaleProductCatalogController(ProductCatalogController):
             **kwargs,
         )
 
+    @route("/product/catalog/sale/exclude_from_last_sales", auth="user", type="json")
+    def product_catalog_exclude_from_last_sales(self, order_id, product_id, **kwargs):
+        """Exclude a product from the catalog *Last sales* origin.
+
+        The exclusion is stored for the partner the order matches its sale
+        history against, so the product is no longer offered by that origin for
+        any order of the same partner.
+
+        :param int order_id: The order id.
+        :param int product_id: The product, as a `product.product` id.
+        :return: The id of the exclusion record.
+        :rtype: int
+        """
+        order = request.env["sale.order"].browse(order_id)
+        return order.with_company(order.company_id)._add_catalog_last_sales_exclusion(
+            product_id
+        )
+
     @route("/product/catalog/sale/get_order_line_data", auth="user", type="json")
     def product_catalog_get_order_line_data(self, order_line_ids, **kwargs):
         """Open sale order line on a given order for a given product.

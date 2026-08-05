@@ -152,6 +152,23 @@ class ProductProduct(models.Model):
         return domain
 
     @api.model
+    def _get_catalog_excluded_product_ids(self):
+        """Products manually excluded from the *Last sales* origin for the
+        partner the catalog matches the sale history against.
+
+        Exclusions are dropped when the product is sold to that partner again
+        (see ``SaleOrder._remove_catalog_last_sales_exclusions``), so this only
+        has to read the ones still standing.
+        """
+        partner_id = self.env.context.get("product_catalog_partner_id", False)
+        if not partner_id:
+            return set()
+        exclusions = self.env["sale.catalog.product.exclusion"].search_read(
+            [("partner_id", "=", partner_id)], ["product_id"]
+        )
+        return {exclusion["product_id"][0] for exclusion in exclusions}
+
+    @api.model
     def _get_product_picker_data_sale_order(self):
         # Specific limit to allow show all products sold in recent orders
         limit = int(
@@ -174,5 +191,12 @@ class ProductProduct(models.Model):
             ),
             reverse=True,
         )
-        product_ids = [res["product_id"][0] for res in found_lines if res["product_id"]]
+        # Drop the products manually excluded from this origin before applying
+        # the limit, so an exclusion frees a slot for the next product.
+        excluded_ids = self._get_catalog_excluded_product_ids()
+        product_ids = [
+            res["product_id"][0]
+            for res in found_lines
+            if res["product_id"] and res["product_id"][0] not in excluded_ids
+        ]
         return limit and product_ids[:limit] or product_ids

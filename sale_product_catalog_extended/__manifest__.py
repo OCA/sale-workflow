@@ -10,6 +10,7 @@
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["sale", "onchange_helper"],
     "data": [
+        "security/ir.model.access.csv",
         "views/product_views.xml",
         "views/sale_order_line_views.xml",
     ],

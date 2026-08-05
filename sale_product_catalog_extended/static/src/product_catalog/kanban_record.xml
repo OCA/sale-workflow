@@ -8,4 +8,26 @@
             <div t-if="env.lineId" t-att-id="`line-${env.lineId}-price`" />
         </xpath>
     </t>
+    <!-- Own copy of the kanban card dropdown menu, assigned to the catalog
+         record through ``menuTemplate``. The entries coming from the view arch
+         cannot call component methods (``__comp__`` is forbidden in arch), so
+         the catalog specific entries are added here instead. -->
+    <t
+        t-name="sale_product_catalog_extended.KanbanRecordMenu"
+        t-inherit="web.KanbanRecordMenu"
+        t-inherit-mode="primary"
+    >
+        <xpath expr="//KanbanDropdownMenuWrapper" position="inside">
+            <div
+                t-if="displayExcludeFromLastSales"
+                class="o_product_catalog_cancel_global_click"
+            >
+                <a
+                    role="menuitem"
+                    class="dropdown-item"
+                    t-on-click="() => this.onClickExcludeFromLastSales()"
+                >Exclude from last sales</a>
+            </div>
+        </xpath>
+    </t>
 </templates>
