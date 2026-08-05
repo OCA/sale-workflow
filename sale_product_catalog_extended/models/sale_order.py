@@ -17,20 +17,28 @@ class SaleOrder(models.Model):
         """Return the user/company default value set for ``use_delivery_address``
         through Default Values (ir.default).
         """
-        field = self.env["ir.model.fields"].search(
-            [
-                ("model", "=", "sale.order"),
-                ("name", "=", "use_delivery_address"),
-            ]
+        field = (
+            self.env["ir.model.fields"]
+            .sudo()
+            .search(
+                [
+                    ("model", "=", "sale.order"),
+                    ("name", "=", "use_delivery_address"),
+                ]
+            )
         )
-        default = self.env["ir.default"].search(
-            [
-                ("field_id", "=", field.id),
-                ("user_id", "=", self.env.user.id),
-                ("company_id", "=", self.env.company.id),
-                ("condition", "=", False),
-            ],
-            limit=1,
+        default = (
+            self.env["ir.default"]
+            .sudo()
+            .search(
+                [
+                    ("field_id", "=", field.id),
+                    ("user_id", "=", self.env.user.id),
+                    ("company_id", "=", self.env.company.id),
+                    ("condition", "=", False),
+                ],
+                limit=1,
+            )
         )
         return json.loads(default.json_value) if default else False
 
@@ -161,6 +169,57 @@ class SaleOrder(models.Model):
                 )
                 result = sol._get_discounted_price()
         return result
+
+    def _add_catalog_last_sales_exclusion(self, product_id):
+        """Exclude ``product_id`` from the catalog *Last sales* origin for the
+        partner this order matches its sale history against.
+
+        Creating the exclusion is idempotent: asking twice for the same partner
+        and product keeps the existing record.
+        """
+        self.ensure_one()
+        partner = self._catalog_history_partner()
+        if not partner:
+            return False
+        exclusion_model = self.env["sale.catalog.product.exclusion"]
+        exclusion = exclusion_model.search(
+            [("partner_id", "=", partner.id), ("product_id", "=", product_id)],
+            limit=1,
+        )
+        if not exclusion:
+            exclusion = exclusion_model.create(
+                {"partner_id": partner.id, "product_id": product_id}
+            )
+        return exclusion.id
+
+    def _remove_catalog_last_sales_exclusions(self, products=None):
+        """Drop the *Last sales* exclusions of the products sold in these orders.
+
+        Selling a product to the partner again means it is relevant for them
+        once more, so the exclusion is removed and the product goes back to the
+        *Last sales* origin.
+
+        :param products: products to clean up, defaulting to every product of
+            the order lines. Adding a line to an already confirmed order passes
+            only its products, as the ones already there were not sold again.
+        """
+        exclusion_model = self.env["sale.catalog.product.exclusion"].sudo()
+        for order in self:
+            partner = order._catalog_history_partner()
+            sold = order.order_line.product_id if products is None else products
+            if not partner or not sold:
+                continue
+            exclusion_model.search(
+                [
+                    ("partner_id", "=", partner.id),
+                    ("product_id", "in", sold.ids),
+                ]
+            ).unlink()
+
+    def action_confirm(self):
+        res = super().action_confirm()
+        self._remove_catalog_last_sales_exclusions()
+        return res
 
     @api.model
     def _get_catalog_order_line_filter_domain(self, product_id, **kwargs):

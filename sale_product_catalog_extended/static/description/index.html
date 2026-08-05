@@ -408,6 +408,17 @@ ordered by frequency and delivered quantity. This origin can be
 preselected automatically through a system parameter (see
 <em>Configuration</em>).</p>
 </div>
+<div class="section" id="exclude-from-last-sales">
+<h1>Exclude from last sales</h1>
+<p>The card dropdown menu adds an <strong>Exclude from last sales</strong> entry. It
+stores the product and the catalog history partner in a dedicated model,
+so that product is no longer offered by the <em>Last sales</em> origin for any
+order of that partner. The <em>Last sale</em> price is not affected.</p>
+<p>The exclusion is dropped as soon as an order containing that product is
+confirmed for the same partner, so the product goes back to the <em>Last
+sales</em> origin without any manual clean up. Adding the product to an
+already confirmed order has the same effect.</p>
+</div>
 <div class="section" id="image-zoom">
 <h1>Image zoom</h1>
 <p>Clicking on a product image in the catalog opens a full-size zoom
