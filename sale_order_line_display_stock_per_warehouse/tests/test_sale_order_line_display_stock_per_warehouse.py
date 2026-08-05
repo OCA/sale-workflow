@@ -96,3 +96,26 @@ class TestSaleOrderLineDisplayStockPerWarehouse(SavepointCase):
         )
         self.assertIn("WH1: 11.0", self.sale_order_line.stock_per_warehouse_info)
         self.assertIn("WH3: 0", self.sale_order_line.stock_per_warehouse_info)
+
+    def test_stock_field_setting_virtual_available(self):
+        move = self.env["stock.move"].create(
+            {
+                "name": "Incoming",
+                "product_id": self.product.id,
+                "product_uom": self.product.uom_id.id,
+                "product_uom_qty": 5,
+                "location_id": self.env.ref("stock.stock_location_suppliers").id,
+                "location_dest_id": self.warehouse_1.lot_stock_id.id,
+            }
+        )
+        move._action_confirm()
+        self.env["ir.config_parameter"].sudo().set_param(
+            "sale_order_line_stock_info.stock_field_on_sol", "virtual_available"
+        )
+        self.sale_order_line.invalidate_cache(fnames=["stock_per_warehouse_info"])
+        self.assertIn("WH1: 16.0", self.sale_order_line.stock_per_warehouse_info)
+        self.env["ir.config_parameter"].sudo().set_param(
+            "sale_order_line_stock_info.stock_field_on_sol", "qty_available"
+        )
+        self.sale_order_line.invalidate_cache(fnames=["stock_per_warehouse_info"])
+        self.assertIn("WH1: 11.0", self.sale_order_line.stock_per_warehouse_info)

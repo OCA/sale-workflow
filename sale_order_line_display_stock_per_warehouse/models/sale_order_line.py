@@ -12,8 +12,16 @@ class SaleOrderLine(models.Model):
         string="Stock / Warehouse", compute="_compute_stock_per_warehouse_info"
     )
 
+    def _get_display_stock_qty(self, product, warehouse, stock_field):
+        return product.with_context(warehouse=warehouse.id)[stock_field]
+
     @api.depends("product_id")
     def _compute_stock_per_warehouse_info(self):
+        stock_field = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("sale_order_line_stock_info.stock_field_on_sol", "qty_available")
+        )
         for line in self:
             info = ""
             if line.product_id:
@@ -24,8 +32,8 @@ class SaleOrderLine(models.Model):
                     ]
                 )
                 for warehouse in warehouses:
-                    qty_available = line.product_id.with_context(
-                        warehouse=warehouse.id
-                    ).qty_available
-                    info += f"<span>{warehouse.code}: {qty_available}</span><br/>"
+                    qty = line._get_display_stock_qty(
+                        line.product_id, warehouse, stock_field
+                    )
+                    info += f"<span>{warehouse.code}: {qty}</span><br/>"
             line.stock_per_warehouse_info = info

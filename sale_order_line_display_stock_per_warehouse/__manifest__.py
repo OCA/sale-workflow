@@ -17,6 +17,7 @@
         "sale_stock",
     ],
     "data": [
+        "views/res_config_settings.xml",
         "views/sale_order.xml",
         "views/stock_warehouse.xml",
     ],
