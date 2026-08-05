@@ -29,6 +29,17 @@ msgid "Display stock on Sale Order Line"
 msgstr "Afficher le stock sur les lignes de vente"
 
 #. module: sale_order_line_display_stock_per_warehouse
+#: model:ir.model.fields.selection,name:sale_order_line_display_stock_per_warehouse.selection__res_config_settings__stock_field_on_sol__virtual_available
+msgid "Forecast"
+msgstr "Prévision"
+
+#. module: sale_order_line_display_stock_per_warehouse
+#: model:ir.model.fields.selection,name:sale_order_line_display_stock_per_warehouse.selection__res_config_settings__stock_field_on_sol__free_qty
+msgid "Free To Use"
+msgstr "Disponible"
+
+#. module: sale_order_line_display_stock_per_warehouse
+#: model:ir.model.fields,field_description:sale_order_line_display_stock_per_warehouse.field_res_config_settings__id
 #: model:ir.model.fields,field_description:sale_order_line_display_stock_per_warehouse.field_sale_order_line__id
 #: model:ir.model.fields,field_description:sale_order_line_display_stock_per_warehouse.field_stock_warehouse__id
 msgid "ID"
@@ -41,6 +52,11 @@ msgid "Last Modified on"
 msgstr "Dernière modification le"
 
 #. module: sale_order_line_display_stock_per_warehouse
+#: model:ir.model.fields.selection,name:sale_order_line_display_stock_per_warehouse.selection__res_config_settings__stock_field_on_sol__qty_available
+msgid "On Hand"
+msgstr "En stock"
+
+#. module: sale_order_line_display_stock_per_warehouse
 #: model:ir.model,name:sale_order_line_display_stock_per_warehouse.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Ligne de commande client"
@@ -48,7 +64,17 @@ msgstr "Ligne de commande client"
 #. module: sale_order_line_display_stock_per_warehouse
 #: model:ir.model.fields,field_description:sale_order_line_display_stock_per_warehouse.field_sale_order_line__stock_per_warehouse_info
 msgid "Stock / Warehouse"
-msgstr "Stock / entrepôt"
+msgstr ""
+
+#. module: sale_order_line_display_stock_per_warehouse
+#: model:ir.model.fields,field_description:sale_order_line_display_stock_per_warehouse.field_res_config_settings__stock_field_on_sol
+msgid "Stock field on Sale Order Line"
+msgstr "Quantité de stock sur la ligne de commande"
+
+#. module: sale_order_line_display_stock_per_warehouse
+#: model_terms:ir.ui.view,arch_db:sale_order_line_display_stock_per_warehouse.res_config_settings_view_form
+msgid "Stock quantity field displayed per warehouse on sale order lines"
+msgstr "Quantité de stock affichée par entrepôt sur les lignes de commande"
 
 #. module: sale_order_line_display_stock_per_warehouse
 #: model:ir.model,name:sale_order_line_display_stock_per_warehouse.model_stock_warehouse
