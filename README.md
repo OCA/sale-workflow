@@ -82,7 +82,7 @@ addon | version | maintainers | summary
 [sale_partner_incoterm](sale_partner_incoterm/) | 19.0.1.0.0 |  | Set the customer preferred incoterm on each sales order
 [sale_partner_selectable_option](sale_partner_selectable_option/) | 19.0.1.0.0 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> | Sale Partner Selectable Option
 [sale_product_multi_add](sale_product_multi_add/) | 19.0.1.0.0 |  | Sale Product Multi Add
-[sale_product_set](sale_product_set/) | 19.0.1.0.0 |  | Sales product set
+[sale_product_set](sale_product_set/) | 19.0.1.0.1 |  | Sales product set
 [sale_purchase_stock_auto_confirm](sale_purchase_stock_auto_confirm/) | 19.0.1.0.0 | <a href='https://github.com/carlos-lopez-tecnativa'><img src='https://github.com/carlos-lopez-tecnativa.png' width='32' height='32' style='border-radius:50%;' alt='carlos-lopez-tecnativa'/></a> | Sale purchase stock auto confirm
 [sale_require_po_doc](sale_require_po_doc/) | 19.0.1.1.0 |  | Sale Orders Require PO or Sales Documentation
 [sale_stock_delivery_address](sale_stock_delivery_address/) | 19.0.1.0.0 |  | Sale Stock Delivery Address
