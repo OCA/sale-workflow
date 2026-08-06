@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-08-06 15:31+0000\n"
+"PO-Revision-Date: 2026-08-06 15:34+0000\n"
 "Last-Translator: Julien Hémono <julien@hemono.fr>\n"
 "Language-Team: none\n"
 "Language: fr\n"
@@ -34,30 +34,30 @@ msgstr "Confirmer"
 #. module: sale_manual_delivery
 #: model_terms:ir.ui.view,arch_db:sale_manual_delivery.view_order_form
 msgid "Create Delivery"
-msgstr ""
+msgstr "Créer livraison"
 
 #. module: sale_manual_delivery
 #: model:ir.actions.act_window,name:sale_manual_delivery.action_wizard_manual_delivery
 #: model:ir.actions.act_window,name:sale_manual_delivery.action_wizard_manual_delivery_line
 msgid "Create Manual Delivery"
-msgstr ""
+msgstr "Créer livraison manuelle"
 
 #. module: sale_manual_delivery
 #: model_terms:ir.ui.view,arch_db:sale_manual_delivery.manual_delivery_wizard_form
 msgid "Create Manually Delivery"
-msgstr ""
+msgstr "Créer livraison manuellement"
 
 #. module: sale_manual_delivery
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__create_uid
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Créé par"
 
 #. module: sale_manual_delivery
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__create_date
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery_line__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Créé le"
 
 #. module: sale_manual_delivery
 #: model:ir.model.fields,field_description:sale_manual_delivery.field_manual_delivery__date_planned
