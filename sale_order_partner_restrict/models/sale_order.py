@@ -5,6 +5,8 @@ from markupsafe import Markup
 
 from odoo import api, models
 
+PARTNER_BLOCK_FIELDS = ("partner_id", "partner_invoice_id", "partner_shipping_id")
+
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
@@ -69,13 +71,27 @@ class SaleOrder(models.Model):
         )
         self._action_cancel()
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        orders = super().create(vals_list)
-        for order in orders:
+    def _check_and_apply_block_rules(self):
+        for order in self:
             if order.state == "cancel":
                 continue
             match = order._find_blocking_rule()
             if match:
                 order._apply_partner_block_rule(*match)
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        orders = super().create(vals_list)
+        orders._check_and_apply_block_rules()
         return orders
+
+    def write(self, vals):
+        res = super().write(vals)
+        if any(field in vals for field in PARTNER_BLOCK_FIELDS):
+            self._check_and_apply_block_rules()
+        return res
+
+    def action_confirm(self):
+        res = super().action_confirm()
+        self._check_and_apply_block_rules()
+        return res
