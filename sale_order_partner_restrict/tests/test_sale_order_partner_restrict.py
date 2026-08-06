@@ -250,6 +250,67 @@ class TestSaleOrderPartnerRestrict(BaseCommon):
         self.assertEqual(order.state, "cancel")
         self.assertTrue(any("Phone blocked" in msg.body for msg in order.message_ids))
 
+    def test_order_canceled_when_shipping_changed_after_create(self):
+        self.env["sale.order.block.rule"].create(
+            {
+                "name": "Block Spam Emails",
+                "partner_field": "email",
+                "blocked_values": "spam@test.com",
+                "block_message": "Spam email detected",
+            }
+        )
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner_ok.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.product.id,
+                            "product_uom_qty": 1,
+                        }
+                    )
+                ],
+            }
+        )
+        self.assertNotEqual(order.state, "cancel")
+        shipping_spam = self.env["res.partner"].create(
+            {
+                "name": "Shipping Spam",
+                "type": "delivery",
+                "parent_id": self.partner_ok.id,
+                "email": "spam@test.com",
+            }
+        )
+        order.write({"partner_shipping_id": shipping_spam.id})
+        self.assertEqual(order.state, "cancel")
+
+    def test_order_canceled_on_confirm_when_partner_edited(self):
+        self.env["sale.order.block.rule"].create(
+            {
+                "name": "Block Spam Emails",
+                "partner_field": "email",
+                "blocked_values": "spam@test.com",
+                "block_message": "Spam email detected",
+            }
+        )
+        order = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner_ok.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.product.id,
+                            "product_uom_qty": 1,
+                        }
+                    )
+                ],
+            }
+        )
+        self.assertNotEqual(order.state, "cancel")
+        self.partner_ok.email = "spam@test.com"
+        order.action_confirm()
+        self.assertEqual(order.state, "cancel")
+
     def test_order_blocked_by_zip_and_country(self):
         spain = self.env.ref("base.es")
         france = self.env.ref("base.fr")
