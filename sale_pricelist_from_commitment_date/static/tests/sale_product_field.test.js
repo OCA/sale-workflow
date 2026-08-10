@@ -36,13 +36,13 @@ function createContextWithDates({commitmentDate, dateOrder = "2026-03-10T10:00:0
 describe("Sale Pricelist From Commitment Date", () => {
     // The actual patch is applied by importing the module above
 
-    test("_getAdditionalDialogProps sets soDate and date from commitment_date", () => {
+    test("_getAdditionalDialogProps sets soDate from commitment_date", () => {
         const commitmentDate = "2026-03-20T10:00:00";
         const context = createContextWithDates({commitmentDate});
         const result = callMethod("_getAdditionalDialogProps", context);
         const expectedDate = serializeDateTime(DateTime.fromISO(commitmentDate));
         expect(result.soDate).toBe(expectedDate);
-        expect(result.date).toBe(expectedDate);
+        expect(result.date).toBe(undefined);
     });
 
     test("_getAdditionalDialogProps does not override when commitment_date is null", () => {
@@ -74,7 +74,7 @@ describe("Sale Pricelist From Commitment Date", () => {
         const rpcParams = callMethod("_getAdditionalRpcParams", context);
         const expectedDate = serializeDateTime(DateTime.fromISO(commitmentDate));
         expect(dialogProps.soDate).toBe(expectedDate);
-        expect(dialogProps.date).toBe(expectedDate);
+        expect(dialogProps.date).toBe(undefined);
         expect(rpcParams.date).toBe(expectedDate);
     });
 });

@@ -13,7 +13,6 @@ patch(SaleOrderLineProductField.prototype, {
         const date = this._getCommitmentDateSerialized();
         if (date) {
             props.soDate = date;
-            props.date = date;
         }
         return props;
     },
