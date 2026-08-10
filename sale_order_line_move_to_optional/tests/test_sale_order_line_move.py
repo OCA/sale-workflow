@@ -43,9 +43,16 @@ class TestSaleOrderLineOptional(TransactionCase):
         """Test moving sale order lines to optional section."""
         optional_model = self.env["sale.order.option"]
         optional_lines = optional_model.search([("order_id", "=", self.order.id)])
+        order_line = self.order.order_line
         self.assertEqual(len(self.order.order_line), 1)
         self.assertFalse(optional_lines)
 
-        self.order.order_line.move_line_to_optional()
+        order_line.move_line_to_optional()
         moved_optional_line = optional_model.search([("order_id", "=", self.order.id)])
         self.assertTrue(moved_optional_line)
+        self.assertFalse(order_line.exists())
+        self.assertEqual(moved_optional_line.product_id, self.product)
+        self.assertEqual(moved_optional_line.name, self.product.name)
+        self.assertEqual(moved_optional_line.quantity, 1)
+        self.assertEqual(moved_optional_line.uom_id, self.product.uom_id)
+        self.assertEqual(moved_optional_line.price_unit, 1000.0)
