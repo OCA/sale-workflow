@@ -9,7 +9,7 @@ class SaleOrderLine(models.Model):
 
     @api.depends(
         "product_id",
-        "product_uom",
+        "product_uom_id",
         "product_uom_qty",
         "order_id.commitment_date",
     )
@@ -18,7 +18,7 @@ class SaleOrderLine(models.Model):
 
     @api.depends(
         "product_id",
-        "product_uom",
+        "product_uom_id",
         "product_uom_qty",
         "order_id.commitment_date",
     )
