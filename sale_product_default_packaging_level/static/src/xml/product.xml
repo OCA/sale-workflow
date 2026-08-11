@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<templates xml:space="preserve">
+    <t t-inherit="sale.Product" t-inherit-mode="extension">
+        <div name="o_sale_product_configurator_name" position="after">
+            <t t-if="this.props.default_product_packaging_level_name">
+                <div
+                    class="mb-2 mb-lg-4 text-break"
+                    name="o_sale_product_configurator_default_packaging"
+                >
+                    <span class="fa fa-cube" />
+                    <span> Packaging: </span>
+                    <span t-out="this.props.default_product_packaging_level_name" />
+                </div>
+            </t>
+        </div>
+    </t>
+
+</templates>
