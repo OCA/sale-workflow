@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-05-10 07:09+0000\n"
+"PO-Revision-Date: 2026-08-11 13:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_require_po_doc
 #: model:ir.model.fields,help:sale_require_po_doc.field_res_partner__customer_need_po
@@ -29,12 +29,12 @@ msgstr ""
 #. module: sale_require_po_doc
 #: model:ir.model,name:sale_require_po_doc.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Aziende"
 
 #. module: sale_require_po_doc
 #: model:ir.model,name:sale_require_po_doc.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: sale_require_po_doc
 #: model:ir.model,name:sale_require_po_doc.model_res_partner
@@ -52,7 +52,7 @@ msgstr "Il cliente richiede un OA"
 #: model:ir.model.fields,field_description:sale_require_po_doc.field_res_company__customer_need_po_default
 #: model:ir.model.fields,field_description:sale_require_po_doc.field_res_config_settings__customer_need_po_default
 msgid "Default: Customer Requires PO"
-msgstr ""
+msgstr "Predefinito: il cliente richiede OV"
 
 #. module: sale_require_po_doc
 #: model:ir.model.fields,help:sale_require_po_doc.field_res_partner__sale_doc
@@ -75,7 +75,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:sale_require_po_doc.field_res_partner__display_name
 #: model:ir.model.fields,field_description:sale_require_po_doc.field_sale_order__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: sale_require_po_doc
 #: model:ir.model.fields.selection,name:sale_require_po_doc.selection__sale_order__sale_document_option__done
@@ -88,7 +88,7 @@ msgstr "Documentazione richiesta ottenuta e archiviata"
 #: model:ir.model.fields,field_description:sale_require_po_doc.field_res_partner__id
 #: model:ir.model.fields,field_description:sale_require_po_doc.field_sale_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_require_po_doc
 #: model:ir.model.fields,help:sale_require_po_doc.field_res_company__customer_need_po_default
@@ -96,6 +96,8 @@ msgstr ""
 msgid ""
 "If True, new customers will have 'Customer Requires PO' enabled by default."
 msgstr ""
+"Se vera, i nuovi clienti avranno 'Cliente richiede OV' abilitato in modo "
+"predefinito."
 
 #. module: sale_require_po_doc
 #: model_terms:ir.ui.view,arch_db:sale_require_po_doc.res_config_settings_view_form_sale_require_po_doc
@@ -103,6 +105,8 @@ msgid ""
 "If checked, new customers will have 'Customer Requires PO' enabled by "
 "default."
 msgstr ""
+"Se selezionata, i nuovi clienti avranno 'Cliente richiede OV' abilitata in "
+"modo predefinito."
 
 #. module: sale_require_po_doc
 #: model:ir.model.fields.selection,name:sale_require_po_doc.selection__sale_order__sale_document_option__no_need
