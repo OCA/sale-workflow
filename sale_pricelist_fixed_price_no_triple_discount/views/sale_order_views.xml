@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field
+            name="inherit_id"
+            ref="sale_triple_discount.sale_order_triple_discount_form_view"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']//list//field[@name='discount1']"
+                position="attributes"
+            >
+                <attribute name="readonly">fixed_price_pricelist_rule</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//list//field[@name='discount2']"
+                position="attributes"
+            >
+                <attribute name="readonly">fixed_price_pricelist_rule</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//list//field[@name='discount3']"
+                position="attributes"
+            >
+                <attribute name="readonly">fixed_price_pricelist_rule</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//form//field[@name='discount1']"
+                position="attributes"
+            >
+                <attribute name="readonly">fixed_price_pricelist_rule</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//form//field[@name='discount2']"
+                position="attributes"
+            >
+                <attribute name="readonly">fixed_price_pricelist_rule</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']//form//field[@name='discount3']"
+                position="attributes"
+            >
+                <attribute name="readonly">fixed_price_pricelist_rule</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
