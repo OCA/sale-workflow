@@ -6,33 +6,35 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-08-11 12:48+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_stock_picking_validation_blocking
 #: model_terms:ir.ui.view,arch_db:sale_stock_picking_validation_blocking.sale_order_form_view
 msgid "Block Delivery Validation"
-msgstr ""
+msgstr "Blocco validazione consegna"
 
 #. module: sale_stock_picking_validation_blocking
 #: model:ir.model.fields,field_description:sale_stock_picking_validation_blocking.field_sale_order__picking_validation_blocked
 msgid "Delivery Validation Blocked"
-msgstr ""
+msgstr "Validazione consegna bloccata"
 
 #. module: sale_stock_picking_validation_blocking
 #: model:ir.model.fields,field_description:sale_stock_picking_validation_blocking.field_sale_order__hide_button_picking_validation_blocked
 msgid "Display the picking validation buttons"
-msgstr ""
+msgstr "Visualizza i pulsanti di validazione del prelievo"
 
 #. module: sale_stock_picking_validation_blocking
 #: model:ir.model,name:sale_stock_picking_validation_blocking.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: sale_stock_picking_validation_blocking
 #: model:ir.model.fields,help:sale_stock_picking_validation_blocking.field_sale_order__hide_button_picking_validation_blocked
@@ -40,30 +42,34 @@ msgid ""
 "Technical field to determine whether the picking validation buttons should "
 "be displayed"
 msgstr ""
+"Campo tecnico per determinare se visualizzare o meno i pulsanti di "
+"validazione del prelievo"
 
 #. module: sale_stock_picking_validation_blocking
 #: model:ir.model,name:sale_stock_picking_validation_blocking.model_stock_picking
 msgid "Transfer"
-msgstr ""
+msgstr "Trasferimento"
 
 #. module: sale_stock_picking_validation_blocking
 #: model_terms:ir.ui.view,arch_db:sale_stock_picking_validation_blocking.sale_order_form_view
 msgid "Unblock Delivery Validation"
-msgstr ""
+msgstr "Sblocco validazione consegna"
 
 #. module: sale_stock_picking_validation_blocking
 #: model:ir.model.fields,field_description:sale_stock_picking_validation_blocking.field_stock_picking__validation_blocked_by_so
 msgid "Validation Blocked by SO"
-msgstr ""
+msgstr "Validazione bloccata da OV"
 
 #. module: sale_stock_picking_validation_blocking
 #. odoo-python
 #: code:addons/sale_stock_picking_validation_blocking/models/stock_picking.py:0
 #, python-format
 msgid "Validation is blocked by SO for picking %s"
-msgstr ""
+msgstr "La validazione p bloccata dall'OV per il prelievo %s"
 
 #. module: sale_stock_picking_validation_blocking
 #: model_terms:ir.ui.view,arch_db:sale_stock_picking_validation_blocking.stock_picking_form_view
 msgid "Warning: The validation of this picking is prevented by sale order"
 msgstr ""
+"Attenzione: la validazione di questo prelievo è impedita dall'ordine id "
+"vendita"
