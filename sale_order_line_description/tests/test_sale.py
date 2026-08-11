@@ -1,12 +1,14 @@
 # Copyright 2017 Simone Rubino - Agile Business Group
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import odoo.tests.common as common
-from odoo.tests import tagged
+from odoo.tests import Form, tagged
+from odoo.tests.common import new_test_user, users
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
 @tagged("post_install", "-at_install")
-class TestSaleOrderLineDescriptionChange(common.TransactionCase):
+class TestSaleOrderLineDescriptionChange(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -16,16 +18,15 @@ class TestSaleOrderLineDescriptionChange(common.TransactionCase):
         cls.sale_order_line_model = cls.env["sale.order.line"]
         cls.partner_model = cls.env["res.partner"]
         cls.product_model = cls.env["product.product"]
-        cls.user_model = cls.env["res.users"].with_context(
-            no_reset_password=True, mail_create_nosubscribe=True
+        cls.env["res.config.settings"].create(
+            {"group_use_product_description_per_so_line": True}
+        ).execute()
+        new_test_user(
+            cls.env,
+            login="test_sale_description_only",
+            groups="sales_team.group_sale_manager",
+            context={"no_reset_password": True, "mail_create_nosubscribe": True},
         )
-
-        # Create two different users
-        cls.group_only_sale_description = cls.env.ref(
-            "sale_order_line_description.group_use_product_description_per_so_line"
-        )
-        cls.user_1 = cls._create_user(cls, "TestUser1")
-        cls.user_2 = cls._create_user(cls, "TestUser2", cls.group_only_sale_description)
 
         # Create the sale order
         cls.partner = cls.partner_model.create({"name": "Test partner"})
@@ -38,43 +39,27 @@ class TestSaleOrderLineDescriptionChange(common.TransactionCase):
             }
         )
 
-    def _create_user(self, name, group=None):
-        groups = self.env.user.group_ids
-        if group:
-            groups += group
-        return self.user_model.create(
-            {
-                "name": name,
-                "login": name,
-                "email": name + "@example.com",
-                "group_ids": groups,
-            }
+    @users("test_sale_description_only")
+    def test_check_only_sale_order_line_description(self):
+        sale_order_line = self.sale_order_line_model.create(
+            {"order_id": self.sale_order.id, "product_id": self.product.id}
         )
-
-    def test_check_sale_order_line_description(self):
-        line_values = {"order_id": self.sale_order.id, "product_id": self.product.id}
-
-        # Create sale order line with TestUser1
-        sale_order_line = self.sale_order_line_model.with_user(self.user_1).create(
-            line_values.copy()
-        )
-
-        self.assertEqual(
-            sale_order_line.name,
-            "\n".join([self.product.name, self.product.description_sale]),
-            "Standard behavior does not concatenate "
-            "product description and product sale description",
-        )
-
-        # Create sale order line with TestUser2
-        sale_order_line = self.sale_order_line_model.with_user(self.user_2).create(
-            line_values.copy()
-        )
-
         self.assertEqual(
             sale_order_line.name,
             self.product.description_sale,
-            "Adding group "
-            + self.group_only_sale_description.name
-            + " does not modify sale order line description",
+            "Enabling the product-description-only setting does not modify sale order "
+            "line description",
+        )
+
+    @users("test_sale_description_only")
+    def test_manual_description_edit_keeps_product_name_hidden(self):
+        with Form(self.sale_order_model) as order_form:
+            order_form.partner_id = self.partner
+            with order_form.order_line.new() as line_form:
+                line_form.product_id = self.product
+                line_form.name = f"{self.product.description_sale} test"
+        sale_order = order_form.save()
+
+        self.assertEqual(
+            sale_order.order_line.name, f"{self.product.description_sale} test"
         )
