@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Sale order line description",
-    "version": "19.0.1.0.1",
+    "version": "19.0.1.0.2",
     "category": "Sales Management",
     "author": "Agile Business Group, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
