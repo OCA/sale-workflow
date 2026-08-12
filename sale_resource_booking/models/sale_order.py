@@ -1,7 +1,7 @@
 # Copyright 2021 Tecnativa - Jairo Llopis
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, exceptions, fields, models
+from odoo import api, exceptions, fields, models
 
 
 class SaleOrder(models.Model):
@@ -37,7 +37,7 @@ class SaleOrder(models.Model):
         """Open related bookings."""
         return {
             "domain": [("sale_order_id", "=", self.id)],
-            "name": _("Bookings"),
+            "name": self.env._("Bookings"),
             "res_model": "resource.booking",
             "target": "current",
             "type": "ir.actions.act_window",

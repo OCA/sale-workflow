@@ -4,7 +4,7 @@
 {
     "name": "Sell resource bookings",
     "summary": "Link resource bookings with sales",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "development_status": "Beta",
     "category": "Appointments",
     "website": "https://github.com/OCA/sale-workflow",
@@ -20,5 +20,8 @@
         "wizards/resource_booking_sale_views.xml",
         "wizards/sale_order_booking_confirm_views.xml",
         "security/ir.model.access.csv",
+    ],
+    "demo": [
+        "demo/product_demo.xml",
     ],
 }

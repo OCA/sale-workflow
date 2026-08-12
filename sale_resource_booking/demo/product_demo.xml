@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Tecnativa - Carlos Roca
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="product_product_customer_meeting" model="product.product">
+        <field name="name">Customer meeting</field>
+        <field name="type">service</field>
+        <field name="list_price">100.0</field>
+        <field
+            name="resource_booking_type_id"
+            ref="resource_booking.resource_booking_type_customer"
+        />
+    </record>
+    <record id="product_product_customer_meeting_admin" model="product.product">
+        <field name="name">Customer meeting with Mitchell Admin</field>
+        <field name="type">service</field>
+        <field name="list_price">150.0</field>
+        <field
+            name="resource_booking_type_id"
+            ref="resource_booking.resource_booking_type_customer"
+        />
+        <field
+            name="resource_booking_type_combination_rel_id"
+            ref="resource_booking.resource_booking_type_combination_1"
+        />
+    </record>
+</odoo>
