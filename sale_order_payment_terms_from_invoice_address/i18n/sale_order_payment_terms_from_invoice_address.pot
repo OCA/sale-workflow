@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -12,14 +12,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-
-#. module: sale_order_payment_terms_from_invoice_address
-#: model_terms:ir.ui.view,arch_db:sale_order_payment_terms_from_invoice_address.res_config_setting_form_view
-msgid ""
-"Compute 'payment terms' on sale orders\n"
-"                            based on the payment terms of the invoice partner ('invoice address')\n"
-"                            instead of the base partner of the sale order ('customer')"
-msgstr ""
 
 #. module: sale_order_payment_terms_from_invoice_address
 #: model:ir.model.fields,field_description:sale_order_payment_terms_from_invoice_address.field_res_config_settings__compute_so_payment_terms_from_partner_invoice

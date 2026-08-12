@@ -7,7 +7,7 @@ from odoo import api, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.depends("partner_invoice_id")
+    @api.depends("partner_id", "partner_invoice_id")
     def _compute_payment_term_id(self):
         res = super()._compute_payment_term_id()
         if self.env["ir.config_parameter"].get_param(

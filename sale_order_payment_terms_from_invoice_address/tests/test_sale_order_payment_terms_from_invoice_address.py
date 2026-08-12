@@ -1,10 +1,10 @@
 # Copyright 2025 ACSONE SA/NV
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import TransactionCase
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleOrderPaymentTerms(TransactionCase):
+class TestSaleOrderPaymentTerms(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -56,7 +56,8 @@ class TestSaleOrderPaymentTerms(TransactionCase):
         self.assertEqual(
             self.sale_order.payment_term_id,
             self.partner.property_payment_term_id,
-            "Payment terms should be computed from partner_id when the option is not checked.",
+            "Payment terms should be computed from partner_id when the option "
+            "is not checked.",
         )
 
     def test_payment_terms_from_invoice_partner(self):
@@ -72,6 +73,6 @@ class TestSaleOrderPaymentTerms(TransactionCase):
         self.assertEqual(
             self.sale_order.payment_term_id,
             self.partner_invoice.property_payment_term_id,
-            "Payment terms should be computed from partner_invoice_id when the option is "
-            "checked.",
+            "Payment terms should be computed from partner_invoice_id when the "
+            "option is checked.",
         )
