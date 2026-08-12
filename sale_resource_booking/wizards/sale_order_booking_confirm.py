@@ -1,7 +1,7 @@
 # Copyright 2021 Tecnativa - Jairo Llopis
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import Command, api, fields, models
 
 
 class SaleOrderBookingConfirm(models.TransientModel):
@@ -28,7 +28,7 @@ class SaleOrderBookingConfirm(models.TransientModel):
         "sale_order_booking_confirm_id",
         "booking_id",
         string="Bookings",
-        default=_default_resource_booking_ids,
+        default=lambda self: self._default_resource_booking_ids(),
     )
 
     def action_invite(self):
@@ -48,7 +48,7 @@ class SaleOrderBookingConfirm(models.TransientModel):
                     "res_model": "resource.booking",
                     "res_id": booking.id,
                     "note": booking.requester_advice or "",
-                    "partner_ids": [(6, 0, [booking.partner_id.id])]
+                    "partner_ids": [Command.set([booking.partner_id.id])]
                     if booking.partner_id
                     else [],
                 }

@@ -4,6 +4,7 @@
 from contextlib import suppress
 from datetime import datetime
 
+from odoo import Command
 from odoo.tests import Form
 from odoo.tools import mute_logger
 
@@ -33,7 +34,7 @@ class SaleResourceBookingsCase(BaseCommon):
         bookings = order.order_line.mapped("resource_booking_ids")
         # Open wizard
         wizard = self.env["sale.order.booking.confirm"].create(
-            {"order_id": order.id, "resource_booking_ids": [(6, 0, bookings.ids)]}
+            {"order_id": order.id, "resource_booking_ids": [Command.set(bookings.ids)]}
         )
         self.assertEqual(order.resource_booking_count, 1)
         # Trigger invite with context
@@ -52,7 +53,7 @@ class SaleResourceBookingsCase(BaseCommon):
         bookings = order.order_line.mapped("resource_booking_ids")
         self.assertEqual(order.resource_booking_count, 1)
         wizard = self.env["sale.order.booking.confirm"].create(
-            {"order_id": order.id, "resource_booking_ids": [(6, 0, bookings.ids)]}
+            {"order_id": order.id, "resource_booking_ids": [Command.set(bookings.ids)]}
         )
         # Trigger noop with context
         wizard = wizard.with_context(trigger_booking_email=True)
@@ -181,7 +182,7 @@ class SaleResourceBookingsCase(BaseCommon):
         self.assertEqual(booking.state, "canceled")
         # Manually set order and booking to pending
         order.action_draft()
-        booking.toggle_active()
+        booking.action_unarchive()
         self.assertEqual(booking.state, "pending")
         # Schedule it
         with Form(booking) as booking_f:

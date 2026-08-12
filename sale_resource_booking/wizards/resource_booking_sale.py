@@ -1,7 +1,7 @@
 # Copyright 2021 Tecnativa - Jairo Llopis
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import fields, models
+from odoo import Command, fields, models
 
 
 class ResourceBookingSale(models.TransientModel):
@@ -32,22 +32,13 @@ class ResourceBookingSale(models.TransientModel):
             {
                 "partner_id": self.partner_id.id,
                 "order_line": [
-                    (
-                        0,
-                        0,
+                    Command.create(
                         {
                             "product_id": self.product_id.id,
                             "product_uom_qty": self.product_uom_qty,
-                        },
+                        }
                     )
                 ],
             }
         )
-        return {
-            "res_id": order.id,
-            "res_model": "sale.order",
-            "target": "current",
-            "type": "ir.actions.act_window",
-            "view_mode": "form",
-            "views": [[False, "form"]],
-        }
+        return order._get_records_action()
