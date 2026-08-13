@@ -5,7 +5,8 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="partner_id" position="before">
-                <field name="commercial_partner_id" invisible="1" />
+                    <field name="commercial_partner_id" invisible="1" />
+                    <field name="commercial_partner_invoice_id" invisible="1" />
             </field>
         </field>
     </record>
