@@ -1,0 +1,73 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_stock_partner_warehouse
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-05-10 16:52+0000\n"
+"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: sale_stock_partner_warehouse
+#: model:ir.model,name:sale_stock_partner_warehouse.model_res_company
+msgid "Companies"
+msgstr "Empresas"
+
+#. module: sale_stock_partner_warehouse
+#: model:ir.model,name:sale_stock_partner_warehouse.model_res_config_settings
+msgid "Config Settings"
+msgstr "Configuración"
+
+#. module: sale_stock_partner_warehouse
+#: model:ir.model,name:sale_stock_partner_warehouse.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: sale_stock_partner_warehouse
+#: model_terms:ir.ui.view,arch_db:sale_stock_partner_warehouse.res_config_settings_view_form
+msgid ""
+"If enabled, the sale order will propose the warehouse from the shipping "
+"address, falling back to the customer's warehouse if none is set."
+msgstr ""
+"Si está habilitado, el pedido de venta propondrá el almacén de la dirección "
+"de envío, usando el almacén del cliente si no hay ninguno definido."
+
+#. module: sale_stock_partner_warehouse
+#: model_terms:ir.ui.view,arch_db:sale_stock_partner_warehouse.res_config_settings_view_form
+msgid "Prioritize Shipping Partner in Sale Warehouse Proposal"
+msgstr "Priorizar partner de envío en la propuesta de almacén de venta"
+
+#. module: sale_stock_partner_warehouse
+#: model:ir.model.fields,field_description:sale_stock_partner_warehouse.field_res_partner__sale_warehouse_id
+#: model:ir.model.fields,field_description:sale_stock_partner_warehouse.field_res_users__sale_warehouse_id
+msgid "Sale Warehouse"
+msgstr "Almacén de ventas"
+
+#. module: sale_stock_partner_warehouse
+#: model:ir.model.fields,field_description:sale_stock_partner_warehouse.field_res_company__sale_warehouse_by_partner_shipping
+#: model:ir.model.fields,field_description:sale_stock_partner_warehouse.field_res_config_settings__sale_warehouse_by_partner_shipping
+msgid "Sale Warehouse By Partner Shipping"
+msgstr "Almacén de venta por envío de partner"
+
+#. module: sale_stock_partner_warehouse
+#: model:ir.model,name:sale_stock_partner_warehouse.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#~ msgid "Default Warehouse"
+#~ msgstr "Almacén predeterminado"
+
+#~ msgid ""
+#~ "If no source warehouse is selected on line, this warehouse is used as "
+#~ "default. "
+#~ msgstr ""
+#~ "Si no se selecciona ningún almacén de origen en la línea, este almacén se "
+#~ "utiliza como predeterminado. "
