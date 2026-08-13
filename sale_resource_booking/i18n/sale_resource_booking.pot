@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -66,8 +66,13 @@ msgid "Customer"
 msgstr ""
 
 #. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_product_template__display_name
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking__display_name
 #: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_sale__display_name
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_type__display_name
+#: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order_booking_confirm__display_name
+#: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order_line__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -97,8 +102,13 @@ msgid "Generate quotation."
 msgstr ""
 
 #. module: sale_resource_booking
+#: model:ir.model.fields,field_description:sale_resource_booking.field_product_template__id
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking__id
 #: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_sale__id
+#: model:ir.model.fields,field_description:sale_resource_booking.field_resource_booking_type__id
+#: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order_booking_confirm__id
+#: model:ir.model.fields,field_description:sale_resource_booking.field_sale_order_line__id
 msgid "ID"
 msgstr ""
 
