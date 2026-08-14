@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="sale_order_line_view_form_readonly" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='discount']" position="before">
+                <field name="fixed_price_pricelist_rule" invisible="1" />
+            </xpath>
+            <xpath expr="//field[@name='discount']" position="attributes">
+                <attribute name="readonly">fixed_price_pricelist_rule</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

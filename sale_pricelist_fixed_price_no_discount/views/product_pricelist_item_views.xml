@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="product_pricelist_item_form_view" model="ir.ui.view">
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//group[@name='pricelist_rule_limits']/field[@name='min_quantity']"
+                position="after"
+            >
+                <field
+                    name="fixed_price_no_discount"
+                    invisible="compute_price != 'fixed'"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_pricelist_item_tree_view" model="ir.ui.view">
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_tree_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price']" position="after">
+                <field name="fixed_price_no_discount" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_pricelist_item_tree_view_from_product" model="ir.ui.view">
+        <field name="model">product.pricelist.item</field>
+        <field
+            name="inherit_id"
+            ref="product.product_pricelist_item_tree_view_from_product"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='fixed_price']" position="after">
+                <field name="fixed_price_no_discount" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
