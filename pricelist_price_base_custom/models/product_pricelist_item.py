@@ -11,7 +11,7 @@ class PricelistItem(models.Model):
         ondelete={"custom_value": "set default"},
     )
 
-    def _compute_base_price(self, product, quantity, uom, date, target_currency):
+    def _compute_base_price(self, product, quantity, uom, date, currency):
         """
         Override to use custom base price if "custom_value"
         is selected as rule base and custom_base_price is
@@ -19,6 +19,4 @@ class PricelistItem(models.Model):
         """
         if self.base == "custom_value":
             return self.env.context.get("custom_base_price", 0.0)
-        return super()._compute_base_price(
-            product, quantity, uom, date, target_currency
-        )
+        return super()._compute_base_price(product, quantity, uom, date, currency)

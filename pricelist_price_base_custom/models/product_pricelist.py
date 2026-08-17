@@ -6,7 +6,7 @@ from odoo import models
 class Pricelist(models.Model):
     _inherit = "product.pricelist"
 
-    def _get_product_price(self, product, quantity, uom=None, date=False, **kwargs):
+    def _get_product_price(self, product, *args, **kwargs):
         """
         Overridden method to add custom_base_price
         to the context of recordset if it
@@ -17,7 +17,4 @@ class Pricelist(models.Model):
             if "custom_base_price" in kwargs
             else self
         )
-        return super(
-            Pricelist,
-            self,
-        )._get_product_price(product, quantity, uom, date, **kwargs)
+        return super()._get_product_price(product, *args, **kwargs)
