@@ -1,6 +1,6 @@
 [project]
 name = "odoo-addons-oca-sale-workflow"
-version = "18.0.20260813.0"
+version = "18.0.20260817.0"
 dependencies = [
     "odoo-addon-partner_sale_pivot==18.0.*",
     "odoo-addon-portal_sale_list_extra_info==18.0.*",
@@ -14,6 +14,7 @@ dependencies = [
     "odoo-addon-product_price_category==18.0.*",
     "odoo-addon-product_set_sell_only_by_packaging==18.0.*",
     "odoo-addon-sale_advance_payment==18.0.*",
+    "odoo-addon-sale_attached_product==18.0.*",
     "odoo-addon-sale_automatic_workflow==18.0.*",
     "odoo-addon-sale_automatic_workflow_auto_assign==18.0.*",
     "odoo-addon-sale_automatic_workflow_force_invoiced==18.0.*",
