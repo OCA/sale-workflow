@@ -5,7 +5,7 @@ from odoo.tests.common import TransactionCase
 
 class TestPartnerProspect(TransactionCase):
     def setUp(self):
-        super(TestPartnerProspect, self).setUp()
+        super().setUp()
         self.sale_order_model = self.env["sale.order"]
         self.partner_model = self.env["res.partner"]
         self.invoice_model = self.env["account.move"]
