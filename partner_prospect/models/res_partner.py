@@ -6,7 +6,6 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     prospect = fields.Boolean(
-        "Prospect",
         compute="_compute_prospect",
         store=True,
     )

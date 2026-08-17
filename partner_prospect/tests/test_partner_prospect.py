@@ -4,36 +4,53 @@ from odoo.tests.common import TransactionCase
 
 
 class TestPartnerProspect(TransactionCase):
-    def setUp(self):
-        super().setUp()
-        self.sale_order_model = self.env["sale.order"]
-        self.partner_model = self.env["res.partner"]
-        self.invoice_model = self.env["account.move"]
-        self.partner1 = self.partner_model.create({"name": "Partner1"})
-        self.partner2 = self.partner_model.create(
-            {"name": "Partner2", "parent_id": self.partner1.id}
-        )
-        self.partner3 = self.partner_model.create(
-            {"name": "Partner3", "parent_id": self.partner1.id}
-        )
-        self.partner4 = self.partner_model.create({"name": "Partner4"})
-        self.product = self.env.ref("product.product_product_4")
-        self.sale_order1 = self.sale_order_model.create(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+
+        cls.sale_order_model = cls.env["sale.order"]
+        cls.partner_model = cls.env["res.partner"]
+        cls.invoice_model = cls.env["account.move"]
+
+        cls.partner1 = cls.partner_model.create({"name": "Partner1"})
+        cls.partner2 = cls.partner_model.create(
             {
-                "partner_id": self.partner1.id,
-                "order_line": [(0, 0, {"product_id": self.product.id})],
+                "name": "Partner2",
+                "parent_id": cls.partner1.id,
             }
         )
-        self.sale_order2 = self.sale_order_model.create(
+        cls.partner3 = cls.partner_model.create(
             {
-                "partner_id": self.partner2.id,
-                "order_line": [(0, 0, {"product_id": self.product.id})],
+                "name": "Partner3",
+                "parent_id": cls.partner1.id,
             }
         )
-        self.sale_order3 = self.sale_order_model.create(
+        cls.partner4 = cls.partner_model.create({"name": "Partner4"})
+
+        cls.product = cls.env.ref("product.product_product_4")
+
+        cls.sale_order1 = cls.sale_order_model.create(
             {
-                "partner_id": self.partner4.id,
-                "order_line": [(0, 0, {"product_id": self.product.id})],
+                "partner_id": cls.partner1.id,
+                "order_line": [
+                    (0, 0, {"product_id": cls.product.id}),
+                ],
+            }
+        )
+        cls.sale_order2 = cls.sale_order_model.create(
+            {
+                "partner_id": cls.partner2.id,
+                "order_line": [
+                    (0, 0, {"product_id": cls.product.id}),
+                ],
+            }
+        )
+        cls.sale_order3 = cls.sale_order_model.create(
+            {
+                "partner_id": cls.partner4.id,
+                "order_line": [
+                    (0, 0, {"product_id": cls.product.id}),
+                ],
             }
         )
 
@@ -53,13 +70,16 @@ class TestPartnerProspect(TransactionCase):
         self.assertTrue(self.partner4.prospect, "Partner4 is not a prospect")
         self.sale_order3.action_confirm()
         self.assertFalse(self.partner4.prospect, "Partner4 is a prospect")
-        self.sale_order3.action_cancel()
+        self.sale_order3._action_cancel()
         self.assertTrue(self.partner4.prospect, "Partner4 is not a prospect")
 
     def test_partner_child_check_invoice(self):
         ttype = "out_invoice"
         self.invoice_model.create(
-            {"partner_id": self.partner2.id, "move_type": ttype}
+            {
+                "partner_id": self.partner2.id,
+                "move_type": ttype,
+            }
         )._onchange_partner_id()
         self.assertFalse(self.partner1.prospect, "Partner1 is a prospect")
         self.assertFalse(self.partner2.prospect, "Partner2 is a prospect")
@@ -68,7 +88,10 @@ class TestPartnerProspect(TransactionCase):
     def test_partner_parent_check_invoice(self):
         ttype = "out_refund"
         self.invoice_model.create(
-            {"partner_id": self.partner1.id, "move_type": ttype}
+            {
+                "partner_id": self.partner1.id,
+                "move_type": ttype,
+            }
         )._onchange_partner_id()
         self.assertFalse(self.partner1.prospect, "Partner1 is a prospect")
         self.assertFalse(self.partner2.prospect, "Partner2 is a prospect")
