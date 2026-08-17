@@ -25,18 +25,22 @@
                 <td class="text-end">
                     <t t-if="doc.discount_total">
                         <!-- Struck-through total before discount -->
-                                <div class="o_struck_price">
-                                    <span
+                        <div
+                            style="text-decoration: line-through; color: #c9302c; font-size: 0.9em;"
+                        >
+                            <span
                                 t-field="doc.price_total_no_discount"
                                 t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"
                             />
-                                </div>
+                        </div>
                         <!-- Actual total -->
-                        <div class="discount-total-actual">
-                            <span
-                                t-field="doc.amount_total"
-                                t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"
-                            />
+                        <div>
+                            <strong>
+                                <span
+                                    t-field="doc.amount_total"
+                                    t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"
+                                />
+                            </strong>
                         </div>
                     </t>
                     <t t-else="">
@@ -76,7 +80,9 @@
                 class="text-end o_price_total"
             >
                 <t t-if="line.discount">
-                    <div class="o_struck_price_line">
+                    <div
+                        style="text-decoration: line-through; color: #c9302c; font-size: 0.9em;"
+                    >
                         <span
                             t-field="line.price_total_no_discount"
                             t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"
