@@ -8,7 +8,7 @@
             expr="//table[hasclass('table')]/thead/tr/th[@name='th_description']"
             position="before"
         >
-            <th name="th_visible_sequence">
+            <th name="th_visible_sequence" class="text-center">
                 <span>Line Number</span>
             </th>
         </xpath>
@@ -16,9 +16,20 @@
             expr="//tbody[hasclass('sale_tbody')]//td[@name='td_product_name']/span[@t-field='line.name']/.."
             position="before"
         >
-            <td name="td_visible_sequence">
+            <td name="td_visible_sequence" class="text-center">
                 <span t-field="line.visible_sequence" />
             </td>
+        </xpath>
+        <xpath expr="//td[@name='td_section_name']" position="before">
+            <t t-set="section_name_colspan" t-value="section_name_colspan + 1" />
+        </xpath>
+        <xpath expr="//td[@name='td_combo_name']" position="attributes">
+            <attribute
+                name="t-att-colspan"
+            >4 + (1 if display_discount else 0) + (1 if display_taxes else 0)</attribute>
+        </xpath>
+        <xpath expr="//td[@name='td_section_group_name']" position="before">
+            <td name="td_section_group_sequence" />
         </xpath>
     </template>
 </odoo>
