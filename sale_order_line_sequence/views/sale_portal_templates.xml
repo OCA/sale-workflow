@@ -5,7 +5,7 @@
     >
         <th id="product_name_header" position="before">
             <th class="text-start" id="line_number_header">
-                Line Number
+                #
             </th>
         </th>
         <td name="td_product_name" position="before">
