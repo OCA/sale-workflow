@@ -8,7 +8,7 @@
             position="before"
         >
             <th class="text-start" id="line_number_header">
-                Line Number
+                #
             </th>
         </xpath>
 
