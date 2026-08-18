@@ -16,12 +16,7 @@ msgstr ""
 
 #. module: sale_discount_display_amount
 #: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.sale_discount_display_amount_document
-msgid "<strong>Total Discount</strong>"
-msgstr ""
-
-#. module: sale_discount_display_amount
-#: model_terms:ir.ui.view,arch_db:sale_discount_display_amount.sale_discount_display_amount_document
-msgid "<strong>Total</strong>"
+msgid "<span>Total Discount</span>"
 msgstr ""
 
 #. module: sale_discount_display_amount
