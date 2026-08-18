@@ -52,9 +52,9 @@ class TestSaleOrderLineSequence(TransactionCase):
     def test_sale_order_line_sequence(self):
         so1 = self._create_sale_order()
         so1.action_confirm()
-        self.assertEqual(so1.order_line[0].visible_sequence, 1)
+        self.assertEqual(so1.order_line[0].visible_sequence, "1")
         so2 = so1.copy()
-        self.assertEqual(so2.order_line[0].visible_sequence, 1)
+        self.assertEqual(so2.order_line[0].visible_sequence, "1")
 
     def test_sale_order_line_sequence_section(self):
         so1 = self._create_sale_order()
@@ -82,7 +82,7 @@ class TestSaleOrderLineSequence(TransactionCase):
             if line.display_type:
                 self.assertFalse(line.visible_sequence)
                 continue
-            self.assertEqual(line.visible_sequence, sequence)
+            self.assertEqual(line.visible_sequence, str(sequence))
             sequence += 1
 
     def test_invoice_sequence(self):
@@ -95,11 +95,11 @@ class TestSaleOrderLineSequence(TransactionCase):
         so.order_line.qty_delivered = 5
         self.invoice = so._create_invoices()
         self.assertEqual(
-            str(so.order_line[0].visible_sequence),
+            so.order_line[0].visible_sequence,
             self.invoice.line_ids[0].related_so_sequence,
         )
         self.assertEqual(
-            str(so.order_line[1].visible_sequence),
+            so.order_line[1].visible_sequence,
             self.invoice.line_ids[1].related_so_sequence,
         )
 
