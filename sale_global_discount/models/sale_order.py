@@ -118,7 +118,7 @@ class SaleOrder(models.Model):
                         line.price_subtotal, discounts.copy()
                     )
                 amount_discounted_untaxed += discounted_subtotal
-                tax_key = line.tax_ids
+                tax_key = frozenset(line.tax_ids.ids)
                 if tax_key not in tax_groups:
                     tax_groups[tax_key] = {
                         "tax_ids": line.tax_ids,
