@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_partner_address_restrict
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-08-26 12:06+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: sale_partner_address_restrict
+#. odoo-python
+#: code:addons/sale_partner_address_restrict/models/sale_order.py:0
+#, python-format
+msgid ""
+"Invoice and shipping addresses must be child addresses of the selected "
+"partner or the selected partner itself."
+msgstr ""
+"Gli indirizzi di fatturazione e di spedizione devono essere indirizzi figli "
+"del partner selezionato o del partner selezionato stesso."
+
+#. module: sale_partner_address_restrict
+#: model:ir.model,name:sale_partner_address_restrict.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"

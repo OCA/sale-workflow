@@ -1,0 +1,85 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_partner_address_restrict
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_partner_address_restrict
+#: model_terms:ir.ui.view,arch_db:sale_partner_address_restrict.res_config_settings_view_form
+msgid "Address restriction"
+msgstr ""
+
+#. module: sale_partner_address_restrict
+#: model:ir.model.fields,help:sale_partner_address_restrict.field_res_company__sale_partner_address_restriction
+#: model:ir.model.fields,help:sale_partner_address_restrict.field_res_config_settings__sale_partner_address_restriction
+msgid ""
+"Check this box if you want to restrict partner addresses selection in sale "
+"orders. They should depends on the Customer filled in."
+msgstr ""
+
+#. module: sale_partner_address_restrict
+#: model_terms:ir.ui.view,arch_db:sale_partner_address_restrict.res_config_settings_view_form
+msgid ""
+"Check this if you want to restrict the address selection to contacts of same"
+" company."
+msgstr ""
+
+#. module: sale_partner_address_restrict
+#: model:ir.model,name:sale_partner_address_restrict.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_partner_address_restrict
+#: model:ir.model,name:sale_partner_address_restrict.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_partner_address_restrict
+#: model:ir.model,name:sale_partner_address_restrict.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sale_partner_address_restrict
+#: model:ir.model.fields,field_description:sale_partner_address_restrict.field_res_partner__is_dropship_address
+#: model:ir.model.fields,field_description:sale_partner_address_restrict.field_res_users__is_dropship_address
+msgid "Dropship Address"
+msgstr ""
+
+#. module: sale_partner_address_restrict
+#. odoo-python
+#: code:addons/sale_partner_address_restrict/models/sale_order.py:0
+msgid ""
+"Invoice and shipping addresses must be child addresses of the selected "
+"partner or the selected partner itself."
+msgstr ""
+
+#. module: sale_partner_address_restrict
+#: model:ir.model.fields,field_description:sale_partner_address_restrict.field_sale_order__partner_address_restriction_domain
+msgid "Partner Address Restriction Domain"
+msgstr ""
+
+#. module: sale_partner_address_restrict
+#: model:ir.model.fields,field_description:sale_partner_address_restrict.field_res_company__sale_partner_address_restriction
+#: model:ir.model.fields,field_description:sale_partner_address_restrict.field_res_config_settings__sale_partner_address_restriction
+msgid "Sale Partner Address Restriction"
+msgstr ""
+
+#. module: sale_partner_address_restrict
+#: model:ir.model,name:sale_partner_address_restrict.model_sale_order
+msgid "Sales Order"
+msgstr ""
+
+#. module: sale_partner_address_restrict
+#: model:ir.model.fields,help:sale_partner_address_restrict.field_sale_order__partner_address_restriction_domain
+msgid ""
+"This is the computed domain to filter delivery and invoicing addresses."
+msgstr ""
