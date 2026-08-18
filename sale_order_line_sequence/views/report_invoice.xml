@@ -8,9 +8,7 @@
         <xpath expr="//table/thead/tr/th[1]" position="before">
             <th
                 t-if="(o.move_type == 'out_invoice' or o.move_type == 'out_refund') and any(l.related_so_sequence for l in o.invoice_line_ids)"
-            >
-                Line Number
-            </th>
+            >#</th>
         </xpath>
         <!--complicated expr to be compatible with other modules-->
         <xpath expr="//table/tbody//span[1]/.." position="before">

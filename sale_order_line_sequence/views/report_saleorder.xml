@@ -9,7 +9,7 @@
             position="before"
         >
             <th>
-                <strong>Line Number</strong>
+                <strong>#</strong>
             </th>
         </xpath>
         <xpath
