@@ -1,0 +1,17 @@
+<odoo>
+    <template
+        id="sale_order_portal_content_sequence"
+        inherit_id="sale.sale_order_portal_content"
+    >
+        <th id="product_name_header" position="before">
+            <th class="text-start" id="line_number_header">
+                #
+            </th>
+        </th>
+        <td name="td_product_name" position="before">
+            <td class="text-start" id="line_number">
+                <span t-field="line.visible_sequence" />
+            </td>
+        </td>
+    </template>
+</odoo>

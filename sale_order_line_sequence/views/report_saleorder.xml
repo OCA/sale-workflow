@@ -9,7 +9,7 @@
             position="before"
         >
             <th name="th_visible_sequence">
-                <span>Line Number</span>
+                <strong>#</strong>
             </th>
         </xpath>
         <xpath
