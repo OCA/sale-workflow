@@ -57,7 +57,7 @@ class TestSaleSourcedByLine(BaseCommon):
             self.assertEqual(
                 line.procurement_group_id.name,
                 line.order_id.name + "/" + line.warehouse_id.name,
-                "The name of the procurement group is not " "correct.",
+                "The name of the procurement group is not correct.",
             )
             moves = self.stock_move_model.search(
                 [("group_id", "=", line.procurement_group_id.id)]
