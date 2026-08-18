@@ -15,3 +15,9 @@ class SaleOrder(models.Model):
         store=True,
         index=True,
     )
+    commercial_partner_invoice_id = fields.Many2one(
+        comodel_name="res.partner",
+        related="partner_invoice_id.commercial_partner_id",
+        string="Invoice Entity",
+        store=True,
+    )

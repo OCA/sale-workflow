@@ -32,8 +32,11 @@ Sale Commercial Partner
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module adds a related stored field *Commercial Entity* on sale
-orders.
+This module adds 2 technical fields on sale orders:
+
+-  a related stored field *Customer Entity* (commercial_partner_id),
+-  a related stored field *Invoice Entity*
+   (commercial_partner_invoice_id).
 
 This module is the twin brother of the OCA module
 *purchase_commercial_partner* located in the `purchase-workflow
@@ -49,9 +52,9 @@ Usage
 
 You can group by *Commercial Entity*:
 
-- in *Sales > Orders > Quotations*,
-- in *Sales > Orders > Orders*,
-- in *Sales > Reporting > Sales* (it is a native feature in this menu)
+-  in *Sales > Orders > Quotations*,
+-  in *Sales > Orders > Orders*,
+-  in *Sales > Reporting > Sales* (it is a native feature in this menu)
 
 Bug Tracker
 ===========
@@ -74,21 +77,21 @@ Authors
 Contributors
 ------------
 
-- Alexis de Lattre <alexis.delattre@akretion.com>
-- Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
-- Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
-- Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
-- `APSL <https://apsl.tech>`__:
+-  Alexis de Lattre <alexis.delattre@akretion.com>
+-  Serpent Consulting Services Pvt. Ltd. <support@serpentcs.com>
+-  Rattapong Chokmasermkul <rattapongc@ecosoft.co.th>
+-  Tharathip Chaweewongphan <tharathipc@ecosoft.co.th>
+-  `APSL <https://apsl.tech>`__:
 
-  - Antoni Marroig <amarroig@apsl.net>
+   -  Antoni Marroig <amarroig@apsl.net>
 
-- `Dynapps <https://www.dynapps.eu>`__:
+-  `Dynapps <https://www.dynapps.eu>`__:
 
-  - Bert Van Groenendael <bert.vangroenendael@dynapps.eu>
+   -  Bert Van Groenendael <bert.vangroenendael@dynapps.eu>
 
-- `Trobz <https://www.trobz.com>`__:
+-  `Trobz <https://www.trobz.com>`__:
 
-  - Nhan Tran <nhant@trobz.com>
+   -  Nhan Tran <nhant@trobz.com>
 
 Other credits
 -------------
