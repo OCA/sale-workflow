@@ -5,7 +5,7 @@
         <field name="model">product.pricelist.item</field>
         <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='applied_on']" position="after">
+            <xpath expr="//field[@name='display_applied_on']" position="after">
                 <field
                     name="global_categ_id"
                     options="{'no_create':1}"
@@ -14,6 +14,7 @@
                 />
                 <field
                     name="global_product_tmpl_id"
+                    string="Product"
                     options="{'no_create':1}"
                     invisible="applied_on != '3_1_global_product_template'"
                     required="applied_on == '3_1_global_product_template'"

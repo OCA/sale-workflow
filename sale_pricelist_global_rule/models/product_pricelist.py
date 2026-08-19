@@ -1,4 +1,4 @@
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -15,9 +15,19 @@ class ProductPricelistItem(models.Model):
             "3_2_global_product_category": "set default",
         },
     )
+    display_applied_on = fields.Selection(
+        selection_add=[
+            ("3_1_global_product_template", "Global - Product template"),
+            ("3_2_global_product_category", "Global - Product category"),
+        ],
+        ondelete={
+            "3_1_global_product_template": "set default",
+            "3_2_global_product_category": "set default",
+        },
+    )
     global_product_tmpl_id = fields.Many2one(
         "product.template",
-        "Product",
+        "Global Product",
         ondelete="cascade",
         check_company=True,
     )
@@ -42,7 +52,7 @@ class ProductPricelistItem(models.Model):
                 and not item.global_categ_id
             ):
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "Please specify the category "
                         "for which this global rule should be applied"
                     )
@@ -52,43 +62,48 @@ class ProductPricelistItem(models.Model):
                 and not item.global_product_tmpl_id
             ):
                 raise ValidationError(
-                    _(
+                    self.env._(
                         "Please specify the product "
                         "for which this global rule should be applied"
                     )
                 )
         return res
 
-    @api.depends(
-        "applied_on",
-        "categ_id",
-        "product_tmpl_id",
-        "product_id",
-        "global_product_tmpl_id",
-        "global_categ_id",
-        "compute_price",
-        "fixed_price",
-        "pricelist_id",
-        "percent_price",
-        "price_discount",
-        "price_surcharge",
-    )
-    def _compute_name_and_price(self):
-        res = super()._compute_name_and_price()
+    @api.depends("global_product_tmpl_id", "global_categ_id")
+    def _compute_name(self):
+        res = super()._compute_name()
         for item in self:
             if (
                 item.global_categ_id
                 and item.applied_on == "3_2_global_product_category"
             ):
-                item.name = _("Global category: %s") % (
-                    item.global_categ_id.display_name
+                item.name = self.env._(
+                    "Global category: %s", item.global_categ_id.display_name
                 )
             elif (
                 item.global_product_tmpl_id
                 and item.applied_on == "3_1_global_product_template"
             ):
-                item.name = _("Global product: %s") % (
-                    item.global_product_tmpl_id.display_name
+                item.name = self.env._(
+                    "Global product: %s", item.global_product_tmpl_id.display_name
+                )
+        return res
+
+    @api.onchange("display_applied_on")
+    def _onchange_display_applied_on(self):
+        res = super()._onchange_display_applied_on()
+        for item in self:
+            if item.display_applied_on in [
+                "3_2_global_product_category",
+                "3_1_global_product_template",
+            ]:
+                item.update(
+                    {
+                        "product_id": None,
+                        "product_tmpl_id": None,
+                        "categ_id": None,
+                        "applied_on": item.display_applied_on,
+                    }
                 )
         return res
 

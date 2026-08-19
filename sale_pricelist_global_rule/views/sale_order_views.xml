@@ -19,8 +19,6 @@
                     type="object"
                     invisible="state not in ('draft', 'sent') or not has_pricelist_global or need_recompute_pricelist_global"
                 />
-                <field name="has_pricelist_global" invisible="1" />
-                <field name="need_recompute_pricelist_global" invisible="1" />
             </xpath>
         </field>
     </record>
