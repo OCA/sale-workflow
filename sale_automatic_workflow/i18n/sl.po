@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-03-02 10:22+0000\n"
-"PO-Revision-Date: 2026-06-22 17:11+0000\n"
+"PO-Revision-Date: 2026-08-19 03:44+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -56,7 +56,7 @@ msgstr ""
 #. module: sale_automatic_workflow
 #: model:ir.model,name:sale_automatic_workflow.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Nastavitve"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,help:sale_automatic_workflow.field_res_config_settings__sale_workflow_copy_mode
@@ -68,17 +68,26 @@ msgid ""
 "- Copy if auto-assign finds none: auto-assign runs first; the origin "
 "workflow is copied only when no workflow could be auto-assigned."
 msgstr ""
+"Določa, ali se avtomatski delovni tok prenese ob podvajanju prodajnega "
+"naročila (vključno z razdelitvami naročil):\n"
+"- Ne kopiraj: delovni tok se ponovno izpelje izključno na podlagi pravil za "
+"samodejno dodeljevanje.\n"
+"- Kopiraj: izvorni delovni tok se vedno kopira, samodejno dodeljevanje se ne "
+"izvede ponovno.\n"
+"- Kopiraj, če samodejno dodeljevanje ne najde nobenega: najprej se izvede "
+"samodejno dodeljevanje; izvorni delovni tok se kopira le, če ni bilo mogoče "
+"samodejno dodeliti nobenega delovnega toka."
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__res_config_settings__sale_workflow_copy_mode__copy
 msgid "Copy"
-msgstr ""
+msgstr "Kopiraj"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_res_config_settings__sale_workflow_copy_mode
 #: model_terms:ir.ui.view,arch_db:sale_automatic_workflow.res_config_settings_view_form
 msgid "Copy workflow on duplication"
-msgstr ""
+msgstr "Kopiranje delovnega toka pri podvajanju"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__create_invoice
@@ -121,7 +130,7 @@ msgstr "Domena"
 #. module: sale_automatic_workflow
 #: model:ir.model.fields.selection,name:sale_automatic_workflow.selection__res_config_settings__sale_workflow_copy_mode__no_copy
 msgid "Don't copy"
-msgstr ""
+msgstr "Ne kopiraj"
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__invoice_date_is_order_date
@@ -209,6 +218,8 @@ msgid ""
 "Propagate the automatic workflow when a sale order is duplicated (this "
 "includes order splits)."
 msgstr ""
+"Uporabi avtomatski potek dela ob podvajanju prodajnega naročila (vključno z "
+"razdelitvami naročil)."
 
 #. module: sale_automatic_workflow
 #: model:ir.model.fields,field_description:sale_automatic_workflow.field_sale_workflow_process__register_payment
