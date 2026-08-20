@@ -86,3 +86,11 @@ class SaleOrder(models.Model):
                 if result.get("success"):
                     price_unit = result["price"]
                     order._create_delivery_line(carrier, price_unit)
+
+    def _prepare_delivery_line_vals(self, carrier, price_unit):
+        values = super()._prepare_delivery_line_vals(carrier, price_unit)
+        # Set product_uom_id to prevent this field from being recomputed.
+        # remove this method when this PR is merged.
+        # https://github.com/odoo/odoo/pull/283551
+        values["product_uom_id"] = carrier.product_id.uom_id.id
+        return values
