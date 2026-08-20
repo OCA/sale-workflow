@@ -62,9 +62,11 @@
                     role="button"
                     class="btn btn-primary"
                     t-att-href="'/my/account?order_id=%s&amp;redirect=%s' % (sale_order.id, sale_order.get_portal_url())"
-                ><i class="fa fa-check" /><t
-                        t-if="sale_order._has_to_be_paid()"
-                    > Sign &amp; Pay</t><t t-else=""> Accept &amp; Sign</t></a>
+                >
+                    <i class="fa fa-check" />
+                    <t t-if="sale_order._has_to_be_paid()"> Sign &amp; Pay</t>
+                    <t t-else=""> Accept &amp; Sign</t>
+                </a>
             </div>
         </xpath>
         <xpath
@@ -84,9 +86,11 @@
                 role="button"
                 class="btn btn-primary"
                 t-att-href="'/my/account?order_id=%s&amp;redirect=%s' % (sale_order.id, sale_order.get_portal_url())"
-            ><i class="fa fa-check" /> <t
-                    t-if="not sale_order.signature"
-                >Accept &amp; Pay</t><t t-else="">Pay Now</t></a>
+            >
+                <i class="fa fa-check" />
+                <t t-if="not sale_order.signature">Accept &amp; Pay</t>
+                <t t-else="">Pay Now</t>
+            </a>
         </xpath>
     </template>
 </odoo>

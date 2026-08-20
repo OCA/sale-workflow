@@ -28,7 +28,7 @@ class TestPortalSaleConfirmRequireLogin(HttpCase):
         )
         cls.order._portal_ensure_token()
         cls.portal_url = (
-            f"/my/orders/{cls.order.id}" f"?access_token={cls.order.access_token}"
+            f"/my/orders/{cls.order.id}?access_token={cls.order.access_token}"
         )
         cls.env["ir.config_parameter"].sudo().set_param(
             "portal_sale_confirm_require_login.portal_sale_access_login_required",
