@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-04 13:29+0000\n"
-"PO-Revision-Date: 2026-05-04 13:29+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -60,4 +58,11 @@ msgstr ""
 #. module: portal_sale_confirm_require_login
 #: model_terms:ir.ui.view,arch_db:portal_sale_confirm_require_login.sale_order_portal_template
 msgid "Sign &amp; Pay"
+msgstr ""
+
+#. module: portal_sale_confirm_require_login
+#. odoo-python
+#: code:addons/portal_sale_confirm_require_login/controllers/portal.py:0
+#, python-format
+msgid "Some required fields are empty."
 msgstr ""
