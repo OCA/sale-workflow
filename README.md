@@ -23,6 +23,7 @@ addon | version | maintainers | summary
 --- | --- | --- | ---
 [partner_contact_sale_info_propagation](partner_contact_sale_info_propagation/) | 17.0.1.0.0 |  | Propagate Salesperson and Sales Teams from Company to Contacts
 [partner_sale_pivot](partner_sale_pivot/) | 17.0.1.0.0 | <a href='https://github.com/ernestotejeda'><img src='https://github.com/ernestotejeda.png' width='32' height='32' style='border-radius:50%;' alt='ernestotejeda'/></a> | Sales analysis from customer form view
+[portal_sale_confirm_require_login](portal_sale_confirm_require_login/) | 17.0.1.0.0 |  | Force login/signup to access quotations via token and require partner information completion before confirming from the portal
 [portal_sale_personal_data_only](portal_sale_personal_data_only/) | 17.0.1.0.0 |  | Portal Sale Personal Data Only
 [product_form_sale_link](product_form_sale_link/) | 17.0.1.0.0 |  | Adds a button on product forms to access Sale Lines
 [product_supplierinfo_for_customer_sale](product_supplierinfo_for_customer_sale/) | 17.0.1.0.1 |  | Loads in every sale order line the customer code defined in the product
