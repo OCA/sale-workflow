@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="product_product_rounding" model="product.product">
+        <field name="name">Round Up</field>
+        <field name="type">service</field>
+        <field name="invoice_policy">order</field>
+        <field name="list_price">0.0</field>
+        <field name="taxes_id" eval="[(5, 0, 0)]" />
+        <field name="supplier_taxes_id" eval="[(5, 0, 0)]" />
+    </record>
+</odoo>
