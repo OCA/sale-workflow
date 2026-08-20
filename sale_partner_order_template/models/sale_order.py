@@ -7,7 +7,10 @@ from odoo import api, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.onchange("partner_id")
-    def _onchange_partner_id_set_order_template(self):
+    @api.depends("partner_id")
+    def _compute_sale_order_template_id(self):
+        res = super()._compute_sale_order_template_id()
         for order in self:
-            order.sale_order_template_id = order.partner_id.sale_order_template_id
+            if order.partner_id.sale_order_template_id:
+                order.sale_order_template_id = order.partner_id.sale_order_template_id
+        return res
