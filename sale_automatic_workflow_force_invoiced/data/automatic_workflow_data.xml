@@ -8,6 +8,5 @@ License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
         <field
             name="domain"
         >[('state', 'in', ['sale', 'done']), ('force_invoiced', '=', False), ('invoice_ids', '=', False)]</field>
-        <field name="user_id" ref="base.user_root" />
     </record>
 </odoo>
