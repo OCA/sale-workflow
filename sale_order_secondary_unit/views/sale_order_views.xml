@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018-2020 Tecnativa - Carlos Dauden
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">Sale Order Secondary Unit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/form//label[@for='product_uom_qty']"
+                position="before"
+            >
+                <label for="secondary_uom_qty" groups="uom.group_uom" />
+                <div class="o_row" name="secondary_uom_qty" groups="uom.group_uom">
+                    <field
+                        name="secondary_uom_qty"
+                        class="oe_inline oe_no_button"
+                        readonly="state in ['done', 'cancel']"
+                    />
+
+                    <field
+                        name="secondary_uom_id"
+                        class="oe_inline oe_no_button"
+                        domain="product_id and ['|', ('product_id', '=', product_id),
+                                    '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
+                                             ('product_id', '=', False)] or [(0, '=', 1)]"
+                        options="{'no_create': True, 'no_open': True}"
+                        readonly="product_uom_readonly"
+                        required="secondary_uom_qty != 0.0"
+                    />
+                </div>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/list//field[@name='product_uom_qty']"
+                position="before"
+            >
+                <field
+                    name="secondary_uom_qty"
+                    groups="uom.group_uom"
+                    optional="show"
+                />
+
+                <field
+                    name="secondary_uom_id"
+                    domain="product_id and ['|', ('product_id', '=', product_id),
+                                '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
+                                         ('product_id', '=', False)] or [(0, '=', 1)]"
+                    options="{'no_create': True}"
+                    readonly="product_uom_readonly"
+                    required="secondary_uom_qty != 0.0"
+                    groups="uom.group_uom"
+                    optional="show"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/kanban//field[@name='product_uom_qty']/.."
+                position="before"
+            >
+                <t t-if="record.secondary_uom_id.value" groups="uom.group_uom">
+                    <div class="text-muted">
+                        Secondary Qty:
+                        <field name="secondary_uom_qty" /> <field
+                        name="secondary_uom_id"
+                    />
+                    </div>
+                </t>
+            </xpath>
+        </field>
+    </record>
+</odoo>
