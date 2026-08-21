@@ -70,12 +70,12 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowStockMixin):
         product_service = self.env["product.product"].create(
             {
                 "name": "Remodeling Service",
-                "categ_id": self.env.ref("product.product_category_3").id,
+                # v19: product_category_3 removed; use product_category_services instead
+                "categ_id": self.env.ref("product.product_category_services").id,
                 "standard_price": 40.0,
                 "list_price": 90.0,
                 "type": "service",
                 "uom_id": self.env.ref("uom.product_uom_hour").id,
-                "uom_po_id": self.env.ref("uom.product_uom_hour").id,
                 "description": "Example of product to invoice on order",
                 "default_code": "PRE-PAID",
                 "invoice_policy": "order",
@@ -91,7 +91,7 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowStockMixin):
                         "name": "Prepaid Consulting",
                         "product_id": product_service.id,
                         "product_uom_qty": 1,
-                        "product_uom": product_uom_hour.id,
+                        "product_uom_id": product_uom_hour.id,
                     },
                 )
             ]
@@ -102,3 +102,95 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowStockMixin):
         self.assertTrue(sale.invoice_ids)
         invoice = sale.invoice_ids
         self.assertEqual(invoice.workflow_process_id, sale.workflow_process_id)
+
+    def test_05_do_validate_picking_bypass(self):
+        """Test that _do_validate_picking returns a bypass message when the
+        picking no longer matches the domain filter (e.g. already processed)."""
+        workflow = self.create_full_automatic()
+        sale = self.create_sale_order(workflow)
+        # Confirm the order to generate a picking
+        sale.action_confirm()
+        self.assertTrue(sale.picking_ids)
+        picking = sale.picking_ids[0]
+        job = self.env["automatic.workflow.job"]
+        # Use an impossible filter so the picking is excluded → bypass branch
+        result = job._do_validate_picking(picking, [("id", "=", -1)])
+        self.assertIn("job bypassed", result)
+
+    def test_06_onchange_workflow_process_id_sets_picking_policy(self):
+        """Test that _onchange_workflow_process_id copies picking_policy from
+        the workflow to the sale order (covers sale_order.py lines 32-34)."""
+        workflow = self.create_full_automatic(override={"picking_policy": "direct"})
+        sale = self.create_sale_order(workflow)
+        # Manually invoke the onchange (simulates form UI interaction)
+        sale._onchange_workflow_process_id()
+        self.assertEqual(sale.picking_policy, "direct")
+
+    def test_07_validate_picking_adjusts_partial_move_quantity(self):
+        """Test validate_picking when move quantity < product_qty (partial
+        stock). Covers stock_picking.py lines 33-34 (inner for loop when
+        float_compare(quantity, product_qty) == -1).
+
+        The mixin's create_sale_order auto-stocks exactly line.product_uom_qty
+        units, so we bypass it here and create the order/picking directly,
+        placing only 1 unit in stock while demanding 2. This ensures the move
+        stays partially reserved and the inner adjustment loop is exercised.
+        """
+        product = self.env["product.product"].create(
+            {
+                "name": "Partial Stock Product",
+                "is_storable": True,
+                "list_price": 10.0,
+            }
+        )
+        # Only 1 unit available; demand will be 2.
+        quant = self.env["stock.quant"].create(
+            {
+                "product_id": product.id,
+                "location_id": self.env.ref("stock.stock_location_stock").id,
+                "inventory_quantity": 1,
+            }
+        )
+        quant._apply_inventory()
+
+        # Build the sale order directly to skip the mixin's auto-inventory.
+        partner = self.env["res.partner"].create({"name": "Test Partner Partial"})
+        product_uom_unit = self.env.ref("uom.product_uom_unit")
+        sale = (
+            self.env["sale.order"]
+            .sudo()
+            .create(
+                {
+                    "partner_id": partner.id,
+                    "order_line": [
+                        (
+                            0,
+                            0,
+                            {
+                                "name": product.name,
+                                "product_id": product.id,
+                                "product_uom_qty": 2,
+                                "product_uom_id": product_uom_unit.id,
+                            },
+                        )
+                    ],
+                }
+            )
+        )
+        sale.action_confirm()
+        picking = sale.picking_ids
+        self.assertTrue(picking)
+
+        picking.action_assign()
+        # After partial reservation: move.quantity == 1 < move.product_qty == 2
+        move = picking.move_ids[0]
+        self.assertEqual(move.state, "partially_available")
+
+        # Mark the reserved move-line as picked so the outer filter passes.
+        for ml in move.move_line_ids:
+            ml.picked = True
+
+        # validate_picking should enter the float_compare == -1 branch and
+        # set each move_line.quantity = move_line.quantity_product_uom
+        picking.with_context(skip_backorder=True).validate_picking()
+        self.assertEqual(picking.state, "done")

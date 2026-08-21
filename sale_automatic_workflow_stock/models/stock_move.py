@@ -11,7 +11,9 @@ class StockMove(models.Model):
 
     def _get_new_picking_values(self):
         values = super()._get_new_picking_values()
-        sale = self.group_id.sale_id
+        # v19 migration: group_id was removed in Odoo 19, so we link via
+        # sale_line_id.order_id instead
+        sale = self.sale_line_id.order_id[:1]
         if sale:
             values["workflow_process_id"] = sale.workflow_process_id.id
         return values

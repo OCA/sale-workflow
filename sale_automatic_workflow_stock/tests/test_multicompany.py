@@ -14,12 +14,15 @@ class TestMultiCompany(TestMultiCompanyCommon):
     def setUpClass(cls):
         """Setup data for all test cases."""
         super().setUpClass()
-        cls.auto_wkf.validate_picking = True
+        cls.auto_wkf.sudo().validate_picking = True
 
     def create_auto_wkf_order(self, company, customer, product, qty):
         # We need to change to the proper company
-        # to pick up correct company dependent fields
-        SaleOrder = self.env["sale.order"].with_company(company)
+        # to pick up correct company dependent fields.
+        # v19 migration: sudo() is required because without country_id the
+        # AccountTestInvoicingCommon setup does not assign sales ACL groups
+        # to the test user for child companies.
+        SaleOrder = self.env["sale.order"].with_company(company).sudo()
         warehouse = self.env["stock.warehouse"].search(
             [("company_id", "=", company.id)], limit=1
         )
@@ -41,7 +44,8 @@ class TestMultiCompany(TestMultiCompanyCommon):
                             "product_id": product.id,
                             "price_unit": product.list_price,
                             "product_uom_qty": qty,
-                            "product_uom": self.product_uom_unit.id,
+                            # v19: field renamed from product_uom to product_uom_id
+                            "product_uom_id": self.product_uom_unit.id,
                         },
                     )
                 ],
@@ -72,7 +76,9 @@ class TestMultiCompany(TestMultiCompanyCommon):
         self.assertEqual(order_be.state, "draft")
         self.assertEqual(order_fr_daughter.state, "draft")
 
-        self.env["automatic.workflow.job"].run()
+        # v19 migration: automatic.workflow.job is triggered by ir.cron which
+        # runs as user_root (superuser). Use sudo() here to replicate that context.
+        self.env["automatic.workflow.job"].sudo().run()
         self.assertTrue(order_fr.picking_ids)
         self.assertTrue(order_ch.picking_ids)
         self.assertTrue(order_be.picking_ids)
