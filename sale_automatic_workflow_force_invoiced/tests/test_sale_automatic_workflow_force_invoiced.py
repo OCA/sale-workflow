@@ -3,7 +3,6 @@
 
 from odoo.exceptions import ValidationError
 from odoo.tests.common import TransactionCase
-from odoo.tools.safe_eval import safe_eval
 
 
 class TestSaleAutomaticWorkflowForceInvoiced(TransactionCase):
@@ -13,7 +12,7 @@ class TestSaleAutomaticWorkflowForceInvoiced(TransactionCase):
 
         cls.partner = cls.env["res.partner"].create({"name": "Test Partner"})
 
-        product = cls.env.ref("product.product_product_1")
+        product = cls.env["product.product"].create({"name": "Test Product"})
 
         cls.sale_order = cls.env["sale.order"].create(
             {
@@ -49,13 +48,11 @@ class TestSaleAutomaticWorkflowForceInvoiced(TransactionCase):
             }
         )
 
-        sale_model = cls.env["ir.model"].search([("model", "=", "sale.order")], limit=1)
-
         filter_record = cls.env["ir.filters"].create(
             {
                 "name": "Test Filter Force Invoice",
-                "model_id": sale_model.id,
-                "domain": "[('id','=',%d)]" % cls.sale_order.id,
+                "model_id": "sale.order",
+                "domain": f"[('id','=',{cls.sale_order.id})]",
             }
         )
 
@@ -93,14 +90,20 @@ class TestSaleAutomaticWorkflowForceInvoiced(TransactionCase):
         self.assertFalse(other.force_invoiced)
 
     def test_run_with_workflow(self):
+        """Test that run_with_workflow triggers force invoice correctly.
+        It should only trigger on orders matching the workflow domain.
+        """
         job = self.env["automatic.workflow.job"].create({})
+
+        # Assign workflow to sale order
+        self.sale_order.workflow_process_id = self.workflow.id
 
         self.sale_order.company_id = self.env.company
         self.other_sale.company_id = self.env.company
 
-        job._force_invoice_orders(
-            safe_eval(self.workflow.force_invoice_order_filter_id.domain)
-        )
+        # Call the actual run_with_workflow method instead of
+        # _force_invoice_orders directly to cover the method logic
+        job.run_with_workflow(self.workflow)
 
         sale = self.env["sale.order"].browse(self.sale_order.id)
         other = self.env["sale.order"].browse(self.other_sale.id)
@@ -113,9 +116,30 @@ class TestSaleAutomaticWorkflowForceInvoiced(TransactionCase):
             "Sale not matching filter should not be force_invoiced",
         )
 
+    def test_force_invoice_orders_exception(self):
+        """Test that exceptions in _do_force_invoice_orders are caught and logged."""
+        job = self.env["automatic.workflow.job"].create({})
+
+        # We patch _do_force_invoice_orders to raise an Exception
+        from unittest.mock import patch
+
+        with patch.object(
+            type(job), "_do_force_invoice_orders", side_effect=Exception("Test Error")
+        ):
+            order_filter = [("id", "=", self.sale_order.id)]
+            # It should not raise an exception, but catch and log it
+            job._force_invoice_orders(order_filter)
+
+        # The force_invoiced should remain False as it crashed
+        self.assertFalse(self.sale_order.force_invoiced)
+
     def test_force_invoice_constraint_raises_error(self):
+        """Test that force_invoice cannot be combined with create_invoice,
+        validate_invoice, or register_payment.
+        """
         workflow_model = self.env["sale.workflow.process"]
 
+        # Test combination with create_invoice
         workflow = workflow_model.new(
             {
                 "force_invoice": True,
@@ -128,9 +152,49 @@ class TestSaleAutomaticWorkflowForceInvoiced(TransactionCase):
         with self.assertRaises(ValidationError) as cm:
             workflow._check_force_invoice()
 
-        self.assertIn("Force invoice option is not compatible", str(cm.exception))
+        self.assertIn(
+            "Force invoice option is not compatible with: Create Invoice",
+            str(cm.exception),
+        )
+
+        # Test combination with validate_invoice
+        workflow = workflow_model.new(
+            {
+                "force_invoice": True,
+                "create_invoice": False,
+                "validate_invoice": True,
+                "register_payment": False,
+            }
+        )
+
+        with self.assertRaises(ValidationError) as cm:
+            workflow._check_force_invoice()
+
+        self.assertIn(
+            "Force invoice option is not compatible with: Validate Invoice",
+            str(cm.exception),
+        )
+
+        # Test combination with register_payment
+        workflow = workflow_model.new(
+            {
+                "force_invoice": True,
+                "create_invoice": False,
+                "validate_invoice": False,
+                "register_payment": True,
+            }
+        )
+
+        with self.assertRaises(ValidationError) as cm:
+            workflow._check_force_invoice()
+
+        self.assertIn(
+            "Force invoice option is not compatible with: Register Payment",
+            str(cm.exception),
+        )
 
     def test_force_invoice_constraint_allows_valid(self):
+        """Test that force_invoice alone does not raise any constraint error."""
         workflow_model = self.env["sale.workflow.process"]
 
         workflow = workflow_model.new(
@@ -142,4 +206,5 @@ class TestSaleAutomaticWorkflowForceInvoiced(TransactionCase):
             }
         )
 
+        # Should not raise any error
         workflow._check_force_invoice()
