@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from werkzeug.urls import url_encode
 
-from odoo import _, http
+from odoo import http
 from odoo.exceptions import AccessError, MissingError
 from odoo.http import request
 
@@ -14,31 +14,16 @@ class CustomerPortal(CustomerPortal):
         partner = partner.sudo()
         partner.signup_prepare()
         query_string = url_encode(
-            {"token": partner.signup_token, "redirect": redirect_url}
+            {"token": partner._generate_signup_token(), "redirect": redirect_url}
         )
         return f"/web/signup?{query_string}"
 
-    def _get_mandatory_fields(self):
-        mandatory_fields = super()._get_mandatory_fields()
+    def _get_mandatory_billing_address_fields(self, country_sudo):
+        mandatory_fields = super()._get_mandatory_billing_address_fields(country_sudo)
         partner = request.env.user.partner_id
-        if partner.can_edit_vat() and "vat" not in mandatory_fields:
-            mandatory_fields.append("vat")
+        if partner.can_edit_vat():
+            mandatory_fields.add("vat")
         return mandatory_fields
-
-    @http.route()
-    def account(self, redirect=None, **post):
-        partner = request.env.user.partner_id
-        country_id = post.get("country_id")
-        if partner.can_edit_country() and country_id and country_id != "False":
-            # The standard portal account flow overwrites posted country_id with the
-            # partner's current country when VAT cannot be edited. If the country is
-            # still empty but allowed to be completed, write it first so the standard
-            # flow can continue without overriding the whole account() method.
-            partner.sudo().write({"country_id": int(country_id)})
-        response = super().account(redirect=redirect, **post)
-        if response.qcontext:
-            response.qcontext["partner_can_edit_country"] = partner.can_edit_country()
-        return response
 
     @http.route()
     def portal_order_page(
@@ -48,7 +33,8 @@ class CustomerPortal(CustomerPortal):
         access_token=None,
         message=False,
         download=False,
-        downpayment=None,
+        payment_amount=None,
+        amount_selection=None,
         **kw,
     ):
         # If disabled, public users can access the portal sale document page.
@@ -68,7 +54,8 @@ class CustomerPortal(CustomerPortal):
                 access_token=access_token,
                 message=message,
                 download=download,
-                downpayment=downpayment,
+                payment_amount=payment_amount,
+                amount_selection=amount_selection,
                 **kw,
             )
         # Do not interfere with report rendering / downloads
@@ -79,7 +66,8 @@ class CustomerPortal(CustomerPortal):
                 access_token=access_token,
                 message=message,
                 download=download,
-                downpayment=downpayment,
+                payment_amount=payment_amount,
+                amount_selection=amount_selection,
                 **kw,
             )
         # Avoid breaking link previewers (WhatsApp/Slack/etc.)
@@ -90,7 +78,8 @@ class CustomerPortal(CustomerPortal):
                 access_token=access_token,
                 message=message,
                 download=download,
-                downpayment=downpayment,
+                payment_amount=payment_amount,
+                amount_selection=amount_selection,
                 **kw,
             )
         # Force login/signup when accessing a quotation via access_token.
@@ -102,7 +91,8 @@ class CustomerPortal(CustomerPortal):
                 access_token=access_token,
                 message=message,
                 download=download,
-                downpayment=downpayment,
+                payment_amount=payment_amount,
+                amount_selection=amount_selection,
                 **kw,
             )
         try:
@@ -112,21 +102,14 @@ class CustomerPortal(CustomerPortal):
         except (AccessError, MissingError):
             return request.redirect("/my")
         partner = order_sudo.partner_id
-        redirect_url = f"/my/orders/{order_id}?access_token={access_token}"
+        redirect_params = {"access_token": access_token}
+        if payment_amount is not None:
+            redirect_params["payment_amount"] = payment_amount
+        if amount_selection is not None:
+            redirect_params["amount_selection"] = amount_selection
+        redirect_url = f"/my/orders/{order_id}?{url_encode(redirect_params)}"
         user = partner.user_ids.filtered("active")[:1]
         if user:
             qs = url_encode({"login": user.login or "", "redirect": redirect_url})
             return request.redirect(f"/web/login?{qs}")
         return request.redirect(self._get_signup_url(partner, redirect_url))
-
-    def details_form_validate(self, data, partner_creation=False):
-        error, error_message = super().details_form_validate(
-            data, partner_creation=partner_creation
-        )
-        partner = request.env.user.partner_id
-        if data.get("country_id") == "False" and partner.can_edit_country():
-            error["country_id"] = "missing"
-            required_msg = _("Some required fields are empty.")
-            if required_msg not in error_message:
-                error_message.append(required_msg)
-        return error, error_message

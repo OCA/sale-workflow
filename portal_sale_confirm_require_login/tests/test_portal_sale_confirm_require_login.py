@@ -42,7 +42,7 @@ class TestPortalSaleConfirmRequireLogin(HttpCase):
                 "login": self.partner.email,
                 "email": self.partner.email,
                 "partner_id": self.partner.id,
-                "groups_id": [Command.set([self.env.ref("base.group_portal").id])],
+                "group_ids": [Command.set([self.env.ref("base.group_portal").id])],
             }
         )
         response = self.url_open(self.portal_url, allow_redirects=False)

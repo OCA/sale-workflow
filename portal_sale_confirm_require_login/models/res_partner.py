@@ -12,8 +12,9 @@ class ResPartner(models.Model):
             return True
         return super().can_edit_vat()
 
-    def can_edit_country(self):
+    def _can_edit_country(self):
         # Allow completing country only if it is missing.
-        # Do not use can_edit_vat(), because that would also unlock VAT in portal.
         self.ensure_one()
-        return not self.country_id or self.can_edit_vat()
+        if not self.country_id:
+            return True
+        return super()._can_edit_country()

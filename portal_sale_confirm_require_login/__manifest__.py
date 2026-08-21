@@ -1,12 +1,12 @@
 # Copyright 2026 Tecnativa S.L. - Pilar Vargas
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
-    "name": "Portal Sale Confirm Require Order",
+    "name": "Portal Sale Confirm Require Login",
     "summary": (
         "Force login/signup to access quotations via token and require partner "
         "information completion before confirming from the portal"
     ),
-    "version": "17.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Sales",
     "author": "Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
