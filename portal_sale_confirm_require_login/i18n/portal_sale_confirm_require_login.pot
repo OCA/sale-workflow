@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0\n"
+"Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -34,6 +34,20 @@ msgid "Contact"
 msgstr ""
 
 #. module: portal_sale_confirm_require_login
+#: model:ir.model.fields,field_description:portal_sale_confirm_require_login.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:portal_sale_confirm_require_login.field_res_partner__display_name
+#: model:ir.model.fields,field_description:portal_sale_confirm_require_login.field_sale_order__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: portal_sale_confirm_require_login
+#: model:ir.model.fields,field_description:portal_sale_confirm_require_login.field_res_config_settings__id
+#: model:ir.model.fields,field_description:portal_sale_confirm_require_login.field_res_partner__id
+#: model:ir.model.fields,field_description:portal_sale_confirm_require_login.field_sale_order__id
+msgid "ID"
+msgstr ""
+
+#. module: portal_sale_confirm_require_login
 #: model_terms:ir.ui.view,arch_db:portal_sale_confirm_require_login.res_config_settings_view_form_inherit_portal_sale_confirm_require_login
 msgid ""
 "If enabled, public users must log in before they can access quotations or "
@@ -58,11 +72,4 @@ msgstr ""
 #. module: portal_sale_confirm_require_login
 #: model_terms:ir.ui.view,arch_db:portal_sale_confirm_require_login.sale_order_portal_template
 msgid "Sign &amp; Pay"
-msgstr ""
-
-#. module: portal_sale_confirm_require_login
-#. odoo-python
-#: code:addons/portal_sale_confirm_require_login/controllers/portal.py:0
-#, python-format
-msgid "Some required fields are empty."
 msgstr ""
