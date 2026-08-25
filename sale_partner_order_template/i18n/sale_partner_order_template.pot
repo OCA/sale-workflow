@@ -1,0 +1,30 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_partner_order_template
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_partner_order_template
+#: model:ir.model,name:sale_partner_order_template.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sale_partner_order_template
+#: model:ir.model.fields,field_description:sale_partner_order_template.field_res_partner__sale_order_template_id
+#: model:ir.model.fields,field_description:sale_partner_order_template.field_res_users__sale_order_template_id
+msgid "Quotation Template"
+msgstr ""
+
+#. module: sale_partner_order_template
+#: model:ir.model,name:sale_partner_order_template.model_sale_order
+msgid "Sales Order"
+msgstr ""

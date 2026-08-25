@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_partner_form" model="ir.ui.view">
+        <field name="name">res.partner.form.view.sale.partner.order.template</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//page[@name='sales_purchases']//group[@name='sale']"
+                position="inside"
+            >
+                <field name="sale_order_template_id" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
