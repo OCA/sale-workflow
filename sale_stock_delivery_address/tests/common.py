@@ -26,7 +26,7 @@ class TestStockSourcingAddressCommon(TransactionCase):
             {"name": "Address 2", "parent_id": cls.partner.id, "type": "delivery"}
         )
         cls.product = cls.product_model.create(
-            {"name": "Test product", "is_storable": True}
+            {"name": "Test product", "detailed_type": "product"}
         )
 
         # Create route for secondary customer location:
@@ -42,7 +42,6 @@ class TestStockSourcingAddressCommon(TransactionCase):
                 "location_dest_id": cls.customer_loc_secondary.id,
                 "location_src_id": cls.warehouse.lot_stock_id.id,
                 "action": "pull_push",
-                "location_dest_from_rule": True,
                 "warehouse_id": cls.warehouse.id,
                 "picking_type_id": cls.env.ref("stock.picking_type_out").id,
                 "name": "Stock -> Customers 2",

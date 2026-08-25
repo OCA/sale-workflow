@@ -5,7 +5,7 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/list" position="inside">
+            <xpath expr="//field[@name='order_line']/tree" position="inside">
                 <field
                     name="dest_address_id"
                     readonly="context.get('product_updatable')"
@@ -35,7 +35,7 @@
                     name="dest_address_id"
                     readonly="context.get('product_updatable')"
                 />
-                <field name="product_updatable" invisible="1" />
+                <field name="product_updatable" column_invisible="1" />
             </field>
         </field>
     </record>
