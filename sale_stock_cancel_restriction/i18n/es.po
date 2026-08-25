@@ -17,6 +17,24 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: sale_stock_cancel_restriction
+#: model:ir.model.fields,help:sale_stock_cancel_restriction.field_stock_warehouse__restrict_sale_cancel_after_delivery
+msgid ""
+"\n"
+"    If set, will block cancellation of sale orders if any delivery is done.\n"
+"    Otherwise, it will block cancellation when any transfer is done.\n"
+msgstr ""
+
+#. module: sale_stock_cancel_restriction
+#: model:ir.model.fields,field_description:sale_stock_cancel_restriction.field_stock_warehouse__restrict_sale_cancel_after_delivery
+msgid "Restrict Sale Cancel After Delivery"
+msgstr ""
+
+#. module: sale_stock_cancel_restriction
 #: model:ir.model,name:sale_stock_cancel_restriction.model_sale_order
 msgid "Sales Order"
 msgstr "Pedido de venta"
+
+#. module: sale_stock_cancel_restriction
+#: model:ir.model,name:sale_stock_cancel_restriction.model_stock_warehouse
+msgid "Warehouse"
+msgstr ""
