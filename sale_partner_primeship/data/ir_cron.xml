@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record forcecreate="True" id="ir_cron_check_primeship_expired" model="ir.cron">
+        <field name="name">Check for Expired Partner Primeships</field>
+        <field name="model_id" ref="sale_partner_primeship.model_res_partner" />
+        <field name="state">code</field>
+        <field name="code">model._check_expired_primeships()</field>
+        <field name="active" eval="True" />
+        <field name="user_id" ref="base.user_root" />
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field
+            name="nextcall"
+            eval="(datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d 00:00:00')"
+        />
+    </record>
+</odoo>

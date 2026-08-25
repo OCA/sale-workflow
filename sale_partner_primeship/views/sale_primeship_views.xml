@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_primeship_search" model="ir.ui.view">
+        <field name="name">sale.primeship.search</field>
+        <field name="model">sale.primeship</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="start_date" />
+                <field name="end_date" />
+                <field name="partner_id" />
+                <field name="current" />
+            </search>
+        </field>
+    </record>
+
+    <record id="sale_primeship_action" model="ir.actions.act_window">
+        <field name="name">Primeship</field>
+        <field name="res_model">sale.primeship</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="sale_primeship_view_form" model="ir.ui.view">
+        <field name="name">sale.primeship.form</field>
+        <field name="model">sale.primeship</field>
+        <field name="arch" type="xml">
+            <form string="Primeship">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+              <field name="partner_id" readonly="1" />
+               Primeship
+            </h1>
+                    </div>
+                    <group>
+                        <field name="start_date" />
+                        <field name="end_date" />
+                        <field name="order_id" readonly="1" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="sale_primeship_view_tree" model="ir.ui.view">
+        <field name="name">sale.primeship.list</field>
+        <field name="model">sale.primeship</field>
+        <field name="arch" type="xml">
+            <list string="Primeships">
+                <field name="start_date" />
+                <field name="end_date" />
+                <field name="order_id" />
+                <field name="current" />
+            </list>
+        </field>
+    </record>
+</odoo>

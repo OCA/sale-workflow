@@ -22,8 +22,15 @@ msgstr ""
 
 #. module: sale_order_line_sequence
 #: model_terms:ir.ui.view,arch_db:sale_order_line_sequence.report_saleorder_document_sequence
-msgid "<strong>Line Number</strong>"
-msgstr "<strong>Regel #</strong>"
+msgid "<strong>#</strong>"
+msgstr ""
+
+#. module: sale_order_line_sequence
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr ""
 
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,help:sale_order_line_sequence.field_sale_order_line__visible_sequence
@@ -37,13 +44,19 @@ msgstr ""
 "Geeft de volgorde van deze regel weer bij het tonen van de verkooporder."
 
 #. module: sale_order_line_sequence
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_account_move_line__id
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_line_sequence
 #: model:ir.model,name:sale_order_line_sequence.model_account_move_line
 msgid "Journal Item"
 msgstr "Journaalregel"
 
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line__visible_sequence
-#: model_terms:ir.ui.view,arch_db:sale_order_line_sequence.report_invoice_document_inherit_sale_sequence
 msgid "Line Number"
 msgstr "Regel #"
 
@@ -71,3 +84,6 @@ msgstr "Verkooporderregel"
 #: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line__sequence
 msgid "Sequence"
 msgstr "Volgorde"
+
+#~ msgid "<strong>Line Number</strong>"
+#~ msgstr "<strong>Regel #</strong>"

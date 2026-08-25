@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form (in partner_invoicing_mode)</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="partner_address_restriction_domain" invisible="1" />
+            </field>
+            <field name="partner_invoice_id" position="attributes">
+                <attribute name="domain">partner_address_restriction_domain</attribute>
+            </field>
+            <field name="partner_shipping_id" position="attributes">
+                <attribute name="domain">partner_address_restriction_domain</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>

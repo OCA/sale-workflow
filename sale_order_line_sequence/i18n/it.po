@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-08 00:49+0000\n"
-"PO-Revision-Date: 2023-12-01 15:35+0000\n"
+"PO-Revision-Date: 2026-08-19 07:32+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
 "Language: it\n"
@@ -17,12 +17,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_order_line_sequence
 #: model_terms:ir.ui.view,arch_db:sale_order_line_sequence.report_saleorder_document_sequence
-msgid "<strong>Line Number</strong>"
-msgstr "<strong>Numero riga</strong>"
+msgid "<strong>#</strong>"
+msgstr "<strong>n°</strong>"
+
+#. module: sale_order_line_sequence
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_account_move_line__display_name
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order__display_name
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
 
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,help:sale_order_line_sequence.field_sale_order_line__visible_sequence
@@ -37,13 +44,19 @@ msgstr ""
 "vendita."
 
 #. module: sale_order_line_sequence
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_account_move_line__id
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order__id
+#: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_order_line_sequence
 #: model:ir.model,name:sale_order_line_sequence.model_account_move_line
 msgid "Journal Item"
 msgstr "Movimento contabile"
 
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line__visible_sequence
-#: model_terms:ir.ui.view,arch_db:sale_order_line_sequence.report_invoice_document_inherit_sale_sequence
 msgid "Line Number"
 msgstr "Numero riga"
 
@@ -71,3 +84,6 @@ msgstr "Riga ordine di vendita"
 #: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line__sequence
 msgid "Sequence"
 msgstr "Sequenza"
+
+#~ msgid "<strong>Line Number</strong>"
+#~ msgstr "<strong>Numero riga</strong>"

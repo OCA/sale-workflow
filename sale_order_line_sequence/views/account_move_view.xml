@@ -12,6 +12,8 @@
                 <field
                     name="related_so_sequence"
                     column_invisible="parent.move_type != 'out_invoice'"
+                    string="#"
+                    optional="show"
                 />
             </xpath>
         </field>
