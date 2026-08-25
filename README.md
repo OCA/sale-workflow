@@ -70,6 +70,7 @@ addon | version | maintainers | summary
 [sale_invoice_policy](sale_invoice_policy/) | 18.0.1.1.1 |  | Sales Management: let the user choose the invoice policy on the order
 [sale_invoice_product_not_alone](sale_invoice_product_not_alone/) | 18.0.1.0.0 |  | Set products to not invoice alone
 [sale_invoice_split_payment](sale_invoice_split_payment/) | 18.0.1.0.0 |  | Split by payment term generated invoices from sale orders
+[sale_last_price_info](sale_last_price_info/) | 18.0.1.0.0 |  | Product Last Price Info - Sale
 [sale_line_name_option](sale_line_name_option/) | 18.0.1.0.1 | <a href='https://github.com/yostashiro'><img src='https://github.com/yostashiro.png' width='32' height='32' style='border-radius:50%;' alt='yostashiro'/></a> <a href='https://github.com/aungkokolin1997'><img src='https://github.com/aungkokolin1997.png' width='32' height='32' style='border-radius:50%;' alt='aungkokolin1997'/></a> | Display product description without reference code on sale order lines
 [sale_line_vendor_comment](sale_line_vendor_comment/) | 18.0.1.0.0 |  | Add the vendor comment field to sale order line
 [sale_mail_autosubscribe](sale_mail_autosubscribe/) | 18.0.1.0.0 | <a href='https://github.com/ivantodorovich'><img src='https://github.com/ivantodorovich.png' width='32' height='32' style='border-radius:50%;' alt='ivantodorovich'/></a> | Automatically subscribe partners to their company's sale orders
