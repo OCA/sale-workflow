@@ -151,7 +151,7 @@ addon | version | maintainers | summary
 [sale_shipping_info_helper](sale_shipping_info_helper/) | 16.0.1.0.0 |  | Add shipping amounts on sale order
 [sale_sourced_by_line](sale_sourced_by_line/) | 16.0.1.0.0 |  | Multiple warehouse source locations for Sale order
 [sale_start_end_dates](sale_start_end_dates/) | 16.0.1.0.1 | <a href='https://github.com/alexis-via'><img src='https://github.com/alexis-via.png' width='32' height='32' style='border-radius:50%;' alt='alexis-via'/></a> | Adds start date and end date on sale order lines
-[sale_stock_cancel_restriction](sale_stock_cancel_restriction/) | 16.0.1.0.0 |  | Sale Stock Cancel Restriction
+[sale_stock_cancel_restriction](sale_stock_cancel_restriction/) | 16.0.1.1.0 |  | Sale Stock Cancel Restriction
 [sale_stock_delivery_state](sale_stock_delivery_state/) | 16.0.1.0.2 |  | Change the way to compute the delivery state
 [sale_stock_expiry_date_on_qty_at_date_widget](sale_stock_expiry_date_on_qty_at_date_widget/) | 16.0.1.0.1 | <a href='https://github.com/Shide'><img src='https://github.com/Shide.png' width='32' height='32' style='border-radius:50%;' alt='Shide'/></a> <a href='https://github.com/rafaelbn'><img src='https://github.com/rafaelbn.png' width='32' height='32' style='border-radius:50%;' alt='rafaelbn'/></a> | Show next Expiry Date on Qty at Date Widget
 [sale_stock_line_sequence](sale_stock_line_sequence/) | 16.0.1.0.0 |  | Glue Module for Sale Order Line Sequence and Stock Picking Line Sequence
