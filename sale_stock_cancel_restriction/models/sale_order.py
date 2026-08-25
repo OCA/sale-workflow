@@ -8,9 +8,11 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     def action_cancel(self):
-        """Force to call the cancel method on done picking for having the
-        expected error, as Odoo has now filter out such pickings from the
-        cancel operation.
-        """
-        self.mapped("picking_ids").filtered(lambda r: r.state == "done").action_cancel()
+        # Force to call the cancel method on done picking for having the
+        # expected error, as Odoo has now filter out such pickings from the
+        # cancel operation.
+        domain = [("state", "=", "done")]
+        if self.warehouse_id.restrict_sale_cancel_after_delivery:
+            domain += [("picking_type_id.code", "=", "outgoing")]
+        self.picking_ids.filtered_domain(domain).action_cancel()
         return super().action_cancel()
