@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_invoice_tree" model="ir.ui.view">
+        <field name="name">account.invoice.list</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree" />
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="customer_reference" widget="badge" optional="hide" />
+            </field>
+        </field>
+    </record>
+</odoo>
