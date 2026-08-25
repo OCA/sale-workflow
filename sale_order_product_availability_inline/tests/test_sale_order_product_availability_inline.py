@@ -1,10 +1,12 @@
 # Copyright 2018 Tecnativa - Ernesto Tejeda
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests import Form, TransactionCase
+from odoo.tests import Form
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleOrderProductAvailabilityInline(TransactionCase):
+class TestSaleOrderProductAvailabilityInline(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -47,15 +49,33 @@ class TestSaleOrderProductAvailabilityInline(TransactionCase):
             self.product.with_context(warehouse_id=self.warehouse1.id).free_qty,
             10.0,
         )
-        self.env.ref("product.decimal_product_uom").write({"digits": 3})
+        self.env.ref("uom.decimal_product_uom").write({"digits": 3})
         sale_order_form = Form(
             self.env["sale.order"].with_context(
                 warehouse_id=self.warehouse1.id, so_product_stock_inline=True
             )
         )
+        sale_order_form.partner_id = self.partner
         with sale_order_form.order_line.new() as line_form:
             line_form.product_id = self.product
             self.assertTrue(
                 line_form.product_id.display_name.endswith("(10.000 Units)")
             )
             self.assertFalse(line_form.name.endswith("(10.000 Units)"))
+
+            # Check that the product template's display name also evaluates correctly
+            self.assertTrue(
+                line_form.product_template_id.display_name.endswith("(10.000 Units)")
+            )
+
+        sale_order = sale_order_form.save()
+
+        # Ensure the translated product name respects the inline stock
+        # availability context
+        sale_order_inline = sale_order.with_context(so_product_stock_inline=True)
+        self.assertFalse(
+            sale_order_inline.order_line[0].translated_product_name
+            and sale_order_inline.order_line[0].translated_product_name.endswith(
+                "(10.000 Units)"
+            )
+        )

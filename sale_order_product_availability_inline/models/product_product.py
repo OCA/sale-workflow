@@ -12,15 +12,10 @@ class ProductProduct(models.Model):
         if self.env.context.get("so_product_stock_inline"):
             self = self.with_context(warehouse=self.env.context.get("warehouse"))
             availability = {r.id: [r.free_qty, r.uom_id.display_name] for r in self}
-            precision = self.env["decimal.precision"].precision_get(
-                "Product Unit of Measure"
-            )
+            precision = self.env["decimal.precision"].precision_get("Product Unit")
             for record in self:
-                name = "{} ({:.{}f} {})".format(
-                    record.display_name,
-                    availability[record.id][0],
-                    precision,
-                    availability[record.id][1],
-                )
+                qty = availability[record.id][0]
+                uom_name = availability[record.id][1]
+                name = f"{record.display_name} ({qty:.{precision}f} {uom_name})"
                 record.display_name = name
         return res

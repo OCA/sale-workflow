@@ -18,15 +18,10 @@ class ProductTemplate(models.Model):
                 ]
                 for r in self
             }
-            precision = self.env["decimal.precision"].precision_get(
-                "Product Unit of Measure"
-            )
+            precision = self.env["decimal.precision"].precision_get("Product Unit")
             for record in self:
-                name = "{} ({:.{}f} {})".format(
-                    record.display_name,
-                    availability[record.id][0],
-                    precision,
-                    availability[record.id][1],
-                )
+                qty = availability[record.id][0]
+                uom_name = availability[record.id][1]
+                name = f"{record.display_name} ({qty:.{precision}f} {uom_name})"
                 record.display_name = name
         return res

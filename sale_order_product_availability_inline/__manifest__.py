@@ -2,8 +2,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Sale Order Product Availability Inline",
-    "summary": "Show product availability in sales order line product " "drop-down.",
-    "version": "18.0.1.0.1",
+    "summary": "Show product availability in sales order line product drop-down.",
+    "version": "19.0.1.0.0",
     "development_status": "Mature",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",
