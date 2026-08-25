@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ===========================
 Sale Stock Delivery Address
 ===========================
@@ -17,17 +13,17 @@ Sale Stock Delivery Address
 .. |badge1| image:: https://img.shields.io/badge/maturity-Production%2FStable-green.png
     :target: https://odoo-community.org/page/development-status
     :alt: Production/Stable
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/18.0/sale_stock_delivery_address
+    :target: https://github.com/OCA/sale-workflow/tree/17.0/sale_stock_delivery_address
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-sale_stock_delivery_address
+    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-sale_stock_delivery_address
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -62,12 +58,12 @@ Usage
    |Source Location| The sales order procurements will be run from this
    location |Transfers 2|
 
-.. |partner_locations| image:: https://raw.githubusercontent.com/OCA/sale-workflow/18.0/sale_stock_delivery_address/static/description/partner_locations.gif
-.. |rule| image:: https://raw.githubusercontent.com/OCA/sale-workflow/18.0/sale_stock_delivery_address/static/description/img_rule.png
-.. |sale order destination address| image:: https://raw.githubusercontent.com/OCA/sale-workflow/18.0/sale_stock_delivery_address/static/description/sale_order_destination_address.gif
-.. |Transfers| image:: https://raw.githubusercontent.com/OCA/sale-workflow/18.0/sale_stock_delivery_address/static/description/img_transfers_01.png
-.. |Source Location| image:: https://raw.githubusercontent.com/OCA/sale-workflow/18.0/sale_stock_delivery_address/static/description/source_location.png
-.. |Transfers 2| image:: https://raw.githubusercontent.com/OCA/sale-workflow/18.0/sale_stock_delivery_address/static/description/img_transfers_02.png
+.. |partner_locations| image:: https://raw.githubusercontent.com/OCA/sale-workflow/17.0/sale_stock_delivery_address/static/description/partner_locations.gif
+.. |rule| image:: https://raw.githubusercontent.com/OCA/sale-workflow/17.0/sale_stock_delivery_address/static/description/img_rule.png
+.. |sale order destination address| image:: https://raw.githubusercontent.com/OCA/sale-workflow/17.0/sale_stock_delivery_address/static/description/sale_order_destination_address.gif
+.. |Transfers| image:: https://raw.githubusercontent.com/OCA/sale-workflow/17.0/sale_stock_delivery_address/static/description/img_transfers_01.png
+.. |Source Location| image:: https://raw.githubusercontent.com/OCA/sale-workflow/17.0/sale_stock_delivery_address/static/description/source_location.png
+.. |Transfers 2| image:: https://raw.githubusercontent.com/OCA/sale-workflow/17.0/sale_stock_delivery_address/static/description/img_transfers_02.png
 
 Bug Tracker
 ===========
@@ -75,7 +71,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_stock_delivery_address%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_stock_delivery_address%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -105,6 +101,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/18.0/sale_stock_delivery_address>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/sale_stock_delivery_address>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
