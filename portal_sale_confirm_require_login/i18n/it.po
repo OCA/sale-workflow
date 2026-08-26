@@ -6,47 +6,49 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-08-26 17:46+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: portal_sale_confirm_require_login
 #: model_terms:ir.ui.view,arch_db:portal_sale_confirm_require_login.sale_order_portal_template
 msgid "Accept &amp; Pay"
-msgstr ""
+msgstr "Accetta &amp; Paga"
 
 #. module: portal_sale_confirm_require_login
 #: model_terms:ir.ui.view,arch_db:portal_sale_confirm_require_login.sale_order_portal_template
 msgid "Accept &amp; Sign"
-msgstr ""
+msgstr "Accetta &amp; Firma"
 
 #. module: portal_sale_confirm_require_login
 #: model:ir.model,name:portal_sale_confirm_require_login.model_res_config_settings
 msgid "Config Settings"
-msgstr ""
+msgstr "Impostazioni configurazione"
 
 #. module: portal_sale_confirm_require_login
 #: model:ir.model,name:portal_sale_confirm_require_login.model_res_partner
 msgid "Contact"
-msgstr ""
+msgstr "Contatto"
 
 #. module: portal_sale_confirm_require_login
 #: model:ir.model.fields,field_description:portal_sale_confirm_require_login.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:portal_sale_confirm_require_login.field_res_partner__display_name
 #: model:ir.model.fields,field_description:portal_sale_confirm_require_login.field_sale_order__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nome visualizzato"
 
 #. module: portal_sale_confirm_require_login
 #: model:ir.model.fields,field_description:portal_sale_confirm_require_login.field_res_config_settings__id
 #: model:ir.model.fields,field_description:portal_sale_confirm_require_login.field_res_partner__id
 #: model:ir.model.fields,field_description:portal_sale_confirm_require_login.field_sale_order__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: portal_sale_confirm_require_login
 #: model_terms:ir.ui.view,arch_db:portal_sale_confirm_require_login.res_config_settings_view_form_inherit_portal_sale_confirm_require_login
@@ -54,23 +56,25 @@ msgid ""
 "If enabled, public users must log in before they can access quotations or "
 "orders from portal links."
 msgstr ""
+"Se selezionata, gli utenti pubblici devono accedere prima di accedere ai "
+"preventivi o ordini dai collegamenti del portale."
 
 #. module: portal_sale_confirm_require_login
 #: model_terms:ir.ui.view,arch_db:portal_sale_confirm_require_login.sale_order_portal_template
 msgid "Pay Now"
-msgstr ""
+msgstr "Paga ora"
 
 #. module: portal_sale_confirm_require_login
 #: model:ir.model.fields,field_description:portal_sale_confirm_require_login.field_res_config_settings__portal_sale_access_login_required
 msgid "Require Login To Access Portal Sale Documents"
-msgstr ""
+msgstr "Richiede l'accesso per accedere ai documenti vendite portale"
 
 #. module: portal_sale_confirm_require_login
 #: model:ir.model,name:portal_sale_confirm_require_login.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Ordine di vendita"
 
 #. module: portal_sale_confirm_require_login
 #: model_terms:ir.ui.view,arch_db:portal_sale_confirm_require_login.sale_order_portal_template
 msgid "Sign &amp; Pay"
-msgstr ""
+msgstr "Firma &amp; Paga"
