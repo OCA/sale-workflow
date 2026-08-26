@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+    <template id="report_saleorder" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//t[@t-foreach='lines_to_report']/tr" position="after">
+        <tr>
+            <td colspan="99">
+                <t
+                        t-if="line.elaboration_note"
+                        t-call="sale_elaboration.elaboration_notes"
+                        groups="sale_elaboration.group_elaboration_note_on_order_report"
+                    >
+                    <t t-set="record" t-value="line" />
+                </t>
+                <hr class="mt-2" />
+            </td>
+        </tr>
+        </xpath>
+    </template>
+</data>

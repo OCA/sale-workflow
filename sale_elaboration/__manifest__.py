@@ -24,6 +24,7 @@
         "views/stock_move_line_views.xml",
         "views/stock_picking_views.xml",
         "reports/report_base.xml",
+        "reports/report_saleorder.xml",
         "reports/report_deliveryslip.xml",
         "reports/report_picking_operations.xml",
         "views/product_category_views.xml",

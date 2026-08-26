@@ -12,7 +12,7 @@ class ProductElaborationMixin(models.AbstractModel):
         comodel_name="product.elaboration",
         string="Elaborations",
     )
-    elaboration_note = fields.Char(
+    elaboration_note = fields.Text(
         store=True,
     )
     is_elaboration = fields.Boolean(
