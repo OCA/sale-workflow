@@ -196,6 +196,17 @@ class SaleOrder(models.Model):
             res["sale_type_id"] = self.type_id.id
         return res
 
+    @api.model
+    def _get_invoice_grouping_keys(self) -> list:
+        """
+        When several sale orders are generating invoices,
+        we want to add the sale type in grouping criteria.
+        """
+        keys = super()._get_invoice_grouping_keys()
+        if "type_id" not in keys:
+            keys.append("type_id")
+        return keys
+
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
