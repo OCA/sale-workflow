@@ -1,1 +1,2 @@
 odoo_test_helper
+odoo-addon-stock_service_level @ git+https://github.com/OCA/wms.git@refs/pull/1003/head#subdirectory=stock_service_level
