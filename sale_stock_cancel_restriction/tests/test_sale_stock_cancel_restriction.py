@@ -36,11 +36,9 @@ class TestSaleStockCancelRestriction(BaseCommon):
             self.sale_order.action_cancel()
 
     def test_cancel_sale_order_ok(self):
-        """When canceling the order, the wizard is generated with the
-        model 'sale.order.cancel
-        """
-        wizz = self.sale_order.action_cancel()
+        """When canceling the order, the order is successfully canceled."""
+        self.sale_order.action_cancel()
         self.assertEqual(
-            wizz["res_model"],
-            "sale.order.cancel",
+            self.sale_order.state,
+            "cancel",
         )
