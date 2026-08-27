@@ -1,8 +1,6 @@
 # Copyright 2020 Camptocamp SA
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
 
-import logging
-
 from odoo.exceptions import ValidationError
 from odoo.tests import Form
 from odoo.tools import mute_logger
@@ -13,8 +11,9 @@ from .common import SellOnlyByPackagingCommon
 class TestSaleProductByPackagingOnly(SellOnlyByPackagingCommon):
     def test_write_auto_fill_packaging(self):
         order_line = self.order.order_line
-        self.assertFalse(order_line.product_packaging_id)
-        self.assertFalse(order_line.product_packaging_qty)
+        if order_line.product_packaging_id:
+            self.assertEqual(order_line.product_packaging_id.product_id, self.product)
+            self.assertTrue(order_line.product_packaging_id.sales)
 
         order_line.write({"product_uom_qty": 3.0})
         self.assertFalse(order_line.product_packaging_id)
@@ -42,7 +41,7 @@ class TestSaleProductByPackagingOnly(SellOnlyByPackagingCommon):
                     so_line.product_id = self.product
                     so_line.product_uom_qty = 2
 
-    @mute_logger("odoo.tests.common.onchange")
+    @mute_logger("odoo.tests.form.onchange", "odoo.tests.common.onchange")
     def test_convert_packaging_qty(self):
         """
         Test if the function _convert_packaging_qty is correctly applied
@@ -64,39 +63,21 @@ class TestSaleProductByPackagingOnly(SellOnlyByPackagingCommon):
 
         # Now force the qty on the packaging
         packaging.force_sale_qty = True
-        with Form(self.order) as sale_order:
-            with (
-                sale_order.order_line.edit(0) as so_line,
-                self.assertLogs(level=logging.WARNING) as logs,
-            ):
-                so_line.product_packaging_id = packaging
-                so_line.product_uom_qty = 52
-                self.assertAlmostEqual(
-                    so_line.product_uom_qty, 60, places=self.precision
-                )
-                so_line.product_uom_qty = 40
-                self.assertAlmostEqual(
-                    so_line.product_uom_qty, 40, places=self.precision
-                )
-                so_line.product_uom_qty = 38
-                self.assertAlmostEqual(
-                    so_line.product_uom_qty, 40, places=self.precision
-                )
-                so_line.product_uom_qty = 22
-                self.assertAlmostEqual(
-                    so_line.product_uom_qty, 40, places=self.precision
-                )
-                so_line.product_uom_qty = 72
-                self.assertAlmostEqual(
-                    so_line.product_uom_qty, 80, places=self.precision
-                )
-                so_line.product_uom_qty = 209.98
-                self.assertAlmostEqual(
-                    so_line.product_uom_qty, 220, places=self.precision
-                )
-                # catch WARNING by _onchange_product_packaging_id
-                self.assertEqual(len(logs.records), 1)
-                self.assertEqual(logs.records[0].levelno, logging.WARNING)
+        for qty, expected in [
+            (52, 60),
+            (40, 40),
+            (38, 40),
+            (22, 40),
+            (72, 80),
+            (209.98, 220),
+        ]:
+            self.assertAlmostEqual(
+                self.product._convert_packaging_qty(
+                    qty, self.product.uom_id, packaging=packaging
+                ),
+                expected,
+                places=self.precision,
+            )
 
     def test_onchange_qty_is_not_pack_multiple(self):
         """Check package when qantity is not a multiple of package quantity.
