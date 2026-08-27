@@ -3,7 +3,7 @@
      License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
 <template id="template" xml:space="preserve">
     <t
-        t-name="sale_stock_expiry_date_on_qty_at_date_widget.qtyAtDate"
+        t-name="sale_stock_reservation_issue_on_qty_at_date_widget.qtyAtDate"
         t-inherit="sale_stock.QtyAtDate"
         t-inherit-mode="extension"
     >
@@ -15,7 +15,7 @@
     </t>
 
     <t
-        t-name="sale_stock_expiry_date_on_qty_at_date_widget.QtyAtDatePopover"
+        t-name="sale_stock_reservation_issue_on_qty_at_date_widget.QtyAtDatePopover"
         t-inherit="sale_stock.QtyAtDatePopover"
         t-inherit-mode="extension"
     >
