@@ -193,7 +193,7 @@ addon | version | maintainers | summary
 [sale_warn_option](sale_warn_option/) | 18.0.1.0.2 | <a href='https://github.com/Shide'><img src='https://github.com/Shide.png' width='32' height='32' style='border-radius:50%;' alt='Shide'/></a> <a href='https://github.com/rafaelbn'><img src='https://github.com/rafaelbn.png' width='32' height='32' style='border-radius:50%;' alt='rafaelbn'/></a> | Add Options to Sale Warn Messages
 [sale_wishlist](sale_wishlist/) | 18.0.1.0.0 |  | Handle sale wishlist for partners
 [sales_team_security](sales_team_security/) | 18.0.1.0.0 | <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> <a href='https://github.com/ivantodorovich'><img src='https://github.com/ivantodorovich.png' width='32' height='32' style='border-radius:50%;' alt='ivantodorovich'/></a> | New group for seeing only sales channel's documents
-[sell_only_by_packaging](sell_only_by_packaging/) | 18.0.1.1.0 |  | Manage sale of packaging
+[sell_only_by_packaging](sell_only_by_packaging/) | 18.0.1.1.1 |  | Manage sale of packaging
 [web_widget_product_label_section_and_note_full_label_sale](web_widget_product_label_section_and_note_full_label_sale/) | 18.0.1.0.0 |  | Glue module between web_widget_product_label_section_and_note_full_label and sale.
 
 [//]: # (end addons)
