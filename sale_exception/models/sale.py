@@ -1,6 +1,7 @@
 # Copyright 2011 Akretion, Sodexis
 # Copyright 2018 Akretion
 # Copyright 2019 Camptocamp SA
+# Copyright 2025 Raumschmiede GmbH
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -19,7 +20,6 @@ class ExceptionRule(models.Model):
             "sale.order.line": "cascade",
         },
     )
-    sale_ids = fields.Many2many("sale.order", string="Sales")
 
 
 class SaleOrder(models.Model):
@@ -28,14 +28,8 @@ class SaleOrder(models.Model):
     _order = "main_exception_id asc, date_order desc, name desc"
 
     @api.model
-    def _reverse_field(self):
-        return "sale_ids"
-
-    def detect_exceptions(self):
-        all_exceptions = super().detect_exceptions()
-        lines = self.mapped("order_line")
-        all_exceptions += lines.detect_exceptions()
-        return all_exceptions
+    def _get_sub_exception_field_names(self):
+        return ["order_line"]
 
     @api.model
     def test_all_draft_orders(self):
@@ -79,10 +73,6 @@ class SaleOrder(models.Model):
         orders = self.filtered("ignore_exception")
         orders.write({"ignore_exception": False})
         return res
-
-    def _sale_get_lines(self):
-        self.ensure_one()
-        return self.order_line
 
     @api.model
     def _get_popup_action(self):
