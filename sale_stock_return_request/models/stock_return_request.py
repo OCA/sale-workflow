@@ -1,7 +1,9 @@
 # Copyright 2019 Tecnativa - David Vidal
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from odoo import api, fields, models
-from odoo.osv import expression
+
+# Odoo 19: odoo.osv.expression is deprecated, use odoo.fields.Domain instead
+from odoo.fields import Domain
 
 
 class StockReturnRequest(models.Model):
@@ -61,7 +63,8 @@ class StockReturnRequestLine(models.Model):
     def _get_moves_domain(self):
         domain = super()._get_moves_domain()
         if self.request_id.filter_sale_order_ids:
-            domain = expression.AND(
+            # Odoo 19: Use Domain.AND instead of expression.AND
+            domain = Domain.AND(
                 [
                     domain,
                     [

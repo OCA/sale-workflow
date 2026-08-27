@@ -18,7 +18,7 @@ class SaleOrder(models.Model):
             lambda x: not x.display_type
             and x.product_id.type != "service"
             and float_compare(
-                x.qty_delivered, 0.0, precision_rounding=x.product_uom.rounding
+                x.qty_delivered, 0.0, precision_rounding=x.product_uom_id.rounding
             )
             > 0
         )

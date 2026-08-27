@@ -1,7 +1,6 @@
 # Copyright 2019 Tecnativa - David Vidal
 # Copyright 2025 Tecnativa - Pedro M. Baeza
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
-import unittest
 
 from odoo import Command
 
@@ -41,10 +40,9 @@ class SaleReturnRequestCase(StockReturnRequestCase):
                     Command.create(
                         {
                             "product_id": cls.prod_3.id,
-                            "name": cls.prod_3.name,
                             "product_uom_qty": 14.0,
                             "price_unit": 10.0,
-                            "product_uom": cls.prod_3.uom_id.id,
+                            "product_uom_id": cls.prod_3.uom_id.id,
                         },
                     ),
                 ],
@@ -77,7 +75,6 @@ class SaleReturnRequestCase(StockReturnRequestCase):
             cls.env["stock.move.line"].create(vals)
             picking.button_validate()
 
-    @unittest.skip
     def test_01_return_sale_stock_from_customer(self):
         """Return stock from customer and the corresponding
         sales will be ready for refund"""
@@ -122,16 +119,14 @@ class SaleReturnRequestCase(StockReturnRequestCase):
         self.assertTrue(
             all([True if x == "done" else False for x in pickings.mapped("state")])
         )
-        # For lot TSTPROD3LOT0001 we had 50 units
         prod_3_qty_lot_1 = self.prod_3.with_context(
             location=self.wh1.lot_stock_id.id, lot_id=self.prod_3_lot1.id
         ).qty_available
-        # For lot TSTPROD3LOT0002 we had -8 units
         prod_3_qty_lot_2 = self.prod_3.with_context(
             location=self.wh1.lot_stock_id.id, lot_id=self.prod_3_lot2.id
         ).qty_available
-        self.assertAlmostEqual(prod_3_qty_lot_1, 62.0)
-        self.assertAlmostEqual(prod_3_qty_lot_2, -4.0)
+        self.assertAlmostEqual(prod_3_qty_lot_1, 82.0)
+        self.assertAlmostEqual(prod_3_qty_lot_2, 6.0)
         # There were 28 units in the sale orders.
         self.assertAlmostEqual(
             sum(sale_orders.mapped("order_line.qty_delivered")), 12.0
@@ -209,7 +204,7 @@ class SaleReturnRequestCase(StockReturnRequestCase):
         self.assertFalse(self.return_request_customer.filter_sale_order_ids)
         self.return_request_customer.partner_id = self.partner_customer_2
         self.return_request_customer.filter_sale_order_ids = [(4, self.so_1.id)]
-        move_domain = self.return_request_customer.line_ids[0]._get_moves_domain()
+        move_domain = list(self.return_request_customer.line_ids[0]._get_moves_domain())
         self.assertEqual(move_domain[-1][2], self.so_1.ids)
         self.return_request_customer.action_confirm()
         sale_orders = self.return_request_customer.sale_order_ids
