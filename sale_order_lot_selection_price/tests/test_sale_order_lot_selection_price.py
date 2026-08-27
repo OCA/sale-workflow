@@ -10,6 +10,9 @@ class TestSaleOrderLotSelectionPrice(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
+        cls.env.user.group_ids |= cls.env.ref(
+            "stock.group_production_lot"
+        ) | cls.env.ref("product.group_product_pricelist")
         cls.product = cls.env["product.product"].create(
             {
                 "name": "Test product",
@@ -62,9 +65,9 @@ class TestSaleOrderLotSelectionPrice(BaseCommon):
         )
 
     def test_sale_order_pricelist_list_price(self):
-        self.partner.property_product_pricelist = self.pricelist_list_price
         order_form = Form(self.env["sale.order"])
         order_form.partner_id = self.partner
+        order_form.pricelist_id = self.pricelist_list_price
         with order_form.order_line.new() as line_form:
             line_form.product_id = self.product
             line_form.lot_id = self.lot_a
@@ -82,9 +85,9 @@ class TestSaleOrderLotSelectionPrice(BaseCommon):
         self.assertEqual(line_without_lot.price_unit, 45)  # 45=50-10%
 
     def test_sale_order_pricelist_standard_price(self):
-        self.partner.property_product_pricelist = self.pricelist_standard_price
         order_form = Form(self.env["sale.order"])
         order_form.partner_id = self.partner
+        order_form.pricelist_id = self.pricelist_standard_price
         with order_form.order_line.new() as line_form:
             line_form.product_id = self.product
             line_form.lot_id = self.lot_a
