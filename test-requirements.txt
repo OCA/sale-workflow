@@ -1,0 +1,2 @@
+odoo-addon-stock_lot_list_price  @ git+https://github.com/OCA/stock-logistics-warehouse.git@refs/pull/2631/head#subdirectory=stock_lot_list_price
+odoo-addon-sale_order_lot_selection  @ git+https://github.com/OCA/sale-workflow.git@refs/pull/4385/head#subdirectory=sale_order_lot_selection
