@@ -73,6 +73,7 @@ setuptools.setup(
         'odoo14-addon-sale_order_general_discount_triple',
         'odoo14-addon-sale_order_invoice_amount',
         'odoo14-addon-sale_order_invoicing_finished_task',
+        'odoo14-addon-sale_order_line_cancel',
         'odoo14-addon-sale_order_line_chained_move',
         'odoo14-addon-sale_order_line_date',
         'odoo14-addon-sale_order_line_delivery_state',
