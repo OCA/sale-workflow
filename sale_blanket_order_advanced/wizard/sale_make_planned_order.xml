@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    # Copyright 2026 - TODAY, Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+    <record id="view_sale_make_planned_order" model="ir.ui.view">
+        <field name="name">Sale Orders</field>
+        <field name="model">sale.make.planned.order</field>
+        <field name="arch" type="xml">
+            <form string="Sales Order">
+                <p class="oe_grey">
+                    Orders will be created in draft for this installment
+                    so that you can review them before validation.
+                </p>
+                <footer>
+                    <button
+                        name="create_orders_by_plan"
+                        string="Create Next Order"
+                        type="object"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="create_orders_by_plan"
+                        string="Create All Remaining Orders"
+                        type="object"
+                        context="{'all_remain_orders': True}"
+                        class="btn-primary"
+                    />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sale_make_planned_order" model="ir.actions.act_window">
+        <field name="name">Create Planned Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.make.planned.order</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'active_id': active_id}</field>
+    </record>
+</odoo>
