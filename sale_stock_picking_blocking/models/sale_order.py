@@ -1,5 +1,6 @@
 # Copyright 2019 ForgeFlow S.L.
 #   (http://www.forgeflow.com)
+# Copyright 2026 Therp BV <https://therp.nl>.
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
@@ -25,15 +26,45 @@ class SaleOrder(models.Model):
 
     @api.depends("partner_id", "payment_term_id")
     def _compute_delivery_block_id(self):
-        """Add the 'Default Delivery Block Reason' if set in the partner
-        or in the payment term."""
+        """Set a default delivery block reason from partner or payment term,
+        but do not overwrite an already existing value."""
         for so in self:
-            if so.partner_id.default_delivery_block:
-                so.delivery_block_id = so.partner_id.default_delivery_block
-            else:
-                so.delivery_block_id = (
-                    so.payment_term_id.default_delivery_block_reason_id or False
-                )
+            if so.delivery_block_id:
+                continue
+            so.delivery_block_id = (
+                so.partner_id.default_delivery_block
+                or so.payment_term_id.default_delivery_block_reason_id
+                or False
+            )
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        orders = super().create(vals_list)
+        for order, vals in zip(orders, vals_list):
+            if not vals.get("delivery_block_id"):
+                continue
+            order.delivery_block_id = vals["delivery_block_id"]
+        return orders
+
+    def write(self, vals):
+        preserved = {}
+        if "delivery_block_id" not in vals and (
+            "partner_id" in vals or "payment_term_id" in vals
+        ):
+            preserved = {
+                so.id: so.delivery_block_id.id for so in self if so.delivery_block_id
+            }
+        res = super().write(vals)
+        if not preserved:
+            return res
+        for so in self:
+            preserved_id = preserved.get(so.id)
+            if not preserved_id:
+                continue
+            if so.delivery_block_id:
+                continue
+            so.delivery_block_id = preserved_id
+        return res
 
     def action_remove_delivery_block(self):
         """Remove the delivery block and create procurements as usual."""
