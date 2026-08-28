@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form_inherit_tax_breakdown" model="ir.ui.view">
+        <field name="name">sale.order.form.tax.breakdown</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet//field[@name='amount_untaxed']" position="after">
+                <field
+                    name="amount_by_group"
+                    widget="tax-group-custom-field"
+                    nolabel="1"
+                    colspan="2"
+                    attrs="{'invisible': [('amount_tax', '=', 0)]}"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
