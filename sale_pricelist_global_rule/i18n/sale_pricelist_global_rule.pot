@@ -1,0 +1,100 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_pricelist_global_rule
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_pricelist_global_rule
+#: model:ir.model.fields,field_description:sale_pricelist_global_rule.field_product_pricelist_item__applied_on
+msgid "Apply On"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: model:ir.model.fields.selection,name:sale_pricelist_global_rule.selection__product_pricelist_item__applied_on__5_global_product_category
+msgid "Global - Product category"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: model:ir.model.fields.selection,name:sale_pricelist_global_rule.selection__product_pricelist_item__applied_on__4_global_product_template
+msgid "Global - Product template"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: code:addons/sale_pricelist_global_rule/models/product_pricelist.py:0
+#, python-format
+msgid "Global category: %s"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: code:addons/sale_pricelist_global_rule/models/product_pricelist.py:0
+#, python-format
+msgid "Global product: %s"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: model:ir.model.fields,field_description:sale_pricelist_global_rule.field_sale_order__has_pricelist_global
+msgid "Has Pricelist Global"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: model:ir.model.fields,field_description:sale_pricelist_global_rule.field_sale_order__need_recompute_pricelist_global
+msgid "Need Recompute Pricelist Global"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: code:addons/sale_pricelist_global_rule/models/product_pricelist.py:0
+#, python-format
+msgid ""
+"Please specify the category for which this global rule should be applied"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: code:addons/sale_pricelist_global_rule/models/product_pricelist.py:0
+#, python-format
+msgid ""
+"Please specify the product for which this global rule should be applied"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: model:ir.model,name:sale_pricelist_global_rule.model_product_pricelist
+msgid "Pricelist"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: model:ir.model.fields,help:sale_pricelist_global_rule.field_product_pricelist_item__applied_on
+msgid "Pricelist Item applicable on selected option"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: model:ir.model,name:sale_pricelist_global_rule.model_product_pricelist_item
+msgid "Pricelist Rule"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: model:ir.model.fields,field_description:sale_pricelist_global_rule.field_product_pricelist_item__global_product_tmpl_id
+msgid "Product"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: model:ir.model.fields,field_description:sale_pricelist_global_rule.field_product_pricelist_item__global_categ_id
+msgid "Product Category"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: model_terms:ir.ui.view,arch_db:sale_pricelist_global_rule.view_sale_order_form
+msgid "Recompute pricelist global"
+msgstr ""
+
+#. module: sale_pricelist_global_rule
+#: model:ir.model,name:sale_pricelist_global_rule.model_sale_order
+msgid "Sales Order"
+msgstr ""
