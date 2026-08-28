@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 Open Source Integrators
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html). -->
+<odoo>
+
+    <record id="product_category_form_view" model="ir.ui.view">
+        <field name="name">product.category.form.sale.line.auto.section</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view" />
+        <field name="arch" type="xml">
+            <field name="parent_id" position="after">
+                <group string="Sale Order Section Options">
+                    <field name="section_sequence" />
+                    <field name="section_title" />
+                    <field name="section_sort_by" />
+                </group>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_category_list_view" model="ir.ui.view">
+        <field name="name">product.category.list.sale.line.auto.section</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_list_view" />
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute
+                    name="default_order"
+                >section_sequence, display_name</attribute>
+            </tree>
+            <field name="display_name" position="before">
+                <field name="section_sequence" widget="handle" />
+            </field>
+        </field>
+    </record>
+
+</odoo>
