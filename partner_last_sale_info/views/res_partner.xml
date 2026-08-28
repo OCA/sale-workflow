@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Open Source Integrators
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="view_partner_form_last_sale_order">
+        <field name="name">res.partner.form.last.sale.order</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//group[@name='purchase']" position="after">
+                <group string="Sales Info" name="sales_info">
+                    <field name="last_sale_order_date" readonly="1" />
+                    <field name="last_sale_order_id" readonly="1" />
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
