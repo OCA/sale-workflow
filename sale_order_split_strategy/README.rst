@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 =========================
 Sale Order Split Strategy
 =========================
@@ -17,7 +13,7 @@ Sale Order Split Strategy
 .. |badge1| image:: https://img.shields.io/badge/maturity-Alpha-red.png
     :target: https://odoo-community.org/page/development-status
     :alt: Alpha
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -57,13 +53,20 @@ apply on sales order.
 
 ::
 
-   Sales -> Configuration -> Split Startegies
+   Sales -> Configuration -> Split Strategies
 
 The splitting is based on an ir.filter applied on sale.order.line.
 
 Then on sales order, the Split Strategy field allows to select the
 corresponding strategy. After which a button ``Split`` is available on
 the form to split an order.
+
+If the field "Force split" on the SO is checked, the split will occur
+automatically on order confirmation. All orders (the original and the
+split ones) will be confirmed all at once
+
+Default values for "Force split" and "Split Strategy" can be set on the
+contact and will be copied on the Sales Order when the customer is set.
 
 Bug Tracker
 ===========
@@ -82,6 +85,11 @@ Authors
 -------
 
 * Camptocamp
+
+Contributors
+------------
+
+- Akim Juillerat <akim.juillerat@camptocamp.com>
 
 Maintainers
 -----------
