@@ -1,0 +1,1 @@
+This module adds a feature to automatically add members from a department to a sales team.
