@@ -1,4 +1,5 @@
 from odoo.tests.common import TransactionCase
+from odoo import fields
 
 
 class TestSaleOrder(TransactionCase):
@@ -60,15 +61,56 @@ class TestSaleOrder(TransactionCase):
         currency."""
         self.sale_order.currency_id = self.currency_eur
         self.sale_order._compute_amount_company()
-        amount_total_curr_rounded = round(self.sale_order.amount_total_curr, 2)
-        amount_total_converted_rounded = round(
-            self.sale_order.amount_total * self.sale_order.currency_rate, 2
+        # Use currency._convert for expected result
+        conversion_date = (
+            self.sale_order.date_order and self.sale_order.date_order.date()
+            or fields.Date.context_today(self.sale_order)
         )
+        expected = self.sale_order.currency_id._convert(
+            self.sale_order.amount_total,
+            self.sale_order.company_id.currency_id,
+            self.sale_order.company_id,
+            conversion_date,
+        )
+        self.assertAlmostEqual(
+            self.sale_order.amount_total_curr,
+            expected,
+            places=2,
+            msg="Amount in company currency should be converted using _convert method.",
+        )
+
+    def test_03_amount_total_curr_reversed_currency(self):
+        """Test conversion when company currency is EUR and sale order is USD."""
+        # Create a new company with EUR currency to avoid UserError
+        new_company = self.env['res.company'].create({
+            'name': 'TestCo EUR',
+            'currency_id': self.currency_eur.id,
+        })
+        # Reassign order to new company
+        self.sale_order.company_id = new_company
+        # Ensure company_currency_id is updated
         self.assertEqual(
-            amount_total_curr_rounded,
-            amount_total_converted_rounded,
-            msg=(
-                "Amount in company currency should be converted "
-                "using the currency rate."
-            ),
+            self.sale_order.company_currency_id,
+            self.currency_eur,
+            msg="Company currency should be EUR."
+        )
+        # Sale currency USD
+        self.sale_order.currency_id = self.currency_usd
+        self.sale_order._compute_amount_company()
+        # Expected USD->EUR conversion
+        conversion_date = (
+            self.sale_order.date_order and self.sale_order.date_order.date()
+            or fields.Date.context_today(self.sale_order)
+        )
+        expected = self.sale_order.currency_id._convert(
+            self.sale_order.amount_total,
+            self.sale_order.company_id.currency_id,
+            self.sale_order.company_id,
+            conversion_date,
+        )
+        self.assertAlmostEqual(
+            self.sale_order.amount_total_curr,
+            expected,
+            places=2,
+            msg="Reversed conversion using _convert should match expected."
         )

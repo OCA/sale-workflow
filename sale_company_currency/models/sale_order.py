@@ -23,11 +23,21 @@ class SaleOrder(models.Model):
         store=True,
     )
 
-    @api.depends("amount_total", "currency_rate")
+    @api.depends("amount_total", "currency_id", "company_id", "date_order")
     def _compute_amount_company(self):
         for order in self:
-            if order.currency_id.id == order.company_id.currency_id.id:
-                to_amount = order.amount_total
+            # order.currency_id == order.company_id.currency_id: 
+            if order.currency_id == order.company_id.currency_id:
+                order.amount_total_curr = order.amount_total
             else:
-                to_amount = order.amount_total * order.currency_rate
-            order.amount_total_curr = to_amount
+                # Convert order amount to company currency
+                conversion_date = (
+                    order.date_order and order.date_order.date()
+                    or fields.Date.context_today(self)
+                )
+                order.amount_total_curr = order.currency_id._convert(
+                    order.amount_total,
+                    order.company_id.currency_id,
+                    order.company_id,
+                    conversion_date,
+                )
