@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Sale Order Form View - Add fields to order lines -->
+    <record id="view_order_form_inherit_milestone_project" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.milestone.project</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <!-- Add fields to tree view -->
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
+                position="after"
+            >
+                <field name="show_project_milestone_field" invisible="1" />
+                <field name="project_id" invisible="1" />
+                <field
+                    name="existing_project_id"
+                    optional="hide"
+                    attrs="{'invisible': [('show_project_milestone_field', '=', False)], 'readonly': ['|', ('project_id', '!=', False), ('parent.state', 'in', ['done', 'cancel'])]}"
+                />
+                <field
+                    name="existing_milestone_id"
+                    optional="hide"
+                    context="{'default_project_id': existing_project_id or project_id}"
+                    attrs="{'invisible': [('show_project_milestone_field', '=', False)], 'readonly': ['|', ('project_id', '!=', False), ('parent.state', 'in', ['done', 'cancel'])]}"
+                />
+            </xpath>
+            <!-- Add fields to form view -->
+            <xpath
+                expr="//field[@name='order_line']/form//field[@name='product_uom_qty']"
+                position="after"
+            >
+                <field name="show_project_milestone_field" invisible="1" />
+                <field name="project_id" invisible="1" />
+                <field
+                    name="existing_project_id"
+                    attrs="{'invisible': [('show_project_milestone_field', '=', False)], 'readonly': ['|', ('project_id', '!=', False), ('parent.state', 'in', ['done', 'cancel'])]}"
+                />
+                <field
+                    name="existing_milestone_id"
+                    context="{'default_project_id': existing_project_id or project_id}"
+                    attrs="{'invisible': [('show_project_milestone_field', '=', False)], 'readonly': ['|', ('project_id', '!=', False), ('parent.state', 'in', ['done', 'cancel'])]}"
+                />
+            </xpath>
+            <!-- Add button for linking existing milestones (only visible after confirmation) -->
+            <xpath expr="//field[@name='order_line']/tree" position="inside">
+                <button
+                    name="action_link_existing_milestone"
+                    type="object"
+                    string="Link Milestone"
+                    icon="fa-link"
+                    attrs="{'invisible': ['|', '|', '|', ('show_project_milestone_field', '=', False), ('existing_milestone_id', '=', False), ('parent.state', '!=', 'sale'), ('project_id', '!=', False)]}"
+                    help="Link the selected existing milestone to this sale order line"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
