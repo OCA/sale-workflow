@@ -1,7 +1,7 @@
 # Copyright 2018 Tecnativa - Ernesto Tejeda
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import Form, TransactionCase
 
 
 class TestSaleOrderLinePriceHistory(TransactionCase):
@@ -156,3 +156,30 @@ class TestSaleOrderLinePriceHistory(TransactionCase):
         history_line.action_set_price()
         self.assertEqual(self.sale_order_line_3.price_unit, 10)
         self.assertEqual(self.sale_order_line_3.discount, 5)
+
+    def test_order_partner_id_syncs_on_partner_change(self):
+        """order_partner_id must update when the order's partner changes."""
+        order = self.env["sale.order"].create({"partner_id": self.partner_1.id})
+        self.env["sale.order.line"].create(
+            {
+                "order_id": order.id,
+                "name": self.product.name,
+                "product_id": self.product.id,
+                "product_uom_qty": 1,
+                "product_uom": self.product.uom_id.id,
+                "price_unit": 10,
+            }
+        )
+        line = order.order_line[0]
+        self.assertEqual(line.order_partner_id, self.partner_1)
+
+        # Change partner via Form (simulates browser save)
+        form = Form(order)
+        form.partner_id = self.partner_2
+        form.save()
+
+        self.assertEqual(
+            line.order_partner_id,
+            self.partner_2,
+            "order_partner_id should sync when partner_id changes on order",
+        )
