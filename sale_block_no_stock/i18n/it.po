@@ -1,0 +1,313 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_block_no_stock
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2024-07-08 08:59+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#. module: sale_block_no_stock
+#: model_terms:ir.ui.view,arch_db:sale_block_no_stock.res_config_settings_view_form
+msgid ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"Values set here are company-"
+"specific.\" groups=\"base.group_multi_company\"/>"
+msgstr ""
+"<span class=\"fa fa-lg fa-building-o\" title=\"I valori impostati qui sono "
+"specifici per azienda.\" groups=\"base.group_multi_company\"/>"
+
+#. module: sale_block_no_stock
+#: model_terms:ir.ui.view,arch_db:sale_block_no_stock.sale_order_block_wizard_view
+msgid "Adjust Packaging Quantity"
+msgstr "Correzione quantità confezione"
+
+#. module: sale_block_no_stock
+#: model_terms:ir.ui.view,arch_db:sale_block_no_stock.sale_order_block_wizard_view
+msgid "Adjust UoM Quantity"
+msgstr "Correzione UdM quantità"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_res_company__sale_line_block_allowed_groups
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_res_config_settings__sale_line_block_allowed_groups
+msgid "Allowed Groups to bypass the block"
+msgstr "Gruppi autorizzati a superare il blocco"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard__confirmation_allowed
+msgid "Allowed to confirm"
+msgstr "Autorizzato alla conferma"
+
+#. module: sale_block_no_stock
+#: model_terms:ir.ui.view,arch_db:sale_block_no_stock.res_config_settings_view_form
+msgid "Avoid selling more product than you have in stock or planned"
+msgstr "Evita di vendere più prodotti di quelli in giacenza o pianificati"
+
+#. module: sale_block_no_stock
+#: model_terms:ir.ui.view,arch_db:sale_block_no_stock.res_config_settings_view_form
+msgid "Blocking sales due to lack of stock"
+msgstr "Blocco delle vendite per mancanza di giacenza"
+
+#. module: sale_block_no_stock
+#. odoo-python
+#: code:addons/sale_block_no_stock/wizard/sale_order_block_wizard.py:0
+#, python-format
+msgid "Cannot launch wizard from sale orders from different companies."
+msgstr ""
+"Non si può avviare la procedura guidata da ordini di vendita da aziende "
+"diverse."
+
+#. module: sale_block_no_stock
+#: model_terms:ir.ui.view,arch_db:sale_block_no_stock.sale_order_block_wizard_view
+msgid "Close"
+msgstr "Chiudi"
+
+#. module: sale_block_no_stock
+#: model:ir.model,name:sale_block_no_stock.model_res_company
+msgid "Companies"
+msgstr "Aziende"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__company_id
+msgid "Company"
+msgstr "Azienda"
+
+#. module: sale_block_no_stock
+#: model:ir.model,name:sale_block_no_stock.model_res_config_settings
+msgid "Config Settings"
+msgstr "Impostazioni configurazione"
+
+#. module: sale_block_no_stock
+#: model_terms:ir.ui.view,arch_db:sale_block_no_stock.sale_order_block_wizard_view
+msgid "Confirm anyway"
+msgstr "Conferma comunque"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard__create_uid
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard__create_date
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard__display_name
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_block_no_stock
+#: model_terms:ir.ui.view,arch_db:sale_block_no_stock.res_config_settings_view_form
+msgid "Field to compare against the quantity demanded"
+msgstr "Campo ca confrontare con la quantità richiesta"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_res_company__sale_line_field_block
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_res_config_settings__sale_line_field_block
+msgid "Field to compare quantities on Sale Order Lines"
+msgstr "Campo per confrontare le quantità nelle righe dell'ordine di vendita"
+
+#. module: sale_block_no_stock
+#: model_terms:ir.ui.view,arch_db:sale_block_no_stock.res_config_settings_view_form
+msgid "Groups allowed to bypass the block"
+msgstr "Gruppi autorizzati a superare il blocco"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard__id
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard__is_packaging_adjustable
+msgid "Is Packaging Adjustable"
+msgstr "È possibile correggere l'imballaggio"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard__is_uom_adjustable
+msgid "Is Uom Adjustable"
+msgstr "È possibile correggere l'UdM"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard____last_update
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line____last_update
+msgid "Last Modified on"
+msgstr "Ultima modifica il"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard__write_uid
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard__write_date
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__product_packaging_allowed_max_qty
+msgid "Max. Qty. (Pkg.)"
+msgstr "Qt.à max (Imb.)"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__product_uom_allowed_max_qty
+msgid "Max. Qty. (UoM)"
+msgstr "Qt.à max (UdM)"
+
+#. module: sale_block_no_stock
+#: model_terms:ir.ui.view,arch_db:sale_block_no_stock.sale_order_block_wizard_view
+msgid "Move to New Order"
+msgstr "Sposta a nuovo ordine"
+
+#. module: sale_block_no_stock
+#. odoo-python
+#: code:addons/sale_block_no_stock/wizard/sale_order_block_wizard.py:0
+#, python-format
+msgid "Order confirmed with errors by %s."
+msgstr "Ordine confermato con errori da %s."
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__product_packaging_id
+msgid "Packaging"
+msgstr "Imballaggio"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__product_id
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: sale_block_no_stock
+#. odoo-python
+#: code:addons/sale_block_no_stock/wizard/sale_order_block_wizard.py:0
+#, python-format
+msgid ""
+"Product <b>%(product)s</b> adjusted from <b>%(init_qty)s</b> %(uom)s to <b>"
+"%(final_qty)s</b> %(uom)s."
+msgstr ""
+"Prodotto <b>%(product)s</b> rettificato da <b>%(init_qty)s</b> %(uom)s a "
+"<b>%(final_qty)s</b> %(uom)s."
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__product_packaging_qty
+msgid "Qty. (Pkg.)"
+msgstr "Qt.à (Imb.)"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__product_uom_qty
+msgid "Qty. (UoM)"
+msgstr "Qt.à (UdM)"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard__sale_line_block_ids
+msgid "Sale Block Lines"
+msgstr "Righe vendite bloccate"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__sale_line_id
+msgid "Sale Line"
+msgstr "Riga di vendita"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__order_id
+msgid "Sale Order"
+msgstr "Ordine di vendita"
+
+#. module: sale_block_no_stock
+#: model_terms:ir.ui.view,arch_db:sale_block_no_stock.sale_order_block_wizard_view
+msgid "Sale Order Block"
+msgstr "Blocco ordine di vendita"
+
+#. module: sale_block_no_stock
+#: model:ir.model,name:sale_block_no_stock.model_sale_order_block_wizard
+msgid "Sale Order Block Wizard"
+msgstr "Procedura guidata blocco ordine di vendita"
+
+#. module: sale_block_no_stock
+#: model:ir.model,name:sale_block_no_stock.model_sale_order_block_wizard_line
+msgid "Sale Order Block Wizard Line"
+msgstr "Riga procedura guidata blocco ordine di vendita"
+
+#. module: sale_block_no_stock
+#: model:ir.actions.act_window,name:sale_block_no_stock.sale_order_block_wizard_action
+msgid "Sale Order Blocked to Confirm"
+msgstr "Ordine di vendita bloccato da confermare"
+
+#. module: sale_block_no_stock
+#: model:ir.model,name:sale_block_no_stock.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,help:sale_block_no_stock.field_res_company__sale_line_block_allowed_groups
+#: model:ir.model.fields,help:sale_block_no_stock.field_res_config_settings__sale_line_block_allowed_groups
+msgid ""
+"These groups will be able to bypass the block on the Sale Order Lines if the "
+"quantity is not enough"
+msgstr ""
+"Questi gruppi potranno superare il blocco nelle righe ordine di vendita se "
+"la quantità non è sufficiente"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,help:sale_block_no_stock.field_res_company__sale_line_field_block
+#: model:ir.model.fields,help:sale_block_no_stock.field_res_config_settings__sale_line_field_block
+msgid ""
+"This field will be checked to block the Sale Order Lines if the quantity is "
+"not enough"
+msgstr ""
+"Questo campo sarà selezionato per bloccare le righe ordine di vendita se la "
+"quantità non è sufficiente"
+
+#. module: sale_block_no_stock
+#: model_terms:ir.ui.view,arch_db:sale_block_no_stock.sale_order_block_wizard_view
+msgid ""
+"This order cannot be confirmed because it contains products that are not in "
+"stock. Please manage the following products before confirming the order."
+msgstr ""
+"Questo ordine non può essere confermato perché contiene prodotti che non "
+"hanno giacenza. Gestire i seguenti prodotti prima di confermare l'ordine."
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__product_uom
+msgid "UoM"
+msgstr "UdM"
+
+#. module: sale_block_no_stock
+#: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__wizard_id
+msgid "Wizard"
+msgstr "Procedura guidata"
+
+#. module: sale_block_no_stock
+#: model_terms:ir.ui.view,arch_db:sale_block_no_stock.sale_order_block_wizard_view
+msgid "You are going to confirm the Sale Order with not solved lines"
+msgstr "Si sta confermando l'ordinei di vendita senza righe risolte"
+
+#. module: sale_block_no_stock
+#: model_terms:ir.ui.view,arch_db:sale_block_no_stock.sale_order_block_wizard_view
+msgid "You are going to move pending lines to a new order"
+msgstr "Si stanno spostando le righe in attesa in un nuovo ordine"
+
+#. module: sale_block_no_stock
+#. odoo-python
+#: code:addons/sale_block_no_stock/wizard/sale_order_block_wizard.py:0
+#, python-format
+msgid "You are not allowed to confirm these orders."
+msgstr "Non si è autorizzati a confermare questo ordine."
+
+#. module: sale_block_no_stock
+#: model_terms:ir.ui.view,arch_db:sale_block_no_stock.sale_order_block_wizard_view
+msgid "or"
+msgstr "o"
