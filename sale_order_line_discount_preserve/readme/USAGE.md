@@ -1,0 +1,6 @@
+- Create a new Sale Order
+- Set a customer on the order
+- Set a product and fix a discount on the line
+- Save the order.
+- Edit a product attribute or the quantity
+- Discount must remain unchanged
