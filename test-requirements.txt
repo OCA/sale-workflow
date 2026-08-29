@@ -1,0 +1,1 @@
+odoo-addon-sale_order_lot_selection @ git+https://github.com/OCA/sale-workflow.git@refs/pull/4385/head#subdirectory=sale_order_lot_selection
