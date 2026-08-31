@@ -7,7 +7,7 @@
         <field name="priority">50</field>
         <field name="arch" type="xml">
             <field name="payment_term_id" position="after">
-                <field name="invoice_policy" />
+                <field name="invoice_policy" readonly="state in ['cancel', 'sale']" />
             </field>
         </field>
     </record>
