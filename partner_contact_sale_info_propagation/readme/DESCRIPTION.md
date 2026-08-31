@@ -1,12 +1,11 @@
-This module propagates Salesperson and Sales Teams from Company to
-Contacts
+This module propagates the Salesperson from a company to its contacts.
 
-- Put the *Salesperson* or *Sales Teams* of the parent company when
-  the contact doesn't have a *Salesperson* or *Sales Teams* and this
-  parent company is assigned.
-- When the company changes the *Salesperson*, it fills with the same
-  *Salesperson* all the contacts that don't have any or have the
-  previous *Salesperson* of the parent company.
-- When the company changes the *Sales Teams*, it fills with the same
-  *Sales Teams* all the contacts that don't have any or have the
-  previous *Sales Teams* of the parent company.
+Odoo already puts the *Salesperson* of the parent company on a contact
+when the contact is created under it (or moved to it) and the contact has
+no *Salesperson* of its own. This module completes that behavior:
+
+- When the company changes its *Salesperson*, it fills with the same
+  *Salesperson* all the contacts that don't have any or that have the
+  previous *Salesperson* of the company. The change is propagated down
+  the whole contacts hierarchy.
+- Contacts having their own, different *Salesperson* are left untouched.
