@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 =====================================
 Partner contact sale info propagation
 =====================================
@@ -13,33 +17,32 @@ Partner contact sale info propagation
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/17.0/partner_contact_sale_info_propagation
+    :target: https://github.com/OCA/sale-workflow/tree/19.0/partner_contact_sale_info_propagation
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-17-0/sale-workflow-17-0-partner_contact_sale_info_propagation
+    :target: https://translation.odoo-community.org/projects/sale-workflow-19-0/sale-workflow-19-0-partner_contact_sale_info_propagation
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=17.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module propagates Salesperson and Sales Teams from Company to
-Contacts
+This module propagates the Salesperson from a company to its contacts.
 
-- Put the *Salesperson* or *Sales Teams* of the parent company when the
-  contact doesn't have a *Salesperson* or *Sales Teams* and this parent
-  company is assigned.
-- When the company changes the *Salesperson*, it fills with the same
-  *Salesperson* all the contacts that don't have any or have the
-  previous *Salesperson* of the parent company.
-- When the company changes the *Sales Teams*, it fills with the same
-  *Sales Teams* all the contacts that don't have any or have the
-  previous *Sales Teams* of the parent company.
+Odoo already puts the *Salesperson* of the parent company on a contact
+when the contact is created under it (or moved to it) and the contact
+has no *Salesperson* of its own. This module completes that behavior:
+
+- When the company changes its *Salesperson*, it fills with the same
+  *Salesperson* all the contacts that don't have any or that have the
+  previous *Salesperson* of the company. The change is propagated down
+  the whole contacts hierarchy.
+- Contacts having their own, different *Salesperson* are left untouched.
 
 **Table of contents**
 
@@ -51,14 +54,26 @@ Usage
 
 To use this module, if *Contacts* module is installed:
 
-1. Go to *Contacts -> Contacts* and create a new contact with Company
-   radio button checked and a Salesperson selected in *Sales &
-   Purchases* tab
-2. Edit this record and add a new contact child in *Contacts &
-   Addresses* tab
-3. Go to *Contacts -> Contacts* and open the company created (contact
-   type company) and its contact child and you will see they have the
-   same *Salesperson*
+1. Go to *Contacts* and create a new contact with the Company radio
+   button checked and a Salesperson selected in the *Sales & Purchases*
+   tab.
+2. Edit this record and add a new contact child in the *Contacts &
+   Addresses* tab.
+3. Open that child contact and you will see it has the same
+   *Salesperson* as its parent company.
+4. Change the *Salesperson* of the company and you will see that the
+   child contact is updated with the new one.
+
+Changelog
+=========
+
+19.0.1.0.0
+----------
+
+- The *Sales Team* propagation has been removed, as the ``team_id``
+  field no longer exists in contacts since Odoo 18.0. The sales team of
+  a sale order is now derived from its salesperson, so propagating the
+  *Salesperson* is enough.
 
 Bug Tracker
 ===========
@@ -66,7 +81,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20partner_contact_sale_info_propagation%0Aversion:%2017.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20partner_contact_sale_info_propagation%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -87,6 +102,7 @@ Contributors
   - Pedro M. Baeza
   - César A. Sánchez
   - Juan Carlos Oñate
+  - Carlos Roca
 
 Maintainers
 -----------
@@ -101,6 +117,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/17.0/partner_contact_sale_info_propagation>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/19.0/partner_contact_sale_info_propagation>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
