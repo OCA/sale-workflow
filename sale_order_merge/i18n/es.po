@@ -1,0 +1,113 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_merge
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-18 23:33+0000\n"
+"PO-Revision-Date: 2025-09-18 23:33+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order__merge_with
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order_merge__mergeable
+msgid "Can be merged with"
+msgstr "Se puede fusionar con"
+
+#. module: sale_order_merge
+#: model_terms:ir.ui.view,arch_db:sale_order_merge.sale_order_merge_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order_merge__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order_merge__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order_merge__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order__merge_ok
+msgid "Has candidates to merge with"
+msgstr "Tiene candidatos para fusionarse con"
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order_merge__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order_merge__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order_merge__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: sale_order_merge
+#: model_terms:ir.ui.view,arch_db:sale_order_merge.sale_order_form
+#: model_terms:ir.ui.view,arch_db:sale_order_merge.sale_order_merge_form
+msgid "Merge"
+msgstr "Fusionar"
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order_merge__sale_order
+msgid "Merge into"
+msgstr "Fusionar en"
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/models/sale_order.py:0
+#: model:ir.model,name:sale_order_merge.model_sale_order_merge
+#: model_terms:ir.ui.view,arch_db:sale_order_merge.sale_order_merge_form
+#, python-format
+msgid "Merge sale orders"
+msgstr "Fusionar órdenes de venta"
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/wizards/wizard_sale_order_merge.py:0
+#, python-format
+msgid "Merged into %(order)s"
+msgstr "Fusionar en %(order)s"
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/wizards/wizard_sale_order_merge.py:0
+#, python-format
+msgid "Merged sale order"
+msgstr "Orden de venta fusionada"
+
+#. module: sale_order_merge
+#. odoo-python
+#: code:addons/sale_order_merge/wizards/wizard_sale_order_merge.py:0
+#, python-format
+msgid "Order(s) %(orders)s merged into this one"
+msgstr "Pedido(s) %(orders)s se fusionaron en este"
+
+#. module: sale_order_merge
+#: model:ir.model.fields,field_description:sale_order_merge.field_sale_order_merge__to_merge
+msgid "Orders to merge"
+msgstr "Órdenes a fusionar"
+
+#. module: sale_order_merge
+#: model:ir.model,name:sale_order_merge.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
