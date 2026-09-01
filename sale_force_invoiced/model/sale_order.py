@@ -17,7 +17,7 @@ class SaleOrder(models.Model):
         copy=False,
     )
 
-    @api.depends("force_invoiced")
+    @api.depends("force_invoiced", "state", "order_line.invoice_status")
     def _get_invoice_status(self):
         super(SaleOrder, self)._get_invoice_status()
         for order in self.filtered(
