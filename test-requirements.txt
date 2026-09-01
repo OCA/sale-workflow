@@ -1,0 +1,1 @@
+odoo-addon-web_notify @ git+https://github.com/OCA/web.git@refs/pull/3377/head#subdirectory=web_notify
