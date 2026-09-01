@@ -5,7 +5,7 @@
 {
     "name": "Sale Order Pricelist Tax Delivery",
     "summary": "Glue module between delivery and sale_order_pricelist_tax",
-    "version": "14.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "sale",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Akretion, Odoo Community Association (OCA)",
