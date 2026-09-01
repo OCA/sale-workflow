@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 
+from odoo.tests import Form
 from odoo.tests.common import TransactionCase
 
 from .test_tax import TaxCase
@@ -13,7 +14,15 @@ class TaxPriceTaxState(TaxCase, TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.sale = cls.env.ref("sale.sale_order_1")
+        order_form = Form(cls.env["sale.order"].with_context(tracking_disable=True))
+        order_form.partner_id = cls.env.ref("base.res_partner_10")
+        with order_form.order_line.new() as line:
+            line.product_id = cls.product
+            line.product_uom_qty = 1.0
+        with order_form.order_line.new() as line:
+            line.product_id = cls.product
+            line.product_uom_qty = 1.0
+        cls.sale = order_form.save()
         cls.account_rec = cls.env["account.account"].create(
             {
                 "code": "TESTREC",

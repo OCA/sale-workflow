@@ -12,13 +12,127 @@ class TaxCase:
         super().setUpClass()
         cls.env = cls.env(context={"test_pricelist_tax": True})
         cls.env.user.groups_id += cls.env.ref("product.group_product_pricelist")
-        cls.ht_plist = cls.env.ref("sale_order_pricelist_tax.ht_pricelist")
-        cls.ttc_plist = cls.env.ref("sale_order_pricelist_tax.ttc_pricelist")
-        cls.fp_exp = cls.env.ref("sale_order_pricelist_tax.fiscal_position_exp")
-        cls.fp_papeete = cls.env.ref("sale_order_pricelist_tax.fiscal_position_papeete")
-        cls.product = cls.env.ref("sale_order_pricelist_tax.ak_product")
-        cls.tax_exc = cls.env.ref("sale_order_pricelist_tax.account_tax_sale_1")
-        cls.tax_inc = cls.env.ref("sale_order_pricelist_tax.account_tax_sale_2")
+        cls._create_taxes()
+        cls._create_product()
+        cls._create_pricelists()
+        cls._create_fiscal_positions()
+
+    @classmethod
+    def _create_taxes(cls):
+        account_tax = cls.env["account.tax"]
+        cls.tax_exc = account_tax.create(
+            {
+                "name": "Test Sale Tax 20%",
+                "type_tax_use": "sale",
+                "amount": 20.0,
+                "price_include_override": "tax_excluded",
+            }
+        )
+        cls.tax_inc = account_tax.create(
+            {
+                "name": "Test Sale Tax 20% included",
+                "type_tax_use": "sale",
+                "amount": 20.0,
+                "price_include_override": "tax_included",
+            }
+        )
+        cls.tax_exp = account_tax.create(
+            {
+                "name": "Test Export 0%",
+                "type_tax_use": "sale",
+                "amount": 0.0,
+                "price_include_override": "tax_excluded",
+            }
+        )
+        cls.tax_pap_1 = account_tax.create(
+            {
+                "name": "Test Papeete Sale Tax 16% included",
+                "type_tax_use": "sale",
+                "amount": 16.0,
+                "price_include_override": "tax_included",
+            }
+        )
+        cls.tax_pap_2 = account_tax.create(
+            {
+                "name": "Test Papeete Sale Tax 1% included",
+                "type_tax_use": "sale",
+                "amount": 1.0,
+                "price_include_override": "tax_included",
+            }
+        )
+        cls.tax_exc.equivalent_tax_inc_id = cls.tax_inc
+
+    @classmethod
+    def _create_product(cls):
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "ak product",
+                "type": "consu",
+                "list_price": 10.0,
+                "taxes_id": [(6, 0, cls.tax_inc.ids)],
+            }
+        )
+
+    @classmethod
+    def _create_pricelists(cls):
+        cls.ht_plist = cls.env["product.pricelist"].create(
+            {"name": "Prix HT", "price_include_taxes": False}
+        )
+        cls.ttc_plist = cls.env["product.pricelist"].create(
+            {"name": "Prix TTC", "price_include_taxes": True}
+        )
+        cls.env["product.pricelist.item"].create(
+            [
+                {
+                    "pricelist_id": cls.ht_plist.id,
+                    "applied_on": "0_product_variant",
+                    "compute_price": "fixed",
+                    "fixed_price": 10.0,
+                    "product_id": cls.product.id,
+                },
+                {
+                    "pricelist_id": cls.ttc_plist.id,
+                    "applied_on": "0_product_variant",
+                    "compute_price": "fixed",
+                    "fixed_price": 12.0,
+                    "product_id": cls.product.id,
+                },
+            ]
+        )
+
+    @classmethod
+    def _create_fiscal_positions(cls):
+        fiscal_position = cls.env["account.fiscal.position"]
+        cls.fp_exp = fiscal_position.create(
+            {"name": "Import/Export", "sequence": 50, "auto_apply": False}
+        )
+        cls.fp_papeete = fiscal_position.create(
+            {"name": "Papeete", "sequence": 50, "auto_apply": False}
+        )
+        cls.env["account.fiscal.position.tax"].create(
+            [
+                {
+                    "position_id": cls.fp_exp.id,
+                    "tax_src_id": cls.tax_exc.id,
+                    "tax_dest_id": cls.tax_exp.id,
+                },
+                {
+                    "position_id": cls.fp_exp.id,
+                    "tax_src_id": cls.tax_inc.id,
+                    "tax_dest_id": cls.tax_exp.id,
+                },
+                {
+                    "position_id": cls.fp_papeete.id,
+                    "tax_src_id": cls.tax_inc.id,
+                    "tax_dest_id": cls.tax_pap_1.id,
+                },
+                {
+                    "position_id": cls.fp_papeete.id,
+                    "tax_src_id": cls.tax_inc.id,
+                    "tax_dest_id": cls.tax_pap_2.id,
+                },
+            ]
+        )
 
     def _create_sale_order(self, pricelist):
         order_form = Form(self.env["sale.order"].with_context(tracking_disable=True))
@@ -110,7 +224,7 @@ class TaxCaseBaseTaxInc(TaxCase, TransactionCase):
 
         self.assertEqual(
             m.exception.args[0],
-            "Equivalent tax exclude for 'Demo Sale Tax 20% included' is missing",
+            "Equivalent tax exclude for 'Test Sale Tax 20% included' is missing",
         )
 
 
@@ -128,5 +242,5 @@ class TaxCaseBaseTaxExc(TaxCase, TransactionCase):
             self._create_sale_order(self.ttc_plist)
         self.assertEqual(
             m.exception.args[0],
-            "Equivalent tax include for 'Demo Sale Tax 20%' is missing",
+            "Equivalent tax include for 'Test Sale Tax 20%' is missing",
         )
