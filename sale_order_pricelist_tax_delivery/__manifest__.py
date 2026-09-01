@@ -6,17 +6,16 @@
     "name": "Sale Order Pricelist Tax Delivery",
     "summary": "Glue module between delivery and sale_order_pricelist_tax",
     "version": "14.0.1.0.0",
-    "category":  "sale",
-    "website":  "https://akretion.com",
-    "author":  "Akretion, Odoo Community Association (OCA)", 
+    "category": "sale",
+    "website": "https://github.com/OCA/sale-workflow",
+    "author": "Akretion, Odoo Community Association (OCA)",
     "license": "AGPL-3",
-    "maintainers":["Kev-Roche"],
+    "maintainers": ["Kev-Roche"],
     "application": False,
     "installable": True,
     "depends": [
         "sale_order_pricelist_tax",
         "delivery",
     ],
-    "data": [
-    ],
+    "data": [],
 }

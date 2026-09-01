@@ -2,7 +2,7 @@
 # @author Kévin Roche <kevin.roche@akretion.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import api, fields, models
+from odoo import models
 
 
 class SaleOrder(models.Model):
@@ -10,7 +10,7 @@ class SaleOrder(models.Model):
 
     def action_open_delivery_wizard(self):
         res = super().action_open_delivery_wizard()
-        res["context"]["price_include_taxes"] = self.pricelist_id and self.pricelist_id.price_include_taxes
+        res["context"]["price_include_taxes"] = (
+            self.pricelist_id and self.pricelist_id.price_include_taxes
+        )
         return res
-    
-
