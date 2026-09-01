@@ -5,13 +5,10 @@
         <field name="inherit_id" ref="account.view_tax_form" />
         <field name="arch" type="xml">
             <field name="price_include" position="after">
-                <field
-                    name="equivalent_tax_inc_id"
-                    attrs="{'invisible':[('price_include','=', True)]}"
-                />
+                <field name="equivalent_tax_inc_id" invisible="price_include" />
                 <field
                     name="equivalent_tax_exc_id"
-                    attrs="{'invisible':[('price_include','=', False)]}"
+                    invisible="not price_include"
                     widget="many2many_tags"
                 />
             </field>

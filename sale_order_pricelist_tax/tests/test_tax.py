@@ -3,7 +3,7 @@
 
 from odoo.exceptions import UserError
 from odoo.tests import Form
-from odoo.tests.common import SavepointCase
+from odoo.tests.common import TransactionCase
 
 
 class TaxCase:
@@ -11,6 +11,7 @@ class TaxCase:
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context={"test_pricelist_tax": True})
+        cls.env.user.groups_id += cls.env.ref("product.group_product_pricelist")
         cls.ht_plist = cls.env.ref("sale_order_pricelist_tax.ht_pricelist")
         cls.ttc_plist = cls.env.ref("sale_order_pricelist_tax.ttc_pricelist")
         cls.fp_exp = cls.env.ref("sale_order_pricelist_tax.fiscal_position_exp")
@@ -37,7 +38,7 @@ class TaxCase:
     def test_tax_ht_update(self):
         sale = self._create_sale_order(self.ttc_plist)
         sale.pricelist_id = self.ht_plist
-        sale.update_prices()
+        sale.action_update_prices()
         self.assertEqual(sale.order_line[0].price_unit, 10)
         self.assertEqual(sale.amount_total, 12)
         self.assertEqual(sale.amount_untaxed, 10)
@@ -47,14 +48,14 @@ class TaxCase:
 
         # Set fiscal position
         sale.write({"fiscal_position_id": self.fp_exp.id})
-        sale.update_prices()
+        sale.action_update_prices()
         self.assertEqual(sale.order_line[0].price_unit, 10)
         self.assertEqual(sale.amount_total, 10)
         self.assertEqual(sale.amount_untaxed, 10)
 
         # Remove fiscal position
         sale.write({"fiscal_position_id": False})
-        sale.update_prices()
+        sale.action_update_prices()
         self.assertEqual(sale.order_line[0].price_unit, 10)
         self.assertEqual(sale.amount_total, 12)
         self.assertEqual(sale.amount_untaxed, 10)
@@ -70,14 +71,14 @@ class TaxCase:
 
         # Set fiscal position
         sale.write({"fiscal_position_id": self.fp_exp.id})
-        sale.update_prices()
+        sale.action_update_prices()
         self.assertEqual(sale.order_line[0].price_unit, 10)
         self.assertEqual(sale.amount_total, 10)
         self.assertEqual(sale.amount_untaxed, 10)
 
         # Remove fiscal position
         sale.write({"fiscal_position_id": False})
-        sale.update_prices()
+        sale.action_update_prices()
         self.assertEqual(sale.order_line[0].price_unit, 12)
         self.assertEqual(sale.amount_total, 12)
         self.assertEqual(sale.amount_untaxed, 10)
@@ -92,24 +93,30 @@ class TaxCase:
 
         # Set fiscal position
         sale.write({"fiscal_position_id": self.fp_papeete.id})
-        sale.update_prices()
+        sale.action_update_prices()
         self.assertEqual(sale.order_line[0].price_unit, 12)
         self.assertEqual(sale.amount_total, 12)
         self.assertEqual(sale.amount_untaxed, 10.26)
 
 
-class TaxCaseBaseTaxInc(TaxCase, SavepointCase):
+class TaxCaseBaseTaxInc(TaxCase, TransactionCase):
+    allow_inherited_tests_method = True
+
     def test_missing_tax(self):
         self.tax_exc.equivalent_tax_inc_id = False
+
         with self.assertRaises(UserError) as m:
             self._create_sale_order(self.ht_plist)
+
         self.assertEqual(
-            m.exception.name,
+            m.exception.args[0],
             "Equivalent tax exclude for 'Demo Sale Tax 20% included' is missing",
         )
 
 
-class TaxCaseBaseTaxExc(TaxCase, SavepointCase):
+class TaxCaseBaseTaxExc(TaxCase, TransactionCase):
+    allow_inherited_tests_method = True
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -120,6 +127,6 @@ class TaxCaseBaseTaxExc(TaxCase, SavepointCase):
         with self.assertRaises(UserError) as m:
             self._create_sale_order(self.ttc_plist)
         self.assertEqual(
-            m.exception.name,
+            m.exception.args[0],
             "Equivalent tax include for 'Demo Sale Tax 20%' is missing",
         )

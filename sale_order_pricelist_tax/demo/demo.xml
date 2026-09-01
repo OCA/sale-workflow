@@ -4,23 +4,24 @@
         <field name="name">Demo Sale Tax 20%</field>
         <field name="type_tax_use">sale</field>
         <field name="amount">20</field>
+        <field name="price_include_override">tax_excluded</field>
     </record>
     <record model="account.tax" id="account_tax_sale_2">
         <field name="name">Demo Sale Tax 20% included</field>
         <field name="type_tax_use">sale</field>
-        <field name="price_include" eval="True" />
+        <field name="price_include_override">tax_included</field>
         <field name="amount">20</field>
     </record>
     <record model="account.tax" id="account_tax_sale_inc_papeete_1">
         <field name="name">Papeete Sale Tax 16% included</field>
         <field name="type_tax_use">sale</field>
-        <field name="price_include" eval="True" />
+        <field name="price_include_override">tax_included</field>
         <field name="amount">16</field>
     </record>
     <record model="account.tax" id="account_tax_sale_inc_papeete_2">
         <field name="name">Papeete Sale Tax 1% included</field>
         <field name="type_tax_use">sale</field>
-        <field name="price_include" eval="True" />
+        <field name="price_include_override">tax_included</field>
         <field name="amount">1</field>
     </record>
 
@@ -28,6 +29,7 @@
         <field name="name">Demo Export 0%</field>
         <field name="type_tax_use">sale</field>
         <field name="amount">0</field>
+        <field name="price_include_override">tax_excluded</field>
     </record>
 
     <record id="ak_product" model="product.product">

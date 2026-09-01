@@ -1,51 +1,48 @@
-# © 2018  Akretion
+# © 2018 Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo.tests.common import SavepointCase
+
+from odoo.tests.common import TransactionCase
 
 from .test_tax import TaxCase
 
 
-class TaxPriceTaxState(TaxCase, SavepointCase):
+class TaxPriceTaxState(TaxCase, TransactionCase):
+    allow_inherited_tests_method = True
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-
         cls.sale = cls.env.ref("sale.sale_order_1")
-
-        account_user_type = cls.env.ref("account.data_account_type_receivable")
-
         cls.account_rec = cls.env["account.account"].create(
             {
-                "code": "TEST-REC",
+                "code": "TESTREC",
                 "name": "Rec - Test",
-                "user_type_id": account_user_type.id,
+                "account_type": "asset_receivable",
                 "reconcile": True,
             }
         )
-
         cls.account_sale = cls.env["account.account"].create(
             {
-                "code": "TEST-SALE",
+                "code": "TESTSALE",
                 "name": "Sale - Test",
-                "user_type_id": cls.env.ref(
-                    "account.data_account_type_direct_costs"
-                ).id,
+                "account_type": "expense_direct_cost",
             }
         )
-
         cls.sale_journal = cls.env["account.journal"].create(
             {
                 "name": "Sale Journal - Test",
                 "code": "SALE",
                 "type": "sale",
                 "default_account_id": cls.account_sale.id,
-                "payment_debit_account_id": cls.account_sale.id,
-                "payment_credit_account_id": cls.account_sale.id,
             }
         )
 
     def create_invoice(self, tax1, tax2):
+        account_income = self.env["account.account"].search(
+            [("account_type", "=", "income")], limit=1
+        )
+
         invoice = self.env["account.move"].create(
             [
                 {
@@ -59,27 +56,8 @@ class TaxPriceTaxState(TaxCase, SavepointCase):
                                 "product_id": self.product.id,
                                 "quantity": 1,
                                 "price_unit": 50,
-                                "account_id": self.env["account.account"]
-                                .search(
-                                    [
-                                        (
-                                            "user_type_id",
-                                            "=",
-                                            self.env.ref(
-                                                "account.data_account_type_revenue"
-                                            ).id,
-                                        )
-                                    ],
-                                    limit=1,
-                                )
-                                .id,
-                                "tax_ids": [
-                                    (
-                                        6,
-                                        0,
-                                        tax1.ids,
-                                    )
-                                ],
+                                "account_id": account_income.id,
+                                "tax_ids": [(6, 0, tax1.ids)],
                             },
                         ),
                         (
@@ -89,27 +67,8 @@ class TaxPriceTaxState(TaxCase, SavepointCase):
                                 "product_id": self.product.id,
                                 "quantity": 1,
                                 "price_unit": 50,
-                                "account_id": self.env["account.account"]
-                                .search(
-                                    [
-                                        (
-                                            "user_type_id",
-                                            "=",
-                                            self.env.ref(
-                                                "account.data_account_type_revenue"
-                                            ).id,
-                                        )
-                                    ],
-                                    limit=1,
-                                )
-                                .id,
-                                "tax_ids": [
-                                    (
-                                        6,
-                                        0,
-                                        tax2.ids,
-                                    )
-                                ],
+                                "account_id": account_income.id,
+                                "tax_ids": [(6, 0, tax2.ids)],
                             },
                         ),
                     ],
