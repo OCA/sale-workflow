@@ -1,7 +1,7 @@
-# © 2018  Akretion
+# © 2018 Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class ProductPricelist(models.Model):
@@ -14,16 +14,11 @@ class ProductPricelist(models.Model):
         "We can only update this setting if there is no price item.",
     )
 
-    def name_get(self):
-        res = super().name_get()
-        pricelist_ids = [x[0] for x in res]
-        pricelists = self.env["product.pricelist"].browse(pricelist_ids)
-        suffix = {
-            x.id: self.env._(" (tax include)")
-            for x in pricelists
-            if x.price_include_taxes
-        }
-        names = []
-        for elm in res:
-            names.append((elm[0], "{}{}".format(elm[1], suffix.get(elm[0], ""))))
-        return names
+    @api.depends("price_include_taxes")
+    def _compute_display_name(self):  # pylint: disable=missing-return
+        super()._compute_display_name()
+        for pricelist in self:
+            if pricelist.price_include_taxes:
+                pricelist.display_name = "{}{}".format(
+                    pricelist.display_name, self.env._(" (tax include)")
+                )

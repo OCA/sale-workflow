@@ -1,13 +1,10 @@
-# © 2018  Akretion
+# © 2018 Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import logging
 import threading
 
 from odoo import api, fields, models
 from odoo.exceptions import UserError
-
-_logger = logging.getLogger(__name__)
 
 
 class AccountTax(models.Model):
@@ -51,9 +48,10 @@ class AccountTax(models.Model):
         # and test of other module
         # we do not map the taxe if not ask explicitelly
         if getattr(
-            threading.currentThread(), "testing", False
+            threading.current_thread(), "testing", False
         ) and not self._context.get("test_pricelist_tax"):
             return self
+
         taxes = self.browse(False)
         for record in self:
             if record.price_include == price_include:

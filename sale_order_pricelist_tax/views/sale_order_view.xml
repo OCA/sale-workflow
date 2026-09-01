@@ -9,7 +9,7 @@
                     class="alert alert-danger alert-dismissable"
                     role="alert"
                     style="margin-bottom:0px;"
-                    attrs="{'invisible':[('price_tax_state','!=', 'exception')]}"
+                    invisible="price_tax_state != 'exception'"
                 >Sale Order lines must have the same type of tax:
                      <br /> - Either price include tax
                     <br /> - Either price exclude tax
@@ -18,17 +18,15 @@
             <xpath expr="//field[@name='date_order']" position="after">
                 <field name="price_tax_state" invisible="1" />
             </xpath>
-            <xpath expr="//tree/field[@name='price_subtotal']" position="attributes">
+            <xpath expr="//list/field[@name='price_subtotal']" position="attributes">
                 <attribute
-                    name="attrs"
-                >{'column_invisible': [('parent.price_tax_state', '=', 'include')]}</attribute>
-                <attribute name="groups" />
+                    name="column_invisible"
+                >parent.price_tax_state == 'include'</attribute>
             </xpath>
-            <xpath expr="//tree/field[@name='price_total']" position="attributes">
+            <xpath expr="//list/field[@name='price_total']" position="attributes">
                 <attribute
-                    name="attrs"
-                >{'column_invisible': [('parent.price_tax_state', '!=', 'include')]}</attribute>
-                <attribute name="groups" />
+                    name="column_invisible"
+                >parent.price_tax_state != 'include'</attribute>
             </xpath>
         </field>
     </record>
