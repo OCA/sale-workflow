@@ -1,4 +1,5 @@
 # Copyright 2026 Tecnativa - Carlos Roca
+# Copyright 2026 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from collections import defaultdict
 
@@ -48,7 +49,14 @@ class SaleOrder(models.Model):
             lines_by_vendor[line.vendor_id.id] |= line
         vendor_lines = []
         seen_partners = set()
-        for seller in product.seller_ids:
+        # ``product.seller_ids`` (delegated from the template) lists every
+        # supplierinfo of the WHOLE template, including sibling variants'
+        # own rows - a vendor with a different row per variant would
+        # otherwise get whichever row sorts first across ALL of them, not
+        # the one that actually applies to this variant. ``_prepare_sellers()``
+        # is core's own filtered-to-this-variant-or-template-wide list.
+        sellers = product._prepare_sellers()
+        for seller in sellers:
             partner = seller.partner_id
             if not partner or partner.id in seen_partners:
                 continue
@@ -63,7 +71,7 @@ class SaleOrder(models.Model):
         # product suppliers so they are not silently hidden from the catalog.
         for lines in lines_by_vendor.values():
             partner = lines[:1].vendor_id
-            seller = product.seller_ids.filtered(
+            seller = sellers.filtered(
                 lambda s, partner=partner: s.partner_id == partner
             )[:1]
             vendor_lines.extend(
@@ -154,12 +162,50 @@ class SaleOrder(models.Model):
     def _catalog_supplier_seller(self, product, vendor_id):
         """Return the supplier info shown on the vendor card for ``vendor_id``.
 
-        Mirrors the card builder selection: the first ``seller_ids`` record of
-        the given vendor.
+        Mirrors the card builder selection: the first, of this variant's own
+        (or template-wide) rows - see ``_get_catalog_supplier_lines()`` - that
+        belongs to the given vendor. Deliberately not ``product.seller_ids``
+        (the whole template's rows, sibling variants included): a vendor with
+        a different row per variant would otherwise resolve to whichever one
+        sorts first across ALL of them instead of the one for this variant.
         """
-        return product.seller_ids.filtered(
+        return product._prepare_sellers().filtered(
             lambda seller: seller.partner_id.id == vendor_id
         )[:1]
+
+    def _catalog_quantity_vals(self, product, quantity):
+        """Size ``quantity`` (as typed on a vendor card) into the line vals
+        it must end up as.
+
+        ``sale_order_secondary_unit`` treats the catalog quantity as
+        expressed in the product's own secondary sale unit
+        (``product.sale_secondary_uom_id``) whenever one is configured,
+        converting it into ``product_uom_qty`` itself rather than letting it
+        through as-is - it does this from its own ``_update_order_line_info``
+        override, which the vendor-card path above never reaches (it creates
+        the line directly, and updates an existing one with a plain write,
+        so no other module's ``_update_order_line_info`` ever runs for a
+        vendor card). Without mirroring that conversion here, a product with
+        a secondary unit configured would silently get the typed quantity
+        written to ``product_uom_qty`` unconverted, and ``secondary_uom_qty``
+        would stay unset/stale - showing 0 (or a wrong quantity) when the
+        catalog is reopened, even though the line itself has real stock/
+        procurement quantities. Soft dependency: a no-op when
+        ``sale_order_secondary_unit`` isn't installed or the product has no
+        secondary unit of its own.
+        """
+        secondary_uom = (
+            "sale_secondary_uom_id" in product._fields and product.sale_secondary_uom_id
+        )
+        if not secondary_uom:
+            return {"product_uom_qty": quantity}
+        vals = {"secondary_uom_id": secondary_uom.id, "secondary_uom_qty": quantity}
+        if secondary_uom.dependency_type != "independent":
+            qty_base = quantity * secondary_uom.factor
+            vals["product_uom_qty"] = product.uom_id._compute_quantity(
+                qty_base, product.uom_id
+            )
+        return vals
 
     def _get_catalog_order_line_filter_domain(
         self, product_id, vendor_id=None, **kwargs
@@ -183,7 +229,7 @@ class SaleOrder(models.Model):
         )
         if sol:
             if quantity != 0:
-                sol.product_uom_qty = quantity
+                sol.write(self._catalog_quantity_vals(sol.product_id, quantity))
             elif self.state in ["draft", "sent"]:
                 price_unit = self.pricelist_id._get_product_price(
                     product=self._catalog_supplier_price_product(
@@ -199,20 +245,27 @@ class SaleOrder(models.Model):
                 sol.product_uom_qty = 0
         elif quantity > 0:
             product = self.env["product.product"].browse(product_id)
+            # Pin the exact supplierinfo the card is showing: a vendor can have
+            # more than one concurrently valid row (see
+            # ``sale.order.line.supplierinfo_id``'s docstring), and without this
+            # the line would only remember the vendor, leaving
+            # ``_select_seller()`` free to re-resolve a different row - possibly
+            # at a different price than the one the card actually displayed -
+            # once the order is confirmed.
+            seller = self._catalog_supplier_seller(product, vendor_id)
             vals = {
                 "order_id": self.id,
                 "product_id": product_id,
-                "product_uom_qty": quantity,
                 "vendor_id": vendor_id,
+                "supplierinfo_id": seller.id,
                 "sequence": (
                     (self.order_line and self.order_line[-1].sequence + 1) or 10
                 ),
+                **self._catalog_quantity_vals(product, quantity),
             }
             # Copy the supplier info comment shown on the card to the line
             # (sale_line_vendor_comment).
-            comment = self._catalog_supplier_comment(
-                self._catalog_supplier_seller(product, vendor_id)
-            )
+            comment = self._catalog_supplier_comment(seller)
             if comment:
                 vals["vendor_comment"] = comment
             sol = self.env["sale.order.line"].create(vals)

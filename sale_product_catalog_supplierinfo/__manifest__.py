@@ -1,4 +1,5 @@
 # Copyright 2026 Tecnativa - Carlos Roca
+# Copyright 2026 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Sale Product Catalog Supplierinfo",
@@ -14,6 +15,10 @@
         "sale_purchase_force_vendor",
         "sale_line_vendor_comment",
         "product_supplierinfo_comment",
+        # See product_pricelist.py's _get_applicable_rules() docstring for
+        # why this is a real dependency despite the integration itself being
+        # a soft, defensive one.
+        "product_pricelist_supplierinfo",
     ],
     "data": [
         "views/sale_order_line_views.xml",
@@ -28,4 +33,6 @@
         ],
     },
     "installable": True,
+    "development_status": "Beta",
+    "maintainers": ["carlosdauden", "CarlosRoca13"],
 }
