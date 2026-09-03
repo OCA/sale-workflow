@@ -3,7 +3,7 @@
 
 from odoo import Command
 from odoo.exceptions import ValidationError
-from odoo.tests.common import Form, TransactionCase, new_test_user, users
+from odoo.tests.common import TransactionCase, new_test_user, users
 
 
 class TestSaleOrderCountryAllowedProduct(TransactionCase):
@@ -16,11 +16,12 @@ class TestSaleOrderCountryAllowedProduct(TransactionCase):
         cls.sale_user = new_test_user(
             cls.env,
             login="test-country-sale-user",
-            groups="sales_team.group_sale_salesman_all_leads",
+            groups="base.group_user,sales_team.group_sale_salesman_all_leads",
         )
         cls.product_test_1 = cls.env["product.template"].create(
             {
                 "name": "Product-Test",
+                "company_id": False,
                 "sale_allowed_country_ids": [
                     Command.set(
                         [
@@ -35,6 +36,7 @@ class TestSaleOrderCountryAllowedProduct(TransactionCase):
         cls.product_test_2 = cls.env["product.template"].create(
             {
                 "name": "Product-Test",
+                "company_id": False,
                 "sale_allowed_country_ids": [
                     Command.set([cls.env.ref("base.us").id]),
                 ],
@@ -51,11 +53,9 @@ class TestSaleOrderCountryAllowedProduct(TransactionCase):
                 "sale_order_country_allowed_product.ignore_country_sale"
             )
         )
-        sale_form = Form(self.env["sale.order"], view="sale.view_order_form")
-        sale_form.partner_id = self.customer_test
         context = {
             "restrict_by_country": True,
-            "restrict_by_country_partner_id": sale_form.partner_shipping_id.id,
+            "restrict_by_country_partner_id": self.customer_test.id,
         }
 
         # Current user cannot get access to products unavailable in the shipping country
@@ -65,10 +65,24 @@ class TestSaleOrderCountryAllowedProduct(TransactionCase):
         self.assertNotIn(self.product_test_1.product_variant_id, available_products)
         self.assertIn(self.product_test_2.product_variant_id, available_products)
 
-        so_line_form = sale_form.order_line.new()
-        so_line_form.product_id = self.product_test_1.product_variant_id
-        so_line_form.save()
-        sale = sale_form.save()
+        sale = self.env["sale.order"].create(
+            {
+                "partner_id": self.customer_test.id,
+                "partner_shipping_id": self.customer_test.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "name": self.product_test_1.name,
+                            "product_id": self.product_test_1.product_variant_id.id,
+                            "product_uom_qty": 1,
+                            "product_uom": self.product_test_1.uom_id.id,
+                            "price_unit": self.product_test_1.list_price,
+                        }
+                    ),
+                ],
+            }
+        )
+        self.assertFalse(sale.order_line.country_available)
         self.assertTrue(sale.unavailable_product_msg)
         with self.assertRaises(ValidationError):
             sale.action_confirm()
