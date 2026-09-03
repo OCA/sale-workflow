@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 ==================================
 Sale Order Country Allowed Product
 ==================================
@@ -13,22 +17,23 @@ Sale Order Country Allowed Product
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/16.0/sale_order_country_allowed_product
+    :target: https://github.com/OCA/sale-workflow/tree/18.0/sale_order_country_allowed_product
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-16-0/sale-workflow-16-0-sale_order_country_allowed_product
+    :target: https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-sale_order_country_allowed_product
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module allows to restrict the selection of products in sale order lines based on the shipping address country.
+This module allows to restrict the selection of products in sale order
+lines based on the shipping address country.
 
 **Table of contents**
 
@@ -41,18 +46,28 @@ Configuration
 To select the countries in which a product is available you need to:
 
 - Go to a product template form view.
-- Select the countries in which the product is available in field "Sale Allowed Countries".
+- Select the countries in which the product is available in field "Sale
+  Allowed Countries".
 
-Users in group "Ignore products sale countries" will gain access to all salable products in sale orders, even to those that are not available in the shipping addres country.
+Users in group "Ignore products sale countries" will gain access to all
+salable products in sale orders, even to those that are not available in
+the shipping addres country.
 
 Usage
 =====
 
-Users in "Ignore products sale countries" group will be able to select all the salable products in sale order lines, even those that are not available in the country of the shipping address. Users who do not belong to that group, will only be able to select the products available in the country of the shipping address. Products with the "Sale Allowed Countries" field empty are considered to be available in all countries.
+Users in "Ignore products sale countries" group will be able to select
+all the salable products in sale order lines, even those that are not
+available in the country of the shipping address. Users who do not
+belong to that group, will only be able to select the products available
+in the country of the shipping address. Products with the "Sale Allowed
+Countries" field empty are considered to be available in all countries.
 
-A message on the top of the sale order will be displayed if the sale order contains unavailable products.
+A message on the top of the sale order will be displayed if the sale
+order contains unavailable products.
 
-Users who do not belong to the "Ignore products sale countries" group will be unable to confirm sale orders containing unavailable products.
+Users who do not belong to the "Ignore products sale countries" group
+will be unable to confirm sale orders containing unavailable products.
 
 Bug Tracker
 ===========
@@ -60,7 +75,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_country_allowed_product%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_order_country_allowed_product%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -68,18 +83,19 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Sygel
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Manuel Regidor <manuel.regidor@sygel.es>
-* Valentín Vinagre <valentin.vinagre@sygel.es>
+- Manuel Regidor <manuel.regidor@sygel.es>
+- Valentín Vinagre <valentin.vinagre@sygel.es>
+- Léo Viltard <leo.viltard@apl.lu>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -91,6 +107,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/16.0/sale_order_country_allowed_product>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/18.0/sale_order_country_allowed_product>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
