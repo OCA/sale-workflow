@@ -1,0 +1,15 @@
+<odoo>
+    <record id="view_order_product_search" model="ir.ui.view">
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale.view_order_product_search" />
+        <field name="arch" type="xml">
+            <filter name="company" position="after">
+                <filter
+                    string="Semaphore"
+                    name="semaphore"
+                    context="{'group_by':'semaphore'}"
+                />
+            </filter>
+        </field>
+    </record>
+</odoo>
