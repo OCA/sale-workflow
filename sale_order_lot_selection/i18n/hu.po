@@ -1,0 +1,102 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_lot_selection
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-09-29 03:03+0000\n"
+"PO-Revision-Date: 2016-09-29 03:03+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2016\n"
+"Language-Team: Hungarian (https://www.transifex.com/oca/teams/23907/hu/)\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__domain_lot_id
+msgid "Domain Lot"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_res_company__sale_order_lot_selection_exclude_pending_orders
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_res_config_settings__sale_order_lot_selection_exclude_pending_orders
+#: model_terms:ir.ui.view,arch_db:sale_order_lot_selection.res_config_settings_view_form
+msgid "Exclude pending orders from the lot selection"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model.fields,help:sale_order_lot_selection.field_res_company__sale_order_lot_selection_exclude_pending_orders
+#: model:ir.model.fields,help:sale_order_lot_selection.field_res_config_settings__sale_order_lot_selection_exclude_pending_orders
+#: model_terms:ir.ui.view,arch_db:sale_order_lot_selection.res_config_settings_view_form
+msgid ""
+"If this checkbox is selected, serials that can be selected with pending "
+"sales orders will be excluded"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__lot_id
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_report__lot_id
+#: model_terms:ir.ui.view,arch_db:sale_order_lot_selection.view_order_product_search
+msgid "Lot"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model_terms:ir.ui.view,arch_db:sale_order_lot_selection.view_order_tree_lot
+msgid "Lot:"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__product_tracking
+msgid "Product Tracking"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_sale_report
+msgid "Sales Analysis Report"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_sale_order
+#, fuzzy
+msgid "Sales Order"
+msgstr "Vevői megrendelés"
+
+#. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#. odoo-python
+#: code:addons/sale_order_lot_selection/models/sale_order.py:0
+msgid "The serial number %(serial)s is not available"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#. odoo-python
+#: code:addons/sale_order_lot_selection/models/sale_order_line.py:0
+msgid ""
+"You can't modify the Lot/Serial number because some stock move has already "
+"been done."
+msgstr ""
