@@ -17,6 +17,7 @@ class SaleOrderLine(models.Model):
         # Store the data in a dictionary to avoid redundant computations
         # for the same order multiple times.
         sale_data = self._prepare_pricelist_global_cumulative_quantity()
+        res = None
         for line in self:
             qty_data = sale_data[line.order_id]
             res = super(
@@ -32,6 +33,7 @@ class SaleOrderLine(models.Model):
         # pricelist, then here the cumulative quantities are not set in the context, so
         # we need to perform the same operation
         sale_data = self._prepare_pricelist_global_cumulative_quantity()
+        res = None
         for line in self:
             qty_data = sale_data[line.order_id]
             res = super(
@@ -43,6 +45,7 @@ class SaleOrderLine(models.Model):
     def _compute_discount(self):
         # Same case as _compute_price_unit
         sale_data = self._prepare_pricelist_global_cumulative_quantity()
+        res = None
         for line in self:
             qty_data = sale_data[line.order_id]
             res = super(
