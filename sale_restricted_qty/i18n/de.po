@@ -1,0 +1,134 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_restricted_qty
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-03 12:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_restricted_qty
+msgid "%(order_name)s - Product \"%(product_name)s\": %(failed_constraints)s"
+msgstr "%(order_name)s - Produkt \"%(product_name)s\": %(failed_constraints)s"
+
+#. module: sale_restricted_qty
+msgid "Blocking"
+msgstr "Sperrend"
+
+#. module: sale_restricted_qty
+msgid "Check quantity for these products:\n"
+msgstr "Prüfen Sie die Menge für diese Produkte:\n"
+
+#. module: sale_restricted_qty
+msgid ""
+"Decide if the maximum quantity constraint is strictly enforced (Blocking) or if it only triggers a warning (Warning).\n"
+"Use 'Warning' if you want to allow large orders that exceed strict policies under special conditions."
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid ""
+"Decide if the minimum quantity constraint is strictly enforced (Blocking) or if it only triggers a warning (Warning).\n"
+"Use 'Warning' if you want to allow exceptions like selling samples or leftover stock."
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid ""
+"Decide if the multiple-of quantity constraint is strictly enforced (Blocking) or if it only triggers a warning (Warning).\n"
+"Use 'Warning' to allow selling non-standard quantities for special cases like clearing leftover stock."
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid "Max Qty"
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid "Max Quantity Exceeded"
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid "Max Quantity Recommended"
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid "Min Qty"
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid "Min Quantity Recommended"
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid "Min Quantity Required"
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid "Multiple Quantity Required"
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid "Multiple-Of Qty"
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid "Restrict"
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid "Sale Max qty"
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid "Sale Miltiple qty"
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid "Sale Min qty"
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid "Sale Restricted Qty"
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid "Sale restricted qty"
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid "The maximum quantity of product that can be sold."
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid "The minimum quantity of product that can be sold."
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid "The multiple-of quantity of product that can be sold."
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid "Value"
+msgstr ""
+
+#. module: sale_restricted_qty
+msgid "Warning"
+msgstr "Warnung"
+
+#. module: sale_restricted_qty
+msgid "maximal quantity is %(max_qty)s"
+msgstr "Höchstmenge ist %(max_qty)s"
+
+#. module: sale_restricted_qty
+msgid "minimal quantity is %(min_qty)s"
+msgstr "Mindestmenge ist %(min_qty)s"
+
+#. module: sale_restricted_qty
+msgid "quantity should be multiple of %(multiple_of_qty)s"
+msgstr "Menge sollte ein Vielfaches von %(multiple_of_qty)s sein"
