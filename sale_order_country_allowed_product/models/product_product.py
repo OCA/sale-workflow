@@ -21,8 +21,12 @@ class ProductProduct(models.Model):
         ) and not self.env.user.has_group(
             "sale_order_country_allowed_product.ignore_country_sale"
         ):
-            partner_id =self.env.context.get("restrict_by_country_partner_id")
-            partner = self.env["res.partner"].browse(partner_id) if partner_id else self.env["res.partner"]
+            partner_id = self.env.context.get("restrict_by_country_partner_id")
+            partner = (
+                self.env["res.partner"].browse(partner_id)
+                if partner_id
+                else self.env["res.partner"]
+            )
             if partner.country_id:
                 domain = expression.AND(
                     [

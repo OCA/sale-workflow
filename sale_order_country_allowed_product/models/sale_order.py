@@ -11,8 +11,7 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     unavailable_product_msg = fields.Html(
-        compute="_compute_unavailable_product_msg",
-        sanitize=False
+        compute="_compute_unavailable_product_msg", sanitize=False
     )
 
     @api.depends("order_line.product_id", "order_line.country_available")

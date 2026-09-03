@@ -7,9 +7,7 @@ from odoo import api, fields, models
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    country_available = fields.Boolean(
-        compute="_compute_country_available"
-    )
+    country_available = fields.Boolean(compute="_compute_country_available")
 
     @api.depends(
         "product_id",
@@ -25,6 +23,5 @@ class SaleOrderLine(models.Model):
             allowed_countries = line.product_template_id.sale_allowed_country_ids
             shipping_country = line.order_id.partner_shipping_id.country_id
             line.country_available = (
-                not allowed_countries
-                or shipping_country in allowed_countries
+                not allowed_countries or shipping_country in allowed_countries
             )

@@ -8,6 +8,5 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     sale_allowed_country_ids = fields.Many2many(
-        comodel_name="res.country",
-        string="Sale Allowed Countries"
+        comodel_name="res.country", string="Sale Allowed Countries"
     )
