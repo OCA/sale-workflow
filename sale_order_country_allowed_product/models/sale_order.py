@@ -19,20 +19,18 @@ class SaleOrder(models.Model):
     def _compute_unavailable_product_msg(self):
         for order in self:
             unavailable_product_msg = ""
-            if any(not line.country_available for line in order.order_line):
-                products = order.order_line.filtered(
-                    lambda line: not line.country_available
-                ).mapped("product_id")
-                if products:
-                    products_list = (
-                        f'<ul>{"".join(f"<li>{p.name}</li>" for p in products)}</ul>'
-                    )
-                    unavailable_product_msg = _(
-                        "The following products are not available in the shipping country: "
-                        "%(products_list)s",
-                        products_list=products_list,
-                    )
-
+            unavailable_products = order.order_line.filtered(
+                lambda line: not line.country_available
+            )
+            products = unavailable_products.mapped("product_id")
+            if products:
+                list_items = "".join(f"<li>{p.display_name}</li>" for p in products)
+                products_list = Markup(f"<ul>{list_items}</ul>")
+                unavailable_product_msg = _(
+                    "The following products are not available in the shipping country: "
+                    "%(product_list)s",
+                    product_list=products_list,
+                )
             order.unavailable_product_msg = unavailable_product_msg
 
     def action_confirm(self):
