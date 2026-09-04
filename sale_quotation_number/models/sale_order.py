@@ -4,16 +4,21 @@
 # © 2020 Manuel Regidor  <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl)
 
-from odoo import api, models
+from odoo import _, api, models
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
+    @api.model
+    def _is_placeholder_order_name(self, name):
+        # Odoo 19 uses _("New") as placeholder before sequence assignment
+        return not name or name == _("New")
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            if not vals.get("name"):
+            if self._is_placeholder_order_name(vals.get("name")):
                 if self.is_using_quotation_number(vals):
                     company_id = vals.get("company_id", self.env.company.id)
                     sequence = (
@@ -44,11 +49,15 @@ class SaleOrder(models.Model):
         return super().copy(default)
 
     def action_confirm(self):
-        sequence = self.env["ir.sequence"].search(
+        quotation_sequence = self.env["ir.sequence"].search(
             [("code", "=", "sale.quotation")], limit=1
         )
         for order in self:
-            if sequence and self.name[: len(sequence.prefix)] != sequence.prefix:
+            if (
+                quotation_sequence
+                and order.name[: len(quotation_sequence.prefix)]
+                != quotation_sequence.prefix
+            ):
                 continue
             if order.state not in ("draft", "sent") or order.company_id.keep_name_so:
                 continue
