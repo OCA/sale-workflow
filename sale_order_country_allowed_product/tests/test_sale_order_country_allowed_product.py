@@ -1,0 +1,104 @@
+# Copyright 2025 Manuel Regidor <manuel.regidor@sygel.es>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+
+from odoo import Command
+from odoo.exceptions import ValidationError
+from odoo.tests.common import TransactionCase, new_test_user, users
+
+
+class TestSaleOrderCountryAllowedProduct(TransactionCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.ignore_country_sale_group = cls.env.ref(
+            "sale_order_country_allowed_product.ignore_country_sale"
+        )
+        cls.sale_user = new_test_user(
+            cls.env,
+            login="test-country-sale-user",
+            groups="base.group_user,sales_team.group_sale_salesman_all_leads",
+        )
+        cls.product_test_1 = cls.env["product.template"].create(
+            {
+                "name": "Product-Test",
+                "company_id": False,
+                "sale_allowed_country_ids": [
+                    Command.set(
+                        [
+                            cls.env.ref("base.be").id,
+                            cls.env.ref("base.fr").id,
+                            cls.env.ref("base.es").id,
+                        ]
+                    ),
+                ],
+            }
+        )
+        cls.product_test_2 = cls.env["product.template"].create(
+            {
+                "name": "Product-Test",
+                "company_id": False,
+                "sale_allowed_country_ids": [
+                    Command.set([cls.env.ref("base.us").id]),
+                ],
+            }
+        )
+        cls.customer_test = cls.env["res.partner"].create(
+            {"name": "Customer-Test", "country_id": cls.env.ref("base.us").id}
+        )
+
+    @users("test-country-sale-user")
+    def test_product_availability(self):
+        self.assertFalse(
+            self.env.user.has_group(
+                "sale_order_country_allowed_product.ignore_country_sale"
+            )
+        )
+        context = {
+            "restrict_by_country": True,
+            "restrict_by_country_partner_id": self.customer_test.id,
+        }
+
+        # Current user cannot get access to products unavailable in the shipping country
+        available_products = (
+            self.env["product.product"].with_context(**context).search([])
+        )
+        self.assertNotIn(self.product_test_1.product_variant_id, available_products)
+        self.assertIn(self.product_test_2.product_variant_id, available_products)
+
+        sale = self.env["sale.order"].create(
+            {
+                "partner_id": self.customer_test.id,
+                "partner_shipping_id": self.customer_test.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "name": self.product_test_1.name,
+                            "product_id": self.product_test_1.product_variant_id.id,
+                            "product_uom_qty": 1,
+                            "product_uom": self.product_test_1.uom_id.id,
+                            "price_unit": self.product_test_1.list_price,
+                        }
+                    ),
+                ],
+            }
+        )
+        self.assertFalse(sale.order_line.country_available)
+        self.assertTrue(sale.unavailable_product_msg)
+        with self.assertRaises(ValidationError):
+            sale.action_confirm()
+
+        # Current user is added to the group which gives access to all products
+        self.sale_user.write(
+            {
+                "groups_id": [
+                    Command.link(self.ignore_country_sale_group.id),
+                ]
+            }
+        )
+        available_products = (
+            self.env["product.product"].with_context(**context).search([])
+        )
+        self.assertIn(self.product_test_1.product_variant_id, available_products)
+        self.assertIn(self.product_test_2.product_variant_id, available_products)
+        sale.action_confirm()
+        self.assertTrue(sale.state in ["sale", "done"])
