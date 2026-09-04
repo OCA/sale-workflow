@@ -62,3 +62,12 @@ class SaleOrderLine(models.Model):
                     line.secondary_uom_unit_price = 0
             else:
                 line.secondary_uom_unit_price = 0
+
+    def _prepare_invoice_line(self, **optional_values):
+        # Set secondary UoM values only when account_move_secondary_unit is installed
+        # (i.e., the fields exist on account.move.line).
+        res = super()._prepare_invoice_line(**optional_values)
+        aml_fields = self.env["account.move.line"]._fields
+        if "secondary_uom_id" in aml_fields and self.secondary_uom_id:
+            res["secondary_uom_id"] = self.secondary_uom_id.id
+        return res
