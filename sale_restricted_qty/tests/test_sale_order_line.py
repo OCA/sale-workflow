@@ -168,6 +168,69 @@ class TestSaleOrderLine(common.TransactionCase):
         )
         self.assertTrue(so.order_line.is_not_multiple_of_qty)
 
+    def test_restrict_warning_inherited_by_variant_does_not_block(self):
+        """Regression: a variant must inherit its template's Warning restrict,
+        so a below-minimum line only warns instead of blocking."""
+        template = self.ProductTemplate.create(
+            {
+                "name": "Warn Template",
+                "sale_min_qty": 10.0,
+                "sale_restrict_min_qty": RESTRICTION_DISABLED,  # Warning
+            }
+        )
+        product = template.product_variant_id
+        # The variant follows the template; it does not pin its own mode.
+        self.assertFalse(product.is_sale_own_restrict_min_qty_set)
+        self.assertEqual(product.sale_restrict_min_qty, RESTRICTION_DISABLED)
+
+        so = self.SaleOrder.create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    (0, 0, {"product_id": product.id, "product_uom_qty": 5.0})
+                ],
+            }
+        )
+        line = so.order_line
+        self.assertFalse(line.restrict_min_qty)
+        self.assertTrue(line.is_below_min_qty)
+
+    def test_restrict_blocking_inherited_by_variant_blocks(self):
+        """A variant inheriting a Blocking template restrict is blocked."""
+        template = self.ProductTemplate.create(
+            {
+                "name": "Block Template",
+                "sale_min_qty": 10.0,
+                "sale_restrict_min_qty": RESTRICTION_ENABLED,  # Blocking
+            }
+        )
+        product = template.product_variant_id
+        self.assertEqual(product.sale_restrict_min_qty, RESTRICTION_ENABLED)
+        with self.assertRaises(ValidationError):
+            self.SaleOrder.create(
+                {
+                    "partner_id": self.partner.id,
+                    "order_line": [
+                        (0, 0, {"product_id": product.id, "product_uom_qty": 5.0})
+                    ],
+                }
+            )
+
+    def test_template_restrict_change_propagates_to_variant(self):
+        """Softening the template's restrict follows through to the variant."""
+        template = self.ProductTemplate.create(
+            {
+                "name": "Template",
+                "sale_min_qty": 10.0,
+                "sale_restrict_min_qty": RESTRICTION_ENABLED,  # Blocking
+            }
+        )
+        product = template.product_variant_id
+        self.assertEqual(product.sale_restrict_min_qty, RESTRICTION_ENABLED)
+        template.sale_restrict_min_qty = RESTRICTION_DISABLED  # -> Warning
+        self.assertFalse(product.is_sale_own_restrict_min_qty_set)
+        self.assertEqual(product.sale_restrict_min_qty, RESTRICTION_DISABLED)
+
     def test_multi_level_inheritance(self):
         """Test inheritance from Category -> Template -> Product."""
         parent_categ = self.ProductCategory.create(
