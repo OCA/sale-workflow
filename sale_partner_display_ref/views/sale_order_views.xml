@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 ForgeFlow S.L.
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_order_form_inherit_partner_ref" model="ir.ui.view">
+        <field name="name">sale.view.order.form.inherit.partner.display.ref</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute
+                    name="context"
+                >{'partner_display_ref_field': 'ref'}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_quotation_tree_inherit_partner_ref" model="ir.ui.view">
+        <field name="name">sale.view.quotation.tree.inherit.partner.display.ref</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute
+                    name="context"
+                >{'partner_display_ref_field': 'ref'}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_sales_order_filter_inherit_partner_ref" model="ir.ui.view">
+        <field
+            name="name"
+        >sale.view.sales.order.filter.inherit.partner.display.ref</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute
+                    name="context"
+                >{'partner_display_ref_field': 'ref'}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
