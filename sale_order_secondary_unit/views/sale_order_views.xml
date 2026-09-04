@@ -74,4 +74,15 @@
             </xpath>
         </field>
     </record>
+    <record id="sale_order_line_view_form_readonly" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
+        <field name="arch" type="xml">
+            <field name="product_uom" position="after">
+                <field name="secondary_uom_qty" widget="numeric_step" />
+                <field name="secondary_uom_id" groups="uom.group_uom" />
+                <field name="secondary_uom_id" groups="!uom.group_uom" invisible="1" />
+            </field>
+        </field>
+    </record>
 </odoo>
