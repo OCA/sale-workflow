@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 OpenStudio SAS
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+        <!-- Add sale contact in the address block after partner name and address -->
+        <xpath expr="//t[@t-set='address']" position="inside">
+            <p
+                t-if="o.sale_contact_partner_id and o.company_id.sale_display_contact_on_reports"
+                class="mt-2"
+            >
+                <strong>Sale Contact:</strong>
+                <span t-field="o.sale_contact_partner_id.name" />
+            </p>
+        </xpath>
+    </template>
+</odoo>
