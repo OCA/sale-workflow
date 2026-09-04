@@ -25,7 +25,9 @@ class TestCommon(BaseCommon):
                 "crm_team_id": cls.team.id,
             }
         )
-        cls.partner = cls.env["res.partner"].create({"name": "Test partner"})
+        cls.partner = cls.env["res.partner"].create(
+            {"name": "Test partner", "team_id": cls.team.id}
+        )
         cls.partner_child_1 = cls.env["res.partner"].create(
             {"name": "Child 1", "parent_id": cls.partner.id}
         )
@@ -51,13 +53,12 @@ class TestCommon(BaseCommon):
         cls.check_permission_subscribe = False
 
     def _check_permission(self, salesman, team, expected):
-        vals = {"user_id": salesman.id if salesman else salesman}
-        # Check if the record has a team_id field
-        # This is needed for the test to work with different models
-        # such as sales_team_security_crm and sales_team_security_sale modules.
-        if "team_id" in self.record._fields:
-            vals["team_id"] = team.id if team else team
-        self.record.write(vals)
+        self.record.write(
+            {
+                "user_id": salesman.id if salesman else salesman,
+                "team_id": team.id if team else team,
+            }
+        )
         domain = [("id", "=", self.record.id)]
         if (
             self.check_permission_subscribe
@@ -70,11 +71,12 @@ class TestCommon(BaseCommon):
 
     @mute_logger("odoo.models.unlink")
     def _check_whole_permission_set(self, extra_checks=True):
-        is_res_partner = self.record._name == "res.partner"
         self._check_permission(False, False, True)
         self._check_permission(self.user, False, True)
         self._check_permission(self.user2, False, False)
         self._check_permission(False, self.team, True)
+        if extra_checks:
+            self._check_permission(False, self.team2, False)
         self._check_permission(self.user, self.team, True)
         self._check_permission(self.user, self.team2, True)
         self._check_permission(self.user2, self.team2, False)
@@ -85,19 +87,19 @@ class TestCommon(BaseCommon):
         ]
         self._check_permission(False, False, True)
         self._check_permission(self.user, False, True)
-        if not is_res_partner:
-            self._check_permission(self.user2, False, True)
+        self._check_permission(self.user2, False, True)
         self._check_permission(False, self.team, True)
+        if extra_checks:
+            self._check_permission(False, self.team2, False)
         self._check_permission(self.user, self.team, True)
-        if is_res_partner:
+        if self.record._name == "res.partner":
             self.check_permission_subscribe = True
             self._check_permission(self.user, self.team2, True)
             self.check_permission_subscribe = False
         else:
             self._check_permission(self.user, self.team2, True)
         self._check_permission(self.user2, self.team2, False)
-        if not is_res_partner:
-            self._check_permission(self.user2, self.team, True)
+        self._check_permission(self.user2, self.team, True)
         # Add to group "See all leads"
         self.user.groups_id = [
             (4, self.env.ref("sales_team.group_sale_salesman_all_leads").id)
@@ -112,7 +114,7 @@ class TestCommon(BaseCommon):
         self._check_permission(self.user2, self.team2, True)
         self._check_permission(self.user2, self.team, True)
         # Regular internal user
-        if extra_checks and is_res_partner:
+        if extra_checks:
             self.user.groups_id = [(6, 0, [self.env.ref("base.group_user").id])]
             self._check_permission(False, False, True)
             self._check_permission(self.user, False, True)

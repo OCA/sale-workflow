@@ -28,17 +28,35 @@ class IrRule(models.Model):
         user = self.env.user
         group_my_records = "sales_team.group_sale_salesman"
         group_all_records = "sales_team.group_sale_salesman_all_leads"
+        group1 = "sales_team.group_sale_salesman"
+        group2 = "sales_team_security.group_sale_team_manager"
+        group3 = "sales_team.group_sale_salesman_all_leads"
         if model_name == "res.partner" and not self.env.su:
-            if user.has_group(group_my_records) and not user.has_group(
-                group_all_records
-            ):
-                domain_followers = [
+            # if user.has_group(group_my_records) and not user.has_group(
+            #     group_all_records
+            # ):
+            #     domain_followers = [
+            if user.has_group(group1) and not user.has_group(group3):
+                extra_domain = [
                     "|",
                     ("message_partner_ids", "in", user.partner_id.ids),
+                    "|",
                     ("id", "=", user.partner_id.id),
                 ]
-                domain_user = [("user_id", "in", [user.id, False])]
-                extra_domain = expression.OR([domain_followers, domain_user])
+                # domain_user = [("user_id", "in", [user.id, False])]
+                # extra_domain = expression.OR([domain_followers, domain_user])
+                if user.has_group(group2):
+                    # Ver todos los contactos de su equipo
+                    team_user_ids = user.sale_team_id.member_ids.ids
+                    extra_domain += [
+                        ("user_id", "in", team_user_ids + [False]),
+                    ]
+                else:
+                    # Ver solo propios y sin asignar
+                    extra_domain += [
+                        ("user_id", "in", [user.id, False]),
+                    ]
+
                 extra_domain = expression.normalize_domain(extra_domain)
                 res = expression.AND([extra_domain] + [res])
         return res
