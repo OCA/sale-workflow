@@ -3,6 +3,18 @@
 from odoo import fields, models
 
 
+class ProductSecondaryUnit(models.Model):
+    _inherit = "product.secondary.unit"
+
+    def write(self, vals):
+        if "active" in vals and not vals["active"]:
+            products = self.env["product.product"].search(
+                [("sale_secondary_uom_id", "in", self.ids)]
+            )
+            products.sale_secondary_uom_id = False
+        return super().write(vals)
+
+
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
