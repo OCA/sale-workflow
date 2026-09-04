@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_line_view_form_editable_supplierinfo" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field
+            name="inherit_id"
+            ref="sale_product_catalog_extended.sale_order_line_view_form_editable"
+        />
+        <field name="arch" type="xml">
+            <field name="price_unit" position="after">
+                <field name="vendor_id_domain" invisible="1" />
+                <field
+                    name="vendor_id"
+                    domain="vendor_id_domain"
+                    options="{'no_create': True}"
+                    readonly="state in ('sale', 'cancel')"
+                />
+                <field name="vendor_comment" />
+            </field>
+        </field>
+    </record>
+</odoo>
