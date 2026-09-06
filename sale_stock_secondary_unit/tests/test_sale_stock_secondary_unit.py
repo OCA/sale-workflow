@@ -158,3 +158,72 @@ class TestSaleStockOrderSecondaryUnit(TransactionCase):
         moves = line.move_ids.filtered(lambda move: move.state != "cancel")
         self.assertEqual(sum(moves.mapped("product_uom_qty")), 5.6)
         self.assertEqual(sum(moves.mapped("secondary_uom_qty")), 8.0)
+
+    def test_write_secondary_uom_qty_propagates_to_pending_move(self):
+        """Correcting the piece count on an already-confirmed line (without
+        touching the primary quantity) must update the still-pending
+        delivery move directly - relaunching the stock rule
+        (_action_launch_stock_rule) is a no-op here: it only ever creates
+        a new move for a primary-quantity delta, it never touches an
+        existing move's secondary_uom_qty (confirmed empirically before
+        writing this test).
+        """
+        self.secondary_unit.dependency_type = "secondary_priority"
+        self.order.order_line.write(
+            {"secondary_uom_id": self.secondary_unit.id, "secondary_uom_qty": 5}
+        )
+        self.order.order_line._onchange_helper_product_uom_for_secondary()
+        self.order.action_confirm()
+        move = self.order.order_line.move_ids.filtered(
+            lambda m: m.state not in ("done", "cancel")
+        )
+        self.assertEqual(move.secondary_uom_qty, 5.0)
+
+        self.order.order_line.write({"secondary_uom_qty": 8})
+
+        self.assertEqual(move.secondary_uom_qty, 8.0)
+        # secondary_priority: the primary quantity is still estimated from
+        # the corrected count.
+        self.assertEqual(move.product_uom_qty, 8 * self.secondary_unit.factor)
+
+    def test_write_secondary_uom_qty_distributes_across_multiple_pending_moves(self):
+        """A line already partially processed can have more than one
+        pending move at once (e.g. a backorder pick still pending
+        alongside an earlier leg not yet processed) - the correction must
+        distribute proportionally to each move's current share, not
+        silently do nothing because there's more than one.
+        """
+        self.secondary_unit.dependency_type = "secondary_priority"
+        self.order.order_line.write(
+            {"secondary_uom_id": self.secondary_unit.id, "secondary_uom_qty": 10}
+        )
+        self.order.order_line._onchange_helper_product_uom_for_secondary()
+        self.order.action_confirm()
+        line = self.order.order_line
+        move_1 = line.move_ids.filtered(lambda m: m.state not in ("done", "cancel"))
+        self.assertEqual(len(move_1), 1)
+        move_1.secondary_uom_qty = 6.0  # 60% of the pending total
+
+        move_2 = self.env["stock.move"].create(
+            {
+                "product_id": line.product_id.id,
+                "name": line.product_id.display_name,
+                "sale_line_id": line.id,
+                "secondary_uom_id": self.secondary_unit.id,
+                "secondary_uom_qty": 4.0,  # 40% of the pending total
+                "product_uom": line.product_id.uom_id.id,
+                "product_uom_qty": move_1.product_uom_qty,
+                "location_id": move_1.location_id.id,
+                "location_dest_id": move_1.location_dest_id.id,
+            }
+        )
+        move_2._action_confirm()
+        pending_moves = line.move_ids.filtered(
+            lambda m: m.state not in ("done", "cancel")
+        )
+        self.assertEqual(len(pending_moves), 2)
+
+        line.write({"secondary_uom_qty": 20})
+
+        self.assertEqual(move_1.secondary_uom_qty, 12.0)
+        self.assertEqual(move_2.secondary_uom_qty, 8.0)

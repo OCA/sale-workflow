@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
-<title>README.rst</title>
+<title>Sale Stock Secondary Unit</title>
 <style type="text/css">
 
 /*
@@ -375,37 +375,134 @@ ul.auto-toc {
 !! source digest: sha256:44dd7d35784a5e112510f58640477d3c8c613aba8129bd20bfc36a128894a918
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Production/Stable" src="https://img.shields.io/badge/maturity-Production%2FStable-green.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/OCA/sale-workflow/tree/18.0/sale_stock_secondary_unit"><img alt="OCA/sale-workflow" src="https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github" /></a> <a class="reference external image-reference" href="https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-sale_stock_secondary_unit"><img alt="Translate me on Weblate" src="https://img.shields.io/badge/weblate-Translate%20me-F47D42.png" /></a> <a class="reference external image-reference" href="https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&amp;target_branch=18.0"><img alt="Try me on Runboat" src="https://img.shields.io/badge/runboat-Try%20me-875A7B.png" /></a></p>
-<p>This module extends the functionality of stock secondary unit module and
-sale_order_secondary_unit to allow copy secondary sale data to stock
-move when a sale order is confirmed.</p>
+<p>This module bridges <tt class="docutils literal">sale_order_secondary_unit</tt> (the secondary unit
+demanded on a sale order line) and <tt class="docutils literal">stock_secondary_unit</tt> (the
+secondary unit carried on a stock move), so a product ordered in a
+secondary unit (e.g. “40 pieces” of a product sold by weight) keeps that
+unit and quantity all the way through the delivery/procurement chain,
+not just on the sale order line itself.</p>
+<div class="section" id="confirming-an-order">
+<h2>Confirming an order</h2>
+<p>When a sale order is confirmed, the secondary unit and quantity of each
+line are copied onto the stock move(s) it procures
+(<tt class="docutils literal">sale.order.line._prepare_procurement_values()</tt>), and <tt class="docutils literal">stock.rule</tt>
+is told to actually carry those two keys onto the created move
+(<tt class="docutils literal">_get_custom_move_fields()</tt>) - without this, a procurement only ever
+carries core’s own fields (product, quantity, dates…), never anything
+module-specific.</p>
+</div>
+<div class="section" id="multi-step-buy-routes">
+<h2>Multi-step “buy” routes</h2>
+<p>A multi-step purchase route (e.g. Receive in 2 steps) procures an
+<em>intermediate</em> move first (the vendor receipt), which has no
+<tt class="docutils literal">sale_line_id</tt> of its own - only the eventual delivery move, further
+down the same chain, is linked back to the sale order line. Without
+walking that chain, <tt class="docutils literal">_prepare_procurement_values()</tt> on the
+intermediate move would have no sale line to read the secondary unit
+from and silently drop it (or worse, wipe out whatever
+<tt class="docutils literal">stock_secondary_unit</tt>’s own generic value already put there for a
+pure-internal chain). <tt class="docutils literal">stock.move._prepare_procurement_values()</tt> here
+falls back to <tt class="docutils literal">sale_stock</tt>’s own <tt class="docutils literal">_get_sale_order_lines()</tt> (which
+walks the chain in both directions) to find the real originating sale
+line, and only overrides the secondary unit/quantity when one is
+actually found.</p>
+</div>
+<div class="section" id="correcting-a-count-on-an-already-confirmed-order">
+<h2>Correcting a count on an already-confirmed order</h2>
+<p>A line’s secondary quantity (e.g. a piece count) is sometimes corrected
+<em>after</em> the order is confirmed and the delivery is already scheduled - a
+weight-based product ordered as “40 pieces” turns out to need 42. Simply
+writing the new count on the line does two things:</p>
+<ul class="simple">
+<li>Relaunches the sale order’s own procurement rule <em>only if</em> the primary
+quantity (e.g. the weight) was written in the same call - a pure count
+correction never touches the primary quantity, and relaunching the
+stock rule for an unchanged primary quantity is a no-op (it only ever
+creates a new move for a primary-quantity delta; it never reads back
+into an existing move’s secondary quantity).</li>
+<li>So, when only the count changes, the correction is instead written
+directly onto whichever stock move for that line is still pending (not
+<tt class="docutils literal">done</tt> or <tt class="docutils literal">cancel</tt>). For a <tt class="docutils literal">secondary_priority</tt> secondary unit,
+writing it also recomputes that move’s own primary quantity, since the
+weight is still estimated from the corrected count.</li>
+<li>If the line already has <strong>more than one</strong> pending move at once (e.g. a
+backorder pick still pending alongside an earlier leg not yet
+processed), the corrected total is distributed across all of them
+proportionally to each move’s current secondary-quantity share, so
+none of them is left with a stale count and the sum still adds up
+exactly.</li>
+</ul>
 <p><strong>Table of contents</strong></p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#usage" id="toc-entry-1">Usage</a></li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-2">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-3">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-4">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-5">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-6">Maintainers</a></li>
+<li><a class="reference internal" href="#usage" id="toc-entry-1">Usage</a><ul>
+<li><a class="reference internal" href="#selling-a-product-in-a-secondary-unit" id="toc-entry-2">Selling a product in a secondary unit</a></li>
+<li><a class="reference internal" href="#adding-a-product-to-an-already-confirmed-order-from-the-catalog" id="toc-entry-3">Adding a product to an already-confirmed order from the catalog</a></li>
+<li><a class="reference internal" href="#correcting-a-piece-count-after-confirmation" id="toc-entry-4">Correcting a piece count after confirmation</a></li>
+<li><a class="reference internal" href="#a-multi-step-buy-route" id="toc-entry-5">A multi-step “buy” route</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-6">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-7">Credits</a></li>
 </ul>
 </div>
 <div class="section" id="usage">
-<h2><a class="toc-backref" href="#toc-entry-1">Usage</a></h2>
-<p>To use this module you need to:</p>
+<h3><a class="toc-backref" href="#toc-entry-1">Usage</a></h3>
+<div class="section" id="selling-a-product-in-a-secondary-unit">
+<h4><a class="toc-backref" href="#toc-entry-2">Selling a product in a secondary unit</a></h4>
 <ol class="arabic simple">
-<li>Go to a <em>Product &gt; General Information tab</em>.</li>
-<li>Create any record in “Secondary unit of measure”.</li>
-<li>Set the conversion factor.</li>
-<li>Go to <em>Sale &gt; Quotation</em> and create a sale order with this product.</li>
-<li>Confirm the sale order.</li>
-<li>Go to picking from this sale order, you will see secondary unit
-information.</li>
+<li>On the product’s <em>General Information</em> tab, add a secondary unit of
+measure and its conversion factor (from <tt class="docutils literal">product_secondary_unit</tt>),
+and pick one as the sale-facing default (<tt class="docutils literal">sale_secondary_uom_id</tt>,
+from <tt class="docutils literal">sale_order_secondary_unit</tt>).</li>
+<li>Create a sale order for that product and set the secondary quantity
+on the order line (e.g. “40” pieces) instead of, or alongside, the
+primary one.</li>
+<li>Confirm the order. Open the resulting delivery (or receipt, for a
+multi-step purchase route): its stock move already carries the same
+secondary unit and quantity, ready to be counted on the warehouse
+floor.</li>
 </ol>
 </div>
+<div class="section" id="adding-a-product-to-an-already-confirmed-order-from-the-catalog">
+<h4><a class="toc-backref" href="#toc-entry-3">Adding a product to an already-confirmed order from the catalog</a></h4>
+<p>Adding a new line (or raising an existing one’s quantity) through the
+sale order’s product catalog after confirmation also carries the
+secondary unit onto the newly created (or extended) stock move(s), the
+same as confirming the order from scratch would - no separate step
+needed.</p>
+</div>
+<div class="section" id="correcting-a-piece-count-after-confirmation">
+<h4><a class="toc-backref" href="#toc-entry-4">Correcting a piece count after confirmation</a></h4>
+<p>If an operator or salesperson needs to correct the secondary quantity on
+an already-confirmed line - typically because the real count differs
+from what was ordered, and the primary quantity (e.g. weight) is not
+being touched at the same time - just edit the line’s secondary quantity
+field and save:</p>
+<ul class="simple">
+<li>The pending delivery (or receipt) move for that line is updated to the
+new count immediately, without needing to re-run any procurement
+action.</li>
+<li>If the secondary unit is a <tt class="docutils literal">secondary_priority</tt> one (see
+<tt class="docutils literal">stock_secondary_unit</tt>), the move’s own primary quantity is
+recalculated from the new count too, since the weight is only ever an
+estimate derived from it.</li>
+<li>If the line has already been partially processed and has more than one
+pending move at once, the correction is spread across all of them in
+proportion to what each was already carrying - there is nothing extra
+to do, the split happens automatically.</li>
+</ul>
+</div>
+<div class="section" id="a-multi-step-buy-route">
+<h4><a class="toc-backref" href="#toc-entry-5">A multi-step “buy” route</a></h4>
+<p>No extra configuration is needed: when the purchase route procures an
+intermediate move before the final delivery (e.g. <em>Receive in 2 steps</em>),
+the secondary unit still ends up on every move in the chain, not just
+the last one linked to the sale order line.</p>
+</div>
+</div>
 <div class="section" id="bug-tracker">
-<h2><a class="toc-backref" href="#toc-entry-2">Bug Tracker</a></h2>
+<h3><a class="toc-backref" href="#toc-entry-6">Bug Tracker</a></h3>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/OCA/sale-workflow/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
@@ -413,15 +510,17 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h2><a class="toc-backref" href="#toc-entry-3">Credits</a></h2>
+<h3><a class="toc-backref" href="#toc-entry-7">Credits</a></h3>
+</div>
+</div>
 <div class="section" id="authors">
-<h3><a class="toc-backref" href="#toc-entry-4">Authors</a></h3>
+<h2>Authors</h2>
 <ul class="simple">
 <li>Tecnativa</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h3><a class="toc-backref" href="#toc-entry-5">Contributors</a></h3>
+<h2>Contributors</h2>
 <ul class="simple">
 <li>Carlos Dauden &lt;<a class="reference external" href="mailto:carlos.dauden&#64;tecnativa.com">carlos.dauden&#64;tecnativa.com</a>&gt;</li>
 <li>Sergio Teruel &lt;<a class="reference external" href="mailto:sergio.teruel&#64;tecnativa.com">sergio.teruel&#64;tecnativa.com</a>&gt;</li>
@@ -429,7 +528,7 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h3><a class="toc-backref" href="#toc-entry-6">Maintainers</a></h3>
+<h2>Maintainers</h2>
 <p>This module is maintained by the OCA.</p>
 <a class="reference external image-reference" href="https://odoo-community.org">
 <img alt="Odoo Community Association" src="https://odoo-community.org/logo.png" />
@@ -439,7 +538,6 @@ mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
 <p>This module is part of the <a class="reference external" href="https://github.com/OCA/sale-workflow/tree/18.0/sale_stock_secondary_unit">OCA/sale-workflow</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
-</div>
 </div>
 </div>
 </div>
