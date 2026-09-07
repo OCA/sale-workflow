@@ -167,6 +167,15 @@ class TestSaleOrderLineInput(TransactionCase):
         self.assertEqual(self.order.order_line[0].discount, 10)
         self.assertEqual(self.order.order_line[1].discount, 2)
 
+    def test_compute_discount_reset_on_removal(self):
+        """Removing the general discount must reset every line discount to 0,
+        not just leave whatever the line already had.
+        """
+        self.order.general_discount = 10
+        self.assertEqual(self.order.order_line[0].discount, 10)
+        self.order.general_discount = 0
+        self.assertEqual(self.order.order_line[0].discount, 0)
+
     def test_product_template(self):
         self.assertFalse(self.product.product_tmpl_id.bypass_general_discount)
         self.assertTrue(self.product2.product_tmpl_id.bypass_general_discount)
