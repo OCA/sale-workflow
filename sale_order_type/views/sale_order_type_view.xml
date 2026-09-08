@@ -36,6 +36,7 @@
                             <field
                                 name="analytic_distribution"
                                 widget="analytic_distribution"
+                                options="{'force_applicability': 'optional', 'disable_save': true}"
                                 groups="analytic.group_analytic_accounting"
                             />
                         </group>

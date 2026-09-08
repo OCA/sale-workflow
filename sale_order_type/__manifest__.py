@@ -33,4 +33,5 @@
         "views/res_config_settings.xml",
     ],
     "installable": True,
+    "maintainers": ["carlosdauden"],
 }

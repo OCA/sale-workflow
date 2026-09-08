@@ -4,7 +4,7 @@
 # License AGPL-3 - See http://www.gnu.org/licenses/agpl-3.0.html
 from freezegun import freeze_time
 
-from odoo import fields
+from odoo import Command, fields
 from odoo.tests import Form
 
 from odoo.addons.base.tests.common import BaseCommon
@@ -165,6 +165,9 @@ class TestSaleOrderType(BaseCommon):
                 "analytic_distribution": {str(cls.analytic_account.id): 100.0},
             }
         )
+        cls.analytic_account_model = cls.env["account.analytic.account"].create(
+            {"name": "Test SOT Model Analytic Account", "plan_id": cls.analytic_plan.id}
+        )
 
     def create_sale_order(self, partner=False):
         sale_form = Form(self.env["sale.order"])
@@ -265,6 +268,60 @@ class TestSaleOrderType(BaseCommon):
         }
         order.write({"order_line": [(0, 0, sale_line_dict)]})
         self.assertEqual(order.type_id.route_ids, order.order_line[1].route_ids)
+
+    def test_sale_order_analytic_distribution_type_change(self):
+        """Changing the type redistributes existing lines and the new ones."""
+        order = self.create_sale_order()
+        self.assertFalse(order.order_line.analytic_distribution)
+        order.type_id = self.sale_type_analytic
+        self.assertEqual(
+            order.order_line.analytic_distribution,
+            {str(self.analytic_account.id): 100.0},
+        )
+        order.write(
+            {
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.product.id,
+                            "name": self.product.name,
+                            "product_uom_qty": 2.0,
+                            "price_unit": self.product.lst_price,
+                        },
+                    )
+                ]
+            }
+        )
+        self.assertEqual(
+            order.order_line[1].analytic_distribution,
+            {str(self.analytic_account.id): 100.0},
+        )
+
+    def test_sale_order_analytic_distribution_prevails_over_model(self):
+        """The type distribution prevails over the one of the analytic models.
+
+        Picking a type is an explicit per order decision, so it wins over the
+        generic rules, the same way its pricelist wins over the partner one.
+        """
+        self.env["account.analytic.distribution.model"].create(
+            {
+                "partner_id": self.partner.id,
+                "analytic_distribution": {str(self.analytic_account_model.id): 100.0},
+            }
+        )
+        order = self.create_sale_order()
+        self.assertEqual(order.type_id, self.sale_type)
+        self.assertFalse(self.sale_type.analytic_distribution)
+        # Without a distribution in the type, the analytic model one is kept
+        self.assertEqual(
+            order.order_line.analytic_distribution,
+            {str(self.analytic_account_model.id): 100.0},
+        )
+        order.type_id = self.sale_type_analytic
+        self.assertEqual(
+            order.order_line.analytic_distribution,
+            {str(self.analytic_account.id): 100.0},
+        )
 
     def test_sale_order_in_draft_state_update_name(self):
         order = self.create_sale_order()

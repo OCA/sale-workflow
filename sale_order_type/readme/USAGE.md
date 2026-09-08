@@ -6,3 +6,8 @@
 3.  When no type is set on the partner and no default is provided in the
     context, the sale order uses the first available type according to
     the sequence configured on sale order types.
+4.  When the type defines an analytic distribution, it is applied to the
+    lines of its orders. As picking a type is an explicit decision taken
+    order by order, that distribution prevails over the one that the
+    analytic distribution models would resolve for the product or the
+    partner.
