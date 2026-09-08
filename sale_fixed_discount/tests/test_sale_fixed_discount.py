@@ -71,3 +71,13 @@ class TestSaleFixedDiscount(SavepointCase):
         self.assertEqual(self.sale.amount_total, 630.0)
         self.sale_line1.discount = 50.0
         self.assertEqual(self.sale.amount_total, 515.0)
+
+    def test_03_amount_by_group_fixed_discount(self):
+        """Tax breakdown (amount_by_group) must reflect the fixed discount."""
+        # price_unit=200, fixed discount=10 => taxable base 190, tax 15% = 28.5
+        self.sale_line1.discount_fixed = 10.0
+        groups = self.sale.amount_by_group
+        self.assertEqual(len(groups), 1)
+        # index 1 = tax amount, index 2 = tax base
+        self.assertAlmostEqual(groups[0][2], 190.0)
+        self.assertAlmostEqual(groups[0][1], 28.5)
