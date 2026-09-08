@@ -8,8 +8,13 @@ registry.category("web_tour.tours").add("sale_order_line_description_manual_edit
         {
             content: "Open the sale order line editor",
             trigger:
-                '.o_field_product_label_section_and_note_cell:contains("Sale description for test product")',
+                '.o_field_product_label_section_and_note_cell:has(:contains("Test product"), input:value("Test product"))',
             run: "click",
+        },
+        {
+            content: "Check the product name is not prepended to the description",
+            trigger:
+                '.o_selected_row .o_field_product_label_section_and_note_cell textarea:value("Sale description for test product")',
         },
         {
             content: "Edit the sale order line description",
