@@ -219,3 +219,18 @@ class SaleOrderLine(models.Model):
             if order_type.route_id:
                 line.route_id = order_type.route_id
         return res
+
+    @api.depends("order_id.type_id")
+    def _compute_analytic_distribution(self):
+        """Let the order type define the analytic distribution of its lines.
+
+        The type is an explicit, per order choice, so it prevails over the
+        distribution resolved by ``account.analytic.distribution.model``, the
+        same way its pricelist or payment term prevail over the partner ones.
+        """
+        res = super()._compute_analytic_distribution()
+        for line in self.filtered(
+            lambda x: not x.display_type and x.order_id.type_id.analytic_distribution
+        ):
+            line.analytic_distribution = line.order_id.type_id.analytic_distribution
+        return res
