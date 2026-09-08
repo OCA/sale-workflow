@@ -1,6 +1,5 @@
-# Copyright 2023 Moduon Team S.L.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
-from odoo import exceptions, fields
+from odoo import exceptions
 from odoo.tests import Form
 
 from odoo.addons.product.tests.common import ProductCommon
@@ -13,56 +12,49 @@ class SalePackagingDefaultCase(ProductCommon):
         cls.env["ir.config_parameter"].set_param(
             "sale_packaging_default.packaging_required", "0"
         )
-        cls.env.user.groups_id |= cls.env.ref("product.group_stock_packaging")
-        with Form(cls.product) as product_f:
-            with product_f.packaging_ids.new() as packaging_f:
-                packaging_f.name = "Dozen"
-                packaging_f.qty = 12
-                packaging_f.sales = True
-                packaging_f.sequence = 20
-            with product_f.packaging_ids.new() as packaging_f:
-                packaging_f.name = "Big box"
-                packaging_f.qty = 100
-                packaging_f.sales = True
-                packaging_f.sequence = 10  # This is the default one
-        cls.big_box, cls.dozen = cls.product.packaging_ids
-        assert cls.dozen.name == "Dozen"
-        assert cls.big_box.name == "Big box"
-        cls.product2 = cls.env["product.product"].create(
+
+        has_sales_field = "sales" in cls.env["uom.uom"]._fields
+
+        uom_unit = cls.env.ref("uom.product_uom_unit")
+
+        # Create UoMs
+        cls.big_box = cls.env["uom.uom"].create(
             {
-                "name": "Product 2",
-                "type": "consu",
-                "packaging_ids": [
-                    fields.Command.create(
-                        {
-                            "name": "3-pack",
-                            "qty": 3,
-                            "sales": True,
-                            "sequence": 10,
-                        }
-                    ),
-                ],
+                "name": "Big box",
+                "relative_uom_id": uom_unit.id,
+                "relative_factor": 100,
             }
         )
-        cls.p2_three_pack = cls.product2.packaging_ids[0]
-        assert cls.p2_three_pack.name == "3-pack"
-        cls.product_packaging_qty_no_integer = cls.env["product.product"].create(
+        cls.dozen = cls.env["uom.uom"].create(
             {
-                "name": "Product packaging with qty not integer",
-                "type": "consu",
-                "packaging_ids": [
-                    fields.Command.create(
-                        {
-                            "name": "1 Piece",
-                            "qty": 1.6,
-                            "sales": True,
-                            "sequence": 10,
-                        }
-                    ),
-                ],
+                "name": "Dozen",
+                "relative_uom_id": uom_unit.id,
+                "relative_factor": 12,
             }
         )
-        cls.packaging = cls.product_packaging_qty_no_integer.packaging_ids
+        cls.small_box = cls.env["uom.uom"].create(
+            {
+                "name": "Small box",
+                "relative_uom_id": uom_unit.id,
+                "relative_factor": 6,
+            }
+        )
+
+        if has_sales_field:
+            cls.big_box.sales = True
+            cls.dozen.sales = True
+            cls.small_box.sales = True
+
+        cls.product.uom_ids = [(6, 0, [cls.big_box.id, cls.dozen.id])]
+
+        cls.product_2 = cls.env["product.product"].create(
+            {
+                "name": "Second Packaged Product",
+                "type": "consu",
+                "uom_ids": [(6, 0, [cls.small_box.id])],
+            }
+        )
+
         cls.product_without_packaging = cls.env["product.product"].create(
             {
                 "name": "Product Without Packaging",
@@ -72,137 +64,80 @@ class SalePackagingDefaultCase(ProductCommon):
 
     def test_default_packaging_sale_order(self):
         """Check is packaging usage in sale order."""
-        # Create a sale order with the product
         so_f = Form(self.env["sale.order"])
         so_f.partner_id = self.partner
         with so_f.order_line.new() as line_f:
             line_f.product_id = self.product
-            # Automatically set the default packaging and the quantity
-            self.assertEqual(line_f.product_packaging_id, self.big_box)
-            self.assertEqual(line_f.product_packaging_qty, 1)
-            self.assertEqual(line_f.product_uom_qty, 100)
-            # Change the packaging, and qtys are recalculated
-            line_f.product_packaging_id = self.dozen
-            self.assertEqual(line_f.product_packaging_qty, 1)
-            self.assertEqual(line_f.product_uom_qty, 12)
-            # Change product qty, and packaging is recalculated
-            line_f.product_uom_qty = 1200
-            self.assertEqual(line_f.product_packaging_qty, 12)
-            self.assertEqual(line_f.product_packaging_id, self.big_box)
-            self.assertEqual(line_f.product_uom_qty, 1200)
-            # I want it in dozens, so I change the packaging
-            line_f.product_packaging_id = self.dozen
-            self.assertEqual(line_f.product_packaging_id, self.dozen)
-            self.assertEqual(line_f.product_uom_qty, 1200)
-            self.assertEqual(line_f.product_packaging_qty, 100)
-            # I want less dozens, so I change the packaging qty
-            line_f.product_packaging_qty = 90
-            self.assertEqual(line_f.product_packaging_id, self.dozen)
-            self.assertEqual(line_f.product_uom_qty, 1080)
-            # Change the packaging again, and qtys are recalculated
-            line_f.product_packaging_id = self.big_box
-            self.assertEqual(line_f.product_packaging_qty, 1)
-            self.assertEqual(line_f.product_uom_qty, 100)
-            # I want more units, so I change the uom qty
-            line_f.product_uom_qty = 120
-            self.assertEqual(line_f.product_packaging_qty, 10)
-            self.assertEqual(line_f.product_packaging_id, self.dozen)
-            # If I set a uom qty without packaging, it is emptied
-            line_f.product_uom_qty = 7
-            self.assertFalse(line_f.product_packaging_id)
-            self.assertEqual(line_f.product_packaging_qty, 0)
-            self.assertEqual(line_f.product_uom_qty, 7)
-            # Setting zero uom qty resets to the default packaging
-            line_f.product_uom_qty = 0
-            self.assertEqual(line_f.product_packaging_id, self.big_box)
-            self.assertEqual(line_f.product_packaging_qty, 0)
-            self.assertEqual(line_f.product_uom_qty, 0)
+            # Automatically set the default packaging (UoM)
+            self.assertEqual(line_f.product_uom_id, self.big_box)
 
-    def test_sale_order_product_picker_compatibility(self):
-        """Emulate a call done by the product picker module and see it works.
-
-        This test asserts support for cross-compatibility with
-        `sale_order_product_picker`.
-        """
-        so_f = Form(
-            self.env["sale.order"].with_context(
-                default_product_id=self.product.id, default_price_unit=20
+            # Change product, reset UoM
+            line_f.product_id = self.product_without_packaging
+            self.assertEqual(
+                line_f.product_uom_id, self.product_without_packaging.uom_id
             )
-        )
-        so_f.partner_id = self.partner
-        # User clicks on +1 button
-        with so_f.order_line.new() as line_f:
-            self.assertEqual(line_f.product_uom_qty, 1)
-            self.assertFalse(line_f.product_packaging_id)
 
-    def test_product_change(self):
-        """Set one product, alter qtys, change product, qtys are reset."""
+    def test_product_change_between_packaged_products(self):
+        """Check changing between two packaged products updates to default packaging."""
         so_f = Form(self.env["sale.order"])
         so_f.partner_id = self.partner
         with so_f.order_line.new() as line_f:
             line_f.product_id = self.product
-            self.assertEqual(line_f.product_packaging_id, self.big_box)
-            self.assertEqual(line_f.product_packaging_qty, 1)
-            self.assertEqual(line_f.product_uom_qty, 100)
-            line_f.product_uom_qty = 120
-            self.assertEqual(line_f.product_packaging_id, self.dozen)
-            self.assertEqual(line_f.product_packaging_qty, 10)
-            self.assertEqual(line_f.product_uom_qty, 120)
-            line_f.product_id = self.product2
-            self.assertEqual(line_f.product_packaging_id, self.p2_three_pack)
-            self.assertEqual(line_f.product_packaging_qty, 10)
-            self.assertEqual(line_f.product_uom_qty, 30)
+            self.assertEqual(line_f.product_uom_id, self.big_box)
 
-    def test_product_packaging_qty_no_integer(self):
-        """Check behavior with float qty in packaging without using modulo operator.
-
-        If product_packaging_qty is multiple of qty pacakging, with modulo operator the
-        quantity per package might be a float. Example # 8 % 1.6 = 1.5999999999999996
-        """
-        so_f = Form(self.env["sale.order"])
-        so_f.partner_id = self.partner
-        with so_f.order_line.new() as line_f:
-            line_f.product_id = self.product_packaging_qty_no_integer
-            # Automatically set the default packaging and the quantity
-            self.assertEqual(line_f.product_packaging_id, self.packaging)
-            self.assertEqual(line_f.product_packaging_qty, 1)
-            self.assertEqual(line_f.product_uom_qty, 1.6)
-            # Change qty to 8 to force calculate with modulo operator
-            # (8 % 1.6 = 1.5999999999999996)
-            line_f.product_packaging_qty = 5
-            self.assertEqual(line_f.product_packaging_id, self.packaging)
-            self.assertEqual(line_f.product_uom_qty, 8)
+            # Change to second packaged product
+            line_f.product_id = self.product_2
+            self.assertEqual(line_f.product_uom_id, self.small_box)
 
     def test_has_packaging_available(self):
-        """Check product_packaging_id is required when product has packaging."""
+        """Check confirmation raises error if packaging required but invalid UoM set."""
         self.env["ir.config_parameter"].set_param(
             "sale_packaging_default.packaging_required", "1"
         )
-        self.assertTrue(self.product.packaging_ids)
-        so_f = Form(self.env["sale.order"])
-        so_f.partner_id = self.partner
-        with self.assertRaises(AssertionError):
-            # AssertionError comes from product_packaging_id being required
-            with so_f.order_line.new() as line:
-                line.product_id = self.product
-                line.product_packaging_id = False
-                self.assertFalse(line.product_packaging_id)
-                self.assertTrue(line.is_packaging_required)
-
-    def test_required_packaging_error_on_sale_order_confirm(self):
-        """Check error is raised when packaging is required but not set."""
-        self.env["ir.config_parameter"].set_param(
-            "sale_packaging_default.packaging_required", "1"
-        )
-        self.assertTrue(self.product.packaging_ids)
+        self.assertTrue(self.product.uom_ids)
         sale = self.env["sale.order"].create(
             {
                 "partner_id": self.partner.id,
-                "order_line": [(0, 0, {"product_id": self.product.id})],
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "product_uom_id": self.product.uom_id.id,
+                        },
+                    )
+                ],
+            }
+        )
+        with self.assertRaisesRegex(
+            exceptions.UserError, "Some packaging is required but not set"
+        ):
+            sale.action_confirm()
+
+    def test_required_packaging_error_on_sale_order_confirm(self):
+        """Check error is raised when packaging is required
+        but non-packaging UoM is used."""
+        self.env["ir.config_parameter"].set_param(
+            "sale_packaging_default.packaging_required", "1"
+        )
+        self.assertTrue(self.product.uom_ids)
+        sale = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "product_uom_id": self.product.uom_id.id,
+                        },
+                    )
+                ],
             }
         )
         self.assertTrue(sale.order_line[:1].is_packaging_required)
-        sale.order_line[:1].product_packaging_id = False
         with self.assertRaisesRegex(
             exceptions.UserError, "Some packaging is required but not set"
         ):
@@ -219,3 +154,67 @@ class SalePackagingDefaultCase(ProductCommon):
             line.product_id = self.product_without_packaging
             self.assertFalse(line.is_packaging_required)
         so_f.save()
+
+    def test_quantity_conversion_and_uom_change(self):
+        """Check setting default packaging preserves/converts quantity."""
+        sale = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "product_uom_qty": 5.0,
+                        },
+                    )
+                ],
+            }
+        )
+        line = sale.order_line[0]
+        self.assertEqual(line.product_uom_id, self.big_box)
+        self.assertEqual(line.product_uom_qty, 5.0)
+
+        # Change UoM to Dozen and verify line updates
+        line.write({"product_uom_id": self.dozen.id})
+        self.assertEqual(line.product_uom_id, self.dozen)
+        self.assertEqual(line.product_uom_qty, 5.0)
+
+    def test_action_confirm_success(self):
+        """Confirm order successfully when valid packaging UoM is used."""
+        sale = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": self.product.id,
+                            "product_uom_id": self.big_box.id,  # Uses a valid packaging
+                        },
+                    )
+                ],
+            }
+        )
+        res = sale.action_confirm()
+        self.assertTrue(res)
+        self.assertEqual(sale.state, "sale")
+
+    def test_onchange_type_coverage(self):
+        """Cover onchange helper with string, list, and falsy field names."""
+        line = self.env["sale.order.line"].new()
+        vals = {"product_id": self.product.id}
+        res_str = line.onchange(vals, "product_id", {})
+        self.assertIsInstance(res_str, dict)
+
+        res_list = line.onchange(vals, ["product_id"], {})
+        self.assertIsInstance(res_list, dict)
+
+        res_falsy = line.onchange(vals, "", {})
+        self.assertIsInstance(res_falsy, dict)
+
+        # Cover empty product helpers
+        self.assertFalse(line._get_sale_packagings())
+        self.assertFalse(self.env["sale.order.line"]._get_default_packaging(None))

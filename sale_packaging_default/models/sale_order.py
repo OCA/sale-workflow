@@ -9,9 +9,11 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         res = super().action_confirm()
-        if required_packaging_lines := self.mapped("order_line").filtered_domain(
-            [("is_packaging_required", "=", True), ("product_packaging_id", "=", False)]
-        ):
+        required_packaging_lines = self.mapped("order_line").filtered(
+            lambda line: line.is_packaging_required
+            and line.product_uom_id not in line._get_sale_packagings()
+        )
+        if required_packaging_lines:
             raise exceptions.UserError(
                 self.env._(
                     "Some packaging is required but not set "
