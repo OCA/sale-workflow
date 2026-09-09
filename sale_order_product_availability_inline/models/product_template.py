@@ -10,7 +10,7 @@ class ProductTemplate(models.Model):
     def _compute_display_name(self):
         res = super()._compute_display_name()
         if self.env.context.get("so_product_stock_inline"):
-            self = self.with_context(warehouse=self.env.context.get("warehouse"))
+            self = self.with_context(warehouse_id=self.env.context.get("warehouse_id"))
             availability = {
                 r.id: [
                     sum(p.free_qty for p in r.product_variant_ids),
