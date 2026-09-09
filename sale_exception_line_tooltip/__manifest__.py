@@ -4,7 +4,7 @@
 {
     "name": "Sale Exception Line Tooltip",
     "summary": "Shows tooltips on sale order lines that have exceptions",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "author": "Camptocamp, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
