@@ -4,7 +4,7 @@
 {
     "name": "Sale Order Team from Product",
     "summary": "Set Sales Team on quotations from product Sales Teams",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Sales",
     "author": "Cetmix, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",

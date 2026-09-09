@@ -19,7 +19,7 @@ class TestSaleOrderTeamFromProduct(TransactionCase):
         cls.SaleOrder = cls.env["sale.order"]
         cls.ResConfigSettings = cls.env["res.config.settings"]
 
-        cls.partner = cls.env.ref("base.res_partner_2")
+        cls.partner = cls.env["res.partner"].create({"name": "Test Partner"})
 
         # Create two sales teams
         cls.team_a = cls.env["crm.team"].create(
