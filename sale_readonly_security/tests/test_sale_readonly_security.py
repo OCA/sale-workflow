@@ -27,6 +27,20 @@ class TestSaleReadonlySecurity(BaseCommon):
         cls.user_readonly = new_test_user(
             cls.env, login="test_user_readonly", groups="sales_team.group_sale_manager"
         )
+        cls.company = cls.env.company
+        if "account.journal" in cls.env:
+            journal = cls.env["account.journal"].search(
+                [("type", "=", "sale"), ("company_id", "=", cls.company.id)], limit=1
+            )
+            if not journal:
+                cls.env["account.journal"].create(
+                    {
+                        "name": "Customer Invoices",
+                        "code": "INV",
+                        "type": "sale",
+                        "company_id": cls.company.id,
+                    }
+                )
         cls.partner = cls.env["res.partner"].create({"name": "Test partner"})
         cls.product = cls.env["product.product"].create(
             {"name": "Test product", "type": "consu", "invoice_policy": "order"}

@@ -3,7 +3,7 @@
 
 from lxml import etree
 
-from odoo import _, api, models
+from odoo import api, models
 from odoo.exceptions import AccessError
 from odoo.tools import config
 
@@ -40,7 +40,7 @@ class SaleOrder(models.Model):
             and not user.has_group(group)
         ):
             raise AccessError(
-                _(
+                self.env._(
                     "Sorry, you are not allowed to create/edit sale orders. "
                     "Please contact your administrator for further information."
                 )
