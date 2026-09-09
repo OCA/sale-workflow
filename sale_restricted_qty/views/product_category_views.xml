@@ -35,8 +35,12 @@
                         </div>
 
                         <field name="is_sale_restrict_min_qty_set" invisible="1" />
-                        <label for="sale_restrict_min_qty" string="Restrict" />
-                        <div>
+                        <label
+                            for="sale_restrict_min_qty"
+                            string="Restrict"
+                            invisible="not is_sale_min_qty_set"
+                        />
+                        <div invisible="not is_sale_min_qty_set">
                             <field
                                 name="is_sale_own_restrict_min_qty_set"
                                 class="oe_inline"
@@ -76,8 +80,12 @@
                         </div>
 
                         <field name="is_sale_restrict_max_qty_set" invisible="1" />
-                        <label for="sale_restrict_max_qty" string="Restrict" />
-                        <div>
+                        <label
+                            for="sale_restrict_max_qty"
+                            string="Restrict"
+                            invisible="not is_sale_max_qty_set"
+                        />
+                        <div invisible="not is_sale_max_qty_set">
                             <field
                                 name="is_sale_own_restrict_max_qty_set"
                                 class="oe_inline"
@@ -123,8 +131,12 @@
                             name="is_sale_restrict_multiple_of_qty_set"
                             invisible="1"
                         />
-                        <label for="sale_restrict_multiple_of_qty" string="Restrict" />
-                        <div>
+                        <label
+                            for="sale_restrict_multiple_of_qty"
+                            string="Restrict"
+                            invisible="not is_sale_multiple_of_qty_set"
+                        />
+                        <div invisible="not is_sale_multiple_of_qty_set">
                             <field
                                 name="is_sale_own_restrict_multiple_of_qty_set"
                                 class="oe_inline"
