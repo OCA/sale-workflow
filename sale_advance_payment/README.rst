@@ -1,7 +1,3 @@
-.. image:: https://odoo-community.org/readme-banner-image
-   :target: https://odoo-community.org/get-involved?utm_source=readme
-   :alt: Odoo Community Association
-
 ====================
 Sale Advance Payment
 ====================
@@ -17,7 +13,7 @@ Sale Advance Payment
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -35,6 +31,12 @@ Sale Advance Payment
 The module allows to add advance payments on sales and then use them on
 invoices.
 
+Additionally, it provides an optional feature to handle advance payments
+that exceed the order amount. This is particularly useful for e-commerce
+scenarios where tax calculations may differ between the external store
+and Odoo. When enabled, overpayments are partially reconciled, leaving
+the excess amount as customer credit.
+
 **Table of contents**
 
 .. contents::
@@ -45,13 +47,38 @@ Usage
 
 To use this module, you need to:
 
-- Go to a sale order.
-- Click on "Pay Sale Advance".
-- Select the Journal and specify the amount of the advanced payment.
-- "Make Advance Payment".
+-  Go to a sale order.
+-  Click on "Pay Sale Advance".
+-  Select the Journal and specify the amount of the advanced payment.
+-  "Make Advance Payment".
 
 When generating the invoice, the system displays the advanced payments,
 select those you want to add to the invoice.
+
+**Handling Overpayments:**
+
+By default, advance payments that exceed the invoice amount will be
+rejected. To enable partial reconciliation of overpayments:
+
+1. Go to *Settings > General Settings*
+2. Scroll to the *Accounting* section
+3. Check *Allow Advance Payments Exceeding Order Amount*
+4. Save the settings
+
+When enabled, advance payments larger than the order amount will be:
+
+-  Partially reconciled up to the invoice amount
+-  The excess amount remains as customer credit
+-  Useful for e-commerce integrations with tax calculation differences
+
+**Example Scenarios:**
+
+-  **E-commerce Integration**: Customer pays $120 but Odoo calculates
+   $100 due to tax differences
+-  **Prepayments**: Customer pays deposit that exceeds final invoice
+   amount
+-  **Currency Fluctuations**: Payment made in different currency with
+   rate variations
 
 Known issues / Roadmap
 ======================
@@ -81,11 +108,11 @@ Authors
 Contributors
 ------------
 
-- Omar Castiñeira Saaevdra <omar@comunitea.com>
-- Daniel Reis <dreis@opensourceintegrators.com>
-- Nikul Chaudhary <nchaudhary@opensourceintegrators.com>
-- Manuel Regidor <manuel.regidor@sygel.es>
-- Urvisha Desai <udesai@opensourceintegrators.com>
+-  Omar Castiñeira Saaevdra <omar@comunitea.com>
+-  Daniel Reis <dreis@opensourceintegrators.com>
+-  Nikul Chaudhary <nchaudhary@opensourceintegrators.com>
+-  Manuel Regidor <manuel.regidor@sygel.es>
+-  Urvisha Desai <udesai@opensourceintegrators.com>
 
 Maintainers
 -----------
