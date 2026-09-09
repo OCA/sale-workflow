@@ -83,6 +83,17 @@ class TestSaleOrderLineFinalPrice(BaseCommon):
         self.line.price_final = 33.33
         self.assertEqual(self.line.discount, 66.67)
 
+    def test_price_unit_0_change_price_final_0(self):
+        self.line.write(
+            {
+                "price_unit": 0,
+                "discount": 0,
+                "price_final": 0,
+            }
+        )
+        self.line.price_final = 100
+        self.assertEqual(self.line.discount, 0)
+
     def test_price_final_without_unit_price(self):
         """The line is created with the agreed price as its unit price, and the
         amounts take it into account."""
