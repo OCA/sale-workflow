@@ -1,6 +1,6 @@
 {
     "name": "Sale Order Show Currency Rate",
-    "version": "18.0.1.1.0",
+    "version": "19.0.1.0.0",
     "author": "Tecnativa, Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
