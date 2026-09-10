@@ -1,0 +1,2 @@
+- Go to Sale \> Configuration \> Settings \> Sale Invoice Policy
+- Choose the one that fits your needs.
