@@ -59,6 +59,43 @@ class TestSaleStockOrderSecondaryUnit(TransactionCase):
             [("product_tmpl_id", "=", cls.product.product_tmpl_id.id)]
         )
         cls.product.sale_secondary_uom_id = cls.secondary_unit.id
+        # A second product, kept out of the order, to be added from the catalog
+        cls.product_2 = cls.env["product.product"].create(
+            {
+                "name": "test 2",
+                "type": "consu",
+                "is_storable": True,
+                "uom_id": cls.product_uom_kg.id,
+                "uom_po_id": cls.product_uom_kg.id,
+                "list_price": 100.00,
+            }
+        )
+        cls.product_2.product_tmpl_id.write(
+            {
+                "secondary_uom_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "name": "unit-700-2",
+                            "uom_id": cls.product_uom_unit.id,
+                            "factor": 0.7,
+                        },
+                    )
+                ],
+            }
+        )
+        cls.secondary_unit_2 = cls.env["product.secondary.unit"].search(
+            [("product_tmpl_id", "=", cls.product_2.product_tmpl_id.id)]
+        )
+        cls.product_2.sale_secondary_uom_id = cls.secondary_unit_2.id
+        StockQuant.create(
+            {
+                "product_id": cls.product_2.id,
+                "location_id": cls.warehouse.lot_stock_id.id,
+                "quantity": 2000,
+            }
+        )
         cls.partner = cls.env["res.partner"].create({"name": "test - partner"})
         so = cls.env["sale.order"].new(
             {
@@ -89,3 +126,35 @@ class TestSaleStockOrderSecondaryUnit(TransactionCase):
         self.order.action_confirm()
         picking = self.order.picking_ids
         self.assertEqual(picking.move_line_ids.secondary_uom_qty, 5.0)
+
+    def _catalog_line(self, product):
+        return self.order.order_line.filtered(lambda line: line.product_id == product)
+
+    def test_catalog_new_line_on_confirmed_order(self):
+        """Adding a product from the catalog to a confirmed order must move the
+        secondary unit to the generated move, not the secondary quantity into
+        the product quantity.
+        """
+        self.order.action_confirm()
+        self.order._update_order_line_info(self.product_2.id, 5)
+        line = self._catalog_line(self.product_2)
+        self.assertEqual(line.secondary_uom_id, self.secondary_unit_2)
+        self.assertEqual(line.secondary_uom_qty, 5.0)
+        self.assertEqual(line.product_uom_qty, 3.5)
+        self.assertEqual(line.move_ids.secondary_uom_id, self.secondary_unit_2)
+        self.assertEqual(line.move_ids.secondary_uom_qty, 5.0)
+        self.assertEqual(line.move_ids.product_uom_qty, 3.5)
+
+    def test_catalog_update_line_on_confirmed_order(self):
+        """Raising the catalog quantity of an existing line must propagate the
+        delta to the moves in both units.
+        """
+        self.order.action_confirm()
+        self.order._update_order_line_info(self.product_2.id, 5)
+        self.order._update_order_line_info(self.product_2.id, 8)
+        line = self._catalog_line(self.product_2)
+        self.assertEqual(line.secondary_uom_qty, 8.0)
+        self.assertEqual(line.product_uom_qty, 5.6)
+        moves = line.move_ids.filtered(lambda move: move.state != "cancel")
+        self.assertEqual(sum(moves.mapped("product_uom_qty")), 5.6)
+        self.assertEqual(sum(moves.mapped("secondary_uom_qty")), 8.0)
