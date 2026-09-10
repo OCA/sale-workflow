@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//setting[@id='order_warnings']" position="after">
+                <setting
+                    id="sale_commitment_date_in_header"
+                    string="Show Delivery Date in Header"
+                    help="Display the Delivery Date field in header (after the Quotation/Order Date field) on the sales order form for better visibility."
+                >
+                    <field name="sale_commitment_date_in_header" />
+                </setting>
+                <setting
+                    id="sale_require_commitment_date"
+                    string="Require Delivery Date"
+                    help="If enabled, the Delivery Date field on the sales order will be required."
+                >
+                    <field name="sale_require_commitment_date" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
