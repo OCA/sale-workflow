@@ -35,17 +35,20 @@ class SaleOrderLine(models.Model):
                 )
 
     def _force_qty_with_package(self):
-        """
-
-        :return:
-        """
         self.ensure_one()
+        old_qty = self.product_uom_qty
         qty = self.product_id._convert_packaging_qty(
-            self.product_uom_qty, self.product_uom, packaging=self.product_packaging_id
+            self.product_uom_qty,
+            self.product_uom,
+            packaging=self.product_packaging_id,
         )
+        if self.product_packaging_id and qty != old_qty:
+            self.product_packaging_qty = self.product_packaging_id._compute_qty(
+                qty, self.product_uom
+            )
         self.product_uom_qty = qty
         return True
 
-    @api.onchange("product_uom_qty")
+    @api.onchange("product_uom_qty", "product_packaging_id")
     def _onchange_product_uom_qty(self):
         self._force_qty_with_package()

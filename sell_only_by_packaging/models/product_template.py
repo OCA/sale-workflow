@@ -76,6 +76,6 @@ class ProductTemplate(models.Model):
     @api.depends("sale_ok")
     def _compute_expense_policy(self):
         self.filtered(
-            lambda t: not t.sale_ok and self.sell_only_by_packaging
+            lambda t: not t.sale_ok and t.sell_only_by_packaging
         ).sell_only_by_packaging = False
         return super()._compute_expense_policy()

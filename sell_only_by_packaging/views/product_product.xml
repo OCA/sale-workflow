@@ -8,10 +8,10 @@
         <field name="inherit_id" ref="product.product_product_tree_view" />
         <field name="arch" type="xml">
             <field name="lst_price" position="after">
-                <field name="sell_only_by_packaging" invisible="1" />
+                <field name="sell_only_by_packaging" column_invisible="1" />
                 <field
                     name="min_sellable_qty"
-                    attrs="{'invisible':['|', ('type', '!=', 'product'), ('sell_only_by_packaging', '=', False)]}"
+                    invisible="type != 'consu' or not sell_only_by_packaging"
                     optional="show"
                 />
             </field>
