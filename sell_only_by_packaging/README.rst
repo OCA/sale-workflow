@@ -76,6 +76,67 @@ sold and which product can only be sold by packaging.
   during creation/modification of the sale order line with the factor
   set on the packaging.
 
+**Permissions**
+
+Users need the **Manage Product Packaging** group to access and manage
+product packaging settings. Packaging fields on sales orders are also
+available to sales users through the module's updated views.
+
+Usage
+=====
+
+To use this module, you need to:
+
+1. Go to **Sales > Products > Products** and select a product.
+2. Enable **Sell only by packaging** and configure at least one
+   packaging available for sales.
+3. Optionally, enable **Force sale quantity** on the packaging to
+   automatically round quantities up to valid packaging multiples.
+4. Create a quotation and add the product to a sale order line.
+5. Select a packaging or enter a quantity matching an available
+   packaging. When **Force sale quantity** is enabled, subsequent
+   quantity changes are rounded up to a valid multiple of the selected
+   packaging.
+
+Known issues / Roadmap
+======================
+
+Product Catalog Integration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Products configured with **Sell only by packaging** cannot currently be
+added directly from the sales product catalog, as the catalog does not
+allow selecting a packaging before creating the sale order line.
+
+Consider adapting the product catalog in a future improvement to support
+packaging selection and quantity increments based on the selected
+packaging.
+
+Product Variants Validation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When **Sell only by packaging** is enabled, the existing validation
+checks whether sellable packaging is available. However, creating new
+product variants afterward may result in variants without packaging
+configured for sales.
+
+Consider improving the validation to check each active variant
+individually and detect missing sales packaging when variants are
+created or modified.
+
+External Sales Integrations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+External tools that create sale order lines directly, such as e-commerce
+connectors, Excel imports, or the ``sale_order_product_recommendation``
+wizard, may encounter validation errors when products require packaging
+and no valid packaging is provided.
+
+Consider improving packaging selection and quantity handling when
+creating sale order lines through external integrations, potentially
+allowing automatic packaging assignment and quantity adjustment to valid
+packaging multiples.
+
 Bug Tracker
 ===========
 
