@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_view_form_team_sequence" model="ir.ui.view">
+        <field name="name">sale.order.form.team.sequence</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='team_id']" position="after">
+                <div
+                    class="d-flex align-items-center gap-2 text-warning small mb-2"
+                    invisible="not sequence_mismatch"
+                    colspan="2"
+                >
+                    <i class="fa fa-exclamation-triangle" />
+                    <span>Sequence mismatch with sales team</span>
+                    <button
+                        name="action_renumber_from_team_sequence"
+                        type="object"
+                        string="Update Order Sequence"
+                        icon="fa-arrow-right"
+                        class="btn btn-sm btn-link text-warning p-0"
+                    />
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
