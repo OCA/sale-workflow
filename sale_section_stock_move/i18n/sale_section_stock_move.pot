@@ -1,0 +1,64 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_section_stock_move
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-08 11:50+0000\n"
+"PO-Revision-Date: 2026-04-08 11:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_section_stock_move
+#: model:ir.model.fields,field_description:sale_section_stock_move.field_stock_move__display_name
+#: model:ir.model.fields,field_description:sale_section_stock_move.field_stock_move_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sale_section_stock_move
+#: model:ir.model.fields,field_description:sale_section_stock_move.field_stock_move__id
+#: model:ir.model.fields,field_description:sale_section_stock_move.field_stock_move_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_section_stock_move
+#: model:ir.model,name:sale_section_stock_move.model_stock_move_line
+msgid "Product Moves (Stock Move Line)"
+msgstr ""
+
+#. module: sale_section_stock_move
+#: model_terms:ir.ui.view,arch_db:sale_section_stock_move.stock_move_line_view_search
+#: model_terms:ir.ui.view,arch_db:sale_section_stock_move.view_move_search
+msgid "Sale Order"
+msgstr ""
+
+#. module: sale_section_stock_move
+#: model:ir.model.fields,field_description:sale_section_stock_move.field_stock_move__sale_section_id
+#: model:ir.model.fields,field_description:sale_section_stock_move.field_stock_move_line__sale_section_id
+#: model_terms:ir.ui.view,arch_db:sale_section_stock_move.stock_move_line_view_search
+#: model_terms:ir.ui.view,arch_db:sale_section_stock_move.view_move_search
+msgid "Sale Section"
+msgstr ""
+
+#. module: sale_section_stock_move
+#: model_terms:ir.ui.view,arch_db:sale_section_stock_move.stock_move_line_view_search
+#: model_terms:ir.ui.view,arch_db:sale_section_stock_move.view_move_search
+msgid "Section"
+msgstr ""
+
+#. module: sale_section_stock_move
+#: model:ir.model.fields,field_description:sale_section_stock_move.field_stock_move__sale_section_name
+#: model:ir.model.fields,field_description:sale_section_stock_move.field_stock_move_line__sale_section_name
+msgid "Section Name"
+msgstr ""
+
+#. module: sale_section_stock_move
+#: model:ir.model,name:sale_section_stock_move.model_stock_move
+msgid "Stock Move"
+msgstr ""
