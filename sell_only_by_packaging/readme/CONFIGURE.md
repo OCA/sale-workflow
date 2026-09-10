@@ -9,3 +9,7 @@ sold and which product can only be sold by packaging.
 - Force sale quantity (on the packaging): force rounds up the quantity
   during creation/modification of the sale order line with the factor
   set on the packaging.
+
+**Permissions**
+
+Users need the **Manage Product Packaging** group to access and manage product packaging settings. Packaging fields on sales orders are also available to sales users through the module's updated views.
