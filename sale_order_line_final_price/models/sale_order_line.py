@@ -1,7 +1,7 @@
 # Copyright 2026 Tecnativa - Eduardo Ezerouali
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models
-from odoo.tools import config, float_compare, float_round
+from odoo.tools import config, float_compare, float_is_zero, float_round
 
 
 class SaleOrderLine(models.Model):
@@ -69,7 +69,9 @@ class SaleOrderLine(models.Model):
                 line.price_final, line._get_discounted_price(), precision_digits=dp
             ):
                 handled += line
-                if not line.technical_price_unit:
+                if not line.technical_price_unit or float_is_zero(
+                    line.price_unit, precision_digits=dp
+                ):
                     line.discount = 0
                 else:
                     line.discount = float_round(
