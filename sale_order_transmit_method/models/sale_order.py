@@ -19,7 +19,10 @@ class SaleOrder(models.Model):
 
     @api.depends("partner_id", "company_id")
     def _compute_transmit_method_id(self):
-        self.transmit_method_id = self.partner_id.customer_invoice_transmit_method_id
+        for order in self:
+            order.transmit_method_id = (
+                order.partner_id.customer_invoice_transmit_method_id
+            )
 
     def _prepare_invoice(self):
         values = super()._prepare_invoice()

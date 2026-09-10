@@ -10,9 +10,27 @@ class TestSaleOrder(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.env = cls.env(context=dict(cls.env.context, tracking_disable=True))
-        cls.sale = cls.env.ref("sale.sale_order_2")
-        cls.sale.order_line.mapped("product_id").write({"invoice_policy": "order"})
-        cls.customer = cls.sale.partner_id
+        cls.customer = cls.env["res.partner"].create({"name": "Test Customer"})
+        cls.product = cls.env["product.product"].create(
+            {
+                "name": "Test Product",
+                "invoice_policy": "order",
+                "list_price": 100.0,
+            }
+        )
+        cls.sale = cls.env["sale.order"].create(
+            {
+                "partner_id": cls.customer.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": cls.product.id,
+                            "product_uom_qty": 1,
+                        }
+                    )
+                ],
+            }
+        )
         cls.transmit_method_mail = cls.env.ref("account_invoice_transmit_method.mail")
         cls.transmit_method_post = cls.env.ref("account_invoice_transmit_method.post")
         cls.customer.customer_invoice_transmit_method_id = cls.transmit_method_mail

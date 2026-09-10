@@ -6,9 +6,9 @@
     "summary": """
         Set transmit method (email, post, portal, ...) in sale order and
         propagate it to invoices""",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "license": "AGPL-3",
-    "author": "ACSONE SA/NV," "Odoo Community Association (OCA)",
+    "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
     "website": "https://github.com/OCA/sale-workflow",
     "depends": ["account_invoice_transmit_method", "sale"],
     "data": ["views/sale_order.xml"],
