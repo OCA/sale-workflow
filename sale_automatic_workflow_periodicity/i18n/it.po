@@ -1,0 +1,66 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_automatic_workflow_periodicity
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-03-07 07:26+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.2\n"
+
+#. module: sale_automatic_workflow_periodicity
+#: model:ir.model.fields,field_description:sale_automatic_workflow_periodicity.field_sale_workflow_process__periodicity_check_create_date
+msgid "Enforce on creation time"
+msgstr "Forza al momento di creazione"
+
+#. module: sale_automatic_workflow_periodicity
+#: model:ir.model.fields,field_description:sale_automatic_workflow_periodicity.field_sale_workflow_process__next_execution
+msgid "Next Execution"
+msgstr "Esecuzione successiva"
+
+#. module: sale_automatic_workflow_periodicity
+#: model:ir.model.fields,field_description:sale_automatic_workflow_periodicity.field_sale_workflow_process__periodicity
+msgid "Run every (in seconds)"
+msgstr "Esegui ogni (in secondi)"
+
+#. module: sale_automatic_workflow_periodicity
+#: model:ir.model,name:sale_automatic_workflow_periodicity.model_sale_workflow_process
+msgid "Sale Workflow Process"
+msgstr "Flusso di vendita"
+
+#. module: sale_automatic_workflow_periodicity
+#: model:ir.model,name:sale_automatic_workflow_periodicity.model_automatic_workflow_job
+msgid ""
+"Scheduler that will play automatically the validation of invoices, "
+"pickings..."
+msgstr ""
+"Schedulatore che riprodurrà in automatico la validazione delle fatture, "
+"prelievi..."
+
+#. module: sale_automatic_workflow_periodicity
+#: model:ir.model.fields,help:sale_automatic_workflow_periodicity.field_sale_workflow_process__periodicity
+msgid "Sets a periodicity for this workflow to be executed (in seconds)"
+msgstr ""
+"Impostare una periodicità di esecuzione per questo flusso di vendita (in "
+"secondi)"
+
+#. module: sale_automatic_workflow_periodicity
+#: model:ir.model.fields,help:sale_automatic_workflow_periodicity.field_sale_workflow_process__periodicity_check_create_date
+msgid ""
+"When checked only sales created before the last execution will be processed."
+msgstr ""
+"Quando selezionata solo gli ordini di vendita antecedenti l'ultima "
+"esecuzione verranno elaborati."
+
+#. module: sale_automatic_workflow_periodicity
+#: model_terms:ir.ui.view,arch_db:sale_automatic_workflow_periodicity.sale_workflow_process_view_form
+msgid "Workflow execution periodicity"
+msgstr "Periodicità esecuzione flusso"
