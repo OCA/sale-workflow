@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_line_tree_view" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_order_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='qty_delivered']" position="after">
+                <field name="product_qty_canceled" string="Canceled" optional="hide" />
+                <field
+                    name="product_qty_remains_to_deliver"
+                    string="To Deliver"
+                    optional="hide"
+                />
+                <field name="can_cancel_remaining_qty" column_invisible="1" />
+                <button
+                    title="Cancel remaining qty"
+                    name="%(sale_order_line_cancel.action_sale_order_line_cancel)d"
+                    type="action"
+                    icon="fa-ban"
+                    invisible="not can_cancel_remaining_qty"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="sale_order_line_view_form_readonly" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='qty_delivered']" position="after">
+                <field name="product_qty_canceled" string="Canceled" />
+                <label for="product_qty_remains_to_deliver" />
+                <div id="product_qty_remains_to_deliver" class="o_row">
+                    <field
+                        name="product_qty_remains_to_deliver"
+                        string="To Deliver"
+                        class="oe_inline"
+                    />
+                    <button
+                        name="%(sale_order_line_cancel.action_sale_order_line_cancel)d"
+                        type="action"
+                        icon="fa-ban"
+                        title="Cancel remaining qty"
+                        invisible="not can_cancel_remaining_qty"
+                    />
+                </div>
+                <field name="can_cancel_remaining_qty" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
