@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2023 Moduon Team S.L. <info@moduon.team>
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). -->
+<data>
+    <record id="view_order_form_inherit_sale" model="ir.ui.view">
+        <field name="name">Simplify packaging fields</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <!-- Move UoM (acting as packaging) before product qty in tree view -->
+            <xpath
+                expr="//field[@name='order_line']/list/field[@name='product_uom_qty']"
+                position="before"
+            >
+                <field name="is_packaging_required" column_invisible="True" />
+                <xpath
+                    expr="//field[@name='order_line']/list/field[@name='product_uom_id']"
+                    position="move"
+                />
+            </xpath>
+
+            <!-- Move UoM (acting as packaging) before product qty in form view -->
+            <xpath
+                expr="//field[@name='order_line']/form//label[@for='product_uom_qty']"
+                position="before"
+            >
+                <field name="is_packaging_required" invisible="1" />
+                <xpath
+                    expr="//field[@name='order_line']/form//field[@name='product_uom_id']"
+                    position="move"
+                />
+            </xpath>
+            <!-- Packaging required -->
+            <xpath
+                expr="//page/field[@name='order_line']/list/field[@name='product_uom_id']"
+                position="attributes"
+            >
+                <attribute name="required">is_packaging_required</attribute>
+            </xpath>
+            <xpath
+                expr="//page/field[@name='order_line']/form//field[@name='product_uom_id']"
+                position="attributes"
+            >
+                <attribute name="required">is_packaging_required</attribute>
+            </xpath>
+        </field>
+    </record>
+</data>
