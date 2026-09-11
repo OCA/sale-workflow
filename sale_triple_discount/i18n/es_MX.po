@@ -1,0 +1,85 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_triple_discount
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-30 14:32+0000\n"
+"PO-Revision-Date: 2026-06-30 14:32+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_triple_discount
+#: model_terms:ir.ui.view,arch_db:sale_triple_discount.report_saleorder_document_triple_discount
+msgid "<span>Disc. 2 (%)</span>"
+msgstr "<span>Desc. 2 (%)</span>"
+
+#. module: sale_triple_discount
+#: model_terms:ir.ui.view,arch_db:sale_triple_discount.report_saleorder_document_triple_discount
+msgid "<span>Disc. 3 (%)</span>"
+msgstr "<span>Desc. 3 (%)</span>"
+
+#. module: sale_triple_discount
+#: model:ir.model.fields.selection,name:sale_triple_discount.selection__sale_order_line__discounting_type__additive
+msgid "Additive"
+msgstr "Aditivo"
+
+#. module: sale_triple_discount
+#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount2
+msgid "Disc. 2 (%)"
+msgstr "Desc. 2 (%)"
+
+#. module: sale_triple_discount
+#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount3
+msgid "Disc. 3 (%)"
+msgstr "Desc. 3 (%)"
+
+#. module: sale_triple_discount
+#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discounting_type
+msgid "Discounting Type"
+msgstr "Tipo de descuento"
+
+#. module: sale_triple_discount
+#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Mostrar nombre"
+
+#. module: sale_triple_discount
+#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__id
+msgid "ID"
+msgstr ""
+
+#. module: sale_triple_discount
+#: model:ir.model.fields.selection,name:sale_triple_discount.selection__sale_order_line__discounting_type__multiplicative
+msgid "Multiplicative"
+msgstr "Multiplicativo"
+
+#. module: sale_triple_discount
+#. odoo-python
+#: code:addons/sale_triple_discount/models/sale_order_line.py:0
+msgid "Sale order line %(name)s has unknown discounting type %(disc_type)s"
+msgstr "La línea de pedido %(name)s tiene un tipo de descuento desconocido %(disc_type)s"
+
+#. module: sale_triple_discount
+#: model:ir.model,name:sale_triple_discount.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de orden de venta"
+
+#. module: sale_triple_discount
+#: model:ir.model.fields,help:sale_triple_discount.field_sale_order_line__discounting_type
+msgid ""
+"Specifies whether discounts should be additive or multiplicative.\n"
+"Additive discounts are summed first and then applied.\n"
+"Multiplicative discounts are applied sequentially.\n"
+"Multiplicative discounts are default"
+msgstr ""
+"Especifica si los descuentos deben ser aditivos o multiplicativos.\n"
+"Los descuentos adicionales se suman primero y luego se aplican.\n"
+"Los descuentos multiplicativos se aplican secuencialmente.\n"
+"Los descuentos multiplicativos son predeterminados"

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_view_form_inherit_rounding" model="ir.ui.view">
+        <field name="name">sale.order.view.form.inherit.rounding</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='%(sale_loyalty.sale_loyalty_coupon_wizard_action)d'][1]" position="before">
+                <button
+                    name="action_apply_round_up"
+                    type="object"
+                    string="Round Up"
+                    class="btn btn-secondary"
+                    invisible="state in ['cancel', 'sale']"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
