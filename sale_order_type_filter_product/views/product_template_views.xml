@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 Ángel Rivas <angel.rivas@sygel.es>
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="product_template_form_view_filter_product" model="ir.ui.view">
+        <field name="name">product.template.form.filter.product</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                <field name="sale_order_type_ids" widget="many2many_tags" />
+            </field>
+        </field>
+    </record>
+</odoo>
