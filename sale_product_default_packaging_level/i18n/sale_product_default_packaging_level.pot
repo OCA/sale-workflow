@@ -1,0 +1,39 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_product_default_packaging_level
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-24 08:45+0000\n"
+"PO-Revision-Date: 2026-06-24 08:45+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_product_default_packaging_level
+#: model:ir.model.fields,field_description:sale_product_default_packaging_level.field_sale_order_line__from_default_level_packaging_id
+msgid "Default packaging"
+msgstr ""
+
+#. module: sale_product_default_packaging_level
+#. odoo-javascript
+#: code:addons/sale_product_default_packaging_level/static/src/xml/product.xml:0
+msgid "Packaging:"
+msgstr ""
+
+#. module: sale_product_default_packaging_level
+#: model:ir.model,name:sale_product_default_packaging_level.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_product_default_packaging_level
+#: model:ir.model.fields,help:sale_product_default_packaging_level.field_sale_order_line__from_default_level_packaging_id
+msgid ""
+"This is the default packaging of this product coming from the default "
+"packaging level."
+msgstr ""
