@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="uom_uom_tree_view_inherit" model="ir.ui.view">
+        <field name="name">uom.uom.list.view.inherit</field>
+        <field name="model">uom.uom</field>
+        <field name="inherit_id" ref="uom.product_uom_tree_view" />
+        <field name="arch" type="xml">
+            <field name="relative_uom_id" position="after">
+                <field name="force_sale_qty" optional="show" />
+            </field>
+        </field>
+    </record>
+    <record id="uom_uom_form_view_inherit" model="ir.ui.view">
+        <field name="name">uom.uom.form.view.inherit</field>
+        <field name="model">uom.uom</field>
+        <field name="inherit_id" ref="uom.product_uom_form_view" />
+        <field name="arch" type="xml">
+            <group name="uom_details" position="inside">
+                <field name="force_sale_qty" />
+            </group>
+        </field>
+    </record>
+</odoo>

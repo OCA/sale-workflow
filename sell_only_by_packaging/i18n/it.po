@@ -1,0 +1,137 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sell_only_by_packaging
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2023-12-04 09:34+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sell_only_by_packaging
+#: model:ir.model.fields,help:sell_only_by_packaging.field_product_packaging__force_sale_qty
+msgid ""
+"Determine if during the creation of a sale order line, the quantity should be forced with a multiple of the packaging.\n"
+"Example:\n"
+"You sell a product by packaging of 5 products.\n"
+"When the user will put 3 as quantity, the system can force the quantity to the superior unit (5 for this example)."
+msgstr ""
+"Determina se durante la creazione di una riga ordine di vendita la quantità "
+"debba essere forzata con un multiplo dell'imballaggio.\n"
+"Esempio:\n"
+"Vendi un prodotto con imballaggio di 5 prodotti.\n"
+"Quando l'utente inserisce 3 come quantità, il sistema può forzare la "
+"quantità all'unità superiore (5 per questo esempio)."
+
+#. module: sell_only_by_packaging
+#: model:ir.model.fields,field_description:sell_only_by_packaging.field_product_packaging__force_sale_qty
+msgid "Force sale quantity"
+msgstr "Forza quantità di vendita"
+
+#. module: sell_only_by_packaging
+#: model:ir.model,name:sell_only_by_packaging.model_product_packaging_level
+msgid "Level management for product.packaging"
+msgstr "Gestione livello per product.packaging"
+
+#. module: sell_only_by_packaging
+#: model:ir.model.fields,field_description:sell_only_by_packaging.field_product_product__min_sellable_qty
+#: model:ir.model.fields,field_description:sell_only_by_packaging.field_product_template__min_sellable_qty
+msgid "Min Sellable Qty"
+msgstr "Q.tà minima vendibile"
+
+#. module: sell_only_by_packaging
+#: model:ir.model.fields,help:sell_only_by_packaging.field_product_product__min_sellable_qty
+#: model:ir.model.fields,help:sell_only_by_packaging.field_product_template__min_sellable_qty
+msgid ""
+"Minimum sellable quantity, according to the available packagings, if Only "
+"Sell by Packaging is set."
+msgstr ""
+"Quantità minima vendibile, secondo gli imballaggi disponibili, se \"Vendi "
+"solo per imballaggio\" è impostato."
+
+#. module: sell_only_by_packaging
+#: model:ir.model.fields,field_description:sell_only_by_packaging.field_product_product__sell_only_by_packaging
+#: model:ir.model.fields,field_description:sell_only_by_packaging.field_product_template__sell_only_by_packaging
+msgid "Only sell by packaging"
+msgstr "Vendi solo per imballaggio"
+
+#. module: sell_only_by_packaging
+#. odoo-python
+#: code:addons/sell_only_by_packaging/models/product_packaging_level.py:0
+#, python-format
+msgid ""
+"Packaging level \"{}\" must stay with \"Can be sold\", at least one product "
+"configured as \"sell only by packaging\" is using it."
+msgstr ""
+"Il livello imballaggio \"{}\" deve essere impostato come \"Può essere "
+"venduto\", dato che almeno un prodotto impostato con \"Vendi solo per "
+"imballaggio\" lo sta utilizzando."
+
+#. module: sell_only_by_packaging
+#: model:ir.model,name:sell_only_by_packaging.model_product_template
+msgid "Product"
+msgstr "Prodotto"
+
+#. module: sell_only_by_packaging
+#. odoo-python
+#: code:addons/sell_only_by_packaging/models/sale_order_line.py:0
+#, python-format
+msgid "Product %s can only be sold with a packaging and a packaging quantity."
+msgstr ""
+"Il prodotto %s può essere venduto solo con un imballaggio e una quantità "
+"imballaggio."
+
+#. module: sell_only_by_packaging
+#. odoo-python
+#: code:addons/sell_only_by_packaging/models/product_template.py:0
+#, python-format
+msgid ""
+"Product %s cannot be defined to be sold only by packaging if it cannot be "
+"sold."
+msgstr ""
+"Il prodotto %s non può essere definito per essere venduto solo con "
+"imballaggio se \"Può essere venduto\" non è impostato."
+
+#. module: sell_only_by_packaging
+#. odoo-python
+#: code:addons/sell_only_by_packaging/models/product_template.py:0
+#, python-format
+msgid ""
+"Product %s cannot be defined to be sold only by packaging if it does not "
+"have any packaging that can be sold defined."
+msgstr ""
+"Il prodotto %s non può essere definito per essere venduto solo con "
+"imballaggio se non è impostato alcun imballaggio che può essere venduto."
+
+#. module: sell_only_by_packaging
+#: model:ir.model,name:sell_only_by_packaging.model_product_packaging
+msgid "Product Packaging"
+msgstr "Imballaggio prodotto"
+
+#. module: sell_only_by_packaging
+#: model:ir.model,name:sell_only_by_packaging.model_product_product
+msgid "Product Variant"
+msgstr "Variante prodotto"
+
+#. module: sell_only_by_packaging
+#: model:ir.model.fields,help:sell_only_by_packaging.field_product_product__sell_only_by_packaging
+#: model:ir.model.fields,help:sell_only_by_packaging.field_product_template__sell_only_by_packaging
+msgid ""
+"Restrict the usage of this product on sale order lines without packaging "
+"defined"
+msgstr ""
+"Non permettere l'uso di questo prodotto nelle righe ordine di vendita senza "
+"imballaggio definito"
+
+#. module: sell_only_by_packaging
+#: model:ir.model,name:sell_only_by_packaging.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Riga ordine di vendita"
