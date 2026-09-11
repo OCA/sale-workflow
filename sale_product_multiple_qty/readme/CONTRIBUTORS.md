@@ -1,0 +1,4 @@
+- [Camptocamp](https://www.camptocamp.com):
+  - Maksym Yankin \<<maksym.yankin@camptocamp.com>\>
+  - Ivan Todorovich \<<ivan.todorovich@camptocamp.com>\>
+  - Gaëtan Vaujour \<<gaetan.vaujour@camptocamp.com>\>
