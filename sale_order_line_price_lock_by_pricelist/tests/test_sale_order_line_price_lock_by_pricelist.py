@@ -22,11 +22,6 @@ class TestSaleOrderLinePriceLockByPricelist(BaseCommon):
                 "list_price": 120.0,
             }
         )
-        cls.customer = cls.env["res.partner"].create(
-            {
-                "name": "Mr. Odoo",
-            }
-        )
         cls.pricelist_1 = cls.env["product.pricelist"].create(
             {
                 "name": "Test Pricelist 1",
@@ -36,9 +31,16 @@ class TestSaleOrderLinePriceLockByPricelist(BaseCommon):
         )
         cls.pricelist_2 = cls.env["product.pricelist"].create(
             {
-                "name": "Test Pricelist 1",
-                # Lock scope set to Product
-                "lock_product_prices_applied_on": "1_product",
+                "name": "Test Pricelist 2",
+            }
+        )
+        cls.env["product.pricelist.item"].create(
+            {
+                "pricelist_id": cls.pricelist_2.id,
+                "compute_price": "formula",
+                "base": "pricelist",
+                "base_pricelist_id": cls.pricelist_1.id,
+                "applied_on": "3_global",
             }
         )
         cls.env["product.pricelist.item"].create(
@@ -76,11 +78,6 @@ class TestSaleOrderLinePriceLockByPricelist(BaseCommon):
             notification_type="inbox",
             groups="sales_team.group_sale_manager",
         )
-        cls.customer = cls.env["res.partner"].create(
-            {
-                "name": "Mr. Odoo",
-            }
-        )
         cls.env["res.config.settings"].create(
             {
                 "group_product_pricelist": True,
@@ -89,7 +86,7 @@ class TestSaleOrderLinePriceLockByPricelist(BaseCommon):
 
     def _create_sales_order(self):
         sale_form = Form(self.env["sale.order"])
-        sale_form.partner_id = self.customer
+        sale_form.partner_id = self.partner
         sale_form.pricelist_id = self.pricelist_1
         with sale_form.order_line.new() as line:
             line.product_id = self.product_other.product_variant_id

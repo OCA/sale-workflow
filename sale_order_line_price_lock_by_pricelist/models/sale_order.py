@@ -31,7 +31,7 @@ class SaleOrder(models.Model):
                     line.order_id.pricelist_id._get_base_product_rule(
                         line.product_id,
                         line.product_uom_qty or 1.0,
-                        uom=line.product_uom,
+                        uom=line.product_uom_id,
                         date=line._get_order_date(),
                     )
                 )
