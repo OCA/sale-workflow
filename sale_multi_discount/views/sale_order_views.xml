@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_multi_discount_form_view" model="ir.ui.view">
+        <field name="name">sale.order.multi.discount.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <!-- List: replace discount with discount_distribution widget -->
+            <xpath
+                expr="//field[@name='order_line']//list//field[@name='discount']"
+                position="replace"
+            >
+                <field
+                    name="discount_distribution"
+                    widget="discount_distribution"
+                    string="Disc.%"
+                    groups="sale.group_discount_per_so_line"
+                    optional="show"
+                />
+                <field name="discount" column_invisible="1" />
+            </xpath>
+
+            <!-- Form: replace label -->
+            <xpath
+                expr="//field[@name='order_line']//form//label[@for='discount']"
+                position="replace"
+            >
+                <label for="discount_distribution" string="Discount (%)" />
+            </xpath>
+            <!-- Form: replace discount div -->
+            <xpath
+                expr="//field[@name='order_line']//form//div[@name='discount']"
+                position="replace"
+            >
+                <div name="discount_distribution">
+                    <field
+                        name="discount_distribution"
+                        widget="discount_distribution"
+                    />
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
