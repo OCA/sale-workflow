@@ -36,9 +36,16 @@ class TestSaleOrderLinePriceLockByPricelist(BaseCommon):
         )
         cls.pricelist_2 = cls.env["product.pricelist"].create(
             {
-                "name": "Test Pricelist 1",
-                # Lock scope set to Product
-                "lock_product_prices_applied_on": "1_product",
+                "name": "Test Pricelist 2",
+            }
+        )
+        cls.env["product.pricelist.item"].create(
+            {
+                "pricelist_id": cls.pricelist_2.id,
+                "compute_price": "formula",
+                "base": "pricelist",
+                "base_pricelist_id": cls.pricelist_1.id,
+                "applied_on": "3_global",
             }
         )
         cls.env["product.pricelist.item"].create(
