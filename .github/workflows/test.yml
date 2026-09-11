@@ -41,17 +41,52 @@ jobs:
         include:
           - container: ghcr.io/oca/oca-ci/py3.10-odoo18.0:latest
             include: "sale_packaging_default,sale_order_product_recommendation_packaging_default,sale_order_line_final_price"
-            name: test with Odoo
+            name: Packaging group (Odoo)
           - container: ghcr.io/oca/oca-ci/py3.10-ocb18.0:latest
             include: "sale_packaging_default,sale_order_product_recommendation_packaging_default,sale_order_line_final_price"
-            name: test with OCB
+            name: Packaging group (OCB)
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.10-odoo18.0:latest
-            exclude: "sale_packaging_default,sale_order_product_recommendation_packaging_default,sale_order_line_final_price"
-            name: test with Odoo
+            exclude: "sale_packaging_default,sale_order_product_recommendation_packaging_default,sale_order_line_final_price,sale_fixed_discount,sale_triple_discount,sale_order_general_discount_triple,account_invoice_fixed_discount,account_invoice_triple_discount"
+            name: Remaining without packaging (Odoo)
           - container: ghcr.io/oca/oca-ci/py3.10-ocb18.0:latest
             exclude: "sale_packaging_default,sale_order_product_recommendation_packaging_default,sale_order_line_final_price"
-            name: test with OCB
+            include: "sale_triple_discount"
+            name: Isolated triple discount (OCB)
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb18.0:latest
+            include: "sale_triple_discount"
+            name: Triple discount (OCB)
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb18.0:latest
+            include: "sale_packaging_default"
+            name: Packaging default (OCB)
+            makepot: "true"
+          - container: ghcr.io/oca/oca-ci/py3.10-odoo18.0:latest
+            include: "sale_fixed_discount"
+            name: Fixed discount (Odoo)
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb18.0:latest
+            include: "sale_fixed_discount"
+            name: Fixed discount (OCB)
+            makepot: "true"
+          - container: ghcr.io/oca/oca-ci/py3.10-odoo18.0:latest
+            include: "sale_triple_discount"
+            name: Triple discount (Odoo)
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb18.0:latest
+            include: "sale_triple_discount"
+            name: Triple discount (OCB)
+            makepot: "true"
+          - container: ghcr.io/oca/oca-ci/py3.10-odoo18.0:latest
+            include: "sale_order_general_discount_triple"
+            name: General triple discount (Odoo)
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb18.0:latest
+            include: "sale_order_general_discount_triple"
+            name: General triple discount (OCB)
+            makepot: "true"
+          - container: ghcr.io/oca/oca-ci/py3.10-odoo18.0:latest
+            exclude: "sale_packaging_default,sale_order_line_final_price,sale_fixed_discount,sale_triple_discount,sale_order_general_discount_triple,account_invoice_fixed_discount,account_invoice_triple_discount"
+            name: Remaining without discounts (Odoo)
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb18.0:latest
+            exclude: "sale_packaging_default,sale_order_line_final_price,sale_fixed_discount,sale_triple_discount,sale_order_general_discount_triple,account_invoice_fixed_discount,account_invoice_triple_discount"
+            name: Remaining without discounts (OCB)
             makepot: "true"
     services:
       postgres:
