@@ -8,7 +8,7 @@
 
 {
     "name": "Sale Order Type",
-    "version": "18.0.1.4.0",
+    "version": "18.0.1.5.0",
     "category": "Sales Management",
     "author": "Grupo Vermon,"
     "AvanzOSC,"
@@ -33,4 +33,5 @@
         "views/res_config_settings.xml",
     ],
     "installable": True,
+    "maintainers": ["carlosdauden"],
 }
