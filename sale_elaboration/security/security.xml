@@ -5,6 +5,11 @@
         <field name="category_id" ref="base.module_category_hidden" />
     </record>
 
+    <record id="group_elaboration_note_on_order_report" model="res.groups">
+        <field name="name">Include elaboration notes on order report</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+
     <record id="group_elaboration_note_on_picking_operations" model="res.groups">
         <field name="name">Include elaboration notes on picking operations</field>
         <field name="category_id" ref="base.module_category_hidden" />

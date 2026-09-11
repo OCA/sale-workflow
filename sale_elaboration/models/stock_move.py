@@ -20,4 +20,4 @@ class StockMoveLine(models.Model):
     _inherit = "stock.move.line"
 
     elaboration_ids = fields.Many2many(related="move_id.elaboration_ids")
-    elaboration_note = fields.Char(related="move_id.elaboration_note")
+    elaboration_note = fields.Text(related="move_id.elaboration_note")
