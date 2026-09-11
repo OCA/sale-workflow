@@ -1,0 +1,111 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_price_category
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-27 03:52+0000\n"
+"PO-Revision-Date: 2018-01-27 03:52+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: Estonian (https://www.transifex.com/oca/teams/23907/et/)\n"
+"Language: et\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_pricelist_item__applied_on
+msgid "Apply On"
+msgstr ""
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__create_uid
+msgid "Created by"
+msgstr "Loonud"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__create_date
+msgid "Created on"
+msgstr "Loodud"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__display_name
+msgid "Display Name"
+msgstr "Näidatav nimi"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__id
+msgid "ID"
+msgstr "ID"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category____last_update
+msgid "Last Modified on"
+msgstr "Viimati muudetud"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__write_uid
+msgid "Last Updated by"
+msgstr "Viimati uuendatud"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__write_date
+msgid "Last Updated on"
+msgstr "Viimati uuendatud"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__name
+msgid "Name"
+msgstr "Nimi"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_pricelist_item__price_category_id
+#: model:ir.model.fields,field_description:product_price_category.field_product_product__price_category_id
+#: model:ir.model.fields,field_description:product_price_category.field_product_template__price_category_id
+#: model:ir.model.fields.selection,name:product_price_category.selection__product_pricelist_item__applied_on__2b_product_price_category
+msgid "Price Category"
+msgstr ""
+
+#. module: product_price_category
+#. odoo-python
+#: code:addons/product_price_category/models/product_pricelist_item.py:0
+#, python-format
+msgid "Price Category: %s"
+msgstr ""
+
+#. module: product_price_category
+#: model:ir.model,name:product_price_category.model_product_pricelist
+msgid "Pricelist"
+msgstr ""
+
+#. module: product_price_category
+#: model:ir.model.fields,help:product_price_category.field_product_pricelist_item__applied_on
+msgid "Pricelist Item applicable on selected option"
+msgstr ""
+
+#. module: product_price_category
+#: model:ir.model,name:product_price_category.model_product_pricelist_item
+msgid "Pricelist Rule"
+msgstr ""
+
+#. module: product_price_category
+#: model:ir.model,name:product_price_category.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: product_price_category
+#: model:ir.model,name:product_price_category.model_product_price_category
+msgid "Product Price Category"
+msgstr ""
+
+#. module: product_price_category
+#: model:ir.model.fields,help:product_price_category.field_product_pricelist_item__price_category_id
+msgid ""
+"Specify a product price category if this rule only applies to one price "
+"category. Keep empty otherwise."
+msgstr ""
