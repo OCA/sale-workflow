@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sale_order_block_rule_tree" model="ir.ui.view">
+        <field name="name">sale.order.block.rule.tree</field>
+        <field name="model">sale.order.block.rule</field>
+        <field name="arch" type="xml">
+            <list string="Sale Order Block Rules">
+                <field name="name" />
+                <field name="partner_field" />
+                <field name="partner_scope" />
+                <field name="blocked_values" />
+                <field name="active" widget="boolean_toggle" />
+            </list>
+        </field>
+    </record>
+    <record id="view_sale_order_block_rule_form" model="ir.ui.view">
+        <field name="name">sale.order.block.rule.form</field>
+        <field name="model">sale.order.block.rule</field>
+        <field name="arch" type="xml">
+            <form string="Sale Order Block Rule">
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Archived"
+                        bg_color="text-bg-danger"
+                        invisible="active"
+                    />
+                    <group>
+                        <group>
+                            <field name="name" placeholder="e.g. Block Spam Emails" />
+                            <field name="active" invisible="1" />
+                            <field name="partner_field" />
+                            <field name="partner_scope" />
+                            <field
+                                name="block_message"
+                                placeholder="Enter the message to display when this rule blocks an order"
+                            />
+                        </group>
+                        <group>
+                            <field
+                                name="blocked_values"
+                                placeholder="e.g. spam@test.com, blocked@mail.com"
+                            />
+                        </group>
+                    </group>
+                    <notebook invisible="partner_field != 'zip'">
+                        <page string="ZIP Configuration" name="zip_config">
+                            <group>
+                                <group>
+                                    <field name="country_id" />
+                                    <field
+                                        name="zip_range_from"
+                                        placeholder="From (e.g., 35001)"
+                                    />
+                                    <field
+                                        name="zip_range_to"
+                                        placeholder="To (e.g., 35999)"
+                                    />
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_sale_order_block_rule" model="ir.actions.act_window">
+        <field name="name">Partner Block Rules</field>
+        <field name="res_model">sale.order.block.rule</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first partner block rule
+            </p>
+            <p>
+                Configure rules to automatically block sale orders based on partner field values.
+            </p>
+        </field>
+    </record>
+    <menuitem
+        id="menu_sale_order_separator"
+        parent="sale.menu_sales_config"
+        sequence="100"
+        groups="sales_team.group_sale_manager"
+    />
+    <menuitem
+        id="menu_sale_order_block_rule"
+        name="Partner Block Rules"
+        parent="sale.menu_sales_config"
+        action="action_sale_order_block_rule"
+        sequence="101"
+        groups="sales_team.group_sale_manager"
+    />
+</odoo>
