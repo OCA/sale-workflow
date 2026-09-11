@@ -1,0 +1,1 @@
+- Widget is not shown properly if the order is not saved and refreshed.
