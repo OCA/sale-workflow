@@ -1,0 +1,53 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_effective_date
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-28 10:27+0000\n"
+"PO-Revision-Date: 2024-06-28 12:28+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#. module: sale_order_line_effective_date
+#: model:ir.model.fields,field_description:sale_order_line_effective_date.field_sale_order_line__order_commitment_date
+msgid "Commitment Date"
+msgstr "Fecha de entrega"
+
+#. module: sale_order_line_effective_date
+#: model:ir.model.fields,help:sale_order_line_effective_date.field_sale_order_line__order_commitment_date
+msgid "Commitment Date set on the Order"
+msgstr "Fecha de Entrega establecida en el Pedido."
+
+#. module: sale_order_line_effective_date
+#: model:ir.model.fields,help:sale_order_line_effective_date.field_sale_order_line__effective_date
+msgid "Completion date of the first delivery order."
+msgstr "Fecha de finalización de la primera orden de entrega."
+
+#. module: sale_order_line_effective_date
+#: model:ir.model.fields,help:sale_order_line_effective_date.field_sale_order_line__last_effective_date
+msgid "Completion date of the last delivery order."
+msgstr "Fecha de finalización de la última orden de entrega."
+
+#. module: sale_order_line_effective_date
+#: model:ir.model.fields,field_description:sale_order_line_effective_date.field_sale_order_line__effective_date
+msgid "Effective Date"
+msgstr "Fecha efectiva"
+
+#. module: sale_order_line_effective_date
+#: model:ir.model.fields,field_description:sale_order_line_effective_date.field_sale_order_line__last_effective_date
+msgid "Last Effective Date"
+msgstr "Última fecha efectiva"
+
+#. module: sale_order_line_effective_date
+#: model:ir.model,name:sale_order_line_effective_date.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
