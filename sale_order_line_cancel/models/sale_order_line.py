@@ -3,6 +3,8 @@
 # Copyright 2020 ACSONE SA/NV
 # Copyright 2025 Michael Tietz (MT Software) <mtietz@mt-software.de>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+from markupsafe import Markup
+
 from odoo import api, fields, models
 from odoo.tools import float_compare
 
@@ -90,9 +92,11 @@ class SaleOrderLine(models.Model):
         lines._update_qty_canceled()
         for line in lines:
             line.order_id.message_post(
-                body=self.env._(
-                    "<b>%(product)s</b>: The order line has been canceled",
-                    product=line.product_id.display_name,
+                # message_post escapes a plain str body, so the markup has to
+                # be flagged as safe while the product name stays escaped.
+                body=Markup(
+                    self.env._("<b>%(product)s</b>: The order line has been canceled")
                 )
+                % {"product": line.product_id.display_name}
             )
         return lines
