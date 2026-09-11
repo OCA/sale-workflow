@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright (C) 2026 Akretion (<http://www.akretion.com>).
+@author Kévin Roche <kevin.roche@akretion.com>
+License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_sale_advance_payment_inv_partial" model="ir.ui.view">
+        <field name="model">sale.advance.payment.inv</field>
+        <field name="inherit_id" ref="sale.view_sale_advance_payment_inv" />
+        <field name="arch" type="xml">
+            <group name="down_payment_specification" position="after">
+                <field name="downpayment_exceeds_delivery" invisible="1" />
+                <group
+                    invisible="
+                        advance_payment_method != 'delivered'
+                        or not downpayment_exceeds_delivery
+                    "
+                    string="⚠️  Down Payment Exceeds Current Delivery"
+                >
+                    <div class="alert alert-warning mb-0" role="alert">
+                        <p class="mb-0">
+                            The total down payment already invoiced exceeds the
+                            amount for this partial delivery. Odoo would normally
+                            create a credit note with a negative quantity.
+                            Choose how to handle this below.
+                        </p>
+                    </div>
+
+                    <field name="delivered_ratio" widget="percentage" readonly="1" />
+                    <field name="total_downpayment_invoiced" readonly="1" />
+                    <field name="proportional_downpayment_amount" readonly="1" />
+
+                    <field
+                        name="downpayment_handling"
+                        string="Handling Method"
+                        widget="radio"
+                        required="1"
+                    />
+                    <field
+                        name="downpayment_fixed_amount"
+                        invisible="downpayment_handling != 'fixed'"
+                        required="downpayment_handling == 'fixed'"
+                    />
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>
