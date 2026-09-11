@@ -6,16 +6,22 @@ import {patch} from "@web/core/utils/patch";
 patch(ProductCatalogKanbanRecord.prototype, {
     _getUpdateQuantityAndGetPriceParams() {
         const params = super._getUpdateQuantityAndGetPriceParams();
-        // For a vendor card (supplier origin) send the vendor so the backend
-        // matches/creates the order line for this precise vendor and stores it.
-        const vendorId = this.props.record.productCatalogData.vendorId;
+        // For a vendor card (supplier origin) send the vendor and the exact
+        // supplierinfo it shows so the backend matches/creates the order line
+        // for this precise card - a vendor can have several concurrently
+        // valid cards (one per product.supplierinfo row), so vendor_id alone
+        // cannot tell them apart.
+        const {vendorId, supplierinfoId} = this.props.record.productCatalogData;
         if (vendorId) {
             params.vendor_id = vendorId;
+        }
+        if (supplierinfoId) {
+            params.supplierinfo_id = supplierinfoId;
         }
         return params;
     },
     async onClickAddNewOrderLine() {
-        const vendorId = this.props.record.productCatalogData.vendorId;
+        const {vendorId, supplierinfoId} = this.props.record.productCatalogData;
         if (!vendorId) {
             return super.onClickAddNewOrderLine(...arguments);
         }
@@ -29,6 +35,7 @@ patch(ProductCatalogKanbanRecord.prototype, {
                     default_order_id: this.env.orderId,
                     default_product_id: this.env.productId,
                     default_vendor_id: vendorId,
+                    default_supplierinfo_id: supplierinfoId,
                 },
             },
             {
