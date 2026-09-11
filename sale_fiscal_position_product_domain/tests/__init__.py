@@ -1,0 +1,1 @@
+from . import test_sale_fiscal_position_product_domain
