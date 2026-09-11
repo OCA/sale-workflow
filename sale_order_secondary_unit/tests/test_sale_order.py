@@ -63,6 +63,38 @@ class TestSaleOrder(BaseCommon):
         )
         self.assertEqual(self.order.order_line.secondary_uom_qty, 7.0)
 
+    def test_packaging_qty_updates_quantities(self):
+        # Regression: changing the number of packages must propagate to both
+        # product_uom_qty and secondary_uom_qty, also on a programmatic write.
+        packaging = self.env["product.packaging"].create(
+            {"name": "box-10", "product_id": self.product.id, "qty": 10.0}
+        )
+        line = self.order.order_line
+        line.secondary_uom_id = self.secondary_unit.id
+        line.write({"product_packaging_id": packaging.id, "product_packaging_qty": 2})
+        self.assertEqual(line.product_uom_qty, 20.0)
+        self.assertEqual(line.secondary_uom_qty, 40.0)
+
+    def test_packaging_then_secondary_onchange_no_regression(self):
+        # Secondary unit and packaging fields are only shown to these groups.
+        self.env.user.groups_id |= self.env.ref("uom.group_uom")
+        self.env.user.groups_id |= self.env.ref("product.group_stock_packaging")
+        packaging = self.env["product.packaging"].create(
+            {"name": "box-10", "product_id": self.product.id, "qty": 10.0}
+        )
+        with Form(self.order) as order_form:
+            with order_form.order_line.edit(0) as line:
+                line.secondary_uom_id = self.secondary_unit
+                # Match the packaging size first so the "you should sell N"
+                # onchange warning does not fire when assigning the packaging.
+                line.product_uom_qty = 10
+                line.product_packaging_id = packaging
+                line.product_packaging_qty = 2
+                self.assertEqual(line.product_uom_qty, 20.0)
+                self.assertEqual(line.secondary_uom_qty, 40.0)
+                line.secondary_uom_qty = 60.0
+                self.assertEqual(line.product_uom_qty, 30.0)
+
     def test_default_secondary_unit(self):
         self.order.order_line._onchange_product_id_warning()
         self.assertEqual(self.order.order_line.secondary_uom_id, self.secondary_unit)
