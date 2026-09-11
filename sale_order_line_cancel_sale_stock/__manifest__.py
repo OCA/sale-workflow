@@ -11,7 +11,7 @@
     "license": "AGPL-3",
     "category": "Sales",
     "summary": """Sale cancel remaining stock""",
-    "depends": ["sale_order_line_cancel", "sale_stock"],
+    "depends": ["sale_order_line_cancel", "sale_order_line_chained_move", "sale_stock"],
     "data": [],
     "website": "https://github.com/OCA/sale-workflow",
 }

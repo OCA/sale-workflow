@@ -14,7 +14,9 @@ class SaleOrderLine(models.Model):
             lambda line: line.qty_delivered_method == "stock_move"
             and line.can_cancel_remaining_qty
         )
-        return lines.move_ids.filtered(lambda m: m.state not in ("done", "cancel"))
+        return (lines.move_ids | lines.chained_move_ids).filtered(
+            lambda m: m.state not in ("done", "cancel")
+        )
 
     def _check_moves_to_cancel(self, moves):
         """Override this method to add checks before cancel"""
