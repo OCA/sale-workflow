@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="crm_team_view_form" model="ir.ui.view">
+        <field name="name">crm.team.form.territory</field>
+        <field name="model">crm.team</field>
+        <field name="inherit_id" ref="sales_team.crm_team_view_form" />
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page string="Territory" name="territory">
+                    <group>
+                        <field name="country_ids" widget="many2many_tags" />
+                        <field name="state_ids" widget="many2many_tags" />
+                    </group>
+                    <button
+                        name="action_assign_territory_partners"
+                        type="object"
+                        string="Assign Partners"
+                        class="btn-secondary"
+                        invisible="not country_ids and not state_ids"
+                        help="Recompute the sales team of the existing partners located in this territory."
+                    />
+                </page>
+            </notebook>
+        </field>
+    </record>
+</odoo>
