@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-08 00:49+0000\n"
-"PO-Revision-Date: 2026-09-12 05:31+0000\n"
+"PO-Revision-Date: 2026-09-12 06:37+0000\n"
 "Last-Translator: Matjaz Mozetic <matjaz@luxim.si>\n"
 "Language-Team: Slovenian (https://www.transifex.com/oca/teams/23907/sl/)\n"
 "Language: sl\n"
@@ -30,49 +30,49 @@ msgstr "<strong>#</strong>"
 #: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order__display_name
 #: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazani naziv"
 
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,help:sale_order_line_sequence.field_sale_order_line__visible_sequence
 msgid "Displays the sequence of the line in the sale order."
-msgstr ""
+msgstr "Prikaže zaporedje vrstice v prodajnem nalogu."
 
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,help:sale_order_line_sequence.field_sale_order_line__sequence
 msgid "Gives the sequence of this line when displaying the sale order."
-msgstr ""
+msgstr "Poda zaporedje vrstice pri prikazu prodajnega naloga."
 
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,field_description:sale_order_line_sequence.field_account_move_line__id
 #: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order__id
 #: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: sale_order_line_sequence
 #: model:ir.model,name:sale_order_line_sequence.model_account_move_line
 msgid "Journal Item"
-msgstr ""
+msgstr "Dnevniška postavka"
 
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order_line__visible_sequence
 msgid "Line Number"
-msgstr ""
+msgstr "Številka vrstice"
 
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,field_description:sale_order_line_sequence.field_sale_order__max_line_sequence
 msgid "Max sequence in lines"
-msgstr ""
+msgstr "Maks. zaporedje v vrsticah"
 
 #. module: sale_order_line_sequence
 #: model:ir.model.fields,field_description:sale_order_line_sequence.field_account_move_line__related_so_sequence
 msgid "SO Line Number"
-msgstr ""
+msgstr "Št. postavke prod. naloga"
 
 #. module: sale_order_line_sequence
 #: model:ir.model,name:sale_order_line_sequence.model_sale_order
 msgid "Sales Order"
-msgstr ""
+msgstr "Prodajni nalog"
 
 #. module: sale_order_line_sequence
 #: model:ir.model,name:sale_order_line_sequence.model_sale_order_line
