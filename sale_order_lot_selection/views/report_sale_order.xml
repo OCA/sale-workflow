@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="report_saleorder_document_inherit_lot"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath
+            expr="//td[@name='td_product_name']/span[@t-field='line.name']"
+            position="after"
+        >
+            <t t-if="line.lot_id">
+                <br />
+                <span class="text-muted">
+                    <span>Lot: <span t-out="line.lot_id.name" /></span>
+                    <span
+                        t-if="'expiration_date' in line.lot_id and line.lot_id.expiration_date"
+                    >
+                        (Exp: <span
+                        t-out="line.lot_id.expiration_date"
+                        t-options='{"widget": "date"}'
+                    />)
+                    </span>
+                </span>
+            </t>
+        </xpath>
+    </template>
+</odoo>
