@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="exception_partner_sale_warning" model="exception.rule">
+        <field name="code">failed=bool(self.partner_id.sale_warn_msg)</field>
+    </record>
+    <record id="exception_product_sale_warning" model="exception.rule">
+        <field name="code">failed=bool(self.product_id.sale_line_warn_msg)</field>
+    </record>
+</odoo>
