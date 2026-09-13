@@ -1,0 +1,63 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_line_product_attribute_values
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-26 09:09+0000\n"
+"PO-Revision-Date: 2024-11-26 10:11+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#. module: sale_order_line_product_attribute_values
+#: model:ir.model.fields,help:sale_order_line_product_attribute_values.field_sale_order_line__all_product_attribute_value_ids
+msgid ""
+"All Product Attribute Values used directly or indirecly for this line.\n"
+"Contains information about increased price, html color, etc."
+msgstr ""
+"Todos los Valores de Atributos del Producto utilizados directa o "
+"indirectamente para esta línea.\n"
+"Contiene información sobre el incremento de precio, color html, etc."
+
+#. module: sale_order_line_product_attribute_values
+#: model:ir.model.fields,help:sale_order_line_product_attribute_values.field_sale_order_line__all_product_template_attribute_value_ids
+msgid ""
+"All Product Template Attribute Values used directly or indirecly for this "
+"line."
+msgstr ""
+"Todos los Valores de Atributo de la Plantilla de Producto utilizados "
+"directa o indirectamente para esta línea."
+
+#. module: sale_order_line_product_attribute_values
+#: model:ir.model.fields,field_description:sale_order_line_product_attribute_values.field_sale_order_line__all_product_attribute_value_ids
+#: model_terms:ir.ui.view,arch_db:sale_order_line_product_attribute_values.view_sales_order_line_filter
+msgid "Attribute Values"
+msgstr "Valores de atributo"
+
+#. module: sale_order_line_product_attribute_values
+#: model_terms:ir.ui.view,arch_db:sale_order_line_product_attribute_values.sale_order_line_view_form_readonly
+msgid "Attributes"
+msgstr "Atributos"
+
+#. module: sale_order_line_product_attribute_values
+#: model:ir.model.fields,field_description:sale_order_line_product_attribute_values.field_sale_order_line__all_product_template_attribute_value_ids
+msgid "Product Template Attribute Values"
+msgstr "Valores de Atributo de la Plantilla de producto"
+
+#. module: sale_order_line_product_attribute_values
+#: model:ir.model,name:sale_order_line_product_attribute_values.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de Orden de Venta"
+
+#. module: sale_order_line_product_attribute_values
+#: model_terms:ir.ui.view,arch_db:sale_order_line_product_attribute_values.sale_order_line_view_form_readonly
+msgid "Total"
+msgstr "Total"
