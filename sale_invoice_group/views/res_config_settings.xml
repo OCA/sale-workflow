@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+  Copyright 2026 ForgeFlow S.L. (https://www.forgeflow.com)
+  License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
+-->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >res.config.settings.view.form.inherit.sale.invoice.group</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <block name="invoicing_setting_container" position="inside">
+                <setting
+                    id="restrict_so_invoicing"
+                    company_dependent="1"
+                    string="Restrict Invoicing to a Group"
+                    help="Only members of the 'Invoice Sales Orders' group can create invoices from sales orders. This is company-specific."
+                >
+                    <field name="restrict_so_invoicing" />
+                </setting>
+            </block>
+        </field>
+    </record>
+</odoo>
