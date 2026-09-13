@@ -100,11 +100,26 @@ class SaleOrder(models.Model):
         res = super()._compute_amounts()
         for order in self:
             order._check_global_discounts_sanity()
-            amount_untaxed_before_global_discounts = order.amount_untaxed
-            amount_total_before_global_discounts = order.amount_total
             discounts = order.global_discount_ids.mapped("discount")
+            if not any(discounts):
+                order.update(
+                    {
+                        "amount_untaxed_before_global_discounts": (
+                            order.amount_untaxed
+                        ),
+                        "amount_total_before_global_discounts": order.amount_total,
+                        "amount_global_discount": 0.0,
+                    }
+                )
+                continue
+            amount_untaxed_before_global_discounts = 0
+            amount_total_before_global_discounts = 0
             amount_discounted_untaxed = amount_discounted_tax = 0
             for line in order.order_line:
+                # Compare per-line rounded amounts with per-line rounded
+                # amounts.
+                amount_untaxed_before_global_discounts += line.price_subtotal
+                amount_total_before_global_discounts += line.price_total
                 discounted_subtotal = line.price_subtotal
                 if not line.product_id.bypass_global_discount:
                     discounted_subtotal = self.get_discounted_global(
@@ -145,6 +160,8 @@ class SaleOrder(models.Model):
     def _compute_tax_totals(self):
         res = super()._compute_tax_totals()
         for order in self:
+            if not any(order.global_discount_ids.mapped("discount")):
+                continue
             amount_discount_by_group = {}
             cumulative_discount_rate = 1.0
             currency = order.currency_id
