@@ -1,0 +1,33 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_lot_selection
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-27 03:53+0000\n"
+"PO-Revision-Date: 2018-01-27 03:53+0000\n"
+"Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
+"Language-Team: Slovak (https://www.transifex.com/oca/teams/23907/sk/)\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#. module: sale_order_lot_selection
+#: model:ir.model.fields,field_description:sale_order_lot_selection.field_sale_order_line__lot_id
+msgid "Lot"
+msgstr ""
+
+#. module: sale_order_lot_selection
+#: model:ir.model,name:sale_order_lot_selection.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Sales Order"
+#~ msgstr "Objednávka predaja"
