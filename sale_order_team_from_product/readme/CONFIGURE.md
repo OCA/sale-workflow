@@ -1,0 +1,4 @@
+- Go to "Sales > Configuration > Settings" and scroll down to the "Quotations & Orders" section.
+- Activate the "Set Sales Team from Products" option.
+- After activation configure the following feature-specific settings:
+  - Skip if team is already set. Will not set team from products if it's already set in quotation.
