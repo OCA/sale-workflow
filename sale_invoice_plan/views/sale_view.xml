@@ -115,24 +115,28 @@
                         string="⇒ Create Invoice Plan"
                         type="action"
                         class="oe_link"
-                        attrs="{'invisible': ['|', ('invoice_plan_ids', '!=', []), ('invoice_count', '>', 0)]}"
+                        attrs="{'invisible': [('invoice_plan_ids', '!=', [])]}"
                     />
                     <button
                         name="remove_invoice_plan"
                         string="⇒ Remove Invoice Plan"
                         type="object"
                         class="oe_link"
-                        attrs="{'invisible': ['|', ('invoice_plan_ids', '=', []), ('invoice_count', '>', 0)]}"
+                        attrs="{'invisible': [('invoice_plan_ids', '=', [])]}"
                         confirm="Are you sure to remove this invoice plan?"
                     />
                     <field
                         name="invoice_plan_ids"
                         context="{'tree_view_ref': 'sale_invoice_plan.view_sale_invoice_plan_tree'}"
-                        attrs="{'invisible': [('invoice_plan_ids', '=', [])]}"
                     />
                     <group class="oe_subtotal_footer oe_right">
+                        <field name="amount_untaxed" string="Untaxed Amount" />
+                        <field
+                            name="amount_invoiced_before_plan"
+                            attrs="{'invisible': [('amount_invoiced_before_plan', '=', 0)]}"
+                        />
                         <field name="invoice_plan_total_percent" />
-                        <field name="invoice_plan_total_amount" />
+                        <field name="invoice_plan_total_amount" string="Plan Total" />
                     </group>
                 </page>
             </xpath>
