@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<templates id="template" xml:space="preserve">
+    <t
+        t-name="sale_semaphore.SemaphoreField"
+        t-inherit="web.SelectionField"
+        t-inherit-mode="primary"
+    >
+        <xpath expr="//t[@t-if='props.readonly']/span" position="attributes">
+            <attribute name="t-on-click">onClickSemaphore</attribute>
+        </xpath>
+    </t>
+    <div t-name="sale_semaphore.SemaphorePopover">
+        <table class="table table-borderless" style="font-size: 1.5em;">
+            <tbody>
+                <tr>
+                    <td class="set_price_success" t-on-click="onClickSetPriceSuccess">
+                        <span class="fa fa-circle text-success" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="set_price_warning" t-on-click="onClickSetPriceWarning">
+                        <span class="fa fa-circle text-warning" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="set_price_danger" t-on-click="onClickSetPriceDanger">
+                        <span class="fa fa-circle text-danger" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button
+                            class="reset_value btn btn-primary w-100"
+                            t-on-click="onClickResetPrice"
+                        >Reset</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</templates>

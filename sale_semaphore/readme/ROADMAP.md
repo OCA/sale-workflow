@@ -1,0 +1,2 @@
+- Propagate category semaphore recursively to child categories
+- Use pricelist price as the base for calculations
