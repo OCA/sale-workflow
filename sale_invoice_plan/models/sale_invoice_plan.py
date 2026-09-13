@@ -1,0 +1,231 @@
+# Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
+from odoo import api, fields, models
+from odoo.exceptions import UserError, ValidationError
+from odoo.tools.float_utils import float_compare, float_round
+
+
+class SaleInvoicePlan(models.Model):
+    _name = "sale.invoice.plan"
+    _description = "Invoice Planning Detail"
+    _order = "installment"
+
+    sale_id = fields.Many2one(
+        comodel_name="sale.order",
+        string="Sales Order",
+        index=True,
+        ondelete="cascade",
+    )
+    partner_id = fields.Many2one(
+        comodel_name="res.partner",
+        string="Customer",
+        related="sale_id.partner_id",
+        store=True,
+        index=True,
+    )
+    state = fields.Selection(
+        string="Status",
+        related="sale_id.state",
+        store=True,
+        index=True,
+    )
+    installment = fields.Integer()
+    plan_date = fields.Date(required=True)
+    invoice_type = fields.Selection(
+        [("advance", "Advance"), ("installment", "Installment")],
+        string="Type",
+        required=True,
+        default="installment",
+    )
+    last = fields.Boolean(
+        string="Last Installment",
+        compute="_compute_last",
+        help="Last installment will create invoice use remaining amount",
+    )
+    percent = fields.Float(
+        digits="Sales Invoice Plan Percent",
+        help="This percent will be used to calculate new quantity",
+    )
+    amount = fields.Float(
+        digits="Product Price",
+        compute="_compute_amount",
+        inverse="_inverse_amount",
+        help="This amount will be used to calculate the percent",
+    )
+    invoice_move_ids = fields.Many2many(
+        "account.move",
+        relation="sale_invoice_plan_invoice_rel",
+        column1="plan_id",
+        column2="move_id",
+        string="Invoices",
+    )
+    amount_invoiced = fields.Float(compute="_compute_invoiced", store=True)
+    to_invoice = fields.Boolean(
+        string="Next Invoice",
+        compute="_compute_to_invoice",
+        help="If this line is ready to create new invoice",
+    )
+    invoiced = fields.Boolean(
+        string="Invoice Created",
+        compute="_compute_invoiced",
+        store=True,
+        help="If this line already invoiced",
+    )
+    no_edit = fields.Boolean(
+        compute="_compute_no_edit",
+    )
+
+    _unique_installment = models.Constraint(
+        "UNIQUE(sale_id, installment)",
+        "Installment must be unique on invoice plan",
+    )
+
+    def _no_edit(self):
+        self.ensure_one()
+        return self.invoiced
+
+    def _compute_no_edit(self):
+        for rec in self:
+            rec.no_edit = rec._no_edit()
+
+    @api.depends("percent")
+    def _compute_amount(self):
+        for rec in self:
+            amount_untaxed = rec.sale_id._origin.amount_untaxed
+            # With invoice already created, no recompute
+            if rec.invoiced:
+                rec.amount = rec.amount_invoiced
+                rec.percent = rec.amount / amount_untaxed * 100
+                continue
+            # For last line, amount is the left over
+            if rec.last:
+                installments = rec.sale_id.invoice_plan_ids.filtered(
+                    lambda plan: plan.invoice_type == "installment"
+                )
+                prev_amount = sum((installments - rec).mapped("amount"))
+                rec.amount = amount_untaxed - prev_amount
+                continue
+            rec.amount = rec.percent * amount_untaxed / 100
+
+    @api.onchange("amount", "percent")
+    def _inverse_amount(self):
+        for rec in self:
+            if rec.sale_id.amount_untaxed != 0:
+                if rec.last:
+                    installments = rec.sale_id.invoice_plan_ids.filtered(
+                        lambda plan: plan.invoice_type == "installment"
+                    )
+                    prev_percent = sum((installments - rec).mapped("percent"))
+                    rec.percent = 100 - prev_percent
+                    continue
+                rec.percent = rec.amount / rec.sale_id.amount_untaxed * 100
+                continue
+            rec.percent = 0
+
+    def _compute_to_invoice(self):
+        """If any invoice is in draft/open/paid do not allow to create inv.
+        Only if previous to_invoice is False, it is eligible to_invoice.
+        """
+        for rec in self:
+            rec.to_invoice = False
+        for rec in self.sorted("installment"):
+            if rec.state != "sale":  # Not confirmed, no to_invoice
+                continue
+            if not rec.invoiced:
+                rec.to_invoice = True
+                break
+
+    def _get_amount_invoice(self, invoices):
+        """Hook function"""
+        amount_invoiced = sum(invoices.mapped("amount_untaxed"))
+        deposit_product_id = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("sale.default_deposit_product_id")
+        )
+        if deposit_product_id:
+            lines = invoices.mapped("invoice_line_ids").filtered(
+                lambda line: line.product_id.id != int(deposit_product_id)
+            )
+            amount_invoiced = sum(lines.mapped("price_subtotal"))
+        return amount_invoiced
+
+    @api.depends("invoice_move_ids.state")
+    def _compute_invoiced(self):
+        for rec in self:
+            invoiced = rec.invoice_move_ids.filtered(
+                lambda invoice: invoice.state in ("draft", "posted")
+            )
+            rec.invoiced = True if invoiced else False
+            rec.amount_invoiced = (
+                sum(invoiced.mapped("amount_untaxed"))
+                if rec.invoice_type == "advance"
+                else rec._get_amount_invoice(invoiced[:1])
+            )
+
+    def _compute_last(self):
+        for rec in self:
+            last = max(rec.sale_id.invoice_plan_ids.mapped("installment"))
+            rec.last = rec.installment == last
+
+    def _compute_new_invoice_quantity(self, invoice_move):
+        self.ensure_one()
+        if self.last:  # For last install, let the system do the calc.
+            return
+        percent = self.percent
+        move = invoice_move.with_context(check_move_validity=False)
+        for line in move.invoice_line_ids.filtered(
+            lambda ln: ln.display_type == "product"
+        ):
+            self._update_new_quantity(line, percent)
+        move.line_ids.filtered(
+            lambda x: x.display_type
+            not in ("product", "line_section", "line_note", "payment_term", "tax")
+        ).unlink()
+
+    def _update_new_quantity(self, line, percent):
+        """Hook function"""
+        if not line.sale_line_ids:
+            raise UserError(self.env._("No matched order line for invoice line"))
+        order_line = line.sale_line_ids[0]
+        if order_line.is_downpayment:  # based on 1 unit
+            line.write({"quantity": -percent / 100})
+        else:
+            plan_qty = self._get_plan_qty(order_line, percent)
+            prec = order_line.product_uom_id.rounding
+            if plan_qty:
+                plan_qty = float_round(plan_qty, precision_rounding=prec)
+            if (
+                float_compare(
+                    abs(plan_qty), abs(line.quantity), precision_rounding=prec
+                )
+                == 1
+            ):
+                raise ValidationError(
+                    self.env._(
+                        "Plan quantity: %(plan_qty)s, exceed invoiceable quantity: "
+                        "%(invoiceable_qty)s"
+                        "\nProduct should be delivered before invoice",
+                        plan_qty=plan_qty,
+                        invoiceable_qty=line.quantity,
+                    )
+                )
+            line.write({"quantity": plan_qty})
+
+    @api.model
+    def _get_plan_qty(self, order_line, percent):
+        plan_qty = order_line.product_uom_qty * (percent / 100)
+        return plan_qty
+
+    @api.ondelete(at_uninstall=False)
+    def _unlink_except_no_edit(self):
+        lines = self.filtered("no_edit")
+        if lines:
+            installments = [str(x) for x in lines.mapped("installment")]
+            raise UserError(
+                self.env._(
+                    "Installment %s: already used and not allowed to delete.\n"
+                    "Please discard changes.",
+                    ", ".join(installments),
+                )
+            )
