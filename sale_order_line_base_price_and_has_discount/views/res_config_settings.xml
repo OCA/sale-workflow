@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sale</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10" />
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <setting id="pricelist_configuration" position="inside">
+                <label
+                    for="display_base_price_method"
+                    string="Choose the base price field computation method"
+                    class="o_light_label"
+                />
+                <field
+                    name="display_base_price_method"
+                    class="o_light_label"
+                    widget="radio"
+                />
+            </setting>
+        </field>
+    </record>
+</odoo>
