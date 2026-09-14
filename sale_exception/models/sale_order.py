@@ -4,6 +4,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, models
+from odoo.api import Environment
+from odoo.tools import config
 
 
 class SaleOrder(models.Model):
@@ -18,6 +20,20 @@ class SaleOrder(models.Model):
     def detect_exceptions(self):
         all_exceptions = super().detect_exceptions()
         lines = self.mapped("order_line")
+        # Exception data is persisted through a dedicated cursor. Lines
+        # created by the current transaction are not visible from that
+        # cursor yet, and passing them to ``lines.detect_exceptions()``
+        # raises a MissingError. They cannot be persisted independently
+        # either if the current transaction is rolled back, so only inspect
+        # lines already visible from the dedicated cursor here.
+        test_mode = (
+            config["test_enable"] or not self.env.registry.ready
+        ) and not self.env.context.get("test_base_exception")
+        if lines and not test_mode:
+            with self.env.registry.cursor() as new_cr:
+                new_env = Environment(new_cr, self.env.uid, self.env.context)
+                persisted_line_ids = lines.with_env(new_env).exists().ids
+            lines = lines.filtered(lambda line: line.id in persisted_line_ids)
         all_exceptions += lines.detect_exceptions()
         return all_exceptions
 
