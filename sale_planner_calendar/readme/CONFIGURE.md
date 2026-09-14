@@ -18,3 +18,11 @@ Other setting are available with system parameters
     **sale_planner_calendar.create_so_to_commercial_partner** with True
     value to create the sale order to commercial partner instead of
     partner
+2.  **Sale order salesperson** when a so is created from an event
+    planned. By default the salesperson assigned to the event (usually
+    whoever is doing the visit) is kept on the new order - typical when
+    a salesperson covers for another one's vacation. You can create or
+    update the system parameter
+    **sale_planner_calendar.keep_partner_salesperson** with True value
+    to keep the partner's own assigned salesperson on the new order
+    instead

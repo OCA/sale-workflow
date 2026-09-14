@@ -276,40 +276,80 @@ class CalendarEvent(models.Model):
         elif not self.categ_ids and self.name == self._origin.categ_ids[:1].name:
             self.name = False
 
-    def action_open_sale_order(self, new_order=False):
+    def _get_planner_sale_order_partner(self):
+        """Return the partner a sale order created from this event should use:
+        the planner partner itself, or its commercial partner, depending on
+        the ``sale_planner_calendar.create_so_to_commercial_partner`` system
+        parameter.
         """
-        Search or Create an event planner  linked to sale order
-        """
-        action_xml_id = (
-            self.env["ir.config_parameter"]
-            .sudo()
-            .get_param(
-                "sale_planner_calendar.action_open_sale_order",
-                "sale.action_quotations_with_onboarding",
-            )
-        )
-        action = self.env["ir.actions.act_window"]._for_xml_id(action_xml_id)
-        if new_order:
-            action["name"] = "New Quotation"
-            action["context"] = self.env.context
-            return action
-        # Create sale order to planner partner or commercial partner depending of the
-        # system parameter
         create_so_to_commercial_partner = (
             self.env["ir.config_parameter"]
             .sudo()
             .get_param("sale_planner_calendar.create_so_to_commercial_partner", "False")
         )
-        partner = (
+        return (
             self.target_partner_id
             if create_so_to_commercial_partner == "False"
             else self.target_partner_id.commercial_partner_id
         )
+
+    def _get_planner_sale_order_vals(self):
+        """Values for a sale order created/opened from this planner event.
+
+        Shared by both paths below (direct ``create()`` for a brand new
+        order, and the ``default_*`` context for the create-form of an
+        existing/no-order-yet one), so the
+        ``sale_planner_calendar.keep_partner_salesperson`` system parameter
+        below applies to both consistently instead of having to be handled
+        once per path.
+        """
+        partner = self._get_planner_sale_order_partner()
+        vals = {
+            "sale_planner_calendar_event_id": self.id,
+            "partner_id": partner.id,
+            "partner_shipping_id": self.target_partner_id.id,
+            "user_id": self.user_id.id,
+        }
+        keep_partner_salesperson = (
+            self.env["ir.config_parameter"]
+            .sudo()
+            .get_param("sale_planner_calendar.keep_partner_salesperson", "False")
+        )
+        if keep_partner_salesperson != "False":
+            # Let sale.order's own precompute'd user_id (depends on
+            # partner_id) assign the partner's salesperson instead of the
+            # event's own one set above - by default (this parameter unset),
+            # the event's salesperson is kept, as before.
+            vals.pop("user_id", None)
+        return vals
+
+    def action_open_sale_order(self, new_order=False):
+        """
+        Search or Create an event planner  linked to sale order
+        """
+        if new_order and not self:
+            # Toolbar "New Quotation" button: no event to prefill from.
+            action = self.env["ir.actions.act_window"]._for_xml_id(
+                "sale.action_quotations_with_onboarding"
+            )
+            action["context"] = self.env.context
+            action["views"] = [(False, "form")]  # land on the create form
+            return action
+        if new_order or (self and not self.sale_ids):
+            # The "Order" stat button doesn't pass new_order=True; catch
+            # that case here too so a fresh event also lands on the catalog.
+            order = self.env["sale.order"].create(self._get_planner_sale_order_vals())
+            action = order.action_add_from_catalog()
+            # action_add_from_catalog() only sets product_catalog_order_id,
+            # not this - required by the catalog controller.
+            action["context"]["order_id"] = order.id
+            return action
+        action = self.env["ir.actions.act_window"]._for_xml_id(
+            "sale.action_quotations_with_onboarding"
+        )
         action["context"] = {
-            "default_sale_planner_calendar_event_id": self.id,
-            "default_partner_id": partner.id,
-            "default_partner_shipping_id": self.target_partner_id.id,
-            "default_user_id": self.user_id.id,
+            f"default_{key}": value
+            for key, value in self._get_planner_sale_order_vals().items()
         }
         if len(self.sale_ids) > 1:
             action["domain"] = [("sale_planner_calendar_event_id", "=", self.id)]
