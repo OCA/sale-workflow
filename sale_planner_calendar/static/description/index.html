@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils: https://docutils.sourceforge.io/" />
-<title>README.rst</title>
+<title>Sale planner calendar</title>
 <style type="text/css">
 
 /*
@@ -413,6 +413,13 @@ can create or update the system parameter
 <strong>sale_planner_calendar.create_so_to_commercial_partner</strong> with True
 value to create the sale order to commercial partner instead of
 partner</li>
+<li><strong>Sale order salesperson</strong> when a so is created from an event
+planned. By default the salesperson assigned to the event (usually
+whoever is doing the visit) is kept on the new order - typical when a
+salesperson covers for another one’s vacation. You can create or
+update the system parameter
+<strong>sale_planner_calendar.keep_partner_salesperson</strong> with True value to
+keep the partner’s own assigned salesperson on the new order instead</li>
 </ol>
 </div>
 <div class="section" id="usage">
@@ -480,6 +487,8 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
+<p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainer</a>:</p>
+<p><a class="reference external image-reference" href="https://github.com/carlosdauden"><img alt="carlosdauden" src="https://github.com/carlosdauden.png?size=40px" /></a></p>
 <p>This module is part of the <a class="reference external" href="https://github.com/OCA/sale-workflow/tree/18.0/sale_planner_calendar">OCA/sale-workflow</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
