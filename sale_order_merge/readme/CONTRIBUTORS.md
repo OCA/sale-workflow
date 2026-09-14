@@ -1,0 +1,3 @@
+- Stefan Rijnhart <stefan@opener.amsterdam>
+- [Binhex](https://www.binhex.cloud/):
+  - Edilio Escalona Almira <e.escalona@binhex.cloud>
