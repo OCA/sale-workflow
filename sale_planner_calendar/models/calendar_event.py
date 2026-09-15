@@ -122,7 +122,16 @@ class CalendarEvent(models.Model):
 
     @api.depends("target_partner_id")
     def _compute_invoice_amount_residual(self):
-        partner_ids = self.mapped("target_partner_id.commercial_partner_id").ids
+        # Each event's own contact can resolve to a different invoice
+        # address than another event under the same commercial entity
+        # (e.g. one delivery contact billed through "Facturación" while
+        # another isn't) - address_get() is core's own lookup for that,
+        # the same one sale.order uses for partner_invoice_id.
+        invoice_partner_by_event = {
+            rec.id: rec.target_partner_id.address_get(["invoice"])["invoice"]
+            for rec in self
+        }
+        partner_ids = list(set(invoice_partner_by_event.values()))
         groups = self.env["account.move"]._read_group(
             domain=[
                 ("state", "=", "posted"),
@@ -138,7 +147,7 @@ class CalendarEvent(models.Model):
         }
         for rec in self:
             partner_vals = invoice_dic.get(
-                rec.target_partner_id.commercial_partner_id.id,
+                invoice_partner_by_event[rec.id],
                 {"amount_residual_signed": 0.0, "invoice_date_due": False},
             )
             amount_residual = partner_vals["amount_residual_signed"]
@@ -370,17 +379,31 @@ class CalendarEvent(models.Model):
         )
         action["context"] = ctx
         domain = safe_eval(action["domain"])
+        # Same invoice-address resolution as _compute_invoice_amount_residual()
+        # above - the commercial partner would also pull in debt from other
+        # contacts' invoice addresses unrelated to this event's own contact.
         domain.append(
-            ("partner_id", "=", self.target_partner_id.commercial_partner_id.id),
+            (
+                "partner_id",
+                "=",
+                self.target_partner_id.address_get(["invoice"])["invoice"],
+            ),
         )
         action["domain"] = domain
         return action
 
     def action_open_unpaid_invoice(self):
+        # Same invoice-address resolution as _compute_invoice_amount_residual()
+        # above - the commercial partner would also pull in debt from other
+        # contacts' invoice addresses unrelated to this event's own contact.
         domain = [
             ("state", "=", "posted"),
             ("move_type", "in", ["out_invoice", "out_refund"]),
-            ("partner_id", "=", self.target_partner_id.commercial_partner_id.id),
+            (
+                "partner_id",
+                "=",
+                self.target_partner_id.address_get(["invoice"])["invoice"],
+            ),
             ("payment_state", "!=", "paid"),
         ]
         unpaid_invoices = self.env["account.move"].search(domain)
