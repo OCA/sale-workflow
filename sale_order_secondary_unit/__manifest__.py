@@ -19,4 +19,13 @@
         "views/sale_order_views.xml",
         "report/sale_report_templates.xml",
     ],
+    "assets": {
+        "web.assets_backend": [
+            (
+                "after",
+                "product/static/src/product_catalog/order_line/order_line.js",
+                "sale_order_secondary_unit/static/src/product_catalog/*",
+            ),
+        ],
+    },
 }
