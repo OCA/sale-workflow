@@ -40,6 +40,7 @@
                 <field
                     name="secondary_uom_qty"
                     column_invisible="parent.state in ('done', 'cancel')"
+                    readonly="parent.state in ('done', 'cancel')"
                     groups="uom.group_uom"
                     optional="show"
                 />
@@ -78,9 +79,24 @@
         <field name="model">sale.order.line</field>
         <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
         <field name="arch" type="xml">
-            <field name="product_uom" position="after">
-                <field name="secondary_uom_qty" widget="numeric_step" />
-                <field name="secondary_uom_id" groups="uom.group_uom" />
+            <field name="product_uom_qty" position="before">
+                <field
+                    name="secondary_uom_qty"
+                    groups="uom.group_uom"
+                    widget="numeric_step"
+                    options="{'auto_select': True}"
+                    readonly="state in ['done', 'cancel']"
+                />
+                <field
+                    name="secondary_uom_id"
+                    groups="uom.group_uom"
+                    domain="product_id and ['|', ('product_id', '=', product_id),
+                                '&amp;', ('product_tmpl_id.product_variant_ids', 'in', [product_id]),
+                                         ('product_id', '=', False)] or [(0, '=', 1)]"
+                    options="{'no_create': True, 'no_open': True}"
+                    readonly="product_uom_readonly"
+                    required="secondary_uom_qty != 0.0"
+                />
                 <field name="secondary_uom_id" groups="!uom.group_uom" invisible="1" />
             </field>
         </field>
