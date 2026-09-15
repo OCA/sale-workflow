@@ -12,6 +12,7 @@ class SalePlannerCalendarSummary(models.Model):
     _name = "sale.planner.calendar.summary"
     _description = "Sale planner calendar summary"
     _inherit = "mail.thread"
+    _order = "date DESC, id DESC"
 
     company_id = fields.Many2one(
         comodel_name="res.company", default=lambda self: self.env.company.id
