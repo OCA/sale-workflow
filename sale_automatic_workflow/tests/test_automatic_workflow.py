@@ -251,3 +251,92 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         self.run_job()
         payment = self.env["account.payment"].search([], limit=1, order="id desc")
         self.assertEqual(payment.journal_id, payment_journal)
+
+    def _create_zero_amount_invoice(self, workflow):
+        """Return a posted invoice whose residual amount is zero.
+
+        A free order (100% discount, replacement shipment, loyalty item...)
+        produces an invoice with a zero total and therefore a zero residual
+        amount.
+        """
+        sale = self.create_sale_order(
+            workflow, extra_product_values={"list_price": 0.0}
+        )
+        self.run_job()
+        invoice = sale.invoice_ids
+        self.assertEqual(invoice.state, "posted")
+        self.assertTrue(invoice.currency_id.is_zero(invoice.amount_residual))
+        return sale, invoice
+
+    def test_register_payment_skips_zero_residual_invoice(self):
+        """No payment is created when there is nothing left to pay."""
+        workflow = self.create_full_automatic()
+        workflow.register_payment = True
+        dummy, invoice = self._create_zero_amount_invoice(workflow)
+        payment_obj = self.env["account.payment"]
+        payments_before = payment_obj.search_count([])
+        payment = self.env["automatic.workflow.job"]._register_payment_invoice(invoice)
+        self.assertFalse(payment)
+        self.assertEqual(payment_obj.search_count([]), payments_before)
+
+    def test_register_payment_zero_residual_invoice_does_not_loop(self):
+        """Regression: a zero amount payment never settles the invoice.
+
+        Before this fix, the invoice kept matching the payment filter after
+        the payment was created, so every run of the cron added another
+        zero amount payment and another posted journal entry, indefinitely.
+        """
+        workflow = self.create_full_automatic()
+        workflow.register_payment = True
+        sale, dummy = self._create_zero_amount_invoice(workflow)
+        # The partner is created by create_sale_order, so it is only used by
+        # this order and we can count its payments safely.
+        domain = [("partner_id", "=", sale.partner_id.id)]
+        payment_obj = self.env["account.payment"]
+        self.assertEqual(payment_obj.search_count(domain), 0)
+        for _run in range(3):
+            self.run_job()
+        self.assertEqual(
+            payment_obj.search_count(domain),
+            0,
+            "A zero amount payment was created for an invoice with nothing "
+            "left to pay; the automatic workflow will recreate it on every run.",
+        )
+
+    def test_register_payment_is_not_repeated(self):
+        """A regular invoice gets exactly one payment, however often we run."""
+        workflow = self.create_full_automatic()
+        workflow.register_payment = True
+        sale = self.create_sale_order(workflow)
+        self.run_job()
+        invoice = sale.invoice_ids
+        self.assertEqual(invoice.state, "posted")
+        domain = [("partner_id", "=", sale.partner_id.id)]
+        payment_obj = self.env["account.payment"]
+        self.assertEqual(payment_obj.search_count(domain), 1)
+        self.run_job()
+        self.run_job()
+        self.assertEqual(payment_obj.search_count(domain), 1)
+
+    def test_do_register_payment_bypassed_when_filter_no_longer_matches(self):
+        """The filter is re-checked before acting, like the other actions."""
+        workflow = self.create_full_automatic()
+        workflow.register_payment = True
+        sale = self.create_sale_order(workflow)
+        self.run_job()
+        invoice = sale.invoice_ids
+        job = self.env["automatic.workflow.job"]
+        # This invoice is already paid, so it no longer matches the filter.
+        result = job._do_register_payment(
+            invoice, workflow.payment_filter_id._get_eval_domain()
+        )
+        self.assertIn("bypassed", result)
+
+    def test_default_payment_filter_excludes_settled_invoices(self):
+        payment_filter = self.env.ref(
+            "sale_automatic_workflow.automatic_workflow_payment_filter"
+        )
+        self.assertIn(
+            ("amount_residual", "!=", 0),
+            payment_filter._get_eval_domain(),
+        )
