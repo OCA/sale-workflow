@@ -478,6 +478,22 @@ For example, set the value to <tt class="docutils literal">last_price</tt> to al
 on the <strong>Last sale</strong> price mode. Leaving the parameter empty or removing
 it restores the default behaviour (no price mode preselected).</p>
 </div>
+<div class="section" id="last-sales-origin-limit">
+<h1>Last sales origin limit</h1>
+<p>By default the <strong>Last sales</strong> origin shows every product sold to the
+matched partner in the last 6 months. You can cap how many products it
+shows by setting a system parameter:</p>
+<ol class="arabic simple">
+<li>Go to <em>Settings &gt; Technical &gt; Parameters &gt; System Parameters</em>.</li>
+<li>Create a new parameter with:<ul>
+<li><strong>Key:</strong> <tt class="docutils literal">sale_product_catalog_extended.catalog_last_order_limit</tt></li>
+<li><strong>Value:</strong> the maximum number of products to show, ordered by how
+often and how much they were sold. Leaving the parameter unset (or
+<tt class="docutils literal">0</tt>) restores the default behaviour (no limit).</li>
+</ul>
+</li>
+</ol>
+</div>
 <div class="section" id="catalog-history-partner">
 <h1>Catalog history partner</h1>
 <p>The <strong>Last sales</strong> origin and the <strong>Last sale</strong> price look at the

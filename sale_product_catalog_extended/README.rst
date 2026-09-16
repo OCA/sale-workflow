@@ -142,6 +142,21 @@ For example, set the value to ``last_price`` to always open the catalog
 on the **Last sale** price mode. Leaving the parameter empty or removing
 it restores the default behaviour (no price mode preselected).
 
+Last sales origin limit
+-----------------------
+
+By default the **Last sales** origin shows every product sold to the
+matched partner in the last 6 months. You can cap how many products it
+shows by setting a system parameter:
+
+1. Go to *Settings > Technical > Parameters > System Parameters*.
+2. Create a new parameter with:
+
+   - **Key:** ``sale_product_catalog_extended.catalog_last_order_limit``
+   - **Value:** the maximum number of products to show, ordered by how
+     often and how much they were sold. Leaving the parameter unset (or
+     ``0``) restores the default behaviour (no limit).
+
 Catalog history partner
 -----------------------
 
