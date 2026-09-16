@@ -176,7 +176,7 @@ class ProductProduct(models.Model):
         limit = int(
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("sale_order_product_picker.product_picker_last_order_limit", "0")
+            .get_param("sale_product_catalog_extended.catalog_last_order_limit", "0")
         )
         found_lines = self.env["sale.order.line"].read_group(
             self._product_picker_data_sale_order_domain(),

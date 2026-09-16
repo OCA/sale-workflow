@@ -478,6 +478,22 @@ For example, set the value to <tt class="docutils literal">last_price</tt> to al
 on the <strong>Last sale</strong> price mode. Leaving the parameter empty or removing
 it restores the default behaviour (no price mode preselected).</p>
 </div>
+<div class="section" id="last-sales-origin-limit">
+<h1>Last sales origin limit</h1>
+<p>By default the <strong>Last sales</strong> origin shows every product sold to the
+matched partner in the last 6 months. You can cap how many products it
+shows by setting a system parameter:</p>
+<ol class="arabic simple">
+<li>Go to <em>Settings &gt; Technical &gt; Parameters &gt; System Parameters</em>.</li>
+<li>Create a new parameter with:<ul>
+<li><strong>Key:</strong> <tt class="docutils literal">sale_product_catalog_extended.catalog_last_order_limit</tt></li>
+<li><strong>Value:</strong> the maximum number of products to show, ordered by how
+often and how much they were sold. Leaving the parameter unset (or
+<tt class="docutils literal">0</tt>) restores the default behaviour (no limit).</li>
+</ul>
+</li>
+</ol>
+</div>
 <div class="section" id="catalog-history-partner">
 <h1>Catalog history partner</h1>
 <p>The <strong>Last sales</strong> origin and the <strong>Last sale</strong> price look at the
@@ -538,6 +554,8 @@ If you spotted it first, help us to smash it by providing a detailed and welcome
 <p>OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.</p>
+<p>Current <a class="reference external" href="https://odoo-community.org/page/maintainer-role">maintainers</a>:</p>
+<p><a class="reference external image-reference" href="https://github.com/carlosdauden"><img alt="carlosdauden" src="https://github.com/carlosdauden.png?size=40px" /></a> <a class="reference external image-reference" href="https://github.com/CarlosRoca13"><img alt="CarlosRoca13" src="https://github.com/CarlosRoca13.png?size=40px" /></a></p>
 <p>This module is part of the <a class="reference external" href="https://github.com/OCA/sale-workflow/tree/18.0/sale_product_catalog_extended">OCA/sale-workflow</a> project on GitHub.</p>
 <p>You are welcome to contribute. To learn how please visit <a class="reference external" href="https://odoo-community.org/page/Contribute">https://odoo-community.org/page/Contribute</a>.</p>
 </div>
