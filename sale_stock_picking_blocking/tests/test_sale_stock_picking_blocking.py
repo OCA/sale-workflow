@@ -56,6 +56,32 @@ class TestSaleDeliveryBlock(TestSaleDeliveryBlockSetup):
             so_form.payment_term_id = self.payment_terms[1]  # Linked to block 2
         self.assertEqual(so_form.record.delivery_block_id, self.block_reasons[1])
 
+    @users("login@test-user.com")
+    def test_sale_form_view_manual_delivery_block_not_overridden(self):
+        """Checks the compute method does not override manual values set via UI"""
+        # Test SO creation:
+        # - partner linked to block 2
+        # - payment term linked to block 3
+        # - we add block 1 to the SO
+        # => block 1 is kept
+        with Form(self.env["sale.order"]) as sale_form_view:
+            sale_form_view.partner_id = self.partners[1]  # Linked to block 2
+            sale_form_view.payment_term_id = self.payment_terms[2]  # Linked to block 3
+            sale_form_view.delivery_block_id = self.block_reasons[0]  # Block 1
+        sale = sale_form_view.record
+        self.assertEqual(sale.delivery_block_id, self.block_reasons[0])
+        # Test SO update:
+        # - partner linked to block 3
+        # - payment term linked to block 2
+        # - we remove the block from the SO
+        # => SO block is kept empty
+        with Form(self.env["sale.order"]) as sale_form_view:
+            sale_form_view.partner_id = self.partners[2]  # Linked to block 3
+            sale_form_view.payment_term_id = self.payment_terms[1]  # Linked to block 2
+            sale_form_view.delivery_block_id = self.env["sale.delivery.block.reason"]
+        sale = sale_form_view.record
+        self.assertFalse(sale.delivery_block_id)
+
     def test_commercial_fields(self):
         """Checks ``default_delivery_block`` is managed by commercial entities"""
         self.assertIn(
