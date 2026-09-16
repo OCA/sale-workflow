@@ -132,10 +132,12 @@ class ProductProduct(models.Model):
             if self.env.context.get("product_catalog_use_delivery_address")
             else "partner_id"
         )
-        # Search with sudo for get sale order from other commercials users
+        # The catalog history must reflect every order of the partner
+        # regardless of salesperson, not only the ones assigned to the
+        # current user, so this search bypasses the "own documents" rule.
         other_sales = (
             self.env["sale.order"]
-            # .sudo()
+            .sudo()
             ._search(
                 [
                     ("id", "!=", catalog_order_id),
