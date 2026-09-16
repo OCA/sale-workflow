@@ -32,7 +32,7 @@ class SaleOrder(models.Model):
     def _compute_delivery_block_id(self):
         """Add the 'Default Delivery Block Reason' if set in the partner
         or in the payment term."""
-        for so in self:
+        for so in self.filtered(lambda x: x.state != "sale"):
             if so.partner_id.default_delivery_block:
                 so.delivery_block_id = so.partner_id.default_delivery_block
             else:
