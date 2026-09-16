@@ -149,6 +149,17 @@ class AutomaticWorkflowJob(models.Model):
             res["journal_id"] = property_payment_journal_id.id
         return res
 
+    def _do_register_payment(self, invoice, domain_filter):
+        """Register a payment for an invoice, filter ensure no duplication"""
+        if not self.env["account.move"].search_count(
+            [("id", "=", invoice.id)] + domain_filter
+        ):
+            return f"{invoice.display_name} {invoice} job bypassed"
+        payment = self._register_payment_invoice(invoice)
+        if not payment:
+            return f"{invoice.display_name} {invoice} job bypassed: nothing to pay"
+        return f"{invoice.display_name} {invoice} register payment successfully"
+
     @api.model
     def _register_payments(self, payment_filter):
         invoice_obj = self.env["account.move"]
@@ -156,10 +167,22 @@ class AutomaticWorkflowJob(models.Model):
         _logger.debug("Invoices to Register Payment: %s", invoices.ids)
         for invoice in invoices:
             with savepoint(self.env.cr):
-                self._register_payment_invoice(invoice)
+                self._do_register_payment(
+                    invoice.with_company(invoice.company_id), payment_filter
+                )
         return
 
     def _register_payment_invoice(self, invoice):
+        # Never create a payment that settles nothing. Such a payment leaves
+        # the invoice exactly as it found it, so the invoice keeps matching
+        # the payment filter and a new payment is created on every run of the
+        # cron, forever.
+        if invoice.currency_id.is_zero(invoice.amount_residual):
+            _logger.debug(
+                "Skipping payment registration for %s: residual amount is zero.",
+                invoice.display_name,
+            )
+            return self.env["account.payment"]
         payment = self.env["account.payment"].create(
             self._prepare_dict_account_payment(invoice)
         )
