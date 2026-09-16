@@ -82,6 +82,27 @@ class TestSaleDeliveryBlock(TestSaleDeliveryBlockSetup):
         sale = sale_form_view.record
         self.assertFalse(sale.delivery_block_id)
 
+    @users("login@test-user.com")
+    def test_delivery_block_no_update_on_confirmed_sale(self):
+        sale = self.sale_orders[0]
+        # Update SO to have partner and PT with no block, set the block directly on it,
+        # then confirm it
+        sale.write(
+            {
+                "partner_id": self.partners[0].id,  # No default block
+                "payment_term_id": self.payment_terms[0].id,  # No default block
+                "delivery_block_id": self.block_reasons[0].id,  # Block 1
+            }
+        )
+        sale.action_confirm()
+        self.assertEqual(sale.delivery_block_id, self.block_reasons[0])
+        # Change the PT to the one w/ block 2 => SO's block reason didn't change
+        sale.payment_term_id = self.payment_terms[1]
+        self.assertEqual(sale.delivery_block_id, self.block_reasons[0])
+        # Change the partner to the one w/ block 3 => SO's block reason didn't change
+        sale.partner_id = self.partners[2]
+        self.assertEqual(sale.delivery_block_id, self.block_reasons[0])
+
     def test_commercial_fields(self):
         """Checks ``default_delivery_block`` is managed by commercial entities"""
         self.assertIn(
