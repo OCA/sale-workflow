@@ -1,6 +1,12 @@
 # Copyright 2024 Binhex - Zuzanna Elzbieta Szalaty Szalaty.
 # Copyright 2025 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0)
+
+from lxml import etree
+
+from odoo.exceptions import AccessError
+from odoo.tests.common import new_test_user, users
+
 from odoo.addons.payment.tests.common import PaymentCommon
 
 
@@ -19,6 +25,16 @@ class TestSaleOrder(PaymentCommon):
                 "name": "Test",
                 "code": "none",
             }
+        )
+        cls.user_account_invoice = new_test_user(
+            cls.env,
+            login="test_user_account_invoice",
+            groups="account.group_account_invoice,sales_team.group_sale_manager",
+        )
+        cls.user_sale_salesman = new_test_user(
+            cls.env,
+            login="test_user_sale_salesman",
+            groups="sales_team.group_sale_salesman",
         )
 
     def test_compute_payment_transaction_count(self):
@@ -98,3 +114,32 @@ class TestSaleOrder(PaymentCommon):
         self.assertEqual(
             action["domain"], [("id", "in", [transaction1.id, transaction2.id])]
         )
+
+    @users("test_user_account_invoice", "test_user_sale_salesman")
+    def test_form_view_button_rendered(self):
+        """Checks whether the smart button is rendered for the current user
+
+        If a test user can read the field ``payment_transaction_count`` without raising
+        an ``AccessError``, then the button should be rendered.
+        """
+        # Quick setup:
+        #   1- assign the test user as SO responsible (in sudo mode, to prevent any
+        #      security-related error to be raised too soon)
+        #   2- change the SO's env user to the test user: the current SO's env user is
+        #      the superuser, as the SO was created in ``setUpClass()``; if we don't
+        #      change it, ``AccessError`` will never be raised when reading field
+        #      ``payment_transaction_count``, skewing the test
+        self.sale_order.sudo().write({"user_id": self.env.uid})
+        self.sale_order = self.sale_order.with_user(self.env.uid)
+        try:
+            self.sale_order.read(["payment_transaction_count"])
+            expected = True
+        except AccessError as e:
+            self.assertIn("You do not have enough rights", str(e))
+            expected = False
+        view = self.sale_order.get_view(self.env.ref("sale.view_order_form").id)
+        root = etree.fromstring(view["arch"])
+        # NB: ``_Element.find()`` returns either the first child node that matches the
+        # path, else ``None``
+        result = root.find(".//button[@name='action_view_transaction']") is not None
+        self.assertEqual(result, expected)
