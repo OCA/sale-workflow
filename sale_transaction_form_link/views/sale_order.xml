@@ -15,6 +15,7 @@
                     class="oe_stat_button"
                     icon="fa-money"
                     invisible="payment_transaction_count == 0"
+                    groups="account.group_account_invoice"
                 >
                     <field
                         name="payment_transaction_count"
