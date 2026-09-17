@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Odoo Server 10.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-19 21:55+0000\n"
-"PO-Revision-Date: 2026-06-27 05:36+0000\n"
-"Last-Translator: Ed-Spain <eduamoros@gmail.com>\n"
+"PO-Revision-Date: 2026-09-17 05:29+0000\n"
+"Last-Translator: Enric Tobella <etobella@creublanca.es>\n"
 "Language-Team: Spanish (https://www.transifex.com/oca/teams/23907/es/)\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -215,7 +215,7 @@ msgstr "Ruta"
 #: model:ir.model.fields,field_description:sale_order_type.field_res_partner__effective_pricelist_id
 #: model:ir.model.fields,field_description:sale_order_type.field_res_users__effective_pricelist_id
 msgid "Sale Effective Pricelist"
-msgstr ""
+msgstr "Lista de precio efectiva"
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_account_invoice_report__sale_type_id
@@ -311,6 +311,8 @@ msgid ""
 "When creating a Sales Order, above pricelist will be replaced by the one set "
 "on the sales order type:"
 msgstr ""
+"Cuando se crea un pedido de venta, la lista de precios se substituirá por la "
+"definida en el tipo de pedido de venta:"
 
 #~ msgid "Analytic Account"
 #~ msgstr "Cuenta Analítica"
