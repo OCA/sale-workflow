@@ -417,3 +417,49 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             "Uninvoiced Amount should be 121, as we invoiced more than required in one line, "
             "but we have not invoices sale order line 3.",
         )
+
+    def test_05_sale_order_invoiced_amount_down_payment(self):
+        """Regression test for a down-payment sale.order.line is
+        always created with product_uom_qty = 0, so it's invisible to the
+        per-line uninvoiced_amount computation unless explicitly accounted
+        for.
+        """
+        self.sale_order_1.action_confirm()
+        deposit_product = self.env["product.product"].create(
+            {
+                "name": "Down Payment Product",
+                "type": "service",
+                "invoice_policy": "order",
+                "taxes_id": [(6, 0, self.tax.ids)],
+            }
+        )
+        wizard = (
+            self.env["sale.advance.payment.inv"]
+            .with_context(
+                active_model="sale.order",
+                active_ids=self.sale_order_1.ids,
+                active_id=self.sale_order_1.id,
+            )
+            .create(
+                {
+                    "advance_payment_method": "fixed",
+                    "fixed_amount": 100.0,
+                    "product_id": deposit_product.id,
+                }
+            )
+        )
+        wizard.create_invoices()
+        down_payment_invoice = self.sale_order_1.invoice_ids.sorted("id")[-1]
+        down_payment_invoice.action_post()
+
+        self.assertEqual(
+            self.sale_order_1.invoiced_amount,
+            121.0,
+            "Invoiced Amount should be the down payment amount incl. tax (100.0 x 1.21).",
+        )
+        self.assertEqual(
+            self.sale_order_1.uninvoiced_amount,
+            242.0,
+            "Uninvoiced Amount must decrease by the down payment amount "
+            "(363.0 - 121.0); it must not stay equal to the full order total.",
+        )
