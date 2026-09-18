@@ -56,7 +56,7 @@
                 'move_type':'out_invoice',
                 'journal_type': 'sale',
                 'search_default_in_payment': True,
-                'search_default_unpaid': True,
+                'search_default_open': True,
             }
         </field>
         <field name="search_view_id" ref="account.view_account_invoice_filter" />
