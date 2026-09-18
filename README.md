@@ -84,7 +84,7 @@ addon | version | maintainers | summary
 [sale_order_carrier_auto_assign](sale_order_carrier_auto_assign/) | 18.0.1.0.2 | <a href='https://github.com/jbaudoux'><img src='https://github.com/jbaudoux.png' width='32' height='32' style='border-radius:50%;' alt='jbaudoux'/></a> | Auto assign delivery carrier on sale order confirmation
 [sale_order_disable_user_autosubscribe](sale_order_disable_user_autosubscribe/) | 18.0.1.0.0 |  | Remove the salesperson from autosubscribed sale followers
 [sale_order_finish_service](sale_order_finish_service/) | 18.0.1.0.0 |  | Adds a finish service flag on sale orders
-[sale_order_general_discount](sale_order_general_discount/) | 18.0.1.0.1 |  | General discount per sale order
+[sale_order_general_discount](sale_order_general_discount/) | 18.0.1.0.2 |  | General discount per sale order
 [sale_order_invoice_amount](sale_order_invoice_amount/) | 18.0.1.0.0 |  | Display the invoiced and uninvoiced total in the sale order
 [sale_order_invoicing_finished_task](sale_order_invoicing_finished_task/) | 18.0.1.0.1 |  | Control invoice order lines if their related task has been set to invoiceable
 [sale_order_invoicing_picking_filter](sale_order_invoicing_picking_filter/) | 18.0.1.0.0 |  | Create invoices from sale orders based on the products in pickings.
