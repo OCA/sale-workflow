@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-09-18 14:17+0000\n"
+"PO-Revision-Date: 2026-09-18 14:24+0000\n"
 "Last-Translator: Florian Gruber <f.gruber@bitscode.dev>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -49,7 +49,7 @@ msgstr "ID"
 #. module: sale_order_revision
 #: model_terms:ir.ui.view,arch_db:sale_order_revision.view_order_form
 msgid "New Revision of Quotation"
-msgstr "Neue Version des Angebots"
+msgstr "Neue Version"
 
 #. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__old_revision_ids
@@ -70,7 +70,7 @@ msgstr "Ursprüngliche Referenz"
 #. module: sale_order_revision
 #: model_terms:ir.ui.view,arch_db:sale_order_revision.view_order_form
 msgid "Prev. revisions"
-msgstr "Vorherige Version"
+msgstr "Vorherige Versionen"
 
 #. module: sale_order_revision
 #: model:ir.model.fields,field_description:sale_order_revision.field_sale_order__revision_count
