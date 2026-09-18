@@ -1,0 +1,1 @@
+odoo-addon-sales_team_security @ git+https://github.com/OCA/sale-workflow.git@refs/pull/3960/head#subdirectory=sales_team_security
