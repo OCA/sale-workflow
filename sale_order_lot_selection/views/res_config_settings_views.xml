@@ -1,0 +1,17 @@
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <block name="catalog_setting_container" position="inside">
+                <setting
+                    string="Exclude pending orders from the lot selection"
+                    help="If this checkbox is selected, serials that can be selected with pending sales orders will be excluded"
+                    id="sale_order_lot_selection_exclude_pending_orders"
+                >
+                    <field name="sale_order_lot_selection_exclude_pending_orders" />
+                </setting>
+            </block>
+        </field>
+    </record>
+</odoo>
