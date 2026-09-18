@@ -331,13 +331,13 @@ class TestSalePlannerCalendar(AccountTestInvoicingCommon):
             lambda p: p.target_partner_id == self.partner_3
         )[:1]
         so_action = sale_planned_event.action_open_sale_order()
-        self.assertEqual(so_action["context"]["default_partner_id"], self.partner_3.id)
+        order = self.SaleOrder.browse(so_action["context"]["order_id"])
+        self.assertEqual(order.partner_id, self.partner_3)
+        order.unlink()
         # Set parameter to create sale order to commercial partner
         self.env["ir.config_parameter"].sudo().set_param(
             "sale_planner_calendar.create_so_to_commercial_partner", "True"
         )
         so_action = sale_planned_event.action_open_sale_order()
-        self.assertEqual(
-            so_action["context"]["default_partner_id"],
-            self.partner_3.commercial_partner_id.id,
-        )
+        order = self.SaleOrder.browse(so_action["context"]["order_id"])
+        self.assertEqual(order.partner_id, self.partner_3.commercial_partner_id)
