@@ -463,3 +463,53 @@ class TestSaleOrderInvoiceAmount(common.TransactionCase):
             "Uninvoiced Amount must decrease by the down payment amount "
             "(363.0 - 121.0); it must not stay equal to the full order total.",
         )
+
+    def test_06_sale_order_invoiced_amount_multiple_down_payments(self):
+        """Regression test for multiple down-payment invoices: all of them
+        must be subtracted from uninvoiced_amount, not just the most recent one.
+        """
+        self.sale_order_1.action_confirm()
+        deposit_product = self.env["product.product"].create(
+            {
+                "name": "Down Payment Product",
+                "type": "service",
+                "invoice_policy": "order",
+                "taxes_id": [(6, 0, self.tax.ids)],
+            }
+        )
+
+        def create_down_payment(fixed_amount):
+            wizard = (
+                self.env["sale.advance.payment.inv"]
+                .with_context(
+                    active_model="sale.order",
+                    active_ids=self.sale_order_1.ids,
+                    active_id=self.sale_order_1.id,
+                )
+                .create(
+                    {
+                        "advance_payment_method": "fixed",
+                        "fixed_amount": fixed_amount,
+                        "product_id": deposit_product.id,
+                    }
+                )
+            )
+            wizard.create_invoices()
+            invoice = self.sale_order_1.invoice_ids.sorted("id")[-1]
+            invoice.action_post()
+
+        create_down_payment(100.0)
+        create_down_payment(50.0)
+
+        self.assertEqual(
+            self.sale_order_1.invoiced_amount,
+            181.5,
+            "Invoiced Amount should be the sum of both down payments incl. tax "
+            "(100.0 x 1.21 + 50.0 x 1.21).",
+        )
+        self.assertEqual(
+            self.sale_order_1.uninvoiced_amount,
+            181.5,
+            "Uninvoiced Amount must decrease by both down payments "
+            "(363.0 - 181.5); a second down payment must not be ignored.",
+        )
