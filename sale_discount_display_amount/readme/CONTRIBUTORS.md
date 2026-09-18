@@ -1,0 +1,11 @@
+- Cédric Pigeon \<<cedric.pigeon@acsone.eu>\>
+- Abraham Anes \<<abrahamanes@gmail.com>\>
+- Chafique Delli \<<chafique.delli@akretion.com>\>
+- Ruchir Shukla \<<ruchir@bizzappdev.com>\>
+- Manuel Regidor \<<manuel.regidor@sygel.es>\>
+- [Pesol](https://www.pesol.es):
+  - Jonathan Oscategui Taza \<<info@pesol.es>\>
+- [Trobz](https://www.trobz.com):
+  - Nhan Tran \<<nhant@trobz.com>\>
+- [Heliconia Solutions Pvt. Ltd.](https://www.heliconia.io)
+  - Bhavesh Heliconia
