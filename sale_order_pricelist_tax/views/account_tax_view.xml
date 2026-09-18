@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="account_tax_view_form" model="ir.ui.view">
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form" />
+        <field name="arch" type="xml">
+            <field name="price_include" position="after">
+                <field name="equivalent_tax_inc_id" invisible="price_include" />
+                <field
+                    name="equivalent_tax_exc_id"
+                    invisible="not price_include"
+                    widget="many2many_tags"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
