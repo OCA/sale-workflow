@@ -1,0 +1,1 @@
+odoo-addon-sale_invoice_plan @ git+https://github.com/OCA/sale-workflow.git@refs/pull/4121/head#subdirectory=sale_invoice_plan
