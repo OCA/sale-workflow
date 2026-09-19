@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="sale_order_line_view_form_editable" model="ir.ui.view">
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
+        <field name="mode">primary</field>
+        <field name="priority">999</field>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="edit">True</attribute>
+            </xpath>
+            <field name="product_uom_qty" position="attributes">
+                <attribute name="widget">numeric_step</attribute>
+            </field>
+        </field>
+    </record>
+    <record id="action_open_editable_sale_order_line" model="ir.actions.act_window">
+        <field name="res_model">sale.order.line</field>
+        <field name="target">new</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="sale_order_line_view_form_editable" />
+    </record>
+</odoo>
