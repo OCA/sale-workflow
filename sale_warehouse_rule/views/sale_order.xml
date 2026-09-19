@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright (C) 2024 Akretion (<http://www.akretion.com>).
+     @author Kévin Roche <kevin.roche@akretion.com>
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="sale_order_view_form">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <sheet position="before">
+                <div
+                    class="alert alert-danger alert-dismissable"
+                    role="alert"
+                    style="margin-bottom:0px;"
+                    invisible="not warehouse_rule_need_change"
+                >
+                    <field name="warehouse_rule_need_change" />
+                </div>
+                <div
+                    class="alert alert-info alert-dismissable"
+                    role="alert"
+                    style="margin-bottom:0px;"
+                    invisible="not warehouse_rule_info"
+                >
+                    <field name="warehouse_rule_info" />
+                </div>
+            </sheet>
+
+            <xpath
+                expr="//field[@name='order_line']/list/field[@name='warehouse_id']"
+                position="attributes"
+            >
+                <attribute name="invisible">0</attribute>
+                <attribute name="readonly">parent.state != 'draft'</attribute>
+                <attribute
+                    name="column_invisible"
+                >not parent.show_sale_line_warehouse_column</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
