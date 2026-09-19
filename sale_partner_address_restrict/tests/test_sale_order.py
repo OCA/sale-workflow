@@ -28,7 +28,11 @@ class TestSaleOrder(BaseCommon):
         sale_order = order_form.save()
 
         expected_domain = [
-            ("commercial_partner_id", "=", sale_order.partner_id.id),
+            (
+                "commercial_partner_id",
+                "=",
+                sale_order.partner_id.commercial_partner_id.id,
+            ),
             "|",
             ("company_id", "=", False),
             ("company_id", "=", sale_order.company_id.id),
@@ -40,13 +44,36 @@ class TestSaleOrder(BaseCommon):
         with Form(sale_order) as sale_order:
             sale_order.partner_id = self.partner2
             expected_domain = [
-                ("commercial_partner_id", "=", sale_order.partner_id.id),
+                (
+                    "commercial_partner_id",
+                    "=",
+                    sale_order.partner_id.commercial_partner_id.id,
+                ),
                 "|",
                 ("company_id", "=", False),
                 ("company_id", "=", sale_order.company_id.id),
             ]
             partners = self.env["res.partner"].search(expected_domain)
             self.assertEqual(len(partners), 1)
+
+    def test_sale_order_address_domain_from_contact(self):
+        order_form = Form(self.env["sale.order"])
+        order_form.partner_id = self.child_1
+        sale_order = order_form.save()
+
+        expected_domain = [
+            (
+                "commercial_partner_id",
+                "=",
+                sale_order.partner_id.commercial_partner_id.id,
+            ),
+            "|",
+            ("company_id", "=", False),
+            ("company_id", "=", sale_order.company_id.id),
+        ]
+
+        partners = self.env["res.partner"].search(expected_domain)
+        self.assertEqual(len(partners), 3)
 
     def test_sale_order_partner_unallowed(self):
         order_form = Form(self.env["sale.order"])
