@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//field[@name='order_line']/list/field[@name='product_packaging_id']"
+                position="after"
+            >
+                <field name="show_split_button" invisible="1" />
+                <button
+                    name="split_order_line_wizard"
+                    type="object"
+                    string="Split by packaging"
+                    class="btn-primary"
+                    invisible="not show_split_button"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
