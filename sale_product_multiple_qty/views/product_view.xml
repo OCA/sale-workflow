@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_normal_form_view" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='description']" position="after">
+                <group name="sale_multiple" string="Sales Multiple">
+                    <field
+                        name="sale_multiple_uom_id"
+                        widget="many2one"
+                        options="{'no_create': 1, 'no_edit': 1}"
+                        placeholder="UoM used to define sales quantities as multiples of this unit."
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
