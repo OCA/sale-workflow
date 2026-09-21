@@ -63,7 +63,7 @@ addon | version | maintainers | summary
 [sale_isolated_quotation](sale_isolated_quotation/) | 16.0.1.0.0 | <a href='https://github.com/bealdav'><img src='https://github.com/bealdav.png' width='32' height='32' style='border-radius:50%;' alt='bealdav'/></a> <a href='https://github.com/kittiu'><img src='https://github.com/kittiu.png' width='32' height='32' style='border-radius:50%;' alt='kittiu'/></a> | Sale Isolated Quotation
 [sale_last_price_info](sale_last_price_info/) | 16.0.1.0.0 |  | Product Last Price Info - Sale
 [sale_loyalty_exclude](sale_loyalty_exclude/) | 16.0.1.2.0 |  | Exclude products from sale loyalty program
-[sale_manual_delivery](sale_manual_delivery/) | 16.0.1.1.0 |  | Create manually your deliveries
+[sale_manual_delivery](sale_manual_delivery/) | 16.0.1.2.0 |  | Create manually your deliveries
 [sale_margin_update](sale_margin_update/) | 16.0.1.0.0 |  | Recalculate expected unit price from margin.
 [sale_mrp_bom](sale_mrp_bom/) | 16.0.1.0.0 |  | Allows define a BOM in the sales lines.
 [sale_numeric_step](sale_numeric_step/) | 16.0.1.0.1 | <a href='https://github.com/rafaelbn'><img src='https://github.com/rafaelbn.png' width='32' height='32' style='border-radius:50%;' alt='rafaelbn'/></a> <a href='https://github.com/yajo'><img src='https://github.com/yajo.png' width='32' height='32' style='border-radius:50%;' alt='yajo'/></a> | Improve mobile/tablet sale process by adding numeric step widgets
