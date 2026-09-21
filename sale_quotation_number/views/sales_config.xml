@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2018 Simone Rubino - Agile Business Group
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="res_config_settings_view_form_quotation_number" model="ir.ui.view">
+        <field name="name">Quotation number configuration</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='group_proforma_sales']/../.." position="after">
+                <block id="blq_keep_name_so">
+                    <setting id="set_keep_name_so">
+                        <field name="keep_name_so" readonly="0" />
+                        <div class="text-muted">
+                            If this is unchecked, quotations use a different sequence from sale orders
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
