@@ -1,0 +1,131 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_merge
+#
+# Translators:
+# Ozge Altinisik <ozge@altinkaya.com.tr>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: sale-workflow (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-04 10:47+0000\n"
+"PO-Revision-Date: 2017-01-05 12:37+0000\n"
+"Last-Translator: Ozge Altinisik <ozge@altinkaya.com.tr>\n"
+"Language-Team: Turkish (Turkey) (http://www.transifex.com/oca/OCA-sale-"
+"workflow-8-0/language/tr_TR/)\n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: sale_order_merge
+#: field:sale.order,merge_with:0 field:sale.order.merge,mergeable:0
+msgid "Can be merged with"
+msgstr "ile birleştirilebilir"
+
+#. module: sale_order_merge
+#: view:sale.order.merge:sale_order_merge.view_sale_order_merge_form
+msgid "Cancel"
+msgstr "İptal et"
+
+#. module: sale_order_merge
+#: code:addons/sale_order_merge/models/sale_order_merge.py:149
+#, python-format
+msgid ""
+"Cannot merge these orders because their order policies cannot be reconciled."
+msgstr ""
+"Bu siparişler birleştirilemez çünkü siparişlerin kuralları uzlaşabilir "
+"değil. "
+
+#. module: sale_order_merge
+#: field:sale.order.merge,create_uid:0
+msgid "Created by"
+msgstr "Oluşturan"
+
+#. module: sale_order_merge
+#: field:sale.order.merge,create_date:0
+msgid "Created on"
+msgstr "Oluşturulma tarihi"
+
+#. module: sale_order_merge
+#: field:sale.order.merge,display_name:0
+msgid "Display Name"
+msgstr "Görünen ad"
+
+#. module: sale_order_merge
+#: field:sale.order,merge_ok:0
+msgid "Has candidates to merge with"
+msgstr "ile birleştirmek için adayları var"
+
+#. module: sale_order_merge
+#: field:sale.order.merge,id:0
+msgid "ID"
+msgstr "Kimlik"
+
+#. module: sale_order_merge
+#: field:sale.order.merge,__last_update:0
+msgid "Last Modified on"
+msgstr "En son güncelleme tarihi"
+
+#. module: sale_order_merge
+#: field:sale.order.merge,write_uid:0
+msgid "Last Updated by"
+msgstr "En son güncelleyen "
+
+#. module: sale_order_merge
+#: field:sale.order.merge,write_date:0
+msgid "Last Updated on"
+msgstr "En son güncelleme tarihi"
+
+#. module: sale_order_merge
+#: view:sale.order:sale_order_merge.sale_order_form
+#: view:sale.order.merge:sale_order_merge.view_sale_order_merge_form
+msgid "Merge"
+msgstr "Birleştir"
+
+#. module: sale_order_merge
+#: field:sale.order.merge,sale_order:0
+msgid "Merge into"
+msgstr "İçinde birleştir"
+
+#. module: sale_order_merge
+#: code:addons/sale_order_merge/models/sale_order.py:69
+#: model:ir.model,name:sale_order_merge.model_sale_order_merge
+#: view:sale.order.merge:sale_order_merge.view_sale_order_merge_form
+#, python-format
+msgid "Merge sale orders"
+msgstr "Satış siparişlerini birleştir"
+
+#. module: sale_order_merge
+#: code:addons/sale_order_merge/models/sale_order_merge.py:197
+#, python-format
+msgid "Merged into %s"
+msgstr "%s içinde birleştir "
+
+#. module: sale_order_merge
+#: code:addons/sale_order_merge/models/sale_order_merge.py:116
+#, python-format
+msgid "Merged sale order"
+msgstr "Birleştirilmiş sipariş"
+
+#. module: sale_order_merge
+#: code:addons/sale_order_merge/models/sale_order_merge.py:199
+#, python-format
+msgid "Order(s) %s merged into this one"
+msgstr " %s sipariş(ler) bunun içinde birleştirildi"
+
+#. module: sale_order_merge
+#: field:sale.order.merge,to_merge:0
+msgid "Orders to merge"
+msgstr "Birleştirilecek siparişler"
+
+#. module: sale_order_merge
+#: model:ir.model,name:sale_order_merge.model_sale_order
+msgid "Sales Order"
+msgstr "Satış emri"
+
+#. module: sale_order_merge
+#: view:sale.order.merge:sale_order_merge.view_sale_order_merge_form
+msgid "or"
+msgstr "ya da "
