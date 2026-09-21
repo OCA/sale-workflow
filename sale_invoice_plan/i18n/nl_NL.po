@@ -244,13 +244,6 @@ msgid "Last Installment"
 msgstr "Laatste termijn"
 
 #. module: sale_invoice_plan
-#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan____last_update
-#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan____last_update
-#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice____last_update
-msgid "Last Modified on"
-msgstr "Laatst bijgewerkt op"
-
-#. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__write_uid
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__write_uid
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_make_planned_invoice__write_uid
@@ -319,6 +312,17 @@ msgstr "Aantal termijnen moet groter zijn dan 1"
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_create_invoice_plan__num_installment
 msgid "Number of Installment"
 msgstr "Aantal termijnen"
+
+#. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_tree_invoice_plan
+msgid "Pend."
+msgstr ""
+
+#. module: sale_invoice_plan
+#: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_pending
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_filter_invoice_plan
+msgid "Pending plans"
+msgstr ""
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__percent
@@ -450,6 +454,11 @@ msgid "View sales invoice plan lines"
 msgstr "Vul een percentage in voor alle facturatie planning regels"
 
 #. module: sale_invoice_plan
+#: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_filter_invoice_plan
+msgid "With pending plans"
+msgstr ""
+
+#. module: sale_invoice_plan
 #: model:ir.model,name:sale_invoice_plan.model_sale_make_planned_invoice
 msgid "Wizard when create invoice by plan"
 msgstr "Wizard om factureren aan te maken per plan"
@@ -468,6 +477,9 @@ msgstr "⇒ Maak facturatie planning"
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_form_invoice_plan
 msgid "⇒ Remove Invoice Plan"
 msgstr "⇒ Verwijder facturatie planning"
+
+#~ msgid "Last Modified on"
+#~ msgstr "Laatst bijgewerkt op"
 
 #~ msgid "Sale Order"
 #~ msgstr "Verkooporder"
