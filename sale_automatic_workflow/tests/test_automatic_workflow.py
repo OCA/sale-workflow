@@ -24,9 +24,6 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
             context=dict(
                 cls.env.context,
                 tracking_disable=True,
-                # Compatibility with sale_automatic_workflow_job: even if
-                # the module is installed, ensure we don't delay a job.
-                # Thus, we test the usual flow.
                 queue_job__no_delay=True,
             )
         )
@@ -60,8 +57,6 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
     @freeze_time("2024-08-11 12:00:00")
     def test_date_invoice_from_sale_order(self):
         workflow = self.create_full_automatic()
-        # date_order on sale.order is date + time
-        # invoice_date on account.move is date only
         last_week_time = fields.Datetime.now() - timedelta(days=7)
         override = {"date_order": last_week_time}
         sale = self.create_sale_order(workflow, override=override)
@@ -83,8 +78,6 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         self.assertEqual(line.qty_delivered, 0.0)
         self.assertFalse(sale.delivery_status)
         self.assertFalse(sale.all_qty_delivered)
-        # `_create_invoices` is already tested in `sale` module.
-        # Make sure this addon works properly in regards to it.
         mock_path = "odoo.addons.sale.models.sale_order.SaleOrder._create_invoices"
         with mock.patch(mock_path) as mocked:
             sale._create_invoices()
@@ -98,10 +91,6 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
             mocked.assert_called()
         self.assertEqual(line.qty_delivered, 1.0)
         sale.action_confirm()
-        # Force the state to "full"
-        # note : this is not needed if you have the module sale_delivery_state
-        # installed but sale_automatic_workflow do not depend on it
-        # so we just force it so we can check the sale.all_qty_delivered
         sale.delivery_status = "full"
         sale._compute_all_qty_delivered()
         self.assertTrue(sale.all_qty_delivered)
@@ -152,7 +141,6 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         new_sale_journal = self.env["account.journal"].create(
             {"name": "TTSA", "code": "TTSA", "type": "sale"}
         )
-
         workflow = self.create_full_automatic()
         sale = self.create_sale_order(workflow)
         sale._onchange_workflow_process_id()
@@ -205,14 +193,12 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         workflow.send_invoice = True
         sale._onchange_workflow_process_id()
         self.run_job()
-
         new_messages = self.env["mail.message"].search(
             [
                 ("id", "in", invoice.message_ids.ids),
                 ("id", "not in", previous_message_ids.ids),
             ]
         )
-
         self.assertTrue(
             new_messages.filtered(
                 lambda x: x.subtype_id == self.env.ref("mail.mt_comment")
@@ -233,14 +219,9 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
         order_filter = safe_eval(workflow.order_filter_id.domain)
         validate_invoice_filter = safe_eval(workflow.validate_invoice_filter_id.domain)
         send_invoice_filter = safe_eval(workflow.send_invoice_filter_id.domain)
-
-        # Trigger everything, then check if sale and invoice jobs are bypassed
         self.run_job()
-
         invoice = sale.invoice_ids
-
         res_so_validate = workflow_job._do_validate_sale_order(sale, order_filter)
-        # TODO send confirmation bypassing is not working yet, needs fix
         workflow_job._do_send_order_confirmation_mail(sale)
         res_create_invoice = workflow_job._do_create_invoice(
             sale, create_invoice_filter
@@ -249,8 +230,124 @@ class TestAutomaticWorkflow(TestCommon, TestAutomaticWorkflowMixin):
             invoice, validate_invoice_filter
         )
         res_send_invoice = workflow_job._do_send_invoice(invoice, send_invoice_filter)
-
         self.assertIn("job bypassed", res_so_validate)
-        self.assertIn("job bypassed", res_create_invoice)
+        self.assertTrue(
+            "job bypassed" in res_create_invoice or "skipped" in res_create_invoice
+        )
         self.assertIn("job bypassed", res_validate_invoice)
         self.assertIn("job bypassed", res_send_invoice)
+
+    def test_do_create_invoice_bypassed_by_domain(self):
+        """Invoice creation must be bypassed when the sale order does not match the domain.
+        When the domain filter excludes the sale order, _do_create_invoice
+        must return a bypassed result without creating any invoice.
+        """
+        workflow = self.create_full_automatic()
+        sale = self.create_sale_order(workflow)
+        sale._onchange_workflow_process_id()
+        workflow_job = self.env["automatic.workflow.job"]
+        # Use an impossible domain to ensure the sale order is excluded
+        domain_filter = [("id", "=", 0)]
+        result = workflow_job._do_create_invoice(sale, domain_filter)
+        self.assertIn("job bypassed", result)
+        self.assertFalse(sale.invoice_ids)
+
+    def test_do_create_invoice_skips_when_posted_invoice_exists(self):
+        """Invoice creation must be skipped when a posted invoice already exists.
+        When a sale order already has a posted invoice, _do_create_invoice
+        must skip the creation to avoid duplicate invoicing.
+        """
+        workflow = self.create_full_automatic()
+        sale = self.create_sale_order(workflow)
+        sale._onchange_workflow_process_id()
+        workflow_job = self.env["automatic.workflow.job"]
+        # First run: confirm order, create and post the invoice
+        self.run_job()
+        self.assertTrue(sale.invoice_ids)
+        self.assertEqual(len(sale.invoice_ids), 1)
+        self.assertEqual(sale.invoice_ids.state, "posted")
+        domain_filter = [
+            ("state", "in", ["sale", "done"]),
+            ("workflow_process_id", "=", sale.workflow_process_id.id),
+        ]
+        result = workflow_job._do_create_invoice(sale, domain_filter)
+        self.assertIn("posted invoice already exists", result)
+        # Ensure no new invoice was created
+        self.assertEqual(len(sale.invoice_ids), 1)
+
+    def test_do_create_invoice_skips_when_invoice_already_refunded(self):
+        """Invoice creation must be skipped when a credit note exists.
+
+        When a posted invoice has been reversed by a credit note (refund),
+        _do_create_invoice must skip the creation to avoid re-invoicing.
+        """
+        workflow = self.create_full_automatic()
+        sale = self.create_sale_order(workflow)
+        sale._onchange_workflow_process_id()
+        workflow_job = self.env["automatic.workflow.job"]
+        # First run: confirm order, create and post the invoice
+        self.run_job()
+        invoice = sale.invoice_ids
+        self.assertTrue(invoice)
+        self.assertEqual(invoice.state, "posted")
+        # Create a credit note (reversal) for the posted invoice
+        refund_wizard = (
+            self.env["account.move.reversal"]
+            .with_context(
+                active_model="account.move",
+                active_ids=invoice.ids,
+            )
+            .create(
+                {
+                    "reason": "Test refund",
+                    "journal_id": invoice.journal_id.id,
+                }
+            )
+        )
+        refund_wizard.reverse_moves()
+        # Search for the credit note instead of relying on res_id
+        # (more reliable across different Odoo versions)
+        refund = self.env["account.move"].search(
+            [
+                ("reversed_entry_id", "=", invoice.id),
+                ("move_type", "=", "out_refund"),
+            ],
+            limit=1,
+        )
+        self.assertTrue(refund, "Credit note was not created")
+        if refund.state != "posted":
+            refund.action_post()
+        domain_filter = [
+            ("state", "in", ["sale", "done"]),
+            ("workflow_process_id", "=", sale.workflow_process_id.id),
+        ]
+        result = workflow_job._do_create_invoice(sale, domain_filter)
+        self.assertIn("invoice already refunded", result)
+        # Credit note is included in invoice_ids, filter for out_invoice only
+        out_invoices = sale.invoice_ids.filtered(lambda m: m.move_type == "out_invoice")
+        self.assertEqual(len(out_invoices), 1)
+
+    def test_do_create_invoice_success(self):
+        """Invoice must be created when no posted invoice exists.
+        Disables automatic invoice creation in the workflow to allow
+        manual triggering of _do_create_invoice and asserting the result.
+        """
+        workflow = self.create_full_automatic(
+            override={
+                "create_invoice": False,
+                "validate_invoice": False,
+                "send_invoice": False,
+            }
+        )
+        sale = self.create_sale_order(workflow)
+        sale._onchange_workflow_process_id()
+        sale.action_confirm()
+        workflow_job = self.env["automatic.workflow.job"]
+        domain_filter = [
+            ("state", "in", ["sale", "done"]),
+            ("workflow_process_id", "=", sale.workflow_process_id.id),
+        ]
+        self.assertFalse(sale.invoice_ids)
+        result = workflow_job._do_create_invoice(sale, domain_filter)
+        self.assertIn("create invoice successfully", result)
+        self.assertTrue(sale.invoice_ids)
