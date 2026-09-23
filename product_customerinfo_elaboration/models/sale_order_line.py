@@ -42,11 +42,9 @@ class SaleOrderLine(models.Model):
             if (
                 customer_info
                 and line.elaboration_ids
-                and (
-                    # Comparing with ids because comparison with newId doesn't work
-                    line.elaboration_ids.ids == customer_info.elaboration_ids.ids
-                    or not line.elaboration_ids
-                )
+                # Comparing with ids because comparison with newId doesn't work
+                and set(line.elaboration_ids.ids)
+                == set(customer_info.elaboration_ids.ids)
             ):
                 line.elaboration_note = customer_info.elaboration_note
         return res
