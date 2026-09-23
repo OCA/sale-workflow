@@ -94,6 +94,11 @@ msgid "Skip Service products for Sale Delivery State"
 msgstr ""
 
 #. module: sale_delivery_state
+#: model:ir.model.fields.selection,name:sale_delivery_state.selection__sale_order__delivery_status__started
+msgid "Started"
+msgstr ""
+
+#. module: sale_delivery_state
 #: model_terms:ir.ui.view,arch_db:sale_delivery_state.view_order_form_inherit_delivery_state
 msgid "Unforce delivery done"
 msgstr "No forzar envío realizado"
