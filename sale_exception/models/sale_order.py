@@ -48,6 +48,11 @@ class SaleOrder(models.Model):
 
     def action_confirm(self):
         if self.detect_exceptions():
+            exception_map = {sale.id: sale.exception_ids.ids for sale in self}
+            self.env.cr.rollback()
+            for sale in self:
+                exception_ids = exception_map.get(sale.id, [])
+                sale.write({"exception_ids": [(6, 0, exception_ids)]})
             return self._popup_exceptions()
         return super().action_confirm()
 
