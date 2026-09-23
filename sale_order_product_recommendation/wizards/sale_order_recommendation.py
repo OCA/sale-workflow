@@ -211,9 +211,8 @@ class SaleOrderRecommendation(models.TransientModel):
                 continue
             if wiz_line.sale_line_id:
                 if wiz_line.units_included or force_zero_units_included:
-                    wiz_line.sale_line_id.update(
-                        wiz_line._prepare_update_so_line_vals()
-                    )
+                    if vals := wiz_line._prepare_update_so_line_vals():
+                        wiz_line.sale_line_id.update(vals)
                 else:
                     to_remove.append(wiz_line.sale_line_id.id)
             else:
