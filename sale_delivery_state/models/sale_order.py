@@ -14,6 +14,7 @@ class SaleOrder(models.Model):
     delivery_status = fields.Selection(
         [
             ("pending", "Not Delivered"),
+            ("started", "Started"),  # Odoo delivery_status compat, unused
             ("partial", "Partially Delivered"),
             ("full", "Fully Delivered"),
         ],
