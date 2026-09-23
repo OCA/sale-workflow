@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 =====================
 Sale Order Line Input
 =====================
@@ -13,7 +17,7 @@ Sale Order Line Input
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -48,6 +52,19 @@ To use this module, you need to:
 #. Create new line related with existing order
 #. If order field is empty, a new order will be created
 
+
+An out-of-the-box Smartbutton to view SO lines directly from SO Form. To enable the button for current user, you need to:
+
+#. Go to Settings > Users > Technical
+#. Check 'Allows to view SO line right on SO Form?'
+
+
+Or you can grant access to all salesman as following
+
+#. Go to Settings > Sales > Quotations & Orders
+#. Check 'Enable Smart Button to view SO line right on SO Form'
+
+
 Bug Tracker
 ===========
 
@@ -73,6 +90,9 @@ Contributors
 
   * Carlos Dauden
   * Carolina Fernandez
+* `Trobz <https://www.trobz.com>`_:
+
+  * Tris Doan <tridm@trobz.com>
 
 Maintainers
 ~~~~~~~~~~~
