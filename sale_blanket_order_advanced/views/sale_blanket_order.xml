@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="view_blanket_order_form" model="ir.ui.view">
+        <field name="name">sale.blanket.order.form</field>
+        <field name="model">sale.blanket.order</field>
+        <field name="inherit_id" ref="sale_blanket_order.view_blanket_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='validity_date']" position="after">
+                <field name="version_ids" invisible="1" />
+                <field name="version_count" invisible="1" />
+                <field name="all_sale_orders_invoiced" invisible="1" />
+                <field name="sale_order_plan_ids" invisible="1" />
+                <field name="use_sale_order_plan" invisible="1" />
+                <field name="order_plan_count" invisible="1" />
+                <field name="product_cost_count" invisible="1" />
+                <field name="service_cost_count" invisible="1" />
+                <field name="order_product_ids" invisible="1" />
+                <field name="order_service_ids" invisible="1" />
+                <field name="enable_version_control" invisible="1" />
+                <field name="enable_product_costs" invisible="1" />
+                <field name="enable_service_costs" invisible="1" />
+            </xpath>
+
+            <xpath expr="//field[@name='original_uom_qty']" position="after">
+                <field name="contracted_qty" />
+            </xpath>
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    class="oe_stat_button"
+                    type="object"
+                    name="action_view_versions"
+                    icon="fa-history"
+                    attrs="{'invisible': ['|', ('version_count', '=', 0), ('enable_version_control', '=', False)]}"
+                >
+                    <field name="version_count" widget="statinfo" string="Versions" />
+                </button>
+                <button
+                    class="oe_stat_button"
+                    type="object"
+                    name="action_view_order_plan"
+                    icon="fa-calendar"
+                    attrs="{'invisible': ['|', ('use_sale_order_plan', '=', False), ('order_plan_count', '=', 0)]}"
+                >
+                    <field
+                        name="order_plan_count"
+                        widget="statinfo"
+                        string="Order Plan"
+                    />
+                </button>
+                <button
+                    class="oe_stat_button"
+                    type="object"
+                    name="action_view_product_costs"
+                    icon="fa-cubes"
+                    attrs="{'invisible': ['|', ('product_cost_count', '=', 0), ('enable_product_costs', '=', False)]}"
+                >
+                    <field
+                        name="product_cost_count"
+                        widget="statinfo"
+                        string="Product Costs"
+                    />
+                </button>
+                <button
+                    class="oe_stat_button"
+                    type="object"
+                    name="action_view_service_costs"
+                    icon="fa-wrench"
+                    attrs="{'invisible': ['|', ('service_cost_count', '=', 0), ('enable_service_costs', '=', False)]}"
+                >
+                    <field
+                        name="service_cost_count"
+                        widget="statinfo"
+                        string="Service Costs"
+                    />
+                </button>
+            </xpath>
+
+            <xpath expr="//header" position="inside">
+                <button
+                    string="Create Version"
+                    type="action"
+                    name="%(action_create_advanced_version_wizard)d"
+                    class="oe_stat_button"
+                    attrs="{'invisible': ['|', '|', ('state', '=', 'draft'), ('all_sale_orders_invoiced', '=', False), ('enable_version_control', '=', False)]}"
+                />
+                <button
+                    string="Create Order Plan"
+                    type="action"
+                    name="%(action_sale_create_order_plan)d"
+                    class="oe_stat_button"
+                    attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('use_sale_order_plan', '=', False)]}"
+                />
+                <button
+                    string="Create Planned Order"
+                    type="action"
+                    name="%(action_sale_make_planned_order)d"
+                    class="oe_stat_button"
+                    attrs="{'invisible': ['|', '|', ('use_sale_order_plan', '=', False), ('state', '!=', 'open'), ('order_plan_count', '=', 0)]}"
+                />
+            </xpath>
+
+            <xpath expr="//page[@name='order_lines']" position="after">
+                <page
+                    string="Product Costs"
+                    name="product_costs"
+                    attrs="{'invisible': ['|', ('order_product_ids', '=', False), ('enable_product_costs', '=', False)]}"
+                >
+                    <field name="order_product_ids">
+                        <tree editable="bottom">
+                            <field name="product_id" />
+                            <field name="quantity" />
+                            <field name="price_unit" />
+                            <field name="amount_total" />
+                        </tree>
+                    </field>
+                </page>
+                <page
+                    string="Service Costs"
+                    name="service_costs"
+                    attrs="{'invisible': ['|', ('order_service_ids', '=', False), ('enable_service_costs', '=', False)]}"
+                >
+                    <field name="order_service_ids">
+                        <tree editable="bottom">
+                            <field name="product_id" />
+                            <field name="quantity" />
+                            <field name="price_unit" />
+                            <field name="amount_total" />
+                        </tree>
+                    </field>
+                </page>
+                <page
+                    string="Order Plan"
+                    name="order_plan"
+                    attrs="{'invisible': [('use_sale_order_plan', '=', False)]}"
+                >
+                    <field name="sale_order_plan_ids">
+                        <tree editable="bottom">
+                            <field name="installment" />
+                            <field name="plan_date" />
+                            <field name="order_type" />
+                            <field name="percent" />
+                            <field name="ordered" />
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    # Copyright 2026 - TODAY, Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+    <record id="sale_blanket_order_advanced_settings" model="res.config.settings">
+        <field name="enable_version_control" eval="True" />
+        <field name="enable_product_costs" eval="False" />
+        <field name="enable_service_costs" eval="False" />
+        <field name="use_sale_order_plan" eval="False" />
+    </record>
+</odoo>
