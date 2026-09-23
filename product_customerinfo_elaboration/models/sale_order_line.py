@@ -36,6 +36,7 @@ class SaleOrderLine(models.Model):
 
     @api.onchange("elaboration_ids")
     def onchange_elaboration_ids(self):
+        res = super().onchange_elaboration_ids()
         for line in self:
             customer_info = line._get_product_customer_info()
             if (
@@ -48,3 +49,4 @@ class SaleOrderLine(models.Model):
                 )
             ):
                 line.elaboration_note = customer_info.elaboration_note
+        return res
