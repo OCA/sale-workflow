@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="sale_order_view_form_inherit_restriction" model="ir.ui.view">
+        <field name="name">sale.order.restriction.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                <attribute name="decoration-warning">warning_sale_qty</attribute>
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
+                position="after"
+            >
+                <field name="warning_sale_qty" invisible="1" />
+                <field name="quantity_restriction_id" invisible="1" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
