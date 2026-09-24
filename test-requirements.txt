@@ -1,1 +1,2 @@
 odoo-test-helper
+odoo-addon-base_exception @ git+https://github.com/OCA/server-tools@refs/pull/3739/head#subdirectory=base_exception
