@@ -1,0 +1,2 @@
+- Simone Rubino - Aion Tech
+- Denis Roussel <denis.roussel@acsone.eu>
