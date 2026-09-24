@@ -3,6 +3,8 @@
 # Copyright 2019 Camptocamp SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from markupsafe import Markup
+
 from odoo import api, models
 
 
@@ -53,6 +55,25 @@ class SaleOrder(models.Model):
     def action_confirm(self):
         self.detect_exceptions()
         return super().action_confirm()
+
+    def _validate_order(self):
+        # Frontend flows: no rollback, leave blocked orders unconfirmed.
+        orders = self.with_context(base_exception_no_rollback={self._name: self.ids})
+        orders.detect_exceptions()
+        blocked = orders.filtered(lambda o: o._must_raise_exception_after_detection())
+        for order in blocked:
+            order.message_post(
+                body=Markup("{}{}").format(
+                    self.env._(
+                        "The order was not confirmed because of these exceptions:"
+                    ),
+                    Markup(order.exceptions_summary or ""),
+                ),
+                subtype_xmlid="mail.mt_note",
+            )
+        to_confirm = orders - blocked
+        if to_confirm:
+            return super(SaleOrder, to_confirm)._validate_order()
 
     def action_draft(self):
         res = super().action_draft()
