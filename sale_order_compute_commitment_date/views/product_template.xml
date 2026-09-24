@@ -1,0 +1,14 @@
+<!--Copyright 2025 APSL Nagarro-->
+<!-- License AGPL-3 or later (https://www.gnu.org/licenses/agpl).-->
+<odoo>
+    <record id="view_product_form_inherit_lead_time" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.lead.time</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
+        <field name="arch" type="xml">
+            <field name="responsible_id" position="after">
+                <field name="attribute_extend_lead_time" />
+            </field>
+        </field>
+    </record>
+</odoo>
