@@ -1,0 +1,1 @@
+from . import test_sale_auto_remove_zero_quantity_lines
