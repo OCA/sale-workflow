@@ -2,17 +2,20 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 from unittest.mock import patch
 
+from psycopg2 import IntegrityError
+
 from odoo import Command
 from odoo.api import Environment
 from odoo.sql_db import db_connect
-from odoo.tests import TransactionCase
+from odoo.tests import TransactionCase, tagged
+from odoo.tools import mute_logger
 
 from odoo.addons.base_exception.exceptions import BaseExceptionError
 
 
-class TestSaleExceptionSelfLock(TransactionCase):
-    """Regression test: editing a confirmed sale order so that an exception
-    rule matches must not hang forever.
+class SaleExceptionIndependentConnectionCase(TransactionCase):
+    """Regression tests: editing a confirmed sale order so that an exception
+    rule matches must neither hang forever nor fail.
 
     Exception flags are written through a genuinely independent DB
     connection (``registry.cursor()``) so they survive a rollback of the
@@ -31,6 +34,10 @@ class TestSaleExceptionSelfLock(TransactionCase):
     and committed through one of them, and removed at the end. A
     ``statement_timeout`` turns a regression into a failure instead of a
     hanging test run.
+
+    Test cursors use REPEATABLE READ and all the tests of a class share one
+    transaction, so a second test would not see the order committed for
+    it: each test lives in its own class.
     """
 
     def setUp(self):
@@ -74,13 +81,33 @@ class TestSaleExceptionSelfLock(TransactionCase):
         return cr
 
     def _remove_committed_records(self):
+        env = self.real_env
         self.real_cr.rollback()
-        self.order.with_env(self.real_env)._action_cancel()
-        self.order.with_env(self.real_env).unlink()
-        self.product.with_env(self.real_env).product_tmpl_id.unlink()
-        self.rule.with_env(self.real_env).unlink()
+        # Removed first and on its own: a rule left behind would change the
+        # outcome of other tests.
+        self.rule.with_env(env).unlink()
+        self.real_cr.commit()
+        order = self.order.with_env(env)
+        # With sale_stock the order has deliveries referencing the product.
+        pickings = order.picking_ids if "picking_ids" in order._fields else None
+        order._action_cancel()
+        if pickings:
+            pickings.move_ids.unlink()
+            pickings.unlink()
+        order.unlink()
+        self.real_cr.commit()
+        product_tmpl = self.product.with_env(env).product_tmpl_id
+        try:
+            with mute_logger("odoo.sql_db"), self.real_cr.savepoint():
+                product_tmpl.unlink()
+        except IntegrityError:
+            # Other installed modules may still reference it.
+            product_tmpl.active = False
         self.real_cr.commit()
 
+
+@tagged("post_install", "-at_install")
+class TestSaleExceptionSelfLock(SaleExceptionIndependentConnectionCase):
     def test_edit_confirmed_order_does_not_self_lock(self):
         order = self.order.with_env(self.env)
         self.assertEqual(order.state, "sale")
@@ -119,4 +146,33 @@ class TestSaleExceptionSelfLock(TransactionCase):
             self.env.cr.postrollback.run()
         self.real_cr.rollback()
         self.assertEqual(line.with_env(self.real_env).exception_ids, self.rule)
+        self.assertEqual(order.with_env(self.real_env).exception_ids, self.rule)
+
+
+@tagged("post_install", "-at_install")
+class TestSaleExceptionNewLine(SaleExceptionIndependentConnectionCase):
+    def test_add_line_below_cost_to_confirmed_order(self):
+        order = self.order.with_env(self.env)
+        with patch.object(
+            self.registry, "cursor", side_effect=self._independent_cursor
+        ):
+            # The new line only exists in the ongoing transaction, so the
+            # independent connection cannot write its exceptions.
+            with self.assertRaises(BaseExceptionError):
+                order.write(
+                    {
+                        "order_line": [
+                            Command.create(
+                                {
+                                    "product_id": self.product.id,
+                                    "product_uom_qty": 1,
+                                    "price_unit": 5.0,
+                                }
+                            )
+                        ]
+                    }
+                )
+            self.env.cr.postrollback.run()
+        self.assertEqual(len(order.order_line), 1)
+        self.real_cr.rollback()
         self.assertEqual(order.with_env(self.real_env).exception_ids, self.rule)
