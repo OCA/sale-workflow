@@ -66,6 +66,19 @@ class SaleOrderLine(models.Model):
             config["test_enable"] or not self.env.registry.ready
         ) and not self.env.context.get("test_base_exception")
         test_mode = test_mode or not self._must_rollback_on_exception()
+        lines_to_remove_exception = (self - records).filtered(
+            lambda line: rule.id in line.exception_ids.ids
+        )
+        lines_to_add_exception = records.filtered(
+            lambda line: rule.id not in line.exception_ids.ids
+        )
+
+        def write_exceptions(env):
+            lines_to_remove_exception.with_env(env).exception_ids = [
+                Command.unlink(rule.id)
+            ]
+            lines_to_add_exception.with_env(env).exception_ids = [Command.link(rule.id)]
+
         # Write exceptions in a new transaction to be committed so that we can
         #  rollback the ongoing one while keeping the exceptions stored
         with self.env.registry.cursor() as new_cr:
@@ -74,18 +87,7 @@ class SaleOrderLine(models.Model):
                 if not test_mode
                 else self.env
             )
-            lines_to_remove_exception = (self - records).filtered(
-                lambda line: rule.id in line.exception_ids.ids
-            )
-            lines_to_remove_exception.with_env(new_env).exception_ids = [
-                Command.unlink(rule.id)
-            ]
-            lines_to_add_exception = records.filtered(
-                lambda line: rule.id not in line.exception_ids.ids
-            )
-            lines_to_add_exception.with_env(new_env).exception_ids = [
-                Command.link(rule.id)
-            ]
+            self._write_exceptions_independently(new_env, write_exceptions)
         return records.mapped("order_id")
 
     def _detect_exception_get_exc_class_values(self):
