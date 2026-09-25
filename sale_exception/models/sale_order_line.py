@@ -65,6 +65,7 @@ class SaleOrderLine(models.Model):
         test_mode = (
             config["test_enable"] or not self.env.registry.ready
         ) and not self.env.context.get("test_base_exception")
+        test_mode = test_mode or self._exceptions_no_rollback()
         # Write exceptions in a new transaction to be committed so that we can
         #  rollback the ongoing one while keeping the exceptions stored
         with self.env.registry.cursor() as new_cr:
