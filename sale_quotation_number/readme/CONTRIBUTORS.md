@@ -6,3 +6,4 @@
 - Vishnu Vanneri \<<vanneri.odoodev@gmail.com>\>
 - Ruchir Shukla \<<ruchir@bizzappdev.com>\>
 - Dhara Solanki \<<dhara.solanki@initos.com>\>
+- OpenredSoluciones \<<https://www.openred.es>\>
