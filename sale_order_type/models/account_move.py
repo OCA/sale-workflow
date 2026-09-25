@@ -46,9 +46,15 @@ class AccountMove(models.Model):
 
     @api.depends("sale_type_id")
     def _compute_invoice_payment_term_id(self):
+        previous = {move: move.invoice_payment_term_id for move in self}
         res = super()._compute_invoice_payment_term_id()
-        for move in self.filtered("sale_type_id.payment_term_id"):
-            move.invoice_payment_term_id = move.sale_type_id.payment_term_id
+        for move in self:
+            if move.sale_type_id.payment_term_id:
+                move.invoice_payment_term_id = move.sale_type_id.payment_term_id
+            else:
+                previous_term = previous.get(move)
+                if previous_term:
+                    move.invoice_payment_term_id = previous_term
         return res
 
     @api.depends("sale_type_id")
