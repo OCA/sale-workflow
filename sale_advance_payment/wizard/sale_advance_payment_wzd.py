@@ -106,6 +106,12 @@ class AccountVoucherWizard(models.TransientModel):
                     or sale.currency_id.id,
                 }
             )
+        if "amount_advance" in fields_list:
+            res.update(
+                {
+                    "amount_advance": sale.amount_residual,
+                }
+            )
 
         return res
 
