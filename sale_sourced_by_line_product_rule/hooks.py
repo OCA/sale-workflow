@@ -5,7 +5,8 @@
 from openupgradelib import openupgrade
 
 
-def pre_init_hook(cr):
+def pre_init_hook(env):
+    cr = env.cr
     if openupgrade.is_module_installed(cr, "sale_warehouse_rule"):
         renamed_modules = [
             (

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <record id="product_template_form_view" model="ir.ui.view">
         <field name="model">product.template</field>
@@ -5,8 +6,8 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook/page[@name='inventory']" position="after">
                 <page string="Warehouse Rules" name="warehouse_rule_ids">
-                    <field name="warehouse_rule_ids" mode="tree">
-                        <tree editable="bottom">
+                    <field name="warehouse_rule_ids" mode="list">
+                        <list editable="bottom">
                             <field name="available_product_domain" invisible="True" />
                             <field
                                 name="available_attribute_value_domain"
@@ -17,14 +18,14 @@
                                 name="product_id"
                                 domain="available_product_domain"
                                 context="{'default_product_tmpl_id': product_tmpl_id}"
-                                attrs="{'invisible': [('attribute_value_ids', '!=', []), ('product_id', '=', False)]}"
+                                invisible="attribute_value_ids and not product_id"
                             />
                             <field
                                 name="attribute_value_ids"
                                 widget="many2many_tags"
                                 options="{'no_quick_create': True, 'no_create_edit':True}"
-                                attrs="{'invisible': [('product_id', '!=', False), ('attribute_value_ids', '=', [])]}"
                                 domain="available_attribute_value_domain"
+                                invisible="product_id and not attribute_value_ids"
                             />
                             <field
                                 name="warehouse_id"
@@ -36,7 +37,7 @@
                                 readonly="True"
                                 groups="base.group_multi_company"
                             />
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>
@@ -51,13 +52,13 @@
                 expr="//notebook/page[@name='warehouse_rule_ids']"
                 position="attributes"
             >
-                <attribute name="attrs">{'invisible': True}</attribute>
+                <attribute name="invisible">True</attribute>
             </xpath>
             <xpath expr="//notebook/page[@name='inventory']" position="inside">
                 <group
                     string="Shipping Warehouse"
                     name="warehouse"
-                    attrs="{'invisible': [('type', 'in', ['service', 'digital'])]}"
+                    invisible="type in ['service', 'digital']"
                 >
                     <label for="variant_warehouse_id" />
                     <div>

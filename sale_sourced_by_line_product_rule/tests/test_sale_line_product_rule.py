@@ -70,10 +70,10 @@ class TestSaleLineProductRule(TransactionCase):
         self.assertEqual(self.product_11.variant_warehouse_id, self.warehouse1)
         self.assertEqual(len(sale.picking_ids), 2)
         order_line_product_11 = sale.order_line.filtered(
-            lambda l: l.product_id == self.product_11
+            lambda line: line.product_id == self.product_11
         )
         order_line_product_10 = sale.order_line.filtered(
-            lambda l: l.product_id == self.product_10
+            lambda line: line.product_id == self.product_10
         )
         self.assertEqual(order_line_product_11.move_ids.warehouse_id, self.warehouse1)
         self.assertEqual(order_line_product_10.move_ids.warehouse_id, self.warehouse0)
@@ -85,10 +85,10 @@ class TestSaleLineProductRule(TransactionCase):
         sale = self._create_sale_order(self.partner, self.product_11 + self.product_11b)
         sale.action_confirm()
         order_line_product_11 = sale.order_line.filtered(
-            lambda l: l.product_id == self.product_11
+            lambda line: line.product_id == self.product_11
         )
         order_line_product_11b = sale.order_line.filtered(
-            lambda l: l.product_id == self.product_11b
+            lambda line: line.product_id == self.product_11b
         )
         self.assertEqual(order_line_product_11.move_ids.warehouse_id, self.warehouse1)
         self.assertEqual(order_line_product_11b.move_ids.warehouse_id, self.warehouse0)
@@ -116,10 +116,10 @@ class TestSaleLineProductRule(TransactionCase):
         sale = self._create_sale_order(self.partner, self.product_11 + self.product_11b)
         sale.action_confirm()
         order_line_product_11 = sale.order_line.filtered(
-            lambda l: l.product_id == self.product_11
+            lambda line: line.product_id == self.product_11
         )
         order_line_product_11b = sale.order_line.filtered(
-            lambda l: l.product_id == self.product_11b
+            lambda line: line.product_id == self.product_11b
         )
         self.assertEqual(order_line_product_11.move_ids.warehouse_id, self.warehouse0)
         self.assertEqual(order_line_product_11b.move_ids.warehouse_id, self.warehouse1)
@@ -142,7 +142,9 @@ class TestSaleLineProductRule(TransactionCase):
         self.assertFalse(sale.warehouse_rule_need_change)
 
     def test_check_product_rule_uniqueness_variant(self):
-        with self.assertRaises(ValidationError) as m:
+        with self.assertRaisesRegex(
+            ValidationError, "A rule with the same product already exists."
+        ):
             self.env["sale.line.product.rule"].create(
                 {
                     "product_tmpl_id": self.template_11.id,
@@ -150,18 +152,14 @@ class TestSaleLineProductRule(TransactionCase):
                     "product_id": self.product_11.id,
                 }
             )
-        self.assertEqual(
-            "A rule with the same product already exists.", m.exception.name
-        )
 
     def test_check_product_rule_uniqueness_template(self):
-        with self.assertRaises(ValidationError) as m:
+        with self.assertRaisesRegex(
+            ValidationError, "Warehouse rules must be unique by template."
+        ):
             self.env["sale.line.product.rule"].create(
                 {
                     "product_tmpl_id": self.template_10.id,
                     "warehouse_id": self.warehouse1.id,
                 }
             )
-        self.assertEqual(
-            "Warehouse rules must be unique by template.", m.exception.name
-        )
