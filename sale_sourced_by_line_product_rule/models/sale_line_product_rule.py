@@ -1,7 +1,7 @@
 # Copyright 2023 Akretion
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -54,7 +54,7 @@ class SaleLineProductRule(models.Model):
                 ]
                 if self.search_count(domain):
                     raise ValidationError(
-                        _("A rule with the same attributes already exists.")
+                        self.env._("A rule with the same attributes already exists.")
                     )
             if rule.product_id:
                 domain = base_domain + [
@@ -63,7 +63,7 @@ class SaleLineProductRule(models.Model):
                 ]
                 if self.search_count(domain):
                     raise ValidationError(
-                        _("A rule with the same product already exists.")
+                        self.env._("A rule with the same product already exists.")
                     )
             if not rule.product_id and not rule.attribute_value_ids:
                 domain = base_domain + [
@@ -72,5 +72,5 @@ class SaleLineProductRule(models.Model):
                 ]
                 if self.search_count(domain):
                     raise ValidationError(
-                        _("Warehouse rules must be unique by template.")
+                        self.env._("Warehouse rules must be unique by template.")
                     )

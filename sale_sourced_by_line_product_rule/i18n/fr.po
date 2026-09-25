@@ -20,7 +20,6 @@ msgstr ""
 #. module: sale_sourced_by_line_product_rule
 #. odoo-python
 #: code:addons/sale_sourced_by_line_product_rule/models/sale_line_product_rule.py:0
-#, python-format
 msgid "A rule with the same attributes already exists."
 msgstr ""
 "Une règle d'entrepôt avec la même valeur de caractéristique existe déjà."
@@ -28,7 +27,6 @@ msgstr ""
 #. module: sale_sourced_by_line_product_rule
 #. odoo-python
 #: code:addons/sale_sourced_by_line_product_rule/models/sale_line_product_rule.py:0
-#, python-format
 msgid "A rule with the same product already exists."
 msgstr "Une règle d'entrepôt existe déjà pour ce variant."
 
@@ -96,14 +94,15 @@ msgid "Display Name"
 msgstr "Nom affiché"
 
 #. module: sale_sourced_by_line_product_rule
+#: model_terms:ir.ui.view,arch_db:sale_sourced_by_line_product_rule.view_sales_config
+#, fuzzy
+msgid "Display Warehouse column in Sale Order Lines"
+msgstr "Afficher la colonne Entrepôt sur les lignes de bon de commande"
+
+#. module: sale_sourced_by_line_product_rule
 #: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_sale_line_product_rule__id
 msgid "ID"
 msgstr "Identifiant"
-
-#. module: sale_sourced_by_line_product_rule
-#: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_sale_line_product_rule____last_update
-msgid "Last Modified on"
-msgstr "Dernière modification le"
 
 #. module: sale_sourced_by_line_product_rule
 #: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_sale_line_product_rule__write_uid
@@ -134,8 +133,16 @@ msgid "Product Variant"
 msgstr "Variante de produit"
 
 #. module: sale_sourced_by_line_product_rule
+#: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_product_product__warehouse_rule_ids
+#: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_product_template__warehouse_rule_ids
+#, fuzzy
+msgid "Product Warehouse Rules"
+msgstr "Règles d'Entrepôts"
+
+#. module: sale_sourced_by_line_product_rule
 #: model:ir.model,name:sale_sourced_by_line_product_rule.model_sale_line_product_rule
-msgid "Sale Warehouse Rule"
+#, fuzzy
+msgid "Sale Line Product Rule"
 msgstr "Règle d'Entrepôt pour vente"
 
 #. module: sale_sourced_by_line_product_rule
@@ -158,7 +165,6 @@ msgstr "Entrepôt de livraison"
 #: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_res_company__show_sale_line_warehouse_column
 #: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_res_config_settings__show_sale_line_warehouse_column
 #: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_sale_order__show_sale_line_warehouse_column
-#: model_terms:ir.ui.view,arch_db:sale_sourced_by_line_product_rule.view_sales_config
 msgid "Show Warehouse Column on Sale Order Lines"
 msgstr "Afficher la colonne Entrepôt sur les lignes de bon de commande"
 
@@ -171,7 +177,7 @@ msgstr "Modèle de produit"
 #. module: sale_sourced_by_line_product_rule
 #. odoo-python
 #: code:addons/sale_sourced_by_line_product_rule/models/sale_order.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid ""
 "The delivery will be sent from %s,\n"
 "                    you can change the warehouse or\n"
@@ -183,13 +189,13 @@ msgstr ""
 #. module: sale_sourced_by_line_product_rule
 #. odoo-python
 #: code:addons/sale_sourced_by_line_product_rule/models/sale_order.py:0
-#, fuzzy, python-format
+#, fuzzy
 msgid "The delivery will be sent from multiple warehouses: %(warehouses)s"
 msgstr "La livraison va se faire depuis plusieurs entrepôts: %(warehouses)s"
 
 #. module: sale_sourced_by_line_product_rule
-#: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_sale_order_line__warehouse_id
 #: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_sale_line_product_rule__warehouse_id
+#: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_sale_order_line__warehouse_id
 msgid "Warehouse"
 msgstr "Entrepôt"
 
@@ -204,8 +210,6 @@ msgid "Warehouse Rule Need Change"
 msgstr "La règle d'entrepôts doit changer"
 
 #. module: sale_sourced_by_line_product_rule
-#: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_product_product__warehouse_rule_ids
-#: model:ir.model.fields,field_description:sale_sourced_by_line_product_rule.field_product_template__warehouse_rule_ids
 #: model_terms:ir.ui.view,arch_db:sale_sourced_by_line_product_rule.product_template_form_view
 msgid "Warehouse Rules"
 msgstr "Règles d'Entrepôts"
@@ -213,6 +217,5 @@ msgstr "Règles d'Entrepôts"
 #. module: sale_sourced_by_line_product_rule
 #. odoo-python
 #: code:addons/sale_sourced_by_line_product_rule/models/sale_line_product_rule.py:0
-#, python-format
 msgid "Warehouse rules must be unique by template."
 msgstr "Les règles d'entrepôts doivent être uniques sur un modèle de produit"
