@@ -1,0 +1,26 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_action_paid
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-27 12:26+0000\n"
+"PO-Revision-Date: 2025-06-27 12:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_action_paid
+#: model_terms:ir.ui.view,arch_db:sale_action_paid.view_order_form
+msgid "Paid"
+msgstr "Payé"
+
+#. module: sale_action_paid
+#: model:ir.model,name:sale_action_paid.model_sale_order
+msgid "Sales Order"
+msgstr "Commande client"
