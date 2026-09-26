@@ -36,15 +36,15 @@ class SaleOrderLine(models.Model):
 
     @api.onchange("elaboration_ids")
     def onchange_elaboration_ids(self):
+        res = super().onchange_elaboration_ids()
         for line in self:
             customer_info = line._get_product_customer_info()
             if (
                 customer_info
                 and line.elaboration_ids
-                and (
-                    # Comparing with ids because comparison with newId doesn't work
-                    line.elaboration_ids.ids == customer_info.elaboration_ids.ids
-                    or not line.elaboration_ids
-                )
+                # Comparing with ids because comparison with newId doesn't work
+                and set(line.elaboration_ids.ids)
+                == set(customer_info.elaboration_ids.ids)
             ):
                 line.elaboration_note = customer_info.elaboration_note
+        return res
