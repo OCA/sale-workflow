@@ -100,9 +100,17 @@ class SaleOrder(models.Model):
         res = super()._compute_amounts()
         for order in self:
             order._check_global_discounts_sanity()
+            discounts = order.global_discount_ids.mapped("discount")
+            if not discounts:
+                # No global discounts applied: skip re-computation to
+                # prevent floating-point rounding differences (e.g. 0.01
+                # ghost amounts) from re-computing taxes with compute_all.
+                order.amount_global_discount = 0
+                order.amount_untaxed_before_global_discounts = order.amount_untaxed
+                order.amount_total_before_global_discounts = order.amount_total
+                continue
             amount_untaxed_before_global_discounts = order.amount_untaxed
             amount_total_before_global_discounts = order.amount_total
-            discounts = order.global_discount_ids.mapped("discount")
             amount_discounted_untaxed = amount_discounted_tax = 0
             for line in order.order_line:
                 discounted_subtotal = line.price_subtotal
