@@ -107,6 +107,25 @@ class TestSaleSemaphore(common.SavepointCase):
         data = self.product._get_semaphore_data()
         self.assertFalse(data)
 
+    def test_get_semaphore_data_keeps_explicit_product_zero(self):
+        self.category.semaphore_discount_success = 5.0
+        data = self.product._get_semaphore_data()
+        self.assertEqual(data["success"], 0.0)
+
+    def test_get_semaphore_data_inherits_category(self):
+        self.category.write(
+            {
+                "semaphore_discount_success": 1.0,
+                "semaphore_discount_warning": 2.0,
+                "semaphore_discount_danger": 3.0,
+            }
+        )
+        self.product.semaphore_active = False
+        data = self.product._get_semaphore_data()
+        self.assertEqual(data, {"success": 1.0, "warning": 2.0, "danger": 3.0})
+        self.category.semaphore_active = False
+        self.assertFalse(self.product._get_semaphore_data())
+
     def test_sale_line_computes_semaphore_and_below_limit_flag(self):
         success_line = self._create_line(100.0)
         warning_line = self._create_line(95.0)

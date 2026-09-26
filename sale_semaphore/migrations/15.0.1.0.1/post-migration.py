@@ -11,6 +11,6 @@ def migrate(env, version):
         f"""
     UPDATE product_product pp
     SET semaphore_active = 'yes'
-    WHERE COALESCE(pp.{semaphore_legacy_column}, false) = false
+    WHERE pp.{semaphore_legacy_column} IS TRUE
     """,
     )

@@ -37,7 +37,7 @@ class ProductTemplate(models.Model):
         "product_variant_ids.semaphore_discount_danger",
     )
     def _compute_semaphore_values(self):
-        self.semaphore_active = ""
+        self.semaphore_active = False
         self.semaphore_discount_success = 0
         self.semaphore_discount_warning = 0
         self.semaphore_discount_danger = 0
@@ -101,11 +101,9 @@ class ProductProduct(models.Model):
             not self.semaphore_active and not self.categ_id.semaphore_active
         ):
             return False
+        record = self if self.semaphore_active == "yes" else self.categ_id
         return {
-            "success": self.semaphore_discount_success
-            or self.categ_id.semaphore_discount_success,
-            "warning": self.semaphore_discount_warning
-            or self.categ_id.semaphore_discount_warning,
-            "danger": self.semaphore_discount_danger
-            or self.categ_id.semaphore_discount_danger,
+            "success": record.semaphore_discount_success,
+            "warning": record.semaphore_discount_warning,
+            "danger": record.semaphore_discount_danger,
         }
