@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_split_order_line_wizard,split.order.line.wizard,model_split_order_line_wizard,base.group_user,1,1,1,1
+access_split_order_line_wizard_line,split.order.line.wizard.line,model_split_order_line_wizard_line,base.group_user,1,1,1,1

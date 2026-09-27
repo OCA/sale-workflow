@@ -1,0 +1,1 @@
+This module allows order lines to be split by packaging if the quantity requested is not a multiple of the packaging for that line.
