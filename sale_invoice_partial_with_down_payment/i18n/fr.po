@@ -1,0 +1,156 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_invoice_partial_with_down_payment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-26 17:57+0000\n"
+"PO-Revision-Date: 2026-03-26 19:06+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.9\n"
+
+#. module: sale_invoice_partial_with_down_payment
+#: model:ir.model.fields,help:sale_invoice_partial_with_down_payment.field_sale_advance_payment_inv__downpayment_handling
+msgid ""
+"- Proportional: deduct the share of the DP proportional to this delivery.\n"
+"- Fixed: deduct a specific amount you enter manually.\n"
+"- Credit Note: native Odoo behaviour."
+msgstr ""
+"- Proportionnel : déduire la part de l'acompte correspondant à cette "
+"livraison.\n"
+"- Fixe : déduire un montant spécifique que vous saisissez manuellement.\n"
+"- Note de crédit : comportement natif d'Odoo."
+
+#. module: sale_invoice_partial_with_down_payment
+#: model:ir.model.fields,help:sale_invoice_partial_with_down_payment.field_sale_advance_payment_inv__downpayment_fixed_amount
+msgid ""
+"Amount to deduct as down payment on this invoice when handling is 'Fixed'."
+msgstr ""
+"Montant à déduire à titre d'acompte sur cette facture lorsque le mode de "
+"traitement est \"fixe\""
+
+#. module: sale_invoice_partial_with_down_payment
+#: model:ir.model.fields.selection,name:sale_invoice_partial_with_down_payment.selection__sale_advance_payment_inv__downpayment_handling__credit_note
+msgid "Credit Note (native behaviour)"
+msgstr "Avoir (fonctionnement par défaut)"
+
+#. module: sale_invoice_partial_with_down_payment
+#: model:ir.model.fields,field_description:sale_invoice_partial_with_down_payment.field_sale_advance_payment_inv__delivered_ratio
+msgid "Delivered Ratio"
+msgstr "Taux"
+
+#. module: sale_invoice_partial_with_down_payment
+#: model:ir.model.fields,field_description:sale_invoice_partial_with_down_payment.field_sale_advance_payment_inv__downpayment_fixed_amount
+msgid "Down Payment Amount to Deduct"
+msgstr "Montant de l'acompte à déduire"
+
+#. module: sale_invoice_partial_with_down_payment
+#: model:ir.model.fields,field_description:sale_invoice_partial_with_down_payment.field_sale_advance_payment_inv__downpayment_exceeds_delivery
+msgid "Down Payment Exceeds Delivery"
+msgstr ""
+
+#. module: sale_invoice_partial_with_down_payment
+#: model:ir.model.fields,field_description:sale_invoice_partial_with_down_payment.field_sale_advance_payment_inv__downpayment_handling
+msgid "Down Payment Handling"
+msgstr "Traitement de l'acompte"
+
+#. module: sale_invoice_partial_with_down_payment
+#: model:ir.model.fields,help:sale_invoice_partial_with_down_payment.field_sale_advance_payment_inv__proportional_downpayment_amount
+msgid ""
+"Down payment amount to deduct on this invoice if handling is proportional."
+msgstr "Montant de l'acompte à déduire de la facture"
+
+#. module: sale_invoice_partial_with_down_payment
+#. odoo-python
+#: code:addons/sale_invoice_partial_with_down_payment/models/sale_order_line.py:0
+msgid "Down payment deduction (%(amount)s of %(order)s)"
+msgstr "Part de l'acompte (%(amount)s de %(order)s)"
+
+#. module: sale_invoice_partial_with_down_payment
+#. odoo-python
+#: code:addons/sale_invoice_partial_with_down_payment/models/sale_order_line.py:0
+msgid "Down payment deduction (%(pct).1f%% of %(order)s)"
+msgstr "Part de l'acompte (%(pct).1f%% de %(order)s)"
+
+#. module: sale_invoice_partial_with_down_payment
+#: model_terms:ir.ui.view,arch_db:sale_invoice_partial_with_down_payment.view_sale_advance_payment_inv_partial
+msgid "Handling Method"
+msgstr "Méthode"
+
+#. module: sale_invoice_partial_with_down_payment
+#: model:ir.model.fields,field_description:sale_invoice_partial_with_down_payment.field_sale_advance_payment_inv__proportional_downpayment_amount
+msgid "Proportional Down Payment Deduction"
+msgstr "Déduction de l'acompte en pourcentage"
+
+#. module: sale_invoice_partial_with_down_payment
+#: model:ir.model.fields.selection,name:sale_invoice_partial_with_down_payment.selection__sale_advance_payment_inv__downpayment_handling__fixed
+msgid "Regular invoice with fixed amount down payment deduction"
+msgstr "Facture client avec montant fixe de deduction sur l'acompte"
+
+#. module: sale_invoice_partial_with_down_payment
+#: model:ir.model.fields.selection,name:sale_invoice_partial_with_down_payment.selection__sale_advance_payment_inv__downpayment_handling__proportional
+msgid "Regular invoice with proportional down payment deduction"
+msgstr "Facture client avec pourcentage de deduction sur l'acompte"
+
+#. module: sale_invoice_partial_with_down_payment
+#: model:ir.model,name:sale_invoice_partial_with_down_payment.model_sale_advance_payment_inv
+msgid "Sales Advance Payment Invoice"
+msgstr "Facture de paiement d'avance"
+
+#. module: sale_invoice_partial_with_down_payment
+#: model:ir.model,name:sale_invoice_partial_with_down_payment.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_invoice_partial_with_down_payment
+#. odoo-python
+#: code:addons/sale_invoice_partial_with_down_payment/wizard/sale_make_invoice_advance.py:0
+msgid ""
+"The down payment deduction (%(amount)s) cannot exceed the total down "
+"payment invoiced (%(total)s)."
+msgstr ""
+"Le montant  (%(amount)s) ne peut pas excéder le montant total de l'acompte "
+"facturé (%(total)s)."
+
+#. module: sale_invoice_partial_with_down_payment
+#. odoo-python
+#: code:addons/sale_invoice_partial_with_down_payment/wizard/sale_make_invoice_advance.py:0
+msgid "The down payment deduction amount cannot be negative."
+msgstr "Le montant (%(amount)s) ne peut pas être négatif."
+
+#. module: sale_invoice_partial_with_down_payment
+#: model_terms:ir.ui.view,arch_db:sale_invoice_partial_with_down_payment.view_sale_advance_payment_inv_partial
+msgid ""
+"The total down payment already invoiced exceeds the\n"
+"                            amount for this partial delivery. Odoo would "
+"normally\n"
+"                            create a credit note with a negative quantity.\n"
+"                            Choose how to handle this below."
+msgstr ""
+"Le montant total de l'acompte facturé est supérieur au montant à facturer "
+"ici.\n"
+"Normalement, Odoo fait un avoir avec une quantité négative. \n"
+"Choisissez la méthode qui vous convient."
+
+#. module: sale_invoice_partial_with_down_payment
+#: model:ir.model.fields,field_description:sale_invoice_partial_with_down_payment.field_sale_advance_payment_inv__total_downpayment_invoiced
+msgid "Total Down Payment Invoiced"
+msgstr "Montant total de l'acompte facturé"
+
+#. module: sale_invoice_partial_with_down_payment
+#: model:ir.model.fields,help:sale_invoice_partial_with_down_payment.field_sale_advance_payment_inv__delivered_ratio
+msgid "Used to compute the proportional down payment deduction amount."
+msgstr ""
+
+#. module: sale_invoice_partial_with_down_payment
+#: model_terms:ir.ui.view,arch_db:sale_invoice_partial_with_down_payment.view_sale_advance_payment_inv_partial
+msgid "⚠️  Down Payment Exceeds Current Delivery"
+msgstr "⚠️  L'acompte facturé est supérieur au montant à facturer ici"
