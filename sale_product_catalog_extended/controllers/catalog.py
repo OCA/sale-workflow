@@ -23,7 +23,7 @@ class SaleProductCatalogController(ProductCatalogController):
 
     @route("/product/catalog/sale/exclude_from_last_sales", auth="user", type="json")
     def product_catalog_exclude_from_last_sales(self, order_id, product_id, **kwargs):
-        """Exclude a product from the catalog *Last sales* origin.
+        """Exclude a product from the catalog *Last sales* option.
 
         The exclusion is stored for the partner the order matches its sale
         history against, so the product is no longer offered by that origin for
@@ -36,12 +36,12 @@ class SaleProductCatalogController(ProductCatalogController):
         """
         order = request.env["sale.order"].browse(order_id)
         return order.with_company(order.company_id)._add_catalog_last_sales_exclusion(
-            product_id
+            product_id, use_delivery_address=kwargs.get("use_delivery_address", False)
         )
 
     @route("/product/catalog/sale/get_order_line_data", auth="user", type="json")
     def product_catalog_get_order_line_data(self, order_line_ids, **kwargs):
-        """Open sale order line on a given order for a given product.
+        """Return the catalog data of the given sale order lines.
 
         :param list order_line_ids: The order lines to update the record.
         :return: The data of the record that is being updated.
@@ -78,5 +78,7 @@ class SaleProductCatalogController(ProductCatalogController):
             )
             line.unlink()
             return price_unit
-        line.product_uom_qty = quantity
+        line.write(
+            order._get_catalog_line_quantity_vals(line.product_id, quantity, line)
+        )
         return line._get_discounted_price()

@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 =============================
 Sale Product Catalog Extended
 =============================
@@ -13,7 +17,7 @@ Sale Product Catalog Extended
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -50,24 +54,31 @@ Each in-order card exposes three inline actions:
   catalog.
 - **Remove** – removes that individual line from the order.
 
-Last sale price
----------------
+Search panel options
+--------------------
 
-A *Price* filter panel is added to the catalog search panel with a
-**Last sale** option. When active, products not yet in the order show
-the unit price from the most recent confirmed delivery to the same
-shipping address (last 6 months) instead of the pricelist price. When a
-new line is added with this mode enabled, that last-sale price is
-automatically applied as the unit price.
+The catalog search panel gets these sections, combinable with each other
+and with the standard ones:
 
-Origin filter
--------------
+- **Origin**: the cards shown, the products or the ones other modules
+  add (e.g. one card per vendor row with
+  ``sale_product_catalog_supplierinfo``). It is only shown when such a
+  module is installed.
+- **Last sales**: restricts the cards of the chosen origin to the
+  products previously sold to the customer (last 180 days by default),
+  most frequently sold first, then by delivered quantity.
+- **Price**: **Last sale** shows the unit price of the most recent
+  delivered sale to the customer instead of the pricelist price, for the
+  products that have one, and applies it to the lines added from the
+  catalog.
+- **History**: the partner the sale history is matched against, the
+  customer (commercial partner, including its child contacts) or the
+  order delivery address. It is only shown when enabled in the settings
+  and while the *Last sales* option or the *Last sale* price is active,
+  as it has no effect otherwise.
 
-An *Origin* filter panel is added to the catalog search panel with a
-**Last sales** option. When active, the catalog displays only products
-that were previously sold to the same shipping address (last 6 months),
-ordered by frequency and delivered quantity. This origin can be
-preselected automatically through a system parameter (see
+The options preselected when the catalog is opened, the period and the
+product limit of the last sales are set in the Sales settings (see
 *Configuration*).
 
 Exclude from last sales
@@ -75,13 +86,21 @@ Exclude from last sales
 
 The card dropdown menu adds an **Exclude from last sales** entry. It
 stores the product and the catalog history partner in a dedicated model,
-so that product is no longer offered by the *Last sales* origin for any
+so that product is no longer offered by the *Last sales* option for any
 order of that partner. The *Last sale* price is not affected.
+
+The entry is only shown while the *Last sales* option is active. On the
+vendor cards of ``sale_product_catalog_supplierinfo`` it excludes the
+product, not the vendor row.
 
 The exclusion is dropped as soon as an order containing that product is
 confirmed for the same partner, so the product goes back to the *Last
-sales* origin without any manual clean up. Adding the product to an
+sales* option without any manual clean up. Adding the product to an
 already confirmed order has the same effect.
+
+The exclusions can be checked and deleted in *Sales > Configuration >
+Catalog Last Sales Exclusions*, to offer an excluded product again
+without selling it.
 
 Image zoom
 ----------
@@ -97,75 +116,41 @@ dialog.
 Configuration
 =============
 
-Default catalog origin
-----------------------
+Go to *Sales > Configuration > Settings*. The **Product Catalog** block
+has the options of the catalog opened from a sale order.
 
-By default the catalog opens with no origin preselected. You can make it
-open directly on a specific origin by setting a system parameter:
+Order catalog options
+---------------------
 
-1. Go to *Settings > Technical > Parameters > System Parameters*.
-2. Create a new parameter with:
+The options of the catalog search panel preselected when the catalog is
+opened:
 
-   - **Key:** ``sale_product_catalog_extended.catalog_default_origin``
-   - **Value:** the technical value of the origin to preselect. This
-     module provides ``sale_order`` (the **Last sales** option). Other
-     modules may add further origins; use the corresponding selection
-     value here.
+- **Origin**: the cards shown. Empty shows the products; other modules
+  add further origins (e.g. **Suppliers** in
+  ``sale_product_catalog_supplierinfo``).
+- **Last sales**: only show the products sold to the customer, most
+  frequently sold first.
+- **Price**: empty shows the pricelist price, **Last sale** the price of
+  the last sale to the customer.
+- **History**: the partner the sale history is matched against. Empty
+  matches the customer (commercial partner, including its child
+  contacts), **Delivery address** the order delivery address. Check
+  **Show** to show this section in the catalog search panel, hidden by
+  default; the partner chosen here applies either way.
 
-When this parameter is set, opening the catalog from a sale order will
-preselect the matching option in the *Origin* search panel
-automatically. For example, set the value to ``sale_order`` to always
-open the catalog on the **Last sales** origin. Leaving the parameter
-empty or removing it restores the default behaviour (no origin
-preselected).
+They are saved as the global default value of the catalog fields of
+``product.product`` (``catalog_origin_data``, ``catalog_last_sales``,
+``catalog_price_mode`` and ``catalog_history_partner``), so they can
+also be set per user or company in *Settings > Technical > User-defined
+Defaults*, as for any other field.
 
-Default catalog price mode
---------------------------
+Order catalog last sales
+------------------------
 
-By default the catalog opens with no price mode preselected. You can
-make it open directly on a specific price mode by setting a system
-parameter:
-
-1. Go to *Settings > Technical > Parameters > System Parameters*.
-2. Create a new parameter with:
-
-   - **Key:**
-     ``sale_product_catalog_extended.catalog_default_price_mode``
-   - **Value:** the technical value of the price mode to preselect. This
-     module provides ``last_price`` (the **Last sale** option). Other
-     modules may add further price modes; use the corresponding
-     selection value here.
-
-When this parameter is set, opening the catalog from a sale order will
-preselect the matching option in the *Price* search panel automatically.
-For example, set the value to ``last_price`` to always open the catalog
-on the **Last sale** price mode. Leaving the parameter empty or removing
-it restores the default behaviour (no price mode preselected).
-
-Catalog history partner
------------------------
-
-The **Last sales** origin and the **Last sale** price look at the
-customer sale history. By default that history is matched against the
-order **commercial partner** (including its child contacts), so all the
-orders of the same customer are taken into account regardless of the
-delivery address.
-
-You can match the history against the order **delivery address** instead
-through *Default Values*, scoped per user and company (same mechanism as
-the sale order product picker):
-
-1. Go to *Settings > Technical > Default Values*.
-2. Create a new default value for:
-
-   - **Field:** ``sale.order`` → ``use_delivery_address``
-   - **Value:** ``True`` to match by delivery address. Leaving no
-     default (or ``False``) keeps the default behaviour (commercial
-     partner).
-
-This affects both the order of the cards under the **Last sales** origin
-(products are sorted by how often and how much they were sold to the
-matched partner) and the price shown by the **Last sale** price mode.
+- **Days**: days of sale history used by the **Last sales** option and
+  the **Last sale** price, 180 by default.
+- **Product limit**: maximum number of products shown by the **Last
+  sales** option. ``0`` shows them all.
 
 Bug Tracker
 ===========
@@ -205,6 +190,17 @@ This module is maintained by the OCA.
 OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
+
+.. |maintainer-carlosdauden| image:: https://github.com/carlosdauden.png?size=40px
+    :target: https://github.com/carlosdauden
+    :alt: carlosdauden
+.. |maintainer-CarlosRoca13| image:: https://github.com/CarlosRoca13.png?size=40px
+    :target: https://github.com/CarlosRoca13
+    :alt: CarlosRoca13
+
+Current `maintainers <https://odoo-community.org/page/maintainer-role>`__:
+
+|maintainer-carlosdauden| |maintainer-CarlosRoca13| 
 
 This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/18.0/sale_product_catalog_extended>`_ project on GitHub.
 

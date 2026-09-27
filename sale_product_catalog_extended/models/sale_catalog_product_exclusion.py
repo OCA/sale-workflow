@@ -5,7 +5,8 @@ from odoo import fields, models
 
 class SaleCatalogProductExclusion(models.Model):
     _name = "sale.catalog.product.exclusion"
-    _description = "Product excluded from the catalog last sales origin"
+    _description = "Product excluded from the catalog last sales"
+    _order = "create_date desc, id desc"
     _rec_name = "product_id"
 
     partner_id = fields.Many2one(

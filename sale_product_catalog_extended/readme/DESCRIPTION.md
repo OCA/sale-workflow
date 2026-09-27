@@ -16,34 +16,47 @@ Each in-order card exposes three inline actions:
 - **Edit** – opens the specific order line form directly from the catalog.
 - **Remove** – removes that individual line from the order.
 
-## Last sale price
+## Search panel options
 
-A *Price* filter panel is added to the catalog search panel with a
-**Last sale** option. When active, products not yet in the order show
-the unit price from the most recent confirmed delivery to the same shipping
-address (last 6 months) instead of the pricelist price. When a new line is
-added with this mode enabled, that last-sale price is automatically applied
-as the unit price.
+The catalog search panel gets these sections, combinable with each other and
+with the standard ones:
 
-## Origin filter
+- **Origin**: the cards shown, the products or the ones other modules add
+  (e.g. one card per vendor row with `sale_product_catalog_supplierinfo`). It
+  is only shown when such a module is installed.
+- **Last sales**: restricts the cards of the chosen origin to the products
+  previously sold to the customer (last 180 days by default), most frequently
+  sold first, then by delivered quantity.
+- **Price**: **Last sale** shows the unit price of the most recent delivered
+  sale to the customer instead of the pricelist price, for the products that
+  have one, and applies it to the lines added from the catalog.
+- **History**: the partner the sale history is matched against, the customer
+  (commercial partner, including its child contacts) or the order delivery
+  address. It is only shown when enabled in the settings and while the *Last
+  sales* option or the *Last sale* price is active, as it has no effect
+  otherwise.
 
-An *Origin* filter panel is added to the catalog search panel with a
-**Last sales** option. When active, the catalog displays only products
-that were previously sold to the same shipping address (last 6 months),
-ordered by frequency and delivered quantity. This origin can be
-preselected automatically through a system parameter (see *Configuration*).
+The options preselected when the catalog is opened, the period and the product
+limit of the last sales are set in the Sales settings (see *Configuration*).
 
 ## Exclude from last sales
 
 The card dropdown menu adds an **Exclude from last sales** entry. It stores the
 product and the catalog history partner in a dedicated model, so that product is
-no longer offered by the *Last sales* origin for any order of that partner. The
+no longer offered by the *Last sales* option for any order of that partner. The
 *Last sale* price is not affected.
+
+The entry is only shown while the *Last sales* option is active. On the vendor
+cards of `sale_product_catalog_supplierinfo` it excludes the product, not the
+vendor row.
 
 The exclusion is dropped as soon as an order containing that product is
 confirmed for the same partner, so the product goes back to the *Last sales*
-origin without any manual clean up. Adding the product to an already confirmed
+option without any manual clean up. Adding the product to an already confirmed
 order has the same effect.
+
+The exclusions can be checked and deleted in *Sales > Configuration > Catalog
+Last Sales Exclusions*, to offer an excluded product again without selling it.
 
 ## Image zoom
 

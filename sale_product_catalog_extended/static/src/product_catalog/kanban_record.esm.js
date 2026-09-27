@@ -40,12 +40,24 @@ patch(ProductCatalogKanbanRecord.prototype, {
      * the other catalogs (e.g. purchase).
      */
     get displayExcludeFromLastSales() {
-        return this.env.orderResModel === "sale.order";
+        // Only meaningful when the Last sales option restricts the catalog.
+        return (
+            this.env.orderResModel === "sale.order" &&
+            (this.props.list.domain || []).some(
+                (cond) =>
+                    Array.isArray(cond) &&
+                    cond[0] === "catalog_last_sales" &&
+                    cond[2] === "last_sales"
+            )
+        );
     },
     async onClickExcludeFromLastSales() {
         await rpc("/product/catalog/sale/exclude_from_last_sales", {
             order_id: this.env.orderId,
             product_id: this.env.productId,
+            use_delivery_address: Boolean(
+                this.props.record.productCatalogData.catalogUseDeliveryAddress
+            ),
         });
         // Reload so the card disappears when the last sales origin is active.
         await this.props.list.model.load();
@@ -111,6 +123,9 @@ patch(ProductCatalogKanbanRecord.prototype, {
             ...super._getUpdateQuantityAndGetPriceParams(),
             catalog_show_last_price: Boolean(
                 this.props.record.productCatalogData.catalogShowLastPrice
+            ),
+            catalog_use_delivery_address: Boolean(
+                this.props.record.productCatalogData.catalogUseDeliveryAddress
             ),
         };
     },

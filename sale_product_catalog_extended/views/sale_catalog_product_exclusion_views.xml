@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Tecnativa - Carlos Dauden
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="sale_catalog_product_exclusion_view_list" model="ir.ui.view">
+        <field name="model">sale.catalog.product.exclusion</field>
+        <field name="arch" type="xml">
+            <list create="0" edit="0">
+                <field name="partner_id" />
+                <field name="product_id" />
+                <field name="create_date" string="Excluded on" />
+                <field name="create_uid" string="Excluded by" />
+            </list>
+        </field>
+    </record>
+    <record id="sale_catalog_product_exclusion_view_search" model="ir.ui.view">
+        <field name="model">sale.catalog.product.exclusion</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id" />
+                <field name="product_id" />
+                <group>
+                    <filter
+                        name="group_by_partner"
+                        string="Partner"
+                        context="{'group_by': 'partner_id'}"
+                    />
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="sale_catalog_product_exclusion_action" model="ir.actions.act_window">
+        <field name="name">Catalog Last Sales Exclusions</field>
+        <field name="res_model">sale.catalog.product.exclusion</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No product excluded</p>
+            <p>
+                Products are excluded from the last sales of a customer from the
+                product catalog of a sale order. Delete an exclusion to offer the
+                product again.
+            </p>
+        </field>
+    </record>
+    <menuitem
+        id="sale_catalog_product_exclusion_menu"
+        action="sale_catalog_product_exclusion_action"
+        parent="sale.menu_sale_config"
+        sequence="60"
+    />
+</odoo>
