@@ -26,11 +26,13 @@ patch(ProductCatalogKanbanRenderer.prototype, {
                     result.push({
                         ...item,
                         record: lineRecord,
-                        // Include the line id so several lines of the same
-                        // vendor get distinct (non colliding) card keys.
+                        // Include the supplierinfo and line id so several
+                        // cards of the same vendor (one per supplierinfo row)
+                        // get distinct (non colliding) card keys, even before
+                        // any of them has an order line yet.
                         key: `${item.key}_vendor_${line.vendorId || 0}_${
-                            line.lineId || "new"
-                        }`,
+                            line.supplierinfoId || 0
+                        }_${line.lineId || "new"}`,
                     });
                 }
             } else {
