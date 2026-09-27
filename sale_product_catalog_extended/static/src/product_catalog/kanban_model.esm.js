@@ -18,9 +18,16 @@ patch(ProductCatalogKanbanModel.prototype, {
                 cond[0] === "catalog_price_mode" &&
                 cond[2] === "last_price"
         );
+        const catalogUseDeliveryAddress = (params.domain || []).some(
+            (cond) =>
+                Array.isArray(cond) &&
+                cond[0] === "catalog_history_partner" &&
+                cond[2] === "delivery_address"
+        );
         return {
             ...baseParams,
             catalog_show_last_price: catalogShowLastPrice,
+            catalog_use_delivery_address: catalogUseDeliveryAddress,
         };
     },
 });

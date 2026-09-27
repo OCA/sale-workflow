@@ -1,100 +1,103 @@
 # Copyright 2025 Tecnativa - Carlos Roca
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-import json
-
-from odoo import api, fields, models
+from odoo import api, models
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    # Not stored, only used to know which partner the catalog history is
-    # matched against. Its default can be set per user/company through
-    # Default Values (ir.default).
-    use_delivery_address = fields.Boolean(store=False, default=False)
-
-    def _get_use_delivery_address_default_value(self):
-        """Return the user/company default value set for ``use_delivery_address``
-        through Default Values (ir.default).
-        """
-        field = (
-            self.env["ir.model.fields"]
-            .sudo()
-            .search(
-                [
-                    ("model", "=", "sale.order"),
-                    ("name", "=", "use_delivery_address"),
-                ]
-            )
-        )
-        default = (
-            self.env["ir.default"]
-            .sudo()
-            .search(
-                [
-                    ("field_id", "=", field.id),
-                    ("user_id", "=", self.env.user.id),
-                    ("company_id", "=", self.env.company.id),
-                    ("condition", "=", False),
-                ],
-                limit=1,
-            )
-        )
-        return json.loads(default.json_value) if default else False
-
-    def _catalog_use_delivery_address(self):
-        """Whether the catalog history (last sales origin / last price) is
-        matched by the order delivery address instead of the commercial
-        partner. Defaults to the commercial partner and is configurable
-        through Default Values.
-        """
-        if self.use_delivery_address:
-            return True
-        return bool(self._get_use_delivery_address_default_value())
-
-    def _catalog_history_partner(self):
+    def _catalog_history_partner(self, use_delivery_address=False):
         """Partner used to look for the customer sale history in the catalog."""
         self.ensure_one()
-        if self._catalog_use_delivery_address():
+        if use_delivery_address:
             return self.partner_shipping_id
         return self.partner_id.commercial_partner_id
 
     def _get_catalog_history_context(self):
-        """Context passed to the catalog domain so it knows which
-        partner and which partner field to match the sale history against.
+        """Context passed to the catalog domain with the partners the sale
+        history can be matched against (see ``catalog_history_partner``).
         """
-        use_delivery_address = self._catalog_use_delivery_address()
         return {
             "product_catalog_partner_id": self._catalog_history_partner().id,
-            "product_catalog_use_delivery_address": use_delivery_address,
+            "product_catalog_shipping_partner_id": self._catalog_history_partner(
+                use_delivery_address=True
+            ).id,
             "product_catalog_order_id": self.id,
         }
 
-    def _get_catalog_last_prices(self, product_ids):
-        """Return {product_id: last_price} from previous confirmed orders for
-        this partner.
+    def _get_catalog_last_sale_lines(
+        self, product_ids, groupby=("product_id",), use_delivery_address=False
+    ):
+        """Return ``{group: last sale line}`` of the sale history the catalog
+        matches, grouped by ``groupby`` (a tuple of sale order line fields
+        starting by ``product_id``), with a single grouped query.
+
+        The lines are read with sudo, as the "own documents" rule also applies
+        to sale order lines and the history spans every salesperson.
         """
         if not product_ids:
             return {}
         domain = (
             self.env["product.product"]
-            .with_context(**self._get_catalog_history_context())
+            .with_context(
+                **self._get_catalog_history_context(),
+                product_catalog_use_delivery_address=use_delivery_address,
+            )
             ._product_picker_data_sale_order_domain()
         )
         domain += [("product_id", "in", product_ids)]
-        sol_groups = self.env["sale.order.line"]._read_group(
-            domain,
-            groupby=["product_id"],
-            aggregates=["id:max"],
+        sol_model = self.env["sale.order.line"].sudo()
+        groups = sol_model._read_group(
+            domain, groupby=list(groupby), aggregates=["id:max"]
         )
-        last_line_ids = [max_id for _product, max_id in sol_groups]
-        if not last_line_ids:
-            return {}
-        lines = self.env["sale.order.line"].browse(last_line_ids)
-        return {line.product_id.id: line.price_unit for line in lines}
+        lines = sol_model.browse([group[-1] for group in groups])
+        return {group[:-1]: line for group, line in zip(groups, lines, strict=True)}
+
+    def _get_catalog_line_last_price(self, line):
+        """Price of a previous sale ``line`` in the product UoM, the one the
+        catalog adds lines in."""
+        return line.product_uom._compute_price(line.price_unit, line.product_id.uom_id)
+
+    def _get_catalog_last_prices(self, product_ids, use_delivery_address=False):
+        """Return {product_id: last_price} from previous confirmed orders for
+        this partner.
+        """
+        last_lines = self._get_catalog_last_sale_lines(
+            product_ids, use_delivery_address=use_delivery_address
+        )
+        return {
+            product.id: self._get_catalog_line_last_price(line)
+            for (product,), line in last_lines.items()
+        }
+
+    def _set_catalog_last_price_data(self, data, last_price):
+        """Show ``last_price`` on the catalog card ``data`` and on the cards of
+        its order lines."""
+        for card in [data, *data.get("lines", [])]:
+            card["catalogShowLastPrice"] = True
+            if last_price:
+                card["lastPrice"] = last_price
+
+    def _apply_catalog_last_price(self, line, last_price):
+        """Set ``last_price`` on the ``line`` just added from the catalog."""
+        if not last_price:
+            return
+        # Keep technical_price_unit (pricelist price) so that
+        # _compute_price_unit recognises this as a manual override
+        # and does not reset it on subsequent recomputations.
+        line.write(
+            {
+                "price_unit": last_price,
+                "technical_price_unit": line.technical_price_unit,
+            }
+        )
 
     def _get_product_catalog_order_line_info(
-        self, product_ids, catalog_show_last_price=False, **kwargs
+        self,
+        product_ids,
+        catalog_show_last_price=False,
+        catalog_use_delivery_address=False,
+        **kwargs,
     ):
         result = super()._get_product_catalog_order_line_info(product_ids, **kwargs)
         for product, lines in self._get_product_catalog_record_lines(
@@ -109,19 +112,24 @@ class SaleOrder(models.Model):
                     }
                     for line in lines
                 ]
+        for data in result.values():
+            # Sent back by the catalog record on its own requests.
+            data["catalogUseDeliveryAddress"] = catalog_use_delivery_address
         if not catalog_show_last_price:
             return result
-        last_prices = self._get_catalog_last_prices(list(result.keys()))
+        last_prices = self._get_catalog_last_prices(
+            list(result.keys()), use_delivery_address=catalog_use_delivery_address
+        )
         for product_id, data in result.items():
-            data["catalogShowLastPrice"] = True
-            last_price = last_prices.get(product_id, 0.0)
-            if last_price:
-                data["lastPrice"] = last_price
-            for line_data in data.get("lines", []):
-                line_data["catalogShowLastPrice"] = True
-                if last_price:
-                    line_data["lastPrice"] = last_price
+            self._set_catalog_last_price_data(data, last_prices.get(product_id, 0.0))
         return result
+
+    def _get_catalog_line_quantity_vals(self, product, quantity, line=False):
+        """Values that set ``quantity``, as typed in the catalog, on ``line`` or
+        on a new line of ``product``. Hook for modules changing the unit the
+        catalog quantity is expressed in (e.g. secondary units).
+        """
+        return {"product_uom_qty": quantity}
 
     def _get_catalog_line_onchange_fields(self):
         """Trigger fields whose ``@api.onchange`` methods must be replayed when
@@ -139,7 +147,12 @@ class SaleOrder(models.Model):
             line.write(values)
 
     def _update_order_line_info(
-        self, product_id, quantity, catalog_show_last_price=False, **kwargs
+        self,
+        product_id,
+        quantity,
+        catalog_show_last_price=False,
+        catalog_use_delivery_address=False,
+        **kwargs,
     ):
         is_new_line = quantity > 0 and not self.order_line.filtered(
             lambda line: line.product_id.id == product_id
@@ -154,31 +167,22 @@ class SaleOrder(models.Model):
         self._play_catalog_line_onchanges(sol)
         result = sol._get_discounted_price()
         if catalog_show_last_price:
-            last_price = self._get_catalog_last_prices([product_id]).get(
-                product_id, 0.0
-            )
-            if last_price:
-                # Keep technical_price_unit (pricelist price) so that
-                # _compute_price_unit recognises this as a manual override
-                # and does not reset it on subsequent recomputations.
-                sol.write(
-                    {
-                        "price_unit": last_price,
-                        "technical_price_unit": sol.technical_price_unit,
-                    }
-                )
-                result = sol._get_discounted_price()
+            last_price = self._get_catalog_last_prices(
+                [product_id], use_delivery_address=catalog_use_delivery_address
+            ).get(product_id, 0.0)
+            self._apply_catalog_last_price(sol, last_price)
+            result = sol._get_discounted_price()
         return result
 
-    def _add_catalog_last_sales_exclusion(self, product_id):
-        """Exclude ``product_id`` from the catalog *Last sales* origin for the
-        partner this order matches its sale history against.
+    def _add_catalog_last_sales_exclusion(self, product_id, use_delivery_address=False):
+        """Exclude ``product_id`` from the catalog *Last sales* option for the
+        partner the catalog matches the sale history against.
 
         Creating the exclusion is idempotent: asking twice for the same partner
         and product keeps the existing record.
         """
         self.ensure_one()
-        partner = self._catalog_history_partner()
+        partner = self._catalog_history_partner(use_delivery_address)
         if not partner:
             return False
         exclusion_model = self.env["sale.catalog.product.exclusion"]
@@ -197,7 +201,8 @@ class SaleOrder(models.Model):
 
         Selling a product to the partner again means it is relevant for them
         once more, so the exclusion is removed and the product goes back to the
-        *Last sales* origin.
+        *Last sales* option. Both the commercial partner and the delivery
+        address are cleaned up, as the history can be matched against either.
 
         :param products: products to clean up, defaulting to every product of
             the order lines. Adding a line to an already confirmed order passes
@@ -205,13 +210,15 @@ class SaleOrder(models.Model):
         """
         exclusion_model = self.env["sale.catalog.product.exclusion"].sudo()
         for order in self:
-            partner = order._catalog_history_partner()
+            partners = order._catalog_history_partner() | (
+                order._catalog_history_partner(use_delivery_address=True)
+            )
             sold = order.order_line.product_id if products is None else products
-            if not partner or not sold:
+            if not partners or not sold:
                 continue
             exclusion_model.search(
                 [
-                    ("partner_id", "=", partner.id),
+                    ("partner_id", "in", partners.ids),
                     ("product_id", "in", sold.ids),
                 ]
             ).unlink()
@@ -235,27 +242,33 @@ class SaleOrder(models.Model):
             self._get_catalog_order_line_filter_domain(product_id, **kwargs)
         ).ids
 
+    @api.model
+    def _get_catalog_search_panel_fields(self):
+        """Display-only ``product.product`` fields of the catalog search panel
+        whose default value preselects them."""
+        return [
+            "catalog_origin_data",
+            "catalog_last_sales",
+            "catalog_price_mode",
+            "catalog_history_partner",
+        ]
+
     def _get_action_add_from_catalog_extra_context(self):
         context = {
             **super()._get_action_add_from_catalog_extra_context(),
             **self._get_catalog_history_context(),
         }
-        default_origin = (
+        # The search panel only takes its initial value from the context, so
+        # forward the field defaults (ir.default, also set from the settings).
+        defaults = self.env["product.product"].default_get(
+            self._get_catalog_search_panel_fields()
+        )
+        for field_name, value in defaults.items():
+            if value:
+                context[f"searchpanel_default_{field_name}"] = value
+        context["catalog_show_history_partner"] = bool(
             self.env["ir.config_parameter"]
             .sudo()
-            .get_param("sale_product_catalog_extended.catalog_default_origin")
+            .get_param("sale_product_catalog_extended.catalog_show_history_partner")
         )
-        default_price_mode = (
-            self.env["ir.config_parameter"]
-            .sudo()
-            .get_param("sale_product_catalog_extended.catalog_default_price_mode")
-        )
-        if default_origin:
-            # Preselect the origin defined in system parameters in the catalog
-            # search panel
-            context["searchpanel_default_catalog_origin_data"] = default_origin
-        if default_price_mode:
-            # Preselect the price defined in system parameters in the catalog
-            # search panel
-            context["searchpanel_default_catalog_price_mode"] = default_price_mode
         return context

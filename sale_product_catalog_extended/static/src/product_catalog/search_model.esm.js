@@ -5,9 +5,15 @@ import "@product/product_catalog/kanban_view";
 import {SearchModel} from "@web/search/search_model";
 import {registry} from "@web/core/registry";
 
-// Search panel category sections whose selection (origin/price mode) must
-// force the rest of the category sections to be recomputed.
-const CATALOG_PANEL_FIELDS = ["catalog_origin_data", "catalog_price_mode"];
+// Search panel category sections whose selection (origin/last sales/price
+// mode/history partner) must force the rest of the category sections to be
+// recomputed.
+const CATALOG_PANEL_FIELDS = [
+    "catalog_origin_data",
+    "catalog_last_sales",
+    "catalog_price_mode",
+    "catalog_history_partner",
+];
 
 export class ProductCatalogSearchModel extends SearchModel {
     /**
