@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="confirm_identification_view" model="ir.ui.view">
+        <field name="name">Confirm identifications</field>
+        <field name="model">confirm.identification</field>
+        <field name="arch" type="xml">
+            <form string="Confirm identifications">
+                <group>
+                    <field name="order_ids" invisible="1" />
+                    <field name="message" readonly="1" nolabel="1" />
+                </group>
+                <footer>
+                    <button
+                        string="Confirm"
+                        name="confirm_identification"
+                        type="object"
+                        default_focus="1"
+                        class="btn-primary"
+                        data-hotkey="q"
+                    />
+                    <button
+                        string="Cancel"
+                        class="btn-secondary"
+                        special="cancel"
+                        data-hotkey="x"
+                    />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
