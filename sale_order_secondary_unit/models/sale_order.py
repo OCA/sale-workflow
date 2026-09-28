@@ -16,11 +16,17 @@ class SaleOrder(models.Model):
         child_field="order_line",
         **kwargs,
     ):
-        # When adding a product through the catalog, take its default sale
-        # secondary unit of measure into account so the catalog quantity refers
-        # to that secondary unit instead of the product one.
+        # The catalog quantity refers to the unit the card shows (see
+        # ``SaleOrderLine._get_product_catalog_lines_data``): the secondary unit
+        # of the existing line, even when it differs from the product default
+        # or the line has none, and the product default sale secondary unit
+        # for a new line.
         product = self.env["product.product"].browse(product_id)
-        secondary_uom = product.sale_secondary_uom_id
+        sol = self.order_line.filtered(
+            lambda line: line.product_id.id == product_id
+            and line.get_parent_section_line().id == section_id
+        )
+        secondary_uom = sol.secondary_uom_id if sol else product.sale_secondary_uom_id
         if not secondary_uom or quantity <= 0:
             return super()._update_order_line_info(
                 product_id,
@@ -39,10 +45,6 @@ class SaleOrder(models.Model):
         # secondary unit at all.
         if request:
             request.update_context(catalog_skip_tracking=True)
-        sol = self.order_line.filtered(
-            lambda line: line.product_id.id == product_id
-            and line.get_parent_section_line().id == section_id
-        )
         if sol:
             sol.write(
                 {
