@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-07-08 08:59+0000\n"
+"PO-Revision-Date: 2026-09-28 07:18+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_block_no_stock
 #: model_terms:ir.ui.view,arch_db:sale_block_no_stock.res_config_settings_view_form
@@ -161,12 +161,12 @@ msgstr "Ultimo aggiornamento il"
 #. module: sale_block_no_stock
 #: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__product_packaging_allowed_max_qty
 msgid "Max. Qty. (Pkg.)"
-msgstr "Qt.à max (Imb.)"
+msgstr "Q.tà max (Imb.)"
 
 #. module: sale_block_no_stock
 #: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__product_uom_allowed_max_qty
 msgid "Max. Qty. (UoM)"
-msgstr "Qt.à max (UdM)"
+msgstr "Q.tà max (UdM)"
 
 #. module: sale_block_no_stock
 #: model_terms:ir.ui.view,arch_db:sale_block_no_stock.sale_order_block_wizard_view
@@ -204,12 +204,12 @@ msgstr ""
 #. module: sale_block_no_stock
 #: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__product_packaging_qty
 msgid "Qty. (Pkg.)"
-msgstr "Qt.à (Imb.)"
+msgstr "Q.tà (Imb.)"
 
 #. module: sale_block_no_stock
 #: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard_line__product_uom_qty
 msgid "Qty. (UoM)"
-msgstr "Qt.à (UdM)"
+msgstr "Q.tà (UdM)"
 
 #. module: sale_block_no_stock
 #: model:ir.model.fields,field_description:sale_block_no_stock.field_sale_order_block_wizard__sale_line_block_ids
