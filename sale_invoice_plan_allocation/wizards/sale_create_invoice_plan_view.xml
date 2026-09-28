@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_sale_create_invoice_plan_allocation" model="ir.ui.view">
+        <field name="name">sale.create.invoice.plan.allocation</field>
+        <field name="model">sale.create.invoice.plan</field>
+        <field
+            name="inherit_id"
+            ref="sale_invoice_plan.view_sale_create_invoice_plan"
+        />
+        <field name="arch" type="xml">
+            <field name="num_installment" position="attributes">
+                <attribute
+                    name="invisible"
+                >parent_invoice_plan_method == 'sequential'</attribute>
+            </field>
+            <field name="num_installment" position="before">
+                <div
+                    colspan="2"
+                    class="alert alert-info"
+                    role="alert"
+                    invisible="parent_invoice_plan_method != 'sequential'"
+                >
+                    The number of installments is derived from the order lines:
+                    one installment per unit of the largest quantity in each
+                    invoice plan group.
+                </div>
+            </field>
+            <field name="num_installment" position="after">
+                <field name="parent_invoice_plan_method" invisible="1" />
+            </field>
+        </field>
+    </record>
+</odoo>

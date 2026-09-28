@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_order_form_invoice_plan_allocation" model="ir.ui.view">
+        <field name="name">sale.order.form.invoice.plan.allocation</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_invoice_plan.view_order_form_invoice_plan" />
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='use_invoice_plan']" position="after">
+                <label
+                    for="invoice_plan_method"
+                    class="ms-3"
+                    invisible="not use_invoice_plan"
+                />
+                <field
+                    name="invoice_plan_method"
+                    invisible="not use_invoice_plan"
+                    readonly="invoice_plan_ids"
+                />
+            </xpath>
+            <xpath expr="//button[@name='remove_invoice_plan']" position="after">
+                <button
+                    name="action_view_invoice_plan_allocations"
+                    string="⇒ Edit Line Allocations"
+                    type="object"
+                    class="oe_link"
+                    invisible="not invoice_plan_ids or invoice_plan_method not in ('manual', 'sequential')"
+                />
+                <button
+                    name="action_allocate_evenly"
+                    string="⇒ Split Remaining Quantities Evenly"
+                    type="object"
+                    class="oe_link"
+                    confirm="Reset all open installments by splitting each remaining order-line quantity evenly?"
+                    invisible="not invoice_plan_ids or invoice_plan_method != 'manual'"
+                />
+            </xpath>
+            <xpath
+                expr="//field[@name='order_line']/list/field[@name='product_uom_qty']"
+                position="after"
+            >
+                <field
+                    name="invoice_plan_group"
+                    optional="hide"
+                    invisible="not parent.use_invoice_plan or parent.invoice_plan_method != 'sequential'"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>

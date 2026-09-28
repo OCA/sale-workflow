@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <record id="sale_invoice_plan_allocation_company_rule" model="ir.rule">
+        <field name="name">Invoice Plan Allocation multi-company</field>
+        <field name="model_id" ref="model_sale_invoice_plan_allocation" />
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+
+    <record id="sale_invoice_plan_allocation_personal_rule" model="ir.rule">
+        <field name="name">Personal Invoice Plan Allocations</field>
+        <field name="model_id" ref="model_sale_invoice_plan_allocation" />
+        <field name="domain_force">
+            ['|', ('sale_id.user_id', '=', user.id), ('sale_id.user_id', '=', False)]
+        </field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_salesman'))]" />
+    </record>
+
+    <record id="sale_invoice_plan_allocation_see_all_rule" model="ir.rule">
+        <field name="name">All Invoice Plan Allocations</field>
+        <field name="model_id" ref="model_sale_invoice_plan_allocation" />
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field
+            name="groups"
+            eval="[(4, ref('sales_team.group_sale_salesman_all_leads'))]"
+        />
+    </record>
+</odoo>
