@@ -38,8 +38,12 @@ class SaleOrderLine(models.Model):
 
     @api.depends("price_unit", "discount")
     def _compute_price_final(self):
+        dp = self.env["decimal.precision"].precision_get("Product Price")
         for line in self:
-            line.price_final = line._get_discounted_price()
+            # We use float_round to avoid 1.999999999999998
+            line.price_final = float_round(
+                line._get_discounted_price(), precision_digits=dp
+            )
 
     @api.depends("price_final")
     def _compute_price_unit(self):
