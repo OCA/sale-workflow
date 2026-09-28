@@ -7,7 +7,9 @@ from odoo import api, fields, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    semaphore_active = fields.Boolean(
+    semaphore_active = fields.Selection(
+        selection=[("yes", "Yes"), ("no", "No")],
+        help="If the value is blank, it will be inherited from the category.",
         compute="_compute_semaphore_values",
         inverse="_inverse_semaphore_active",
     )
@@ -86,15 +88,20 @@ class ProductTemplate(models.Model):
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    semaphore_active = fields.Boolean()
+    semaphore_active = fields.Selection(
+        selection=[("yes", "Yes"), ("no", "No")],
+        help="If the value is blank, it will be inherited from the category.",
+    )
     semaphore_discount_success = fields.Float(string="Discount Success")
     semaphore_discount_warning = fields.Float(string="Discount Warning")
     semaphore_discount_danger = fields.Float(string="Discount Danger")
 
     def _get_semaphore_data(self):
-        if not self.semaphore_active and not self.categ_id.semaphore_active:
+        if self.semaphore_active == "no" or (
+            not self.semaphore_active and not self.categ_id.semaphore_active
+        ):
             return False
-        record = self if self.semaphore_active else self.categ_id
+        record = self if self.semaphore_active == "yes" else self.categ_id
         return {
             "success": record.semaphore_discount_success,
             "warning": record.semaphore_discount_warning,

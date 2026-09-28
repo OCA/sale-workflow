@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-06 15:17+0000\n"
-"PO-Revision-Date: 2025-11-06 16:24+0100\n"
+"POT-Creation-Date: 2026-06-01 05:59+0000\n"
+"PO-Revision-Date: 2026-06-01 08:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.9\n"
 
 #. module: sale_semaphore
 #: model_terms:ir.ui.view,arch_db:sale_semaphore.product_category_form_view
@@ -45,6 +45,12 @@ msgid "Discount Warning"
 msgstr "Decuento ámbar"
 
 #. module: sale_semaphore
+#: model:ir.model.fields,help:sale_semaphore.field_product_product__semaphore_active
+#: model:ir.model.fields,help:sale_semaphore.field_product_template__semaphore_active
+msgid "If the value is blank, it will be inherited from the category."
+msgstr "Si el valor está en blanco, se heredará de la categoría."
+
+#. module: sale_semaphore
 #: model:ir.model,name:sale_semaphore.model_account_invoice_report
 msgid "Invoices Statistics"
 msgstr "Estadísticas de facturas"
@@ -53,6 +59,12 @@ msgstr "Estadísticas de facturas"
 #: model:ir.model,name:sale_semaphore.model_account_move_line
 msgid "Journal Item"
 msgstr "Apunte contable"
+
+#. module: sale_semaphore
+#: model:ir.model.fields.selection,name:sale_semaphore.selection__product_product__semaphore_active__no
+#: model:ir.model.fields.selection,name:sale_semaphore.selection__product_template__semaphore_active__no
+msgid "No"
+msgstr "No"
 
 #. module: sale_semaphore
 #. openerp-web
@@ -170,3 +182,9 @@ msgstr ""
 "\n"
 "Por favor, establece los precios de forma que estén aceptados por el "
 "semáforo o contacta con algún administrador de ventas."
+
+#. module: sale_semaphore
+#: model:ir.model.fields.selection,name:sale_semaphore.selection__product_product__semaphore_active__yes
+#: model:ir.model.fields.selection,name:sale_semaphore.selection__product_template__semaphore_active__yes
+msgid "Yes"
+msgstr "Sí"
