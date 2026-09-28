@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-12-10 18:06+0000\n"
+"PO-Revision-Date: 2026-09-28 07:18+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields.selection,name:sale_invoice_plan.selection__sale_invoice_plan__invoice_type__advance
@@ -315,13 +315,13 @@ msgstr "Numero di rate"
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_tree_invoice_plan
 msgid "Pend."
-msgstr ""
+msgstr "Sosp."
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_order__invoice_plan_pending
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_filter_invoice_plan
 msgid "Pending plans"
-msgstr ""
+msgstr "Piani sospesi"
 
 #. module: sale_invoice_plan
 #: model:ir.model.fields,field_description:sale_invoice_plan.field_sale_invoice_plan__percent
@@ -453,7 +453,7 @@ msgstr "Visualizza le righe di piano di fatturazione vendite"
 #. module: sale_invoice_plan
 #: model_terms:ir.ui.view,arch_db:sale_invoice_plan.view_order_filter_invoice_plan
 msgid "With pending plans"
-msgstr ""
+msgstr "Con piani sospesi"
 
 #. module: sale_invoice_plan
 #: model:ir.model,name:sale_invoice_plan.model_sale_make_planned_invoice
