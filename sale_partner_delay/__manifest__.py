@@ -4,7 +4,7 @@
 {
     "name": "Sale Partner Delay",
     "summary": "Add customer-specific delivery lead time",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Sales Management",
     "license": "AGPL-3",
     "author": "Camptocamp, Odoo Community Association (OCA)",
