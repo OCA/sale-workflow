@@ -33,6 +33,14 @@ class SaleOrder(models.Model):
                 else False
             )
 
+    def action_confirm(self):
+        for order in self:
+            warehouses = order.order_line.warehouse_id
+            if len(warehouses) == 1 and warehouses != order.warehouse_id:
+                order.warehouse_id = warehouses
+        return super().action_confirm()
+
+
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
