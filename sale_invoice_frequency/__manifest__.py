@@ -4,7 +4,7 @@
 {
     "name": "Sale Invoice Frequency",
     "summary": "Define the invoice frequency for customers",
-    "version": "19.0.1.1.0",
+    "version": "20.0.1.0.0",
     "development_status": "Beta",
     "category": "Sales/Sales",
     "website": "https://github.com/OCA/sale-workflow",
@@ -18,7 +18,7 @@
         "account",
     ],
     "data": [
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "data/sale_invoice_frequency_data.xml",
         "views/sale_invoice_frequency_view.xml",
         "views/res_partner_view.xml",
