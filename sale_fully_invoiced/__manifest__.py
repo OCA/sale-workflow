@@ -8,7 +8,7 @@
     "license": "AGPL-3",
     "website": "https://github.com/OCA/sale-workflow",
     "category": "Sales",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "depends": ["sale"],
     "data": ["views/sale_views.xml"],
     "maintainers": ["AaronHForgeFlow"],

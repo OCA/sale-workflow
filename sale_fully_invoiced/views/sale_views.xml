@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="sale_order_form_filter_invoice_status_validated" model="ir.ui.view">
         <field name="name">sale.order.form.filter.invoice_status_validated</field>
