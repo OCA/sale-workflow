@@ -1,0 +1,7 @@
+- [Tecnativa](https://www.tecnativa.com):
+  - Ernesto Tejeda
+  - Pedro M. Baeza
+  - Sergio Teruel
+- Heliconia Solutions Pvt. Ltd. \<<https://www.heliconia.io>\>
+- Sudhir Arya\<<sudhir@erpharbor.com>\>
+  
