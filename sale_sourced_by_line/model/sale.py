@@ -16,6 +16,22 @@ class SaleOrder(models.Model):
         "this warehouse is used as default.",
     )
 
+    multiple_source_warehouses = fields.Html(
+        compute="_compute_multiple_source_warehouses"
+    )
+
+    @api.depends("order_line.warehouse_id")
+    def _compute_multiple_source_warehouses(self):
+        for order in self:
+            warehouses = order.order_line.warehouse_id
+            order.multiple_source_warehouses = (
+                self.env._(
+                    "The delivery is sent from multiple warehouses: %(warehouses)s",
+                    warehouses=", ".join(warehouses.mapped("name")),
+                )
+                if len(warehouses) > 1
+                else False
+            )
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"

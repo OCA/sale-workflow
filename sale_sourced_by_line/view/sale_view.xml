@@ -5,6 +5,17 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
+            <sheet position="before">
+                <div
+                    class="alert alert-info alert-dismissable"
+                    role="alert"
+                    style="margin-bottom:0px;"
+                    invisible="not multiple_source_warehouses"
+                >
+                    <field name="multiple_source_warehouses" />
+                </div>
+            </sheet>
+
             <xpath
                 expr="//field[@name='order_line']/list/field[@name='warehouse_id']"
                 position="attributes"
