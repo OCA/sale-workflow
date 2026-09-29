@@ -3,3 +3,5 @@
 -  `360ERP <https://www.360erp.com>`:
    -  Andrea Stirpe
 - Alejandro Parrales \<<alejandro17parrales@gmail.com>\>
+- Sudhir Arya\<<sudhir@erpharbor.com>\>
+   

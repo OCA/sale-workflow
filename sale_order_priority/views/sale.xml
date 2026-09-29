@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2018 Simone Rubino - Agile Business Group
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
@@ -18,10 +18,12 @@
             </xpath>
 
             <xpath
-                expr="//field[@name='order_line']//list//field[@name='price_unit']"
+                expr="//field[@name='order_line']/list[@name='sol_list']/column[@name='price_unit']"
                 position="after"
             >
-                <field name="priority" />
+                <column name="priority_name">
+                    <field name="priority" />
+                </column>
             </xpath>
         </field>
     </record>
