@@ -27,8 +27,9 @@ class ResPartner(models.Model):
             return super().write(vals)
         for record in self:
             childs = record.child_ids.filtered(
-                lambda child, user=record.user_id: not child.user_id
-                or child.user_id == user
+                lambda child, user=record.user_id: (
+                    not child.user_id or child.user_id == user
+                )
             )
             if childs:
                 # Recursive call that propagates down the whole hierarchy
