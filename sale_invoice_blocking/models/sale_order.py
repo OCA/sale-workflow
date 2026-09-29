@@ -16,8 +16,9 @@ class SaleOrder(models.Model):
     def _compute_invoice_status(self):
         res = super()._compute_invoice_status()
         for order in self.filtered(
-            lambda order: order.invoice_blocking_reason_id
-            and order.state in ("sale", "done")
+            lambda order: (
+                order.invoice_blocking_reason_id and order.state in ("sale", "done")
+            )
         ):
             order.invoice_status = "no"
         return res
