@@ -3,9 +3,8 @@
 
 {
     "name": "Product Form Sale Link",
-    "summary": """
-        Adds a button on product forms to access Sale Lines""",
-    "version": "19.0.1.0.0",
+    "summary": """Adds a button on product forms to access Sale Lines""",
+    "version": "20.0.1.0.0",
     "license": "AGPL-3",
     "category": "Sales",
     "author": "ACSONE SA/NV,Odoo Community Association (OCA)",
