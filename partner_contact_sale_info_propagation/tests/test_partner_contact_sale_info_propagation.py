@@ -6,6 +6,8 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestResPartner(BaseCommon):
+    _test_user_groups = ("base.group_user", "base.group_partner_manager")
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
@@ -32,12 +34,6 @@ class TestResPartner(BaseCommon):
                 "user_id": cls.salesperson.id,
             }
         )
-        cls.child_contact = cls.partner_model.create(
-            {
-                "name": "Child Contact",
-                "parent_id": cls.parent_partner.id,
-            }
-        )
 
     def test_inherit_user_id_on_creation(self):
         """A contact created under a company gets its salesperson (done by
@@ -47,19 +43,25 @@ class TestResPartner(BaseCommon):
     def test_propagate_user_id(self):
         """Changing the salesperson propagates to the contacts having the
         previous one."""
-        self.parent_partner.write({"user_id": self.new_salesperson.id})
+        self.parent_partner.with_context(test_propagation=True).write(
+            {"user_id": self.new_salesperson.id}
+        )
         self.assertEqual(self.child_contact.user_id, self.new_salesperson)
 
     def test_propagate_user_id_empty_child(self):
         """Changing the salesperson propagates to the contacts having none."""
         self.child_contact.write({"user_id": False})
-        self.parent_partner.write({"user_id": self.new_salesperson.id})
+        self.parent_partner.with_context(test_propagation=True).write(
+            {"user_id": self.new_salesperson.id}
+        )
         self.assertEqual(self.child_contact.user_id, self.new_salesperson)
 
     def test_no_propagate_user_id_own_salesperson(self):
         """Contacts with their own salesperson are not touched."""
         self.child_contact.write({"user_id": self.other_salesperson.id})
-        self.parent_partner.write({"user_id": self.new_salesperson.id})
+        self.parent_partner.with_context(test_propagation=True).write(
+            {"user_id": self.new_salesperson.id}
+        )
         self.assertEqual(self.child_contact.user_id, self.other_salesperson)
 
     def test_propagate_user_id_hierarchy(self):
@@ -71,7 +73,9 @@ class TestResPartner(BaseCommon):
             }
         )
         self.assertEqual(grand_child_contact.user_id, self.salesperson)
-        self.parent_partner.write({"user_id": self.new_salesperson.id})
+        self.parent_partner.with_context(test_propagation=True).write(
+            {"user_id": self.new_salesperson.id}
+        )
         self.assertEqual(grand_child_contact.user_id, self.new_salesperson)
 
     def test_no_propagation_without_context(self):

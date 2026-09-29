@@ -3,7 +3,7 @@
 {
     "name": "Partner contact sale info propagation",
     "summary": "Propagate the Salesperson from Company to Contacts",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Sales Management",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Tecnativa, Odoo Community Association (OCA)",
