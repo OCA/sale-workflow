@@ -1,0 +1,60 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_partner_delay
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-04-21 11:45+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15.2\n"
+
+#. module: sale_partner_delay
+#: model:ir.model.fields,help:sale_partner_delay.field_res_partner__sale_delay
+#: model:ir.model.fields,help:sale_partner_delay.field_res_users__sale_delay
+msgid ""
+"Additional delivery lead time for this customer, in days. This delay will be"
+" added to the product's delivery lead time."
+msgstr ""
+"Tempi di consegna aggiuntivi per questo cliente, in giorni. Questo ritardo "
+"verrà aggiunto ai tempi di consegna del prodotto."
+
+#. module: sale_partner_delay
+#: model:ir.model,name:sale_partner_delay.model_res_partner
+msgid "Contact"
+msgstr "Contatto"
+
+#. module: sale_partner_delay
+#: model:ir.model.fields,field_description:sale_partner_delay.field_res_partner__sale_delay
+#: model:ir.model.fields,field_description:sale_partner_delay.field_res_users__sale_delay
+msgid "Customer Lead Time"
+msgstr "Tempo attesa cliente"
+
+#. module: sale_partner_delay
+#: model:ir.model.fields,field_description:sale_partner_delay.field_res_partner__display_name
+#: model:ir.model.fields,field_description:sale_partner_delay.field_sale_order_line__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_partner_delay
+#: model:ir.model.fields,field_description:sale_partner_delay.field_res_partner__id
+#: model:ir.model.fields,field_description:sale_partner_delay.field_sale_order_line__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_partner_delay
+#: model:ir.model,name:sale_partner_delay.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Riga ordine di vendita"
+
+#. module: sale_partner_delay
+#: model_terms:ir.ui.view,arch_db:sale_partner_delay.view_partner_form
+msgid "days"
+msgstr "giorni"
