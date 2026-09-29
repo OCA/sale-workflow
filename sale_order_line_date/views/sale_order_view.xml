@@ -16,11 +16,17 @@
             >
                 <field name="commitment_date" />
             </xpath>
-            <xpath
+            <!--  <xpath
                 expr="//field[@name='order_line']/list/field[@name='price_unit']"
                 position="after"
+            > -->
+            <xpath
+                expr="//field[@name='order_line']/list[@name='sol_list']/column[@name='price_unit']"
+                position="after"
             >
-                <field name="commitment_date" optional="show" />
+                <column name="commitment_date_column">
+                    <field name="commitment_date" optional="show" />
+                </column>
             </xpath>
         </field>
     </record>
