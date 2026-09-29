@@ -1,0 +1,89 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_invoice_blocking
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-08-25 14:25+0000\n"
+"Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
+"Language-Team: none\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
+
+#. module: sale_invoice_blocking
+#. odoo-python
+#: code:addons/sale_invoice_blocking/models/sale_order.py:0
+msgid ""
+"\n"
+"- You may have an invoice blocking reason on the sale order"
+msgstr ""
+"\n"
+"- Si potrebbe avere un motivo di blocco della fattura nell'ordine di vendita"
+
+#. module: sale_invoice_blocking
+#: model:ir.model.fields,field_description:sale_invoice_blocking.field_sale_order__invoice_blocking_reason_id
+msgid "Blocking for invoicing"
+msgstr "Bloccante per la fatturazione"
+
+#. module: sale_invoice_blocking
+#: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__create_uid
+msgid "Created by"
+msgstr "Creato da"
+
+#. module: sale_invoice_blocking
+#: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__create_date
+msgid "Created on"
+msgstr "Creato il"
+
+#. module: sale_invoice_blocking
+#: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__display_name
+msgid "Display Name"
+msgstr "Nome visualizzato"
+
+#. module: sale_invoice_blocking
+#: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sale_invoice_blocking
+#: model:ir.actions.act_window,name:sale_invoice_blocking.invoice_blocking_reason_action
+#: model:ir.ui.menu,name:sale_invoice_blocking.menu_invoice_blocking_reason
+msgid "Invoicing block reasons"
+msgstr "Motivi blocco fatturazione"
+
+#. module: sale_invoice_blocking
+#: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__write_uid
+msgid "Last Updated by"
+msgstr "Ultimo aggiornamento di"
+
+#. module: sale_invoice_blocking
+#: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__write_date
+msgid "Last Updated on"
+msgstr "Ultimo aggiornamento il"
+
+#. module: sale_invoice_blocking
+#: model:ir.model.fields,field_description:sale_invoice_blocking.field_invoice_blocking_reason__name
+msgid "Reason"
+msgstr "Motivo"
+
+#. module: sale_invoice_blocking
+#: model:ir.model,name:sale_invoice_blocking.model_invoice_blocking_reason
+msgid "Sale invoice blocking reason"
+msgstr "Motivo blocco fatturazione vendite"
+
+#. module: sale_invoice_blocking
+#: model:ir.model,name:sale_invoice_blocking.model_sale_order
+msgid "Sales Order"
+msgstr "Ordine di vendita"
+
+#. module: sale_invoice_blocking
+#: model:ir.model.constraint,message:sale_invoice_blocking.constraint_invoice_blocking_reason_name_uniq
+msgid "You cannot have two invoice blocking reasons with the same name."
+msgstr ""
+"Non si possono avere due motivi di blocco fatturazione con lo stesso nome."
