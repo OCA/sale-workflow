@@ -15,7 +15,7 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     commitment_date = fields.Datetime(
-        "Delivery Date",
+        "Delivery Date ",
         compute="_compute_commitment_date",
         store=True,
         readonly=False,
