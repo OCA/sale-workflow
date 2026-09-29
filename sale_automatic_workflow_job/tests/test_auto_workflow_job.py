@@ -4,7 +4,7 @@
 from odoo.tests import tagged
 
 from odoo.addons.queue_job.job import identity_exact
-from odoo.addons.queue_job.tests.common import mock_with_delay
+from odoo.addons.queue_job.tests.common import mock_with_delay, trap_jobs
 from odoo.addons.sale_automatic_workflow.tests.common import (
     TestAutomaticWorkflowMixin,
     TestCommon,
@@ -136,3 +136,33 @@ class TestAutoWorkflowJob(TestCommon, TestAutomaticWorkflowMixin):
                 ],
             )
             self.assert_job_delayed(delayable_cls, delayable, "_do_sale_done", args)
+
+    def test_validate_sale_order_send_confirmation_mail(self):
+        # V1: with the confirmation mail option active, the mail is posted
+        # after the order is actually confirmed inside the job.
+        workflow = self.create_full_automatic({"send_order_confirmation_mail": True})
+        self.sale = self.create_sale_order(workflow)
+        msgs_before = len(self.sale.message_ids)
+        job_model = self.env["automatic.workflow.job"]
+        with trap_jobs() as trap:
+            self.run_job()  # cron enqueues _do_validate_sale_order
+            trap.assert_jobs_count(1, only=job_model._do_validate_sale_order)
+            # running the validation job confirms the order and enqueues the
+            # mail job
+            trap.perform_enqueued_jobs()
+            trap.assert_jobs_count(1, only=job_model._do_send_order_confirmation_mail)
+            trap.perform_enqueued_jobs()  # run the mail job
+        self.assertEqual(self.sale.state, "sale")
+        self.assertGreater(len(self.sale.message_ids), msgs_before)
+
+    def test_validate_sale_order_no_confirmation_mail(self):
+        # V2: without the confirmation mail option, the order is confirmed and
+        # no mail job is enqueued.
+        workflow = self.create_full_automatic({"send_order_confirmation_mail": False})
+        self.sale = self.create_sale_order(workflow)
+        job_model = self.env["automatic.workflow.job"]
+        with trap_jobs() as trap:
+            self.run_job()
+            trap.perform_enqueued_jobs()
+            trap.assert_jobs_count(0, only=job_model._do_send_order_confirmation_mail)
+        self.assertEqual(self.sale.state, "sale")
