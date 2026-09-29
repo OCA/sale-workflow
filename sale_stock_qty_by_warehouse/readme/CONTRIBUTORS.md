@@ -1,0 +1,2 @@
+- Benjamin Willig (ACSONE SA/NV) <benjamin.willig@acsone.eu>
+- Bejaoui Souheil (ACSONE SA/NV) <bejaoui.souheil@acsone.eu>
