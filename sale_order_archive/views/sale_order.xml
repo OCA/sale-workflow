@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2017-2020 Onestein (<http://www.onestein.eu>)
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
@@ -15,9 +15,7 @@
                 />
             </xpath>
             <xpath expr="//button[@name='action_draft']" position="attributes">
-                <attribute
-                    name="invisible"
-                >state != 'cancel' or active != True</attribute>
+                <attribute name="invisible" add="not active" separator="or" />
             </xpath>
             <xpath expr="//sheet">
                 <field name="active" invisible="1" />
