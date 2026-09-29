@@ -1,3 +1,10 @@
 [build-system]
 requires = ["whool"]
 build-backend = "whool.buildapi"
+
+[project]
+name = "odoo-addons-oca-sale-workflow"
+version = "20.0.20260929.0"
+dependencies = [
+    "odoo-addon-sale_force_invoiced @ git+https://github.com/OCA/sale-workflow.git@refs/pull/4611/head#subdirectory=sale_force_invoiced",
+]
