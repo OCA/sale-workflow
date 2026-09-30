@@ -3,3 +3,4 @@
 - [Trobz](https://trobz.com):
   - Nguyen Hoang Hiep \<<hiepnh@trobz.com>\>
   - Do Anh Duy \<<duyda@trobz.com>\>
+- Sudhir Arya\<<sudhir@erpharbor.com>\>
