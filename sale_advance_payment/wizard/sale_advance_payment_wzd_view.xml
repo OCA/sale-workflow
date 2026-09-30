@@ -14,6 +14,7 @@
                             domain="[('type','in',['bank', 'cash'])]"
                             widget="selection"
                             select="1"
+                            default_focus="1"
                             string="Payment Method"
                         />
                         <field name="payment_type" />
