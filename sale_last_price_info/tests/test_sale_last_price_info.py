@@ -1,6 +1,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-import odoo.tests.common as common
+from odoo.tests import common
 
 
 class TestSaleLastPriceInfo(common.TransactionCase):

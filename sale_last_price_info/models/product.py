@@ -9,7 +9,9 @@ class ProductProduct(models.Model):
     last_sale_price = fields.Float(compute="_compute_last_sale")
     last_sale_date = fields.Date(compute="_compute_last_sale")
     last_customer_id = fields.Many2one(
-        comodel_name="res.partner", string="Last Customer", compute="_compute_last_sale"
+        comodel_name="res.partner",
+        string="Last Customer ",
+        compute="_compute_last_sale",
     )
 
     def _compute_last_sale(self):
