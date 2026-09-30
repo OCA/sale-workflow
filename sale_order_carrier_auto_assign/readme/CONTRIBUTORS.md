@@ -5,3 +5,5 @@
 - Telmo Santos \<<telmo.santos@camptocamp.com>\>
 - Tris Doan \<<tridm@trobz.com>\>
 - Eduardo de Miguel ([Moduon](https://www.moduon.team/))
+- Sudhir Arya\<<sudhir@erpharbor.com>\>
+	
