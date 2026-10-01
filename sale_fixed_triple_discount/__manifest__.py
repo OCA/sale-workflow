@@ -4,7 +4,7 @@
 {
     "name": "Sale Fixed Triple Discount",
     "summary": "Compatibility between fixed and triple discount modules",
-    "version": "16.0.1.0.0",
+    "version": "16.0.1.0.1",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Odoo Community Association (OCA)",
