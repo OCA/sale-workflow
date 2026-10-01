@@ -19,22 +19,13 @@ msgid "<span>%</span>"
 msgstr ""
 
 #. module: sale_pricelist_triple_discount
-#: model:ir.model.fields,field_description:sale_pricelist_triple_discount.field_sale_order_line__discount2
-msgid "Disc. 2 (%)"
-msgstr ""
-
-#. module: sale_pricelist_triple_discount
-#: model:ir.model.fields,field_description:sale_pricelist_triple_discount.field_sale_order_line__discount3
-msgid "Disc. 3 (%)"
-msgstr ""
-
-#. module: sale_pricelist_triple_discount
 #: model_terms:ir.ui.view,arch_db:sale_pricelist_triple_discount.product_pricelist_view_form_discount
 msgid "Discount 2"
 msgstr ""
 
 #. module: sale_pricelist_triple_discount
 #: model:ir.model.fields,field_description:sale_pricelist_triple_discount.field_product_pricelist_item__discount2
+#: model:ir.model.fields,field_description:sale_pricelist_triple_discount.field_sale_order_line__discount2
 msgid "Discount 2 (%)"
 msgstr ""
 
@@ -45,12 +36,18 @@ msgstr ""
 
 #. module: sale_pricelist_triple_discount
 #: model:ir.model.fields,field_description:sale_pricelist_triple_discount.field_product_pricelist_item__discount3
+#: model:ir.model.fields,field_description:sale_pricelist_triple_discount.field_sale_order_line__discount3
 msgid "Discount 3 (%)"
 msgstr ""
 
 #. module: sale_pricelist_triple_discount
 #: model:ir.model,name:sale_pricelist_triple_discount.model_product_pricelist_item
 msgid "Pricelist Rule"
+msgstr ""
+
+#. module: sale_pricelist_triple_discount
+#: model:ir.model,name:sale_pricelist_triple_discount.model_sale_order
+msgid "Sales Order"
 msgstr ""
 
 #. module: sale_pricelist_triple_discount
