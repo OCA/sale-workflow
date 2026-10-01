@@ -24,7 +24,7 @@ class TestSaleOrderLineTag(BaseCommon):
 
     def test_assign_single_tag_to_order_line(self):
         """Assign a single tag to a sale order line"""
-        sale_form = Form(self.order_model)
+        sale_form = Form(self.order_model.sudo())
         sale_form.partner_id = self.partner
         with sale_form.order_line.new() as line:
             line.product_id = self.product
@@ -37,7 +37,7 @@ class TestSaleOrderLineTag(BaseCommon):
 
     def test_assign_multiple_tags_to_order_line(self):
         """Assign multiple tags to a single sale order line"""
-        sale_form = Form(self.order_model)
+        sale_form = Form(self.order_model.sudo())
         sale_form.partner_id = self.partner
         with sale_form.order_line.new() as line:
             line.product_id = self.product
@@ -51,7 +51,7 @@ class TestSaleOrderLineTag(BaseCommon):
 
     def test_filter_lines_by_tag(self):
         """Search sale order lines by a specific tag"""
-        sale_form = Form(self.order_model)
+        sale_form = Form(self.order_model.sudo())
         sale_form.partner_id = self.partner
         with sale_form.order_line.new() as line:
             line.product_id = self.product
@@ -59,7 +59,9 @@ class TestSaleOrderLineTag(BaseCommon):
             line.tag_ids.add(self.tag_urgent)
         sale_order = sale_form.save()
 
-        lines_with_tag = self.env["sale.order.line"].search(
-            [("tag_ids", "in", self.tag_urgent.id)]
+        lines_with_tag = (
+            self.env["sale.order.line"]
+            .sudo()
+            .search([("tag_ids", "in", self.tag_urgent.id)])
         )
         self.assertIn(sale_order.order_line, lines_with_tag)
