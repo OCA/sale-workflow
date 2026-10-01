@@ -22,20 +22,15 @@ msgid "Config Settings"
 msgstr "Configuración de Ajustes"
 
 #. module: sale_order_general_discount_triple
-#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order_line__discount2
-msgid "Disc. 2 (%)"
-msgstr "Desc. 2 (%)"
+#: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__general_discount__discount1
+#: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__pricelist_discount__discount1
+msgid "Discount 1"
+msgstr ""
 
 #. module: sale_order_general_discount_triple
-#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order_line__discount3
-msgid "Disc. 3 (%)"
-msgstr "Desc. 3 (%)"
-
-#. module: sale_order_general_discount_triple
-#: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__general_discount__discount
-#: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__pricelist_discount__discount
-msgid "Discount"
-msgstr "Descuento"
+#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order_line__discount1
+msgid "Discount 1 (%)"
+msgstr ""
 
 #. module: sale_order_general_discount_triple
 #: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__general_discount__discount2
@@ -44,10 +39,20 @@ msgid "Discount 2"
 msgstr "Descuento 2"
 
 #. module: sale_order_general_discount_triple
+#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order_line__discount2
+msgid "Discount 2 (%)"
+msgstr ""
+
+#. module: sale_order_general_discount_triple
 #: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__general_discount__discount3
 #: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__pricelist_discount__discount3
 msgid "Discount 3"
 msgstr "Descuento 3"
+
+#. module: sale_order_general_discount_triple
+#: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order_line__discount3
+msgid "Discount 3 (%)"
+msgstr ""
 
 #. module: sale_order_general_discount_triple
 #: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_res_config_settings__general_discount
@@ -68,6 +73,15 @@ msgstr "Órdenes de Venta"
 #: model:ir.model,name:sale_order_general_discount_triple.model_sale_order_line
 msgid "Sales Order Line"
 msgstr "Línea de Órdenes de Venta"
+
+#~ msgid "Disc. 2 (%)"
+#~ msgstr "Desc. 2 (%)"
+
+#~ msgid "Disc. 3 (%)"
+#~ msgstr "Desc. 3 (%)"
+
+#~ msgid "Discount"
+#~ msgstr "Descuento"
 
 #~ msgid "Discount (%)"
 #~ msgstr "(%) Descuento"
