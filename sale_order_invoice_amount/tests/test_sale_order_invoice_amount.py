@@ -21,14 +21,14 @@ class TestSaleOrderInvoiceAmount(BaseCommon):
         )
 
         # Partners
-        partner_model = cls.env["res.partner"]
+        partner_model = cls.env["res.partner"].sudo()
         cls.res_partner_1 = partner_model.create({"name": "Wood Corner"})
         cls.res_partner_address_1 = partner_model.create(
             {"name": "Willie Burke", "parent_id": cls.res_partner_1.id}
         )
         cls.res_partner_2 = partner_model.create({"name": "Partner 12"})
         # Products
-        product_model = cls.env["product.product"]
+        product_model = cls.env["product.product"].sudo()
         cls.product_1 = product_model.create(
             {"name": "Desk Combination", "type": "consu"}
         )
@@ -38,9 +38,9 @@ class TestSaleOrderInvoiceAmount(BaseCommon):
         cls.product_3 = product_model.create(
             {"name": "Repair Services", "type": "service"}
         )
-        cls.currency_eur = cls.env.ref("base.EUR")
+        cls.currency_eur = cls.env.ref("base.EUR").sudo()
         cls.currency_eur.active = True
-        cls.currency_cad = cls.env.ref("base.CAD")
+        cls.currency_cad = cls.env.ref("base.CAD").sudo()
         cls.currency_cad.active = True
         cls.env["res.currency.rate"].search(
             Domain([("currency_id", "in", [cls.currency_eur.id, cls.currency_cad.id])])
@@ -73,10 +73,10 @@ class TestSaleOrderInvoiceAmount(BaseCommon):
                 "country_id": country.id,
             }
         )
-        cls.sale_order_1 = cls.env["sale.order"].create(
-            {"partner_id": cls.res_partner_1.id}
+        cls.sale_order_1 = (
+            cls.env["sale.order"].sudo().create({"partner_id": cls.res_partner_1.id})
         )
-        sale_order_line_model = cls.env["sale.order.line"]
+        sale_order_line_model = cls.env["sale.order.line"].sudo()
         cls.order_line_1 = sale_order_line_model.create(
             {
                 "order_id": cls.sale_order_1.id,
@@ -110,29 +110,33 @@ class TestSaleOrderInvoiceAmount(BaseCommon):
 
     def test_01_sale_order_invoiced_amount(self):
         self.assertEqual(
-            self.sale_order_1.amount_invoiced,
+            self.sale_order_1.sudo().amount_invoiced,
             0.0,
             "Invoiced Amount should be 0.0",
         )
 
-        self.sale_order_1.action_confirm()
-        aml1 = self.order_line_1._prepare_invoice_line()
-        aml2 = self.order_line_2._prepare_invoice_line()
-        test_invoice = self.env["account.move"].create(
-            {
-                "move_type": "out_invoice",
-                "invoice_date": fields.Date.from_string("2024-01-01"),
-                "date": fields.Date.from_string("2024-01-01"),
-                "partner_id": self.res_partner_1.id,
-                "line_ids": [
-                    Command.create(
-                        aml1,
-                    ),
-                    Command.create(
-                        aml2,
-                    ),
-                ],
-            }
+        self.sale_order_1.sudo().action_confirm()
+        aml1 = self.order_line_1.sudo()._prepare_invoice_line()
+        aml2 = self.order_line_2.sudo()._prepare_invoice_line()
+        test_invoice = (
+            self.env["account.move"]
+            .sudo()
+            .create(
+                {
+                    "move_type": "out_invoice",
+                    "invoice_date": fields.Date.from_string("2024-01-01"),
+                    "date": fields.Date.from_string("2024-01-01"),
+                    "partner_id": self.res_partner_1.id,
+                    "line_ids": [
+                        Command.create(
+                            aml1,
+                        ),
+                        Command.create(
+                            aml2,
+                        ),
+                    ],
+                }
+            )
         )
         test_invoice.action_post()
         self.assertEqual(
@@ -145,7 +149,7 @@ class TestSaleOrderInvoiceAmount(BaseCommon):
             121.0,
             "Uninvoiced Amount should be 121.0, as the lines keep uninvoiced.",
         )
-        tax_totals = self.sale_order_1.tax_totals
+        tax_totals = self.sale_order_1.sudo().tax_totals
         self.assertEqual(
             tax_totals["amount_invoiced"],
             242.0,
@@ -165,11 +169,11 @@ class TestSaleOrderInvoiceAmount(BaseCommon):
 
     def test_02_sale_order_invoiced_amount_different_currencies_invoice(self):
         self.assertEqual(
-            self.sale_order_1.amount_invoiced,
+            self.sale_order_1.sudo().amount_invoiced,
             0.0,
             "Invoiced Amount should be 0.0",
         )
-        self.sale_order_1.action_confirm()
+        self.sale_order_1.sudo().action_confirm()
 
         price_foreign_currency_1 = self.sale_order_1.currency_id._convert(
             10.0,
@@ -183,34 +187,32 @@ class TestSaleOrderInvoiceAmount(BaseCommon):
             self.sale_order_1.company_id,
             fields.Date.from_string("2024-01-01"),
         )
-        aml1 = self.order_line_1._prepare_invoice_line(
-            **{
-                "price_unit": price_foreign_currency_1,
-                "currency_id": self.currency_eur.id,
-            }
+        aml1 = self.order_line_1.sudo()._prepare_invoice_line(
+            price_unit=price_foreign_currency_1, currency_id=self.currency_eur.id
         )
-        aml2 = self.order_line_2._prepare_invoice_line(
-            **{
-                "price_unit": price_foreign_currency_2,
-                "currency_id": self.currency_eur.id,
-            }
+        aml2 = self.order_line_2.sudo()._prepare_invoice_line(
+            price_unit=price_foreign_currency_2, currency_id=self.currency_eur.id
         )
-        test_invoice = self.env["account.move"].create(
-            {
-                "move_type": "out_invoice",
-                "invoice_date": fields.Date.from_string("2024-01-01"),
-                "date": fields.Date.from_string("2024-01-01"),
-                "partner_id": self.res_partner_1.id,
-                "line_ids": [
-                    Command.create(
-                        aml1,
-                    ),
-                    Command.create(
-                        aml2,
-                    ),
-                ],
-                "currency_id": self.currency_eur.id,
-            }
+        test_invoice = (
+            self.env["account.move"]
+            .sudo()
+            .create(
+                {
+                    "move_type": "out_invoice",
+                    "invoice_date": fields.Date.from_string("2024-01-01"),
+                    "date": fields.Date.from_string("2024-01-01"),
+                    "partner_id": self.res_partner_1.id,
+                    "line_ids": [
+                        Command.create(
+                            aml1,
+                        ),
+                        Command.create(
+                            aml2,
+                        ),
+                    ],
+                    "currency_id": self.currency_eur.id,
+                }
+            )
         )
         test_invoice.action_post()
         self.assertAlmostEqual(
@@ -225,42 +227,61 @@ class TestSaleOrderInvoiceAmount(BaseCommon):
         )
 
     def test_03_sale_order_invoiced_amount_different_currencies_sale(self):
-        self.currency_cad.active = True
-        self.sale_order_1 = self.env["sale.order"].create(
-            {"partner_id": self.res_partner_1.id, "currency_id": self.currency_eur.id}
+        self.currency_cad.sudo().active = True
+        self.sale_order_1 = (
+            self.env["sale.order"]
+            .sudo()
+            .create(
+                {
+                    "partner_id": self.res_partner_1.id,
+                    "currency_id": self.currency_eur.id,
+                }
+            )
         )
-        self.order_line_1 = self.env["sale.order.line"].create(
-            {
-                "order_id": self.sale_order_1.id,
-                "product_id": self.product_1.id,
-                "product_uom_id": self.product_1.uom_id.id,
-                "product_uom_qty": 10.0,
-                "price_unit": 10.0,
-                "tax_ids": [Command.set(self.tax.ids)],
-                "currency_id": self.currency_eur.id,
-            }
+        self.order_line_1 = (
+            self.env["sale.order.line"]
+            .sudo()
+            .create(
+                {
+                    "order_id": self.sale_order_1.id,
+                    "product_id": self.product_1.id,
+                    "product_uom_id": self.product_1.uom_id.id,
+                    "product_uom_qty": 10.0,
+                    "price_unit": 10.0,
+                    "tax_ids": [Command.set(self.tax.ids)],
+                    "currency_id": self.currency_eur.id,
+                }
+            )
         )
-        self.order_line_2 = self.env["sale.order.line"].create(
-            {
-                "order_id": self.sale_order_1.id,
-                "product_id": self.product_2.id,
-                "product_uom_id": self.product_2.uom_id.id,
-                "product_uom_qty": 25.0,
-                "price_unit": 4.0,
-                "tax_ids": [Command.set(self.tax.ids)],
-                "currency_id": self.currency_eur.id,
-            }
+        self.order_line_2 = (
+            self.env["sale.order.line"]
+            .sudo()
+            .create(
+                {
+                    "order_id": self.sale_order_1.id,
+                    "product_id": self.product_2.id,
+                    "product_uom_id": self.product_2.uom_id.id,
+                    "product_uom_qty": 25.0,
+                    "price_unit": 4.0,
+                    "tax_ids": [Command.set(self.tax.ids)],
+                    "currency_id": self.currency_eur.id,
+                }
+            )
         )
-        self.order_line_3 = self.env["sale.order.line"].create(
-            {
-                "order_id": self.sale_order_1.id,
-                "product_id": self.product_3.id,
-                "product_uom_id": self.product_3.uom_id.id,
-                "product_uom_qty": 20.0,
-                "price_unit": 5.0,
-                "tax_ids": [Command.set(self.tax.ids)],
-                "currency_id": self.currency_eur.id,
-            }
+        self.order_line_3 = (
+            self.env["sale.order.line"]
+            .sudo()
+            .create(
+                {
+                    "order_id": self.sale_order_1.id,
+                    "product_id": self.product_3.id,
+                    "product_uom_id": self.product_3.uom_id.id,
+                    "product_uom_qty": 20.0,
+                    "price_unit": 5.0,
+                    "tax_ids": [Command.set(self.tax.ids)],
+                    "currency_id": self.currency_eur.id,
+                }
+            )
         )
 
         self.assertEqual(
@@ -283,33 +304,31 @@ class TestSaleOrderInvoiceAmount(BaseCommon):
             fields.Date.from_string("2024-01-01"),
         )
         aml1 = self.order_line_1._prepare_invoice_line(
-            **{
-                "price_unit": price_foreign_currency_1,
-                "currency_id": self.currency_cad.id,
-            }
+            price_unit=price_foreign_currency_1, currency_id=self.currency_cad.id
         )
         aml2 = self.order_line_2._prepare_invoice_line(
-            **{
-                "price_unit": price_foreign_currency_2,
-                "currency_id": self.currency_cad.id,
-            }
+            price_unit=price_foreign_currency_2, currency_id=self.currency_cad.id
         )
-        test_invoice = self.env["account.move"].create(
-            {
-                "move_type": "out_invoice",
-                "invoice_date": fields.Date.from_string("2024-01-01"),
-                "date": fields.Date.from_string("2024-01-01"),
-                "partner_id": self.res_partner_1.id,
-                "line_ids": [
-                    Command.create(
-                        aml1,
-                    ),
-                    Command.create(
-                        aml2,
-                    ),
-                ],
-                "currency_id": self.currency_cad.id,
-            }
+        test_invoice = (
+            self.env["account.move"]
+            .sudo()
+            .create(
+                {
+                    "move_type": "out_invoice",
+                    "invoice_date": fields.Date.from_string("2024-01-01"),
+                    "date": fields.Date.from_string("2024-01-01"),
+                    "partner_id": self.res_partner_1.id,
+                    "line_ids": [
+                        Command.create(
+                            aml1,
+                        ),
+                        Command.create(
+                            aml2,
+                        ),
+                    ],
+                    "currency_id": self.currency_cad.id,
+                }
+            )
         )
         test_invoice.action_post()
         self.assertAlmostEqual(self.sale_order_1.amount_invoiced, 242.0, delta=0.2)
@@ -338,25 +357,64 @@ class TestSaleOrderInvoiceAmount(BaseCommon):
             fields.Date.from_string("2024-01-01"),
         )
         aml1 = self.order_line_1._prepare_invoice_line(
-            **{
-                "price_unit": price_foreign_currency_1,
-                "currency_id": self.currency_cad.id,
-            }
+            price_unit=price_foreign_currency_1, currency_id=self.currency_cad.id
         )
         aml2 = self.order_line_2._prepare_invoice_line(
-            **{
-                "price_unit": price_foreign_currency_2,
-                "currency_id": self.currency_cad.id,
-            }
+            price_unit=price_foreign_currency_2, currency_id=self.currency_cad.id
         )
         aml3 = self.order_line_3._prepare_invoice_line(
-            **{
-                "price_unit": price_foreign_currency_3,
-                "currency_id": self.currency_cad.id,
-            }
+            price_unit=price_foreign_currency_3, currency_id=self.currency_cad.id
         )
-        test_invoice = self.env["account.move"].create(
-            [
+        test_invoice = (
+            self.env["account.move"]
+            .sudo()
+            .create(
+                [
+                    {
+                        "move_type": "out_invoice",
+                        "invoice_date": fields.Date.from_string("2024-01-01"),
+                        "date": fields.Date.from_string("2024-01-01"),
+                        "partner_id": self.res_partner_1.id,
+                        "line_ids": [
+                            Command.create(
+                                aml1,
+                            ),
+                            Command.create(
+                                aml2,
+                            ),
+                            Command.create(
+                                aml3,
+                            ),
+                        ],
+                        "currency_id": self.currency_cad.id,
+                    }
+                ]
+            )
+        )
+        test_invoice.action_post()
+        self.assertAlmostEqual(self.sale_order_1.amount_invoiced, 363.0, delta=0.2)
+        self.assertEqual(
+            self.sale_order_1.amount_to_invoice,
+            0.0,
+            "Uninvoiced Amount should be calculated.",
+        )
+
+    def test_05_sale_order_invoiced(self):
+        self.assertEqual(
+            self.sale_order_1.sudo().amount_invoiced,
+            0.0,
+            "Invoiced Amount should be 0.0",
+        )
+
+        self.sale_order_1.sudo().action_confirm()
+        aml1 = self.order_line_1.sudo()._prepare_invoice_line()
+        aml1["price_unit"] = 15.0
+        aml1["quantity"] = 5.0
+        aml2 = self.order_line_2.sudo()._prepare_invoice_line()
+        test_invoice = (
+            self.env["account.move"]
+            .sudo()
+            .create(
                 {
                     "move_type": "out_invoice",
                     "invoice_date": fields.Date.from_string("2024-01-01"),
@@ -369,49 +427,9 @@ class TestSaleOrderInvoiceAmount(BaseCommon):
                         Command.create(
                             aml2,
                         ),
-                        Command.create(
-                            aml3,
-                        ),
                     ],
-                    "currency_id": self.currency_cad.id,
                 }
-            ]
-        )
-        test_invoice.action_post()
-        self.assertAlmostEqual(self.sale_order_1.amount_invoiced, 363.0, delta=0.2)
-        self.assertEqual(
-            self.sale_order_1.amount_to_invoice,
-            0.0,
-            "Uninvoiced Amount should be calculated.",
-        )
-
-    def test_05_sale_order_invoiced(self):
-        self.assertEqual(
-            self.sale_order_1.amount_invoiced,
-            0.0,
-            "Invoiced Amount should be 0.0",
-        )
-
-        self.sale_order_1.action_confirm()
-        aml1 = self.order_line_1._prepare_invoice_line()
-        aml1["price_unit"] = 15.0
-        aml1["quantity"] = 5.0
-        aml2 = self.order_line_2._prepare_invoice_line()
-        test_invoice = self.env["account.move"].create(
-            {
-                "move_type": "out_invoice",
-                "invoice_date": fields.Date.from_string("2024-01-01"),
-                "date": fields.Date.from_string("2024-01-01"),
-                "partner_id": self.res_partner_1.id,
-                "line_ids": [
-                    Command.create(
-                        aml1,
-                    ),
-                    Command.create(
-                        aml2,
-                    ),
-                ],
-            }
+            )
         )
         test_invoice.action_post()
         self.assertEqual(
