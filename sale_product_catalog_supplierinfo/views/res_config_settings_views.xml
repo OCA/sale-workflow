@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Tecnativa - Carlos Dauden
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="model">res.config.settings</field>
+        <field
+            name="inherit_id"
+            ref="sale_product_catalog_extended.res_config_settings_view_form"
+        />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//setting[@id='sale_product_catalog_defaults']"
+                position="after"
+            >
+                <setting
+                    id="sale_product_catalog_show_vendor"
+                    help="Show the vendor name on the vendor cards of the product catalog, instead of 'On order'"
+                >
+                    <field name="catalog_show_vendor" />
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
