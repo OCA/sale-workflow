@@ -32,9 +32,66 @@ Sale Stock Secondary Unit
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module extends the functionality of stock secondary unit module and
-sale_order_secondary_unit to allow copy secondary sale data to stock
-move when a sale order is confirmed.
+This module bridges ``sale_order_secondary_unit`` (the secondary unit
+demanded on a sale order line) and ``stock_secondary_unit`` (the
+secondary unit carried on a stock move), so a product ordered in a
+secondary unit (e.g. "40 pieces" of a product sold by weight) keeps that
+unit and quantity all the way through the delivery/procurement chain,
+not just on the sale order line itself.
+
+Confirming an order
+-------------------
+
+When a sale order is confirmed, the secondary unit and quantity of each
+line are copied onto the stock move(s) it procures
+(``sale.order.line._prepare_procurement_values()``), and ``stock.rule``
+is told to actually carry those two keys onto the created move
+(``_get_custom_move_fields()``) - without this, a procurement only ever
+carries core's own fields (product, quantity, dates...), never anything
+module-specific.
+
+Multi-step "buy" routes
+-----------------------
+
+A multi-step purchase route (e.g. Receive in 2 steps) procures an
+*intermediate* move first (the vendor receipt), which has no
+``sale_line_id`` of its own - only the eventual delivery move, further
+down the same chain, is linked back to the sale order line. Without
+walking that chain, ``_prepare_procurement_values()`` on the
+intermediate move would have no sale line to read the secondary unit
+from and silently drop it (or worse, wipe out whatever
+``stock_secondary_unit``'s own generic value already put there for a
+pure-internal chain). ``stock.move._prepare_procurement_values()`` here
+falls back to ``sale_stock``'s own ``_get_sale_order_lines()`` (which
+walks the chain in both directions) to find the real originating sale
+line, and only overrides the secondary unit/quantity when one is
+actually found.
+
+Correcting a count on an already-confirmed order
+------------------------------------------------
+
+A line's secondary quantity (e.g. a piece count) is sometimes corrected
+*after* the order is confirmed and the delivery is already scheduled - a
+weight-based product ordered as "40 pieces" turns out to need 42. Simply
+writing the new count on the line does two things:
+
+- Relaunches the sale order's own procurement rule *only if* the primary
+  quantity (e.g. the weight) was written in the same call - a pure count
+  correction never touches the primary quantity, and relaunching the
+  stock rule for an unchanged primary quantity is a no-op (it only ever
+  creates a new move for a primary-quantity delta; it never reads back
+  into an existing move's secondary quantity).
+- So, when only the count changes, the correction is instead written
+  directly onto whichever stock move for that line is still pending (not
+  ``done`` or ``cancel``). For a ``secondary_priority`` secondary unit,
+  writing it also recomputes that move's own primary quantity, since the
+  weight is still estimated from the corrected count.
+- If the line already has **more than one** pending move at once (e.g. a
+  backorder pick still pending alongside an earlier leg not yet
+  processed), the corrected total is distributed across all of them
+  proportionally to each move's current secondary-quantity share, so
+  none of them is left with a stale count and the sum still adds up
+  exactly.
 
 **Table of contents**
 
@@ -44,15 +101,58 @@ move when a sale order is confirmed.
 Usage
 =====
 
-To use this module you need to:
+Selling a product in a secondary unit
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. Go to a *Product > General Information tab*.
-2. Create any record in "Secondary unit of measure".
-3. Set the conversion factor.
-4. Go to *Sale > Quotation* and create a sale order with this product.
-5. Confirm the sale order.
-6. Go to picking from this sale order, you will see secondary unit
-   information.
+1. On the product's *General Information* tab, add a secondary unit of
+   measure and its conversion factor (from ``product_secondary_unit``),
+   and pick one as the sale-facing default (``sale_secondary_uom_id``,
+   from ``sale_order_secondary_unit``).
+2. Create a sale order for that product and set the secondary quantity
+   on the order line (e.g. "40" pieces) instead of, or alongside, the
+   primary one.
+3. Confirm the order. Open the resulting delivery (or receipt, for a
+   multi-step purchase route): its stock move already carries the same
+   secondary unit and quantity, ready to be counted on the warehouse
+   floor.
+
+Adding a product to an already-confirmed order from the catalog
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Adding a new line (or raising an existing one's quantity) through the
+sale order's product catalog after confirmation also carries the
+secondary unit onto the newly created (or extended) stock move(s), the
+same as confirming the order from scratch would - no separate step
+needed.
+
+Correcting a piece count after confirmation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If an operator or salesperson needs to correct the secondary quantity on
+an already-confirmed line - typically because the real count differs
+from what was ordered, and the primary quantity (e.g. weight) is not
+being touched at the same time - just edit the line's secondary quantity
+field and save:
+
+- The pending delivery (or receipt) move for that line is updated to the
+  new count immediately, without needing to re-run any procurement
+  action.
+- If the secondary unit is a ``secondary_priority`` one (see
+  ``stock_secondary_unit``), the move's own primary quantity is
+  recalculated from the new count too, since the weight is only ever an
+  estimate derived from it.
+- If the line has already been partially processed and has more than one
+  pending move at once, the correction is spread across all of them in
+  proportion to what each was already carrying - there is nothing extra
+  to do, the split happens automatically.
+
+A multi-step "buy" route
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+No extra configuration is needed: when the purchase route procures an
+intermediate move before the final delivery (e.g. *Receive in 2 steps*),
+the secondary unit still ends up on every move in the chain, not just
+the last one linked to the sale order line.
 
 Bug Tracker
 ===========
