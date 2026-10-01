@@ -82,7 +82,6 @@ class SaleOrderLine(models.Model):
         return super()._compute_discount()
 
     def _add_precomputed_values(self, vals_list):
-        # To be removed if odoo/odoo#278444 is merged
         for vals in vals_list:
             if "price_unit" in vals and "technical_price_unit" not in vals:
                 # Absurd value to not match any of the possible creation values
