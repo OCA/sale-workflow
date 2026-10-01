@@ -22,22 +22,13 @@ msgid "<span>%</span>"
 msgstr ""
 
 #. module: sale_pricelist_triple_discount
-#: model:ir.model.fields,field_description:sale_pricelist_triple_discount.field_sale_order_line__discount2
-msgid "Disc. 2 (%)"
-msgstr "Desc. 2 (%)"
-
-#. module: sale_pricelist_triple_discount
-#: model:ir.model.fields,field_description:sale_pricelist_triple_discount.field_sale_order_line__discount3
-msgid "Disc. 3 (%)"
-msgstr "Desc. 3 (%)"
-
-#. module: sale_pricelist_triple_discount
 #: model_terms:ir.ui.view,arch_db:sale_pricelist_triple_discount.product_pricelist_view_form_discount
 msgid "Discount 2"
 msgstr "Descuento 2"
 
 #. module: sale_pricelist_triple_discount
 #: model:ir.model.fields,field_description:sale_pricelist_triple_discount.field_product_pricelist_item__discount2
+#: model:ir.model.fields,field_description:sale_pricelist_triple_discount.field_sale_order_line__discount2
 msgid "Discount 2 (%)"
 msgstr "Descuento 2 (%)"
 
@@ -48,6 +39,7 @@ msgstr "Descuento 3"
 
 #. module: sale_pricelist_triple_discount
 #: model:ir.model.fields,field_description:sale_pricelist_triple_discount.field_product_pricelist_item__discount3
+#: model:ir.model.fields,field_description:sale_pricelist_triple_discount.field_sale_order_line__discount3
 msgid "Discount 3 (%)"
 msgstr "Descuento 3 (%)"
 
@@ -55,6 +47,11 @@ msgstr "Descuento 3 (%)"
 #: model:ir.model,name:sale_pricelist_triple_discount.model_product_pricelist_item
 msgid "Pricelist Rule"
 msgstr "Lista de precios"
+
+#. module: sale_pricelist_triple_discount
+#: model:ir.model,name:sale_pricelist_triple_discount.model_sale_order
+msgid "Sales Order"
+msgstr ""
 
 #. module: sale_pricelist_triple_discount
 #: model:ir.model,name:sale_pricelist_triple_discount.model_sale_order_line
@@ -70,3 +67,9 @@ msgstr ""
 #: model:ir.model.fields,help:sale_pricelist_triple_discount.field_product_pricelist_item__discount3
 msgid "Third discount applied on a sale order line."
 msgstr ""
+
+#~ msgid "Disc. 2 (%)"
+#~ msgstr "Desc. 2 (%)"
+
+#~ msgid "Disc. 3 (%)"
+#~ msgstr "Desc. 3 (%)"
