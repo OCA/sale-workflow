@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2021 Patrick Wilson <patrickraymondwilson@gmail.com>
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).-->
 <odoo>
@@ -57,8 +58,8 @@
         <field name="view_mode">list,form</field>
     </record>
     <menuitem
-        name="Sale Order Tags"
         id="sale_order_tag_menu"
+        name="Sale Order Tags"
         parent="sale.menu_sales_config"
         action="sale_order_tag_action"
         sequence="20"
