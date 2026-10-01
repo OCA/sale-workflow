@@ -14,10 +14,11 @@ class SaleOrderTag(models.Model):
     color = fields.Integer(string="Color Index")
     team_ids = fields.Many2many("crm.team", string="Sales Teams")
     active = fields.Boolean(default=True)
-    company_id = fields.Many2one("res.company", string="Company")
+    company_id = fields.Many2one("res.company", string="Company ")
     sequence = fields.Integer(
-        default=lambda self: self.env["ir.sequence"].next_by_code("sale.order.tag")
-        or 0,
+        default=lambda self: (
+            self.env["ir.sequence"].next_by_code("sale.order.tag") or 0
+        ),
         required=True,
     )
 
