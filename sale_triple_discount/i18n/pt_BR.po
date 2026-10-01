@@ -10,8 +10,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-11-23 01:52+0000\n"
 "PO-Revision-Date: 2024-05-29 19:38+0000\n"
-"Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
-"translation.odoo-community.org>\n"
+"Last-Translator: Rodrigo Macedo "
+"<sottomaiormacedotec@users.noreply.translation.odoo-community.org>\n"
 "Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
 "23907/pt_BR/)\n"
 "Language: pt_BR\n"
@@ -20,6 +20,11 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 4.17\n"
+
+#. module: sale_triple_discount
+#: model_terms:ir.ui.view,arch_db:sale_triple_discount.report_saleorder_document_triple_discount
+msgid "<span>Disc. 1 (%)</span>"
+msgstr ""
 
 #. module: sale_triple_discount
 #: model_terms:ir.ui.view,arch_db:sale_triple_discount.report_saleorder_document_triple_discount
@@ -37,24 +42,19 @@ msgid "Additive"
 msgstr "Aditivo"
 
 #. module: sale_triple_discount
+#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount1
+msgid "Discount 1 (%)"
+msgstr ""
+
+#. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount2
-msgid "Disc. 2 (%)"
-msgstr "Desc. 2 (%)"
+msgid "Discount 2 (%)"
+msgstr ""
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount3
-msgid "Disc. 3 (%)"
-msgstr "Desc. 3 (%)"
-
-#. module: sale_triple_discount
-#: model:ir.model.constraint,message:sale_triple_discount.constraint_sale_order_line_discount2_limit
-msgid "Discount 2 must be lower or equal than 100%."
-msgstr "O desconto 2 deve ser menor ou igual a 100%."
-
-#. module: sale_triple_discount
-#: model:ir.model.constraint,message:sale_triple_discount.constraint_sale_order_line_discount3_limit
-msgid "Discount 3 must be lower or equal than 100%."
-msgstr "O desconto 3 deve ser menor ou igual a 100%."
+msgid "Discount 3 (%)"
+msgstr ""
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discounting_type
@@ -92,6 +92,24 @@ msgstr ""
 "Os descontos aditivos são somados primeiro e depois aplicados.\n"
 "Os descontos multiplicativos são aplicados sequencialmente.\n"
 "Descontos multiplicativos são padrão"
+
+#. module: sale_triple_discount
+#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount
+#: model_terms:ir.ui.view,arch_db:sale_triple_discount.sale_order_triple_discount_form_view
+msgid "Total discount"
+msgstr ""
+
+#~ msgid "Disc. 2 (%)"
+#~ msgstr "Desc. 2 (%)"
+
+#~ msgid "Disc. 3 (%)"
+#~ msgstr "Desc. 3 (%)"
+
+#~ msgid "Discount 2 must be lower or equal than 100%."
+#~ msgstr "O desconto 2 deve ser menor ou igual a 100%."
+
+#~ msgid "Discount 3 must be lower or equal than 100%."
+#~ msgstr "O desconto 3 deve ser menor ou igual a 100%."
 
 #, fuzzy
 #~ msgid "Sale Order"

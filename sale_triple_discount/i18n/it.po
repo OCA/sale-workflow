@@ -21,6 +21,11 @@ msgstr ""
 
 #. module: sale_triple_discount
 #: model_terms:ir.ui.view,arch_db:sale_triple_discount.report_saleorder_document_triple_discount
+msgid "<span>Disc. 1 (%)</span>"
+msgstr ""
+
+#. module: sale_triple_discount
+#: model_terms:ir.ui.view,arch_db:sale_triple_discount.report_saleorder_document_triple_discount
 msgid "<span>Disc. 2 (%)</span>"
 msgstr "<span>Sconto 2 (%)</span>"
 
@@ -35,24 +40,19 @@ msgid "Additive"
 msgstr "Additivo"
 
 #. module: sale_triple_discount
+#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount1
+msgid "Discount 1 (%)"
+msgstr ""
+
+#. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount2
-msgid "Disc. 2 (%)"
-msgstr "Sconto 2 (%)"
+msgid "Discount 2 (%)"
+msgstr ""
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount3
-msgid "Disc. 3 (%)"
-msgstr "Sconto 3 (%)"
-
-#. module: sale_triple_discount
-#: model:ir.model.constraint,message:sale_triple_discount.constraint_sale_order_line_discount2_limit
-msgid "Discount 2 must be lower or equal than 100%."
-msgstr "Lo sconto 2 deve essere inferiore o uguale al 100%."
-
-#. module: sale_triple_discount
-#: model:ir.model.constraint,message:sale_triple_discount.constraint_sale_order_line_discount3_limit
-msgid "Discount 3 must be lower or equal than 100%."
-msgstr "Lo sconto 3 deve essere inferiore o uguale al 100%."
+msgid "Discount 3 (%)"
+msgstr ""
 
 #. module: sale_triple_discount
 #: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discounting_type
@@ -90,6 +90,24 @@ msgstr ""
 "Gli sconti additivi sono prima sommati e poi applicati.\n"
 "Gli sconti moltiplicativi sono applicati in sequenza.\n"
 "Gli sconti moltiplicativi sono usati come predefiniti"
+
+#. module: sale_triple_discount
+#: model:ir.model.fields,field_description:sale_triple_discount.field_sale_order_line__discount
+#: model_terms:ir.ui.view,arch_db:sale_triple_discount.sale_order_triple_discount_form_view
+msgid "Total discount"
+msgstr ""
+
+#~ msgid "Disc. 2 (%)"
+#~ msgstr "Sconto 2 (%)"
+
+#~ msgid "Disc. 3 (%)"
+#~ msgstr "Sconto 3 (%)"
+
+#~ msgid "Discount 2 must be lower or equal than 100%."
+#~ msgstr "Lo sconto 2 deve essere inferiore o uguale al 100%."
+
+#~ msgid "Discount 3 must be lower or equal than 100%."
+#~ msgstr "Lo sconto 3 deve essere inferiore o uguale al 100%."
 
 #~ msgid "Discount 2 must be lower than 100%."
 #~ msgstr "Sconto 2 deve essere inferiore al 100%."
