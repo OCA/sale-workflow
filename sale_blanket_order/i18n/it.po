@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-08-20 16:50+0000\n"
+"PO-Revision-Date: 2026-10-01 08:43+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_blanket_order
 #: model_terms:ir.ui.view,arch_db:sale_blanket_order.report_blanketorder_document
@@ -888,7 +888,7 @@ msgstr "Messaggi sito web"
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order__website_message_ids
 #: model:ir.model.fields,help:sale_blanket_order.field_sale_blanket_order_line__website_message_ids
 msgid "Website communication history"
-msgstr "Storico comunicazioni sito web"
+msgstr "Cronologia comunicazioni sito web"
 
 #. module: sale_blanket_order
 #: model:ir.model.fields,field_description:sale_blanket_order.field_sale_blanket_order_wizard_line__wizard_id
