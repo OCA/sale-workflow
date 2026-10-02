@@ -1,3 +1,7 @@
+.. image:: https://odoo-community.org/readme-banner-image
+   :target: https://odoo-community.org/get-involved?utm_source=readme
+   :alt: Odoo Community Association
+
 =========================================================
 Web Widget Product Label Section And Note Full Label Sale
 =========================================================
@@ -13,7 +17,7 @@ Web Widget Product Label Section And Note Full Label Sale
 .. |badge1| image:: https://img.shields.io/badge/maturity-Beta-yellow.png
     :target: https://odoo-community.org/page/development-status
     :alt: Beta
-.. |badge2| image:: https://img.shields.io/badge/licence-AGPL--3-blue.png
+.. |badge2| image:: https://img.shields.io/badge/license-AGPL--3-blue.png
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
@@ -33,6 +37,9 @@ Glue module between
 ``sale`` module, since the original widget is extended in the sale
 module and therefore needs some special customizations to work for sale
 order lines.
+
+In addition to the above, this module will force reuse of name from sale
+order line on account move line when creating invoice from sale order.
 
 **Table of contents**
 
