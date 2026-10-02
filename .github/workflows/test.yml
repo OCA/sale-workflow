@@ -36,8 +36,24 @@ jobs:
       matrix:
         include:
           - container: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
+            include: "sale_fixed_discount"
+            name: test sale_fixed_discount with Odoo
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb19.0:latest
+            include: "sale_fixed_discount"
+            name: test sale_fixed_discount with OCB
+            makepot: "true"
+          - container: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
+            include: "sale_triple_discount,sale_order_general_discount_triple"
+            name: test sale_order_general_discount_triple with Odoo
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb19.0:latest
+            include: "sale_triple_discount,sale_order_general_discount_triple"
+            name: test sale_order_general_discount_triple with OCB
+            makepot: "true"
+          - container: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
+            exclude: "sale_fixed_discount,sale_triple_discount,sale_order_general_discount_triple"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb19.0:latest
+            exclude: "sale_fixed_discount,sale_triple_discount,sale_order_general_discount_triple"
             name: test with OCB
             makepot: "true"
     services:
@@ -51,6 +67,8 @@ jobs:
           - 5432:5432
     env:
       OCA_ENABLE_CHECKLOG_ODOO: "1"
+      INCLUDE: ${{ matrix.include }}
+      EXCLUDE: ${{ matrix.exclude }}
     steps:
       - uses: actions/checkout@v4
         with:
