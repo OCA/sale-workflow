@@ -17,11 +17,17 @@ class AutomaticWorkflowJob(models.Model):
             payment_mode = invoice.payment_mode_id
             vals["payment_type"] = payment_mode.payment_type
             vals["payment_method_id"] = payment_mode.payment_method_id.id
-            vals["journal_id"] = payment_mode.fixed_journal_id.id
+            if payment_mode.fixed_journal_id:
+                vals["journal_id"] = payment_mode.fixed_journal_id.id
         return vals
 
     def _register_payment_invoice(self, invoice):
-        if not invoice.payment_mode_id.fixed_journal_id:
+        if (
+            invoice.payment_mode_id
+            and invoice.payment_mode_id.workflow_process_id
+            == invoice.workflow_process_id
+            and not invoice.payment_mode_id.fixed_journal_id
+        ):
             _logger.debug(
                 "Unable to Register Payment for invoice %s: "
                 "Payment mode %s must have fixed journal",
