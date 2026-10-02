@@ -14,7 +14,7 @@ class SaleOrder(models.Model):
         precompute=True,
     )
 
-    @api.depends("payment_mode_id")
+    @api.depends("payment_mode_id.workflow_process_id")
     def _compute_workflow_process_id(self):
         for sale in self:
             if sale.payment_mode_id.workflow_process_id:
