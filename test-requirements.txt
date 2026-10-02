@@ -1,1 +1,2 @@
 odoo-test-helper
+odoo-addon-stock_owner_restriction @ git+https://github.com/OCA/stock-logistics-workflow.git@refs/pull/2469/head#subdirectory=stock_owner_restriction
