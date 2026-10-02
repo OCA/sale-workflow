@@ -96,3 +96,14 @@ class TestAutomaticWorkflowPaymentMode(TestCommon, TestAutomaticWorkflowMixin):
         )
         self.env["automatic.workflow.job"].run()
         self.assertEqual(invoice.payment_state, "paid")
+
+    def test_workflow_from_payment_mode_on_create(self):
+        team = self.env["crm.team"].create({"name": "Automatic Workflow Team"})
+        workflow = self.create_full_automatic()
+        workflow.team_id = team
+        partner = self.env["res.partner"].create({"name": "Test Partner"})
+        sale = self.env["sale.order"].create(
+            {"partner_id": partner.id, "payment_mode_id": self.pay_mode.id}
+        )
+        self.assertEqual(sale.workflow_process_id, workflow)
+        self.assertEqual(sale.team_id, team)
