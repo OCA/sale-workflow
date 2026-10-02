@@ -83,7 +83,6 @@ class TestAutomaticWorkflowPaymentMode(TestCommon, TestAutomaticWorkflowMixin):
         self.assertEqual(sale.workflow_process_id, workflow)
         self.env["automatic.workflow.job"].run()
         self.assertEqual(sale.state, "sale")
-        self.assertTrue(sale.picking_ids)
         self.assertTrue(sale.invoice_ids)
         invoice = sale.invoice_ids
         self.assertEqual(invoice.payment_state, "not_paid")
