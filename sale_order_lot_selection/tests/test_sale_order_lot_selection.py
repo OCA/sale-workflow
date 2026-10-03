@@ -456,3 +456,107 @@ class TestSaleOrderLotSelection(BaseCommon):
         self._update_stock_quantity(self.prd_cable, lot_cable_extra, 1)
         sale_extra.action_confirm()
         self.assertEqual(sale_extra.state, "sale")
+
+    def test_05_available_lots_reserved_qty(self):
+        """Test that reserved quantities are not included in available lots"""
+        self.product_12.write({"tracking": "lot"})
+        lot_demo = self.env["stock.lot"].create(
+            {
+                "name": "lot_reserved_test",
+                "product_id": self.product_12.id,
+                "company_id": self.env.company.id,
+            }
+        )
+        self._update_stock_quantity(self.product_12, lot_demo, 10.0)
+
+        # Create another SO and confirm it to reserve 4.0 units
+        so_reserve = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.product_12.id,
+                            "product_uom_qty": 4.0,
+                            "lot_id": lot_demo.id,
+                        }
+                    ),
+                ],
+            }
+        )
+        so_reserve.action_confirm()
+        so_reserve.picking_ids.action_assign()
+        # Ensure picking is assigned so it actually reserves the quantity
+        self.assertEqual(so_reserve.picking_ids[0].state, "assigned")
+
+        # Now test the available quantities on a new draft SO
+        so_new = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": self.product_12.id,
+                            "product_uom_qty": 1.0,
+                        }
+                    ),
+                ],
+            }
+        )
+        line_new = so_new.order_line
+
+        # Check available lots logic
+        lot_info = line_new.get_available_lots_for_line()
+        # The lot `lot_demo` should show 6.0 qty
+        lot_res = next(
+            (lot for lot in lot_info["available"] if lot["id"] == lot_demo.id), None
+        )
+        self.assertTrue(lot_res)
+        self.assertEqual(lot_res["qty"], 6.0)
+
+    def test_06_compute_lot_id_multi_warehouse(self):
+        """A lot with stock in WH1 but not in WH2 must only be kept on the
+        lines of WH1, even when both lines are recomputed in the same batch.
+        """
+        wh1 = self.env["stock.warehouse"].search(
+            [("company_id", "=", self.env.company.id)], limit=1
+        )
+        wh2 = self.env["stock.warehouse"].create({"name": "Warehouse 2", "code": "WH2"})
+        # One single lot, with stock ONLY in WH1, nothing in WH2
+        self._update_stock_quantity(self.prd_cable, self.lot_cable, 10.0)
+
+        def _make_line(warehouse):
+            order = self.env["sale.order"].create(
+                {
+                    "partner_id": self.partner.id,
+                    "warehouse_id": warehouse.id,
+                    "order_line": [
+                        Command.create(
+                            {
+                                "product_id": self.prd_cable.id,
+                                "product_uom_qty": 1.0,
+                                "lot_id": self.lot_cable.id,
+                            }
+                        )
+                    ],
+                }
+            )
+            return order.order_line
+
+        line_wh1 = _make_line(wh1)
+        line_wh2 = _make_line(wh2)
+        line_wh1.lot_id = self.lot_cable
+        line_wh2.lot_id = self.lot_cable
+
+        # Recompute both lines in a single batch
+        (line_wh1 + line_wh2)._compute_lot_id()
+
+        self.assertEqual(
+            line_wh1.lot_id,
+            self.lot_cable,
+            "WH1 line has stock for the lot -> must be kept",
+        )
+        self.assertFalse(
+            line_wh2.lot_id,
+            "WH2 line has no stock for the lot -> must be dropped",
+        )
