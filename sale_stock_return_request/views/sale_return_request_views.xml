@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_stock_return_request_form" model="ir.ui.view">
+        <field name="model">stock.return.request</field>
+        <field
+            name="inherit_id"
+            ref="stock_return_request.view_stock_return_request_form"
+        />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <field name="sale_order_ids" invisible="1" />
+                <button
+                    name="action_view_sales"
+                    string="Sales"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-dollar"
+                    invisible="not sale_order_ids"
+                    groups="sales_team.group_sale_salesman_all_leads"
+                />
+            </xpath>
+            <xpath expr="//field[@name='to_refund']" position="after">
+                <field
+                    name="filter_sale_order_ids"
+                    widget="many2many_tags"
+                    domain="[('partner_id', '=', partner_id)]"
+                    invisible="return_type != 'customer'"
+                    options="{'no_quick_create': True, 'no_create_edit' : True, 'no_create' : True}"
+                    groups="sales_team.group_sale_salesman_all_leads"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="action_sale_stock_return_request_tree" model="ir.actions.act_window">
+        <field name="name">Sale Return Requests</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.return.request</field>
+        <field name="domain">[('return_type', '=', 'customer')]</field>
+        <field
+            name="context"
+        >{'default_return_type': 'customer', 'default_to_refund': True}</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <menuitem
+        action="action_sale_stock_return_request_tree"
+        id="menu_sale_stock_return_request"
+        groups="sales_team.group_sale_manager"
+        name="Return Request"
+        parent="sale.sale_order_menu"
+        sequence="99"
+    />
+</odoo>
