@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
     "name": "Sale Stock Return Request",
-    "version": "18.0.1.0.2",
+    "version": "17.0.1.0.0",
     "category": "Stock",
     "website": "https://github.com/OCA/sale-workflow",
     "development_status": "Beta",
@@ -11,6 +11,6 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["sale_stock", "stock_return_request"],
+    "depends": ["sale_stock", "stock_return_request", "stock_push_delay"],
     "data": ["views/sale_order_views.xml", "views/sale_return_request_views.xml"],
 }
