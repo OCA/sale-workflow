@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2023-12-01 15:35+0000\n"
+"PO-Revision-Date: 2026-10-05 10:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 5.15.2\n"
 
 #. module: sale_order_general_discount_triple
 #: model:ir.model,name:sale_order_general_discount_triple.model_res_config_settings
@@ -25,12 +25,12 @@ msgstr "Impostazioni configurazione"
 #: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__general_discount__discount1
 #: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__pricelist_discount__discount1
 msgid "Discount 1"
-msgstr ""
+msgstr "Sconto 1"
 
 #. module: sale_order_general_discount_triple
 #: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order_line__discount1
 msgid "Discount 1 (%)"
-msgstr ""
+msgstr "Sconto 1 (%)"
 
 #. module: sale_order_general_discount_triple
 #: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__general_discount__discount2
@@ -41,7 +41,7 @@ msgstr "Sconto 2"
 #. module: sale_order_general_discount_triple
 #: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order_line__discount2
 msgid "Discount 2 (%)"
-msgstr ""
+msgstr "Sconto 2 (%)"
 
 #. module: sale_order_general_discount_triple
 #: model:ir.model.fields.selection,name:sale_order_general_discount_triple.selection__res_config_settings__general_discount__discount3
@@ -52,7 +52,7 @@ msgstr "Sconto 3"
 #. module: sale_order_general_discount_triple
 #: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_sale_order_line__discount3
 msgid "Discount 3 (%)"
-msgstr ""
+msgstr "Sconto 3 (%)"
 
 #. module: sale_order_general_discount_triple
 #: model:ir.model.fields,field_description:sale_order_general_discount_triple.field_res_config_settings__general_discount
