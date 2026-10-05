@@ -10,3 +10,4 @@
 * Thomas Fossoul <thomas@niboo.com>
 * Phuc Tran Thanh <phuc@trobz.com>
 * John Herholz <j.longneck@gmail.com>
+* Muslim Foda <muslimfoda09@gmail.com>
