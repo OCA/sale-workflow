@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2018 Tecnativa - Carlos Dauden
      Copyright 2023 Tecnativa - Carolina Fernandez
      Copyright 2024 Tecnativa - Juan José Seguí
@@ -7,7 +7,7 @@
     <record id="view_sales_order_line_input_tree" model="ir.ui.view">
         <field name="name">sale.order.line.input.list.view</field>
         <field name="model">sale.order.line</field>
-        <field name="priority">20</field>
+        <field name="priority" eval="20" />
         <field name="arch" type="xml">
             <list
                 decoration-info="invoice_status == 'to invoice'"
