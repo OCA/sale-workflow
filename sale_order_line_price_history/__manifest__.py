@@ -19,6 +19,10 @@
             "sale_order_line_price_history/static/src/js/*.js",
             "sale_order_line_price_history/static/src/xml/*.xml",
         ],
+        "web.assets_unit_tests": [
+            "sale_order_line_price_history/static/src/js/*.js",
+            "sale_order_line_price_history/static/tests/**/*.js",
+        ],
     },
     "maintainers": ["CarlosRoca13", "Shide"],
     "installable": True,
