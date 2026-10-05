@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!-- Copyright 2023 Moduon Team
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
@@ -7,7 +7,7 @@
         <field name="model">sale.order.line</field>
         <field name="inherit_id" ref="sale.sale_order_line_view_form_readonly" />
         <field name="mode">primary</field>
-        <field name="priority">999</field>
+        <field name="priority" eval="999" />
         <field name="arch" type="xml">
             <form position="attributes">
                 <attribute name="create">false</attribute>
@@ -101,7 +101,7 @@
         <field name="model">sale.order.line</field>
         <field name="inherit_id" ref="sale.view_sales_order_line_filter" />
         <field name="mode">primary</field>
-        <field name="priority">101</field>
+        <field name="priority" eval="101" />
         <field name="arch" type="xml">
             <xpath expr="//filter[@name='to_invoice']" position="replace" />
             <xpath expr="//filter[@name='my_sales_order_lines']" position="after">
