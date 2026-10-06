@@ -1,5 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
+# 	* web_widget_product_label_section_and_note_full_label_sale
 #
 msgid ""
 msgstr ""
@@ -11,3 +12,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: web_widget_product_label_section_and_note_full_label_sale
+#: model:ir.model,name:web_widget_product_label_section_and_note_full_label_sale.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
