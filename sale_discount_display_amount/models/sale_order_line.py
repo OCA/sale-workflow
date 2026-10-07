@@ -38,7 +38,6 @@ class SaleOrderLine(models.Model):
             if not line.discount:
                 line.price_subtotal_no_discount = line.price_subtotal
                 line.price_total_no_discount = line.price_total
-                continue
             price = line.price_unit
             taxes = line.tax_id.compute_all(
                 price,
