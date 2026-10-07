@@ -1,0 +1,123 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_price_category
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-27 03:52+0000\n"
+"PO-Revision-Date: 2021-03-26 10:46+0000\n"
+"Last-Translator: Daniel Martinez Vila <daniel.martinez@qubiq.es>\n"
+"Language-Team: Catalan (https://www.transifex.com/oca/teams/23907/ca/)\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.3.2\n"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_pricelist_item__applied_on
+msgid "Apply On"
+msgstr ""
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__create_uid
+msgid "Created by"
+msgstr "Creat per"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__create_date
+msgid "Created on"
+msgstr "Creat el"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__display_name
+msgid "Display Name"
+msgstr "Nom visible"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__id
+msgid "ID"
+msgstr "ID"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category____last_update
+msgid "Last Modified on"
+msgstr "Darrera modificació el"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__write_uid
+msgid "Last Updated by"
+msgstr "Darrera Actualització per"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__write_date
+msgid "Last Updated on"
+msgstr "Darrera Actualització el"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_price_category__name
+msgid "Name"
+msgstr "Nom"
+
+#. module: product_price_category
+#: model:ir.model.fields,field_description:product_price_category.field_product_pricelist_item__price_category_id
+#: model:ir.model.fields,field_description:product_price_category.field_product_product__price_category_id
+#: model:ir.model.fields,field_description:product_price_category.field_product_template__price_category_id
+#: model:ir.model.fields.selection,name:product_price_category.selection__product_pricelist_item__applied_on__2b_product_price_category
+msgid "Price Category"
+msgstr "Categoria de preus"
+
+#. module: product_price_category
+#. odoo-python
+#: code:addons/product_price_category/models/product_pricelist_item.py:0
+#, python-format
+msgid "Price Category: %s"
+msgstr "Categoria de preus: %s"
+
+#. module: product_price_category
+#: model:ir.model,name:product_price_category.model_product_pricelist
+msgid "Pricelist"
+msgstr "Tarifes de preus"
+
+#. module: product_price_category
+#: model:ir.model.fields,help:product_price_category.field_product_pricelist_item__applied_on
+msgid "Pricelist Item applicable on selected option"
+msgstr ""
+
+#. module: product_price_category
+#: model:ir.model,name:product_price_category.model_product_pricelist_item
+msgid "Pricelist Rule"
+msgstr ""
+
+#. module: product_price_category
+#: model:ir.model,name:product_price_category.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: product_price_category
+#: model:ir.model,name:product_price_category.model_product_price_category
+msgid "Product Price Category"
+msgstr ""
+
+#. module: product_price_category
+#: model:ir.model.fields,help:product_price_category.field_product_pricelist_item__price_category_id
+msgid ""
+"Specify a product price category if this rule only applies to one price "
+"category. Keep empty otherwise."
+msgstr ""
+"Especifiqueu una categoria de preu del producte si aquesta regla només "
+"s'aplica a una categoria de preus. Mantingueu-lo buit en cas contrari."
+
+#~ msgid "Pricelist item"
+#~ msgstr "Article de la llista de preus"
+
+#~ msgid "Product Template"
+#~ msgstr "Plantilla de producte"
+
+#~ msgid "product.price.category"
+#~ msgstr "product.price.category"
