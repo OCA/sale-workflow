@@ -118,3 +118,13 @@ class TestSaleOrderLineFinalPrice(BaseCommon):
                     line_form.price_unit = 60
                 with self.assertRaisesRegex(AssertionError, "readonly"):
                     line_form.discount = 10
+
+    def test_price_final_round(self):
+        self.line.write({"price_unit": 100, "price_final": 10})
+        self.assertEqual(self.line.price_unit, 100)
+        self.assertEqual(self.line.discount, 90)
+        self.assertEqual(self.line.price_final, 10)
+        self.line.price_unit = 20
+        self.assertEqual(self.line.price_unit, 20)
+        self.assertEqual(self.line.discount, 90)
+        self.assertEqual(self.line.price_final, 2)
