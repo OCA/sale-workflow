@@ -23,7 +23,7 @@ class TestSaleOrderType(BaseCommon):
         cls.account = cls.account_model.create(
             {"code": "income", "name": "Income", "account_type": "income"}
         )
-        cls.partner = cls.env.ref("base.res_partner_1")
+        cls.partner = cls.env["res.partner"].create({"name": "Parent Partner"})
         cls.partner_child_1 = cls.env["res.partner"].create(
             {"name": "Test child", "parent_id": cls.partner.id, "sale_type": False}
         )
@@ -111,6 +111,12 @@ class TestSaleOrderType(BaseCommon):
             }
         )
         cls.partner.sale_type = cls.sale_type
+        cls.location = cls.env["stock.location"].create(
+            {
+                "name": "My Location",
+                "location_id": cls.env.ref("stock.warehouse0").lot_stock_id.id,
+            }
+        )
         cls.sale_route = cls.env["stock.route"].create(
             {
                 "name": "SO -> Customer",
@@ -124,9 +130,7 @@ class TestSaleOrderType(BaseCommon):
                             "name": "SO -> Customer",
                             "action": "pull",
                             "picking_type_id": cls.env.ref("stock.picking_type_in").id,
-                            "location_src_id": cls.env.ref(
-                                "stock.stock_location_components"
-                            ).id,
+                            "location_src_id": cls.location.id,
                             "location_dest_id": cls.env.ref(
                                 "stock.stock_location_customers"
                             ).id,
