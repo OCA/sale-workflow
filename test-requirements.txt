@@ -1,0 +1,1 @@
+odoo-addon-sales_team_readonly @ git+https://github.com/OCA/crm.git@refs/pull/772/head#subdirectory=sales_team_readonly
