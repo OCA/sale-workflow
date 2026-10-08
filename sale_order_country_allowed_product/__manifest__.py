@@ -4,7 +4,7 @@
 {
     "name": "Sale Order Country Allowed Product",
     "summary": "Restrict products in sales by country",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "author": "Sygel, Odoo Community Association (OCA)",

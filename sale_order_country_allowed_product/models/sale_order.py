@@ -1,7 +1,7 @@
 # Copyright 2025 Manuel Regidor <manuel.regidor@sygel.es>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -22,9 +22,9 @@ class SaleOrder(models.Model):
                     products_list = (
                         f'<ul>{"".join(f"<li>{p.name}</li>" for p in products)}</ul>'
                     )
-                    unavailable_product_msg = _(
-                        "The following products are not available in the shipping country: "
-                        "%(products_list)s",
+                    unavailable_product_msg = self.env._(
+                        "The following products are not available in the shipping "
+                        "country: %(products_list)s",
                         products_list=products_list,
                     )
 
@@ -37,7 +37,7 @@ class SaleOrder(models.Model):
             "sale_order_country_allowed_product.ignore_country_sale"
         ):
             raise ValidationError(
-                _(
+                self.env._(
                     "Sale order cannot be validated as some products are not available "
                     "in the shipping country."
                 )

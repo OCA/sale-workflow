@@ -9,17 +9,17 @@ class ProductProduct(models.Model):
     _inherit = "product.product"
 
     @api.model
-    def _search(
-        self,
-        args,
-        offset=0,
-        limit=None,
-        order=None,
-        count=False,
-        access_rights_uid=None,
-    ):
-        if self.env.context.get(
-            "restrict_by_country", False
+    def _search(self, domain, offset=0, limit=None, order=None):
+        # ORM reads (fetch) search by ids and must not be filtered
+        is_id_lookup = (
+            isinstance(domain, list)
+            and len(domain) == 1
+            and isinstance(domain[0], tuple | list)
+            and domain[0][0] == "id"
+            and domain[0][1] == "in"
+        )
+        if (
+            self.env.context.get("restrict_by_country", False) and not is_id_lookup
         ) and not self.env.user.has_group(
             "sale_order_country_allowed_product.ignore_country_sale"
         ):
@@ -28,9 +28,9 @@ class ProductProduct(models.Model):
                 limit=1,
             )
             if partner.country_id:
-                args = expression.AND(
+                domain = expression.AND(
                     [
-                        args,
+                        domain,
                         [
                             "|",
                             ("product_tmpl_id.sale_allowed_country_ids", "=", False),
@@ -42,11 +42,4 @@ class ProductProduct(models.Model):
                         ],
                     ]
                 )
-        return super()._search(
-            args,
-            offset=offset,
-            limit=limit,
-            order=order,
-            count=count,
-            access_rights_uid=access_rights_uid,
-        )
+        return super()._search(domain, offset=offset, limit=limit, order=order)

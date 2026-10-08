@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 from odoo.exceptions import ValidationError
-from odoo.tests.common import Form, TransactionCase
+from odoo.tests import Form, TransactionCase
 
 
 class TestSaleOrderCountryAllowedProduct(TransactionCase):
@@ -82,3 +82,37 @@ class TestSaleOrderCountryAllowedProduct(TransactionCase):
         )
         sale.action_confirm()
         self.assertTrue(sale.state in ["sale", "done"])
+
+    def test_product_availability_uses_shipping_country(self):
+        shipping_partner = self.env["res.partner"].create(
+            {
+                "name": "Shipping Partner",
+                "parent_id": self.customer_test.id,
+                "type": "delivery",
+                "country_id": self.env.ref("base.be").id,
+            }
+        )
+        sale_form = Form(self.env["sale.order"], view="sale.view_order_form")
+        sale_form.partner_id = self.customer_test
+        sale_form.partner_shipping_id = shipping_partner
+        so_line_form = sale_form.order_line.new()
+        so_line_form.product_id = self.product_test_1.product_variant_id
+        so_line_form.save()
+        sale = sale_form.save()
+
+        self.assertTrue(sale.order_line.country_available)
+        self.assertFalse(sale.unavailable_product_msg)
+
+    def test_product_without_country_restrictions_is_available(self):
+        unrestricted_product = self.env["product.template"].create(
+            {"name": "Unrestricted Product"}
+        )
+        sale_form = Form(self.env["sale.order"], view="sale.view_order_form")
+        sale_form.partner_id = self.customer_test
+        so_line_form = sale_form.order_line.new()
+        so_line_form.product_id = unrestricted_product.product_variant_id
+        so_line_form.save()
+        sale = sale_form.save()
+
+        self.assertTrue(sale.order_line.country_available)
+        self.assertFalse(sale.unavailable_product_msg)
