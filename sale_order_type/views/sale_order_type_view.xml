@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="sot_sale_order_type_form_view" model="ir.ui.view">
         <field name="name">sale.order.type.form.view</field>

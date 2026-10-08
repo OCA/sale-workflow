@@ -2,7 +2,7 @@
 # Copyright 2023 Tecnativa - Sergio Teruel
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 from odoo import api, fields, models
 
@@ -12,7 +12,6 @@ class SaleOrder(models.Model):
 
     type_id = fields.Many2one(
         comodel_name="sale.order.type",
-        string="Type",
         compute="_compute_sale_type_id",
         precompute=True,
         store=True,
@@ -150,7 +149,8 @@ class SaleOrder(models.Model):
             order_type = order.type_id
             if order_type.quotation_validity_days:
                 order.validity_date = fields.Date.to_string(
-                    datetime.now() + timedelta(order_type.quotation_validity_days)
+                    fields.Datetime.now()
+                    + timedelta(order_type.quotation_validity_days)
                 )
         return res
 

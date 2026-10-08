@@ -11,6 +11,8 @@ from odoo.addons.base.tests.common import BaseCommon
 
 
 class TestSaleOrderType(BaseCommon):
+    _test_user_groups = None  # FIXME list needed groups
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()

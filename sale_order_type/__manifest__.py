@@ -8,7 +8,7 @@
 
 {
     "name": "Sale Order Type",
-    "version": "19.0.1.6.0",
+    "version": "20.0.1.0.0",
     "category": "Sales Management",
     "author": "Grupo Vermon,"
     "AvanzOSC,"
@@ -21,8 +21,7 @@
     "depends": ["sale_stock", "account", "sale_management"],
     "demo": ["demo/sale_order_demo.xml"],
     "data": [
-        "security/ir.model.access.csv",
-        "security/security.xml",
+        "security/ir.access.csv",
         "views/sale_order_view.xml",
         "views/sale_order_type_view.xml",
         "views/account_move_views.xml",

@@ -1,26 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo noupdate="1">
     <record id="sale.sale_order_1" model="sale.order">
         <field name="type_id" ref="normal_sale_type" />
     </record>
-    <record model="sale.order" id="sale.sale_order_2">
+    <record id="sale.sale_order_2" model="sale.order">
         <field name="type_id" ref="normal_sale_type" />
     </record>
-    <record model="sale.order" id="sale.sale_order_3">
+    <record id="sale.sale_order_3" model="sale.order">
         <field name="type_id" ref="normal_sale_type" />
     </record>
-    <record model="sale.order" id="sale.sale_order_4">
+    <record id="sale.sale_order_4" model="sale.order">
         <field name="type_id" ref="normal_sale_type" />
     </record>
-    <record model="sale.order" id="sale.sale_order_5">
+    <record id="sale.sale_order_5" model="sale.order">
         <field name="type_id" ref="normal_sale_type" />
     </record>
-    <record model="sale.order" id="sale.sale_order_6">
+    <record id="sale.sale_order_6" model="sale.order">
         <field name="type_id" ref="normal_sale_type" />
     </record>
-    <record model="sale.order" id="sale.sale_order_7">
+    <record id="sale.sale_order_7" model="sale.order">
         <field name="type_id" ref="normal_sale_type" />
     </record>
-    <record model="sale.order" id="sale.sale_order_8">
+    <record id="sale.sale_order_8" model="sale.order">
         <field name="type_id" ref="normal_sale_type" />
     </record>
 </odoo>

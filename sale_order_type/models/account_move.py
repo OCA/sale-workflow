@@ -9,7 +9,6 @@ class AccountMove(models.Model):
 
     sale_type_id = fields.Many2one(
         comodel_name="sale.order.type",
-        string="Sale Type",
         compute="_compute_sale_type_id",
         store=True,
         readonly=False,
