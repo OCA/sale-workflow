@@ -4,5 +4,5 @@
   - César A. Sánchez \<<cesar.sanchez@tecnativa.com>\>
   - Juan Carlos Oñate
 
-- [Binhex Systems Solutions](https://binhex.cloud/):
+- [Binhex](https://binhex.cloud/):
   - Deriman Alonso \<<d.alonso@binhex.cloud>\>
