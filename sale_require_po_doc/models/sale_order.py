@@ -26,6 +26,8 @@ class SaleOrder(models.Model):
     sale_document_note = fields.Text(string="Sale Documentation Notes")
 
     def action_confirm(self):
+        if self.env.context.get("skip_sale_require_po_doc"):
+            return super().action_confirm()
         for order in self:
             if order.customer_need_po and not order.client_order_ref:
                 raise ValidationError(
