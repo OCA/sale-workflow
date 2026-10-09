@@ -10,7 +10,7 @@ class SaleOrderLinePriceHistory(models.TransientModel):
     @api.model
     def _default_partner_id(self):
         line_id = self.env.context.get("active_id")
-        return self.env["sale.order.line"].browse(line_id).order_partner_id.id
+        return self.env["sale.order.line"].browse(line_id).order_id.partner_id.id
 
     @api.model
     def _default_product_id(self):
@@ -62,13 +62,13 @@ class SaleOrderLinePriceHistory(models.TransientModel):
             if self.include_commercial_partner:
                 domain += [
                     (
-                        "order_partner_id",
+                        "order_id.partner_id",
                         "child_of",
                         self.partner_id.commercial_partner_id.ids,
                     )
                 ]
             else:
-                domain += [("order_partner_id", "child_of", self.partner_id.ids)]
+                domain += [("order_id.partner_id", "child_of", self.partner_id.ids)]
 
         vals = []
         order_lines = self.env["sale.order.line"].search(domain, limit=20)
@@ -107,10 +107,10 @@ class SaleOrderLinePriceHistoryline(models.TransientModel):
         related="sale_order_line_id.order_id",
     )
     partner_id = fields.Many2one(
-        related="sale_order_line_id.order_partner_id",
+        related="order_id.partner_id",
     )
     sale_order_date_order = fields.Datetime(
-        related="sale_order_line_id.order_id.date_order",
+        related="order_id.date_order",
     )
     product_uom_qty = fields.Float(
         related="sale_order_line_id.product_uom_qty",
