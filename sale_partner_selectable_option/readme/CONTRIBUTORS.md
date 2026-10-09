@@ -3,5 +3,5 @@
   - Pedro M. Baeza
   - César A. Sánchez \<<cesar.sanchez@tecnativa.com>\>
 
-- [Binhex Systems Solutions](https://binhex.cloud/):
+- [Binhex](https://binhex.cloud/):
   - Deriman Alonso \<<d.alonso@binhex.cloud>\>
