@@ -47,6 +47,14 @@ class SaleOrder(models.Model):
         self._set_carrier_on_create()
         return res
 
+    def set_delivery_line(self, carrier, amount):
+        # The order has no carrier between the removal of its delivery line
+        # and the assignment of the new carrier: don't add a delivery line
+        # for the default carrier if the order is written in the meantime.
+        return super(
+            SaleOrder, self.with_context(carrier_on_create=True)
+        ).set_delivery_line(carrier, amount)
+
     def _is_auto_set_carrier_on_confirm(self):
         self.ensure_one()
         return self.company_id.carrier_auto_assign and not self.is_all_service
