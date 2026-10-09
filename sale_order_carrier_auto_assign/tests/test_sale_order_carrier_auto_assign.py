@@ -1,6 +1,8 @@
 # Copyright 2020 Camptocamp SA
 # Copyright 2024 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl)
+from unittest.mock import patch
+
 from odoo.fields import Command
 from odoo.tests import Form
 
@@ -138,6 +140,39 @@ class TestSaleOrderCarrierAutoAssignOnCreate(TestSaleOrderCarrierAutoAssignCommo
     def test_sale_order_carrier_auto_assign_all_service(self):
         sale_order = self.env["sale.order"].create({"partner_id": self.partner.id})
         self.assertFalse(sale_order.carrier_id)
+
+    def test_sale_order_carrier_auto_assign_set_delivery_line(self):
+        """Changing the carrier keeps a single delivery line.
+
+        Simulate a write on the order once its delivery line is removed, like
+        website_sale does to reset the pickup location.
+        """
+        sale_order = self._create_sale_order()
+        sale_order.set_delivery_line(self.delivery_local_delivery, 10.0)
+        # `set_delivery_line` removes the delivery line, then sets the carrier:
+        # https://github.com/odoo/odoo/blob/d0a05578/addons/delivery/models/sale_order.py#L67-L72
+        # Removing the delivery line also clears the carrier of the order:
+        # https://github.com/odoo/odoo/blob/d0a05578/addons/delivery/models/sale_order_line.py#L29
+        # That write alone doesn't auto-assign a carrier, the delivery line
+        # still exists at that point (see `delivery_set`). But any write after
+        # the removal finds an order with neither carrier nor delivery line,
+        # e.g. website_sale resetting the pickup location:
+        # https://github.com/odoo/odoo/blob/d0a05578/addons/website_sale/models/sale_order.py#L825-L828
+        # Simulate such a write, as this module doesn't depend on website_sale.
+        SaleOrder = type(sale_order)
+        remove_delivery_line = SaleOrder._remove_delivery_line
+
+        def _remove_delivery_line(self):
+            remove_delivery_line(self)
+            self.client_order_ref = "Delivery line removed"
+
+        with patch.object(SaleOrder, "_remove_delivery_line", _remove_delivery_line):
+            sale_order.set_delivery_line(self.delivery_carrier_alternative, 15.0)
+        self.assertEqual(sale_order.carrier_id, self.delivery_carrier_alternative)
+        self.assertRecordValues(
+            sale_order.order_line.filtered("is_delivery"),
+            [{"product_id": self.delivery_carrier_alternative.product_id.id}],
+        )
 
 
 class TestSaleOrderCarrierAutoAssignOnConfirm(TestSaleOrderCarrierAutoAssignCommon):
