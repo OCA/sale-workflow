@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026-TODAY NICO SOLUTIONS - ENGINEERING & IT (<https://www.nico-solutions.de>)
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_order_form_manual_lock" model="ir.ui.view">
+        <field name="name">sale.order.form.manual.lock</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//t[@groups='sale.group_auto_done_setting']"
+                position="attributes"
+            >
+                <attribute name="groups" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
