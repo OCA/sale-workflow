@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 Moduon Team S.L.
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field
+            name="name"
+        >res.config.settings.view.form.inherit.price.compliance</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='pricing_setting_container']" position="inside">
+                <setting
+                    id="sale_price_compliance_settings"
+                    string="Price Compliance"
+                    help="Enable Default Price Compliance Thresholds for the Company. Prices under last filled Tier are considered non-compliant and will be blocked."
+                >
+                    <field name="use_price_compliance_threshold" />
+
+                    <div
+                        class="content-group"
+                        invisible="not use_price_compliance_threshold"
+                    >
+                        <div class="mt16">
+                            <label
+                                for="price_compliance_threshold_t1"
+                                string="Tier 1 (High-yield)"
+                                class="me-2 w-50"
+                            />
+                            <field
+                                name="price_compliance_threshold_t1"
+                                widget="percentage"
+                                class="w-25"
+                            />
+                        </div>
+                        <div class="mt16">
+                            <label
+                                for="price_compliance_threshold_t2"
+                                string="Tier 2 (Medium-yield)"
+                                class="me-2 w-50"
+                            />
+                            <field
+                                name="price_compliance_threshold_t2"
+                                widget="percentage"
+                                class="w-25"
+                            />
+                        </div>
+                        <div class="mt16">
+                            <label
+                                for="price_compliance_threshold_t3"
+                                string="Tier 3 (Low-yield)"
+                                class="me-2 w-50"
+                            />
+                            <field
+                                name="price_compliance_threshold_t3"
+                                widget="percentage"
+                                class="w-25"
+                            />
+                        </div>
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>
