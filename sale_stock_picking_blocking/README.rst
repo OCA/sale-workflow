@@ -98,12 +98,13 @@ Authors
 Contributors
 ------------
 
-- Lois Rilo <lois.rilo@forgeflow.com>
-- Laura Cazorla <laura.cazorla@forgeflow.com>
-- Sudhir Arya <sudhir@erpharbor.com>
-- Julien Coux <julien.coux@camptocamp.com>
-- Nguyen Minh Chien <chien@trobz.com>
-- Vincent Van Rossem <vincent.vanrossem@camptocamp.com>
+-  Lois Rilo <lois.rilo@forgeflow.com>
+-  Laura Cazorla <laura.cazorla@forgeflow.com>
+-  Sudhir Arya <sudhir@erpharbor.com>
+-  Julien Coux <julien.coux@camptocamp.com>
+-  Nguyen Minh Chien <chien@trobz.com>
+-  Vincent Van Rossem <vincent.vanrossem@camptocamp.com>
+-  Italo Lopes <italo.lopes@camptocamp.com>
 
 Maintainers
 -----------
