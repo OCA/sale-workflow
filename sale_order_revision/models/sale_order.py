@@ -4,13 +4,15 @@
 # Copyright 2020 Ecosoft Co., Ltd. (<http://ecosoft.co.th>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+import typing
+
 from odoo import fields, models
 from odoo.fields import Domain
 
 
 class SaleOrder(models.Model):
     _name = "sale.order"
-    _inherit = ["sale.order", "base.revision"]
+    _inherit: typing.ClassVar[list[str]] = ["sale.order", "base.revision"]
 
     current_revision_id = fields.Many2one(
         comodel_name="sale.order",
