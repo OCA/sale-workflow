@@ -1,0 +1,91 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sales_team_territory
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-08 17:04+0000\n"
+"PO-Revision-Date: 2026-09-08 17:04+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sales_team_territory
+#: model_terms:ir.ui.view,arch_db:sales_team_territory.crm_team_view_form
+msgid "Assign Partners"
+msgstr ""
+
+#. module: sales_team_territory
+#: model:ir.model.fields,help:sales_team_territory.field_res_partner__team_id
+#: model:ir.model.fields,help:sales_team_territory.field_res_users__team_id
+msgid "Computed from the team territories: state first, then country."
+msgstr ""
+
+#. module: sales_team_territory
+#: model:ir.model,name:sales_team_territory.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: sales_team_territory
+#: model:ir.model.fields,field_description:sales_team_territory.field_crm_team__display_name
+#: model:ir.model.fields,field_description:sales_team_territory.field_res_partner__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: sales_team_territory
+#: model:ir.model.fields,field_description:sales_team_territory.field_crm_team__id
+#: model:ir.model.fields,field_description:sales_team_territory.field_res_partner__id
+msgid "ID"
+msgstr ""
+
+#. module: sales_team_territory
+#: model:ir.model.fields,help:sales_team_territory.field_crm_team__country_ids
+msgid "Partners located in these countries are assigned to this team."
+msgstr ""
+
+#. module: sales_team_territory
+#: model:ir.model.fields,help:sales_team_territory.field_crm_team__state_ids
+msgid "Partners located in these states are assigned to this team."
+msgstr ""
+
+#. module: sales_team_territory
+#: model_terms:ir.ui.view,arch_db:sales_team_territory.crm_team_view_form
+msgid ""
+"Recompute the sales team of the existing partners located in this territory."
+msgstr ""
+
+#. module: sales_team_territory
+#: model:ir.model,name:sales_team_territory.model_crm_team
+#: model:ir.model.fields,field_description:sales_team_territory.field_res_partner__team_id
+#: model:ir.model.fields,field_description:sales_team_territory.field_res_users__team_id
+#: model_terms:ir.ui.view,arch_db:sales_team_territory.view_res_partner_filter
+msgid "Sales Team"
+msgstr ""
+
+#. module: sales_team_territory
+#: model_terms:ir.ui.view,arch_db:sales_team_territory.crm_team_view_form
+msgid "Territory"
+msgstr ""
+
+#. module: sales_team_territory
+#: model:ir.model.fields,field_description:sales_team_territory.field_crm_team__country_ids
+msgid "Territory Countries"
+msgstr ""
+
+#. module: sales_team_territory
+#: model:ir.model.fields,field_description:sales_team_territory.field_crm_team__state_ids
+msgid "Territory States"
+msgstr ""
+
+#. module: sales_team_territory
+#. odoo-python
+#: code:addons/sales_team_territory/models/crm_team.py:0
+msgid ""
+"The territory of team %(team)s overlaps with team %(other)s. A country or "
+"state can only belong to one team."
+msgstr ""
