@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <record id="view_sales_order_filter" model="ir.ui.view">
         <field name="name">sale.order.list.select</field>
@@ -14,7 +14,7 @@
         <field name="name">sale.order.form</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
-        <field name="priority">15</field>
+        <field name="priority" eval="15" />
         <field name="arch" type="xml">
             <xpath expr="//header" position='inside'>
                 <button
