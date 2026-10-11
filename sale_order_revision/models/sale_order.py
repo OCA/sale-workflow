@@ -10,7 +10,7 @@ from odoo.fields import Domain
 
 class SaleOrder(models.Model):
     _name = "sale.order"
-    _inherit = ["sale.order", "base.revision"]
+    _inherit = ["sale.order", "base.revision"]  # noqa: RUF012
 
     current_revision_id = fields.Many2one(
         comodel_name="sale.order",
