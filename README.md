@@ -56,7 +56,7 @@ addon | version | maintainers | summary
 [sale_force_invoiced_quantity](sale_force_invoiced_quantity/) | 16.0.1.0.0 |  | Add manual invoice quantity in sales order lines
 [sale_fully_invoiced](sale_fully_invoiced/) | 16.0.1.0.0 |  | Useful filters in Sales to know the actual status of invoices.
 [sale_global_discount](sale_global_discount/) | 16.0.2.0.0 |  | Sale Global Discount
-[sale_invoice_blocking](sale_invoice_blocking/) | 16.0.1.0.1 |  | Allow you to block the creation of invoices from a sale order.
+[sale_invoice_blocking](sale_invoice_blocking/) | 16.0.1.0.2 |  | Allow you to block the creation of invoices from a sale order.
 [sale_invoice_frequency](sale_invoice_frequency/) | 16.0.1.2.1 | <a href='https://github.com/Shide'><img src='https://github.com/Shide.png' width='32' height='32' style='border-radius:50%;' alt='Shide'/></a> <a href='https://github.com/yajo'><img src='https://github.com/yajo.png' width='32' height='32' style='border-radius:50%;' alt='yajo'/></a> <a href='https://github.com/EmilioPascual'><img src='https://github.com/EmilioPascual.png' width='32' height='32' style='border-radius:50%;' alt='EmilioPascual'/></a> | Define the invoice frequency for customers
 [sale_invoice_plan](sale_invoice_plan/) | 16.0.1.0.0 | <a href='https://github.com/kittiu'><img src='https://github.com/kittiu.png' width='32' height='32' style='border-radius:50%;' alt='kittiu'/></a> | Add to sales order, ability to manage future invoice plan
 [sale_invoice_policy](sale_invoice_policy/) | 16.0.3.0.0 |  | Sales Management: let the user choose the invoice policy on the order
