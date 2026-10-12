@@ -1,0 +1,71 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_order_add_byproduct
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_order_add_byproduct
+#: model:ir.model.fields,field_description:sale_order_add_byproduct.field_sale_order_line__is_mrp_byproduct_line
+msgid "Added from MO By-product"
+msgstr ""
+
+#. module: sale_order_add_byproduct
+#: model:ir.model.fields,field_description:sale_order_add_byproduct.field_res_company__byproduct_note_template
+#: model:ir.model.fields,field_description:sale_order_add_byproduct.field_res_config_settings__byproduct_note_template
+#: model_terms:ir.ui.view,arch_db:sale_order_add_byproduct.res_config_settings_view_form_inherit_sale_order_add_byproduct
+msgid "By-product Note Template"
+msgstr ""
+
+#. module: sale_order_add_byproduct
+#: model_terms:ir.ui.view,arch_db:sale_order_add_byproduct.res_config_settings_view_form_inherit_sale_order_add_byproduct
+msgid "By-product Settings"
+msgstr ""
+
+#. module: sale_order_add_byproduct
+#: model:ir.model,name:sale_order_add_byproduct.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: sale_order_add_byproduct
+#: model:ir.model,name:sale_order_add_byproduct.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: sale_order_add_byproduct
+#: model:ir.model.fields,help:sale_order_add_byproduct.field_sale_order_line__is_mrp_byproduct_line
+msgid ""
+"If True, this sale order line was automatically added from a Manufacturing "
+"Order's by-product production and should not trigger new procurements."
+msgstr ""
+
+#. module: sale_order_add_byproduct
+#: model:ir.model,name:sale_order_add_byproduct.model_mrp_production
+msgid "Manufacturing Order"
+msgstr ""
+
+#. module: sale_order_add_byproduct
+#: model:ir.model,name:sale_order_add_byproduct.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: sale_order_add_byproduct
+#: model_terms:ir.ui.view,arch_db:sale_order_add_byproduct.res_config_settings_view_form_inherit_sale_order_add_byproduct
+msgid "Template for the note on sale order lines created for by-products."
+msgstr ""
+
+#. module: sale_order_add_byproduct
+#: model:ir.model.fields,help:sale_order_add_byproduct.field_res_company__byproduct_note_template
+#: model:ir.model.fields,help:sale_order_add_byproduct.field_res_config_settings__byproduct_note_template
+msgid ""
+"Template for the note on sale order lines created for by-products. You can "
+"use placeholders like {product_name} and {mo_name}."
+msgstr ""
