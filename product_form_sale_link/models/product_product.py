@@ -1,0 +1,31 @@
+# Copyright 2022 ForgeFlow S.L. (https://www.forgeflow.com)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+from odoo import fields, models
+
+
+class ProductProduct(models.Model):
+    _inherit = "product.product"
+
+    sale_lines_count = fields.Integer(compute="_compute_sale_lines_count")
+
+    def _compute_sale_lines_count(self):
+        if (
+            not self.env.user.has_group("sales_team.group_sale_salesman")
+            or not self.ids
+        ):
+            self.sale_lines_count = 0.0
+            return
+        domain = [
+            ("state", "in", ["sale", "done"]),
+            ("product_id", "in", self.ids),
+            ("company_id", "in", self.env.companies.ids),
+        ]
+        sale_line_data = self.env["sale.order.line"]._read_group(
+            domain,
+            groupby=["product_id"],
+            aggregates=["__count"],
+        )
+        mapped_data = {product.id: count for product, count in sale_line_data}
+        for product in self:
+            product.sale_lines_count = mapped_data.get(product.id, 0)
