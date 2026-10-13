@@ -126,6 +126,29 @@ class SaleOrder(models.Model):
             self._set_catalog_last_price_data(data, last_prices.get(product_id, 0.0))
         return result
 
+    def _get_catalog_new_line_last_price(
+        self, product_id, catalog_use_delivery_address=False, **kwargs
+    ):
+        """Last sale price a new catalog line of ``product_id`` takes when the
+        catalog shows the last sale prices. Hook for modules with their own
+        cards (e.g. vendor cards), which receive the card ``kwargs``.
+        """
+        return self._get_catalog_last_prices(
+            [product_id], use_delivery_address=catalog_use_delivery_address
+        ).get(product_id, 0.0)
+
+    def _get_catalog_new_line_vals(self, product, **kwargs):
+        """Values, besides the order, the product and the quantity, the catalog
+        sets on a new line of ``product`` added from a card, ``kwargs`` being
+        the card parameters. Also used as defaults of the new line form opened
+        from the card, so both ways end with the same line.
+        """
+        self.ensure_one()
+        # Put it at the end of the order, as the base catalog does.
+        return {
+            "sequence": (self.order_line and self.order_line[-1].sequence + 1) or 10
+        }
+
     def _get_catalog_line_quantity_vals(self, product, quantity, line=False):
         """Values that set ``quantity``, as typed in the catalog, on ``line`` or
         on a new line of ``product``. Hook for modules changing the unit the
@@ -169,9 +192,11 @@ class SaleOrder(models.Model):
         self._play_catalog_line_onchanges(sol)
         result = sol._get_discounted_price()
         if catalog_show_last_price:
-            last_price = self._get_catalog_last_prices(
-                [product_id], use_delivery_address=catalog_use_delivery_address
-            ).get(product_id, 0.0)
+            last_price = self._get_catalog_new_line_last_price(
+                product_id,
+                catalog_use_delivery_address=catalog_use_delivery_address,
+                **kwargs,
+            )
             self._apply_catalog_last_price(sol, last_price)
             result = sol._get_discounted_price()
         return result

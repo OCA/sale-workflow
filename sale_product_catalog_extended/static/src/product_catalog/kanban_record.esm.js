@@ -18,6 +18,12 @@ patch(ProductCatalogKanbanRecord.prototype, {
             lineId: this.props.record.productCatalogData.lineId,
         });
     },
+    /**
+     * Open a new, not yet saved, line of the card product in a form, so it can
+     * be completed before it is created. The card parameters go along so the
+     * line starts with the values the card would set when adding it (see
+     * ``sale.order._get_catalog_new_line_vals``).
+     */
     async onClickAddNewOrderLine() {
         const action = await this.action.loadAction(
             "sale_product_catalog_extended.action_open_editable_sale_order_line"
@@ -28,6 +34,7 @@ patch(ProductCatalogKanbanRecord.prototype, {
                 context: {
                     default_order_id: this.env.orderId,
                     default_product_id: this.env.productId,
+                    catalog_line_params: this._getUpdateQuantityAndGetPriceParams(),
                 },
             },
             {

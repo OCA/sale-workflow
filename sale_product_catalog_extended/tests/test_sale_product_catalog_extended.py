@@ -1,6 +1,7 @@
 # Copyright 2026 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import fields
+from odoo.tests import Form
 from odoo.tests.common import TransactionCase, tagged
 
 
@@ -332,6 +333,85 @@ class TestSaleProductCatalogExtended(TransactionCase):
                 "catalog_show_history_partner"
             ]
         )
+
+    def _new_line_form(self, order, product, **options):
+        """The new line form the catalog card of ``product`` opens, with the
+        context the catalog kanban record sends (``onClickAddNewOrderLine``)."""
+        params = {
+            "order_id": order.id,
+            "product_id": product.id,
+            "quantity": 0,
+            "res_model": "sale.order",
+            **options,
+        }
+        return Form(
+            self.env["sale.order.line"].with_context(
+                default_order_id=order.id,
+                default_product_id=product.id,
+                catalog_line_params=params,
+            ),
+            view="sale_product_catalog_extended.sale_order_line_view_form_editable",
+        )
+
+    def test_new_line_form_from_card_matches_the_catalog_line(self):
+        """The new line form opened from a card of a confirmed order is not
+        created until it is saved, and it ends as the line the catalog adds:
+        at the end of the order and with the last sale price, kept when the
+        quantity changes."""
+        self.line_a.price_unit = 7.5
+        self.env["sale.order.line"].create(
+            {
+                "order_id": self.order.id,
+                "product_id": self.product_b.id,
+                "product_uom_qty": 1,
+                "sequence": 15,
+            }
+        )
+        self.order.action_confirm()
+        line_form = self._new_line_form(
+            self.order, self.product_a, catalog_show_last_price=True
+        )
+        self.assertAlmostEqual(line_form.price_unit, 7.5)
+        line_form.product_uom_qty = 3
+        self.assertAlmostEqual(line_form.price_unit, 7.5)
+        self.assertNotIn(self.product_a, self.order.order_line.product_id)
+        line = line_form.save()
+        self.assertEqual(line.order_id, self.order)
+        self.assertEqual(line.product_id, self.product_a)
+        self.assertEqual(line.sequence, 16)
+        self.assertEqual(line.product_uom_qty, 3)
+        self.assertAlmostEqual(line.price_unit, 7.5)
+        # The pricelist price stays as the reference, so it is taken as a
+        # manual price, as on the lines the catalog adds.
+        self.assertAlmostEqual(line.technical_price_unit, self.product_a.lst_price)
+
+    def test_new_line_form_from_card_without_last_price(self):
+        """Without the last sale price mode the line keeps the pricelist
+        price."""
+        self.line_a.price_unit = 7.5
+        line = self._new_line_form(self.order, self.product_a).save()
+        self.assertAlmostEqual(line.price_unit, self.product_a.lst_price)
+        self.assertEqual(line.sequence, 10)
+
+    def test_new_line_form_from_card_does_not_leak_defaults(self):
+        """The ``default_*`` keys of the form context do not reach the records
+        created along with the line (e.g. the stock moves of a confirmed
+        order): the line is created in a context without them."""
+        contexts = []
+        lines_model = type(self.env["sale.order.line"])
+        original = lines_model._remove_catalog_last_sales_exclusions
+
+        def remove_exclusions(lines):
+            contexts.append(lines.env.context)
+            return original(lines)
+
+        self.patch(
+            lines_model, "_remove_catalog_last_sales_exclusions", remove_exclusions
+        )
+        self._new_line_form(self.order, self.product_a).save()
+        self.assertEqual(len(contexts), 1)
+        self.assertFalse([key for key in contexts[0] if key.startswith("default_")])
+        self.assertNotIn("catalog_line_params", contexts[0])
 
     def test_delivery_address_option_on_the_cards_of_the_lines(self):
         """The cards of the order lines of a product with several lines send
