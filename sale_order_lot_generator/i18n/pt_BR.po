@@ -1,0 +1,57 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_lot_generator
+#
+# Translators:
+# OCA Transbot <transbot@odoo-community.org>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-11-23 01:51+0000\n"
+"PO-Revision-Date: 2024-05-22 16:36+0000\n"
+"Last-Translator: Rodrigo Macedo <sottomaiormacedotec@users.noreply."
+"translation.odoo-community.org>\n"
+"Language-Team: Portuguese (Brazil) (https://www.transifex.com/oca/teams/"
+"23907/pt_BR/)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.17\n"
+
+#. module: sale_order_lot_generator
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_product__auto_generate_prodlot
+#: model:ir.model.fields,field_description:sale_order_lot_generator.field_product_template__auto_generate_prodlot
+msgid "Auto Generate Lot"
+msgstr "Lote de geração automática"
+
+#. module: sale_order_lot_generator
+#: model:ir.model.fields,help:sale_order_lot_generator.field_product_product__auto_generate_prodlot
+#: model:ir.model.fields,help:sale_order_lot_generator.field_product_template__auto_generate_prodlot
+msgid ""
+"Forces to specifiy a Serial Number for all lines containing this product "
+"since the confirmation of the Sale Order"
+msgstr ""
+"Força a especificação de um Número de Série para todas as linhas que "
+"contenham este produto desde a confirmação do Pedido de Venda"
+
+#. module: sale_order_lot_generator
+#: model:ir.model,name:sale_order_lot_generator.model_product_template
+msgid "Product"
+msgstr "Produto"
+
+#. module: sale_order_lot_generator
+#: model:ir.model,name:sale_order_lot_generator.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de Venda"
+
+#. module: sale_order_lot_generator
+#: model:ir.model,name:sale_order_lot_generator.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Linha Pedido de Venda"
+
+#, fuzzy
+#~ msgid "Sale Order"
+#~ msgstr "Pedido de Venda"
