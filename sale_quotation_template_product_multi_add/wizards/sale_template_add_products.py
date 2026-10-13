@@ -10,12 +10,16 @@ class SaleTemplateAddProducts(models.TransientModel):
         comodel_name="sale.template.add.products.item",
         inverse_name="wizard_id",
     )
+    multi_quantity = fields.Float()
 
     def create_items(self):
         vals_list = [
             {"product_id": r.id, "wizard_id": self.id} for r in self.product_ids
         ]
         self.env["sale.template.add.products.item"].create(vals_list)
+        return self._show_items()
+
+    def _show_items(self):
         view = self.env.ref(
             "sale_quotation_template_product_multi_add.view_add_products_to_qt2"
         )
@@ -29,6 +33,12 @@ class SaleTemplateAddProducts(models.TransientModel):
             "res_id": self.id,
             "context": self.env.context,
         }
+
+    def set_multi_quantity(self):
+        """Set `multi_quantity` in all the items."""
+        self.ensure_one()
+        self.item_ids.update({"quantity": self.multi_quantity})
+        return self._show_items()
 
     @api.model
     def _get_line_values(self, quotation_template_id, item):
