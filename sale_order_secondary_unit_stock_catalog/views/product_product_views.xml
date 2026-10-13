@@ -1,0 +1,22 @@
+<odoo>
+    <record id="product_view_kanban_catalog" model="ir.ui.view">
+        <field
+            name="name"
+        >product.view.kanban.catalog.inherit.stock (in sale_order_secondary_unit_stock_catalog)</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.product_view_kanban_catalog" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="//div[@name='o_kanban_qty_available']/field[@name='uom_id']"
+                position="after"
+            >
+                <field name="has_sale_secondary_unit_qty_available" invisible="1" />
+                <t invisible="not has_sale_secondary_unit_qty_available">
+                    <span> // </span>
+                    <field name="sale_secondary_unit_qty_available" />
+                    <field name="sale_secondary_uom_id" class="ms-1" />
+                </t>
+            </xpath>
+        </field>
+    </record>
+</odoo>
