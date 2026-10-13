@@ -21,13 +21,13 @@ Sale invoice Policy
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fsale--workflow-lightgray.png?logo=github
-    :target: https://github.com/OCA/sale-workflow/tree/18.0/sale_invoice_policy
+    :target: https://github.com/OCA/sale-workflow/tree/19.0/sale_invoice_policy
     :alt: OCA/sale-workflow
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/sale-workflow-18-0/sale-workflow-18-0-sale_invoice_policy
+    :target: https://translation.odoo-community.org/projects/sale-workflow-19-0/sale-workflow-19-0-sale_invoice_policy
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=18.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/sale-workflow&target_branch=19.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
@@ -37,12 +37,12 @@ apply that invoicing policy on the whole sale order.
 
 That invoicing policy can take three values:
 
-- Products Invoicing Policy: The sale order will follow the standard
-  behavior and apply the policy depending on products configurations.
-- Ordered Quantities: The sale order will invoice the ordered
-  quantities.
-- Delivered Quantities: The sale order will invoice the delivered
-  quantities.
+-  Products Invoicing Policy: The sale order will follow the standard
+   behavior and apply the policy depending on products configurations.
+-  Ordered Quantities: The sale order will invoice the ordered
+   quantities.
+-  Delivered Quantities: The sale order will invoice the delivered
+   quantities.
 
 Following the chosen policy, the quantity to invoice and the amount to
 invoice on each line will be computed accordingly.
@@ -61,8 +61,8 @@ Use Cases / Context
 
 In Odoo, products have their own invoicing policy that can be:
 
-- Invoicing on ordered quantities
-- Invoicing on ordered quantities
+-  Invoicing on ordered quantities
+-  Invoicing on ordered quantities
 
 Following that configuration, when trying to create invoices from sale
 orders, each line of product will apply its invoicing policy.
@@ -76,16 +76,16 @@ level.
 Configuration
 =============
 
-- Go to Sale > Configuration > Settings > Sale Invoice Policy
-- Choose the one that fits your needs.
+-  Go to Sale > Configuration > Settings > Sale Invoice Policy
+-  Choose the one that fits your needs.
 
 Usage
 =====
 
-- Create Sale Order
-- Select Invoicing Policy on Sale Order or let it on Products Invoicing
-  Policy
-- The created invoices will use the configuration on sale order.
+-  Create Sale Order
+-  Select Invoicing Policy on Sale Order or let it on Products Invoicing
+   Policy
+-  The created invoices will use the configuration on sale order.
 
 Bug Tracker
 ===========
@@ -93,7 +93,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/sale-workflow/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_invoice_policy%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/sale-workflow/issues/new?body=module:%20sale_invoice_policy%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -108,16 +108,16 @@ Authors
 Contributors
 ------------
 
-- Cédric Pigeon <cedric.pigeon@acsone.eu>
-- François Honoré <francois.honore@acsone.eu>
-- Denis Roussel <denis.roussel@acsone.eu>
-- Alexei Rivera <arivera@archeti.com>
-- Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
-- Alejandro Ji Cheung <alejandro.jicheung@factorlibre.com>
-- Ioan Galan <ioan@studio73.es>
-- Laurent Mignon <laurent.mignon@acsone.eu>
-- Marie Lejeune <marie.lejeune@acsone.eu>
-- Jacques-Etienne Baudoux (BCIM) <<je.bcim.be>>
+-  Cédric Pigeon <cedric.pigeon@acsone.eu>
+-  François Honoré <francois.honore@acsone.eu>
+-  Denis Roussel <denis.roussel@acsone.eu>
+-  Alexei Rivera <arivera@archeti.com>
+-  Luis J. Salvatierra <luis.salvatierra@factorlibre.com>
+-  Alejandro Ji Cheung <alejandro.jicheung@factorlibre.com>
+-  Ioan Galan <ioan@studio73.es>
+-  Laurent Mignon <laurent.mignon@acsone.eu>
+-  Marie Lejeune <marie.lejeune@acsone.eu>
+-  Jacques-Etienne Baudoux (BCIM) <<je.bcim.be>>
 
 Maintainers
 -----------
@@ -132,6 +132,6 @@ OCA, or the Odoo Community Association, is a nonprofit organization whose
 mission is to support the collaborative development of Odoo features and
 promote its widespread use.
 
-This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/18.0/sale_invoice_policy>`_ project on GitHub.
+This module is part of the `OCA/sale-workflow <https://github.com/OCA/sale-workflow/tree/19.0/sale_invoice_policy>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
