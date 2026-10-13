@@ -25,5 +25,6 @@ ProductCatalogOrderLine.props = {
     ...ProductCatalogOrderLine.props,
     lastPrice: {type: Number, optional: true},
     catalogShowLastPrice: {type: Boolean, optional: true},
+    catalogUseDeliveryAddress: {type: Boolean, optional: true},
     lineId: {type: Number, optional: true},
 };
