@@ -16,6 +16,6 @@
     "license": "AGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["sale_management"],
+    "depends": ["sale_management", "sequence_regex"],
     "data": ["data/ir_sequence_data.xml", "views/sales_config.xml"],
 }
