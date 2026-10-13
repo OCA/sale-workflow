@@ -1,0 +1,102 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_product_catalog_supplierinfo
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-27 23:24+0000\n"
+"PO-Revision-Date: 2026-09-27 23:24+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_product_catalog_supplierinfo
+#: model:ir.model.fields,field_description:sale_product_catalog_supplierinfo.field_product_product__catalog_origin_data
+msgid "Catalog Origin Data"
+msgstr "Datos de origen del catálogo"
+
+#. module: sale_product_catalog_supplierinfo
+#: model:ir.model,name:sale_product_catalog_supplierinfo.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: sale_product_catalog_supplierinfo
+#. odoo-python
+#: code:addons/sale_product_catalog_supplierinfo/models/sale_order.py:0
+msgid "On order"
+msgstr "Bajo pedido"
+
+#. module: sale_product_catalog_supplierinfo
+#: model:ir.model,name:sale_product_catalog_supplierinfo.model_product_pricelist
+msgid "Pricelist"
+msgstr "Lista de precios"
+
+#. module: sale_product_catalog_supplierinfo
+#: model:ir.model,name:sale_product_catalog_supplierinfo.model_product_product
+msgid "Product Variant"
+msgstr "Variante de producto"
+
+#. module: sale_product_catalog_supplierinfo
+#: model:ir.model,name:sale_product_catalog_supplierinfo.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Línea de pedido de compra"
+
+#. module: sale_product_catalog_supplierinfo
+#: model:ir.model,name:sale_product_catalog_supplierinfo.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: sale_product_catalog_supplierinfo
+#: model:ir.model,name:sale_product_catalog_supplierinfo.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
+
+#. module: sale_product_catalog_supplierinfo
+#: model_terms:ir.ui.view,arch_db:sale_product_catalog_supplierinfo.res_config_settings_view_form
+msgid ""
+"Show the vendor name on the vendor cards of the product catalog, instead of "
+"'On order'"
+msgstr ""
+"Mostrar el nombre del proveedor en las tarjetas de proveedor del catálogo de"
+" productos, en lugar de 'Bajo pedido'"
+
+#. module: sale_product_catalog_supplierinfo
+#: model:ir.model.fields,help:sale_product_catalog_supplierinfo.field_res_config_settings__catalog_show_vendor
+msgid ""
+"Show the vendor name on the vendor cards of the product catalog. When "
+"unchecked, the cards show 'On order' instead."
+msgstr ""
+"Mostrar el nombre del proveedor en las tarjetas de proveedor del catálogo de"
+" productos. Si no está marcado, las tarjetas muestran 'Bajo pedido'."
+
+#. module: sale_product_catalog_supplierinfo
+#: model:ir.model.fields,field_description:sale_product_catalog_supplierinfo.field_res_config_settings__catalog_show_vendor
+msgid "Show the vendor on the catalog cards"
+msgstr "Mostrar el proveedor en las tarjetas del catálogo"
+
+#. module: sale_product_catalog_supplierinfo
+#: model:ir.model,name:sale_product_catalog_supplierinfo.model_stock_rule
+msgid "Stock Rule"
+msgstr "Regla de inventario"
+
+#. module: sale_product_catalog_supplierinfo
+#: model:ir.model.fields,field_description:sale_product_catalog_supplierinfo.field_sale_order_line__supplierinfo_id
+msgid "Supplierinfo"
+msgstr "Información del proveedor"
+
+#. module: sale_product_catalog_supplierinfo
+#: model:ir.model.fields.selection,name:sale_product_catalog_supplierinfo.selection__product_product__catalog_origin_data__supplierinfo
+msgid "Suppliers"
+msgstr "Proveedores"
+
+#. module: sale_product_catalog_supplierinfo
+#. odoo-javascript
+#: code:addons/sale_product_catalog_supplierinfo/static/src/product_catalog/order_line/order_line.xml:0
+msgid "Unit price:"
+msgstr "Precio unitario:"
