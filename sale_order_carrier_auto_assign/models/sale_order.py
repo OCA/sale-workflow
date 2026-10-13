@@ -8,6 +8,7 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     def _is_auto_set_carrier_on_create(self):
+        self.ensure_one()
         return (
             not self.carrier_id
             and self.state in ("draft", "sent")
@@ -67,6 +68,7 @@ class SaleOrder(models.Model):
         Like on creation, this is driven by `carrier_on_create`:
         `carrier_auto_assign` only acts on confirmation.
         """
+        self.ensure_one()
         return (
             self.company_id.carrier_on_create
             and self.state in ("draft", "sent")
@@ -75,6 +77,7 @@ class SaleOrder(models.Model):
         )
 
     def _is_auto_set_carrier_on_confirm(self):
+        self.ensure_one()
         return self.company_id.carrier_auto_assign and not self.is_all_service
 
     def action_confirm(self):
@@ -95,11 +98,8 @@ class SaleOrder(models.Model):
         :param preserve_order_carrier: It will respect the carrier set on the order
         """
         for order in self:
-            if (
-                not order.order_line
-                or isinstance(order.id, models.NewId)
-                and not order._origin
-            ):
+            # Only real orders: the carrier is not computed in onchanges anymore
+            if not order.order_line or isinstance(order.id, models.NewId):
                 continue
             # Preserve the carrier only if explicitly set on the attribute
             if preserve_order_carrier and order.delivery_set:
@@ -113,10 +113,7 @@ class SaleOrder(models.Model):
                 delivery_wiz_action.get("res_model")
             ].with_context(**delivery_wiz_context)
 
-            delivery_wiz = delivery_wiz_model.new({})
-            delivery_wiz.order_id = order
-            if not delivery_wiz.order_id and order._origin:
-                delivery_wiz.order_id = order._origin
+            delivery_wiz = delivery_wiz_model.new({"order_id": order.id})
 
             # Do not override carrier
             if preserve_order_carrier and order.carrier_id:
