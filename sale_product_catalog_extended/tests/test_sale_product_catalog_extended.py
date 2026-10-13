@@ -332,3 +332,23 @@ class TestSaleProductCatalogExtended(TransactionCase):
                 "catalog_show_history_partner"
             ]
         )
+
+    def test_delivery_address_option_on_the_cards_of_the_lines(self):
+        """The cards of the order lines of a product with several lines send
+        the delivery address option back too, like the product card."""
+        self.env["sale.order.line"].create(
+            [
+                {
+                    "order_id": self.order.id,
+                    "product_id": self.product_a.id,
+                    "product_uom_qty": qty,
+                }
+                for qty in (1, 2)
+            ]
+        )
+        data = self.order._get_product_catalog_order_line_info(
+            self.product_a.ids, catalog_use_delivery_address=True
+        )[self.product_a.id]
+        self.assertEqual(len(data["lines"]), 2)
+        for card in [data, *data["lines"]]:
+            self.assertIs(card["catalogUseDeliveryAddress"], True)
