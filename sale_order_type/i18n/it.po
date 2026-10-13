@@ -25,9 +25,14 @@ msgid "Active"
 msgstr "Attivo"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_account_id
-msgid "Analytic account"
-msgstr "Conto analitico"
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_distribution
+msgid "Analytic Distribution"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_precision
+msgid "Analytic Precision"
+msgstr ""
 
 #. module: sale_order_type
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
@@ -97,6 +102,11 @@ msgstr "Descrizione"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__display_name
 msgid "Display Name"
 msgstr "Nome visualizzato"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__distribution_analytic_account_ids
+msgid "Distribution Analytic Account"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__sequence_id
@@ -313,6 +323,9 @@ msgid ""
 msgstr ""
 "Quando si crea un ordine di vendita, il listino prezzi sopra riportato verrà "
 "sostituito da quello impostato per il tipo di ordine di vendita:"
+
+#~ msgid "Analytic account"
+#~ msgstr "Conto analitico"
 
 #~ msgid "Analytic Account"
 #~ msgstr "Conto analitico"

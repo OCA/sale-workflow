@@ -26,9 +26,14 @@ msgid "Active"
 msgstr "Actief"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_account_id
-msgid "Analytic account"
-msgstr "Analytische rekening"
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_distribution
+msgid "Analytic Distribution"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_precision
+msgid "Analytic Precision"
+msgstr ""
 
 #. module: sale_order_type
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
@@ -98,6 +103,11 @@ msgstr "Omschrijving"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__display_name
 msgid "Display Name"
 msgstr "Te tonen naam"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__distribution_analytic_account_ids
+msgid "Distribution Analytic Account"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__sequence_id
@@ -311,6 +321,9 @@ msgid ""
 "When creating a Sales Order, above pricelist will be replaced by the one set "
 "on the sales order type:"
 msgstr ""
+
+#~ msgid "Analytic account"
+#~ msgstr "Analytische rekening"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Laatst gewijzigd op"

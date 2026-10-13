@@ -26,9 +26,14 @@ msgid "Active"
 msgstr "Aktivno"
 
 #. module: sale_order_type
-#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_account_id
-msgid "Analytic account"
-msgstr "Analitični konto"
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_distribution
+msgid "Analytic Distribution"
+msgstr ""
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__analytic_precision
+msgid "Analytic Precision"
+msgstr ""
 
 #. module: sale_order_type
 #: model_terms:ir.ui.view,arch_db:sale_order_type.sot_sale_order_type_form_view
@@ -98,6 +103,11 @@ msgstr "Opis"
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__display_name
 msgid "Display Name"
 msgstr "Prikazani naziv"
+
+#. module: sale_order_type
+#: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__distribution_analytic_account_ids
+msgid "Distribution Analytic Account"
+msgstr ""
 
 #. module: sale_order_type
 #: model:ir.model.fields,field_description:sale_order_type.field_sale_order_type__sequence_id
@@ -314,6 +324,9 @@ msgid ""
 msgstr ""
 "Pri ustvarjanju prodajnega naloga bo zgornji cenik nadomeščen s cenikom, ki "
 "je nastavljen za ta tip prodajnega naloga:"
+
+#~ msgid "Analytic account"
+#~ msgstr "Analitični konto"
 
 #~ msgid "Last Modified on"
 #~ msgstr "Zadnjič spremenjeno"
