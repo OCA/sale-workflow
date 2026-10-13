@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_pricelist_item_multi_discount_form_view" model="ir.ui.view">
+        <field name="name">product.pricelist.item.multi.discount.form</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view" />
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='percent_price']" position="replace">
+                <label
+                    for="discount_distribution"
+                    string="Discount"
+                    invisible="compute_price != 'percentage'"
+                />
+            </xpath>
+            <xpath expr="//field[@name='percent_price']" position="replace">
+                <field name="discount_distribution" widget="discount_distribution" />
+            </xpath>
+            <xpath expr="//label[@for='price_discount']" position="replace">
+                <label
+                    for="discount_distribution"
+                    string="Discount"
+                    invisible="base == 'standard_price'"
+                />
+            </xpath>
+            <xpath expr="//field[@name='price_discount']" position="replace">
+                <field name="discount_distribution" widget="discount_distribution" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
