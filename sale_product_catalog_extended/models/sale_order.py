@@ -113,8 +113,10 @@ class SaleOrder(models.Model):
                     for line in lines
                 ]
         for data in result.values():
-            # Sent back by the catalog record on its own requests.
-            data["catalogUseDeliveryAddress"] = catalog_use_delivery_address
+            # Sent back by the catalog record on its own requests, also by the
+            # cards of the order lines of the product.
+            for card in [data, *data.get("lines", [])]:
+                card["catalogUseDeliveryAddress"] = catalog_use_delivery_address
         if not catalog_show_last_price:
             return result
         last_prices = self._get_catalog_last_prices(
