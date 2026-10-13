@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2026 M. Salman
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html) -->
+<odoo>
+    <!-- Customer Invoices: keep the module's move_type filter and add the
+         cancel-state / cancelled-sale-order conditions on top of it.
+         NOTE: overriding this domain replaces the base module's domain
+         entirely (Odoo does not merge domains on inherit-by-id), so double
+         check this still matches account.action_move_out_invoice_type's
+         domain on your Odoo 18 instance before relying on it in
+         production. -->
+    <record id="account.action_move_out_invoice_type" model="ir.actions.act_window">
+        <field name="domain">[
+            ('move_type', '=', 'out_invoice'),
+            ('state', '!=', 'cancel'),
+            ('invoice_line_ids.sale_line_ids.order_id.state', '!=', 'cancel'),
+        ]</field>
+    </record>
+
+    <!-- Credit Notes: same logic, restricted to out_refund moves. -->
+    <record id="account.action_move_out_refund_type" model="ir.actions.act_window">
+        <field name="domain">[
+            ('move_type', '=', 'out_refund'),
+            ('state', '!=', 'cancel'),
+            ('invoice_line_ids.sale_line_ids.order_id.state', '!=', 'cancel'),
+        ]</field>
+    </record>
+</odoo>
