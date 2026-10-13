@@ -9,6 +9,7 @@
         <field name="arch" type="xml">
             <field name="price_unit" position="after">
                 <field name="vendor_id_domain" invisible="1" />
+                <field name="supplierinfo_id" invisible="1" />
                 <field
                     name="vendor_id"
                     domain="vendor_id_domain"
