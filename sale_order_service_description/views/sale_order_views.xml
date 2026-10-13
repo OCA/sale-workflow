@@ -1,0 +1,64 @@
+<!-- Copyright 2026 NICO SOLUTIONS - ENGINEERING & IT, Nils Coenen
+     License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).-->
+<odoo>
+    <record id="view_order_form_inherit_service_description" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.service.description</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='client_order_ref']" position="after">
+                <field name="service_description" />
+            </xpath>
+        </field>
+    </record>
+    <record id="sale_order_tree_inherit_service_description" model="ir.ui.view">
+        <field name="name">sale.order.tree.inherit.service.description</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="service_description" optional="show" />
+            </xpath>
+        </field>
+    </record>
+    <record
+        id="view_quotation_tree_with_onboarding_service_description"
+        model="ir.ui.view"
+    >
+        <field name="name">sale.order.quotation.tree.inherit.service.description</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="service_description" optional="show" />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_sales_order_filter_inherit_service_description" model="ir.ui.view">
+        <field name="name">sale.order.filter.inherit.service.description</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="service_description" />
+                <filter
+                    string="Has service description"
+                    name="has_service_description"
+                    domain="[('service_description', '!=', False)]"
+                />
+                <filter
+                    string="No service description"
+                    name="no_service_description"
+                    domain="[('service_description', '=', False)]"
+                />
+                <group>
+                    <filter
+                        string="Service descriptions"
+                        name="group_by_service_description"
+                        context="{'group_by': 'service_description'}"
+                    />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
