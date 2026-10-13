@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 ACSONE SA/NV
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="view_order_tree_customer_reference" model="ir.ui.view">
+        <field name="name">sale.order.sale.tree.customer_reference</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="customer_reference" widget="badge" optional="hide" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
