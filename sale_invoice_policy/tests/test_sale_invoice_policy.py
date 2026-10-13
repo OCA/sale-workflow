@@ -1,35 +1,29 @@
 # Copyright 2017 Acsone SA/NV (http://www.acsone.eu)
 # Copyright 2025 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
-import odoo.tests.common as common
+from odoo import Command
+
+from odoo.addons.base.tests.common import BaseCommon
 
 
-class TestSaleOrderInvoicePolicy(common.TransactionCase):
+class TestSaleOrderInvoicePolicy(BaseCommon):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
         cls.product_obj = cls.env["product.product"]
         cls.sale_obj = cls.env["sale.order"]
-        cls.partner = cls.env.ref("base.res_partner_2")
         cls.product = cls.product_obj.create(
             {"name": "Test", "type": "consu", "list_price": 20.0}
         )
         cls.product2 = cls.product_obj.create(
             {"name": "Test 2", "type": "consu", "list_price": 45.0}
         )
-        cls.product3 = cls.product_obj.create(
-            {
-                "name": "Test 3 (service)",
-                "type": "service",
-                "list_price": 850.5,
-            }
-        )
 
     def test_sale_order_invoice_order(self):
         """Test invoicing based on ordered quantities"""
         so = self.env["sale.order"].create(
             {
-                "partner_id": self.env.ref("base.res_partner_2").id,
+                "partner_id": self.partner.id,
                 "order_line": [
                     (0, 0, {"product_id": self.product.id, "product_uom_qty": 2.0}),
                     (0, 0, {"product_id": self.product2.id, "product_uom_qty": 3.0}),
@@ -64,7 +58,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         self.assertEqual("order", self.product.invoice_policy)
         so = self.env["sale.order"].create(
             {
-                "partner_id": self.env.ref("base.res_partner_2").id,
+                "partner_id": self.partner.id,
                 "invoice_policy": "delivery",
                 "order_line": [
                     (0, 0, {"product_id": self.product.id, "product_uom_qty": 2.0}),
@@ -120,16 +114,12 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         settings = self.env["res.config.settings"].create({})
         settings.sale_default_invoice_policy = "delivery"
         settings.execute()
-        so = self.env["sale.order"].create(
-            {"partner_id": self.env.ref("base.res_partner_2").id}
-        )
+        so = self.env["sale.order"].create({"partner_id": self.partner.id})
         self.assertEqual(so.invoice_policy, "delivery")
         # order policy is the default
         settings.sale_default_invoice_policy = "order"
         settings.execute()
-        so = self.env["sale.order"].create(
-            {"partner_id": self.env.ref("base.res_partner_2").id}
-        )
+        so = self.env["sale.order"].create({"partner_id": self.partner.id})
         self.assertEqual(so.invoice_policy, "order")
 
     def test_context_manager_exception(self):
@@ -138,7 +128,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         self.assertEqual("order", self.product.invoice_policy)
         so = self.env["sale.order"].create(
             {
-                "partner_id": self.env.ref("base.res_partner_2").id,
+                "partner_id": self.partner.id,
                 "invoice_policy": "delivery",
                 "order_line": [
                     (0, 0, {"product_id": self.product.id, "product_uom_qty": 2.0}),
@@ -149,7 +139,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
 
         so2 = self.env["sale.order"].create(
             {
-                "partner_id": self.env.ref("base.res_partner_2").id,
+                "partner_id": self.partner.id,
                 "invoice_policy": "order",
                 "order_line": [
                     (0, 0, {"product_id": self.product.id, "product_uom_qty": 2.0}),
@@ -174,7 +164,7 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         invoicing is enabled, that the policy is changed on order."""
         so = self.env["sale.order"].create(
             {
-                "partner_id": self.env.ref("base.res_partner_2").id,
+                "partner_id": self.partner.id,
                 "order_line": [
                     (0, 0, {"product_id": self.product.id, "product_uom_qty": 2.0}),
                     (0, 0, {"product_id": self.product2.id, "product_uom_qty": 3.0}),
@@ -186,3 +176,99 @@ class TestSaleOrderInvoicePolicy(common.TransactionCase):
         self.assertEqual(so.invoice_policy, "delivery")
         so._force_lines_to_invoice_policy_order()
         self.assertEqual(so.invoice_policy, "order")
+
+    def test_draft_order_nothing_to_invoice(self):
+        so = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "invoice_policy": "order",
+                "order_line": [
+                    Command.create(
+                        {"product_id": self.product.id, "product_uom_qty": 2.0}
+                    ),
+                    Command.create(
+                        {"product_id": self.product2.id, "product_uom_qty": 3.0}
+                    ),
+                ],
+            }
+        )
+        self.product2.invoice_policy = "delivery"
+        self.assertEqual([0.0, 0.0], so.order_line.mapped("qty_to_invoice"))
+
+    def test_section_line(self):
+        so = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "invoice_policy": "delivery",
+                "order_line": [
+                    Command.create({"display_type": "line_section", "name": "Section"}),
+                    Command.create(
+                        {"product_id": self.product.id, "product_uom_qty": 2.0}
+                    ),
+                ],
+            }
+        )
+        so.action_confirm()
+        section = so.order_line.filtered("display_type")
+        self.assertEqual(section.qty_to_invoice, 0.0)
+        self.assertEqual(section.untaxed_amount_to_invoice, 0.0)
+
+    def test_combo_product(self):
+        combo_a = self.env["product.combo"].create(
+            {
+                "name": "Combo A",
+                "combo_item_ids": [Command.create({"product_id": self.product.id})],
+            }
+        )
+        combo_b = self.env["product.combo"].create(
+            {
+                "name": "Combo B",
+                "combo_item_ids": [Command.create({"product_id": self.product2.id})],
+            }
+        )
+        product_combo = self.product_obj.create(
+            {
+                "name": "Combo",
+                "type": "combo",
+                "list_price": 10.0,
+                "combo_ids": [Command.link(combo_a.id), Command.link(combo_b.id)],
+            }
+        )
+        so = self.env["sale.order"].create(
+            {
+                "partner_id": self.partner.id,
+                "invoice_policy": "delivery",
+                "order_line": [
+                    Command.create(
+                        {
+                            "product_id": product_combo.id,
+                            "product_uom_qty": 3.0,
+                            "price_unit": 0.0,
+                        }
+                    ),
+                ],
+            }
+        )
+        combo_line = so.order_line
+        so.order_line = [
+            Command.create(
+                {
+                    "product_id": combo.combo_item_ids.product_id.id,
+                    "product_uom_qty": 3.0,
+                    "combo_item_id": combo.combo_item_ids.id,
+                    "linked_line_id": combo_line.id,
+                }
+            )
+            for combo in combo_a + combo_b
+        ]
+        so.action_confirm()
+        self.assertEqual(
+            [0.0, 0.0], (so.order_line - combo_line).mapped("qty_to_invoice")
+        )
+        picking = so.picking_ids
+        for move in picking.move_ids:
+            move.quantity = move.product_uom_qty
+        picking.button_validate()
+        so.order_line.flush_recordset()
+        self.assertEqual([3.0, 3.0, 3.0], so.order_line.mapped("qty_to_invoice"))
+        self.assertEqual("order", self.product.invoice_policy)

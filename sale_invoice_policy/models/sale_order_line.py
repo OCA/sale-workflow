@@ -38,25 +38,30 @@ class SaleOrderLine(models.Model):
         Exclude lines that have their order invoice policy filled in
         """
         other_lines = self.filtered(
-            lambda line: line.product_id.type == "service"
+            lambda line: line.display_type
+            or line.state != "sale"
+            or line.product_id.type in ("service", "combo")
             or line.order_id.invoice_policy == "product"
         )
-        super(SaleOrderLine, other_lines)._compute_qty_to_invoice()
-        for line in self - other_lines:
+        policy_lines = self - other_lines
+        for line in policy_lines:
             invoice_policy = line.order_id.invoice_policy
             if invoice_policy == "order":
                 line.qty_to_invoice = line.product_uom_qty - line.qty_invoiced
             else:
                 line.qty_to_invoice = line.qty_delivered - line.qty_invoiced
+        combo_lines = policy_lines.filtered("combo_item_id").linked_line_id
+        super(SaleOrderLine, other_lines | combo_lines)._compute_qty_to_invoice()
         return True
 
     @api.depends("order_id.invoice_policy")
     def _compute_untaxed_amount_to_invoice(self) -> None:
         other_lines = self.filtered(
-            lambda line: line.product_id.type == "service"
+            lambda line: line.display_type
+            or line.state != "sale"
+            or line.product_id.type in ("service", "combo")
             or line.order_id.invoice_policy == "product"
             or line.order_id.invoice_policy == line.product_id.invoice_policy
-            or line.state not in ["sale", "done"]
         )
         super(SaleOrderLine, other_lines)._compute_untaxed_amount_to_invoice()
         for lines in (self - other_lines).partition("order_id.invoice_policy").values():
