@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    # Copyright 2026 - TODAY, Kaynnan Lemes <kaynnan.lemes@escodoo.com.br>
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+-->
+<odoo>
+    <record id="view_blanket_order_plan_tree" model="ir.ui.view">
+        <field name="name">blanket.order.plan.tree</field>
+        <field name="model">blanket.order.plan</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="installment" />
+                <field name="plan_date" />
+                <field name="order_type" />
+                <field name="percent" />
+                <field name="ordered" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_blanket_order_plan_form" model="ir.ui.view">
+        <field name="name">blanket.order.plan.form</field>
+        <field name="model">blanket.order.plan</field>
+        <field name="arch" type="xml">
+            <form string="Order Plan">
+                <sheet>
+                    <group>
+                        <field name="sale_id" />
+                        <field name="installment" />
+                        <field name="plan_date" />
+                        <field name="order_type" />
+                        <field name="percent" />
+                        <field name="last" />
+                        <field name="ordered" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_blanket_order_plan" model="ir.actions.act_window">
+        <field name="name">Order Plan</field>
+        <field name="res_model">blanket.order.plan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
