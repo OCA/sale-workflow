@@ -1,0 +1,8 @@
+- Create a pricelist
+- Set Price type=Formula
+- Set Base Price=Sales Prices or Cost
+- Create a batch and set Sales Prices or Cost
+- Create a sales order
+- Use the price list created above
+- Add a line to the order and use the batch created above
+- The line price will be the corresponding price (Sales Prices or Cost) + discount
